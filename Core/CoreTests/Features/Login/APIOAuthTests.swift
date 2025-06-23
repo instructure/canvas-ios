@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+import TestsFoundation
 @testable import Core
 import TestsFoundation
 import XCTest

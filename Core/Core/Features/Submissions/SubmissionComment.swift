@@ -65,6 +65,10 @@ final public class SubmissionComment: NSManagedObject {
         return DateFormatter.localizedString(from: createdAt, dateStyle: .long, timeStyle: .short)
     }
 
+    public var attachmentsSorted: [File] {
+        attachments?.sorted(by: File.idCompare) ?? []
+    }
+
     @discardableResult
     static public func save(_ item: APISubmissionComment, for submission: APISubmission, replacing id: String? = nil, in client: NSManagedObjectContext) -> SubmissionComment {
         let model: SubmissionComment = client.first(where: #keyPath(SubmissionComment.id), equals: id ?? item.id) ?? client.insert()

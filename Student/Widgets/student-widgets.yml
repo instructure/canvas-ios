@@ -37,3 +37,15 @@ schemes:
         Widgets: all
       environmentVariables:
         _XCWidgetKind: GradesWidget
+  Widgets - Todo:
+    build:
+      targets:
+        Widgets: all
+        Student: all
+    run:
+      askForAppToLaunch: true
+      environmentVariables:
+        _XCWidgetKind: TodoWidget
+        _XCWidgetFamily: systemMedium
+    profile:
+      askForAppToLaunch: true

@@ -87,7 +87,7 @@ public final class Plannable: NSManagedObject {
 }
 
 extension Plannable {
-    func icon() -> UIImage? {
+    public func icon() -> UIImage? {
         switch(self.plannableType) {
         case .assignment:
             return UIImage.assignmentLine
@@ -127,6 +127,19 @@ extension Plannable {
             } else {
                 return .textDark
             }
+        }
+    }
+
+    /// Suffixes the API returned `contextName` with "To Do" if the plannable is a ToDo.
+    public var contextNameUserFacing: String? {
+        if plannableType != .planner_note {
+            return contextName
+        }
+
+        if let contextName {
+            return String(localized: "\(contextName) To Do", bundle: .core, comment: "<CourseName> To Do")
+        } else {
+            return String(localized: "To Do", bundle: .core)
         }
     }
 }

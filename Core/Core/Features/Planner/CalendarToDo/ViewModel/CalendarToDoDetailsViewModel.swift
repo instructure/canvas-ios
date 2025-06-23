@@ -53,7 +53,9 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
 
     // MARK: - Private
 
-    private let plannable: Plannable
+    private let plannableId: String
+    private var plannable: Plannable?
+
     private let interactor: CalendarToDoInteractor
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
@@ -61,19 +63,36 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
     // MARK: - Init
 
     public init(plannable: Plannable, interactor: CalendarToDoInteractor, router: Router) {
+        self.plannableId = plannable.id
         self.plannable = plannable
         self.interactor = interactor
         self.router = router
+        self.setupSubscriptions()
+    }
 
-        interactor.getToDo(id: plannable.id)
+    public init(plannableId: String, interactor: CalendarToDoInteractor, router: Router) {
+        self.plannableId = plannableId
+        self.interactor = interactor
+        self.router = router
+        self.setupSubscriptions()
+    }
+
+    private func setupSubscriptions() {
+        interactor
+            .getToDo(id: plannableId)
             .sink(
                 receiveCompletion: { [weak self] in
+                    guard let self else { return }
+
                     switch $0 {
                     case .finished:
                         break
                     case .failure:
-                        // fallback to input plannable values
-                        self?.updateValues(with: plannable)
+                        if let plannable = self.plannable {
+                            self.updateValues(with: plannable)
+                        } else {
+                            self.state = .error
+                        }
                     }
                 },
                 receiveValue: { [weak self] in
@@ -101,6 +120,8 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
     // MARK: - Private methods
 
     private func updateValues(with plannable: Plannable) {
+        self.plannable = plannable
+
         title = plannable.title
         date = plannable.date?.dateTimeString
         description = plannable.details
@@ -108,6 +129,8 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
     }
 
     private func showEditScreen(from source: WeakViewController) {
+        guard let plannable else { return }
+
         let weakVC = WeakViewController()
         let vc = PlannerAssembly.makeEditToDoViewController(plannable: plannable) { [router] _ in
             router.dismiss(weakVC)
@@ -120,7 +143,8 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
     private func deleteToDo(from source: WeakViewController) {
         state = .data(loadingOverlay: true)
 
-        interactor.deleteToDo(id: plannable.id)
+        interactor
+            .deleteToDo(id: plannableId)
             .sink(
                 receiveCompletion: { [weak self] in
                     switch $0 {

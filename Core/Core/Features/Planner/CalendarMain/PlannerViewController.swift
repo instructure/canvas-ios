@@ -19,7 +19,7 @@
 import Combine
 import UIKit
 
-public class PlannerViewController: UIViewController {
+public class PlannerViewController: VisibilityObservedViewController {
     lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
     lazy var addButton = UIBarButtonItem(image: .addSolid)
     lazy var todayButton = UIBarButtonItem(image: .calendarTodayLine, style: .plain, target: self, action: #selector(selectToday))
@@ -201,6 +201,14 @@ public class PlannerViewController: UIViewController {
 
     @objc func selectToday() {
         let date = Clock.now.startOfDay()
+        selectedDate = date
+        calendar.showDate(date)
+        calendar.accessibilityFocusOnSelectedButton()
+        updateList(date)
+    }
+
+    public func selectDate(_ date: Date) {
+        guard isViewLoaded else { return }
         selectedDate = date
         calendar.showDate(date)
         calendar.accessibilityFocusOnSelectedButton()

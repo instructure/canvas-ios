@@ -16,19 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import SwiftUI
 import Combine
 import UIKit
 import PSPDFKit
 import PSPDFKitUI
 
 public class DocViewerViewController: UIViewController {
-    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var loadingView: CircleProgressView!
-    @IBOutlet weak var syncAnnotationsButton: UIButton!
-    let toolbar = UIToolbar()
-    let toolbarContainer = FlexibleToolbarContainer()
+    @IBOutlet weak var contentView: UIView!
+    /// We store this to measure its height so we can enlarge the PDF view when the annotation toolbar is closed.
+    private weak var annotationContainerView: UIView?
 
-    var annotationProvider: DocViewerAnnotationProvider?
+    var annotationProvider: DocViewerAnnotationProvider? {
+        didSet {
+            annotationToolbarViewModel.annotationProvider = annotationProvider
+        }
+    }
     private var env: AppEnvironment = .defaultValue
     public var fallbackURL: URL!
     var fallbackUsed = false
@@ -41,12 +45,14 @@ public class DocViewerViewController: UIViewController {
     lazy var session = DocViewerSession { [weak self] in
         performUIUpdate { self?.sessionIsReady() }
     }
+    public internal(set) static var hasPSPDFKitLicense = false
+
     private var dragGestureViewModel: AnnotationDragGestureViewModel?
-    private var subscriptions = Set<AnyCancellable>()
     private var annotationContextMenuModel: DocViewerAnnotationContextMenuModel?
+    internal var annotationToolbarViewModel = DocViewerAnnotationToolbarViewModel()
     private var offlineModeInteractor: OfflineModeInteractor!
 
-    public internal(set) static var hasPSPDFKitLicense = false
+    private var subscriptions = Set<AnyCancellable>()
 
     public static func setup(_ secret: Secret) {
         guard let key = secret.string, !hasPSPDFKitLicense else { return }
@@ -86,8 +92,6 @@ public class DocViewerViewController: UIViewController {
         pdf.view.isHidden = true
         pdf.updateConfiguration(builder: docViewerConfigurationBuilder)
 
-        syncAnnotationsButton.setTitleColor(.textLightest.variantForLightMode, for: .normal)
-        syncAnnotationsButton.setTitleColor(.textDark, for: .disabled)
         annotationSaveStateChanges(saving: false)
 
         let commentPinGestureRecognizer = UITapGestureRecognizer()
@@ -179,15 +183,10 @@ public class DocViewerViewController: UIViewController {
         parentNavigationItem?.rightBarButtonItems = [ share, search ]
 
         if isAnnotatable, metadata?.annotations?.enabled == true {
-            syncAnnotationsButton.isHidden = false
-            contentView.addSubview(toolbar)
-            toolbar.pin(inside: contentView, bottom: nil)
-            contentView.constraints.first { $0.firstAnchor == pdf.view.topAnchor }? .isActive = false
-            pdf.view.topAnchor.constraint(equalTo: toolbar.bottomAnchor).isActive = true
-
-            pdf.annotationStateManager.add(self)
             let annotationToolbar = DocViewerAnnotationToolbar(annotationStateManager: pdf.annotationStateManager)
             annotationToolbar.tintColor = Brand.shared.primary
+            annotationToolbar.backgroundView = nil
+            annotationToolbar.borderedToolbarPositions = []
             annotationToolbar.isDragButtonSelected
                 .sink { [weak self] isDragEnabled in
                     self?.dragGestureViewModel?.isEnabled = isDragEnabled
@@ -195,13 +194,22 @@ public class DocViewerViewController: UIViewController {
                 }
                 .store(in: &subscriptions)
 
-            contentView.addSubview(toolbarContainer)
-            toolbarContainer.pin(inside: contentView)
+            let toolbarContainer = FlexibleToolbarContainer()
             toolbarContainer.flexibleToolbar = annotationToolbar
-            toolbarContainer.overlaidBar = toolbar
-            toolbarContainer.show(animated: true, completion: nil)
+            toolbarContainer.show(animated: false, completion: nil)
 
+            let annotationContainer = CoreHostingController(DocViewerAnnotationToolsView(
+                viewModel: annotationToolbarViewModel,
+                annotationToolbarView: FlexibleToolbarContainerView(flexibleToolbar: toolbarContainer)
+            ))
+            annotationContainer.view.backgroundColor = .clear
+            embed(annotationContainer, in: contentView) { _, _ in }
+            annotationContainer.view.pin(inside: contentView, bottom: nil)
+            annotationContainerView = annotationContainer.view
+
+            pdf.annotationStateManager.add(self)
             contentView.layoutIfNeeded()
+            resizePdfView(on: annotationToolbarViewModel.$isOpen)
         }
 
         annotationContextMenuModel = DocViewerAnnotationContextMenuModel(isAnnotationEnabled: isAnnotatable,
@@ -224,6 +232,21 @@ public class DocViewerViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(AlertAction(String(localized: "Dismiss", bundle: .core), style: .default))
         env.router.show(alert, from: self, options: .modal())
+    }
+
+    private func resizePdfView(on toolbarOpenState: any Publisher<Bool, Never>) {
+        toolbarOpenState
+            .sink { [weak self] isOpen in
+                guard let self, let annotationContainerView else { return }
+                UIView.animate(
+                    withDuration: annotationToolbarViewModel.uiAnimation.duration,
+                    delay: 0,
+                    options: annotationToolbarViewModel.uiAnimation.options
+                ) {
+                    self.pdf.additionalSafeAreaInsets = UIEdgeInsets(top: isOpen ? annotationContainerView.frame.size.height : 0, left: 0, bottom: 0, right: 0)
+                }
+            }
+            .store(in: &subscriptions)
     }
 }
 
@@ -293,35 +316,11 @@ extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
         pdf.annotationStateManager.toggleState(.ink, variant: variant)
     }
 
-    @IBAction func syncAnnotations() {
-        annotationProvider?.retryFailedRequest()
-    }
-
     func annotationDidFailToSave(error: Error) {
-        guard let syncAnnotationsButton else { return }
-
-        let title = String(localized: "Error Saving. Tap to retry.", bundle: .core)
-
-        performUIUpdate {
-            syncAnnotationsButton.isEnabled = true
-            syncAnnotationsButton.backgroundColor = .backgroundDanger
-            syncAnnotationsButton.setTitle(title, for: .normal)
-            syncAnnotationsButton.accessibilityTraits.insert(.button)
-        }
+        annotationToolbarViewModel.didChangeSaveState.send(.error)
     }
 
     func annotationSaveStateChanges(saving: Bool) {
-        guard let syncAnnotationsButton else { return }
-
-        let title = saving
-            ? String(localized: "Saving...", bundle: .core)
-            : String(localized: "All annotations saved.", bundle: .core)
-
-        performUIUpdate {
-            syncAnnotationsButton.isEnabled = false
-            syncAnnotationsButton.backgroundColor = .backgroundLight
-            syncAnnotationsButton.setTitle(title, for: .normal)
-            syncAnnotationsButton.accessibilityTraits.remove(.button)
-        }
+        annotationToolbarViewModel.didChangeSaveState.send(saving ? .saving : .saved)
     }
 }

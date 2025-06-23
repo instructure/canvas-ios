@@ -25,7 +25,6 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
     struct Author {
         var id: String?
         var name: String
-        var pronouns: String?
         var avatarUrl: URL?
         var isCurrentUser: Bool
         var isAnonymized: Bool
@@ -86,8 +85,7 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
 
         self.author = Author(
             id: comment.authorID,
-            name: comment.authorName,
-            pronouns: comment.authorPronouns,
+            name: User.displayName(comment.authorName, pronouns: comment.authorPronouns),
             avatarUrl: comment.authorAvatarURL,
             isCurrentUser: comment.authorID == currentUserId,
             isAnonymized: assignment.anonymizeStudents,
@@ -99,8 +97,7 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
         let commentType: CommentType
         if let attempt = comment.attempt {
             if submission.type == .online_upload {
-                let files = submission.attachments?.sorted(by: File.idCompare) ?? []
-                commentType = .attemptWithAttachments(attempt, files)
+                commentType = .attemptWithAttachments(attempt, submission.attachmentsSorted)
             } else {
                 commentType = .attempt(attempt, submission)
             }
@@ -109,8 +106,7 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
         } else if comment.mediaType == .video, let url = comment.mediaLocalOrRemoteURL {
             commentType = .video(url)
         } else {
-            let files = comment.attachments?.sorted(by: File.idCompare) ?? []
-            commentType = .text(comment.comment, files)
+            commentType = .text(comment.comment, comment.attachmentsSorted)
         }
         self.commentType = commentType
 

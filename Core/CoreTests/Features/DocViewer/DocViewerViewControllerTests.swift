@@ -21,6 +21,7 @@ import PSPDFKit
 import PSPDFKitUI
 import Combine
 @testable import Core
+import TestsFoundation
 
 class DocViewerViewControllerTests: CoreTestCase {
     lazy var controller: DocViewerViewController = {
@@ -253,22 +254,21 @@ class DocViewerViewControllerTests: CoreTestCase {
     func testAnnotationDidFailToSave() {
         controller.view.layoutIfNeeded()
         controller.annotationDidFailToSave(error: APIDocViewerError.tooBig)
-        XCTAssertEqual(controller.syncAnnotationsButton.isEnabled, true)
-        XCTAssertEqual(controller.syncAnnotationsButton.accessibilityTraits.contains(.button), true)
-        XCTAssertNoThrow(controller.syncAnnotationsButton.sendActions(for: .primaryActionTriggered))
+
+        waitUntil(1, shouldFail: true) {
+            controller.annotationToolbarViewModel.saveState == .error
+        }
     }
 
     func testAnnotationSaveStateChanges() {
         controller.view.layoutIfNeeded()
 
         controller.annotationSaveStateChanges(saving: true)
-        XCTAssertEqual(controller.syncAnnotationsButton.isEnabled, false)
-        XCTAssertEqual(controller.syncAnnotationsButton.accessibilityTraits.contains(.button), false)
-        XCTAssertEqual(controller.syncAnnotationsButton.title(for: .normal), "Saving...")
+        XCTAssertEqual(controller.annotationToolbarViewModel.saveState, .saving)
 
         controller.annotationSaveStateChanges(saving: false)
-        XCTAssertEqual(controller.syncAnnotationsButton.isEnabled, false)
-        XCTAssertEqual(controller.syncAnnotationsButton.accessibilityTraits.contains(.button), false)
-        XCTAssertEqual(controller.syncAnnotationsButton.title(for: .normal), "All annotations saved.")
+        waitUntil(1, shouldFail: true) {
+            controller.annotationToolbarViewModel.saveState == .saved
+        }
     }
 }

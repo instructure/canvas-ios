@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import Foundation
+public struct HScoresCourseSettings {
+    public let restrictQuantitativeData: Bool
 
-private let scheme = "canvas-courses://"
-private var host: String? { AppEnvironment.shared.currentSession?.baseURL.host }
-private let defaultRoute = URL(string: scheme)!
-
-extension Course {
-    var route: URL {
-        guard let host = host else { return defaultRoute }
-        return URL(string: "\(scheme)\(host)/courses/\(id)/grades")!
+    init(restrictQuantitativeData: Bool) {
+        self.restrictQuantitativeData = restrictQuantitativeData
     }
-}
 
-extension Assignment {
-    var route: URL {
-        guard let host = host else { return defaultRoute }
-        return URL(string: "\(scheme)\(host)/courses/\(courseID)/assignments/\(id)")!
+    init(from entity: CDHScoresCourseSettings) {
+        self.restrictQuantitativeData = entity.restrictQuantitativeData
     }
 }

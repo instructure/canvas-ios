@@ -54,7 +54,7 @@ struct PlannerListRowView: View {
 
     @ViewBuilder
     private var courseCodeText: some View {
-        let name = item.readableContextName ?? ""
+        let name = item.contextNameUserFacing ?? ""
         if let color = item.customColor {
             Text(name).foregroundStyle(Color(uiColor: color))
         } else {
@@ -86,18 +86,6 @@ extension Plannable {
 
     var showsPointsDivider: Bool {
         return dueDateText != nil && pointsText != nil
-    }
-
-    var readableContextName: String? {
-        if plannableType != .planner_note {
-            return contextName
-        }
-
-        if let contextName = contextName {
-            return String(localized: "\(contextName) To Do", bundle: .core, comment: "<CourseName> To Do")
-        } else {
-            return String(localized: "To Do", bundle: .core)
-        }
     }
 
     var iconImage: Image {

@@ -24,27 +24,12 @@ public struct RouteHandler {
     public typealias ViewFactory = (URLComponents, [String: String], [String: Any]?, AppEnvironment) -> UIViewController?
     public typealias DiscardingEnvironmentViewFactory = (URLComponents, [String: String], [String: Any]?) -> UIViewController?
 
-    public enum Segment: Equatable {
-        case literal(String)
-        case param(String)
-        case splat(String)
-    }
-
-    public let template: String
+    public let route: Route
     public let factory: ViewFactory
-    public let segments: [Segment]
 
     public init(_ template: String, factory: @escaping ViewFactory = { _, _, _, _ in nil }) {
-        self.template = template
+        self.route = Route(template)
         self.factory = factory
-        self.segments = template.split(separator: "/").map { part in
-            if part.hasPrefix("*") {
-                return .splat(String(part.dropFirst()))
-            } else if part.hasPrefix(":") {
-                return .param(ID.expandTildeID(String(part.dropFirst())))
-            }
-            return .literal(String(part))
-        }
     }
 
     /// This is to avoid large file changes on Routes.
@@ -57,25 +42,6 @@ public struct RouteHandler {
     }
 
     public func match(_ url: URLComponents) -> [String: String]? {
-        var parts = url.path.split(separator: "/")
-        if parts.count >= 2, parts[0] == "api", parts[1] == "v1" {
-            parts.removeFirst(2)
-        }
-        var params: [String: String] = [:]
-        for segment in segments {
-            switch segment {
-            case .literal(let template):
-                guard !parts.isEmpty else { return nil } // too short
-                guard parts.removeFirst() == template else { return nil }
-            case .param(let name):
-                guard !parts.isEmpty else { return nil } // too short
-                params[name] = ID.expandTildeID(String(parts.removeFirst()))
-            case .splat(let name):
-                params[name] = parts.joined(separator: "/")
-                parts = []
-            }
-        }
-        guard parts.isEmpty else { return nil } // too long
-        return params
+        route.match(url)
     }
 }

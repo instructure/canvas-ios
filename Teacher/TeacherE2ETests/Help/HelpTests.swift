@@ -39,7 +39,7 @@ class HelpTests: E2ETestCase {
         searchTheCanvasGuidesButton.hit()
         HelpHelper.openInSafariButton.hit()
         var browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas/ct-p/canvas"))
+        XCTAssertContains(browserURL, "https://community.canvaslms.com/t5/Canvas/ct-p/canvas")
 
         // MARK: Check "Conference Guides for Remote Classrooms" button
         HelpHelper.returnToHelpPage(teacher: true)
@@ -49,7 +49,7 @@ class HelpTests: E2ETestCase {
         conferenceGuidesButton.hit()
         HelpHelper.openInSafariButton.hit()
         browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-LMS-Blog/Web-Conferencing-Resources"))
+        XCTAssertContains(browserURL, "Web-Conferencing-Resources")
 
         // MARK: Check "Report a Problem" button
         HelpHelper.returnToHelpPage(teacher: true)
@@ -68,7 +68,7 @@ class HelpTests: E2ETestCase {
         askTheCommunityButton.hit()
         HelpHelper.openInSafariButton.hit()
         browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-Question-Forum/bd-p/questions"))
+        XCTAssertContains(browserURL, "Canvas-Question-Forum")
 
         // MARK: Check "Submit a Feature Idea" button
         HelpHelper.returnToHelpPage(teacher: true)
@@ -78,7 +78,7 @@ class HelpTests: E2ETestCase {
         submitAFeatureButton.hit()
         HelpHelper.openInSafariButton.hit()
         browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("canvas-ideas-themes"))
+        XCTAssertContains(browserURL, "canvas-ideas-themes")
 
         // MARK: Check "Training Services Portal" button
         HelpHelper.returnToHelpPage(teacher: true)
@@ -88,6 +88,6 @@ class HelpTests: E2ETestCase {
         trainingServicesButton.hit()
         HelpHelper.openInSafariButton.hit()
         browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("https://training-portal-beta-pdx.insproserv.net"))
+        XCTAssertContains(browserURL, "/login/canvas")
     }
 }

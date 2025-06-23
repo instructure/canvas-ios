@@ -21,7 +21,7 @@ import UIKit
 open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var optionsButton = UIBarButtonItem(image: .moreLine, style: .plain, target: self, action: #selector(showOptions))
     @IBOutlet weak var webViewContainer: UIView!
-    public var webView: CoreWebView = CoreWebView()
+    public var webView = CoreWebView()
     let refreshControl = CircleRefreshControl()
     public let titleSubtitleView = TitleSubtitleView.create()
 
@@ -116,7 +116,7 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
 
     // Parent uses a different coloring logic so we prevent any update here.
     private func updateNavBar() {
-        guard AppEnvironment.shared.app != .horizon else {
+        if AppEnvironment.shared.app == .horizon {
             return
         }
         guard

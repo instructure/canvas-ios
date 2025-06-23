@@ -297,45 +297,47 @@ let router = Router(routes: [
         )
     },
 
-    RouteHandler("/courses/:courseID/modules") { _, params, _ in
+    RouteHandler("/courses/:courseID/modules") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
-        return ModuleListViewController.create(courseID: courseID)
+        return ModuleListViewController
+            .create(env: env, courseID: courseID.localID)
     },
 
-    RouteHandler("/courses/:courseID/modules/:moduleID") { _, params, _ in
+    RouteHandler("/courses/:courseID/modules/:moduleID") { _, params, _, env in
         guard let courseID = params["courseID"], let moduleID = params["moduleID"] else { return nil }
-        return ModuleListViewController.create(courseID: courseID, moduleID: moduleID)
+        return ModuleListViewController
+            .create(env: env, courseID: courseID.localID, moduleID: moduleID.localID)
     },
 
-    RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
-            courseID: courseID,
+            env: env,
+            courseID: courseID.localID,
             assetType: .moduleItem,
-            assetID: itemID,
+            assetID: itemID.localID,
             url: url
         )
     },
 
-    RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
-            courseID: courseID,
+            env: env,
+            courseID: courseID.localID,
             assetType: .moduleItem,
-            assetID: itemID,
+            assetID: itemID.localID,
             url: url
         )
     },
 
-    RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
-            courseID: courseID,
+            env: env,
+            courseID: courseID.localID,
             assetType: .moduleItem,
-            assetID: itemID,
+            assetID: itemID.localID,
             url: url
         )
     },
@@ -513,13 +515,20 @@ private func fileDetails(url: URLComponents, params: [String: String], userInfo 
     if !url.originIsModuleItemDetails, !url.skipModuleItemSequence, let context = context, context.contextType == .course {
         return ModuleItemSequenceViewController.create(
             env: environment,
-            courseID: context.id,
+            courseID: context.id.localID,
             assetType: .file,
-            assetID: fileID,
+            assetID: fileID.localID,
             url: url
         )
     }
-    return FileDetailsViewController.create(context: context, fileID: fileID, originURL: url, assignmentID: assignmentID, environment: environment)
+    return FileDetailsViewController
+        .create(
+            context: context?.local,
+            fileID: fileID.localID,
+            originURL: url,
+            assignmentID: assignmentID?.localID,
+            environment: environment
+        )
 }
 
 private func offlineFileDetails(url _: URLComponents, params: [String: String], userInfo _: [String: Any]?, environment: AppEnvironment) -> UIViewController? {
