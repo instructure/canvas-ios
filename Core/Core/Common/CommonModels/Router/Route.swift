@@ -16,19 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Core/Core/Common/CommonModels/Router/RouteHandler.swift
-import UIKit
-
-// A route is a place you can go in the app
-// Each app defines it's own routes when creating the Router
-public struct RouteHandler {
-    public typealias ViewFactory = (URLComponents, [String: String], [String: Any]?, AppEnvironment) -> UIViewController?
-    public typealias DiscardingEnvironmentViewFactory = (URLComponents, [String: String], [String: Any]?) -> UIViewController?
-========
 import Foundation
 
 public struct Route {
->>>>>>>> origin/master:Core/Core/Common/CommonModels/Router/Route.swift
 
     public enum Segment: Equatable {
         case literal(String)
@@ -39,11 +29,7 @@ public struct Route {
     public let template: String
     public let segments: [Segment]
 
-<<<<<<<< HEAD:Core/Core/Common/CommonModels/Router/RouteHandler.swift
-    public init(_ template: String, factory: @escaping ViewFactory = { _, _, _, _ in nil }) {
-========
     public init(_ template: String) {
->>>>>>>> origin/master:Core/Core/Common/CommonModels/Router/Route.swift
         self.template = template
         self.segments = template.split(separator: "/").map { part in
             if part.hasPrefix("*") {
@@ -52,15 +38,6 @@ public struct Route {
                 return .param(ID.expandTildeID(String(part.dropFirst())))
             }
             return .literal(String(part))
-        }
-    }
-
-    /// This is to avoid large file changes on Routes.
-    /// We need to remove this while migrating to a state where AppEnvironment instance
-    /// is being passed to all view of routes entry points.
-    public init(_ template: String, factory: @escaping DiscardingEnvironmentViewFactory) {
-        self.init(template) { url, params, userInfo, _ in
-            factory(url, params, userInfo)
         }
     }
 
