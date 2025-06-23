@@ -21,7 +21,7 @@ import SwiftUI
 extension InstUI {
 
     /// This wrapper is a workaround to replace the `SwiftUI.TextEditor`.
-    /// It clears the defult insets (allowing for proper alignment with other views),
+    /// It clears the default insets (allowing for proper alignment with other views),
     /// provides a `textViewSetup` closure for customization,
     /// updates the `height` binding if provided.
     /// Parent views and view hierarchy can affect its behaviour, especially when UITextView scrolling is disabled.

@@ -23,7 +23,7 @@ extension InstUI {
     /// This text editor starts as a one line height component,
     /// then as text is entered it grows until its maximum height is reached.
     /// Once at maximum height it becomes scrollable.
-    /// It is indeded to be used when the TextEditor has a limited maximum height, such as chat bottom input field.
+    /// It is intended to be used when the TextEditor has a limited maximum height, such as chat bottom input field.
     /// It is NOT intended to be used when TextEditor scrolling should be disabled because its parent view itself scrolls.
     public struct ScrollableTextEditor: View {
         @Environment(\.dynamicTypeSize) var dynamicTypeSize
