@@ -26,13 +26,13 @@ class GradeStatusViewModelTests: TeacherTestCase {
     private var cancellables: Set<AnyCancellable> = []
 
     func test_init_selectedOption_isNone() {
-        let interactor = GradeStatusInteractorMock(submissionId: "subId", userId: "userId", assignmentId: "assignmentId")
+        let interactor = GradeStatusInteractorMock()
         let testee = makeViewModel(interactor: interactor)
         XCTAssertEqual(testee.selectedOption.id, "none")
     }
 
     func test_options_sorted_optionsMatchInteractor() {
-        let interactor = GradeStatusInteractorMock(submissionId: "subId", userId: "userId", assignmentId: "assignmentId")
+        let interactor = GradeStatusInteractorMock()
         interactor.gradeStatuses = [
             GradeStatus(defaultName: "Bravo"),
             GradeStatus(defaultName: "Alpha")
@@ -42,7 +42,7 @@ class GradeStatusViewModelTests: TeacherTestCase {
     }
 
     func test_didSelectGradeStatus_triggersUpdateAndSetsSelected() {
-        let interactor = GradeStatusInteractorMock(submissionId: "subId", userId: "userId", assignmentId: "assignmentId")
+        let interactor = GradeStatusInteractorMock()
         let status = GradeStatus(defaultName: "Alpha")
         interactor.gradeStatuses = [status]
         let testee = makeViewModel(interactor: interactor)
@@ -61,7 +61,7 @@ class GradeStatusViewModelTests: TeacherTestCase {
     }
 
     func test_didChangeAttempt_observeGradeStatusSetsSelectedOption() {
-        let interactor = GradeStatusInteractorMock(submissionId: "subId", userId: "userId", assignmentId: "assignmentId")
+        let interactor = GradeStatusInteractorMock()
         let status = GradeStatus(defaultName: "Alpha")
         interactor.gradeStatuses = [status]
         let testee = makeViewModel(interactor: interactor)
@@ -78,7 +78,7 @@ class GradeStatusViewModelTests: TeacherTestCase {
     }
 
     func test_didSelectGradeStatus_uploadGradeStatusError_showsAlert() {
-        let interactor = GradeStatusInteractorMock(submissionId: "subId", userId: "userId", assignmentId: "assignmentId")
+        let interactor = GradeStatusInteractorMock()
         interactor.shouldFailUpdateSubmissionGradeStatus = true
         let status = GradeStatus(defaultName: "Alpha")
         interactor.gradeStatuses = [status]
@@ -97,7 +97,7 @@ class GradeStatusViewModelTests: TeacherTestCase {
     }
 
     func test_didSelectGradeStatus_retryUpload_succeedsAfterFailure() {
-        let interactor = GradeStatusInteractorMock(submissionId: "subId", userId: "userId", assignmentId: "assignmentId")
+        let interactor = GradeStatusInteractorMock()
         let statusA = GradeStatus(defaultName: "Alpha")
         let statusNone = GradeStatus(defaultName: "none")
         interactor.gradeStatuses = [statusNone, statusA]
@@ -125,6 +125,21 @@ class GradeStatusViewModelTests: TeacherTestCase {
         waitUntil(shouldFail: true) {
             testee.selectedOption.id == option.id && testee.isLoading == false
         }
+    }
+
+    func test_didChangeLateDaysValue_triggersUpdateLateDays() {
+        let interactorMock = GradeStatusInteractorMock()
+        let testee = makeViewModel(interactor: interactorMock)
+
+        // WHEN
+        testee.didChangeLateDaysValue.send(5)
+
+        // THEN
+        waitUntil(shouldFail: true) { interactorMock.updateLateDaysCalled }
+        XCTAssertTrue(interactorMock.updateLateDaysCalled)
+        XCTAssertEqual(interactorMock.updateLateDaysParams?.submissionId, "sub1")
+        XCTAssertEqual(interactorMock.updateLateDaysParams?.userId, "user1")
+        XCTAssertEqual(interactorMock.updateLateDaysParams?.daysLate, 5)
     }
 
     private func makeViewModel(interactor: GradeStatusInteractorMock) -> GradeStatusViewModel {

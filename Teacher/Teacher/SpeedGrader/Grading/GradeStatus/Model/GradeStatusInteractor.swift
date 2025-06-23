@@ -23,7 +23,6 @@ import CoreData
 
 protocol GradeStatusInteractor {
     var gradeStatuses: [GradeStatus] { get }
-    var speedGraderInteractor: SpeedGraderInteractor? { get set }
 
     func fetchGradeStatuses() -> AnyPublisher<Void, Error>
 
@@ -54,7 +53,6 @@ protocol GradeStatusInteractor {
 }
 
 class GradeStatusInteractorLive: GradeStatusInteractor {
-    var speedGraderInteractor: SpeedGraderInteractor?
     private(set) var gradeStatuses: [GradeStatus] = []
 
     private let api: API
@@ -85,16 +83,16 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
         customGradeStatusId: String?,
         latePolicyStatus: String?
     ) -> AnyPublisher<Void, Error> {
-        let request = UpdateSubmissionGradeStatusRequest(
+        let useCase = UpdateSubmissionGradeStatus(
+            courseId: courseId,
             submissionId: submissionId,
+            assignmentId: assignmentId,
+            userId: userId,
             customGradeStatusId: customGradeStatusId,
             latePolicyStatus: latePolicyStatus
         )
-        return api.makeRequest(request)
-            .flatMap { [speedGraderInteractor] _ in
-                assert(speedGraderInteractor != nil)
-                return speedGraderInteractor?.refreshSubmission(forUserId: userId) ?? Publishers.typedJust(failureType: Error.self)
-            }
+        let store = ReactiveStore(useCase: useCase)
+        return store.getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

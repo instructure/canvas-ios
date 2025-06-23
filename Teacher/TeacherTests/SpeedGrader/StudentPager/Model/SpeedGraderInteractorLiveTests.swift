@@ -124,7 +124,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             userID: "1",
             filter: [],
             sortNeedsGradingSubmissionsFirst: true,
-            gradeStatusInteractor: GradeStatusInteractorMock(submissionId: "subId", userId: "userId", assignmentId: "assignmentId"),
+            gradeStatusInteractor: GradeStatusInteractorMock(),
             env: environment
         )
 
@@ -189,7 +189,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             userID: testData.invalidUserId,
             filter: [],
             sortNeedsGradingSubmissionsFirst: false,
-            gradeStatusInteractor: GradeStatusInteractorMock(submissionId: "subId", userId: "userId", assignmentId: "assignmentId"),
+            gradeStatusInteractor: GradeStatusInteractorMock(),
             env: environment
         )
         XCTAssertEqual(testee.state.value, .loading)
@@ -203,7 +203,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
     }
 
     private func setupMocks() {
-        gradeStatusInteractorMock = GradeStatusInteractorMock(submissionId: "subId", userId: "userId", assignmentId: "assignmentId")
+        gradeStatusInteractorMock = GradeStatusInteractorMock()
         let getAssignment = GetAssignment(
             courseID: testData.context.id,
             assignmentID: testData.assignmentId,

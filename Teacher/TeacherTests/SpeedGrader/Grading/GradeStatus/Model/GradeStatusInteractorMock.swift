@@ -22,8 +22,6 @@ import Combine
 import Foundation
 
 final class GradeStatusInteractorMock: GradeStatusInteractor {
-    var speedGraderInteractor: SpeedGraderInteractor?
-
     var gradeStatuses: [GradeStatus] = []
     var refreshSubmission: ((_ userId: String) -> Void)?
 
@@ -72,11 +70,15 @@ final class GradeStatusInteractorMock: GradeStatusInteractor {
         }
     }
 
+    var updateLateDaysCalled = false
+    var updateLateDaysParams: (submissionId: String, userId: String, daysLate: Int)?
     func updateLateDays(
         submissionId: String,
         userId: String,
         daysLate: Int
     ) -> AnyPublisher<Void, Error> {
-        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+        updateLateDaysCalled = true
+        updateLateDaysParams = (submissionId, userId, daysLate)
+        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }

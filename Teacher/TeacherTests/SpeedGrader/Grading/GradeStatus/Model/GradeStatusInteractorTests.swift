@@ -31,7 +31,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
     }
 
     func test_fetchGradeStatuses_populatesGradeStatuses() {
-        let testee = GradeStatusInteractorLive(courseId: "1", api: api)
+        let testee = GradeStatusInteractorLive(courseId: "1", assignmentId: "1", api: api)
         mockGradeStatusesAPI()
 
         // WHEN
@@ -85,27 +85,8 @@ class GradeStatusInteractorTests: TeacherTestCase {
         XCTAssertEqual(lateByIsLate?.id, "late")
     }
 
-    func test_updateSubmissionGradeStatus_triggersRefresh() {
-        let testee = GradeStatusInteractorLive(courseId: "1", api: api)
-        let speedGraderMock = SpeedGraderInteractorMock()
-        testee.speedGraderInteractor = speedGraderMock
-        let request = UpdateSubmissionGradeStatusRequest(submissionId: "sub1", customGradeStatusId: "custom1", latePolicyStatus: nil)
-        api.mock(request, value: APINoContent())
-
-        // WHEN
-        XCTAssertFinish(testee.updateSubmissionGradeStatus(
-            submissionId: "sub1",
-            userId: "user1",
-            customGradeStatusId: "custom1",
-            latePolicyStatus: nil
-        ))
-
-        // THEN
-        XCTAssertEqual(speedGraderMock.isRefreshSubmissionCalled, true)
-    }
-
     func test_observeGradeStatusChanges_emits() {
-        let testee = GradeStatusInteractorLive(courseId: "1", api: api)
+        let testee = GradeStatusInteractorLive(courseId: "1", assignmentId: "1", api: api)
         mockGradeStatusesAPI()
         XCTAssertFinish(testee.fetchGradeStatuses())
 
@@ -147,6 +128,19 @@ class GradeStatusInteractorTests: TeacherTestCase {
         wait(for: [expectation], timeout: 1)
         XCTAssertEqual(receivedStatuses.map { $0.0.id }, ["custom1", "late", "excused"])
         XCTAssertEqual(receivedStatuses.map { $0.1 }, [1, 1, 1])
+    }
+
+    func test_updateLateDays_triggersGradeSubmissionUseCase() {
+        let testee = GradeStatusInteractorLive(courseId: "1", assignmentId: "2", api: api)
+        let request = GradeSubmission(courseID: "1", assignmentID: "2", userID: "4", lateSeconds: 172800)
+        let submission = APISubmission.make(id: "sub1")
+        api.mock(request, value: submission)
+
+        // WHEN
+        let publisher = testee.updateLateDays(submissionId: "sub1", userId: "4", daysLate: 2)
+
+        // THEN
+        XCTAssertFinish(publisher)
     }
 
     private func mockGradeStatusesAPI() {

@@ -119,7 +119,7 @@ class SpeedGraderViewModelTests: TeacherTestCase {
 }
 
 class SpeedGraderInteractorMock: SpeedGraderInteractor {
-    var gradeStatusInteractor: GradeStatusInteractor = GradeStatusInteractorMock(submissionId: "subId", userId: "userId", assignmentId: "assignmentId")
+    var gradeStatusInteractor: GradeStatusInteractor = GradeStatusInteractorMock()
 
     var state = CurrentValueSubject<SpeedGraderInteractorState, Never>(.loading)
     var data: SpeedGraderData?

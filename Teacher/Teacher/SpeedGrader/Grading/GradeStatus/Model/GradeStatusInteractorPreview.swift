@@ -23,8 +23,6 @@ import Combine
 import Core
 
 class GradeStatusInteractorPreview: GradeStatusInteractor {
-    var speedGraderInteractor: SpeedGraderInteractor?
-
     let gradeStatuses: [GradeStatus]
     var refreshSubmission: ((String) -> Void)?
 

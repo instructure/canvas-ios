@@ -75,7 +75,7 @@ class SubmissionGraderViewModelTests: TeacherTestCase {
             assignment: assignment,
             latestSubmission: submission,
             contextColor: contextColor,
-            gradeStatusInteractor: GradeStatusInteractorMock(submissionId: "subId", userId: "userId", assignmentId: "assignmentId"),
+            gradeStatusInteractor: GradeStatusInteractorMock(),
             env: environment
         )
     }

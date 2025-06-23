@@ -331,9 +331,9 @@ extension APITurnItInOutcome {
 public struct GetSubmissionRequest: APIRequestable {
     public typealias Response = APISubmission
 
-    let context: Context
-    let assignmentID: String
-    let userID: String
+    public let context: Context
+    public let assignmentID: String
+    public let userID: String
 
     public var path: String {
         return "\(context.pathComponent)/assignments/\(assignmentID)/submissions/\(userID)"
@@ -341,6 +341,12 @@ public struct GetSubmissionRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         return [ .array("include", [ "submission_comments", "submission_history", "user", "rubric_assessment", "group"]) ]
+    }
+
+    public init(context: Context, assignmentID: String, userID: String) {
+        self.context = context
+        self.assignmentID = assignmentID
+        self.userID = userID
     }
 }
 
