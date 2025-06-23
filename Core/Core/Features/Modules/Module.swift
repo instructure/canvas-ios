@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 public enum ModuleState: String, Codable {
     case locked, unlocked, started, completed
@@ -34,6 +34,10 @@ public class Module: NSManagedObject {
     @NSManaged var prerequisiteModuleIDsRaw: String
     @NSManaged public var requireSequentialProgressRaw: NSNumber?
     @NSManaged public var unlockAt: Date?
+    @NSManaged public var estimatedDuration: String?
+
+    // Only used for notifying the parent module about moduleItems changing
+    @NSManaged public var lastUpdated: Date?
 
     public var published: Bool? {
         get { return publishedRaw?.boolValue }
@@ -87,7 +91,12 @@ public class Module: NSManagedObject {
     }
 
     @discardableResult
-    public static func save(_ item: APIModule, forCourse courseID: String, in context: NSManagedObjectContext) -> Module {
+    public static func save(
+        _ item: APIModule,
+        forCourse courseID: String,
+        updateModuleItems: Bool = true, // GetModulesRequest can include the items field, but it's optional
+        in context: NSManagedObjectContext
+    ) -> Module {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(Module.id), item.id.value)
         let module: Module = context.fetch(predicate).first ?? context.insert()
         module.id = item.id.value
@@ -96,10 +105,34 @@ public class Module: NSManagedObject {
         module.position = item.position
         module.published = item.published
         module.state = item.state
-        module.items = item.items?.map { .save($0, forCourse: courseID, in: context) } ?? []
+        if updateModuleItems {
+            module.items = item.items?.map { .save($0, forCourse: courseID, in: context) } ?? []
+        }
         module.prerequisiteModuleIDs = item.prerequisite_module_ids
         module.requireSequentialProgress = item.require_sequential_progress
         module.unlockAt = item.unlock_at
+        module.estimatedDuration = item.estimated_duration
         return module
+    }
+
+    public static func update(
+        with item: APIModule,
+        forCourse courseID: String,
+        in context: NSManagedObjectContext
+    ) {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Module.id), item.id.value)
+        guard let module: Module = context.fetch(predicate).first else {
+            return
+        }
+        module.id = item.id.value
+        module.courseID = courseID
+        module.name = item.name
+        module.position = item.position
+        module.published = item.published
+        module.state = item.state
+        module.prerequisiteModuleIDs = item.prerequisite_module_ids
+        module.requireSequentialProgress = item.require_sequential_progress
+        module.unlockAt = item.unlock_at
+        module.estimatedDuration = item.estimated_duration
     }
 }

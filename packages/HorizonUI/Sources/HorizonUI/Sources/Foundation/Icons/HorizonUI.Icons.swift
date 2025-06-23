@@ -92,6 +92,7 @@ public extension HorizonUI {
         public let changeCircle = Image(.changeCircle)
         public let changeHistory = Image(.changeHistory)
         public let chat = Image(.chat)
+        public let markUnreadChat = Image(.markUnreadChat)
         public let checkBoxOutlineBlank = Image(.checkBoxOutlineBlank)
         public let check = Image(.check)
         public let checkSmall = Image(.checkSmall)

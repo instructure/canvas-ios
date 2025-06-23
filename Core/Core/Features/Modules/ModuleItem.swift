@@ -48,6 +48,7 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var moduleItem: ModuleItem? // inverse of masteryPathItem
     @NSManaged public var fileAvailabilityRaw: NSNumber?
     @NSManaged public var isQuizLTI: Bool
+    @NSManaged public var estimatedDuration: String?
 
     /// In case the module item is a file it can have 4 states of availability. Only used for the teacher modules list.
     public var fileAvailability: FileAvailability? {
@@ -161,6 +162,12 @@ public class ModuleItem: NSManagedObject {
         let model: ModuleItem = context.fetch(predicate).first ?? context.insert()
         model.id = item.id.value
         model.moduleID = item.module_id.value
+
+        let modulePredicate = NSPredicate(format: "%K == %@", #keyPath(Module.id), model.moduleID)
+        if let module: Module = context.fetch(modulePredicate).first {
+            module.lastUpdated = Date()
+        }
+
         model.position = Double(item.position)
         model.title = item.title
         model.indent = item.indent
@@ -178,6 +185,7 @@ public class ModuleItem: NSManagedObject {
         model.courseID = courseID
         model.fileAvailability = .init(moduleItem: item)
         model.isQuizLTI = item.quiz_lti ?? false
+        model.estimatedDuration = item.estimated_duration ?? model.estimatedDuration
 
         if updateMasteryPath {
             if let masteryPath = item.mastery_paths, masteryPath.selected_set_id == nil {
