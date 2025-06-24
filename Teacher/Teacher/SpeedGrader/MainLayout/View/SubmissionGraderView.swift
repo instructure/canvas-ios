@@ -216,11 +216,11 @@ struct SubmissionGraderView: View {
             DrawerContainer(
                 state: $drawerState,
                 minHeight: minHeight,
-                maxHeight: maxHeight,
-                contextColor: viewModel.contextColor
+                maxHeight: maxHeight
             ) {
                 tools(bottomInset: bottomInset, isDrawer: true)
             }
+            .tint(viewModel.contextColor)
             .accessibilityAddTraits(drawerState == .max ? .isModal : [])
         }
         .onAppear { didChangeLayout(to: .portrait) }

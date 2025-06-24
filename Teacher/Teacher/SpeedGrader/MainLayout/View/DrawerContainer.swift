@@ -29,7 +29,6 @@ struct DrawerContainer<Content: View>: View {
     let content: Content
     let minHeight: CGFloat
     let maxHeight: CGFloat
-    let contextColor: Color
 
     var height: CGFloat {
         switch state {
@@ -54,13 +53,11 @@ struct DrawerContainer<Content: View>: View {
         state: Binding<DrawerState>,
         minHeight: CGFloat,
         maxHeight: CGFloat,
-        contextColor: Color,
         @ViewBuilder content: () -> Content
     ) {
         self.content = content()
         self.minHeight = minHeight
         self.maxHeight = maxHeight
-        self.contextColor = contextColor
         self._state = state
     }
 
@@ -90,7 +87,6 @@ struct DrawerContainer<Content: View>: View {
     private var expandCollapseButton: some View {
         Button(action: expandCollapseButtonAction) {
             expandCollapseButtonImage
-                .foregroundColor(contextColor)
         }
         .accessibilityLabel(expandCollapseButtonAccessibilityText)
         .accessibilityShowsLargeContentViewer {
@@ -125,7 +121,6 @@ struct DrawerContainer<Content: View>: View {
     private var openCloseButton: some View {
         Button(action: openCloseButtonAction) {
             openCloseButtonImage
-                .foregroundStyle(contextColor)
         }
         .accessibilityLabel(openCloseButtonAccessibilityText)
         .accessibilityShowsLargeContentViewer {
@@ -214,7 +209,6 @@ struct DrawerContainer<Content: View>: View {
             state: $state,
             minHeight: 128,
             maxHeight: 512,
-            contextColor: .red,
             content: { Color.red.frame(maxHeight: .infinity) }
         )
     }
