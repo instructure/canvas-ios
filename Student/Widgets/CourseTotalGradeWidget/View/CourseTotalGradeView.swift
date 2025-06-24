@@ -73,7 +73,7 @@ struct CourseTotalGradeView: View {
     }
 
     private var courseGradesURL: URL? {
-        guard let data = model.data else { return nil }
+        guard model.isLoggedIn, let data = model.data else { return nil }
         return .gradesRoute(
             forCourse: data.courseID,
             color: data.fetchResult.attributes?.color?.hexString.dropFirst().description

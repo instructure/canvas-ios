@@ -24,33 +24,63 @@ import SwiftUI
 struct CourseQuery: EntityQuery {
 
     func entities(for identifiers: [CourseEntity.ID]) async throws -> [CourseEntity] {
-        let fetched = await CourseTotalGradeModel
-            .interactor
-            .fetchCourses(ofIDs: identifiers)
+        guard
+            let domain = identifiers.first?.domain,
+            identifiers.allSatisfy({ $0.domain == domain })
+        else { return [] }
+
+        let interactor = CourseTotalGradeModel.interactor
+        guard let currentDomain = interactor.domain else {
+            // This is to signal loading
+            return identifiers.toUnknownEntities
+        }
+
+        guard domain == currentDomain else { return [] }
+
+        let courseIDs = identifiers.map(\.courseId)
+        let fetched = await interactor
+            .fetchCourses(ofIDs: courseIDs)
             .map { course in
                 CourseEntity(
-                    id: course.id,
-                    name: course.name ?? ""
+                    courseId: course.id,
+                    courseName: course.name ?? "",
+                    domain: domain
                 )
             }
 
         if fetched.isNotEmpty { return fetched }
 
         // Respond with mock to indicate loading
-        return identifiers.map { cid in
-            return CourseEntity(id: cid, name: "", isKnown: false)
-        }
+        return identifiers.toUnknownEntities
     }
 
     func suggestedEntities() async throws -> [CourseEntity] {
-        return try await CourseTotalGradeModel
-            .interactor
+        let interactor = CourseTotalGradeModel.interactor
+        guard let domain = interactor.domain else { return [] }
+
+        return try await interactor
             .fetchSuggestedCourses()
             .map { course in
                 CourseEntity(
-                    id: course.id,
-                    name: course.name ?? ""
+                    courseId: course.id,
+                    courseName: course.name ?? "",
+                    domain: domain
                 )
             }
+    }
+}
+
+// MARK: - Helpers
+
+extension Array where Element == CourseEntity.ID {
+    var toUnknownEntities: [CourseEntity] {
+        return map { cid in
+            return CourseEntity(
+                courseId: cid.courseId,
+                courseName: "",
+                domain: cid.domain,
+                isKnown: false
+            )
+        }
     }
 }

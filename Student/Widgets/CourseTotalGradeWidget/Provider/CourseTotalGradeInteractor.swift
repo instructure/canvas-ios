@@ -21,6 +21,7 @@ import Combine
 
 protocol CourseTotalGradeInteractorProtocol {
     var isLoggedIn: Bool { get }
+    var domain: String? { get }
     func updateEnvironment()
     func fetchSuggestedCourses() async throws -> [Course]
     func fetchCourses(ofIDs courseIDs: [String]) async -> [Course]
@@ -32,10 +33,16 @@ class CourseTotalGradeInteractorLive: CourseTotalGradeInteractorProtocol {
 
     private var env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
+    private var userID: String? {
+        env.currentSession?.userID
+    }
 
     init(env: AppEnvironment = .shared) {
         self.env = env
     }
+
+    var isLoggedIn: Bool { env.currentSession != nil }
+    var domain: String? { env.apiHost }
 
     func updateEnvironment() {
         // Reset
@@ -45,14 +52,6 @@ class CourseTotalGradeInteractorLive: CourseTotalGradeInteractorProtocol {
         // Update with latest session
         guard let session = LoginSession.mostRecent else { return }
         env.userDidLogin(session: session, isSilent: true)
-    }
-
-    var isLoggedIn: Bool {
-        env.currentSession != nil
-    }
-
-    private var userID: String? {
-        env.currentSession?.userID
     }
 
     func fetchSuggestedCourses() async throws -> [Course] {

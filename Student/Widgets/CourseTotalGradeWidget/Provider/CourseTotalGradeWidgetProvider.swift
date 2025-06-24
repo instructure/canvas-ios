@@ -43,16 +43,20 @@ class CourseTotalGradeWidgetProvider: AppIntentTimelineProvider {
             )
         }
 
-        CourseTotalGradeModel.interactor.updateEnvironment()
+        let interactor = CourseTotalGradeModel.interactor
+        interactor.updateEnvironment()
 
-        guard CourseTotalGradeModel.interactor.isLoggedIn else {
+        guard interactor.isLoggedIn else {
             return Timeline(
                 entries: [CourseTotalGradeModel(isLoggedIn: false)],
                 policy: .after(Date.now.addingTimeInterval(refreshTime))
             )
         }
 
-        guard let course = configuration.course else {
+        guard
+            let course = configuration.course,
+            course.domain == interactor.domain
+        else {
             return Timeline(
                 entries: [CourseTotalGradeModel()],
                 policy: .never
@@ -66,10 +70,9 @@ class CourseTotalGradeWidgetProvider: AppIntentTimelineProvider {
             )
         }
 
-        let gradeData = await CourseTotalGradeModel
-            .interactor
+        let gradeData = await interactor
             .fetchCourseTotalGrade(
-                courseID: course.id,
+                courseID: course.courseId,
                 baseOnGradedAssignment: configuration.basedOnGradedAssignments
             )
 

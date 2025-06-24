@@ -20,14 +20,33 @@ import AppIntents
 import SwiftUI
 
 struct CourseEntity: AppEntity {
-    let id: String
-    let name: String
+    struct CID {
+        let courseId: String, domain: String
+    }
+
+    var id: CID { CID(courseId: courseId, domain: domain) }
+    let courseId: String
+    let courseName: String
+    let domain: String
     var isKnown: Bool = true
 
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "Course"
     static var defaultQuery = CourseQuery()
 
     var displayRepresentation: DisplayRepresentation {
-        DisplayRepresentation(title: "\(name)")
+        DisplayRepresentation(title: "\(courseName)")
+    }
+}
+
+extension CourseEntity.CID: Hashable, EntityIdentifierConvertible {
+
+    var entityIdentifierString: String {
+        [courseId, domain].joined(separator: "|")
+    }
+
+    static func entityIdentifier(for entityIdentifierString: String) -> CourseEntity.ID? {
+        let components = entityIdentifierString.components(separatedBy: "|")
+        guard components.count == 2 else { return nil }
+        return Self(courseId: components[0], domain: components[1])
     }
 }
