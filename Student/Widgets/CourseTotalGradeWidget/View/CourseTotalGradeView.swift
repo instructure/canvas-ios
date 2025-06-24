@@ -89,7 +89,6 @@ struct CourseTotalGradeView_Previews: PreviewProvider {
         CourseTotalGradeView(
             model: CourseTotalGradeModel(
                 isLoggedIn: true,
-//                data: nil
                 data: CourseTotalGradeModel.Data(
                     courseID: "random-course-id",
                     fetchResult: .grade(
@@ -100,10 +99,47 @@ struct CourseTotalGradeView_Previews: PreviewProvider {
                         text: "78/100"
                     )
                 )
-//                isLoading: true
             )
         )
         .previewContext(WidgetPreviewContext(family: .systemSmall))
+        .previewDisplayName("Results")
+
+        CourseTotalGradeView(
+            model: CourseTotalGradeModel(
+                isLoggedIn: false,
+                data: nil
+            )
+        )
+        .previewContext(WidgetPreviewContext(family: .systemSmall))
+        .previewDisplayName("Loggedout")
+
+        CourseTotalGradeView(
+            model: CourseTotalGradeModel(
+                isLoggedIn: true,
+                data: CourseTotalGradeModel.Data(
+                    courseID: "random-course-id",
+                    fetchResult: .failure(
+                        attributes: .init(
+                            name: "Music Test Course",
+                            color: .blue
+                        ),
+                        error: "Random error"
+                    )
+                )
+            )
+        )
+        .previewContext(WidgetPreviewContext(family: .systemSmall))
+        .previewDisplayName("Failure")
+
+        CourseTotalGradeView(
+            model: CourseTotalGradeModel(
+                isLoggedIn: true,
+                data: nil,
+                isLoading: true
+            )
+        )
+        .previewContext(WidgetPreviewContext(family: .systemSmall))
+        .previewDisplayName("Loading")
     }
 }
 
