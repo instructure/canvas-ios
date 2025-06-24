@@ -170,8 +170,8 @@ struct DrawerContainer<Content: View>: View {
 
     private var expandCollapseButtonAccessibilityText: Text {
         switch state {
-        case .min: Text("Expand drawer half screen", bundle: .teacher)
-        case .mid: Text("Expand drawer full screen", bundle: .teacher)
+        case .min: Text("Open drawer half screen", bundle: .teacher)
+        case .mid: Text("Open drawer full screen", bundle: .teacher)
         case .max: Text("Collapse drawer half screen", bundle: .teacher)
         }
     }

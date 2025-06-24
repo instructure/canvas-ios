@@ -12588,12 +12588,6 @@
         }
       }
     },
-    "Expand drawer full screen" : {
-
-    },
-    "Expand drawer half screen" : {
-
-    },
     "Expanded" : {
 
     },
@@ -25274,6 +25268,9 @@
           }
         }
       }
+    },
+    "Open drawer half screen" : {
+
     },
     "Open Drawer half screen" : {
       "localizations" : {
