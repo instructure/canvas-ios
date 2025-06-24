@@ -29,6 +29,7 @@ struct DrawerContainer<Content: View>: View {
     let content: Content
     let minHeight: CGFloat
     let maxHeight: CGFloat
+    let contextColor: Color
 
     var height: CGFloat {
         switch state {
@@ -53,59 +54,29 @@ struct DrawerContainer<Content: View>: View {
         state: Binding<DrawerState>,
         minHeight: CGFloat,
         maxHeight: CGFloat,
-        @ViewBuilder content: () -> Content,
+        contextColor: Color,
+        @ViewBuilder content: () -> Content
     ) {
         self.content = content()
         self.minHeight = minHeight
         self.maxHeight = maxHeight
+        self.contextColor = contextColor
         self._state = state
     }
 
     var body: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                Button(action: expandCollapseButtonAction) { expandCollapseButtonImage }
-                .padding(.trailing, 8)
-                .padding(.leading, 14)
-                .accessibilityLabel(expandCollapseButtonAccessibilityText)
-                .accessibilityShowsLargeContentViewer {
-                    state != .max ? Image.fullScreenLine : Image.exitFullScreenLine
-                    expandCollapseButtonAccessibilityText
-                }
+            HStack(spacing: 4) {
+                expandCollapseButton
 
-                Button(action: dragIndicatorAction) {
-                    RoundedRectangle(cornerRadius: 2)
-                        .fill(Color.borderMedium)
-                        .frame(width: 36, height: 4)
-                        .padding(EdgeInsets(top: 24, leading: 0, bottom: 8, trailing: 0))
-                        .frame(maxWidth: .infinity)
-                }
-                .padding(.top, -16)
-                .highPriorityGesture(DragGesture(coordinateSpace: .global)
-                    .onChanged { value in translation = -value.translation.height }
-                    .onEnded { value in
-                        withTransaction(DrawerState.transaction) {
-                            let y = height - value.predictedEndTranslation.height - minHeight
-                            let dy = maxHeight - minHeight
-                            state = (y < dy * 0.25) ? .min : (y < dy * 0.75) ? .mid : .max
-                            translation = 0
-                        }
-                    }
-                )
-                .accessibility(identifier: "SpeedGrader.drawerGripper")
-                .accessibilityLabel(buttonA11yText)
+                dragIndicator
+                    .frame(maxWidth: .infinity)
 
-                Button(action: openCloseButtonAction) { openCloseButtonImage }
-                .padding(.horizontal, 16)
-                .accessibilityLabel(openCloseButtonAccessibilityText)
-                .accessibilityShowsLargeContentViewer {
-                    openCloseButtonImage
-                    openCloseButtonAccessibilityText
-                }
+                openCloseButton
             }
-            .padding(.top, 16)
+            .paddingStyle(.horizontal, .standard)
+            .padding(.vertical, 8)
 
-            Spacer(minLength: 4)
             content
         }
         .frame(maxHeight: max(minHeight, min(maxHeight, height + translation)))
@@ -113,6 +84,54 @@ struct DrawerContainer<Content: View>: View {
             .fill(Color.backgroundLightest)
             .shadow(color: Color.black.opacity(0.3), radius: 3, x: 0, y: 0)
         )
+    }
+
+    @ViewBuilder
+    private var expandCollapseButton: some View {
+        Button(action: expandCollapseButtonAction) {
+            expandCollapseButtonImage
+                .foregroundColor(contextColor)
+        }
+        .accessibilityLabel(expandCollapseButtonAccessibilityText)
+        .accessibilityShowsLargeContentViewer {
+            expandCollapseButtonImage
+            expandCollapseButtonAccessibilityText
+        }
+    }
+
+    @ViewBuilder
+    private var dragIndicator: some View {
+        Button(action: dragIndicatorAction) {
+            RoundedRectangle(cornerRadius: 2)
+                .fill(Color.borderMedium)
+                .frame(width: 36, height: 4)
+        }
+        .highPriorityGesture(DragGesture(coordinateSpace: .global)
+            .onChanged { value in translation = -value.translation.height }
+            .onEnded { value in
+                withTransaction(DrawerState.transaction) {
+                    let y = height - value.predictedEndTranslation.height - minHeight
+                    let dy = maxHeight - minHeight
+                    state = (y < dy * 0.25) ? .min : (y < dy * 0.75) ? .mid : .max
+                    translation = 0
+                }
+            }
+        )
+        .accessibility(identifier: "SpeedGrader.drawerGripper")
+        .accessibilityLabel(buttonA11yText)
+    }
+
+    @ViewBuilder
+    private var openCloseButton: some View {
+        Button(action: openCloseButtonAction) {
+            openCloseButtonImage
+                .foregroundStyle(contextColor)
+        }
+        .accessibilityLabel(openCloseButtonAccessibilityText)
+        .accessibilityShowsLargeContentViewer {
+            openCloseButtonImage
+            openCloseButtonAccessibilityText
+        }
     }
 
     private func snapDrawer(to state: DrawerState) {
@@ -143,7 +162,10 @@ struct DrawerContainer<Content: View>: View {
     }
 
     private func expandCollapseButtonAction() {
-        state == .mid ? snapDrawer(to: .max) : snapDrawer(to: .mid)
+        switch state {
+        case .mid: snapDrawer(to: .max)
+        default: snapDrawer(to: .mid)
+        }
     }
 
     private var expandCollapseButtonAccessibilityText: Text {
@@ -161,7 +183,10 @@ struct DrawerContainer<Content: View>: View {
     }
 
     private func openCloseButtonAction() {
-        state == .min ? snapDrawer(to: .max) : snapDrawer(to: .min)
+        switch state {
+        case .min: snapDrawer(to: .max)
+        default: snapDrawer(to: .min)
+        }
     }
 
     private var openCloseButtonAccessibilityText: Text {
@@ -182,12 +207,17 @@ struct DrawerContainer<Content: View>: View {
 #Preview {
     @Previewable @State var state: DrawerState = .min
 
-    DrawerContainer(
-        state: $state,
-        minHeight: 32,
-        maxHeight: 512,
-        content: { Color.red.frame(height: 128) }
-    )
+    ZStack(alignment: .bottom) {
+        Color.gray.opacity(0.2)
+
+        DrawerContainer(
+            state: $state,
+            minHeight: 128,
+            maxHeight: 512,
+            contextColor: .red,
+            content: { Color.red.frame(maxHeight: .infinity) }
+        )
+    }
 }
 
 #endif

@@ -78,7 +78,7 @@ struct SubmissionGraderView: View {
     var body: some View {
         GeometryReader { geometry in
             let bottomInset = geometry.safeAreaInsets.bottom
-            let minHeight = bottomInset + 86
+            let minHeight = bottomInset + 87
             let maxHeight = bottomInset + geometry.size.height
             // At 1/4 of a screen offset, scale to 90% and round corners to 20
             let delta = abs(geometry.frame(in: .global).minX / max(1, geometry.size.width))
@@ -213,7 +213,12 @@ struct SubmissionGraderView: View {
                     .frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
             }
 
-            DrawerContainer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
+            DrawerContainer(
+                state: $drawerState,
+                minHeight: minHeight,
+                maxHeight: maxHeight,
+                contextColor: viewModel.contextColor
+            ) {
                 tools(bottomInset: bottomInset, isDrawer: true)
             }
             .accessibilityAddTraits(drawerState == .max ? .isModal : [])
@@ -322,7 +327,6 @@ struct SubmissionGraderView: View {
                 }
             }
             .padding(.horizontal, 16)
-            .padding(.top, 8)
             .padding(.bottom, 16)
             .onChange(of: tab) {
                 controller.view.endEditing(true)
