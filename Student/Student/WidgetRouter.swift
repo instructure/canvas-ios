@@ -36,6 +36,9 @@ struct WidgetRouter {
         var selectedTabMasterRootController: UIViewController? {
             selectedTabMasterController?.viewControllers.first
         }
+        var selectedNavigationController: UINavigationController? {
+            tabController.selectedViewController as? UINavigationController
+        }
 
         func selectTab(at index: Int) {
             tabController.selectedIndex = index
@@ -43,6 +46,10 @@ struct WidgetRouter {
 
         func resetSplitMasterToRoot() {
             selectedTabSplitController?.resetToRoot()
+        }
+
+        func resetNavigationToRoot(animated: Bool = false) {
+            selectedNavigationController?.popToRootViewController(animated: animated)
         }
     }
 

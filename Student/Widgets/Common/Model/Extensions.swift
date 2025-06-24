@@ -24,9 +24,11 @@ extension TimeInterval {
     #if DEBUG
     static let widgetRefresh: TimeInterval = 120
     static let widgetRecover: TimeInterval = 10
+    static let gradeListWidgetRefresh: TimeInterval = 120
     #else
     static let widgetRefresh: TimeInterval = 7200 // 2 hours
     static let widgetRecover: TimeInterval = 900 // 15 minutes
+    static let gradeListWidgetRefresh: TimeInterval = 1800 // 30 minutes
     #endif
 }
 
@@ -50,5 +52,44 @@ extension Color {
 extension ShapeStyle where Self == Color {
     static var brandPrimary: Color {
         .brandPrimary
+    }
+}
+
+
+extension String {
+    func gradeListStyled() -> AttributedString {
+
+        let spaceCorrected = components(separatedBy: "/")
+            .map({ $0.trimmed() })
+            .joined(separator: " / ")
+
+        var attributed = AttributedString(spaceCorrected)
+
+        if spaceCorrected == "N / A" {
+            let noGradesText = String(localized: "No Grades")
+
+            attributed = AttributedString(noGradesText)
+            attributed.foregroundColor = Color.textDark
+            attributed.font = Font.regular14
+            return attributed
+        }
+
+        if let range = attributed.range(of: "/") {
+            // Apply secondary color to everything from "/" to the end
+            let mainRange = attributed.startIndex ..< range.lowerBound
+            let secondaryRange = range.lowerBound ..< attributed.endIndex
+
+            attributed[mainRange].foregroundColor = Color.textDarkest
+            attributed[mainRange].font = Font.semibold14
+
+            attributed[secondaryRange].foregroundColor = Color.textDark
+            attributed[secondaryRange].font = Font.regular14
+        } else {
+
+            attributed.foregroundColor = Color.textDarkest
+            attributed.font = Font.semibold14
+        }
+
+        return attributed
     }
 }

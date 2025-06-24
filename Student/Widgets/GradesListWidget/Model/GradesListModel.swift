@@ -44,7 +44,7 @@ class GradesListModel: WidgetModel {
         guard items.count > maxItemCount else {
             return items
         }
-        return Array(items[0 ..< maxItemCount - 1])
+        return Array(items[0 ..< maxItemCount])
     }
 }
 
@@ -122,6 +122,36 @@ extension GradesListModel {
                 courseId: "4",
                 courseName: "Greek Literature",
                 grade: "Good",
+                color: .cyan
+            )
+        ]
+        return GradesListModel(items: items)
+    }
+
+    static func makeWithLongGradeTexts() -> GradesListModel {
+        let items = [
+            GradesListItem.make(
+                courseId: "1",
+                courseName: "Biology 101",
+                grade: "!!! Success !!!",
+                color: .blue
+            ),
+            GradesListItem.make(
+                courseId: "2",
+                courseName: "Math 201",
+                grade: "Emotional Damage Level 42",
+                color: .purple
+            ),
+            GradesListItem.make(
+                courseId: "3",
+                courseName: "English Literature 101",
+                grade: "You name should be failure",
+                color: .green
+            ),
+            GradesListItem.make(
+                courseId: "4",
+                courseName: "Greek Literature",
+                grade: "This a very unlikely long grade text",
                 color: .cyan
             )
         ]

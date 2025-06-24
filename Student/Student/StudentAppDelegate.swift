@@ -42,6 +42,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
     private lazy var todoWidgetRouter = WidgetRouter.createTodoRouter()
+    private lazy var gradesListWidgetRouter = WidgetRouter.createGradesListRouter()
 
     private lazy var analyticsTracker: PendoAnalyticsTracker = {
         .init(environment: environment)
@@ -259,13 +260,18 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         }
     }
 
-    func checkForTodoWidgetPresence() {
+    func checkForWidgetsPresence() {
         WidgetCenter.shared.getCurrentConfigurations { result in
             guard result.isSuccess, let widgetInfo = result.value else { return }
-            if widgetInfo.contains(where: { configuration in
-                return configuration.kind == "TodoWidget"
-            }) {
+
+            let widgetKinds = widgetInfo.map({ $0.kind })
+
+            if widgetKinds.contains("TodoWidget") {
                 Analytics.shared.logEvent(TodoWidgetEventNames.active.rawValue)
+            }
+
+            if widgetKinds.contains("GradesListWidget") {
+                Analytics.shared.logEvent(GradesListWidgetEventNames.active.rawValue)
             }
         }
     }
@@ -326,7 +332,7 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
         let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
 
         if isTrackingEnabled {
-            analyticsTracker.startSession(completion: checkForTodoWidgetPresence)
+            analyticsTracker.startSession(completion: checkForWidgetsPresence)
         } else {
             analyticsTracker.endSession()
         }
@@ -466,9 +472,9 @@ extension StudentAppDelegate {
             } else if let from = self.environment.topViewController {
                 var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
 
-                if let url = comps,
-                   self.todoWidgetRouter.handling(url, in: self.window, env: self.environment) {
-                    return
+                if let url = comps {
+                    if self.todoWidgetRouter.handling(url, in: self.window, env: self.environment) { return }
+                    if self.gradesListWidgetRouter.handling(url, in: self.window, env: self.environment) { return }
                 }
 
                 comps?.originIsNotification = true

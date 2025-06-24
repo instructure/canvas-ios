@@ -36,4 +36,8 @@ extension URL {
     static func todoWidgetRoute(_ path: String) -> URL {
         appRoute(path).appendingOrigin("todo-widget")
     }
+
+    static func gradesListWidgetRoute(_ path: String) -> URL {
+        appRoute(path).appendingOrigin("grades-list-widget")
+    }
 }

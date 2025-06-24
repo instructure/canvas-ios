@@ -24,46 +24,40 @@ struct GradesListView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.widgetFamily) internal var family
 
-    @ScaledMetric private var scale: CGFloat = 1
-
-    private var initialItems: [GradesListItem]
-    @State private var visibleItems: [GradesListItem] = []
+    private var items: [GradesListItem]
 
     init(items: [GradesListItem]) {
-        self.initialItems = items
+        self.items = items
     }
 
     var body: some View {
         VStack(spacing: 8) {
-            ForEach(visibleItems) { item in
-                HStack(spacing: 8) {
-                    Text(item.courseName)
-                        .foregroundStyle(item.color)
-                        .font(.regular14)
-                        .lineLimit(2)
-                    Spacer()
-                    Text(item.grade)
-                        .font(.semibold14)
+            ForEach(items) { item in
+                Link(destination: item.courseGradesURL!) {
+                    HStack(spacing: 8) {
+                        Text(item.courseName)
+                            .foregroundStyle(item.color)
+                            .font(.regular14)
+                            .lineLimit(2)
+                        Spacer()
+                        if item.hideGrade {
+                            Image.lockLine
+                                .scaledIcon(size: 16)
+                                .foregroundStyle(.textDark)
+                        } else {
+                            Text(item.grade)
+                                .font(.semibold14)
+                        }
+                    }
                 }
-                if visibleItems.last != item {
+
+                if items.last != item {
                     InstUI.Divider()
                 }
             }
         }
         .padding(10)
         .containerRelativeFrame(.vertical, alignment: .center)
-        .onAppear {
-            filterItems()
-        }
-    }
-
-    private func filterItems() {
-        let maxLongLineCount = family == .systemMedium ? 2 : 6
-        let maxItemCount = family == .systemMedium ? 3 : 7
-        let longCourseNameCount = initialItems.filter {
-            $0.courseName.count > 40
-        }.count
-        visibleItems = longCourseNameCount > maxLongLineCount ? Array(initialItems[0..<maxItemCount]) : initialItems
     }
 }
 
@@ -87,6 +81,12 @@ struct GradesListView: View {
     GradesListWidget()
 } timeline: {
     GradesListWidgetEntry(data: GradesListModel.make(), date: Date())
+}
+
+#Preview("Medium - Long Grade Texts", as: .systemMedium) {
+    GradesListWidget()
+} timeline: {
+    GradesListWidgetEntry(data: GradesListModel.makeWithLongGradeTexts(), date: Date())
 }
 
 #Preview("Large - Long Course Names", as: .systemLarge) {

@@ -22,13 +22,15 @@ import Core
 struct GradesListItem: Identifiable, Equatable {
     let courseId: String
     let courseName: String
-    let grade: String
+    let grade: AttributedString
+    let hideGrade: Bool
     let color: Color
 
     init?(_ course: Course) {
         self.courseId = course.id
         self.courseName = course.name ?? ""
-        self.grade = course.displayGrade
+        self.grade = course.displayGrade.gradeListStyled()
+        self.hideGrade = course.hideFinalGrades
         self.color = course.color.asColor
     }
 
@@ -36,15 +38,24 @@ struct GradesListItem: Identifiable, Equatable {
         courseId: String,
         courseName: String,
         grade: String,
+        hideGrade: Bool = false,
         color: Color
     ) {
         self.courseId = courseId
         self.courseName = courseName
-        self.grade = grade
+        self.grade = grade.gradeListStyled()
+        self.hideGrade = hideGrade
         self.color = color
     }
 
     var id: String { courseId }
+
+    var courseGradesURL: URL? {
+        return .gradesRoute(
+            forCourse: courseId,
+            color: color.hexString
+        )
+    }
 
     // MARK: Preview & Testing
 

@@ -23,8 +23,9 @@ class GradesListWidgetProvider: TimelineProvider {
     typealias Entry = GradesListWidgetEntry
 
     private let env = AppEnvironment.shared
-    private var refreshDate: Date { Date().addingTimeInterval(.widgetRefresh) }
-    private var courses: Store<GetCourses>?
+    private var refreshDate: Date { Date().addingTimeInterval(.gradeListWidgetRefresh) }
+    private var allCourses: Store<GetCourses>?
+    private var dashboardCards: Store<GetDashboardCards>?
 
     // MARK: - TimelineProvider Protocol
 
@@ -43,7 +44,7 @@ class GradesListWidgetProvider: TimelineProvider {
         }
 
         guard let session = LoginSession.mostRecent else {
-            let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
+            let refreshDate = Clock.now.addingTimeInterval(.gradeListWidgetRefresh)
             completion(Timeline(entries: [.loggedOutModel], policy: .after(refreshDate)))
             return
         }
@@ -59,18 +60,35 @@ class GradesListWidgetProvider: TimelineProvider {
         env.userDidLogin(session: session, isSilent: true)
     }
 
-    private func fetch(_ completion: @escaping (Timeline<GradesListWidgetEntry>) -> Void) {
-        courses = env.subscribe(GetCourses())
-        courses?.refresh { [weak self] _ in
-            guard let self = self, let allCourses = self.courses, !allCourses.pending else { return }
-            let favCourses = allCourses.filter { $0.isFavorite }
-            let courses = favCourses.isEmpty ? allCourses.all : favCourses
-            let gradesListItems = courses.map { GradesListItem($0) }
-            let gradesListModel = GradesListModel(items: gradesListItems)
-            let gradesListEntries = [GradesListWidgetEntry(data: gradesListModel, date: .now)]
-            let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
-            let timeline = Timeline(entries: gradesListEntries, policy: .after(refreshDate))
-            completion(timeline)
+    private func fetch(_ completion: @escaping @Sendable (Timeline<GradesListWidgetEntry>) -> Void) {
+        dashboardCards = env.subscribe(GetDashboardCards())
+        dashboardCards?.refresh { [weak self] _ in
+            self?.handleFetchFinished(completion)
         }
+        allCourses = env.subscribe(GetCourses())
+        allCourses?.refresh { [weak self] _ in
+            self?.handleFetchFinished(completion)
+        }
+    }
+
+    private func handleFetchFinished(_ completion: @escaping (Timeline<GradesListWidgetEntry>) -> Void) {
+        guard let dashboardCards = self.dashboardCards, !dashboardCards.pending else { return }
+        guard let allCourses = self.allCourses, !allCourses.pending else { return }
+        let favCourses = allCourses.filter { $0.isFavorite }
+        let courses = favCourses.isEmpty ? allCourses.all : favCourses
+
+        var orderedCourses: [Course] = []
+        dashboardCards.all.forEach { card in
+            if let c = courses.first(where: { $0.id == card.id }) {
+                orderedCourses.append(c)
+            }
+        }
+
+        let gradesListItems = orderedCourses.map { GradesListItem($0) }
+        let gradesListModel = GradesListModel(items: gradesListItems)
+        let gradesListEntries = [GradesListWidgetEntry(data: gradesListModel, date: .now)]
+        let refreshDate = Clock.now.addingTimeInterval(.gradeListWidgetRefresh)
+        let timeline = Timeline(entries: gradesListEntries, policy: .after(refreshDate))
+        completion(timeline)
     }
 }
