@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import SwiftUI
 import Combine
 
 // MARK: - Structs
@@ -170,6 +171,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     // misc
     let isTeacher: Bool
     let courseName: String
+    let courseColor: Color
     let isGradingPeriodsSectionVisible: Bool
 
     // MARK: - Private properties
@@ -189,6 +191,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         gradingPeriods: [GradingPeriod],
         initialGradingPeriod: GradingPeriod?,
         courseName: String,
+        courseColor: Color,
         env: AppEnvironment,
         completion: @escaping (AssignmentListPreferences) -> Void
     ) {
@@ -227,6 +230,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
         // Other
         self.courseName = courseName
+        self.courseColor = courseColor
         self.completion = completion
 
         self.env = env
