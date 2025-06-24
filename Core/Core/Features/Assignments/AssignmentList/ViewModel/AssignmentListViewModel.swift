@@ -320,7 +320,7 @@ public class AssignmentListViewModel: ObservableObject {
             initialSortingOption: selectedSortingOption,
             gradingPeriods: gradingPeriods.compactMap { $0 },
             initialGradingPeriod: gradingPeriods.filter { $0.id == selectedGradingPeriodId }.first,
-            courseName: courseName ?? "",
+            courseName: courseName ?? ""
             courseColor: Color(uiColor: courseColor ?? .red),
             env: env,
             completion: { [weak self] assignmentListPreferences in
