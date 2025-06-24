@@ -31,6 +31,14 @@ public extension Color {
         }
     }
 
+    init?(uiColor: UIColor?) {
+        if let uiColor {
+            self = .init(uiColor: uiColor)
+        } else {
+            return nil
+        }
+    }
+
 #if DEBUG
 
     static var random: Color {

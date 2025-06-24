@@ -171,7 +171,6 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     // misc
     let isTeacher: Bool
     let courseName: String
-    let courseColor: Color
     let isGradingPeriodsSectionVisible: Bool
 
     // MARK: - Private properties
@@ -191,7 +190,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         gradingPeriods: [GradingPeriod],
         initialGradingPeriod: GradingPeriod?,
         courseName: String,
-        courseColor: Color,
+        courseColor: Color?,
         env: AppEnvironment,
         completion: @escaping (AssignmentListPreferences) -> Void
     ) {
@@ -199,38 +198,37 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
         // Student Filter
         self.studentFilterOptions = .init(
-            all: AssignmentFilterOptionStudent.allCases.map { $0.optionItem },
-            initial: Set(initialFilterOptionsStudent.map { $0.optionItem })
+            all: AssignmentFilterOptionStudent.allCases.map { $0.optionItem(color: courseColor) },
+            initial: Set(initialFilterOptionsStudent.map { $0.optionItem(color: courseColor) })
         )
 
         // Teacher Filter
         self.teacherFilterOptions = .init(
-            all: AssignmentFilterOptionsTeacher.allCases.map { $0.optionItem },
-            initial: initialFilterOptionTeacher.optionItem
+            all: AssignmentFilterOptionsTeacher.allCases.map { $0.optionItem(color: courseColor) },
+            initial: initialFilterOptionTeacher.optionItem(color: courseColor)
         )
 
         // Teacher Publish Status Filter
         self.teacherPublishStatusFilterOptions = .init(
-            all: AssignmentStatusFilterOptionsTeacher.allCases.map { $0.optionItem },
-            initial: initialStatusFilterOptionTeacher.optionItem
+            all: AssignmentStatusFilterOptionsTeacher.allCases.map { $0.optionItem(color: courseColor) },
+            initial: initialStatusFilterOptionTeacher.optionItem(color: courseColor)
         )
 
         // Sorting Options
         self.sortModes = sortingOptions
         self.sortModeOptions = .init(
-            all: sortingOptions.map { $0.optionItem },
-            initial: initialSortingOption.optionItem
+            all: sortingOptions.map { $0.optionItem(color: courseColor) },
+            initial: initialSortingOption.optionItem(color: courseColor)
         )
 
         // Grading Periods
         self.gradingPeriodOptions = .init(
-            all: [GradingPeriod.optionItemAll] + gradingPeriods.map { $0.optionItem },
-            initial: initialGradingPeriod?.optionItem ?? GradingPeriod.optionItemAll
+            all: [GradingPeriod.optionItemAll(color: courseColor)] + gradingPeriods.map { $0.optionItem(color: courseColor) },
+            initial: initialGradingPeriod?.optionItem(color: courseColor) ?? GradingPeriod.optionItemAll(color: courseColor)
         )
 
         // Other
         self.courseName = courseName
-        self.courseColor = courseColor
         self.completion = completion
 
         self.env = env
@@ -273,8 +271,8 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 // MARK: - OptionItem helpers
 
 private extension AssignmentFilterOptionStudent {
-    var optionItem: OptionItem {
-        .init(id: id, title: title)
+    func optionItem(color: Color?) -> OptionItem {
+        .init(id: id, title: title, color: color)
     }
 
     func isMatch(for optionItem: OptionItem?) -> Bool {
@@ -294,8 +292,8 @@ private extension AssignmentFilterOptionsTeacher {
         }
     }
 
-    var optionItem: OptionItem {
-        .init(id: rawValue, title: title)
+    func optionItem(color: Color?) -> OptionItem {
+        .init(id: rawValue, title: title, color: color)
     }
 
     init?(optionItem: OptionItem?) {
@@ -317,8 +315,8 @@ private extension AssignmentStatusFilterOptionsTeacher {
         }
     }
 
-    var optionItem: OptionItem {
-        .init(id: rawValue, title: title)
+    func optionItem(color: Color?) -> OptionItem {
+        .init(id: rawValue, title: title, color: color)
     }
 
     init?(optionItem: OptionItem?) {
@@ -342,8 +340,8 @@ private extension AssignmentListViewModel.AssignmentArrangementOptions {
         }
     }
 
-    var optionItem: OptionItem {
-        .init(id: rawValue, title: title)
+    func optionItem(color: Color?) -> OptionItem {
+        .init(id: rawValue, title: title, color: color)
     }
 
     func isMatch(for optionItem: OptionItem?) -> Bool {
@@ -352,12 +350,15 @@ private extension AssignmentListViewModel.AssignmentArrangementOptions {
 }
 
 private extension GradingPeriod {
-    static let optionItemAll = OptionItem(
-        id: OptionItem.allId,
-        title: String(localized: "All Grading Periods", bundle: .core)
-    )
+    static func optionItemAll(color: Color?) -> OptionItem {
+        .init(
+            id: OptionItem.allId,
+            title: String(localized: "All Grading Periods", bundle: .core),
+            color: color
+        )
+    }
 
-    var optionItem: OptionItem {
-        .init(id: id ?? "", title: title ?? "")
+    func optionItem(color: Color?) -> OptionItem {
+        .init(id: id ?? "", title: title ?? "", color: color)
     }
 }

@@ -143,6 +143,7 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
             gradingPeriods: gradingPeriods,
             initialGradingPeriod: nil,
             courseName: "Sample Course Name",
+            courseColor: .green,
             env: AppEnvironment.shared,
             completion: { _ in })
         AssignmentListPreferencesScreen(viewModel: viewModel)
