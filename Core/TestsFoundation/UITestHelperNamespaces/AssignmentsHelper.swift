@@ -47,6 +47,11 @@ public class AssignmentsHelper: BaseHelper {
         public static var gradeButton: XCUIElement { app.find(id: "SpeedGrader.gradeButton") }
         public static var gradeSlider: XCUIElement { app.find(label: "Grade Slider", type: .slider) }
         public static var statusPicker: XCUIElement { app.find(id: "SpeedGrader.statusPicker") }
+        public static var daysLateButton: XCUIElement { app.find(id: "SpeedGrader.DaysLateButton", type: .button) }
+        public static var daysLateTextField: XCUIElement { app.find(placeholderValue: "Days late", type: .textField) }
+        public static var daysLateAlertOkButton: XCUIElement {
+            app.find(label: "Enter days late", type: .alert).find(label: "OK", type: .button)
+        }
 
         public struct GradeStatusButtons {
             public static var excused: XCUIElement { app.find(id: "SpeedGrader.GradeStatusMenuItem.excused", type: .button) }

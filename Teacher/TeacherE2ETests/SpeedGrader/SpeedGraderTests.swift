@@ -77,7 +77,25 @@ class SpeedGraderTests: E2ETestCase {
             XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.missing.waitUntil(.visible))
             XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.none.waitUntil(.visible))
             XCTAssertTrue(SpeedGraderHelper.GradeStatusButtons.none.isSelected)
-            SpeedGraderHelper.GradeStatusButtons.none.actionUntilElementCondition(action: .tap, condition: .vanish)
+
+        }
+
+        XCTContext.runActivity(named: "Update days late value") { _ in
+            SpeedGraderHelper.GradeStatusButtons.late.actionUntilElementCondition(action: .tap, condition: .vanish)
+            let daysLateButton = SpeedGraderHelper.daysLateButton
+            XCTAssertVisible(daysLateButton.waitUntil(.visible))
+            XCTAssertTrue(daysLateButton.label.hasPrefix("0 days late"))
+
+            daysLateButton.tapAt(CGPoint(x: daysLateButton.frame.width - 10, y: 20))
+            let daysLateTextField = SpeedGraderHelper.daysLateTextField
+            XCTAssertVisible(daysLateTextField.waitUntil(.visible))
+            daysLateTextField.writeText(text: "6")
+            daysLateTextField.waitUntil(.value(expected: "6"))
+            XCTAssertEqual(daysLateTextField.stringValue, "6")
+            SpeedGraderHelper.daysLateAlertOkButton.hit()
+
+            daysLateButton.waitUntil(.labelHasPrefix(expected: "6 days late"))
+            XCTAssertTrue(daysLateButton.label.hasPrefix("6 days late"))
         }
 
         XCTContext.runActivity(named: "Swipe to the first student") { _ in

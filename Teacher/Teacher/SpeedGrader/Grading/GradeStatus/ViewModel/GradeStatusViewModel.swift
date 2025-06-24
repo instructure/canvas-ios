@@ -161,7 +161,7 @@ class GradeStatusViewModel: ObservableObject {
                 self?.dueDate = dueDate.isEmpty ? String(localized: "No Due Date", bundle: .teacher) : dueDate
                 self?.daysLateA11yLabel = {
                     let daysLateText = String(localized: "\(daysLate) days late.", bundle: .teacher)
-                    let dueDateText = dueDate.isEmpty ? String(localized: "No due date was on set.", bundle: .teacher)
+                    let dueDateText = dueDate.isEmpty ? String(localized: "No due date was set.", bundle: .teacher)
                                                       : String(localized: "Due date was on \(dueDate).", bundle: .teacher)
                     return "\(daysLateText) \(dueDateText)"
                 }()

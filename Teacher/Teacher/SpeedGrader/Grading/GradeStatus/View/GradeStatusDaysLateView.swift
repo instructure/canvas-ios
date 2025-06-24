@@ -74,6 +74,7 @@ struct GradeStatusDaysLateView: View {
         .accessibilityLabel(accessibilityLabel)
         .accessibilityHint(accessibilityHint)
         .accessibilityFocused($isA11yFocused)
+        .identifier("SpeedGrader.DaysLateButton")
     }
 
     private func presentNumberInputDialog() {
