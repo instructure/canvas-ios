@@ -72,7 +72,7 @@ struct CourseQuery: EntityQuery {
 
 // MARK: - Helpers
 
-extension Array where Element == CourseEntity.ID {
+private extension Array where Element == CourseEntity.ID {
     var toUnknownEntities: [CourseEntity] {
         return map { cid in
             return CourseEntity(
