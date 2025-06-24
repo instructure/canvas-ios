@@ -282,7 +282,7 @@ struct SubmissionGraderView: View {
 
     private func filePickerDidSelect(id: String?) {
         viewModel.didSelectFile(fileId: id)
-        snapDrawerTo(.min)
+        snapDrawer(to: .min)
     }
 
     private func pickerButton(title: String, icon: Image, count: Int?, truncationMode: Text.TruncationMode) -> some View {
@@ -329,6 +329,7 @@ struct SubmissionGraderView: View {
             .padding(.horizontal, 16)
             .padding(.bottom, 16)
             .onChange(of: tab) {
+                if drawerState == .min { snapDrawer(to: .mid) }
                 controller.view.endEditing(true)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     focusedTab = tab
@@ -345,7 +346,7 @@ struct SubmissionGraderView: View {
                         },
                         set: {
                             viewModel.didSelectFile(fileId: $0)
-                            snapDrawerTo(.min)
+                            snapDrawer(to: .min)
                         }
                     )
 
@@ -366,7 +367,7 @@ struct SubmissionGraderView: View {
         }
     }
 
-    private func snapDrawerTo(_ state: DrawerState) {
+    private func snapDrawer(to state: DrawerState) {
         withTransaction(DrawerState.transaction) {
             drawerState = state
         }
@@ -419,7 +420,7 @@ struct SubmissionGraderView: View {
                 viewModel.selectedAttemptNumber
             }, set: {
                 viewModel.didSelectAttempt(attemptNumber: $0)
-                snapDrawerTo(.min)
+                snapDrawer(to: .min)
             }
         )
         let isCommentsOnScreen = isGraderTabOnScreen(.comments, isDrawer: isDrawer)
