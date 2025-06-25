@@ -71,8 +71,8 @@ extension URL {
         return .todoWidgetRoute("todo-widget/calendar/\(dateString)")
     }
 
-    static func gradesRoute(forCourse courseID: String, color: String? = nil) -> URL {
-        return .gradesListWidgetRoute("/courses/\(courseID)/grades")
+    static func gradesRoute(forCourse courseId: String, color: String? = nil) -> URL {
+        return .gradesListWidgetRoute("/courses/\(courseId)/grades")
             .appending(
                 queryItems: [
                     color.flatMap({ URLQueryItem(name: "contextColor", value: $0) })

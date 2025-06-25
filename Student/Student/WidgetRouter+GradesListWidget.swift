@@ -23,13 +23,13 @@ extension WidgetRouter {
 
     static func createGradesListRouter() -> WidgetRouter {
         WidgetRouter(originValue: "grades-list-widget", handlers: [
-            courseGradesTabHandler
+            gradesListTabHandler
         ])
     }
 
     // MARK: - Handlers
 
-    private static var courseGradesTabHandler: RouteHandler {
+    private static var gradesListTabHandler: RouteHandler {
         .init("/courses/:courseId/grades", action: { url, params, view in
             Analytics.shared.logEvent(GradesListWidgetEventNames.openGrades.rawValue)
 
