@@ -44,7 +44,7 @@ extension WidgetRouter {
             courseURL.path = "/courses/\(courseID)"
 
             guard
-                let rootVC = view.tabController.selectedViewController,
+                let rootVC = view.tabController?.selectedViewController,
                 let courseVC = view.env.router.match(courseURL) as? VisibilityObservingViewController
             else { return }
 

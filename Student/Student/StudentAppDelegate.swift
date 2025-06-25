@@ -473,9 +473,10 @@ extension StudentAppDelegate {
             } else if let from = self.environment.topViewController {
                 var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
 
-                if let url = comps {
-                    if self.todoWidgetRouter.handling(url, in: self.window, env: self.environment) { return }
-                    if self.courseGradeWidgetRouter.handling(url, in: self.window, env: self.environment) { return }
+                if let url = comps,
+                   let viewProxy = StudentAppViewProxy(window: self.window, env: self.environment) {
+                    if self.todoWidgetRouter.handling(url, using: viewProxy) { return }
+                    if self.courseGradeWidgetRouter.handling(url, using: viewProxy) { return }
                 }
 
                 comps?.originIsNotification = true
