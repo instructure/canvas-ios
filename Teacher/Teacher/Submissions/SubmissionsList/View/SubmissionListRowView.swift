@@ -62,7 +62,7 @@ struct SubmissionListRowView: View {
     @ViewBuilder
     private var avatarView: some View {
         if anonymizeStudents != false {
-            Avatar.Anonymous(isGroup: item.groupID != nil)
+            Avatar(model: item.groupID != nil ? .anonymousGroup : .anonymousUser)
         } else if let groupName = item.groupName {
             Avatar(name: groupName, url: nil)
         } else {

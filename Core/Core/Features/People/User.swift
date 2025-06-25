@@ -62,15 +62,6 @@ extension User: WriteableModel {
 }
 
 extension User {
-    public var displayName: String { User.displayName(name, pronouns: pronouns) }
-
-    public static func displayName(_ name: String, pronouns: String?) -> String {
-        if let pronouns = pronouns {
-            let format = NSLocalizedString("User.displayName", bundle: .core, value: "%@ (%@)", comment: "Name and pronouns - John (He/Him)")
-            return String.localizedStringWithFormat(format, name, pronouns)
-        }
-        return name
-    }
 
     public func formattedRole(in context: Context) -> String? {
         enrollments.first { $0.canvasContextID == context.canvasContextID }?.formattedRole

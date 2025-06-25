@@ -34,7 +34,7 @@ open class AvatarView: UIView {
     @IBInspectable
     public var name: String = "" {
         didSet {
-            label.text = Avatar.initials(for: name)
+            label.text = UserNameViewModel.initials(for: name)
         }
     }
 

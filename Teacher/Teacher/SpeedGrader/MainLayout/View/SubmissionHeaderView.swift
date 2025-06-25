@@ -93,11 +93,11 @@ struct SubmissionHeaderView: View {
         let size: CGFloat = 32
 
         if assignment.anonymizeStudents {
-            Avatar.Anonymous(isGroup: viewModel.isGroupSubmission, size: size)
+            Avatar(model: .anonymous(isGroup: viewModel.isGroupSubmission), size: size)
         } else if viewModel.isGroupSubmission {
-            Avatar.Anonymous(isGroup: true, size: size)
+            Avatar(model: .anonymousGroup, size: size)
         } else {
-            Avatar(name: submission.user?.name, url: submission.user?.avatarURL, size: size)
+            Avatar(model: .init(user: submission.user))
         }
     }
 

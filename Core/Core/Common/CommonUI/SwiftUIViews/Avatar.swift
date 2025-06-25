@@ -19,18 +19,30 @@
 import SwiftUI
 
 public struct Avatar: View {
-    public let initials: String?
-    public let url: URL?
-    public let size: CGFloat
+    public static let defaultSize: CGFloat = 40
+
+    private let initials: String?
+    private let url: URL?
+    private let size: CGFloat
+    private let isGroup: Bool
     private let isAccessible: Bool
 
-    public init(name: String?, url: URL?, size: CGFloat = 40, isAccessible: Bool = false) {
+    public init(name: String?, url: URL?, size: CGFloat = Avatar.defaultSize, isAccessible: Bool = false) {
         if let name {
-            initials = Avatar.initials(for: name)
+            initials = UserNameViewModel.initials(for: name)
         } else {
             initials = nil
         }
         self.url = Avatar.scrubbedURL(url)
+        self.isGroup = false // for backwards compatibility
+        self.size = size
+        self.isAccessible = isAccessible
+    }
+
+    public init(model: UserNameViewModel, size: CGFloat = Avatar.defaultSize, isAccessible: Bool = false) {
+        self.initials = model.initials
+        self.url = model.avatarUrl
+        self.isGroup = model.isGroup
         self.size = size
         self.isAccessible = isAccessible
     }
@@ -42,7 +54,7 @@ public struct Avatar: View {
                 .accessibility(hidden: !isAccessible)
                 .background(Color.backgroundLight)
                 .cornerRadius(size / 2)
-                .testID("Avatar.imageView")
+                .identifier("Avatar.imageView")
         } else if let initials {
             Text(initials)
                 .accessibility(hidden: !isAccessible)
@@ -55,9 +67,9 @@ public struct Avatar: View {
                 .overlay(Circle()
                     .stroke(Color.borderMedium, lineWidth: 1)
                 )
-                .testID("Avatar.initialsLabel")
+                .identifier("Avatar.initialsLabel")
         } else {
-            Image.userLine
+            (isGroup ? Image.groupLine : Image.userLine)
                 .aspectRatio(contentMode: .fill)
                 .frame(width: size, height: size)
                 .accessibility(hidden: !isAccessible)
@@ -67,43 +79,13 @@ public struct Avatar: View {
                 .overlay(Circle()
                     .stroke(Color.borderMedium, lineWidth: 1)
                 )
-                .testID("Avatar.anonymousUser")
+                .identifier(isGroup ? "Avatar.anonymousGroup" : "Avatar.anonymousUser")
         }
     }
 
+    /// Ignore crappy default avatars.
     static func scrubbedURL(_ url: URL?) -> URL? {
-        // Ignore crappy default avatars.
-        if url?.absoluteString.contains("images/dotted_pic.png") == true || url?.absoluteString.contains("images/messages/avatar-50.png") == true {
-            return nil
-        }
-        return url
-    }
-
-    static func initials(for name: String) -> String {
-        return name.split(separator: " ", maxSplits: 1).reduce("") { (value: String, part: Substring) -> String in
-            guard let char = part.first else { return value }
-            return "\(value)\(char)"
-        }.localizedUppercase
-    }
-
-    public struct Anonymous: View {
-        let isGroup: Bool
-        let size: CGFloat
-
-        public init(isGroup: Bool = false, size: CGFloat = 40) {
-            self.isGroup = isGroup
-            self.size = size
-        }
-
-        public var body: some View {
-            (isGroup ? Image.groupLine : Image.userLine)
-                .foregroundColor(.textDark)
-                .frame(width: size, height: size)
-                .cornerRadius(size / 2)
-                .overlay(Circle()
-                    .stroke(Color.borderMedium, lineWidth: 1)
-                )
-        }
+        UserNameViewModel.scrubbedAvatarUrl(url)
     }
 }
 

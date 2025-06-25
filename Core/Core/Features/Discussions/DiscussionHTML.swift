@@ -77,7 +77,7 @@ public enum DiscussionHTML {
         if let url = Avatar.scrubbedURL(author.avatarURL)?.absoluteString {
             style += "style=\"background-image:url(\(t(url)))\""
         } else {
-            content = t(Avatar.initials(for: author.name))
+            content = t(UserNameViewModel.initials(for: author.name))
             classes += " \(Styles.avatarInitials)"
         }
         return """
@@ -206,7 +206,7 @@ public enum DiscussionHTML {
         guard let participant = participant else { return "null" }
         return """
         {id:\(s(participant.id)),
-        initials:\(s(Avatar.initials(for: participant.name))),
+        initials:\(s(UserNameViewModel.initials(for: participant.name))),
         avatarURL:\(s(Avatar.scrubbedURL(participant.avatarURL)?.absoluteString)),
         displayName:\(s(participant.displayName))}
         """

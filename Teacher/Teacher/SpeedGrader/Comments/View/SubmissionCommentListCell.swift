@@ -71,7 +71,7 @@ struct SubmissionCommentListCell: View {
     private var avatar: some View {
         let author = viewModel.author
         if author.isAnonymized {
-            Avatar.Anonymous(isGroup: author.isGroup)
+            Avatar(model: author.isGroup ? .anonymousGroup : .anonymousUser)
         } else if author.hasId {
             Button(
                 action: { viewModel.didTapAvatarButton.send(controller) },
