@@ -240,6 +240,43 @@ extension Course {
         return scoreString
     }
 
+    public var gradeForWidget: String {
+        /// We want to use the special enrollment that was downloaded along the course because that contains the
+        /// computedCurrentGrade, currentPeriodComputedCurrentGrade etc. values. It has no enrollment id so it's easy to identify it.
+        guard let enrollment = enrollments?.filter({ $0.isStudent && $0.id == nil }).first else {
+            return ""
+        }
+
+        var grade = enrollment.computedCurrentGrade
+        var score = enrollment.computedCurrentScore
+        let noGradesString = String(localized: "No Grades", bundle: .core)
+
+        if enrollment.multipleGradingPeriodsEnabled && enrollment.currentGradingPeriodID != nil {
+            grade = enrollment.currentPeriodComputedCurrentGrade
+            score = enrollment.currentPeriodComputedCurrentScore
+        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption {
+            grade = enrollment.computedCurrentGrade
+            score = enrollment.computedCurrentScore
+        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
+            return noGradesString
+        }
+
+        if hideQuantitativeData == true {
+            return grade ?? enrollment.computedCurrentLetterGrade ?? noGradesString
+        }
+
+        guard let scoreNotNil = score,
+              let scoreString = gradingScheme.formattedScore(from: scoreNotNil) else {
+            return grade ?? noGradesString
+        }
+
+        if let grade = grade {
+            return "\(scoreString) - \(grade)"
+        }
+
+        return scoreString
+    }
+
     public var hideQuantitativeData: Bool {
         return settings?.restrictQuantitativeData ?? false
     }

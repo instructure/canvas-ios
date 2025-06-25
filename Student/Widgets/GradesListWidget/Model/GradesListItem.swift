@@ -29,7 +29,7 @@ struct GradesListItem: Identifiable, Equatable {
     init?(_ course: Course) {
         self.courseId = course.id
         self.courseName = course.name ?? ""
-        self.grade = course.displayGrade.gradeListStyled()
+        self.grade = course.gradeForWidget.gradeListStyled()
         self.hideGrade = course.hideFinalGrades
         self.color = course.color.asColor
     }

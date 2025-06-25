@@ -28,29 +28,20 @@ struct GradesListWidgetScreen: View {
 
     var body: some View {
         content
-            .defaultGradesListWidgetContainer()
+            .defaultWidgetContainer()
     }
 
     @ViewBuilder
     private var content: some View {
         if model.isLoggedIn {
-
-            if model.error == nil, let items = model.getItems(for: family) as? [GradesListItem] {
+            if let items = model.getItems(for: family) {
                 GradesListView(items: items)
             } else {
-//                WidgetFailureView()
+                GradesListFailureView()
             }
-
         } else {
-
             GradesListLoggedOutView()
         }
-    }
-}
-
-extension View {
-    func defaultGradesListWidgetContainer() -> some View {
-        containerBackground(for: .widget) { Color.backgroundLightest }
     }
 }
 
@@ -59,7 +50,7 @@ extension View {
 struct GradesListWidgetPreviews: PreviewProvider {
     static var previews: some View {
         GradesListWidgetScreen(model: GradesListModel.make())
-            .defaultGradesListWidgetContainer()
+            .defaultWidgetContainer()
             .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }

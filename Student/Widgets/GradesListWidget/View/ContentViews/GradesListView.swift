@@ -24,7 +24,7 @@ struct GradesListView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.widgetFamily) internal var family
 
-    private var items: [GradesListItem]
+    private let items: [GradesListItem]
 
     init(items: [GradesListItem]) {
         self.items = items
@@ -33,24 +33,7 @@ struct GradesListView: View {
     var body: some View {
         VStack(spacing: 8) {
             ForEach(items) { item in
-                Link(destination: item.courseGradesURL!) {
-                    HStack(spacing: 8) {
-                        Text(item.courseName)
-                            .foregroundStyle(item.color)
-                            .font(.regular14)
-                            .lineLimit(2)
-                        Spacer()
-                        if item.hideGrade {
-                            Image.lockLine
-                                .scaledIcon(size: 16)
-                                .foregroundStyle(.textDark)
-                        } else {
-                            Text(item.grade)
-                                .font(.semibold14)
-                        }
-                    }
-                }
-
+                GradesListItemView(item: item)
                 if items.last != item {
                     InstUI.Divider()
                 }
@@ -61,9 +44,39 @@ struct GradesListView: View {
     }
 }
 
+struct GradesListItemView: View {
+    let item: GradesListItem
+
+    var body: some View {
+        Link(destination: item.courseGradesURL!) {
+            HStack(spacing: 8) {
+                Text(item.courseName)
+                    .foregroundStyle(item.color)
+                    .font(.regular14)
+                    .lineLimit(2)
+                Spacer()
+                if item.hideGrade {
+                    Image.lockLine
+                        .scaledIcon(size: 16)
+                        .foregroundStyle(.textDark)
+                } else {
+                    Text(item.grade)
+                        .font(.semibold14)
+                }
+            }
+        }
+    }
+}
+
 // MARK: - Previews
 
 #if DEBUG
+
+#Preview("Medium - 3 Courses", as: .systemMedium) {
+    GradesListWidget()
+} timeline: {
+    GradesListWidgetEntry(data: GradesListModel.make(count: 3), date: Date())
+}
 
 #Preview("Medium - Long Course Names", as: .systemMedium) {
     GradesListWidget()

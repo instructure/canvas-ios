@@ -55,24 +55,21 @@ extension ShapeStyle where Self == Color {
     }
 }
 
-
 extension String {
     func gradeListStyled() -> AttributedString {
+        var attributed = AttributedString(self)
+
+        if self == String(localized: "No Grades") {
+            attributed.foregroundColor = Color.textDark
+            attributed.font = Font.regular14
+            return attributed
+        }
 
         let spaceCorrected = components(separatedBy: "/")
             .map({ $0.trimmed() })
             .joined(separator: " / ")
 
-        var attributed = AttributedString(spaceCorrected)
-
-        if spaceCorrected == "N / A" {
-            let noGradesText = String(localized: "No Grades")
-
-            attributed = AttributedString(noGradesText)
-            attributed.foregroundColor = Color.textDark
-            attributed.font = Font.regular14
-            return attributed
-        }
+        attributed = AttributedString(spaceCorrected)
 
         if let range = attributed.range(of: "/") {
             // Apply secondary color to everything from "/" to the end
@@ -91,5 +88,11 @@ extension String {
         }
 
         return attributed
+    }
+}
+
+extension View {
+    func defaultWidgetContainer() -> some View {
+        containerBackground(for: .widget) { Color.backgroundLightest }
     }
 }

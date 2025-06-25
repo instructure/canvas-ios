@@ -85,7 +85,7 @@ class GradesListWidgetProvider: TimelineProvider {
         }
 
         let gradesListItems = orderedCourses.map { GradesListItem($0) }
-        let gradesListModel = GradesListModel(items: gradesListItems)
+        let gradesListModel = GradesListModel(items: gradesListItems as? [GradesListItem] ?? nil)
         let gradesListEntries = [GradesListWidgetEntry(data: gradesListModel, date: .now)]
         let refreshDate = Clock.now.addingTimeInterval(.gradeListWidgetRefresh)
         let timeline = Timeline(entries: gradesListEntries, policy: .after(refreshDate))

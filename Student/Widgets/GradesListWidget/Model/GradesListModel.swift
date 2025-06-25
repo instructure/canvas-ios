@@ -25,38 +25,31 @@ class GradesListModel: WidgetModel {
         Self.make()
     }
 
-    let items: [GradesListItem?]
-    let error: GradesListError?
+    let items: [GradesListItem]?
 
     init(
         isLoggedIn: Bool = true,
-        items: [GradesListItem?] = [],
-        error: GradesListError? = nil
+        items: [GradesListItem]? = nil
     ) {
         self.items = items
-        self.error = error
 
         super.init(isLoggedIn: isLoggedIn)
     }
 
-    func getItems(for widgetFamily: WidgetFamily) -> [GradesListItem?] {
+    func getItems(for widgetFamily: WidgetFamily) -> [GradesListItem]? {
         let maxItemCount = widgetFamily == .systemMedium ? 4 : 10
-        guard items.count > maxItemCount else {
+        guard let items = items, items.count > maxItemCount else {
             return items
         }
         return Array(items[0 ..< maxItemCount])
     }
 }
 
-enum GradesListError: Error {
-    case fetchingDataFailure
-}
-
 // MARK: - Previews
 
 extension GradesListModel {
 
-    static func make() -> GradesListModel {
+    static func make(count: Int? = nil) -> GradesListModel {
         let items = [
             GradesListItem.make(
                 courseId: "1",
@@ -93,8 +86,35 @@ extension GradesListModel {
                 courseName: "General Astrology",
                 grade: "No Grades",
                 color: .cyan
+            ),
+            GradesListItem.make(
+                courseId: "7",
+                courseName: "Greek Literature",
+                grade: "Good",
+                color: .cyan
+            ),
+            GradesListItem.make(
+                courseId: "8",
+                courseName: "Space and Stars",
+                grade: "97%",
+                color: .yellow
+            ),
+            GradesListItem.make(
+                courseId: "9",
+                courseName: "General Astrology",
+                grade: "No Grades",
+                color: .cyan
+            ),
+            GradesListItem.make(
+                courseId: "10",
+                courseName: "Funeral Oncology",
+                grade: "-10/0",
+                color: .purple
             )
         ]
+        if let count = count, items.count > count {
+            return GradesListModel(items: Array(items[0 ..< count]))
+        }
         return GradesListModel(items: items)
     }
 

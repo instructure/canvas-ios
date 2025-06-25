@@ -18,13 +18,13 @@
 
 import SwiftUI
 
-struct GradesListLoggedOutView: View {
+struct GradesListFailureView: View {
     @Environment(\.widgetFamily) private var family
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    private let iconName = "no-match-panda"
-    private let title = String(localized: "Let's Get You Logged In!")
-    private let subtitle = String(localized: "To see your grades, please log in to your account in the app.  It'll just take a sec!")
+    private let iconName = "PandaUnsupported"
+    private let title = String(localized: "Oops! Something Went Wrong")
+    private let subtitle = String(localized: "We're having trouble showing your grades right now.  Please try again in a bit or head to the app.")
 
     var body: some View {
         VStack(spacing: family == .systemMedium ? 10 : 15) {
