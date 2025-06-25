@@ -88,28 +88,12 @@ struct SubmissionHeaderView: View {
         }
     }
 
-    @ViewBuilder
     private var avatar: some View {
-        let size: CGFloat = 32
-
-        if assignment.anonymizeStudents {
-            Avatar(model: .anonymous(isGroup: viewModel.isGroupSubmission), size: size)
-        } else if viewModel.isGroupSubmission {
-            Avatar(model: .anonymousGroup, size: size)
-        } else {
-            Avatar(model: .init(user: submission.user))
-        }
+        Avatar(model: viewModel.userNameModel, size: 32)
     }
 
     private var nameText: some View {
-        let name: Text
-        if assignment.anonymizeStudents {
-            name = viewModel.isGroupSubmission ? Text("Group", bundle: .teacher) : Text("Student", bundle: .teacher)
-        } else {
-            name = Text(viewModel.submitterName)
-        }
-
-        return name
+        return Text(viewModel.userNameModel.name)
             .font(.semibold16)
             .foregroundStyle(.textDarkest)
     }

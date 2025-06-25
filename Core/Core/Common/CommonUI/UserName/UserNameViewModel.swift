@@ -37,7 +37,7 @@ public struct UserNameViewModel {
 
     // MARK: - Properties
 
-    public var name: String?
+    public var name: String
     public var initials: String?
     public var avatarUrl: URL?
     public var isGroup: Bool
@@ -50,7 +50,7 @@ public struct UserNameViewModel {
         avatarUrl: URL? = nil,
         isGroup: Bool = false
     ) {
-        self.name = name
+        self.name = name ?? Self.defaultName(isGroup: isGroup)
         self.initials = initials
         self.avatarUrl = avatarUrl.flatMap(User.scrubbedAvatarUrl)
         self.isGroup = isGroup
@@ -65,11 +65,8 @@ public struct UserNameViewModel {
         )
     }
 
-    public init(submission: Submission, assignment: Assignment?, displayIndex: Int? = nil) {
-        let isAnonym = assignment?.anonymizeStudents ?? false
-        let isGroup = submission.groupID != nil
-
-        if isAnonym {
+    public init(submission: Submission, isAnonymous: Bool, isGroup: Bool, displayIndex: Int? = nil) {
+        if isAnonymous {
             self.init(
                 name: Self.defaultName(isGroup: isGroup, displayIndex: displayIndex),
                 initials: nil,
@@ -87,9 +84,17 @@ public struct UserNameViewModel {
         }
     }
 
+    public init(submission: Submission, assignment: Assignment?, displayIndex: Int? = nil) {
+        let isAnonymous = assignment?.anonymizeStudents ?? false
+        let isGradedIndividually = assignment?.gradedIndividually ?? true
+        let isGroup = !isGradedIndividually && submission.groupID != nil
+
+        self.init(submission: submission, isAnonymous: isAnonymous, isGroup: isGroup, displayIndex: displayIndex)
+    }
+
     // MARK: - Private helpers
 
-    private static func defaultName(isGroup: Bool, displayIndex: Int?) -> String {
+    private static func defaultName(isGroup: Bool, displayIndex: Int? = nil) -> String {
         if let displayIndex {
             return isGroup
                 ? String(localized: "Group \(displayIndex)", bundle: .core)

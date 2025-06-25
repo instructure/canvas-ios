@@ -22903,6 +22903,7 @@
       }
     },
     "Group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -37241,6 +37242,7 @@
       }
     },
     "Student" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

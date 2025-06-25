@@ -20,45 +20,21 @@ import Foundation
 import Core
 
 public struct SubmissionListItem: Identifiable {
-    struct User {
-        let id: String
-        let name: String
-        let pronouns: String?
-        let avatarURL: URL?
-
-        var asRecipient: Recipient {
-            Recipient(id: id, name: name, avatarURL: avatarURL)
-        }
-
-        var displayName: String {
-            Core.User.displayName(name, pronouns: pronouns)
-        }
-
-        fileprivate init(id: String, name: String, pronouns: String? = nil, avatarURL: URL? = nil) {
-            self.id = id
-            self.name = name
-            self.pronouns = pronouns
-            self.avatarURL = avatarURL
-        }
-    }
 
     public let id: String
     let originalUserID: String
+    let userNameModel: UserNameViewModel
+    let userAsRecipient: Recipient?
     let status: SubmissionStatus
-    let groupID: String?
-    let groupName: String?
-    let gradeFormatted: String
     let needsGrading: Bool
-    let user: User?
-    var orderInList: Int = 0
+    let gradeFormatted: String
 
-    init(submission: Submission, assignment: Assignment?) {
+    init(submission: Submission, assignment: Assignment?, displayIndex: Int?) {
         self.id = submission.id
         self.originalUserID = submission.userID
-        self.groupID = submission.groupID
-        self.groupName = submission.groupName
-        self.user = submission.user.flatMap {
-            return User(id: $0.id, name: $0.name, pronouns: $0.pronouns, avatarURL: $0.avatarURL)
+        self.userNameModel = .init(submission: submission, assignment: assignment, displayIndex: displayIndex)
+        self.userAsRecipient = submission.user.flatMap {
+            Recipient(id: $0.id, name: $0.name, avatarURL: $0.avatarURL)
         }
         self.status = submission.statusIncludingGradedState
         self.needsGrading = submission.needsGrading
@@ -70,53 +46,43 @@ public struct SubmissionListItem: Identifiable {
 
 #if DEBUG
 
-extension SubmissionListItem.User {
-    static func make(id: String, name: String, pronouns: String? = nil, avatarURL: URL? = nil) -> Self {
-        SubmissionListItem.User(id: id, name: name, pronouns: pronouns, avatarURL: avatarURL)
-    }
-}
-
 extension SubmissionListItem {
 
-    fileprivate init(
+    private init(
         id: String,
         originalUserID: String,
+        userNameModel: UserNameViewModel,
+        userAsRecipient: Recipient?,
         status: SubmissionStatus,
-        gradeFormatted: String,
         needsGrading: Bool,
-        user: User?,
-        groupID: String?,
-        groupName: String?
+        gradeFormatted: String
     ) {
         self.id = id
         self.originalUserID = originalUserID
+        self.userNameModel = userNameModel
+        self.userAsRecipient = userAsRecipient
         self.status = status
-        self.gradeFormatted = gradeFormatted
         self.needsGrading = needsGrading
-        self.user = user
-        self.groupID = groupID
-        self.groupName = groupName
+        self.gradeFormatted = gradeFormatted
     }
 
     static func make(
-        id: String,
-        originalUserID: String,
-        status: SubmissionStatus,
-        gradeFormatted: String = "-",
+        id: String = "",
+        originalUserID: String = "",
+        userNameModel: UserNameViewModel = .anonymousUser,
+        userAsRecipient: Recipient? = nil,
+        status: SubmissionStatus = .notSubmitted,
         needsGrading: Bool = false,
-        user: User? = nil,
-        groupID: String? = nil,
-        groupName: String? = nil
+        gradeFormatted: String = "-"
     ) -> SubmissionListItem {
         SubmissionListItem(
             id: id,
             originalUserID: originalUserID,
+            userNameModel: userNameModel,
+            userAsRecipient: userAsRecipient,
             status: status,
-            gradeFormatted: gradeFormatted,
             needsGrading: needsGrading,
-            user: user,
-            groupID: groupID,
-            groupName: groupName
+            gradeFormatted: gradeFormatted
         )
     }
 }
