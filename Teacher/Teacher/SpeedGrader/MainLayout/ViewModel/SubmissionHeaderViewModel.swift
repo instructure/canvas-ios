@@ -20,7 +20,7 @@ import Core
 import SwiftUI
 
 class SubmissionHeaderViewModel: ObservableObject {
-    let userNameModel: UserNameViewModel
+    let userNameModel: UserNameModel
     let routeToSubmitter: String?
 
     init(

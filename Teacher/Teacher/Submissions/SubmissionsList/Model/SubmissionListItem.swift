@@ -22,7 +22,7 @@ import Core
 public struct SubmissionListItem {
 
     let originalUserID: String
-    let userNameModel: UserNameViewModel
+    let userNameModel: UserNameModel
     let userAsRecipient: Recipient?
     let status: SubmissionStatus
     let needsGrading: Bool
@@ -33,7 +33,7 @@ public struct SubmissionListItem {
     private init(
         submissionId: String,
         originalUserID: String,
-        userNameModel: UserNameViewModel,
+        userNameModel: UserNameModel,
         userAsRecipient: Recipient?,
         status: SubmissionStatus,
         needsGrading: Bool,
@@ -83,7 +83,7 @@ extension SubmissionListItem {
     static func make(
         submissionId: String = "",
         originalUserID: String = "",
-        userNameModel: UserNameViewModel = .anonymousUser,
+        userNameModel: UserNameModel = .anonymousUser,
         userAsRecipient: Recipient? = nil,
         status: SubmissionStatus = .notSubmitted,
         needsGrading: Bool = false,

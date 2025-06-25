@@ -25,13 +25,13 @@ import Foundation
 ///    - initials: The initials to be used for example in avatars.
 ///     If this is `nil`, the username is considered anonymous. It shouldn't be rebult from `name` as a fallback.
 ///    - avatarUrl: The remote avatar image URL. Known default avatar images will be removed.
-public struct UserNameViewModel: Equatable, Hashable {
+public struct UserNameModel: Equatable, Hashable {
 
     // MARK: - Static
 
-    public static let anonymousUser: UserNameViewModel = anonymous(isGroup: false)
-    public static let anonymousGroup: UserNameViewModel = anonymous(isGroup: true)
-    public static func anonymous(isGroup: Bool) -> UserNameViewModel {
+    public static let anonymousUser: UserNameModel = anonymous(isGroup: false)
+    public static let anonymousGroup: UserNameModel = anonymous(isGroup: true)
+    public static func anonymous(isGroup: Bool) -> UserNameModel {
         .init(name: nil, initials: nil, isGroup: isGroup)
     }
 
@@ -50,7 +50,7 @@ public struct UserNameViewModel: Equatable, Hashable {
         avatarUrl: URL? = nil,
         isGroup: Bool = false
     ) {
-        self.name = name ?? Self.defaultName(isGroup: isGroup)
+        self.name = name ?? UserNameModel.defaultName(isGroup: isGroup)
         self.initials = initials
         self.avatarUrl = avatarUrl.flatMap(User.scrubbedAvatarUrl)
         self.isGroup = isGroup
@@ -68,7 +68,7 @@ public struct UserNameViewModel: Equatable, Hashable {
     public init(submission: Submission, isAnonymous: Bool, isGroup: Bool, displayIndex: Int? = nil) {
         if isAnonymous {
             self.init(
-                name: Self.defaultName(isGroup: isGroup, displayIndex: displayIndex),
+                name: UserNameModel.defaultName(isGroup: isGroup, displayIndex: displayIndex),
                 initials: nil,
                 isGroup: isGroup
             )

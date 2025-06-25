@@ -39,7 +39,7 @@ public struct Avatar: View {
         self.isAccessible = isAccessible
     }
 
-    public init(model: UserNameViewModel, size: CGFloat = Avatar.defaultSize, isAccessible: Bool = false) {
+    public init(model: UserNameModel, size: CGFloat = Avatar.defaultSize, isAccessible: Bool = false) {
         self.initials = model.initials
         self.url = model.avatarUrl
         self.isGroup = model.isGroup
