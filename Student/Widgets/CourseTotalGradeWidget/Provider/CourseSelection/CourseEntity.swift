@@ -34,7 +34,7 @@ struct CourseEntity: AppEntity {
     static var defaultQuery = CourseQuery()
 
     var displayRepresentation: DisplayRepresentation {
-        DisplayRepresentation(title: "\(courseName)")
+        DisplayRepresentation(title: LocalizedStringResource(stringLiteral: courseName))
     }
 }
 
