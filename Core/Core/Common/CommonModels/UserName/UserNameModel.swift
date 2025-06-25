@@ -106,3 +106,23 @@ public struct UserNameModel: Equatable, Hashable {
         }
     }
 }
+
+#if DEBUG
+
+extension UserNameModel {
+    static func make(
+        name: String? = nil,
+        initials: String? = nil,
+        avatarUrl: URL? = nil,
+        isGroup: Bool = false
+    ) -> UserNameModel {
+        UserNameModel(
+            name: name,
+            initials: initials,
+            avatarUrl: avatarUrl,
+            isGroup: isGroup
+        )
+    }
+}
+
+#endif
