@@ -25,7 +25,7 @@ import Foundation
 ///    - initials: The initials to be used for example in avatars.
 ///     If this is `nil`, the username is considered anonymous. It shouldn't be rebult from `name` as a fallback.
 ///    - avatarUrl: The remote avatar image URL. Known default avatar images will be removed.
-public struct UserNameViewModel {
+public struct UserNameViewModel: Equatable, Hashable {
 
     // MARK: - Static
 

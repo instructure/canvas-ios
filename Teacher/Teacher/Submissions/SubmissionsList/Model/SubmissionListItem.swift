@@ -19,9 +19,8 @@
 import Foundation
 import Core
 
-public struct SubmissionListItem: Identifiable {
+public struct SubmissionListItem {
 
-    public let id: String
     let originalUserID: String
     let userNameModel: UserNameViewModel
     let userAsRecipient: Recipient?
@@ -29,27 +28,10 @@ public struct SubmissionListItem: Identifiable {
     let needsGrading: Bool
     let gradeFormatted: String
 
-    init(submission: Submission, assignment: Assignment?, displayIndex: Int?) {
-        self.id = submission.id
-        self.originalUserID = submission.userID
-        self.userNameModel = .init(submission: submission, assignment: assignment, displayIndex: displayIndex)
-        self.userAsRecipient = submission.user.flatMap {
-            Recipient(id: $0.id, name: $0.name, avatarURL: $0.avatarURL)
-        }
-        self.status = submission.statusIncludingGradedState
-        self.needsGrading = submission.needsGrading
-        self.gradeFormatted = GradeFormatter.shortString(for: assignment, submission: submission, blankPlaceholder: .oneDash)
-    }
-}
-
-// MARK: - For Mocking
-
-#if DEBUG
-
-extension SubmissionListItem {
+    private var hashOfProperties: Int
 
     private init(
-        id: String,
+        submissionId: String,
         originalUserID: String,
         userNameModel: UserNameViewModel,
         userAsRecipient: Recipient?,
@@ -57,17 +39,49 @@ extension SubmissionListItem {
         needsGrading: Bool,
         gradeFormatted: String
     ) {
-        self.id = id
         self.originalUserID = originalUserID
         self.userNameModel = userNameModel
         self.userAsRecipient = userAsRecipient
         self.status = status
         self.needsGrading = needsGrading
         self.gradeFormatted = gradeFormatted
+
+        let idHashSources: [any Hashable] = [
+            submissionId,
+            userNameModel,
+            status,
+            needsGrading,
+            gradeFormatted
+        ]
+        hashOfProperties = idHashSources.hashedValue()
     }
 
+    init(submission: Submission, assignment: Assignment?, displayIndex: Int?) {
+        self.init(
+            submissionId: submission.id,
+            originalUserID: submission.userID,
+            userNameModel: .init(submission: submission, assignment: assignment, displayIndex: displayIndex),
+            userAsRecipient: submission.user.flatMap {
+                Recipient(id: $0.id, name: $0.name, avatarURL: $0.avatarURL)
+            },
+            status: submission.statusIncludingGradedState,
+            needsGrading: submission.needsGrading,
+            gradeFormatted: GradeFormatter.shortString(for: assignment, submission: submission, blankPlaceholder: .oneDash)
+        )
+    }
+}
+
+extension SubmissionListItem: Identifiable {
+    public var id: Int { hashOfProperties }
+}
+
+// MARK: - For Mocking
+
+#if DEBUG
+
+extension SubmissionListItem {
     static func make(
-        id: String = "",
+        submissionId: String = "",
         originalUserID: String = "",
         userNameModel: UserNameViewModel = .anonymousUser,
         userAsRecipient: Recipient? = nil,
@@ -76,7 +90,7 @@ extension SubmissionListItem {
         gradeFormatted: String = "-"
     ) -> SubmissionListItem {
         SubmissionListItem(
-            id: id,
+            submissionId: submissionId,
             originalUserID: originalUserID,
             userNameModel: userNameModel,
             userAsRecipient: userAsRecipient,
