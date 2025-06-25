@@ -61,7 +61,7 @@ class CourseTotalGradeModel: WidgetModel {
                 courseID: "random-course-id",
                 fetchResult: .grade(
                     attributes: CourseAttributes(
-                        name: "Example Course",
+                        name: String(localized: "Example Course"),
                         color: .green
                     ),
                     text: "90%"

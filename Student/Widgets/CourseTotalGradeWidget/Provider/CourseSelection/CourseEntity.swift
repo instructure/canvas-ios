@@ -20,11 +20,11 @@ import AppIntents
 import SwiftUI
 
 struct CourseEntity: AppEntity {
-    struct CID {
+    struct CourseID {
         let courseId: String, domain: String
     }
 
-    var id: CID { CID(courseId: courseId, domain: domain) }
+    var id: CourseID { CourseID(courseId: courseId, domain: domain) }
     let courseId: String
     let courseName: String
     let domain: String
@@ -38,7 +38,7 @@ struct CourseEntity: AppEntity {
     }
 }
 
-extension CourseEntity.CID: Hashable, EntityIdentifierConvertible {
+extension CourseEntity.CourseID: Hashable, EntityIdentifierConvertible {
 
     var entityIdentifierString: String {
         [courseId, domain].joined(separator: "|")

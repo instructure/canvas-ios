@@ -17,25 +17,25 @@
 //
 
 import SwiftUI
+import Core
 
 extension String {
 
     func styledAsGrade() -> AttributedString {
+
+        if isLocalizedNA {
+            let noGradesText = String(localized: "No Grades")
+            var attributed = AttributedString(noGradesText)
+            attributed.foregroundColor = Color.textDark
+            attributed.font = Font.scaledRestrictly(.regular22)
+            return attributed
+        }
 
         let spaceCorrected = components(separatedBy: "/")
             .map({ $0.trimmed() })
             .joined(separator: " / ")
 
         var attributed = AttributedString(spaceCorrected)
-
-        if spaceCorrected == "N / A" {
-            let noGradesText = String(localized: "No Grades")
-
-            attributed = AttributedString(noGradesText)
-            attributed.foregroundColor = Color.textDark
-            attributed.font = Font.scaledRestrictly(.regular22)
-            return attributed
-        }
 
         if let range = attributed.range(of: "/") {
             // Apply secondary color to everything from "/" to the end

@@ -2339,6 +2339,9 @@
         }
       }
     },
+    "Example Course" : {
+
+    },
     "Finals are moving to next week." : {
       "comment" : "Example announcement title",
       "localizations" : {
