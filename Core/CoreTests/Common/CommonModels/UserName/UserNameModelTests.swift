@@ -78,12 +78,25 @@ class UserNameModelTests: CoreTestCase {
         XCTAssertEqual(testee.avatarUrl, nil)
     }
 
-    func test_init_whenNameIsNil() {
+    func test_init_whenNameIsNil_shouldUseDefaultName() {
         testee = .make(name: nil, isGroup: false)
         XCTAssertEqual(testee.name, "Student")
 
         testee = .make(name: nil, isGroup: true)
         XCTAssertEqual(testee.name, "Group")
+    }
+
+    func test_init_whenNameIsEmpty_shouldUseDefaultName() {
+        testee = .make(name: "", isGroup: false)
+        XCTAssertEqual(testee.name, "Student")
+
+        testee = .make(name: "", isGroup: true)
+        XCTAssertEqual(testee.name, "Group")
+    }
+
+    func test_init_whenInitialIsEmpty_shouldUseNil() {
+        testee = .make(initials: "")
+        XCTAssertEqual(testee.initials, nil)
     }
 
     // MARK: - User init

@@ -61,6 +61,8 @@ extension User: WriteableModel {
     }
 }
 
+extension Core.User: UserNameProvider { }
+
 extension User {
 
     public func formattedRole(in context: Context) -> String? {

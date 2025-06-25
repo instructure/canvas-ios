@@ -50,8 +50,8 @@ public struct UserNameModel: Equatable, Hashable {
         avatarUrl: URL? = nil,
         isGroup: Bool = false
     ) {
-        self.name = name ?? UserNameModel.defaultName(isGroup: isGroup)
-        self.initials = initials
+        self.name = name?.nilIfEmpty ?? UserNameModel.defaultName(isGroup: isGroup)
+        self.initials = initials?.nilIfEmpty
         self.avatarUrl = avatarUrl.flatMap(User.scrubbedAvatarUrl)
         self.isGroup = isGroup
     }

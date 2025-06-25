@@ -32,8 +32,8 @@ public protocol UserNameProvider {
 
 extension UserNameProvider {
     // Not required properties
-    public var avatarURL: URL? { nil }
     public var pronouns: String? { nil }
+    public var avatarURL: URL? { nil }
 
     // Convenience accessors
     public var displayName: String { Self.displayName(name, pronouns: pronouns) }
@@ -72,12 +72,4 @@ extension UserNameProvider {
         }
         return url
     }
-}
-
-// MARK: - Conformance
-
-extension Core.User: UserNameProvider { }
-
-extension Core.Group: UserNameProvider {
-    public var displayName: String { name }
 }
