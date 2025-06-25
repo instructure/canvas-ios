@@ -29,11 +29,11 @@ public struct Avatar: View {
 
     public init(name: String?, url: URL?, size: CGFloat = Avatar.defaultSize, isAccessible: Bool = false) {
         if let name {
-            initials = UserNameViewModel.initials(for: name)
+            initials = User.initials(for: name)
         } else {
             initials = nil
         }
-        self.url = Avatar.scrubbedURL(url)
+        self.url = User.scrubbedAvatarUrl(url)
         self.isGroup = false // for backwards compatibility
         self.size = size
         self.isAccessible = isAccessible
@@ -81,11 +81,6 @@ public struct Avatar: View {
                 )
                 .identifier(isGroup ? "Avatar.anonymousGroup" : "Avatar.anonymousUser")
         }
-    }
-
-    /// Ignore crappy default avatars.
-    static func scrubbedURL(_ url: URL?) -> URL? {
-        UserNameViewModel.scrubbedAvatarUrl(url)
     }
 }
 

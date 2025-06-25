@@ -18,14 +18,21 @@
 
 import Foundation
 
+/// Stores common, username related properties. Primarily intended to be used for avatar and username display.
+///
+/// - parameters:
+///    - name: The finalized userfacing name. May contain pronouns or already built strings like "Student 2".
+///    - initials: The initials to be used for example in avatars.
+///     If this is `nil`, the username is considered anonymous. It shouldn't be rebult from `name` as a fallback.
+///    - avatarUrl: The remote avatar image URL. Known default avatar images will be removed.
 public struct UserNameViewModel {
 
     // MARK: - Static
 
-    public static let anonymousUser: UserNameViewModel = .init(user: nil)
-    public static let anonymousGroup: UserNameViewModel = .init(group: nil)
+    public static let anonymousUser: UserNameViewModel = anonymous(isGroup: false)
+    public static let anonymousGroup: UserNameViewModel = anonymous(isGroup: true)
     public static func anonymous(isGroup: Bool) -> UserNameViewModel {
-        isGroup ? .anonymousGroup : .anonymousUser
+        .init(name: nil, initials: nil, isGroup: isGroup)
     }
 
     // MARK: - Properties
@@ -45,25 +52,16 @@ public struct UserNameViewModel {
     ) {
         self.name = name
         self.initials = initials
-        self.avatarUrl = avatarUrl.flatMap(Self.scrubbedAvatarUrl)
+        self.avatarUrl = avatarUrl.flatMap(User.scrubbedAvatarUrl)
         self.isGroup = isGroup
     }
 
-    public init(user: Core.User?) {
+    public init(user: (some UserNameProvider)?, isGroup: Bool = false) {
         self.init(
             name: user?.displayName,
             initials: user?.initials,
             avatarUrl: user?.avatarURL,
-            isGroup: false
-        )
-    }
-
-    public init(group: Core.Group?) {
-        self.init(
-            name: group?.name,
-            initials: group?.initials,
-            avatarUrl: group?.avatarURL,
-            isGroup: true
+            isGroup: isGroup
         )
     }
 
@@ -80,45 +78,13 @@ public struct UserNameViewModel {
         } else if isGroup {
             self.init(
                 name: submission.groupName,
-                initials: submission.groupName.flatMap(Self.initials),
+                initials: submission.groupName.flatMap(User.initials),
                 avatarUrl: nil, // submissions has no group avatarUrl
                 isGroup: true
             )
         } else {
             self.init(user: submission.user)
         }
-    }
-
-    // MARK: - Static methods
-
-    /// User's name + pronouns if any. Example: "John Doe (He/Him)"
-    public static func displayName(_ name: String, pronouns: String?) -> String {
-        if let pronouns {
-            let format = NSLocalizedString("User.displayName", bundle: .core, value: "%@ (%@)", comment: "Name and pronouns - John (He/Him)")
-            return String.localizedStringWithFormat(format, name, pronouns)
-        }
-        return name
-    }
-
-    /// User's initials, using the first two name-components. Example: "J D"
-    public static func initials(for name: String) -> String {
-        name
-            .split(separator: " ", maxSplits: 1)
-            .reduce("") { (value: String, part: Substring) -> String in
-                guard let char = part.first else { return value }
-                return "\(value)\(char)"
-            }
-            .localizedUppercase
-    }
-
-    /// "Ignore crappy default avatars." (as quoted from the original description)
-    public static func scrubbedAvatarUrl(_ url: URL?) -> URL? {
-        guard let absoluteString = url?.absoluteString else { return nil }
-
-        if absoluteString.contains("images/dotted_pic.png") || absoluteString.contains("images/messages/avatar-50.png") {
-            return nil
-        }
-        return url
     }
 
     // MARK: - Private helpers
@@ -134,26 +100,4 @@ public struct UserNameViewModel {
                 : String(localized: "Student", bundle: .core)
         }
     }
-}
-
-// MARK: - Extensions
-
-extension Core.User {
-
-    /// User's name + pronouns if any. Example: "John Doe (He/Him)"
-    public var displayName: String { UserNameViewModel.displayName(name, pronouns: pronouns) }
-
-    /// User's name + pronouns if any. Example: "John Doe (He/Him)"
-    public static func displayName(_ name: String, pronouns: String?) -> String {
-        UserNameViewModel.displayName(name, pronouns: pronouns)
-    }
-
-    /// User name initials, using the first two name-components. Example: "J D"
-    public var initials: String { UserNameViewModel.initials(for: name) }
-}
-
-extension Core.Group {
-
-    /// Group name initials, using the first two name-components. Example: "J D"
-    public var initials: String { UserNameViewModel.initials(for: name) }
 }
