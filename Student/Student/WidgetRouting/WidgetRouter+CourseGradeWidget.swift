@@ -54,8 +54,7 @@ extension WidgetRouter {
             courseVC.onAppearOnce {
                 view.env.router.route(
                     to: url,
-                    from: courseVC,
-                    options: .detail
+                    from: courseVC
                 )
             }
         })
