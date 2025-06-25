@@ -90,7 +90,6 @@ public struct MultiSelectionView: View {
             title: item.title,
             subtitle: item.subtitle,
             isSelected: selectionBinding(for: item),
-            color: item.color,
             accessoryView: { item.accessoryIcon?.foregroundStyle(item.color) },
             dividerStyle: viewModel.dividerStyle(for: item)
         )

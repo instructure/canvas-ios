@@ -27,7 +27,6 @@ extension InstUI {
         private let title: String
         private let subtitle: String?
         private let value: Value?
-        private let color: Color
         private let dividerStyle: InstUI.Divider.Style
 
         /// - parameters:
@@ -39,14 +38,12 @@ extension InstUI {
             subtitle: String? = nil,
             value: Value?,
             selectedValue: Binding<Value?>,
-            color: Color,
             dividerStyle: InstUI.Divider.Style = .full
         ) {
             self.title = title
             self.subtitle = subtitle
             self.value = value
             self._selectedValue = selectedValue
-            self.color = color
             self.dividerStyle = dividerStyle
         }
 
@@ -74,7 +71,7 @@ extension InstUI {
                         if isSelected {
                             Image.checkSolid
                                 .scaledIcon(size: 18)
-                                .foregroundStyle(color)
+                                .foregroundStyle(.tint)
                                 .layoutPriority(1)
                                 .paddingStyle(.leading, .cellAccessoryPadding)
                         }
@@ -92,21 +89,20 @@ extension InstUI {
 #if DEBUG
 
 private struct Container: View {
-    @State var selectedValue: Int?
+    let selectedValue = 1
 
     var body: some View {
         VStack(spacing: 0) {
             InstUI.TrailingCheckmarkCell(
                 title: "Value 1",
                 value: 1,
-                selectedValue: $selectedValue,
-                color: .orange
+                selectedValue: .constant(selectedValue)
             )
+            .tint(.green)
             InstUI.TrailingCheckmarkCell(
                 title: "Value 2",
                 value: 2,
-                selectedValue: $selectedValue,
-                color: .red
+                selectedValue: .constant(selectedValue),
             )
         }
     }
