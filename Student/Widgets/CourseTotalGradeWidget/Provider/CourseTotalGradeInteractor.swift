@@ -47,10 +47,11 @@ class CourseTotalGradeInteractorLive: CourseTotalGradeInteractorProtocol {
     func updateEnvironment() {
         // Reset
         env.app = .student
-        env.currentSession = nil
+
+        guard let session = LoginSession.mostRecent else { return }
+        if let current = env.currentSession, current == session { return }
 
         // Update with latest session
-        guard let session = LoginSession.mostRecent else { return }
         env.userDidLogin(session: session, isSilent: true)
     }
 
