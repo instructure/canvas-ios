@@ -145,31 +145,14 @@ struct PostLoginOAuthRequest: APIRequestable {
     typealias Response = APIOAuthToken
     struct Body: Codable {
         let client_id: String
-        let client_secret: String?
-        let code_verifier: String?
+        let client_secret: String
         let grant_type: String
         let code: String?
         let refresh_token: String?
 
-        init(oauthType: OAuthType, grantType: GrantType) {
-            switch oauthType {
-            case let .manual(attributes):
-                self.client_id = attributes.clientID ?? ""
-                self.client_secret = attributes.clientSecret
-                self.code_verifier = nil
-
-            case let .pkce(attributes):
-                self.client_id = attributes.clientID
-
-                // When this post request is sent for token refresh, we don't need to send clientID/codeVerifier
-                if case .refreshToken = grantType {
-                    self.client_secret = nil
-                    self.code_verifier = nil
-                } else {
-                    self.code_verifier = attributes.codeVerifier
-                    self.client_secret = nil
-                }
-            }
+        init(client: APIVerifyClient, grantType: GrantType) {
+            self.client_id = client.client_id ?? ""
+            self.client_secret = client.client_secret ?? ""
 
             switch grantType {
             case .code(let code):
@@ -189,22 +172,22 @@ struct PostLoginOAuthRequest: APIRequestable {
         case refreshToken(String)
     }
 
-    let oauthType: OAuthType
+    let client: APIVerifyClient
 
-    init(oauthType: OAuthType, code: String) {
-        self.oauthType = oauthType
-        self.body = Body(oauthType: oauthType, grantType: .code(code))
+    init(client: APIVerifyClient, code: String) {
+        self.client = client
+        self.body = Body(client: client, grantType: .code(code))
     }
 
-    init(oauthType: OAuthType, refreshToken: String) {
-        self.oauthType = oauthType
-        self.body = Body(oauthType: oauthType, grantType: .refreshToken(refreshToken))
+    init(client: APIVerifyClient, refreshToken: String) {
+        self.client = client
+        self.body = Body(client: client, grantType: .refreshToken(refreshToken))
     }
 
     let body: Body?
     let method = APIMethod.post
     var path: String {
-        return URL(string: "login/oauth2/token", relativeTo: oauthType.baseURL)?.absoluteString ?? "login/oauth2/token"
+        return URL(string: "login/oauth2/token", relativeTo: client.base_url)?.absoluteString ?? "login/oauth2/token"
     }
 
     let headers: [String: String?] = [

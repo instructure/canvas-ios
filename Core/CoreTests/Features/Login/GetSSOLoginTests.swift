@@ -60,12 +60,12 @@ class GetSSOLoginTest: CoreTestCase {
         XCTAssertNil(entry)
         XCTAssertNil(error)
 
-        api.mock(PostLoginOAuthRequest(oauthType: .manual(.init(client: client)), code: "code"), error: NSError.internalError())
+        api.mock(PostLoginOAuthRequest(client: client, code: "code"), error: NSError.internalError())
         login.fetch(callback)
         XCTAssertNil(entry)
         XCTAssertNotNil(error)
 
-        api.mock(PostLoginOAuthRequest(oauthType: .manual(.init(client: client)), code: "code"), value: .make(
+        api.mock(PostLoginOAuthRequest(client: client, code: "code"), value: .make(
             accessToken: "t",
             refreshToken: nil,
             tokenType: "type",
@@ -75,13 +75,8 @@ class GetSSOLoginTest: CoreTestCase {
         login.fetch(callback)
         XCTAssertEqual(entry?.accessToken, "t")
         XCTAssertEqual(entry?.userID, "1")
-        if case let .manual(attributes) = entry?.oauthType {
-                    XCTAssertEqual(attributes.clientID, "id")
-                    XCTAssertEqual(attributes.clientSecret, "sec")
-        } else {
-            XCTFail("Expected Manual OAuth attributes for SSO Login.")
-        }
-
+        XCTAssertEqual(entry?.clientID, "id")
+        XCTAssertEqual(entry?.clientSecret, "sec")
         XCTAssertNil(error)
     }
 
@@ -93,7 +88,7 @@ class GetSSOLoginTest: CoreTestCase {
             client_secret: "sec"
         )
         api.mock(GetMobileVerifyRequest(domain: "canvas"), value: client)
-        api.mock(PostLoginOAuthRequest(oauthType: .manual(.init(client: client)), code: "code"), value: .make(
+        api.mock(PostLoginOAuthRequest(client: client, code: "code"), value: .make(
             accessToken: "t",
             refreshToken: nil,
             tokenType: "type",

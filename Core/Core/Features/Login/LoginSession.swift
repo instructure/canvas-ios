@@ -30,9 +30,9 @@ public struct LoginSession: Codable, Hashable {
     public let userID: String
     public let userName: String
     public let userEmail: String?
+    public let clientID: String?
+    public let clientSecret: String?
     public let canvasRegion: String?
-
-    public let oauthType: OAuthType?
 
     /** Returns the acted user's ID. If the session isn't masquaraded this property returns nil. */
     public var actAsUserID: String? {
@@ -73,9 +73,10 @@ public struct LoginSession: Codable, Hashable {
         userID: String,
         userName: String,
         userEmail: String? = nil,
-        oauthType: OAuthType? = nil,
+        clientID: String? = nil,
+        clientSecret: String? = nil,
         canvasRegion: String? = nil,
-        isFakeStudent: Bool = false
+        isFakeStudent: Bool = false,
     ) {
         self.accessToken = accessToken
         // remove trailing slash
@@ -91,7 +92,8 @@ public struct LoginSession: Codable, Hashable {
         self.userID = userID
         self.userName = userName
         self.userEmail = userEmail
-        self.oauthType = oauthType
+        self.clientID = clientID
+        self.clientSecret = clientSecret
         self.canvasRegion = canvasRegion
     }
 
@@ -123,7 +125,8 @@ public struct LoginSession: Codable, Hashable {
             userID: userID,
             userName: userName,
             userEmail: userEmail,
-            oauthType: oauthType
+            clientID: clientID,
+            clientSecret: clientSecret
         )
     }
 
@@ -146,7 +149,8 @@ public struct LoginSession: Codable, Hashable {
             userID: userID,
             userName: userName,
             userEmail: userEmail,
-            oauthType: oauthType
+            clientID: clientID,
+            clientSecret: clientSecret
         )
     }
 

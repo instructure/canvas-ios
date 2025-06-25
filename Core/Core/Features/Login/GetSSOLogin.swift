@@ -57,7 +57,7 @@ public class GetSSOLogin {
         }
         api.makeRequest(GetMobileVerifyRequest(domain: domain)) { (response, _, error) in
             guard let client = response, let baseURL = client.base_url, error == nil else { return done(nil, error) }
-            api.makeRequest(PostLoginOAuthRequest(oauthType: .manual(.init(client: client)), code: code)) { (response, _, error) in
+            api.makeRequest(PostLoginOAuthRequest(client: client, code: code)) { (response, _, error) in
                 guard let model = response, error == nil else { return done(nil, error) }
                 done(LoginSession(
                     accessToken: model.access_token,
@@ -73,7 +73,8 @@ public class GetSSOLogin {
                     userID: model.user.id.value,
                     userName: model.user.name,
                     userEmail: model.user.email,
-                    oauthType: .manual(.init(client: client))
+                    clientID: client.client_id,
+                    clientSecret: client.client_secret
                 ), nil)
             }
         }

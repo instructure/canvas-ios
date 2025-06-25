@@ -177,7 +177,8 @@ class LoginStartViewController: UIViewController {
                     userID: session.userID,
                     userName: response.short_name,
                     userEmail: response.email,
-                    oauthType: session.oauthType
+                    clientID: session.clientID,
+                    clientSecret: session.clientSecret
                 )
                 if LoginSession.sessions.contains(entry) {
                     LoginSession.add(entry)

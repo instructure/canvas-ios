@@ -419,7 +419,7 @@ enum MiniCanvasEndpoints {
             // login always works
             return .movedTemporarily("\(redirectUri)?code=t")
         },
-        .apiRequest(PostLoginOAuthRequest(oauthType: .manual(.init(client: .make())), code: "")) { request in
+        .apiRequest(PostLoginOAuthRequest(client: .make(), code: "")) { request in
             APIOAuthToken.make(user: .from(user: request.state.selfUser))
         },
         .apiRequest(DeleteLoginOAuthRequest()) { _ in .init() },
