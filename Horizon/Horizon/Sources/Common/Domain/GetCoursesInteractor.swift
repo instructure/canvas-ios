@@ -53,7 +53,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
     func getCourseWithModules(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never> {
         unowned let unownedSelf = self
 
-        return ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId, courseId: id, horizonCourses: true))
+        return ReactiveStore(useCase: GetHCoursesProgressionUseCase(userId: userId, courseId: id, horizonCourses: true))
             .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .flatMap { unownedSelf.fetchModules(dashboardCourses: $0, ignoreCache: ignoreCache) }
@@ -63,7 +63,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
     }
 
     func getCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
-        ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId, horizonCourses: true))
+        ReactiveStore(useCase: GetHCoursesProgressionUseCase(userId: userId, horizonCourses: true))
             .getEntities(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap {
@@ -85,13 +85,13 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
 
     // MARK: - Private
 
-    private func fetchModules(dashboardCourses: [CDCourse], ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
+    private func fetchModules(dashboardCourses: [CDHCourse], ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
         let publishers = dashboardCourses.map { $0.fetchModules(ignoreCache: ignoreCache) }
         return publishers.combineLatest().eraseToAnyPublisher()
     }
 }
 
-extension CDCourse {
+extension CDHCourse {
     fileprivate func fetchModules(ignoreCache: Bool) -> AnyPublisher<HCourse, Never> {
         ReactiveStore(
             useCase: GetModules(

@@ -64,7 +64,7 @@ struct ScoresAssignment: Equatable, Identifiable {
         self.submittedAt = submittedAt
     }
 
-    init(from entity: CDScoresAssignment) {
+    init(from entity: CDHScoresAssignment) {
         self.id = entity.id
         self.name = entity.name ?? ""
         self.commentsCount = Int(truncating: entity.commentsCount ?? 0)

@@ -54,7 +54,7 @@ final class DashboardInteractorLive: DashboardInteractor {
             .delay(for: .milliseconds(500), scheduler: scheduler)
             .flatMapLatest {
                 let shouldIgnoreCache = $0.object != nil ? true : ignoreCache
-                return ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: unownedSelf.userId, horizonCourses: true))
+                return ReactiveStore(useCase: GetHCoursesProgressionUseCase(userId: unownedSelf.userId, horizonCourses: true))
                     .getEntities(ignoreCache: shouldIgnoreCache)
                     .replaceError(with: [])
                     .flatMap {

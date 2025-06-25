@@ -19,19 +19,19 @@
 import Foundation
 import CoreData
 
-final public class CDCommentAttachment: NSManagedObject {
+final public class CDHCommentAttachment: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var url: String?
     @NSManaged public var displayName: String?
 
     @discardableResult
     public static func save(
-        _ apiEntity: GetSubmissionCommentsResponse.Attachment,
+        _ apiEntity: GetHSubmissionCommentsResponse.Attachment,
         in context: NSManagedObjectContext
-    ) -> CDCommentAttachment {
+    ) -> CDHCommentAttachment {
 
-        let dbEntity: CDCommentAttachment = context.first(
-            where: #keyPath(CDCommentAttachment.id),
+        let dbEntity: CDHCommentAttachment = context.first(
+            where: #keyPath(CDHCommentAttachment.id),
             equals: apiEntity.id
         ) ?? context.insert()
         dbEntity.id = apiEntity.id

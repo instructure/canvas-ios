@@ -34,7 +34,7 @@ struct CommentAttachment: Identifiable, Equatable {
         self.displayName = displayName
     }
 
-    init(from entity: CDCommentAttachment) {
+    init(from entity: CDHCommentAttachment) {
         self.id = entity.id
         self.displayName = entity.displayName
         self.url = URL(string: entity.url ?? "")
