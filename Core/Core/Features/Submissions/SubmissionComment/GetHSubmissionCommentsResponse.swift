@@ -36,8 +36,8 @@ public struct GetHSubmissionCommentsResponse: Codable {
         public let edges: [Edge]?
     }
 
-  public struct Edge: Codable {
-      public let node: Comment?
+    public struct Edge: Codable {
+        public let node: Comment?
     }
 
     public struct Comment: Codable {
@@ -65,7 +65,7 @@ public struct GetHSubmissionCommentsResponse: Codable {
         let endCursor, startCursor: String?
         let hasPreviousPage, hasNextPage: Bool?
     }
-    
+
     public struct Attachment: Codable {
         let id: String
         let url: String?
