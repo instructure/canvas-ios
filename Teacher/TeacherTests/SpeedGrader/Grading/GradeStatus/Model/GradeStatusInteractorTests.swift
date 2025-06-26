@@ -109,7 +109,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         submission.customGradeStatusId = "custom1"
         submission.latePolicyStatus = nil
         submission.excused = nil
-        submission.lateSeconds = 86400
+        submission.lateSeconds = 24 * 60 * 60
         try? databaseClient.save()
         waitUntil(5, shouldFail: true) { receivedStatuses.count == 1 }
 

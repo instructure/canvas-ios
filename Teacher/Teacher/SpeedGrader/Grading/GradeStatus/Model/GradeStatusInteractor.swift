@@ -137,7 +137,7 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
                 else {
                     return nil
                 }
-                let daysLate = Int(ceil(Double(submission.lateSeconds) / 86400.0))
+                let daysLate = Int(ceil(Double(submission.lateSeconds) / (24 * 60 * 60.0)))
                 let dueDate = submission.assignment?.dueAt
                 return (status, daysLate, dueDate)
             }
@@ -153,7 +153,7 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
         userId: String,
         daysLate: Int
     ) -> AnyPublisher<Void, Error> {
-        let lateSeconds = daysLate * 86400
+        let lateSeconds = daysLate * 24 * 60 * 60
         let useCase = GradeSubmission(
             courseID: courseId,
             assignmentID: assignmentId,
