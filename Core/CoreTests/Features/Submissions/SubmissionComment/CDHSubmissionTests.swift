@@ -37,7 +37,8 @@ class CDHSubmissionTests: CoreTestCase {
             comment: "This is a test comment",
             read: false,
             updatedAt: Date(),
-            createdAt: Date()
+            createdAt: Date(),
+            attachments: []
         )
 
         let edge = GetHSubmissionCommentsResponse.Edge(node: comment)
