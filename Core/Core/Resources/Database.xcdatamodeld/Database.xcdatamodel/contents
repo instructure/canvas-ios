@@ -201,7 +201,7 @@
         <attribute name="displayName" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
-        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHSubmissionComment"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHSubmissionComment" inverseName="attachments" inverseEntity="CDHSubmissionComment"/>
     </entity>
     <entity name="CDHCourse" representedClassName="Core.CDHCourse" syncable="YES">
         <attribute name="completionPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -297,6 +297,7 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isRead" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="attachments" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHCommentAttachment" inverseName="relationship" inverseEntity="CDHCommentAttachment"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHSubmission" inverseName="comments" inverseEntity="CDHSubmission"/>
     </entity>
     <entity name="CDHSubmissionScores" representedClassName="Core.CDHSubmissionScores" syncable="YES">
