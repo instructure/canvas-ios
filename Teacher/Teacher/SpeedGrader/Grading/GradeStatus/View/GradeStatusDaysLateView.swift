@@ -35,7 +35,7 @@ struct GradeStatusDaysLateView: View {
                 Text("Days late", bundle: .teacher)
                     .font(.semibold16)
                     .foregroundColor(.textDarkest)
-                Text("Due: \(dueDate)", bundle: .teacher)
+                Text("Due \(dueDate)", bundle: .teacher)
                     .font(.regular14)
                     .foregroundColor(.textDark)
             }
