@@ -197,7 +197,7 @@
         <attribute name="disableInboxSignatureBlockForStudents" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="enableInboxSignatureBlock" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
-    <entity name="CDHCommentAttachment" representedClassName="Core.CDCommentAttachment" syncable="YES">
+    <entity name="CDHCommentAttachment" representedClassName="Core.CDHCommentAttachment" syncable="YES">
         <attribute name="displayName" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
