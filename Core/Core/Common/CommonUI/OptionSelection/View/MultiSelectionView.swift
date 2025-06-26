@@ -86,29 +86,21 @@ public struct MultiSelectionView: View {
 
     @ViewBuilder
     private func optionCell(with item: OptionItem) -> some View {
+        let cell = InstUI.CheckboxCell(
+            title: item.title,
+            subtitle: item.subtitle,
+            isSelected: selectionBinding(for: item),
+            accessoryView: {
+                item.accessoryIcon?
+                    .foregroundStyle(.tint)
+            },
+            dividerStyle: viewModel.dividerStyle(for: item)
+        )
+        
         if let color = item.color {
-            InstUI.CheckboxCell(
-                title: item.title,
-                subtitle: item.subtitle,
-                isSelected: selectionBinding(for: item),
-                accessoryView: {
-                    item.accessoryIcon?
-                        .foregroundStyle(color)
-                },
-                dividerStyle: viewModel.dividerStyle(for: item)
-            )
-            .tint(color)
+            cell.tint(color)
         } else {
-            InstUI.CheckboxCell(
-                title: item.title,
-                subtitle: item.subtitle,
-                isSelected: selectionBinding(for: item),
-                accessoryView: {
-                    item.accessoryIcon?
-                        .foregroundStyle(.tint)
-                },
-                dividerStyle: viewModel.dividerStyle(for: item)
-            )
+            cell
         }
     }
 
