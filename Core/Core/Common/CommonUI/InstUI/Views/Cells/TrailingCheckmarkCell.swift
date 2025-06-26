@@ -88,28 +88,22 @@ extension InstUI {
 
 #if DEBUG
 
-private struct Container: View {
-    let selectedValue = 1
-
-    var body: some View {
-        VStack(spacing: 0) {
-            InstUI.TrailingCheckmarkCell(
-                title: "Value 1",
-                value: 1,
-                selectedValue: .constant(selectedValue)
-            )
-            .tint(.green)
-            InstUI.TrailingCheckmarkCell(
-                title: "Value 2",
-                value: 2,
-                selectedValue: .constant(selectedValue),
-            )
-        }
-    }
-}
-
 #Preview {
-    Container()
+    @Previewable @State var selectedValue: Int?
+
+    VStack(spacing: 0) {
+        InstUI.TrailingCheckmarkCell(
+            title: "Value 1",
+            value: 1,
+            selectedValue: $selectedValue
+        )
+        .tint(.green)
+        InstUI.TrailingCheckmarkCell(
+            title: "Value 2",
+            value: 2,
+            selectedValue: $selectedValue
+        )
+    }
 }
 
 #endif
