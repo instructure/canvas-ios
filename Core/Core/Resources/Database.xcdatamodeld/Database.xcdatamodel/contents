@@ -297,7 +297,7 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isRead" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="attachments" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHCommentAttachment" inverseName="relationship" inverseEntity="CDHCommentAttachment"/>
+        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHCommentAttachment" inverseName="relationship" inverseEntity="CDHCommentAttachment"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHSubmission" inverseName="comments" inverseEntity="CDHSubmission"/>
     </entity>
     <entity name="CDHSubmissionScores" representedClassName="Core.CDHSubmissionScores" syncable="YES">
