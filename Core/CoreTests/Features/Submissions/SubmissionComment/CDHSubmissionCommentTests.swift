@@ -29,6 +29,17 @@ class CDHSubmissionCommentTests: CoreTestCase {
         let assignmentId = "assignment-789"
         let attempt = 3
 
+        let attachment1 = GetHSubmissionCommentsResponse.Attachment(
+            id: "attachment-1",
+            url: "https://example.com/file1.pdf",
+            displayName: "file1.pdf"
+        )
+        let attachment2 = GetHSubmissionCommentsResponse.Attachment(
+            id: "attachment-2",
+            url: "https://example.com/file2.jpg",
+            displayName: "file2.jpg"
+        )
+
         let comment = GetHSubmissionCommentsResponse.Comment(
             id: commentId,
             attempt: attempt,
@@ -41,7 +52,7 @@ class CDHSubmissionCommentTests: CoreTestCase {
             read: true,
             updatedAt: createdAt,
             createdAt: createdAt,
-            attachments: []
+            attachments: [attachment1, attachment2]
         )
 
         let savedComment = CDHSubmissionComment.save(comment, assignmentID: assignmentId, in: databaseClient)
@@ -53,6 +64,17 @@ class CDHSubmissionCommentTests: CoreTestCase {
         XCTAssertEqual(savedComment.comment, commentText)
         XCTAssertEqual(savedComment.createdAt, createdAt)
         XCTAssertEqual(savedComment.isRead, true)
+
+        let attachments = savedComment.attachments ?? []
+        XCTAssertEqual(attachments.count, 2)
+
+        let savedAttachments = attachments.sorted { $0.id < $1.id }
+        XCTAssertEqual(savedAttachments[0].id, "attachment-1")
+        XCTAssertEqual(savedAttachments[0].url, "https://example.com/file1.pdf")
+        XCTAssertEqual(savedAttachments[0].displayName, "file1.pdf")
+        XCTAssertEqual(savedAttachments[1].id, "attachment-2")
+        XCTAssertEqual(savedAttachments[1].url, "https://example.com/file2.jpg")
+        XCTAssertEqual(savedAttachments[1].displayName, "file2.jpg")
     }
 
     func testSaveWithNilData() {
@@ -65,9 +87,16 @@ class CDHSubmissionCommentTests: CoreTestCase {
         XCTAssertNil(savedComment.comment)
         XCTAssertNil(savedComment.createdAt)
         XCTAssertEqual(savedComment.isRead, true)
+        XCTAssertEqual(savedComment.attachments?.count ?? 0, 0)
     }
 
     func testSaveExistingComment() {
+        let attachment1 = GetHSubmissionCommentsResponse.Attachment(
+            id: "attachment-1",
+            url: "https://example.com/file1.pdf",
+            displayName: "file1.pdf"
+        )
+
         let comment1 = GetHSubmissionCommentsResponse.Comment(
             id: "comment-123",
             attempt: 1,
@@ -80,10 +109,16 @@ class CDHSubmissionCommentTests: CoreTestCase {
             read: true,
             updatedAt: Date(),
             createdAt: Date(),
-            attachments: []
+            attachments: [attachment1]
         )
 
         let savedComment1 = CDHSubmissionComment.save(comment1, assignmentID: "assignment-123", in: databaseClient)
+
+        let attachment2 = GetHSubmissionCommentsResponse.Attachment(
+            id: "attachment-2",
+            url: "https://example.com/file2.jpg",
+            displayName: "file2.jpg"
+        )
 
         let comment2 = GetHSubmissionCommentsResponse.Comment(
             id: "comment-123",
@@ -97,18 +132,26 @@ class CDHSubmissionCommentTests: CoreTestCase {
             read: false,
             updatedAt: Date(),
             createdAt: Date(),
-            attachments: []
+            attachments: [attachment2]
         )
 
         let savedComment2 = CDHSubmissionComment.save(comment2, assignmentID: "assignment-123", in: databaseClient)
 
-        XCTAssertEqual(savedComment1, savedComment2) // Should be the same object
+        XCTAssertEqual(savedComment1, savedComment2)
         XCTAssertEqual(savedComment2.id, "comment-123")
         XCTAssertEqual(savedComment2.attempt, 2)
         XCTAssertEqual(savedComment2.authorID, "author-2")
         XCTAssertEqual(savedComment2.authorName, "Author 2")
         XCTAssertEqual(savedComment2.comment, "Updated comment")
         XCTAssertEqual(savedComment2.isRead, false)
+
+        let attachments = savedComment2.attachments ?? []
+        XCTAssertEqual(attachments.count, 1)
+
+        let savedAttachment = attachments.first
+        XCTAssertEqual(savedAttachment?.id, "attachment-2")
+        XCTAssertEqual(savedAttachment?.url, "https://example.com/file2.jpg")
+        XCTAssertEqual(savedAttachment?.displayName, "file2.jpg")
     }
 
     func testAttemptProperty() {
