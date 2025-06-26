@@ -23,10 +23,10 @@ import Combine
 import TestsFoundation
 
 class GradeStatusInteractorTests: TeacherTestCase {
-    private var cancellables: Set<AnyCancellable> = []
+    private var subscriptions: Set<AnyCancellable> = []
 
     override func tearDown() {
-        cancellables = []
+        subscriptions = []
         super.tearDown()
     }
 
@@ -101,7 +101,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
                     expectation.fulfill()
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &subscriptions)
 
         let submission = Submission(context: databaseClient)
         submission.id = "sub1"
