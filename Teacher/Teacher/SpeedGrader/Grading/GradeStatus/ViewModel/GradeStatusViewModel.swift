@@ -77,7 +77,7 @@ class GradeStatusViewModel: ObservableObject {
                 guard
                     let self,
                     self.selectedOption != selectedOption, // If the user selects the same option, we don't need to do anything
-                    let selectedStatus = interactor.gradeStatuses.first(where: { $0.id == selectedOption.id })
+                    let selectedStatus = interactor.gradeStatuses.element(for: selectedOption)
                 else {
                     return nil
                 }

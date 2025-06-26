@@ -16,10 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import Foundation
 
 /// This structure unifies user defined and canvas defined statuses into a single object.
-struct GradeStatus: Identifiable, Equatable {
+struct GradeStatus: Identifiable, Equatable, OptionItemIdentifiable {
     let id: String
     let name: String
     /// Custom and default statuses need to be uploaded to different fields on the API
