@@ -31,7 +31,7 @@ public class CourseSmartSearchViewsProvider: SearchViewsProvider {
 
     public func filterEditorView(_ filter: Binding<CourseSmartSearchFilter?>) -> some View {
         CourseSmartSearchFilterEditorView(
-            model: CourseSearchFilterEditorViewModel(selection: filter, accentColor: accentColor)
+            model: CourseSearchFilterEditorViewModel(selection: filter)
         )
     }
 

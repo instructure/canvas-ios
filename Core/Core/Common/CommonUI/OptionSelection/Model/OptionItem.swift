@@ -27,7 +27,7 @@ public struct OptionItem: Equatable, Hashable, Identifiable {
     public let id: String
     public let title: String
     public let subtitle: String?
-    public let color: Color
+    public let color: Color?
     public let customAccessibilityLabel: String?
     public let accessoryIcon: Image?
 
@@ -42,7 +42,7 @@ public struct OptionItem: Equatable, Hashable, Identifiable {
         self.id = id
         self.title = title
         self.subtitle = subtitle
-        self.color = color ?? Color(uiColor: Brand.shared.primary)
+        self.color = color
         self.customAccessibilityLabel = customAccessibilityLabel
         self.accessoryIcon = accessoryIcon
     }
