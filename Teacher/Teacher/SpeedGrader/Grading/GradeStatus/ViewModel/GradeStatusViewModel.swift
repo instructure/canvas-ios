@@ -23,13 +23,13 @@ import SwiftUI
 
 class GradeStatusViewModel: ObservableObject {
     // MARK: - Outputs
-    @Published private(set) var selectedOption = OptionItem.none
-    @Published private(set) var isLoading = false
-    @Published private(set) var isShowingDaysLateSection = false
-    @Published private(set) var daysLate = ""
-    @Published private(set) var daysLateA11yLabel = ""
-    @Published private(set) var dueDate = ""
-    @Published var isShowingSaveFailedAlert = false
+    @Published private(set) var selectedOption: OptionItem = OptionItem.none
+    @Published private(set) var isLoading: Bool = false
+    @Published private(set) var isShowingDaysLateSection: Bool = false
+    @Published private(set) var daysLate: String = ""
+    @Published private(set) var daysLateA11yLabel: String = ""
+    @Published private(set) var dueDate: String = ""
+    @Published var isShowingSaveFailedAlert: Bool = false
     let daysLateA11yHint = String(localized: "Double-tap to change late days number.", bundle: .teacher)
     let options: [OptionItem]
     let errorAlertViewModel = ErrorAlertViewModel(
