@@ -34,17 +34,17 @@ public class TeacherQuizSubmissionBreakdownViewModelLive: SubmissionBreakdownVie
     private let courseID: String
     private var submissions: Store<GetAllQuizSubmissions>
     private var enrollments: Store<GetEnrollments>
-    private var submissionsPath: String { "courses/\(courseID)/quizzes/\(quizID)/submissions" }
+    private var submissionsPath: String { "/courses/\(courseID)/quizzes/\(quizID)/submissions" }
 
-    init(courseID: String, quizID: String) {
+    init(env: AppEnvironment, courseID: String, quizID: String) {
         self.quizID = quizID
         self.courseID = courseID
 
-        submissions = AppEnvironment.shared.subscribe(GetAllQuizSubmissions(
+        submissions = env.subscribe(GetAllQuizSubmissions(
             courseID: courseID,
             quizID: quizID))
 
-        enrollments = AppEnvironment.shared.subscribe(GetEnrollments(
+        enrollments = env.subscribe(GetEnrollments(
             context: .course(courseID),
             types: [ "StudentEnrollment" ]))
     }

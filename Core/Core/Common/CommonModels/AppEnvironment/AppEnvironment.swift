@@ -63,6 +63,10 @@ open class AppEnvironment {
         self.logger = Logger.shared
     }
 
+    public var isShared: Bool {
+        api.baseURL == AppEnvironment.shared.api.baseURL
+    }
+
     /**
      - parameters:
         - isSilent: If this parameter is true then the method won't trigger a widget refresh
