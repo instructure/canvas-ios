@@ -191,10 +191,10 @@ extension SpeedGraderViewModel: PagesViewControllerDataSource {
             landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,
             handleRefresh: { [weak self] in
                 guard let self else { return }
-                self.interactor
+                interactor
                     .refreshSubmission(forUserId: data.submissions[index].userID)
                     .sink()
-                    .store(in: &self.subscriptions)
+                    .store(in: &subscriptions)
             }
         )
     }
