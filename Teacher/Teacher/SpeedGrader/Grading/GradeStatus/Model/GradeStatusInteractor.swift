@@ -141,8 +141,10 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
                 let dueDate = submission.assignment?.dueAt
                 return (status, daysLate, dueDate)
             }
-            .removeDuplicates { lhs, rhs in
-                lhs.0.id == rhs.0.id && lhs.1 == rhs.1 && lhs.2 == rhs.2
+            .removeDuplicates {
+                // Without explicit comparison the compiler is unable to type check
+                // the publisher chain, despite the tuple is implicitly equatable.
+                $0 == $1
             }
             .catch { _ in Publishers.typedEmpty() }
             .eraseToAnyPublisher()
