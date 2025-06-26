@@ -18,17 +18,25 @@
 
 import Foundation
 
+/// This structure unifies user defined and canvas defined statuses into a single object.
 struct GradeStatus: Identifiable, Equatable {
     let id: String
     let name: String
+    /// Custom and default statuses need to be uploaded to different fields on the API
+    /// so we need to distinguish between the two types to know which goes where.
     let isCustom: Bool
 
+    /// This initializer can be used to create a status from a custom status entered by the teacher on canvas web.
     init(custom: APIGradeStatuses.CustomGradeStatus) {
         self.id = custom.id
+        // The name is entered by the teacher, so we can't localize it.
+        // It's up to the teacher to use an appropriate name
+        // that is understandable in the context of their course.
         self.name = custom.name
         self.isCustom = true
     }
 
+    /// This initializer can be used to create a grade status that is defined by canvas on a global level.
     init(defaultName: String) {
         self.id = defaultName
         self.name = defaultName.localizedGradeStatusName
