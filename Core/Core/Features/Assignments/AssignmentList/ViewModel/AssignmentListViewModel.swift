@@ -321,7 +321,7 @@ public class AssignmentListViewModel: ObservableObject {
             gradingPeriods: gradingPeriods.compactMap { $0 },
             initialGradingPeriod: gradingPeriods.filter { $0.id == selectedGradingPeriodId }.first,
             courseName: courseName ?? "",
-            courseColor: Color(uiColor: courseColor),
+            courseColor: Color(courseColor ?? .textDark),
             env: env,
             completion: { [weak self] assignmentListPreferences in
                 guard let self else { return }

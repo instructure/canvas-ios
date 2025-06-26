@@ -96,7 +96,7 @@ public struct MultiSelectionView: View {
             },
             dividerStyle: viewModel.dividerStyle(for: item)
         )
-        
+
         if let color = item.color {
             cell.tint(color)
         } else {

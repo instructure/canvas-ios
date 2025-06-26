@@ -191,7 +191,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         gradingPeriods: [GradingPeriod],
         initialGradingPeriod: GradingPeriod?,
         courseName: String,
-        courseColor: Color?,
+        courseColor: Color,
         env: AppEnvironment,
         completion: @escaping (AssignmentListPreferences) -> Void
     ) {
@@ -233,7 +233,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         self.completion = completion
 
         self.env = env
-        self.courseColor = courseColor ?? .init(Brand.shared.primary)
+        self.courseColor = courseColor
         self.isGradingPeriodsSectionVisible = gradingPeriods.count > 1
     }
 
@@ -353,9 +353,9 @@ private extension AssignmentListViewModel.AssignmentArrangementOptions {
 
 private extension GradingPeriod {
     static let optionItemAll = OptionItem(
-            id: OptionItem.allId,
-            title: String(localized: "All Grading Periods", bundle: .core)
-        )
+        id: OptionItem.allId,
+        title: String(localized: "All Grading Periods", bundle: .core)
+    )
 
     var optionItem: OptionItem {
         .init(id: id ?? "", title: title ?? "")
