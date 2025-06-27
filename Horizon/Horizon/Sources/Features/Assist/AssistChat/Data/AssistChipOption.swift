@@ -71,7 +71,7 @@ struct AssistChipOption: Codable, Hashable {
             prompt = "\(introduction) In 1-2 paragraphs, tell me more about this content."
         case .flashcards:
             prompt = """
-            \(introduction) Please generate exactly 20 questions and answers based on the provided content for the front and back of flashcards, respectively. Flashcards are best suited for definitions and terminology, key concepts and theories, language learning, historical events and dates, and other content that might benefit from active recall and repetition. Prioritize this type of content within the flashcards.
+            \(introduction) please generate exactly 20 questions and answers based on the provided content for the front and back of flashcards, respectively. If the content contains only an iframe dont try to generate an answer. Flashcards are best suited for definitions and terminology, key concepts and theories, language learning, historical events and dates, and other content that might benefit from active recall and repetition. Prioritize this type of content within the flashcards.
 
             Return the flashcards as a valid JSON array in the following format:
             [
@@ -81,7 +81,7 @@ struct AssistChipOption: Codable, Hashable {
               }
             ]
 
-            Make sure the JSON is valid. If the question or answer includes quotation marks, escape them using a backslash (e.g., \\"). Do not include any extra text or wrapping object in the response. Keep each question and answer concise (under 35 words). Each flashcard will display the question on the front and the answer on the back, so avoid repeating the question in the answer.
+            without any further description or text. Please keep the questions and answers concise (under 35 words). Each question and answer will be shown on a flashcard, so no need to repeat the question in the answer. Make sure the JSON is valid.
             """
         case .quiz:
             prompt = "Generate a quiz"
