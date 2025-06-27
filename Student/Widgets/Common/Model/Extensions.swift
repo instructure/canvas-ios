@@ -43,12 +43,6 @@ extension WidgetFamily {
     }
 }
 
-extension Color {
-    static var brandPrimary: Color {
-        Color(Brand.shared.primary)
-    }
-}
-
 extension ShapeStyle where Self == Color {
     static var brandPrimary: Color {
         .brandPrimary

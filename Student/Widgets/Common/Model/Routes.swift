@@ -75,8 +75,8 @@ extension URL {
         return .gradesListWidgetRoute("/courses/\(courseId)/grades")
             .appending(
                 queryItems: [
-                    color.flatMap({ URLQueryItem(name: "contextColor", value: $0) })
-                ].compactMap({ $0 })
+                    color.flatMap { URLQueryItem(name: "contextColor", value: $0) }
+                ].compactMap { $0 }
             )
     }
 }

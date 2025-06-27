@@ -45,14 +45,20 @@ struct GradesListWidgetScreen: View {
     }
 }
 
+// MARK: - Previews
+
 #if DEBUG
 
-struct GradesListWidgetPreviews: PreviewProvider {
-    static var previews: some View {
-        GradesListWidgetScreen(model: GradesListModel.make())
-            .defaultWidgetContainer()
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
-    }
+#Preview("Medium", as: .systemMedium) {
+    GradesListWidget()
+} timeline: {
+    GradesListWidgetEntry(data: GradesListModel.make(), date: Date())
+}
+
+#Preview("Large", as: .systemLarge) {
+    GradesListWidget()
+} timeline: {
+    GradesListWidgetEntry(data: GradesListModel.make(), date: Date())
 }
 
 #endif

@@ -243,7 +243,7 @@ extension Course {
     public var gradeForWidget: String {
         /// We want to use the special enrollment that was downloaded along the course because that contains the
         /// computedCurrentGrade, currentPeriodComputedCurrentGrade etc. values. It has no enrollment id so it's easy to identify it.
-        guard let enrollment = enrollments?.filter({ $0.isStudent && $0.id == nil }).first else {
+        guard let enrollment = enrollments?.first(where: { $0.isStudent && $0.id == nil }) else {
             return ""
         }
 
@@ -251,26 +251,27 @@ extension Course {
         var score = enrollment.computedCurrentScore
         let noGradesString = String(localized: "No Grades", bundle: .core)
 
-        if enrollment.multipleGradingPeriodsEnabled && enrollment.currentGradingPeriodID != nil {
-            grade = enrollment.currentPeriodComputedCurrentGrade
-            score = enrollment.currentPeriodComputedCurrentScore
-        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption {
-            grade = enrollment.computedCurrentGrade
-            score = enrollment.computedCurrentScore
-        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
-            return noGradesString
+        if enrollment.multipleGradingPeriodsEnabled {
+            if enrollment.currentGradingPeriodID != nil {
+                grade = enrollment.currentPeriodComputedCurrentGrade
+                score = enrollment.currentPeriodComputedCurrentScore
+            } else if enrollment.totalsForAllGradingPeriodsOption {
+                grade = enrollment.computedCurrentGrade
+                score = enrollment.computedCurrentScore
+            } else if enrollment.totalsForAllGradingPeriodsOption == false {
+                return noGradesString
+            }
         }
 
         if hideQuantitativeData == true {
             return grade ?? enrollment.computedCurrentLetterGrade ?? noGradesString
         }
 
-        guard let scoreNotNil = score,
-              let scoreString = gradingScheme.formattedScore(from: scoreNotNil) else {
+        guard let scoreString = score.flatMap(gradingScheme.formattedScore) else {
             return grade ?? noGradesString
         }
 
-        if let grade = grade {
+        if let grade {
             return "\(scoreString) - \(grade)"
         }
 

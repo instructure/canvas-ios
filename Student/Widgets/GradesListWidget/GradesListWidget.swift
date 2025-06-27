@@ -35,13 +35,13 @@ struct GradesListWidget: Widget {
 
 #if DEBUG
 
-#Preview("GradesListWidget", as: .systemMedium) {
+#Preview("Medium", as: .systemMedium) {
     GradesListWidget()
 } timeline: {
     GradesListWidgetEntry(data: GradesListModel.make(), date: Date())
 }
 
-#Preview("GradesListWidget", as: .systemLarge) {
+#Preview("Large", as: .systemLarge) {
     GradesListWidget()
 } timeline: {
     GradesListWidgetEntry(data: GradesListModel.make(), date: Date())

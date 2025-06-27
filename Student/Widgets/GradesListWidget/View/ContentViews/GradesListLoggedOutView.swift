@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct GradesListLoggedOutView: View {
     @Environment(\.widgetFamily) private var family
@@ -46,3 +47,21 @@ struct GradesListLoggedOutView: View {
         .padding(.horizontal, 10)
     }
 }
+
+// MARK: - Previews
+
+#if DEBUG
+
+#Preview("Medium", as: .systemMedium) {
+    GradesListWidget()
+} timeline: {
+    GradesListWidgetEntry(data: GradesListModel(isLoggedIn: false), date: Date())
+}
+
+#Preview("Large", as: .systemLarge) {
+    GradesListWidget()
+} timeline: {
+    GradesListWidgetEntry(data: GradesListModel(isLoggedIn: false), date: Date())
+}
+
+#endif

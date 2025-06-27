@@ -470,15 +470,20 @@ extension StudentAppDelegate {
                     finish()
                 }
             } else if let from = self.environment.topViewController {
-                var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
+                var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
 
-                if let url = comps {
+                if let url = components {
                     if self.todoWidgetRouter.handling(url, in: self.window, env: self.environment) { return }
                     if self.gradesListWidgetRouter.handling(url, in: self.window, env: self.environment) { return }
                 }
 
-                comps?.originIsNotification = true
-                AppEnvironment.shared.router.route(to: comps?.url ?? url, userInfo: userInfo, from: from, options: .modal(embedInNav: true, addDoneButton: true))
+                components?.originIsNotification = true
+                AppEnvironment.shared.router.route(
+                    to: components?.url ?? url,
+                    userInfo: userInfo,
+                    from: from,
+                    options: .modal(embedInNav: true, addDoneButton: true)
+                )
             }
         }
         return true

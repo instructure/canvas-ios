@@ -27,12 +27,8 @@ class GradesListModel: WidgetModel {
 
     let items: [GradesListItem]?
 
-    init(
-        isLoggedIn: Bool = true,
-        items: [GradesListItem]? = nil
-    ) {
+    init(isLoggedIn: Bool = true, items: [GradesListItem]? = nil) {
         self.items = items
-
         super.init(isLoggedIn: isLoggedIn)
     }
 
