@@ -89,7 +89,7 @@ public class DiscussionsHelper: BaseHelper {
     public struct NewDetails {
         public static var searchField: XCUIElement { app.find(label: "Search entries or author...", type: .textField) }
         public static var filterByLabel: XCUIElement { app.find(label: "Filter by", type: .staticText) }
-        public static var sort: XCUIElement { app.find(label: "Sort by", type: .textField) }
+        public static var sort: XCUIElement { app.find(label: "Sort by", type: .staticText) }
         public static var viewSplitScreenButton: XCUIElement { app.find(labelContaining: "View Split Screen", type: .button) }
         public static var viewInlineButton: XCUIElement { app.find(labelContaining: "View Inline", type: .button) }
         public static var manageDiscussionButton: XCUIElement { app.find(label: "Manage Discussion", type: .button) }

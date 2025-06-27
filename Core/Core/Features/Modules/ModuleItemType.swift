@@ -138,7 +138,7 @@ public enum ModuleItemType: Equatable, Codable {
         }
     }
 
-    var assetType: GetModuleItemSequenceRequest.AssetType {
+    public var assetType: GetModuleItemSequenceRequest.AssetType {
         switch self {
         case .file: return .file
         case .discussion: return .discussion
@@ -148,6 +148,14 @@ public enum ModuleItemType: Equatable, Codable {
         case .externalTool: return .externalTool
         case .page: return .page
         case .subHeader: return .moduleItem
+        }
+    }
+
+    public var isContentItem: Bool {
+        switch self {
+        case .subHeader: return false
+        case .discussion: return false
+        default: return true
         }
     }
 }

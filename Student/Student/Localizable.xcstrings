@@ -22895,7 +22895,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detalls de l'activitat"
+            "value" : "Informació de l'activitat"
           }
         },
         "cy" : {
@@ -22979,7 +22979,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Informations sur le devoir"
+            "value" : "Informations sur le travail"
           }
         },
         "fr-CA" : {
@@ -23093,7 +23093,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uppgiftens detaljer"
+            "value" : "Uppgiftsdetaljer"
           }
         },
         "sv-instk12" : {
@@ -33335,7 +33335,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reduït"
+            "value" : "Contret"
           }
         },
         "cy" : {
@@ -48565,7 +48565,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fecha de entrega:"
+            "value" : "Fecha límite:"
           }
         },
         "es-ES" : {
@@ -48583,7 +48583,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "À rendre le :"
+            "value" : "À remettre le :"
           }
         },
         "fr-CA" : {
@@ -48673,7 +48673,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Limite:"
+            "value" : "Vencimento:"
           }
         },
         "pt-BR" : {
@@ -48691,19 +48691,19 @@
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Roki:"
+            "value" : "Rok:"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Förfallodatum:"
+            "value" : "Inlämningsdatum:"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Färdiggjord:"
+            "value" : "Inlämningsdatum:"
           }
         },
         "th" : {
@@ -75801,7 +75801,7 @@
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mwy nag un dyddiad erbyn"
+            "value" : "Mwy nag un dyddiad cau"
           }
         },
         "da" : {
@@ -75867,7 +75867,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Varias fechas de entrega"
+            "value" : "Varias fechas límite"
           }
         },
         "es-ES" : {
@@ -75897,7 +75897,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dátaí Dlite Iolracha"
+            "value" : "Dáta Dlite Iolracha"
           }
         },
         "hi" : {
@@ -75975,13 +75975,13 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Datas limite múltiplas"
+            "value" : "Datas de limite múltiplas"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vários prazos de entrega"
+            "value" : "Várias datas de entrega"
           }
         },
         "ru" : {
@@ -114519,7 +114519,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tipus d'entrega"
+            "value" : "Tipus d'entregues"
           }
         },
         "cy" : {
@@ -114585,7 +114585,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tipos de entrega"
+            "value" : "Tipos de presentación"
           }
         },
         "es-ES" : {
@@ -114597,7 +114597,7 @@
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lähetystyypit"
+            "value" : "Tehtäväpalautustyypit"
           }
         },
         "fr" : {
@@ -139985,7 +139985,7 @@
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ver foro de discusión"
+            "value" : "Ver foro"
           }
         },
         "fi" : {

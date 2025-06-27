@@ -2829,7 +2829,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detalls de l'activitat"
+            "value" : "Informació de l'activitat"
           }
         },
         "cy" : {
@@ -2913,7 +2913,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Informations sur le devoir"
+            "value" : "Informations sur le travail"
           }
         },
         "fr-CA" : {
@@ -3027,7 +3027,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uppgiftens detaljer"
+            "value" : "Uppgiftsdetaljer"
           }
         },
         "sv-instk12" : {
@@ -4622,7 +4622,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reduït"
+            "value" : "Contret"
           }
         },
         "cy" : {

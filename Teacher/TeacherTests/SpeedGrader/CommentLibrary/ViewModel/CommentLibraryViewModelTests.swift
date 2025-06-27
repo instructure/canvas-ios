@@ -20,7 +20,7 @@ import XCTest
 @testable import Core
 @testable import Teacher
 
-class SubmissionCommentLibraryViewModelTests: TeacherTestCase {
+class CommentLibraryViewModelTests: TeacherTestCase {
 
     func testFetchComments() {
         // Given
@@ -29,7 +29,7 @@ class SubmissionCommentLibraryViewModelTests: TeacherTestCase {
 
         let comments = [APICommentLibraryResponse.CommentBankItem(id: "1", comment: "First comment"),
                         APICommentLibraryResponse.CommentBankItem(id: "2", comment: "Second comment") ]
-        let response =  APICommentLibraryResponse(
+        let response = APICommentLibraryResponse(
             data: .init(
                 user: .init(
                     id: "1",
@@ -43,32 +43,32 @@ class SubmissionCommentLibraryViewModelTests: TeacherTestCase {
         api.mock(APICommentLibraryRequest(userId: "1"), value: response)
 
         // When
-        let testee = SubmissionCommentLibraryViewModel()
+        let testee = CommentLibraryViewModel(comment: .init(""))
 
-        let exp1 = expectation(description: "fetch completed")
-        testee.viewDidAppear(completion: { exp1.fulfill() })
+        let exp1 = expectation(description: "refresh completed")
+        testee.refresh(completion: { exp1.fulfill() })
 
         wait(for: [exp1], timeout: 2)
 
         // Then
         XCTAssertEqual(testee.endCursor, "next_cursor")
 
-        guard case .data(let loaded) = testee.state  else {
+        guard case .data = testee.state else {
             XCTFail("Data state expected!")
             return
         }
 
-        XCTAssertEqual(loaded[0].id, "1")
-        XCTAssertEqual(loaded[0].text, "First comment")
-        XCTAssertEqual(loaded[1].id, "2")
-        XCTAssertEqual(loaded[1].text, "Second comment")
+        XCTAssertEqual(testee.comments[0].id, "1")
+        XCTAssertEqual(testee.comments[0].text, "First comment")
+        XCTAssertEqual(testee.comments[1].id, "2")
+        XCTAssertEqual(testee.comments[1].text, "Second comment")
 
         // MARK: - Loading Next Page
 
         // Given
         let nextPage = [APICommentLibraryResponse.CommentBankItem(id: "3", comment: "Third comment"),
                         APICommentLibraryResponse.CommentBankItem(id: "4", comment: "Fourth comment") ]
-        let pageResponse =  APICommentLibraryResponse(
+        let pageResponse = APICommentLibraryResponse(
             data: .init(
                 user: .init(
                     id: "1",
@@ -90,12 +90,12 @@ class SubmissionCommentLibraryViewModelTests: TeacherTestCase {
         // Then
         XCTAssertNil(testee.endCursor)
 
-        guard case .data(let loaded) = testee.state  else {
+        guard case .data = testee.state else {
             XCTFail("Data state expected!")
             return
         }
 
         let expected = (comments + nextPage).map({ LibraryComment(id: $0.id, text: $0.comment) })
-        XCTAssertEqual(loaded, expected)
+        XCTAssertEqual(testee.comments, expected)
     }
 }

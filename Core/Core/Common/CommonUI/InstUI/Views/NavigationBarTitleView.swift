@@ -38,17 +38,24 @@ extension InstUI {
         public var body: some View {
             VStack(spacing: 1) {
                 Text(title)
-                    .font(.semibold16)
+                    .font(.scaledRestrictly(.semibold16))
                     .foregroundColor(navBarColors.title)
 
                 if let subtitle, subtitle.isNotEmpty {
                     Text(subtitle)
-                        .font(.regular14)
+                        .font(.scaledRestrictly(.regular14))
                         .foregroundColor(navBarColors.subtitle)
                 }
             }
             .accessibilityElement(children: .combine)
             .accessibilityAddTraits(.isHeader)
+            .accessibilityShowsLargeContentViewer {
+                Text(
+                    [title, subtitle]
+                        .compactMap { $0 }
+                        .joined(separator: "\n")
+                )
+            }
         }
     }
 }

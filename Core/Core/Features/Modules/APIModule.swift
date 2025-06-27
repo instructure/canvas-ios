@@ -30,6 +30,7 @@ public struct APIModule: Codable, Equatable {
     public let state: ModuleState?
     public var items: [APIModuleItem]?
     public var unlock_at: Date?
+    public var estimated_duration: String?
 }
 
 // https://canvas.instructure.com/doc/api/modules.html#ModuleItem
@@ -69,6 +70,7 @@ public struct APIModuleItem: Codable, Equatable {
     public var completion_requirement: CompletionRequirement? // not available in sequence call
     public let mastery_paths: APIMasteryPath? // include[]=mastery_paths
     public let quiz_lti: Bool?
+    public var estimated_duration: String?
 
     public init(
         id: ID,
@@ -120,6 +122,7 @@ public struct APIModuleItem: Codable, Equatable {
         case completion_requirement
         case mastery_paths
         case quiz_lti
+        case estimated_duration
     }
 
     public init(from decoder: Decoder) throws {
@@ -139,6 +142,7 @@ public struct APIModuleItem: Codable, Equatable {
         completion_requirement = try container.decodeIfPresent(CompletionRequirement.self, forKey: .completion_requirement)
         mastery_paths = try container.decodeIfPresent(APIMasteryPath.self, forKey: .mastery_paths)
         quiz_lti = try container.decodeIfPresent(Bool.self, forKey: .quiz_lti)
+        estimated_duration = try container.decodeIfPresent(String.self, forKey: .estimated_duration)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -156,11 +160,12 @@ public struct APIModuleItem: Codable, Equatable {
         try container.encode(completion_requirement, forKey: .completion_requirement)
         try container.encodeIfPresent(mastery_paths, forKey: .mastery_paths)
         try container.encodeIfPresent(quiz_lti, forKey: .quiz_lti)
+        try container.encodeIfPresent(estimated_duration, forKey: .estimated_duration)
         try content?.encode(to: encoder)
     }
 }
 
-enum APIModuleItemType: String, Codable {
+public enum APIModuleItemType: String, Codable {
     case file = "File"
     case page = "Page"
     case discussion = "Discussion"
@@ -341,8 +346,8 @@ extension APIMasteryPath.Assignment {
 // https://canvas.instructure.com/doc/api/modules.html#method.context_modules_api.index
 public struct GetModulesRequest: APIRequestable {
     public typealias Response = [APIModule]
-    public enum Include: String {
-        case content_details, items
+    public enum Include: String, CaseIterable {
+        case content_details, items, estimated_durations
     }
 
     public let courseID: String
@@ -358,6 +363,45 @@ public struct GetModulesRequest: APIRequestable {
     public var path: String {
         let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/modules"
+    }
+
+    public var query: [APIQueryItem] {
+        var query: [APIQueryItem] = [
+            .include(include.map { $0.rawValue })
+        ]
+        if let perPage = perPage {
+            query.append(.perPage(perPage))
+        }
+        return query
+    }
+}
+
+public struct GetModuleRequest: APIRequestable {
+    public typealias Response = APIModule
+    public enum Include: String, CaseIterable {
+        case content_details, items, estimated_durations
+    }
+
+    public let courseID: String
+    public let moduleID: String
+    public let include: [Include]
+    public let perPage: Int?
+
+    public init(
+        courseID: String,
+        moduleID: String,
+        include: [Include] = [],
+        perPage: Int? = nil
+    ) {
+        self.courseID = courseID
+        self.moduleID = moduleID
+        self.include = include
+        self.perPage = perPage
+    }
+
+    public var path: String {
+        let context = Context(.course, id: courseID)
+        return "\(context.pathComponent)/modules/\(moduleID)"
     }
 
     public var query: [APIQueryItem] {
@@ -409,7 +453,7 @@ public struct GetModuleItemRequest: APIRequestable {
     public typealias Response = APIModuleItem
 
     public enum Include: String {
-        case content_details
+        case content_details, estimated_durations
     }
 
     public let courseID: String

@@ -107,7 +107,6 @@ extension HorizonUI.ProgressBar {
             Group {
                 Text(percentageRound, format: .number) + Text("%")
             }
-            .padding(.horizontal, .huiSpaces.space8)
             .huiTypography(.buttonTextMedium)
         }
     }
