@@ -31,7 +31,8 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
                                                    NavigationBarStyled,
                                                    TestTreeHolder,
                                                    DefaultViewProvider,
-                                                   CoreHostingControllerProtocol {
+                                                   CoreHostingControllerProtocol,
+                                                   VisibilityObservingViewController {
     // MARK: - UIViewController Overrides
     public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         supportedInterfaceOrientationsValue ?? super.supportedInterfaceOrientations
@@ -58,6 +59,7 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
     var testTree: TestTree?
     private var screenViewTracker: ScreenViewTrackerLive?
     private var didAppearSubject = PassthroughSubject<Void, Never>()
+    public private(set) var visibilityObservation = VisibilityObservation()
 
     public init(_ rootView: Content, env: AppEnvironment = .shared, customization: ((UIViewController) -> Void)? = nil) {
         let ref = WeakViewController()
@@ -96,6 +98,12 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         didAppearSubject.send()
+        visibilityObservation.viewDidAppear()
+    }
+
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        visibilityObservation.viewDidDisappear()
     }
 
     public var didAppearPublisher: AnyPublisher<Void, Never> {

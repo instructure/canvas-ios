@@ -27,5 +27,6 @@ struct Widgets: WidgetBundle {
         AnnouncementsWidget()
         GradesWidget()
         TodoWidget()
+        GradesListWidget()
     }
 }

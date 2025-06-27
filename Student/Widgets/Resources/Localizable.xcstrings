@@ -2835,6 +2835,9 @@
         }
       }
     },
+    "Grades List" : {
+      "comment" : "Name of the Grades List widget"
+    },
     "Introduction to the Solar System" : {
       "comment" : "Example course name",
       "localizations" : {
@@ -3610,6 +3613,9 @@
           }
         }
       }
+    },
+    "No Grades" : {
+
     },
     "No Grades To Display" : {
       "localizations" : {
@@ -4906,6 +4912,9 @@
         }
       }
     },
+    "To see your grades, please log in to your account in the app.  It'll just take a sec!" : {
+
+    },
     "To see your to-dos, please log in to your account in the app.  It'll just take a sec!" : {
 
     },
@@ -5432,8 +5441,14 @@
         }
       }
     },
+    "View your grades." : {
+      "comment" : "Description of the Grades List widget"
+    },
     "View your to-do items." : {
       "comment" : "Description of the to-do widget"
+    },
+    "We're having trouble showing your grades right now.  Please try again in a bit or head to the app." : {
+
     },
     "We're having trouble showing your tasks right now.  Please try again in a bit or head to the app." : {
 

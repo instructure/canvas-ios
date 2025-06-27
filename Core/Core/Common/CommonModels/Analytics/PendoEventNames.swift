@@ -24,3 +24,8 @@ public enum TodoWidgetEventNames: String {
     case openTodos = "widget_todo_open_todos_action"
     case refresh = "widget_todo_refresh_action"
 }
+
+public enum GradesListWidgetEventNames: String {
+    case active = "widget_grade_list_active"
+    case openGrades = "widget_grade_list_open_grades_action"
+}
