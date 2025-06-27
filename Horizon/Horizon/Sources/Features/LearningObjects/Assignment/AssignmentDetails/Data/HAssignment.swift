@@ -150,24 +150,6 @@ struct HAssignment: Identifiable {
         self.showSubmitButton = assignment.hasAttemptsLeft && (assignmentSubmissionTypes.first != .externalTool)
     }
 
-    func update(submissions: [HSubmission]) -> HAssignment {
-        HAssignment(
-            id: id,
-            htmlURL: htmlURL,
-            name: name,
-            details: details,
-            pointsPossible: pointsPossible,
-            dueAt: dueAt,
-            allowedAttempts: allowedAttempts,
-            submissionTypes: submissionTypes,
-            courseID: courseID,
-            courseName: courseName,
-            workflowState: workflowState,
-            submittedAt: submittedAt,
-            submissions: submissions
-        )
-    }
-
     var isUnsubmitted: Bool {
         workflowState == .unsubmitted || submittedAt == nil
     }
@@ -202,6 +184,26 @@ struct HAssignment: Identifiable {
         formatter.locale = Locale.current
         return formatter
     }()
+
+    func toModuleItem() -> HModuleItem {
+        HModuleItem(
+            id: id,
+            title: name,
+            htmlURL: nil,
+            isCompleted: false,
+            dueAt: dueAt,
+            type: .assignment(id),
+            isLocked: isLocked,
+            points: pointsPossible,
+            lockedDate: "",
+            visibleWhenLocked: true,
+            lockedForUser: false,
+            lockExplanation: lockExplanation,
+            courseID: courseID,
+            moduleID: "",
+            isQuizLTI: isQuizLTI ?? false
+        )
+    }
 }
 
 // swiftlint:disable line_length

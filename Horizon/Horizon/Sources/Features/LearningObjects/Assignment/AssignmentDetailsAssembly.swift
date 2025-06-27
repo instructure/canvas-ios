@@ -57,13 +57,13 @@ final class AssignmentDetailsAssembly {
             userDefaults: userDefaults
         )
         let router = AppEnvironment.shared.router
-        let commentInteractor = SubmissionCommentInteractorLive(sessionInteractor: SessionInteractor())
 
-        return AssignmentDetailsViewModel(
+        let dependency = AssignmentDetailsViewModel.Dependency(
             interactor: interactor,
             moduleItemInteractor: moduleItemInteractor,
             textEntryInteractor: textEntryInteractor,
-            commentInteractor: commentInteractor,
+            confirmationMessages: AssignmentConfirmationMessagesLive(),
+            commentInteractor: SubmissionCommentInteractorLive(sessionInteractor: SessionInteractor()),
             isMarkedAsDone: isMarkedAsDone,
             isCompletedItem: isCompletedItem,
             moduleID: moduleID,
@@ -72,8 +72,11 @@ final class AssignmentDetailsAssembly {
             courseID: courseID,
             assignmentID: assignmentID,
             onTapAssignmentOptions: onTapAssignmentOptions,
+            scheduler: .main,
             didLoadAssignment: didLoadAssignment
         )
+
+        return AssignmentDetailsViewModel(dependency: dependency)
     }
 
     static func makeView(
@@ -112,11 +115,12 @@ final class AssignmentDetailsAssembly {
             assignmentID: "assignmentID",
             userDefaults: AppEnvironment.shared.userDefaults
         )
-        return AssignmentDetailsViewModel(
+        let dependancy = AssignmentDetailsViewModel.Dependency(
             interactor: interactor,
             moduleItemInteractor: ModuleItemSequenceInteractorPreview(),
             textEntryInteractor: assignmentTextEntryInteractor,
-            commentInteractor: SubmissionCommentInteractorPreview(),
+            confirmationMessages: AssignmentConfirmationMessagesLive(),
+            commentInteractor: SubmissionCommentInteractorLive(sessionInteractor: SessionInteractor()),
             isMarkedAsDone: false,
             isCompletedItem: false,
             moduleID: "3",
@@ -124,8 +128,11 @@ final class AssignmentDetailsAssembly {
             router: AppEnvironment.shared.router,
             courseID: "1",
             assignmentID: "assignmentID",
-            onTapAssignmentOptions: .init()
+            onTapAssignmentOptions: .init(),
+            scheduler: .main
         ) { _ in}
+
+       return AssignmentDetailsViewModel(dependency: dependancy)
     }
 #endif
 }
