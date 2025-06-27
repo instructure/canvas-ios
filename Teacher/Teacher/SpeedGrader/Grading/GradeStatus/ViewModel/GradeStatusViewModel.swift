@@ -23,7 +23,7 @@ import SwiftUI
 
 class GradeStatusViewModel: ObservableObject {
     // MARK: - Outputs
-    @Published private(set) var selectedOption: OptionItem = OptionItem.none
+    @Published private(set) var selectedOption: OptionItem = OptionItem.from(.none)
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var isShowingDaysLateSection: Bool = false
     @Published private(set) var daysLate: String = ""
@@ -59,8 +59,9 @@ class GradeStatusViewModel: ObservableObject {
         self.interactor = interactor
         self.submissionId = submissionId
         self.userId = userId
-        options = interactor.gradeStatuses
-            .map { OptionItem(id: $0.id, title: $0.name) }
+        // If we receive no statuses from the API we fall back to the none status
+        options = (interactor.gradeStatuses.nilIfEmpty ?? [.none])
+            .map { OptionItem.from($0) }
             .sorted { $0.title < $1.title }
 
         uploadGradeStatus(on: didSelectGradeStatus)
@@ -232,15 +233,8 @@ class GradeStatusViewModel: ObservableObject {
 }
 
 private extension OptionItem {
-    static var none: OptionItem {
-        OptionItem(
-            id: GradeStatus.none.id,
-            title: GradeStatus.none.name
-        )
-    }
 
-    static func from(_ status: GradeStatus?) -> OptionItem {
-        guard let status else { return .none }
-        return OptionItem(id: status.id, title: status.name)
+    static func from(_ status: GradeStatus) -> OptionItem {
+        OptionItem(id: status.id, title: status.name)
     }
 }
