@@ -7175,6 +7175,7 @@
       }
     },
     "Close" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -7429,6 +7430,9 @@
           }
         }
       }
+    },
+    "Close comment library" : {
+
     },
     "Close Drawer" : {
       "localizations" : {
@@ -45445,6 +45449,7 @@
       }
     },
     "Write your Comment here" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
