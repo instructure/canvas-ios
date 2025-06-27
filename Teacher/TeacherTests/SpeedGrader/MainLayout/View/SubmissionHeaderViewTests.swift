@@ -20,7 +20,7 @@ import Core
 @testable import Teacher
 import XCTest
 
-class SubmissionHeaderTests: TeacherTestCase {
+class SubmissionHeaderViewModelTests: TeacherTestCase {
 
     func testGroupSubmissionCheck() {
         let submission = Submission(context: databaseClient)
@@ -34,6 +34,11 @@ class SubmissionHeaderTests: TeacherTestCase {
 
         assignment.gradedIndividually = false
         submission.groupID = "TestGroupID"
+
+        let testee = SubmissionHeaderViewModel(
+            assignment: assignment,
+            submission: submission,
+        )
 
         XCTAssertTrue(testee.isGroupSubmission)
     }
@@ -50,9 +55,20 @@ class SubmissionHeaderTests: TeacherTestCase {
 
         assignment.gradedIndividually = false
         submission.groupName = "TestGroup Name"
+
+        var testee = SubmissionHeaderViewModel(
+            assignment: assignment,
+            submission: submission,
+        )
         XCTAssertEqual(testee.groupName, nil)
 
         submission.groupID = "TestGroupID"
+
+        testee = SubmissionHeaderViewModel(
+            assignment: assignment,
+            submission: submission,
+        )
+
         XCTAssertEqual(testee.groupName, "TestGroup Name")
     }
 
@@ -70,6 +86,12 @@ class SubmissionHeaderTests: TeacherTestCase {
         assignment.courseID = "testCourseID"
         submission.userID = "testUserID"
         submission.groupID = "TestGroupID"
+
+        let testee = SubmissionHeaderViewModel(
+            assignment: assignment,
+            submission: submission,
+        )
+
         XCTAssertNil(testee.routeToSubmitter)
     }
 
@@ -87,6 +109,12 @@ class SubmissionHeaderTests: TeacherTestCase {
         assignment.courseID = "testCourseID"
         submission.userID = "testUserID"
         submission.groupID = "TestGroupID"
+
+        let testee = SubmissionHeaderViewModel(
+            assignment: assignment,
+            submission: submission,
+        )
+
         XCTAssertEqual(testee.routeToSubmitter, "/courses/testCourseID/users/testUserID")
     }
 }

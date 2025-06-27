@@ -37,7 +37,7 @@ struct ScoresAssignmentGroup: Identifiable {
         self.assignments = assignments
     }
 
-    init(from entity: CDScoresAssignmentGroup) {
+    init(from entity: CDHScoresAssignmentGroup) {
         self.id = entity.id
         self.name = entity.name ?? ""
         self.groupWeight = if let groupWeight = entity.groupWeight { Double(truncating: groupWeight) } else { nil }

@@ -123,7 +123,7 @@ struct SubmissionCommentListCell: View {
     }
 
     private var authorName: some View {
-        Text(User.displayName(viewModel.author.name, pronouns: viewModel.author.pronouns))
+        Text(viewModel.author.name)
             .font(.semibold16, lineHeight: .fit)
             .foregroundStyle(Color.textDarkest)
     }
@@ -188,10 +188,10 @@ private struct AttachmentButton: View {
 
     var body: some View {
         FileButton(
-            icon: FileThumbnail(
+            icon: FileThumbnailView(
                 file: file,
-                iconSize: Size.File.icon,
                 thumbnailSize: Size.File.thumbnail,
+                innerIconSize: Size.File.icon,
                 iconBackgroundColor: .backgroundLight,
                 cornerRadius: Size.File.thumbnailCorner
             ),

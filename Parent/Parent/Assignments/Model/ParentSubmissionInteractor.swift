@@ -56,7 +56,10 @@ struct ParentSubmissionInteractorLive: ParentSubmissionInteractor {
         webView: WKWebView
     ) -> AnyPublisher<Void, Error> {
         api.makeRequest(GetWebSessionRequest(to: assignmentHtmlURL))
-            .tryMap { (body, _) in
+            .map { (body, _) in
+                URLRequest(url: body.session_url.replaceDisplayQueryWithEmbedded(fallback: assignmentHtmlURL))
+            }
+            .tryMap { webRequest in
                 guard let loginSession,
                       let domain = loginSession.baseURL.host()
                 else {
@@ -75,7 +78,7 @@ struct ParentSubmissionInteractorLive: ParentSubmissionInteractor {
                     throw NSError.internalError()
                 }
 
-                return (request: URLRequest(url: body.session_url), cookie: cookie)
+                return (request: webRequest, cookie: cookie)
             }
             .receive(on: RunLoop.main)
             .flatMap { (request: URLRequest, cookie: HTTPCookie) in
@@ -87,5 +90,26 @@ struct ParentSubmissionInteractorLive: ParentSubmissionInteractor {
                 return webView.waitUntilLoadFinishes(checkInterval: 2)
             }
             .eraseToAnyPublisher()
+    }
+}
+
+private extension URL {
+
+    func replaceDisplayQueryWithEmbedded(fallback: URL) -> URL {
+        guard
+            var components = URLComponents(url: self, resolvingAgainstBaseURL: false)
+        else {
+            return fallback
+        }
+
+        var queryItems = components.queryItems ?? []
+        queryItems.removeAll { $0.name == "display" }
+        queryItems.append(URLQueryItem(name: "embedded", value: "true"))
+        components.queryItems = queryItems
+
+        guard let url = components.url else {
+            return fallback
+        }
+        return url
     }
 }

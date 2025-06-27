@@ -119,7 +119,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.dateLabel.text, TestConstants.date20201102.dateTimeString)
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 2, section: 0))
-        XCTAssert(router.lastRoutedTo("courses/1/announcements/3", withOptions: .detail))
+        XCTAssert(router.lastRoutedTo("/courses/1/announcements/3", withOptions: .detail))
 
         XCTAssertNoThrow(controller.viewWillDisappear(false))
     }
@@ -148,7 +148,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         XCTAssertNotNil(controller.navigationItem.rightBarButtonItem)
 
         _ = controller.addButton.target?.perform(controller.addButton.action)
-        XCTAssert(router.lastRoutedTo("groups/1/announcements/new", withOptions: .modal(isDismissable: false, embedInNav: true)))
+        XCTAssert(router.lastRoutedTo("/groups/1/announcements/new", withOptions: .modal(isDismissable: false, embedInNav: true)))
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 1)
         let cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? AnnouncementListCell

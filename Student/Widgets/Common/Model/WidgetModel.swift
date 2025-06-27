@@ -17,15 +17,23 @@
 //
 
 import WidgetKit
+import Core
 
 class WidgetModel: TimelineEntry {
     /** This entity will be presented by the widget on iOS' Add Widget screen. */
     class var publicPreview: WidgetModel { WidgetModel(isLoggedIn: true) }
 
+    static let timeout: TimeInterval = 7200
+
     let isLoggedIn: Bool
-    let date = Date(timeIntervalSince1970: 0)
+    let date: Date
+    let refreshDate: Date
 
     init(isLoggedIn: Bool) {
         self.isLoggedIn = isLoggedIn
+
+        let date = Clock.now
+        self.date = date
+        self.refreshDate = date.addingTimeInterval(Self.timeout)
     }
 }

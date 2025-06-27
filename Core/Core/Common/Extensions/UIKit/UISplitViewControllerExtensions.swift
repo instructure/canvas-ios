@@ -35,4 +35,13 @@ public extension UISplitViewController {
     var detailTopViewController: UIViewController? {
         detailNavigationController?.topMostViewController()
     }
+
+    /// Pops `master` to root, sets `detail` to empty screen, expands `master` if needed.
+    func resetToRoot(animated: Bool = false) {
+        masterNavigationController?.popToRootViewController(animated: animated)
+        detailNavigationController?.setViewControllers([EmptyViewController()], animated: animated)
+        if displayMode == .secondaryOnly {
+            preferredDisplayMode = .oneBesideSecondary
+        }
+    }
 }

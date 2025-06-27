@@ -66,10 +66,10 @@ struct HActivity: Identifiable, Equatable {
         self.grade = entity.grade
         self.score = entity.score
         self.type = entity.type
-        self.contextType = entity.context_type
-        self.notificationCategory = entity.notification_category
-        self.courseId = entity.course_id
-        self.isRead = entity.read_state
+        self.contextType = entity.contextType
+        self.notificationCategory = entity.notificationCategory
+        self.courseId = entity.courseId
+        self.isRead = entity.readState
     }
 
     var dateFormatted: String {

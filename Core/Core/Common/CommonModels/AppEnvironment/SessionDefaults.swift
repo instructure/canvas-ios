@@ -256,9 +256,17 @@ public struct SessionDefaults: Equatable {
         set { self["assignmentListTeacherStatusFilterSettingByCourseId"] = newValue }
     }
 
-    // Horizon
+    // MARK: - Horizon
+
     public var assignmentSubmissionTextEntry: [String: String]? {
         get { self["assignmentSubmissionTextEntry"] as? [String: String] }
         set { self["assignmentSubmissionTextEntry"] = newValue }
+    }
+
+    // MARK: - SpeedGrader
+
+    public var isSpeedGraderAnnotationToolbarVisible: Bool? {
+        get { self["isSpeedGraderAnnotationToolbarVisible"] as? Bool }
+        set { self["isSpeedGraderAnnotationToolbarVisible"] = newValue }
     }
 }

@@ -65,9 +65,10 @@ public final class PendoAnalyticsTracker {
     }
 
     /// Start the session asynchronously
-    public func startSession() {
+    public func startSession(completion: (() -> Void)? = nil) {
         Task { [weak self] in
             try? await self?.startSessionAsync()
+            completion?()
         }
     }
 

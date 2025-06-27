@@ -18,8 +18,8 @@
 
 import Combine
 @testable import Core
-import TestsFoundation
 import XCTest
+import TestsFoundation
 
 class TokenRefreshInteractorTests: CoreTestCase {
     var mockAccessTokenRefreshInteractor: MockAccessTokenRefreshInteractor!

@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
 @testable import Core
+import Combine
 import UIKit
 import XCTest
 

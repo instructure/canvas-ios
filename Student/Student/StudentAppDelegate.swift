@@ -23,6 +23,7 @@ import Firebase
 import PSPDFKit
 import UIKit
 import UserNotifications
+import WidgetKit
 
 @UIApplicationMain
 class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
@@ -37,10 +38,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         env.window = window
         return env
     }()
-
     private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
+    private lazy var todoWidgetRouter = WidgetRouter.createTodoRouter()
 
     private lazy var analyticsTracker: PendoAnalyticsTracker = {
         .init(environment: environment)
@@ -57,7 +58,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         CacheManager.resetAppIfNecessary()
 
         #if DEBUG
-        UITestHelpers.setup(self)
+            UITestHelpers.setup(self)
         #endif
 
         DocViewerViewController.setup(.studentPSPDFKitLicense)
@@ -158,7 +159,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         appearance.tintColor = nil
         appearance.titleTextAttributes = nil
 
-        guard let window = window else { return }
+        guard let window = self.window else { return }
         let controller = StudentTabBarController()
         controller.view.layoutIfNeeded()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
@@ -187,13 +188,13 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         return openURL(url)
     }
 
-    func applicationDidBecomeActive(_: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         AppStoreReview.handleLaunch()
         CoreWebView.keepCookieAlive(for: environment)
         updateInterfaceStyle(for: window)
     }
 
-    func applicationDidEnterBackground(_: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         Logger.shared.log()
         CoreWebView.stopCookieKeepAlive()
         BackgroundVideoPlayer.shared.background()
@@ -206,11 +207,11 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         }
     }
 
-    func applicationWillEnterForeground(_: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         BackgroundVideoPlayer.shared.reconnect()
     }
 
-    func application(_: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
         Logger.shared.log()
 
         if identifier == FileSubmissionAssembly.ShareExtensionSessionID {
@@ -227,7 +228,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     }
 
     // If the application is launched from the background, we pass the completion from the `handleEventsForBackgroundURLSession` function.
-    // If the application is launched normally, we don't need to pass system completion, the url session will tear down when it's finished.
+    // If the application is launched normally, we don't need to pass system completion, the url session will tear down when it's finished. 
     private func setupFileSubmissionAssemblyForBackgroundUploads(completion: (() -> Void)?) {
         let backgroundAssembly = FileSubmissionAssembly.makeShareExtensionAssembly()
         backgroundAssembly.connectToBackgroundURLSession {
@@ -257,32 +258,43 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             }
         }
     }
+
+    func checkForTodoWidgetPresence() {
+        WidgetCenter.shared.getCurrentConfigurations { result in
+            guard result.isSuccess, let widgetInfo = result.value else { return }
+            if widgetInfo.contains(where: { configuration in
+                return configuration.kind == "TodoWidget"
+            }) {
+                Analytics.shared.logEvent(TodoWidgetEventNames.active.rawValue)
+            }
+        }
+    }
 }
 
 // MARK: - Push notifications
 
 extension StudentAppDelegate: UNUserNotificationCenterDelegate {
     func application(
-        _: UIApplication,
+        _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
         PushNotificationsInteractor.shared.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
     }
 
-    func application(_: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         environment.reportError(error)
     }
 
     func userNotificationCenter(
-        _: UNUserNotificationCenter,
-        willPresent _: UNNotification,
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
         completionHandler([.banner, .sound])
     }
 
     func userNotificationCenter(
-        _: UNUserNotificationCenter,
+        _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
@@ -314,7 +326,7 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
         let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
 
         if isTrackingEnabled {
-            analyticsTracker.startSession()
+            analyticsTracker.startSession(completion: checkForTodoWidgetPresence)
         } else {
             analyticsTracker.endSession()
         }
@@ -348,6 +360,7 @@ extension StudentAppDelegate {
 // MARK: - Crashlytics
 
 extension StudentAppDelegate {
+
     @objc func setupFirebase() {
         guard !testing else {
             setupDebugCrashLogging()
@@ -390,6 +403,7 @@ extension StudentAppDelegate: RemoteLogHandler {
 extension StudentAppDelegate {
     func setupPageViewLogging() {
         class BackgroundAppHelper: AppBackgroundHelperProtocol {
+
             let queue = DispatchQueue(label: "com.instructure.icanvas.app-background-helper", attributes: .concurrent)
             var tasks: [String: UIBackgroundTaskIdentifier] = [:]
 
@@ -399,8 +413,7 @@ extension StudentAppDelegate {
                         withName: taskName,
                         expirationHandler: { [weak self] in
                             self?.endBackgroundTask(taskName: taskName)
-                        }
-                    )
+                    })
                 }
             }
 
@@ -452,6 +465,12 @@ extension StudentAppDelegate {
                 }
             } else if let from = self.environment.topViewController {
                 var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
+
+                if let url = comps,
+                   self.todoWidgetRouter.handling(url, in: self.window, env: self.environment) {
+                    return
+                }
+
                 comps?.originIsNotification = true
                 AppEnvironment.shared.router.route(to: comps?.url ?? url, userInfo: userInfo, from: from, options: .modal(embedInNav: true, addDoneButton: true))
             }
@@ -517,7 +536,7 @@ extension StudentAppDelegate: LoginDelegate {
         if wasCurrent { changeUser() }
     }
 
-    func actAsFakeStudent(withID _: String) {}
+    func actAsFakeStudent(withID fakeStudentID: String) {}
 
     private func deleteAssignmentRemindersAsync(userId: String) {
         var reminderDeleteSubscription: AnyCancellable?
@@ -531,9 +550,8 @@ extension StudentAppDelegate: LoginDelegate {
 }
 
 // MARK: - Handle siri notifications
-
 extension StudentAppDelegate {
-    func application(_: UIApplication, continue userActivity: NSUserActivity, restorationHandler _: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url, app: .student) {
             window?.rootViewController = LoadingViewController.create()
             login.fetch(environment: environment) { [weak self] session, error in
@@ -553,13 +571,12 @@ extension StudentAppDelegate {
 }
 
 // MARK: - Tabs
-
 extension StudentAppDelegate {
     func refreshNotificationTab() {
         if let tabs = window?.rootViewController as? UITabBarController,
-           tabs.viewControllers?.count ?? 0 > 3,
-           let nav = tabs.viewControllers?[3] as? UINavigationController,
-           let activities = nav.viewControllers.first as? ActivityStreamViewController {
+            tabs.viewControllers?.count ?? 0 > 3,
+            let nav = tabs.viewControllers?[3] as? UINavigationController,
+            let activities = nav.viewControllers.first as? ActivityStreamViewController {
             activities.refreshData(force: true)
         }
     }
