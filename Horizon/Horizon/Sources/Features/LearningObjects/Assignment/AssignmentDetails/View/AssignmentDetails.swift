@@ -45,7 +45,7 @@ struct AssignmentDetails: View {
                 VStack(spacing: .huiSpaces.space24) {
                     startQuizButton
                     introView
-                        .id(viewModel.courseID)
+                        .id(viewModel.dependency.courseID)
                     mainContentView(proxy: proxy)
                     errorView
                     if !viewModel.hasSubmittedBefore, let date = viewModel.lastDraftSavedAt {
@@ -53,7 +53,7 @@ struct AssignmentDetails: View {
                     }
                     VStack {
                         submitButton
-                        if viewModel.isShowMarkAsDoneButton {
+                        if viewModel.dependency.isMarkedAsDone {
                             markAsDoneButton
                         }
                     }
@@ -74,6 +74,9 @@ struct AssignmentDetails: View {
             buttons: makeOverlayToolButtons(),
             isPresented: $viewModel.isOverlayToolsPresented
         )
+        .refreshable {
+            await viewModel.refresh()
+        }
     }
 
     private var topView: some View {
@@ -102,7 +105,7 @@ struct AssignmentDetails: View {
             MyAssignmentSubmissionAssembly.makeView(
                 selectedSubmission: submission.type ?? .text,
                 submission: submission,
-                courseId: viewModel.courseID
+                courseId: viewModel.dependency.courseID
             )
         } else {
             AssignmentSubmissionView(
@@ -185,7 +188,7 @@ struct AssignmentDetails: View {
 
     private var markAsDoneButton: some View {
         MarkAsDoneButton(
-            isCompleted: viewModel.isCompletedItem,
+            isCompleted: viewModel.dependency.isCompletedItem,
             isLoading: viewModel.isMarkAsDoneLoaderVisible
         ) {
             viewModel.markAsDone()

@@ -21,9 +21,13 @@ import Core
 import Combine
 
 protocol AssignmentInteractor: HUploadFileManager {
-    func getAssignmentDetails() -> AnyPublisher<HAssignment, Never>
-    func submitTextEntry(with text: String, moduleID: String, moduleItemID: String) -> AnyPublisher<[CreateSubmission.Model], Error>
-    func getSubmissions() -> AnyPublisher<[HSubmission], Never>
+    func getAssignmentDetails(ignoreCache: Bool) -> AnyPublisher<HAssignment, Error>
+    func submitTextEntry(
+        with text: String,
+        moduleID: String,
+        moduleItemID: String
+    ) -> AnyPublisher<[CreateSubmission.Model], Error>
+    func getSubmissions(ignoreCache: Bool) -> AnyPublisher<[HSubmission], Error>
 }
 
 final class AssignmentInteractorLive: AssignmentInteractor {
@@ -69,14 +73,19 @@ final class AssignmentInteractorLive: AssignmentInteractor {
             .store(in: &subscriptions)
     }
 
-    func getAssignmentDetails() -> AnyPublisher<HAssignment, Never> {
+    func getAssignmentDetails(ignoreCache: Bool) -> AnyPublisher<HAssignment, Error> {
         let includes: [GetAssignmentRequest.GetAssignmentInclude] = [.submission, .score_statistics]
-        return ReactiveStore(useCase: GetAssignment(courseID: courseID, assignmentID: assignmentID, include: includes))
-            .getEntities()
-            .replaceError(with: [])
-            .compactMap { $0.first }
-            .map { HAssignment(from: $0)}
-            .eraseToAnyPublisher()
+        return ReactiveStore(
+            useCase: GetAssignment(
+                courseID: courseID,
+                assignmentID: assignmentID,
+                include: includes
+            )
+        )
+        .getEntities(ignoreCache: ignoreCache)
+        .compactMap { $0.first }
+        .map { HAssignment(from: $0)}
+        .eraseToAnyPublisher()
     }
 
     func submitTextEntry(with text: String, moduleID: String, moduleItemID: String) -> AnyPublisher<[CreateSubmission.Model], Error> {
@@ -110,12 +119,11 @@ final class AssignmentInteractorLive: AssignmentInteractor {
         uploadManager.cancelAllFiles()
     }
 
-    func getSubmissions() -> AnyPublisher<[HSubmission], Never> {
+    func getSubmissions(ignoreCache: Bool) -> AnyPublisher<[HSubmission], Error> {
         let useCase = GetSubmission(context: .course(courseID), assignmentID: assignmentID, userID: userID)
         return ReactiveStore(useCase: useCase)
-            .getEntities(ignoreCache: true)
-            .replaceError(with: [])
-            .flatMap { Publishers.Sequence(sequence: $0)}
+            .getEntities(ignoreCache: ignoreCache)
+            .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self)}
             .filter { $0.attempt != 0 }
             .map { HSubmission(entity: $0) }
             .collect()
