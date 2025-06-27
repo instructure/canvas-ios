@@ -22,6 +22,8 @@ import Combine
 import Core
 
 class SpeedGraderInteractorPreview: SpeedGraderInteractor {
+    var gradeStatusInteractor: GradeStatusInteractor = GradeStatusInteractorPreview()
+
     let contextInfo = CurrentValueSubject<SpeedGraderContextInfo?, Never>(
         .init(
             courseName: "Course name with a lot of info in it",
@@ -43,7 +45,8 @@ class SpeedGraderInteractorPreview: SpeedGraderInteractor {
     func load() {
     }
 
-    func refreshSubmission(forUserId: String) {
+    func refreshSubmission(forUserId: String) -> AnyPublisher<Void, Error> {
+        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
 

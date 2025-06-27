@@ -116,12 +116,12 @@ struct SubmissionHeaderView: View {
 
     private var status: some View {
         HStack(spacing: 2) {
-            Image(uiImage: submission.statusIncludingGradedState.icon)
+            Image(uiImage: viewModel.submissionStatus.icon)
                 .scaledIcon(size: 16)
-            Text(submission.statusIncludingGradedState.text)
+            Text(viewModel.submissionStatus.text)
                 .font(.regular14)
         }
-        .foregroundStyle(Color(submission.statusIncludingGradedState.color))
+        .foregroundStyle(Color(viewModel.submissionStatus.color))
     }
 
     private var dueText: some View {

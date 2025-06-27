@@ -185,11 +185,16 @@ extension SpeedGraderViewModel: PagesViewControllerDataSource {
                 assignment: data.assignment,
                 latestSubmission: data.submissions[index],
                 contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
+                gradeStatusInteractor: interactor.gradeStatusInteractor,
                 env: environment
             ),
             landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,
             handleRefresh: { [weak self] in
-                self?.interactor.refreshSubmission(forUserId: data.submissions[index].userID)
+                guard let self else { return }
+                interactor
+                    .refreshSubmission(forUserId: data.submissions[index].userID)
+                    .sink()
+                    .store(in: &subscriptions)
             }
         )
     }

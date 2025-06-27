@@ -18,12 +18,16 @@
 
 import Core
 import SwiftUI
+import Combine
 
 class SubmissionHeaderViewModel: ObservableObject {
+    @Published private(set) var submissionStatus: SubmissionStatus
     let submitterName: String
     let groupName: String?
     let isGroupSubmission: Bool
     let routeToSubmitter: String?
+
+    private var subscriptions = Set<AnyCancellable>()
 
     init(
         assignment: Assignment,
@@ -39,5 +43,22 @@ class SubmissionHeaderViewModel: ObservableObject {
             groupName ?? (submission.user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) } ?? "")
         }()
         routeToSubmitter = isGroupSubmission ? nil : "/courses/\(assignment.courseID)/users/\(submission.userID)"
+        submissionStatus = submission.statusIncludingGradedState
+        observeSubmissionStatusInDatabase(submission)
+    }
+
+    private func observeSubmissionStatusInDatabase(_ submission: Submission) {
+        let filter = NSPredicate(key: (\Submission.id).string, equals: submission.id)
+            .and(NSPredicate(key: #keyPath(Submission.attempt), equals: submission.attempt))
+        let useCase = LocalUseCase<Submission>(scope: .init(predicate: filter, order: []))
+        ReactiveStore(useCase: useCase)
+            .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
+            .catch { _ in Publishers.typedJust([]) }
+            .compactMap { $0.first }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] updatedSubmission in
+                self?.submissionStatus = updatedSubmission.statusIncludingGradedState
+            }
+            .store(in: &subscriptions)
     }
 }
