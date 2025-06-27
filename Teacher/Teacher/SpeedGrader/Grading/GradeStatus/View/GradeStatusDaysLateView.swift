@@ -20,13 +20,9 @@ import Core
 import SwiftUI
 
 struct GradeStatusDaysLateView: View {
+    @ObservedObject var viewModel: GradeStatusViewModel
     @Environment(\.viewController) private var viewController
-    let daysLate: String
-    let dueDate: String
-    let isLoading: Bool
-    let accessibilityLabel: String
-    let accessibilityHint: String
-    let onEdit: (Int) -> Void
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @AccessibilityFocusState private var isA11yFocused: Bool
 
     var body: some View {
@@ -35,18 +31,18 @@ struct GradeStatusDaysLateView: View {
                 Text("Days late", bundle: .teacher)
                     .font(.semibold16)
                     .foregroundColor(.textDarkest)
-                Text("Due \(dueDate)", bundle: .teacher)
+                Text("Due \(viewModel.dueDate)", bundle: .teacher)
                     .font(.regular14)
                     .foregroundColor(.textDark)
             }
             Spacer()
-            if isLoading {
+            if viewModel.isLoading {
                 ProgressView()
                     .tint(nil)
             } else {
                 Button(action: presentNumberInputDialog) {
                     HStack(spacing: 17) {
-                        Text(daysLate)
+                        Text(viewModel.daysLate)
                             .font(.semibold16)
                         Image.editLine
                             .scaledIcon(size: 18)
@@ -64,17 +60,14 @@ struct GradeStatusDaysLateView: View {
                 .foregroundStyle(.tint)
             }
         }
-        .paddingStyle(.top, .cellTop)
-        .paddingStyle(.bottom, .cellBottom)
-        .paddingStyle(.horizontal, .standard)
+        .paddingStyle(set: .standardCell)
         .background(Color.backgroundLightest)
         .accessibilityElement()
         .accessibilityAddTraits(.isButton)
         .accessibilityAction { presentNumberInputDialog() }
-        .accessibilityLabel(accessibilityLabel)
-        .accessibilityHint(accessibilityHint)
+        .accessibilityLabel(viewModel.daysLateA11yLabel)
+        .accessibilityHint(viewModel.daysLateA11yHint)
         .accessibilityFocused($isA11yFocused)
-        .identifier("SpeedGrader.DaysLateButton")
     }
 
     private func presentNumberInputDialog() {
@@ -97,7 +90,7 @@ struct GradeStatusDaysLateView: View {
             style: .default
         ) { _ in
             if let text = alert.textFields?.first?.text, let value = Int(text) {
-                onEdit(value)
+                viewModel.didChangeLateDaysValue.send(value)
             }
             isA11yFocused = true
         })
@@ -107,33 +100,17 @@ struct GradeStatusDaysLateView: View {
 
 #if DEBUG
 
-struct GradeStatusDaysLateView_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack(spacing: 0) {
-            ViewControllerHostedViewPreview {
-                GradeStatusDaysLateView(
-                    daysLate: "4",
-                    dueDate: "2025-02-02 23:59:00",
-                    isLoading: false,
-                    accessibilityLabel: "",
-                    accessibilityHint: "",
-                    onEdit: { _ in }
-                )
-                .tint(Color.red)
-            }
-            ViewControllerHostedViewPreview {
-                GradeStatusDaysLateView(
-                    daysLate: "4",
-                    dueDate: "2025-02-02 23:59:00",
-                    isLoading: true,
-                    accessibilityLabel: "",
-                    accessibilityHint: "",
-                    onEdit: { _ in }
-                )
-                .tint(Color.red)
-            }
-        }
-        .previewLayout(.sizeThatFits)
+#Preview {
+    ViewControllerHostedViewPreview {
+        GradeStatusDaysLateView(
+            viewModel: .init(
+                userId: "",
+                submissionId: "",
+                attempt: 0,
+                interactor: GradeStatusInteractorPreview(gradeStatuses: [.none])
+            )
+        )
+        .tint(Color.red)
     }
 }
 

@@ -43,16 +43,8 @@ struct GradeStatusView: View {
             )
 
             if viewModel.isShowingDaysLateSection {
-                GradeStatusDaysLateView(
-                    daysLate: viewModel.daysLate,
-                    dueDate: viewModel.dueDate,
-                    isLoading: viewModel.isLoading,
-                    accessibilityLabel: viewModel.daysLateA11yLabel,
-                    accessibilityHint: viewModel.daysLateA11yHint,
-                    onEdit: { newDaysLateValue in
-                        viewModel.didChangeLateDaysValue.send(newDaysLateValue)
-                    }
-                )
+                GradeStatusDaysLateView(viewModel: viewModel)
+                    .identifier("SpeedGrader.DaysLateButton")
             }
         }
         .animation(.smooth, value: viewModel.isShowingDaysLateSection)
@@ -61,7 +53,7 @@ struct GradeStatusView: View {
     private var cell: some View {
         HStack(spacing: InstUI.Styles.Padding.cellAccessoryPadding.rawValue) {
             Text(String(localized: "Status", bundle: .teacher))
-                .font(.semibold16)
+                .font(.semibold16, lineHeight: .fit)
                 .foregroundColor(Color.textDarkest)
                 .frame(maxWidth: .infinity, alignment: .leading)
             if viewModel.isLoading {
@@ -69,15 +61,12 @@ struct GradeStatusView: View {
                     .tint(nil)
             } else {
                 Text(viewModel.selectedOption.title)
-                    .font(.regular14)
-                    .foregroundStyle(.tint)
+                    .font(.regular14, lineHeight: .fit)
                 Image.chevronDown
                     .scaledIcon(size: 24)
-                    .foregroundStyle(.tint)
             }
         }
-        .frame(minHeight: 52)
-        .paddingStyle(.horizontal, .standard)
+        .paddingStyle(set: .standardCell)
         .background(Color.backgroundLightest)
         .identifier("SpeedGrader.statusPicker")
     }

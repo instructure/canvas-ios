@@ -74,7 +74,10 @@ class GradeStatusInteractorPreview: GradeStatusInteractor {
         userId: String,
         daysLate: Int
     ) -> AnyPublisher<Void, Error> {
-        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+        Just(())
+            .delay(for: .seconds(2), scheduler: RunLoop.main)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }
 #endif

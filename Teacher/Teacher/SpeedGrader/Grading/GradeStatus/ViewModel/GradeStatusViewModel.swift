@@ -30,6 +30,7 @@ class GradeStatusViewModel: ObservableObject {
     @Published private(set) var daysLateA11yLabel: String = ""
     @Published private(set) var dueDate: String = ""
     @Published var isShowingSaveFailedAlert: Bool = false
+
     let daysLateA11yHint = String(localized: "Double-tap to change late days number.", bundle: .teacher)
     let options: [OptionItem]
     let errorAlertViewModel = ErrorAlertViewModel(
@@ -91,8 +92,8 @@ class GradeStatusViewModel: ObservableObject {
                 // after the menu is dismissed. If the request fails we revert to the old value.
                 self.selectedOption = selectedOption
 
-                // If late is disabled we instantly hide the days late section to avoid
-                // inconsistencies of it being edited while the disable request is in progress.
+                // If late is not selected we instantly hide the days late section to avoid
+                // inconsistencies of it being edited while the status change request is in progress.
                 if interactor.gradeStatuses.element(for: selectedOption) != .late {
                     self.isShowingDaysLateSection = false
                 }

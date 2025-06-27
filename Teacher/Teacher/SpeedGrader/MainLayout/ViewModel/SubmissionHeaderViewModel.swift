@@ -57,8 +57,7 @@ class SubmissionHeaderViewModel: ObservableObject {
             .compactMap { $0.first }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] updatedSubmission in
-                guard let self = self else { return }
-                self.submissionStatus = updatedSubmission.statusIncludingGradedState
+                self?.submissionStatus = updatedSubmission.statusIncludingGradedState
             }
             .store(in: &subscriptions)
     }
