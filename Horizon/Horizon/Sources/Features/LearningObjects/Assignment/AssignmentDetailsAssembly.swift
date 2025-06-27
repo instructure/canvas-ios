@@ -48,8 +48,7 @@ final class AssignmentDetailsAssembly {
             assignmentID: assignmentID,
             userID: AppEnvironment.shared.currentSession?.userID ?? "",
             uploadManager: uploadManager,
-            appEnvironment: .shared,
-            commentInteractor: SubmissionCommentInteractorLive(sessionInteractor: SessionInteractor())
+            appEnvironment: .shared
         )
         let userDefaults = AppEnvironment.shared.userDefaults
         let textEntryInteractor = AssignmentTextEntryInteractorLive(
