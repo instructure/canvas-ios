@@ -34,7 +34,7 @@ class CedarAnswerPromptMutation: APIGraphQLRequestable {
 
     public init(
         prompt: String,
-        document: DocumentBlock? = nil,
+        document: DocumentInput? = nil,
         model: AIModel = .claude3Sonnet20240229V10
     ) {
         self.variables = Variables(model: model.rawValue, prompt: prompt, document: document)
@@ -42,7 +42,7 @@ class CedarAnswerPromptMutation: APIGraphQLRequestable {
 
     public static let operationName: String = "AnswerPrompt"
     public static var query: String = """
-        mutation \(operationName)($model: String!, $prompt: String!, $document: DocumentBlock) {
+        mutation \(operationName)($model: String!, $prompt: String!, $document: DocumentInput) {
             answerPrompt(input: { model: $model, prompt: $prompt, document: $document})
         }
     """
@@ -52,10 +52,10 @@ class CedarAnswerPromptMutation: APIGraphQLRequestable {
     struct Input: Codable, Equatable {
         let model: String
         let prompt: String
-        let document: DocumentBlock?
+        let document: DocumentInput?
     }
 
-    struct DocumentBlock: Codable, Equatable {
+    struct DocumentInput: Codable, Equatable {
         let format: AssistChatDocumentType
         let base64Source: String
     }
@@ -71,17 +71,17 @@ struct CedarAnswerPromptMutationResponse: Codable {
     let data: ResponseData
 }
 
-extension CedarAnswerPromptMutation.DocumentBlock {
+extension CedarAnswerPromptMutation.DocumentInput {
     /// A document block can be included  in the CedarAnswerPromptMutation to provide additional context for the model to generate a response.
     /// This is used when the user is viewing a document and wants to generate a response based on the document.
-    static func build(from pageContext: AssistChatPageContext?) -> CedarAnswerPromptMutation.DocumentBlock? {
+    static func build(from pageContext: AssistChatPageContext?) -> CedarAnswerPromptMutation.DocumentInput? {
         guard let pageContext = pageContext,
               let documentFormat = pageContext.format,
               let source = pageContext.source
         else {
             return nil
         }
-        return CedarAnswerPromptMutation.DocumentBlock(
+        return CedarAnswerPromptMutation.DocumentInput(
             format: documentFormat,
             base64Source: source
         )

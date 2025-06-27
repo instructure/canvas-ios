@@ -46,11 +46,16 @@ final class AssistQuizViewModel {
         selectedAnswer == nil
     }
 
+    // MARK: - Private
+
+    private var currentQuizIndex: Int = 0
+
     // MARK: - Dependencies
 
     private let chatBotInteractor: AssistChatInteractor
     private var chatHistory: [AssistChatMessage] = []
     private let router: Router
+    private var quizzes: [AssistQuizModel] = []
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
 
@@ -58,13 +63,14 @@ final class AssistQuizViewModel {
 
     init(
         chatBotInteractor: AssistChatInteractor,
-        quizModel: AssistQuizModel? = nil,
+        quizzes: [AssistQuizModel],
         router: Router = AppEnvironment.defaultValue.router,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.chatBotInteractor = chatBotInteractor
         self.router = router
         self.scheduler = scheduler
+        self.quizzes = quizzes
 
         self.chatBotInteractor
             .listen
@@ -80,7 +86,7 @@ final class AssistQuizViewModel {
             }
         .store(in: &subscriptions)
 
-        quiz = quizModel
+        quiz = quizzes.first
     }
 
     // MARK: - Input Actions
@@ -101,10 +107,13 @@ final class AssistQuizViewModel {
 
     func regenerateQuiz() {
         didSubmitQuiz = false
-        isLoaderVisible = true
-        self.chatBotInteractor.publish(
-            action: .chip(option: AssistChipOption(.quiz), history: chatHistory)
-        )
+        let countQuizzes = quizzes.count
+        guard currentQuizIndex < countQuizzes - 1 else {
+            fetchQuizzes()
+            return
+        }
+        currentQuizIndex += 1
+        quiz = quizzes[safe: currentQuizIndex]
     }
 
     func dismiss(controller: WeakViewController) {
@@ -116,11 +125,21 @@ final class AssistQuizViewModel {
     }
 
     // MARK: - private
+
     private func onMessage(_ response: AssistChatResponse) {
         chatHistory = response.chatHistory
-        guard let quizItem = response.quizItem else {
+        guard let quizItems = response.quizItems else {
             return
         }
-        quiz = AssistQuizModel(from: quizItem)
+        let quizzes = quizItems.map { AssistQuizModel(from: $0) }
+        quiz = quizzes.first
+    }
+
+    private func fetchQuizzes() {
+        isLoaderVisible = true
+        currentQuizIndex = 0
+        chatBotInteractor.publish(
+            action: .chip(option: AssistChipOption(.quiz), history: chatHistory)
+        )
     }
 }
