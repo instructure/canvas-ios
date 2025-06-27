@@ -43,13 +43,21 @@ struct SubmissionListSection: Identifiable {
         var filter: (Submission) -> Bool {
             switch self {
             case .submitted:
-                { submission in
-                    submission.submittedAt != nil
-                    && submission.workflowState != .graded
-                    && (submission.excused ?? false) == false
-                }
+                { $0.submittedAt != nil && $0.isGraded == false }
             case .unsubmitted:
-                { $0.workflowState == .unsubmitted }
+                { submission in
+
+                    // This condition should be good for most cases.
+                    if submission.workflowState == .unsubmitted { return true }
+
+                    // For the case where rubrics assessment is submitted, but
+                    // with invalid values, which would render score to be `nil`
+                    if submission.workflowState == .graded {
+                        return submission.submittedAt == nil && submission.score == nil
+                    }
+
+                    return false
+                }
             case .graded:
                 { $0.isGraded }
             case .others:
