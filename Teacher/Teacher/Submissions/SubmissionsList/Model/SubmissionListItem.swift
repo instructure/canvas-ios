@@ -46,14 +46,14 @@ public struct SubmissionListItem {
         self.needsGrading = needsGrading
         self.gradeFormatted = gradeFormatted
 
-        let idHashSources: [any Hashable] = [
+        let idHashSources: [AnyHashable] = [
             submissionId,
             userNameModel,
             status,
             needsGrading,
             gradeFormatted
         ]
-        hashOfProperties = idHashSources.hashedValue()
+        hashOfProperties = idHashSources.hashValue
     }
 
     init(submission: Submission, assignment: Assignment?, displayIndex: Int?) {
