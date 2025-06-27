@@ -329,7 +329,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
                 cedarApi.makeRequest(
                     CedarAnswerPromptMutation(
                         prompt: prompt,
-                        document: CedarAnswerPromptMutation.DocumentBlock.build(from: pageContext)
+                        document: CedarAnswerPromptMutation.DocumentInput.build(from: pageContext)
                     )
                 )
             }
