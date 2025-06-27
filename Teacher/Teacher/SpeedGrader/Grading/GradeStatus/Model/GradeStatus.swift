@@ -29,7 +29,7 @@ enum GradeStatus: Equatable, Identifiable, OptionItemIdentifiable {
     case excused
     /// The student was provided extra time to submit the assignment.
     case extended
-    /// There is no status assigned for the submission.
+    /// There is no status assigned for the grade.
     case none
     /// Any canvas statuses returned by the API that are not one of the known defaults.
     case unknownDefault(String)
