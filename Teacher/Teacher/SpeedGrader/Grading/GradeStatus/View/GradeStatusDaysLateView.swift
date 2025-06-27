@@ -107,12 +107,10 @@ struct GradeStatusDaysLateView: View {
 
 #if DEBUG
 
-import UIKit
-
 struct GradeStatusDaysLateView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 0) {
-            CoreHostingControllerPreview {
+            ViewControllerHostedViewPreview {
                 GradeStatusDaysLateView(
                     daysLate: "4",
                     dueDate: "2025-02-02 23:59:00",
@@ -123,7 +121,7 @@ struct GradeStatusDaysLateView_Previews: PreviewProvider {
                 )
                 .tint(Color.red)
             }
-            CoreHostingControllerPreview {
+            ViewControllerHostedViewPreview {
                 GradeStatusDaysLateView(
                     daysLate: "4",
                     dueDate: "2025-02-02 23:59:00",
@@ -137,16 +135,6 @@ struct GradeStatusDaysLateView_Previews: PreviewProvider {
         }
         .previewLayout(.sizeThatFits)
     }
-}
-
-struct CoreHostingControllerPreview<Content: View>: UIViewControllerRepresentable {
-    typealias UIViewControllerType = UIViewController
-
-    let content: () -> Content
-    func makeUIViewController(context: Self.Context) -> UIViewController {
-        CoreHostingController(content())
-    }
-    func updateUIViewController(_ uiViewController: UIViewController, context: Self.Context) {}
 }
 
 #endif
