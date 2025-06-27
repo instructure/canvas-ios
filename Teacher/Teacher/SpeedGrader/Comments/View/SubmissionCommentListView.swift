@@ -25,17 +25,13 @@ struct SubmissionCommentListView: View {
     @Binding var attempt: Int
     @Binding var fileID: String?
     @Binding var showRecorder: MediaCommentType?
-    @Binding var comment: String
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
     @ObservedObject private var viewModel: SubmissionCommentListViewModel
-    @ObservedObject var commentLibrary: SubmissionCommentLibraryViewModel
 
     @State var error: Text?
-    @State var showMediaOptions = false
-    @State var showCommentLibrary = false
 
     @AccessibilityFocusState private var focusedTab: SubmissionGraderView.GraderTab?
 
@@ -44,34 +40,30 @@ struct SubmissionCommentListView: View {
         attempt: Binding<Int>,
         fileID: Binding<String?>,
         showRecorder: Binding<MediaCommentType?>,
-        enteredComment: Binding<String>,
-        commentLibrary: SubmissionCommentLibraryViewModel,
         focusedTab: AccessibilityFocusState<SubmissionGraderView.GraderTab?>
     ) {
         self.viewModel = viewModel
         self._attempt = attempt
         self._fileID = fileID
         self._showRecorder = showRecorder
-        self._comment = enteredComment
-        self.commentLibrary = commentLibrary
         self._focusedTab = focusedTab
     }
 
     var body: some View {
         GeometryReader { geometry in
-            VStack(spacing: 0) {
-                ScrollView {
-                    switch viewModel.state {
-                    case .data:
-                        comments
+            ScrollView {
+                switch viewModel.state {
+                case .data:
+                    comments
                     // Assume already loaded by parent, so skip loading & error
-                    case .loading, .empty, .error:
-                        EmptyPanda(.NoComments, message: Text("There are no messages yet.", bundle: .teacher))
-                            .frame(minWidth: geometry.size.width, minHeight: geometry.size.height - 40)
-                    }
+                case .loading, .empty, .error:
+                    EmptyPanda(.NoComments, message: Text("There are no messages yet.", bundle: .teacher))
+                        .frame(minWidth: geometry.size.width, minHeight: geometry.size.height - 40)
                 }
-                    .background(Color.backgroundLightest)
-                    .scaleEffect(y: viewModel.state == .data ? -1 : 1)
+            }
+            .background(Color.backgroundLightest)
+            .scaleEffect(y: viewModel.state == .data ? -1 : 1)
+            .safeAreaInset(edge: .bottom) {
                 switch showRecorder {
                 case .audio:
                     InstUI.Divider()
@@ -79,25 +71,21 @@ struct SubmissionCommentListView: View {
                         show(recorder: nil)
                         sendMediaComment(type: .audio, url: $0)
                     }
-                        .background(Color.backgroundLight)
-                        .frame(height: 240)
-                        .transition(.move(edge: .bottom))
+                    .background(Color.backgroundLight)
+                    .frame(height: 240)
+                    .transition(.move(edge: .bottom))
                 case .video:
                     InstUI.Divider()
                     VideoRecorder(camera: .front) {
                         show(recorder: nil)
                         sendMediaComment(type: .video, url: $0)
                     }
-                        .background(Color.backgroundLight)
-                        .frame(height: geometry.size.height)
-                        .transition(.move(edge: .bottom))
+                    .background(Color.backgroundLight)
+                    .frame(height: geometry.size.height)
+                    .transition(.move(edge: .bottom))
                 case nil:
                     toolbar
                         .transition(.opacity)
-                }
-            }.sheet(isPresented: $showCommentLibrary) {
-                CommentLibrarySheet(viewModel: commentLibrary, comment: $comment, contextColor: viewModel.contextColor) {
-                    sendComment()
                 }
             }
         }
@@ -123,11 +111,13 @@ struct SubmissionCommentListView: View {
 
     private var toolbar: some View {
         CommentInputView(
-            comment: $comment,
-            hasCommentLibraryButton: commentLibrary.shouldShow,
-            hasAttachmentButton: true,
+            comment: viewModel.comment,
+            commentLibraryButtonType: viewModel.isCommentLibraryEnabled ? .openLibrary : .hidden,
+            isAttachmentButtonEnabled: true,
             contextColor: viewModel.contextColor,
-            showCommentLibraryAction: { showCommentLibrary = true },
+            commentLibraryAction: {
+                viewModel.presentCommentLibrary(sendAction: sendComment, source: controller)
+            },
             addAttachmentAction: { type in
                 switch type {
                 case .audio: recordAudio()
@@ -141,14 +131,14 @@ struct SubmissionCommentListView: View {
     }
 
     func sendComment() {
-        let text = comment.trimmingCharacters(in: .whitespacesAndNewlines)
+        let text = viewModel.comment.value.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
 
         error = nil
-        comment = ""
+        viewModel.comment.value = ""
         viewModel.sendTextComment(text) { result in
             if result.isFailure {
-                self.comment = text
+                viewModel.comment.value = text
             }
             handleSendCommentResult(result)
         }
@@ -217,13 +207,5 @@ struct SubmissionCommentListView: View {
         withAnimation(.default) {
             showRecorder = recorder
         }
-    }
-}
-
-private extension View {
-    // Toolbar buttons should be center aligned with the last row of the comment textfield.
-    // This offset is an approximation for that.
-    func commentToolbarButtonOffset() -> some View {
-        scaledOffset(y: -5, useIconScale: true)
     }
 }
