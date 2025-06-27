@@ -71,7 +71,6 @@ extension InstUI {
                         if isSelected {
                             Image.checkSolid
                                 .scaledIcon(size: 18)
-                                .foregroundStyle(.tint)
                                 .layoutPriority(1)
                                 .paddingStyle(.leading, .cellAccessoryPadding)
                         }
