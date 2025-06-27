@@ -77,15 +77,15 @@ final class FetchedResultsSubscription
               let request = request,
               let context = context else { return }
 
-        controller = NSFetchedResultsController(
-            fetchRequest: request,
-            managedObjectContext: context,
-            sectionNameKeyPath: nil,
-            cacheName: nil
-        )
-        controller?.delegate = self
-
         context.perform { [weak self] in
+            self?.controller = NSFetchedResultsController(
+                fetchRequest: request,
+                managedObjectContext: context,
+                sectionNameKeyPath: nil,
+                cacheName: nil
+            )
+            self?.controller?.delegate = self
+
             do {
                 try self?.controller?.performFetch()
             } catch {
