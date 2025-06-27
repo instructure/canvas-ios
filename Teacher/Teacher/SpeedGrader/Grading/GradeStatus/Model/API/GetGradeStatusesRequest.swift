@@ -17,9 +17,10 @@
 //
 
 import Core
+import Foundation
 
 struct GetGradeStatusesRequest: APIGraphQLRequestable {
-    typealias Response = APIGradeStatuses
+    typealias Response = GetGradeStatusesResponse
 
     let variables: Variables
 
@@ -44,5 +45,36 @@ struct GetGradeStatusesRequest: APIGraphQLRequestable {
 
     struct Variables: Codable, Equatable {
         let courseID: String
+    }
+}
+
+struct GetGradeStatusesResponse: Codable, Equatable {
+    var customGradeStatuses: [Data.Course.CustomGradeStatusesConnection.CustomGradeStatus] {
+        data.course.customGradeStatusesConnection.nodes
+    }
+    var defaultGradeStatuses: [String] {
+        data.course.gradeStatuses
+    }
+    let data: Data
+
+    struct Data: Codable, Equatable {
+        let course: Course
+
+        struct Course: Codable, Equatable {
+            let customGradeStatusesConnection: CustomGradeStatusesConnection
+            let gradeStatuses: [String]
+
+            struct CustomGradeStatusesConnection: Codable, Equatable {
+                let nodes: [CustomGradeStatus]
+
+                struct CustomGradeStatus: Codable, Equatable {
+                    let name: String
+                    let id: String
+                    private enum CodingKeys: String, CodingKey {
+                        case name, id = "_id"
+                    }
+                }
+            }
+        }
     }
 }

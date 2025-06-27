@@ -158,7 +158,6 @@
 		CFD96BA72719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */; };
 		CFD96BA92719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */; };
 		CFF4AA9D2DF9D05F00B0351F /* GetGradeStatusesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF4AA9C2DF9D05F00B0351F /* GetGradeStatusesRequest.swift */; };
-		CFF4AAA02DF9E26800B0351F /* APIGradeStatuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF4AA9F2DF9E26700B0351F /* APIGradeStatuses.swift */; };
 		CFF4AAA52DFAB93000B0351F /* GradeStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF4AAA42DFAB93000B0351F /* GradeStatusInteractor.swift */; };
 		CFF4AAA72DFAD2D400B0351F /* GradeStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF4AAA62DFAD2C200B0351F /* GradeStatusView.swift */; };
 		CFF4AAAB2DFB048200B0351F /* GradeStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF4AAAA2DFB048000B0351F /* GradeStatusViewModel.swift */; };
@@ -415,7 +414,6 @@
 		CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewerViewModel.swift; sourceTree = "<group>"; };
 		CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewerViewModelTests.swift; sourceTree = "<group>"; };
 		CFF4AA9C2DF9D05F00B0351F /* GetGradeStatusesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGradeStatusesRequest.swift; sourceTree = "<group>"; };
-		CFF4AA9F2DF9E26700B0351F /* APIGradeStatuses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGradeStatuses.swift; sourceTree = "<group>"; };
 		CFF4AAA42DFAB93000B0351F /* GradeStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStatusInteractor.swift; sourceTree = "<group>"; };
 		CFF4AAA62DFAD2C200B0351F /* GradeStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStatusView.swift; sourceTree = "<group>"; };
 		CFF4AAAA2DFB048000B0351F /* GradeStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStatusViewModel.swift; sourceTree = "<group>"; };
@@ -1389,7 +1387,6 @@
 			isa = PBXGroup;
 			children = (
 				CFF4AAAC2DFB084700B0351F /* UpdateSubmissionGradeStatusRequest.swift */,
-				CFF4AA9F2DF9E26700B0351F /* APIGradeStatuses.swift */,
 				CFF4AA9C2DF9D05F00B0351F /* GetGradeStatusesRequest.swift */,
 			);
 			path = API;
@@ -1811,7 +1808,6 @@
 				CFFEADAC2E00703000277F69 /* RollCallSession.swift in Sources */,
 				7D742F382554D01400FD6CF1 /* RubricsView.swift in Sources */,
 				CF13E550299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift in Sources */,
-				CFF4AAA02DF9E26800B0351F /* APIGradeStatuses.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* Routes.swift in Sources */,
 				CF13E559299D1AEC00F57F69 /* QuizSubmissionListView.swift in Sources */,
 				089AACBE2DD5FAAE0022F341 /* TeacherDateSection.swift in Sources */,

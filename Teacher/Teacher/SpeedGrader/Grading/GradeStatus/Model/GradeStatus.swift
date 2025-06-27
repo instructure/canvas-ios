@@ -19,42 +19,69 @@
 import Core
 import Foundation
 
-/// This structure unifies user defined and canvas defined statuses into a single object.
-struct GradeStatus: Identifiable, Equatable, OptionItemIdentifiable {
-    let id: String
-    let name: String
-    /// Custom and default statuses need to be uploaded to different fields on the API
-    /// so we need to distinguish between the two types to know which goes where.
-    let isCustom: Bool
+/// This enum unifies user defined and canvas defined statuses into a single object.
+enum GradeStatus: Equatable, Identifiable, OptionItemIdentifiable {
+    /// The assignment was submitted late and if a late penalty is configured it will be deducted from the given score.
+    case late
+    /// The assignment was not submitted by the student and is considered missing.
+    case missing
+    /// The user is excused from the assignment, so no score will be given.
+    case excused
+    case extended
+    /// There is no status assigned for the assignment.
+    case none
+    /// Any canvas statuses returned by the API that are not one of the known defaults.
+    case unknownDefault(String)
+    /// User entered custom statuses.
+    case userDefined(id: String, name: String)
 
-    /// This initializer can be used to create a status from a custom status entered by the teacher on canvas web.
-    init(custom: APIGradeStatuses.CustomGradeStatus) {
-        self.id = custom.id
-        // The name is entered by the teacher, so we can't localize it.
+    var id: String {
+        switch self {
+        case .late: return "late"
+        case .missing: return "missing"
+        case .excused: return "excused"
+        case .extended: return "extended"
+        case .none: return "none"
+        case .unknownDefault(let value): return value
+        case .userDefined(let id, _): return id
+        }
+    }
+
+    var name: String {
+        switch self {
+        case .late: return String(localized: "Late")
+        case .missing: return String(localized: "Missing")
+        case .excused: return String(localized: "Excused")
+        case .extended: return String(localized: "Extended")
+        case .none: return String(localized: "None")
+        case .unknownDefault(let value): return value.capitalized
+        // The name is entered by the teacher, so we can't localize it
+        // just use what we received from the API.
         // It's up to the teacher to use an appropriate name
         // that is understandable in the context of their course.
-        self.name = custom.name
-        self.isCustom = true
-    }
-
-    /// This initializer can be used to create a grade status that is defined by canvas on a global level.
-    init(defaultName: String) {
-        self.id = defaultName
-        self.name = defaultName.localizedGradeStatusName
-        self.isCustom = false
-    }
-}
-
-extension String {
-
-    internal var localizedGradeStatusName: String {
-        switch self {
-        case "late": String(localized: "Late", bundle: .teacher)
-        case "missing": String(localized: "Missing", bundle: .teacher)
-        case "excused": String(localized: "Excused", bundle: .teacher)
-        case "extended": String(localized: "Extended", bundle: .teacher)
-        case "none": String(localized: "None", bundle: .teacher)
-        default: capitalized
+        case .userDefined(_, let name): return name
         }
+    }
+
+    /// User defined and default statuses need to be uploaded to different fields on the API
+    /// so we need to distinguish between the two types to know which goes where.
+    var isUserDefined: Bool {
+        if case .userDefined = self { return true }
+        return false
+    }
+
+    init(defaultStatus: String) {
+        switch defaultStatus {
+        case "late": self = .late
+        case "missing": self = .missing
+        case "excused": self = .excused
+        case "extended": self = .extended
+        case "none": self = .none
+        default: self = .unknownDefault(defaultStatus)
+        }
+    }
+
+    init(userDefinedName: String, id: String) {
+        self = .userDefined(id: id, name: userDefinedName)
     }
 }

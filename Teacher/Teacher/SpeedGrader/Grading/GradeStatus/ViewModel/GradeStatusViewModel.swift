@@ -89,7 +89,7 @@ class GradeStatusViewModel: ObservableObject {
 
                 // If late is disabled we instantly hide the days late section to avoid
                 // inconsistencies of it being edited while the disable request is in progress.
-                if oldOption.isLate {
+                if interactor.gradeStatuses.element(for: selectedOption) != .late {
                     self.isShowingDaysLateSection = false
                 }
 
@@ -102,8 +102,8 @@ class GradeStatusViewModel: ObservableObject {
                 .map { (oldOption, selectedStatus) }
             }
             .flatMap { [submissionId, userId, interactor] (oldOption: OptionItem, selectedStatus: GradeStatus) in
-                let customGradeStatusId = selectedStatus.isCustom ? selectedStatus.id : nil
-                let latePolicyStatus = selectedStatus.isCustom ? nil : selectedStatus.id
+                let customGradeStatusId = selectedStatus.isUserDefined ? selectedStatus.id : nil
+                let latePolicyStatus = selectedStatus.isUserDefined ? nil : selectedStatus.id
                 return interactor.updateSubmissionGradeStatus(
                     submissionId: submissionId,
                     userId: userId,
@@ -121,14 +121,14 @@ class GradeStatusViewModel: ObservableObject {
                 guard let self else { return }
 
                 if result.isFailure {
-                    self.selectedOption = oldOption
-                    self.isShowingSaveFailedAlert = true
+                    selectedOption = oldOption
+                    isShowingSaveFailedAlert = true
                 }
 
-                self.isLoading = false
+                isLoading = false
 
-                if self.selectedOption.isLate {
-                    self.isShowingDaysLateSection = true
+                if interactor.gradeStatuses.element(for: selectedOption) == .late {
+                    isShowingDaysLateSection = true
                 }
             }
             .store(in: &subscriptions)
@@ -155,11 +155,12 @@ class GradeStatusViewModel: ObservableObject {
             }
             .receive(on: RunLoop.main)
             .sink { [weak self] (option, daysLate, dueDate) in
-                self?.selectedOption = option
-                self?.isShowingDaysLateSection = option.isLate
-                self?.daysLate = "\(daysLate)"
-                self?.dueDate = dueDate.isEmpty ? String(localized: "No Due Date", bundle: .teacher) : dueDate
-                self?.daysLateA11yLabel = {
+                guard let self else { return }
+                selectedOption = option
+                isShowingDaysLateSection = (interactor.gradeStatuses.element(for: option) == .late)
+                self.daysLate = "\(daysLate)"
+                self.dueDate = dueDate.isEmpty ? String(localized: "No Due Date", bundle: .teacher) : dueDate
+                daysLateA11yLabel = {
                     let daysLateText = String(localized: "\(daysLate) days late.", bundle: .teacher)
                     let dueDateText = dueDate.isEmpty ? String(localized: "No due date was set.", bundle: .teacher)
                                                       : String(localized: "Due date was on \(dueDate).", bundle: .teacher)
@@ -231,14 +232,10 @@ class GradeStatusViewModel: ObservableObject {
 }
 
 private extension OptionItem {
-    var isLate: Bool {
-        id == LatePolicyStatus.late.rawValue
-    }
-
     static var none: OptionItem {
         OptionItem(
-            id: "none",
-            title: String(localized: "None", bundle: .teacher)
+            id: GradeStatus.none.id,
+            title: GradeStatus.none.name
         )
     }
 

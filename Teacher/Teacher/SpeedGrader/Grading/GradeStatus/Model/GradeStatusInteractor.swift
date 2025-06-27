@@ -70,8 +70,8 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
         return api.makeRequest(request)
             .map { $0.body }
             .map { [weak self] response in
-                let defaults = response.defaultGradeStatuses.map { GradeStatus(defaultName: $0) }
-                let custom = response.customGradeStatuses.map { GradeStatus(custom: $0) }
+                let defaults = response.defaultGradeStatuses.map { GradeStatus(defaultStatus: $0) }
+                let custom = response.customGradeStatuses.map { GradeStatus(userDefinedName: $0.name, id: $0.id) }
                 self?.gradeStatuses = defaults + custom
             }
             .eraseToAnyPublisher()
@@ -104,13 +104,13 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
         isLate: Bool?
     ) -> GradeStatus? {
         if let customGradeStatusId {
-            return gradeStatuses.first { $0.isCustom && $0.id == customGradeStatusId }
+            return gradeStatuses.first { $0.isUserDefined && $0.id == customGradeStatusId }
         } else if let lateStatus = latePolicyStatus?.rawValue {
-            return gradeStatuses.first { !$0.isCustom && $0.id == lateStatus }
+            return gradeStatuses.first { !$0.isUserDefined && $0.id == lateStatus }
         } else if isExcused == true {
-            return gradeStatuses.first { !$0.isCustom && $0.id == "excused" }
+            return gradeStatuses.first { $0 == .excused }
         } else if isLate == true {
-            return gradeStatuses.first { !$0.isCustom && $0.id == LatePolicyStatus.late.rawValue }
+            return gradeStatuses.first { $0 == .late }
         }
         return nil
     }

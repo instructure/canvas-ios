@@ -21,27 +21,62 @@ import XCTest
 
 class GradeStatusTests: XCTestCase {
 
-    func test_init_with_custom_grade_status() {
-        let custom = APIGradeStatuses.CustomGradeStatus(name: "Reviewed", id: "custom1")
-        let status = GradeStatus(custom: custom)
-        XCTAssertEqual(status.id, "custom1")
-        XCTAssertEqual(status.name, "Reviewed")
-        XCTAssertTrue(status.isCustom)
+    func test_init_userDefined() {
+        let status = GradeStatus(userDefinedName: "Reviewed", id: "custom1")
+        XCTAssertEqual(status, .userDefined(id: "custom1", name: "Reviewed"))
     }
 
-    func test_init_with_default_name() {
-        let status = GradeStatus(defaultName: "late")
-        XCTAssertEqual(status.id, "late")
-        XCTAssertEqual(status.name, String(localized: "Late", bundle: .teacher))
-        XCTAssertFalse(status.isCustom)
+    func test_init_defaultCase() {
+        let status = GradeStatus(defaultStatus: "late")
+        XCTAssertEqual(status, .late)
     }
 
-    func test_localized_grade_status_name() {
-        XCTAssertEqual("late".localizedGradeStatusName, String(localized: "Late", bundle: .teacher))
-        XCTAssertEqual("missing".localizedGradeStatusName, String(localized: "Missing", bundle: .teacher))
-        XCTAssertEqual("excused".localizedGradeStatusName, String(localized: "Excused", bundle: .teacher))
-        XCTAssertEqual("extended".localizedGradeStatusName, String(localized: "Extended", bundle: .teacher))
-        XCTAssertEqual("none".localizedGradeStatusName, String(localized: "None", bundle: .teacher))
-        XCTAssertEqual("other".localizedGradeStatusName, "Other")
+    func test_properties_late() {
+        let testee = GradeStatus.late
+        XCTAssertEqual(testee.id, "late")
+        XCTAssertEqual(testee.name, "Late")
+        XCTAssertEqual(testee.isUserDefined, false)
+    }
+
+    func test_properties_missing() {
+        let testee = GradeStatus.missing
+        XCTAssertEqual(testee.id, "missing")
+        XCTAssertEqual(testee.name, "Missing")
+        XCTAssertEqual(testee.isUserDefined, false)
+    }
+
+    func test_properties_excused() {
+        let testee = GradeStatus.excused
+        XCTAssertEqual(testee.id, "excused")
+        XCTAssertEqual(testee.name, "Excused")
+        XCTAssertEqual(testee.isUserDefined, false)
+    }
+
+    func test_properties_extended() {
+        let testee = GradeStatus.extended
+        XCTAssertEqual(testee.id, "extended")
+        XCTAssertEqual(testee.name, "Extended")
+        XCTAssertEqual(testee.isUserDefined, false)
+    }
+
+    func test_properties_none() {
+        let testee = GradeStatus.none
+        XCTAssertEqual(testee.id, "none")
+        XCTAssertEqual(testee.name, "None")
+        XCTAssertEqual(testee.isUserDefined, false)
+    }
+
+    func test_properties_unknownDefault() {
+        let testee = GradeStatus.unknownDefault("pending")
+        XCTAssertEqual(testee.id, "pending")
+        XCTAssertEqual(testee.name, "Pending")
+        XCTAssertEqual(testee.isUserDefined, false)
+    }
+
+    func test_properties_userDefined() {
+        let testee = GradeStatus.userDefined(id: "custom2", name: "Checked")
+        XCTAssertEqual(testee.id, "custom2")
+        XCTAssertEqual(testee.name, "Checked")
+        XCTAssertEqual(testee.isUserDefined, true)
     }
 }

@@ -86,10 +86,10 @@ struct GradeStatusView: View {
 #if DEBUG
 
 #Preview {
-    let statuses = [
-        GradeStatus(defaultName: "none"),
-        GradeStatus(defaultName: "excused"),
-        GradeStatus(defaultName: "late")
+    let statuses: [GradeStatus] = [
+        .none,
+        .excused,
+        .late
     ]
 
     VStack(spacing: 20) {

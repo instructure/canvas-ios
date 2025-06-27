@@ -145,13 +145,13 @@ class GradeStatusInteractorTests: TeacherTestCase {
 
     private func mockGradeStatusesAPI() {
         let request = GetGradeStatusesRequest(courseID: "1")
-        let response = APIGradeStatuses(
-            data: APIGradeStatuses.Data(
-                course: APIGradeStatuses.Course(
-                    customGradeStatusesConnection: APIGradeStatuses.CustomGradeStatusesConnection(
+        let response = GetGradeStatusesResponse(
+            data: .init(
+                course: .init(
+                    customGradeStatusesConnection: .init(
                         nodes: [
-                            APIGradeStatuses.CustomGradeStatus(name: "Custom1", id: "custom1"),
-                            APIGradeStatuses.CustomGradeStatus(name: "Custom2", id: "custom2")
+                            .init(name: "Custom1", id: "custom1"),
+                            .init(name: "Custom2", id: "custom2")
                         ]
                     ),
                     gradeStatuses: ["excused", "late"]
