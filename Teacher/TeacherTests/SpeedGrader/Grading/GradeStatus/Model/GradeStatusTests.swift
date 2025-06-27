@@ -22,13 +22,13 @@ import XCTest
 class GradeStatusTests: XCTestCase {
 
     func test_init_userDefined() {
-        let status = GradeStatus(userDefinedName: "Reviewed", id: "custom1")
-        XCTAssertEqual(status, .userDefined(id: "custom1", name: "Reviewed"))
+        let testee = GradeStatus(userDefinedName: "Reviewed", id: "custom1")
+        XCTAssertEqual(testee, .userDefined(id: "custom1", name: "Reviewed"))
     }
 
     func test_init_defaultCase() {
-        let status = GradeStatus(defaultStatus: "late")
-        XCTAssertEqual(status, .late)
+        let testee = GradeStatus(defaultStatusId: "late")
+        XCTAssertEqual(testee, .late)
     }
 
     func test_properties_late() {

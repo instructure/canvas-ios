@@ -23,7 +23,7 @@ import SwiftUI
 
 class GradeStatusViewModel: ObservableObject {
     // MARK: - Outputs
-    @Published private(set) var selectedOption: OptionItem = OptionItem.from(.none)
+    @Published private(set) var selectedOption: OptionItem
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var isShowingDaysLateSection: Bool = false
     @Published private(set) var daysLate: String = ""
@@ -59,6 +59,9 @@ class GradeStatusViewModel: ObservableObject {
         self.interactor = interactor
         self.submissionId = submissionId
         self.userId = userId
+        // Placeholder until we read the actual status from the database.
+        self.selectedOption = .from(.none)
+
         // If we receive no statuses from the API we fall back to the none status
         options = (interactor.gradeStatuses.nilIfEmpty ?? [.none])
             .map { OptionItem.from($0) }

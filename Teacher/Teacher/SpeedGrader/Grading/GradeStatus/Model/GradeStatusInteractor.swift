@@ -70,7 +70,7 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
         return api.makeRequest(request)
             .map { $0.body }
             .map { [weak self] response in
-                let defaults = response.defaultGradeStatuses.map { GradeStatus(defaultStatus: $0) }
+                let defaults = response.defaultGradeStatuses.map { GradeStatus(defaultStatusId: $0) }
                 let custom = response.customGradeStatuses.map { GradeStatus(userDefinedName: $0.name, id: $0.id) }
                 self?.gradeStatuses = defaults + custom
             }

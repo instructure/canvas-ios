@@ -27,8 +27,9 @@ enum GradeStatus: Equatable, Identifiable, OptionItemIdentifiable {
     case missing
     /// The user is excused from the assignment, so no score will be given.
     case excused
+    /// The student was provided extra time to submit the assignment.
     case extended
-    /// There is no status assigned for the assignment.
+    /// There is no status assigned for the submission.
     case none
     /// Any canvas statuses returned by the API that are not one of the known defaults.
     case unknownDefault(String)
@@ -70,14 +71,14 @@ enum GradeStatus: Equatable, Identifiable, OptionItemIdentifiable {
         return false
     }
 
-    init(defaultStatus: String) {
-        switch defaultStatus {
+    init(defaultStatusId: String) {
+        switch defaultStatusId {
         case "late": self = .late
         case "missing": self = .missing
         case "excused": self = .excused
         case "extended": self = .extended
         case "none": self = .none
-        default: self = .unknownDefault(defaultStatus)
+        default: self = .unknownDefault(defaultStatusId)
         }
     }
 

@@ -34,8 +34,8 @@ class GradeStatusViewModelTests: TeacherTestCase {
     func test_options_sorted_optionsMatchInteractor() {
         let interactor = GradeStatusInteractorMock()
         interactor.gradeStatuses = [
-            GradeStatus(defaultStatus: "Bravo"),
-            GradeStatus(defaultStatus: "Alpha")
+            GradeStatus(defaultStatusId: "Bravo"),
+            GradeStatus(defaultStatusId: "Alpha")
         ]
         let testee = makeViewModel(interactor: interactor)
         XCTAssertEqual(testee.options.map { $0.title }, ["Alpha", "Bravo"])
@@ -43,7 +43,7 @@ class GradeStatusViewModelTests: TeacherTestCase {
 
     func test_didSelectGradeStatus_triggersUpdateAndSetsSelected() {
         let interactor = GradeStatusInteractorMock()
-        let status = GradeStatus(defaultStatus: "Alpha")
+        let status = GradeStatus(defaultStatusId: "Alpha")
         interactor.gradeStatuses = [status]
         let testee = makeViewModel(interactor: interactor)
         let option = OptionItem(id: status.id, title: status.name)
@@ -62,7 +62,7 @@ class GradeStatusViewModelTests: TeacherTestCase {
 
     func test_didChangeAttempt_observeGradeStatusSetsSelectedOption() {
         let interactor = GradeStatusInteractorMock()
-        let status = GradeStatus(defaultStatus: "Alpha")
+        let status = GradeStatus(defaultStatusId: "Alpha")
         interactor.gradeStatuses = [status]
         let testee = makeViewModel(interactor: interactor)
 
@@ -80,7 +80,7 @@ class GradeStatusViewModelTests: TeacherTestCase {
     func test_didSelectGradeStatus_uploadGradeStatusError_showsAlert() {
         let interactor = GradeStatusInteractorMock()
         interactor.shouldFailUpdateSubmissionGradeStatus = true
-        let status = GradeStatus(defaultStatus: "Alpha")
+        let status = GradeStatus(defaultStatusId: "Alpha")
         interactor.gradeStatuses = [status]
         let testee = makeViewModel(interactor: interactor)
         let option = OptionItem(id: status.id, title: status.name)
@@ -98,8 +98,8 @@ class GradeStatusViewModelTests: TeacherTestCase {
 
     func test_didSelectGradeStatus_retryUpload_succeedsAfterFailure() {
         let interactor = GradeStatusInteractorMock()
-        let statusA = GradeStatus(defaultStatus: "Alpha")
-        let statusNone = GradeStatus(defaultStatus: "none")
+        let statusA = GradeStatus(defaultStatusId: "Alpha")
+        let statusNone = GradeStatus(defaultStatusId: "none")
         interactor.gradeStatuses = [statusNone, statusA]
         let testee = makeViewModel(interactor: interactor)
         XCTAssertEqual(testee.selectedOption.id, "none")
