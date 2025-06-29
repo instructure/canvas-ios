@@ -49,15 +49,15 @@ class AssignmentSubmissionBreakdownViewModelTests: CoreTestCase {
         let testee = AssignmentSubmissionBreakdownViewModel(env: environment, courseID: "1", assignmentID: "2", submissionTypes: [])
 
         testee.routeToAll(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/assignments/2/submissions")!))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/assignments/2/submissions")!))
 
         testee.routeToGraded(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/assignments/2/submissions?filter=graded")!))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/assignments/2/submissions?filter=graded")!))
 
         testee.routeToUngraded(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/assignments/2/submissions?filter=needs_grading")!))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/assignments/2/submissions?filter=needs_grading")!))
 
         testee.routeToUnsubmitted(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/assignments/2/submissions?filter=not_submitted")!))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/assignments/2/submissions?filter=not_submitted")!))
     }
 }
