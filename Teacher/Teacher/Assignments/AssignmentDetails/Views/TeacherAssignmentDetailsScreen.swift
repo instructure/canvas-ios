@@ -129,13 +129,13 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
     }
 
     private func refreshAssignments() {
-        assignment.refresh { _ in
+        assignment.refresh(force: !env.isShared) { _ in
             isLocked = assignment.first?.lockedForUser ?? false
         }
     }
 
     private func refreshCourses() {
-        course.refresh { _ in
+        course.refresh(force: !env.isShared) { _ in
             isTeacherEnrollment = course
                 .first?
                 .enrollments?
@@ -313,7 +313,7 @@ extension TeacherAssignmentDetailsScreen {
                 image: .editLine,
                 actionHandler: { [_isTeacherEnrollment] in
                     if _isTeacherEnrollment.wrappedValue {
-                        env.router.route(to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
+                        env.router.route(to: "/courses/\(courseID)/assignments/\(assignmentID)/edit",
                                          from: controller,
                                          options: .modal(isDismissable: false, embedInNav: true))
                     } else {

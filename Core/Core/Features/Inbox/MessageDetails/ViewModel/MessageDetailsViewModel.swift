@@ -50,18 +50,18 @@ class MessageDetailsViewModel: ObservableObject {
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: MessageDetailsInteractor
-    private let router: Router
+    private let env: AppEnvironment
     private let myID: String
     private let allowArchive: Bool
 
-    public init(router: Router, interactor: MessageDetailsInteractor, myID: String, allowArchive: Bool) {
+    public init(env: AppEnvironment, interactor: MessageDetailsInteractor, myID: String, allowArchive: Bool) {
+        self.env = env
         self.interactor = interactor
-        self.router = router
         self.myID = myID
         self.allowArchive = allowArchive
 
         setupOutputBindings()
-        setupInputBindings(router: router)
+        setupInputBindings()
     }
 
     public func conversationMoreTapped(viewController: WeakViewController) {
@@ -132,7 +132,7 @@ class MessageDetailsViewModel: ObservableObject {
                 self?.deleteConversationDidTap.send((conversationId, viewController))
             }
         }
-        router.show(sheet, from: viewController, options: .modal())
+        env.router.show(sheet, from: viewController, options: .modal())
     }
 
     public func messageMoreTapped(message: ConversationMessage?, viewController: WeakViewController) {
@@ -168,7 +168,7 @@ class MessageDetailsViewModel: ObservableObject {
                 self?.deleteConversationMessageDidTap.send((conversationId: conversationId, messageId: messageId, viewController: viewController))
             }
         }
-        router.show(sheet, from: viewController, options: .modal())
+        env.router.show(sheet, from: viewController, options: .modal())
     }
 
     private func addReplyAction(_ sheet: BottomSheetPickerViewController, action: @escaping () -> Void ) {
@@ -187,10 +187,12 @@ class MessageDetailsViewModel: ObservableObject {
 
     public func forwardTapped(message: ConversationMessage? = nil, viewController: WeakViewController) {
         if let conversation = conversations.first {
-            router.show(
+            env.router.show(
                 ComposeMessageAssembly.makeComposeMessageViewController(
+                    env: env,
                     options: .init(
-                        fromType: .forward(conversation: conversation, message: message))
+                        fromType: .forward(conversation: conversation, message: message)
+                    )
                 ),
                 from: viewController,
                 options: .modal(
@@ -205,8 +207,8 @@ class MessageDetailsViewModel: ObservableObject {
 
     public func replyTapped(message: ConversationMessage?, viewController: WeakViewController) {
         if let conversation = conversations.first {
-            router.show(
-                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .reply(conversation: conversation, message: message))),
+            env.router.show(
+                ComposeMessageAssembly.makeComposeMessageViewController(env: env, options: .init(fromType: .reply(conversation: conversation, message: message))),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
@@ -215,8 +217,8 @@ class MessageDetailsViewModel: ObservableObject {
 
     public func replyAllTapped(message: ConversationMessage?, viewController: WeakViewController) {
         if let conversation = conversations.first {
-            router.show(
-                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .replyAll(conversation: conversation, message: message))),
+            env.router.show(
+                ComposeMessageAssembly.makeComposeMessageViewController(env: env, options: .init(fromType: .replyAll(conversation: conversation, message: message))),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
@@ -238,7 +240,7 @@ class MessageDetailsViewModel: ObservableObject {
         interactor.messages
             .map { messages in
                 messages.map {
-                    MessageViewModel(item: $0, myID: self.myID, userMap: self.interactor.userMap, router: self.router)
+                    MessageViewModel(item: $0, myID: self.myID, userMap: self.interactor.userMap, router: self.env.router)
                 }
             }
             .assign(to: &$messages)
@@ -246,7 +248,7 @@ class MessageDetailsViewModel: ObservableObject {
             .assign(to: &$starred)
     }
 
-    private func setupInputBindings(router: Router) {
+    private func setupInputBindings() {
         let interactor = self.interactor
         refreshDidTrigger
             .delay(for: .seconds(1), scheduler: RunLoop.main)
@@ -290,7 +292,7 @@ class MessageDetailsViewModel: ObservableObject {
                         .sink()
                         .store(in: &subscriptions)
                 }
-                self?.router.dismiss(viewController)
+                self?.env.router.dismiss(viewController)
             }
             .store(in: &subscriptions)
 
@@ -308,7 +310,7 @@ class MessageDetailsViewModel: ObservableObject {
                         .store(in: &subscriptions)
                 }
                 if self?.messages.count ?? 0 <= 1 {
-                    self?.router.dismiss(viewController)
+                    self?.env.router.dismiss(viewController)
                 }
                 self?.refreshDidTrigger.send({ })
             }

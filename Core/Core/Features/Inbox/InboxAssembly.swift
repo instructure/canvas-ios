@@ -25,13 +25,13 @@ public enum InboxAssembly {
         let messageInteractor = InboxMessageInteractorLive(env: env,
                                                     tabBarCountUpdater: .init(),
                                                     messageListStateUpdater: .init())
-        let favouriteInteractor = InboxMessageFavouriteInteractorLive()
+        let favouriteInteractor = InboxMessageFavouriteInteractorLive(env: env)
         let inboxSettingsInteractor = InboxSettingsInteractorLive(environment: env)
         let viewModel = InboxViewModel(
             messageInteractor: messageInteractor,
             favouriteInteractor: favouriteInteractor,
             inboxSettingsInteractor: inboxSettingsInteractor,
-            router: env.router
+            env: env
         )
 
         let inboxVC = CoreHostingController(InboxView(model: viewModel))
@@ -45,13 +45,13 @@ public enum InboxAssembly {
     public static func makeInboxViewControllerForParent() -> UIViewController {
         let env = AppEnvironment.shared
         let messageInteractor = InboxMessageInteractorLive(env: env, tabBarCountUpdater: .init(), messageListStateUpdater: .init())
-        let favouriteInteractor = InboxMessageFavouriteInteractorLive()
+        let favouriteInteractor = InboxMessageFavouriteInteractorLive(env: env)
         let inboxSettingsInteractor = InboxSettingsInteractorLive(environment: env)
         let viewModel = InboxViewModel(
             messageInteractor: messageInteractor,
             favouriteInteractor: favouriteInteractor,
             inboxSettingsInteractor: inboxSettingsInteractor,
-            router: env.router
+            env: env
         )
 
         let controller = CoreHostingController(InboxView(model: viewModel))
@@ -68,13 +68,13 @@ public enum InboxAssembly {
                                    messages: [InboxMessageListItem])
     -> InboxView {
         let messageInteractor = InboxMessageInteractorPreview(environment: environment, messages: messages)
-        let favouriteInteractor = InboxMessageFavouriteInteractorLive()
+        let favouriteInteractor = InboxMessageFavouriteInteractorLive(env: environment)
         let inboxSettingsInteractor = InboxSettingsInteractorPreview()
         let viewModel = InboxViewModel(
             messageInteractor: messageInteractor,
             favouriteInteractor: favouriteInteractor,
             inboxSettingsInteractor: inboxSettingsInteractor,
-            router: environment.router
+            env: environment
         )
         return InboxView(model: viewModel)
     }

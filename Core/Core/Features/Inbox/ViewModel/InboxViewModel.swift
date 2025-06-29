@@ -58,22 +58,25 @@ public class InboxViewModel: ObservableObject {
     private let inboxSettingsInteractor: InboxSettingsInteractor
     private var subscriptions = Set<AnyCancellable>()
     private var isLoadingNextPage = CurrentValueSubject<Bool, Never>(false)
+    private let env: AppEnvironment
 
     // MARK: - Init
     public init(
         messageInteractor: InboxMessageInteractor,
         favouriteInteractor: InboxMessageFavouriteInteractor,
         inboxSettingsInteractor: InboxSettingsInteractor,
-        router: Router
+        env: AppEnvironment
     ) {
         self.messageInteractor = messageInteractor
         self.favouriteInteractor = favouriteInteractor
         self.inboxSettingsInteractor = inboxSettingsInteractor
         self.isShowMenuButton = !messageInteractor.isParentApp
+        self.env = env
+
         bindInputsToDataSource()
         bindDataSourceOutputsToSelf()
         bindUserActionsToOutputs()
-        subscribeToTapEvents(router: router)
+        subscribeToTapEvents(router: env.router)
     }
 
     private func bindUserActionsToOutputs() {
@@ -178,7 +181,7 @@ public class InboxViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
         newMessageDidTap
-            .sink { [router, messageInteractor] source in
+            .sink { [router, messageInteractor, weak env] source in
                 // In the parent app we need a different logic for student context picker
                 if messageInteractor.isParentApp {
                     if let bottomSheet = router.match("/conversations/new_message") {
@@ -186,7 +189,7 @@ public class InboxViewModel: ObservableObject {
                     }
                 } else {
                     router.show(
-                        ComposeMessageAssembly.makeComposeMessageViewController(),
+                        ComposeMessageAssembly.makeComposeMessageViewController(env: env ?? .shared),
                         from: source,
                         options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
                     )

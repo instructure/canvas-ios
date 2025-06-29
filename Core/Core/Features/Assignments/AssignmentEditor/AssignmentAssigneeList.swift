@@ -42,10 +42,10 @@ struct AssigmentAssigneeList: View {
         !isEveryoneMatching && sections.isEmpty && groups.isEmpty && students.isEmpty
     }
 
-    init(courseID: String, groupCategoryID: String?, selection: Binding<[Assignee]>) {
-        groups = AppEnvironment.shared.subscribe(GetGroupsInCategory(groupCategoryID))
-        sections = AppEnvironment.shared.subscribe(GetCourseSections(courseID: courseID))
-        students = AppEnvironment.shared.subscribe(GetContextUsers(context: .course(courseID), type: .student))
+    init(env: AppEnvironment, courseID: String, groupCategoryID: String?, selection: Binding<[Assignee]>) {
+        groups = env.subscribe(GetGroupsInCategory(groupCategoryID))
+        sections = env.subscribe(GetCourseSections(courseID: courseID))
+        students = env.subscribe(GetContextUsers(context: .course(courseID), type: .student))
         _selection = selection
     }
 

@@ -55,7 +55,7 @@ class PostGradesPresenter {
         self?.updateColor()
     })
 
-    init(courseID: String, assignmentID: String, view: PostGradesViewProtocol, env: AppEnvironment = .shared) {
+    init(courseID: String, assignmentID: String, view: PostGradesViewProtocol, env: AppEnvironment) {
         self.courseID = courseID
         self.assignmentID = assignmentID
         self.env = env

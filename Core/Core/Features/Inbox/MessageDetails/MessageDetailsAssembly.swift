@@ -27,7 +27,7 @@ public enum MessageDetailsAssembly {
     ) -> UIViewController {
         let interactor = MessageDetailsInteractorLive(env: env, conversationID: conversationID)
         let viewModel = MessageDetailsViewModel(
-            router: env.router,
+            env: env,
             interactor: interactor,
             myID: env.currentSession?.userID ?? "",
             allowArchive: allowArchive
@@ -44,7 +44,7 @@ public enum MessageDetailsAssembly {
     -> MessageDetailsView {
         let interactor = MessageDetailsInteractorPreview(env: env, subject: subject, messages: messages)
         let viewModel = MessageDetailsViewModel(
-            router: env.router,
+            env: env,
             interactor: interactor,
             myID: env.currentSession?.userID ?? "",
             allowArchive: true

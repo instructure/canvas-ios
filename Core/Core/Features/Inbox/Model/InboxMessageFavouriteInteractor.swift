@@ -25,8 +25,12 @@ public protocol InboxMessageFavouriteInteractor {
 
 public final class InboxMessageFavouriteInteractorLive: InboxMessageFavouriteInteractor {
 
-    public init() { }
+    let env: AppEnvironment
+    public init(env: AppEnvironment) {
+        self.env = env
+    }
+
     public func updateStarred(to newValue: Bool, messageId: String) -> Future<URLResponse?, Error> {
-        StarConversation(id: messageId, starred: newValue).fetchWithFuture()
+        StarConversation(id: messageId, starred: newValue).fetchWithFuture(environment: env)
     }
 }

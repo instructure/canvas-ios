@@ -41,7 +41,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     private lazy var fileStore = uploadManager.subscribe(batchID: batchId, eventHandler: {})
 
     init(
-        env: AppEnvironment = .shared,
+        env: AppEnvironment,
         batchId: String,
         uploadFolderPath: String? = nil,
         restrictForFolderPath: Bool = false,
@@ -131,7 +131,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
             attachmentIDs: parameters.attachmentIDs,
             bulkMessage: parameters.bulkMessage
         )
-        .fetchWithFuture()
+        .fetchWithFuture(environment: env)
     }
 
     public func addConversationMessage(parameters: MessageParameters) -> Future<URLResponse?, Error> {
@@ -143,7 +143,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
                 recipientIDs: parameters.recipientIDs,
                 includedMessages: parameters.includedMessages
             )
-            .fetchWithFuture()
+            .fetchWithFuture(environment: env)
         } else {
             return Future<URLResponse?, Error> { promise in
                 promise(.failure(NSError.instructureError(String(localized: "Invalid conversation ID", bundle: .core))))
@@ -154,13 +154,14 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     // MARK: Private helpers
 
     private func setupAttachmentListBinding() {
-        alreadyUploadedFiles.setFailureType(to: Error.self)
-        .combineLatest(with: fileStore.allObjects.setFailureType(to: Error.self))
-        .receive(on: scheduler)
-        .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] combinedFiles in
-            self?.attachments.send(combinedFiles[0] + combinedFiles[1])
-        })
-        .store(in: &subscriptions)
+        alreadyUploadedFiles
+            .setFailureType(to: Error.self)
+            .combineLatest(with: fileStore.allObjects.setFailureType(to: Error.self))
+            .receive(on: scheduler)
+            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] combinedFiles in
+                self?.attachments.send(combinedFiles[0] + combinedFiles[1])
+            })
+            .store(in: &subscriptions)
     }
 
     private func uploadFiles() {
@@ -174,7 +175,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     private func deleteFile(file: File) -> AnyPublisher<Void, Never> {
         guard let fileId = file.id else { return Just(()).eraseToAnyPublisher() }
 
-        return ReactiveStore(useCase: DeleteFile(fileID: fileId))
+        return ReactiveStore(useCase: DeleteFile(fileID: fileId), environment: env)
             .getEntities()
             .mapToVoid()
             .replaceError(with: ())
@@ -197,7 +198,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     }
 
     private func getOnlineFileURL(fileId: String) -> AnyPublisher<URL?, Error> {
-        ReactiveStore(useCase: GetFile(context: .currentUser, fileID: fileId))
+        ReactiveStore(useCase: GetFile(context: .currentUser, fileID: fileId), environment: env)
             .getEntities()
             .map { files in
                 return files.first?.url
@@ -225,11 +226,14 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     }
 
     private func getFolderByPath() -> AnyPublisher<Folder, Error> {
-        return ReactiveStore(useCase: GetFolderByPath(context: .currentUser, path: uploadFolderPath ?? ""))
-            .getEntities()
-            .compactMap { folders in
-                return folders.first
-            }
-            .eraseToAnyPublisher()
+        return ReactiveStore(
+            useCase: GetFolderByPath(context: .currentUser, path: uploadFolderPath ?? ""),
+            environment: env
+        )
+        .getEntities()
+        .compactMap { folders in
+            return folders.first
+        }
+        .eraseToAnyPublisher()
     }
 }

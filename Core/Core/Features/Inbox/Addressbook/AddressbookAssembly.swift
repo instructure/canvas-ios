@@ -23,7 +23,7 @@ import UIKit
 public enum AddressBookAssembly {
 
     public static func makeAddressbookRecipientViewController(
-        env: AppEnvironment = .shared,
+        env: AppEnvironment,
         recipientContext: RecipientContext,
         roleName: String,
         recipients: [Recipient],
@@ -40,11 +40,11 @@ public enum AddressBookAssembly {
             selectedRecipients: selectedRecipients
         )
         let view = AddressbookRecipientView(model: viewModel)
-        return CoreHostingController(view)
+        return CoreHostingController(view, env: env)
     }
 
     public static func makeAddressbookRoleViewController(
-        env: AppEnvironment = .shared,
+        env: AppEnvironment,
         recipientContext: RecipientContext,
         teacherOnly: Bool,
         didSelectRecipient: PassthroughRelay<Recipient>,
@@ -61,7 +61,7 @@ public enum AddressBookAssembly {
             selectedRecipients: selectedRecipients
         )
         let view = AddressbookRoleView(model: viewModel)
-        return CoreHostingController(view)
+        return CoreHostingController(view, env: env)
     }
 
 #if DEBUG

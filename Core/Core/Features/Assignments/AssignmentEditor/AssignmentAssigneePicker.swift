@@ -40,16 +40,16 @@ struct AssignmentAssigneePicker: View {
         groups.state == .loading || sections.state == .loading || students.state == .loading
     }
 
-    init(courseID: String, groupCategoryID: String?, overrides: Binding<[Override]>, override: Override) {
+    init(env: AppEnvironment, courseID: String, groupCategoryID: String?, overrides: Binding<[Override]>, override: Override) {
         self.courseID = courseID
         self.groupCategoryID = groupCategoryID
         self.override = override
         self._overrides = overrides
         self._selection = State(initialValue: Assignee.from(override))
 
-        groups = AppEnvironment.shared.subscribe(GetGroupsInCategory(groupCategoryID))
-        sections = AppEnvironment.shared.subscribe(GetCourseSections(courseID: courseID))
-        students = AppEnvironment.shared.subscribe(GetContextUsers(context: .course(courseID), type: .student))
+        groups = env.subscribe(GetGroupsInCategory(groupCategoryID))
+        sections = env.subscribe(GetCourseSections(courseID: courseID))
+        students = env.subscribe(GetContextUsers(context: .course(courseID), type: .student))
     }
 
     var body: some View {
@@ -132,9 +132,18 @@ struct AssignmentAssigneePicker: View {
     func student(_ id: String) -> User? { students.first { $0.id == id } }
 
     func add() {
-        env.router.show(CoreHostingController(AssigmentAssigneeList(
-            courseID: courseID, groupCategoryID: groupCategoryID, selection: $selection
-        )), from: controller)
+        env.router.show(
+            CoreHostingController(
+                AssigmentAssigneeList(
+                    env: env,
+                    courseID: courseID,
+                    groupCategoryID: groupCategoryID,
+                    selection: $selection
+                ),
+                env: env
+            ),
+            from: controller
+        )
     }
 
     func save() {

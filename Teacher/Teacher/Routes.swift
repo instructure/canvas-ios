@@ -55,16 +55,16 @@ let router = Router(routes: [
     RouteHandler("/conversations"),
 
     // Special Inbox Compose route to handle 'New Message' action. This action has different implementation in the Parent app
-    RouteHandler("/conversations/new_message") { url, _, _ in
-        return ComposeMessageAssembly.makeComposeMessageViewController(url: url)
+    RouteHandler("/conversations/new_message") { url, _, _, env in
+        return ComposeMessageAssembly.makeComposeMessageViewController(env: env, url: url)
     },
 
-    RouteHandler("/conversations/compose") { url, _, _ in
-        return ComposeMessageAssembly.makeComposeMessageViewController(url: url)
+    RouteHandler("/conversations/compose") { url, _, _, env in
+        return ComposeMessageAssembly.makeComposeMessageViewController(env: env, url: url)
     },
 
-    RouteHandler("/conversations/settings") { _, _, _ in
-        return InboxSettingsAssembly.makeInboxSettingsViewController()
+    RouteHandler("/conversations/settings") { _, _, _, env in
+        return InboxSettingsAssembly.makeInboxSettingsViewController(env: env)
     },
 
     RouteHandler("/conversations/:conversationID") { _, params, userInfo in
@@ -162,9 +162,9 @@ let router = Router(routes: [
             .makeViewController(env: env, courseID: courseID, assignmentID: assignmentID)
     },
 
-    RouteHandler("/courses/:courseID/assignments/:assignmentID/post_policy") { _, params, _ in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID/post_policy") { _, params, _, env in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
-        return PostSettingsViewController.create(courseID: courseID, assignmentID: assignmentID)
+        return PostSettingsViewController.create(courseID: courseID, assignmentID: assignmentID, env: env)
     },
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions") { url, params, _, env in

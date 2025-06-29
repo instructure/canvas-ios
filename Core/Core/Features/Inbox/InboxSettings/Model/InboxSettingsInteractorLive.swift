@@ -32,7 +32,7 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
 
     private let environment: AppEnvironment
 
-    public init(environment: AppEnvironment = .shared) {
+    public init(environment: AppEnvironment) {
         let userId = environment.currentSession?.userID ?? ""
         self.settingsStore = ReactiveStore(useCase: GetInboxSettings(userId: userId))
         self.environmentSettingsStore = ReactiveStore(useCase: GetEnvironmentSettings())
@@ -99,7 +99,7 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
 
     public func updateInboxSettings(inboxSettings: CDInboxSettings) -> AnyPublisher<Void, Error> {
         return UpdateInboxSettings(inboxSettings: inboxSettings)
-            .fetchWithFuture()
+            .fetchWithFuture(environment: environment)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
