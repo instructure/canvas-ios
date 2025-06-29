@@ -41,7 +41,7 @@ final class RecipientInteractorLiveTests: CoreTestCase {
         api.mock(GetSearchRecipients(context: context), value: ReceiptStub.apiSearchRecipient)
         let didLoadRecipients = expectation(description: "didLoadRecipients")
         // When
-        sut.getRecipients(by: context)
+        sut.getRecipients(by: context, env: environment)
             .sink { result in
                 // Then
                 XCTAssertEqual(result.count, 5)
@@ -57,7 +57,7 @@ final class RecipientInteractorLiveTests: CoreTestCase {
         api.mock(GetSearchRecipients(context: context), value: ReceiptStub.apiSearchRecipient)
         let didLoadRecipients = expectation(description: "didLoadRecipients")
         // When Then
-        sut.getRecipients(by: nil)
+        sut.getRecipients(by: nil, env: environment)
             .sink { result in
                 // Then
                 XCTAssertEqual(result.count, 0)

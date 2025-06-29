@@ -24,7 +24,7 @@ class AssignmentSubmissionBreakdownViewModelTests: CoreTestCase {
         let useCase = GetSubmissionSummary(context: .course("1"), assignmentID: "2")
         let submissionSummary = APISubmissionSummary.make(graded: 1, ungraded: 2, not_submitted: 3)
         api.mock(useCase, value: submissionSummary)
-        let testee = AssignmentSubmissionBreakdownViewModel(courseID: "1", assignmentID: "2", submissionTypes: [])
+        let testee = AssignmentSubmissionBreakdownViewModel(env: environment, courseID: "1", assignmentID: "2", submissionTypes: [])
         testee.viewDidAppear()
 
         XCTAssertEqual(testee.graded, 1)
@@ -34,19 +34,19 @@ class AssignmentSubmissionBreakdownViewModelTests: CoreTestCase {
     }
 
     func testSubmissionTypes() {
-        var testee = AssignmentSubmissionBreakdownViewModel(courseID: "1", assignmentID: "2", submissionTypes: [.online_upload, .basic_lti_launch])
+        var testee = AssignmentSubmissionBreakdownViewModel(env: environment, courseID: "1", assignmentID: "2", submissionTypes: [.online_upload, .basic_lti_launch])
         XCTAssertFalse(testee.noSubmissionTypes)
         XCTAssertFalse(testee.paperSubmissionTypes)
 
-        testee = AssignmentSubmissionBreakdownViewModel(courseID: "1", assignmentID: "2", submissionTypes: [.not_graded])
+        testee = AssignmentSubmissionBreakdownViewModel(env: environment, courseID: "1", assignmentID: "2", submissionTypes: [.not_graded])
         XCTAssertTrue(testee.noSubmissionTypes)
 
-        testee = AssignmentSubmissionBreakdownViewModel(courseID: "1", assignmentID: "2", submissionTypes: [.on_paper])
+        testee = AssignmentSubmissionBreakdownViewModel(env: environment, courseID: "1", assignmentID: "2", submissionTypes: [.on_paper])
         XCTAssertTrue(testee.paperSubmissionTypes)
     }
 
     func testRouting() {
-        let testee = AssignmentSubmissionBreakdownViewModel(courseID: "1", assignmentID: "2", submissionTypes: [])
+        let testee = AssignmentSubmissionBreakdownViewModel(env: environment, courseID: "1", assignmentID: "2", submissionTypes: [])
 
         testee.routeToAll(router: router, viewController: WeakViewController(UIViewController()))
         XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/assignments/2/submissions")!))

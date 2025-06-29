@@ -26,7 +26,7 @@ class QuizSubmissionBreakdownViewModelTests: CoreTestCase {
     func testProperties() {
         mockSubmissions()
         mockEnrollments()
-        let testee = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizSubmissionBreakdownViewModelLive(env: environment, courseID: courseID, quizID: quizID)
         testee.viewDidAppear()
 
         XCTAssertEqual(testee.color, .accentColor)
@@ -37,7 +37,7 @@ class QuizSubmissionBreakdownViewModelTests: CoreTestCase {
     }
 
     func testRouting() {
-        let testee = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizSubmissionBreakdownViewModelLive(env: environment, courseID: courseID, quizID: quizID)
 
         testee.routeToAll(router: router, viewController: WeakViewController(UIViewController()))
         XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/quizzes/2/submissions")!))

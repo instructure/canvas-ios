@@ -28,7 +28,7 @@ class InboxSettingsViewModelTests: CoreTestCase {
 
     func testOutputValues() {
         mockInteractor = InboxSettingsInteractorMock(environment: environment)
-        testee = InboxSettingsViewModel(interactor: mockInteractor, router: router)
+        testee = InboxSettingsViewModel(interactor: mockInteractor, env: environment)
 
         mockInteractor.setEnvironmentSettings(settings: getEnvironmentSettings(enableSignature: true, disableSignatureForStudent: false))
         mockInteractor.setSettings(inboxSettings: getInboxSettings(useSignature: true, signature: "Test"))

@@ -36,7 +36,7 @@ class InboxViewModelTests: CoreTestCase {
             messageInteractor: mockInteractor,
             favouriteInteractor: messageInteractor,
             inboxSettingsInteractor: inboxSettingsInteractor,
-            router: router
+            env: environment
         )
     }
 
