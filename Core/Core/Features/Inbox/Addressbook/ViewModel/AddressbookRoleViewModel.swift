@@ -165,6 +165,7 @@ class AddressbookRoleViewModel: ObservableObject {
                 if let self {
                     self.router.show(
                         AddressBookAssembly.makeAddressbookRecipientViewController(
+                            env: env,
                             recipientContext: self.recipientContext,
                             roleName: roleName,
                             recipients: recipients,

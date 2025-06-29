@@ -87,7 +87,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
         }
 
         let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases)
-        useCase.fetch(force: true) { _, _, fetchError in
+        useCase.fetch(environment: env, force: true) { _, _, fetchError in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 if fetchError != nil {
@@ -103,7 +103,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
 
     func fetchAssignmentGroups() {
         let useCase = GetAssignmentGroups(courseID: courseID)
-        useCase.fetch(force: true) { _, _, fetchError in
+        useCase.fetch(environment: env, force: true) { _, _, fetchError in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 if fetchError != nil {
@@ -288,7 +288,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
             }
             if result != nil {
                 GetAssignment(courseID: self.courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases)
-                    .fetch(force: true)
+                    .fetch(environment: self.env, force: true)
                 self.dismiss(router: router, viewController: viewController.value)
             }
         } }

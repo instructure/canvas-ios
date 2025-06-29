@@ -149,8 +149,13 @@ class SubmissionListViewModel: ObservableObject {
             )
         )
 
+        var composeURL = URLComponents()
+        composeURL.host = env.apiHost
+        composeURL.path = "/conversations/compose"
+        composeURL.queryItems = composeMessageOptions.queryItems
+
         env.router.route(
-            to: URLComponents.parse("/conversations/compose", queryItems: composeMessageOptions.queryItems),
+            to: composeURL,
             from: controller.value,
             options: .modal(embedInNav: true)
         )

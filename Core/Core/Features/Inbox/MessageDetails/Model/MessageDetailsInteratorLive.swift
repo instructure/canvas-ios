@@ -81,18 +81,18 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
     }
 
     public func updateStarred(starred: Bool) -> Future<URLResponse?, Error> {
-        return StarConversation(id: conversationID, starred: starred).fetchWithFuture()
+        return StarConversation(id: conversationID, starred: starred).fetchWithFuture(environment: env)
     }
 
     public func updateState(messageId: String, state: ConversationWorkflowState) -> Future<URLResponse?, Error> {
-        return UpdateConversationState(id: messageId, state: state).fetchWithFuture()
+        return UpdateConversationState(id: messageId, state: state).fetchWithFuture(environment: env)
     }
 
     public func deleteConversation(conversationId: String) -> Future<URLResponse?, Error> {
-        return DeleteConversation(id: conversationId).fetchWithFuture()
+        return DeleteConversation(id: conversationId).fetchWithFuture(environment: env)
     }
 
     public func deleteConversationMessage(conversationId: String, messageId: String) -> Future<URLResponse?, Error> {
-        return DeleteConversationMessage(id: conversationId, removeIds: [messageId]).fetchWithFuture()
+        return DeleteConversationMessage(id: conversationId, removeIds: [messageId]).fetchWithFuture(environment: env)
     }
 }
