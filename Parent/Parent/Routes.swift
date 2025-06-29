@@ -46,38 +46,38 @@ let router = Router(routes: [
         return ParentInboxCoursePickerAssembly.makeParentInboxCoursePickerBottomSheetViewController()
     },
 
-    RouteHandler("/conversations/compose") { url, _, _, env in
-        return ComposeMessageAssembly.makeComposeMessageViewController(env: env, url: url)
+    RouteHandler("/conversations/compose") { url, _, _ in
+        return ComposeMessageAssembly.makeComposeMessageViewController(env: .shared, url: url)
     },
 
-    RouteHandler("/conversations/settings") { _, _, _, env in
-        return InboxSettingsAssembly.makeInboxSettingsViewController(env: env)
+    RouteHandler("/conversations/settings") { _, _, _ in
+        return InboxSettingsAssembly.makeInboxSettingsViewController(env: .shared)
     },
 
-    RouteHandler("/conversations/:conversationID") { _, params, _, env in
+    RouteHandler("/conversations/:conversationID") { _, params, _ in
         guard let conversationID = params["conversationID"] else { return nil }
-        return MessageDetailsAssembly.makeViewController(env: env, conversationID: conversationID, allowArchive: true)
+        return MessageDetailsAssembly.makeViewController(env: .shared, conversationID: conversationID, allowArchive: true)
     },
 
     RouteHandler("/courses") { _, _, _ in
         return DashboardViewController.create()
     },
 
-    RouteHandler("/courses/:courseID/assignments/:assignmentID") { _, params, _, env in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID") { _, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         guard let studentID = currentStudentID else { return nil }
         if assignmentID == "syllabus" {
             return SyllabusViewController.create(courseID: courseID)
         }
-        return AssignmentDetailsViewController.create(env: env, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
+        return AssignmentDetailsViewController.create(env: .shared, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
 
-    RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { _, params, _, env in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { _, params, _ in
         guard let courseID = params["courseID"],
               let assignmentID = params["assignmentID"],
               let studentID = params["userID"]
         else { return nil }
-        return AssignmentDetailsViewController.create(env: env, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
+        return AssignmentDetailsViewController.create(env: .shared, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
 
     RouteHandler("/courses/:courseID/grades") { _, params, _ in
