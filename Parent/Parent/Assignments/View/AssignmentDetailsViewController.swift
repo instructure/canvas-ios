@@ -290,7 +290,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                 autoTeacherSelect: true
             )
         )
-        let composeController = ComposeMessageAssembly.makeComposeMessageViewController(options: options)
+        let composeController = ComposeMessageAssembly.makeComposeMessageViewController(env: env, options: options)
         env.router.show(composeController, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
     }
 

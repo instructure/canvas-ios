@@ -23,6 +23,7 @@ import TestsFoundation
 
 class AssignmentDetailsViewControllerTests: ParentTestCase {
     lazy var controller = AssignmentDetailsViewController.create(
+        env: env,
         studentID: "1",
         courseID: "1",
         assignmentID: "1",
@@ -140,6 +141,7 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
     func testUsesSubmissionInteractorForSubmissionPresentation() {
         let submissionURLInteractorMock = ParentSubmissionURLInteractorMock()
         let testee = AssignmentDetailsViewController.create(
+            env: env,
             studentID: "1",
             courseID: "1",
             assignmentID: "1",
