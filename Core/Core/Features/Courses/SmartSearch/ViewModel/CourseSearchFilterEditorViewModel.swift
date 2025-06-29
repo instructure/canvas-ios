@@ -35,7 +35,7 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
 
     // MARK: Initialization
 
-    init(selection: Binding<CourseSmartSearchFilter?>, accentColor: Color?) {
+    init(selection: Binding<CourseSmartSearchFilter?>) {
         self.selection = selection
 
         let initialFilter = selection.wrappedValue
@@ -43,14 +43,14 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
 
         let initialSortMode = initialFilter?.sortMode ?? .relevance
         self.sortModeOptions = .init(
-            all: SortMode.allCases.map { $0.optionItem(color: accentColor) },
-            initial: initialSortMode.optionItem(color: accentColor)
+            all: SortMode.allCases.map { $0.optionItem },
+            initial: initialSortMode.optionItem
         )
 
         let initialResultTypes = initialFilter?.includedTypes.nilIfEmpty ?? ResultType.filterableTypes
         self.resultTypeOptions = .init(
-            all: ResultType.filterableTypes.map { $0.optionItem(color: accentColor) },
-            initial: Set(initialResultTypes.map { $0.optionItem(color: accentColor) })
+            all: ResultType.filterableTypes.map { $0.optionItem },
+            initial: Set(initialResultTypes.map { $0.optionItem })
         )
 
         Publishers
@@ -111,14 +111,14 @@ private extension CourseSmartSearchFilter.SortMode {
         self.init(rawValue: optionItem.id)
     }
 
-    func optionItem(color: Color?) -> OptionItem {
-        .init(id: rawValue, title: title, color: color)
+    var optionItem: OptionItem {
+        .init(id: rawValue, title: title)
     }
 }
 
 private extension CourseSmartSearchResultType {
-    func optionItem(color: Color?) -> OptionItem {
-        .init(id: rawValue, title: title, color: color, accessoryIcon: icon)
+    var optionItem: OptionItem {
+        .init(id: rawValue, title: title, accessoryIcon: icon)
     }
 
     func isMatch(for optionItem: OptionItem?) -> Bool {

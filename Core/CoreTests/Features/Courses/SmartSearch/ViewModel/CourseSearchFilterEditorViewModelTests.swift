@@ -43,7 +43,7 @@ final class CourseSearchFilterEditorViewModelTests: CoreTestCase {
 
     func test_filter_submission() throws {
         // Given
-        let model = CourseSearchFilterEditorViewModel(selection: selectionBinding(), accentColor: nil)
+        let model = CourseSearchFilterEditorViewModel(selection: selectionBinding())
 
         // When - selecting only sort
         model.sortModeOptions.selected.send(.make(id: "type"))

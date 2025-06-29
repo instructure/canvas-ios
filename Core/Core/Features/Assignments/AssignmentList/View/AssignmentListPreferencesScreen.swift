@@ -21,7 +21,6 @@ import SwiftUI
 public struct AssignmentListPreferencesScreen: View {
     @Environment(\.viewController) private var viewController
     @ObservedObject private var viewModel: AssignmentListPreferencesViewModel
-    private let color: Color = .init(Brand.shared.primary)
 
     public init(viewModel: AssignmentListPreferencesViewModel) {
         self.viewModel = viewModel
@@ -44,6 +43,7 @@ public struct AssignmentListPreferencesScreen: View {
                 }
             }
         }
+        .tint(viewModel.courseColor)
         .background(Color.backgroundLightest)
         .navigationBarTitleView(
             title: String(localized: "Assignment List Preferences", bundle: .core),
@@ -143,6 +143,7 @@ struct AssignmentFilterScreen_Previews: PreviewProvider {
             gradingPeriods: gradingPeriods,
             initialGradingPeriod: nil,
             courseName: "Sample Course Name",
+            courseColor: .green,
             env: AppEnvironment.shared,
             completion: { _ in })
         AssignmentListPreferencesScreen(viewModel: viewModel)

@@ -29,7 +29,6 @@ extension InstUI {
         private let title: String
         private let subtitle: String?
         @Binding private var isSelected: Bool
-        private let color: Color
         private let accessoryView: (() -> Accessory)?
         private let dividerStyle: InstUI.Divider.Style
 
@@ -39,14 +38,12 @@ extension InstUI {
             title: String,
             subtitle: String? = nil,
             isSelected: Binding<Bool>,
-            color: Color,
             accessoryView: (() -> Accessory)?,
             dividerStyle: InstUI.Divider.Style = .full
         ) {
             self.title = title
             self.subtitle = subtitle
             self._isSelected = isSelected
-            self.color = color
             self.accessoryView = accessoryView
             self.dividerStyle = dividerStyle
         }
@@ -55,14 +52,12 @@ extension InstUI {
             title: String,
             subtitle: String? = nil,
             isSelected: Binding<Bool>,
-            color: Color,
             dividerStyle: InstUI.Divider.Style = .full
         ) where Accessory == SwiftUI.EmptyView {
             self.init(
                 title: title,
                 subtitle: subtitle,
                 isSelected: isSelected,
-                color: color,
                 accessoryView: nil,
                 dividerStyle: dividerStyle
             )
@@ -76,12 +71,9 @@ extension InstUI {
                     isSelected.toggle()
                 } label: {
                     HStack(spacing: 0) {
-                        InstUI.Checkbox(
-                            isSelected: isSelected,
-                            color: color
-                        )
-                        .paddingStyle(.trailing, .cellIconText)
-                        .animation(.default, value: isSelected)
+                        InstUI.Checkbox(isSelected: isSelected)
+                            .paddingStyle(.trailing, .cellIconText)
+                            .animation(.default, value: isSelected)
 
                         VStack(spacing: 2) {
                             Text(title)
@@ -123,8 +115,7 @@ private struct Container: View {
         InstUI.CheckboxCell(
             title: "Checkbox here",
             subtitle: "Subtitle",
-            isSelected: $isSelected,
-            color: .orange
+            isSelected: $isSelected
         )
     }
 }
