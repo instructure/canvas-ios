@@ -16,28 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Core
+import WidgetKit
+import AppIntents
 
-extension URL {
+struct SelectCourseIntent: WidgetConfigurationIntent {
+    static var title: LocalizedStringResource = "Select Course"
+    static var description = IntentDescription("Selects the course to display total grade for.")
 
-    static var appEmptyRoute: URL {
-        appRoute("")
-    }
+    @Parameter(title: "Course")
+    var course: CourseEntity?
 
-    static func appRoute(_ path: String) -> URL {
-        var urlComps = URLComponents()
-        urlComps.scheme = "canvas-courses"
-        urlComps.host = AppEnvironment.shared.currentSession?.baseURL.host
-        urlComps.path = "/" + path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-        return urlComps.url ?? URL(filePath: "/")
-    }
+    @Parameter(title: "Based on graded assignments", default: true)
+    var basedOnGradedAssignments: Bool
 
-    static func todoWidgetRoute(_ path: String) -> URL {
-        appRoute(path).appendingOrigin("todo-widget")
-    }
-
-    static func courseGradeWidgetRoute(_ path: String) -> URL {
-        appRoute(path).appendingOrigin("course-grade-widget")
-    }
+    init() { }
 }

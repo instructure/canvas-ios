@@ -54,6 +54,10 @@ extension View {
     func defaultTodoWidgetContainer() -> some View {
         containerBackground(for: .widget) { Color.backgroundLightest }
     }
+
+    func defaultWidgetContainerBackground() -> some View {
+        containerBackground(for: .widget) { Color.backgroundLightest }
+    }
 }
 
 #if DEBUG

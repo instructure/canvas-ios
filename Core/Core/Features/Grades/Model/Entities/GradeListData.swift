@@ -19,16 +19,16 @@
 import UIKit
 
 public struct GradeListData: Identifiable, Equatable {
-   public var id: String?
-   var userID: String?
-   var courseName: String?
-   var courseColor: UIColor?
-   var assignmentSections: [AssignmentSections] = []
-   var isGradingPeriodHidden: Bool = true
-   var gradingPeriods: [GradingPeriod] = []
-   var currentGradingPeriod: GradingPeriod?
-   var totalGradeText: String?
-   var currentGradingPeriodID: String?
+    public var id: String?
+    var userID: String?
+    public var courseName: String?
+    public var courseColor: UIColor?
+    var assignmentSections: [AssignmentSections] = []
+    var isGradingPeriodHidden: Bool = true
+    var gradingPeriods: [GradingPeriod] = []
+    var currentGradingPeriod: GradingPeriod?
+    public var totalGradeText: String?
+    var currentGradingPeriodID: String?
 
     struct AssignmentSections: Identifiable, Equatable {
         var id: String

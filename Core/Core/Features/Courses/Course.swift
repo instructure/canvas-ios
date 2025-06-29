@@ -268,7 +268,7 @@ extension Course {
         return enrollments?.contains { $0.isTeacher } == true
     }
 
-    func enrollmentForGrades(userId: String?, includingCompleted: Bool = false) -> Enrollment? {
+    public func enrollmentForGrades(userId: String?, includingCompleted: Bool = false) -> Enrollment? {
         func first(of state: EnrollmentState) -> Enrollment? {
             enrollments?.first {
                 $0.state == state &&

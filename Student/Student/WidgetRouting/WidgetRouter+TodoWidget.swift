@@ -96,7 +96,7 @@ extension WidgetRouter {
             weakVC.setValue(vc)
             view.env.router.show(
                 vc,
-                from: view.tabController,
+                from: view.rootViewController,
                 options: .modal(isDismissable: false, embedInNav: true),
                 analyticsRoute: "/calendar/new"
             )
@@ -141,7 +141,7 @@ extension WidgetRouter {
 
     // MARK: - Private helpers
 
-    private static func showDetailsOnCalendarTab(_ detailsVC: UIViewController, url: URLComponents, view: WidgetRouter.ViewProxy) {
+    private static func showDetailsOnCalendarTab(_ detailsVC: UIViewController, url: URLComponents, view: AppViewProxy) {
         // Switch to Calendar tab
         view.selectTab(at: 1)
         view.resetSplitMasterToRoot()
@@ -150,7 +150,7 @@ extension WidgetRouter {
             // just a fallback, this should not happen
             view.env.router.show(
                 detailsVC,
-                from: view.tabController,
+                from: view.rootViewController,
                 options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
             )
             return
@@ -162,7 +162,7 @@ extension WidgetRouter {
         }
     }
 
-    private static func showDetailsOnCalendarTab(url: URLComponents, view: WidgetRouter.ViewProxy) {
+    private static func showDetailsOnCalendarTab(url: URLComponents, view: AppViewProxy) {
         let urlWithOrigin = url.withOrigin("calendar")
 
         // Switch to Calendar tab
@@ -173,7 +173,7 @@ extension WidgetRouter {
             // just a fallback, this should not happen
             view.env.router.route(
                 to: urlWithOrigin,
-                from: view.tabController,
+                from: view.rootViewController,
                 options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
             )
             return

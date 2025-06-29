@@ -1288,6 +1288,9 @@
         }
       }
     },
+    "Based on graded assignments" : {
+
+    },
     "Biology 201" : {
       "comment" : "Example course name",
       "localizations" : {
@@ -1802,7 +1805,16 @@
         }
       }
     },
+    "Canvas Course Total Grade Widget" : {
+
+    },
     "Canvas To-do Widget" : {
+
+    },
+    "Course" : {
+
+    },
+    "Course Grade" : {
 
     },
     "Course Grades" : {
@@ -2060,6 +2072,9 @@
           }
         }
       }
+    },
+    "Double tap to view course grades tab" : {
+
     },
     "Double tap to view full list of to-dos" : {
 
@@ -2321,6 +2336,9 @@
         }
       }
     },
+    "Example Course" : {
+
+    },
     "Finals are moving to next week." : {
       "comment" : "Example announcement title",
       "localizations" : {
@@ -2577,6 +2595,9 @@
           }
         }
       }
+    },
+    "Grade" : {
+
     },
     "Grades" : {
       "comment" : "Name of the grades widget",
@@ -3352,6 +3373,9 @@
     "Let's Get You Logged In!" : {
 
     },
+    "Loading" : {
+
+    },
     "Looks like you're free for the next 4 weeks.  Do you want to add some to-dos?" : {
 
     },
@@ -3610,6 +3634,9 @@
           }
         }
       }
+    },
+    "No Grades" : {
+
     },
     "No Grades To Display" : {
       "localizations" : {
@@ -4392,6 +4419,18 @@
     "Reloading Widget" : {
 
     },
+    "Select Course" : {
+
+    },
+    "Select course to show total grade" : {
+
+    },
+    "Selects the course to display total grade for." : {
+
+    },
+    "Something Went Wrong!" : {
+
+    },
     "Susan Jorgenson" : {
       "comment" : "Example author name",
       "localizations" : {
@@ -4905,6 +4944,9 @@
           }
         }
       }
+    },
+    "To see your grades, please log in to your account in the app." : {
+
     },
     "To see your to-dos, please log in to your account in the app.  It'll just take a sec!" : {
 
@@ -5432,8 +5474,14 @@
         }
       }
     },
+    "View total grade for a course" : {
+
+    },
     "View your to-do items." : {
       "comment" : "Description of the to-do widget"
+    },
+    "We're having trouble showing your grades right now." : {
+
     },
     "We're having trouble showing your tasks right now.  Please try again in a bit or head to the app." : {
 
