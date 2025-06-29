@@ -66,25 +66,18 @@ class SubmissionListViewModel: ObservableObject {
                 curatedList = list
             }
 
-            var sections = SubmissionListSection.Kind
-                .allCases
+            var itemIndex = 0
+            let sections = SubmissionListSection.Kind.allCases
                 .map { [weak self] kind in
                     let items = curatedList
                         .filter { kind.filter($0) }
-                        .map { SubmissionListItem(submission: $0, assignment: self?.assignment) }
+                        .map {
+                            itemIndex += 1
+                            return SubmissionListItem(submission: $0, assignment: self?.assignment, displayIndex: itemIndex)
+                        }
                     return SubmissionListSection(kind: kind, items: items)
                 }
                 .filter { $0.items.isNotEmpty }
-
-            var orderInList = 1
-            sections.indices.forEach { sectionIndex in
-                var section = sections[sectionIndex]
-                section.items.indices.forEach { itemIndex in
-                    section.items[itemIndex].orderInList = orderInList
-                    orderInList += 1
-                }
-                sections[sectionIndex] = section
-            }
 
             return sections
         })
@@ -128,7 +121,7 @@ class SubmissionListViewModel: ObservableObject {
 
         let recipients = sections
             .flatMap { section in
-                section.items.compactMap { $0.user?.asRecipient }
+                section.items.compactMap { $0.userAsRecipient }
             }
 
         let recipientContext = RecipientContext(

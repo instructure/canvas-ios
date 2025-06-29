@@ -74,7 +74,7 @@ struct AssigmentAssigneeList: View {
         Divider().padding(.top, -1)
         if isEveryoneMatching {
             ButtonRow(action: { select(.everyone) }, content: {
-                Avatar.Anonymous(isGroup: true)
+                Avatar(model: .anonymousGroup)
                     .padding(.trailing, 16)
                 Text(everyone)
                 Spacer()

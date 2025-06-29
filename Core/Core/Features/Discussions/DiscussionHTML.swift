@@ -74,10 +74,10 @@ public enum DiscussionHTML {
         if isTopic { classes += " \(Styles.avatarTopic)" }
         var style = ""
         var content = ""
-        if let url = Avatar.scrubbedURL(author.avatarURL)?.absoluteString {
+        if let url = User.scrubbedAvatarUrl(author.avatarURL)?.absoluteString {
             style += "style=\"background-image:url(\(t(url)))\""
         } else {
-            content = t(Avatar.initials(for: author.name))
+            content = t(User.initials(for: author.name))
             classes += " \(Styles.avatarInitials)"
         }
         return """
@@ -206,8 +206,8 @@ public enum DiscussionHTML {
         guard let participant = participant else { return "null" }
         return """
         {id:\(s(participant.id)),
-        initials:\(s(Avatar.initials(for: participant.name))),
-        avatarURL:\(s(Avatar.scrubbedURL(participant.avatarURL)?.absoluteString)),
+        initials:\(s(User.initials(for: participant.name))),
+        avatarURL:\(s(User.scrubbedAvatarUrl(participant.avatarURL)?.absoluteString)),
         displayName:\(s(participant.displayName))}
         """
     }

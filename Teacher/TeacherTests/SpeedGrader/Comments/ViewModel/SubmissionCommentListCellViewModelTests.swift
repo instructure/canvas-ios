@@ -38,6 +38,7 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
     private var comment: SubmissionComment!
     private var assignment: Assignment!
     private var submission: Submission!
+    private var testee: SubmissionCommentListCellViewModel!
 
     override func setUp() {
         super.setUp()
@@ -59,6 +60,7 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
         comment = nil
         assignment = nil
         submission = nil
+        testee = nil
         super.tearDown()
     }
 
@@ -69,43 +71,44 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
         let url = URL(string: "/some_author/avatar")!
         comment.authorAvatarURL = url
 
-        let testee = makeViewModel()
+        testee = makeViewModel()
 
         XCTAssertEqual(testee.id, TestConstants.commentId)
-        XCTAssertEqual(testee.author.hasId, true)
-        XCTAssertEqual(testee.author.name, "\(TestConstants.authorName) (\(comment.authorPronouns!))")
-        XCTAssertEqual(testee.author.avatarUrl, url)
+        XCTAssertEqual(testee.author.userNameModel.name, "\(TestConstants.authorName) (\(comment.authorPronouns!))")
+        XCTAssertEqual(testee.author.userNameModel.avatarUrl, url)
         XCTAssertEqual(testee.date, comment.createdAtLocalizedString)
     }
 
     func test_authorIsCurrentUser() {
         comment.authorID = TestConstants.authorId
 
-        var testee = makeViewModel(currentUserId: TestConstants.authorId)
+        testee = makeViewModel(currentUserId: TestConstants.authorId)
         XCTAssertEqual(testee.author.isCurrentUser, true)
 
         testee = makeViewModel(currentUserId: TestConstants.currentUserId)
         XCTAssertEqual(testee.author.isCurrentUser, false)
     }
 
-    func test_authorIsAnonymized() {
+    func test_authorIsTappable() {
+        assignment.anonymizeStudents = false
+        comment.authorID = TestConstants.authorId
+        testee = makeViewModel()
+        XCTAssertEqual(testee.author.isTappable, true)
+
         assignment.anonymizeStudents = true
-        var testee = makeViewModel()
-        XCTAssertEqual(testee.author.isAnonymized, true)
+        comment.authorID = TestConstants.authorId
+        testee = makeViewModel()
+        XCTAssertEqual(testee.author.isTappable, false)
 
         assignment.anonymizeStudents = false
+        comment.authorID = nil
         testee = makeViewModel()
-        XCTAssertEqual(testee.author.isAnonymized, false)
-    }
+        XCTAssertEqual(testee.author.isTappable, false)
 
-    func test_authorIsGroup() {
-        submission.groupID = "some group id"
-        var testee = makeViewModel()
-        XCTAssertEqual(testee.author.isGroup, true)
-
-        submission.groupID = nil
+        assignment.anonymizeStudents = true
+        comment.authorID = nil
         testee = makeViewModel()
-        XCTAssertEqual(testee.author.isGroup, false)
+        XCTAssertEqual(testee.author.isTappable, false)
     }
 
     // MARK: - commentType
@@ -115,7 +118,7 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
         comment.mediaURL = nil
 
         comment.comment = TestConstants.commentText
-        var testee = makeViewModel()
+        testee = makeViewModel()
         XCTAssertEqual(testee.commentType.textComment, TestConstants.commentText)
 
         // empty text -> still a text comment
@@ -141,7 +144,7 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
         // audio with url -> audio
         comment.mediaType = .audio
         comment.mediaURL = mediaUrl
-        var testee = makeViewModel()
+        testee = makeViewModel()
         XCTAssertEqual(testee.commentType.audioUrl, mediaUrl)
         XCTAssertEqual(testee.commentType.textComment, nil)
 
@@ -177,7 +180,7 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
         ]
         comment.attachments = [makeFile(id: "this should be ignored")]
 
-        var testee = makeViewModel()
+        testee = makeViewModel()
         XCTAssertEqual(testee.commentType.attemptWithAttachmentsNumber, 42)
         XCTAssertEqual(testee.commentType.attemptWithAttachmentsFiles?.map(\.id), ["a", "b", "c"])
 
@@ -194,7 +197,7 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
         submission.type = .media_recording
         submission.attachments = [makeFile(id: "this should be ignored")]
 
-        let testee = makeViewModel()
+        testee = makeViewModel()
         XCTAssertEqual(testee.commentType.attemptNumber, 42)
         XCTAssertEqual(testee.commentType.attemptSubmission?.id, submission.id)
     }
@@ -204,7 +207,7 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
     func test_contextColor() {
         let publisher = PassthroughSubject<Color, Never>()
 
-        let testee = makeViewModel(contextColor: publisher.eraseToAnyPublisher())
+        testee = makeViewModel(contextColor: publisher.eraseToAnyPublisher())
         XCTAssertEqual(testee.contextColor.hexString, Brand.shared.primary.hexString)
 
         publisher.send(.green)
@@ -215,7 +218,7 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
 
     func test_didTapAvatarButton() {
         let sourceVC = UIViewController()
-        let testee = makeViewModel()
+        testee = makeViewModel()
 
         testee.didTapAvatarButton.send(.init(sourceVC))
 
@@ -227,7 +230,7 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
 
     func test_didTapFileButton() {
         let sourceVC = UIViewController()
-        let testee = makeViewModel()
+        testee = makeViewModel()
 
         testee.didTapFileButton.send(("some_fileId", .init(sourceVC)))
 
@@ -240,7 +243,7 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
     // MARK: - Accessibility
 
     func test_accessibilityLabelForHeader() {
-        let testee = makeViewModel()
+        testee = makeViewModel()
 
         XCTAssertEqual(testee.accessibilityLabelForHeader, comment.accessibilityLabelForHeader)
     }
@@ -249,7 +252,7 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
         submission.attempt = 7
         submission.type = .media_recording
 
-        let testee = makeViewModel()
+        testee = makeViewModel()
 
         XCTAssertEqual(testee.accessibilityLabelForAttempt, comment.accessibilityLabelForAttempt(submission: submission))
     }
@@ -259,7 +262,7 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
         file.displayName = "some filename"
         file.size = 1984
 
-        let testee = makeViewModel()
+        testee = makeViewModel()
         XCTAssertEqual(
             testee.accessibilityLabelForCommentAttachment(file),
             comment.accessibilityLabelForCommentAttachment(file)
@@ -273,7 +276,7 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
         file.displayName = "some filename"
         file.size = 1984
 
-        let testee = makeViewModel()
+        testee = makeViewModel()
         XCTAssertEqual(
             testee.accessibilityLabelForAttemptAttachment(file),
             comment.accessibilityLabelForAttemptAttachment(file, submission: submission)

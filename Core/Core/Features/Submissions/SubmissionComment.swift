@@ -114,3 +114,9 @@ final public class SubmissionComment: NSManagedObject {
         return model
     }
 }
+
+extension SubmissionComment: UserNameProvider {
+    public var name: String { authorName }
+    public var pronouns: String? { authorPronouns }
+    public var avatarURL: URL? { authorAvatarURL }
+}

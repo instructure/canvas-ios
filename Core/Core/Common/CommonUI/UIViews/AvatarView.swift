@@ -22,7 +22,7 @@ import UIKit
 open class AvatarView: UIView {
     public var url: URL? {
         didSet {
-            let url = Avatar.scrubbedURL(self.url)
+            let url = User.scrubbedAvatarUrl(self.url)
             sendSubviewToBack(imageView)
             imageView.backgroundColor = .backgroundLight
             imageView.contentMode = .scaleAspectFill
@@ -34,7 +34,7 @@ open class AvatarView: UIView {
     @IBInspectable
     public var name: String = "" {
         didSet {
-            label.text = Avatar.initials(for: name)
+            label.text = User.initials(for: name)
         }
     }
 
