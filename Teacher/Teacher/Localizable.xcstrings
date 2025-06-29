@@ -7434,6 +7434,9 @@
     "Close comment library" : {
 
     },
+    "Close drawer" : {
+
+    },
     "Close Drawer" : {
       "localizations" : {
         "ar" : {
@@ -7945,6 +7948,9 @@
           }
         }
       }
+    },
+    "Collapse drawer half screen" : {
+
     },
     "Collapsed" : {
       "localizations" : {
@@ -29564,6 +29570,9 @@
         }
       }
     },
+    "Open drawer full screen" : {
+
+    },
     "Open Drawer full screen" : {
       "localizations" : {
         "ar" : {
@@ -29819,6 +29828,9 @@
           }
         }
       }
+    },
+    "Open drawer half screen" : {
+
     },
     "Open Drawer half screen" : {
       "localizations" : {
