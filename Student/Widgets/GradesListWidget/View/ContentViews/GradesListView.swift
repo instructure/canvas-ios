@@ -75,40 +75,16 @@ struct GradesListItemView: View {
 
 #if DEBUG
 
-#Preview("Medium - 3 Courses", as: .systemMedium) {
-    GradesListWidget()
-} timeline: {
-    GradesListWidgetEntry(data: GradesListModel.make(count: 3), date: Date())
-}
-
-#Preview("Medium - Long Course Names", as: .systemMedium) {
-    GradesListWidget()
-} timeline: {
-    GradesListWidgetEntry(data: GradesListModel.makeWithLongCourseNames(), date: Date())
-}
-
-#Preview("Medium - One Long Course Name", as: .systemMedium) {
-    GradesListWidget()
-} timeline: {
-    GradesListWidgetEntry(data: GradesListModel.makeWithOneLongCourseName(), date: Date())
-}
-
-#Preview("Medium - Regular Course Names", as: .systemMedium) {
+#Preview("Medium", as: .systemMedium) {
     GradesListWidget()
 } timeline: {
     GradesListWidgetEntry(data: GradesListModel.make(), date: Date())
 }
 
-#Preview("Medium - Long Grade Texts", as: .systemMedium) {
+#Preview("Large", as: .systemLarge) {
     GradesListWidget()
 } timeline: {
-    GradesListWidgetEntry(data: GradesListModel.makeWithLongGradeTexts(), date: Date())
-}
-
-#Preview("Large - Long Course Names", as: .systemLarge) {
-    GradesListWidget()
-} timeline: {
-    GradesListWidgetEntry(data: GradesListModel.makeWithLongCourseNames(), date: Date())
+    GradesListWidgetEntry(data: GradesListModel.make(), date: Date())
 }
 
 #endif
