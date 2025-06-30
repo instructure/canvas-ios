@@ -82,21 +82,8 @@ class LoginAgainInteractorTests: CoreTestCase {
 
     // MARK: - Failure Scenarios
 
-    func test_manualOAuth_reThrowsError_onInvalidHost() {
-        api.loginSession = .mockManualOAuth(baseURL: .make())
-
-        XCTAssertThrowsError(
-            try testee.loginAgainOnExpiredRefreshToken(
-                tokenRefreshError: NSError.internalError(),
-                api: api
-            )
-        ) { error in
-            XCTAssertEqual(error as NSError, NSError.internalError())
-        }
-    }
-
-    func test_pkceOAuth_reThrowsError_onInvalidHost() {
-        api.loginSession = .mockPKCEOAuth(baseURL: .make())
+    func test_reThrowsError_onInvalidHost() {
+        api.loginSession = .mock(baseURL: .make())
 
         XCTAssertThrowsError(
             try testee.loginAgainOnExpiredRefreshToken(
@@ -132,9 +119,9 @@ class LoginAgainInteractorTests: CoreTestCase {
         }
     }
 
-    func test_pkceOAuth_throwsError_whenLoggedInWithDifferentUser() throws {
+    func test_throwsError_whenLoggedInWithDifferentUser() throws {
         // baseURL, userID and masquerader are compared if the session belongs to the same user
-        let differentUserSession = LoginSession.mockPKCEOAuth(
+        let differentUserSession = LoginSession.mock(
             baseURL: AppEnvironment.shared.currentSession!.baseURL,
             masquerader: AppEnvironment.shared.currentSession!.masquerader,
             userID: UUID.string
@@ -147,38 +134,7 @@ class LoginAgainInteractorTests: CoreTestCase {
         )
         .sink(
             receiveCompletion: { completion in
-                if case let .failure(failure) = completion {
-                    XCTAssertEqual(failure, .loggedInWithDifferentUser)
-                    streamFailed.fulfill()
-                }
-            },
-            receiveValue: { _ in
-                XCTFail("There should be no new session")
-            }
-        )
-        .store(in: &subscriptions)
-
-        mockLoginAgainViewModel.mockResultPublisher.send(differentUserSession)
-
-        wait(for: [streamFailed], timeout: 1)
-    }
-
-    func test_manualOAuth_throwsError_whenLoggedInWithDifferentUser() throws {
-        // baseURL, userID and masquerader are compared if the session belongs to the same user
-        let differentUserSession = LoginSession.mockManualOAuth(
-            baseURL: AppEnvironment.shared.currentSession!.baseURL,
-            masquerader: AppEnvironment.shared.currentSession!.masquerader,
-            userID: UUID.string
-        )
-        let streamFailed = expectation(description: "Stream failed")
-
-        try testee.loginAgainOnExpiredRefreshToken(
-            tokenRefreshError: AccessTokenRefreshInteractor.TokenError.expiredRefreshToken,
-            api: api
-        )
-        .sink(
-            receiveCompletion: { completion in
-                if case let .failure(failure) = completion {
+                if case .failure(let failure) = completion {
                     XCTAssertEqual(failure, .loggedInWithDifferentUser)
                     streamFailed.fulfill()
                 }
@@ -203,7 +159,7 @@ class LoginAgainInteractorTests: CoreTestCase {
         )
         .sink(
             receiveCompletion: { completion in
-                if case let .failure(failure) = completion {
+                if case .failure(let failure) = completion {
                     XCTAssertEqual(failure, .canceledByUser)
                     streamFailed.fulfill()
                 }
@@ -225,9 +181,9 @@ class LoginAgainViewModelMock: LoginAgainViewModel {
     var receivedRootViewController: UIViewController?
 
     override func askUserToLogin(
-        host _: String,
+        host: String,
         rootViewController: UIViewController,
-        router _: Router
+        router: Router
     ) -> AnyPublisher<LoginSession, LoginAgainInteractor.LoginError> {
         receivedRootViewController = rootViewController
         return mockResultPublisher.first().eraseToAnyPublisher()

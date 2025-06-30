@@ -47,6 +47,7 @@ final class CourseDetailsViewModel {
     private var subscriptions = Set<AnyCancellable>()
     private let getCoursesInteractor: GetCoursesInteractor
     private let learnCoursesInteractor: GetLearnCoursesInteractor
+    private let selectedTab: CourseDetailsTabs?
     private var pullToRefreshCancellable: AnyCancellable?
 
     // MARK: - Init
@@ -58,7 +59,8 @@ final class CourseDetailsViewModel {
         learnCoursesInteractor: GetLearnCoursesInteractor,
         courseID: String,
         enrollmentID: String,
-        course: HCourse?
+        course: HCourse?,
+        selectedTab: CourseDetailsTabs? = nil
     ) {
         self.router = router
         self.getCoursesInteractor = getCoursesInteractor
@@ -66,6 +68,7 @@ final class CourseDetailsViewModel {
         self.courseID = courseID
         self.course = course ?? .init()
         self.isLoaderVisible = true
+        self.selectedTab = selectedTab
         fetchData()
         observeCourseSelection()
         observeHeaderVisiablity()
@@ -83,12 +86,20 @@ final class CourseDetailsViewModel {
                 continuation.resume()
                 return
             }
-            pullToRefreshCancellable = getCoursesInteractor.getCourseWithModules(id: course.id, ignoreCache: true)
+            let coursePublisher = getCoursesInteractor
+                .getCourseWithModules(id: course.id, ignoreCache: true)
                 .first()
-                .sink { [weak self] course in
+
+            let syllabusPublisher = getCoursesInteractor
+                .getCourseSyllabus(courseID: course.id, ignoreCache: true)
+
+            pullToRefreshCancellable = coursePublisher
+                .zip(syllabusPublisher)
+                .sink { [weak self] course, syllabus in
                     continuation.resume()
-                    guard let course = course, let self = self else { return }
+                    guard let self = self, let course = course else { return }
                     self.course = course
+                    self.overviewDescription = syllabus ?? ""
                 }
         }
     }
@@ -158,7 +169,7 @@ final class CourseDetailsViewModel {
         // Should use CombineLatest instead of Zip to track changes to the course
         Publishers.CombineLatest(
             getCoursesInteractor.getCourseWithModules(id: id, ignoreCache: false),
-            getCoursesInteractor.getCourseSyllabus(courseID: id)
+            getCoursesInteractor.getCourseSyllabus(courseID: id, ignoreCache: false)
         )
         .map { (course: $0, syllabus: $1) }
         .eraseToAnyPublisher()
@@ -171,9 +182,14 @@ final class CourseDetailsViewModel {
         self.course = course
         selectedCoure = .init(id: course.id, name: course.name)
         overviewDescription = syllabus ?? ""
-        // Firt tab is 0 -> Overview 1 -> MyProgress
         if selectedTabIndex == nil {
-            selectedTabIndex = overviewDescription.isEmpty ? 0 : 1
+            selectedTabIndex = if let index = selectedTab?.rawValue {
+                // We use index - 1 to designate the correctly selected tab.
+                overviewDescription.isEmpty ? index - 1 : index
+            } else {
+                // Firt tab is 0 -> Overview 1 -> MyProgress
+                overviewDescription.isEmpty ? 0 : 1
+            }
         }
         isLoaderVisible = false
     }

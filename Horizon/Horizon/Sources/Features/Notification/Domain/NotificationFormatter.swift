@@ -24,14 +24,18 @@ protocol NotificationFormatter {
 
 final class NotificationFormatterLive: NotificationFormatter {
     func formatNotifications(_ notifications: [HActivity], courses: [HCourse]) -> [NotificationModel] {
-        notifications.map { notification in
+        unowned let unownedSelf = self
+        return notifications.map { notification in
             let course = courses.first(where: { $0.id == notification.courseId })
             return NotificationModel(
                 id: notification.id,
-                category: getNotificationCategory(for: notification, course: course),
-                title: getTitle(for: notification, course: course),
+                category: unownedSelf.getNotificationCategory(for: notification, course: course),
+                title: unownedSelf.getTitle(for: notification, course: course),
                 date: notification.dateFormatted,
-                isRead: notification.isRead
+                isRead: notification.isRead,
+                courseID: course?.id ?? "",
+                enrollmentID: course?.enrollmentID ?? "",
+                isScoreAnnouncement: (unownedSelf.isAssignmentScored(notification) || unownedSelf.isGradingWeightChanged(notification))
             )
         }
     }

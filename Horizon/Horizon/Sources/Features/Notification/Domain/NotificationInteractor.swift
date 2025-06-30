@@ -42,8 +42,8 @@ final class NotificationInteractorLive: NotificationInteractor {
 
     func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never> {
         Publishers.Zip(fetchNotifications(ignoreCache: ignoreCache), fetchCourses())
-            .map {  activities, courses -> [NotificationModel] in
-                self.formatter.formatNotifications(activities, courses: courses)
+            .map { [weak self] activities, courses -> [NotificationModel] in
+                self?.formatter.formatNotifications(activities, courses: courses) ?? []
             }
             .eraseToAnyPublisher()
     }

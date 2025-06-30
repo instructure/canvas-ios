@@ -22,9 +22,8 @@ import Core
 
 struct AssistFlashCardItemView: View {
     let item: AssistFlashCardModel
-
-    @State
-    private var isScrollable: Bool = true
+    @State private var height: CGFloat = 0
+    @State private var isScrollable: Bool = true
 
     private var isFlipped: Bool {
         item.isFlipped
@@ -55,8 +54,10 @@ struct AssistFlashCardItemView: View {
                         .padding(.horizontal, HorizonUI.spaces.space24)
                         .readingFrame { frame in
                             isScrollable = frame.size.height > geometry.size.height
+                            height = frame.size.height
                         }
                 }
+                .frame(height: height)
                 .disabled(!isScrollable)
                 .frame(maxWidth: .infinity, alignment: .leading)
 

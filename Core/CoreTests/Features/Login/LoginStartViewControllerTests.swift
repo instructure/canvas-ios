@@ -147,7 +147,7 @@ class LoginStartViewControllerTests: CoreTestCase {
         let qrCode = "https://sso.canvaslms.com/canvas/login?domain=\(domain)&code=\(code)"
         let client = APIVerifyClient.make()
         api.mock(GetMobileVerifyRequest(domain: domain), value: client)
-        let task = api.mock(PostLoginOAuthRequest(oauthType: .manual(.init(client: client)), code: code), value: .make())
+        let task = api.mock(PostLoginOAuthRequest(client: client, code: code), value: .make())
         task.suspend()
         controller.view.layoutIfNeeded()
         XCTAssertFalse(controller.useQRCodeButton.isHidden)

@@ -88,6 +88,9 @@
     "Amsterdam (+01:00/+02:00)" : {
 
     },
+    "Announcement" : {
+
+    },
     "Announcement from" : {
 
     },
@@ -277,6 +280,9 @@
     "Congrats! You've completed your course." : {
 
     },
+    "Conversation" : {
+
+    },
     "Copenhagen (+01:00/+02:00)" : {
 
     },
@@ -299,6 +305,9 @@
 
     },
     "Display Name" : {
+
+    },
+    "Display Name can only be changed by your institution." : {
 
     },
     "Done" : {
@@ -389,6 +398,9 @@
 
     },
     "Full Name" : {
+
+    },
+    "Full Name can only be changed by your institution." : {
 
     },
     "Georgetown (-04:00/-04:00)" : {
@@ -762,10 +774,10 @@
     "Regenerate" : {
 
     },
-    "Reply" : {
+    "Regenerate Flashcards" : {
 
     },
-    "Required" : {
+    "Reply" : {
 
     },
     "Result: %@" : {
@@ -1012,6 +1024,9 @@
 
     },
     "View your progress and scores on the Learn page." : {
+
+    },
+    "VIEWING ATTEMPT" : {
 
     },
     "Vilnius (+02:00/+03:00)" : {

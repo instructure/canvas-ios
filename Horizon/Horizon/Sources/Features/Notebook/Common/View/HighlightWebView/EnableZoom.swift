@@ -16,11 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-class  HorizonAnnouncementDetailsViewModel {
-    private let announcementsInteractor: AnnouncementsInteractor
-    init(
-        announcementsInteractor: AnnouncementsInteractor = AnnouncementsInteractorLive()
-    ) {
-        self.announcementsInteractor = announcementsInteractor
+import Core
+
+private class EnableZoom: CoreWebViewFeature {
+    private let script: String =
+    """
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+    """
+
+    override func apply(on webView: CoreWebView) {
+        webView.addScript(script)
+    }
+}
+
+extension CoreWebViewFeature {
+    static var enableZoom: CoreWebViewFeature {
+        EnableZoom()
     }
 }

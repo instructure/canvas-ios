@@ -21,6 +21,7 @@ import Core
 
 protocol GetUserInteractor {
     func getUser() -> AnyPublisher<UserProfile, Error>
+    func canUpdateName() -> AnyPublisher<Bool, Error>
 }
 
 final class GetUserInteractorLive: GetUserInteractor {
@@ -31,5 +32,12 @@ final class GetUserInteractorLive: GetUserInteractor {
         .getEntities()
         .compactMap { $0.first }
         .eraseToAnyPublisher()
+    }
+
+    func canUpdateName() -> AnyPublisher<Bool, Error> {
+        ReactiveStore(useCase: GetSelfUserIncludingUUID())
+            .getEntities(ignoreCache: true)
+            .map { $0.first?.canUpdateName ?? false }
+            .eraseToAnyPublisher()
     }
 }

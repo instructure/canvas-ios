@@ -131,6 +131,7 @@ struct NotebookNoteView: View {
     @ViewBuilder
     private var note: some View {
         NotebookSectionHeading(title: String(localized: "Add a Note (Optional)", bundle: .horizon))
+            .padding(.top, .huiSpaces.space24)
 
         ZStack {
             UITextViewWrapper(text: $viewModel.note) {

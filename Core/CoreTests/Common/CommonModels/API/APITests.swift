@@ -205,20 +205,14 @@ class APITests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testRefreshPKCEOAuthToken() {
-        let pkceOAuth = OAuthType.pkce(
-            .init(
-                baseURL: URL(string: "https://canvas.instructure.com")!,
-                clientID: "client-id",
-                codeVerifier: "code-verifier"
-            )
-        )
+    func testRefreshToken() {
         API.resetMocks()
         Clock.mockNow(Date())
         let session = LoginSession.make(
             accessToken: "expired-token",
             refreshToken: "refresh-token",
-            oauthType: pkceOAuth
+            clientID: "client-id",
+            clientSecret: "client-secret"
         )
         AppEnvironment.shared.currentSession = session
         api.loginSession = session
@@ -227,7 +221,12 @@ class APITests: XCTestCase {
         api.mock(url: url, response: response)
         let refresh = api.mock(
             PostLoginOAuthRequest(
-                oauthType: pkceOAuth,
+                client: APIVerifyClient(
+                    authorized: true,
+                    base_url: api.baseURL,
+                    client_id: "client-id",
+                    client_secret: "client-secret"
+                ),
                 refreshToken: "refresh-token"
             ),
             value: .make(accessToken: "new-token", expiresIn: 3600)
@@ -243,64 +242,21 @@ class APITests: XCTestCase {
         Clock.reset()
     }
 
-    func testRefreshManualOAuthToken() {
-        let manualOauth = OAuthType.manual(
-            .init(
-                baseURL: URL(string: "https://other.instructure.com")!,
-                clientID: "client-id",
-                clientSecret: "client-secret"
-            )
-        )
-        API.resetMocks()
-        Clock.mockNow(Date())
-        let session = LoginSession.make(
-            accessToken: "expired-token",
-            refreshToken: "refresh-token",
-            oauthType: manualOauth
-        )
-        AppEnvironment.shared.currentSession = session
-        api.loginSession = session
-        let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
-        let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
-        api.mock(url: url, response: response)
-        let refresh = api.mock(
-            PostLoginOAuthRequest(
-                oauthType: manualOauth,
-                refreshToken: "refresh-token"
-            ),
-            value: .make(accessToken: "new-token", expiresIn: 3600)
-        )
-        refresh.suspend()
-        api.makeRequest(url) { _, _, error in XCTAssertNil(error) }
-        api.makeRequest(url) { _, _, error in XCTAssertNil(error) }
-        refresh.resume()
-        waitUntil(5) { api.loginSession?.accessToken == "new-token" }
-        XCTAssertEqual(api.loginSession?.expiresAt, Clock.now.addingTimeInterval(3600))
-        XCTAssertEqual(AppEnvironment.shared.currentSession?.accessToken, "new-token")
-        XCTAssertTrue(LoginSession.sessions.contains(where: { $0.accessToken == "new-token" }))
-        Clock.reset()
-    }
-
-    func testRefreshPKCEOAuthTokenNotCurrentSession() {
-        let pkce = OAuthType.pkce(
-            .init(
-                baseURL: URL(string: "https://other.instructure.com")!,
-                clientID: "client-id",
-                codeVerifier: "code-verifier"
-            )
-        )
+    func testRefreshTokenNotCurrentSession() {
         API.resetMocks()
         AppEnvironment.shared.currentSession = LoginSession.make(
             accessToken: "expired-token",
             baseURL: URL(string: "https://other.instructure.com")!,
             refreshToken: "refresh-token",
-            oauthType: pkce
+            clientID: "client-id",
+            clientSecret: "client-secret"
         )
         let session = LoginSession.make(
             accessToken: "expired-token",
             baseURL: URL(string: "https://canvas.instructure.com")!,
             refreshToken: "refresh-token",
-            oauthType: pkce
+            clientID: "client-id",
+            clientSecret: "client-secret"
         )
         api.loginSession = session
         let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
@@ -308,12 +264,12 @@ class APITests: XCTestCase {
         api.mock(url: url, response: response)
         api.mock(
             PostLoginOAuthRequest(
-                oauthType: .manual(.init(client: APIVerifyClient(
+                client: APIVerifyClient(
                     authorized: true,
                     base_url: api.baseURL,
                     client_id: "client-id",
                     client_secret: "client-secret"
-                ))),
+                ),
                 refreshToken: "refresh-token"
             ),
             value: .make(accessToken: "new-token")
@@ -324,99 +280,26 @@ class APITests: XCTestCase {
         XCTAssertTrue(LoginSession.sessions.contains(where: { $0.accessToken == "new-token" }))
     }
 
-    func testRefreshManualOAuthTokenNotCurrentSession() {
-        let manualOauth = OAuthType.manual(
-            .init(
-                baseURL: URL(string: "https://other.instructure.com")!,
-                clientID: "client-id",
-                clientSecret: "client-secret"
-            )
-        )
+    func testRefreshTokenError() {
         API.resetMocks()
-        AppEnvironment.shared.currentSession = LoginSession.make(
-            accessToken: "expired-token",
-            baseURL: URL(string: "https://other.instructure.com")!,
-            refreshToken: "refresh-token",
-            oauthType: manualOauth
-        )
         let session = LoginSession.make(
             accessToken: "expired-token",
-            baseURL: URL(string: "https://canvas.instructure.com")!,
             refreshToken: "refresh-token",
-            oauthType: manualOauth
+            clientID: "client-id",
+            clientSecret: "client-secret"
         )
         api.loginSession = session
         let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
-        api.mock(url: url, response: response)
+        api.mock(url: url, response: response, error: NSError.internalError())
         api.mock(
             PostLoginOAuthRequest(
-                oauthType: .manual(.init(client: APIVerifyClient(
+                client: APIVerifyClient(
                     authorized: true,
                     base_url: api.baseURL,
                     client_id: "client-id",
                     client_secret: "client-secret"
-                ))),
-                refreshToken: "refresh-token"
-            ),
-            value: .make(accessToken: "new-token")
-        )
-        api.makeRequest(url) { _, _, error in XCTAssertNil(error) }
-        waitUntil(5) { api.loginSession?.accessToken == "new-token" }
-        XCTAssertNotEqual(AppEnvironment.shared.currentSession?.accessToken, "new-token")
-        XCTAssertTrue(LoginSession.sessions.contains(where: { $0.accessToken == "new-token" }))
-    }
-
-    func testRefreshPKCEOAuthTokenError() {
-        let pkce = OAuthType.pkce(
-            .init(
-                baseURL: URL(string: "https://other.instructure.com")!,
-                clientID: "client-id",
-                codeVerifier: "code-verifier"
-            )
-        )
-        API.resetMocks()
-        let session = LoginSession.make(
-            accessToken: "expired-token",
-            refreshToken: "refresh-token",
-            oauthType: pkce
-        )
-        api.loginSession = session
-        let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
-        let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
-        api.mock(url: url, response: response, error: NSError.internalError())
-        api.mock(
-            PostLoginOAuthRequest(
-                oauthType: pkce,
-                refreshToken: "refresh-token"
-            ),
-            error: NSError.internalError()
-        )
-        api.makeRequest(url) { _, _, error in XCTAssertNotNil(error) }
-        XCTAssertEqual(api.loginSession?.accessToken, "expired-token")
-    }
-
-    func testRefreshManualOAuthTokenError() {
-        let manualOauth = OAuthType.manual(
-            .init(
-                baseURL: URL(string: "https://other.instructure.com")!,
-                clientID: "client-id",
-                clientSecret: "client-secret"
-            )
-        )
-        API.resetMocks()
-        let session = LoginSession.make(
-            accessToken: "expired-token",
-            refreshToken: "refresh-token",
-            oauthType: manualOauth
-        )
-        api.loginSession = session
-        let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
-        let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
-        api.mock(url: url, response: response, error: NSError.internalError())
-        api.mock(
-            PostLoginOAuthRequest(
-                oauthType: manualOauth,
+                ),
                 refreshToken: "refresh-token"
             ),
             error: NSError.internalError()

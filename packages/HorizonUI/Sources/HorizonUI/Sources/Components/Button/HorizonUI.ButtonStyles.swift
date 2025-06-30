@@ -171,7 +171,7 @@ struct HorizonButtonModifier: ViewModifier {
         let foreground = type.foregroundColor(configuration)
         let background = type.background(configuration, isTextUnderlined: isTextUnderlined)
         return content
-            .background(background)
+            .background(background.opacity(isEnabled ? 1.0 : 0.5))
             .foregroundStyle(foreground)
             .overlay(configuration.isPressed && type.hasDarkOverlayWhenPressed ? .black.opacity(0.2) : .clear)
             .huiCornerRadius(level: .level6)
@@ -179,7 +179,6 @@ struct HorizonButtonModifier: ViewModifier {
                 RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level6.attributes.radius)
                     .strokeBorder(type.border(configuration, isTextUnderlined: isTextUnderlined), lineWidth: 1)
             }
-            .opacity(isEnabled ? 1.0 : 0.5)
             .animation(.easeInOut, value: isEnabled)
     }
 }

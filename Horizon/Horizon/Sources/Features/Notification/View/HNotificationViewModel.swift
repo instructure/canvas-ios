@@ -26,6 +26,7 @@ final class HNotificationViewModel {
 
     private(set) var notifications: [NotificationModel] = []
     private(set) var isLoaderVisible: Bool = true
+    private(set) var isFooterVisible: Bool = false
     private(set) var isNextButtonEnabled: Bool = false
     private(set) var isPreviousButtonEnabled: Bool = false
 
@@ -43,11 +44,16 @@ final class HNotificationViewModel {
     // MARK: - Dependencies
 
     private let interactor: NotificationInteractor
+    private let router: Router
 
     // MARK: - Init
 
-    init(interactor: NotificationInteractor) {
+    init(
+        interactor: NotificationInteractor,
+        router: Router
+    ) {
         self.interactor = interactor
+        self.router = router
         fetchNotifications()
     }
 
@@ -75,6 +81,19 @@ final class HNotificationViewModel {
         }
     }
 
+    func navigeteToCourseDetails(
+        notification: NotificationModel,
+        viewController: WeakViewController
+    ) {
+        let view = LearnAssembly.makeCourseDetailsViewController(
+            courseID: notification.courseID,
+            enrollmentID: notification.enrollmentID,
+            shoudHideTabBar: true,
+            selectedTab: notification.isScoreAnnouncement ? .scores : .myProgress
+        )
+        router.show(view, from: viewController)
+    }
+
     // MARK: - Private Functions
 
     private func fetchNotifications() {
@@ -87,6 +106,7 @@ final class HNotificationViewModel {
 
     private func handleResponse(notifications: [NotificationModel]) {
         paginatedNotifications = notifications.chunked(into: 10)
+        isFooterVisible = paginatedNotifications.count > 1
         totalPages = paginatedNotifications.count
         self.notifications = paginatedNotifications.first ?? []
         currentPage = 0

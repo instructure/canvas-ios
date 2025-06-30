@@ -72,8 +72,8 @@ struct PageViewRepresentable: UIViewControllerRepresentable {
         }
     }
 
-    func makeCoordinator() -> Coordinator {
-        Coordinator { value in
+    func makeCoordinator() -> ScrollTrackingCoordinator {
+        ScrollTrackingCoordinator { value in
             isScrollTopReached = !value
         }
     }
@@ -88,21 +88,5 @@ struct PageViewRepresentable: UIViewControllerRepresentable {
             }
         }
         return nil
-    }
-
-    // MARK: - Coordinator
-
-    final class Coordinator: NSObject, UIScrollViewDelegate {
-        let didScroll: (Bool) -> Void
-        private let threshold: CGFloat = 100
-
-        init(didScroll: @escaping (Bool) -> Void) {
-            self.didScroll = didScroll
-        }
-
-        func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            let yOffset = scrollView.contentOffset.y
-            didScroll(yOffset > threshold)
-        }
     }
 }

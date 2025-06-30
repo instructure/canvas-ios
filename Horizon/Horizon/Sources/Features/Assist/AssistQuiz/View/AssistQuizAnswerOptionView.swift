@@ -27,7 +27,7 @@ struct AssistQuizAnswerOptionView: View {
     var body: some View {
         HStack {
             Text(selectedAnswer.answer)
-                .huiTypography(.p1)
+                .huiTypography(.p2)
                 .foregroundColor(textColor)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
@@ -43,9 +43,9 @@ struct AssistQuizAnswerOptionView: View {
             }
         }
         .background {
-            RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
+            RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level2.attributes.radius)
                 .strokeBorder(Color.huiColors.icon.surfaceColored, lineWidth: 1)
-                .background(RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
+                .background(RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level2.attributes.radius)
                     .fill(backgroundColor))
         }
     }

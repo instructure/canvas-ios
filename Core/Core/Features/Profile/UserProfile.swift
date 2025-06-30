@@ -33,6 +33,8 @@ public final class UserProfile: NSManagedObject {
     @NSManaged public var uuid: String?
     @NSManaged public var accountUUID: String?
     @NSManaged public var defaultTimeZone: String?
+    @NSManaged public var canUpdateName: Bool
+    @NSManaged public var canUpdateAvatar: Bool
 }
 
 extension UserProfile: WriteableModel {
@@ -42,14 +44,15 @@ extension UserProfile: WriteableModel {
         model.id = item.id.value
         model.name = item.name
         model.shortName = item.short_name
-        model.email = item.primary_email
+        model.email = item.primary_email ?? model.email
         model.locale = item.locale
         model.loginID = item.login_id
         model.avatarURL = item.avatar_url?.rawValue
         model.calendarURL = item.calendar?.ics
         model.pronouns = item.pronouns
         model.isK5User = (item.k5_user == true)
-
+        model.canUpdateName = item.permissions?.canUpdateName ?? model.canUpdateName
+        model.canUpdateAvatar = item.permissions?.canUpdateAvatar ?? model.canUpdateAvatar
         // The "/users/self/profile" api does not return accountUUID and since they share
         // the same Core Data entity, it would get overriden with a null value after fetching "/users/self"
         if model.uuid == nil {

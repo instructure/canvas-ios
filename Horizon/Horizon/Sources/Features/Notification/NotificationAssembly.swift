@@ -33,7 +33,10 @@ struct NotificationAssembly {
             userID: userID,
             formatter: formatter
         )
-        let viewModel = HNotificationViewModel(interactor: interactor)
+        let viewModel = HNotificationViewModel(
+            interactor: interactor,
+            router: AppEnvironment.shared.router
+        )
         let view = HNotificationView(
             viewModel: viewModel,
             onShowNavigationBarAndTabBar: showTabBarAndNavigationBar
@@ -44,7 +47,10 @@ struct NotificationAssembly {
 #if DEBUG
     static func makePreview() -> HNotificationView {
         let interactor = NotificationInteractorPreview()
-        let viewModel = HNotificationViewModel(interactor: interactor)
+        let viewModel = HNotificationViewModel(
+            interactor: interactor,
+            router: AppEnvironment.shared.router
+        )
         let view = HNotificationView(viewModel: viewModel, onShowNavigationBarAndTabBar: { _ in })
         return view
     }

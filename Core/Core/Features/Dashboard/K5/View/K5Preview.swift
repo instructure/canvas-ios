@@ -44,7 +44,8 @@ struct K5Preview {
             userID: "1",
             userName: "Eve",
             userEmail: nil,
-            oauthType: nil
+            clientID: nil,
+            clientSecret: nil
         )
         AppEnvironment.shared.userDidLogin(session: session)
         AppEnvironment.shared.k5.userDidLogin(isK5Account: true)

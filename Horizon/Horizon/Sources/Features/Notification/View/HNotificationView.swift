@@ -24,6 +24,7 @@ struct HNotificationView: View {
     // MARK: - Private Properties
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.viewController) private var viewController
 
     // MARK: - Dependencies
 
@@ -41,16 +42,21 @@ struct HNotificationView: View {
     var body: some View {
         VStack(spacing: .zero) {
             contentView
-            Divider()
-                .hidden(viewModel.notifications.isEmpty)
-            footerView
-                .padding(.top, .huiSpaces.space16)
-                .frame(maxWidth: .infinity)
-                .background(Color.huiColors.surface.pageSecondary)
 
+            if viewModel.isFooterVisible {
+                Divider()
+                    .hidden(viewModel.notifications.isEmpty)
+                footerView
+                    .padding(.top, .huiSpaces.space16)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.huiColors.surface.pageSecondary)
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.huiColors.surface.pagePrimary)
+        .background(viewModel.isFooterVisible
+                    ? Color.huiColors.surface.pagePrimary
+                    : Color.huiColors.surface.pageSecondary
+        )
         .overlay { loaderView }
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         .onWillDisappear { onShowNavigationBarAndTabBar(true) }
@@ -73,7 +79,14 @@ struct HNotificationView: View {
             } else {
                 ScrollView(showsIndicators: false) {
                     ForEach(viewModel.notifications) { activity in
-                        notificationRow(notification: activity)
+                        Button {
+                            viewModel.navigeteToCourseDetails(
+                                notification: activity,
+                                viewController: viewController
+                            )
+                        } label: {
+                            notificationRow(notification: activity)
+                        }
                         Divider()
                             .hidden(activity == viewModel.notifications.last)
                     }
@@ -93,18 +106,20 @@ struct HNotificationView: View {
             Text(notification.category)
                 .foregroundStyle(Color.huiColors.text.timestamp)
                 .huiTypography(.labelSmall)
+                .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             HStack(alignment: .top) {
                 Text(notification.title)
                     .huiTypography(notification.isRead ? .p1 : .labelLargeBold)
                     .foregroundStyle(Color.huiColors.text.body)
+                    .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                if !notification.isRead {
-                    Circle()
-                        .fill(Color.huiColors.surface.institution)
-                        .frame(width: 8, height: 8)
-                }
+//                if !notification.isRead {
+//                    Circle()
+//                        .fill(Color.huiColors.surface.institution)
+//                        .frame(width: 8, height: 8)
+//                }
             }
 
             Text(notification.date)

@@ -18,6 +18,7 @@
 
 import Core
 import Combine
+import CombineExt
 import HorizonUI
 import SwiftUI
 
@@ -57,10 +58,10 @@ class HorizonInboxViewModel {
     // MARK: - Outputs
     var filterTitle: String {
         get {
-            filter.title
+            filterSubject.value.title
         }
         set {
-            filter = FilterOption.allCases.first { $0.title == newValue } ?? .all
+            filterSubject.accept(FilterOption.allCases.first { $0.title == newValue } ?? .all)
         }
     }
     var isMessagesFilterFocused: Bool = false {
@@ -69,18 +70,14 @@ class HorizonInboxViewModel {
         }
     }
     var isSearchDisabled: Bool {
-        filter == .announcements
+        filterSubject.value == .announcements
     }
     var messageRows: [MessageRowViewModel] = []
     var peopleSelectionViewModel: PeopleSelectionViewModel!
     var screenState: InstUI.ScreenState = .data
 
     // MARK: - Private
-    private var filter: FilterOption = FilterOption.all {
-        didSet {
-            didSetFilter()
-        }
-    }
+    private var filterSubject: CurrentValueRelay<FilterOption> = CurrentValueRelay(FilterOption.all)
     private var hasNextPage: Bool = false
     // don't do animations until the user updates the filter or search
     private var isSearchFocused: Bool = false {
@@ -118,11 +115,20 @@ class HorizonInboxViewModel {
 
         _ = inboxMessageInteractor.setContext(.user(userID))
 
-        Publishers.CombineLatest(
+        Publishers.CombineLatest4(
             inboxMessageInteractor.messages,
+            announcementsInteractor.messages,
+            filterSubject,
             peopleSelectionViewModel.personFilterSubject
         )
         .sink(receiveValue: onInboxMessageListItems)
+        .store(in: &subscriptions)
+
+        filterSubject.sink { filterOption in
+            if let inboxMessageInteractorScope = filterOption.inboxMessageInteractorScope {
+                _ = inboxMessageInteractor.setScope(inboxMessageInteractorScope)
+            }
+        }
         .store(in: &subscriptions)
     }
 
@@ -189,7 +195,8 @@ class HorizonInboxViewModel {
 
     // MARK: - Private Methods
     private func addAnnouncements(to messageRows: [MessageRowViewModel]) -> [MessageRowViewModel] {
-        if filter != .all || peopleSelectionViewModel.personFilterSubject.value.isNotEmpty {
+        let isAnnouncementsShown = filterSubject.value == .all || filterSubject.value == .announcements && peopleSelectionViewModel.personFilterSubject.value.isEmpty
+        if !isAnnouncementsShown {
             return messageRows
         }
         let announcements: [MessageRowViewModel] = announcementsInteractor.messages.value.map { $0.viewModel }
@@ -205,34 +212,28 @@ class HorizonInboxViewModel {
         }.map { $0.element }
     }
 
-    private func onInboxMessageListItems(tuple: ([InboxMessageListItem], [HorizonUI.MultiSelect.Option])) {
+    private func onInboxMessageListItems(
+        tuple: (
+            [InboxMessageListItem],
+            [Announcement],
+            FilterOption,
+            [HorizonUI.MultiSelect.Option]
+        )
+    ) {
         let inboxMessageListItems = tuple.0
-        let messageRowsInterim = inboxMessageListItems
-            .filter(filterByPerson)
-            .map { $0.viewModel }
-        messageRows = addAnnouncements(to: messageRowsInterim)
-    }
 
-    private func didSetFilter() {
-        guard let filterOption = FilterOption.allCases.first(where: { $0 == self.filter }) else {
-            return
-        }
-        messageRows = []
-        if let inboxMessageInteractorScope = filterOption.inboxMessageInteractorScope {
-            _ = inboxMessageInteractor.setScope(inboxMessageInteractorScope)
-        } else {
-            announcementsInteractor
-                .messages
-                .sink { [weak self] announcements in
-                    self?.messageRows = announcements.map { $0.viewModel }
-                }
-                .store(in: &subscriptions)
-        }
+        let messageRowsInterim = filterSubject.value.inboxMessageInteractorScope == nil ?
+            [] :
+            inboxMessageListItems
+                .filter(filterByPerson)
+                .map { $0.viewModel }
+
+        messageRows = addAnnouncements(to: messageRowsInterim)
     }
 
     private func filterByPerson(messageListItem: InboxMessageListItem) -> Bool {
         let personFilter = peopleSelectionViewModel.personFilterSubject.value
-        if personFilter.isEmpty || filter == .announcements {
+        if personFilter.isEmpty || filterSubject.value == .announcements {
             return true
         }
         return personFilter.contains { current in
@@ -262,10 +263,7 @@ class HorizonInboxViewModel {
         }
         var title: String {
             if let announcement = announcement {
-                if let courseName = announcement.courseName {
-                    return "Announcement for \(courseName)"
-                }
-                return "Announcement"
+                return announcement.title
             }
             return inboxMessageListItem?.title ?? ""
         }

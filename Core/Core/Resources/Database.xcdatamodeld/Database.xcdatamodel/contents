@@ -1282,6 +1282,8 @@
         <attribute name="accountUUID" optional="YES" attributeType="String"/>
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
         <attribute name="calendarURL" optional="YES" attributeType="URI"/>
+        <attribute name="canUpdateAvatar" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="canUpdateName" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="defaultTimeZone" optional="YES" attributeType="String"/>
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>

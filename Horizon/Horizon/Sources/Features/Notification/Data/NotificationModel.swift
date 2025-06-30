@@ -22,4 +22,7 @@ struct NotificationModel: Identifiable, Equatable {
     let title: String
     let date: String
     let isRead: Bool
+    let courseID: String
+    let enrollmentID: String
+    let isScoreAnnouncement: Bool
 }

@@ -21,6 +21,7 @@ import Core
 import Foundation
 
 struct Announcement: Equatable, Identifiable, Hashable {
+    let author: String
     let courseName: String?
     let date: Date?
     let id: String
@@ -85,6 +86,7 @@ class AnnouncementsInteractorLive: AnnouncementsInteractor {
                 .map { discussionTopics in
                     discussionTopics.map { discussionTopic in
                         discussionTopic.announcement(
+                            author: discussionTopic.author?.displayName ?? "",
                             courseName: courses.first { $0.courseID == discussionTopic.courseID }?.course.name
                         )
                     }
@@ -106,6 +108,7 @@ class AnnouncementsInteractorLive: AnnouncementsInteractor {
 extension AccountNotification {
     var announcement: Announcement {
         Announcement(
+            author: "",
             courseName: nil,
             date: startAt ?? endAt,
             id: id,
@@ -116,8 +119,9 @@ extension AccountNotification {
 }
 
 extension DiscussionTopic {
-    func announcement(courseName: String?) -> Announcement {
+    func announcement(author: String, courseName: String?) -> Announcement {
         Announcement(
+            author: author,
             courseName: courseName,
             date: postedAt,
             id: id,

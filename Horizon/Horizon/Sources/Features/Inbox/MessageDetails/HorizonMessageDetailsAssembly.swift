@@ -44,26 +44,16 @@ struct HorizonMessageDetailsAssembly {
         let view = HorizonMessageDetailsView(model: viewModel)
         return CoreHostingController(view)
     }
+
     public static func makeViewController(
         announcementID: String
     ) -> UIViewController {
-        let appEnvironment = AppEnvironment.shared
-        let viewModel = HorizonMessageDetailsViewModel(
-            conversationID: conversationID,
-            messageDetailsInteractor: MessageDetailsInteractorLive(
-                env: appEnvironment,
-                conversationID: conversationID
-            ),
-            composeMessageInteractor: ComposeMessageInteractorLive(
-                batchId: uploadIdentifier,
-                uploadManager: UploadManager(
-                    env: appEnvironment,
-                    identifier: uploadIdentifier
+        CoreHostingController(
+            HorizonMessageDetailsView(
+                model: HorizonMessageDetailsViewModel(
+                    announcementID: announcementID
                 )
-            ),
-            allowArchive: allowArchive
+            )
         )
-        let view = HorizonMessageDetailsView(model: viewModel)
-        return CoreHostingController(view)
     }
 }

@@ -23,36 +23,40 @@ import SwiftUI
 class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
     // MARK: - Outputs
     var attachmentItems: [AttachmentItemViewModel] {
-        attachmentViewModel.items
+        attachmentViewModel?.items ?? []
     }
     var isSendDisabled: Bool {
-        reply.isEmpty || isSending || attachmentViewModel.isUploading
+        reply.isEmpty || isSending || attachmentViewModel?.isUploading ?? false
     }
     @Published var reply: String = ""
     var sendButtonOpacity: Double {
-        isSending ? (attachmentViewModel.isUploading ? 0.5 : 0.0) : 1.0
+        isSending ? (attachmentViewModel?.isUploading == true ? 0.5 : 0.0) : 1.0
     }
     var loadingSpinnerOpacity: Double {
         isSending ? 1.0 : 0.0
     }
-    @Published public private(set) var messagesAscending: [MessageViewModel] = []
+    @Published public private(set) var messagesAsc: [MessageViewModel] = []
+    var isReplayAreaVisible: Bool = true
+    var headerTitle: String = ""
 
     // MARK: - Private
     private var isSending: Bool = false
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
-    let attachmentViewModel: AttachmentViewModel
+    private let announcementID: String
+    let attachmentViewModel: AttachmentViewModel?
     private let conversationID: String
-    private let composeMessageInteractor: ComposeMessageInteractor
-    private let messageDetailsInteractor: MessageDetailsInteractor
+    private let composeMessageInteractor: ComposeMessageInteractor?
     private let myID: String
+    private let messageDetailsInteractor: MessageDetailsInteractor?
     private let router: Router
+    private let announcementsInteractor: AnnouncementsInteractor?
 
     // MARK: - Initialization
     init(
-        router: Router = AppEnvironment.shared.router,
         conversationID: String,
+        router: Router = AppEnvironment.shared.router,
         attachmentViewModel: AttachmentViewModel? = nil,
         messageDetailsInteractor: MessageDetailsInteractor,
         composeMessageInteractor: ComposeMessageInteractor,
@@ -68,6 +72,9 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
         self.messageDetailsInteractor = messageDetailsInteractor
         self.composeMessageInteractor = composeMessageInteractor
         self.myID = myID
+        self.announcementsInteractor = nil
+        self.announcementID = ""
+
         super.init(
             router: router,
             interactor: messageDetailsInteractor,
@@ -76,11 +83,41 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
         )
 
         listenForMessages()
+        listenForSubject()
+    }
+
+    init(
+        announcementID: String,
+        environment: AppEnvironment = AppEnvironment.shared,
+        router: Router = AppEnvironment.shared.router,
+        announcementsInteractor: AnnouncementsInteractor = AnnouncementsInteractorLive(),
+        myID: String = AppEnvironment.shared.currentSession?.userID ?? ""
+    ) {
+        self.announcementID = announcementID
+        self.router = router
+        self.announcementsInteractor = announcementsInteractor
+        self.myID = myID
+
+        self.attachmentViewModel = nil
+        self.messageDetailsInteractor = nil
+        self.composeMessageInteractor = nil
+        self.conversationID = ""
+        self.isReplayAreaVisible = false
+
+        super.init(
+            router: router,
+            interactor: MessageDetailsInteractorLive(env: environment, conversationID: ""),
+            myID: myID,
+            allowArchive: false
+        )
+
+        listenForAnnouncements()
+        listenForSubject()
     }
 
     // MARK: - Inputs
     func attachFile(viewController: WeakViewController) {
-        attachmentViewModel.show(from: viewController)
+        attachmentViewModel?.show(from: viewController)
     }
 
     func pop(viewController: WeakViewController) {
@@ -88,16 +125,18 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
     }
 
     func refresh(finish: (() -> Void)? = nil) {
-        messageDetailsInteractor
+        messageDetailsInteractor?
             .refresh()
             .sink { finish?() }
-            .store(in: &subscriptions)
+            .store(in: &subscriptions) ?? finish?()
     }
 
     func sendMessage(viewController: WeakViewController) {
         guard let conversation = conversations.first,
               let contextCode = conversation.contextCode,
-              let context = Context(canvasContextID: contextCode) else {
+              let context = Context(canvasContextID: contextCode),
+              let composeMessageInteractor = self.composeMessageInteractor,
+              let messageDetailsInteractor = self.messageDetailsInteractor else {
             return
         }
 
@@ -106,8 +145,8 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
             guard let self = self else {
                 return
             }
-            let recipientIDs = self.messageDetailsInteractor.userMap.map { $0.key }.filter { $0 != self.myID }
-            self.composeMessageInteractor.addConversationMessage(
+            let recipientIDs = messageDetailsInteractor.userMap.map { $0.key }.filter { $0 != self.myID }
+            composeMessageInteractor.addConversationMessage(
                 parameters: MessageParameters(
                     subject: conversation.subject,
                     body: self.reply,
@@ -131,17 +170,48 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
     }
 
     // MARK: - Private Methods
+    private func listenForAnnouncements() {
+        announcementsInteractor?.messages.sink { [weak self] announcements in
+            self?.headerTitle = announcements.first(where: { $0.id == self?.announcementID })?.title ?? String(localized: "Announcement", bundle: .horizon)
+            self?.messagesAsc = announcements
+                .filter { $0.id == self?.announcementID }
+                .map { announcement in
+                    MessageViewModel(
+                        id: announcement.id,
+                        body: announcement.title,
+                        author: announcement.author,
+                        date: announcement.date?.dateTimeString ?? "",
+                        avatarName: ""
+                    )
+                }
+        }
+        .store(in: &subscriptions)
+    }
+
     private func listenForMessages() {
-        messageDetailsInteractor
+        messageDetailsInteractor?
             .messages
             .map(markMessageAsRead)
             .map(sortOldestToNewest)
             .map(toViewModels)
-            .assign(to: &$messagesAscending)
+            .assign(to: &$messagesAsc)
+    }
+
+    private func listenForSubject() {
+        announcementsInteractor?.messages.sink { [weak self] announcements in
+            self?.headerTitle = announcements.first(where: { $0.id == self?.announcementID })?.title ??
+                String(localized: "Announcement", bundle: .horizon)
+        }
+        .store(in: &subscriptions)
+
+        messageDetailsInteractor?.conversation.sink { [weak self] conversations in
+            self?.headerTitle = conversations.first { $0.id == self?.conversationID }?.subject ?? String(localized: "Conversation", bundle: .horizon)
+        }
+        .store(in: &subscriptions)
     }
 
     private func markMessageAsRead(_ conversationMessages: [ConversationMessage]) -> [ConversationMessage] {
-        messageDetailsInteractor.updateState(
+        messageDetailsInteractor?.updateState(
             messageId: conversationID,
             state: .read
         )
@@ -163,9 +233,38 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
             MessageViewModel(
                 item: $0,
                 myID: myID,
-                userMap: messageDetailsInteractor.userMap,
+                userMap: messageDetailsInteractor?.userMap ?? [:],
                 router: router
             )
         }
+    }
+}
+
+extension HorizonMessageDetailsViewModel {
+    convenience init(
+        announcement: Announcement,
+        environment: AppEnvironment = AppEnvironment.shared,
+        router: Router = AppEnvironment.shared.router,
+        announcementsInteractor: AnnouncementsInteractor = AnnouncementsInteractorLive(),
+        myID: String = AppEnvironment.shared.currentSession?.userID ?? ""
+    ) {
+        self.init(
+            announcementID: announcement.id,
+            environment: environment,
+            router: router,
+            announcementsInteractor: announcementsInteractor,
+            myID: myID
+        )
+        // Initialize properties from Announcement
+        self.messagesAsc = [
+            MessageViewModel(
+                id: announcement.id,
+                body: announcement.title,
+                author: announcement.courseName ?? "",
+                date: announcement.date?.dateTimeString ?? "",
+                avatarName: ""
+            )
+        ]
+        self.isReplayAreaVisible = false
     }
 }

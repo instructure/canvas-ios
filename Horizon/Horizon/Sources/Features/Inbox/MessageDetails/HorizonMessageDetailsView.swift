@@ -29,17 +29,26 @@ struct HorizonMessageDetailsView: View {
     }
 
     var body: some View {
-        AttachmentView(viewModel: model.attachmentViewModel) {
-            VStack(alignment: .leading) {
-                titleBar
-                    .padding(.horizontal, HorizonUI.spaces.space24)
-                messages
-                replyArea
-            }
-            .background(HorizonUI.colors.surface.pagePrimary)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .navigationBarHidden(true)
+        guard let attachmentViewModel = model.attachmentViewModel else {
+            return AnyView(content)
         }
+        return AnyView(
+            AttachmentView(viewModel: attachmentViewModel) {
+                content
+            }
+        )
+    }
+
+    private var content: some View {
+        VStack(alignment: .leading) {
+            titleBar
+                .padding(.horizontal, HorizonUI.spaces.space24)
+            messages
+            replyArea
+        }
+        .background(HorizonUI.colors.surface.pagePrimary)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .navigationBarHidden(true)
     }
 
     private var messages: some View {
@@ -47,14 +56,14 @@ struct HorizonMessageDetailsView: View {
             RefreshableScrollView(
                 content: {
                     VStack(spacing: HorizonUI.spaces.space24) {
-                        ForEach(model.messagesAscending, id: \.id) { message in
+                        ForEach(model.messagesAsc, id: \.id) { message in
                             messageBody(message)
                                 .id(message.id)
                                 .overlay(
                                     Rectangle()
                                         .frame(height: 1)
                                         .foregroundStyle(
-                                            model.messagesAscending.firstIndex(where: { $0.id == message.id }) == 0 ?
+                                            model.messages.firstIndex(where: { $0.id == message.id }) == 0 || model.messages.count <= 1 ?
                                                 .clear :
                                                 HorizonUI.colors.lineAndBorders.lineStroke
                                         ),
@@ -78,8 +87,8 @@ struct HorizonMessageDetailsView: View {
                     topTrailingRadius: 32
                 )
             )
-            .onChange(of: model.messagesAscending.count) {
-                if let last = model.messagesAscending.last {
+            .onChange(of: model.messages.count) {
+                if let last = model.messages.last {
                     withAnimation {
                         proxy.scrollTo(last.id, anchor: .bottom)
                     }
@@ -112,24 +121,27 @@ struct HorizonMessageDetailsView: View {
         .padding(.vertical, HorizonUI.spaces.space16)
     }
 
+    @ViewBuilder
     private var replyArea: some View {
-        VStack(spacing: HorizonUI.spaces.space16) {
-            HorizonUI.TextArea(
-                $model.reply,
-                placeholder: String(localized: "Reply", bundle: .horizon),
-                autoExpand: true
-            )
-            replyAreaAttachments
-            HStack {
-                replyAreaAttachFileButton
-                Spacer()
-                replyAreaSendButton
+        if model.isReplayAreaVisible {
+            VStack(spacing: HorizonUI.spaces.space16) {
+                HorizonUI.TextArea(
+                    $model.reply,
+                    placeholder: String(localized: "Reply", bundle: .horizon),
+                    autoExpand: true
+                )
+                replyAreaAttachments
+                HStack {
+                    replyAreaAttachFileButton
+                    Spacer()
+                    replyAreaSendButton
+                }
             }
+            .background(HorizonUI.colors.surface.pagePrimary)
+            .padding(.horizontal, HorizonUI.spaces.space24)
+            .padding(.top, HorizonUI.spaces.space8)
+            .padding(.bottom, HorizonUI.spaces.space16)
         }
-        .background(HorizonUI.colors.surface.pagePrimary)
-        .padding(.horizontal, HorizonUI.spaces.space24)
-        .padding(.top, HorizonUI.spaces.space8)
-        .padding(.bottom, HorizonUI.spaces.space16)
     }
 
     @ViewBuilder
@@ -177,7 +189,7 @@ struct HorizonMessageDetailsView: View {
         HStack {
             backButton
             Spacer()
-            Text(model.title)
+            Text(model.subject)
                 .huiTypography(.labelLargeBold)
                 .foregroundColor(HorizonUI.colors.surface.institution)
             Spacer()
@@ -200,15 +212,7 @@ struct HorizonMessageDetailsView: View {
 #Preview {
     HorizonMessageDetailsView(
         model: HorizonMessageDetailsViewModel(
-            router: AppEnvironment.shared.router,
-            conversationID: "ConversationID",
-            messageDetailsInteractor: MessageDetailsInteractorPreview(
-                env: AppEnvironment.shared,
-                subject: "Test Subject",
-                messages: []
-            ),
-            composeMessageInteractor: ComposeMessageInteractorPreview(),
-            allowArchive: false
+            announcementID: "ConversationID"
         )
     )
 }

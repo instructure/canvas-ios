@@ -56,39 +56,3 @@ struct LoginWebRequest: APIRequestable {
         return headers
     }
 }
-
-struct LoginWebRequestPKCE: APIRequestable {
-    typealias Response = String
-    let clientID: String
-    let host: URL
-    let challenge: PKCEChallenge.ChallengePair
-    let shouldAddNoVerifierQuery = false
-    let isSiteAdminLogin: Bool
-    let isCanvasLogin: Bool
-
-    var path: String {
-        return "https://\(host)/login/oauth2/auth"
-    }
-
-    var query: [APIQueryItem] {
-        [
-            .value("client_id", clientID),
-            .value("redirect_uri", "https://canvas/login"),
-            .value("response_type", "code"),
-            .value("code_challenge", challenge.codeChallenge),
-            .value("code_challenge_method", "S256"),
-            .value("mobile", "1"),
-            isCanvasLogin ? .value("canvas_login", "1") : nil
-        ].compactMap { $0 }
-    }
-
-    var headers: [String: String?] {
-        var headers = [
-            HttpHeader.userAgent: UserAgent.safari.description
-        ]
-        if isSiteAdminLogin {
-            headers[HttpHeader.cookie] = "canvas_sa_delegated=1"
-        }
-        return headers
-    }
-}

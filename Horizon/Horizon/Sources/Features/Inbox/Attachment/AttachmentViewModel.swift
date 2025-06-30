@@ -40,7 +40,7 @@ class AttachmentViewModel {
     let router: Router
 
     init(
-        router: Router,
+        router: Router = AppEnvironment.shared.router,
         composeMessageInteractor: ComposeMessageInteractor,
         audioSession: AudioSessionProtocol = AVAudioApplication.shared,
         cameraPermissionService: CameraPermissionService.Type = AVCaptureDevice.self
