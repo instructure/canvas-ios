@@ -243,13 +243,14 @@ extension Course {
     public var gradeForWidget: String {
         /// We want to use the special enrollment that was downloaded along the course because that contains the
         /// computedCurrentGrade, currentPeriodComputedCurrentGrade etc. values. It has no enrollment id so it's easy to identify it.
+        let noGradesString = String(localized: "No Grades", bundle: .core)
+
         guard let enrollment = enrollments?.first(where: { $0.isStudent && $0.id == nil }) else {
-            return ""
+            return noGradesString
         }
 
         var grade = enrollment.computedCurrentGrade
         var score = enrollment.computedCurrentScore
-        let noGradesString = String(localized: "No Grades", bundle: .core)
 
         if enrollment.multipleGradingPeriodsEnabled {
             if enrollment.currentGradingPeriodID != nil {

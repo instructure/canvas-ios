@@ -34,8 +34,8 @@ struct GradesListWidgetScreen: View {
     @ViewBuilder
     private var content: some View {
         if model.isLoggedIn {
-            if let items = model.getItems(for: family) {
-                GradesListView(items: items)
+            if model.items.isNotEmpty {
+                GradesListView(model: model)
             } else {
                 GradesListFailureView()
             }

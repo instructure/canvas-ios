@@ -25,19 +25,30 @@ class GradesListModel: WidgetModel {
         Self.make()
     }
 
-    let items: [GradesListItem]?
+    let items: [GradesListItem]
 
-    init(isLoggedIn: Bool = true, items: [GradesListItem]? = nil) {
+    init(isLoggedIn: Bool = true, items: [GradesListItem] = []) {
         self.items = items
         super.init(isLoggedIn: isLoggedIn)
     }
 
-    func getItems(for widgetFamily: WidgetFamily) -> [GradesListItem]? {
-        let maxItemCount = widgetFamily == .systemMedium ? 4 : 10
-        guard let items = items, items.count > maxItemCount else {
+    func getItems(for widgetFamily: WidgetFamily, size: DynamicTypeSize? = nil) -> [GradesListItem] {
+        var maxItemCount = widgetFamily == .systemMedium ? 4 : 10
+
+        if let size, size.isAccessibilitySize {
+            switch size {
+            case .accessibility1: maxItemCount -= widgetFamily == .systemMedium ? 0 : 2
+            case .accessibility2: maxItemCount -= widgetFamily == .systemMedium ? 1 : 3
+            case .accessibility3: maxItemCount -= widgetFamily == .systemMedium ? 1 : 4
+            default: maxItemCount -= widgetFamily == .systemMedium ? 2 : 5
+            }
+        }
+
+        guard items.count > maxItemCount else {
             return items
         }
-        return Array(items[0 ..< maxItemCount])
+        let limitedItems = Array(items[0 ..< maxItemCount])
+        return limitedItems.isNotEmpty ? limitedItems : []
     }
 }
 

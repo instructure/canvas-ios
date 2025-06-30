@@ -24,10 +24,13 @@ struct GradesListView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.widgetFamily) internal var family
 
-    private let items: [GradesListItem]
+    private let model: GradesListModel
+    private var items: [GradesListItem] {
+        model.getItems(for: family, size: dynamicTypeSize)
+    }
 
-    init(items: [GradesListItem]) {
-        self.items = items
+    init(model: GradesListModel) {
+        self.model = model
     }
 
     var body: some View {
