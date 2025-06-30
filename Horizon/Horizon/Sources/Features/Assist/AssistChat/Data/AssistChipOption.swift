@@ -70,7 +70,19 @@ struct AssistChipOption: Codable, Hashable {
         case .tellMeMore:
             prompt = "\(introduction) In 1-2 paragraphs, tell me more about this content."
         case .flashcards:
-            prompt = "\(introduction) I'm creating flash cards. Give me 7 questions with answers based on the content. Return the result in JSON format like: [{question: '', answer: ''}, {question: '', answer: ''}] without any further description or text. Your flash cards should not refer to the format of the content, but rather the content itself."
+            prompt = """
+            \(introduction) please generate exactly 20 questions and answers based on the provided content for the front and back of flashcards, respectively. If the content contains only an iframe dont try to generate an answer. Flashcards are best suited for definitions and terminology, key concepts and theories, language learning, historical events and dates, and other content that might benefit from active recall and repetition. Prioritize this type of content within the flashcards.
+
+            Return the flashcards as a valid JSON array in the following format:
+            [
+              {
+                "question": "What is the title of the video?",
+                "answer": "What Is Accountability?"
+              }
+            ]
+
+            without any further description or text. Please keep the questions and answers concise (under 35 words). Each question and answer will be shown on a flashcard, so no need to repeat the question in the answer. Make sure the JSON is valid.
+            """
         case .quiz:
             prompt = "Generate a quiz"
         }

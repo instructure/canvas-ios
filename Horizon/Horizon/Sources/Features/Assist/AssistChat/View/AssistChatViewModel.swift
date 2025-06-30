@@ -189,11 +189,11 @@ final class AssistChatViewModel {
                 userInfo: ["flashCards": flashCards],
                 from: viewController
             )
-        } else if let quizItem = response.quizItem {
-            let quizModel = AssistQuizModel(from: quizItem)
+        } else if let quizItems = response.quizItems {
+            let quizzes = quizItems.map { AssistQuizModel(from: $0) }
             router.route(
                 to: "/assistant/quiz?\(params)",
-                userInfo: ["quizModel": quizModel],
+                userInfo: ["quizzes": quizzes],
                 from: viewController
             )
         }

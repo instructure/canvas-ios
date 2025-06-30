@@ -313,13 +313,13 @@ enum HorizonRoutes {
                 let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
                 let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
 
-                let quizModel = userInfo?["quizModel"] as? AssistQuizModel
+                let quizzes = userInfo?["quizzes"] as? [AssistQuizModel]
 
                 let quizView = AssistAssembly.makeAIQuizView(
                     courseId: courseId,
                     fileId: fileId,
                     pageUrl: pageUrl,
-                    quizModel: quizModel
+                    quizzes: quizzes ?? []
                 )
 
                 return CoreHostingController(quizView)
