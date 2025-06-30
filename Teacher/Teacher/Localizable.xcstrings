@@ -7438,6 +7438,7 @@
 
     },
     "Close Drawer" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -29574,6 +29575,7 @@
 
     },
     "Open Drawer full screen" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -29833,6 +29835,7 @@
 
     },
     "Open Drawer half screen" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

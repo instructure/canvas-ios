@@ -161,7 +161,6 @@ struct SubmissionGraderView: View {
             .frame(width: landscapeSplitLayoutViewModel.leftColumnWidth)
             InstUI.Divider()
             tools(bottomInset: bottomInset, isDrawer: false)
-                .paddingStyle(.top, .sectionHeaderVertical)
                 .frame(width: landscapeSplitLayoutViewModel.rightColumnWidth)
                 .hidden(landscapeSplitLayoutViewModel.isRightColumnHidden)
         }
@@ -320,22 +319,35 @@ struct SubmissionGraderView: View {
     @ViewBuilder
     private func tools(bottomInset: CGFloat, isDrawer: Bool) -> some View {
         VStack(spacing: 0) {
-            InstUI.SegmentedPicker(selection: $tab) {
-                ForEach(GraderTab.allCases, id: \.self) { tab in
-                    Text(tab.title(viewModel: viewModel))
-                        .tag(tab)
+            Group {
+                if isDrawer {
+                    InstUI.SegmentedPicker(selection: $tab) {
+                        ForEach(GraderTab.allCases, id: \.self) { tab in
+                            Text(tab.title(viewModel: viewModel))
+                                .tag(tab)
+                        }
+                    }
+                    .padding(.bottom, 16)
+                    .onChange(of: tab) {
+                        if drawerState == .min { snapDrawer(to: .mid) }
+                        controller.view.endEditing(true)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            focusedTab = tab
+                        }
+                    }
+                } else {
+                    InstUI.SegmentedPicker(selection: $tab) {
+                        ForEach(GraderTab.allCases, id: \.self) { tab in
+                            Text(tab.title(viewModel: viewModel))
+                                .tag(tab)
+                        }
+                    }
+                    .frame(height: profileHeaderSize.height)
                 }
             }
             .padding(.horizontal, 16)
-            .padding(.bottom, 16)
-            .onChange(of: tab) {
-                if drawerState == .min { snapDrawer(to: .mid) }
-                controller.view.endEditing(true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    focusedTab = tab
-                }
-            }
             .identifier("SpeedGrader.toolPicker")
+
             InstUI.Divider()
 
             GeometryReader { geometry in
