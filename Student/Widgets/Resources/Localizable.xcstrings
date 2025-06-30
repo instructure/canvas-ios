@@ -263,6 +263,7 @@
     },
     "American Literature IV" : {
       "comment" : "Example exam name",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -520,6 +521,7 @@
     },
     "American Literature IV: All the Books" : {
       "comment" : "Example course name",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1033,6 +1035,7 @@
       }
     },
     "Assignment Grades" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1547,6 +1550,7 @@
     },
     "Biology Exam 2" : {
       "comment" : "Example exam name",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1806,6 +1810,7 @@
 
     },
     "Course Grades" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2066,6 +2071,7 @@
     },
     "Essay #1: The Rocky Planets" : {
       "comment" : "Example exam name",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2580,6 +2586,7 @@
     },
     "Grades" : {
       "comment" : "Name of the grades widget",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3618,6 +3625,7 @@
 
     },
     "No Grades To Display" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -5186,6 +5194,7 @@
     },
     "View the latest grades from assignments and your favorite courses." : {
       "comment" : "Description of the grades widget",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

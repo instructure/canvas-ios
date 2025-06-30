@@ -28,15 +28,6 @@ schemes:
         Widgets: all
       environmentVariables:
         _XCWidgetKind: AnnouncementsWidget
-  Widgets - Grades:
-    build:
-      targets:
-        Widgets: all
-    run:
-      targets:
-        Widgets: all
-      environmentVariables:
-        _XCWidgetKind: GradesWidget
   Widgets - Todo:
     build:
       targets:
