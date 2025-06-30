@@ -79,6 +79,7 @@ struct GradeStatusDaysLateView: View {
         alert.addTextField { textField in
             textField.placeholder = String(localized: "Days late", bundle: .teacher)
             textField.keyboardType = .numberPad
+            textField.text = viewModel.daysLate
         }
         alert.addAction(UIAlertAction(
             title: String(localized: "Cancel", bundle: .teacher),
@@ -94,7 +95,12 @@ struct GradeStatusDaysLateView: View {
             }
             isA11yFocused = true
         })
-        viewController.value.present(alert, animated: true)
+        viewController.value.present(alert, animated: true) {
+            // Select all text so it can be replaced with a single tap
+            if let textField = alert.textFields?.first {
+                textField.selectAll(nil)
+            }
+        }
     }
 }
 
