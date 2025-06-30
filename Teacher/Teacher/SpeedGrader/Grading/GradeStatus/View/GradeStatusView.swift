@@ -26,21 +26,8 @@ struct GradeStatusView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            InstUI.PickerMenu(
-                selectedOption: Binding(
-                    get: { viewModel.selectedOption },
-                    set: { newValue in
-                        if let value = newValue { viewModel.didSelectGradeStatus.send(value) }
-                    }
-                ),
-                allOptions: viewModel.options,
-                identifierGroup: "SpeedGrader.GradeStatusMenuItem",
-                label: { cell }
-            )
-            .errorAlert(
-                isPresented: $viewModel.isShowingSaveFailedAlert,
-                presenting: viewModel.errorAlertViewModel
-            )
+            statusPickerCell
+                .identifier("SpeedGrader.statusPicker")
 
             if viewModel.isShowingDaysLateSection {
                 GradeStatusDaysLateView(viewModel: viewModel)
@@ -50,25 +37,46 @@ struct GradeStatusView: View {
         .animation(.smooth, value: viewModel.isShowingDaysLateSection)
     }
 
-    private var cell: some View {
+    private var statusPickerCell: some View {
         HStack(spacing: InstUI.Styles.Padding.cellAccessoryPadding.rawValue) {
             Text(String(localized: "Status", bundle: .teacher))
                 .font(.semibold16, lineHeight: .fit)
                 .foregroundColor(Color.textDarkest)
                 .frame(maxWidth: .infinity, alignment: .leading)
             if viewModel.isLoading {
-                ProgressView()
-                    .tint(nil)
+                ProgressView().tint(nil)
             } else {
+                statusDropDown
+            }
+        }
+        .paddingStyle(set: .standardCell)
+        .background(Color.backgroundLightest)
+        .accessibilityElement(children: .combine)
+        // PickerMenu already has "Pop up button" trait.
+        .accessibilityRemoveTraits(.isButton)
+    }
+
+    private var statusDropDown: some View {
+        InstUI.PickerMenu(
+            selectedOption: Binding(
+                get: { viewModel.selectedOption },
+                set: { newValue in
+                    if let value = newValue { viewModel.didSelectGradeStatus.send(value) }
+                }
+            ),
+            allOptions: viewModel.options,
+            identifierGroup: "SpeedGrader.GradeStatusMenuItem",
+            label: {
                 Text(viewModel.selectedOption.title)
                     .font(.regular14, lineHeight: .fit)
                 Image.chevronDown
                     .scaledIcon(size: 24)
             }
-        }
-        .paddingStyle(set: .standardCell)
-        .background(Color.backgroundLightest)
-        .identifier("SpeedGrader.statusPicker")
+        )
+        .errorAlert(
+            isPresented: $viewModel.isShowingSaveFailedAlert,
+            presenting: viewModel.errorAlertViewModel
+        )
     }
 }
 

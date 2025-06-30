@@ -71,13 +71,13 @@ class SpeedGraderTests: E2ETestCase {
 
         XCTContext.runActivity(named: "Check status picker values") { _ in
             SpeedGraderHelper.drawerGripper.hit()
-            SpeedGraderHelper.statusPicker.hit()
+            let statusPicker = SpeedGraderHelper.statusPicker
+            statusPicker.tapAt(CGPoint(x: statusPicker.frame.width - 20, y: 20))
             XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.excused.waitUntil(.visible))
             XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.late.waitUntil(.visible))
             XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.missing.waitUntil(.visible))
             XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.none.waitUntil(.visible))
             XCTAssertTrue(SpeedGraderHelper.GradeStatusButtons.none.isSelected)
-
         }
 
         XCTContext.runActivity(named: "Update days late value") { _ in
