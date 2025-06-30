@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-struct GradesListItem: Identifiable, Equatable {
+struct GradeListItem: Identifiable, Equatable {
     let courseId: String
     let courseName: String
     let grade: AttributedString
@@ -64,9 +64,9 @@ struct GradesListItem: Identifiable, Equatable {
         courseName: String = "Course Name",
         grade: String = "A",
         color: Color = .red
-    ) -> GradesListItem {
+    ) -> GradeListItem {
 
-        GradesListItem(
+        GradeListItem(
             courseId: courseId,
             courseName: courseName,
             grade: grade,

@@ -19,7 +19,7 @@
 import SwiftUI
 import WidgetKit
 
-struct GradesListLoggedOutView: View {
+struct GradeListLoggedOutView: View {
     @Environment(\.widgetFamily) private var family
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
@@ -53,15 +53,15 @@ struct GradesListLoggedOutView: View {
 #if DEBUG
 
 #Preview("Medium", as: .systemMedium) {
-    GradesListWidget()
+    GradeListWidget()
 } timeline: {
-    GradesListWidgetEntry(data: GradesListModel(isLoggedIn: false), date: Date())
+    GradeListWidgetEntry(data: GradeListModel(isLoggedIn: false), date: Date())
 }
 
 #Preview("Large", as: .systemLarge) {
-    GradesListWidget()
+    GradeListWidget()
 } timeline: {
-    GradesListWidgetEntry(data: GradesListModel(isLoggedIn: false), date: Date())
+    GradeListWidgetEntry(data: GradeListModel(isLoggedIn: false), date: Date())
 }
 
 #endif

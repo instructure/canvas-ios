@@ -19,8 +19,8 @@
 import Core
 import WidgetKit
 
-class GradesListWidgetProvider: TimelineProvider {
-    typealias Entry = GradesListWidgetEntry
+class GradeListWidgetProvider: TimelineProvider {
+    typealias Entry = GradeListWidgetEntry
 
     private let env = AppEnvironment.shared
     private var refreshDate: Date { Date().addingTimeInterval(.gradeListWidgetRefresh) }
@@ -31,11 +31,11 @@ class GradesListWidgetProvider: TimelineProvider {
 
     func placeholder(in context: TimelineProvider.Context) -> Entry { .publicPreview }
 
-    func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (GradesListWidgetEntry) -> Void) {
+    func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (GradeListWidgetEntry) -> Void) {
         completion(placeholder(in: context))
     }
 
-    func getTimeline(in context: TimelineProvider.Context, completion: @escaping @Sendable (Timeline<GradesListWidgetEntry>) -> Void) {
+    func getTimeline(in context: TimelineProvider.Context, completion: @escaping @Sendable (Timeline<GradeListWidgetEntry>) -> Void) {
 
         if context.isPreview {
             let timeline = Timeline(entries: [placeholder(in: context)], policy: .never)
@@ -60,7 +60,7 @@ class GradesListWidgetProvider: TimelineProvider {
         env.userDidLogin(session: session, isSilent: true)
     }
 
-    private func fetch(_ completion: @escaping @Sendable (Timeline<GradesListWidgetEntry>) -> Void) {
+    private func fetch(_ completion: @escaping @Sendable (Timeline<GradeListWidgetEntry>) -> Void) {
         dashboardCards = env.subscribe(GetDashboardCards())
         dashboardCards?.refresh { [weak self] _ in
             self?.handleFetchFinished(completion)
@@ -71,7 +71,7 @@ class GradesListWidgetProvider: TimelineProvider {
         }
     }
 
-    private func handleFetchFinished(_ completion: @escaping (Timeline<GradesListWidgetEntry>) -> Void) {
+    private func handleFetchFinished(_ completion: @escaping (Timeline<GradeListWidgetEntry>) -> Void) {
         guard let dashboardCards = self.dashboardCards, !dashboardCards.pending else { return }
         guard let allCourses = self.allCourses, !allCourses.pending else { return }
         let favCourses = allCourses.filter { $0.isFavorite }
@@ -84,9 +84,9 @@ class GradesListWidgetProvider: TimelineProvider {
             }
         }
 
-        let gradesListItems = orderedCourses.map { GradesListItem($0) }
-        let gradesListModel = GradesListModel(items: gradesListItems as? [GradesListItem] ?? [])
-        let gradesListEntries = [GradesListWidgetEntry(data: gradesListModel, date: .now)]
+        let gradesListItems = orderedCourses.map { GradeListItem($0) }
+        let gradesListModel = GradeListModel(items: gradesListItems as? [GradeListItem] ?? [])
+        let gradesListEntries = [GradeListWidgetEntry(data: gradesListModel, date: .now)]
         let refreshDate = Clock.now.addingTimeInterval(.gradeListWidgetRefresh)
         let timeline = Timeline(entries: gradesListEntries, policy: .after(refreshDate))
         completion(timeline)

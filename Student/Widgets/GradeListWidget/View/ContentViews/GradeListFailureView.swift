@@ -19,7 +19,7 @@
 import SwiftUI
 import WidgetKit
 
-struct GradesListFailureView: View {
+struct GradeListFailureView: View {
     @Environment(\.widgetFamily) private var family
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
@@ -53,15 +53,15 @@ struct GradesListFailureView: View {
 #if DEBUG
 
 #Preview("Medium", as: .systemMedium) {
-    GradesListWidget()
+    GradeListWidget()
 } timeline: {
-    GradesListWidgetEntry(data: GradesListModel(), date: Date())
+    GradeListWidgetEntry(data: GradeListModel(), date: Date())
 }
 
 #Preview("Large", as: .systemLarge) {
-    GradesListWidget()
+    GradeListWidget()
 } timeline: {
-    GradesListWidgetEntry(data: GradesListModel(), date: Date())
+    GradeListWidgetEntry(data: GradeListModel(), date: Date())
 }
 
 #endif

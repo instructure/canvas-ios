@@ -21,17 +21,17 @@ import UIKit
 
 extension WidgetRouter {
 
-    static func createGradesListRouter() -> WidgetRouter {
-        WidgetRouter(originValue: "grades-list-widget", handlers: [
-            gradesListTabHandler
+    static func createGradeListRouter() -> WidgetRouter {
+        WidgetRouter(originValue: "grade-list-widget", handlers: [
+            gradeListTabHandler
         ])
     }
 
     // MARK: - Handlers
 
-    private static var gradesListTabHandler: RouteHandler {
+    private static var gradeListTabHandler: RouteHandler {
         .init("/courses/:courseId/grades", action: { url, params, view in
-            Analytics.shared.logEvent(GradesListWidgetEventNames.openGrades.rawValue)
+            Analytics.shared.logEvent(GradeListWidgetEventNames.openGrades.rawValue)
 
             guard let courseId = params["courseId"] else { return }
 

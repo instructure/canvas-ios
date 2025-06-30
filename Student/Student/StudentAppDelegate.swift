@@ -42,7 +42,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
     private lazy var todoWidgetRouter = WidgetRouter.createTodoRouter()
-    private lazy var gradesListWidgetRouter = WidgetRouter.createGradesListRouter()
+    private lazy var gradesListWidgetRouter = WidgetRouter.createGradeListRouter()
 
     private lazy var analyticsTracker: PendoAnalyticsTracker = {
         .init(environment: environment)
@@ -271,7 +271,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             }
 
             if widgetKinds.contains("GradesListWidget") {
-                Analytics.shared.logEvent(GradesListWidgetEventNames.active.rawValue)
+                Analytics.shared.logEvent(GradeListWidgetEventNames.active.rawValue)
             }
         }
     }

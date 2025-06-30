@@ -16,49 +16,35 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import WidgetKit
 import SwiftUI
+import WidgetKit
 
-struct GradesListWidgetScreen: View {
+struct GradeListWidget: Widget {
+    static let kind: String = "GradeListWidget"
 
-    @Environment(\.widgetFamily) private var family
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-
-    let model: GradesListModel
-
-    var body: some View {
-        content
-            .defaultWidgetContainer()
-    }
-
-    @ViewBuilder
-    private var content: some View {
-        if model.isLoggedIn {
-            if model.items.isNotEmpty {
-                GradesListView(model: model)
-            } else {
-                GradesListFailureView()
-            }
-        } else {
-            GradesListLoggedOutView()
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: Self.kind, provider: GradeListWidgetProvider()) { model in
+            GradeListWidgetScreen(model: model.data)
         }
+        .contentMarginsDisabled()
+        .configurationDisplayName(String(localized: "Grade List", comment: "Name of the Grade List widget"))
+        .description(String(localized: "View your grades.", comment: "Description of the Grade List widget"))
+        .supportedFamilies([.systemMedium, .systemLarge])
     }
 }
-
-// MARK: - Previews
 
 #if DEBUG
 
 #Preview("Medium", as: .systemMedium) {
-    GradesListWidget()
+    GradeListWidget()
 } timeline: {
-    GradesListWidgetEntry(data: GradesListModel.make(), date: Date())
+    GradeListWidgetEntry(data: GradeListModel.make(), date: Date())
 }
 
 #Preview("Large", as: .systemLarge) {
-    GradesListWidget()
+    GradeListWidget()
 } timeline: {
-    GradesListWidgetEntry(data: GradesListModel.make(), date: Date())
+    GradeListWidgetEntry(data: GradeListModel.make(), date: Date())
 }
 
 #endif

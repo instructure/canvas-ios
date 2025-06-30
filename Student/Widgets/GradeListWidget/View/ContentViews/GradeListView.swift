@@ -20,23 +20,23 @@ import WidgetKit
 import SwiftUI
 import Core
 
-struct GradesListView: View {
+struct GradeListView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.widgetFamily) internal var family
 
-    private let model: GradesListModel
-    private var items: [GradesListItem] {
+    private let model: GradeListModel
+    private var items: [GradeListItem] {
         model.getItems(for: family, size: dynamicTypeSize)
     }
 
-    init(model: GradesListModel) {
+    init(model: GradeListModel) {
         self.model = model
     }
 
     var body: some View {
         VStack(spacing: 8) {
             ForEach(items) { item in
-                GradesListItemView(item: item)
+                GradeListItemView(item: item)
                 if items.last != item {
                     InstUI.Divider()
                 }
@@ -47,8 +47,8 @@ struct GradesListView: View {
     }
 }
 
-struct GradesListItemView: View {
-    let item: GradesListItem
+struct GradeListItemView: View {
+    let item: GradeListItem
 
     var body: some View {
         Link(destination: item.courseGradesURL!) {
@@ -76,15 +76,15 @@ struct GradesListItemView: View {
 #if DEBUG
 
 #Preview("Medium", as: .systemMedium) {
-    GradesListWidget()
+    GradeListWidget()
 } timeline: {
-    GradesListWidgetEntry(data: GradesListModel.make(), date: Date())
+    GradeListWidgetEntry(data: GradeListModel.make(), date: Date())
 }
 
 #Preview("Large", as: .systemLarge) {
-    GradesListWidget()
+    GradeListWidget()
 } timeline: {
-    GradesListWidgetEntry(data: GradesListModel.make(), date: Date())
+    GradeListWidgetEntry(data: GradeListModel.make(), date: Date())
 }
 
 #endif

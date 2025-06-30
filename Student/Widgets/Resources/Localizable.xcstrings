@@ -2584,6 +2584,9 @@
         }
       }
     },
+    "Grade List" : {
+      "comment" : "Name of the Grade List widget"
+    },
     "Grades" : {
       "comment" : "Name of the grades widget",
       "extractionState" : "stale",
@@ -2841,9 +2844,6 @@
           }
         }
       }
-    },
-    "Grades List" : {
-      "comment" : "Name of the Grades List widget"
     },
     "Introduction to the Solar System" : {
       "comment" : "Example course name",
@@ -5451,7 +5451,7 @@
       }
     },
     "View your grades." : {
-      "comment" : "Description of the Grades List widget"
+      "comment" : "Description of the Grade List widget"
     },
     "View your to-do items." : {
       "comment" : "Description of the to-do widget"

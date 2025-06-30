@@ -18,16 +18,16 @@
 
 import WidgetKit
 
-struct GradesListWidgetEntry: TimelineEntry {
+struct GradeListWidgetEntry: TimelineEntry {
     static let publicPreview: Self = .init(
         data: .make(),
         date: Date()
     )
     static let loggedOutModel: Self = .init(
-        data: GradesListModel(isLoggedIn: false),
+        data: GradeListModel(isLoggedIn: false),
         date: Date()
     )
 
-    let data: GradesListModel
+    let data: GradeListModel
     let date: Date
 }

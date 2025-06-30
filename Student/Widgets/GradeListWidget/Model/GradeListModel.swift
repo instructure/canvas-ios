@@ -20,19 +20,19 @@ import WidgetKit
 import SwiftUI
 import Core
 
-class GradesListModel: WidgetModel {
-    override class var publicPreview: GradesListModel {
+class GradeListModel: WidgetModel {
+    override class var publicPreview: GradeListModel {
         Self.make()
     }
 
-    let items: [GradesListItem]
+    let items: [GradeListItem]
 
-    init(isLoggedIn: Bool = true, items: [GradesListItem] = []) {
+    init(isLoggedIn: Bool = true, items: [GradeListItem] = []) {
         self.items = items
         super.init(isLoggedIn: isLoggedIn)
     }
 
-    func getItems(for widgetFamily: WidgetFamily, size: DynamicTypeSize? = nil) -> [GradesListItem] {
+    func getItems(for widgetFamily: WidgetFamily, size: DynamicTypeSize? = nil) -> [GradeListItem] {
         var maxItemCount = widgetFamily == .systemMedium ? 4 : 10
 
         if let size, size.isAccessibilitySize {
@@ -54,10 +54,10 @@ class GradesListModel: WidgetModel {
 
 // MARK: - Previews
 
-extension GradesListModel {
+extension GradeListModel {
 
-    static func make(count: Int? = nil) -> GradesListModel {
-        let items: [GradesListItem] = [
+    static func make(count: Int? = nil) -> GradeListModel {
+        let items: [GradeListItem] = [
             .make(
                 courseId: "1",
                 courseName: "Biology 101",
@@ -120,8 +120,8 @@ extension GradesListModel {
             )
         ]
         if let count, items.count > count {
-            return GradesListModel(items: Array(items[0 ..< count]))
+            return GradeListModel(items: Array(items[0 ..< count]))
         }
-        return GradesListModel(items: items)
+        return GradeListModel(items: items)
     }
 }
