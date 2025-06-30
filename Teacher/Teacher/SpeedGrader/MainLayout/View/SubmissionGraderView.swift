@@ -161,6 +161,7 @@ struct SubmissionGraderView: View {
             .frame(width: landscapeSplitLayoutViewModel.leftColumnWidth)
             InstUI.Divider()
             tools(bottomInset: bottomInset, isDrawer: false)
+                .paddingStyle(.top, .sectionHeaderVertical)
                 .frame(width: landscapeSplitLayoutViewModel.rightColumnWidth)
                 .hidden(landscapeSplitLayoutViewModel.isRightColumnHidden)
         }
