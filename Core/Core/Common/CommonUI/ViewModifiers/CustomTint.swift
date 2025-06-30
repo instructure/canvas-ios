@@ -23,6 +23,8 @@ extension View {
     func customTint(_ color: Color?) -> some View {
         if let color {
             self.tint(color)
+        } else {
+            self
         }
     }
 }

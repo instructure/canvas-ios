@@ -81,27 +81,21 @@ extension InstUI {
 
 #if DEBUG
 
-private struct Container: View {
-    @State var selectedValue: Int?
-
-    var body: some View {
-        VStack(spacing: 0) {
-            InstUI.RadioButtonCell(
-                title: "Value 1",
-                value: 1,
-                selectedValue: $selectedValue
-            )
-            InstUI.RadioButtonCell(
-                title: "Value 2",
-                value: 2,
-                selectedValue: $selectedValue
-            )
-        }
-    }
-}
-
 #Preview {
-    Container()
+    @Previewable @State var selectedValue: Int?
+
+    VStack(spacing: 0) {
+        InstUI.RadioButtonCell(
+            title: "Value 1",
+            value: 1,
+            selectedValue: $selectedValue
+        )
+        InstUI.RadioButtonCell(
+            title: "Value 2",
+            value: 2,
+            selectedValue: $selectedValue
+        )
+    }
 }
 
 #endif

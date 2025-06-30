@@ -90,6 +90,7 @@ public struct SingleSelectionView: View {
                 selectedValue: selectionBinding,
                 dividerStyle: viewModel.dividerStyle(for: item)
             )
+            .customTint(item.color)
         case .trailingCheckmark:
             InstUI.TrailingCheckmarkCell(
                 title: item.title,
@@ -98,6 +99,7 @@ public struct SingleSelectionView: View {
                 selectedValue: selectionBinding,
                 dividerStyle: viewModel.dividerStyle(for: item)
             )
+            .customTint(item.color)
         }
     }
 

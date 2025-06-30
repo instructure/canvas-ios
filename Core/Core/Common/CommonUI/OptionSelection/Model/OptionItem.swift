@@ -36,13 +36,13 @@ public struct OptionItem: Equatable, Hashable, Identifiable {
         title: String,
         subtitle: String? = nil,
         customAccessibilityLabel: String? = nil,
-        color: Color? = nil,
+        colorOverride: Color? = nil,
         accessoryIcon: Image? = nil
     ) {
         self.id = id
         self.title = title
         self.subtitle = subtitle
-        self.color = color
+        self.color = colorOverride
         self.customAccessibilityLabel = customAccessibilityLabel
         self.accessoryIcon = accessoryIcon
     }
@@ -77,7 +77,7 @@ extension OptionItem {
             title: title,
             subtitle: subtitle,
             customAccessibilityLabel: customAccessibilityLabel,
-            color: color,
+            colorOverride: color,
             accessoryIcon: accessoryIcon
         )
     }
