@@ -101,6 +101,7 @@ struct DrawerContainer<Content: View>: View {
             RoundedRectangle(cornerRadius: 2)
                 .fill(Color.borderMedium)
                 .frame(width: 36, height: 4)
+                .frame(height: Image.defaultIconSize)
         }
         .highPriorityGesture(DragGesture(coordinateSpace: .global)
             .onChanged { value in translation = -value.translation.height }
