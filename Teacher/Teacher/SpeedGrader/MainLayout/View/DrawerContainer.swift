@@ -30,6 +30,11 @@ struct DrawerContainer<Content: View>: View {
     let minHeight: CGFloat
     let maxHeight: CGFloat
 
+    let openHalfScreen = Text("Open drawer half screen", bundle: .teacher)
+    let openFullScreen = Text("Open drawer full screen", bundle: .teacher)
+    let collapseHalfScreen = Text("Collapse drawer half screen", bundle: .teacher)
+    let closeDrawer = Text("Close drawer", bundle: .teacher)
+
     var height: CGFloat {
         switch state {
         case .min: return minHeight
@@ -82,8 +87,7 @@ struct DrawerContainer<Content: View>: View {
             .shadow(color: Color.black.opacity(0.3), radius: 3, x: 0, y: 0)
         )
     }
-
-    @ViewBuilder
+    // MARK: - Expand/Collapse Button
     private var expandCollapseButton: some View {
         Button(action: expandCollapseButtonAction) {
             expandCollapseButtonImage
@@ -95,7 +99,27 @@ struct DrawerContainer<Content: View>: View {
         }
     }
 
-    @ViewBuilder
+    private var expandCollapseButtonImage: some View {
+        state == .max ? Image.exitFullScreenLine : Image.fullScreenLine
+    }
+
+    private func expandCollapseButtonAction() {
+        switch state {
+        case .mid: snapDrawer(to: .max)
+        default: snapDrawer(to: .mid)
+        }
+    }
+
+    private var expandCollapseButtonAccessibilityText: Text {
+        switch state {
+        case .min: openHalfScreen
+        case .mid: openFullScreen
+        case .max: collapseHalfScreen
+        }
+    }
+
+    // MARK: - Drag Indicator
+
     private var dragIndicator: some View {
         Button(action: dragIndicatorAction) {
             RoundedRectangle(cornerRadius: 2)
@@ -115,10 +139,27 @@ struct DrawerContainer<Content: View>: View {
             }
         )
         .accessibility(identifier: "SpeedGrader.drawerGripper")
-        .accessibilityLabel(buttonA11yText)
+        .accessibilityLabel(dragIndicatorAccessibilityText)
     }
 
-    @ViewBuilder
+    private func dragIndicatorAction() {
+        switch state {
+        case .min: snapDrawer(to: .mid)
+        case .mid: snapDrawer(to: .max)
+        case .max: snapDrawer(to: .min)
+        }
+    }
+
+    private var dragIndicatorAccessibilityText: Text {
+        switch state {
+        case .min: openHalfScreen
+        case .mid: openFullScreen
+        case .max: closeDrawer
+        }
+    }
+
+    // MARK: - Open/Close Button
+
     private var openCloseButton: some View {
         Button(action: openCloseButtonAction) {
             openCloseButtonImage
@@ -130,49 +171,6 @@ struct DrawerContainer<Content: View>: View {
         }
     }
 
-    private func snapDrawer(to state: DrawerState) {
-        withTransaction(DrawerState.transaction) {
-            self.state = state
-        }
-    }
-
-    private func dragIndicatorAction() {
-        switch state {
-        case .min: snapDrawer(to: .mid)
-        case .mid: snapDrawer(to: .max)
-        case .max: snapDrawer(to: .min)
-        }
-    }
-
-    private var buttonA11yText: Text {
-        switch state {
-        case .min: Text("Open Drawer half screen", bundle: .teacher)
-        case .mid: Text("Open Drawer full screen", bundle: .teacher)
-        case .max: Text("Close Drawer", bundle: .teacher)
-        }
-    }
-
-    @ViewBuilder
-    private var expandCollapseButtonImage: some View {
-        state == .max ? Image.exitFullScreenLine : Image.fullScreenLine
-    }
-
-    private func expandCollapseButtonAction() {
-        switch state {
-        case .mid: snapDrawer(to: .max)
-        default: snapDrawer(to: .mid)
-        }
-    }
-
-    private var expandCollapseButtonAccessibilityText: Text {
-        switch state {
-        case .min: Text("Open drawer half screen", bundle: .teacher)
-        case .mid: Text("Open drawer full screen", bundle: .teacher)
-        case .max: Text("Collapse drawer half screen", bundle: .teacher)
-        }
-    }
-
-    @ViewBuilder
     private var openCloseButtonImage: some View {
         Image.chevronDown
             .rotationEffect(state != .min ? .degrees(0) : .degrees(180))
@@ -186,9 +184,15 @@ struct DrawerContainer<Content: View>: View {
     }
 
     private var openCloseButtonAccessibilityText: Text {
-        state == .min ?
-        Text("Open drawer full screen", bundle: .teacher) :
-        Text("Close drawer", bundle: .teacher)
+        state == .min ? openFullScreen : closeDrawer
+    }
+
+    // MARK: - Drawer Management
+
+    private func snapDrawer(to state: DrawerState) {
+        withTransaction(DrawerState.transaction) {
+            self.state = state
+        }
     }
 
     struct DrawerBackground: Shape {

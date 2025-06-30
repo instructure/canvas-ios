@@ -310,8 +310,8 @@ struct SubmissionGraderView: View {
 
         func title(viewModel: SubmissionGraderViewModel) -> String {
             switch self {
-            case .grades: return String(localized: "Grades", bundle: .teacher)
-            case .comments: return String(localized: "Comments", bundle: .teacher)
+            case .grades: String(localized: "Grades", bundle: .teacher)
+            case .comments: String(localized: "Comments", bundle: .teacher)
             }
         }
     }
