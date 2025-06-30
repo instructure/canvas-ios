@@ -42,7 +42,6 @@ struct SubmissionGraderView: View {
     @State private var profileHeaderSize: CGSize = .zero
     @AccessibilityFocusState private var focusedTab: GraderTab?
 
-    @StateObject private var commentLibrary = SubmissionCommentLibraryViewModel()
     @StateObject private var rubricsViewModel: RubricsViewModel
     @StateObject private var viewModel: SubmissionGraderViewModel
     @ObservedObject private var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
@@ -461,8 +460,6 @@ struct SubmissionGraderView: View {
                 attempt: drawerAttempt,
                 fileID: fileID,
                 showRecorder: $showRecorder,
-                enteredComment: $viewModel.enteredComment,
-                commentLibrary: commentLibrary,
                 focusedTab: _focusedTab
             )
             .clipped()

@@ -95,23 +95,18 @@ public struct InboxSettingsView: View {
                     .accessibilityHidden(true)
                     .padding(.vertical, defaultPadding)
 
-                UITextViewWrapper(text: $viewModel.signature) {
-                    let tv = UITextView()
+                InstUI.UITextViewWrapper(text: $viewModel.signature) { tv in
                     tv.placeholder = String(localized: "Write your signature here", bundle: .core)
                     tv.placeholderColor = .textPlaceholder
                     tv.isScrollEnabled = false
                     tv.textContainer.widthTracksTextView = true
-                    tv.textContainer.lineBreakMode = .byWordWrapping
+                    tv.textColor = .textDarkest
                     tv.font = UIFont.scaledNamedFont(.regular16)
                     tv.translatesAutoresizingMaskIntoConstraints = false
                     tv.widthAnchor.constraint(equalToConstant: geometry.frame(in: .global).width - (2 * defaultPadding)).isActive = true
                     tv.backgroundColor = .backgroundLightest
-                    return tv
                 }
-                .font(.regular16, lineHeight: .condensed)
-                .textInputAutocapitalization(.sentences)
                 .focused($focusedInput, equals: .signature)
-                .foregroundColor(.textDarkest)
                 .disabled(!viewModel.useSignature)
                 .opacity(!viewModel.useSignature ? 0.6 : 1)
                 .frame(minHeight: 60)
