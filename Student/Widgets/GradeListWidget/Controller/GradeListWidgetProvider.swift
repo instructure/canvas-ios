@@ -84,11 +84,11 @@ class GradeListWidgetProvider: TimelineProvider {
             }
         }
 
-        let gradesListItems = orderedCourses.map { GradeListItem($0) }
-        let gradesListModel = GradeListModel(items: gradesListItems as? [GradeListItem] ?? [])
-        let gradesListEntries = [GradeListWidgetEntry(data: gradesListModel, date: .now)]
+        let gradeListItems = orderedCourses.map { GradeListItem($0) }
+        let gradeListModel = GradeListModel(items: gradeListItems as? [GradeListItem] ?? [])
+        let gradeListEntries = [GradeListWidgetEntry(data: gradeListModel, date: .now)]
         let refreshDate = Clock.now.addingTimeInterval(.gradeListWidgetRefresh)
-        let timeline = Timeline(entries: gradesListEntries, policy: .after(refreshDate))
+        let timeline = Timeline(entries: gradeListEntries, policy: .after(refreshDate))
         completion(timeline)
     }
 }

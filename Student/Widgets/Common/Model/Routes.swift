@@ -72,7 +72,7 @@ extension URL {
     }
 
     static func gradesRoute(forCourse courseId: String, color: String? = nil) -> URL {
-        return .gradesListWidgetRoute("/courses/\(courseId)/grades")
+        return .gradeListWidgetRoute("/courses/\(courseId)/grades")
             .appending(
                 queryItems: [
                     color.flatMap { URLQueryItem(name: "contextColor", value: $0) }
