@@ -1814,9 +1814,6 @@
     "Course" : {
 
     },
-    "Course Grade" : {
-
-    },
     "Course Grades" : {
       "localizations" : {
         "ar" : {
@@ -4426,6 +4423,9 @@
 
     },
     "Selects the course to display total grade for." : {
+
+    },
+    "Single Grade Widget" : {
 
     },
     "Something Went Wrong!" : {
