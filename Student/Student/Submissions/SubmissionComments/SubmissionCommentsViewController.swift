@@ -64,6 +64,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         commentLabel.text = String(localized: "Comment", bundle: .student)
+        commentLabel.textColor = .textDark
         addCommentBorderView.backgroundColor = .backgroundLightest
         addCommentBorderView.layer.borderColor = UIColor.borderMedium.cgColor
         addCommentBorderView.layer.borderWidth = 1 / UIScreen.main.scale
