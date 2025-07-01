@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,34 +18,13 @@
 
 import SwiftUI
 
-extension InstUI {
-
-    public struct RadioButton: View {
-        @ScaledMetric private var uiScale: CGFloat = 1
-        private let isSelected: Bool
-
-        public init(
-            isSelected: Bool
-        ) {
-            self.isSelected = isSelected
-        }
-
-        public var body: some View {
-            let image: Image = isSelected ? .radioButtonSelected : .radioButtonUnselected
-            return image
-                .size(uiScale.iconScale * 24)
-                .foregroundStyle(.tint)
+extension View {
+    @ViewBuilder
+    func customTint(_ color: Color?) -> some View {
+        if let color {
+            self.tint(color)
+        } else {
+            self
         }
     }
 }
-
-#if DEBUG
-
-#Preview {
-    HStack {
-        InstUI.RadioButton(isSelected: true)
-        InstUI.RadioButton(isSelected: false)
-    }
-}
-
-#endif

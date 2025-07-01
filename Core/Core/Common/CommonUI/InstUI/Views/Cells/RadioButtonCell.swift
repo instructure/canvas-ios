@@ -26,7 +26,6 @@ extension InstUI {
         @Binding private var selectedValue: Value?
         private let title: String
         private let value: Value?
-        private let color: Color
         private let dividerStyle: InstUI.Divider.Style
 
         /// - parameters:
@@ -36,13 +35,11 @@ extension InstUI {
             title: String,
             value: Value?,
             selectedValue: Binding<Value?>,
-            color: Color,
             dividerStyle: InstUI.Divider.Style = .full
         ) {
             self.title = title
             self.value = value
             self._selectedValue = selectedValue
-            self.color = color
             self.dividerStyle = dividerStyle
         }
 
@@ -54,10 +51,7 @@ extension InstUI {
                     selectedValue = value
                 } label: {
                     HStack(spacing: 0) {
-                        InstUI.RadioButton(
-                            isSelected: isSelected,
-                            color: color
-                        )
+                        InstUI.RadioButton(isSelected: isSelected)
                         .paddingStyle(.trailing, .cellIconText)
                         .animation(.default, value: selectedValue)
 
@@ -87,29 +81,21 @@ extension InstUI {
 
 #if DEBUG
 
-private struct Container: View {
-    @State var selectedValue: Int?
-
-    var body: some View {
-        VStack(spacing: 0) {
-            InstUI.RadioButtonCell(
-                title: "Value 1",
-                value: 1,
-                selectedValue: $selectedValue,
-                color: .orange
-            )
-            InstUI.RadioButtonCell(
-                title: "Value 2",
-                value: 2,
-                selectedValue: $selectedValue,
-                color: .red
-            )
-        }
-    }
-}
-
 #Preview {
-    Container()
+    @Previewable @State var selectedValue: Int?
+
+    VStack(spacing: 0) {
+        InstUI.RadioButtonCell(
+            title: "Value 1",
+            value: 1,
+            selectedValue: $selectedValue
+        )
+        InstUI.RadioButtonCell(
+            title: "Value 2",
+            value: 2,
+            selectedValue: $selectedValue
+        )
+    }
 }
 
 #endif
