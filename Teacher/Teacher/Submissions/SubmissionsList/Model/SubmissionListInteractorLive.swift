@@ -68,6 +68,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
         submissionsSubscription = submissionsStore?
             .getEntities(ignoreCache: true, keepObservingDatabaseChanges: true)
             .replaceError(with: [])
+            .map { $0.filterOutStudentViewUsers() }
             .sink { [weak self] list in
                 self?.submissionsSubject.send(list)
             }
@@ -107,5 +108,18 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
     func applyFilters(_ filters: [GetSubmissions.Filter]) {
         filtersSubject.send(filters)
+    }
+}
+
+private extension [Submission] {
+    
+    func filterOutStudentViewUsers() -> [Submission] {
+        var filteredSubmissions = self
+        filteredSubmissions.removeAll { submission in
+            submission.enrollments.contains { enrollment in
+                enrollment.isStudentView
+            }
+        }
+        return filteredSubmissions
     }
 }

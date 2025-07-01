@@ -59,7 +59,7 @@ class SubmissionListViewModel: ObservableObject {
         .map({ (list, searchText) in
 
             let searchTerm = searchText.lowercased()
-            var curatedList: [Submission] = list.filter { $0.enrollments.first?.isNotStudentView ?? false }
+            var curatedList: [Submission] = list
             if searchTerm.isNotEmpty {
                 curatedList = curatedList.filter { $0.user?.nameContains(searchTerm) ?? false }
             }
