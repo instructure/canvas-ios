@@ -31,7 +31,7 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
 
     public var color: UIColor?
     var courseID = ""
-    let env = AppEnvironment.shared
+    private(set) var env: AppEnvironment = .shared
     var selectedFirstQuiz: Bool = false
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "courses/\(courseID)/quizzes"
@@ -47,8 +47,9 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
         self?.update()
     }
 
-    public static func create(courseID: String) -> QuizListViewController {
+    public static func create(env: AppEnvironment, courseID: String) -> QuizListViewController {
         let controller = loadFromStoryboard()
+        controller.env = env
         controller.courseID = courseID
         return controller
     }
