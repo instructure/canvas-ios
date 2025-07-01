@@ -78,7 +78,7 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
 
     public func editTapped(router: Router, viewController: WeakViewController) {
         router.route(
-            to: "courses/\(courseID)/quizzes/\(quizID)/edit",
+            to: "/courses/\(courseID)/quizzes/\(quizID)/edit",
             from: viewController,
             options: .modal(isDismissable: false, embedInNav: true)
         )
@@ -86,7 +86,7 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
 
     public func previewTapped(router: Router, viewController: WeakViewController) {
         router.route(
-            to: "courses/\(courseID)/quizzes/\(quizID)/preview",
+            to: "/courses/\(courseID)/quizzes/\(quizID)/preview",
             from: viewController,
             options: .modal(.fullScreen, isDismissable: false, embedInNav: true, addDoneButton: true)
         )

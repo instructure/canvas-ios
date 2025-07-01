@@ -369,9 +369,9 @@ let router = Router(routes: [
         return CoreHostingController(PageEditorView(context: context, url: slug))
     },
 
-    RouteHandler("/courses/:courseID/quizzes") { _, params, _ in
+    RouteHandler("/courses/:courseID/quizzes") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
-        return QuizListViewController.create(courseID: courseID)
+        return QuizListViewController.create(env: env, courseID: courseID)
     },
 
     RouteHandler("/courses/:courseID/quizzes/:quizID") { _, params, _, env in
@@ -379,30 +379,36 @@ let router = Router(routes: [
         let viewModel = TeacherQuizDetailsViewModelLive(env: env, courseID: courseID, quizID: quizID)
         return CoreHostingController(TeacherQuizDetailsView(viewModel: viewModel), env: env)
     },
-    RouteHandler("/courses/:courseID/quizzes/:quizID/preview") { _, params, _ in
+    RouteHandler("/courses/:courseID/quizzes/:quizID/preview") { _, params, _, env in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        return QuizPreviewAssembly.makeQuizPreviewViewController(courseID: courseID, quizID: quizID)
+        return QuizPreviewAssembly.makeQuizPreviewViewController(courseID: courseID, quizID: quizID, env: env)
     },
-    RouteHandler("/courses/:courseID/quizzes/:quizID/edit") { _, params, _ in
+    RouteHandler("/courses/:courseID/quizzes/:quizID/edit") { _, params, _, env in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        let viewModel = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
-        return CoreHostingController(TeacherQuizEditorView(viewModel: viewModel))
+        let viewModel = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID, env: env)
+        return CoreHostingController(TeacherQuizEditorView(viewModel: viewModel), env: env)
     },
-    RouteHandler("/courses/:courseID/quizzes/:quizID/submissions") { url, params, _ in
+    RouteHandler("/courses/:courseID/quizzes/:quizID/submissions") { url, params, _, env in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
         let filter = QuizSubmissionListFilter(rawValue: url.queryValue(for: "filter"))
-        return QuizSubmissionListAssembly.makeViewController(env: AppEnvironment.shared, courseID: courseID, quizID: quizID, filter: filter)
+        return QuizSubmissionListAssembly.makeViewController(env: env, courseID: courseID, quizID: quizID, filter: filter)
     },
-    RouteHandler("/courses/:courseID/users") { _, params, _ in
+    RouteHandler("/courses/:courseID/users") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
-        return PeopleListViewController.create(context: .course(courseID))
+        return PeopleListViewController.create(env: env, context: .course(courseID))
     },
 
-    RouteHandler("/courses/:courseID/users/:userID") { _, params, userInfo in
+    RouteHandler("/courses/:courseID/users/:userID") { _, params, userInfo, env in
         guard let courseID = params["courseID"], let userID = params["userID"] else { return nil }
         let isModal = isModalPresentation(userInfo)
-        let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: AppEnvironment.shared.currentSession?.userID ?? "", isModal: isModal)
-        return CoreHostingController(ContextCardView(model: viewModel))
+        let viewModel = ContextCardViewModel(
+            courseID: courseID,
+            userID: userID,
+            currentUserID: env.currentSession?.userID ?? "",
+            isModal: isModal,
+            env: env
+        )
+        return CoreHostingController(ContextCardView(model: viewModel), env: env)
     },
 
     RouteHandler("/dev-menu") { _, _, _ in

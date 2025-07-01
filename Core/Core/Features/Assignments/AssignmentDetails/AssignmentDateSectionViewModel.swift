@@ -54,6 +54,6 @@ public class AssignmentDateSectionViewModel: DateSectionViewModelProtocol {
     }
 
     public func buttonTapped(router: Router, viewController: WeakViewController) {
-        router.route(to: "courses/\(assignment.courseID)/assignments/\(assignment.id)/due_dates", from: viewController)
+        router.route(to: "/courses/\(assignment.courseID)/assignments/\(assignment.id)/due_dates", from: viewController)
     }
 }

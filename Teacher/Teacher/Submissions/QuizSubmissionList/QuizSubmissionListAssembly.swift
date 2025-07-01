@@ -21,10 +21,12 @@ import UIKit
 
 public enum QuizSubmissionListAssembly {
 
-    public static func makeViewController(env: AppEnvironment,
-                                          courseID: String,
-                                          quizID: String,
-                                          filter: QuizSubmissionListFilter) -> UIViewController {
+    public static func makeViewController(
+        env: AppEnvironment,
+        courseID: String,
+        quizID: String,
+        filter: QuizSubmissionListFilter
+    ) -> UIViewController {
         let interactor = QuizSubmissionListInteractorLive(env: env, courseID: courseID, quizID: quizID)
         let viewModel = QuizSubmissionListViewModel(router: env.router, filterValue: filter, interactor: interactor)
         let view = QuizSubmissionListView(model: viewModel)
