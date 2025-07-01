@@ -66,19 +66,19 @@ struct SubmissionGraderView: View {
         self.landscapeSplitLayoutViewModel = landscapeSplitLayoutViewModel
         self.handleRefresh = handleRefresh
         _rubricsViewModel = StateObject(wrappedValue:
-            RubricsViewModel(
-                assignment: viewModel.assignment,
-                submission: viewModel.submission,
-                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission)
-            )
+                                            RubricsViewModel(
+                                                assignment: viewModel.assignment,
+                                                submission: viewModel.submission,
+                                                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission)
+                                            )
         )
     }
 
     var body: some View {
         GeometryReader { geometry in
             let bottomInset = geometry.safeAreaInsets.bottom
-            let minHeight = bottomInset + 58
-            let maxHeight = bottomInset + geometry.size.height - 64
+            let minHeight = bottomInset + 87
+            let maxHeight = bottomInset + geometry.size.height
             // At 1/4 of a screen offset, scale to 90% and round corners to 20
             let delta = abs(geometry.frame(in: .global).minX / max(1, geometry.size.width))
             let scale = interpolate(value: delta, fromMin: 0, fromMax: 0.25, toMin: 1, toMax: 0.9)
@@ -89,7 +89,6 @@ struct SubmissionGraderView: View {
                 minHeight: minHeight,
                 maxHeight: maxHeight
             )
-            .background(Color.backgroundLightest)
             .cornerRadius(cornerRadius)
             .scaleEffect(scale)
             .edgesIgnoringSafeArea(.bottom)
@@ -195,25 +194,33 @@ struct SubmissionGraderView: View {
                 }
 
                 let isSubmissionContentHiddenFromA11y = (drawerState != .min || showAttempts)
-                ZStack(alignment: .top) {
-                    VStack(spacing: 0) {
-                        SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.selectedFile)
-                        SubmissionViewer(
-                            assignment: viewModel.assignment,
-                            submission: viewModel.selectedAttempt,
-                            fileID: viewModel.selectedFile?.id,
-                            studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
-                            handleRefresh: handleRefresh
-                        )
-                    }
-                    .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
-                    .accessibility(hidden: isSubmissionContentHiddenFromA11y)
+
+                VStack(spacing: 0) {
+                    SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.selectedFile)
+                    SubmissionViewer(
+                        assignment: viewModel.assignment,
+                        submission: viewModel.selectedAttempt,
+                        fileID: viewModel.selectedFile?.id,
+                        studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
+                        handleRefresh: handleRefresh
+                    )
                 }
-                Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
+                .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
+                .accessibility(hidden: isSubmissionContentHiddenFromA11y)
+
+                Spacer()
+                    .frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
             }
-            DrawerContainer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
+
+            DrawerContainer(
+                state: $drawerState,
+                minHeight: minHeight,
+                maxHeight: maxHeight
+            ) {
                 tools(bottomInset: bottomInset, isDrawer: true)
             }
+            .tint(viewModel.contextColor)
+            .accessibilityAddTraits(drawerState == .max ? .isModal : [])
         }
         .onAppear { didChangeLayout(to: .portrait) }
     }
@@ -274,7 +281,7 @@ struct SubmissionGraderView: View {
 
     private func filePickerDidSelect(id: String?) {
         viewModel.didSelectFile(fileId: id)
-        snapDrawerTo(.min)
+        snapDrawer(to: .min)
     }
 
     private func pickerButton(title: String, icon: Image, count: Int?, truncationMode: Text.TruncationMode) -> some View {
@@ -303,8 +310,8 @@ struct SubmissionGraderView: View {
 
         func title(viewModel: SubmissionGraderViewModel) -> String {
             switch self {
-            case .grades: return String(localized: "Grades", bundle: .teacher)
-            case .comments: return String(localized: "Comments", bundle: .teacher)
+            case .grades: String(localized: "Grades", bundle: .teacher)
+            case .comments: String(localized: "Comments", bundle: .teacher)
             }
         }
     }
@@ -312,60 +319,37 @@ struct SubmissionGraderView: View {
     @ViewBuilder
     private func tools(bottomInset: CGFloat, isDrawer: Bool) -> some View {
         VStack(spacing: 0) {
-            if isDrawer {
-                let titles = GraderTab.allCases.map {
-                    $0.title(viewModel: viewModel)
-                }
-                OldSegmentedPicker(
-                    titles,
-                    selectedIndex: Binding(
-                        get: { selectedDrawerTabIndex },
-                        set: { newValue in
-                            selectedDrawerTabIndex = newValue ?? 0
-                            if drawerState == .min {
-                                snapDrawerTo(.mid)
-                            }
-                            let newTab = SubmissionGraderView.GraderTab(rawValue: newValue ?? 0)!
-                            withAnimation(.default) {
-                                tab = newTab
-                            }
-                            controller.view.endEditing(true)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                focusedTab = tab
-                            }
+            Group {
+                if isDrawer {
+                    InstUI.SegmentedPicker(selection: $tab) {
+                        ForEach(GraderTab.allCases, id: \.self) { tab in
+                            Text(tab.title(viewModel: viewModel))
+                                .tag(tab)
                         }
-                    ),
-                    selectionAlignment: .bottom,
-                    content: { item, _ in
-                        Text(item)
-                            .font(.regular14)
-                            .foregroundColor(.textDark)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .frame(maxWidth: .infinity)
-                            .contentShape(Rectangle())
                     }
-                )
-                .identifier("SpeedGrader.toolPicker")
-                InstUI.Divider()
-            } else {
-                InstUI.SegmentedPicker(selection: $tab) {
-                    ForEach(GraderTab.allCases, id: \.self) { tab in
-                        Text(tab.title(viewModel: viewModel))
-                            .tag(tab)
+                    .padding(.bottom, 16)
+                    .onChange(of: tab) {
+                        if drawerState == .min { snapDrawer(to: .mid) }
+                        controller.view.endEditing(true)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            focusedTab = tab
+                        }
                     }
+                } else {
+                    InstUI.SegmentedPicker(selection: $tab) {
+                        ForEach(GraderTab.allCases, id: \.self) { tab in
+                            Text(tab.title(viewModel: viewModel))
+                                .tag(tab)
+                        }
+                    }
+                    .frame(height: profileHeaderSize.height)
                 }
-                .padding(.horizontal, 16)
-                .frame(height: profileHeaderSize.height)
-                .onChange(of: tab) {
-                    controller.view.endEditing(true)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        focusedTab = tab
-                    }
-                }
-                .identifier("SpeedGrader.toolPicker")
-                InstUI.Divider()
             }
+            .padding(.horizontal, 16)
+            .identifier("SpeedGrader.toolPicker")
+
+            InstUI.Divider()
+
             GeometryReader { geometry in
                 HStack(spacing: 0) {
                     let drawerFileID = Binding<String?>(
@@ -374,7 +358,7 @@ struct SubmissionGraderView: View {
                         },
                         set: {
                             viewModel.didSelectFile(fileId: $0)
-                            snapDrawerTo(.min)
+                            snapDrawer(to: .min)
                         }
                     )
 
@@ -395,7 +379,7 @@ struct SubmissionGraderView: View {
         }
     }
 
-    private func snapDrawerTo(_ state: DrawerState) {
+    private func snapDrawer(to state: DrawerState) {
         withTransaction(DrawerState.transaction) {
             drawerState = state
         }
@@ -448,7 +432,7 @@ struct SubmissionGraderView: View {
                 viewModel.selectedAttemptNumber
             }, set: {
                 viewModel.didSelectAttempt(attemptNumber: $0)
-                snapDrawerTo(.min)
+                snapDrawer(to: .min)
             }
         )
         let isCommentsOnScreen = isGraderTabOnScreen(.comments, isDrawer: isDrawer)
