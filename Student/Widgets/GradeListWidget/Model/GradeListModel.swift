@@ -21,9 +21,7 @@ import SwiftUI
 import Core
 
 class GradeListModel: WidgetModel {
-    override class var publicPreview: GradeListModel {
-        Self.make()
-    }
+    override class var publicPreview: GradeListModel { GradeListModel(items: GradeListItem.previewItems) }
 
     let items: [GradeListItem]
 
@@ -56,6 +54,8 @@ class GradeListModel: WidgetModel {
         return limitedItems.isNotEmpty ? limitedItems : []
     }
 }
+
+#if DEBUG
 
 // MARK: - Previews
 
@@ -131,3 +131,5 @@ extension GradeListModel {
         return GradeListModel(items: items)
     }
 }
+
+#endif

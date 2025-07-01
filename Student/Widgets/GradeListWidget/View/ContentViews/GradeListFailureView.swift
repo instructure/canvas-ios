@@ -24,8 +24,6 @@ struct GradeListFailureView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private let iconName = "PandaUnsupported"
-    private let title = "Oops! Something Went Wrong"
-    private let subtitle = "We're having trouble showing your grades right now.  Please try again in a bit or head to the app."
 
     var body: some View {
         VStack(spacing: family == .systemMedium ? 10 : 15) {
@@ -35,10 +33,10 @@ struct GradeListFailureView: View {
                 .frame(height: family == .systemMedium ? 70 : 160)
                 .accessibilityHidden(true)
             VStack(spacing: 5) {
-                Text(title)
+                Text("Oops! Something Went Wrong")
                     .font(.semibold14)
                     .foregroundStyle(Color.textDarkest)
-                Text(subtitle)
+                Text("We're having trouble showing your grades right now.  Please try again in a bit or head to the app.")
                     .font(.regular12)
                     .foregroundStyle(Color.textDarkest)
                     .multilineTextAlignment(.center)

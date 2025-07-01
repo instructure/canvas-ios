@@ -57,6 +57,76 @@ struct GradeListItem: Identifiable, Equatable {
         )
     }
 
+}
+
+extension GradeListItem {
+
+    static let previewItems: [GradeListItem] = [
+        GradeListItem(
+            courseId: "1",
+            courseName: "Biology 101",
+            grade: "82/100",
+            color: .blue
+        ),
+        GradeListItem(
+            courseId: "2",
+            courseName: "Mathematics 904 2024/25",
+            grade: "Good",
+            color: .purple
+        ),
+        GradeListItem(
+            courseId: "3",
+            courseName: "English Literature 101",
+            grade: "A+",
+            color: .gray
+        ),
+        GradeListItem(
+            courseId: "4",
+            courseName: "Greek Literature",
+            grade: "Good",
+            hideGrade: true,
+            color: .cyan
+        ),
+        GradeListItem(
+            courseId: "5",
+            courseName: "Space and Stars",
+            grade: "97%",
+            color: .indigo
+        ),
+        GradeListItem(
+            courseId: "6",
+            courseName: "General Astronomy",
+            grade: "No Grades",
+            color: .teal
+        ),
+        GradeListItem(
+            courseId: "7",
+            courseName: "Mobile Development 101",
+            grade: "F",
+            color: .red
+        ),
+        GradeListItem(
+            courseId: "8",
+            courseName: "Planet Earth",
+            grade: "39%",
+            color: .brown
+        ),
+        GradeListItem(
+            courseId: "9",
+            courseName: "Drum And Bass 101",
+            grade: "A+",
+            color: .orange
+        ),
+        GradeListItem(
+            courseId: "10",
+            courseName: "In the Jungle",
+            grade: "8/10",
+            color: .pink
+        )
+    ]
+
+    #if DEBUG
+
     // MARK: Preview & Testing
 
     static func make(
@@ -75,4 +145,6 @@ struct GradeListItem: Identifiable, Equatable {
             color: color
         )
     }
+
+    #endif
 }

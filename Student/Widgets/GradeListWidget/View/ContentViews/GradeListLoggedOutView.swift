@@ -24,8 +24,6 @@ struct GradeListLoggedOutView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private let iconName = "no-match-panda"
-    private let title = "Let's Get You Logged In!"
-    private let subtitle = "To see your grades, please log in to your account in the app.  It'll just take a sec!"
 
     var body: some View {
         VStack(spacing: family == .systemMedium ? 10 : 15) {
@@ -35,10 +33,10 @@ struct GradeListLoggedOutView: View {
                 .frame(height: family == .systemMedium ? 70 : 160)
                 .accessibilityHidden(true)
             VStack(spacing: 5) {
-                Text(title)
+                Text("Let's Get You Logged In!")
                     .font(.semibold14)
                     .foregroundStyle(Color.textDarkest)
-                Text(subtitle)
+                Text("To see your grades, please log in to your account in the app.  It'll just take a sec!")
                     .font(.regular12)
                     .foregroundStyle(Color.textDarkest)
                     .multilineTextAlignment(.center)

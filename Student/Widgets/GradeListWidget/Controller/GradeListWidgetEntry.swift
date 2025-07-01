@@ -20,7 +20,7 @@ import WidgetKit
 
 struct GradeListWidgetEntry: TimelineEntry {
     static let publicPreview: Self = .init(
-        data: .make(),
+        data: .publicPreview,
         date: Date()
     )
     static let loggedOutModel: Self = .init(

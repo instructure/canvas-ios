@@ -26,6 +26,7 @@ class GradeListWidgetProvider: TimelineProvider {
     private var refreshDate: Date { Date().addingTimeInterval(.gradeListWidgetRefresh) }
     private var allCourses: Store<GetCourses>?
     private var dashboardCards: Store<GetDashboardCards>?
+    private var forceRefresh: Bool = true
 
     // MARK: - TimelineProvider Protocol
 
@@ -62,11 +63,11 @@ class GradeListWidgetProvider: TimelineProvider {
 
     private func fetch(_ completion: @escaping @Sendable (Timeline<GradeListWidgetEntry>) -> Void) {
         dashboardCards = env.subscribe(GetDashboardCards())
-        dashboardCards?.refresh { [weak self] _ in
+        dashboardCards?.refresh(force: forceRefresh) { [weak self] _ in
             self?.handleFetchFinished(completion)
         }
         allCourses = env.subscribe(GetCourses())
-        allCourses?.refresh { [weak self] _ in
+        allCourses?.refresh(force: forceRefresh) { [weak self] _ in
             self?.handleFetchFinished(completion)
         }
     }
@@ -74,6 +75,7 @@ class GradeListWidgetProvider: TimelineProvider {
     private func handleFetchFinished(_ completion: @escaping (Timeline<GradeListWidgetEntry>) -> Void) {
         guard let dashboardCards = self.dashboardCards, !dashboardCards.pending else { return }
         guard let allCourses = self.allCourses, !allCourses.pending else { return }
+        forceRefresh = false
         let favCourses = allCourses.filter { $0.isFavorite }
         let courses = favCourses.isEmpty ? allCourses.all : favCourses
 
