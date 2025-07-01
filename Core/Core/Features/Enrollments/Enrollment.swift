@@ -85,6 +85,14 @@ extension Enrollment {
         return type.lowercased().contains("student") && !type.lowercased().contains("view")
     }
 
+    public var isStudentView: Bool {
+        return isStudent && type.lowercased().contains("view")
+    }
+
+    public var isNotStudentView: Bool {
+        return !isStudentView
+    }
+
     public var isTeacher: Bool {
         return type.lowercased().contains("teacher")
     }
