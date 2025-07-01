@@ -7704,7 +7704,11 @@
     "Close comment library" : {
 
     },
+    "Close drawer" : {
+
+    },
     "Close Drawer" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -8215,6 +8219,9 @@
           }
         }
       }
+    },
+    "Collapse drawer half screen" : {
+
     },
     "Collapsed" : {
       "localizations" : {
@@ -23450,6 +23457,7 @@
       }
     },
     "Group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -30119,7 +30127,11 @@
         }
       }
     },
+    "Open drawer full screen" : {
+
+    },
     "Open Drawer full screen" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -30375,7 +30387,11 @@
         }
       }
     },
+    "Open drawer half screen" : {
+
+    },
     "Open Drawer half screen" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -37809,6 +37825,7 @@
 
     },
     "Student" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

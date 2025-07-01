@@ -19,25 +19,18 @@
 import SwiftUI
 
 extension InstUI {
-
     public struct Checkbox: View {
         @ScaledMetric private var uiScale: CGFloat = 1
         private let isSelected: Bool
-        private let color: Color
 
-        public init(
-            isSelected: Bool,
-            color: Color
-        ) {
+        init(isSelected: Bool) {
             self.isSelected = isSelected
-            self.color = color
         }
 
         public var body: some View {
-            let image: Image = isSelected ? .checkboxSelected : .checkbox
-            return image
+            Image(isSelected ? .checkboxSelected : .checkbox)
                 .size(uiScale.iconScale * 24)
-                .foregroundStyle(color)
+                .foregroundStyle(.tint)
         }
     }
 }
@@ -46,8 +39,8 @@ extension InstUI {
 
 #Preview {
     HStack {
-        InstUI.Checkbox(isSelected: true, color: .red)
-        InstUI.Checkbox(isSelected: false, color: .red)
+        InstUI.Checkbox(isSelected: true)
+        InstUI.Checkbox(isSelected: false)
     }
 }
 

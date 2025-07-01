@@ -69,22 +69,22 @@ struct SubmissionCommentListCell: View {
 
     @ViewBuilder
     private var avatar: some View {
-        let author = viewModel.author
-        if author.isAnonymized {
-            Avatar.Anonymous(isGroup: author.isGroup)
-        } else if author.hasId {
+        let avatarView = Avatar(model: viewModel.author.userNameModel)
+
+        if viewModel.author.isTappable {
             Button(
                 action: { viewModel.didTapAvatarButton.send(controller) },
-                label: { Avatar(name: author.name, url: author.avatarUrl) }
+                label: { avatarView }
             )
         } else {
-            Avatar(name: author.name, url: author.avatarUrl)
+            avatarView
         }
     }
 
     @ViewBuilder
     var header: some View {
-        let a11yLabel = viewModel.accessibilityLabelForHeader
+        let a11yLabel = Text(viewModel.accessibilityLabelForHeader)
+
         if viewModel.author.isCurrentUser {
             date(alignment: .trailing)
                 .accessibilityLabel(a11yLabel)
@@ -92,16 +92,14 @@ struct SubmissionCommentListCell: View {
             authorNameAndDate
                 .accessibilityElement(children: .ignore)
                 .accessibilityRepresentation {
-                    if viewModel.author.isAnonymized {
-                        Text(a11yLabel)
-                    } else if viewModel.author.hasId {
+                    if viewModel.author.isTappable {
                         Button(
                             action: { viewModel.didTapAvatarButton.send(controller) },
-                            label: { Text(a11yLabel) }
+                            label: { a11yLabel }
                         )
                         .accessibilityHint(Text("Double tap to view profile", bundle: .core))
                     } else {
-                        Text(a11yLabel)
+                        a11yLabel
                     }
                 }
         }
@@ -123,7 +121,7 @@ struct SubmissionCommentListCell: View {
     }
 
     private var authorName: some View {
-        Text(viewModel.author.name)
+        Text(viewModel.author.userNameModel.name)
             .font(.semibold16, lineHeight: .fit)
             .foregroundStyle(Color.textDarkest)
     }

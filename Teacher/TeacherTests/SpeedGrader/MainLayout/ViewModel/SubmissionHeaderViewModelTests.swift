@@ -34,7 +34,7 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
             submission: submission,
         )
 
-        XCTAssertTrue(testee.isGroupSubmission)
+        XCTAssertTrue(testee.userNameModel.isGroup)
     }
 
     func testGroupName() {
@@ -47,7 +47,7 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
             assignment: assignment,
             submission: submission,
         )
-        XCTAssertEqual(testee.groupName, nil)
+        XCTAssertEqual(testee.userNameModel.name, "Student")
 
         submission.groupID = "TestGroupID"
 
@@ -56,7 +56,7 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
             submission: submission,
         )
 
-        XCTAssertEqual(testee.groupName, "TestGroup Name")
+        XCTAssertEqual(testee.userNameModel.name, "TestGroup Name")
     }
 
     func testRouteToGroupSubmitter() {

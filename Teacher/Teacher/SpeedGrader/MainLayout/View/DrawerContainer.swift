@@ -30,6 +30,11 @@ struct DrawerContainer<Content: View>: View {
     let minHeight: CGFloat
     let maxHeight: CGFloat
 
+    let openHalfScreen = Text("Open drawer half screen", bundle: .teacher)
+    let openFullScreen = Text("Open drawer full screen", bundle: .teacher)
+    let collapseHalfScreen = Text("Collapse drawer half screen", bundle: .teacher)
+    let closeDrawer = Text("Close drawer", bundle: .teacher)
+
     var height: CGFloat {
         switch state {
         case .min: return minHeight
@@ -49,7 +54,12 @@ struct DrawerContainer<Content: View>: View {
     }
     @State var translation: CGFloat = 0
 
-    init(state: Binding<DrawerState>, minHeight: CGFloat, maxHeight: CGFloat, @ViewBuilder content: () -> Content) {
+    init(
+        state: Binding<DrawerState>,
+        minHeight: CGFloat,
+        maxHeight: CGFloat,
+        @ViewBuilder content: () -> Content
+    ) {
         self.content = content()
         self.minHeight = minHeight
         self.maxHeight = maxHeight
@@ -58,49 +68,130 @@ struct DrawerContainer<Content: View>: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Button(action: buttonAction, label: { HStack {
-                Spacer()
-                RoundedRectangle(cornerRadius: 2)
-                    .fill(Color.borderMedium)
-                    .frame(width: 36, height: 4)
-                    .padding(EdgeInsets(top: 24, leading: 0, bottom: 8, trailing: 0))
-                Spacer()
-            } })
-            .padding(.top, -16)
-            .highPriorityGesture(DragGesture(coordinateSpace: .global)
-                .onChanged { value in translation = -value.translation.height }
-                .onEnded { value in withTransaction(DrawerState.transaction) {
-                    let y = height - value.predictedEndTranslation.height - minHeight
-                    let dy = maxHeight - minHeight
-                    state = (y < dy * 0.25) ? .min : (y < dy * 0.75) ? .mid : .max
-                    translation = 0
-                } }
-            )
-            .accessibility(identifier: "SpeedGrader.drawerGripper")
-            .accessibility(label: buttonA11yText)
-            Spacer(minLength: 4)
+            HStack(spacing: 4) {
+                expandCollapseButton
+
+                dragIndicator
+                    .frame(maxWidth: .infinity)
+
+                openCloseButton
+            }
+            .paddingStyle(.horizontal, .standard)
+            .padding(.vertical, 8)
+
             content
         }
-        .frame(maxWidth: 800, maxHeight: max(minHeight, min(maxHeight, height + translation)))
+        .frame(maxHeight: max(minHeight, min(maxHeight, height + translation)))
         .background(DrawerBackground()
             .fill(Color.backgroundLightest)
             .shadow(color: Color.black.opacity(0.3), radius: 3, x: 0, y: 0)
         )
     }
-
-    func buttonAction() { withTransaction(DrawerState.transaction) {
-        switch state {
-        case .min: state = .mid
-        case .mid: state = .max
-        case .max: state = .min
+    // MARK: - Expand/Collapse Button
+    private var expandCollapseButton: some View {
+        Button(action: expandCollapseButtonAction) {
+            expandCollapseButtonImage
         }
-    } }
+        .accessibilityLabel(expandCollapseButtonAccessibilityText)
+        .accessibilityShowsLargeContentViewer {
+            expandCollapseButtonImage
+            expandCollapseButtonAccessibilityText
+        }
+    }
 
-    var buttonA11yText: Text {
+    private var expandCollapseButtonImage: some View {
+        state == .max ? Image.exitFullScreenLine : Image.fullScreenLine
+    }
+
+    private func expandCollapseButtonAction() {
         switch state {
-        case .min: return Text("Open Drawer half screen", bundle: .teacher)
-        case .mid: return Text("Open Drawer full screen", bundle: .teacher)
-        case .max: return Text("Close Drawer", bundle: .teacher)
+        case .mid: snapDrawer(to: .max)
+        default: snapDrawer(to: .mid)
+        }
+    }
+
+    private var expandCollapseButtonAccessibilityText: Text {
+        switch state {
+        case .min: openHalfScreen
+        case .mid: openFullScreen
+        case .max: collapseHalfScreen
+        }
+    }
+
+    // MARK: - Drag Indicator
+
+    private var dragIndicator: some View {
+        Button(action: dragIndicatorAction) {
+            RoundedRectangle(cornerRadius: 2)
+                .fill(Color.borderMedium)
+                .frame(width: 36, height: 4)
+                .frame(height: Image.defaultIconSize)
+        }
+        .highPriorityGesture(DragGesture(coordinateSpace: .global)
+            .onChanged { value in translation = -value.translation.height }
+            .onEnded { value in
+                withTransaction(DrawerState.transaction) {
+                    let y = height - value.predictedEndTranslation.height - minHeight
+                    let dy = maxHeight - minHeight
+                    state = (y < dy * 0.25) ? .min : (y < dy * 0.75) ? .mid : .max
+                    translation = 0
+                }
+            }
+        )
+        .accessibility(identifier: "SpeedGrader.drawerGripper")
+        .accessibilityLabel(dragIndicatorAccessibilityText)
+    }
+
+    private func dragIndicatorAction() {
+        switch state {
+        case .min: snapDrawer(to: .mid)
+        case .mid: snapDrawer(to: .max)
+        case .max: snapDrawer(to: .min)
+        }
+    }
+
+    private var dragIndicatorAccessibilityText: Text {
+        switch state {
+        case .min: openHalfScreen
+        case .mid: openFullScreen
+        case .max: closeDrawer
+        }
+    }
+
+    // MARK: - Open/Close Button
+
+    private var openCloseButton: some View {
+        Button(action: openCloseButtonAction) {
+            openCloseButtonImage
+        }
+        .accessibilityLabel(openCloseButtonAccessibilityText)
+        .accessibilityShowsLargeContentViewer {
+            openCloseButtonImage
+            openCloseButtonAccessibilityText
+        }
+    }
+
+    private var openCloseButtonImage: some View {
+        Image.chevronDown
+            .rotationEffect(state != .min ? .degrees(0) : .degrees(180))
+    }
+
+    private func openCloseButtonAction() {
+        switch state {
+        case .min: snapDrawer(to: .max)
+        default: snapDrawer(to: .min)
+        }
+    }
+
+    private var openCloseButtonAccessibilityText: Text {
+        state == .min ? openFullScreen : closeDrawer
+    }
+
+    // MARK: - Drawer Management
+
+    private func snapDrawer(to state: DrawerState) {
+        withTransaction(DrawerState.transaction) {
+            self.state = state
         }
     }
 
@@ -110,3 +201,22 @@ struct DrawerContainer<Content: View>: View {
         }
     }
 }
+
+#if DEBUG
+
+#Preview {
+    @Previewable @State var state: DrawerState = .min
+
+    ZStack(alignment: .bottom) {
+        Color.gray.opacity(0.2)
+
+        DrawerContainer(
+            state: $state,
+            minHeight: 128,
+            maxHeight: 512,
+            content: { Color.red.frame(maxHeight: .infinity) }
+        )
+    }
+}
+
+#endif

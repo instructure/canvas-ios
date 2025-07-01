@@ -23,21 +23,18 @@ extension InstUI {
     public struct RadioButton: View {
         @ScaledMetric private var uiScale: CGFloat = 1
         private let isSelected: Bool
-        private let color: Color
 
         public init(
-            isSelected: Bool,
-            color: Color
+            isSelected: Bool
         ) {
             self.isSelected = isSelected
-            self.color = color
         }
 
         public var body: some View {
             let image: Image = isSelected ? .radioButtonSelected : .radioButtonUnselected
             return image
                 .size(uiScale.iconScale * 24)
-                .foregroundStyle(color)
+                .foregroundStyle(.tint)
         }
     }
 }
@@ -46,8 +43,8 @@ extension InstUI {
 
 #Preview {
     HStack {
-        InstUI.RadioButton(isSelected: true, color: .red)
-        InstUI.RadioButton(isSelected: false, color: .red)
+        InstUI.RadioButton(isSelected: true)
+        InstUI.RadioButton(isSelected: false)
     }
 }
 

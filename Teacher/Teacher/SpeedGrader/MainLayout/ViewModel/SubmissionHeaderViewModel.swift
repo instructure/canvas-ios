@@ -22,9 +22,7 @@ import Combine
 
 class SubmissionHeaderViewModel: ObservableObject {
     @Published private(set) var submissionStatus: SubmissionStatus
-    let submitterName: String
-    let groupName: String?
-    let isGroupSubmission: Bool
+    let userNameModel: UserNameModel
     let routeToSubmitter: String?
 
     private var subscriptions = Set<AnyCancellable>()
@@ -33,15 +31,8 @@ class SubmissionHeaderViewModel: ObservableObject {
         assignment: Assignment,
         submission: Submission
     ) {
+        userNameModel = .init(submission: submission, assignment: assignment)
         let isGroupSubmission = !assignment.gradedIndividually && submission.groupID != nil
-        self.isGroupSubmission = isGroupSubmission
-
-        let groupName = isGroupSubmission ? submission.groupName : nil
-        self.groupName = groupName
-
-        submitterName = {
-            groupName ?? (submission.user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) } ?? "")
-        }()
         routeToSubmitter = isGroupSubmission ? nil : "/courses/\(assignment.courseID)/users/\(submission.userID)"
         submissionStatus = submission.statusIncludingGradedState
         observeSubmissionStatusInDatabase(submission)
