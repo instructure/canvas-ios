@@ -112,7 +112,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 }
 
 private extension [Submission] {
-    
+
     func filterOutStudentViewUsers() -> [Submission] {
         var filteredSubmissions = self
         filteredSubmissions.removeAll { submission in
