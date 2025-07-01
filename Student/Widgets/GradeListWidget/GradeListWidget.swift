@@ -28,7 +28,7 @@ struct GradeListWidget: Widget {
         }
         .contentMarginsDisabled()
         .configurationDisplayName(Text("Grade List", comment: "Name of the Grade List widget"))
-        .description(Text("View your grades.", comment: "Description of the Grade List widget"))
+        .description(Text("View the grades of your favourite courses.", comment: "Description of the Grade List widget"))
         .supportedFamilies([.systemMedium, .systemLarge])
     }
 }

@@ -63,6 +63,7 @@ struct GradeListItem: Identifiable, Equatable {
         courseId: String = "123",
         courseName: String = "Course Name",
         grade: String = "A",
+        hideGrade: Bool = false,
         color: Color = .red
     ) -> GradeListItem {
 
@@ -70,6 +71,7 @@ struct GradeListItem: Identifiable, Equatable {
             courseId: courseId,
             courseName: courseName,
             grade: grade,
+            hideGrade: hideGrade,
             color: color
         )
     }

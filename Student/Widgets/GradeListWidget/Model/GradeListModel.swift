@@ -85,6 +85,7 @@ extension GradeListModel {
                 courseId: "4",
                 courseName: "Greek Literature",
                 grade: "Good",
+                hideGrade: true,
                 color: .cyan
             ),
             .make(
@@ -95,33 +96,33 @@ extension GradeListModel {
             ),
             .make(
                 courseId: "6",
-                courseName: "General Astrology",
+                courseName: "General Astronomy",
                 grade: "No Grades",
-                color: .cyan
+                color: .teal
             ),
             .make(
                 courseId: "7",
-                courseName: "Greek Literature",
-                grade: "Good",
-                color: .cyan
+                courseName: "Mobile Development 101",
+                grade: "F",
+                color: .red
             ),
             .make(
                 courseId: "8",
-                courseName: "Space and Stars",
-                grade: "97%",
-                color: .yellow
+                courseName: "Planet Earth",
+                grade: "39%",
+                color: .brown
             ),
             .make(
                 courseId: "9",
-                courseName: "General Astrology",
-                grade: "No Grades",
-                color: .cyan
+                courseName: "Drum And Bass 101",
+                grade: "A+",
+                color: .orange
             ),
             .make(
                 courseId: "10",
-                courseName: "Funeral Oncology",
-                grade: "-10/0",
-                color: .purple
+                courseName: "In the Jungle",
+                grade: "8/10",
+                color: .pink
             )
         ]
         if let count, items.count > count {
