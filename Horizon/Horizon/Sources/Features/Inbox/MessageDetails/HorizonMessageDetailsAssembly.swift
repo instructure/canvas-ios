@@ -46,12 +46,14 @@ struct HorizonMessageDetailsAssembly {
     }
 
     public static func makeViewController(
-        announcementID: String
+        announcementID: String,
+        announcement: Announcement? = nil
     ) -> UIViewController {
         CoreHostingController(
             HorizonMessageDetailsView(
                 model: HorizonMessageDetailsViewModel(
-                    announcementID: announcementID
+                    announcementID: announcementID,
+                    announcement: announcement
                 )
             )
         )

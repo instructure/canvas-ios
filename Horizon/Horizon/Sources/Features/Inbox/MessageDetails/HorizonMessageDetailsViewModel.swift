@@ -20,7 +20,8 @@ import Combine
 import Core
 import SwiftUI
 
-class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
+@Observable
+class HorizonMessageDetailsViewModel {
     // MARK: - Outputs
     var attachmentItems: [AttachmentItemViewModel] {
         attachmentViewModel?.items ?? []
@@ -28,16 +29,16 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
     var isSendDisabled: Bool {
         reply.isEmpty || isSending || attachmentViewModel?.isUploading ?? false
     }
-    @Published var reply: String = ""
+    var reply: String = ""
     var sendButtonOpacity: Double {
         isSending ? (attachmentViewModel?.isUploading == true ? 0.5 : 0.0) : 1.0
     }
     var loadingSpinnerOpacity: Double {
         isSending ? 1.0 : 0.0
     }
-    @Published public private(set) var messagesAsc: [MessageViewModel] = []
+    private(set) var messagesAsc: [MessageViewModel] = []
     var isReplayAreaVisible: Bool = true
-    var headerTitle: String = ""
+    private(set) var headerTitle: String = ""
 
     // MARK: - Private
     private var isSending: Bool = false
@@ -46,8 +47,10 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
     // MARK: - Dependencies
     private let announcementID: String
     let attachmentViewModel: AttachmentViewModel?
-    private let conversationID: String
+//    private var conversations: [Conversation] = []
+    private let conversationID: String?
     private let composeMessageInteractor: ComposeMessageInteractor?
+    private var isMarkedAsRead = false
     private let myID: String
     private let messageDetailsInteractor: MessageDetailsInteractor?
     private let router: Router
@@ -75,19 +78,13 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
         self.announcementsInteractor = nil
         self.announcementID = ""
 
-        super.init(
-            router: router,
-            interactor: messageDetailsInteractor,
-            myID: myID,
-            allowArchive: allowArchive
-        )
-
         listenForMessages()
         listenForSubject()
     }
 
     init(
         announcementID: String,
+        announcement: Announcement? = nil,
         environment: AppEnvironment = AppEnvironment.shared,
         router: Router = AppEnvironment.shared.router,
         announcementsInteractor: AnnouncementsInteractor = AnnouncementsInteractorLive(),
@@ -101,18 +98,24 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
         self.attachmentViewModel = nil
         self.messageDetailsInteractor = nil
         self.composeMessageInteractor = nil
-        self.conversationID = ""
+        self.conversationID = nil
         self.isReplayAreaVisible = false
 
-        super.init(
-            router: router,
-            interactor: MessageDetailsInteractorLive(env: environment, conversationID: ""),
-            myID: myID,
-            allowArchive: false
-        )
-
-        listenForAnnouncements()
-        listenForSubject()
+        if let announcement = announcement {
+            self.headerTitle = announcement.title
+            self.messagesAsc = [
+                MessageViewModel(
+                    id: announcement.id,
+                    body: announcement.title,
+                    author: announcement.courseName ?? "",
+                    date: announcement.date?.dateTimeString ?? "",
+                    avatarName: ""
+                )
+            ]
+        } else {
+            listenForAnnouncements()
+            listenForSubject()
+        }
     }
 
     // MARK: - Inputs
@@ -132,7 +135,7 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
     }
 
     func sendMessage(viewController: WeakViewController) {
-        guard let conversation = conversations.first,
+        guard let conversation = messageDetailsInteractor?.conversation.value.first,
               let contextCode = conversation.contextCode,
               let context = Context(canvasContextID: contextCode),
               let composeMessageInteractor = self.composeMessageInteractor,
@@ -194,13 +197,17 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
             .map(markMessageAsRead)
             .map(sortOldestToNewest)
             .map(toViewModels)
-            .assign(to: &$messagesAsc)
+            .sink { [weak self] conversationMessages in
+                guard let self = self else { return }
+                self.messagesAsc = conversationMessages
+            }
+            .store(in: &subscriptions)
     }
 
     private func listenForSubject() {
         announcementsInteractor?.messages.sink { [weak self] announcements in
-            self?.headerTitle = announcements.first(where: { $0.id == self?.announcementID })?.title ??
-                String(localized: "Announcement", bundle: .horizon)
+            let announcementTitle = announcements.first(where: { $0.id == self?.announcementID })?.title
+            self?.headerTitle = announcementTitle ?? String(localized: "Announcement", bundle: .horizon)
         }
         .store(in: &subscriptions)
 
@@ -211,15 +218,18 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
     }
 
     private func markMessageAsRead(_ conversationMessages: [ConversationMessage]) -> [ConversationMessage] {
-        messageDetailsInteractor?.updateState(
-            messageId: conversationID,
-            state: .read
-        )
-        .sink(
-            receiveCompletion: { _ in },
-            receiveValue: { _ in }
-        )
-        .store(in: &self.subscriptions)
+        if let conversationID = conversationID, isMarkedAsRead == false {
+            messageDetailsInteractor?.updateState(
+                messageId: conversationID,
+                state: .read
+            )
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { _ in }
+            )
+            .store(in: &self.subscriptions)
+            isMarkedAsRead = true
+        }
 
         return conversationMessages
     }

@@ -21,7 +21,7 @@ import HorizonUI
 import SwiftUI
 
 struct HorizonMessageDetailsView: View {
-    @ObservedObject var model: HorizonMessageDetailsViewModel
+    @State var model: HorizonMessageDetailsViewModel
     @Environment(\.viewController) private var viewController
 
     init(model: HorizonMessageDetailsViewModel) {
@@ -56,20 +56,7 @@ struct HorizonMessageDetailsView: View {
             RefreshableScrollView(
                 content: {
                     VStack(spacing: HorizonUI.spaces.space24) {
-                        ForEach(model.messagesAsc, id: \.id) { message in
-                            messageBody(message)
-                                .id(message.id)
-                                .overlay(
-                                    Rectangle()
-                                        .frame(height: 1)
-                                        .foregroundStyle(
-                                            model.messages.firstIndex(where: { $0.id == message.id }) == 0 || model.messages.count <= 1 ?
-                                                .clear :
-                                                HorizonUI.colors.lineAndBorders.lineStroke
-                                        ),
-                                    alignment: .top
-                                )
-                        }
+                        messageBodies(messages: model.messagesAsc)
                     }
                     .padding([.leading, .trailing, .bottom], HorizonUI.spaces.space24)
                     .padding(.top, HorizonUI.spaces.space16)
@@ -87,13 +74,30 @@ struct HorizonMessageDetailsView: View {
                     topTrailingRadius: 32
                 )
             )
-            .onChange(of: model.messages.count) {
-                if let last = model.messages.last {
+            .onChange(of: model.messagesAsc.count) {
+                if let last = model.messagesAsc.last {
                     withAnimation {
                         proxy.scrollTo(last.id, anchor: .bottom)
                     }
                 }
             }
+        }
+    }
+
+    private func messageBodies(messages: [MessageViewModel]) -> some View {
+        ForEach(messages) { message in
+            messageBody(message)
+                .id(message.id)
+                .overlay(
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundStyle(
+                            model.messagesAsc.firstIndex(where: { $0.id == message.id }) == 0 || model.messagesAsc.count <= 1 ?
+                                .clear :
+                                HorizonUI.colors.lineAndBorders.lineStroke
+                        ),
+                    alignment: .top
+                )
         }
     }
 
@@ -189,7 +193,10 @@ struct HorizonMessageDetailsView: View {
         HStack {
             backButton
             Spacer()
-            Text(model.subject)
+            HorizonUI.icons.announcement
+                .renderingMode(.template)
+                .foregroundStyle(HorizonUI.colors.surface.institution)
+            Text(model.headerTitle)
                 .huiTypography(.labelLargeBold)
                 .foregroundColor(HorizonUI.colors.surface.institution)
             Spacer()

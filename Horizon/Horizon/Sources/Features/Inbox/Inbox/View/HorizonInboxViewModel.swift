@@ -72,9 +72,11 @@ class HorizonInboxViewModel {
     var isSearchDisabled: Bool {
         filterSubject.value == .announcements
     }
+    var messageListOpacity = 0.0
     var messageRows: [MessageRowViewModel] = []
     var peopleSelectionViewModel: PeopleSelectionViewModel!
     var screenState: InstUI.ScreenState = .data
+    var spinnerOpacity = 1.0
 
     // MARK: - Private
     private var filterSubject: CurrentValueRelay<FilterOption> = CurrentValueRelay(FilterOption.all)
@@ -115,18 +117,31 @@ class HorizonInboxViewModel {
 
         _ = inboxMessageInteractor.setContext(.user(userID))
 
-        Publishers.CombineLatest4(
+        weak var weakSelf = self
+        Publishers.CombineLatest(
             inboxMessageInteractor.messages,
-            announcementsInteractor.messages,
-            filterSubject,
-            peopleSelectionViewModel.personFilterSubject
-        )
-        .sink(receiveValue: onInboxMessageListItems)
+            announcementsInteractor.messages
+        ).sink { messages, _ in
+            guard let self = weakSelf else { return }
+            if inboxMessageInteractor.state.value != .data ||
+                announcementsInteractor.state.value != .data {
+                return
+            }
+            Publishers.CombineLatest(
+                self.filterSubject,
+                self.peopleSelectionViewModel.personFilterSubject
+            )
+            .sink { _ in weakSelf?.onInboxMessageListItems(messages) }
+            .store(in: &self.subscriptions)
+        }
         .store(in: &subscriptions)
 
-        filterSubject.sink { filterOption in
+        filterSubject.sink { [weak self] filterOption in
             if let inboxMessageInteractorScope = filterOption.inboxMessageInteractorScope {
                 _ = inboxMessageInteractor.setScope(inboxMessageInteractorScope)
+            }
+            if filterOption == .announcements {
+                self?.peopleSelectionViewModel.clearSearch()
             }
         }
         .store(in: &subscriptions)
@@ -188,6 +203,7 @@ class HorizonInboxViewModel {
         if let announcement = announcement {
             router.route(
                 to: "/announcements/\(announcement.id)",
+                userInfo: ["announcement": announcement],
                 from: viewController
             )
         }
@@ -212,16 +228,7 @@ class HorizonInboxViewModel {
         }.map { $0.element }
     }
 
-    private func onInboxMessageListItems(
-        tuple: (
-            [InboxMessageListItem],
-            [Announcement],
-            FilterOption,
-            [HorizonUI.MultiSelect.Option]
-        )
-    ) {
-        let inboxMessageListItems = tuple.0
-
+    private func onInboxMessageListItems(_ inboxMessageListItems: [InboxMessageListItem]) {
         let messageRowsInterim = filterSubject.value.inboxMessageInteractorScope == nil ?
             [] :
             inboxMessageListItems
@@ -229,6 +236,10 @@ class HorizonInboxViewModel {
                 .map { $0.viewModel }
 
         messageRows = addAnnouncements(to: messageRowsInterim)
+        withAnimation {
+            messageListOpacity = 1.0
+            spinnerOpacity = 0.0
+        }
     }
 
     private func filterByPerson(messageListItem: InboxMessageListItem) -> Bool {

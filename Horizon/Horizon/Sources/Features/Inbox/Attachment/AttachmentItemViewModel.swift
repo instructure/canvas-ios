@@ -47,7 +47,9 @@ struct AttachmentItemViewModel: Identifiable {
     }
 
     // MARK: - Properties
-    let id: String = UUID().uuidString
+    var id: String {
+        file.id ?? UUID().uuidString
+    }
 
     // MARK: - Dependencies
     private let file: File

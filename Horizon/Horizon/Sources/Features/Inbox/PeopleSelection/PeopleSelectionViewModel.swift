@@ -61,6 +61,14 @@ class PeopleSelectionViewModel {
         self.api = api
     }
 
+    // MARK: - Public Methods
+    func clearSearch() {
+        searchString = ""
+        personOptions = []
+        searchByPersonSelections = []
+    }
+
+    // MARK: - Private Methods
     private func makeRequest() {
         searchLoading = true
         searchAPITask?.cancel()

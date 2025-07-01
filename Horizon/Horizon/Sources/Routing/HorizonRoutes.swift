@@ -215,10 +215,12 @@ enum HorizonRoutes {
                     allowArchive: allowArchive
                 )
             },
-            RouteHandler("/announcements/:announcementID") { _, params, _ in
+            RouteHandler("/announcements/:announcementID") { _, params, userInfo in
                 guard let announcementID = params["announcementID"] else { return nil }
+                let announcement = userInfo?["announcement"] as? Announcement
                 return HorizonMessageDetailsAssembly.makeViewController(
-                    announcementID: announcementID
+                    announcementID: announcementID,
+                    announcement: announcement // Pass the announcement if available
                 )
             }
         ]

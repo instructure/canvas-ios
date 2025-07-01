@@ -121,11 +121,13 @@ class CreateMessageViewModel {
     // MARK: - Private Methods
     private func sendMessage() async {
         await withCheckedContinuation { continuation in
-            self.composeMessageInteractor.createConversation(
+            let attachmentIds = attachmentViewModel.items.map { $0.id }
+            return self.composeMessageInteractor.createConversation(
                 parameters: MessageParameters(
                     subject: self.subject,
                     body: self.body,
                     recipientIDs: self.peopleSelectionViewModel.recipientIDs,
+                    attachmentIDs: composeMessageInteractor.attachments.value.compactMap { $0.id },
                     bulkMessage: !self.isIndividualMessage
                 )
             )

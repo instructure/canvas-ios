@@ -21,7 +21,7 @@ import SwiftUI
 
 struct PeopleSelectionView: View {
 
-    @State var disabled: Bool
+    var disabled: Bool
     @Bindable var viewModel: PeopleSelectionViewModel
 
     init(viewModel: PeopleSelectionViewModel, disabled: Bool = false) {

@@ -62,18 +62,16 @@ public extension HorizonUI {
                     diameter: self.size.dimension,
                     strokeWidth: self.size.strokeWidth
                 )
-                .rotationEffect(.degrees(rotation))
-                .animation(
-                    .linear(duration: spinDuration).repeatForever(autoreverses: false),
-                    value: rotation
-                )
             }
             .frame(
                 width: self.size.dimension + self.size.strokeWidth,
                 height: self.size.dimension + self.size.strokeWidth
             )
+            .rotationEffect(.degrees(rotation))
             .onAppear {
-                self.rotation = 360
+                withAnimation(.linear(duration: spinDuration).repeatForever(autoreverses: false)) {
+                    self.rotation = 360
+                }
             }
         }
     }

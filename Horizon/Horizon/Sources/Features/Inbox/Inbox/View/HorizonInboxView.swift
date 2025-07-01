@@ -46,7 +46,13 @@ struct HorizonInboxView: View {
                             )
                             .padding(.horizontal, HorizonUI.spaces.space16 - 4)
 
-                            messageList
+                            ZStack {
+                                HorizonUI.Spinner(size: .xSmall)
+                                    .opacity(viewModel.spinnerOpacity)
+                                
+                                messageList
+                            }
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(
@@ -87,6 +93,7 @@ struct HorizonInboxView: View {
         .frame(maxHeight: .infinity, alignment: .top)
         .frame(maxWidth: .infinity)
         .background(HorizonUI.colors.surface.pageSecondary)
+        .opacity(viewModel.messageListOpacity)
         .clipShape(
             .rect(
                 topLeadingRadius: 32,
