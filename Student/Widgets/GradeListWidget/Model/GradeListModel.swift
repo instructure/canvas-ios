@@ -33,15 +33,20 @@ class GradeListModel: WidgetModel {
     }
 
     func getItems(for widgetFamily: WidgetFamily, size: DynamicTypeSize? = nil) -> [GradeListItem] {
-        var maxItemCount = widgetFamily == .systemMedium ? 4 : 10
-
-        if let size, size.isAccessibilitySize {
+        let isMediumFamily = widgetFamily == .systemMedium
+        let maxItemCount = if let size, size.isAccessibilitySize {
             switch size {
-            case .accessibility1: maxItemCount -= widgetFamily == .systemMedium ? 0 : 2
-            case .accessibility2: maxItemCount -= widgetFamily == .systemMedium ? 1 : 3
-            case .accessibility3: maxItemCount -= widgetFamily == .systemMedium ? 1 : 4
-            default: maxItemCount -= widgetFamily == .systemMedium ? 2 : 5
+            case .accessibility1:
+                isMediumFamily ? 4 : 8
+            case .accessibility2:
+                isMediumFamily ? 3 : 7
+            case .accessibility3:
+                isMediumFamily ? 3 : 6
+            default:
+                isMediumFamily ? 2 : 5
             }
+        } else {
+            isMediumFamily ? 4 : 10
         }
 
         guard items.count > maxItemCount else {

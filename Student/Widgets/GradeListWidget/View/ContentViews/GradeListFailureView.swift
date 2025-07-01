@@ -24,8 +24,8 @@ struct GradeListFailureView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private let iconName = "PandaUnsupported"
-    private let title = String(localized: "Oops! Something Went Wrong")
-    private let subtitle = String(localized: "We're having trouble showing your grades right now.  Please try again in a bit or head to the app.")
+    private let title = "Oops! Something Went Wrong"
+    private let subtitle = "We're having trouble showing your grades right now.  Please try again in a bit or head to the app."
 
     var body: some View {
         VStack(spacing: family == .systemMedium ? 10 : 15) {

@@ -20,8 +20,6 @@ import WidgetKit
 import SwiftUI
 
 struct GradeListWidgetScreen: View {
-
-    @Environment(\.widgetFamily) private var family
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     let model: GradeListModel

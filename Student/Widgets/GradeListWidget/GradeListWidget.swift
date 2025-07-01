@@ -27,8 +27,8 @@ struct GradeListWidget: Widget {
             GradeListWidgetScreen(model: model.data)
         }
         .contentMarginsDisabled()
-        .configurationDisplayName(String(localized: "Grade List", comment: "Name of the Grade List widget"))
-        .description(String(localized: "View your grades.", comment: "Description of the Grade List widget"))
+        .configurationDisplayName(Text("Grade List", comment: "Name of the Grade List widget"))
+        .description(Text("View your grades.", comment: "Description of the Grade List widget"))
         .supportedFamilies([.systemMedium, .systemLarge])
     }
 }

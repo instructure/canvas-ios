@@ -24,8 +24,8 @@ struct GradeListLoggedOutView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private let iconName = "no-match-panda"
-    private let title = String(localized: "Let's Get You Logged In!")
-    private let subtitle = String(localized: "To see your grades, please log in to your account in the app.  It'll just take a sec!")
+    private let title = "Let's Get You Logged In!"
+    private let subtitle = "To see your grades, please log in to your account in the app.  It'll just take a sec!"
 
     var body: some View {
         VStack(spacing: family == .systemMedium ? 10 : 15) {
