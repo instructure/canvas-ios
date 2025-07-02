@@ -44,7 +44,7 @@ struct CourseTotalGradeResultView<GradeView: View>: View {
                 Text(attributes.name)
                     .font(.scaledRestrictly(.regular14))
                     .foregroundStyle(attributes.color ?? .gray)
-                    .lineLimit(3)
+                    .lineLimit(lineLimit)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
 
@@ -52,6 +52,10 @@ struct CourseTotalGradeResultView<GradeView: View>: View {
             }
         }
         .frame(maxHeight: .infinity, alignment: .top)
+    }
+
+    private var lineLimit: Int {
+        return dynamicTypeSize > .xxLarge ? 2 : 3
     }
 }
 

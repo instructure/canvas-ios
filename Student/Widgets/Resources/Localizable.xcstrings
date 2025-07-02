@@ -4963,6 +4963,9 @@
     "View Full List" : {
 
     },
+    "View the grade of your favorite course" : {
+
+    },
     "View the latest announcements from your courses." : {
       "comment" : "Description of the announcements widget",
       "localizations" : {
@@ -5476,9 +5479,6 @@
           }
         }
       }
-    },
-    "View total grade for a course" : {
-
     },
     "View your to-do items." : {
       "comment" : "Description of the to-do widget"
