@@ -48,7 +48,11 @@ class CourseTotalGradeInteractorLive: CourseTotalGradeInteractor {
         // Reset
         env.app = .student
 
-        guard let session = LoginSession.mostRecent else { return }
+        guard let session = LoginSession.mostRecent else {
+            env.widgetUserDidLogout()
+            return
+        }
+
         if let current = env.currentSession, current == session { return }
 
         // Update with latest session
