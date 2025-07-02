@@ -59,11 +59,9 @@ class SubmissionListViewModel: ObservableObject {
         .map({ (list, searchText) in
 
             let searchTerm = searchText.lowercased()
-            let curatedList: [Submission]
+            var curatedList: [Submission] = list
             if searchTerm.isNotEmpty {
-                curatedList = list.filter { $0.user?.nameContains(searchTerm) ?? false }
-            } else {
-                curatedList = list
+                curatedList = curatedList.filter { $0.user?.nameContains(searchTerm) ?? false }
             }
 
             var itemIndex = 0

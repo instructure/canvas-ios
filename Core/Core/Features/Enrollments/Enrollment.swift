@@ -85,6 +85,12 @@ extension Enrollment {
         return type.lowercased().contains("student")
     }
 
+    /// - returns: True if the enrollment is for a test user that is created when the teacher starts the "Student View" mode.
+    public var isStudentView: Bool {
+        // "StudentView" is the enrollment name
+        return isStudent && type.lowercased().contains("view")
+    }
+
     public var isTeacher: Bool {
         return type.lowercased().contains("teacher")
     }
