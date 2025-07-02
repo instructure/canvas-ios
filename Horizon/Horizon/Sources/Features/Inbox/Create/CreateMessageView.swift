@@ -24,6 +24,7 @@ struct CreateMessageView: View {
 
     @Environment(\.viewController) private var viewController
     @Bindable var viewModel: CreateMessageViewModel
+    @State private var courseFocused: Bool = false
 
     var body: some View {
         VStack(alignment: .leading) {

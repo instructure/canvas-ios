@@ -127,8 +127,8 @@ class CreateMessageViewModel {
                     subject: self.subject,
                     body: self.body,
                     recipientIDs: self.peopleSelectionViewModel.recipientIDs,
-                    attachmentIDs: composeMessageInteractor.attachments.value.compactMap { $0.id },
-                    bulkMessage: !self.isIndividualMessage
+                    attachmentIDs: attachmentIds,
+                    bulkMessage: self.isIndividualMessage
                 )
             )
             .sink(

@@ -47,7 +47,7 @@ class HorizonMessageDetailsViewModel {
     // MARK: - Dependencies
     private let announcementID: String
     let attachmentViewModel: AttachmentViewModel?
-//    private var conversations: [Conversation] = []
+    private var conversation: Conversation?
     private let conversationID: String?
     private let composeMessageInteractor: ComposeMessageInteractor?
     private var isMarkedAsRead = false
@@ -77,6 +77,11 @@ class HorizonMessageDetailsViewModel {
         self.myID = myID
         self.announcementsInteractor = nil
         self.announcementID = ""
+
+        messageDetailsInteractor.conversation.sink { [weak self] conversations in
+            self?.conversation = conversations.first { $0.id == conversationID }
+        }
+        .store(in: &subscriptions)
 
         listenForMessages()
         listenForSubject()
@@ -135,9 +140,7 @@ class HorizonMessageDetailsViewModel {
     }
 
     func sendMessage(viewController: WeakViewController) {
-        guard let conversation = messageDetailsInteractor?.conversation.value.first,
-              let contextCode = conversation.contextCode,
-              let context = Context(canvasContextID: contextCode),
+        guard let conversation = conversation,
               let composeMessageInteractor = self.composeMessageInteractor,
               let messageDetailsInteractor = self.messageDetailsInteractor else {
             return
@@ -154,8 +157,7 @@ class HorizonMessageDetailsViewModel {
                     subject: conversation.subject,
                     body: self.reply,
                     recipientIDs: recipientIDs,
-                    attachmentIDs: [],
-                    context: context,
+                    attachmentIDs: attachmentViewModel?.items.map { $0.id } ?? [],
                     conversationID: conversation.id,
                     bulkMessage: true
                 )
@@ -164,6 +166,7 @@ class HorizonMessageDetailsViewModel {
                     performUIUpdate {
                         self.isSending = false
                         self.reply = ""
+                        self.composeMessageInteractor?.cancel()
                     }
                 },
                 receiveValue: { _ in }
