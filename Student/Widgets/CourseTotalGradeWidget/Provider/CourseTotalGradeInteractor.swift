@@ -19,7 +19,7 @@
 import Core
 import Combine
 
-protocol CourseTotalGradeInteractorProtocol {
+protocol CourseTotalGradeInteractor {
     var isLoggedIn: Bool { get }
     var domain: String? { get }
     func updateEnvironment()
@@ -29,7 +29,7 @@ protocol CourseTotalGradeInteractorProtocol {
     func fetchCourseTotalGrade(courseID: String, baseOnGradedAssignment: Bool) async -> CourseTotalGradeData
 }
 
-class CourseTotalGradeInteractorLive: CourseTotalGradeInteractorProtocol {
+class CourseTotalGradeInteractorLive: CourseTotalGradeInteractor {
 
     private var env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
@@ -150,5 +150,5 @@ class CourseTotalGradeInteractorLive: CourseTotalGradeInteractorProtocol {
 }
 
 extension CourseTotalGradeModel {
-    static var interactor: CourseTotalGradeInteractorProtocol = CourseTotalGradeInteractorLive()
+    static var interactor: CourseTotalGradeInteractor = CourseTotalGradeInteractorLive()
 }
