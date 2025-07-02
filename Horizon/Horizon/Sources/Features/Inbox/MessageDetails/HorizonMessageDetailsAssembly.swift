@@ -34,6 +34,7 @@ struct HorizonMessageDetailsAssembly {
             ),
             composeMessageInteractor: ComposeMessageInteractorLive(
                 batchId: uploadIdentifier,
+                uploadFolderPath: "conversation attachments",
                 uploadManager: UploadManager(
                     env: appEnvironment,
                     identifier: uploadIdentifier

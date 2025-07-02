@@ -253,6 +253,11 @@ extension APIRequestable {
 
         request.httpShouldHandleCookies = shouldHandleCookies
 
+        print("API Request: \(request.httpMethod ?? "GET") \(request.url?.absoluteString ?? "")")
+        if let body = request.httpBody, !body.isEmpty {
+            print("Request Body: \(String(data: body, encoding: .utf8) ?? "<empty>")")
+        }
+
         return request
     }
 

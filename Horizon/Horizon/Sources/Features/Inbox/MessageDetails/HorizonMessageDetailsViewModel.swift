@@ -157,7 +157,7 @@ class HorizonMessageDetailsViewModel {
                     subject: conversation.subject,
                     body: self.reply,
                     recipientIDs: recipientIDs,
-                    attachmentIDs: attachmentViewModel?.items.map { $0.id } ?? [],
+                    attachmentIDs: attachmentViewModel?.items.compactMap { $0.id } ?? [],
                     conversationID: conversation.id,
                     bulkMessage: true
                 )

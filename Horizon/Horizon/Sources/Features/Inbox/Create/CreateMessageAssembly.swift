@@ -27,6 +27,7 @@ struct CreateMessageAssembly {
                 .init(
                     composeMessageInteractor: ComposeMessageInteractorLive(
                         batchId: uploadIdentifier,
+                        uploadFolderPath: "conversation attachments",
                         uploadManager: UploadManager(
                             env: AppEnvironment.shared,
                             identifier: uploadIdentifier
