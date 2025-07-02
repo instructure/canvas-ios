@@ -62,7 +62,7 @@ struct CourseTotalGradeStatusView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(height: 40)
-                .accessibilityHidden(true)
+                .accessibilityLabel(Text("Canvas single grade widget"))
             VStack(alignment: .leading, spacing: 4) {
                 Text(status.title)
                     .font(.scaledRestrictly(.semibold12))

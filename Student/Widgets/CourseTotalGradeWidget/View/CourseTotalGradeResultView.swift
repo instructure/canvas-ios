@@ -38,8 +38,7 @@ struct CourseTotalGradeResultView<GradeView: View>: View {
                 Spacer()
             }
             .accessibilityElement()
-            .accessibilityLabel(Text("Canvas Course Total Grade Widget"))
-            .accessibilityHint("Double tap to view course grades tab")
+            .accessibilityLabel(Text("Canvas single grade widget"))
 
             VStack(alignment: .leading, spacing: 8) {
                 Text(attributes.name)

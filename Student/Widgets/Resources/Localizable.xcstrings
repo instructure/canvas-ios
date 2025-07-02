@@ -1805,7 +1805,7 @@
         }
       }
     },
-    "Canvas Course Total Grade Widget" : {
+    "Canvas single grade widget" : {
 
     },
     "Canvas To-do Widget" : {
@@ -2594,6 +2594,9 @@
       }
     },
     "Grade" : {
+
+    },
+    "Grade is hidden" : {
 
     },
     "Grades" : {

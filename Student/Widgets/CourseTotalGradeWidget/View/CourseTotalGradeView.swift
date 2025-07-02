@@ -52,6 +52,7 @@ struct CourseTotalGradeView: View {
                                     .lockLine
                                     .scaledIcon(size: 24)
                                     .foregroundStyle(.textDark)
+                                    .accessibilityLabel(Text("Grade is hidden"))
                             }
                         )
                     case .failure, .courseNotFound:
@@ -70,6 +71,17 @@ struct CourseTotalGradeView: View {
         }
         .widgetURL(courseGradesURL)
         .containerBackground(Color.backgroundLightest, for: .widget)
+        .accessibilityElement(children: .combine)
+        .accessibilityHint(isShowingGrades, Text("Double tap to view course grades tab"))
+    }
+
+    private var isShowingGrades: Bool {
+        if model.isLoggedIn,
+           let data = model.data,
+           case .grade = data.fetchResult {
+            return true
+        }
+        return false
     }
 
     private var courseGradesURL: URL? {
