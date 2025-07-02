@@ -234,7 +234,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
         self.env = env
         self.courseColor = courseColor
-        self.isGradingPeriodsSectionVisible = gradingPeriods.count > 1
+        self.isGradingPeriodsSectionVisible = gradingPeriods.count > 0
     }
 
     // MARK: - Functions
