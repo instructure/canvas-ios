@@ -16,74 +16,70 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import Foundation
 
-struct AttachmentItemViewModel: Identifiable {
-    typealias OnCancel = (() -> Void)?
-    typealias OnDelete = ((File) -> Void)?
-
+class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
     // MARK: - Outputs
-    var cancelOpacity: Double {
-        isLoading ? 1.0 : 0.0
-    }
-    var checkmarkOpacity: Double {
-        isLoading ? 0.0 : 1.0
-    }
-    var deleteOpacity: Double {
-        isLoading ? 0.0 : 1.0
-    }
-    var downloadOpacity: Double {
-        onCancel == nil || onDelete == nil ? 1.0 : 0.0
-    }
-    var spinnerOpacity: Double {
-        isLoading ? 1.0 : 0.0
-    }
-    var isLoading: Bool {
-        !file.isUploaded
-    }
-    var filename: String {
-        file.filename
-    }
+    var cancelOpacity: Double { isLoading ? 1.0 : 0.0 }
+    var checkmarkOpacity: Double { isLoading ? 0.0 : 1.0 }
+    var deleteOpacity: Double { isLoading ? 0.0 : 1.0 }
+    var spinnerOpacity: Double { isLoading ? 1.0 : 0.0 }
+    var isLoading: Bool { !file.isUploaded }
+    var filename: String { file.filename }
 
     // MARK: - Properties
-    var id: String? {
-        file.id
-    }
+    var id: String? { file.id }
+
+    // MARK: - Private
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
+    private let composeMessageInteractor: ComposeMessageInteractor
+    private let downloadFileInteractor: DownloadFileInteractor
     private let file: File
-    private let onCancel: OnCancel
-    private let onDelete: OnDelete
+    private let router: Router
 
     // MARK: - Init
-    /// Used for a file that's already uploaded and can be downloaded
-    init(_ file: File) {
-        self.file = file
-
-        self.onCancel = nil
-        self.onDelete = nil
-    }
-
-    /// Used for a file that's being uploaded
     init(
         _ file: File,
-        onCancel: OnCancel,
-        onDelete: OnDelete
+        router: Router,
+        composeMessageInteractor: ComposeMessageInteractor,
+        downloadFileInteractor: DownloadFileInteractor
     ) {
         self.file = file
-        self.onCancel = onCancel
-        self.onDelete = onDelete
+        self.router = router
+        self.composeMessageInteractor = composeMessageInteractor
+        self.downloadFileInteractor = downloadFileInteractor
     }
 
     // MARK: - Inputs
-    func cancel() {
-        onCancel?()
+    func cancel() { composeMessageInteractor.cancel() }
+    func delete() { composeMessageInteractor.removeFile(file: file) }
+    func download(_ viewController: WeakViewController) {
+        downloadFileInteractor
+            .download(file: file)
+            .receive(on: DispatchQueue.main)
+            .sink(
+                receiveCompletion: { completion in
+                    if case let .failure(_) = completion {
+                    }
+                },
+                receiveValue: { [weak self] url in
+                    self?.router.showShareSheet(fileURL: url, viewController: viewController)
+                }
+            )
+            .store(in: &subscriptions)
     }
-    func delete() {
-        onDelete?(file)
+
+    // MARK: - Equatable
+    static func == (lhs: AttachmentItemViewModel, rhs: AttachmentItemViewModel) -> Bool {
+        lhs.id == rhs.id
     }
-    func download() {
-        //file.download()
+
+    // MARK: - Hashable
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

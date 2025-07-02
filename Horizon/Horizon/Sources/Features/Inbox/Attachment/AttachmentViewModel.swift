@@ -37,16 +37,19 @@ class AttachmentViewModel {
     private let audioSession: AudioSessionProtocol
     private let cameraPermissionService: CameraPermissionService.Type
     private let composeMessageInteractor: ComposeMessageInteractor
+    private let downloadFileInteractor: DownloadFileInteractor
     let router: Router
 
     init(
         router: Router = AppEnvironment.shared.router,
         composeMessageInteractor: ComposeMessageInteractor,
+        downloadFileInteractor: DownloadFileInteractor = DownloadFileInteractorLive(),
         audioSession: AudioSessionProtocol = AVAudioApplication.shared,
         cameraPermissionService: CameraPermissionService.Type = AVCaptureDevice.self
     ) {
         self.router = router
         self.composeMessageInteractor = composeMessageInteractor
+        self.downloadFileInteractor = downloadFileInteractor
         self.audioSession = audioSession
         self.cameraPermissionService = cameraPermissionService
 
@@ -146,15 +149,13 @@ class AttachmentViewModel {
         composeMessageInteractor
             .attachments
             .sink { [weak self] files in
-                self?.items = files.map {
+                guard let self else { return }
+                self.items = files.map {
                     AttachmentItemViewModel(
                         $0,
-                        onCancel: { [weak self] in
-                            self?.composeMessageInteractor.cancel()
-                        },
-                        onDelete: { [weak self] file in
-                            self?.composeMessageInteractor.removeFile(file: file)
-                        }
+                        router: self.router,
+                        composeMessageInteractor: self.composeMessageInteractor,
+                        downloadFileInteractor: self.downloadFileInteractor
                     )
                 }
             }

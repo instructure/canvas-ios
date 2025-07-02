@@ -16,10 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import HorizonUI
 import SwiftUI
 
 struct AttachmentItemView: View {
+    @Environment(\.viewController) private var viewController: WeakViewController
     var viewModel: AttachmentItemViewModel
 
     var body: some View {
@@ -83,9 +85,8 @@ struct AttachmentItemView: View {
             type: .white,
             isSmall: true
         ) {
-            viewModel.download()
+            viewModel.download(viewController)
         }
-        .opacity(viewModel.downloadOpacity)
     }
 
     private var spinner: some View {

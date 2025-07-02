@@ -36,7 +36,7 @@ class HorizonMessageDetailsViewModel {
     var loadingSpinnerOpacity: Double {
         isSending ? 1.0 : 0.0
     }
-    private(set) var messagesAsc: [MessageViewModel] = []
+    private(set) var messages: [HorizonMessageViewModel] = []
     var isReplayAreaVisible: Bool = true
     private(set) var headerTitle: String = ""
 
@@ -45,16 +45,17 @@ class HorizonMessageDetailsViewModel {
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
+    private let announcementsInteractor: AnnouncementsInteractor?
     private let announcementID: String
     let attachmentViewModel: AttachmentViewModel?
     private var conversation: Conversation?
     private let conversationID: String?
     private let composeMessageInteractor: ComposeMessageInteractor?
+    private let downloadFileInteractor: DownloadFileInteractor?
     private var isMarkedAsRead = false
     private let myID: String
     private let messageDetailsInteractor: MessageDetailsInteractor?
     private let router: Router
-    private let announcementsInteractor: AnnouncementsInteractor?
 
     // MARK: - Initialization
     init(
@@ -63,6 +64,7 @@ class HorizonMessageDetailsViewModel {
         attachmentViewModel: AttachmentViewModel? = nil,
         messageDetailsInteractor: MessageDetailsInteractor,
         composeMessageInteractor: ComposeMessageInteractor,
+        downloadFileInteractor: DownloadFileInteractor = DownloadFileInteractorLive(),
         myID: String = AppEnvironment.shared.currentSession?.userID ?? "",
         allowArchive: Bool
     ) {
@@ -74,6 +76,7 @@ class HorizonMessageDetailsViewModel {
         )
         self.messageDetailsInteractor = messageDetailsInteractor
         self.composeMessageInteractor = composeMessageInteractor
+        self.downloadFileInteractor = downloadFileInteractor
         self.myID = myID
         self.announcementsInteractor = nil
         self.announcementID = ""
@@ -103,20 +106,13 @@ class HorizonMessageDetailsViewModel {
         self.attachmentViewModel = nil
         self.messageDetailsInteractor = nil
         self.composeMessageInteractor = nil
+        self.downloadFileInteractor = nil
         self.conversationID = nil
         self.isReplayAreaVisible = false
 
         if let announcement = announcement {
             self.headerTitle = announcement.title
-            self.messagesAsc = [
-                MessageViewModel(
-                    id: announcement.id,
-                    body: announcement.title,
-                    author: announcement.courseName ?? "",
-                    date: announcement.date?.dateTimeString ?? "",
-                    avatarName: ""
-                )
-            ]
+            self.messages = [.init(announcement: announcement)]
         } else {
             listenForAnnouncements()
             listenForSubject()
@@ -179,16 +175,10 @@ class HorizonMessageDetailsViewModel {
     private func listenForAnnouncements() {
         announcementsInteractor?.messages.sink { [weak self] announcements in
             self?.headerTitle = announcements.first(where: { $0.id == self?.announcementID })?.title ?? String(localized: "Announcement", bundle: .horizon)
-            self?.messagesAsc = announcements
+            self?.messages = announcements
                 .filter { $0.id == self?.announcementID }
                 .map { announcement in
-                    MessageViewModel(
-                        id: announcement.id,
-                        body: announcement.title,
-                        author: announcement.author,
-                        date: announcement.date?.dateTimeString ?? "",
-                        avatarName: ""
-                    )
+                    .init(announcement: announcement)
                 }
         }
         .store(in: &subscriptions)
@@ -202,7 +192,7 @@ class HorizonMessageDetailsViewModel {
             .map(toViewModels)
             .sink { [weak self] conversationMessages in
                 guard let self = self else { return }
-                self.messagesAsc = conversationMessages
+                self.messages = conversationMessages
             }
             .store(in: &subscriptions)
     }
@@ -241,43 +231,67 @@ class HorizonMessageDetailsViewModel {
         conversationMessages.sorted { $0.createdAt ?? .distantPast < $1.createdAt ?? .distantPast }
     }
 
-    private func toViewModels(_ conversationMessages: [ConversationMessage]) -> [MessageViewModel] {
-        conversationMessages.map {
-            MessageViewModel(
-                item: $0,
+    private func toViewModels(_ conversationMessages: [ConversationMessage]) -> [HorizonMessageViewModel] {
+        guard let composeMessageInteractor = composeMessageInteractor,
+              let downloadFileInteractor = downloadFileInteractor,
+              let userMap = messageDetailsInteractor?.userMap else {
+            return []
+        }
+        return conversationMessages.map {
+            HorizonMessageViewModel(
+                conversationMessage: $0,
+                composeMessageInteractor: composeMessageInteractor,
+                downloadFileInteractor: downloadFileInteractor,
+                router: router,
                 myID: myID,
-                userMap: messageDetailsInteractor?.userMap ?? [:],
-                router: router
+                userMap: userMap
             )
         }
     }
 }
 
-extension HorizonMessageDetailsViewModel {
-    convenience init(
-        announcement: Announcement,
-        environment: AppEnvironment = AppEnvironment.shared,
-        router: Router = AppEnvironment.shared.router,
-        announcementsInteractor: AnnouncementsInteractor = AnnouncementsInteractorLive(),
-        myID: String = AppEnvironment.shared.currentSession?.userID ?? ""
+struct HorizonMessageViewModel: Identifiable, Hashable, Equatable {
+    let attachments: [AttachmentItemViewModel]
+    let author: String
+    let body: String
+    let date: String
+    let id: String
+}
+
+extension HorizonMessageViewModel {
+    init(announcement: Announcement) {
+        self.id = announcement.id
+        self.body = announcement.title
+        self.author = announcement.author
+        self.date = announcement.date?.dateTimeString ?? ""
+        self.attachments = []
+    }
+}
+
+extension HorizonMessageViewModel {
+    init(
+        conversationMessage: ConversationMessage,
+        composeMessageInteractor: ComposeMessageInteractor,
+        downloadFileInteractor: DownloadFileInteractor,
+        router: Router,
+        myID: String,
+        userMap: [String: ConversationParticipant]
     ) {
-        self.init(
-            announcementID: announcement.id,
-            environment: environment,
-            router: router,
-            announcementsInteractor: announcementsInteractor,
-            myID: myID
-        )
-        // Initialize properties from Announcement
-        self.messagesAsc = [
-            MessageViewModel(
-                id: announcement.id,
-                body: announcement.title,
-                author: announcement.courseName ?? "",
-                date: announcement.date?.dateTimeString ?? "",
-                avatarName: ""
+        self.id = conversationMessage.id
+        self.body = conversationMessage.body
+
+        let from = userMap[ conversationMessage.authorID ]?.displayName ?? ""
+        let to = conversationMessage.localizedAudience(myID: myID, userMap: userMap)
+        self.author = from + " " + to
+
+        self.date = conversationMessage.createdAt?.dateTimeString ?? ""
+        self.attachments = conversationMessage.attachments.map {
+            AttachmentItemViewModel(
+                $0,
+                router: router,
+                composeMessageInteractor: composeMessageInteractor,
+                downloadFileInteractor: downloadFileInteractor
             )
-        ]
-        self.isReplayAreaVisible = false
+        }
     }
 }

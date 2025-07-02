@@ -56,7 +56,7 @@ struct HorizonMessageDetailsView: View {
             RefreshableScrollView(
                 content: {
                     VStack(spacing: HorizonUI.spaces.space24) {
-                        messageBodies(messages: model.messagesAsc)
+                        messageBodies
                     }
                     .padding([.leading, .trailing, .bottom], HorizonUI.spaces.space24)
                     .padding(.top, HorizonUI.spaces.space16)
@@ -74,8 +74,8 @@ struct HorizonMessageDetailsView: View {
                     topTrailingRadius: 32
                 )
             )
-            .onChange(of: model.messagesAsc.count) {
-                if let last = model.messagesAsc.last {
+            .onChange(of: model.messages.count) {
+                if let last = model.messages.last {
                     withAnimation {
                         proxy.scrollTo(last.id, anchor: .bottom)
                     }
@@ -84,15 +84,15 @@ struct HorizonMessageDetailsView: View {
         }
     }
 
-    private func messageBodies(messages: [MessageViewModel]) -> some View {
-        ForEach(messages) { message in
+    private var messageBodies: some View {
+        ForEach(model.messages) { message in
             messageBody(message)
                 .id(message.id)
                 .overlay(
                     Rectangle()
                         .frame(height: 1)
                         .foregroundStyle(
-                            model.messagesAsc.firstIndex(where: { $0.id == message.id }) == 0 || model.messagesAsc.count <= 1 ?
+                            model.messages.firstIndex(where: { $0.id == message.id }) == 0 || model.messages.count <= 1 ?
                                 .clear :
                                 HorizonUI.colors.lineAndBorders.lineStroke
                         ),
@@ -101,7 +101,7 @@ struct HorizonMessageDetailsView: View {
         }
     }
 
-    private func messageBody(_ message: MessageViewModel) -> some View {
+    private func messageBody(_ message: HorizonMessageViewModel) -> some View {
         VStack(alignment: .leading, spacing: HorizonUI.spaces.space8) {
             HStack {
                 Text(message.author)
@@ -115,8 +115,8 @@ struct HorizonMessageDetailsView: View {
                 .huiTypography(.p1)
             if message.attachments.isNotEmpty {
                 VStack(spacing: HorizonUI.spaces.space8) {
-                    ForEach(message.attachments, id: \.self) { file in
-                        AttachmentItemView(viewModel: AttachmentItemViewModel(file))
+                    ForEach(message.attachments, id: \.self) { attachment in
+                        AttachmentItemView(viewModel: attachment)
                     }
                 }
                 .padding(.top, HorizonUI.spaces.space8)
