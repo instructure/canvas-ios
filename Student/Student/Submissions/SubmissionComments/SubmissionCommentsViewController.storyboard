@@ -463,6 +463,9 @@
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="vKH-ti-PRW" firstAttribute="leading" secondItem="vZr-mW-D6N" secondAttribute="leading" constant="16" id="rfd-Ya-ZBX"/>
+                                                </constraints>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DjR-oA-G8w">
                                                 <rect key="frame" x="0.0" y="272" width="319" height="50"/>
@@ -541,12 +544,12 @@
                                     <constraint firstItem="gze-1W-XEa" firstAttribute="leading" secondItem="SAr-z8-Qsj" secondAttribute="leading" id="ayE-te-ffb"/>
                                     <constraint firstItem="djV-o5-Xt6" firstAttribute="leading" secondItem="SAr-z8-Qsj" secondAttribute="leading" id="dfi-A4-myE"/>
                                     <constraint firstItem="CLU-b8-j0t" firstAttribute="top" secondItem="SAr-z8-Qsj" secondAttribute="top" constant="4" id="eh3-OH-Wtc"/>
-                                    <constraint firstItem="djV-o5-Xt6" firstAttribute="centerY" secondItem="CLU-b8-j0t" secondAttribute="bottom" constant="-25" id="heE-C6-J93"/>
                                     <constraint firstAttribute="trailing" secondItem="CLU-b8-j0t" secondAttribute="trailing" constant="16" id="j1f-TB-146"/>
                                     <constraint firstItem="gze-1W-XEa" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SAr-z8-Qsj" secondAttribute="top" id="l1p-xk-3Yk"/>
                                     <constraint firstAttribute="bottom" secondItem="CLU-b8-j0t" secondAttribute="bottom" constant="4" id="leb-5f-OYB"/>
                                     <constraint firstItem="4l5-MU-1OT" firstAttribute="leading" secondItem="SAr-z8-Qsj" secondAttribute="leading" id="luo-05-3XB"/>
                                     <constraint firstAttribute="trailing" secondItem="gze-1W-XEa" secondAttribute="trailing" id="mHW-fh-hDY"/>
+                                    <constraint firstItem="djV-o5-Xt6" firstAttribute="centerY" secondItem="DjR-oA-G8w" secondAttribute="centerY" id="nMT-CS-Czh"/>
                                     <constraint firstAttribute="trailing" secondItem="4l5-MU-1OT" secondAttribute="trailing" id="xvA-fR-rec"/>
                                 </constraints>
                             </view>
