@@ -66,6 +66,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         commentLabel.text = String(localized: "Comment", bundle: .student)
         commentLabel.textColor = .textDark
         commentLabel.font = .scaledNamedFont(.regular13)
+        commentLabel.accessibilityTraits = .header
         addCommentBorderView.backgroundColor = .backgroundLightest
         addCommentBorderView.layer.borderColor = UIColor.borderMedium.cgColor
         addCommentBorderView.layer.borderWidth = 1 / UIScreen.main.scale
