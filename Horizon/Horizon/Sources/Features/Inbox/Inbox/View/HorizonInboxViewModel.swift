@@ -236,10 +236,8 @@ class HorizonInboxViewModel {
                 .map { $0.viewModel }
 
         messageRows = addAnnouncements(to: messageRowsInterim)
-        withAnimation {
-            messageListOpacity = 1.0
-            spinnerOpacity = 0.0
-        }
+        messageListOpacity = messageRows.count > 0 ? 1.0 : 0.0
+        spinnerOpacity = 0.0
     }
 
     private func filterByPerson(messageListItem: InboxMessageListItem) -> Bool {

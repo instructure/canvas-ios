@@ -26,6 +26,9 @@ class HorizonMessageDetailsViewModel {
     var attachmentItems: [AttachmentItemViewModel] {
         attachmentViewModel?.items ?? []
     }
+    var isAnnouncementIconVisible: Bool {
+        announcementID != nil
+    }
     var isSendDisabled: Bool {
         reply.isEmpty || isSending || attachmentViewModel?.isUploading ?? false
     }
@@ -46,7 +49,7 @@ class HorizonMessageDetailsViewModel {
 
     // MARK: - Dependencies
     private let announcementsInteractor: AnnouncementsInteractor?
-    private let announcementID: String
+    private let announcementID: String?
     let attachmentViewModel: AttachmentViewModel?
     private var conversation: Conversation?
     private let conversationID: String?
@@ -79,7 +82,7 @@ class HorizonMessageDetailsViewModel {
         self.downloadFileInteractor = downloadFileInteractor
         self.myID = myID
         self.announcementsInteractor = nil
-        self.announcementID = ""
+        self.announcementID = nil
 
         messageDetailsInteractor.conversation.sink { [weak self] conversations in
             self?.conversation = conversations.first { $0.id == conversationID }

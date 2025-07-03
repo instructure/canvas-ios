@@ -49,7 +49,7 @@ struct HorizonInboxView: View {
                             ZStack {
                                 HorizonUI.Spinner(size: .xSmall)
                                     .opacity(viewModel.spinnerOpacity)
-                                
+                                    .animation(.easeInOut(duration: 0.2), value: viewModel.spinnerOpacity)
                                 messageList
                             }
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -94,6 +94,7 @@ struct HorizonInboxView: View {
         .frame(maxWidth: .infinity)
         .background(HorizonUI.colors.surface.pageSecondary)
         .opacity(viewModel.messageListOpacity)
+        .animation(.easeInOut(duration: 0.2), value: viewModel.messageListOpacity)
         .clipShape(
             .rect(
                 topLeadingRadius: 32,

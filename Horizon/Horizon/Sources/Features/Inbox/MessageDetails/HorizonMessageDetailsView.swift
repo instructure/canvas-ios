@@ -193,9 +193,11 @@ struct HorizonMessageDetailsView: View {
         HStack {
             backButton
             Spacer()
-            HorizonUI.icons.announcement
-                .renderingMode(.template)
-                .foregroundStyle(HorizonUI.colors.surface.institution)
+            if model.isAnnouncementIconVisible {
+                HorizonUI.icons.announcement
+                    .renderingMode(.template)
+                    .foregroundStyle(HorizonUI.colors.surface.institution)
+            }
             Text(model.headerTitle)
                 .huiTypography(.labelLargeBold)
                 .foregroundColor(HorizonUI.colors.surface.institution)
