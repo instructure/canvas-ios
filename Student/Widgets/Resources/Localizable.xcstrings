@@ -2596,6 +2596,9 @@
     "Grade List" : {
       "comment" : "Name of the Grade List widget"
     },
+    "Grade: %@" : {
+
+    },
     "Grades" : {
       "comment" : "Name of the grades widget",
       "extractionState" : "stale",
@@ -2856,6 +2859,9 @@
     },
     "Greek Literature" : {
       "comment" : "Example course name for widget preview"
+    },
+    "Hidden Grades" : {
+
     },
     "In the Jungle" : {
       "comment" : "Example course name for widget preview"

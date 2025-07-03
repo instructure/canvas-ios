@@ -22,13 +22,35 @@ import Core
 struct GradeListItem: Identifiable, Equatable {
     let courseId: String
     let courseName: String
+    let rawGrade: String
     let grade: AttributedString
     let hideGrade: Bool
     let color: Color
 
+    var id: String { courseId }
+
+    var courseGradesURL: URL? {
+        return .gradesRoute(
+            forCourse: courseId,
+            color: color.hexString
+        )
+    }
+
+    var gradeAccessibilityLabel: String {
+        if hideGrade {
+            return String(localized: "Hidden Grades")
+        }
+        if rawGrade == String(localized: "No Grades", bundle: .core) {
+            return rawGrade
+        }
+        let format = String(localized: "Grade: %@", bundle: .core)
+        return String.localizedStringWithFormat(format, rawGrade)
+    }
+
     init?(_ course: Course) {
         self.courseId = course.id
         self.courseName = course.name ?? ""
+        self.rawGrade = course.gradeForWidget
         self.grade = course.gradeForWidget.gradeListStyled()
         self.hideGrade = course.hideFinalGrades
         self.color = course.color.asColor
@@ -43,18 +65,10 @@ struct GradeListItem: Identifiable, Equatable {
     ) {
         self.courseId = courseId
         self.courseName = courseName
+        self.rawGrade = grade
         self.grade = grade.gradeListStyled()
         self.hideGrade = hideGrade
         self.color = color
-    }
-
-    var id: String { courseId }
-
-    var courseGradesURL: URL? {
-        return .gradesRoute(
-            forCourse: courseId,
-            color: color.hexString
-        )
     }
 
 }

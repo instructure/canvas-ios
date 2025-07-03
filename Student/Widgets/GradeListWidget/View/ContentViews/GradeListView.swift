@@ -62,9 +62,11 @@ struct GradeListItemView: View {
                     Image.lockLine
                         .scaledIcon(size: 16)
                         .foregroundStyle(.textDark)
+                        .accessibilityLabel(item.gradeAccessibilityLabel)
                 } else {
                     Text(item.grade)
                         .font(.semibold14)
+                        .accessibilityLabel(item.gradeAccessibilityLabel)
                 }
             }
         }
