@@ -85,7 +85,7 @@ extension GradeListItem {
         GradeListItem(
             courseId: "2",
             courseName: String(localized: "Mathematics 904 2024/25", comment: "Example course name for widget preview"),
-            grade: "Good",
+            grade: "C-",
             color: .purple
         ),
         GradeListItem(
@@ -97,7 +97,7 @@ extension GradeListItem {
         GradeListItem(
             courseId: "4",
             courseName: String(localized: "Greek Literature", comment: "Example course name for widget preview"),
-            grade: "Good",
+            grade: "B",
             hideGrade: true,
             color: .cyan
         ),
@@ -110,7 +110,7 @@ extension GradeListItem {
         GradeListItem(
             courseId: "6",
             courseName: String(localized: "General Astronomy", comment: "Example course name for widget preview"),
-            grade: "No Grades",
+            grade: String(localized: "No Grades", bundle: .core),
             color: .teal
         ),
         GradeListItem(
