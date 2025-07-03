@@ -22,10 +22,16 @@ import SwiftUI
 struct PeopleSelectionView: View {
 
     var disabled: Bool
+    let placeholder: String
     @Bindable var viewModel: PeopleSelectionViewModel
 
-    init(viewModel: PeopleSelectionViewModel, disabled: Bool = false) {
+    init(
+        viewModel: PeopleSelectionViewModel,
+        placeholder: String,
+        disabled: Bool = false
+    ) {
         self.viewModel = viewModel
+        self.placeholder = placeholder
         self.disabled = disabled
     }
 
@@ -38,7 +44,7 @@ struct PeopleSelectionView: View {
             options: viewModel.personOptions,
             loading: $viewModel.searchLoading,
             disabled: disabled,
-            placeholder: String(localized: "Filter by person", bundle: .horizon)
+            placeholder: placeholder
         )
     }
 }

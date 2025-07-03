@@ -768,6 +768,9 @@
     "Rangoon (+06:30/+06:30)" : {
 
     },
+    "Recipients" : {
+
+    },
     "Record audio" : {
 
     },
@@ -841,9 +844,6 @@
 
     },
     "Send" : {
-
-    },
-    "Send individual messages to each recipient" : {
 
     },
     "Sent" : {

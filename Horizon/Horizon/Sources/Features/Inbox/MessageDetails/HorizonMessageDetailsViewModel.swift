@@ -29,6 +29,9 @@ class HorizonMessageDetailsViewModel {
     var isAnnouncementIconVisible: Bool {
         announcementID != nil
     }
+    var isAttachmentsListScrollViewVisible: Bool {
+        (attachmentViewModel?.items.count ?? 0) > 3
+    }
     var isSendDisabled: Bool {
         reply.isEmpty || isSending || attachmentViewModel?.isUploading ?? false
     }
@@ -44,7 +47,11 @@ class HorizonMessageDetailsViewModel {
     private(set) var headerTitle: String = ""
 
     // MARK: - Private
-    private var isSending: Bool = false
+    private var isSending: Bool = false {
+        didSet {
+            attachmentViewModel?.disabled = isSending
+        }
+    }
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
@@ -283,14 +290,14 @@ extension HorizonMessageViewModel {
         self.id = conversationMessage.id
         self.body = conversationMessage.body
 
-        let from = userMap[ conversationMessage.authorID ]?.displayName ?? ""
-        let to = conversationMessage.localizedAudience(myID: myID, userMap: userMap)
-        self.author = from + " " + to
+        self.author = conversationMessage.localizedAudience(myID: myID, userMap: userMap)
 
         self.date = conversationMessage.createdAt?.dateTimeString ?? ""
         self.attachments = conversationMessage.attachments.map {
             AttachmentItemViewModel(
                 $0,
+                isOnlyForDownload: true,
+                disabled: false,
                 router: router,
                 composeMessageInteractor: composeMessageInteractor,
                 downloadFileInteractor: downloadFileInteractor

@@ -23,6 +23,7 @@ import SwiftUI
 struct HorizonMessageDetailsView: View {
     @State var model: HorizonMessageDetailsViewModel
     @Environment(\.viewController) private var viewController
+    @State private var attachmentsHeight: CGFloat?
 
     init(model: HorizonMessageDetailsViewModel) {
         self.model = model
@@ -151,13 +152,27 @@ struct HorizonMessageDetailsView: View {
     @ViewBuilder
     private var replyAreaAttachments: some View {
         if model.attachmentItems.isNotEmpty {
-            VStack(spacing: .huiSpaces.space8) {
-                ForEach(model.attachmentItems) { attachment in
-                    AttachmentItemView(viewModel: attachment)
+            if model.isAttachmentsListScrollViewVisible {
+                ScrollView(.vertical, showsIndicators: false) {
+                    replyAreaAttachmentsList
                 }
+                .frame(maxHeight: attachmentsHeight, alignment: .top)
+            } else {
+                replyAreaAttachmentsList
             }
-            .padding(.zero)
         }
+    }
+
+    private var replyAreaAttachmentsList: some View {
+        VStack(spacing: .huiSpaces.space8) {
+            ForEach(model.attachmentItems) { attachment in
+                AttachmentItemView(viewModel: attachment)
+            }
+        }
+        .readingFrame { frame in
+            attachmentsHeight = min(frame.height, 300)
+        }
+        .padding(.zero)
     }
 
     private var replyAreaAttachFileButton: some View {

@@ -22,10 +22,12 @@ import Foundation
 
 class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
     // MARK: - Outputs
-    var cancelOpacity: Double { isLoading ? 1.0 : 0.0 }
+    var cancelOpacity: Double { isLoading && !isOnlyForDownload && !isDisabled ? 1.0 : 0.0 }
     var checkmarkOpacity: Double { isLoading ? 0.0 : 1.0 }
-    var deleteOpacity: Double { isLoading ? 0.0 : 1.0 }
+    var deleteOpacity: Double { isLoading || isOnlyForDownload || isDisabled ? 0.0 : 1.0 }
     var spinnerOpacity: Double { isLoading ? 1.0 : 0.0 }
+    var isCheckmarkVisible: Bool { !isOnlyForDownload }
+    var isSpinnerVisible: Bool { !isOnlyForDownload && isLoading }
     var isLoading: Bool { !file.isUploaded }
     var filename: String { file.filename }
 
@@ -39,16 +41,22 @@ class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
     private let composeMessageInteractor: ComposeMessageInteractor
     private let downloadFileInteractor: DownloadFileInteractor
     private let file: File
+    let isDisabled: Bool
+    let isOnlyForDownload: Bool
     private let router: Router
 
     // MARK: - Init
     init(
         _ file: File,
+        isOnlyForDownload: Bool,
+        disabled: Bool,
         router: Router,
         composeMessageInteractor: ComposeMessageInteractor,
         downloadFileInteractor: DownloadFileInteractor
     ) {
         self.file = file
+        self.isOnlyForDownload = isOnlyForDownload
+        self.isDisabled = disabled
         self.router = router
         self.composeMessageInteractor = composeMessageInteractor
         self.downloadFileInteractor = downloadFileInteractor
@@ -62,10 +70,7 @@ class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
             .download(file: file)
             .receive(on: DispatchQueue.main)
             .sink(
-                receiveCompletion: { completion in
-                    if case let .failure(_) = completion {
-                    }
-                },
+                receiveCompletion: { _ in },
                 receiveValue: { [weak self] url in
                     self?.router.showShareSheet(fileURL: url, viewController: viewController)
                 }

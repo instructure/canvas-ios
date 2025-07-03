@@ -42,6 +42,7 @@ struct HorizonInboxView: View {
 
                             PeopleSelectionView(
                                 viewModel: viewModel.peopleSelectionViewModel,
+                                placeholder: String(localized: "Filter by person", bundle: .horizon),
                                 disabled: viewModel.isSearchDisabled
                             )
                             .padding(.horizontal, HorizonUI.spaces.space16 - 4)

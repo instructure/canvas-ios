@@ -262,13 +262,13 @@ class HorizonInboxViewModel {
         }
     }
 
-    struct MessageRowViewModel: Equatable, Hashable, Identifiable {
+    public struct MessageRowViewModel: Equatable, Hashable, Identifiable {
         let announcement: Announcement?
         var date: Date? {
             announcement?.date ?? inboxMessageListItem?.dateRaw
         }
         var dateString: String {
-            date.map { $0.relativeDateOnlyString } ?? ""
+            date.map { $0.relativeDateTimeString } ?? ""
         }
         var title: String {
             if let announcement = announcement {

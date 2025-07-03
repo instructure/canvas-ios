@@ -55,10 +55,15 @@ class PeopleSelectionViewModel {
 
     // MARK: - Dependencies
     private let api: API
+    private let currentUserID: String?
 
     // MARK: - Init
-    init(api: API = AppEnvironment.shared.api) {
+    init(
+        api: API = AppEnvironment.shared.api,
+        currentUserID: String? = AppEnvironment.shared.currentSession?.userID
+    ) {
         self.api = api
+        self.currentUserID = currentUserID
     }
 
     // MARK: - Public Methods
@@ -82,12 +87,14 @@ class PeopleSelectionViewModel {
             guard let apiSearchRecipients = apiSearchRecipients else {
                 return
             }
-            self?.personOptions = apiSearchRecipients.map {
-                HorizonUI.MultiSelect.Option(
-                    id: $0.id.rawValue,
-                    label: $0.name
-                )
-            }
+            self?.personOptions = apiSearchRecipients
+                .filter { $0.id.value != self?.currentUserID }
+                .map {
+                    HorizonUI.MultiSelect.Option(
+                        id: $0.id.rawValue,
+                        label: $0.name
+                    )
+                }
             self?.searchLoading = false
         }
     }

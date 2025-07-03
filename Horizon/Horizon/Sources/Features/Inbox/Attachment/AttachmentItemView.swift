@@ -29,13 +29,13 @@ struct AttachmentItemView: View {
             ZStack {
                 spinner
                 checkbox
+                downloadButton
             }
             title
             Spacer()
             ZStack {
                 cancelButton
                 deleteButton
-                downloadButton
             }
         }
         .frame(height: 48)
@@ -62,10 +62,13 @@ struct AttachmentItemView: View {
         .opacity(viewModel.cancelOpacity)
     }
 
+    @ViewBuilder
     private var checkbox: some View {
-        HorizonUI.icons.checkCircleFull
-            .foregroundStyle(Color.huiColors.icon.success)
-            .opacity(viewModel.checkmarkOpacity)
+        if viewModel.isCheckmarkVisible {
+            HorizonUI.icons.checkCircleFull
+                .foregroundStyle(Color.huiColors.icon.success)
+                .opacity(viewModel.checkmarkOpacity)
+        }
     }
 
     private var deleteButton: some View {
@@ -79,20 +82,26 @@ struct AttachmentItemView: View {
         .opacity(viewModel.deleteOpacity)
     }
 
+    @ViewBuilder
     private var downloadButton: some View {
-        HorizonUI.IconButton(
-            HorizonUI.icons.download,
-            type: .white,
-            isSmall: true
-        ) {
-            viewModel.download(viewController)
+        if viewModel.isOnlyForDownload {
+            HorizonUI.IconButton(
+                HorizonUI.icons.download,
+                type: .white,
+                isSmall: true
+            ) {
+                viewModel.download(viewController)
+            }
         }
     }
 
+    @ViewBuilder
     private var spinner: some View {
-        HorizonUI.Spinner(size: .xSmall)
-            .opacity(viewModel.spinnerOpacity)
-            .frame(width: 24, height: 24)
+        if viewModel.isSpinnerVisible {
+            HorizonUI.Spinner(size: .xSmall)
+                .opacity(viewModel.spinnerOpacity)
+                .frame(width: 24, height: 24)
+        }
     }
 
     private var title: some View {

@@ -22,6 +22,7 @@ import Core
 
 @Observable
 class AttachmentViewModel {
+    // MARK: - Outputs
     var isAudioRecordVisible = false
     var isFilePickerVisible = false
     var isImagePickerVisible = false
@@ -32,14 +33,17 @@ class AttachmentViewModel {
     }
     var items: [AttachmentItemViewModel] = []
 
+    // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
 
+    // MARK: - Dependencies
     private let audioSession: AudioSessionProtocol
     private let cameraPermissionService: CameraPermissionService.Type
     private let composeMessageInteractor: ComposeMessageInteractor
     private let downloadFileInteractor: DownloadFileInteractor
     let router: Router
 
+    // MARK: - Init
     init(
         router: Router = AppEnvironment.shared.router,
         composeMessageInteractor: ComposeMessageInteractor,
@@ -56,6 +60,7 @@ class AttachmentViewModel {
         self.listenForAttachments()
     }
 
+    // MARK: - Inputs
     func addFile(file: File) {
         composeMessageInteractor.addFile(file: file)
     }
@@ -76,6 +81,8 @@ class AttachmentViewModel {
             }
         }
     }
+
+    var disabled: Bool = false
 
     func show(from viewController: WeakViewController) {
         if isUploading {
@@ -153,6 +160,8 @@ class AttachmentViewModel {
                 self.items = files.map {
                     AttachmentItemViewModel(
                         $0,
+                        isOnlyForDownload: false,
+                        disabled: self.disabled,
                         router: self.router,
                         composeMessageInteractor: self.composeMessageInteractor,
                         downloadFileInteractor: self.downloadFileInteractor

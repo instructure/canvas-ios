@@ -42,7 +42,6 @@ struct CreateMessageView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: .huiSpaces.space12) {
                     peopleSelection
-                    individualMessageCheckbox
                     messageTitleInput
                     messageBodyInput
                     fileAttachmentButtonRow
@@ -125,14 +124,6 @@ struct CreateMessageView: View {
             .frame(maxWidth: .infinity)
     }
 
-    private var individualMessageCheckbox: some View {
-        HorizonUI.Controls.Checkbox(
-            isOn: $viewModel.isIndividualMessage,
-            title: String(localized: "Send individual messages to each recipient"),
-            isDisabled: viewModel.isCheckboxDisbled
-        )
-    }
-
     private var header: some View {
         HStack {
             Text("Create Message")
@@ -175,6 +166,7 @@ struct CreateMessageView: View {
     private var peopleSelection: some View {
         PeopleSelectionView(
             viewModel: viewModel.peopleSelectionViewModel,
+            placeholder: String(localized: "Recipients", bundle: .horizon),
             disabled: viewModel.isPeopleSelectionDisabled
         )
     }

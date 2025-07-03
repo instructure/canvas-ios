@@ -36,9 +36,6 @@ class CreateMessageViewModel {
     var isBodyDisabled: Bool {
         isSending
     }
-    var isCheckboxDisbled: Bool {
-        isSending
-    }
     var isCloseDisabled: Bool {
         isSending
     }
@@ -54,7 +51,6 @@ class CreateMessageViewModel {
     var spinnerOpacity: Double {
         isSending ? 1.0 : 0.0
     }
-    var isIndividualMessage: Bool = false
     var isSendDisabled: Bool {
         subject.isEmpty ||
             body.isEmpty ||
@@ -120,6 +116,7 @@ class CreateMessageViewModel {
 
     // MARK: - Private Methods
     private func sendMessage() async {
+        attachmentViewModel.disabled = true
         await withCheckedContinuation { continuation in
             let attachmentIds = attachmentViewModel.items.compactMap { $0.id }
             return self.composeMessageInteractor.createConversation(
@@ -128,7 +125,7 @@ class CreateMessageViewModel {
                     body: self.body,
                     recipientIDs: self.peopleSelectionViewModel.recipientIDs,
                     attachmentIDs: attachmentIds,
-                    bulkMessage: self.isIndividualMessage
+                    bulkMessage: false
                 )
             )
             .sink(
