@@ -16,28 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Core
+import WidgetKit
+import SwiftUI
+import AppIntents
 
-extension URL {
+struct CourseTotalGradeWidget: Widget {
+    let kind: String = "CourseTotalGradeWidget"
 
-    static var appEmptyRoute: URL {
-        appRoute("")
-    }
-
-    static func appRoute(_ path: String) -> URL {
-        var urlComps = URLComponents()
-        urlComps.scheme = "canvas-courses"
-        urlComps.host = AppEnvironment.shared.currentSession?.baseURL.host
-        urlComps.path = "/" + path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-        return urlComps.url ?? URL(filePath: "/")
-    }
-
-    static func todoWidgetRoute(_ path: String) -> URL {
-        appRoute(path).appendingOrigin("todo-widget")
-    }
-
-    static func courseGradeWidgetRoute(_ path: String) -> URL {
-        appRoute(path).appendingOrigin("course-grade-widget")
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(
+            kind: kind,
+            provider: CourseTotalGradeWidgetProvider()
+        ) { model in
+            CourseTotalGradeView(model: model)
+        }
+        .configurationDisplayName(Text("Single Grade Widget"))
+        .description(Text("View the grade of your favorite course"))
+        .supportedFamilies([.systemSmall])
     }
 }

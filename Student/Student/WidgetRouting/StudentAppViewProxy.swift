@@ -16,28 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
 import Core
 
-extension URL {
+struct StudentAppViewProxy: WidgetRouter.AppViewProxy {
+    let env: AppEnvironment
+    let rootViewController: UIViewController
 
-    static var appEmptyRoute: URL {
-        appRoute("")
-    }
+    init?(window: UIWindow?, env: AppEnvironment) {
+        guard let rootController = window?.rootViewController else { return nil }
 
-    static func appRoute(_ path: String) -> URL {
-        var urlComps = URLComponents()
-        urlComps.scheme = "canvas-courses"
-        urlComps.host = AppEnvironment.shared.currentSession?.baseURL.host
-        urlComps.path = "/" + path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-        return urlComps.url ?? URL(filePath: "/")
-    }
-
-    static func todoWidgetRoute(_ path: String) -> URL {
-        appRoute(path).appendingOrigin("todo-widget")
-    }
-
-    static func courseGradeWidgetRoute(_ path: String) -> URL {
-        appRoute(path).appendingOrigin("course-grade-widget")
+        self.env = env
+        self.rootViewController = rootController
     }
 }

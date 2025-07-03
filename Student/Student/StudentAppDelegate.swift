@@ -41,7 +41,9 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
+
     private lazy var todoWidgetRouter = WidgetRouter.createTodoRouter()
+    private lazy var courseGradeWidgetRouter = WidgetRouter.createCourseGradeRouter()
 
     private lazy var analyticsTracker: PendoAnalyticsTracker = {
         .init(environment: environment)
@@ -259,13 +261,18 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         }
     }
 
-    func checkForTodoWidgetPresence() {
+    func checkForWidgetsPresence() {
         WidgetCenter.shared.getCurrentConfigurations { result in
             guard result.isSuccess, let widgetInfo = result.value else { return }
-            if widgetInfo.contains(where: { configuration in
-                return configuration.kind == "TodoWidget"
-            }) {
+
+            let widgetKinds = widgetInfo.map({ $0.kind })
+
+            if widgetKinds.contains("TodoWidget") {
                 Analytics.shared.logEvent(TodoWidgetEventNames.active.rawValue)
+            }
+
+            if widgetKinds.contains("CourseTotalGradeWidget") {
+                Analytics.shared.logEvent(CourseGradeWidgetEventNames.active.rawValue)
             }
         }
     }
@@ -326,7 +333,7 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
         let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
 
         if isTrackingEnabled {
-            analyticsTracker.startSession(completion: checkForTodoWidgetPresence)
+            analyticsTracker.startSession(completion: checkForWidgetsPresence)
         } else {
             analyticsTracker.endSession()
         }
@@ -467,8 +474,9 @@ extension StudentAppDelegate {
                 var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
 
                 if let url = comps,
-                   self.todoWidgetRouter.handling(url, in: self.window, env: self.environment) {
-                    return
+                   let viewProxy = StudentAppViewProxy(window: self.window, env: self.environment) {
+                    if self.todoWidgetRouter.handling(url, using: viewProxy) { return }
+                    if self.courseGradeWidgetRouter.handling(url, using: viewProxy) { return }
                 }
 
                 comps?.originIsNotification = true

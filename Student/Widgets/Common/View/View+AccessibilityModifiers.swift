@@ -16,28 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Core
+import SwiftUI
 
-extension URL {
-
-    static var appEmptyRoute: URL {
-        appRoute("")
-    }
-
-    static func appRoute(_ path: String) -> URL {
-        var urlComps = URLComponents()
-        urlComps.scheme = "canvas-courses"
-        urlComps.host = AppEnvironment.shared.currentSession?.baseURL.host
-        urlComps.path = "/" + path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-        return urlComps.url ?? URL(filePath: "/")
-    }
-
-    static func todoWidgetRoute(_ path: String) -> URL {
-        appRoute(path).appendingOrigin("todo-widget")
-    }
-
-    static func courseGradeWidgetRoute(_ path: String) -> URL {
-        appRoute(path).appendingOrigin("course-grade-widget")
+extension View {
+    @ViewBuilder
+    func accessibilityHint(_ isEnabled: Bool, _ text: Text) -> some View {
+        if isEnabled {
+            self.accessibilityHint(text)
+        } else {
+            self
+        }
     }
 }

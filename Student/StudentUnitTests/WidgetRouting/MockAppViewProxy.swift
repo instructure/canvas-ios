@@ -16,28 +16,33 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import Core
+import UIKit
+@testable import Student
 
-extension URL {
+class MockAppViewProxy: WidgetRouter.AppViewProxy {
+    var env: AppEnvironment
+    var rootViewController: UIViewController
+    var selectedTabIndex: Int?
 
-    static var appEmptyRoute: URL {
-        appRoute("")
+    init() {
+        self.env = .shared
+        self.rootViewController = UIViewController()
     }
 
-    static func appRoute(_ path: String) -> URL {
-        var urlComps = URLComponents()
-        urlComps.scheme = "canvas-courses"
-        urlComps.host = AppEnvironment.shared.currentSession?.baseURL.host
-        urlComps.path = "/" + path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-        return urlComps.url ?? URL(filePath: "/")
+    func selectTab(at index: Int) {
+        selectedTabIndex = index
     }
+}
 
-    static func todoWidgetRoute(_ path: String) -> URL {
-        appRoute(path).appendingOrigin("todo-widget")
-    }
+extension StudentTestCase {
 
-    static func courseGradeWidgetRoute(_ path: String) -> URL {
-        appRoute(path).appendingOrigin("course-grade-widget")
+    func testURL(path: String, query: [String: String] = [:], in environment: AppEnvironment = .shared) -> URLComponents {
+        var comps = URLComponents()
+        comps.scheme = environment.api.baseURL.scheme
+        comps.host = environment.api.baseURL.host()
+        comps.path = path
+        comps.queryItems = query.map { URLQueryItem(name: $0.key, value: $0.value) }
+        return comps
     }
 }

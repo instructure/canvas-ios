@@ -21,38 +21,20 @@ import UIKit
 
 struct WidgetRouter {
 
-    struct ViewProxy {
-        let env: AppEnvironment
-        let tabController: UITabBarController
+    protocol AppViewProxy {
+        var env: AppEnvironment { get }
+        var rootViewController: UIViewController { get }
 
-        var selectedTabSplitController: UISplitViewController? {
-            tabController.selectedViewController as? UISplitViewController
-        }
-
-        var selectedTabMasterController: UINavigationController? {
-            selectedTabSplitController?.masterNavigationController
-        }
-
-        var selectedTabMasterRootController: UIViewController? {
-            selectedTabMasterController?.viewControllers.first
-        }
-
-        func selectTab(at index: Int) {
-            tabController.selectedIndex = index
-        }
-
-        func resetSplitMasterToRoot() {
-            selectedTabSplitController?.resetToRoot()
-        }
+        func selectTab(at index: Int)
     }
 
     struct RouteHandler {
         let route: Route
-        let action: (URLComponents, [String: String], ViewProxy) -> Void
+        let action: (URLComponents, [String: String], AppViewProxy) -> Void
 
         init(
             _ template: String,
-            action: @escaping (URLComponents, [String: String], ViewProxy) -> Void
+            action: @escaping (URLComponents, [String: String], AppViewProxy) -> Void
         ) {
             self.route = Route(template)
             self.action = action
@@ -67,23 +49,15 @@ struct WidgetRouter {
         self.handlers = handlers
     }
 
-    func handling(_ url: URLComponents, in window: UIWindow?, env: AppEnvironment) -> Bool {
-        guard url.hasOrigin(originValue),
-              let rootViewController = window?.rootViewController,
-              let tabController = rootViewController as? StudentTabBarController
-        else { return false }
+    func handling<ViewProxy: AppViewProxy>(_ url: URLComponents, using view: ViewProxy) -> Bool {
+        guard url.hasOrigin(originValue) else { return false }
 
         // Dismiss all modals
-        rootViewController.dismiss(animated: false)
-
-        let viewProxy = ViewProxy(
-            env: env,
-            tabController: tabController
-        )
+        view.rootViewController.dismiss(animated: false)
 
         for handler in handlers {
             if let params = handler.route.match(url) {
-                handler.action(url, params, viewProxy)
+                handler.action(url, params, view)
                 return true
             }
         }

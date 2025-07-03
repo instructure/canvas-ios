@@ -16,28 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Core
+import XCTest
+@testable import Student
 
-extension URL {
+class StudentAppViewProxyTests: StudentTestCase {
 
-    static var appEmptyRoute: URL {
-        appRoute("")
+    func testIntialization() throws {
+        let controller = UIViewController()
+        let window = UIWindow()
+        window.rootViewController = controller
+
+        let viewProxy = try XCTUnwrap(StudentAppViewProxy(window: window, env: env))
+        XCTAssertTrue(viewProxy.rootViewController === controller)
+        XCTAssertTrue(viewProxy.env === env)
     }
 
-    static func appRoute(_ path: String) -> URL {
-        var urlComps = URLComponents()
-        urlComps.scheme = "canvas-courses"
-        urlComps.host = AppEnvironment.shared.currentSession?.baseURL.host
-        urlComps.path = "/" + path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-        return urlComps.url ?? URL(filePath: "/")
-    }
-
-    static func todoWidgetRoute(_ path: String) -> URL {
-        appRoute(path).appendingOrigin("todo-widget")
-    }
-
-    static func courseGradeWidgetRoute(_ path: String) -> URL {
-        appRoute(path).appendingOrigin("course-grade-widget")
+    func testIntializationNoWindow() throws {
+        XCTAssertNil(StudentAppViewProxy(window: nil, env: env))
     }
 }

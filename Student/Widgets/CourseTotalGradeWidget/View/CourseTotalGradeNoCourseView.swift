@@ -16,28 +16,30 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Core
+import SwiftUI
+import WidgetKit
 
-extension URL {
-
-    static var appEmptyRoute: URL {
-        appRoute("")
-    }
-
-    static func appRoute(_ path: String) -> URL {
-        var urlComps = URLComponents()
-        urlComps.scheme = "canvas-courses"
-        urlComps.host = AppEnvironment.shared.currentSession?.baseURL.host
-        urlComps.path = "/" + path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-        return urlComps.url ?? URL(filePath: "/")
-    }
-
-    static func todoWidgetRoute(_ path: String) -> URL {
-        appRoute(path).appendingOrigin("todo-widget")
-    }
-
-    static func courseGradeWidgetRoute(_ path: String) -> URL {
-        appRoute(path).appendingOrigin("course-grade-widget")
+struct CourseTotalGradeNoCourseView: View {
+    var body: some View {
+        Text("Select course to show total grade")
+            .font(.scaledRestrictly(.regular14))
+            .foregroundStyle(.textDark)
+            .multilineTextAlignment(.leading)
+            .fixedSize(horizontal: false, vertical: true)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
+
+#if DEBUG
+
+struct CourseTotalGradeNoCourseView_Previews: PreviewProvider {
+
+    static var previews: some View {
+        CourseTotalGradeNoCourseView()
+            .defaultWidgetContainerBackground()
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .previewDisplayName("No Course")
+    }
+}
+
+#endif
