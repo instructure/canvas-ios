@@ -1292,7 +1292,7 @@
       }
     },
     "Biology 201" : {
-      "comment" : "Example course name",
+      "comment" : "Example course name\nExample course name for widget preview",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2069,6 +2069,12 @@
     "Double tap to view full list of to-dos" : {
 
     },
+    "Drum And Bass 101" : {
+      "comment" : "Example course name for widget preview"
+    },
+    "English Literature 101" : {
+      "comment" : "Example course name for widget preview"
+    },
     "Essay #1: The Rocky Planets" : {
       "comment" : "Example exam name",
       "extractionState" : "stale",
@@ -2584,6 +2590,9 @@
         }
       }
     },
+    "General Astronomy" : {
+      "comment" : "Example course name for widget preview"
+    },
     "Grade List" : {
       "comment" : "Name of the Grade List widget"
     },
@@ -2844,6 +2853,12 @@
           }
         }
       }
+    },
+    "Greek Literature" : {
+      "comment" : "Example course name for widget preview"
+    },
+    "In the Jungle" : {
+      "comment" : "Example course name for widget preview"
     },
     "Introduction to the Solar System" : {
       "comment" : "Example course name",
@@ -3365,6 +3380,12 @@
     "Looks like you're free for the next 4 weeks.  Do you want to add some to-dos?" : {
 
     },
+    "Mathematics 904 2024/25" : {
+      "comment" : "Example course name for widget preview"
+    },
+    "Mobile Development 101" : {
+      "comment" : "Example course name for widget preview"
+    },
     "No Announcements" : {
       "localizations" : {
         "ar" : {
@@ -3883,6 +3904,9 @@
     },
     "Oops! Something Went Wrong" : {
 
+    },
+    "Planet Earth" : {
+      "comment" : "Example course name for widget preview"
     },
     "Please log in via the application" : {
       "localizations" : {
@@ -4405,6 +4429,9 @@
     },
     "Reloading Widget" : {
 
+    },
+    "Space and Stars" : {
+      "comment" : "Example course name for widget preview"
     },
     "Susan Jorgenson" : {
       "comment" : "Example author name",

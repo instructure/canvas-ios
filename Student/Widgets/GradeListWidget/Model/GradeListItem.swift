@@ -64,62 +64,62 @@ extension GradeListItem {
     static let previewItems: [GradeListItem] = [
         GradeListItem(
             courseId: "1",
-            courseName: "Biology 101",
+            courseName: String(localized: "Biology 201", comment: "Example course name for widget preview"),
             grade: "82/100",
             color: .blue
         ),
         GradeListItem(
             courseId: "2",
-            courseName: "Mathematics 904 2024/25",
+            courseName: String(localized: "Mathematics 904 2024/25", comment: "Example course name for widget preview"),
             grade: "Good",
             color: .purple
         ),
         GradeListItem(
             courseId: "3",
-            courseName: "English Literature 101",
+            courseName: String(localized: "English Literature 101", comment: "Example course name for widget preview"),
             grade: "A+",
             color: .gray
         ),
         GradeListItem(
             courseId: "4",
-            courseName: "Greek Literature",
+            courseName: String(localized: "Greek Literature", comment: "Example course name for widget preview"),
             grade: "Good",
             hideGrade: true,
             color: .cyan
         ),
         GradeListItem(
             courseId: "5",
-            courseName: "Space and Stars",
+            courseName: String(localized: "Space and Stars", comment: "Example course name for widget preview"),
             grade: "97%",
             color: .indigo
         ),
         GradeListItem(
             courseId: "6",
-            courseName: "General Astronomy",
+            courseName: String(localized: "General Astronomy", comment: "Example course name for widget preview"),
             grade: "No Grades",
             color: .teal
         ),
         GradeListItem(
             courseId: "7",
-            courseName: "Mobile Development 101",
+            courseName: String(localized: "Mobile Development 101", comment: "Example course name for widget preview"),
             grade: "F",
             color: .red
         ),
         GradeListItem(
             courseId: "8",
-            courseName: "Planet Earth",
+            courseName: String(localized: "Planet Earth", comment: "Example course name for widget preview"),
             grade: "39%",
             color: .brown
         ),
         GradeListItem(
             courseId: "9",
-            courseName: "Drum And Bass 101",
+            courseName: String(localized: "Drum And Bass 101", comment: "Example course name for widget preview"),
             grade: "A+",
             color: .orange
         ),
         GradeListItem(
             courseId: "10",
-            courseName: "In the Jungle",
+            courseName: String(localized: "In the Jungle", comment: "Example course name for widget preview"),
             grade: "8/10",
             color: .pink
         )
