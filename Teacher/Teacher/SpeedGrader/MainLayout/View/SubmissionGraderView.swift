@@ -377,6 +377,7 @@ struct SubmissionGraderView: View {
             // Clipping won't prevent user interaction so we need to limit it not to swallow touches outside of the drawer.
             .contentShape(Rectangle())
         }
+        .tint(viewModel.contextColor)
     }
 
     private func snapDrawer(to state: DrawerState) {
@@ -409,7 +410,8 @@ struct SubmissionGraderView: View {
                 assignment: viewModel.assignment,
                 containerHeight: geometry.size.height,
                 submission: viewModel.submission,
-                rubricsViewModel: rubricsViewModel
+                rubricsViewModel: rubricsViewModel,
+                gradeStatusViewModel: viewModel.gradeStatusViewModel
             )
             .clipped()
             Spacer().frame(height: bottomInset)

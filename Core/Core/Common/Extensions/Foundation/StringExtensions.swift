@@ -147,7 +147,7 @@ public extension Array<String?> {
 }
 
 extension ReferenceWritableKeyPath {
-    var string: String {
+    public var string: String {
         NSExpression(forKeyPath: self).keyPath
     }
 }

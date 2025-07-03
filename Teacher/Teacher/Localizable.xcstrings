@@ -764,6 +764,28 @@
         }
       }
     },
+    "%lld days late." : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld day late."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld days late."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "Absent" : {
       "localizations" : {
         "ar" : {
@@ -11018,6 +11040,12 @@
         }
       }
     },
+    "Days late" : {
+
+    },
+    "Days late successfully saved." : {
+
+    },
     "Description" : {
       "localizations" : {
         "ar" : {
@@ -13066,6 +13094,9 @@
         }
       }
     },
+    "Double-tap to change late days number." : {
+
+    },
     "Drawer menu" : {
       "localizations" : {
         "ar" : {
@@ -13321,6 +13352,12 @@
           }
         }
       }
+    },
+    "Due %@" : {
+
+    },
+    "Due date was on %@." : {
+
     },
     "Due Dates, Double tap for details." : {
       "localizations" : {
@@ -14089,6 +14126,9 @@
           }
         }
       }
+    },
+    "Enter days late" : {
+
     },
     "Error" : {
       "localizations" : {
@@ -15627,6 +15667,9 @@
         }
       }
     },
+    "Extended" : {
+
+    },
     "Failed to launch rollcall LTI tool." : {
       "localizations" : {
         "ar" : {
@@ -16138,6 +16181,9 @@
           }
         }
       }
+    },
+    "Failed to save grade status.\nPlease try again." : {
+
     },
     "File %lld of %lld" : {
       "comment" : "Example: File 1 of 2",
@@ -19727,6 +19773,9 @@
           }
         }
       }
+    },
+    "Grade status successfully saved." : {
+
     },
     "Graded" : {
       "localizations" : {
@@ -26482,6 +26531,9 @@
         }
       }
     },
+    "Missing" : {
+
+    },
     "Moderated Grading Unsupported" : {
       "localizations" : {
         "ar" : {
@@ -27762,6 +27814,9 @@
         }
       }
     },
+    "No Due Date" : {
+
+    },
     "No due date set." : {
       "localizations" : {
         "ar" : {
@@ -28017,6 +28072,9 @@
           }
         }
       }
+    },
+    "No due date was set." : {
+
     },
     "No Grade" : {
       "localizations" : {
@@ -28785,6 +28843,9 @@
           }
         }
       }
+    },
+    "None" : {
+
     },
     "Not Graded" : {
       "localizations" : {
@@ -35450,6 +35511,12 @@
         }
       }
     },
+    "Saving days late." : {
+
+    },
+    "Saving grade status." : {
+
+    },
     "Scored above..." : {
       "localizations" : {
         "ar" : {
@@ -37753,6 +37820,9 @@
           }
         }
       }
+    },
+    "Status" : {
+
     },
     "Student" : {
       "extractionState" : "stale",

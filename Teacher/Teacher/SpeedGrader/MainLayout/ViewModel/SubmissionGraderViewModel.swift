@@ -45,6 +45,7 @@ class SubmissionGraderViewModel: ObservableObject {
     // sub-viewmodels
     private(set) var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
     let commentListViewModel: SubmissionCommentListViewModel
+    let gradeStatusViewModel: GradeStatusViewModel
 
     // MARK: - Inputs
 
@@ -55,6 +56,7 @@ class SubmissionGraderViewModel: ObservableObject {
         assignment: Assignment,
         latestSubmission: Submission,
         contextColor: AnyPublisher<Color, Never>,
+        gradeStatusInteractor: GradeStatusInteractor,
         env: AppEnvironment
     ) {
         self.assignment = assignment
@@ -67,6 +69,12 @@ class SubmissionGraderViewModel: ObservableObject {
             latestAttemptNumber: latestSubmission.attempt,
             contextColor: contextColor,
             env: env
+        )
+        gradeStatusViewModel = GradeStatusViewModel(
+            userId: submission.userID,
+            submissionId: submission.id,
+            attempt: submission.attempt,
+            interactor: gradeStatusInteractor
         )
         self.env = env
 
@@ -103,6 +111,7 @@ class SubmissionGraderViewModel: ObservableObject {
         }
 
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selectedAttempt)
+        gradeStatusViewModel.didChangeAttempt.send(attemptNumber)
     }
 
     func didSelectFile(fileId: String?) {
