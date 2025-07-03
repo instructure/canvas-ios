@@ -40,4 +40,8 @@ extension URL {
     static func gradeListWidgetRoute(_ path: String) -> URL {
         appRoute(path).appendingOrigin("grade-list-widget")
     }
+
+    static func courseGradeWidgetRoute(_ path: String) -> URL {
+        appRoute(path).appendingOrigin("course-grade-widget")
+    }
 }

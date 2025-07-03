@@ -58,16 +58,17 @@ struct SubmissionsFilterScreen: View {
 
     @ObservedObject private var viewModel: SubmissionListViewModel
     private let filterOptions: SingleSelectionOptions
+    private let courseColor: Color
 
     init(viewModel: SubmissionListViewModel) {
         self.viewModel = viewModel
 
-        let color = viewModel.course.flatMap { Color(uiColor: $0.color) }
+        courseColor = viewModel.course.flatMap { Color(uiColor: $0.color) } ?? Color(Brand.shared.primary)
         let initialMode = viewModel.filterMode
 
         self.filterOptions = SingleSelectionOptions(
             all: SubmissionFilterMode.allCases.map {
-                OptionItem(id: $0.rawValue, title: $0.title, color: color)
+                OptionItem(id: $0.rawValue, title: $0.title)
             },
             initial: OptionItem(id: initialMode.rawValue, title: initialMode.title)
         )
@@ -80,6 +81,7 @@ struct SubmissionsFilterScreen: View {
                 identifierGroup: "SubmissionsFilter.filterOptions",
                 options: filterOptions
             )
+            .tint(courseColor)
             Spacer()
         }
         .background(Color.backgroundLightest)

@@ -25,6 +25,7 @@ struct Widgets: WidgetBundle {
     @WidgetBundleBuilder
     var body: some Widget {
         AnnouncementsWidget()
+        CourseTotalGradeWidget()
         TodoWidget()
         GradeListWidget()
     }

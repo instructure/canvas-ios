@@ -1291,6 +1291,9 @@
         }
       }
     },
+    "Based on graded assignments" : {
+
+    },
     "Biology 201" : {
       "comment" : "Example course name\nExample course name for widget preview",
       "localizations" : {
@@ -1806,7 +1809,13 @@
         }
       }
     },
+    "Canvas single grade widget" : {
+
+    },
     "Canvas To-do Widget" : {
+
+    },
+    "Course" : {
 
     },
     "Course Grades" : {
@@ -2065,6 +2074,9 @@
           }
         }
       }
+    },
+    "Double tap to view course grades tab" : {
+
     },
     "Double tap to view full list of to-dos" : {
 
@@ -2333,6 +2345,9 @@
         }
       }
     },
+    "Example Course" : {
+
+    },
     "Finals are moving to next week." : {
       "comment" : "Example announcement title",
       "localizations" : {
@@ -2592,6 +2607,12 @@
     },
     "General Astronomy" : {
       "comment" : "Example course name for widget preview"
+    },
+    "Grade" : {
+
+    },
+    "Grade is hidden" : {
+
     },
     "Grade List" : {
       "comment" : "Name of the Grade List widget"
@@ -3381,6 +3402,9 @@
       }
     },
     "Let's Get You Logged In!" : {
+
+    },
+    "Loading" : {
 
     },
     "Looks like you're free for the next 4 weeks.  Do you want to add some to-dos?" : {
@@ -4436,6 +4460,21 @@
     "Reloading Widget" : {
 
     },
+    "Select Course" : {
+
+    },
+    "Select course to show total grade" : {
+
+    },
+    "Selects the course to display total grade for." : {
+
+    },
+    "Single Grade Widget" : {
+
+    },
+    "Something Went Wrong!" : {
+
+    },
     "Space and Stars" : {
       "comment" : "Example course name for widget preview"
     },
@@ -4953,6 +4992,9 @@
         }
       }
     },
+    "To see your grades, please log in to your account in the app." : {
+
+    },
     "To see your grades, please log in to your account in the app.  It'll just take a sec!" : {
 
     },
@@ -4966,6 +5008,9 @@
 
     },
     "View Full List" : {
+
+    },
+    "View the grade of your favorite course" : {
 
     },
     "View the grades of your favourite courses." : {
@@ -5488,6 +5533,9 @@
     },
     "View your to-do items." : {
       "comment" : "Description of the to-do widget"
+    },
+    "We're having trouble showing your grades right now." : {
+
     },
     "We're having trouble showing your grades right now.  Please try again in a bit or head to the app." : {
 

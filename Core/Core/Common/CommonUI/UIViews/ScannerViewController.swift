@@ -192,20 +192,9 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     }
 
     private func updateCameraPreviewOrientation() {
-
-        var orientation: UIDeviceOrientation
-        let supportedOrientations = Bundle.main.infoDictionary?["UISupportedInterfaceOrientations"] as? [String]
-        if supportedOrientations?.count == 1,
-            supportedOrientations?.first?.contains("UIInterfaceOrientationPortrait") != nil {
-            orientation = .portrait
-        } else {
-            orientation = UIDevice.current.orientation
-        }
-
         guard
             let previewLayer = previewLayer,
             let connection = previewLayer.connection,
-            connection.isVideoRotationAngleSupported(CGFloat(orientation.rawValue)),
             let videoCaptureDevice = AVCaptureDevice.default(for: .video)
         else { return }
 

@@ -24,12 +24,18 @@ public class TitleSubtitleView: UIView {
 
     public var title: String? {
         get { return titleLabel.text }
-        set { titleLabel.text = newValue }
+        set {
+            titleLabel.text = newValue
+            updateLargeContentTitle()
+        }
     }
 
     public var subtitle: String? {
         get { return subtitleLabel.text }
-        set { subtitleLabel.text = newValue }
+        set {
+            subtitleLabel.text = newValue
+            updateLargeContentTitle()
+        }
     }
 
     override public var accessibilityLabel: String? {
@@ -53,6 +59,8 @@ public class TitleSubtitleView: UIView {
         view.titleLabel.accessibilityElementsHidden = true
         view.subtitleLabel.accessibilityElementsHidden = true
         view.accessibilityTraits = [.header]
+        view.showsLargeContentViewer = true
+        view.addInteraction(UILargeContentViewerInteraction())
         return view
     }
 
@@ -68,5 +76,9 @@ public class TitleSubtitleView: UIView {
         let color = title ?? tintColor
         titleLabel.textColor = color
         subtitleLabel.textColor = color == .textDarkest ? .textDark : color
+    }
+
+    private func updateLargeContentTitle() {
+        largeContentTitle = [title, subtitle].compactMap({ $0 }).joined(separator: "\n")
     }
 }

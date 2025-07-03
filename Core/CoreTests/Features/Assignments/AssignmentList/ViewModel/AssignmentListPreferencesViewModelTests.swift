@@ -45,6 +45,7 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
             gradingPeriods: gradingPeriods,
             initialGradingPeriod: gradingPeriods.last,
             courseName: "Test Course",
+            courseColor: .red,
             env: PreviewEnvironment.shared,
             completion: { [weak self] assignmentListPreferences in
                 self?.listPreferences = assignmentListPreferences

@@ -117,8 +117,46 @@ final class SubmissionListViewModelTests: TeacherTestCase {
         interactor.submissionsSubject.send(mocks)
 
         // Then
-        XCTAssertEqual(viewModel.sections.count, 3)
         XCTAssertEqual(viewModel.state, .data)
+        XCTAssertEqual(viewModel.sections.count, 3)
+        XCTAssertEqual(viewModel.sections[safeIndex: 0]?.kind, .submitted)
+        XCTAssertEqual(viewModel.sections[safeIndex: 1]?.kind, .unsubmitted)
+        XCTAssertEqual(viewModel.sections[safeIndex: 2]?.kind, .graded)
+    }
+
+    func testNeedsGradingAndInvalidGradingSubmissions() {
+        // Given
+        let mocks = TestConstants.createSubmissions(
+            in: databaseClient,
+            count: 2,
+            customizer: { (submission, index, client) in
+                switch index {
+                case 0:
+                    submission.userID = "u0"
+                    submission.user = User.save(.make(id: "u0", name: "John"), in: client)
+                    submission.workflowState = .pending_review
+                    submission.type = .online_text_entry
+                    submission.score = nil
+                    submission.submittedAt = Date()
+                default:
+                    submission.userID = "u1"
+                    submission.user = User.save(.make(id: "u1", name: "Jane"), in: client)
+                    submission.workflowState = .graded
+                    submission.score = nil
+                    submission.submittedAt = nil
+                }
+            }
+        )
+
+        // When
+        interactor.submissionsSubject.send(mocks)
+
+        // Then
+        XCTAssertEqual(viewModel.state, .data)
+        XCTAssertEqual(viewModel.sections.count, 2)
+        XCTAssertEqual(viewModel.sections[safeIndex: 0]?.kind, .submitted)
+        XCTAssertEqual(viewModel.sections[safeIndex: 0]?.items.first?.needsGrading, true)
+        XCTAssertEqual(viewModel.sections[safeIndex: 1]?.kind, .unsubmitted)
     }
 
     func testSearchTextFiltering() {
@@ -243,7 +281,7 @@ final class SubmissionListViewModelTests: TeacherTestCase {
                 .first
         )
 
-        let mockItem = SubmissionListItem(submission: mockSubmission, assignment: assignment)
+        let mockItem = SubmissionListItem(submission: mockSubmission, assignment: assignment, displayIndex: nil)
 
         // When
         interactor.assignmentSubject.send(assignment)

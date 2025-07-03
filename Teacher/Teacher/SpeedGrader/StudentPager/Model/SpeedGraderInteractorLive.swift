@@ -29,6 +29,8 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     public let userID: String
     public let context: Context
 
+    let gradeStatusInteractor: GradeStatusInteractor
+
     private let env: AppEnvironment
     private let filter: [GetSubmissions.Filter]
     private var subscriptions = Set<AnyCancellable>()
@@ -40,6 +42,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         userID: String,
         filter: [GetSubmissions.Filter],
         sortNeedsGradingSubmissionsFirst: Bool,
+        gradeStatusInteractor: GradeStatusInteractor,
         env: AppEnvironment
     ) {
         self.env = env
@@ -48,6 +51,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         self.userID = userID
         self.filter = filter
         self.sortNeedsGradingSubmissionsFirst = sortNeedsGradingSubmissionsFirst
+        self.gradeStatusInteractor = gradeStatusInteractor
     }
 
     func load() {
@@ -75,9 +79,10 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                 guard let self else {
                     return Publishers.noInstanceFailure(output: (Assignment, [Submission]).self)
                 }
-                return Publishers.CombineLatest(
+                return Publishers.CombineLatest3(
                     loadEnrollments(),
-                    loadSubmissions(anonymizeStudents: assignment.anonymizeStudents)
+                    loadSubmissions(anonymizeStudents: assignment.anonymizeStudents),
+                    gradeStatusInteractor.fetchGradeStatuses()
                 )
                 .map { (assignment, $0.1) }
                 .eraseToAnyPublisher()
@@ -118,12 +123,12 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     }
 
     /// This only refreshes the submission in CoreData but won't update the entity published in the interactor's state.
-    func refreshSubmission(forUserId: String) {
+    func refreshSubmission(forUserId: String) -> AnyPublisher<Void, Error> {
         let submissionUseCase = GetSubmission(context: context, assignmentID: assignmentID, userID: forUserId)
-        ReactiveStore(useCase: submissionUseCase, environment: env)
+        return ReactiveStore(useCase: submissionUseCase, environment: env)
             .getEntities(ignoreCache: true)
-            .sink()
-            .store(in: &subscriptions)
+            .mapToVoid()
+            .eraseToAnyPublisher()
     }
 
     // MARK: - Entity Loaders

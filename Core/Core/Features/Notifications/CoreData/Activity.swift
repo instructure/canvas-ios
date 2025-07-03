@@ -30,6 +30,12 @@ public final class Activity: NSManagedObject, WriteableModel {
     @NSManaged public var typeRaw: String
     @NSManaged public var htmlURL: URL?
     @NSManaged public var canvasContextIDRaw: String?
+    @NSManaged public var score: String?
+    @NSManaged public var grade: String?
+    @NSManaged public var notificationCategory: String?
+    @NSManaged public var contextType: String?
+    @NSManaged public var courseId: String?
+    @NSManaged public var readState: Bool
 
     public var context: Context? {
         get { return Context(canvasContextID: canvasContextIDRaw ?? "") }
@@ -51,14 +57,21 @@ public final class Activity: NSManagedObject, WriteableModel {
         model.title = item.title
         model.htmlURL = item.html_url
         model.typeRaw = item.type.rawValue
+        model.grade = item.grade
+        model.notificationCategory = item.notification_category
+        model.contextType = item.context_type
+        model.readState = item.read_state ?? true
+        if let score = item.score {
+            model.score = String(score)
+        }
         model.updatedAt = item.latestRelevantUpdate
-
         if let rawValue = item.context_type, let contextType = ContextType(rawValue: rawValue.lowercased()) {
             var context: Context?
             switch contextType {
             case .course:
                 if let id = item.course_id?.value {
                     context = Context(contextType, id: id)
+                    model.courseId = id
                 }
             case .group:
                 if let id = item.group_id?.value {
