@@ -99,11 +99,9 @@ final class AssignmentDetailsAssembly {
             )
         )
     }
-    
     static func makeView(viewModel: AssignmentDetailsViewModel) -> AssignmentDetails {
         AssignmentDetails(viewModel: viewModel)
     }
-
 
 #if DEBUG
     static func makePreview() -> AssignmentDetails {
