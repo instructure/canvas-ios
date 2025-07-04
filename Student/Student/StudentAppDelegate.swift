@@ -43,6 +43,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
 
     private lazy var todoWidgetRouter = WidgetRouter.createTodoRouter()
+    private lazy var gradeListWidgetRouter = WidgetRouter.createGradeListRouter()
     private lazy var courseGradeWidgetRouter = WidgetRouter.createCourseGradeRouter()
 
     private lazy var analyticsTracker: PendoAnalyticsTracker = {
@@ -271,6 +272,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                 Analytics.shared.logEvent(TodoWidgetEventNames.active.rawValue)
             }
 
+            if widgetKinds.contains("GradeListWidget") {
+                Analytics.shared.logEvent(GradeListWidgetEventNames.active.rawValue)
+            }
+
             if widgetKinds.contains("CourseTotalGradeWidget") {
                 Analytics.shared.logEvent(CourseGradeWidgetEventNames.active.rawValue)
             }
@@ -471,16 +476,21 @@ extension StudentAppDelegate {
                     finish()
                 }
             } else if let from = self.environment.topViewController {
-                var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
-
-                if let url = comps,
+                var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
+                if let url = components,
                    let viewProxy = StudentAppViewProxy(window: self.window, env: self.environment) {
                     if self.todoWidgetRouter.handling(url, using: viewProxy) { return }
                     if self.courseGradeWidgetRouter.handling(url, using: viewProxy) { return }
+                    if self.gradeListWidgetRouter.handling(url, using: viewProxy) { return }
                 }
 
-                comps?.originIsNotification = true
-                AppEnvironment.shared.router.route(to: comps?.url ?? url, userInfo: userInfo, from: from, options: .modal(embedInNav: true, addDoneButton: true))
+                components?.originIsNotification = true
+                AppEnvironment.shared.router.route(
+                    to: components?.url ?? url,
+                    userInfo: userInfo,
+                    from: from,
+                    options: .modal(embedInNav: true, addDoneButton: true)
+                )
             }
         }
         return true
