@@ -150,24 +150,6 @@ struct HAssignment: Identifiable {
         self.showSubmitButton = assignment.hasAttemptsLeft && (assignmentSubmissionTypes.first != .externalTool)
     }
 
-    func update(submissions: [HSubmission]) -> HAssignment {
-        HAssignment(
-            id: id,
-            htmlURL: htmlURL,
-            name: name,
-            details: details,
-            pointsPossible: pointsPossible,
-            dueAt: dueAt,
-            allowedAttempts: allowedAttempts,
-            submissionTypes: submissionTypes,
-            courseID: courseID,
-            courseName: courseName,
-            workflowState: workflowState,
-            submittedAt: submittedAt,
-            submissions: submissions
-        )
-    }
-
     var isUnsubmitted: Bool {
         workflowState == .unsubmitted || submittedAt == nil
     }
