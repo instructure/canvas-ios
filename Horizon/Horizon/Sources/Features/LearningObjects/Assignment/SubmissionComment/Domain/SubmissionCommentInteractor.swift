@@ -22,13 +22,10 @@ import Core
 protocol SubmissionCommentInteractor {
     func getComments(
         assignmentID: String,
-        attempt: Int?,
-        ignoreCache: Bool
-    ) -> AnyPublisher<[SubmissionComment], Error>
-
-    func getComments(
-        assignmentID: String,
-        ignoreCache: Bool
+        attempt: Int,
+        ignoreCache: Bool,
+        beforeCursor: String?,
+        last: Int?
     ) -> AnyPublisher<[SubmissionComment], Error>
 
     func postComment(
@@ -37,12 +34,6 @@ protocol SubmissionCommentInteractor {
         attempt: Int?,
         text: String
     ) -> AnyPublisher<Void, Error>
-
-    func getNumberOfComments(
-        courseID: String,
-        assignmentID: String,
-        attempt: Int?
-    ) -> AnyPublisher<Int, Error>
 }
 
 final class SubmissionCommentInteractorLive: SubmissionCommentInteractor {
@@ -54,32 +45,6 @@ final class SubmissionCommentInteractorLive: SubmissionCommentInteractor {
 
     init(sessionInteractor: SessionInteractor) {
         self.sessionInteractor = sessionInteractor
-    }
-
-    func getComments(
-        assignmentID: String,
-        attempt: Int?,
-        ignoreCache: Bool
-    ) -> AnyPublisher<[SubmissionComment], Error> {
-        getComments(assignmentID: assignmentID, ignoreCache: ignoreCache)
-            .flatMap { $0.publisher }
-            .filter { $0.attempt == attempt || $0.attempt == nil }
-            .collect()
-            .eraseToAnyPublisher()
-    }
-
-    func getNumberOfComments(
-        courseID: String,
-        assignmentID: String,
-        attempt: Int?
-    ) -> AnyPublisher<Int, Error> {
-        getComments(
-            assignmentID: assignmentID,
-            attempt: attempt,
-            ignoreCache: false
-        )
-        .map { $0.count }
-        .eraseToAnyPublisher()
     }
 
     func postComment(
@@ -108,25 +73,36 @@ final class SubmissionCommentInteractorLive: SubmissionCommentInteractor {
 
     func getComments(
         assignmentID: String,
-        ignoreCache: Bool
+        attempt: Int,
+        ignoreCache: Bool,
+        beforeCursor: String?,
+        last: Int?
     ) -> AnyPublisher<[SubmissionComment], Error> {
         let userID = sessionInteractor.getUserID() ?? ""
+
         let useCase = GetHSubmissionCommentsUseCase(
             userId: userID,
-            assignmentId: assignmentID
+            assignmentId: assignmentID,
+            forAttempt: attempt,
+            beforeCursor: beforeCursor,
+            last: last
         )
+
         return ReactiveStore(useCase: useCase)
             .getEntities(ignoreCache: ignoreCache)
             .map { entities in
-                entities
-                    .flatMap { $0.comments }
-                    .map {
-                        SubmissionComment(
-                            from: $0,
-                            isCurrentUsersComment: $0.authorID == userID
-                        )
-                    }
-                    .sorted { ($0.createdAt ?? .distantPast) < ($1.createdAt ?? .distantPast) }
+                let firstComment = entities.last
+                let comments = entities.flatMap { $0.comments }
+                return comments.map { comment in
+                    SubmissionComment(
+                        from: comment,
+                        isCurrentUsersComment: comment.authorID == userID,
+                        hasNextPage: firstComment?.hasNextPage ?? false,
+                        hasPreviousPage: firstComment?.hasPreviousPage ?? false,
+                        startCursor: firstComment?.startCursor
+                    )
+                }
+                .sorted { ($0.createdAt ?? .distantPast) < ($1.createdAt ?? .distantPast) }
             }
             .eraseToAnyPublisher()
     }

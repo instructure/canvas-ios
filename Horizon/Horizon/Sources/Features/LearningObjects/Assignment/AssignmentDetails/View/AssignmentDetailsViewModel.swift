@@ -171,8 +171,7 @@ final class AssignmentDetailsViewModel {
             hasSubmittedBefore = true
             submission = selectedSubmission
             shouldShowViewAttempts = selectedSubmission != submissions.first
-            submissionProperties?.hasUnreadComments = hasUnreadComments(for: selectedSubmission?.attempt)
-            didLoadAssignment(submissionProperties)
+            getComments(for: selectedSubmission?.attempt ?? 0)
         }
         router.show(view, from: controller, options: .modal(isDismissable: false))
     }
@@ -234,13 +233,21 @@ final class AssignmentDetailsViewModel {
     private func fetchAssignmentDetails() {
         unowned let unownedSelf = self
         Publishers.Zip(interactor.getAssignmentDetails(), interactor.getSubmissions())
-            .flatMap { assignmentDetails, submissions in
-                unownedSelf.commentInteractor.getComments(
-                        assignmentID: unownedSelf.assignmentID,
-                        ignoreCache: true
-                    )
+            .flatMap { assignmentDetails, submissions -> AnyPublisher<(HAssignment, [HSubmission], [SubmissionComment]), Never> in
+                guard let firstAttempt = submissions.first?.attempt else {
+                    return Just((assignmentDetails, submissions, []))
+                        .eraseToAnyPublisher()
+                }
+                return unownedSelf.commentInteractor.getComments(
+                    assignmentID: unownedSelf.assignmentID,
+                    attempt: firstAttempt,
+                    ignoreCache: false,
+                    beforeCursor: nil,
+                    last: 5
+                )
                 .replaceError(with: [])
                 .map {(assignmentDetails, submissions, $0)}
+                .eraseToAnyPublisher()
             }
             .receive(on: scheduler)
             .sink { [weak self] assignmentDetails, submissions, comments in
@@ -302,6 +309,25 @@ final class AssignmentDetailsViewModel {
             hasUnreadComments: hasUnreadComments(for: submission?.attempt)
         )
         didLoadAssignment(submissionProperties)
+    }
+
+    private func getComments(for attempt: Int) {
+       commentInteractor.getComments(
+            assignmentID: assignmentID,
+            attempt: attempt,
+            ignoreCache: false,
+            beforeCursor: nil,
+            last: 5
+        )
+        .replaceError(with: [])
+        .receive(on: scheduler)
+        .sink { [weak self] comments in
+            guard let self else { return }
+            submissionComments = comments
+            submissionProperties?.hasUnreadComments = hasUnreadComments(for: attempt)
+            didLoadAssignment(submissionProperties)
+        }
+        .store(in: &subscriptions)
     }
 
     private func fetchExternalURL() {
