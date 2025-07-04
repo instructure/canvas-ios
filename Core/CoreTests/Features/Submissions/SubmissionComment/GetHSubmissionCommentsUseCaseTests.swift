@@ -21,20 +21,20 @@ import XCTest
 
 class GetHSubmissionCommentsUseCaseTests: CoreTestCase {
     func testInit() {
-        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
+        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456", forAttempt: 1)
 
         XCTAssertEqual(useCase.request.variables.userId, "user-123")
         XCTAssertEqual(useCase.request.variables.assignmentId, "assignment-456")
     }
 
     func testCacheKey() {
-        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
+        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456", forAttempt: 1)
 
         XCTAssertEqual(useCase.cacheKey, "Submission-assignment-456-user-123-Comments")
     }
 
     func testScope() {
-        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
+        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456", forAttempt: 1)
 
         let expectedScope = Scope.where(#keyPath(CDHSubmission.assignmentID), equals: "assignment-456")
 
@@ -72,7 +72,7 @@ class GetHSubmissionCommentsUseCaseTests: CoreTestCase {
         let dataModel = GetHSubmissionCommentsResponse.DataModel(submission: submission)
         let response = GetHSubmissionCommentsResponse(data: dataModel)
 
-        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
+        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456", forAttempt: 1)
 
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
 
@@ -90,7 +90,7 @@ class GetHSubmissionCommentsUseCaseTests: CoreTestCase {
     }
 
     func testWriteWithNilResponse() {
-        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
+        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456", forAttempt: 1)
 
         useCase.write(response: nil, urlResponse: nil, to: databaseClient)
 

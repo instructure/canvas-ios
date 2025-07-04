@@ -34,8 +34,8 @@ public struct GetHSubmissionCommentsRequest: APIGraphQLRequestable {
         assignmentId: String,
         userId: String,
         forAttempt: Int,
-        beforeCursor: String?,
-        last: Int?
+        beforeCursor: String? = nil,
+        last: Int? = nil
     ) {
         variables = Input(
             userId: userId,

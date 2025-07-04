@@ -54,8 +54,8 @@ public struct GetHSubmissionCommentsUseCase: APIUseCase {
         userId: String,
         assignmentId: String,
         forAttempt: Int,
-        beforeCursor: String?,
-        last: Int?
+        beforeCursor: String? = nil,
+        last: Int? = nil
     ) {
         self.userId = userId
         self.assignmentId = assignmentId
