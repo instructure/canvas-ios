@@ -31,7 +31,7 @@ class GetHSubmissionCommentsRequestTests: CoreTestCase {
 
     func testInputEquality() {
         let input1 = GetHSubmissionCommentsRequest.Input(userId: "user-1", assignmentId: "assignment-1", forAttempt: 1, beforeCursor: "NDI", last: 5)
-        let input2 = GetHSubmissionCommentsRequest.Input(userId: "user-1", assignmentId: "assignment-1", forAttempt: 2, beforeCursor: "MDE", last: 5)
+        let input2 = GetHSubmissionCommentsRequest.Input(userId: "user-1", assignmentId: "assignment-1", forAttempt: 1, beforeCursor: "NDI", last: 5)
         let input3 = GetHSubmissionCommentsRequest.Input(userId: "user-2", assignmentId: "assignment-1", forAttempt: 3, beforeCursor: "CGE", last: 5)
 
         XCTAssertEqual(input1, input2)
@@ -41,11 +41,11 @@ class GetHSubmissionCommentsRequestTests: CoreTestCase {
     func testQueryContainsExpectedFields() {
         let query = GetHSubmissionCommentsRequest.query
 
-        XCTAssertTrue(query.contains("query GetSubmissionComments($assignmentId: ID!, $userId: ID!)"))
+        XCTAssertTrue(query.contains("query GetSubmissionComments($assignmentId: ID!, $userId: ID!, $forAttempt: Int, $beforeCursor: String, $last: Int)"))
         XCTAssertTrue(query.contains("submission(assignmentId: $assignmentId, userId: $userId)"))
         XCTAssertTrue(query.contains("id: _id"))
         XCTAssertTrue(query.contains("unreadCommentCount"))
-        XCTAssertTrue(query.contains("commentsConnection(sortOrder: asc, filter:{allComments: true})"))
+        XCTAssertTrue(query.contains("commentsConnection(last: $last, sortOrder: asc, before: $beforeCursor, filter: { forAttempt: $forAttempt })"))
         XCTAssertTrue(query.contains("pageInfo"))
         XCTAssertTrue(query.contains("edges"))
         XCTAssertTrue(query.contains("node"))
