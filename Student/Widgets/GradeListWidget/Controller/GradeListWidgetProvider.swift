@@ -57,6 +57,11 @@ class GradeListWidgetProvider: TimelineProvider {
 
     private func setupEnvironment(with session: LoginSession) {
         env.app = .student
+        guard let session = LoginSession.mostRecent else {
+            env.widgetUserDidLogout()
+            return
+        }
+        if let current = env.currentSession, current == session { return }
         env.userDidLogin(session: session, isSilent: true)
     }
 
