@@ -468,3 +468,25 @@ private extension Array where Element == SubmissionComment {
         }
     }
 }
+
+private extension HAssignment {
+    func toModuleItem() -> HModuleItem {
+        HModuleItem(
+            id: id,
+            title: name,
+            htmlURL: nil,
+            isCompleted: false,
+            dueAt: dueAt,
+            type: .assignment(id),
+            isLocked: isLocked,
+            points: pointsPossible,
+            lockedDate: nil,
+            visibleWhenLocked: true,
+            lockedForUser: false,
+            lockExplanation: lockExplanation,
+            courseID: courseID,
+            moduleID: "",
+            isQuizLTI: isQuizLTI ?? false
+        )
+    }
+}

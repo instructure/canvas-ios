@@ -184,26 +184,6 @@ struct HAssignment: Identifiable {
         formatter.locale = Locale.current
         return formatter
     }()
-
-    func toModuleItem() -> HModuleItem {
-        HModuleItem(
-            id: id,
-            title: name,
-            htmlURL: nil,
-            isCompleted: false,
-            dueAt: dueAt,
-            type: .assignment(id),
-            isLocked: isLocked,
-            points: pointsPossible,
-            lockedDate: "",
-            visibleWhenLocked: true,
-            lockedForUser: false,
-            lockExplanation: lockExplanation,
-            courseID: courseID,
-            moduleID: "",
-            isQuizLTI: isQuizLTI ?? false
-        )
-    }
 }
 
 // swiftlint:disable line_length
