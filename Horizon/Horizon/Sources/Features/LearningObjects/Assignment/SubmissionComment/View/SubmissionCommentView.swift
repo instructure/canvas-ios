@@ -45,6 +45,7 @@ struct SubmissionCommentView: View {
             .padding(.horizontal, .huiSpaces.space24)
             .background(Color.huiColors.surface.pagePrimary)
             .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
+            .refreshable { await viewModel.refresh() }
         }
     }
 
@@ -52,6 +53,21 @@ struct SubmissionCommentView: View {
     private func dataView(geoProxy: GeometryProxy, scrollProxy: ScrollViewProxy) -> some View {
         VStack(alignment: .center) {
             commentListView
+            if viewModel.arePaginationButtonsVisible {
+                HStack {
+                    HorizonUI.IconButton(Image.huiIcons.chevronLeft, type: .gray) {
+                        viewModel.goPrevious()
+                    }
+                    .disabled(!viewModel.isPreviousButtonEnabled)
+                    .opacity(viewModel.isPreviousButtonEnabled ? 1 : 0.5)
+                    Spacer()
+                    HorizonUI.IconButton(Image.huiIcons.chevronRight, type: .gray) {
+                        viewModel.goNext()
+                    }
+                    .disabled(!viewModel.isNextButtonEnabled)
+                    .opacity(viewModel.isNextButtonEnabled ? 1 : 0.5)
+                }
+            }
             addCommentView(proxy: geoProxy)
             postButton
             Spacer()

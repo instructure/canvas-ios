@@ -285,8 +285,13 @@
     </entity>
     <entity name="CDHSubmission" representedClassName="Core.CDHSubmission" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
+        <attribute name="attempt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="hasNextPage" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="hasPreviousPage" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="hasUnreadComment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="pageID" optional="YES" attributeType="String"/>
+        <attribute name="startCursor" optional="YES" attributeType="String"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHSubmissionComment" inverseName="relationship" inverseEntity="CDHSubmissionComment"/>
     </entity>
     <entity name="CDHSubmissionComment" representedClassName="Core.CDHSubmissionComment" syncable="YES">
