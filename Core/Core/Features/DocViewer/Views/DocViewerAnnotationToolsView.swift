@@ -78,7 +78,6 @@ struct DocViewerAnnotationToolsView<AnnotationBar: View>: View {
                 .overlay(
                     buttonIcon
                         .scaledIcon(size: 20)
-                        .foregroundStyle(Brand.shared.primary.asColor)
                         .offset(x: -1, y: 0)
                 )
         }
