@@ -34,7 +34,6 @@ class RubricViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentStackView: UIStackView!
-    @IBOutlet weak var contentStackViewWidth: NSLayoutConstraint!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var emptyViewLabel: UILabel!
     @IBOutlet weak var emptyImageView: IconView!
@@ -58,11 +57,6 @@ class RubricViewController: UIViewController {
         presenter.viewIsReady()
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        contentStackViewWidth.constant = view.bounds.width - (margin * 2)
-    }
-
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: nil) { _ in
@@ -84,14 +78,12 @@ class RubricViewController: UIViewController {
             let gradeCircleView = GradeCircleView(frame: CGRect.zero)
             gradeCircleView.update(assignment, submission: assignment.submission)
             contentStackView.addArrangedSubview(gradeCircleView)
-            gradeCircleView.pinToLeftAndRightOfSuperview()
-            gradeCircleView.addConstraintsWithVFL("V:[view(156)]")
+            gradeCircleView.heightAnchor.constraint(equalToConstant: 156).isActive = true
 
             let divider = DividerView(frame: CGRect.zero)
             contentStackView.addArrangedSubview(divider)
             divider.tintColor = UIColor.borderDark
-            divider.addConstraintsWithVFL("V:[view(\(1.0 / UIScreen.main.scale))]")
-            divider.pinToLeftAndRightOfSuperview()
+            divider.heightAnchor.constraint(equalToConstant: 1.0 / UIScreen.main.scale).isActive = true
 
             contentStackView.setCustomSpacing(spacing, after: divider)
         }
@@ -143,7 +135,6 @@ class RubricViewController: UIViewController {
         circles.rubric = model
         circles.courseColor = courseColor
         contentStackView.addArrangedSubview(circles)
-        circles.pinToLeftAndRightOfSuperview()
         circles.buttonClickDelegate = self
 
         contentStackView.setCustomSpacing(spacing / 2, after: circles)
@@ -159,7 +150,6 @@ class RubricViewController: UIViewController {
         container.addSubview(ratingStack)
         ratingStack.pin(inside: container, leading: spacing / 2, trailing: spacing / 2, top: spacing / 2, bottom: spacing / 2)
         contentStackView.addArrangedSubview(container)
-        container.pinToLeftAndRightOfSuperview()
 
         ratingViewRetrievalIndexMap[model.id] = index
         let ratingTitle = DynamicLabel(frame: CGRect.zero)
@@ -182,7 +172,7 @@ class RubricViewController: UIViewController {
             //  TODO: - hide rating blurb here
             container.isHidden = true
         }
-        container.backgroundColor = courseColor.withAlphaComponent(rubricCircleViewAlphaColor)
+        container.backgroundColor = courseColor.withAlphaComponent(.RubricCircle.courseColorAlpha)
 
         if !(model.comment?.isEmpty ?? true) {
             let comment = ChatBubbleView(frame: CGRect.zero)
@@ -202,8 +192,7 @@ class RubricViewController: UIViewController {
         let divider = DividerView(frame: CGRect.zero)
         contentStackView.addArrangedSubview(divider)
         divider.tintColor = UIColor.borderDark
-        divider.addConstraintsWithVFL("V:[view(\(1.0 / UIScreen.main.scale))]")
-        divider.pinToLeftAndRightOfSuperview()
+        divider.heightAnchor.constraint(equalToConstant: 1.0 / UIScreen.main.scale).isActive = true
 
         contentStackView.setCustomSpacing(spacing, after: divider)
 

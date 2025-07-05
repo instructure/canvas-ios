@@ -240,6 +240,45 @@ extension Course {
         return scoreString
     }
 
+    public var gradeForWidget: String {
+        /// We want to use the special enrollment that was downloaded along the course because that contains the
+        /// computedCurrentGrade, currentPeriodComputedCurrentGrade etc. values. It has no enrollment id so it's easy to identify it.
+        let noGradesString = String(localized: "No Grades", bundle: .core)
+
+        guard let enrollment = enrollments?.first(where: { $0.isStudent && $0.id == nil }) else {
+            return noGradesString
+        }
+
+        var grade = enrollment.computedCurrentGrade
+        var score = enrollment.computedCurrentScore
+
+        if enrollment.multipleGradingPeriodsEnabled {
+            if enrollment.currentGradingPeriodID != nil {
+                grade = enrollment.currentPeriodComputedCurrentGrade
+                score = enrollment.currentPeriodComputedCurrentScore
+            } else if enrollment.totalsForAllGradingPeriodsOption {
+                grade = enrollment.computedCurrentGrade
+                score = enrollment.computedCurrentScore
+            } else if enrollment.totalsForAllGradingPeriodsOption == false {
+                return noGradesString
+            }
+        }
+
+        if hideQuantitativeData == true {
+            return grade ?? enrollment.computedCurrentLetterGrade ?? noGradesString
+        }
+
+        guard let scoreString = score.flatMap(gradingScheme.formattedScore) else {
+            return grade ?? noGradesString
+        }
+
+        if let grade {
+            return "\(scoreString) - \(grade)"
+        }
+
+        return scoreString
+    }
+
     public var hideQuantitativeData: Bool {
         return settings?.restrictQuantitativeData ?? false
     }
@@ -268,7 +307,7 @@ extension Course {
         return enrollments?.contains { $0.isTeacher } == true
     }
 
-    func enrollmentForGrades(userId: String?, includingCompleted: Bool = false) -> Enrollment? {
+    public func enrollmentForGrades(userId: String?, includingCompleted: Bool = false) -> Enrollment? {
         func first(of state: EnrollmentState) -> Enrollment? {
             enrollments?.first {
                 $0.state == state &&

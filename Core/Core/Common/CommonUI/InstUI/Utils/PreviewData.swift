@@ -42,4 +42,14 @@ extension InstUI {
     }
 }
 
+extension String {
+    public static let loremIpsumShort = InstUI.PreviewData.loremIpsumShort
+    public static let loremIpsumMedium = InstUI.PreviewData.loremIpsumMedium
+    public static let loremIpsumLong = InstUI.PreviewData.loremIpsumLong
+
+    public static func loremIpsumLong(_ multiplier: Int) -> String {
+        InstUI.PreviewData.loremIpsumLong(multiplier)
+    }
+}
+
 #endif

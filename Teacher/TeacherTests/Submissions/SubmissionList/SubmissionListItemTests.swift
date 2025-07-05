@@ -59,19 +59,18 @@ class SubmissionListItemTests: TeacherTestCase {
         submission.score = 85
 
         // When
-        let item = SubmissionListItem(submission: submission, assignment: assignment)
+        let item = SubmissionListItem(submission: submission, assignment: assignment, displayIndex: nil)
 
         // Then
         let expectedGrade = GradeFormatter.shortString(for: assignment, submission: submission)
 
         XCTAssertEqual(item.originalUserID, "u23244")
-        XCTAssertEqual(item.groupID, "g87323")
-        XCTAssertEqual(item.groupName, "Example Group")
+        XCTAssertEqual(item.userNameModel.name, "Smith (he/him)")
+        XCTAssertEqual(item.userAsRecipient?.ids.first, "u23244")
+        XCTAssertEqual(item.userAsRecipient?.displayName, "Smith")
+        XCTAssertEqual(item.userAsRecipient?.avatarURL, URL(string: "https://example.com/avatar"))
         XCTAssertEqual(item.status, .graded)
         XCTAssertEqual(item.needsGrading, false)
-        XCTAssertEqual(item.user?.id, "u23244")
-        XCTAssertEqual(item.user?.name, "Smith")
-        XCTAssertEqual(item.user?.avatarURL, URL(string: "https://example.com/avatar"))
         XCTAssertEqual(item.gradeFormatted, expectedGrade)
     }
 }

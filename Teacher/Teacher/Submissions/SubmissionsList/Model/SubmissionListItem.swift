@@ -19,104 +19,84 @@
 import Foundation
 import Core
 
-public struct SubmissionListItem: Identifiable {
-    struct User {
-        let id: String
-        let name: String
-        let pronouns: String?
-        let avatarURL: URL?
+public struct SubmissionListItem {
 
-        var asRecipient: Recipient {
-            Recipient(id: id, name: name, avatarURL: avatarURL)
-        }
-
-        var displayName: String {
-            Core.User.displayName(name, pronouns: pronouns)
-        }
-
-        fileprivate init(id: String, name: String, pronouns: String? = nil, avatarURL: URL? = nil) {
-            self.id = id
-            self.name = name
-            self.pronouns = pronouns
-            self.avatarURL = avatarURL
-        }
-    }
-
-    public let id: String
     let originalUserID: String
+    let userNameModel: UserNameModel
+    let userAsRecipient: Recipient?
     let status: SubmissionStatus
-    let groupID: String?
-    let groupName: String?
-    let gradeFormatted: String
     let needsGrading: Bool
-    let user: User?
-    var orderInList: Int = 0
+    let gradeFormatted: String
 
-    init(submission: Submission, assignment: Assignment?) {
-        self.id = submission.id
-        self.originalUserID = submission.userID
-        self.groupID = submission.groupID
-        self.groupName = submission.groupName
-        self.user = submission.user.flatMap {
-            return User(id: $0.id, name: $0.name, pronouns: $0.pronouns, avatarURL: $0.avatarURL)
-        }
-        self.status = submission.statusIncludingGradedState
-        self.needsGrading = submission.needsGrading
-        self.gradeFormatted = GradeFormatter.shortString(for: assignment, submission: submission, blankPlaceholder: .oneDash)
+    private var hashOfProperties: Int
+
+    private init(
+        submissionId: String,
+        originalUserID: String,
+        userNameModel: UserNameModel,
+        userAsRecipient: Recipient?,
+        status: SubmissionStatus,
+        needsGrading: Bool,
+        gradeFormatted: String
+    ) {
+        self.originalUserID = originalUserID
+        self.userNameModel = userNameModel
+        self.userAsRecipient = userAsRecipient
+        self.status = status
+        self.needsGrading = needsGrading
+        self.gradeFormatted = gradeFormatted
+
+        let idHashSources: [AnyHashable] = [
+            submissionId,
+            userNameModel,
+            status,
+            needsGrading,
+            gradeFormatted
+        ]
+        hashOfProperties = idHashSources.hashValue
     }
+
+    init(submission: Submission, assignment: Assignment?, displayIndex: Int?) {
+        self.init(
+            submissionId: submission.id,
+            originalUserID: submission.userID,
+            userNameModel: .init(submission: submission, assignment: assignment, displayIndex: displayIndex),
+            userAsRecipient: submission.user.flatMap {
+                Recipient(id: $0.id, name: $0.name, avatarURL: $0.avatarURL)
+            },
+            status: submission.statusIncludingGradedState,
+            needsGrading: submission.needsGrading,
+            gradeFormatted: GradeFormatter.shortString(for: assignment, submission: submission, blankPlaceholder: .oneDash)
+        )
+    }
+}
+
+extension SubmissionListItem: Identifiable {
+    public var id: Int { hashOfProperties }
 }
 
 // MARK: - For Mocking
 
 #if DEBUG
 
-extension SubmissionListItem.User {
-    static func make(id: String, name: String, pronouns: String? = nil, avatarURL: URL? = nil) -> Self {
-        SubmissionListItem.User(id: id, name: name, pronouns: pronouns, avatarURL: avatarURL)
-    }
-}
-
 extension SubmissionListItem {
-
-    fileprivate init(
-        id: String,
-        originalUserID: String,
-        status: SubmissionStatus,
-        gradeFormatted: String,
-        needsGrading: Bool,
-        user: User?,
-        groupID: String?,
-        groupName: String?
-    ) {
-        self.id = id
-        self.originalUserID = originalUserID
-        self.status = status
-        self.gradeFormatted = gradeFormatted
-        self.needsGrading = needsGrading
-        self.user = user
-        self.groupID = groupID
-        self.groupName = groupName
-    }
-
     static func make(
-        id: String,
-        originalUserID: String,
-        status: SubmissionStatus,
-        gradeFormatted: String = "-",
+        submissionId: String = "",
+        originalUserID: String = "",
+        userNameModel: UserNameModel = .anonymousUser,
+        userAsRecipient: Recipient? = nil,
+        status: SubmissionStatus = .notSubmitted,
         needsGrading: Bool = false,
-        user: User? = nil,
-        groupID: String? = nil,
-        groupName: String? = nil
+        gradeFormatted: String = "-"
     ) -> SubmissionListItem {
         SubmissionListItem(
-            id: id,
+            submissionId: submissionId,
             originalUserID: originalUserID,
+            userNameModel: userNameModel,
+            userAsRecipient: userAsRecipient,
             status: status,
-            gradeFormatted: gradeFormatted,
             needsGrading: needsGrading,
-            user: user,
-            groupID: groupID,
-            groupName: groupName
+            gradeFormatted: gradeFormatted
         )
     }
 }

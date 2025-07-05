@@ -77,7 +77,7 @@ class APISubmissionTests: CoreTestCase {
     }
 
     func testPutSubmissionGradeRequest() {
-        let submission = PutSubmissionGradeRequest.Body.Submission(excuse: nil, posted_grade: "10")
+        let submission = PutSubmissionGradeRequest.Body.Submission(excuse: nil, posted_grade: "10", seconds_late_override: nil)
         let body = PutSubmissionGradeRequest.Body(comment: nil, submission: submission)
         let request = PutSubmissionGradeRequest(courseID: "1", assignmentID: "2", userID: "3", body: body)
 

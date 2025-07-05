@@ -24,11 +24,9 @@ extension UITextView {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = lineHeight.lineSpacing(for: font)
 
-        let attributes: [NSAttributedString.Key: Any] = [
-            .paragraphStyle: paragraphStyle,
-            .font: font
-        ]
-
+        var attributes = typingAttributes
+        attributes[.paragraphStyle] = paragraphStyle
+        attributes[.font] = font
         typingAttributes = attributes
     }
 }
