@@ -27,7 +27,7 @@ class MessageDetailsViewModelTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         mockInteractor = MessageDetailsInteractorMock()
-        testee = MessageDetailsViewModel(router: router, interactor: mockInteractor, myID: "1", allowArchive: true)
+        testee = MessageDetailsViewModel(env: environment, interactor: mockInteractor, myID: "1", allowArchive: true)
     }
 
     func testInteractorStateMappedToViewModel() {

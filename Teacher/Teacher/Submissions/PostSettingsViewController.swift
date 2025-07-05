@@ -25,13 +25,15 @@ class PostSettingsViewController: HorizontalMenuViewController {
     var courseID: String = ""
     var assignmentID: String = ""
     var viewControllers: [UIViewController] = []
+    private(set) var env: AppEnvironment = .shared
 
     enum MenuItem: Int {
         case post, hide
     }
 
-    static func create(courseID: String, assignmentID: String) -> PostSettingsViewController {
+    static func create(courseID: String, assignmentID: String, env: AppEnvironment) -> PostSettingsViewController {
         let controller = PostSettingsViewController(nibName: nil, bundle: nil)
+        controller.env = env
         controller.courseID = courseID
         controller.assignmentID = assignmentID
         return controller
@@ -57,12 +59,12 @@ class PostSettingsViewController: HorizontalMenuViewController {
     }
 
     func configurePost() {
-        postGradesViewController = PostGradesViewController.create(courseID: courseID, assignmentID: assignmentID)
+        postGradesViewController = PostGradesViewController.create(courseID: courseID, assignmentID: assignmentID, env: env)
         viewControllers.append(postGradesViewController)
     }
 
     func configureHide() {
-        hideGradesViewController = HideGradesViewController.create(courseID: courseID, assignmentID: assignmentID)
+        hideGradesViewController = HideGradesViewController.create(courseID: courseID, assignmentID: assignmentID, env: env)
         viewControllers.append(hideGradesViewController)
     }
 }

@@ -66,7 +66,8 @@ final class SubmissionCommentsInteractorLive: SubmissionCommentsInteractor {
             useCase: GetSubmissionAttemptsLocal(
                 assignmentId: assignmentId,
                 userId: submissionUserId
-            )
+            ),
+            environment: env
         )
 
         submissionCommentsStore = ReactiveStore(
@@ -74,11 +75,13 @@ final class SubmissionCommentsInteractorLive: SubmissionCommentsInteractor {
                 context: .course(courseId),
                 assignmentID: assignmentId,
                 userID: submissionUserId
-            )
+            ),
+            environment: env
         )
 
         featureFlagsStore = ReactiveStore(
-            useCase: GetEnabledFeatureFlags(context: .course(courseId))
+            useCase: GetEnabledFeatureFlags(context: .course(courseId)),
+            environment: env
         )
 
         userSettingsStore = ReactiveStore(
