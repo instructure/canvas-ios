@@ -78,24 +78,6 @@ public class AssignmentsHelper: BaseHelper {
             return userButton.find(label: user.name, type: .staticText)
         }
 
-        // MARK: Navigation bar
-        // Speedgrader is fullscreen so there's only one navigation bar
-        public static var navigationBar: XCUIElement { app.find(type: .navigationBar) }
-        public static var doneButton: XCUIElement { navigationBar.find(id: "SpeedGrader.doneButton") }
-        public static var postPolicyButton: XCUIElement { navigationBar.find(id: "SpeedGrader.postPolicyButton") }
-        public static func assignmentNameLabel(assignment: DSAssignment) -> XCUIElement {
-            navigationBar.find(label: assignment.name, type: .staticText)
-        }
-        public static func courseNameLabel(course: DSCourse) -> XCUIElement {
-            navigationBar.find(label: course.name, type: .staticText)
-        }
-
-        // MARK: User
-        public static var userButton: XCUIElement { app.find(id: "SpeedGrader.userButton") }
-        public static func userNameLabel(user: DSUser) -> XCUIElement {
-            return userButton.find(label: user.name, type: .staticText)
-        }
-
         public struct Segment {
             public static var grades: XCUIElement { SpeedGrader.toolPicker.find(labelContaining: "Grades") }
             public static var comments: XCUIElement { SpeedGrader.toolPicker.find(labelContaining: "Comments") }
