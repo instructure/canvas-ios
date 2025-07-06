@@ -76,6 +76,7 @@ public extension UseCase {
         let database = environment.database
         database.performWriteTask { client in
             guard force || self.hasExpired(in: client) else {
+                print("no request to make")
                 return performUIUpdate {
                     callback?(nil, nil, nil) // FIXME: Return cached data?
                 }

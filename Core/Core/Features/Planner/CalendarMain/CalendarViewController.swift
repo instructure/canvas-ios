@@ -204,6 +204,7 @@ class CalendarViewController: ScreenViewTrackableViewController {
     }
 
     func showDate(_ date: Date) {
+        print("show date \(date)")
         let isReverse = date < days.selectedDate
         let animated = isExpanded
             ? calendar.compare(date, to: days.selectedDate, toGranularity: .month) != .orderedSame

@@ -157,11 +157,26 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         self.init(env: env, context: (database ?? env.database).viewContext, useCase: useCase, eventHandler: eventHandler)
     }
 
+    public func refetch() {
+        frc.delegate = self
+        do {
+            try frc.performFetch()
+        } catch {
+            assertionFailure("Failed to performFetch \(error)")
+        }
+        allObjectsSubject.send(all)
+    }
+
     /// Updates predicate & sortDescriptors, but not sectionNameKeyPath.
     public func setScope(_ scope: Scope) {
         frc.fetchRequest.predicate = scope.predicate
         frc.fetchRequest.sortDescriptors = scope.order
         do {
+            if let debugName {
+                print()
+                print("\(debugName): set scope")
+                print()
+            }
             try frc.performFetch()
         } catch {
             assertionFailure("Failed to performFetch \(error)")
@@ -202,6 +217,14 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     }
 
     public func forceFetchObjects() throws {
+
+        print("Force fetch: \(U.self)")
+        if let debugName {
+            print()
+            print("\(debugName): force fetch")
+            print()
+        }
+
         try frc.performFetch()
         notify()
         allObjectsSubject.send(all)
@@ -315,6 +338,11 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
             }
         } else {
             useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in
+
+                if let debugName = self?.debugName {
+                    print("\(debugName) fetch is finished")
+                }
+
                 self?.willChange()
                 self?.error = error
                 self?.pending = false
@@ -380,22 +408,37 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         }
     }
 
+    public var debugName: String?
+
     @objc
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         notify()
         allObjectsSubject.send(all)
         publishState()
+
+        if let debugName {
+            print()
+            print("Store name: \(debugName)")
+            if let cont = controller as? NSFetchedResultsController<U.Model> {
+                logDebugInfo(controller: cont)
+            }
+            print()
+        }
     }
 
     #if DEBUG
 
     private func logDebugInfo(controller: NSFetchedResultsController<U.Model>) {
         let objectsInContext = controller.managedObjectContext.registeredObjects.filter { $0 is U.Model }
+
         print("====================")
         print("\(type(of: self)) controllerDidChangeContent")
-        print("\nObjects in context\n", objectsInContext)
-        print("\nFetch request\n", controller.fetchRequest)
-        print("\nFetched objects\n", controller.fetchedObjects ?? [])
+        print("\nObjects count in context\n", objectsInContext.count)
+        print("\nObjects in context\n", objectsInContext.map({ $0.debugDesc }).joined(separator: "\n") )
+        print("\nActive objects count in context\n", objectsInContext.filter({ $0.isDeleted == false }).count)
+        //print("\nFetch request\n", controller.fetchRequest)
+        print("\nFetched objects count\n", (controller.fetchedObjects ?? []).count)
+        print("\nFetched objects\n", (controller.fetchedObjects ?? []).map({ $0.debugDesc }).joined(separator: "\n") )
         print("\n====================")
     }
 
@@ -425,5 +468,33 @@ public struct FetchedResultsControllerGenerator<T: NSManagedObject>: IteratorPro
 extension Store: Sequence {
     public func makeIterator() -> FetchedResultsControllerGenerator<U.Model> {
         return FetchedResultsControllerGenerator<U.Model>(fetchedResultsController: frc)
+    }
+}
+
+public extension NSManagedObject {
+    var debugDesc: String {
+        // let name = entity.name ?? ""
+        let oid = objectID.uriRepresentation().lastPathComponent
+        let pid = (self as? Plannable)?.id
+        let tid = "\(pid ?? "") (\(oid))"
+        let stamp = ((self as? Plannable)?.debugStamp).flatMap({ " [\($0)]" }) ?? ""
+        let deleted = isDeleted ? " ❌" : ""
+        let warn = isFault ? " ⚠️" : ""
+        let changed = hasChanges && !isDeleted ? " 🔹" : ""
+        let temporary = objectID.isTemporaryID ? " 🕒" : ""
+        let valid = managedObjectContext == nil ? " invalid" : ""
+        return "[\(tid)\(stamp)\(deleted)\(warn)\(changed)\(temporary)\(valid)]"
+    }
+
+    var debugLongDesc: String {
+        
+        let oid = objectID.uriRepresentation().lastPathComponent
+        let pid = (self as? Plannable)?.id
+        let tid = "\(pid ?? "") (\(oid))"
+        let name = (self as? Plannable).flatMap { plan in
+            return " \(plan.title ?? "") - \(plan.dueDateText ?? "")"
+        } ?? ""
+
+        return "[\(tid)\(name)]"
     }
 }

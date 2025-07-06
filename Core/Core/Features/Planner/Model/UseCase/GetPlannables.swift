@@ -108,6 +108,9 @@ extension APIPlannerNote: PlannableItem {
 public class GetPlannables: UseCase {
     public typealias Model = Plannable
 
+    public var debugName: String?
+    public var debugStamp: String?
+
     public struct Response: Codable, Equatable {
         static let empty = Response(plannables: [], calendarEvents: [], plannerNotes: [])
 
@@ -160,10 +163,32 @@ public class GetPlannables: UseCase {
 
     public func reset(context: NSManagedObjectContext) {
         let all: [Plannable] = context.fetch(scope.predicate)
+
+        if let debugName {
+            let allIDs = all.map({ $0.debugDesc }).joined(separator: "\n")
+            print("\(debugName) use case reset (\(all.count)):\n\(allIDs)")
+        }
+
         context.delete(all)
+
+        if let debugName {
+
+            let nonDeleted = context
+                .registeredObjects
+                .compactMap({ $0 as? Plannable })
+                .filter({ $0.isDeleted == false })
+
+            if nonDeleted.isNotEmpty {
+                print("\(debugName) Non-deleted: \( nonDeleted.map({ $0.debugDesc }).joined(separator: "\n") )" )
+            }
+        }
     }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+        if let debugName {
+            print("\(debugName) request is made")
+        }
+
         // If we would send out the request without any context codes the API would return all events so we do an early exit
         if (contextCodes ?? []).isEmpty {
             completionHandler(.empty, nil, nil)
@@ -202,8 +227,20 @@ public class GetPlannables: UseCase {
         items.append(contentsOf: response?.calendarEvents ?? [])
         items.append(contentsOf: response?.plannerNotes ?? [])
 
+        var records = [Plannable]()
         for item in items where item.plannableType != .announcement && !item.isHidden {
-            Plannable.save(item, userID: userID, in: client)
+            let record = Plannable.save(item, userID: userID, in: client)
+            record.debugStamp = debugStamp
+            records.append(record)
+        }
+
+        if let debugName {
+            print("\(debugName) response is wrote: \(response?.plannables?.count ?? 0)")
+            print(records.map({ $0.id }))
         }
     }
 }
+
+
+//[55574 (p6611) [plannerList]]
+//[55053 (p6610) [plannerList]]

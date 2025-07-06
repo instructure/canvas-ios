@@ -124,9 +124,14 @@ class CalendarDaysViewController: UIViewController {
     }
 
     func refresh(force: Bool = false) {
-        plannables = delegate.flatMap { env.subscribe($0.getPlannables(from: start, to: end)) { [weak self] in
+        let useCase = delegate?.getPlannables(from: start, to: end)
+        useCase?.debugName = "CalendarDaysViewController.GetPlannables"
+        useCase?.debugStamp = "calendarDays"
+
+        plannables = useCase.flatMap { env.subscribe($0) { [weak self] in
             self?.updateDots()
         } }
+        plannables?.debugName = "CalendarDaysViewController.Store<GetPlannables>"
         plannables?.exhaust(force: force)
     }
 

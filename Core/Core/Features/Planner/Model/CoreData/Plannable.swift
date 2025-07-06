@@ -37,6 +37,7 @@ public final class Plannable: NSManagedObject {
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var userID: String?
     @NSManaged public var details: String?
+    @NSManaged public var debugStamp: String?
 
     public var pointsPossible: Double? {
         get { return pointsPossibleRaw?.doubleValue }

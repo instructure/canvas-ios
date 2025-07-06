@@ -90,9 +90,15 @@ public class PlannerListViewController: UIViewController {
 
     func refresh(force: Bool = false) {
         errorView.isHidden = true
-        plannables = delegate.flatMap { env.subscribe($0.getPlannables(from: start, to: end)) { [weak self] in
+
+        let useCase = delegate?.getPlannables(from: start, to: end)
+        useCase?.debugName = "PlannerListViewController.GetPlannables"
+        useCase?.debugStamp = "plannerList"
+
+        plannables = useCase.flatMap { env.subscribe($0) { [weak self] in
             self?.updatePlannables()
         } }
+        plannables?.debugName = "PlannerListViewController.Store<GetPlannables>"
         plannables?.refresh(force: force)
     }
 

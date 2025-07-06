@@ -1029,6 +1029,7 @@
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="contextName" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="debugStamp" optional="YES" attributeType="String"/>
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" optional="YES" attributeType="String"/>

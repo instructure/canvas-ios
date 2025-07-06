@@ -55,7 +55,11 @@ public class PlannablesInteractorLive: PlannablesInteractor {
             contextCodes: contextCodes
         )
 
+        useCase.debugName = "PlannablesInteractorLive.usecase"
+        useCase.debugStamp = "interactor"
+
         store = env.subscribe(useCase)
+        store?.debugName = "PlannablesInteractorLive.store"
         store?
             .statePublisher
             .subscribe(state)

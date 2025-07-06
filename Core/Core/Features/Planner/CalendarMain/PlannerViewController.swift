@@ -209,13 +209,14 @@ public class PlannerViewController: VisibilityObservedViewController {
 
     public func selectDate(_ date: Date) {
         guard isViewLoaded else { return }
+
         selectedDate = date
         calendar.showDate(date)
         calendar.accessibilityFocusOnSelectedButton()
         updateList(date) { listPage in
             // Refresh lightly to resolve the issue of duplicate rows
             // showing when calling this method with the same date multiple times
-            listPage?.refresh()
+            listPage?.plannables?.refetch()
         }
     }
 

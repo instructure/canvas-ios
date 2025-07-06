@@ -90,17 +90,27 @@ class TodoWidgetProvider: TimelineProvider {
                 let start = Clock.now.startOfDay()
                 let end = start.addDays(28)
 
+                let useCase = GetPlannables(
+                    startDate: start,
+                    endDate: end,
+                    contextCodes: contextCodes
+                )
+
+                useCase.debugName = "TodoWidgetProvider.fetch"
+                useCase.debugStamp = "todo-widget"
+
                 return ReactiveStore(
-                    useCase: GetPlannables(
-                        startDate: start,
-                        endDate: end,
-                        contextCodes: contextCodes
-                    ),
+                    useCase: useCase,
                     environment: env
                 )
                 .getEntities()
             }
             .map { plannables in
+
+                print("Objects fetched in TodoWidget")
+                print( plannables.map({ $0.debugDesc }).joined(separator: ", ") )
+                print()
+                
                 let todoItems = plannables
                     .filter {
                         $0.plannableType != .announcement && $0.plannableType != .assessment_request
