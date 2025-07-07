@@ -38,7 +38,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         inboxSettingsInteractor = InboxSettingsInteractorMock()
         audioSession = AudioSessionMock()
         testee = ComposeMessageViewModel(
-            router: router,
+            env: environment,
             options: .init(
                 fromType: .new
             ),
@@ -53,7 +53,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
     private func setupForReply() {
         let conversation: Conversation = .make()
         testee = ComposeMessageViewModel(
-            router: router,
+            env: environment,
             options: .init(fromType: .reply(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
@@ -66,7 +66,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
     private func setupForReplyAll() {
         let conversation: Conversation = .make()
         testee = ComposeMessageViewModel(
-            router: router,
+            env: environment,
             options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
@@ -79,7 +79,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
     private func setupForForward() {
         let conversation: Conversation = .make()
         testee = ComposeMessageViewModel(
-            router: router,
+            env: environment,
             options: .init(fromType: .forward(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
@@ -238,7 +238,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
         testee = ComposeMessageViewModel(
-            router: router,
+            env: environment,
             options: .init(fromType: .reply(conversation: conversation, message: message2)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
@@ -261,7 +261,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
         testee = ComposeMessageViewModel(
-            router: router,
+            env: environment,
             options: .init(fromType: .reply(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
@@ -283,7 +283,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
         testee = ComposeMessageViewModel(
-            router: router,
+            env: environment,
             options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
@@ -305,7 +305,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
         testee = ComposeMessageViewModel(
-            router: router,
+            env: environment,
             options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
@@ -328,7 +328,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
         testee = ComposeMessageViewModel(
-            router: router,
+            env: environment,
             options: .init(fromType: .forward(conversation: conversation, message: message2)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
@@ -351,7 +351,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
         testee = ComposeMessageViewModel(
-            router: router,
+            env: environment,
             options: .init(fromType: .forward(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
@@ -486,7 +486,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
         testee = ComposeMessageViewModel(
-            router: router,
+            env: environment,
             options: .init(fromType: .forward(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
@@ -551,7 +551,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             individualSend: true
         )
         testee = ComposeMessageViewModel(
-            router: router,
+            env: environment,
             options: ComposeMessageOptions(
                 disabledFields: .init(),
                 fieldsContents: messageField,

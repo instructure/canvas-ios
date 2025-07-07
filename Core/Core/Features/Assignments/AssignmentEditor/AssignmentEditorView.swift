@@ -199,20 +199,23 @@ public struct AssignmentEditorView: View, ScreenViewTrackable {
     func load() {
         guard !isLoaded else { return }
         let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.overrides])
-        useCase.fetch(force: true) { _, _, fetchError in performUIUpdate {
-            assignment = env.database.viewContext.fetch(scope: useCase.scope).first
-            canUnpublish = assignment?.canUnpublish == true
-            description = assignment?.details ?? ""
-            gradingType = assignment?.gradingType ?? .points
-            name = assignment?.name ?? ""
-            overrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) } ?? []
-            pointsPossible = assignment?.pointsPossible
-            published = assignment?.published == true
+        useCase
+            .fetch(environment: env, force: true) { _, _, fetchError in
+                performUIUpdate {
+                    assignment = env.database.viewContext.fetch(scope: useCase.scope).first
+                    canUnpublish = assignment?.canUnpublish == true
+                    description = assignment?.details ?? ""
+                    gradingType = assignment?.gradingType ?? .points
+                    name = assignment?.name ?? ""
+                    overrides = assignment.map { AssignmentOverridesEditor.overrides(from: $0) } ?? []
+                    pointsPossible = assignment?.pointsPossible
+                    published = assignment?.published == true
 
-            isLoading = false
-            isLoaded = true
-            alert = fetchError.map { .error($0) }
-        } }
+                    isLoading = false
+                    isLoaded = true
+                    alert = fetchError.map { .error($0) }
+                }
+            }
     }
 
     func save() {
@@ -245,14 +248,21 @@ public struct AssignmentEditorView: View, ScreenViewTrackable {
             pointsPossible: pointsPossible,
             published: published,
             unlockAt: unlockAt
-        ).fetch { result, _, fetchError in performUIUpdate {
-            alert = fetchError.map { .error($0) }
-            isSaving = false
-            if result != nil {
-                GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.overrides])
-                    .fetch(force: true) // updated overrides & allDates aren't in result
-                env.router.dismiss(controller)
+        )
+        .fetch(environment: env) { result, _, fetchError in
+            performUIUpdate {
+                alert = fetchError.map { .error($0) }
+                isSaving = false
+                if result != nil {
+                    GetAssignment(
+                        courseID: courseID,
+                        assignmentID: assignmentID,
+                        include: [.overrides]
+                    )
+                    .fetch(environment: env, force: true) // updated overrides & allDates aren't in result
+                    env.router.dismiss(controller)
+                }
             }
-        } }
+        }
     }
 }

@@ -134,7 +134,8 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .interactiveDismissDisabled()
         }
         .sheet(isPresented: $model.isAudioRecordVisible) {
-            AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: model.router, onSelect: model.addFile)
+            AttachmentPickerAssembly
+                .makeAudioPickerViewcontroller(env: model.env, onSelect: model.addFile)
                 .interactiveDismissDisabled()
         }
         .confirmationAlert(

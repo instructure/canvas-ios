@@ -47,11 +47,11 @@ let router = Router(routes: [
     },
 
     RouteHandler("/conversations/compose") { url, _, _ in
-        return ComposeMessageAssembly.makeComposeMessageViewController(url: url)
+        return ComposeMessageAssembly.makeComposeMessageViewController(env: .shared, url: url)
     },
 
     RouteHandler("/conversations/settings") { _, _, _ in
-        return InboxSettingsAssembly.makeInboxSettingsViewController()
+        return InboxSettingsAssembly.makeInboxSettingsViewController(env: .shared)
     },
 
     RouteHandler("/conversations/:conversationID") { _, params, _ in
@@ -69,12 +69,15 @@ let router = Router(routes: [
         if assignmentID == "syllabus" {
             return SyllabusViewController.create(courseID: courseID)
         }
-        return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID)
+        return AssignmentDetailsViewController.create(env: .shared, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { _, params, _ in
-        guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let studentID = params["userID"] else { return nil }
-        return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID)
+        guard let courseID = params["courseID"],
+              let assignmentID = params["assignmentID"],
+              let studentID = params["userID"]
+        else { return nil }
+        return AssignmentDetailsViewController.create(env: .shared, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
 
     RouteHandler("/courses/:courseID/grades") { _, params, _ in

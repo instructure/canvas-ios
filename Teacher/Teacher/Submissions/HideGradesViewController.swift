@@ -33,9 +33,9 @@ class HideGradesViewController: UIViewController {
     var viewModel = APIPostPolicy()
     var color: UIColor = .textInfo
 
-    static func create(courseID: String, assignmentID: String) -> HideGradesViewController {
+    static func create(courseID: String, assignmentID: String, env: AppEnvironment) -> HideGradesViewController {
         let controller = loadFromStoryboard()
-        controller.presenter = PostGradesPresenter(courseID: courseID, assignmentID: assignmentID, view: controller)
+        controller.presenter = PostGradesPresenter(courseID: courseID, assignmentID: assignmentID, view: controller, env: env)
         return controller
     }
 
