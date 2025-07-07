@@ -184,6 +184,14 @@ public class GetPlannables: UseCase {
         }
     }
 
+    public func printExisting(context: NSManagedObjectContext) {
+        guard let debugName else { return }
+        let allObjects: [Plannable] = context.fetch(scope: .all)
+        print("\(debugName) existing (\(allObjects.count)):")
+        print( allObjects.map({ $0.debugDesc }).joined(separator: "\n") )
+        print()
+    }
+
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
         if let debugName {
             print("\(debugName) request is made")

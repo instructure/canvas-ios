@@ -210,13 +210,35 @@ public class PlannerViewController: VisibilityObservedViewController {
     public func selectDate(_ date: Date) {
         guard isViewLoaded else { return }
 
+        let days = self.calendar.days.plannables?.all ?? []
+        print("BEFORE: Calendar Days:")
+        print( days.map({ $0.debugDesc }).joined(separator: "\n") )
+
+        let lists = self.list.plannables?.all ?? []
+        print("\nBEFORE: Planner List:")
+        print( lists.map({ $0.debugDesc }).joined(separator: "\n") )
+
         selectedDate = date
         calendar.showDate(date)
         calendar.accessibilityFocusOnSelectedButton()
-        updateList(date) { listPage in
+        updateList(date) /* { listPage in
             // Refresh lightly to resolve the issue of duplicate rows
             // showing when calling this method with the same date multiple times
-            listPage?.plannables?.refetch()
+            // listPage?.plannables?.reset()
+        } */
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            let days = self.calendar.days.plannables?.all ?? []
+            print("AFTER: Calendar Days:")
+            print( days.map({ $0.debugDesc }).joined(separator: "\n") )
+
+            let lists = self.list.plannables?.all ?? []
+            print("\nAFTER: Planner List:")
+            print( lists.map({ $0.debugDesc }).joined(separator: "\n") )
+
+            print()
+            let context = self.env.database.viewContext
+            self.list.plannables?.useCase.printExisting(context: context)
         }
     }
 

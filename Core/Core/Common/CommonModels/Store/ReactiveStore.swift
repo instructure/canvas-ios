@@ -138,10 +138,15 @@ public class ReactiveStore<U: UseCase> {
         context: NSManagedObjectContext,
         environment: AppEnvironment
     ) -> AnyPublisher<[T], Error> {
-        return useCase.hasCacheExpired()
+        return useCase
+            .hasCacheExpired(environment: environment)
             .setFailureType(to: Error.self)
             .flatMap { hasExpired -> AnyPublisher<[T], Error> in
                 if hasExpired {
+                    if let useCase = useCase as? GetPlannables {
+                        print("load from api")
+                    }
+
                     return Self.fetchEntitiesFromAPI(
                         useCase: useCase,
                         loadAllPages: false,
@@ -150,6 +155,10 @@ public class ReactiveStore<U: UseCase> {
                         environment: environment
                     )
                 } else {
+
+                    if let useCase = useCase as? GetPlannables {
+                        print("load from database")
+                    }
                     return Self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest, context: context)
                 }
             }

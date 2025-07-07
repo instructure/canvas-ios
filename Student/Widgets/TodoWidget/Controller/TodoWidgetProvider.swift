@@ -108,7 +108,7 @@ class TodoWidgetProvider: TimelineProvider {
             .map { plannables in
 
                 print("Objects fetched in TodoWidget")
-                print( plannables.map({ $0.debugDesc }).joined(separator: ", ") )
+                print( plannables.map({ $0.debugDesc }).joined(separator: "\n") )
                 print()
                 
                 let todoItems = plannables

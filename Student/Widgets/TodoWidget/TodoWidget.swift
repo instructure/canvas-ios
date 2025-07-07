@@ -22,8 +22,10 @@ import WidgetKit
 struct TodoWidget: Widget {
     static let kind: String = "TodoWidget"
 
+    private let provider = TodoWidgetProvider()
+
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: Self.kind, provider: TodoWidgetProvider()) { model in
+        StaticConfiguration(kind: Self.kind, provider: provider) { model in
             TodoWidgetScreen(model: model.data)
         }
         .contentMarginsDisabled()

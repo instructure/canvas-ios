@@ -157,16 +157,6 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         self.init(env: env, context: (database ?? env.database).viewContext, useCase: useCase, eventHandler: eventHandler)
     }
 
-    public func refetch() {
-        frc.delegate = self
-        do {
-            try frc.performFetch()
-        } catch {
-            assertionFailure("Failed to performFetch \(error)")
-        }
-        allObjectsSubject.send(all)
-    }
-
     /// Updates predicate & sortDescriptors, but not sectionNameKeyPath.
     public func setScope(_ scope: Scope) {
         frc.fetchRequest.predicate = scope.predicate
@@ -216,9 +206,15 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         return self
     }
 
-    public func forceFetchObjects() throws {
+    public func reset() {
+        useCase.reset(context: frc.managedObjectContext)
+        try? frc.managedObjectContext.save()
+        try? frc.performFetch()
+    }
 
-        print("Force fetch: \(U.self)")
+
+
+    public func forceFetchObjects() throws {
         if let debugName {
             print()
             print("\(debugName): force fetch")
@@ -418,9 +414,9 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
 
         if let debugName {
             print()
-            print("Store name: \(debugName)")
+            //print("Store name: \(debugName)")
             if let cont = controller as? NSFetchedResultsController<U.Model> {
-                logDebugInfo(controller: cont)
+                //logDebugInfo(controller: cont)
             }
             print()
         }
@@ -483,11 +479,16 @@ public extension NSManagedObject {
         let changed = hasChanges && !isDeleted ? " 🔹" : ""
         let temporary = objectID.isTemporaryID ? " 🕒" : ""
         let valid = managedObjectContext == nil ? " invalid" : ""
-        return "[\(tid)\(stamp)\(deleted)\(warn)\(changed)\(temporary)\(valid)]"
+        let updt = isUpdated ? " ⏳" : ""
+        let inst = isInserted ? " 📈" : ""
+
+        let original = try? managedObjectContext?.existingObject(with: objectID)
+        let notorginal = original == nil ? " 🏴" : ""
+
+        return "[\(tid)\(stamp)\(deleted)\(warn)\(updt)\(inst)\(changed)\(temporary)\(valid)\(notorginal)]"
     }
 
     var debugLongDesc: String {
-        
         let oid = objectID.uriRepresentation().lastPathComponent
         let pid = (self as? Plannable)?.id
         let tid = "\(pid ?? "") (\(oid))"
