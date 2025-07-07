@@ -94,6 +94,9 @@
     "Announcement from" : {
 
     },
+    "Announcement in %@" : {
+
+    },
     "Announcements" : {
 
     },
@@ -1060,6 +1063,9 @@
 
     },
     "Yes" : {
+
+    },
+    "You" : {
 
     },
     "You are submitting a text-based attempt. Any uploaded files will be deleted upon submission. Once you submit this attempt, you won’t be able to make any changes." : {

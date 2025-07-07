@@ -38,22 +38,10 @@ struct HorizonInboxView: View {
                     ) { _ in
                         VStack(alignment: .leading, spacing: HorizonUI.spaces.space16) {
                             filterSelection
-                                .padding(.horizontal, HorizonUI.spaces.space16 - 4)
 
-                            PeopleSelectionView(
-                                viewModel: viewModel.peopleSelectionViewModel,
-                                placeholder: String(localized: "Filter by person", bundle: .horizon),
-                                disabled: viewModel.isSearchDisabled
-                            )
-                            .padding(.horizontal, HorizonUI.spaces.space16 - 4)
+                            peopleSelection
 
-                            ZStack {
-                                HorizonUI.Spinner(size: .xSmall)
-                                    .opacity(viewModel.spinnerOpacity)
-                                    .animation(.easeInOut(duration: 0.2), value: viewModel.spinnerOpacity)
-                                messageList
-                            }
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            messageArea
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(
@@ -77,6 +65,16 @@ struct HorizonInboxView: View {
         .background(HorizonUI.colors.surface.pagePrimary)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationBarHidden(true)
+    }
+
+    private var messageArea: some View {
+        ZStack {
+            HorizonUI.Spinner(size: .xSmall)
+                .opacity(viewModel.spinnerOpacity)
+                .animation(.easeInOut(duration: 0.2), value: viewModel.spinnerOpacity)
+            messageList
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private var messageList: some View {
@@ -106,6 +104,15 @@ struct HorizonInboxView: View {
         )
     }
 
+    private var peopleSelection: some View {
+        PeopleSelectionView(
+            viewModel: viewModel.peopleSelectionViewModel,
+            placeholder: String(localized: "Filter by person", bundle: .horizon),
+            disabled: viewModel.isSearchDisabled
+        )
+        .padding(.horizontal, HorizonUI.spaces.space16 - 4)
+    }
+
     private var filterSelection: some View {
         HorizonUI.SingleSelect(
             selection: $viewModel.filterTitle,
@@ -114,6 +121,7 @@ struct HorizonInboxView: View {
             options: HorizonInboxViewModel.FilterOption.allCases.map { $0.title },
             zIndex: 102
         )
+        .padding(.horizontal, HorizonUI.spaces.space16 - 4)
     }
 
     private var topBar: some View {
@@ -151,11 +159,20 @@ struct MessageRow: View {
                 }
             }
 
-            Text(viewModel.title)
-                .huiTypography(.labelMediumBold)
+            HStack(alignment: .top, spacing: .huiSpaces.space8) {
+                if viewModel.isAnnouncementIconVisible {
+                    HorizonUI.icons.announcement
+                        .renderingMode(.template)
+                        .foregroundStyle(HorizonUI.colors.icon.default)
+                }
+                VStack(alignment: .leading) {
+                    Text(viewModel.title)
+                        .huiTypography(.labelMediumBold)
 
-            Text(viewModel.subtitle)
-                .huiTypography(.labelMediumBold)
+                    Text(viewModel.subtitle)
+                        .huiTypography(.labelMediumBold)
+                }
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.top, .huiSpaces.space16)

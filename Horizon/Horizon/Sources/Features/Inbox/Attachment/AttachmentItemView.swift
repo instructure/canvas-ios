@@ -22,14 +22,14 @@ import SwiftUI
 
 struct AttachmentItemView: View {
     @Environment(\.viewController) private var viewController: WeakViewController
-    var viewModel: AttachmentItemViewModel
+    @State var viewModel: AttachmentItemViewModel
 
     var body: some View {
         HStack {
             ZStack {
-                spinner
                 checkbox
                 downloadButton
+                spinner
             }
             title
             Spacer()

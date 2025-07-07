@@ -19,7 +19,9 @@
 import Combine
 import Core
 import Foundation
+import SwiftUI
 
+@Observable
 class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
     // MARK: - Outputs
     var cancelOpacity: Double { isLoading && !isOnlyForDownload && !isDisabled ? 1.0 : 0.0 }
@@ -28,7 +30,8 @@ class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
     var spinnerOpacity: Double { isLoading ? 1.0 : 0.0 }
     var isCheckmarkVisible: Bool { !isOnlyForDownload }
     var isSpinnerVisible: Bool { !isOnlyForDownload && isLoading }
-    var isLoading: Bool { !file.isUploaded }
+    var isLoading: Bool { file.isUploading }
+    var file: File
     var filename: String { file.filename }
 
     // MARK: - Properties
@@ -40,7 +43,6 @@ class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
     // MARK: - Dependencies
     private let composeMessageInteractor: ComposeMessageInteractor
     private let downloadFileInteractor: DownloadFileInteractor
-    private let file: File
     let isDisabled: Bool
     let isOnlyForDownload: Bool
     private let router: Router
@@ -60,6 +62,14 @@ class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
         self.router = router
         self.composeMessageInteractor = composeMessageInteractor
         self.downloadFileInteractor = downloadFileInteractor
+
+        file.objectWillChange
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.file = file
+            }
+            .store(in: &subscriptions)
     }
 
     // MARK: - Inputs

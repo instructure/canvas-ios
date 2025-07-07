@@ -211,19 +211,22 @@ class HorizonInboxViewModel {
 
     // MARK: - Private Methods
     private func addAnnouncements(to messageRows: [MessageRowViewModel]) -> [MessageRowViewModel] {
-        let isAnnouncementsShown = filterSubject.value == .all || filterSubject.value == .announcements && peopleSelectionViewModel.personFilterSubject.value.isEmpty
-        if !isAnnouncementsShown {
-            return messageRows
-        }
-        let announcements: [MessageRowViewModel] = announcementsInteractor.messages.value.map { $0.viewModel }
+        let isAnnouncementsShown = (
+            filterSubject.value == .all ||
+            filterSubject.value == .announcements
+        ) && peopleSelectionViewModel.personFilterSubject.value.isEmpty
+
+        let announcements: [MessageRowViewModel] = isAnnouncementsShown ? announcementsInteractor.messages.value.map { $0.viewModel } : []
         let isFinishedLoading = inboxMessageInteractor.hasNextPage.value == false
+        // Combine the message rows and announcements, sorting them by date descending.
         let fullList = (messageRows + announcements).sorted { (lhs: MessageRowViewModel, rhs: MessageRowViewModel) in
             lhs.date ?? Date.distantPast > rhs.date ?? Date.distantPast
         }
         let indexOfLastNonAnnouncement = fullList.firstIndex { !$0.isAnnouncement } ?? 0
+
+        // if we're finished loading the full list of announcements, show all the announcements + messages.
+        // if we're not finished loading, only show the announcements that are before the last non-announcement.
         return fullList.enumerated().filter { (index, row) in
-            // if we're finished loading, show all the announcements and messages.
-            // if we're not finished loading, only show the announcements that are before the last non-announcement.
             return !row.isAnnouncement || isFinishedLoading || index < indexOfLastNonAnnouncement
         }.map { $0.element }
     }
@@ -272,9 +275,18 @@ class HorizonInboxViewModel {
         }
         var title: String {
             if let announcement = announcement {
-                return announcement.title
+                if let courseName = announcement.courseName {
+                    return String(
+                        format: String(
+                            localized: "Announcement in %@",
+                            bundle: .horizon
+                        ),
+                        courseName
+                    )
+                }
+                return String(localized: "Announcement", bundle: .horizon)
             }
-            return inboxMessageListItem?.title ?? ""
+            return inboxMessageListItem?.message ?? ""
         }
         var subtitle: String {
             if let announcement = announcement {
@@ -284,6 +296,9 @@ class HorizonInboxViewModel {
         }
         var isAnnouncement: Bool {
             inboxMessageListItem == nil
+        }
+        var isAnnouncementIconVisible: Bool {
+            isAnnouncement
         }
         var isNew: Bool {
             inboxMessageListItem?.isUnread == true

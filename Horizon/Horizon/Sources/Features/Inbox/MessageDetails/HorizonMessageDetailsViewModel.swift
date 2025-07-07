@@ -290,7 +290,9 @@ extension HorizonMessageViewModel {
         self.id = conversationMessage.id
         self.body = conversationMessage.body
 
-        self.author = conversationMessage.localizedAudience(myID: myID, userMap: userMap)
+        self.author = conversationMessage.authorID == myID ?
+            String(localized: "You", bundle: .horizon) :
+            (userMap[conversationMessage.authorID]?.name ?? conversationMessage.authorID)
 
         self.date = conversationMessage.createdAt?.dateTimeString ?? ""
         self.attachments = conversationMessage.attachments.map {
