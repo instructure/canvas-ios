@@ -20,7 +20,6 @@ import CoreData
 import Foundation
 
 public class GetModule: APIUseCase {
-
     public typealias Model = Module
 
     public var request: GetModuleRequest {
@@ -28,7 +27,7 @@ public class GetModule: APIUseCase {
     }
 
     public var cacheKey: String? {
-            "GetModule-\(courseID)-\(moduleID)"
+        "GetModule-\(courseID)-\(moduleID)"
     }
 
     // MARK: - Dependencies
@@ -49,10 +48,10 @@ public class GetModule: APIUseCase {
 
     public func write(
         response: APIModule?,
-        urlResponse: URLResponse?,
+        urlResponse _: URLResponse?,
         to client: NSManagedObjectContext
     ) {
         guard let response = response else { return }
-        Module.update(with: response, forCourse: courseID, in: client)
+        Module.save(response, forCourse: courseID, updateModuleItems: false, in: client)
     }
 }

@@ -295,6 +295,26 @@ extension DateFormatter {
     }
 }
 
+extension Date.ISO8601FormatStyle {
+    public static var queryDayDateStyle: Self {
+        return Date
+            .ISO8601FormatStyle()
+            .locale(.init(languageCode: .english, languageRegion: .unitedStates))
+    }
+}
+
+extension FormatStyle where Self == Date.ISO8601FormatStyle {
+    public static var queryDayDateStyle: Self {
+        Date.ISO8601FormatStyle.queryDayDateStyle
+    }
+}
+
+extension ParseStrategy where Self == Date.ISO8601FormatStyle {
+    public static var queryDayDateStyle: Self {
+        Date.ISO8601FormatStyle.queryDayDateStyle
+    }
+}
+
 #if DEBUG
 public extension Date {
     static func make(calendar: Calendar = Cal.currentCalendar, year: Int, month: Int? = nil, day: Int? = nil, hour: Int? = nil, minute: Int? = nil, second: Int? = nil) -> Date {

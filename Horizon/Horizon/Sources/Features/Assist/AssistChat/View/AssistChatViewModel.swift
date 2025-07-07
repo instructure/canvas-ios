@@ -18,7 +18,8 @@
 
 import Combine
 import Core
-import SwiftUI
+import Observation
+import Foundation
 import CombineSchedulers
 
 @Observable
@@ -33,10 +34,10 @@ final class AssistChatViewModel {
     private(set) var messages: [AssistChatMessageViewModel] = []
     private(set) var isBackButtonVisible: Bool = false
     private(set) var shouldOpenKeyboardPublisher = PassthroughSubject<Bool, Never>()
+    private(set) var showMoreButtonPublisher = PassthroughSubject<String, Never>()
     private(set) var isLoaderVisible = false
     private(set) var isRetryButtonVisible = false
     private let scheduler: AnySchedulerOf<DispatchQueue>
-    var scrollViewProxy: ScrollViewProxy?
     private(set) var state: InstUI.ScreenState = .data
     var isDisableSendButton: Bool {
         message.trimmed().isEmpty || !canSendMessage
@@ -53,7 +54,6 @@ final class AssistChatViewModel {
 
     // MARK: - Private
 
-    private let animationDuration = 0.35
     private var chatMessages: [AssistChatMessage] = []
     private var dispatchWorkItem: DispatchWorkItem?
     private var canSendMessage: Bool = true
@@ -144,6 +144,10 @@ final class AssistChatViewModel {
         self.message = ""
     }
 
+    func scrollToBottom() {
+        showMoreButtonPublisher.send(messages.last?.id.uuidString ?? "")
+    }
+
     // MARK: - Private
 
     /// handle the response from the interactor
@@ -189,11 +193,11 @@ final class AssistChatViewModel {
                 userInfo: ["flashCards": flashCards],
                 from: viewController
             )
-        } else if let quizItem = response.quizItem {
-            let quizModel = AssistQuizModel(from: quizItem)
+        } else if let quizItems = response.quizItems {
+            let quizzes = quizItems.map { AssistQuizModel(from: $0) }
             router.route(
                 to: "/assistant/quiz?\(params)",
-                userInfo: ["quizModel": quizModel],
+                userInfo: ["quizzes": quizzes],
                 from: viewController
             )
         }
@@ -201,40 +205,22 @@ final class AssistChatViewModel {
 
     /// add new messages to the list of messages
     private func add(newMessages: [AssistChatMessageViewModel]) {
-        withAnimation(.easeInOut(duration: animationDuration)) { [weak self] in
-            guard let self = self else { return }
-
-            newMessages.filter { newMessage in
-                !self.messages.contains { message in
-                    message.id == newMessage.id
-                }
-            }.forEach { message in
-                self.messages.append(message)
+        newMessages.filter { newMessage in
+            !self.messages.contains { message in
+                message.id == newMessage.id
             }
+        }.forEach { message in
+            self.messages.append(message)
         }
-    }
-
-    /// animate the addition of a message and scroll to the bottom of the list after the animation completes
-    private func withAnimationAndScrollToBottom(_ block: @escaping () -> Void) {
-        withAnimation(.easeInOut(duration: animationDuration)) {
-            block()
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) { [weak self] in
-            if let lastMessage = self?.messages.last {
-                self?.scrollViewProxy?.scrollTo(lastMessage.id, anchor: .bottom)
-            }
-        }
+        showMoreButtonPublisher.send(newMessages.last?.id.uuidString ?? "")
     }
 
     /// remove any messages that are not in the new list of messages returned from the interactor
     private func remove(notAppearingIn newMessages: [AssistChatMessageViewModel]) {
-        withAnimationAndScrollToBottom { [weak self] in
-            guard let self = self else { return }
-            self.messages.removeAll { message in
-                !newMessages.contains { newMessage in
-                    message.id == newMessage.id
-                } || message.isLoading
-            }
+        messages.removeAll { message in
+            !newMessages.contains { newMessage in
+                message.id == newMessage.id
+            } || message.isLoading
         }
     }
 }

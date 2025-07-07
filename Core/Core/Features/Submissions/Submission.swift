@@ -85,6 +85,10 @@ final public class Submission: NSManagedObject, Identifiable {
         return nil
     }
 
+    public var attachmentsSorted: [File] {
+        attachments?.sorted(by: File.idCompare) ?? []
+    }
+
     public var enteredScore: Double? {
         get { return enteredScoreRaw?.doubleValue }
         set { enteredScoreRaw = NSNumber(value: newValue) }

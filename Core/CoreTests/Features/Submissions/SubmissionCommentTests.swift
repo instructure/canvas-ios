@@ -33,4 +33,16 @@ class SubmissionCommentTests: CoreTestCase {
         XCTAssertNil(SubmissionComment.make().attempt)
         XCTAssertEqual(SubmissionComment.make(from: .make(id: "submission-1-2")).attempt, 2)
     }
+
+    func testAttachmentsSorted() {
+        let submission = SubmissionComment.make(from: .make(
+            attachments: [
+                .make(id: "42"),
+                .make(id: "1"),
+                .make(id: "3")
+            ]
+        ))
+
+        XCTAssertEqual(submission.attachmentsSorted.map(\.id), ["1", "3", "42"])
+    }
 }

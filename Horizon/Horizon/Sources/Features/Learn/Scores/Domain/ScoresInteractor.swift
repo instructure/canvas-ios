@@ -61,7 +61,7 @@ final class ScoresInteractorLive: ScoresInteractor {
     }
 
     private func fetchAssignmentGroups(ignoreCache: Bool) -> AnyPublisher<[ScoresAssignmentGroup], Error> {
-         ReactiveStore(useCase: GetSubmissionScoresUseCase(userId: userId, enrollmentId: enrollmentID))
+         ReactiveStore(useCase: GetHSubmissionScoresUseCase(userId: userId, enrollmentId: enrollmentID))
              .getEntities(ignoreCache: ignoreCache)
              .removeDuplicates()
              .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
@@ -72,24 +72,24 @@ final class ScoresInteractorLive: ScoresInteractor {
              .eraseToAnyPublisher()
      }
 
-    private func getCourse(courseID: String, ignoreCache: Bool) -> AnyPublisher<ScoresCourse, Error> {
+    private func getCourse(courseID: String, ignoreCache: Bool) -> AnyPublisher<HScoresCourse, Error> {
         ReactiveStore(
-            useCase: GetScoresCourseUseCase(courseID: courseID)
+            useCase: GetHScoresCourseUseCase(courseID: courseID)
         )
         .getEntities(ignoreCache: ignoreCache)
         .compactMap { $0.first }
-        .map { ScoresCourse(from: $0) }
+        .map { HScoresCourse(from: $0) }
         .eraseToAnyPublisher()
     }
 
-    private func calculateFinalScoreAndGradeText(course: ScoresCourse) -> String {
+    private func calculateFinalScoreAndGradeText(course: HScoresCourse) -> String {
         let naText = String(localized: "N/A", bundle: .horizon)
 
         guard let enrollment = course.enrollments.first else {
             return naText
         }
 
-        if course.settings.hideFinalGrade {
+        if course.hideFinalGrade {
             return naText
         }
 
@@ -103,7 +103,7 @@ final class ScoresInteractorLive: ScoresInteractor {
         return naText
     }
 
-    private func scoreGradeString(enrollment: ScoresCourseEnrollment) -> String? {
+    private func scoreGradeString(enrollment: HScoresCourseEnrollment) -> String? {
         var scoreString: String?
         let score = 36.52341
         if let formattedScore = GradeFormatter.horizonNumberFormatter.string(

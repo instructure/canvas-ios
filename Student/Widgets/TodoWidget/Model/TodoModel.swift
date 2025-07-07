@@ -1,0 +1,102 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import WidgetKit
+import SwiftUI
+import Core
+
+class TodoModel: WidgetModel {
+    override class var publicPreview: TodoModel {
+        Self.make()
+    }
+
+    let items: [TodoItem]
+    let error: TodoError?
+
+    init(
+        isLoggedIn: Bool = true,
+        items: [TodoItem] = [],
+        error: TodoError? = nil
+    ) {
+        self.items = items
+        self.error = error
+
+        super.init(isLoggedIn: isLoggedIn)
+    }
+
+    func todoDays(for family: WidgetFamily) -> TodoList {
+        let todoItems = Array(
+            items
+                .sorted { $0.date < $1.date }
+                .prefix(family.shownTodoItemsMaximumCount)
+        )
+
+        let days = Dictionary(grouping: todoItems, by: { $0.date.startOfDay() })
+            .sorted(by: { $0.key < $1.key })
+            .map { (date, dayItems) in
+                return TodoDay(date: date, items: dayItems)
+            }
+
+        return TodoList(days: days, isFullList: todoItems.count == items.count)
+    }
+}
+
+enum TodoError: Error {
+    case fetchingDataFailure
+}
+
+// MARK: - Previews
+
+extension TodoModel {
+
+    static func make(count: Int = 5) -> TodoModel {
+        let items = [
+            TodoItem.make(
+                plannableID: "1",
+                type: .assignment,
+                date: Date.now, title: "Important Assignment",
+                contextName: "Student",
+                color: .orange,
+                icon: .assignmentLine
+            ),
+            TodoItem.make(
+                plannableID: "2",
+                type: .discussion_topic,
+                date: Date.now,
+                title: "Discussion About Everything",
+                contextName: "Student",
+                color: .orange,
+                icon: .discussionLine
+            ),
+            TodoItem.make(
+                plannableID: "3",
+                type: .calendar_event,
+                date: Date.now,
+                title: "Huge Event",
+                contextName: "Student",
+                color: .orange,
+                icon: .calendarMonthLine
+            ),
+            TodoItem.make(plannableID: "4", type: .planner_note, date: Date.now.addDays(3), title: "Don't forget", icon: .noteLine),
+            TodoItem.make(plannableID: "5", type: .quiz, date: Date.now.addDays(3), title: "Quiz About Life", icon: .quizLine),
+            TodoItem.make(plannableID: "6", type: .assignment, date: Date.now.addDays(3), title: "Another Assignment", icon: .assignmentLine),
+            TodoItem.make(plannableID: "7", type: .wiki_page, date: Date.now.addDays(3), title: "Some Page", icon: .documentLine)
+        ]
+        return TodoModel(items: Array(items.prefix(count)))
+    }
+}

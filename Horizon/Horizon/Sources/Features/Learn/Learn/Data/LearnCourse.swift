@@ -29,7 +29,7 @@ struct LearnCourse {
         self.enrollmentId = enrollmentId
     }
 
-    init?(from entity: CDLearnCourse?) {
+    init?(from entity: CDHLearnCourse?) {
         guard let entity else {
             return nil
         }

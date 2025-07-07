@@ -41,11 +41,6 @@ struct AssistChatView: View {
         .onReceive(viewModel.shouldOpenKeyboardPublisher) { value in
             isFocused = value
         }
-        .onChange(of: viewModel.isRetryButtonVisible) { _, _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                viewModel.scrollViewProxy?.scrollTo(retryViewId, anchor: .bottom)
-            }
-        }
         .onFirstAppear { viewModel.setViewController(viewController) }
         .padding(.huiSpaces.space24)
         .animation(.smooth, value: [viewModel.isBackButtonVisible, viewModel.isRetryButtonVisible])
@@ -81,9 +76,11 @@ struct AssistChatView: View {
             LazyVStack(alignment: .leading, spacing: .huiSpaces.space16) {
                 ForEach(viewModel.messages) { message in
                     AssistChatMessageView(message: message)
-                        .id(message.id)
+                        .id(message.id.uuidString)
                         .transition(.scaleAndFade)
                 }
+                .animation(.smooth, value: viewModel.isRetryButtonVisible)
+                .animation(.smooth, value: viewModel.messages)
                 if viewModel.isRetryButtonVisible {
                     Button {
                         viewModel.retry()
@@ -95,8 +92,12 @@ struct AssistChatView: View {
                     .id(retryViewId)
                 }
             }
-            .onAppear {
-                viewModel.scrollViewProxy = scrollViewProxy
+            .onReceive(viewModel.showMoreButtonPublisher) { id in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                    withAnimation {
+                        scrollViewProxy.scrollTo(id, anchor: .top)
+                    }
+                }
             }
         }
     }

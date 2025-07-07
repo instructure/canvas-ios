@@ -111,7 +111,7 @@ final class SubmissionCommentInteractorLive: SubmissionCommentInteractor {
         ignoreCache: Bool
     ) -> AnyPublisher<[SubmissionComment], Error> {
         let userID = sessionInteractor.getUserID() ?? ""
-        let useCase = GetSubmissionCommentsUseCase(
+        let useCase = GetHSubmissionCommentsUseCase(
             userId: userID,
             assignmentId: assignmentID
         )

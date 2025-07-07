@@ -55,7 +55,11 @@ struct A11yRefocusingOnPopoverDismissalViewModifier: ViewModifier {
                 guard let info = notification.userInfo,
                       let popupView = info[UIAccessibility.unfocusedElementUserInfoKey] as? UIAccessibilityElement
                 else { return false }
+
                 return popupView.accessibilityIdentifier == Self.popoverDismissRegionAccessibilityID
+                    // Menu dismissal action has no accessibilityIdentifier.
+                    // This workaround won't work with localizations, but it's better than nothing.
+                    || popupView.accessibilityLabel?.lowercased() == "dismiss context menu"
             })
             .mapToVoid()
             .eraseToAnyPublisher()

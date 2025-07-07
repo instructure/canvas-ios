@@ -66,6 +66,7 @@ class AccessTokenRefreshInteractor {
 }
 
 extension Error {
+
     var isExpiredRefreshTokenError: Bool {
         (self as? AccessTokenRefreshInteractor.TokenError) == .expiredRefreshToken
     }

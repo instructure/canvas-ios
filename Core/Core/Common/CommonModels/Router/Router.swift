@@ -143,7 +143,7 @@ open class Router {
         template(for: .parse(url))
     }
     public func template(for url: URLComponents) -> String? {
-        handler(for: url)?.template
+        handler(for: url)?.route.template
     }
 
     public func isRegisteredRoute(_ url: URL) -> Bool {
@@ -193,10 +193,10 @@ open class Router {
             return
         }
 
-        for route in handlers {
-            if let params = route.match(url) {
-                if let view = route.factory(url, params, userInfo, env) {
-                    show(view, from: from, options: options, analyticsRoute: route.template)
+        for handler in handlers {
+            if let params = handler.match(url) {
+                if let view = handler.factory(url, params, userInfo, env) {
+                    show(view, from: from, options: options, analyticsRoute: handler.route.template)
                 }
 
                 return // don't fall back if a matched route returns no view

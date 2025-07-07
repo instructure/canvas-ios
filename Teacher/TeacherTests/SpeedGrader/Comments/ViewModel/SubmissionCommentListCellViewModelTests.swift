@@ -73,8 +73,7 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
 
         XCTAssertEqual(testee.id, TestConstants.commentId)
         XCTAssertEqual(testee.author.hasId, true)
-        XCTAssertEqual(testee.author.name, TestConstants.authorName)
-        XCTAssertEqual(testee.author.pronouns, "some pronouns")
+        XCTAssertEqual(testee.author.name, "\(TestConstants.authorName) (\(comment.authorPronouns!))")
         XCTAssertEqual(testee.author.avatarUrl, url)
         XCTAssertEqual(testee.date, comment.createdAtLocalizedString)
     }

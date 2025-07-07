@@ -175,6 +175,16 @@ public enum PlannerAssembly {
         return CoreHostingController(view)
     }
 
+    public static func makeToDoDetailsViewController(plannableId: String, env: AppEnvironment = .shared) -> UIViewController {
+        let viewModel = CalendarToDoDetailsViewModel(
+            plannableId: plannableId,
+            interactor: CalendarToDoInteractorLive(),
+            router: env.router
+        )
+        let view = CalendarToDoDetailsScreen(viewModel: viewModel)
+        return CoreHostingController(view)
+    }
+
 #if DEBUG
 
     public static func makeEditToDoScreenPreview(env: AppEnvironment = .shared) -> some View {

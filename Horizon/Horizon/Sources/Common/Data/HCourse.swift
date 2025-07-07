@@ -69,7 +69,7 @@ struct HCourse: Identifiable {
         self.learningObjectCardModel = learningObjectCardModel
     }
 
-    init(from entity: CDCourse, modules: [HModule]?) {
+    init(from entity: CDHCourse, modules: [HModule]?) {
         self.id = entity.courseID
         self.name = entity.course.name ?? ""
         self.institutionName = entity.institutionName ?? ""
