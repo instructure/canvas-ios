@@ -122,6 +122,8 @@ struct SubmissionGrades: View {
                     }
                 }.padding(.bottom, 16)
             } }
+            .animation(.smooth, value: gradeStatusViewModel.isShowingDaysLateSection)
+
             if rubricsViewModel.commentingOnCriterionID != nil {
                 commentEditor()
             }
