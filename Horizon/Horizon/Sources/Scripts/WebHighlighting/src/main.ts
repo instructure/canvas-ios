@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Scripts/WebHighlighting/src/main.ts
 import applyHighlights from "./use_case/ApplyHighlights";
 import getCurrentTextSelection from "./use_case/GetCurrentTextSelection";
 import registerNotifyOnTextSelectionChange from "./use_case/NotifyTextSelectionChange";
@@ -25,20 +24,3 @@ import registerNotifyOnTextSelectionChange from "./use_case/NotifyTextSelectionC
 window.applyHighlights = applyHighlights;
 window.getCurrentTextSelection = getCurrentTextSelection;
 registerNotifyOnTextSelectionChange();
-========
-import WidgetKit
-import AppIntents
-
-struct SelectCourseIntent: WidgetConfigurationIntent {
-    static var title: LocalizedStringResource = "Select Course"
-    static var description = IntentDescription("Selects the course to display total grade for.")
-
-    @Parameter(title: "Course")
-    var course: CourseEntity?
-
-    @Parameter(title: "Based on graded assignments", default: true)
-    var basedOnGradedAssignments: Bool
-
-    init() { }
-}
->>>>>>>> master:Student/Widgets/CourseTotalGradeWidget/Provider/CourseSelection/SelectCourseIntent.swift
