@@ -56,24 +56,7 @@ public struct GetAccountNotificationsRequest: APIRequestable {
     public typealias Response = [APIAccountNotification]
 
     public let path = "accounts/self/account_notifications"
-    public var query: [APIQueryItem] {
-        [
-            .perPage(100),
-            .optionalValue("include_past", includePast ? "true" : nil),
-            .optionalValue("show_is_closed", showIsClosed ? "true" : nil)
-        ]
-    }
-
-    private let includePast: Bool
-    private let showIsClosed: Bool
-
-    init(
-        includePast: Bool = false,
-        showIsClosed: Bool = false
-    ) {
-        self.includePast = includePast
-        self.showIsClosed = showIsClosed
-    }
+    public var query: [APIQueryItem] = [ .perPage(100) ]
 }
 
 // https://canvas.instructure.com/doc/api/account_notifications.html#method.account_notifications.show

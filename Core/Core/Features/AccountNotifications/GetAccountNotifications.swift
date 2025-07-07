@@ -25,23 +25,11 @@ public struct GetAccountNotifications: CollectionUseCase {
 
     public var cacheKey: String? { "accounts/self/account_notifications" }
     public var request: GetAccountNotificationsRequest {
-        GetAccountNotificationsRequest(
-            includePast: includePast,
-            showIsClosed: showIsClosed
-        )
+        GetAccountNotificationsRequest()
     }
     public var scope: Scope { .all(orderBy: #keyPath(AccountNotification.endAt), ascending: false) }
 
-    private let includePast: Bool
-    private let showIsClosed: Bool
-
-    public init(
-        includePast: Bool = false,
-        showIsClosed: Bool = false
-    ) {
-        self.includePast = includePast
-        self.showIsClosed = showIsClosed
-    }
+    public init() {}
 }
 
 public class GetAccountNotification: APIUseCase {

@@ -59,10 +59,7 @@ class AnnouncementsInteractorLive: AnnouncementsInteractor {
     private var courseAnnouncements: [Announcement]? {
         didSet { trySendAnnouncements() }
     }
-    private let getAccountNotifications = GetAccountNotifications(
-        includePast: true,
-        showIsClosed: true
-    )
+    private let getAccountNotifications = GetAccountNotifications()
     private let getAccountNotificationsState = CurrentValueSubject<StoreState, Never>(.empty)
     private let getAnnouncementsState = CurrentValueSubject<StoreState, Never>(.empty)
     private let coursesProgressionState = CurrentValueSubject<StoreState, Never>(.empty)
