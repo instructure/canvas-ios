@@ -78,7 +78,7 @@ struct GradeStatusView: View {
             allOptions: viewModel.options,
             identifierGroup: "SpeedGrader.GradeStatusMenuItem",
             label: {
-                Text(viewModel.selectedOption.title)
+                Text(viewModel.shouldHideSelectedOptionTitle ? "" : viewModel.selectedOption.title)
                     .font(.regular14, lineHeight: .fit)
                 Image.chevronDown
                     .scaledIcon(size: 24)

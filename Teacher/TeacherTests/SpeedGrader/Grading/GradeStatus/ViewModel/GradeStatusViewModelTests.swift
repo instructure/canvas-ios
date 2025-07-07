@@ -127,6 +127,31 @@ class GradeStatusViewModelTests: TeacherTestCase {
         }
     }
 
+    func test_didSelectGradeStatus_hidesNoneOptionTitle() {
+        let interactor = GradeStatusInteractorMock()
+        interactor.gradeStatuses = [
+            GradeStatus(defaultStatusId: "none"),
+            GradeStatus(defaultStatusId: "excused")
+        ]
+        let testee = makeViewModel(interactor: interactor)
+        XCTAssertEqual(testee.selectedOption.id, "none")
+        XCTAssertEqual(testee.shouldHideSelectedOptionTitle, true)
+
+        // WHEN
+        testee.didSelectGradeStatus.send(.init(id: "excused", title: ""))
+
+        // THEN
+        waitUntil(shouldFail: true) { testee.selectedOption.id == "excused" }
+        XCTAssertEqual(testee.shouldHideSelectedOptionTitle, false)
+
+        // WHEN
+        testee.didSelectGradeStatus.send(.init(id: "none", title: ""))
+
+        // THEN
+        waitUntil(shouldFail: true) { testee.selectedOption.id == "none" }
+        XCTAssertEqual(testee.shouldHideSelectedOptionTitle, true)
+    }
+
     func test_didChangeLateDaysValue_triggersUpdateLateDays() {
         let interactorMock = GradeStatusInteractorMock()
         let testee = makeViewModel(interactor: interactorMock)
