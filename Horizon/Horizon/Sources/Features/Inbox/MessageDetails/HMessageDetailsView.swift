@@ -20,12 +20,12 @@ import Core
 import HorizonUI
 import SwiftUI
 
-struct HorizonMessageDetailsView: View {
-    @State var model: HorizonMessageDetailsViewModel
+struct HMessageDetailsView: View {
+    @State var model: HMessageDetailsViewModel
     @Environment(\.viewController) private var viewController
     @State private var attachmentsHeight: CGFloat?
 
-    init(model: HorizonMessageDetailsViewModel) {
+    init(model: HMessageDetailsViewModel) {
         self.model = model
     }
 
@@ -69,10 +69,8 @@ struct HorizonMessageDetailsView: View {
             .background(HorizonUI.colors.surface.pageSecondary)
             .clipShape(
                 .rect(
-                    topLeadingRadius: 32,
-                    bottomLeadingRadius: 0,
-                    bottomTrailingRadius: 0,
-                    topTrailingRadius: 32
+                    topLeadingRadius: HorizonUI.CornerRadius.level4.attributes.radius,
+                    topTrailingRadius: HorizonUI.CornerRadius.level4.attributes.radius
                 )
             )
             .onChange(of: model.messages.count) {
@@ -234,8 +232,8 @@ struct HorizonMessageDetailsView: View {
 }
 
 #Preview {
-    HorizonMessageDetailsView(
-        model: HorizonMessageDetailsViewModel(
+    HMessageDetailsView(
+        model: HMessageDetailsViewModel(
             announcementID: "ConversationID"
         )
     )

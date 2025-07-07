@@ -26,7 +26,7 @@ struct HorizonMessageDetailsAssembly {
     ) -> UIViewController {
         let uploadIdentifier = UUID().uuidString
         let appEnvironment = AppEnvironment.shared
-        let viewModel = HorizonMessageDetailsViewModel(
+        let viewModel = HMessageDetailsViewModel(
             conversationID: conversationID,
             messageDetailsInteractor: MessageDetailsInteractorLive(
                 env: appEnvironment,
@@ -42,7 +42,7 @@ struct HorizonMessageDetailsAssembly {
             ),
             allowArchive: allowArchive
         )
-        let view = HorizonMessageDetailsView(model: viewModel)
+        let view = HMessageDetailsView(model: viewModel)
         return CoreHostingController(view)
     }
 
@@ -51,8 +51,8 @@ struct HorizonMessageDetailsAssembly {
         announcement: Announcement? = nil
     ) -> UIViewController {
         CoreHostingController(
-            HorizonMessageDetailsView(
-                model: HorizonMessageDetailsViewModel(
+            HMessageDetailsView(
+                model: HMessageDetailsViewModel(
                     announcementID: announcementID,
                     announcement: announcement
                 )

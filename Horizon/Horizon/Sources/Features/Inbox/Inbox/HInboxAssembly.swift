@@ -22,7 +22,7 @@ import UIKit
 struct HInboxAssembly {
     static func makeViewController() -> UIViewController {
         CoreHostingController(
-            HorizonInboxView(viewModel: HorizonInboxViewModel())
+            HInboxView(viewModel: HInboxViewModel())
         )
     }
 }

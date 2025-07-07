@@ -24,9 +24,7 @@ public struct GetAccountNotifications: CollectionUseCase {
     public typealias Response = Request.Response
 
     public var cacheKey: String? { "accounts/self/account_notifications" }
-    public var request: GetAccountNotificationsRequest {
-        GetAccountNotificationsRequest()
-    }
+    public var request: GetAccountNotificationsRequest { GetAccountNotificationsRequest() }
     public var scope: Scope { .all(orderBy: #keyPath(AccountNotification.endAt), ascending: false) }
 
     public init() {}

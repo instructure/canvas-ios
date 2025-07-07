@@ -21,7 +21,7 @@ import Core
 import SwiftUI
 
 @Observable
-class HorizonMessageDetailsViewModel {
+class HMessageDetailsViewModel {
     // MARK: - Outputs
     var attachmentItems: [AttachmentItemViewModel] {
         attachmentViewModel?.items ?? []
