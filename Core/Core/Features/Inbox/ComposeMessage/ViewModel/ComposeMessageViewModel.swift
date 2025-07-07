@@ -97,6 +97,7 @@ final class ComposeMessageViewModel: ObservableObject {
     private let interactor: ComposeMessageInteractor
     private let recipientInteractor: RecipientInteractor
     private let settingsInteractor: InboxSettingsInteractor
+    private let avPermissionViewModel: AVPermissionViewModel
     private let audioSession: AudioSessionProtocol
     private let cameraPermissionService: CameraPermissionService.Type
     private let scheduler: AnySchedulerOf<DispatchQueue>
@@ -125,6 +126,7 @@ final class ComposeMessageViewModel: ObservableObject {
         self.messageType = options.messageType
         self.recipientInteractor = recipientInteractor
         self.settingsInteractor = inboxSettingsInteractor
+        self.avPermissionViewModel = .init()
         self.audioSession = audioSession
         self.cameraPermissionService = cameraPermissionService
         setIncludedMessages(messageType: options.messageType)
@@ -271,15 +273,8 @@ final class ComposeMessageViewModel: ObservableObject {
             title: String(localized: "Take photo", bundle: .core),
             accessibilityIdentifier: nil
         ) { [weak self] in
-            guard let self else {
-                return
-            }
-            VideoRecorder.requestPermission(cameraService: cameraPermissionService) { isEnabled in
-                if isEnabled {
-                    self.isTakePhotoVisible = true
-                } else {
-                    viewController.value.showPermissionError(.camera)
-                }
+            self?.avPermissionViewModel.performAfterCameraPermission(from: viewController) {
+                self?.isTakePhotoVisible = true
             }
         }
         sheet.addAction(
@@ -287,16 +282,9 @@ final class ComposeMessageViewModel: ObservableObject {
             title: String(localized: "Record audio", bundle: .core),
             accessibilityIdentifier: nil
         ) { [weak self] in
-            guard let self else {
-                return
+            self?.avPermissionViewModel.performAfterMicrophonePermission(from: viewController) {
+                self?.isAudioRecordVisible = true
             }
-            AudioRecorderViewController.requestPermission(audioSession: self.audioSession) { isEnabled in
-                if isEnabled {
-                    self.isAudioRecordVisible = true
-                } else {
-                    viewController.value.showPermissionError(.microphone)
-                }
-             }
         }
         sheet.addAction(
             image: .folderLine,
