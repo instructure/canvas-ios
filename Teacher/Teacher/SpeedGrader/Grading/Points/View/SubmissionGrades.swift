@@ -76,7 +76,7 @@ struct SubmissionGrades: View {
                                         final: false
                                     ))
                                 } else {
-                                    Image.addSolid.foregroundColor(Color(Brand.shared.linkColor))
+                                    Image.addSolid.foregroundStyle(.tint)
                                 }
                             })
                             .accessibility(hint: Text("Prompts for an updated grade", bundle: .teacher))

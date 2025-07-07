@@ -71,8 +71,22 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
             .map { $0.body }
             .map { [weak self] response in
                 let defaults = response.defaultGradeStatuses.map { GradeStatus(defaultStatusId: $0) }
-                let custom = response.customGradeStatuses.map { GradeStatus(userDefinedName: $0.name, id: $0.id) }
-                self?.gradeStatuses = defaults + custom
+                let custom = response.customGradeStatuses.map { GradeStatus(userDefinedName: $0.name, id: $0.id) }                
+                var sortedStatuses: [GradeStatus] = []
+                
+                // Add "None" first if it exists
+                if let noneStatus = defaults.first(where: { $0 == .none }) {
+                    sortedStatuses.append(noneStatus)
+                }
+                
+                // Add remaining standard statuses in API order
+                let remainingDefaults = defaults.filter { $0 != .none }
+                sortedStatuses.append(contentsOf: remainingDefaults)
+                
+                // Add custom statuses in API order
+                sortedStatuses.append(contentsOf: custom)
+                
+                self?.gradeStatuses = sortedStatuses
             }
             .eraseToAnyPublisher()
     }

@@ -31,14 +31,14 @@ class GradeStatusViewModelTests: TeacherTestCase {
         XCTAssertEqual(testee.selectedOption.id, "none")
     }
 
-    func test_options_sorted_optionsMatchInteractor() {
+    func test_optionsOrder_matchInteractorOrder() {
         let interactor = GradeStatusInteractorMock()
         interactor.gradeStatuses = [
             GradeStatus(defaultStatusId: "Bravo"),
             GradeStatus(defaultStatusId: "Alpha")
         ]
         let testee = makeViewModel(interactor: interactor)
-        XCTAssertEqual(testee.options.map { $0.title }, ["Alpha", "Bravo"])
+        XCTAssertEqual(testee.options.map { $0.title }, ["Bravo", "Alpha"])
     }
 
     func test_didSelectGradeStatus_triggersUpdateAndSetsSelected() {

@@ -72,7 +72,6 @@ class GradeStatusViewModel: ObservableObject {
         // If we receive no statuses from the API we fall back to the none status
         options = (interactor.gradeStatuses.nilIfEmpty ?? [.none])
             .map { OptionItem.from($0) }
-            .sorted { $0.title < $1.title }
 
         uploadGradeStatus(on: didSelectGradeStatus)
         observeGradeStatusOnAttemptInDatabase(on: didChangeAttempt)
