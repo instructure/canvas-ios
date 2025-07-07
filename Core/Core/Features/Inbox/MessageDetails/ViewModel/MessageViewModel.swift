@@ -35,11 +35,11 @@ public class MessageViewModel: Identifiable {
     public var controller: WeakViewController?
 
     public init(
-        id: String = "id",
-        body: String = "body",
-        author: String = "author",
-        date: String = "Jan 18, 2022 at 5:27 am",
-        avatarName: String = "avatarName"
+        id: String,
+        body: String,
+        author: String,
+        date: String,
+        avatarName: String
     ) {
         self.id = id
         self.body = body

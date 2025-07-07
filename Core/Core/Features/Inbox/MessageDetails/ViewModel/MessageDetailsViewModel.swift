@@ -19,7 +19,7 @@
 import Combine
 import Foundation
 
-open class MessageDetailsViewModel: ObservableObject {
+class MessageDetailsViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var subject: String = ""

@@ -49,7 +49,7 @@ class AnnouncementsInteractorLive: AnnouncementsInteractor {
     }
     private var accountNotificationsStore: Store<GetAccountNotifications>?
     private var announcementsStore: Store<GetAnnouncementsUseCase>?
-    private var coursesProgressionStore: Store<GetCoursesProgressionUseCase>?
+    private var coursesProgressionStore: Store<GetHCoursesProgressionUseCase>?
 
     private let environment: AppEnvironment
     private var subscriptions: Set<AnyCancellable> = []
@@ -99,7 +99,7 @@ class AnnouncementsInteractorLive: AnnouncementsInteractor {
         accountNotificationsStore?.refresh()
     }
 
-    private func listenForAnnouncements(from courses: [CDCourse]) -> AnyPublisher<[Announcement], Never> {
+    private func listenForAnnouncements(from courses: [CDHCourse]) -> AnyPublisher<[Announcement], Never> {
         let getAnnouncements = GetAnnouncementsUseCase(
             courseIds: courses.map { $0.courseID },
             activeOnly: nil,
@@ -132,9 +132,9 @@ class AnnouncementsInteractorLive: AnnouncementsInteractor {
     }
 
     private func listenForCourseAnnouncements(_ userID: String) {
-        let getCoursesProgression = GetCoursesProgressionUseCase(userId: userID, horizonCourses: true)
-
-        coursesProgressionStore = environment.subscribe(getCoursesProgression)
+        coursesProgressionStore = environment.subscribe(
+            GetHCoursesProgressionUseCase(userId: userID, horizonCourses: true)
+        )
 
         coursesProgressionStore?
             .statePublisher
