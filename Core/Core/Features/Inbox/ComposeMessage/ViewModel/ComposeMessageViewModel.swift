@@ -212,7 +212,7 @@ final class ComposeMessageViewModel: ObservableObject {
     }
 
     func attachmentButtonDidTap(viewController: WeakViewController) {
-        showDialog(viewController: viewController)
+        showAttachmentTypePicker(viewController: viewController)
     }
 
     func addFiles(urls: [URL]) {
@@ -248,7 +248,7 @@ final class ComposeMessageViewModel: ObservableObject {
         }
     }
 
-    private func showDialog(viewController: WeakViewController) {
+    private func showAttachmentTypePicker(viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
         sheet.title = String(localized: "Select Attachment Type", bundle: .core)
 
@@ -305,9 +305,8 @@ final class ComposeMessageViewModel: ObservableObject {
         ) { [weak self] in
             guard let self, let top = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return }
 
-            let viewController = AttachmentPickerAssembly.makeFilePickerViewController(env: .shared, onSelect: self.addFile)
-            self.router.show(viewController, from: top, options: .modal(isDismissable: true, embedInNav: true))
-
+            let picker = AttachmentPickerAssembly.makeCanvasFilePicker(router: router, onSelect: addFile)
+            router.show(CoreHostingController(picker), from: top, options: .modal(isDismissable: true, embedInNav: true))
         }
 
         router.show(sheet, from: viewController, options: .modal())

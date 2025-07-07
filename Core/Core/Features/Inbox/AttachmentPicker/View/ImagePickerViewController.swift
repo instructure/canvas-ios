@@ -18,17 +18,32 @@
 
 import Foundation
 import SwiftUI
+import UniformTypeIdentifiers
 
-public struct ImagePickerViewController: UIViewControllerRepresentable {
+public struct ImagePickerView: UIViewControllerRepresentable {
+
+    public enum MediaType {
+        case photoOnly
+        case videoOnly
+        case photoAndVideo
+    }
+
     public typealias ImagePickedHandler = (URL) -> Void
+
     @Environment(\.presentationMode) private var presentationMode
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    let sourceType: UIImagePickerController.SourceType
-    let imageHandler: ImagePickedHandler
+    private let sourceType: UIImagePickerController.SourceType
+    private let allowedMediaTypes: MediaType
+    private let imageHandler: ImagePickedHandler
 
-    public init(sourceType: UIImagePickerController.SourceType, imageHandler: @escaping ImagePickedHandler) {
+    public init(
+        sourceType: UIImagePickerController.SourceType,
+        allowedMediaTypes: MediaType = .photoAndVideo,
+        imageHandler: @escaping ImagePickedHandler
+    ) {
         self.sourceType = sourceType
+        self.allowedMediaTypes = allowedMediaTypes
         self.imageHandler = imageHandler
     }
 
@@ -36,28 +51,36 @@ public struct ImagePickerViewController: UIViewControllerRepresentable {
         return Coordinator(self, imageHandler: imageHandler)
     }
 
-    public func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerViewController>) -> UIImagePickerController {
+    public func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerView>) -> UIImagePickerController {
 
         let imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = false
         imagePicker.sourceType = sourceType
         imagePicker.delegate = context.coordinator
-        if let mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera) {
-            imagePicker.mediaTypes = mediaTypes
+
+        switch allowedMediaTypes {
+        case .photoOnly:
+            imagePicker.mediaTypes = [UTType.image.identifier]
+        case .videoOnly:
+            imagePicker.mediaTypes = [UTType.movie.identifier]
+        case .photoAndVideo:
+            if let mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera) {
+                imagePicker.mediaTypes = mediaTypes
+            }
         }
 
         return imagePicker
     }
 
-    public func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePickerViewController>) {
+    public func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePickerView>) {
     }
 
     final public class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-        let parent: ImagePickerViewController
+        let parent: ImagePickerView
         let imageHandler: ImagePickedHandler
 
-        init(_ parent: ImagePickerViewController, imageHandler: @escaping ImagePickedHandler) {
+        init(_ parent: ImagePickerView, imageHandler: @escaping ImagePickedHandler) {
             self.parent = parent
             self.imageHandler = imageHandler
         }

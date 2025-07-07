@@ -17,39 +17,61 @@
 //
 
 import Combine
-import UIKit
+import SwiftUI
 
 public enum AttachmentPickerAssembly {
-    public static func makeAudioPickerViewcontroller(
+
+    /// Allows selecting photo & video
+    public static func makeImagePicker(
+        onSelect: @escaping (URL) -> Void
+    ) -> ImagePickerView {
+        ImagePickerView(sourceType: .photoLibrary, imageHandler: onSelect)
+    }
+
+    /// Allows taking photo & recording video
+    public static func makeImageRecorder(
+        onSelect: @escaping (URL) -> Void
+    ) -> ImagePickerView {
+        ImagePickerView(sourceType: .camera, imageHandler: onSelect)
+    }
+
+    /// Allows recording video only
+    public static func makeVideoRecorder(
+        onSelect: @escaping (URL) -> Void
+    ) -> ImagePickerView {
+        ImagePickerView(sourceType: .camera, allowedMediaTypes: .videoOnly, imageHandler: onSelect)
+    }
+
+    public static func makeAudioRecorder(
         router: Router,
-        onSelect: @escaping (URL) -> Void = { _ in }
+        onSelect: @escaping (URL) -> Void
     ) -> AudioPickerView {
-        let viewModel = AudioPickerViewModel(router: router, interactor: AudioPickerInteractorLive(), onSelect: onSelect)
+        let interactor = AudioPickerInteractorLive()
+        let viewModel = AudioPickerViewModel(router: router, interactor: interactor, onSelect: onSelect)
         return AudioPickerView(viewModel: viewModel)
     }
 
-    public static func makeFilePickerViewController(
-        env: AppEnvironment = .shared,
+    public static func makeCanvasFilePicker(
         folderId: String? = nil,
-        onSelect: @escaping (File) -> Void = { _ in }
-    ) -> UIViewController {
+        router: Router,
+        onSelect: @escaping (File) -> Void
+    ) -> FilePickerView {
         let interactor = FilePickerInteractorLive(folderId: folderId)
-        let viewModel = FilePickerViewModel(env: env, interactor: interactor, onSelect: onSelect)
-        let view = FilePickerView(viewModel: viewModel)
-        return CoreHostingController(view)
+        let viewModel = FilePickerViewModel(interactor: interactor, router: router, onSelect: onSelect)
+        return FilePickerView(viewModel: viewModel)
     }
 
 #if DEBUG
 
-    public static func makeAudioPickerPreview(
-        env: AppEnvironment
-    ) -> AudioPickerView {
-        let viewModel = AudioPickerViewModel(router: env.router, interactor: AudioPickerInteractorPreview(), onSelect: {_ in })
+    public static func makeAudioPickerPreview(env: AppEnvironment) -> AudioPickerView {
+        let interactor = AudioPickerInteractorPreview()
+        let viewModel = AudioPickerViewModel(router: env.router, interactor: interactor) { _ in }
         return AudioPickerView(viewModel: viewModel)
     }
 
     public static func makeFilePickerPreview(env: AppEnvironment) -> FilePickerView {
-        let viewModel = FilePickerViewModel(env: env, interactor: FilePickerInteractorPreview(), onSelect: { _ in })
+        let interactor = FilePickerInteractorPreview()
+        let viewModel = FilePickerViewModel(interactor: interactor, router: env.router) { _ in }
         return FilePickerView(viewModel: viewModel)
     }
 
