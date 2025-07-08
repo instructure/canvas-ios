@@ -31,24 +31,25 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
 
     public var color: UIColor?
     var courseID = ""
-    let env = AppEnvironment.shared
+    private(set) var env: AppEnvironment = .shared
     var selectedFirstQuiz: Bool = false
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "courses/\(courseID)/quizzes"
     )
 
-    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+    lazy var colors = env.root.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
     }
-    lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+    lazy var course = env.root.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()
     }
-    lazy var quizzes = env.subscribe(GetQuizzes(courseID: courseID)) { [weak self] in
+    lazy var quizzes = env.subscribe(GetQuizzes(courseID: courseID.localID)) { [weak self] in
         self?.update()
     }
 
-    public static func create(courseID: String) -> QuizListViewController {
+    public static func create(env: AppEnvironment, courseID: String) -> QuizListViewController {
         let controller = loadFromStoryboard()
+        controller.env = env
         controller.courseID = courseID
         return controller
     }

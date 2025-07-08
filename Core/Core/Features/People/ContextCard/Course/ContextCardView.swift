@@ -108,7 +108,8 @@ public struct ContextCardView: View {
 #if DEBUG
 struct ContextCardView_Previews: PreviewProvider {
     static var previews: some View {
-        ContextCardView(model: ContextCardViewModel(courseID: "1", userID: "1", currentUserID: "0"))
+        let env = PreviewEnvironment()
+        ContextCardView(model: ContextCardViewModel(courseID: "1", userID: "1", currentUserID: "0", env: env))
     }
 }
 #endif

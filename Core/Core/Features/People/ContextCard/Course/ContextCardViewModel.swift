@@ -40,7 +40,7 @@ public class ContextCardViewModel: ObservableObject {
         course.first?.hideQuantitativeData == true
     }
 
-    private let env = AppEnvironment.shared
+    private let env: AppEnvironment
     private var isFirstAppear = true
     private let courseID: String
     private let userID: String
@@ -48,7 +48,15 @@ public class ContextCardViewModel: ObservableObject {
     private var enrollmentsAPICallResponsePending = true
     private var currentGradingPeriodID: String?
 
-    public init(courseID: String, userID: String, currentUserID: String, isSubmissionRowsVisible: Bool = true, isLastActivityVisible: Bool = true, isModal: Bool = false) {
+    public init(
+        courseID: String,
+        userID: String,
+        currentUserID: String,
+        isSubmissionRowsVisible: Bool = true,
+        isLastActivityVisible: Bool = true,
+        isModal: Bool = false,
+        env: AppEnvironment
+    ) {
         self.courseID = courseID
         self.userID = userID
         self.context = Context.course(courseID)
@@ -56,6 +64,7 @@ public class ContextCardViewModel: ObservableObject {
         self.isSubmissionRowsVisible = isSubmissionRowsVisible
         self.isLastActivityVisible = isLastActivityVisible
         self.isModal = isModal
+        self.env = env
     }
 
     public func viewAppeared() {
