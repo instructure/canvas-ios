@@ -55,13 +55,13 @@ struct SubmissionCommentView: View {
             commentListView
             if viewModel.arePaginationButtonsVisible {
                 HStack {
-                    HorizonUI.IconButton(Image.huiIcons.chevronLeft, type: .gray) {
+                    HorizonUI.IconButton(Image.huiIcons.chevronLeft, type: .white) {
                         viewModel.goPrevious()
                     }
                     .disabled(!viewModel.isPreviousButtonEnabled)
                     .opacity(viewModel.isPreviousButtonEnabled ? 1 : 0.5)
                     Spacer()
-                    HorizonUI.IconButton(Image.huiIcons.chevronRight, type: .gray) {
+                    HorizonUI.IconButton(Image.huiIcons.chevronRight, type: .white) {
                         viewModel.goNext()
                     }
                     .disabled(!viewModel.isNextButtonEnabled)
