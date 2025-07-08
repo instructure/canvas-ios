@@ -138,12 +138,9 @@ public extension String {
         return self
     }
 
-    var withShardID: String {
-        guard let shardID = AppEnvironment.shared.currentSession?.accessToken?.shardID
-        else { return self }
-
+    func withShardID(for env: AppEnvironment) -> String {
+        guard let shardID = env.shardID else { return self }
         if hasShardID { return self }
-
         return ID.expandTildeID("\(shardID)~\(self)")
     }
 
