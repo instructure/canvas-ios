@@ -33,7 +33,16 @@ public final class AppEnvironmentOverride: AppEnvironment {
     }
 
     public override var root: AppEnvironment { base }
-    public override var shardID: String? { currentSession?.accessToken?.shardID  }
+
+    public override func convertToRootID(_ id: String) -> String {
+
+        guard let shardID = root.currentSession?.accessToken?.shardID
+        else { return id }
+
+        if id.hasShardID { return id }
+
+        return ID.expandTildeID("\(shardID)~\(id)")
+    }
 
     private lazy var apiOverride: API = {
         API(currentSession, baseURL: baseURL)
