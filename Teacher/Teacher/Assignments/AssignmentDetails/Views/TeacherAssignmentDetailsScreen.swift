@@ -39,7 +39,7 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
         self.courseID = courseID
 
         assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID))
-        course = env.subscribe(GetCourse(courseID: courseID))
+        course = env.root.subscribe(GetCourse(courseID: courseID.withShardID))
 
         screenViewTrackingParameters = ScreenViewTrackingParameters(
             eventName: "/courses/\(courseID)/assignments/\(assignmentID)"
@@ -129,13 +129,13 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
     }
 
     private func refreshAssignments() {
-        assignment.refresh(force: !env.isShared) { _ in
+        assignment.refresh { _ in
             isLocked = assignment.first?.lockedForUser ?? false
         }
     }
 
     private func refreshCourses() {
-        course.refresh(force: !env.isShared) { _ in
+        course.refresh { _ in
             isTeacherEnrollment = course
                 .first?
                 .enrollments?
