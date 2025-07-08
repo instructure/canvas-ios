@@ -62,6 +62,7 @@ class HInboxViewModel {
         }
         set {
             filterSubject.accept(FilterOption.allCases.first { $0.title == newValue } ?? .all)
+            _ = inboxMessageInteractor.refresh()
         }
     }
     var isMessagesFilterFocused: Bool = false {
