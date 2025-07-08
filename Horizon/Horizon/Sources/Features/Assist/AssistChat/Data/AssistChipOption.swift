@@ -16,22 +16,35 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct AssistChipOption: Codable, Hashable {
+import Foundation
+
+struct AssistChipOption: Equatable {
     let chip: String
-    let prompt: String
+    let localResponse: AssistStaticLearnerResponse?
+    let prompt: String?
 
     init(chip: String, prompt: String = "") {
         self.chip = chip
         self.prompt = prompt
+
+        self.localResponse = nil
     }
 
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        chip = try container.decode(String.self, forKey: .chip)
-        prompt = try container.decode(String.self, forKey: .prompt)
+    init(chip: String, localResponse: AssistStaticLearnerResponse) {
+        self.chip = chip
+        self.localResponse = localResponse
+
+        self.prompt = localResponse.chip
     }
 
-    enum Default: CaseIterable {
+    init(assistStaticLearnerResponse: AssistStaticLearnerResponse) {
+        self.chip = assistStaticLearnerResponse.chip
+        self.localResponse = assistStaticLearnerResponse
+
+        self.prompt = assistStaticLearnerResponse.chip
+    }
+
+    enum Default: Codable, CaseIterable {
         case summarize
         case keyTakeaways
         case tellMeMore
@@ -57,6 +70,7 @@ struct AssistChipOption: Codable, Hashable {
     // swiftlint:disable line_length
     init(_ option: Default, userShortName: String? = nil) {
         chip = option.rawValue
+        localResponse = nil
 
         var introduction = ""
         if let userShortName = userShortName {
@@ -70,22 +84,33 @@ struct AssistChipOption: Codable, Hashable {
         case .tellMeMore:
             prompt = "\(introduction) In 1-2 paragraphs, tell me more about this content."
         case .flashcards:
-            prompt = """
-            \(introduction) please generate exactly 20 questions and answers based on the provided content for the front and back of flashcards, respectively. If the content contains only an iframe dont try to generate an answer. Flashcards are best suited for definitions and terminology, key concepts and theories, language learning, historical events and dates, and other content that might benefit from active recall and repetition. Prioritize this type of content within the flashcards.
-
-            Return the flashcards as a valid JSON array in the following format:
-            [
-              {
-                "question": "What is the title of the video?",
-                "answer": "What Is Accountability?"
-              }
-            ]
-
-            without any further description or text. Please keep the questions and answers concise (under 35 words). Each question and answer will be shown on a flashcard, so no need to repeat the question in the answer. Make sure the JSON is valid.
-            """
+            prompt = "\(introduction) I'm creating flash cards. Give me 7 questions with answers based on the content. Return the result in JSON format like: [{question: '', answer: ''}, {question: '', answer: ''}] without any further description or text. Your flash cards should not refer to the format of the content, but rather the content itself."
         case .quiz:
             prompt = "Generate a quiz"
         }
     }
     // swiftlint:enable line_length
+}
+
+extension AssistChipOption: Codable, Hashable {
+    enum CodingKeys: String, CodingKey {
+        case chip, prompt
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.chip = try container.decode(String.self, forKey: .chip)
+        self.prompt = try container.decodeIfPresent(String.self, forKey: .prompt)
+        self.localResponse = nil  // Exclude from decoding
+    }
+
+    // Overload `==` for Equatable conformance
+    static func == (lhs: AssistChipOption, rhs: AssistChipOption) -> Bool {
+        return lhs.chip == rhs.chip && lhs.prompt == rhs.prompt
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(chip)
+        hasher.combine(prompt)
+    }
 }

@@ -46,6 +46,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     private var actionCancellable: AnyCancellable?
     private let responsePublisher = PassthroughSubject<AssistChatInteractorLive.State, Never>()
     private var subscriptions = Set<AnyCancellable>()
+    private let userID: String
 
     // MARK: - init
 
@@ -90,12 +91,14 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         pageContextPublisher: AnyPublisher<AssistChatPageContext, Error>? = nil,
         cedarDomainService: DomainService = DomainService(.cedar),
         pineDomainService: DomainService = DomainService(.pine),
-        downloadFileInteractor: DownloadFileInteractor? = nil
+        downloadFileInteractor: DownloadFileInteractor? = nil,
+        userID: String = AppEnvironment.shared.currentSession?.userID ?? ""
     ) {
         self.cedarDomainService = cedarDomainService
         self.pineDomainService = pineDomainService
         self.downloadFileInteractor = downloadFileInteractor
         self.pageContextPublisher = pageContextPublisher
+        self.userID = userID
         initialStatePublisher
             .flatMap { [weak self] _ -> AnyPublisher<(AssistChatPageContext, String), Error> in
                 guard let self = self else {
@@ -357,6 +360,49 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         return basicChat(prompt: classifierPrompt, pageContext: pageContext)
     }
 
+    private func courseSelectionResponse(chatHistory: [AssistChatMessage]) -> AnyPublisher<AssistChatResponse, Error> {
+            ReactiveStore(
+                useCase: GetHCoursesProgressionUseCase(userId: userID)
+            )
+            .getEntities()
+            .map { [weak self] courses in
+                if let course = courses.first(where: { $0.course.id == self?.assistDataEnvironment.courseID.value }) {
+                    return .courseHelp(
+                        courseName: course.course.name ?? "",
+                        pageContext: self?.assistDataEnvironment.pageContext.value,
+                        chatHistory: chatHistory
+                    )
+                }
+                if let courseName = courses.first?.course.name, courses.count == 1 {
+                    return AssistChatResponse.courseHelp(
+                        courseName: courseName,
+                        pageContext: self?.assistDataEnvironment.pageContext.value,
+                        chatHistory: chatHistory
+                    )
+                }
+                if courses.count > 1 {
+                    return .courseSelection(
+                        courses: courses.map {
+                            CourseNameAndID(
+                                name: $0.course.name ?? "",
+                                id: $0.courseID
+                            )
+                        },
+                    )
+                }
+                return AssistChatResponse(
+                    AssistChatMessage(
+                        botResponse: String(
+                            localized: "It looks like you're not enrolled in any courses yet. Please enroll in a course and come back!",
+                            bundle: .horizon
+                        )
+                    ),
+                    isFreeTextAvailable: false
+                )
+            }
+            .eraseToAnyPublisher()
+        }
+
     /// Calls the basic chat endpoint to generate flashcards
     private func flashcards(
         action: AssistChatAction,
@@ -423,6 +469,8 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     private func publish(using action: AssistChatAction, with userShortName: String) -> AnyPublisher<[AssistChatMessage], Never> {
         var response: AssistChatResponse!
         switch action {
+        case .start:
+            return courseSelectionResponse(chatHistory: chatHistory).eraseToAnyPublisher()
         case .chat(let prompt, let history):
             response = AssistChatResponse(
                 message: AssistChatMessage(userResponse: prompt),

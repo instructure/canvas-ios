@@ -16,8 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
+import Foundation
+
 /// A response from the interactor
-struct AssistChatResponse {
+class AssistChatResponse {
 
     // MARK: - Required
 
@@ -25,58 +28,65 @@ struct AssistChatResponse {
 
     // MARK: - Optional
 
-    let chipOptions: [AssistChipOption]?
-    let flashCards: [AssistChatFlashCard]?
     let isLoading: Bool
-    let quizItems: [QuizItem]?
-
-    init(chipOptions: [AssistChipOption], chatHistory: [AssistChatMessage] = []) {
-        self.chipOptions = chipOptions
-        self.chatHistory = chatHistory
-
-        self.isLoading = false
-        self.flashCards = nil
-        self.quizItems = nil
-    }
-
-    /// The user has asked for FlashCards, so we're giving it to them
-    init(flashCards: [AssistChatFlashCard], chatHistory: [AssistChatMessage]) {
-        self.flashCards = flashCards
-        self.chatHistory = chatHistory
-
-        self.isLoading = false
-        self.chipOptions = nil
-        self.quizItems = nil
-    }
-
-    /// The user has asked for a quiz, so we're giving it to them
-    init(quizItems: [QuizItem], chatHistory: [AssistChatMessage]) {
-        self.chatHistory = chatHistory
-        self.quizItems = quizItems
-
-        self.isLoading = false
-        self.chipOptions = nil
-        self.flashCards = nil
-    }
 
     /// Publishing an updated chat history. This happens when chatting with the bot
     init(
-        message: AssistChatMessage,
-        chipOptions: [AssistChipOption] = [],
+        _ message: AssistChatMessage,
         chatHistory: [AssistChatMessage] = [],
-        isLoading: Bool = false
+        isLoading: Bool = false,
+        isFreeTextAvailable: Bool = true
     ) {
         self.chatHistory = chatHistory + [message]
-        self.chipOptions = chipOptions
         self.isLoading = isLoading
-
-        self.flashCards = nil
-        self.quizItems = nil
     }
+}
 
-    struct QuizItem {
-        let question: String
-        let answers: [String]
-        let correctAnswerIndex: Int
+/// Used when the user is asking a question about a course
+extension AssistChatResponse {
+    static func courseHelp(
+        courseName: String,
+        pageContext: AssistChatPageContext?,
+        chatHistory: [AssistChatMessage] = []
+    ) -> AssistChatResponse {
+        .init(
+            AssistChatMessage(staticResponse: .courseAssistance(courseName, pageContext: pageContext)),
+            chatHistory: chatHistory
+        )
+    }
+}
+
+/// Used when the user is asked to select from one of their courses
+extension AssistChatResponse {
+    static func courseSelection(
+        courses: [CourseNameAndID],
+        chatHistory: [AssistChatMessage] = []
+    ) -> AssistChatResponse {
+        .init(
+            AssistChatMessage(staticResponse: .selectACourse(courses)),
+            chatHistory: chatHistory
+        )
+    }
+}
+
+/// Used when something isn't right, this is a generic response
+extension AssistChatResponse {
+    convenience init() {
+        self.init(
+            AssistChatMessage(
+                botResponse: String(localized: "Thanks for visiting! Please check back later.")
+            )
+        )
+    }
+}
+
+extension AssistChatResponse {
+    static func review(chatHistory: [AssistChatMessage] = []) -> AssistChatResponse {
+        .init(
+            AssistChatMessage(
+                staticResponse: .review
+            ),
+            chatHistory: chatHistory
+        )
     }
 }
