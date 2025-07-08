@@ -47,11 +47,7 @@ class HMessageDetailsViewModel {
     private(set) var headerTitle: String = ""
 
     // MARK: - Private
-    private var isSending: Bool = false {
-        didSet {
-            attachmentViewModel?.disabled = isSending
-        }
-    }
+    private var isSending: Bool = false
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
@@ -131,7 +127,7 @@ class HMessageDetailsViewModel {
 
     // MARK: - Inputs
     func attachFile(viewController: WeakViewController) {
-        attachmentViewModel?.show(from: viewController)
+        attachmentViewModel?.isVisible = true
     }
 
     func pop(viewController: WeakViewController) {
@@ -299,7 +295,6 @@ extension HorizonMessageViewModel {
             AttachmentItemViewModel(
                 $0,
                 isOnlyForDownload: true,
-                disabled: false,
                 router: router,
                 composeMessageInteractor: composeMessageInteractor,
                 downloadFileInteractor: downloadFileInteractor

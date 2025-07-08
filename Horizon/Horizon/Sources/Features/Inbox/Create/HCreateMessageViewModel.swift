@@ -21,7 +21,7 @@ import Combine
 import SwiftUI
 
 @Observable
-class CreateMessageViewModel {
+class HCreateMessageViewModel {
     // MARK: - Outputs
     var body: String = ""
     var cancelButtonOpacity: Double {
@@ -96,7 +96,7 @@ class CreateMessageViewModel {
 
     // MARK: - Inputs
     func attachFile(from viewController: WeakViewController) {
-        attachmentViewModel.show(from: viewController)
+        attachmentViewModel.isVisible = true
     }
 
     func close(viewController: WeakViewController) {
@@ -116,7 +116,6 @@ class CreateMessageViewModel {
 
     // MARK: - Private Methods
     private func sendMessage() async {
-        attachmentViewModel.disabled = true
         await withCheckedContinuation { continuation in
             let attachmentIds = attachmentViewModel.items.compactMap { $0.id }
             return self.composeMessageInteractor.createConversation(

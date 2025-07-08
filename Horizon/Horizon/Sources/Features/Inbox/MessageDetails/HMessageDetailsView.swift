@@ -115,7 +115,12 @@ struct HMessageDetailsView: View {
             if message.attachments.isNotEmpty {
                 VStack(spacing: HorizonUI.spaces.space8) {
                     ForEach(message.attachments, id: \.self) { attachment in
-                        AttachmentItemView(viewModel: attachment)
+                        HorizonUI.UploadedFile(
+                            fileName: attachment.filename,
+                            actionType: attachment.actionType
+                        ) {
+                            attachment.download(viewController)
+                        }
                     }
                 }
                 .padding(.top, HorizonUI.spaces.space8)
@@ -164,7 +169,12 @@ struct HMessageDetailsView: View {
     private var replyAreaAttachmentsList: some View {
         VStack(spacing: .huiSpaces.space8) {
             ForEach(model.attachmentItems) { attachment in
-                AttachmentItemView(viewModel: attachment)
+                HorizonUI.UploadedFile(
+                    fileName: attachment.filename,
+                    actionType: attachment.actionType
+                ) {
+                    attachment.delete()
+                }
             }
         }
         .readingFrame { frame in

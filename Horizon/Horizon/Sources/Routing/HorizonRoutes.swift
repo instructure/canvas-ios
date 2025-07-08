@@ -195,7 +195,7 @@ enum HorizonRoutes {
                 guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
                 let router: Router = AppEnvironment.shared.router
                 router.show(
-                    CreateMessageAssembly.makeViewController(),
+                    HCreateMessageAssembly.makeViewController(),
                     from: vc,
                     options: .modal(.pageSheet, isDismissable: false)
                 )

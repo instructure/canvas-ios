@@ -22,11 +22,29 @@ import Core
 
 @Observable
 class AttachmentViewModel {
+
+    enum FileType {
+        case file
+        case image
+        case photo
+    }
+
     // MARK: - Outputs
-    var isAudioRecordVisible = false
+    var fileTypes: [FileType] = [.image, .photo, .file]
+    var allowedContentTypes: [UTType] = [
+        .image,
+        .audio,
+        .video,
+        .pdf,
+        .text,
+        .spreadsheet,
+        .presentation
+    ]
+    var isVisible: Bool = false
     var isFilePickerVisible = false
     var isImagePickerVisible = false
     var isTakePhotoVisible = false
+
     var isUploading: Bool {
         let files: [File] = composeMessageInteractor.attachments.value
         return files.contains { $0.isUploading }
@@ -37,8 +55,6 @@ class AttachmentViewModel {
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
-    private let audioSession: AudioSessionProtocol
-    private let cameraPermissionService: CameraPermissionService.Type
     private let composeMessageInteractor: ComposeMessageInteractor
     private let downloadFileInteractor: DownloadFileInteractor
     let router: Router
@@ -47,15 +63,11 @@ class AttachmentViewModel {
     init(
         router: Router = AppEnvironment.shared.router,
         composeMessageInteractor: ComposeMessageInteractor,
-        downloadFileInteractor: DownloadFileInteractor = DownloadFileInteractorLive(),
-        audioSession: AudioSessionProtocol = AVAudioApplication.shared,
-        cameraPermissionService: CameraPermissionService.Type = AVCaptureDevice.self
+        downloadFileInteractor: DownloadFileInteractor = DownloadFileInteractorLive()
     ) {
         self.router = router
         self.composeMessageInteractor = composeMessageInteractor
         self.downloadFileInteractor = downloadFileInteractor
-        self.audioSession = audioSession
-        self.cameraPermissionService = cameraPermissionService
 
         self.listenForAttachments()
     }
@@ -66,90 +78,42 @@ class AttachmentViewModel {
     }
 
     func addFile(url: URL) {
-        isImagePickerVisible = false
-        isTakePhotoVisible = false
-        isFilePickerVisible = false
-        isAudioRecordVisible = false
-
+        dismiss()
         composeMessageInteractor.addFile(url: url)
     }
 
-    func addFiles(urls: [URL]) {
-        urls.forEach { url in
+    func chooseFile() {
+        isVisible = false
+        isFilePickerVisible = true
+    }
+
+    func chooseImage() {
+        isVisible = false
+        isImagePickerVisible = true
+    }
+
+    func choosePhoto() {
+        isVisible = false
+        isTakePhotoVisible = true
+    }
+
+    func fileSelectionComplete(result: Result<URL, Error>) {
+        switch result {
+        case .success(let url):
             if url.startAccessingSecurityScopedResource() {
                 addFile(url: url)
             }
+            url.stopAccessingSecurityScopedResource()
+        case .failure(let failure):
+            debugPrint(failure)
         }
     }
 
-    var disabled: Bool = false
-
-    func show(from viewController: WeakViewController) {
-        if isUploading {
-            return
-        }
-        let sheet = BottomSheetPickerViewController.create()
-        sheet.title = String(localized: "Select Attachment Type", bundle: .core)
-
-        sheet.addAction(
-            image: .documentLine,
-            title: String(localized: "Upload file", bundle: .core),
-            accessibilityIdentifier: nil
-        ) { [weak self] in
-            self?.isFilePickerVisible = true
-        }
-        sheet.addAction(
-            image: .imageLine,
-            title: String(localized: "Upload photo", bundle: .core),
-            accessibilityIdentifier: nil
-        ) { [weak self] in
-            self?.isImagePickerVisible = true
-        }
-        sheet.addAction(
-            image: .cameraLine,
-            title: String(localized: "Take photo", bundle: .core),
-            accessibilityIdentifier: nil
-        ) { [weak self] in
-            guard let self else {
-                return
-            }
-            VideoRecorder.requestPermission(cameraService: cameraPermissionService) { isEnabled in
-                if isEnabled {
-                    self.isTakePhotoVisible = true
-                } else {
-                    viewController.value.showPermissionError(.camera)
-                }
-            }
-        }
-        sheet.addAction(
-            image: .audioLine,
-            title: String(localized: "Record audio", bundle: .core),
-            accessibilityIdentifier: nil
-        ) { [weak self] in
-            guard let self else {
-                return
-            }
-            AudioRecorderViewController.requestPermission(audioSession: self.audioSession) { isEnabled in
-                if isEnabled {
-                    self.isAudioRecordVisible = true
-                } else {
-                    viewController.value.showPermissionError(.microphone)
-                }
-             }
-        }
-        sheet.addAction(
-            image: .folderLine,
-            title: String(localized: "Attach from Canvas files", bundle: .core),
-            accessibilityIdentifier: nil
-        ) { [weak self] in
-            guard let self, let top = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return }
-
-            let viewController = AttachmentPickerAssembly.makeFilePickerViewController(env: .shared, onSelect: self.addFile)
-            self.router.show(viewController, from: top, options: .modal(isDismissable: true, embedInNav: true))
-
-        }
-
-        router.show(sheet, from: viewController, options: .modal())
+    private func dismiss() {
+        isVisible = false
+        isFilePickerVisible = false
+        isImagePickerVisible = false
+        isTakePhotoVisible = false
     }
 
     private func listenForAttachments() {
@@ -161,7 +125,6 @@ class AttachmentViewModel {
                     AttachmentItemViewModel(
                         $0,
                         isOnlyForDownload: false,
-                        disabled: self.disabled,
                         router: self.router,
                         composeMessageInteractor: self.composeMessageInteractor,
                         downloadFileInteractor: self.downloadFileInteractor

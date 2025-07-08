@@ -20,10 +20,10 @@ import Core
 import HorizonUI
 import SwiftUI
 
-struct CreateMessageView: View {
+struct HCreateMessageView: View {
 
     @Environment(\.viewController) private var viewController
-    @Bindable var viewModel: CreateMessageViewModel
+    @Bindable var viewModel: HCreateMessageViewModel
     @State private var courseFocused: Bool = false
 
     var body: some View {
@@ -71,7 +71,12 @@ struct CreateMessageView: View {
     private var fileAttachments: some View {
         VStack(spacing: .huiSpaces.space8) {
             ForEach(viewModel.attachmentItems) { attachment in
-                AttachmentItemView(viewModel: attachment)
+                HorizonUI.UploadedFile(
+                    fileName: attachment.filename,
+                    actionType: attachment.actionType
+                ) {
+                    attachment.delete()
+                }
             }
         }
     }
@@ -173,7 +178,7 @@ struct CreateMessageView: View {
 }
 
 #Preview {
-    CreateMessageView(
+    HCreateMessageView(
         viewModel: .init(
             composeMessageInteractor: ComposeMessageInteractorPreview()
         )

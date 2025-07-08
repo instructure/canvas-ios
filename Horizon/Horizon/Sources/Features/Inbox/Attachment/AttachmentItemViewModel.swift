@@ -19,31 +19,37 @@
 import Combine
 import Core
 import Foundation
+import HorizonUI
 import SwiftUI
 
 @Observable
-class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
+class AttachmentItemViewModel {
     // MARK: - Outputs
-    var cancelOpacity: Double { isLoading && !isOnlyForDownload && !isDisabled ? 1.0 : 0.0 }
-    var checkmarkOpacity: Double { isLoading ? 0.0 : 1.0 }
-    var deleteOpacity: Double { isLoading || isOnlyForDownload || isDisabled ? 0.0 : 1.0 }
-    var downloadOpacity: Double { isOnlyForDownload && !isLoading ? 1.0 : 0.0 }
-    var spinnerOpacity: Double { isLoading ? 1.0 : 0.0 }
-    var isLoading: Bool { file.isUploading || isDownloading }
-    var file: File
+
     var filename: String { file.filename }
+
+    var actionType: HorizonUI.UploadedFile.ActionType {
+        let isLoading = file.isUploading || isDownloading
+        if file.isUploading || isDownloading {
+            return .loading
+        }
+        if isOnlyForDownload && !isLoading {
+            return .download
+        }
+        return .delete
+    }
 
     // MARK: - Properties
     var id: String? { file.id }
 
     // MARK: - Private
+    private var file: File
     private var isDownloading = false
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
     private let composeMessageInteractor: ComposeMessageInteractor
     private let downloadFileInteractor: DownloadFileInteractor
-    let isDisabled: Bool
     private let isOnlyForDownload: Bool
     private let router: Router
 
@@ -51,14 +57,12 @@ class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
     init(
         _ file: File,
         isOnlyForDownload: Bool,
-        disabled: Bool,
         router: Router,
         composeMessageInteractor: ComposeMessageInteractor,
         downloadFileInteractor: DownloadFileInteractor
     ) {
         self.file = file
         self.isOnlyForDownload = isOnlyForDownload
-        self.isDisabled = disabled
         self.router = router
         self.composeMessageInteractor = composeMessageInteractor
         self.downloadFileInteractor = downloadFileInteractor
@@ -73,8 +77,8 @@ class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
     }
 
     // MARK: - Inputs
-    func cancel() { composeMessageInteractor.cancel() }
     func delete() { composeMessageInteractor.removeFile(file: file) }
+
     func download(_ viewController: WeakViewController) {
         isDownloading = true
         downloadFileInteractor
@@ -89,7 +93,9 @@ class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
             )
             .store(in: &subscriptions)
     }
+}
 
+extension AttachmentItemViewModel: Identifiable, Equatable, Hashable {
     // MARK: - Equatable
     static func == (lhs: AttachmentItemViewModel, rhs: AttachmentItemViewModel) -> Bool {
         lhs.id == rhs.id
