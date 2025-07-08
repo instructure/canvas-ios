@@ -64,11 +64,10 @@ struct AttachmentItemView: View {
 
     @ViewBuilder
     private var checkbox: some View {
-        if viewModel.isCheckmarkVisible {
-            HorizonUI.icons.checkCircleFull
-                .foregroundStyle(Color.huiColors.icon.success)
-                .opacity(viewModel.checkmarkOpacity)
-        }
+        HorizonUI.icons.checkCircleFull
+            .foregroundStyle(Color.huiColors.icon.success)
+            .opacity(viewModel.checkmarkOpacity)
+            .animation(.smooth, value: viewModel.checkmarkOpacity)
     }
 
     private var deleteButton: some View {
@@ -84,24 +83,23 @@ struct AttachmentItemView: View {
 
     @ViewBuilder
     private var downloadButton: some View {
-        if viewModel.isOnlyForDownload {
-            HorizonUI.IconButton(
-                HorizonUI.icons.download,
-                type: .white,
-                isSmall: true
-            ) {
-                viewModel.download(viewController)
-            }
+        HorizonUI.IconButton(
+            HorizonUI.icons.download,
+            type: .white,
+            isSmall: true
+        ) {
+            viewModel.download(viewController)
         }
+        .opacity(viewModel.downloadOpacity)
+        .animation(.smooth, value: viewModel.downloadOpacity)
     }
 
     @ViewBuilder
     private var spinner: some View {
-        if viewModel.isSpinnerVisible {
-            HorizonUI.Spinner(size: .xSmall)
-                .opacity(viewModel.spinnerOpacity)
-                .frame(width: 24, height: 24)
-        }
+        HorizonUI.Spinner(size: .xSmall)
+            .opacity(viewModel.spinnerOpacity)
+            .animation(.smooth, value: viewModel.spinnerOpacity)
+            .frame(width: 24, height: 24)
     }
 
     private var title: some View {

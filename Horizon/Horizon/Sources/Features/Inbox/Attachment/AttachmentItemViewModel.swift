@@ -27,10 +27,9 @@ class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
     var cancelOpacity: Double { isLoading && !isOnlyForDownload && !isDisabled ? 1.0 : 0.0 }
     var checkmarkOpacity: Double { isLoading ? 0.0 : 1.0 }
     var deleteOpacity: Double { isLoading || isOnlyForDownload || isDisabled ? 0.0 : 1.0 }
+    var downloadOpacity: Double { isOnlyForDownload && !isLoading ? 1.0 : 0.0 }
     var spinnerOpacity: Double { isLoading ? 1.0 : 0.0 }
-    var isCheckmarkVisible: Bool { !isOnlyForDownload }
-    var isSpinnerVisible: Bool { !isOnlyForDownload && isLoading }
-    var isLoading: Bool { file.isUploading }
+    var isLoading: Bool { file.isUploading || isDownloading }
     var file: File
     var filename: String { file.filename }
 
@@ -38,13 +37,14 @@ class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
     var id: String? { file.id }
 
     // MARK: - Private
+    private var isDownloading = false
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
     private let composeMessageInteractor: ComposeMessageInteractor
     private let downloadFileInteractor: DownloadFileInteractor
     let isDisabled: Bool
-    let isOnlyForDownload: Bool
+    private let isOnlyForDownload: Bool
     private let router: Router
 
     // MARK: - Init
@@ -76,12 +76,14 @@ class AttachmentItemViewModel: Identifiable, Equatable, Hashable {
     func cancel() { composeMessageInteractor.cancel() }
     func delete() { composeMessageInteractor.removeFile(file: file) }
     func download(_ viewController: WeakViewController) {
+        isDownloading = true
         downloadFileInteractor
             .download(file: file)
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { [weak self] url in
+                    self?.isDownloading = false
                     self?.router.showShareSheet(fileURL: url, viewController: viewController)
                 }
             )
