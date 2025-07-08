@@ -31,7 +31,7 @@ struct CourseTotalGradeWidget: Widget {
             CourseTotalGradeView(model: model)
         }
         .configurationDisplayName(Text("Single Grade Widget"))
-        .description(Text("View the grade of your favorite course"))
+        .description(Text("View the grade of your favorite course."))
         .supportedFamilies([.systemSmall])
     }
 }
