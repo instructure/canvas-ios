@@ -138,12 +138,6 @@ public extension String {
         return self
     }
 
-    func withShardID(for env: AppEnvironment) -> String {
-        guard let shardID = env.shardID else { return self }
-        if hasShardID { return self }
-        return ID.expandTildeID("\(shardID)~\(self)")
-    }
-
     private static let Formatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 0
