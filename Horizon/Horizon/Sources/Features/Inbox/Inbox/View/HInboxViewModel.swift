@@ -121,7 +121,7 @@ class HInboxViewModel {
         Publishers.CombineLatest(
             inboxMessageInteractor.messages,
             announcementsInteractor.messages
-        ).sink { messages, _ in
+        ).sink { _, _ in
             guard let self = weakSelf else { return }
             if inboxMessageInteractor.state.value != .data ||
                 announcementsInteractor.state.value != .data {
@@ -131,7 +131,7 @@ class HInboxViewModel {
                 self.filterSubject,
                 self.peopleSelectionViewModel.personFilterSubject
             )
-            .sink { _ in weakSelf?.onInboxMessageListItems(messages) }
+            .sink { _ in weakSelf?.onInboxMessageListItems() }
             .store(in: &self.subscriptions)
         }
         .store(in: &subscriptions)
@@ -231,10 +231,10 @@ class HInboxViewModel {
         }.map { $0.element }
     }
 
-    private func onInboxMessageListItems(_ inboxMessageListItems: [InboxMessageListItem]) {
+    private func onInboxMessageListItems() {
         let messageRowsInterim = filterSubject.value.inboxMessageInteractorScope == nil ?
             [] :
-            inboxMessageListItems
+            inboxMessageInteractor.messages.value
                 .filter(filterByPerson)
                 .map { $0.viewModel }
 
