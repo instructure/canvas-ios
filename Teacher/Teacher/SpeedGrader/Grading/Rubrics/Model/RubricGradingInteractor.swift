@@ -50,16 +50,19 @@ class RubricGradingInteractorLive: RubricGradingInteractor {
     private let submission: Submission
     /// Modification is only allowed internally to keep logic inside this class. Read-only values are accessible via the `assessments` property.
     private let assessmentsSubject = CurrentValueSubject<APIRubricAssessmentMap, Never>([:])
+    private let env: AppEnvironment
 
     // MARK: - Public Methods
 
     init(
         assignment: Assignment,
-        submission: Submission
+        submission: Submission,
+        env: AppEnvironment
     ) {
         self.assignment = assignment
         self.submission = submission
         self.assessments = assessmentsSubject.removeDuplicates().eraseToAnyPublisher()
+        self.env = env
 
         uploadGrades(onChangeOf: assessmentsSubject)
         calculateRubricScore(onChangeOf: assessmentsSubject)
@@ -175,7 +178,7 @@ class RubricGradingInteractorLive: RubricGradingInteractor {
             assignmentID: assignment.id,
             userID: submission.userID,
             rubricAssessment: assessmentsSubject.value
-        ).fetch { [weak self] _, _, error in performUIUpdate {
+        ).fetch(environment: env) { [weak self] _, _, error in performUIUpdate {
             self?.handleUploadFinished(error: error)
         } }
     }
