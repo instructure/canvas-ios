@@ -21,6 +21,7 @@ import Core
 import Observation
 import Foundation
 import CombineSchedulers
+import SwiftUI
 
 @Observable
 final class AssistChatViewModel {
@@ -170,8 +171,11 @@ final class AssistChatViewModel {
             }
         } else {
             shouldOpenKeyboardPublisher.send(messages.isEmpty)
-            newMessages = response.chatHistory.map {
-                $0.viewModel(response: response) { [weak self] quickResponse in
+            let chatHistory = response.chatHistory
+            newMessages = chatHistory.map {
+                $0.viewModel(response: response, onFeedbackChange: { [weak self] isPositive in
+                    self?.onFeedbackChange(isPositive, chatHistory)
+                }) { [weak self] quickResponse in
                     self?.send(chipOption: quickResponse)
                 }
             }
@@ -215,6 +219,10 @@ final class AssistChatViewModel {
         showMoreButtonPublisher.send(newMessages.last?.id.uuidString ?? "")
     }
 
+    private func onFeedbackChange(_ isGood: Bool?, _ messages: [AssistChatMessage]) {
+
+    }
+
     /// remove any messages that are not in the new list of messages returned from the interactor
     private func remove(notAppearingIn newMessages: [AssistChatMessageViewModel]) {
         messages.removeAll { message in
@@ -253,12 +261,17 @@ private extension AssistChipOption {
 }
 
 private extension AssistChatMessage {
-    func viewModel(response: AssistChatResponse, onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil) -> AssistChatMessageViewModel {
+    func viewModel(
+        response: AssistChatResponse,
+        onFeedbackChange: AssistFeedbackView.OnFeedbackChange? = nil,
+        onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil
+    ) -> AssistChatMessageViewModel {
         AssistChatMessageViewModel(
             id: self.id,
             content: self.text,
             style: self.role == .Assistant ? .transparent : .white,
             chipOptions: self == response.chatHistory.last ? (response.chipOptions ?? []) : [],
+            onFeedbackChange: role == .Assistant ? onFeedbackChange : nil,
             onTapChipOption: onTapChipOption
         )
     }
