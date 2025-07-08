@@ -138,7 +138,8 @@ public class ReactiveStore<U: UseCase> {
         context: NSManagedObjectContext,
         environment: AppEnvironment
     ) -> AnyPublisher<[T], Error> {
-        return useCase.hasCacheExpired()
+        return useCase
+            .hasCacheExpired(environment: environment)
             .setFailureType(to: Error.self)
             .flatMap { hasExpired -> AnyPublisher<[T], Error> in
                 if hasExpired {

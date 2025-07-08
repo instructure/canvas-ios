@@ -70,7 +70,8 @@ struct SubmissionGraderView: View {
             RubricsViewModel(
                 assignment: viewModel.assignment,
                 submission: viewModel.submission,
-                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission)
+                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission, env: env),
+                router: env.router
             )
         )
     }

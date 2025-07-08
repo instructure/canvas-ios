@@ -32,6 +32,8 @@ public final class AppEnvironmentOverride: AppEnvironment {
         super.init()
     }
 
+    public override var root: AppEnvironment { base }
+
     private lazy var apiOverride: API = {
         API(currentSession, baseURL: baseURL)
     }()
