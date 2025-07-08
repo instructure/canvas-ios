@@ -6746,7 +6746,7 @@
     "Selects the course to display total grade for." : {
 
     },
-    "Single Grade Widget" : {
+    "Single Grade" : {
 
     },
     "Something Went Wrong!" : {
@@ -7533,6 +7533,7 @@
     },
     "To-do" : {
       "comment" : "Name of the to-do widget",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -7787,6 +7788,9 @@
           }
         }
       }
+    },
+    "To-Do" : {
+      "comment" : "Name of the to-do widget"
     },
     "Today, " : {
       "localizations" : {
