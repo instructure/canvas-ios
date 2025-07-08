@@ -16,31 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import AVKit
 import Foundation
+import UIKit
 
 public struct AVPermissionViewModel {
-    private let audioPermissionInteractor: AudioPermissionInteractor
-    private let cameraPermissionInteractor: CameraPermissionInteractor
+    private let interactor: AVPermissionInteractor
     private let env: AppEnvironment
 
     public init(
-        audioPermissionInteractor: AudioPermissionInteractor = AudioPermissionInteractorLive(),
-        cameraPermissionInteractor: CameraPermissionInteractor = CameraPermissionInteractorLive(),
+        interactor: AVPermissionInteractor = AVPermissionInteractorLive(),
         env: AppEnvironment = .shared
     ) {
-        self.audioPermissionInteractor = audioPermissionInteractor
-        self.cameraPermissionInteractor = cameraPermissionInteractor
+        self.interactor = interactor
         self.env = env
     }
 
     // MARK: - Main methods
 
     public func performAfterCameraPermission(from viewController: WeakViewController, action: @escaping () -> Void) {
-        if let isPermitted = cameraPermissionInteractor.isCameraPermitted {
+        if let isPermitted = interactor.isCameraPermitted {
             cameraPermissionHandler(isPermitted, from: viewController, action: action)
         } else {
-            cameraPermissionInteractor.requestCameraPermission { isPermitted in
+            interactor.requestCameraPermission { isPermitted in
                 performUIUpdate {
                     cameraPermissionHandler(isPermitted, from: viewController, action: action)
                 }
@@ -49,10 +46,10 @@ public struct AVPermissionViewModel {
     }
 
     public func performAfterMicrophonePermission(from viewController: WeakViewController, action: @escaping () -> Void) {
-        if let isPermitted = audioPermissionInteractor.isMicrophonePermitted {
+        if let isPermitted = interactor.isMicrophonePermitted {
             microphonePermissionHandler(isPermitted, from: viewController, action: action)
         } else {
-            audioPermissionInteractor.requestMicrophonePermission { isPermitted in
+            interactor.requestMicrophonePermission { isPermitted in
                 performUIUpdate {
                     microphonePermissionHandler(isPermitted, from: viewController, action: action)
                 }
@@ -127,56 +124,5 @@ public struct AVPermissionViewModel {
         )
 
         env.router.show(alert, from: viewController, options: .modal())
-    }
-}
-
-// MARK: - Audio Permissions
-
-public protocol AudioPermissionInteractor {
-    var isMicrophonePermitted: Bool? { get }
-    func requestMicrophonePermission(_ response: @escaping (Bool) -> Void)
-}
-
-public struct AudioPermissionInteractorLive: AudioPermissionInteractor {
-    private let audioApplication: AVAudioApplication
-
-    public init() {
-        audioApplication = .shared
-    }
-
-    public var isMicrophonePermitted: Bool? {
-        switch audioApplication.recordPermission {
-        case .granted: true
-        case .denied: false
-        default: nil
-        }
-    }
-
-    public func requestMicrophonePermission(_ response: @escaping (Bool) -> Void) {
-        AVAudioApplication.requestRecordPermission(completionHandler: response)
-    }
-}
-
-// MARK: - Camera Permissions
-
-public protocol CameraPermissionInteractor {
-    var isCameraPermitted: Bool? { get }
-    func requestCameraPermission(_ response: @escaping (Bool) -> Void)
-}
-
-public struct CameraPermissionInteractorLive: CameraPermissionInteractor {
-
-    public init() { }
-
-    public var isCameraPermitted: Bool? {
-        switch AVCaptureDevice.authorizationStatus(for: .video) {
-        case .authorized: true
-        case .denied, .restricted: false
-        default: nil
-        }
-    }
-
-    public func requestCameraPermission(_ response: @escaping (Bool) -> Void) {
-        AVCaptureDevice.requestAccess(for: .video, completionHandler: response)
     }
 }
