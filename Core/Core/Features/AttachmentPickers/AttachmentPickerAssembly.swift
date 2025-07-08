@@ -25,21 +25,21 @@ public enum AttachmentPickerAssembly {
     public static func makeImagePicker(
         onSelect: @escaping (URL) -> Void
     ) -> ImagePickerView {
-        ImagePickerView(sourceType: .photoLibrary, imageHandler: onSelect)
+        ImagePickerView(sourceType: .photoLibrary, imageUrlHandler: onSelect)
     }
 
     /// Allows taking photo & recording video
     public static func makeImageRecorder(
         onSelect: @escaping (URL) -> Void
     ) -> ImagePickerView {
-        ImagePickerView(sourceType: .camera, imageHandler: onSelect)
+        ImagePickerView(sourceType: .camera, imageUrlHandler: onSelect)
     }
 
     /// Allows recording video only
     public static func makeVideoRecorder(
         onSelect: @escaping (URL) -> Void
     ) -> ImagePickerView {
-        ImagePickerView(sourceType: .camera, allowedMediaTypes: .videoOnly, imageHandler: onSelect)
+        ImagePickerView(sourceType: .camera, allowedMediaTypes: .videoOnly, imageUrlHandler: onSelect)
     }
 
     public static func makeAudioRecorder(

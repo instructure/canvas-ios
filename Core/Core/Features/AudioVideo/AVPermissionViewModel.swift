@@ -49,10 +49,10 @@ public struct AVPermissionViewModel {
     }
 
     public func performAfterMicrophonePermission(from viewController: WeakViewController, action: @escaping () -> Void) {
-        if let isPermitted = audioPermissionInteractor.isAudioRecordingPermitted {
+        if let isPermitted = audioPermissionInteractor.isMicrophonePermitted {
             microphonePermissionHandler(isPermitted, from: viewController, action: action)
         } else {
-            audioPermissionInteractor.requestAudioRecordPermission { isPermitted in
+            audioPermissionInteractor.requestMicrophonePermission { isPermitted in
                 performUIUpdate {
                     microphonePermissionHandler(isPermitted, from: viewController, action: action)
                 }
@@ -76,7 +76,7 @@ public struct AVPermissionViewModel {
         if isPermitted {
             action()
         } else {
-            viewController.value.showPermissionError(.camera)
+            showCameraPermissionError(from: viewController)
         }
     }
 
@@ -88,7 +88,7 @@ public struct AVPermissionViewModel {
         if isPermitted {
             action()
         } else {
-            viewController.value.showPermissionError(.microphone)
+            showMicrophonePermissionError(from: viewController)
         }
     }
 
@@ -133,8 +133,8 @@ public struct AVPermissionViewModel {
 // MARK: - Audio Permissions
 
 public protocol AudioPermissionInteractor {
-    var isAudioRecordingPermitted: Bool? { get }
-    func requestAudioRecordPermission(_ response: @escaping (Bool) -> Void)
+    var isMicrophonePermitted: Bool? { get }
+    func requestMicrophonePermission(_ response: @escaping (Bool) -> Void)
 }
 
 public struct AudioPermissionInteractorLive: AudioPermissionInteractor {
@@ -144,7 +144,7 @@ public struct AudioPermissionInteractorLive: AudioPermissionInteractor {
         audioApplication = .shared
     }
 
-    public var isAudioRecordingPermitted: Bool? {
+    public var isMicrophonePermitted: Bool? {
         switch audioApplication.recordPermission {
         case .granted: true
         case .denied: false
@@ -152,7 +152,7 @@ public struct AudioPermissionInteractorLive: AudioPermissionInteractor {
         }
     }
 
-    public func requestAudioRecordPermission(_ response: @escaping (Bool) -> Void) {
+    public func requestMicrophonePermission(_ response: @escaping (Bool) -> Void) {
         AVAudioApplication.requestRecordPermission(completionHandler: response)
     }
 }

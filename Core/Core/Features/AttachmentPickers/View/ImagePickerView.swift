@@ -21,6 +21,8 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 public struct ImagePickerView: UIViewControllerRepresentable {
+    public typealias Context = UIViewControllerRepresentableContext<ImagePickerView>
+    public typealias ImageUrlHandler = (URL) -> Void
 
     public enum MediaType {
         case photoOnly
@@ -28,30 +30,27 @@ public struct ImagePickerView: UIViewControllerRepresentable {
         case photoAndVideo
     }
 
-    public typealias ImagePickedHandler = (URL) -> Void
-
-    @Environment(\.presentationMode) private var presentationMode
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private let sourceType: UIImagePickerController.SourceType
     private let allowedMediaTypes: MediaType
-    private let imageHandler: ImagePickedHandler
+    private let imageUrlHandler: ImageUrlHandler
 
     public init(
         sourceType: UIImagePickerController.SourceType,
         allowedMediaTypes: MediaType = .photoAndVideo,
-        imageHandler: @escaping ImagePickedHandler
+        imageUrlHandler: @escaping ImageUrlHandler
     ) {
         self.sourceType = sourceType
         self.allowedMediaTypes = allowedMediaTypes
-        self.imageHandler = imageHandler
+        self.imageUrlHandler = imageUrlHandler
     }
 
     public func makeCoordinator() -> Coordinator {
-        return Coordinator(self, imageHandler: imageHandler)
+        return Coordinator(self, imageUrlHandler: imageUrlHandler)
     }
 
-    public func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerView>) -> UIImagePickerController {
+    public func makeUIViewController(context: Context) -> UIImagePickerController {
 
         let imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = false
@@ -72,29 +71,27 @@ public struct ImagePickerView: UIViewControllerRepresentable {
         return imagePicker
     }
 
-    public func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePickerView>) {
-    }
+    public func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) { }
 
     final public class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
         let parent: ImagePickerView
-        let imageHandler: ImagePickedHandler
+        let imageUrlHandler: ImageUrlHandler
 
-        init(_ parent: ImagePickerView, imageHandler: @escaping ImagePickedHandler) {
+        init(_ parent: ImagePickerView, imageUrlHandler: @escaping ImageUrlHandler) {
             self.parent = parent
-            self.imageHandler = imageHandler
+            self.imageUrlHandler = imageUrlHandler
         }
 
         public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-
-            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            if let image = info[.originalImage] as? UIImage {
                 if let url = try? image.write() {
-                    imageHandler(url)
+                    imageUrlHandler(url)
                 }
             }
 
             if let url = info[.mediaURL] as? URL {
-                imageHandler(url)
+                imageUrlHandler(url)
             }
         }
     }
