@@ -55,6 +55,8 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     public var batchID = ""
     public var maxFileCount = Int.max
 
+    private let avPermissionViewModel: AVPermissionViewModel = .init()
+
     private var subscriptions = Set<AnyCancellable>()
 
     public lazy var files = env.uploadManager.subscribe(batchID: batchID) { [weak self] in
@@ -253,24 +255,14 @@ extension FilePickerViewController: UITabBarDelegate {
         guard let source = FilePickerSource(rawValue: item.tag) else { return }
         switch source {
         case .camera:
-            VideoRecorder.requestPermission { [weak self] allowed in
-                guard let self = self else { return }
-                guard allowed else {
-                    self.showPermissionError(.camera)
-                    return
-                }
-                AudioRecorder.requestPermission { allowed in
-                    guard allowed else {
-                        self.showPermissionError(.microphone)
-                        return
-                    }
-                    guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
-                    let cameraController = UIImagePickerController()
-                    cameraController.delegate = self
-                    cameraController.sourceType = .camera
-                    cameraController.mediaTypes = self.mediaTypes
-                    self.env.router.show(cameraController, from: self, options: .modal())
-                }
+            avPermissionViewModel.performAfterVideoPermissions(from: .init(self)) { [weak self] in
+                guard let self, UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+
+                let cameraController = UIImagePickerController()
+                cameraController.delegate = self
+                cameraController.sourceType = .camera
+                cameraController.mediaTypes = self.mediaTypes
+                self.env.router.show(cameraController, from: self, options: .modal())
             }
         case .library:
             guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
@@ -285,12 +277,9 @@ extension FilePickerViewController: UITabBarDelegate {
             documentPicker.delegate = self
             env.router.show(documentPicker, from: self, options: .modal())
         case .audio:
-            AudioRecorder.requestPermission { [weak self] allowed in
-                guard let self = self else { return }
-                guard allowed else {
-                    self.showPermissionError(.microphone)
-                    return
-                }
+            avPermissionViewModel.performAfterMicrophonePermission(from: .init(self)) { [weak self] in
+                guard let self else { return }
+
                 let audioRecorder = AudioRecorderViewController.create()
                 audioRecorder.delegate = self
                 audioRecorder.view.backgroundColor = .backgroundLightest
