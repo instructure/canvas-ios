@@ -98,8 +98,6 @@ final class ComposeMessageViewModel: ObservableObject {
     private let recipientInteractor: RecipientInteractor
     private let settingsInteractor: InboxSettingsInteractor
     private let avPermissionViewModel: AVPermissionViewModel
-    private let audioSession: AudioSessionProtocol
-    private let cameraPermissionService: CameraPermissionService.Type
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var messageType: ComposeMessageOptions.MessageType
     private var allRecipients = CurrentValueSubject<[Recipient], Never>([])
@@ -116,9 +114,7 @@ final class ComposeMessageViewModel: ObservableObject {
         interactor: ComposeMessageInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         recipientInteractor: RecipientInteractor,
-        inboxSettingsInteractor: InboxSettingsInteractor,
-        audioSession: AudioSessionProtocol,
-        cameraPermissionService: CameraPermissionService.Type
+        inboxSettingsInteractor: InboxSettingsInteractor
     ) {
         self.interactor = interactor
         self.router = router
@@ -127,8 +123,6 @@ final class ComposeMessageViewModel: ObservableObject {
         self.recipientInteractor = recipientInteractor
         self.settingsInteractor = inboxSettingsInteractor
         self.avPermissionViewModel = .init()
-        self.audioSession = audioSession
-        self.cameraPermissionService = cameraPermissionService
         setIncludedMessages(messageType: options.messageType)
         setOptionItems(options: options)
 
