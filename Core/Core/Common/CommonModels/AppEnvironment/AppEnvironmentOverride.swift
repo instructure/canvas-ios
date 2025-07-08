@@ -33,6 +33,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
     }
 
     public override var root: AppEnvironment { base }
+    public override var shardID: String? { currentSession?.accessToken?.shardID  }
 
     private lazy var apiOverride: API = {
         API(currentSession, baseURL: baseURL)

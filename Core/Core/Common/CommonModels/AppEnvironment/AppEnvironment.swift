@@ -64,6 +64,7 @@ open class AppEnvironment {
     }
 
     open var root: AppEnvironment { self }
+    open var shardID: String? { nil }
 
     /**
      - parameters:
