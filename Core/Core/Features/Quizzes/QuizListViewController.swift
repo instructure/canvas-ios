@@ -37,13 +37,13 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
         eventName: "courses/\(courseID)/quizzes"
     )
 
-    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+    lazy var colors = env.root.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
     }
-    lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+    lazy var course = env.root.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()
     }
-    lazy var quizzes = env.subscribe(GetQuizzes(courseID: courseID)) { [weak self] in
+    lazy var quizzes = env.subscribe(GetQuizzes(courseID: courseID.localID)) { [weak self] in
         self?.update()
     }
 

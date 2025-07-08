@@ -206,7 +206,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
                     return
                 } else {
                     GetQuiz(courseID: self.courseID, quizID: self.quizID)
-                        .fetch(force: true)
+                        .fetch(environment: self.env, force: true)
                     self.saveAssignment(router: router, viewController: viewController)
                 }
             }

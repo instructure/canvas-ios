@@ -122,7 +122,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
         )
         let assignmentListStore = ReactiveStore(
             useCase: GetAssignmentsByGroup(
-                courseID: courseID,
+                courseID: courseID.localID,
                 gradingPeriodID: gradingPeriodID,
                 gradedOnly: true,
                 userID: filterAssignmentsToUserID ? userID : nil

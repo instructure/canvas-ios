@@ -50,7 +50,7 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
     private let quizID: String
     private let courseID: String
     private var refreshCompletion: (() -> Void)?
-    private lazy var courseUseCase = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+    private lazy var courseUseCase = env.root.subscribe(GetCourse(courseID: courseID.withShardID)) { [weak self] in
         self?.courseDidUpdate()
     }
 

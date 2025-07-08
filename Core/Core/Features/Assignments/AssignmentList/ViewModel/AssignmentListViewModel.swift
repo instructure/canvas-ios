@@ -94,7 +94,7 @@ public class AssignmentListViewModel: ObservableObject {
     private var userDefaults: SessionDefaults?
     let courseID: String
 
-    private lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+    private lazy var course = env.root.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.courseDidUpdate()
     }
 
@@ -183,7 +183,7 @@ public class AssignmentListViewModel: ObservableObject {
             isFilterIconSolid = selectedGradingPeriodId != defaultGradingPeriodId || (isFilteringCustom && selectedFilterOptionsStudent != initialFilterOptionsStudent)
         }
 
-        assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: selectedGradingPeriodId)) { [weak self] in
+        assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID.localID, gradingPeriodID: selectedGradingPeriodId)) { [weak self] in
             self?.assignmentGroupsDidUpdate()
         }
 
