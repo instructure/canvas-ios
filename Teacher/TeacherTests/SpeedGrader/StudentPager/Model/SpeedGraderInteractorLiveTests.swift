@@ -110,10 +110,10 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             assignmentID: testData.assignmentId
         )
         api.mock(getSubmission, value: [
-            .make(id: "1", submission_history: [], submission_type: .online_upload, user_id: "1", workflow_state: .unsubmitted),
+            .make(id: "1", submission_history: [], submission_type: .online_upload, submitted_at: nil, user_id: "1", workflow_state: .unsubmitted),
             .make(id: "2", submission_history: [], submission_type: .online_upload, user_id: "2", workflow_state: .pending_review),
             .make(id: "3", score: 98, submission_history: [], submission_type: .online_upload, user_id: "3", workflow_state: .graded),
-            .make(id: "4", submission_history: [], submission_type: .online_upload, user_id: "4", workflow_state: .unsubmitted),
+            .make(id: "4", submission_history: [], submission_type: .online_upload, submitted_at: nil, user_id: "4", workflow_state: .unsubmitted),
             .make(id: "5", submission_history: [], submission_type: .online_upload, user_id: "5")
         ])
 
