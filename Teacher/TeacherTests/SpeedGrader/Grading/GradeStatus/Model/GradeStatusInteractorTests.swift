@@ -52,7 +52,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
             isExcused: nil,
             isLate: nil
         )
-        XCTAssertEqual(custom?.id, "custom1")
+        XCTAssertEqual(custom.id, "custom1")
 
         let excused = testee.gradeStatusFor(
             customGradeStatusId: nil,
@@ -60,7 +60,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
             isExcused: true,
             isLate: nil
         )
-        XCTAssertEqual(excused?.id, "excused")
+        XCTAssertEqual(excused.id, "excused")
 
         let late = testee.gradeStatusFor(
             customGradeStatusId: nil,
@@ -68,15 +68,15 @@ class GradeStatusInteractorTests: TeacherTestCase {
             isExcused: nil,
             isLate: nil
         )
-        XCTAssertEqual(late?.id, "late")
+        XCTAssertEqual(late.id, "late")
 
-        let notFound = testee.gradeStatusFor(
+        let noStatusGiven = testee.gradeStatusFor(
             customGradeStatusId: nil,
             latePolicyStatus: nil,
             isExcused: nil,
             isLate: nil
         )
-        XCTAssertNil(notFound)
+        XCTAssertEqual(noStatusGiven, .none)
 
         let lateByIsLate = testee.gradeStatusFor(
             customGradeStatusId: nil,
@@ -84,7 +84,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
             isExcused: nil,
             isLate: true
         )
-        XCTAssertEqual(lateByIsLate?.id, "late")
+        XCTAssertEqual(lateByIsLate.id, "late")
     }
 
     func test_observeGradeStatusChanges_emits() {
