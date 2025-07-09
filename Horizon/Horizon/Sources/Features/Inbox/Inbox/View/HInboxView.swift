@@ -36,7 +36,7 @@ struct HInboxView: View {
                         config: .init(refreshable: true),
                         refreshAction: viewModel.refresh
                     ) { _ in
-                        VStack(alignment: .leading, spacing: HorizonUI.spaces.space16) {
+                        VStack(alignment: .leading, spacing: HorizonUI.spaces.space12) {
                             filterSelection
 
                             peopleSelection
