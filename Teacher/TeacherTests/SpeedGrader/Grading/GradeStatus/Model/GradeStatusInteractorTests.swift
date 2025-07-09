@@ -38,11 +38,13 @@ class GradeStatusInteractorTests: TeacherTestCase {
         XCTAssertFinish(testee.fetchGradeStatuses())
 
         // THEN
-        XCTAssertEqual(testee.gradeStatuses.count, 4)
-        XCTAssertEqual(testee.gradeStatuses[0].id, "excused")
-        XCTAssertEqual(testee.gradeStatuses[1].id, "late")
-        XCTAssertEqual(testee.gradeStatuses[2].id, "custom1")
-        XCTAssertEqual(testee.gradeStatuses[3].id, "custom2")
+        XCTAssertEqual(testee.gradeStatuses.count, 5)
+        // Verify sorting: "None" first, then standard statuses in API order, then custom statuses in API order
+        XCTAssertEqual(testee.gradeStatuses[0].id, "none")
+        XCTAssertEqual(testee.gradeStatuses[1].id, "excused")
+        XCTAssertEqual(testee.gradeStatuses[2].id, "late")
+        XCTAssertEqual(testee.gradeStatuses[3].id, "custom1")
+        XCTAssertEqual(testee.gradeStatuses[4].id, "custom2")
 
         let custom = testee.gradeStatusFor(
             customGradeStatusId: "custom1",
@@ -154,10 +156,43 @@ class GradeStatusInteractorTests: TeacherTestCase {
                             .init(name: "Custom2", id: "custom2")
                         ]
                     ),
-                    gradeStatuses: ["excused", "late"]
+                    gradeStatuses: ["excused", "late", "none"]
                 )
             )
         )
         api.mock(request, value: response)
+    }
+
+    func test_fetchGradeStatuses_sortingOrder() {
+        let testee = GradeStatusInteractorLive(courseId: "1", assignmentId: "1", api: api)
+
+        // Mock API with mixed order to verify sorting
+        let request = GetGradeStatusesRequest(courseID: "1")
+        let response = GetGradeStatusesResponse(
+            data: .init(
+                course: .init(
+                    customGradeStatusesConnection: .init(
+                        nodes: [
+                            .init(name: "ZCustom", id: "zcustom"),
+                            .init(name: "ACustom", id: "acustom")
+                        ]
+                    ),
+                    gradeStatuses: ["late", "none", "excused"]
+                )
+            )
+        )
+        api.mock(request, value: response)
+
+        // WHEN
+        XCTAssertFinish(testee.fetchGradeStatuses())
+
+        // THEN
+        XCTAssertEqual(testee.gradeStatuses.count, 5)
+        // Verify sorting: "None" first, then remaining defaults in API order, then custom in API order
+        XCTAssertEqual(testee.gradeStatuses[0].id, "none")
+        XCTAssertEqual(testee.gradeStatuses[1].id, "late")
+        XCTAssertEqual(testee.gradeStatuses[2].id, "excused")
+        XCTAssertEqual(testee.gradeStatuses[3].id, "zcustom")
+        XCTAssertEqual(testee.gradeStatuses[4].id, "acustom")
     }
 }
