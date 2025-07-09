@@ -82,12 +82,6 @@ class HInboxViewModel {
     // MARK: - Private
     private var filterSubject: CurrentValueRelay<FilterOption> = CurrentValueRelay(FilterOption.all)
     private var hasNextPage: Bool = false
-    // don't do animations until the user updates the filter or search
-    private var isSearchFocused: Bool = false {
-        didSet {
-            onSearchFocused()
-        }
-    }
     private var searchAPITask: APITask?
     private var searchDebounceTask: Task<Void, Never>?
     private var subscriptions = Set<AnyCancellable>()
@@ -146,6 +140,14 @@ class HInboxViewModel {
             }
         }
         .store(in: &subscriptions)
+
+        peopleSelectionViewModel.isFocusedSubject
+            .sink { [weak self] isFocused in
+                if isFocused && self?.isMessagesFilterFocused == true {
+                    self?.isMessagesFilterFocused = false
+                }
+            }
+            .store(in: &subscriptions)
     }
 
     func goBack(_ viewController: WeakViewController) {
@@ -255,14 +257,8 @@ class HInboxViewModel {
     }
 
     private func onMessagesFilterFocused() {
-        if isMessagesFilterFocused {
-            isSearchFocused = false
-        }
-    }
-
-    private func onSearchFocused() {
-        if isSearchFocused {
-            isMessagesFilterFocused = false
+        if isMessagesFilterFocused && peopleSelectionViewModel.isFocused {
+            peopleSelectionViewModel.isFocused = false
         }
     }
 

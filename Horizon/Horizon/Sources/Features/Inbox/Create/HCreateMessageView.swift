@@ -41,6 +41,7 @@ struct HCreateMessageView: View {
         AttachmentView(viewModel: viewModel.attachmentViewModel) {
             ScrollView {
                 VStack(alignment: .leading, spacing: .huiSpaces.space12) {
+                    courseSelection
                     peopleSelection
                     messageTitleInput
                     messageBodyInput
@@ -53,6 +54,17 @@ struct HCreateMessageView: View {
             .padding(.horizontal, .huiSpaces.space24)
             .frame(maxHeight: .infinity, alignment: .topLeading)
         }
+    }
+
+    private var courseSelection: some View {
+        HorizonUI.SingleSelect(
+            selection: $viewModel.selectedCourse,
+            focused: $viewModel.isCourseFocused,
+            options: viewModel.courses,
+            disabled: viewModel.isCourseSelectionDisabled,
+            placeholder: String(localized: "Select a course", bundle: .horizon),
+            zIndex: 102
+        )
     }
 
     private var fileAttachmentButtonRow: some View {

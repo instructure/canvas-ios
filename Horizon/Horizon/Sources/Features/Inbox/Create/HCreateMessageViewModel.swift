@@ -33,30 +33,47 @@ class HCreateMessageViewModel {
     var attachmentItems: [AttachmentItemViewModel] {
         attachmentViewModel.items
     }
+    var courses: [String] = [] {
+        didSet {
+            selectedCourse = courses.first ?? ""
+        }
+    }
     var isBodyDisabled: Bool {
         isSending
     }
     var isCloseDisabled: Bool {
         isSending
     }
-    var isPeopleSelectionDisabled: Bool {
+    var isCourseSelectionDisabled: Bool {
         isSending
+    }
+    var isCourseFocused: Bool = false {
+        didSet {
+            if isCourseFocused == true && peopleSelectionViewModel.isFocused == true {
+                peopleSelectionViewModel.isFocused = false
+            }
+        }
+    }
+    var isPeopleSelectionDisabled: Bool {
+        selectedCourse.isEmpty || isSending
+    }
+    var isSendDisabled: Bool {
+        selectedCourse.isEmpty ||
+            subject.isEmpty ||
+            body.isEmpty ||
+            peopleSelectionViewModel.searchByPersonSelections.isEmpty ||
+            isSending ||
+            attachmentViewModel.isUploading
     }
     var isSubjectDisabled: Bool {
         isSending
     }
+    var selectedCourse: String = ""
     var sendButtonOpacity: Double {
         isSending ? 0.0 : 1.0
     }
     var spinnerOpacity: Double {
         isSending ? 1.0 : 0.0
-    }
-    var isSendDisabled: Bool {
-        subject.isEmpty ||
-            body.isEmpty ||
-            peopleSelectionViewModel.searchByPersonSelections.isEmpty ||
-            isSending ||
-            attachmentViewModel.isUploading
     }
     var subject: String = ""
 
@@ -92,6 +109,23 @@ class HCreateMessageViewModel {
         self.composeMessageInteractor = composeMessageInteractor
         self.inboxMessageInteractor = inboxMessageInteractor
         self.router = router
+
+        peopleSelectionViewModel
+            .isFocusedSubject
+            .sink { [weak self] isFocused in
+                if isFocused && self?.isCourseFocused == true {
+                    self?.isCourseFocused = false
+                }
+            }
+            .store(in: &subscriptions)
+
+        inboxMessageInteractor
+            .courses
+            .map { $0.map { $0.name } }
+            .sink { [weak self] courses in
+                self?.courses = courses
+            }
+            .store(in: &subscriptions)
     }
 
     // MARK: - Inputs
@@ -116,6 +150,9 @@ class HCreateMessageViewModel {
 
     // MARK: - Private Methods
     private func sendMessage() async {
+        guard let courseID = inboxMessageInteractor.courses.value.first(where: { $0.name == selectedCourse })?.courseId else {
+            return
+        }
         await withCheckedContinuation { continuation in
             let attachmentIds = attachmentViewModel.items.compactMap { $0.id }
             return self.composeMessageInteractor.createConversation(
@@ -124,6 +161,7 @@ class HCreateMessageViewModel {
                     body: self.body,
                     recipientIDs: self.peopleSelectionViewModel.recipientIDs,
                     attachmentIDs: attachmentIds,
+                    context: .course(courseID),
                     bulkMessage: false
                 )
             )

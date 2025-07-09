@@ -99,7 +99,7 @@ extension HorizonUI {
             .background(.clear)
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: bodyHeight, alignment: .top)
-            .padding(.vertical, 1)
+            .padding(3)
             .zIndex(zIndex)
         }
 

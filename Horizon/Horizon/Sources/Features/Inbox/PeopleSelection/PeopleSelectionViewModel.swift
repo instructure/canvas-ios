@@ -27,8 +27,10 @@ class PeopleSelectionViewModel {
     var isFocused: Bool = false {
         didSet {
             onFocused()
+            isFocusedSubject.send(isFocused)
         }
     }
+    let isFocusedSubject = CurrentValueSubject<Bool, Never>(false)
     var personOptions: [HorizonUI.MultiSelect.Option] = []
     var recipientIDs: [String] {
         searchByPersonSelections.map { $0.id }
