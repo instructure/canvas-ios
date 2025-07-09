@@ -30,7 +30,6 @@ public class CalendarFilterViewModel: ObservableObject {
     @Published public private(set) var filterLimitMessage: String?
     public let pageTitle = String(localized: "Calendars", bundle: .core)
     public let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/filter")
-    public let snackbarViewModel = SnackBarViewModel()
 
     // MARK: - Inputs
     public let didTapSelectAllButton = PassthroughSubject<Void, Never>()
@@ -99,17 +98,9 @@ public class CalendarFilterViewModel: ObservableObject {
             .map { options in
                 Set(options.compactMap { Context(canvasContextID: $0.id) })
             }
-            .flatMap { [interactor, snackbarViewModel, weak self] contexts in
+            .flatMap { [interactor] contexts in
                 interactor
                     .updateFilteredContexts(contexts)
-                    .catch { _ in
-                        // roll back selection
-                        let oldContexts = interactor.selectedContexts.value
-                        self?.setSelectedOptions(with: oldContexts)
-                        // notify user
-                        let limit = interactor.filterCountLimit.value.rawValue
-                        return snackbarViewModel.showFilterLimitReachedMessage(limit: limit)
-                    }
             }
             .sink()
             .store(in: &subscriptions)
@@ -157,14 +148,14 @@ public class CalendarFilterViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
 
-        Publishers.CombineLatest(
-            interactor.selectedContexts,
-            interactor.filterCountLimit
-        )
-            .map { (selectedContexts, filterCountLimit) in
-                if filterCountLimit != .unlimited, selectedContexts.isEmpty {
-                    return nil
-                }
+//        Publishers.(
+            interactor.selectedContexts
+//            interactor.filterCountLimit
+//        )
+            .map { (selectedContexts) in
+//                if filterCountLimit != .unlimited, selectedContexts.isEmpty {
+//                    return nil
+//                }
 
                 return selectedContexts.isEmpty ? String(localized: "Select all", bundle: .core)
                                                 : String(localized: "Deselect all", bundle: .core)
@@ -172,18 +163,18 @@ public class CalendarFilterViewModel: ObservableObject {
             .assign(to: \.selectAllButtonTitle, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
-        interactor
-            .filterCountLimit
-            .map { limit -> String? in
-                switch limit {
-                case .base, .extended:
-                    return String(localized: "Select the calendars you want to see, up to \(limit.rawValue).", bundle: .core)
-                case .unlimited:
-                    return nil
-                }
-            }
-            .assign(to: \.filterLimitMessage, on: self, ownership: .weak)
-            .store(in: &subscriptions)
+//        interactor
+//            .filterCountLimit
+//            .map { limit -> String? in
+//                switch limit {
+//                case .base, .extended:
+//                    return String(localized: "Select the calendars you want to see, up to \(limit.rawValue).", bundle: .core)
+//                case .unlimited:
+//                    return nil
+//                }
+//            }
+//            .assign(to: \.filterLimitMessage, on: self, ownership: .weak)
+//            .store(in: &subscriptions)
 
         interactor
             .filters
