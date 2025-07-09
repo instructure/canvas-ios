@@ -149,16 +149,16 @@ class QuizzesTests: E2ETestCase {
         XCTAssertTrue(length.waitUntil(.visible).isVisible)
 
         allowMultipleAttempts.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
-        allowMultipleAttempts.hit()
+        allowMultipleAttempts.actionUntilElementCondition(action: .tap, element: allowedAttempts, condition: .visible)
         XCTAssertTrue(allowedAttempts.waitUntil(.visible).isVisible)
         XCTAssertTrue(scoreToKeep.waitUntil(.visible).isVisible)
 
         showOneQuestionAtATime.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
-        showOneQuestionAtATime.hit()
+        showOneQuestionAtATime.actionUntilElementCondition(action: .tap, element: lockQuestions, condition: .visible)
         XCTAssertTrue(lockQuestions.waitUntil(.visible).isVisible)
 
         requireAccessCode.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
-        requireAccessCode.hit()
+        requireAccessCode.actionUntilElementCondition(action: .tap, element: accessCode, condition: .visible)
         XCTAssertTrue(accessCode.waitUntil(.visible).isVisible)
     }
 }
