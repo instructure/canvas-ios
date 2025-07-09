@@ -128,12 +128,18 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         isCalendarFilterLimitEnabled: Bool,
         ignoreCache: Bool
     ) -> AnyPublisher<CalendarFilterCountLimit, Error> {
-        let useCase = GetEnvironmentSettings()
-        return ReactiveStore(useCase: useCase)
-            .getEntities(ignoreCache: ignoreCache)
-            .map { $0.first }
-            .map { $0.calendarFilterCountLimit(isCalendarFilterLimitEnabled: isCalendarFilterLimitEnabled) }
-            .eraseToAnyPublisher()
+        if isCalendarFilterLimitEnabled {
+            let useCase = GetEnvironmentSettings()
+            return ReactiveStore(useCase: useCase)
+                .getEntities(ignoreCache: ignoreCache)
+                .map { $0.first }
+                .map { $0.calendarFilterCountLimit(isCalendarFilterLimitEnabled: isCalendarFilterLimitEnabled) }
+                .eraseToAnyPublisher()
+        } else {
+            return Just(CalendarFilterCountLimit.unlimited)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
     }
 
     private func observeUserDefaultChanges() {
