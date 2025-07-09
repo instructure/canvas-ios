@@ -22,6 +22,7 @@ import Foundation
 
 public protocol CalendarFilterInteractor: AnyObject {
     var filters: CurrentValueSubject<[CDCalendarFilterEntry], Never> { get }
+    var filterCountLimit: CurrentValueSubject<CalendarFilterCountLimit, Never> { get }
     var selectedContexts: CurrentValueSubject<Set<Context>, Never> { get }
 
     func load(ignoreCache: Bool) -> AnyPublisher<Void, Error>
@@ -32,10 +33,12 @@ public protocol CalendarFilterInteractor: AnyObject {
 
 public class CalendarFilterInteractorLive: CalendarFilterInteractor {
     public let filters = CurrentValueSubject<[CDCalendarFilterEntry], Never>([])
+    public let filterCountLimit = CurrentValueSubject<CalendarFilterCountLimit, Never>(.unlimited)
     public let selectedContexts = CurrentValueSubject<Set<Context>, Never>(Set())
 
     private let observedUserId: String?
     private var userDefaults: SessionDefaults?
+    private let isCalendarFilterLimitEnabled: Bool
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let filterProvider: CalendarFilterEntryProvider
     private var subscriptions = Set<AnyCancellable>()
@@ -44,11 +47,13 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         observedUserId: String?,
         userDefaults: SessionDefaults? = AppEnvironment.shared.userDefaults,
         filterProvider: CalendarFilterEntryProvider,
+        isCalendarFilterLimitEnabled: Bool = AppEnvironment.shared.app.isCalendarFilterLimitEnabled,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.observedUserId = observedUserId
         self.userDefaults = userDefaults
         self.filterProvider = filterProvider
+        self.isCalendarFilterLimitEnabled = isCalendarFilterLimitEnabled
         self.scheduler = scheduler
 
         observeUserDefaultChanges()
@@ -64,20 +69,30 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
             .getEntities(ignoreCache: ignoreCache)
             .mapToVoid()
             .flatMap { filterPublisher }
-            .map { [userDefaults, observedUserId] filters in
+            .flatMap { [isCalendarFilterLimitEnabled] filters in
+                Self.fetchFilterLimit(
+                    isCalendarFilterLimitEnabled: isCalendarFilterLimitEnabled,
+                    ignoreCache: ignoreCache
+                )
+                .map { limit in
+                    (filters, limit)
+                }
+            }
+            .map { [userDefaults, observedUserId] (filters, limit) in
                 let selectedContexts: Set<Context> = {
                     if let loadedContexts = userDefaults?.calendarSelectedContexts(observedStudentId: observedUserId) {
                         return loadedContexts.removeUnavailableFilters(filters: filters)
                     } else {
-                        return filters.defaultFilters()
+                        return filters.defaultFilters(limit: limit)
                     }
                 }()
 
-                return (filters, selectedContexts)
+                return (filters, limit, selectedContexts)
             }
-            .map { [weak self] (filters, selectedContexts) in
+            .map { [weak self] (filters, limit, selectedContexts) in
                 guard let self else { return }
                 self.filters.send(filters)
+                filterCountLimit.send(limit)
                 self.selectedContexts.send(selectedContexts)
                 userDefaults?.setCalendarSelectedContexts(selectedContexts, observedStudentId: observedUserId)
 
@@ -88,6 +103,10 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
 
     public func updateFilteredContexts(_ contexts: Set<Context>) -> AnyPublisher<Void, Error> {
         guard var defaults = userDefaults else {
+            return Fail(error: NSError.internalError()).eraseToAnyPublisher()
+        }
+
+        if contexts.count > filterCountLimit.value.rawValue {
             return Fail(error: NSError.internalError()).eraseToAnyPublisher()
         }
 
@@ -104,6 +123,19 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
     }
 
     // MARK: - Private
+
+    private static func fetchFilterLimit(
+        isCalendarFilterLimitEnabled: Bool,
+        ignoreCache: Bool
+    ) -> AnyPublisher<CalendarFilterCountLimit, Error> {
+        let useCase = GetEnvironmentSettings()
+        return ReactiveStore(useCase: useCase)
+            .getEntities(ignoreCache: ignoreCache)
+            .map { $0.first }
+            .map { $0.calendarFilterCountLimit(isCalendarFilterLimitEnabled: isCalendarFilterLimitEnabled) }
+            .eraseToAnyPublisher()
+    }
+
     private func observeUserDefaultChanges() {
         NotificationCenter
             .default
@@ -132,8 +164,9 @@ private extension Set where Element == Context {
 
 private extension Array where Element == CDCalendarFilterEntry {
 
-    func defaultFilters() -> Set<Context> {
+    func defaultFilters(limit: CalendarFilterCountLimit) -> Set<Context> {
         // using compactMap here to handle invalid contextIDs, which may have been cached before
-        Set(sorted().compactMap { $0.wrappedContext })
+        let contexts = sorted().compactMap { $0.wrappedContext }
+        return Set(contexts.prefix(limit.rawValue))
     }
 }

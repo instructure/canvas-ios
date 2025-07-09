@@ -24,6 +24,7 @@ import UIKit
 public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
     public var filters = CurrentValueSubject<[CDCalendarFilterEntry], Never>([])
     public var selectedContexts = CurrentValueSubject<Set<Context>, Never>(Set())
+    public var filterCountLimit = CurrentValueSubject<CalendarFilterCountLimit, Never>(.extended(20))
     public var mockedFilters: [(String, Context)] = [
         ("Test User", .user("1")),
 
