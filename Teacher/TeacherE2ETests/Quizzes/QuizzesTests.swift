@@ -144,20 +144,20 @@ class QuizzesTests: E2ETestCase {
         let addDueDate = EditorHelper.addDueDate.waitUntil(.visible)
         XCTAssertTrue(addDueDate.isVisible)
 
-        timeLimit.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
+        timeLimit.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
         timeLimit.hit()
         XCTAssertTrue(length.waitUntil(.visible).isVisible)
 
-        allowMultipleAttempts.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
+        allowMultipleAttempts.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
         allowMultipleAttempts.hit()
         XCTAssertTrue(allowedAttempts.waitUntil(.visible).isVisible)
         XCTAssertTrue(scoreToKeep.waitUntil(.visible).isVisible)
 
-        showOneQuestionAtATime.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
+        showOneQuestionAtATime.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
         showOneQuestionAtATime.hit()
         XCTAssertTrue(lockQuestions.waitUntil(.visible).isVisible)
 
-        requireAccessCode.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
+        requireAccessCode.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
         requireAccessCode.hit()
         XCTAssertTrue(accessCode.waitUntil(.visible).isVisible)
     }
