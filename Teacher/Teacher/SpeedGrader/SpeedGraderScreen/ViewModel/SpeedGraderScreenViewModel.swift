@@ -42,7 +42,7 @@ class SpeedGraderScreenViewModel: ObservableObject {
     // MARK: - Private
 
     private let interactor: SpeedGraderInteractor
-    private let landscapeSplitLayoutViewModel = SpeedGraderLandscapeSplitLayoutViewModel()
+    private let landscapeSplitLayoutViewModel = SpeedGraderPageLandscapeSplitLayoutViewModel()
     private let environment: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 

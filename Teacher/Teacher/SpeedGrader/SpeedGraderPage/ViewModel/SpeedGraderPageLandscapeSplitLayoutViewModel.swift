@@ -20,7 +20,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
+class SpeedGraderPageLandscapeSplitLayoutViewModel: ObservableObject {
 
     // MARK: - Output
 

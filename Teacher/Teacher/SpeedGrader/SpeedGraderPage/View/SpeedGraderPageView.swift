@@ -48,7 +48,7 @@ struct SpeedGraderPageView: View {
 
     @StateObject private var rubricsViewModel: RubricsViewModel
     @StateObject private var viewModel: SpeedGraderPageViewModel
-    @ObservedObject private var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
+    @ObservedObject private var landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel
 
     private var handleRefresh: (() -> Void)?
     /// We can't measure the view's size because when keyboard appears it shrinks it
@@ -62,7 +62,7 @@ struct SpeedGraderPageView: View {
         env: AppEnvironment,
         userIndexInSubmissionList: Int,
         viewModel: SpeedGraderPageViewModel,
-        landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel,
+        landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel,
         handleRefresh: (() -> Void)?
     ) {
         self.userIndexInSubmissionList = userIndexInSubmissionList

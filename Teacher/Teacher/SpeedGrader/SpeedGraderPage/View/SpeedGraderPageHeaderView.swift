@@ -28,7 +28,7 @@ struct SpeedGraderPageHeaderView: View {
     @Environment(\.viewController) var controller
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
-    @ObservedObject var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
+    @ObservedObject var landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel
     @State private var profileHeight: CGFloat = 0
     @StateObject internal var viewModel: SpeedGraderPageHeaderViewModel
 
@@ -36,7 +36,7 @@ struct SpeedGraderPageHeaderView: View {
         assignment: Assignment,
         submission: Submission,
         isLandscapeLayout: Bool,
-        landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
+        landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel
     ) {
         self.assignment = assignment
         self.submission = submission
@@ -173,7 +173,7 @@ struct SpeedGraderPageHeaderView: View {
         assignment: testData.assignment,
         submission: testData.submissions[0],
         isLandscapeLayout: true,
-        landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel()
+        landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel()
     )
 }
 
