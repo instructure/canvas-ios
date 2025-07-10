@@ -129,10 +129,10 @@
 		CF0F188C2DC0D5A10054D21A /* SpeedGraderUserIdNormalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0F188B2DC0D5960054D21A /* SpeedGraderUserIdNormalization.swift */; };
 		CF0F18902DC0DAB50054D21A /* SpeedGraderUserIdNormalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0F188F2DC0DAB20054D21A /* SpeedGraderUserIdNormalizationTests.swift */; };
 		CF0F18922DC0E7EC0054D21A /* SpeedGraderInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0F18912DC0E7E90054D21A /* SpeedGraderInteractorLiveTests.swift */; };
-		CF0F18942DC10DF20054D21A /* SpeedGraderViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0F18932DC10DF20054D21A /* SpeedGraderViewModelTests.swift */; };
+		CF0F18942DC10DF20054D21A /* SpeedGraderScreenViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0F18932DC10DF20054D21A /* SpeedGraderScreenViewModelTests.swift */; };
 		CF12471F2DB00B6D00EB10F6 /* SpeedGraderInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12471E2DB00B6700EB10F6 /* SpeedGraderInteractorPreview.swift */; };
 		CF1247212DB0114300EB10F6 /* SpeedGraderScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1247202DB0113F00EB10F6 /* SpeedGraderScreen.swift */; };
-		CF1247262DB012B700EB10F6 /* SpeedGraderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1247252DB012B700EB10F6 /* SpeedGraderViewModel.swift */; };
+		CF1247262DB012B700EB10F6 /* SpeedGraderScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1247252DB012B700EB10F6 /* SpeedGraderScreenViewModel.swift */; };
 		CF13E54C299D090500F57F69 /* QuizSubmissionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E54B299D090500F57F69 /* QuizSubmissionListViewModel.swift */; };
 		CF13E550299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E54F299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift */; };
 		CF13E554299D136F00F57F69 /* QuizSubmissionListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E553299D136F00F57F69 /* QuizSubmissionListAssembly.swift */; };
@@ -385,10 +385,10 @@
 		CF0F188B2DC0D5960054D21A /* SpeedGraderUserIdNormalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderUserIdNormalization.swift; sourceTree = "<group>"; };
 		CF0F188F2DC0DAB20054D21A /* SpeedGraderUserIdNormalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderUserIdNormalizationTests.swift; sourceTree = "<group>"; };
 		CF0F18912DC0E7E90054D21A /* SpeedGraderInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderInteractorLiveTests.swift; sourceTree = "<group>"; };
-		CF0F18932DC10DF20054D21A /* SpeedGraderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderViewModelTests.swift; sourceTree = "<group>"; };
+		CF0F18932DC10DF20054D21A /* SpeedGraderScreenViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderScreenViewModelTests.swift; sourceTree = "<group>"; };
 		CF12471E2DB00B6700EB10F6 /* SpeedGraderInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderInteractorPreview.swift; sourceTree = "<group>"; };
 		CF1247202DB0113F00EB10F6 /* SpeedGraderScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderScreen.swift; sourceTree = "<group>"; };
-		CF1247252DB012B700EB10F6 /* SpeedGraderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderViewModel.swift; sourceTree = "<group>"; };
+		CF1247252DB012B700EB10F6 /* SpeedGraderScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderScreenViewModel.swift; sourceTree = "<group>"; };
 		CF13E54B299D090500F57F69 /* QuizSubmissionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListViewModel.swift; sourceTree = "<group>"; };
 		CF13E54F299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListInteractor.swift; sourceTree = "<group>"; };
 		CF13E553299D136F00F57F69 /* QuizSubmissionListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListAssembly.swift; sourceTree = "<group>"; };
@@ -685,7 +685,7 @@
 				CF0605CD2D95A56C0014C2EC /* Comments */,
 				CF0605D32D95A83D0014C2EC /* Grading */,
 				CF0605D82D95A9340014C2EC /* MainLayout */,
-				CF0605DA2D95AAE90014C2EC /* StudentPager */,
+				CF0605DA2D95AAE90014C2EC /* SpeedGraderScreen */,
 				CF0605CF2D95A5A40014C2EC /* SubmissionRenderer */,
 				CF93FCB72D5A5AF000C4538F /* SpeedGraderAssembly.swift */,
 			);
@@ -699,7 +699,7 @@
 				CF0606052D96E4C20014C2EC /* Comments */,
 				CF0605F92D96E4190014C2EC /* Grading */,
 				CF0606002D96E4750014C2EC /* MainLayout */,
-				CF0605FC2D96E43B0014C2EC /* StudentPager */,
+				CF0605FC2D96E43B0014C2EC /* SpeedGraderScreen */,
 				CF0605FE2D96E4570014C2EC /* SubmissionRenderer */,
 			);
 			path = SpeedGrader;
@@ -1105,14 +1105,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		CF0605DA2D95AAE90014C2EC /* StudentPager */ = {
+		CF0605DA2D95AAE90014C2EC /* SpeedGraderScreen */ = {
 			isa = PBXGroup;
 			children = (
 				CF4C5F7A2DA023EB005AE000 /* Model */,
 				CF1247242DB012AE00EB10F6 /* ViewModel */,
 				CF0605DB2D95AB060014C2EC /* View */,
 			);
-			path = StudentPager;
+			path = SpeedGraderScreen;
 			sourceTree = "<group>";
 		};
 		CF0605DB2D95AB060014C2EC /* View */ = {
@@ -1148,13 +1148,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		CF0605FC2D96E43B0014C2EC /* StudentPager */ = {
+		CF0605FC2D96E43B0014C2EC /* SpeedGraderScreen */ = {
 			isa = PBXGroup;
 			children = (
 				CF0F188D2DC0DA9D0054D21A /* Model */,
 				CF0F188E2DC0DAA30054D21A /* ViewModel */,
 			);
-			path = StudentPager;
+			path = SpeedGraderScreen;
 			sourceTree = "<group>";
 		};
 		CF0605FE2D96E4570014C2EC /* SubmissionRenderer */ = {
@@ -1247,7 +1247,7 @@
 		CF0F188E2DC0DAA30054D21A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				CF0F18932DC10DF20054D21A /* SpeedGraderViewModelTests.swift */,
+				CF0F18932DC10DF20054D21A /* SpeedGraderScreenViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1255,7 +1255,7 @@
 		CF1247242DB012AE00EB10F6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				CF1247252DB012B700EB10F6 /* SpeedGraderViewModel.swift */,
+				CF1247252DB012B700EB10F6 /* SpeedGraderScreenViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1865,7 +1865,7 @@
 				0856FD022DCB09F5009067CF /* SubmissionListSection.swift in Sources */,
 				0856FCD62DB6583C009067CF /* SubmissionListAssembly.swift in Sources */,
 				0856FD002DCB09D6009067CF /* SubmissionListItem.swift in Sources */,
-				CF1247262DB012B700EB10F6 /* SpeedGraderViewModel.swift in Sources */,
+				CF1247262DB012B700EB10F6 /* SpeedGraderScreenViewModel.swift in Sources */,
 				CF1247212DB0114300EB10F6 /* SpeedGraderScreen.swift in Sources */,
 				CFF4AA9D2DF9D05F00B0351F /* GetGradeStatusesRequest.swift in Sources */,
 				CF12471F2DB00B6D00EB10F6 /* SpeedGraderInteractorPreview.swift in Sources */,
@@ -1933,7 +1933,7 @@
 				7D3DC0CB252432ED00B0EBC1 /* SubmissionListViewControllerTests.swift in Sources */,
 				B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */,
 				089AAC942DCC02200022F341 /* MockSubmissionListInteractor.swift in Sources */,
-				CF0F18942DC10DF20054D21A /* SpeedGraderViewModelTests.swift in Sources */,
+				CF0F18942DC10DF20054D21A /* SpeedGraderScreenViewModelTests.swift in Sources */,
 				B417C2E62B1F169000CD6FA4 /* SubmissionCommentListViewModelTests.swift in Sources */,
 				CFFEADDC2E09B05300277F69 /* UpdateSubmissionGradeStatusTests.swift in Sources */,
 				CF05D8642E1E563400F98B90 /* CommentLibraryViewModelTests.swift in Sources */,

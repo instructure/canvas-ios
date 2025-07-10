@@ -20,7 +20,7 @@ import Combine
 import Core
 import SwiftUI
 
-class SpeedGraderViewModel: ObservableObject {
+class SpeedGraderScreenViewModel: ObservableObject {
     typealias Page = CoreHostingController<SubmissionGraderView>
 
     // MARK: - Outputs
@@ -150,7 +150,7 @@ class SpeedGraderViewModel: ObservableObject {
 
 // MARK: - PagesViewControllerDataSource
 
-extension SpeedGraderViewModel: PagesViewControllerDataSource {
+extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
 
     func pagesViewController(
         _ pages: PagesViewController,
@@ -216,7 +216,7 @@ extension SpeedGraderViewModel: PagesViewControllerDataSource {
 
 // MARK: - PagesViewControllerDelegate
 
-extension SpeedGraderViewModel: PagesViewControllerDelegate {
+extension SpeedGraderScreenViewModel: PagesViewControllerDelegate {
 
     func pagesViewController(
         _ pages: PagesViewController,
