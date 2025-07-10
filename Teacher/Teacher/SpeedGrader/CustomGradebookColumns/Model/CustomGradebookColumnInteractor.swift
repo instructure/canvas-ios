@@ -39,15 +39,18 @@ final class CustomGradebookColumnsInteractorLive: CustomGradebookColumnsInteract
             .eraseToAnyPublisher()
     }
 
-    func getStudentNotesColumn() -> AnyPublisher<CDCustomGradebookColumn?, Error> {
+    /// Fetches the columns which are marked as `teacher_notes` (and aren't hidden).
+    /// There should be only one "Notes" column at most, but we preapare for multiple.
+    func getStudentNotesColumns() -> AnyPublisher<[CDCustomGradebookColumn], Error> {
         getCustomColumns()
             .map { columns in
-                columns.first { $0.isTeacherNotes && !$0.isHidden}
+                columns.filter { $0.isTeacherNotes && !$0.isHidden }
             }
             .eraseToAnyPublisher()
     }
 
-    func getCustomColumn(columnId: String) -> AnyPublisher<[CDCustomGradebookColumnEntry], Error> {
+    /// Fetches all entries for the given `columnId`. Each entry is assumed to belong to a different student.
+    func getCustomColumnEntries(columnId: String) -> AnyPublisher<[CDCustomGradebookColumnEntry], Error> {
         let useCase = GetCustomGradebookColumnEntries(courseId: courseId, columnId: columnId)
         return ReactiveStore(useCase: useCase)
             .getEntities()
