@@ -35,6 +35,7 @@ enum SpeedGraderAssembly {
             assignmentId: assignmentId,
             api: env.api
         )
+        let customGradebookColumnsInteractor = CustomGradebookColumnsInteractorLive(courseId: context.id)
         let interactor = SpeedGraderInteractorLive(
             context: context,
             assignmentID: assignmentId,
@@ -42,6 +43,7 @@ enum SpeedGraderAssembly {
             filter: filter,
             sortNeedsGradingSubmissionsFirst: sortNeedsGradingSubmissionsFirst,
             gradeStatusInteractor: gradeStatusInteractor,
+            customGradebookColumnsInteractor: customGradebookColumnsInteractor,
             env: env
         )
         let viewModel = SpeedGraderScreenViewModel(

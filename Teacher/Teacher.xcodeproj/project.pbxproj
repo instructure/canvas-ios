@@ -47,10 +47,12 @@
 		5B1E28662DC0C47000540B3D /* SubmissionCommentListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1E28652DC0C46C00540B3D /* SubmissionCommentListCellViewModel.swift */; };
 		5B4324A02E1EB2A300561B77 /* GetCustomGradebookColumnsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B43249F2E1EB29300561B77 /* GetCustomGradebookColumnsRequest.swift */; };
 		5B4324A22E1EBEC400561B77 /* GetCustomGradebookColumnEntriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4324A12E1EBEC000561B77 /* GetCustomGradebookColumnEntriesRequest.swift */; };
-		5B4324A42E1EC3C400561B77 /* CustomGradebookColumnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4324A32E1EC3B600561B77 /* CustomGradebookColumnInteractor.swift */; };
+		5B4324A42E1EC3C400561B77 /* CustomGradebookColumnsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4324A32E1EC3B600561B77 /* CustomGradebookColumnsInteractor.swift */; };
 		5B4324AD2E1F04B000561B77 /* GetCustomGradebookColumns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4324AC2E1F04B000561B77 /* GetCustomGradebookColumns.swift */; };
 		5B4324B32E1F184900561B77 /* GetCustomGradebookColumnEntries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4324B22E1F184900561B77 /* GetCustomGradebookColumnEntries.swift */; };
 		5B4324B62E1FB30500561B77 /* StudentNotesEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4324B52E1FB30500561B77 /* StudentNotesEntry.swift */; };
+		5B4324BA2E2067C100561B77 /* CustomGradebookColumnsInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4324B92E2067C100561B77 /* CustomGradebookColumnsInteractorPreview.swift */; };
+		5B4324BE2E206B1C00561B77 /* CustomGradebookColumnsInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4324BD2E206B1C00561B77 /* CustomGradebookColumnsInteractorMock.swift */; };
 		5B4F3E602DC8B169001A9126 /* SubmissionCommentListCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F3E5F2DC8B169001A9126 /* SubmissionCommentListCellViewModelTests.swift */; };
 		5B9C5C072DB9B04000103E21 /* SubmissionCommentsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9C5C062DB9B03A00103E21 /* SubmissionCommentsAssembly.swift */; };
 		5BB37BC22DB90F300096821B /* SubmissionCommentsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB37BC12DB90F270096821B /* SubmissionCommentsInteractor.swift */; };
@@ -309,10 +311,12 @@
 		5B1E28652DC0C46C00540B3D /* SubmissionCommentListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentListCellViewModel.swift; sourceTree = "<group>"; };
 		5B43249F2E1EB29300561B77 /* GetCustomGradebookColumnsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomGradebookColumnsRequest.swift; sourceTree = "<group>"; };
 		5B4324A12E1EBEC000561B77 /* GetCustomGradebookColumnEntriesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomGradebookColumnEntriesRequest.swift; sourceTree = "<group>"; };
-		5B4324A32E1EC3B600561B77 /* CustomGradebookColumnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGradebookColumnInteractor.swift; sourceTree = "<group>"; };
+		5B4324A32E1EC3B600561B77 /* CustomGradebookColumnsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGradebookColumnsInteractor.swift; sourceTree = "<group>"; };
 		5B4324AC2E1F04B000561B77 /* GetCustomGradebookColumns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomGradebookColumns.swift; sourceTree = "<group>"; };
 		5B4324B22E1F184900561B77 /* GetCustomGradebookColumnEntries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomGradebookColumnEntries.swift; sourceTree = "<group>"; };
 		5B4324B52E1FB30500561B77 /* StudentNotesEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentNotesEntry.swift; sourceTree = "<group>"; };
+		5B4324B92E2067C100561B77 /* CustomGradebookColumnsInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGradebookColumnsInteractorPreview.swift; sourceTree = "<group>"; };
+		5B4324BD2E206B1C00561B77 /* CustomGradebookColumnsInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGradebookColumnsInteractorMock.swift; sourceTree = "<group>"; };
 		5B4F3E5F2DC8B169001A9126 /* SubmissionCommentListCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentListCellViewModelTests.swift; sourceTree = "<group>"; };
 		5B9C5C062DB9B03A00103E21 /* SubmissionCommentsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsAssembly.swift; sourceTree = "<group>"; };
 		5BB37BC12DB90F270096821B /* SubmissionCommentsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsInteractor.swift; sourceTree = "<group>"; };
@@ -697,7 +701,8 @@
 			children = (
 				5B43249C2E1EAE5500561B77 /* API */,
 				5B4324AB2E1F03D000561B77 /* UseCase */,
-				5B4324A32E1EC3B600561B77 /* CustomGradebookColumnInteractor.swift */,
+				5B4324A32E1EC3B600561B77 /* CustomGradebookColumnsInteractor.swift */,
+				5B4324B92E2067C100561B77 /* CustomGradebookColumnsInteractorPreview.swift */,
 				5B4324B52E1FB30500561B77 /* StudentNotesEntry.swift */,
 			);
 			path = Model;
@@ -735,6 +740,22 @@
 			path = UseCase;
 			sourceTree = "<group>";
 		};
+		5B4324BB2E206AEE00561B77 /* CustomGradebookColumns */ = {
+			isa = PBXGroup;
+			children = (
+				5B4324BC2E206B0500561B77 /* Model */,
+			);
+			path = CustomGradebookColumns;
+			sourceTree = "<group>";
+		};
+		5B4324BC2E206B0500561B77 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B4324BD2E206B1C00561B77 /* CustomGradebookColumnsInteractorMock.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		5BB37BC42DB90F410096821B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -763,6 +784,7 @@
 			children = (
 				CF0606022D96E4920014C2EC /* CommentLibrary */,
 				CF0606052D96E4C20014C2EC /* Comments */,
+				5B4324BB2E206AEE00561B77 /* CustomGradebookColumns */,
 				CF0605F92D96E4190014C2EC /* Grading */,
 				CF0606002D96E4750014C2EC /* MainLayout */,
 				CF0605FC2D96E43B0014C2EC /* SpeedGraderScreen */,
@@ -1875,6 +1897,7 @@
 				CF13E559299D1AEC00F57F69 /* QuizSubmissionListView.swift in Sources */,
 				089AACBE2DD5FAAE0022F341 /* TeacherDateSection.swift in Sources */,
 				7D7126B12534B980000DEDE4 /* DrawerContainer.swift in Sources */,
+				5B4324BA2E2067C100561B77 /* CustomGradebookColumnsInteractorPreview.swift in Sources */,
 				CFF4AAAB2DFB048200B0351F /* GradeStatusViewModel.swift in Sources */,
 				3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */,
 				7D0A28E2251A8284004FB3B6 /* SpeedGraderPageHeaderView.swift in Sources */,
@@ -1901,7 +1924,7 @@
 				089AACC02DD5FAF20022F341 /* TeacherSubmissionBreakdownView.swift in Sources */,
 				7D64A95D23620A27004EAEDF /* AttendanceStatusController.swift in Sources */,
 				B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */,
-				5B4324A42E1EC3C400561B77 /* CustomGradebookColumnInteractor.swift in Sources */,
+				5B4324A42E1EC3C400561B77 /* CustomGradebookColumnsInteractor.swift in Sources */,
 				CFFEADD12E05675900277F69 /* GradeStatusDaysLateView.swift in Sources */,
 				7D7126C025374446000DEDE4 /* SubmissionGrades.swift in Sources */,
 				7D64A96023620A27004EAEDF /* DatePickerCollectionView.swift in Sources */,
@@ -1992,6 +2015,7 @@
 				D9B4851E29CDED990004EBB5 /* QuizSubmissionListFilterTests.swift in Sources */,
 				5B05E47E2DC3B16F00919212 /* SubmissionCommentsInteractorTests.swift in Sources */,
 				7D64A96F23626F52004EAEDF /* StatusTests.swift in Sources */,
+				5B4324BE2E206B1C00561B77 /* CustomGradebookColumnsInteractorMock.swift in Sources */,
 				7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */,
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
 				CFD96BA92719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift in Sources */,
