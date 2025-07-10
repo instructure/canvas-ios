@@ -91,7 +91,6 @@ struct RubricCriterionView: View {
                     label: {
                         Text("Add Comment", bundle: .teacher)
                             .font(.medium14)
-                            .foregroundColor(.accentColor)
                     }
                 )
                 .identifier(viewModel.addCommentButtonA11yID)
@@ -109,7 +108,6 @@ struct RubricCriterionView: View {
                     label: {
                         Text("View Long Description", bundle: .teacher)
                             .font(.medium14)
-                            .foregroundColor(.accentColor)
                     }
                 )
             }

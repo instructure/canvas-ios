@@ -38,6 +38,7 @@ public struct StudentAnnotationSubmissionView: View {
             .alert(item: $viewModel.error) {
                 Alert(title: Text($0.title), message: Text($0.message))
             }
+            .tint(viewModel.navBar.color.asColor)
     }
 
     private var closeButton: some View {

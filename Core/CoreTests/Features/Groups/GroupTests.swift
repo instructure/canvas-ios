@@ -64,4 +64,9 @@ class GroupTests: CoreTestCase {
         let testee = Group.save(.make(course_id: "course_1"), in: databaseClient)
         XCTAssertEqual(testee.course, course)
     }
+
+    func testDisplayName() {
+        let testee = Group.save(.make(name: "some name"), in: databaseClient)
+        XCTAssertEqual(testee.displayName, "some name")
+    }
 }

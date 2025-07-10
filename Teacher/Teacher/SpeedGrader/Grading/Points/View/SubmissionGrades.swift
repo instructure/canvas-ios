@@ -36,6 +36,7 @@ struct SubmissionGrades: View {
     @State var sliderValue: Double?
 
     @ObservedObject var rubricsViewModel: RubricsViewModel
+    @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
 
     var hasLateDeduction: Bool {
         submission.late &&
@@ -108,6 +109,8 @@ struct SubmissionGrades: View {
                     if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
                         slider
                     }
+
+                    GradeStatusView(viewModel: gradeStatusViewModel)
 
                     if assignment.rubric?.isEmpty == false {
                         Divider().padding(.horizontal, 16)
