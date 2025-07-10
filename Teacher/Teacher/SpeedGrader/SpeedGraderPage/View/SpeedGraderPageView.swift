@@ -20,7 +20,12 @@ import Core
 import SwiftUI
 import Combine
 
-struct SubmissionGraderView: View {
+/// A SpeedGrader page representing a student's submission.
+/// It doesn't have a navigaton bar (it's parent `SpeedGraderScreen` handles it),
+/// but has it's own header, split layout, drawer, etc.
+/// - Note: User's navigate between SpeedGrader pages via horizontal swipes.
+/// Makse sure subviews don't interfere with this gesture.
+struct SpeedGraderPageView: View {
     private enum Layout {
         case portrait
         case landscape // only on iPads no matter the iPhone screen size
@@ -42,7 +47,7 @@ struct SubmissionGraderView: View {
     @AccessibilityFocusState private var focusedTab: GraderTab?
 
     @StateObject private var rubricsViewModel: RubricsViewModel
-    @StateObject private var viewModel: SubmissionGraderViewModel
+    @StateObject private var viewModel: SpeedGraderPageViewModel
     @ObservedObject private var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
 
     private var handleRefresh: (() -> Void)?
@@ -56,7 +61,7 @@ struct SubmissionGraderView: View {
     init(
         env: AppEnvironment,
         userIndexInSubmissionList: Int,
-        viewModel: SubmissionGraderViewModel,
+        viewModel: SpeedGraderPageViewModel,
         landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel,
         handleRefresh: (() -> Void)?
     ) {
@@ -307,7 +312,7 @@ struct SubmissionGraderView: View {
         case grades
         case comments
 
-        func title(viewModel: SubmissionGraderViewModel) -> String {
+        func title(viewModel: SpeedGraderPageViewModel) -> String {
             switch self {
             case .grades: String(localized: "Grades", bundle: .teacher)
             case .comments: String(localized: "Comments", bundle: .teacher)

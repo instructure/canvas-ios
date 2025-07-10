@@ -21,7 +21,7 @@ import Core
 import CoreData
 import SwiftUI
 
-class SubmissionGraderViewModel: ObservableObject {
+class SpeedGraderPageViewModel: ObservableObject {
 
     // MARK: - Outputs
 

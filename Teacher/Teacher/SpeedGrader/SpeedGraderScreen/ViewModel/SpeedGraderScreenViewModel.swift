@@ -21,7 +21,7 @@ import Core
 import SwiftUI
 
 class SpeedGraderScreenViewModel: ObservableObject {
-    typealias Page = CoreHostingController<SubmissionGraderView>
+    typealias Page = CoreHostingController<SpeedGraderPageView>
 
     // MARK: - Outputs
 
@@ -172,16 +172,16 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
         return controller
     }
 
-    private func grader(for index: Int) -> SubmissionGraderView? {
+    private func grader(for index: Int) -> SpeedGraderPageView? {
         guard
             let data = interactor.data,
             data.submissions.indices.contains(index)
         else { return nil }
 
-        return SubmissionGraderView(
+        return SpeedGraderPageView(
             env: environment,
             userIndexInSubmissionList: index,
-            viewModel: SubmissionGraderViewModel(
+            viewModel: SpeedGraderPageViewModel(
                 assignment: data.assignment,
                 latestSubmission: data.submissions[index],
                 contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),

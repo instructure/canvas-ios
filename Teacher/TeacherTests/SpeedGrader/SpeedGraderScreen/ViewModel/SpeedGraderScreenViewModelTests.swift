@@ -80,7 +80,7 @@ class SpeedGraderScreenViewModelTests: TeacherTestCase {
         testee.didShowPagesViewController.send(pagesController)
 
         // THEN
-        XCTAssertTrue(pagesController.children.allSatisfy { $0 is CoreHostingController<SubmissionGraderView> })
+        XCTAssertTrue(pagesController.children.allSatisfy { $0 is CoreHostingController<SpeedGraderPageView> })
     }
 
     func test_didTransitionTo_pausesPlayback() {
