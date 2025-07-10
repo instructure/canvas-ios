@@ -155,7 +155,7 @@ final class AssignmentDetailsViewModel {
             return
         }
         showConfirmationModal(
-            viewModel: dependency.confirmationMessages.makeSubmissionAlertViewModel(
+            viewModel: AssignmentConfirmationMessagesAssembly.makeSubmissionAlertViewModel(
                 isSegmentControlVisible: isSegmentControlVisible,
                 isTextSubmission: selectedSubmission == .text
             ) { [weak self] in self?.performSubmission() })
@@ -163,7 +163,7 @@ final class AssignmentDetailsViewModel {
 
     func showDraftAlert() {
         showConfirmationModal(
-            viewModel: dependency.confirmationMessages
+            viewModel: AssignmentConfirmationMessagesAssembly
                 .makeDraftAlertViewModel { [weak self] in self?.deleteDraft() })
     }
 
@@ -298,7 +298,7 @@ final class AssignmentDetailsViewModel {
                 submission = submissions.first
                 assignment?.showSubmitButton = submission?.showSubmitButton ?? false
                 showConfirmationModal(
-                    viewModel: dependency.confirmationMessages.makeSuccessAlertViewModel(
+                    viewModel: AssignmentConfirmationMessagesAssembly.makeSuccessAlertViewModel(
                         submission: submission
                     )
                 )
@@ -446,7 +446,6 @@ extension AssignmentDetailsViewModel {
         let interactor: AssignmentInteractor
         let moduleItemInteractor: ModuleItemSequenceInteractor
         let textEntryInteractor: AssignmentTextEntryInteractor
-        let confirmationMessages: AssignmentConfirmationMessages
         let commentInteractor: SubmissionCommentInteractor
         let isMarkedAsDone: Bool
         var isCompletedItem: Bool

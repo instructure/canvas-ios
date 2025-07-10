@@ -18,20 +18,8 @@
 
 import Foundation
 
-protocol AssignmentConfirmationMessages {
-     func makeSubmissionAlertViewModel(
-        isSegmentControlVisible: Bool,
-        isTextSubmission: Bool,
-        onPerformSubmission: @escaping () -> Void
-    ) -> SubmissionAlertViewModel
-
-    func makeDraftAlertViewModel(onDelete: @escaping () -> Void) -> SubmissionAlertViewModel
-    func makeSuccessAlertViewModel(submission: HSubmission?) -> SubmissionAlertViewModel
-}
-
-final class AssignmentConfirmationMessagesLive: AssignmentConfirmationMessages {
-
-     func makeSubmissionAlertViewModel(
+struct AssignmentConfirmationMessagesAssembly {
+    static func makeSubmissionAlertViewModel(
         isSegmentControlVisible: Bool,
         isTextSubmission: Bool,
         onPerformSubmission: @escaping () -> Void
@@ -46,19 +34,19 @@ final class AssignmentConfirmationMessagesLive: AssignmentConfirmationMessages {
         )
     }
 
-    private func makeConfirmationMessage(
-         isSegmentControlVisible: Bool,
-         isTextSubmission: Bool
-     ) -> String {
-         guard isSegmentControlVisible else {
-             return AssignmentLocalizedKeys.confirmationNormalBody.title
-         }
-         return isTextSubmission
-         ? AssignmentLocalizedKeys.submitTextWithUploadFile.title
-         : AssignmentLocalizedKeys.submitUploadFileWithText.title
-     }
+    private static func makeConfirmationMessage(
+        isSegmentControlVisible: Bool,
+        isTextSubmission: Bool
+    ) -> String {
+        guard isSegmentControlVisible else {
+            return AssignmentLocalizedKeys.confirmationNormalBody.title
+        }
+        return isTextSubmission
+        ? AssignmentLocalizedKeys.submitTextWithUploadFile.title
+        : AssignmentLocalizedKeys.submitUploadFileWithText.title
+    }
 
-    func makeDraftAlertViewModel(onDelete: @escaping () -> Void) -> SubmissionAlertViewModel {
+    static func makeDraftAlertViewModel(onDelete: @escaping () -> Void) -> SubmissionAlertViewModel {
         SubmissionAlertViewModel(
             title: AssignmentLocalizedKeys.deleteDraftTitle.title,
             body: AssignmentLocalizedKeys.deleteDraftBody.title,
@@ -66,7 +54,7 @@ final class AssignmentConfirmationMessagesLive: AssignmentConfirmationMessages {
         )
     }
 
-    func makeSuccessAlertViewModel(submission: HSubmission?) -> SubmissionAlertViewModel {
+    static func makeSuccessAlertViewModel(submission: HSubmission?) -> SubmissionAlertViewModel {
         SubmissionAlertViewModel(
             title: AssignmentLocalizedKeys.successfullySubmitted.title,
             body: AssignmentLocalizedKeys.successfullySubmittedBody.title,
