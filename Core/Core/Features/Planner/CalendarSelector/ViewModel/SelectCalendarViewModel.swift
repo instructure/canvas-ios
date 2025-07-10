@@ -97,7 +97,7 @@ final class SelectCalendarViewModel: ObservableObject {
 
 private extension CDCalendarFilterEntry {
     var optionItem: OptionItem {
-        .init(id: id, title: name, color: color)
+        .init(id: id, title: name, colorOverride: color)
     }
 
     func isMatch(for optionItem: OptionItem?) -> Bool {

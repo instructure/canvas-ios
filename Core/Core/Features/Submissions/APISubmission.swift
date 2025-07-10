@@ -25,6 +25,7 @@ public struct APISubmission: Codable, Equatable {
     let attachments: [APIFile]?
     let attempt: Int?
     let body: String?
+    let custom_grade_status_id: String?
     let discussion_entries: [APIDiscussionEntry]?
     let entered_grade: String?
     let entered_score: Double?
@@ -44,6 +45,7 @@ public struct APISubmission: Codable, Equatable {
     let posted_at: Date?
     let preview_url: URL?
     var rubric_assessment: APIRubricAssessmentMap?  // include[]=rubric_assessment
+    let seconds_late: Int?
     var score: Double?
     var submission_comments: [APISubmissionComment]? // include[]=submission_comments
     let submission_history: [APISubmission]? // include[]=submission_history
@@ -145,6 +147,7 @@ extension APISubmission {
         attachments: [APIFile]? = nil,
         attempt: Int? = nil,
         body: String? = nil,
+        custom_grade_status_id: String? = nil,
         discussion_entries: [APIDiscussionEntry]? = nil,
         entered_grade: String? = nil,
         entered_score: Double? = nil,
@@ -165,6 +168,7 @@ extension APISubmission {
         preview_url: URL? = nil,
         rubric_assessment: APIRubricAssessmentMap? = nil,
         score: Double? = nil,
+        seconds_late: Int? = nil,
         submission_comments: [APISubmissionComment]? = nil,
         submission_history: [APISubmission]? = nil,
         submission_type: SubmissionType? = nil,
@@ -181,6 +185,7 @@ extension APISubmission {
             attachments: attachments,
             attempt: attempt,
             body: body,
+            custom_grade_status_id: custom_grade_status_id,
             discussion_entries: discussion_entries,
             entered_grade: entered_grade,
             entered_score: entered_score,
@@ -200,6 +205,7 @@ extension APISubmission {
             posted_at: posted_at,
             preview_url: preview_url,
             rubric_assessment: rubric_assessment,
+            seconds_late: seconds_late,
             score: score,
             submission_comments: submission_comments,
             submission_history: submission_history,
@@ -325,9 +331,9 @@ extension APITurnItInOutcome {
 public struct GetSubmissionRequest: APIRequestable {
     public typealias Response = APISubmission
 
-    let context: Context
-    let assignmentID: String
-    let userID: String
+    public let context: Context
+    public let assignmentID: String
+    public let userID: String
 
     public var path: String {
         return "\(context.pathComponent)/assignments/\(assignmentID)/submissions/\(userID)"
@@ -335,6 +341,12 @@ public struct GetSubmissionRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         return [ .array("include", [ "submission_comments", "submission_history", "user", "rubric_assessment", "group"]) ]
+    }
+
+    public init(context: Context, assignmentID: String, userID: String) {
+        self.context = context
+        self.assignmentID = assignmentID
+        self.userID = userID
     }
 }
 
@@ -516,10 +528,12 @@ public struct PutSubmissionGradeRequest: APIRequestable {
         public struct Submission: Codable, Equatable {
             let excuse: Bool?
             let posted_grade: String?
+            let seconds_late_override: Int?
 
-            public init(excuse: Bool?, posted_grade: String?) {
+            public init(excuse: Bool?, posted_grade: String?, seconds_late_override: Int?) {
                 self.excuse = excuse
                 self.posted_grade = posted_grade
+                self.seconds_late_override = seconds_late_override
             }
         }
 

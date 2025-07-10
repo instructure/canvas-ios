@@ -5111,7 +5111,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@, soumis le %2$@"
+            "value" : "%1$@, envoyé le %2$@"
           }
         },
         "ga" : {
@@ -5207,7 +5207,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@, отправлено %2$@"
+            "value" : "%1$@, дата отправки %2$@"
           }
         },
         "sl" : {
@@ -5231,7 +5231,7 @@
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ จัดส่งเมื่อ %2$@"
+            "value" : "%1$@จัดส่งเมื่อ %2$@"
           }
         },
         "vi" : {
@@ -132803,6 +132803,9 @@
           }
         }
       }
+    },
+    "Type here..." : {
+
     },
     "Uh-oh! No Internet Connection" : {
       "comment" : "Notification over status bar that displays when not connected to the internet.",

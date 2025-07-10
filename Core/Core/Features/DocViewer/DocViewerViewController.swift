@@ -184,7 +184,6 @@ public class DocViewerViewController: UIViewController {
 
         if isAnnotatable, metadata?.annotations?.enabled == true {
             let annotationToolbar = DocViewerAnnotationToolbar(annotationStateManager: pdf.annotationStateManager)
-            annotationToolbar.tintColor = Brand.shared.primary
             annotationToolbar.backgroundView = nil
             annotationToolbar.borderedToolbarPositions = []
             annotationToolbar.isDragButtonSelected

@@ -16,18 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import SwiftUI
 
 struct CommentInputView: View {
-
-    // TODO: remove styles once UX is decided
-    enum Style {
-        case old
-        case new
-        case new2
-    }
-    var style: Style = .old
 
     enum AttachmentType {
         case audio
@@ -35,138 +28,131 @@ struct CommentInputView: View {
         case file
     }
 
-    @Environment(\.viewController) var controller
+    enum CommentLibraryButtonType {
+        case openLibrary
+        case closeLibrary
+        case hidden
+    }
+
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
-    @Binding var comment: String
+    @State private var commentSubject = CurrentValueSubject<String, Never>("")
+    @State private var comment: String = ""
 
-    let hasCommentLibraryButton: Bool
-    let hasAttachmentButton: Bool
-    let contextColor: Color
+    private let commentLibraryButtonType: CommentLibraryButtonType
+    private let isAttachmentButtonEnabled: Bool
+    private let contextColor: Color
 
-    let showCommentLibraryAction: () -> Void
-    let addAttachmentAction: (AttachmentType) -> Void
-    let sendAction: () -> Void
+    private let commentLibraryAction: () -> Void
+    private let addAttachmentAction: (AttachmentType) -> Void
+    private let sendAction: () -> Void
 
     @State private var showAttachmentTypeSheet = false
+    @FocusState private var isFocused: Bool
+
+    init(
+        comment: CurrentValueSubject<String, Never>,
+        commentLibraryButtonType: CommentLibraryButtonType,
+        isAttachmentButtonEnabled: Bool,
+        contextColor: Color,
+        commentLibraryAction: @escaping () -> Void,
+        addAttachmentAction: @escaping (AttachmentType) -> Void,
+        sendAction: @escaping () -> Void
+    ) {
+        self.commentSubject = comment
+        self.commentLibraryButtonType = commentLibraryButtonType
+        self.isAttachmentButtonEnabled = isAttachmentButtonEnabled
+        self.contextColor = contextColor
+        self.commentLibraryAction = commentLibraryAction
+        self.addAttachmentAction = addAttachmentAction
+        self.sendAction = sendAction
+    }
 
     var body: some View {
-        switch style {
-        case .old: contentOld
-        case .new: contentNew
-        case .new2: contentNew2
+        VStack(spacing: 0) {
+            InstUI.Divider()
+            content
+                .paddingStyle(.horizontal, .standard)
+                .padding(.vertical, 8)
+                .background(.backgroundLightest)
+        }
+        .onReceive(commentSubject) {
+            comment = $0
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            isFocused = true
         }
     }
 
-    private var contentOld: some View {
-        VStack(spacing: 0) {
-            InstUI.Divider()
+    private var content: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            commentEditor
 
             HStack(alignment: .bottom, spacing: InstUI.Styles.Padding.standard.rawValue) {
-                if hasCommentLibraryButton {
-                    commentLibraryButton
-                        .commentToolbarButtonOffset()
+                switch commentLibraryButtonType {
+                case .openLibrary:
+                    commentLibraryButton(isCurrentlyClosed: true)
+                case .closeLibrary:
+                    commentLibraryButton(isCurrentlyClosed: false)
+                case .hidden:
+                    SwiftUI.EmptyView()
                 }
-                if hasAttachmentButton {
-                    attachmentButton
-                        .commentToolbarButtonOffset()
-                }
-                HStack(alignment: .bottom, spacing: InstUI.Styles.Padding.standard.rawValue) {
-                    commentEditorOld
-                    sendButton
-                        .commentToolbarButtonOffset()
-                }
-                .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 6))
-                .background(RoundedRectangle(cornerRadius: 22).fill(Color.backgroundLightest))
-                .background(RoundedRectangle(cornerRadius: 22).stroke(Color.borderMedium))
-            }
-            .paddingStyle(.horizontal, .standard)
-            .padding(.vertical, 4)
-        }
-        .background(Color.backgroundLight)
-    }
 
-    private var contentNew: some View {
-        HStack(alignment: .bottom, spacing: InstUI.Styles.Padding.standard.rawValue) {
-            if hasCommentLibraryButton {
-                commentLibraryButton
-                    .commentToolbarButtonOffset()
-            }
-            if hasAttachmentButton {
                 attachmentButton
-                    .commentToolbarButtonOffset()
+
+                sendButton
+                    .frame(maxWidth: .infinity, alignment: .trailing)
             }
-            commentEditorNew
-            sendButton
-                .commentToolbarButtonOffset()
         }
-        .paddingStyle(.horizontal, .standard)
-        .padding(.vertical, 4)
-    }
-
-    private var contentNew2: some View {
-        VStack(spacing: 0) {
-            InstUI.Divider()
-
-            VStack(alignment: .leading, spacing: 8) {
-                commentEditorOld
-                // TODO: fix vertical truncation
-                    .paddingStyle(set: .textEditorCorrection)
-                InstUI.Divider()
-                HStack(alignment: .bottom, spacing: InstUI.Styles.Padding.standard.rawValue) {
-                    if hasCommentLibraryButton {
-                        commentLibraryButton
-                    }
-                    if hasAttachmentButton {
-                        attachmentButton
-                    }
-
-                    sendButton
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                }
-            }
-            // TODO: Area outside of buttons could focus the TextField
-            .padding(.leading, 16)
-            .padding(.trailing, 8)
-            .padding(.vertical, 8)
-            .background(RoundedRectangle(cornerRadius: 24).fill(Color.backgroundLightest))
-            .background(RoundedRectangle(cornerRadius: 24).stroke(Color.borderMedium))
-            .paddingStyle(.horizontal, .standard)
-            .padding(.vertical, 8)
-            .accessibilityElement(children: .contain)
-        }
+        .padding(.leading, 16)
+        .padding(.trailing, 8)
+        .padding(.vertical, 8)
+        .background(RoundedRectangle(cornerRadius: 24).fill(Color.backgroundLightest))
+        .background(RoundedRectangle(cornerRadius: 24).stroke(Color.borderMedium))
+        .accessibilityElement(children: .contain)
     }
 
     // MARK: - TextField
 
-    private var commentEditorOld: some View {
-        DynamicHeightTextEditor(text: $comment, placeholder: String(localized: "Comment", bundle: .teacher))
-            .font(.regular16)
-            .lineLimit(10)
+    @ViewBuilder
+    private var commentEditor: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            if comment.isNotEmpty {
+                Text("Comment", bundle: .teacher)
+                    .font(.regular12)
+                    .foregroundStyle(.textPlaceholder)
+            }
+            InstUI.ScrollableTextEditor(
+                text: Binding(
+                    get: { commentSubject.value },
+                    set: { commentSubject.value = $0 }
+                ),
+                placeholder: String(localized: "Comment", bundle: .teacher),
+                font: .regular14,
+                lineLimit: 5.5
+            )
+            .focused($isFocused)
             .accessibilityLabel(Text("Comment", bundle: .teacher))
             .identifier("SubmissionComments.commentTextView")
-    }
-
-    private var commentEditorNew: some View {
-        DynamicHeightTextEditor(text: $comment, placeholder: String(localized: "Write your Comment here", bundle: .teacher))
-            .font(.regular16)
-            .lineLimit(10)
-            .accessibilityLabel(Text("Comment", bundle: .teacher))
-            .identifier("SubmissionComments.commentTextView")
+        }
     }
 
     // MARK: - Buttons
 
-    private var commentLibraryButton: some View {
+    @ViewBuilder
+    private func commentLibraryButton(isCurrentlyClosed: Bool) -> some View {
+        let icon = isCurrentlyClosed ? Image.chatLine : Image.chevronDown
+        let label = isCurrentlyClosed ? Text("Open comment library", bundle: .teacher) : Text("Close comment library", bundle: .teacher)
         Button(
-            action: showCommentLibraryAction,
+            action: commentLibraryAction,
             label: {
-                Image.chatLine
+                icon
                     .scaledIcon()
-                    .foregroundColor(.textDark)
+                    .foregroundStyle(.textDark)
             }
         )
-        .accessibilityLabel(Text("Open comment library", bundle: .teacher))
+        .accessibilityLabel(label)
         .identifier("SubmissionComments.showCommentLibraryButton")
     }
 
@@ -176,9 +162,10 @@ struct CommentInputView: View {
             label: {
                 Image.paperclipLine
                     .scaledIcon()
-                    .foregroundColor(.textDark)
+                    .foregroundStyle(isAttachmentButtonEnabled ? .textDark : .disabledGray)
             }
         )
+        .disabled(!isAttachmentButtonEnabled)
         .accessibility(label: Text("Add Attachment", bundle: .teacher))
         .identifier("SubmissionComments.addMediaButton")
         .actionSheet(isPresented: $showAttachmentTypeSheet) {
@@ -189,18 +176,23 @@ struct CommentInputView: View {
                 .cancel()
             ])
         }
+        .onChange(of: showAttachmentTypeSheet) {
+            if showAttachmentTypeSheet {
+                isFocused = false
+            }
+        }
     }
 
     private var sendButton: some View {
         Button(
             action: {
                 sendAction()
-                controller.view.endEditing(true)
+                isFocused = false
             },
             label: {
                 Image.circleArrowUpSolid
                     .scaledIcon()
-                    .foregroundStyle(contextColor)
+                    .foregroundStyle(comment.isNotEmpty ? contextColor : .disabledGray)
             }
         )
         .buttonStyle(.plain)
@@ -210,61 +202,51 @@ struct CommentInputView: View {
     }
 }
 
-private extension View {
-    // Toolbar buttons should be center aligned with the last row of the comment textfield.
-    // This offset is an approximation for that.
-    func commentToolbarButtonOffset() -> some View {
-        scaledOffset(y: -5, useIconScale: true)
-    }
-}
+// MARK: - Preview
 
 #if DEBUG
 
 #Preview {
     VStack {
         CommentInputView(
-            style: .old,
-            comment: .constant("Sample Text OLD"),
-            hasCommentLibraryButton: true,
-            hasAttachmentButton: true,
+            comment: .init(.loremIpsumShort),
+            commentLibraryButtonType: .openLibrary,
+            isAttachmentButtonEnabled: true,
             contextColor: .green,
-            showCommentLibraryAction: {},
+            commentLibraryAction: {},
             addAttachmentAction: { _ in },
             sendAction: {}
         )
         .background(Color.backgroundLightest)
 
         CommentInputView(
-            style: .new,
-            comment: .constant("Sample Text NEW"),
-            hasCommentLibraryButton: true,
-            hasAttachmentButton: true,
+            comment: .init(.loremIpsumLong),
+            commentLibraryButtonType: .closeLibrary,
+            isAttachmentButtonEnabled: false,
             contextColor: .green,
-            showCommentLibraryAction: {},
+            commentLibraryAction: {},
             addAttachmentAction: { _ in },
             sendAction: {}
         )
         .background(Color.backgroundLightest)
 
         CommentInputView(
-            style: .new2,
-            comment: .constant("Sample Text NEW 2"),
-            hasCommentLibraryButton: true,
-            hasAttachmentButton: true,
+            comment: .init(.loremIpsumLong),
+            commentLibraryButtonType: .hidden,
+            isAttachmentButtonEnabled: true,
             contextColor: .green,
-            showCommentLibraryAction: {},
+            commentLibraryAction: {},
             addAttachmentAction: { _ in },
             sendAction: {}
         )
         .background(Color.backgroundLightest)
 
         CommentInputView(
-            style: .new2,
-            comment: .constant(""),
-            hasCommentLibraryButton: true,
-            hasAttachmentButton: true,
+            comment: .init(""),
+            commentLibraryButtonType: .openLibrary,
+            isAttachmentButtonEnabled: true,
             contextColor: .green,
-            showCommentLibraryAction: {},
+            commentLibraryAction: {},
             addAttachmentAction: { _ in },
             sendAction: {}
         )
