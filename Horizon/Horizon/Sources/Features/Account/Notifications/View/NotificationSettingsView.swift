@@ -94,7 +94,7 @@ struct NotificationSettingsView: View {
     }
 
     private var enablePushNotificationsButton: some View {
-        VStack(spacing: .huiSpaces.space16) {
+        VStack(spacing: .huiSpaces.space8) {
             Text("Push notifications are currently disabled. To turn on, you will need to enable in iOS Settings.")
                 .huiTypography(.p2)
                 .foregroundStyle(Color.huiColors.text.timestamp)
@@ -104,7 +104,7 @@ struct NotificationSettingsView: View {
                 Spacer()
                 HorizonUI.TextButton(
                     String(localized: "Enable iOS Notifications", bundle: .horizon),
-                    type: .black
+                    type: .white
                 ) {
                     viewModel.goToAppSettings()
                 }
@@ -114,7 +114,7 @@ struct NotificationSettingsView: View {
                     .frame(width: 24, height: 24)
             }
             .padding(.horizontal, .huiSpaces.space16)
-            .padding(.bottom, .huiSpaces.space12)
+            .padding(.bottom, .huiSpaces.space8)
         }
         .huiBorder(
             level: .level1,
