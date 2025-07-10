@@ -46,7 +46,7 @@ public struct APICustomGradebookColumn: Codable, Equatable {
 #if DEBUG
 
 extension APICustomGradebookColumn {
-    public func make(
+    public static func make(
         id: String = "",
         title: String = "",
         position: Int? = nil,

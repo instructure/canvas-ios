@@ -28,7 +28,7 @@ final class GradeStatusInteractorMock: GradeStatusInteractor {
     var fetchGradeStatusesCalled = false
     func fetchGradeStatuses() -> AnyPublisher<Void, Error> {
         fetchGradeStatusesCalled = true
-        return Publishers.typedJust(failureType: Error.self)
+        return Publishers.typedJust()
     }
 
     var updateSubmissionGradeStatusCalled = false
@@ -43,7 +43,7 @@ final class GradeStatusInteractorMock: GradeStatusInteractor {
         if shouldFailUpdateSubmissionGradeStatus {
             return Fail(error: NSError.internalError()).eraseToAnyPublisher()
         }
-        return Publishers.typedJust(failureType: Error.self)
+        return Publishers.typedJust()
     }
 
     func gradeStatusFor(

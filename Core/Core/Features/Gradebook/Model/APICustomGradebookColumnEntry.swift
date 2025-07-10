@@ -34,7 +34,7 @@ public struct APICustomGradebookColumnEntry: Codable, Equatable {
 #if DEBUG
 
 extension APICustomGradebookColumnEntry {
-    public func make(
+    public static func make(
         user_id: String = "",
         content: String? = nil
     ) -> APICustomGradebookColumnEntry {

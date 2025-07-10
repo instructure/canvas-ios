@@ -76,6 +76,7 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
             latestSubmission: submission,
             contextColor: contextColor,
             gradeStatusInteractor: GradeStatusInteractorMock(),
+            customGradebookColumnsInteractor: CustomGradebookColumnsInteractorMock(),
             env: environment
         )
     }

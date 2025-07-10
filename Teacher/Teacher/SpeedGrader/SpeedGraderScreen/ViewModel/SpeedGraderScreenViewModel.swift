@@ -186,6 +186,7 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
                 latestSubmission: data.submissions[index],
                 contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
                 gradeStatusInteractor: interactor.gradeStatusInteractor,
+                customGradebookColumnsInteractor: interactor.customGradebookColumnsInteractor,
                 env: environment
             ),
             landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,

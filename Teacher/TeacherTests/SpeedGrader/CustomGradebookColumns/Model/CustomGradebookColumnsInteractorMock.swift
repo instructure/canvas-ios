@@ -16,33 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Foundation
+@testable import Core
+@testable import Teacher
 
-/// Stores properties for a Student Notes entry (aka `teacher_note` in API, `Notes` in web UI, `Student Notes` in mobile UI).
-/// There should be only one in the given context, but we support multiple.
-/// The `index` is not an ID coming from API, it's just a workaround to identify the entry.
-struct StudentNotesEntry: Identifiable {
-    let index: Int
-    let title: String
-    let content: String
+class CustomGradebookColumnsInteractorMock: CustomGradebookColumnsInteractor {
+    func loadCustomColumnsData() -> AnyPublisher<Void, Error> {
+        Publishers.typedJust()
+    }
 
-    var id: Int { index }
-}
-
-#if DEBUG
-
-extension StudentNotesEntry {
-    public static func make(
-        index: Int = 0,
-        title: String = "",
-        content: String = ""
-    ) -> StudentNotesEntry {
-        .init(
-            index: index,
-            title: title,
-            content: content
-        )
+    func getStudentNotesEntries(userId: String) -> AnyPublisher<[StudentNotesEntry], Error> {
+        Publishers.typedJust([])
     }
 }
-
-#endif
