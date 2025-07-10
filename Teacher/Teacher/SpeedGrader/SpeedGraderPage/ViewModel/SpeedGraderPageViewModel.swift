@@ -59,6 +59,7 @@ class SpeedGraderPageViewModel: ObservableObject {
         latestSubmission: Submission,
         contextColor: AnyPublisher<Color, Never>,
         gradeStatusInteractor: GradeStatusInteractor,
+        customGradebookColumnsInteractor: CustomGradebookColumnsInteractor,
         rubricsViewModel: RubricsViewModel,
         gradeViewModel: SpeedGraderSubmissionGradesViewModel,
         env: AppEnvironment

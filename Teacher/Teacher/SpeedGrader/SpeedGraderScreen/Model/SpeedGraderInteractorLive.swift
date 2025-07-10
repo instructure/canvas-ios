@@ -31,6 +31,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     public let context: Context
 
     let gradeStatusInteractor: GradeStatusInteractor
+    let customGradebookColumnsInteractor: CustomGradebookColumnsInteractor
 
     private let env: AppEnvironment
     private let filter: [GetSubmissions.Filter]
@@ -43,26 +44,29 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         userID: String,
         filter: [GetSubmissions.Filter],
         gradeStatusInteractor: GradeStatusInteractor,
+        customGradebookColumnsInteractor: CustomGradebookColumnsInteractor,
         env: AppEnvironment,
         mainScheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
-        self.env = env
         self.context = context
         self.assignmentID = assignmentID
         self.userID = userID
         self.filter = filter
         self.gradeStatusInteractor = gradeStatusInteractor
+        self.customGradebookColumnsInteractor = customGradebookColumnsInteractor
+        self.env = env
         self.mainScheduler = mainScheduler
     }
 
     func load() {
         let assignmentLoad = loadAssignment().share()
 
-        Publishers.CombineLatest(
+        Publishers.CombineLatest3(
             assignmentLoad,
-            loadCourse()
+            loadCourse(),
+            customGradebookColumnsInteractor.loadCustomColumnsData()
         )
-        .map { assignment, course in
+        .map { assignment, course, _ in
             SpeedGraderContextInfo(
                 courseName: course.name ?? "",
                 courseColor: course.color.asColor,

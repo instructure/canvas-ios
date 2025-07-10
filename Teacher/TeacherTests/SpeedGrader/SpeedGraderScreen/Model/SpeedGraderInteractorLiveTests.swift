@@ -36,6 +36,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
         courseColor: Color.course1
     )
     private var gradeStatusInteractorMock: GradeStatusInteractorMock!
+    private var customGradebookColumnsInteractor: CustomGradebookColumnsInteractorMock!
 
     override func setUp() {
         super.setUp()
@@ -46,6 +47,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             userID: testData.userId,
             filter: [],
             gradeStatusInteractor: gradeStatusInteractorMock,
+            customGradebookColumnsInteractor: customGradebookColumnsInteractor,
             env: environment,
             mainScheduler: .immediate
         )
@@ -54,6 +56,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
     override func tearDown() {
         testee = nil
         gradeStatusInteractorMock = nil
+        customGradebookColumnsInteractor = nil
         super.tearDown()
     }
 
@@ -124,6 +127,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             userID: "1",
             filter: [],
             gradeStatusInteractor: GradeStatusInteractorMock(),
+            customGradebookColumnsInteractor: CustomGradebookColumnsInteractorMock(),
             env: environment,
             mainScheduler: .immediate
         )
@@ -189,6 +193,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             userID: testData.invalidUserId,
             filter: [],
             gradeStatusInteractor: GradeStatusInteractorMock(),
+            customGradebookColumnsInteractor: CustomGradebookColumnsInteractorMock(),
             env: environment,
             mainScheduler: .immediate
         )
@@ -204,6 +209,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
 
     private func setupMocks() {
         gradeStatusInteractorMock = GradeStatusInteractorMock()
+        customGradebookColumnsInteractor = CustomGradebookColumnsInteractorMock()
         let getAssignment = GetAssignment(
             courseID: testData.context.id,
             assignmentID: testData.assignmentId,
