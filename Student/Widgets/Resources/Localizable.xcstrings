@@ -263,6 +263,7 @@
     },
     "American Literature IV" : {
       "comment" : "Example exam name",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -520,6 +521,7 @@
     },
     "American Literature IV: All the Books" : {
       "comment" : "Example course name",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1033,6 +1035,7 @@
       }
     },
     "Assignment Grades" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1288,8 +1291,11 @@
         }
       }
     },
+    "Based on graded assignments" : {
+
+    },
     "Biology 201" : {
-      "comment" : "Example course name",
+      "comment" : "Example course name\nExample course name for widget preview",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1547,6 +1553,7 @@
     },
     "Biology Exam 2" : {
       "comment" : "Example exam name",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1802,10 +1809,17 @@
         }
       }
     },
+    "Canvas single grade widget" : {
+
+    },
     "Canvas To-do Widget" : {
 
     },
+    "Course" : {
+
+    },
     "Course Grades" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2061,11 +2075,21 @@
         }
       }
     },
+    "Double tap to view course grades tab" : {
+
+    },
     "Double tap to view full list of to-dos" : {
 
     },
+    "Drum And Bass 101" : {
+      "comment" : "Example course name for widget preview"
+    },
+    "English Literature 101" : {
+      "comment" : "Example course name for widget preview"
+    },
     "Essay #1: The Rocky Planets" : {
       "comment" : "Example exam name",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2320,6 +2344,9 @@
           }
         }
       }
+    },
+    "Example Course" : {
+
     },
     "Finals are moving to next week." : {
       "comment" : "Example announcement title",
@@ -2578,8 +2605,24 @@
         }
       }
     },
+    "General Astronomy" : {
+      "comment" : "Example course name for widget preview"
+    },
+    "Grade" : {
+
+    },
+    "Grade is hidden" : {
+
+    },
+    "Grade List" : {
+      "comment" : "Name of the Grade List widget"
+    },
+    "Grade: %@" : {
+
+    },
     "Grades" : {
       "comment" : "Name of the grades widget",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2834,6 +2877,15 @@
           }
         }
       }
+    },
+    "Greek Literature" : {
+      "comment" : "Example course name for widget preview"
+    },
+    "Hidden Grades" : {
+
+    },
+    "In the Jungle" : {
+      "comment" : "Example course name for widget preview"
     },
     "Introduction to the Solar System" : {
       "comment" : "Example course name",
@@ -3352,8 +3404,17 @@
     "Let's Get You Logged In!" : {
 
     },
+    "Loading" : {
+
+    },
     "Looks like you're free for the next 4 weeks.  Do you want to add some to-dos?" : {
 
+    },
+    "Mathematics 904 2024/25" : {
+      "comment" : "Example course name for widget preview"
+    },
+    "Mobile Development 101" : {
+      "comment" : "Example course name for widget preview"
     },
     "No Announcements" : {
       "localizations" : {
@@ -3611,7 +3672,11 @@
         }
       }
     },
+    "No Grades" : {
+
+    },
     "No Grades To Display" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3869,6 +3934,9 @@
     },
     "Oops! Something Went Wrong" : {
 
+    },
+    "Planet Earth" : {
+      "comment" : "Example course name for widget preview"
     },
     "Please log in via the application" : {
       "localizations" : {
@@ -4392,6 +4460,24 @@
     "Reloading Widget" : {
 
     },
+    "Select Course" : {
+
+    },
+    "Select course to show total grade" : {
+
+    },
+    "Selects the course to display total grade for." : {
+
+    },
+    "Single Grade Widget" : {
+
+    },
+    "Something Went Wrong!" : {
+
+    },
+    "Space and Stars" : {
+      "comment" : "Example course name for widget preview"
+    },
     "Susan Jorgenson" : {
       "comment" : "Example author name",
       "localizations" : {
@@ -4906,6 +4992,12 @@
         }
       }
     },
+    "To see your grades, please log in to your account in the app." : {
+
+    },
+    "To see your grades, please log in to your account in the app.  It'll just take a sec!" : {
+
+    },
     "To see your to-dos, please log in to your account in the app.  It'll just take a sec!" : {
 
     },
@@ -4917,6 +5009,12 @@
     },
     "View Full List" : {
 
+    },
+    "View the grade of your favorite course" : {
+
+    },
+    "View the grades of your favourite courses." : {
+      "comment" : "Description of the Grade List widget"
     },
     "View the latest announcements from your courses." : {
       "comment" : "Description of the announcements widget",
@@ -5177,6 +5275,7 @@
     },
     "View the latest grades from assignments and your favorite courses." : {
       "comment" : "Description of the grades widget",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -5434,6 +5533,12 @@
     },
     "View your to-do items." : {
       "comment" : "Description of the to-do widget"
+    },
+    "We're having trouble showing your grades right now." : {
+
+    },
+    "We're having trouble showing your grades right now.  Please try again in a bit or head to the app." : {
+
     },
     "We're having trouble showing your tasks right now.  Please try again in a bit or head to the app." : {
 

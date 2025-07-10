@@ -18,6 +18,7 @@
 
 @preconcurrency import WebKit
 import Combine
+import UIKit
 
 @IBDesignable
 open class CoreWebView: WKWebView {
@@ -54,6 +55,7 @@ open class CoreWebView: WKWebView {
     }
 
     var downloadingAttachment: CoreWebAttachment?
+    internal var a11yHelper = CoreWebViewAccessibilityHelper()
 
     private(set) var features: [CoreWebViewFeature] = []
     private var htmlString: String?
@@ -168,6 +170,18 @@ open class CoreWebView: WKWebView {
         handle("loadFrameSource") { [weak self] message in
             guard let src = message.body as? String else { return }
             self?.loadFrame(src: src)
+        }
+        handle("modalPresentation") { [weak self] message in
+            guard let self,
+                  let body = message.body as? [String: Bool],
+                  let isPresentingModal = body["open"]
+            else { return }
+
+            self.a11yHelper.setExclusiveAccessibility(
+                for: self,
+                isExclusive: isPresentingModal,
+                viewController: self.viewController
+            )
         }
 
         registerForTraitChanges()

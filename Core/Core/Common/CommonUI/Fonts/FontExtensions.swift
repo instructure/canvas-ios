@@ -70,8 +70,8 @@ public extension Font {
 
     static var heavy24: Font { Font(UIFont.scaledNamedFont(.heavy24)) }
 
-    /// Use this where you need for the font to respect restriction on dynamic font size
-    /// applied automatically mostly by components like navigation bars.
+    /// Use this where you need for the font to respect restriction applied on
+    /// dynamic type size associated with the font's text style `Font.TextStyle`
     static func scaledRestrictly(_ fontName: UIFont.Name) -> Font {
         if fontName.isMonospaced {
             return .system(fontName.style, design: .monospaced)

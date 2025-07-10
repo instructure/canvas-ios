@@ -18,30 +18,53 @@
 
 import UIKit
 
-open class VisibilityObservedViewController: UIViewController {
+public protocol VisibilityObservingViewController: UIViewController {
+    var visibilityObservation: VisibilityObservation { get }
+}
 
-    private var onAppearTask: (() -> Void)?
-    private var isVisible: Bool = false
+extension VisibilityObservingViewController {
+    public var isVisible: Bool { visibilityObservation.isVisible }
+
+    /// Calls the closure one time, either instantly if the ViewController is visible,
+    /// or on the next appearance if not.
+    public func onAppearOnce(_ block: @escaping () -> Void) {
+        if visibilityObservation.isVisible {
+            block()
+        } else {
+            visibilityObservation.appearTask = block
+        }
+    }
+}
+
+public class VisibilityObservation {
+
+    fileprivate var appearTask: (() -> Void)?
+    fileprivate var isVisible: Bool = false
+
+    public init() {}
+
+    func viewDidAppear() {
+        isVisible = true
+        appearTask?()
+        appearTask = nil
+    }
+
+    func viewDidDisappear() {
+        isVisible = false
+    }
+}
+
+open class VisibilityObservedViewController: UIViewController, VisibilityObservingViewController {
+
+    public private(set) var visibilityObservation = VisibilityObservation()
 
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        isVisible = true
-        onAppearTask?()
-        onAppearTask = nil
+        visibilityObservation.viewDidAppear()
     }
 
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        isVisible = false
-    }
-
-    /// Calls the closure one time, either instantly if the ViewController is visible,
-    /// or on the next appearance if not.
-    public func onAppearOnce(_ taskBlock: @escaping () -> Void) {
-        if isVisible {
-            taskBlock()
-        } else {
-            onAppearTask = taskBlock
-        }
+        visibilityObservation.viewDidDisappear()
     }
 }

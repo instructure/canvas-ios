@@ -258,15 +258,13 @@ private struct TextArea: View {
     }
 
     private var textField: some View {
-        UITextViewWrapper(text: $text) {
-            let tv = UITextView()
-            tv.isScrollEnabled = false
-            tv.textContainer.widthTracksTextView = true
-            tv.textContainer.lineBreakMode = .byWordWrapping
-            tv.translatesAutoresizingMaskIntoConstraints = false
-            tv.font = HorizonUI.fonts.uiFont(font: HorizonUI.Typography.Name.p1.font)
-            tv.widthAnchor.constraint(equalToConstant: proxy.frame(in: .global).width - (2 * 16)).isActive = true
-            return tv
+        InstUI.UITextViewWrapper(text: $text) { textView in
+            textView.isScrollEnabled = false
+            textView.textContainer.widthTracksTextView = true
+            textView.textContainer.lineBreakMode = .byWordWrapping
+            textView.translatesAutoresizingMaskIntoConstraints = false
+            textView.font = HorizonUI.fonts.uiFont(font: HorizonUI.Typography.Name.p1.font)
+            textView.widthAnchor.constraint(equalToConstant: proxy.frame(in: .global).width - (2 * 16)).isActive = true
         }
         .foregroundStyle(text.isEmpty ? Color.huiColors.text.placeholder : Color.huiColors.text.body)
         .frame(minHeight: 120, alignment: .top)

@@ -24,15 +24,9 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
 
     struct Author {
         var id: String?
-        var name: String
-        var avatarUrl: URL?
+        var userNameModel: UserNameModel
         var isCurrentUser: Bool
-        var isAnonymized: Bool
-        var isGroup: Bool
-
-        var hasId: Bool {
-            id != nil
-        }
+        var isTappable: Bool
     }
 
     enum CommentType {
@@ -85,11 +79,9 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
 
         self.author = Author(
             id: comment.authorID,
-            name: User.displayName(comment.authorName, pronouns: comment.authorPronouns),
-            avatarUrl: comment.authorAvatarURL,
+            userNameModel: .init(user: comment),
             isCurrentUser: comment.authorID == currentUserId,
-            isAnonymized: assignment.anonymizeStudents,
-            isGroup: submission.groupID != nil
+            isTappable: !assignment.anonymizeStudents && comment.authorID != nil
         )
 
         self.date = comment.createdAtLocalizedString

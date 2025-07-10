@@ -35,6 +35,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
         courseName: "test course",
         courseColor: Color.course1
     )
+    private var gradeStatusInteractorMock: GradeStatusInteractorMock!
 
     override func setUp() {
         super.setUp()
@@ -45,12 +46,14 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             userID: testData.userId,
             filter: [],
             sortNeedsGradingSubmissionsFirst: false,
+            gradeStatusInteractor: gradeStatusInteractorMock,
             env: environment
         )
     }
 
     override func tearDown() {
         testee = nil
+        gradeStatusInteractorMock = nil
         super.tearDown()
     }
 
@@ -88,6 +91,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
         XCTAssertEqual(receivedData.submissions.count, 1)
         XCTAssertEqual(receivedData.assignment.name, testData.assignmentName)
         XCTAssertEqual(receivedData.focusedSubmissionIndex, 0)
+        XCTAssertEqual(gradeStatusInteractorMock.fetchGradeStatusesCalled, true)
     }
 
     func test_dataState_gradingBased_sorting() throws {
@@ -120,6 +124,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             userID: "1",
             filter: [],
             sortNeedsGradingSubmissionsFirst: true,
+            gradeStatusInteractor: GradeStatusInteractorMock(),
             env: environment
         )
 
@@ -184,6 +189,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             userID: testData.invalidUserId,
             filter: [],
             sortNeedsGradingSubmissionsFirst: false,
+            gradeStatusInteractor: GradeStatusInteractorMock(),
             env: environment
         )
         XCTAssertEqual(testee.state.value, .loading)
@@ -197,6 +203,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
     }
 
     private func setupMocks() {
+        gradeStatusInteractorMock = GradeStatusInteractorMock()
         let getAssignment = GetAssignment(
             courseID: testData.context.id,
             assignmentID: testData.assignmentId,
