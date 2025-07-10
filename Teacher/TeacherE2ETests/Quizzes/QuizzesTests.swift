@@ -145,20 +145,28 @@ class QuizzesTests: E2ETestCase {
         XCTAssertTrue(addDueDate.isVisible)
 
         timeLimit.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
-        timeLimit.hit()
+        let timeLimitToggleImage = timeLimit.firstImage?.waitUntil(.visible)
+        XCTAssertNotNil(timeLimitToggleImage)
+        timeLimitToggleImage!.hit()
         XCTAssertTrue(length.waitUntil(.visible).isVisible)
 
         allowMultipleAttempts.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
-        allowMultipleAttempts.actionUntilElementCondition(action: .tap, element: allowedAttempts, condition: .visible)
+        let allowMultipleAttemptsImage = allowMultipleAttempts.firstImage?.waitUntil(.visible)
+        XCTAssertNotNil(allowMultipleAttemptsImage)
+        allowMultipleAttemptsImage!.hit()
         XCTAssertTrue(allowedAttempts.waitUntil(.visible).isVisible)
         XCTAssertTrue(scoreToKeep.waitUntil(.visible).isVisible)
 
         showOneQuestionAtATime.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
-        showOneQuestionAtATime.actionUntilElementCondition(action: .tap, element: lockQuestions, condition: .visible)
+        let showOneQuestionAtATimeImage = showOneQuestionAtATime.firstImage?.waitUntil(.visible)
+        XCTAssertNotNil(showOneQuestionAtATimeImage)
+        showOneQuestionAtATimeImage!.hit()
         XCTAssertTrue(lockQuestions.waitUntil(.visible).isVisible)
 
         requireAccessCode.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
-        requireAccessCode.actionUntilElementCondition(action: .tap, element: accessCode, condition: .visible)
+        let requireAccessCodeImage = requireAccessCode.firstImage?.waitUntil(.visible)
+        XCTAssertNotNil(requireAccessCodeImage)
+        requireAccessCodeImage!.hit()
         XCTAssertTrue(accessCode.waitUntil(.visible).isVisible)
     }
 }
