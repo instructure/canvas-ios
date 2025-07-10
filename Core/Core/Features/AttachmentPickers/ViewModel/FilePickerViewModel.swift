@@ -30,13 +30,14 @@ public class FilePickerViewModel: ObservableObject {
     public let didTapFolder = PassthroughRelay<(WeakViewController, Folder)>()
 
     private let interactor: FilePickerInteractor
-    private var subscriptions = Set<AnyCancellable>()
-    private let env: AppEnvironment
+    private let router: Router
     private let onSelect: (File) -> Void
 
-    public init(env: AppEnvironment, interactor: FilePickerInteractor, onSelect: @escaping (File) -> Void = { _ in }) {
+    private var subscriptions = Set<AnyCancellable>()
+
+    public init(interactor: FilePickerInteractor, router: Router, onSelect: @escaping (File) -> Void = { _ in }) {
         self.interactor = interactor
-        self.env = env
+        self.router = router
         self.onSelect = onSelect
 
         setupOutputBindings()
@@ -60,14 +61,14 @@ public class FilePickerViewModel: ObservableObject {
     private func setupInputBindings() {
         didTapCancel
             .sink { [weak self] controller in
-                self?.env.router.dismiss(controller)
+                self?.router.dismiss(controller)
             }
             .store(in: &subscriptions)
 
         didTapFile
             .sink { [weak self] (controller, file) in
                 self?.onSelect(file)
-                self?.env.router.dismiss(controller)
+                self?.router.dismiss(controller)
             }
             .store(in: &subscriptions)
 
@@ -75,8 +76,8 @@ public class FilePickerViewModel: ObservableObject {
             .sink { [weak self] (controller, folder) in
                 guard let self else { return }
 
-                let view = AttachmentPickerAssembly.makeFilePickerViewController(env: env, folderId: folder.id, onSelect: onSelect)
-                env.router.show(view, from: controller, options: .push)
+                let picker = AttachmentPickerAssembly.makeCanvasFilePicker(folderId: folder.id, router: router, onSelect: onSelect)
+                router.show(CoreHostingController(picker), from: controller, options: .push)
             }
             .store(in: &subscriptions)
     }

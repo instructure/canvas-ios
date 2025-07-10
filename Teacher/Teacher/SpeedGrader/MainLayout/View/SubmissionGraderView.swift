@@ -35,7 +35,6 @@ struct SubmissionGraderView: View {
     @State private var drawerState: DrawerState = .min
     @State private var showAttempts = false
     @State private var tab: GraderTab = .grades
-    @State private var showRecorder: MediaCommentType?
     /** Used to work around an issue which caused the page to re-load after putting the app into background. See `layoutForWidth()` method for more. */
     @State private var lastPresentedLayout: Layout = .portrait
     /// Used to match landscape drawer's segmented control height with the header height.
@@ -442,11 +441,10 @@ struct SubmissionGraderView: View {
                 viewModel: viewModel.commentListViewModel,
                 attempt: drawerAttempt,
                 fileID: fileID,
-                showRecorder: $showRecorder,
                 focusedTab: _focusedTab
             )
             .clipped()
-            if showRecorder != .video || drawerState == .min {
+            if drawerState == .min {
                 Spacer().frame(height: bottomInset)
             }
         }

@@ -97,8 +97,7 @@ final class ComposeMessageViewModel: ObservableObject {
     private let interactor: ComposeMessageInteractor
     private let recipientInteractor: RecipientInteractor
     private let settingsInteractor: InboxSettingsInteractor
-    private let audioSession: AudioSessionProtocol
-    private let cameraPermissionService: CameraPermissionService.Type
+    private let avPermissionViewModel: AVPermissionViewModel
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var messageType: ComposeMessageOptions.MessageType
     private var allRecipients = CurrentValueSubject<[Recipient], Never>([])
@@ -115,9 +114,7 @@ final class ComposeMessageViewModel: ObservableObject {
         interactor: ComposeMessageInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         recipientInteractor: RecipientInteractor,
-        inboxSettingsInteractor: InboxSettingsInteractor,
-        audioSession: AudioSessionProtocol,
-        cameraPermissionService: CameraPermissionService.Type
+        inboxSettingsInteractor: InboxSettingsInteractor
     ) {
         self.interactor = interactor
         self.router = router
@@ -125,8 +122,7 @@ final class ComposeMessageViewModel: ObservableObject {
         self.messageType = options.messageType
         self.recipientInteractor = recipientInteractor
         self.settingsInteractor = inboxSettingsInteractor
-        self.audioSession = audioSession
-        self.cameraPermissionService = cameraPermissionService
+        self.avPermissionViewModel = .init()
         setIncludedMessages(messageType: options.messageType)
         setOptionItems(options: options)
 
@@ -212,7 +208,7 @@ final class ComposeMessageViewModel: ObservableObject {
     }
 
     func attachmentButtonDidTap(viewController: WeakViewController) {
-        showDialog(viewController: viewController)
+        showAttachmentTypePicker(viewController: viewController)
     }
 
     func addFiles(urls: [URL]) {
@@ -248,7 +244,7 @@ final class ComposeMessageViewModel: ObservableObject {
         }
     }
 
-    private func showDialog(viewController: WeakViewController) {
+    private func showAttachmentTypePicker(viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
         sheet.title = String(localized: "Select Attachment Type", bundle: .core)
 
@@ -271,15 +267,8 @@ final class ComposeMessageViewModel: ObservableObject {
             title: String(localized: "Take photo", bundle: .core),
             accessibilityIdentifier: nil
         ) { [weak self] in
-            guard let self else {
-                return
-            }
-            VideoRecorder.requestPermission(cameraService: cameraPermissionService) { isEnabled in
-                if isEnabled {
-                    self.isTakePhotoVisible = true
-                } else {
-                    viewController.value.showPermissionError(.camera)
-                }
+            self?.avPermissionViewModel.performAfterCameraPermission(from: viewController) {
+                self?.isTakePhotoVisible = true
             }
         }
         sheet.addAction(
@@ -287,16 +276,9 @@ final class ComposeMessageViewModel: ObservableObject {
             title: String(localized: "Record audio", bundle: .core),
             accessibilityIdentifier: nil
         ) { [weak self] in
-            guard let self else {
-                return
+            self?.avPermissionViewModel.performAfterMicrophonePermission(from: viewController) {
+                self?.isAudioRecordVisible = true
             }
-            AudioRecorderViewController.requestPermission(audioSession: self.audioSession) { isEnabled in
-                if isEnabled {
-                    self.isAudioRecordVisible = true
-                } else {
-                    viewController.value.showPermissionError(.microphone)
-                }
-             }
         }
         sheet.addAction(
             image: .folderLine,
@@ -305,9 +287,8 @@ final class ComposeMessageViewModel: ObservableObject {
         ) { [weak self] in
             guard let self, let top = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return }
 
-            let viewController = AttachmentPickerAssembly.makeFilePickerViewController(env: .shared, onSelect: self.addFile)
-            self.router.show(viewController, from: top, options: .modal(isDismissable: true, embedInNav: true))
-
+            let picker = AttachmentPickerAssembly.makeCanvasFilePicker(router: router, onSelect: addFile)
+            router.show(CoreHostingController(picker), from: top, options: .modal(isDismissable: true, embedInNav: true))
         }
 
         router.show(sheet, from: viewController, options: .modal())
