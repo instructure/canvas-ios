@@ -51,7 +51,7 @@
 		5BDD37D72DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD37D62DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift */; };
 		61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* TeacherAppDelegate.swift */; };
 		78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913021C8180C0075FBCF /* GoogleService-Info.plist */; };
-		7D0A28E2251A8284004FB3B6 /* SubmissionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A28E1251A8284004FB3B6 /* SubmissionHeaderView.swift */; };
+		7D0A28E2251A8284004FB3B6 /* SpeedGraderPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A28E1251A8284004FB3B6 /* SpeedGraderPageHeaderView.swift */; };
 		7D0D7AE2251E6E6C00550AEC /* SubmissionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D7AE1251E6E6C00550AEC /* SubmissionListViewController.swift */; };
 		7D0D7B36251EA41B00550AEC /* SubmissionListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D0D7B35251EA41B00550AEC /* SubmissionListViewController.storyboard */; };
 		7D264DC72537A6E1007CDD90 /* SimilarityScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D264DC62537A6E1007CDD90 /* SimilarityScoreView.swift */; };
@@ -141,9 +141,9 @@
 		CF20B5C02B1F9C7F00C00B39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF20B5BF2B1F9C7F00C00B39 /* LaunchScreen.storyboard */; };
 		CF27D8A72DCCA387009E2057 /* SpeedGraderLandscapeSplitLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF27D8A62DCCA379009E2057 /* SpeedGraderLandscapeSplitLayoutViewModel.swift */; };
 		CF28C6BD2DA4024A007CD65A /* SpeedGraderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28C6BC2DA40246007CD65A /* SpeedGraderInteractor.swift */; };
-		CF45B9F22DF2F71800BD9E41 /* SubmissionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF45B9F12DF2F71600BD9E41 /* SubmissionHeaderViewModel.swift */; };
+		CF45B9F22DF2F71800BD9E41 /* SpeedGraderPageHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF45B9F12DF2F71600BD9E41 /* SpeedGraderPageHeaderViewModel.swift */; };
 		CF4C5F7C2DA02401005AE000 /* SpeedGraderInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4C5F7B2DA023FB005AE000 /* SpeedGraderInteractorLive.swift */; };
-		CF56B71525F68CD3000DD32F /* SubmissionHeaderViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56B71425F68CD3000DD32F /* SubmissionHeaderViewModelTests.swift */; };
+		CF56B71525F68CD3000DD32F /* SpeedGraderPageHeaderViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56B71425F68CD3000DD32F /* SpeedGraderPageHeaderViewModelTests.swift */; };
 		CF67D00A2B18E9A1009D826A /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF67D0092B18E9A1009D826A /* InfoPlist.xcstrings */; };
 		CF67D00C2B18E9A1009D826A /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF67D00B2B18E9A1009D826A /* InfoPlist.xcstrings */; };
 		CF67D00E2B18E9A1009D826A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF67D00D2B18E9A1009D826A /* Localizable.xcstrings */; };
@@ -307,7 +307,7 @@
 		5BDD37D62DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPageViewModelTests.swift; sourceTree = "<group>"; };
 		61BD85FB1EB2933C005A09A5 /* TeacherAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherAppDelegate.swift; sourceTree = "<group>"; };
 		78AD913021C8180C0075FBCF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		7D0A28E1251A8284004FB3B6 /* SubmissionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionHeaderView.swift; sourceTree = "<group>"; };
+		7D0A28E1251A8284004FB3B6 /* SpeedGraderPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPageHeaderView.swift; sourceTree = "<group>"; };
 		7D0D7AE1251E6E6C00550AEC /* SubmissionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListViewController.swift; sourceTree = "<group>"; };
 		7D0D7B35251EA41B00550AEC /* SubmissionListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionListViewController.storyboard; sourceTree = "<group>"; };
 		7D264DC62537A6E1007CDD90 /* SimilarityScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarityScoreView.swift; sourceTree = "<group>"; };
@@ -397,9 +397,9 @@
 		CF20B5BF2B1F9C7F00C00B39 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF27D8A62DCCA379009E2057 /* SpeedGraderLandscapeSplitLayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderLandscapeSplitLayoutViewModel.swift; sourceTree = "<group>"; };
 		CF28C6BC2DA40246007CD65A /* SpeedGraderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderInteractor.swift; sourceTree = "<group>"; };
-		CF45B9F12DF2F71600BD9E41 /* SubmissionHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionHeaderViewModel.swift; sourceTree = "<group>"; };
+		CF45B9F12DF2F71600BD9E41 /* SpeedGraderPageHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPageHeaderViewModel.swift; sourceTree = "<group>"; };
 		CF4C5F7B2DA023FB005AE000 /* SpeedGraderInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderInteractorLive.swift; sourceTree = "<group>"; };
-		CF56B71425F68CD3000DD32F /* SubmissionHeaderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionHeaderViewModelTests.swift; sourceTree = "<group>"; };
+		CF56B71425F68CD3000DD32F /* SpeedGraderPageHeaderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPageHeaderViewModelTests.swift; sourceTree = "<group>"; };
 		CF67D0092B18E9A1009D826A /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CF67D00B2B18E9A1009D826A /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CF67D00D2B18E9A1009D826A /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -1100,7 +1100,7 @@
 				7D7126B02534B980000DEDE4 /* DrawerContainer.swift */,
 				7D264DC62537A6E1007CDD90 /* SimilarityScoreView.swift */,
 				7D7D6D5125102052002B1485 /* SpeedGraderPageView.swift */,
-				7D0A28E1251A8284004FB3B6 /* SubmissionHeaderView.swift */,
+				7D0A28E1251A8284004FB3B6 /* SpeedGraderPageHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1230,7 +1230,7 @@
 			children = (
 				CF27D8A62DCCA379009E2057 /* SpeedGraderLandscapeSplitLayoutViewModel.swift */,
 				CF0E06932DA8FFC4007AC131 /* SpeedGraderPageViewModel.swift */,
-				CF45B9F12DF2F71600BD9E41 /* SubmissionHeaderViewModel.swift */,
+				CF45B9F12DF2F71600BD9E41 /* SpeedGraderPageHeaderViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1326,7 +1326,7 @@
 			children = (
 				CF7D8D672DD24B5E00FA67CE /* SpeedGraderLandscapeSplitLayoutViewModelTests.swift */,
 				5BDD37D62DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift */,
-				CF56B71425F68CD3000DD32F /* SubmissionHeaderViewModelTests.swift */,
+				CF56B71425F68CD3000DD32F /* SpeedGraderPageHeaderViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1811,7 +1811,7 @@
 				7D7126B12534B980000DEDE4 /* DrawerContainer.swift in Sources */,
 				CFF4AAAB2DFB048200B0351F /* GradeStatusViewModel.swift in Sources */,
 				3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */,
-				7D0A28E2251A8284004FB3B6 /* SubmissionHeaderView.swift in Sources */,
+				7D0A28E2251A8284004FB3B6 /* SpeedGraderPageHeaderView.swift in Sources */,
 				5B9C5C072DB9B04000103E21 /* SubmissionCommentsAssembly.swift in Sources */,
 				CF0605E32D95C5A50014C2EC /* RubricCircle.swift in Sources */,
 				CFCADAF42D9D871D003796E7 /* RubricRatingView.swift in Sources */,
@@ -1860,7 +1860,7 @@
 				61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */,
 				D91C051D29AE10170032BFB1 /* QuizSubmissionListItemView.swift in Sources */,
 				0856FCD42DB64FE8009067CF /* SubmissionListRowView.swift in Sources */,
-				CF45B9F22DF2F71800BD9E41 /* SubmissionHeaderViewModel.swift in Sources */,
+				CF45B9F22DF2F71800BD9E41 /* SpeedGraderPageHeaderViewModel.swift in Sources */,
 				0856FCF42DC76144009067CF /* SubmissionsFilterScreen.swift in Sources */,
 				0856FD022DCB09F5009067CF /* SubmissionListSection.swift in Sources */,
 				0856FCD62DB6583C009067CF /* SubmissionListAssembly.swift in Sources */,
@@ -1907,7 +1907,7 @@
 				5B4F3E602DC8B169001A9126 /* SubmissionCommentListCellViewModelTests.swift in Sources */,
 				CF7D8D682DD24B5E00FA67CE /* SpeedGraderLandscapeSplitLayoutViewModelTests.swift in Sources */,
 				7D64A96D23626C22004EAEDF /* StatusCellTests.swift in Sources */,
-				CF56B71525F68CD3000DD32F /* SubmissionHeaderViewModelTests.swift in Sources */,
+				CF56B71525F68CD3000DD32F /* SpeedGraderPageHeaderViewModelTests.swift in Sources */,
 				5BDD37D72DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift in Sources */,
 				CFFEADC32E029A4300277F69 /* GradeStatusViewModelTests.swift in Sources */,
 				0856FCFC2DCA4196009067CF /* SubmissionListViewModelTests.swift in Sources */,

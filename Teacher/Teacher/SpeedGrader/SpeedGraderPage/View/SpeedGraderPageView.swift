@@ -126,7 +126,7 @@ struct SpeedGraderPageView: View {
     ) -> some View {
         HStack(spacing: 0) {
             VStack(spacing: 0) {
-                SubmissionHeaderView(
+                SpeedGraderPageHeaderView(
                     assignment: viewModel.assignment,
                     submission: viewModel.submission,
                     isLandscapeLayout: true,
@@ -184,7 +184,7 @@ struct SpeedGraderPageView: View {
     ) -> some View {
         ZStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 0) {
-                SubmissionHeaderView(
+                SpeedGraderPageHeaderView(
                     assignment: viewModel.assignment,
                     submission: viewModel.submission,
                     isLandscapeLayout: false,
