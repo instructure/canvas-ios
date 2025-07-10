@@ -20,6 +20,30 @@ import Core
 import SwiftUI
 
 struct AnnouncementItem: Identifiable, Equatable {
+    static let publicPreview: [Self] = [
+        .init(
+            title: String(localized: "Finals are moving to next week.", comment: "Example announcement title"),
+            date: Date(),
+            url: URL(string: "https://www.instructure.com/")!,
+            authorName: String(localized: "Thomas McKempis", comment: "Example author name"),
+            courseName: String(localized: "Introduction to the Solar System", comment: "Example course name"),
+            courseColor: .textInfo),
+        .init(
+            title: String(localized: "Zoo Field Trip!", comment: "Example announcement title"),
+            date: Date().addDays(-1),
+            url: URL(string: "https://www.instructure.com/")!,
+            authorName: String(localized: "Susan Jorgenson", comment: "Example author name"),
+            courseName: String(localized: "Biology 201", comment: "Example course name"),
+            courseColor: .course3),
+        .init(
+            title: String(localized: "Read Moby Dick by end of week.", comment: "Example announcement title"),
+            date: Date().addDays(-5),
+            url: URL(string: "https://www.instructure.com/")!,
+            authorName: String(localized: "Janet Hammond", comment: "Example author name"),
+            courseName: String(localized: "American literature IV", comment: "Example course name"),
+            courseColor: .textSuccess)
+        ]
+
     let id: String
     let title: String
     let date: Date

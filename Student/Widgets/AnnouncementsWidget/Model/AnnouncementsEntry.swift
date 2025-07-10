@@ -16,51 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import WidgetKit
 
-class AnnouncementsEntry: WidgetModel {
-    override class var publicPreview: AnnouncementsEntry {
-        let url = URL(string: "https://www.instructure.com/")!
-
-        return AnnouncementsEntry(announcementItems: [
-            AnnouncementItem(
-                title: String(localized: "Finals are moving to next week.", comment: "Example announcement title"),
-                date: Date(),
-                url: url,
-                authorName: String(localized: "Thomas McKempis", comment: "Example author name"),
-                courseName: String(localized: "Introduction to the Solar System", comment: "Example course name"),
-                courseColor: .textInfo),
-            AnnouncementItem(
-                title: String(localized: "Zoo Field Trip!", comment: "Example announcement title"),
-                date: Date().addDays(-1),
-                url: url,
-                authorName: String(localized: "Susan Jorgenson", comment: "Example author name"),
-                courseName: String(localized: "Biology 201", comment: "Example course name"),
-                courseColor: .course3),
-            AnnouncementItem(
-                title: String(localized: "Read Moby Dick by end of week.", comment: "Example announcement title"),
-                date: Date().addDays(-5),
-                url: url,
-                authorName: String(localized: "Janet Hammond", comment: "Example author name"),
-                courseName: String(localized: "American literature IV", comment: "Example course name"),
-                courseColor: .textSuccess)
-        ])
-    }
+struct AnnouncementsEntry: TimelineEntry {
+    static let publicPreview: Self = .init(announcements: AnnouncementItem.publicPreview)
+    static let loggedOutModel: Self = .init(isLoggedIn: false)
 
     let announcements: [AnnouncementItem]
+    let isLoggedIn: Bool
+    let date: Date
 
-    init(isLoggedIn: Bool = true, announcementItems: [AnnouncementItem] = []) {
-        self.announcements = announcementItems
-        super.init(isLoggedIn: isLoggedIn)
-    }
-}
-
-extension AnnouncementsEntry: Identifiable {
-    var id: Int {
-        var hasher = Hasher()
-        announcements.forEach { hasher.combine($0.id) }
-        hasher.combine(isLoggedIn)
-        return hasher.finalize()
+    init(announcements: [AnnouncementItem] = [], isLoggedIn: Bool = true, date: Date = .now) {
+        self.announcements = announcements
+        self.isLoggedIn = isLoggedIn
+        self.date = date
     }
 }
 
@@ -69,13 +38,15 @@ extension AnnouncementsEntry {
     public static func make() -> AnnouncementsEntry {
         let url = URL(string: "https://www.instructure.com/")!
 
-        return AnnouncementsEntry(announcementItems: [
-            AnnouncementItem(title: "Finals are moving to next week.", date: Date(), url: url, authorName: "Thomas McKempis", courseName: "Introduction to the Solar System", courseColor: .textInfo),
-            AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .course3),
-            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .textSuccess),
-            AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .course3),
-            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .textSuccess)
-        ])
+        return AnnouncementsEntry(
+            announcements: [
+                AnnouncementItem(title: "Finals are moving to next week.", date: Date(), url: url, authorName: "Thomas McKempis", courseName: "Introduction to the Solar System", courseColor: .textInfo),
+                AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .course3),
+                AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .textSuccess),
+                AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .course3),
+                AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .textSuccess)
+            ]
+        )
     }
 }
 #endif
