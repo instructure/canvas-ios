@@ -199,12 +199,16 @@ let router = Router(routes: [
         )
     },
 
-    RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { url, params, _, env in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { url, params, userInfo, env in
         guard
             let context = Context(path: url.path),
             let assignmentId = params["assignmentID"],
             let userId = params["userID"]
         else { return nil }
+
+        let sortNeedsGradingFirst = (
+            userInfo?[SpeedGraderUserInfoKey.sortNeedsGradingSubmissionsFirst] as? Bool
+        ) ?? false
 
         let filter = url
             .queryValue(for: "filter")?
@@ -217,7 +221,7 @@ let router = Router(routes: [
             assignmentId: assignmentId,
             userId: userId,
             filter: filter,
-            sortNeedsGradingSubmissionsFirst: false,
+            sortNeedsGradingSubmissionsFirst: sortNeedsGradingFirst,
             env: env
         )
     },

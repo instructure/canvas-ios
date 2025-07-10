@@ -182,16 +182,30 @@ public enum SpeedGraderUserInfoKey {
 private extension SpeedGraderInteractorLive {
 
     static let needsGradingFirstSortingStrategy: (Submission, Submission) -> Bool = { sub1, sub2 in
-        /// Put 'Needs Grading' first
-        if sub1.needsGrading != sub2.needsGrading {
-            return sub1.needsGrading
-        }
+        let sub1KindOrder = sub1.listSectionKind.order
+        let sub2KindOrder = sub2.listSectionKind.order
 
-        /// Put 'Graded' last
-        if sub1.isGraded != sub2.isGraded {
-            return sub2.isGraded
+        if sub1KindOrder != sub2KindOrder {
+            return sub1KindOrder < sub2KindOrder
+        } else {
+            // This is to match ordering of submission as
+            // they are being fetched to submission list
+            // via GetSubmissions use case.
+            return sub1 < sub2
         }
+    }
+}
 
-        return false
+// MARK: Sorting Helper Extensions
+
+private extension SubmissionListSection.Kind {
+    var order: Int { return Self.allCases.firstIndex(of: self) ?? -1 }
+}
+
+private extension Submission {
+    var listSectionKind: SubmissionListSection.Kind {
+        SubmissionListSection.Kind
+            .allCases
+            .first(where: { $0.filter(self) }) ?? .others
     }
 }
