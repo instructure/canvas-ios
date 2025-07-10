@@ -126,7 +126,7 @@ final class AssistFlashCardViewModel {
 
     private func onMessage(_ response: AssistChatResponse) {
         chatHistory = response.chatHistory
-        guard let flashCardModels =  response.flashCards?.flashCardModels else {
+        guard let flashCardModels =  response.chatHistory.last?.flashCards?.flashCardModels else {
             return
         }
         currentCardIndex = 0

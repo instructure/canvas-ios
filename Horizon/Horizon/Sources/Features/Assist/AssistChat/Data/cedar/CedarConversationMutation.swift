@@ -18,8 +18,8 @@
 
 import Core
 
-class PineQueryMutation: APIGraphQLRequestable {
-    let variables: Variables
+class CedarConversationMutation: APIGraphQLRequestable {
+    let variables: Input
 
     var path: String {
         "/graphql"
@@ -32,50 +32,43 @@ class PineQueryMutation: APIGraphQLRequestable {
         ]
     }
 
-    public init(messages: [DomainServiceConversationMessage], courseID: String) {
+    public init(
+        systemPrompt: String,
+        messages: [DomainServiceConversationMessage]
+    ) {
         self.variables = Variables(
-            input: RagQueryInput(
-                messages: messages,
-                source: "canvas",
-                metadata: Metadata(courseId: courseID)
-            )
+            messages: messages,
+            systemPrompt: systemPrompt
         )
     }
 
-    public static let operationName: String = "ChatPrompt"
+    public static let operationName: String = "Conversation"
     public static var query: String = """
-        mutation \(operationName)($input: RagQueryInput!) {
-            query(input: $input) {
+        mutation \(operationName)($systemPrompt: String!, $messages: [MessageInput!]!) {
+            conversation(input: { systemPrompt: $systemPrompt, messages: $messages } ) {
                 response
             }
         }
     """
 
-    typealias Response = RagData
+    typealias Response = CedarConversationMutationResponse
 
-    struct Variables: Codable, Equatable {
-        let input: RagQueryInput
-    }
-
-    struct RagQueryInput: Codable, Equatable {
+    struct Input: Codable, Equatable {
         let messages: [DomainServiceConversationMessage]
-        let source: String
-        let metadata: Metadata
+        let systemPrompt: String
     }
+}
 
-    struct RagData: Codable {
-        let data: RagQuery
-    }
+// MARK: - Codeables
 
-    struct RagQuery: Codable {
-        let query: RagResponse
-    }
-
-    struct RagResponse: Codable {
+struct CedarConversationMutationResponse: Codable {
+    struct Conversation: Codable, Equatable {
         let response: String
     }
 
-    struct Metadata: Codable, Equatable {
-        let courseId: String
+    struct ResponseData: Codable, Equatable {
+        let conversation: Conversation
     }
+
+    let data: ResponseData
 }

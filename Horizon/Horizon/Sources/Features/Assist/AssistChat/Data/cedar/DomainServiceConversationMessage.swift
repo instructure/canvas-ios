@@ -16,13 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+struct DomainServiceConversationMessage: Codable, Equatable {
+    let role: Role
+    let text: String
 
-/// ChatBotActions are published to the  AssistChatInteractor. The Interactor reacts to the action and publishes one or more ChatBotResponses.
-enum AssistChatAction {
-    /// the user is chatting with the bot
-    case chat(prompt: String = "", history: [AssistChatMessage] = [])
+    init(text: String, role: Role) {
+        self.text = text
+        self.role = role
+    }
 
-    /// the user has selected a chip while viewing a file
-    case chip(option: AssistChipOption, history: [AssistChatMessage] = [])
+    enum Role: String, Codable {
+        case Assistant
+        case User
+    }
 }

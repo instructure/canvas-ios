@@ -41,12 +41,14 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     // MARK: - Private
 
     private let actionPublisher = CurrentValueRelay<AssistChatAction?>(nil)
+    private let assistDataEnvironment: AssistDataEnvironment = AssistDataEnvironment()
     private var pageContextPublisher: AnyPublisher<AssistChatPageContext, Error>?
     private let initialStatePublisher = PassthroughSubject<Void, Never>()
     private var actionCancellable: AnyCancellable?
     private let responsePublisher = PassthroughSubject<AssistChatInteractorLive.State, Never>()
     private var subscriptions = Set<AnyCancellable>()
     private let userID: String
+    private let goalChain: [any Goal]
 
     // MARK: - init
 
@@ -99,6 +101,11 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         self.downloadFileInteractor = downloadFileInteractor
         self.pageContextPublisher = pageContextPublisher
         self.userID = userID
+        self.goalChain = [
+            SelectCourseGoal(environment: assistDataEnvironment),
+            SelectCourseActionGoal(environment: assistDataEnvironment)
+        ]
+
         initialStatePublisher
             .flatMap { [weak self] _ -> AnyPublisher<(AssistChatPageContext, String), Error> in
                 guard let self = self else {
@@ -197,23 +204,25 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         userShortName: String
     ) -> AnyPublisher<AssistChatResponse, any Error> {
         var prompt: String!
+        var history: [AssistChatMessage]!
         var useAdvancedChat = false
 
         switch action {
-        case .chat(let message, _):
+        case .chat(let message, let chatHistory):
             prompt = message
+            history = chatHistory
             // only use the advanced chat if we don't have a document context
             useAdvancedChat = pageContext.prompt == nil
-        case .chip(let option, _):
+        case .chip(let option, let chatHistory):
             prompt = option.prompt
+            history = chatHistory
             useAdvancedChat = false
         }
 
-        // This should really only happen when the user first opens the chat
-        if prompt.isEmpty {
-            return buildInitialResponse(for: pageContext, with: userShortName)
-                .eraseToAnyPublisher()
+        if let publisher = executeGoalChain(prompt: prompt, history: history) {
+            return publisher
         }
+
         return publish(using: action, with: userShortName)
             .flatMap { [weak self] newHistory -> AnyPublisher<AssistChatResponse, Error> in
                 guard let self = self else {
@@ -242,21 +251,55 @@ final class AssistChatInteractorLive: AssistChatInteractor {
             .eraseToAnyPublisher()
     }
 
-    /// Makes a request to the pine endpoint using the given history
-    private func advancedChat(history: [AssistChatMessage]) -> AnyPublisher<String, Error> {
-        pineDomainService.api()
-            .flatMap { pineApi in
-                pineApi.makeRequest(
-                    PineQueryMutation(
-                        messages: history.reversed().filter { $0.prompt != nil }.map {
-                            PineQueryMutation.APIMessageInput(
-                                text: $0.prompt ?? "", role: $0.role == .Assistant ? .Assistant : .User)
-                        }
+    private func executeGoalChain(
+        prompt: String = "",
+        history: [AssistChatMessage] = []
+    ) -> AnyPublisher<AssistChatResponse, any Error>? {
+        guard let goal = goalChain.first(where: { $0.isRequested() }) else {
+            return nil
+        }
+        if prompt.isEmpty {
+            return goal.options.flatMap { goalOptions in
+                Just(
+                    .init(
+                        .init(
+                            botResponse: goal.userPrompt,
+                            chipOptions: goalOptions.map {
+                                .init(chip: $0.text, prompt: $0.text)
+                            }
+                        ),
+                        chatHistory: history
                     )
                 )
-                .compactMap { ragData in
-                    ragData.map { $0.data.query.response }
+                .setFailureType(to: Error.self)
+            }
+            .eraseToAnyPublisher()
+        }
+
+        let response = AssistChatResponse(
+            .init(userResponse: prompt),
+            chatHistory: history,
+            isLoading: true
+        )
+        let revisedHistory = response.chatHistory
+        responsePublisher.send(.success(response))
+
+        return goal.execute(response: prompt, history: revisedHistory)
+            .flatMap { [weak self] assistChatMessage in
+                guard let self = self else {
+                    return Empty<AssistChatResponse, any Error>(completeImmediately: true).eraseToAnyPublisher()
                 }
+                if let assistChatMessage = assistChatMessage {
+                    let response = AssistChatResponse(
+                        assistChatMessage,
+                        chatHistory: revisedHistory
+                    )
+                    return Just(.init(assistChatMessage, chatHistory: response.chatHistory))
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return self.executeGoalChain(history: revisedHistory)!
+                .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }
@@ -272,8 +315,8 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         let message = String(localized: "How can I help today?", bundle: .horizon)
         let chatBotResponse =
             options.isEmpty
-            ? AssistChatResponse(message: AssistChatMessage(prompt: nil, text: message, role: .Assistant))
-            : AssistChatResponse(chipOptions: options)
+        ? AssistChatResponse(.init(botResponse: message))
+        : AssistChatResponse(.init(botResponse: message, chipOptions: options))
 
         return Just(chatBotResponse)
             .setFailureType(to: Error.self)
@@ -360,26 +403,12 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         return basicChat(prompt: classifierPrompt, pageContext: pageContext)
     }
 
-    private func courseSelectionResponse(chatHistory: [AssistChatMessage]) -> AnyPublisher<AssistChatResponse, Error> {
+    private func courseSelectionResponse(chatHistory: [AssistChatMessage]) -> AnyPublisher<AssistChatResponse, any Error> {
             ReactiveStore(
                 useCase: GetHCoursesProgressionUseCase(userId: userID)
             )
             .getEntities()
             .map { [weak self] courses in
-                if let course = courses.first(where: { $0.course.id == self?.assistDataEnvironment.courseID.value }) {
-                    return .courseHelp(
-                        courseName: course.course.name ?? "",
-                        pageContext: self?.assistDataEnvironment.pageContext.value,
-                        chatHistory: chatHistory
-                    )
-                }
-                if let courseName = courses.first?.course.name, courses.count == 1 {
-                    return AssistChatResponse.courseHelp(
-                        courseName: courseName,
-                        pageContext: self?.assistDataEnvironment.pageContext.value,
-                        chatHistory: chatHistory
-                    )
-                }
                 if courses.count > 1 {
                     return .courseSelection(
                         courses: courses.map {
@@ -419,7 +448,9 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         )
         .compactMap { response in
             AssistChatResponse(
-                flashCards: AssistChatFlashCard.build(from: response) ?? [],
+                AssistChatMessage(
+                    flashCards: AssistChatFlashCard.build(from: response) ?? []
+                ),
                 chatHistory: history
             )
         }
@@ -440,13 +471,10 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         let classifierOption = ClassifierOption(rawValue: classification) ?? defaultOption
         switch classifierOption {
         case .chat:
-            let chatMethod =
-                useAdvancedChat
-                ? advancedChat(history: history)
-                : basicChat(prompt: "\(history.json) \(pageContext.prompt ?? "")", pageContext: pageContext)
+            let chatMethod = basicChat(prompt: "\(history.json) \(pageContext.prompt ?? "")", pageContext: pageContext)
             return
                 chatMethod
-                .map { AssistChatResponse(message: AssistChatMessage(botResponse: $0), chatHistory: history) }
+                .map { AssistChatResponse(AssistChatMessage(botResponse: $0), chatHistory: history) }
                 .eraseToAnyPublisher()
         case .flashcards:
             return flashcards(
@@ -466,22 +494,20 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     }
 
     /// publishes an updated history based on the action the user took, then returns that updated history
-    private func publish(using action: AssistChatAction, with userShortName: String) -> AnyPublisher<[AssistChatMessage], Never> {
+    private func publish(using action: AssistChatAction, with userShortName: String) -> AnyPublisher<[AssistChatMessage], any Error> {
         var response: AssistChatResponse!
         switch action {
-        case .start:
-            return courseSelectionResponse(chatHistory: chatHistory).eraseToAnyPublisher()
         case .chat(let prompt, let history):
             response = AssistChatResponse(
-                message: AssistChatMessage(userResponse: prompt),
+                AssistChatMessage(userResponse: prompt),
                 chatHistory: history,
                 isLoading: true
             )
         case .chip(let option, let history):
             response = AssistChatResponse(
-                message: AssistChatMessage(
-                    prompt: option.prompt,
-                    text: option.chip
+                .init(
+                    userResponse: option.chip,
+                    prompt: option.prompt
                 ),
                 chatHistory: history,
                 isLoading: true
@@ -491,6 +517,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         responsePublisher.send(.success(response))
 
         return Just(response.chatHistory)
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
@@ -513,7 +540,9 @@ final class AssistChatInteractorLive: AssistChatInteractor {
                 .compactMap { (quizOutput: CedarGenerateQuizMutation.QuizOutput?) in
                     quizOutput.map { quizOutput in
                         return AssistChatResponse(
-                            quizItems: quizOutput.quizItems,
+                            AssistChatMessage(
+                                quizItems: quizOutput.quizItems
+                            ),
                             chatHistory: history
                         )
                     }
@@ -561,23 +590,14 @@ final class AssistChatInteractorLive: AssistChatInteractor {
 // MARK: - Extensions
 
 private extension CedarGenerateQuizMutation.QuizOutput {
-    var quizItems: [AssistChatResponse.QuizItem] {
+    var quizItems: [QuizItem] {
         data.generateQuiz.map {
-            AssistChatResponse.QuizItem(
+            .init(
                 question: $0.question,
                 answers: $0.options,
                 correctAnswerIndex: $0.result
             )
         }
-    }
-}
-
-private extension Array where Element == AssistChatMessage {
-    var json: String {
-        guard let encoded = try? JSONEncoder().encode(self) else {
-            return "[]"
-        }
-        return String(data: encoded, encoding: .utf8) ?? "[]"
     }
 }
 
@@ -603,13 +623,15 @@ struct AssistChatInteractorPreview: AssistChatInteractor {
     var listen: AnyPublisher<AssistChatInteractorLive.State, Never> = Just(
         .success(
             AssistChatResponse(
-                quizItems: [
-                    .init(
-                        question: "What is the capital of France?",
-                        answers: ["Paris", "London", "Berlin", "Madrid"],
-                        correctAnswerIndex: 0
-                    )
-                ],
+                AssistChatMessage(
+                    quizItems: [
+                        .init(
+                            question: "What is the capital of France?",
+                            answers: ["Paris", "London", "Berlin", "Madrid"],
+                            correctAnswerIndex: 0
+                        )
+                    ]
+                ),
                 chatHistory: []
             )
         )

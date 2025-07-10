@@ -23,7 +23,7 @@ struct CourseNameAndID: Codable, Equatable {
 }
 
 /// These are predefined responses from which a learner can select
-enum AssistStaticBotResponse: Codable, Equatable {
+enum AssistStaticBotResponse {
     case courseAssistance(_ courseName: String, pageContext: AssistChatPageContext?)
     case review
     case selectACourse(_ courses: [CourseNameAndID], pageContext: AssistChatPageContext? = nil)

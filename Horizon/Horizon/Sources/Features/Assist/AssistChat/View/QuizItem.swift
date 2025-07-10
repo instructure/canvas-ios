@@ -16,13 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-
-/// ChatBotActions are published to the  AssistChatInteractor. The Interactor reacts to the action and publishes one or more ChatBotResponses.
-enum AssistChatAction {
-    /// the user is chatting with the bot
-    case chat(prompt: String = "", history: [AssistChatMessage] = [])
-
-    /// the user has selected a chip while viewing a file
-    case chip(option: AssistChipOption, history: [AssistChatMessage] = [])
+struct QuizItem: Codable, Equatable {
+    let question: String
+    let answers: [String]
+    let correctAnswerIndex: Int
 }

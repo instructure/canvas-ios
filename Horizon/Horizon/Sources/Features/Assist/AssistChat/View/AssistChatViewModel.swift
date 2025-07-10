@@ -160,7 +160,7 @@ final class AssistChatViewModel {
         // If we have no history, they are displayed as semitransparent message bubbles
         // If we do have a history, they are pills at the end of the last message
         if response.chatHistory.isEmpty {
-            let chipOptions = response.chipOptions ?? []
+            let chipOptions = response.chatHistory.last?.chipOptions ?? []
             hasAssistChipOptions = true
             shouldOpenKeyboardPublisher.send(false)
             newMessages = chipOptions.map { chipOption in
@@ -187,13 +187,13 @@ final class AssistChatViewModel {
             return "\(key)=\(value)"
         }.compactMap { $0 }.joined(separator: "&")
 
-        if let flashCards = response.flashCards?.flashCardModels, flashCards.count > 0 {
+        if let flashCards = response.chatHistory.last?.flashCards?.flashCardModels, flashCards.count > 0 {
             router.route(
                 to: "/assistant/flashcards?\(params)",
                 userInfo: ["flashCards": flashCards],
                 from: viewController
             )
-        } else if let quizItems = response.quizItems {
+        } else if let quizItems = response.chatHistory.last?.quizItems {
             let quizzes = quizItems.map { AssistQuizModel(from: $0) }
             router.route(
                 to: "/assistant/quiz?\(params)",
@@ -256,9 +256,9 @@ private extension AssistChatMessage {
     func viewModel(response: AssistChatResponse, onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil) -> AssistChatMessageViewModel {
         AssistChatMessageViewModel(
             id: self.id,
-            content: self.text,
+            content: self.text ?? "",
             style: self.role == .Assistant ? .transparent : .white,
-            chipOptions: self == response.chatHistory.last ? (response.chipOptions ?? []) : [],
+            chipOptions: self.id == response.chatHistory.last?.id ? (response.chatHistory.last?.chipOptions ?? []) : [],
             onTapChipOption: onTapChipOption
         )
     }

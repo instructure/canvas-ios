@@ -128,7 +128,7 @@ final class AssistQuizViewModel {
 
     private func onMessage(_ response: AssistChatResponse) {
         chatHistory = response.chatHistory
-        guard let quizItems = response.quizItems else {
+        guard let quizItems = response.chatHistory.last?.quizItems else {
             return
         }
         let quizzes = quizItems.map { AssistQuizModel(from: $0) }

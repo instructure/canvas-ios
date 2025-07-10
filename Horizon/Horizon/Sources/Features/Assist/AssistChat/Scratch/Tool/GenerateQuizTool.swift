@@ -16,13 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import Combine
 
-/// ChatBotActions are published to the  AssistChatInteractor. The Interactor reacts to the action and publishes one or more ChatBotResponses.
-enum AssistChatAction {
-    /// the user is chatting with the bot
-    case chat(prompt: String = "", history: [AssistChatMessage] = [])
+struct GenerateQuizTool: Tool {
 
-    /// the user has selected a chip while viewing a file
-    case chip(option: AssistChipOption, history: [AssistChatMessage] = [])
+    private let cedarDomainService: DomainService
+
+    init(cedarDomainService: DomainService = DomainService(.cedar)) {
+        self.cedarDomainService = cedarDomainService
+    }
+
+    var description: String = "Generates a quiz from "
+    func response() -> AnyPublisher<AssistChatMessage, any Error> {
+        Just(.init(botResponse: "Please try again later"))
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
 }

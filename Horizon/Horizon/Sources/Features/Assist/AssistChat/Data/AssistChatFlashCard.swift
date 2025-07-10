@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct AssistChatFlashCard: Codable {
+struct AssistChatFlashCard: Codable, Equatable {
 
     let question: String
     let answer: String
