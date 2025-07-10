@@ -86,7 +86,7 @@ struct LearnAssembly {
         let environment = AppEnvironment.shared
         let showTabBarAndNavigationBar: (Bool) -> Void = { isVisible in
             environment.tabBar(isVisible: shoudHideTabBar ? isVisible : true)
-            environment.navigationBar(isVisible: isVisible)
+            environment.navigationBar(isVisible: shoudHideTabBar ? isVisible : false)
         }
        return CourseDetailsView(
             viewModel: viewModel,
@@ -101,6 +101,6 @@ struct LearnAssembly {
             interactor: GetLearnCoursesInteractorLive()
         )
         let view = LearnView(viewModel: viewModel)
-        return  CoreHostingController(view)
+        return CoreHostingController(view)
     }
 }
