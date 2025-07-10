@@ -22,8 +22,9 @@ import Core
 import Combine
 
 class AssignmentInteractorPreview: AssignmentInteractor {
-    func getSubmissions() -> AnyPublisher<[HSubmission], Never> {
+    func getSubmissions(ignoreCache: Bool) -> AnyPublisher<[HSubmission], Error> {
         Just([HSubmission(id: "11", assignmentID: "submittedAt", attempt: 2)])
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
@@ -38,8 +39,9 @@ class AssignmentInteractorPreview: AssignmentInteractor {
 
     func addFile(url: URL) { }
 
-    func getAssignmentDetails() -> AnyPublisher<HAssignment, Never> {
+    func getAssignmentDetails(ignoreCache: Bool) -> AnyPublisher<HAssignment, Error> {
         Just(HAssignment.mock())
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
