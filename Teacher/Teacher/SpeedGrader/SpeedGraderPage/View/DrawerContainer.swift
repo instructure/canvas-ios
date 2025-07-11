@@ -22,6 +22,11 @@ import Core
 enum DrawerState {
     case min, mid, max
     static let transaction = Transaction.exclusive(.easeInOut)
+
+    var isClosed: Bool { self == .min }
+    var isOpen: Bool { self != .min }
+    var isHalfOpen: Bool { self == .mid }
+    var isFullyOpen: Bool { self == .max }
 }
 
 // Place after the main content in a ZStack(alignment: .bottom)

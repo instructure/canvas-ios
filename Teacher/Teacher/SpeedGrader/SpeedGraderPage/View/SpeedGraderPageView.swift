@@ -26,36 +26,48 @@ import Combine
 /// - Note: Users navigate between SpeedGrader pages via horizontal swipes.
 /// Make sure subviews don't interfere with this gesture.
 struct SpeedGraderPageView: View {
+
     private enum Layout {
         case portrait
         case landscape // only on iPads no matter the iPhone screen size
     }
 
-    let userIndexInSubmissionList: Int
-
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
+    /// The index used for paging
+    let userIndexInSubmissionList: Int
+
+    // MARK: - Tab & Drawer properties
+
     @State private var drawerState: DrawerState = .min
-    @State private var showAttempts = false
-    @State private var tab: SpeedGraderPageTab = .grades
-    /** Used to work around an issue which caused the page to re-load after putting the app into background. See `layoutForWidth()` method for more. */
-    @State private var lastPresentedLayout: Layout = .portrait
-    /// Used to match landscape drawer's segmented control height with the header height.
-    @State private var profileHeaderSize: CGSize = .zero
+    @State private var selectedTab: SpeedGraderPageTab = .grades
     @AccessibilityFocusState private var focusedTab: SpeedGraderPageTab?
 
-    @StateObject private var rubricsViewModel: RubricsViewModel
-    @StateObject private var viewModel: SpeedGraderPageViewModel
-    @ObservedObject private var landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel
+    // MARK: - Layout properties
 
-    private var handleRefresh: (() -> Void)?
+    /// Used to match landscape drawer's segmented control height with the header height.
+    @State private var headerHeight: CGFloat = 0
+
+    /// Used to work around an issue which caused the page to re-load after putting the app into background. See `layoutForWidth()` method for more.
+    @State private var lastPresentedLayout: Layout = .portrait
+
     /// We can't measure the view's size because when keyboard appears it shrinks it
     /// and that would cause the layout to switch from portrait to landscape. We use the
     /// navigation controller's view size instead to decide which layout to use.
     private var containerSize: CGSize {
         controller.value.navigationController?.view.frame.size ?? .zero
     }
+
+    // MARK: - Misc properties
+
+    @StateObject private var rubricsViewModel: RubricsViewModel
+    @StateObject private var viewModel: SpeedGraderPageViewModel
+    @ObservedObject private var landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel
+
+    private let handleRefresh: (() -> Void)?
+
+    // MARK: - Init
 
     init(
         env: AppEnvironment,
@@ -68,14 +80,16 @@ struct SpeedGraderPageView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.landscapeSplitLayoutViewModel = landscapeSplitLayoutViewModel
         self.handleRefresh = handleRefresh
-        _rubricsViewModel = StateObject(wrappedValue:
-                                            RubricsViewModel(
-                                                assignment: viewModel.assignment,
-                                                submission: viewModel.submission,
-                                                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission)
-                                            )
+        _rubricsViewModel = StateObject(
+            wrappedValue: RubricsViewModel(
+                assignment: viewModel.assignment,
+                submission: viewModel.submission,
+                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission)
+            )
         )
     }
+
+    // MARK: - Body
 
     var body: some View {
         GeometryReader { geometry in
@@ -120,51 +134,16 @@ struct SpeedGraderPageView: View {
         }
     }
 
-    private func landscapeLayout(
-        bottomInset: CGFloat
-    ) -> some View {
+    // MARK: - Landscape layout
+
+    private func landscapeLayout(bottomInset: CGFloat) -> some View {
         HStack(spacing: 0) {
-            VStack(spacing: 0) {
-                SpeedGraderPageHeaderView(
-                    assignment: viewModel.assignment,
-                    submission: viewModel.submission,
-                    isLandscapeLayout: true,
-                    landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel
-                )
-                .accessibility(sortPriority: 2)
-                .onSizeChange(update: $profileHeaderSize)
-                InstUI.Divider()
+            landscapeLeftColumn(bottomInset: bottomInset)
+                .frame(width: landscapeSplitLayoutViewModel.leftColumnWidth)
 
-                VStack(alignment: .leading, spacing: 0) {
-
-                    if viewModel.hasSubmissions {
-                        attemptAndFilePickers
-                        InstUI.Divider()
-                    }
-
-                    ZStack(alignment: .top) {
-                        VStack(spacing: 0) {
-                            SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.selectedFile)
-                            SubmissionViewer(
-                                assignment: viewModel.assignment,
-                                submission: viewModel.selectedAttempt,
-                                fileID: viewModel.selectedFile?.id,
-                                studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
-                                handleRefresh: handleRefresh
-                            )
-                        }
-                        // Disable submission content interaction in case attempt picker is above it
-                        .accessibilityElement(children: showAttempts ? .ignore : .contain)
-                        .accessibility(hidden: showAttempts)
-                    }
-                    Spacer().frame(height: bottomInset)
-                }
-                .zIndex(1)
-                .accessibility(sortPriority: 1)
-            }
-            .frame(width: landscapeSplitLayoutViewModel.leftColumnWidth)
             InstUI.Divider()
-            tools(bottomInset: bottomInset, isDrawer: false)
+
+            landscapeRightColumn(bottomInset: bottomInset)
                 .frame(width: landscapeSplitLayoutViewModel.rightColumnWidth)
                 .hidden(landscapeSplitLayoutViewModel.isRightColumnHidden)
         }
@@ -172,9 +151,42 @@ struct SpeedGraderPageView: View {
         .onChange(of: landscapeSplitLayoutViewModel.isRightColumnHidden) { _, isHidden in
             // Auto focus voiceover on the selected tab when the right column is shown
             if isHidden { return }
-            focusedTab = tab
+            focusedTab = selectedTab
         }
     }
+
+    private func landscapeLeftColumn(bottomInset: CGFloat) -> some View {
+        VStack(spacing: 0) {
+            headerView(isLandscapeLayout: true)
+                .accessibility(sortPriority: 2)
+                .onHeightChange(update: $headerHeight)
+
+            InstUI.Divider()
+
+            VStack(alignment: .leading, spacing: 0) {
+                if viewModel.hasSubmissions {
+                    attemptAndFilePickers
+                    InstUI.Divider()
+                }
+
+                ZStack(alignment: .top) {
+                    VStack(spacing: 0) {
+                        similarityScoreView
+                        submissionViewer
+                    }
+                }
+                Spacer().frame(height: bottomInset)
+            }
+            .zIndex(1)
+            .accessibility(sortPriority: 1)
+        }
+    }
+
+    private func landscapeRightColumn(bottomInset: CGFloat) -> some View {
+        tabsView(bottomInset: bottomInset, tabsContainerType: .splitView)
+    }
+
+    // MARK: - Portrait layout
 
     private func portraitLayout(
         minHeight: CGFloat,
@@ -183,37 +195,24 @@ struct SpeedGraderPageView: View {
     ) -> some View {
         ZStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 0) {
-                SpeedGraderPageHeaderView(
-                    assignment: viewModel.assignment,
-                    submission: viewModel.submission,
-                    isLandscapeLayout: false,
-                    landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel
-                )
+                headerView(isLandscapeLayout: false)
+
                 InstUI.Divider()
 
                 if viewModel.hasSubmissions {
                     attemptAndFilePickers
-                        .accessibility(hidden: drawerState == .max)
+                        .accessibility(hidden: drawerState.isFullyOpen)
                     InstUI.Divider()
                 }
 
-                let isSubmissionContentHiddenFromA11y = (drawerState != .min || showAttempts)
-
                 VStack(spacing: 0) {
-                    SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.selectedFile)
-                    SubmissionViewer(
-                        assignment: viewModel.assignment,
-                        submission: viewModel.selectedAttempt,
-                        fileID: viewModel.selectedFile?.id,
-                        studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
-                        handleRefresh: handleRefresh
-                    )
+                    similarityScoreView
+                    submissionViewer
                 }
-                .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
-                .accessibility(hidden: isSubmissionContentHiddenFromA11y)
+                .accessibilityHidden(drawerState.isOpen)
 
                 Spacer()
-                    .frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
+                    .frame(height: drawerState.isClosed ? minHeight : (minHeight + maxHeight) / 2)
             }
 
             DrawerContainer(
@@ -221,12 +220,39 @@ struct SpeedGraderPageView: View {
                 minHeight: minHeight,
                 maxHeight: maxHeight
             ) {
-                tools(bottomInset: bottomInset, isDrawer: true)
+                tabsView(bottomInset: bottomInset, tabsContainerType: .drawer)
             }
-            .accessibilityAddTraits(drawerState == .max ? .isModal : [])
+            .accessibilityAddTraits(drawerState.isFullyOpen ? .isModal : [])
         }
         .onAppear { didChangeLayout(to: .portrait) }
     }
+
+    // MARK: - Components
+
+    private func headerView(isLandscapeLayout: Bool) -> some View {
+        SpeedGraderPageHeaderView(
+            assignment: viewModel.assignment,
+            submission: viewModel.submission,
+            isLandscapeLayout: isLandscapeLayout,
+            landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel
+        )
+    }
+
+    private var similarityScoreView: some View {
+        SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.selectedFile)
+    }
+
+    private var submissionViewer: some View {
+        SubmissionViewer(
+            assignment: viewModel.assignment,
+            submission: viewModel.selectedAttempt,
+            fileID: viewModel.selectedFile?.id,
+            studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
+            handleRefresh: handleRefresh
+        )
+    }
+
+    // MARK: - Attempt and File pickers
 
     private var attemptAndFilePickers: some View {
         HStack(alignment: .center, spacing: 12) {
@@ -307,13 +333,14 @@ struct SpeedGraderPageView: View {
 
     // MARK: - Drawer
 
-    private func tools(bottomInset: CGFloat, isDrawer: Bool) -> some View {
+    private func tabsView(bottomInset: CGFloat, tabsContainerType: SpeedGraderPageTabsView.ContainerType) -> some View {
         SpeedGraderPageTabsView(
-            tab: $tab,
-            drawerState: $drawerState,
+            containerType: tabsContainerType,
             bottomInset: bottomInset,
-            isDrawer: isDrawer,
-            profileHeaderSize: $profileHeaderSize,
+            selectedTab: $selectedTab,
+            focusedTab: _focusedTab,
+            drawerState: $drawerState,
+            splitViewHeaderHeight: $headerHeight,
             viewModel: viewModel
         )
     }
@@ -340,6 +367,8 @@ struct SpeedGraderPageView: View {
         lastPresentedLayout = layout
     }
 }
+
+// MARK: - Private helpers
 
 private func interpolate(value: CGFloat, fromMin: CGFloat, fromMax: CGFloat, toMin: CGFloat, toMax: CGFloat) -> CGFloat {
     let bounded = max(fromMin, min(value, fromMax))
