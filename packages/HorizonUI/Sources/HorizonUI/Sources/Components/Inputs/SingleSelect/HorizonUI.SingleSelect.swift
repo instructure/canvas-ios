@@ -312,7 +312,6 @@ extension HorizonUI {
             }
 
             // Display only the items that match what the user's input
-            
             filteredItems = options.filter { $0.lowercased().contains(text.lowercased()) }
 
             // If what they've typed leaves no filtered items, display all options
