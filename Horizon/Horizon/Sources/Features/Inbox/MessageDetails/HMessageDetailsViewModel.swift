@@ -29,6 +29,7 @@ class HMessageDetailsViewModel {
         attachmentViewModel?.items ?? []
     }
     var dismissKeyboard: (() -> Void)?
+    var isAnimationEnabled: Bool = false
     var isAnnouncementIconVisible: Bool {
         announcementID != nil
     }
@@ -216,6 +217,7 @@ class HMessageDetailsViewModel {
             .sink { [weak self] conversationMessages in
                 guard let self = self else { return }
                 self.messages = conversationMessages
+                self.isAnimationEnabled = true
             }
             .store(in: &subscriptions)
     }

@@ -76,7 +76,7 @@ struct HMessageDetailsView: View {
                 )
             )
             .onChange(of: model.messages.count) {
-                if let last = model.messages.last {
+                if let last = model.messages.last, model.isAnimationEnabled {
                     withAnimation {
                         proxy.scrollTo(last.id, anchor: .bottom)
                     }
