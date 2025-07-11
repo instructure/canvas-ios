@@ -72,7 +72,7 @@ class HCreateMessageViewModel {
         didSet {
             peopleSelectionViewModel.clearSearch()
             if let courseID = courseID {
-                peopleSelectionViewModel.context = .course(courseID)
+                peopleSelectionViewModel.setContext(.course(courseID))
             }
         }
     }

@@ -26,11 +26,6 @@ import Observation
 @Observable
 class RecipientSelectionViewModel {
     // MARK: - Outputs
-    var context: Context {
-        didSet {
-            makeRequest()
-        }
-    }
     var isFocused: Bool = false {
         didSet {
             onFocused(oldValue: oldValue)
@@ -52,14 +47,14 @@ class RecipientSelectionViewModel {
     }
     let personFilterSubject = CurrentValueSubject<[HorizonUI.MultiSelect.Option], Never>([])
     var searchLoading: Bool = false
-
-    // MARK: - Private
-    private var searchDebounceTask: Task<Void, Never>?
     var searchString: String = "" {
         didSet {
             searchStringSubject.send(searchString)
         }
     }
+
+    // MARK: - Private
+    private let contextSubject: CurrentValueSubject<Context, Never>
     private let searchStringSubject = CurrentValueSubject<String, Never>("")
     private var subscriptions = Set<AnyCancellable>()
 
@@ -81,11 +76,37 @@ class RecipientSelectionViewModel {
         self.environment = environment
         self.api = api
         self.currentUserID = currentUserID
-        self.context = .user(currentUserID)
+        self.contextSubject = .init(.user(currentUserID))
         self.dispatchQueue = dispatchQueue
         self.recipientsSearch = recipientsSearch
 
+        listenForRecipients()
+        listenForSearchStringUpdates()
+    }
+
+    // MARK: - Public Methods
+    func clearSearch() {
+        searchString = ""
+        personOptions = []
+        searchByPersonSelections = []
+    }
+
+    func setContext(_ context: Context) {
+        contextSubject.send(context)
+    }
+
+    // MARK: - Private Methods
+
+    private func onFocused(oldValue: Bool = false) {
+        if oldValue && !isFocused {
+            dismissKeyboard?()
+        }
+        isFocusedSubject.send(isFocused)
+    }
+
+    private func listenForRecipients() {
         recipientsSearch.recipients
+            .receive(on: dispatchQueue)
             .sink { [weak self] recipients in
                 self?.personOptions = recipients.map {
                     HorizonUI.MultiSelect.Option(
@@ -97,35 +118,19 @@ class RecipientSelectionViewModel {
             .store(in: &subscriptions)
     }
 
-    // MARK: - Public Methods
-    func clearSearch() {
-        searchString = ""
-        personOptions = []
-        searchByPersonSelections = []
-    }
-
-    // MARK: - Private Methods
-    private func makeRequest() {
-        recipientsSearch.search(with: searchString, using: context)
-    }
-
-    private func onFocused(oldValue: Bool = false) {
-        if oldValue && !isFocused {
-            dismissKeyboard?()
-        }
-        if isFocused {
-            makeRequest()
-        }
-        isFocusedSubject.send(isFocused)
-    }
-
-    private func onSearchStringSet() {
-        searchStringSubject
-            .debounce(for: .milliseconds(500), scheduler: dispatchQueue)
-            .removeDuplicates()
-            .sink { [weak self] _ in
-                self?.makeRequest()
+    private func listenForSearchStringUpdates() {
+        Publishers.CombineLatest(
+            searchStringSubject
+                .debounce(for: .milliseconds(200), scheduler: dispatchQueue)
+                .removeDuplicates(),
+            contextSubject
+        )
+        .sink { [weak self] searchString, contextSubject in
+            guard let self = self else {
+                return
             }
-            .store(in: &subscriptions)
+            self.recipientsSearch.search(with: searchString, using: contextSubject)
+        }
+        .store(in: &subscriptions)
     }
 }
