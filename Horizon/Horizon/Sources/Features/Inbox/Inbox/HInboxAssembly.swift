@@ -17,16 +17,12 @@
 //
 
 import Core
-import Foundation
-import WebKit
+import UIKit
 
-final class HInboxViewModel: EmbeddedWebPageViewModel {
-    var urlPathComponent: String
-    var queryItems: [URLQueryItem] = []
-    var navigationBarTitle: String
-
-    init() {
-        urlPathComponent = "/inbox"
-        navigationBarTitle = String(localized: "Inbox", bundle: .horizon)
+struct HInboxAssembly {
+    static func makeViewController() -> UIViewController {
+        CoreHostingController(
+            HInboxView(viewModel: HInboxViewModel())
+        )
     }
 }

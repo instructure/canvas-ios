@@ -29,13 +29,13 @@ protocol DownloadFileInteractor {
 final class DownloadFileInteractorLive: DownloadFileInteractor {
     // MARK: - Dependencies
 
-    private let courseID: String
+    private let courseID: String?
     private let fileManager: FileManager
 
     // MARK: - Init
 
     init(
-        courseID: String,
+        courseID: String? = nil,
         fileManager: FileManager = .default
     ) {
         self.courseID = courseID
@@ -43,7 +43,12 @@ final class DownloadFileInteractorLive: DownloadFileInteractor {
     }
 
     func download(fileID: String) -> AnyPublisher<URL, Error> {
-        ReactiveStore(
+        guard let courseID = courseID else {
+            return Empty(completeImmediately: true)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        return ReactiveStore(
             useCase: GetFile(context: .course(courseID), fileID: fileID)
         )
         .getEntities(ignoreCache: true)

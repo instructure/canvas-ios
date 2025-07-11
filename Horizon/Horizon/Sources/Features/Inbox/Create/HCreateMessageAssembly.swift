@@ -17,18 +17,24 @@
 //
 
 import Core
-import UIKit
+import SwiftUI
 
-struct HInboxAssembly {
-    static func makeView() -> UIViewController {
-        let inboxViewModel = HInboxViewModel()
-        let viewModel = HEmbeddedWebPageContainerViewModel(
-            webPage: inboxViewModel
+struct HCreateMessageAssembly {
+    public static func makeViewController() -> UIViewController {
+        let uploadIdentifier = UUID().uuidString
+        return CoreHostingController(
+            HCreateMessageView(viewModel:
+                .init(
+                    composeMessageInteractor: ComposeMessageInteractorLive(
+                        batchId: uploadIdentifier,
+                        uploadFolderPath: "conversation attachments",
+                        uploadManager: UploadManager(
+                            env: AppEnvironment.shared,
+                            identifier: uploadIdentifier
+                        )
+                    )
+                )
+            )
         )
-
-        let viewController = CoreHostingController(
-            HInboxView(viewModel: viewModel)
-        )
-        return viewController
     }
 }

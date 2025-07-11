@@ -28,12 +28,13 @@ extension HorizonUI {
         private let label: String?
         private let options: [String]
         private let placeholder: String?
+        private let zIndex: Double
         @Binding private var selection: String
 
         // MARK: Properties
 
         private var bodyHeight: CGFloat {
-            textInputMeasuredHeight + displayedOptionHeight + errorHeight
+            textInputMeasuredHeight + errorHeight
         }
 
         // The computed height of a single option
@@ -67,7 +68,8 @@ extension HorizonUI {
             options: [String],
             disabled: Bool = false,
             placeholder: String? = nil,
-            error: String? = nil
+            error: String? = nil,
+            zIndex: Double = 101
         ) {
             self.label = label
             self.options = options
@@ -77,23 +79,28 @@ extension HorizonUI {
             self.error = error
             self.focusedBinding = focused
             self._focused = focused
+            self.zIndex = zIndex
         }
 
         public var body: some View {
-            VStack {
+            VStack(spacing: 0) {
                 VStack(spacing: 8) {
                     labelText
                     textInput
                 }
                 .onTapGesture(perform: onTapText)
+
                 ZStack(alignment: .top) {
                     errorText
                     displayedOptions
+                        .zIndex(zIndex)
                 }
             }
+            .background(.clear)
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: bodyHeight, alignment: .top)
-            .zIndex(101)
+            .padding(3)
+            .zIndex(zIndex)
         }
 
         // MARK: - Private
@@ -112,6 +119,7 @@ extension HorizonUI {
             .background(Color.huiColors.surface.pageSecondary)
             .frame(height: displayedOptionsHeight)
             .cornerRadius(HorizonUI.CornerRadius.level1_5.attributes.radius)
+            .padding(.top, .huiSpaces.space12)
             .shadow(radius: HorizonUI.Elevations.level1.attributes.blur)
             .animation(.easeInOut, value: displayedOptionsHeight)
         }
@@ -194,6 +202,12 @@ extension HorizonUI {
                     .padding(HorizonUI.spaces.space12)
                     .padding(.trailing, .huiSpaces.space24)
                     .overlay(textOverlay(isOuter: false))
+                    .background(
+                        HorizonUI.colors.surface.pageSecondary.clipShape(
+                            RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
+                        )
+                    )
+
                 Image.huiIcons.chevronRight
                     .padding(.horizontal, .huiSpaces.space12)
                     .tint(Color.huiColors.icon.default)
@@ -212,7 +226,6 @@ extension HorizonUI {
                 }
             }
             .onTapGesture(perform: onTapText)
-            .background(Color.huiColors.surface.cardPrimary)
             .opacity(disabled ? 0.5 : 1.0)
         }
 
@@ -311,17 +324,34 @@ extension HorizonUI {
     ]
 
     VStack {
-        HorizonUI.SingleSelect(
-            selection: $selection,
-            focused: $focused,
-            label: "Words of the Alphabet",
-            options: options,
-            disabled: false,
-            placeholder: "Select an option",
-            error: "This is an error"
-        )
-
-        HorizonUI.PrimaryButton("Save Changes", type: .black, fillsWidth: true) {}
+        VStack {
+            HorizonUI.SingleSelect(
+                selection: $selection,
+                focused: $focused,
+                label: "Words of the Alphabet",
+                options: options,
+                disabled: false,
+                placeholder: "Select an option",
+                error: "This is an error"
+            )
+            HorizonUI.SingleSelect(
+                selection: Binding(
+                    get: { "Test1" },
+                    set: { _ in }
+                ),
+                focused: Binding(
+                    get: { false },
+                    set: { _ in }
+                ),
+                label: "Test2",
+                options: [],
+                disabled: true,
+                placeholder: "Select an option"
+            )
+            HorizonUI.PrimaryButton("Save Changes", type: .black, fillsWidth: true) {}
+        }
+        .padding(.horizontal, .huiSpaces.space24)
     }
-    .padding(.horizontal, .huiSpaces.space24)
+    .frame(maxHeight: .infinity, alignment: .top)
+    .background(HorizonUI.colors.surface.pagePrimary)
 }
