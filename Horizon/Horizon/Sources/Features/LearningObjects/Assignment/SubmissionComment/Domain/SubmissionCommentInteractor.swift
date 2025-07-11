@@ -79,7 +79,6 @@ final class SubmissionCommentInteractorLive: SubmissionCommentInteractor {
         last: Int?
     ) -> AnyPublisher<[SubmissionComment], Error> {
         let userID = sessionInteractor.getUserID() ?? ""
-
         let useCase = GetHSubmissionCommentsUseCase(
             userId: userID,
             assignmentId: assignmentID,
