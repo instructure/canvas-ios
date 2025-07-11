@@ -166,12 +166,13 @@ class HMessageDetailsViewModel {
                 return
             }
             let recipientIDs = messageDetailsInteractor.userMap.map { $0.key }.filter { $0 != self.myID }
+            let attachmentIDs = attachmentViewModel?.items.compactMap { $0.id } ?? []
             composeMessageInteractor.addConversationMessage(
                 parameters: MessageParameters(
                     subject: conversation.subject,
                     body: reply,
                     recipientIDs: recipientIDs,
-                    attachmentIDs: attachmentViewModel?.items.compactMap { $0.id } ?? [],
+                    attachmentIDs: attachmentIDs,
                     conversationID: conversation.id,
                     bulkMessage: true
                 )

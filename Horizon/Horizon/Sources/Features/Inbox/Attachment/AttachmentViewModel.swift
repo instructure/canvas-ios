@@ -79,7 +79,9 @@ class AttachmentViewModel {
 
     func addFile(url: URL) {
         dismiss()
-        composeMessageInteractor.addFile(url: url)
+        if url.startAccessingSecurityScopedResource() {
+            composeMessageInteractor.addFile(url: url)
+        }
     }
 
     func chooseFile() {

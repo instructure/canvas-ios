@@ -24,21 +24,20 @@ struct HorizonMessageDetailsAssembly {
         conversationID: String,
         allowArchive: Bool
     ) -> UIViewController {
-        let uploadIdentifier = UUID().uuidString
-        let appEnvironment = AppEnvironment.shared
+        let batchID = UUID.string
+        let env = AppEnvironment.shared
         let viewModel = HMessageDetailsViewModel(
             conversationID: conversationID,
             messageDetailsInteractor: MessageDetailsInteractorLive(
-                env: appEnvironment,
+                env: env,
                 conversationID: conversationID
             ),
             composeMessageInteractor: ComposeMessageInteractorLive(
-                batchId: uploadIdentifier,
+                batchId: batchID,
                 uploadFolderPath: "conversation attachments",
-                uploadManager: UploadManager(
-                    env: appEnvironment,
-                    identifier: uploadIdentifier
-                )
+                restrictForFolderPath: true,
+                uploadManager: UploadManager(env: env, identifier: batchID),
+                publisherProvider: URLSessionDataTaskPublisherProviderLive()
             ),
             allowArchive: allowArchive
         )
