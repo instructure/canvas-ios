@@ -25,6 +25,7 @@ import SwiftUI
 @Observable
 class AttachmentItemViewModel {
     // MARK: - Outputs
+    var error: String?
 
     var filename: String { file.filename }
 
@@ -85,7 +86,11 @@ class AttachmentItemViewModel {
             .download(file: file)
             .receive(on: DispatchQueue.main)
             .sink(
-                receiveCompletion: { _ in },
+                receiveCompletion: { [weak self] completion in
+                    if case let .failure(error) = completion {
+                        self?.error = error.localizedDescription
+                    }
+                },
                 receiveValue: { [weak self] url in
                     self?.isDownloading = false
                     self?.router.showShareSheet(fileURL: url, viewController: viewController)

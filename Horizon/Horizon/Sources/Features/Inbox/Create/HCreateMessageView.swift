@@ -24,7 +24,8 @@ struct HCreateMessageView: View {
 
     @Environment(\.viewController) private var viewController
     @Bindable var viewModel: HCreateMessageViewModel
-    @State private var courseFocused: Bool = false
+    @FocusState private var isBodyFocused: Bool
+    @FocusState private var isSubjectFocused: Bool
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -167,17 +168,25 @@ struct HCreateMessageView: View {
         HorizonUI.TextArea(
             $viewModel.body,
             placeholder: String(localized: "Message", bundle: .horizon),
-            disabled: viewModel.isBodyDisabled
+            disabled: viewModel.isBodyDisabled,
+            focused: _isBodyFocused
         )
         .frame(height: 144)
+        .onChange(of: isBodyFocused) { _, _ in
+            viewModel.bodyFocusedChange(isFocused: isBodyFocused)
+        }
     }
 
     private var messageTitleInput: some View {
         HorizonUI.TextInput(
             $viewModel.subject,
             placeholder: String(localized: "Title/Subject", bundle: .horizon),
-            disabled: viewModel.isSubjectDisabled
+            disabled: viewModel.isSubjectDisabled,
+            focused: _isSubjectFocused
         )
+        .onChange(of: isSubjectFocused) { _, _ in
+            viewModel.subjectFocusedChange(isFocused: isSubjectFocused)
+        }
     }
 
     private var peopleSelection: some View {

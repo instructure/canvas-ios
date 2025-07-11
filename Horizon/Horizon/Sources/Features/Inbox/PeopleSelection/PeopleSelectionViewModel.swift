@@ -24,13 +24,18 @@ import SwiftUI
 @Observable
 class PeopleSelectionViewModel {
     // MARK: - Outputs
+    var context: Context {
+        didSet {
+            makeRequest()
+        }
+    }
     var isFocused: Bool = false {
         didSet {
-            onFocused()
-            isFocusedSubject.send(isFocused)
+            onFocused(oldValue: oldValue)
         }
     }
     let isFocusedSubject = CurrentValueSubject<Bool, Never>(false)
+    var dismissKeyboard: (() -> Void)?
     var personOptions: [HorizonUI.MultiSelect.Option] = []
     var recipientIDs: [String] {
         searchByPersonSelections.map { $0.id }
@@ -54,18 +59,23 @@ class PeopleSelectionViewModel {
             onSearchStringSet()
         }
     }
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
     private let api: API
-    private let currentUserID: String?
+    private let currentUserID: String
+    private let environment: AppEnvironment
 
     // MARK: - Init
     init(
+        environment: AppEnvironment = .shared,
         api: API = AppEnvironment.shared.api,
-        currentUserID: String? = AppEnvironment.shared.currentSession?.userID
+        currentUserID: String = AppEnvironment.shared.currentSession?.userID ?? ""
     ) {
+        self.environment = environment
         self.api = api
         self.currentUserID = currentUserID
+        self.context = .user(currentUserID)
     }
 
     // MARK: - Public Methods
@@ -81,7 +91,7 @@ class PeopleSelectionViewModel {
         searchAPITask?.cancel()
         searchAPITask = api.makeRequest(
             GetSearchRecipientsRequest(
-                context: .user(AppEnvironment.shared.currentSession?.userID ?? ""),
+                context: context,
                 search: searchString,
                 perPage: 10
             )
@@ -101,10 +111,14 @@ class PeopleSelectionViewModel {
         }
     }
 
-    private func onFocused() {
+    private func onFocused(oldValue: Bool = false) {
+        if oldValue && !isFocused {
+            dismissKeyboard?()
+        }
         if isFocused {
             makeRequest()
         }
+        isFocusedSubject.send(isFocused)
     }
 
     private func onSearchStringSet() {

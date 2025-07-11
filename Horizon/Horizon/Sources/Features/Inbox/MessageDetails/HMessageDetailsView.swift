@@ -24,9 +24,11 @@ struct HMessageDetailsView: View {
     @State var model: HMessageDetailsViewModel
     @Environment(\.viewController) private var viewController
     @State private var attachmentsHeight: CGFloat?
+    @FocusState private var isTextAreaFocused: Bool
 
     init(model: HMessageDetailsViewModel) {
         self.model = model
+        self.model.dismissKeyboard = dismissKeyboard
     }
 
     var body: some View {
@@ -58,6 +60,7 @@ struct HMessageDetailsView: View {
                 content: {
                     VStack(spacing: HorizonUI.spaces.space24) {
                         messageBodies
+                        scrollOffsetReader
                     }
                     .padding([.leading, .trailing, .bottom], HorizonUI.spaces.space24)
                     .padding(.top, HorizonUI.spaces.space16)
@@ -79,6 +82,9 @@ struct HMessageDetailsView: View {
                         proxy.scrollTo(last.id, anchor: .bottom)
                     }
                 }
+            }
+            .onPreferenceChange(ScrollOffsetPreferenceKey.self) { _ in
+                model.onScroll()
             }
         }
     }
@@ -136,6 +142,7 @@ struct HMessageDetailsView: View {
                 HorizonUI.TextArea(
                     $model.reply,
                     placeholder: String(localized: "Reply", bundle: .horizon),
+                    focused: _isTextAreaFocused,
                     autoExpand: true
                 )
                 replyAreaAttachments
@@ -149,6 +156,9 @@ struct HMessageDetailsView: View {
             .padding(.horizontal, HorizonUI.spaces.space24)
             .padding(.top, HorizonUI.spaces.space8)
             .padding(.bottom, HorizonUI.spaces.space16)
+            .onChange(of: isTextAreaFocused) { _, _ in
+                model.onTextAreaFocusChange(isTextAreaFocused)
+            }
         }
     }
 
@@ -212,6 +222,14 @@ struct HMessageDetailsView: View {
         }
     }
 
+    private var scrollOffsetReader: some View {
+        GeometryReader { geometry in
+            Color.clear
+                .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .global).minY)
+        }
+        .frame(height: 0)
+    }
+
     private var titleBar: some View {
         HStack {
             backButton
@@ -238,6 +256,23 @@ struct HMessageDetailsView: View {
         ) {
             model.pop(viewController: viewController)
         }
+    }
+
+    private func dismissKeyboard() {
+        UIApplication.shared
+            .connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }?
+            .endEditing(true)
+    }
+}
+
+struct ScrollOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
     }
 }
 

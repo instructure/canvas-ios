@@ -26,6 +26,7 @@ class HMessageDetailsViewModel {
     var attachmentItems: [AttachmentItemViewModel] {
         attachmentViewModel?.items ?? []
     }
+    var dismissKeyboard: (() -> Void)?
     var isAnnouncementIconVisible: Bool {
         announcementID != nil
     }
@@ -33,7 +34,7 @@ class HMessageDetailsViewModel {
         (attachmentViewModel?.items.count ?? 0) > 3
     }
     var isSendDisabled: Bool {
-        reply.isEmpty || isSending || attachmentViewModel?.isUploading ?? false
+        reply.trimmed().isEmpty || isSending || attachmentViewModel?.isUploading ?? false
     }
     var reply: String = ""
     var sendButtonOpacity: Double {
@@ -130,6 +131,16 @@ class HMessageDetailsViewModel {
         attachmentViewModel?.isVisible = true
     }
 
+    func onScroll() {
+        dismissKeyboard?()
+    }
+
+    func onTextAreaFocusChange(_ isFocused: Bool) {
+        if !isFocused {
+            reply = reply.trimmed()
+        }
+    }
+
     func pop(viewController: WeakViewController) {
         router.pop(from: viewController)
     }
@@ -142,12 +153,13 @@ class HMessageDetailsViewModel {
     }
 
     func sendMessage(viewController: WeakViewController) {
+        let reply = reply.trimmed()
         guard let conversation = conversation,
               let composeMessageInteractor = self.composeMessageInteractor,
-              let messageDetailsInteractor = self.messageDetailsInteractor else {
+              let messageDetailsInteractor = self.messageDetailsInteractor,
+              reply.isNotEmpty else {
             return
         }
-
         isSending = true
         Task { [weak self] in
             guard let self = self else {
@@ -157,21 +169,22 @@ class HMessageDetailsViewModel {
             composeMessageInteractor.addConversationMessage(
                 parameters: MessageParameters(
                     subject: conversation.subject,
-                    body: self.reply,
+                    body: reply,
                     recipientIDs: recipientIDs,
                     attachmentIDs: attachmentViewModel?.items.compactMap { $0.id } ?? [],
                     conversationID: conversation.id,
                     bulkMessage: true
                 )
             ).sink(
-                receiveCompletion: { _ in
+                receiveCompletion: { _ in },
+                receiveValue: { _ in
                     performUIUpdate {
                         self.isSending = false
                         self.reply = ""
                         self.composeMessageInteractor?.cancel()
+                        self.dismissKeyboard?()
                     }
-                },
-                receiveValue: { _ in }
+                }
             )
             .store(in: &self.subscriptions)
         }

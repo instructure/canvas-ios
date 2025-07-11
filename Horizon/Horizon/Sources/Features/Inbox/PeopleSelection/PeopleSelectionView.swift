@@ -33,6 +33,8 @@ struct PeopleSelectionView: View {
         self.viewModel = viewModel
         self.placeholder = placeholder
         self.disabled = disabled
+
+        self.viewModel.dismissKeyboard = dismissKeyboard
     }
 
     var body: some View {
@@ -46,5 +48,14 @@ struct PeopleSelectionView: View {
             disabled: disabled,
             placeholder: placeholder
         )
+    }
+
+    private func dismissKeyboard() {
+        UIApplication.shared
+            .connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }?
+            .endEditing(true)
     }
 }

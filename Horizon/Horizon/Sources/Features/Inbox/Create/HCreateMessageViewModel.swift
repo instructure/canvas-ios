@@ -59,8 +59,8 @@ class HCreateMessageViewModel {
     }
     var isSendDisabled: Bool {
         selectedCourse.isEmpty ||
-            subject.isEmpty ||
-            body.isEmpty ||
+            subject.trimmed().isEmpty ||
+            body.trimmed().isEmpty ||
             peopleSelectionViewModel.searchByPersonSelections.isEmpty ||
             isSending ||
             attachmentViewModel.isUploading
@@ -68,7 +68,14 @@ class HCreateMessageViewModel {
     var isSubjectDisabled: Bool {
         isSending
     }
-    var selectedCourse: String = ""
+    var selectedCourse: String = "" {
+        didSet {
+            peopleSelectionViewModel.clearSearch()
+            if let courseID = courseID {
+                peopleSelectionViewModel.context = .course(courseID)
+            }
+        }
+    }
     var sendButtonOpacity: Double {
         isSending ? 0.0 : 1.0
     }
@@ -78,6 +85,9 @@ class HCreateMessageViewModel {
     var subject: String = ""
 
     // MARK: - Private
+    private var courseID: String? {
+        inboxMessageInteractor.courses.value.first(where: { $0.name == selectedCourse })?.courseId
+    }
     private var isSending = false
     let peopleSelectionViewModel: PeopleSelectionViewModel = .init()
     private var subscriptions: Set<AnyCancellable> = []
@@ -133,6 +143,12 @@ class HCreateMessageViewModel {
         attachmentViewModel.isVisible = true
     }
 
+    func bodyFocusedChange(isFocused: Bool) {
+        if !isFocused {
+            body = body.trimmed()
+        }
+    }
+
     func close(viewController: WeakViewController) {
         router.dismiss(viewController)
     }
@@ -148,9 +164,15 @@ class HCreateMessageViewModel {
         }
     }
 
+    func subjectFocusedChange(isFocused: Bool) {
+        if !isFocused {
+            subject = subject.trimmed()
+        }
+    }
+
     // MARK: - Private Methods
     private func sendMessage() async {
-        guard let courseID = inboxMessageInteractor.courses.value.first(where: { $0.name == selectedCourse })?.courseId else {
+        guard let courseID = courseID else {
             return
         }
         await withCheckedContinuation { continuation in
