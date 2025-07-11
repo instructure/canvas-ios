@@ -25,7 +25,8 @@ final class ModuleItemSequenceInteractorPreview: ModuleItemSequenceInteractor {
         assetType: GetModuleItemSequenceRequest.AssetType,
         assetId: String,
         moduleID: String?,
-        itemID: String?
+        itemID: String?,
+        ignoreCache: Bool
     ) -> AnyPublisher<(HModuleItemSequence?, HModuleItem?), Never> {
         let moduleItem = HModuleItem(id: "14", title: "Sub title 2", htmlURL: nil)
         let currentModuleItem = HModuleItemSequenceNode(id: "212", moduleID: "1000")

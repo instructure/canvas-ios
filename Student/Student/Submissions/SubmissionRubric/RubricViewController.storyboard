@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,17 +15,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bAG-0O-4w9">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAG-0O-4w9">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="NBd-1M-MZg">
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" placeholderIntrinsicWidth="343" placeholderIntrinsicHeight="128" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="NBd-1M-MZg">
                                         <rect key="frame" x="16" y="0.0" width="343" height="128"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="343" id="uIY-lT-MJM"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="NBd-1M-MZg" firstAttribute="centerX" secondItem="bAG-0O-4w9" secondAttribute="centerX" id="0rf-BN-otb"/>
                                     <constraint firstAttribute="bottom" secondItem="NBd-1M-MZg" secondAttribute="bottom" id="4Ms-q6-8y7"/>
                                     <constraint firstItem="NBd-1M-MZg" firstAttribute="leading" secondItem="bAG-0O-4w9" secondAttribute="leading" constant="16" id="GG0-XE-YIE"/>
                                     <constraint firstItem="NBd-1M-MZg" firstAttribute="top" secondItem="bAG-0O-4w9" secondAttribute="top" id="TMm-PG-2fK"/>
@@ -49,7 +46,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no rubric for this assignment." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKN-3v-yJh" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="62" y="175" width="251" height="17"/>
+                                        <rect key="frame" x="44" y="175" width="287.5" height="20.5"/>
                                         <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.rubricEmptyLabel"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -86,7 +83,6 @@
                     </view>
                     <connections>
                         <outlet property="contentStackView" destination="NBd-1M-MZg" id="1QJ-ON-flZ"/>
-                        <outlet property="contentStackViewWidth" destination="uIY-lT-MJM" id="PBD-rL-gOZ"/>
                         <outlet property="emptyImageView" destination="RXI-be-h0l" id="mpI-OE-Cty"/>
                         <outlet property="emptyView" destination="ls2-gZ-h3j" id="Vp2-6w-VTB"/>
                         <outlet property="emptyViewLabel" destination="vKN-3v-yJh" id="SfC-U7-zma"/>
@@ -98,9 +94,4 @@
             <point key="canvasLocation" x="293" y="-210"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="vKN-3v-yJh">
-            <size key="intrinsicContentSize" width="251" height="17"/>
-        </designable>
-    </designables>
 </document>

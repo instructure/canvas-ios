@@ -138,6 +138,10 @@ extension String {
         let hashedData = SHA256.hash(data: inputData)
         return hashedData.map { String(format: "%02x", $0) }.joined()
     }
+
+    public var isLocalizedNA: Bool {
+        self == String(localized: "N/A", bundle: .core)
+    }
 }
 
 public extension Array<String?> {
@@ -147,7 +151,7 @@ public extension Array<String?> {
 }
 
 extension ReferenceWritableKeyPath {
-    var string: String {
+    public var string: String {
         NSExpression(forKeyPath: self).keyPath
     }
 }

@@ -41,10 +41,10 @@ struct RubricCircle<Content: View>: View {
     var body: some View {
         content
             .font(.medium20)
-            .foregroundColor(isOn ? Color(Brand.shared.buttonPrimaryText) : .textDark)
+            .foregroundColor(isOn ? .textLightest : .textDark)
             .frame(minWidth: 48, minHeight: 48, maxHeight: 48)
             .background(isOn ?
-                RoundedRectangle(cornerRadius: 24).fill(Color(Brand.shared.buttonPrimaryBackground)) :
+                RoundedRectangle(cornerRadius: 24).fill(.tint) :
                 nil
             )
             .background(!isOn ?

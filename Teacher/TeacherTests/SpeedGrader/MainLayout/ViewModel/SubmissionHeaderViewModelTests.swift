@@ -18,6 +18,7 @@
 
 import Core
 @testable import Teacher
+import TestsFoundation
 import XCTest
 
 class SubmissionHeaderViewModelTests: TeacherTestCase {
@@ -33,7 +34,7 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
             submission: submission,
         )
 
-        XCTAssertTrue(testee.isGroupSubmission)
+        XCTAssertTrue(testee.userNameModel.isGroup)
     }
 
     func testGroupName() {
@@ -46,7 +47,7 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
             assignment: assignment,
             submission: submission,
         )
-        XCTAssertEqual(testee.groupName, nil)
+        XCTAssertEqual(testee.userNameModel.name, "Student")
 
         submission.groupID = "TestGroupID"
 
@@ -55,7 +56,7 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
             submission: submission,
         )
 
-        XCTAssertEqual(testee.groupName, "TestGroup Name")
+        XCTAssertEqual(testee.userNameModel.name, "TestGroup Name")
     }
 
     func testRouteToGroupSubmitter() {
@@ -88,5 +89,29 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
         )
 
         XCTAssertEqual(testee.routeToSubmitter, "/courses/testCourseID/users/testUserID")
+    }
+
+    func testSubmissionStatusUpdatesOnCoreDataChange() throws {
+        let submission = Submission.save(.make(attempt: 1), in: databaseClient)
+        let assignment = Assignment.save(.make(), in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        submission.submittedAt = Clock.now
+        submission.excused = false
+        try databaseClient.save()
+
+        let testee = SubmissionHeaderViewModel(
+            assignment: assignment,
+            submission: submission
+        )
+
+        XCTAssertEqual(testee.submissionStatus, .submitted)
+
+        // WHEN
+        submission.excused = true
+        try databaseClient.save()
+
+        // THEN
+        waitUntil(shouldFail: true) {
+            testee.submissionStatus == .excused
+        }
     }
 }

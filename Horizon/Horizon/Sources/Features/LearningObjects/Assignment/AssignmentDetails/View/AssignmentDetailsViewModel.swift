@@ -28,9 +28,9 @@ final class AssignmentDetailsViewModel {
 
     var htmlContent = "" {
         didSet {
-            if isStartTyping {
+            if isTyping {
                 saveTextEntry()
-                lastDraftSavedAt = textEntryInteractor.load()?.dateFormated
+                lastDraftSavedAt = dependency.textEntryInteractor.load()?.dateFormated
             }
         }
     }
@@ -52,7 +52,7 @@ final class AssignmentDetailsViewModel {
     private(set) var externalURL: URL?
     private(set) var submissionProperties: SubmissionProperties?
     private(set) var shouldShowViewAttempts = false
-    var isStartTyping = false
+    var isTyping = false
     var assignmentPreference: AssignmentPreferenceKeyType?
     var isSubmitButtonHidden: Bool {
         assignment?.submissionTypes.contains(.none) == true && assignment?.submissionTypes.count == 1
@@ -74,7 +74,9 @@ final class AssignmentDetailsViewModel {
 
     var hasSubmittedBefore: Bool = false {
         didSet {
-            submitButtonTitle = hasSubmittedBefore ? AssignmentLocalizedKeys.newAttempt.title : AssignmentLocalizedKeys.submitAssignment.title
+            submitButtonTitle = hasSubmittedBefore
+            ? AssignmentLocalizedKeys.newAttempt.title
+            : AssignmentLocalizedKeys.submitAssignment.title
         }
     }
 
@@ -95,56 +97,12 @@ final class AssignmentDetailsViewModel {
 
     // MARK: - Dependancies
 
-    let courseID: String
-    let assignmentID: String
-    let isShowMarkAsDoneButton: Bool
-    private(set) var isCompletedItem: Bool
-    private let moduleID: String
-    private let itemID: String
-    private let environment: AppEnvironment
-    private let interactor: AssignmentInteractor
-    private let commentInteractor: SubmissionCommentInteractor
-    private let moduleItemInteractor: ModuleItemSequenceInteractor
-    private let textEntryInteractor: AssignmentTextEntryInteractor
-    private let router: Router
-    private let scheduler: AnySchedulerOf<DispatchQueue>
-    private var onTapAssignmentOptions: PassthroughSubject<Void, Never>
-    private let didLoadAssignment: (SubmissionProperties?) -> Void
+    var dependency: Dependency
 
     // MARK: - Init
 
-    init(
-        environment: AppEnvironment = .shared,
-        interactor: AssignmentInteractor,
-        moduleItemInteractor: ModuleItemSequenceInteractor,
-        textEntryInteractor: AssignmentTextEntryInteractor,
-        commentInteractor: SubmissionCommentInteractor,
-        isMarkedAsDone: Bool,
-        isCompletedItem: Bool,
-        moduleID: String,
-        itemID: String,
-        router: Router,
-        courseID: String,
-        assignmentID: String,
-        onTapAssignmentOptions: PassthroughSubject<Void, Never>,
-        scheduler: AnySchedulerOf<DispatchQueue> = .main,
-        didLoadAssignment: @escaping (SubmissionProperties?) -> Void
-    ) {
-        self.environment = environment
-        self.interactor = interactor
-        self.moduleItemInteractor = moduleItemInteractor
-        self.textEntryInteractor = textEntryInteractor
-        self.commentInteractor = commentInteractor
-        self.isShowMarkAsDoneButton = isMarkedAsDone
-        self.isCompletedItem = isCompletedItem
-        self.moduleID = moduleID
-        self.itemID = itemID
-        self.onTapAssignmentOptions = onTapAssignmentOptions
-        self.scheduler = scheduler
-        self.router = router
-        self.courseID = courseID
-        self.assignmentID = assignmentID
-        self.didLoadAssignment = didLoadAssignment
+    init(dependency: Dependency) {
+        self.dependency = dependency
         bindSubmissionAssignmentEvents()
         fetchAssignmentDetails()
     }
@@ -153,11 +111,11 @@ final class AssignmentDetailsViewModel {
 
     func viewComments(controller: WeakViewController) {
         let view = SubmissionCommentAssembly.makeView(
-            courseID: courseID,
-            assignmentID: assignmentID,
+            courseID: dependency.courseID,
+            assignmentID: dependency.assignmentID,
             attempt: submission?.attempt ?? 0
         )
-        router.show(view, from: controller, options: .modal(isDismissable: false))
+        dependency.router.show(view, from: controller, options: .modal(isDismissable: false))
     }
 
     func viewAttempts(controller: WeakViewController) {
@@ -165,36 +123,26 @@ final class AssignmentDetailsViewModel {
             submissions: submissions,
             selectedSubmission: submission
         ) { [weak self] selectedSubmission in
-            guard let self, selectedSubmission != submission else {
-                return
-            }
+            guard let self, selectedSubmission != submission else { return }
             hasSubmittedBefore = true
             submission = selectedSubmission
             shouldShowViewAttempts = selectedSubmission != submissions.first
             getComments(for: selectedSubmission?.attempt ?? 0)
         }
-        router.show(view, from: controller, options: .modal(isDismissable: false))
+        dependency.router.show(view, from: controller, options: .modal(isDismissable: false))
     }
 
     func showQuizLTI(controller: WeakViewController) {
         let viewController = LTIQuizAssembly.makeView(
-            courseID: courseID,
-            moduleID: moduleID,
-            itemID: itemID,
+            courseID: dependency.courseID,
+            moduleID: dependency.moduleID,
+            itemID: dependency.itemID,
             name: assignment?.name ?? "",
-            assignmentID: assignmentID,
+            assignmentID: dependency.assignmentID,
             isQuizLTI: assignment?.isQuizLTI,
             externalToolContentID: assignment?.externalToolContentID
         )
-        router.show(viewController, from: controller, options: .modal(isDismissable: false))
-    }
-
-    func addFile(url: URL) {
-        interactor.addFile(url: url)
-    }
-
-    func deleteFile(file: File) {
-        interactor.cancelFile(file)
+        dependency.router.show(viewController, from: controller, options: .modal(isDismissable: false))
     }
 
     func submit() {
@@ -203,19 +151,25 @@ final class AssignmentDetailsViewModel {
             selectedSubmissionIndex = selectedSubmission.index
             return
         }
-        showConformationModal(viewModel: makeSubmissionAlertViewModel())
+        showConfirmationModal(
+            viewModel: AssignmentConfirmationMessagesAssembly.makeSubmissionAlertViewModel(
+                isSegmentControlVisible: isSegmentControlVisible,
+                isTextSubmission: selectedSubmission == .text
+            ) { [weak self] in self?.performSubmission() })
     }
 
     func showDraftAlert() {
-        showConformationModal(viewModel: makeDraftAlertViewModel())
+        showConfirmationModal(
+            viewModel: AssignmentConfirmationMessagesAssembly
+                .makeDraftAlertViewModel { [weak self] in self?.deleteDraft() })
     }
 
     func markAsDone() {
         isMarkAsDoneLoaderVisible = true
-        moduleItemInteractor.markAsDone(
-            completed: !isCompletedItem,
-            moduleID: moduleID,
-            itemID: itemID
+        dependency.moduleItemInteractor.markAsDone(
+            completed: !dependency.isCompletedItem,
+            moduleID: dependency.moduleID,
+            itemID: dependency.itemID
         )
         .sink { [weak self] completion in
             if case let .failure(error) = completion {
@@ -223,63 +177,66 @@ final class AssignmentDetailsViewModel {
             }
             self?.isMarkAsDoneLoaderVisible = false
         } receiveValue: { [weak self] _ in
-            self?.isCompletedItem.toggle()
+            self?.dependency.isCompletedItem.toggle()
         }
         .store(in: &subscriptions)
     }
 
+    func refresh() async {
+        await withCheckedContinuation { continuation in
+            fetchAssignmentDetails(ignoreCache: true) {
+                continuation.resume()
+            }
+        }
+    }
+
     // MARK: - Private Functions
 
-    private func fetchAssignmentDetails() {
-        unowned let unownedSelf = self
-        Publishers.Zip(interactor.getAssignmentDetails(), interactor.getSubmissions())
-            .flatMap { assignmentDetails, submissions -> AnyPublisher<(HAssignment, [HSubmission], [SubmissionComment]), Never> in
-                guard let firstAttempt = submissions.first?.attempt else {
-                    return Just((assignmentDetails, submissions, []))
-                        .eraseToAnyPublisher()
-                }
-                return unownedSelf.commentInteractor.getComments(
-                    assignmentID: unownedSelf.assignmentID,
-                    attempt: firstAttempt,
-                    ignoreCache: false,
-                    beforeCursor: nil,
-                    last: 5
-                )
-                .replaceError(with: [])
-                .map {(assignmentDetails, submissions, $0)}
-                .eraseToAnyPublisher()
+    private func fetchAssignmentDetails(
+        ignoreCache: Bool = false,
+        completionHandler: (() -> Void)? = nil
+    ) {
+        Publishers.Zip(
+            dependency.interactor.getAssignmentDetails(ignoreCache: ignoreCache),
+            dependency.interactor.getSubmissions(ignoreCache: ignoreCache)
+        )
+        .flatMap { [weak self] assignmentDetails, submissions -> AnyPublisher<(HAssignment, [HSubmission], [SubmissionComment]), Never> in
+            guard let firstAttempt = submissions.first?.attempt, let self else {
+                return Just((assignmentDetails, submissions, []))
+                    .eraseToAnyPublisher()
             }
-            .receive(on: scheduler)
-            .sink { [weak self] assignmentDetails, submissions, comments in
-                self?.setAssignmentDetails(
+            return self.dependency.commentInteractor.getComments(
+                assignmentID: self.dependency.assignmentID,
+                attempt: firstAttempt,
+                ignoreCache: false,
+                beforeCursor: nil,
+                last: 5
+            )
+            .replaceError(with: [])
+            .map {(assignmentDetails, submissions, $0)}
+            .eraseToAnyPublisher()
+        }
+        .receive(on: dependency.scheduler)
+        .sinkFailureOrValue(
+            receiveFailure: { [weak self] error in
+                self?.isLoaderVisible = false
+                self?.errorMessage = error.localizedDescription
+                completionHandler?()
+            },
+            receiveValue: { [weak self] result in
+                let (assignmentDetails, submissions, comments) = result
+                self?.updateAssignmentDetails(
                     response: assignmentDetails,
                     submissions: submissions,
                     submissionComments: comments
                 )
+                completionHandler?()
             }
-            .store(in: &subscriptions)
+        )
+        .store(in: &subscriptions)
     }
 
-    private func fetchSubmissions() {
-        interactor.getSubmissions()
-            .sink { [weak self] submissions in
-                guard let self else {
-                    return
-                }
-                self.submissions = submissions
-                let latestSubmission = submissions.first?.type ?? .text
-                selectedSubmission = hasSubmittedBefore ? latestSubmission : selectedSubmission
-                submission = submissions.first
-                assignment?.showSubmitButton = submission?.showSubmitButton ?? false
-                showConformationModal(viewModel: makeSuccessAlertViewModel(submission: submission))
-                hasSubmittedBefore = true
-                isLoaderVisible = false
-                errorMessage = nil
-            }
-            .store(in: &subscriptions)
-    }
-
-    private func setAssignmentDetails(
+    private func updateAssignmentDetails(
         response: HAssignment,
         submissions: [HSubmission],
         submissionComments: [SubmissionComment]
@@ -288,56 +245,64 @@ final class AssignmentDetailsViewModel {
         assignment = response
         self.submissions = submissions
         self.submissionComments = submissionComments
+
+        // Handle External Tool submission type
         if response.assignmentSubmissionTypes.first == .externalTool {
             selectedSubmission = .externalTool
             fetchExternalURL()
         } else {
+            // Determine if segmented control is needed
+            let submissionTypes = Set(response.assignmentSubmissionTypes)
+            isSegmentControlVisible = submissionTypes == Set([.text, .fileUpload])
             // Didn’t submit before
             isSegmentControlVisible = Set(response.assignmentSubmissionTypes) == Set([.text, .fileUpload])
             let firstSubmission = response.assignmentSubmissionTypes.first ?? .text
             selectedSubmission = isSegmentControlVisible ? .text : firstSubmission
             // In case of resubmission
             hasSubmittedBefore = !response.isUnsubmitted
-            let latestSubmission = submissions.first?.type ?? .text
-            selectedSubmission = hasSubmittedBefore == true ? latestSubmission : selectedSubmission
+            let latestSubmissionType = submissions.first?.type ?? .text
+            selectedSubmission = hasSubmittedBefore == true ? latestSubmissionType : selectedSubmission
             submission = submissions.first
         }
 
+        // Build submission properties
         submissionProperties = .init(
             attemptCount: response.attemptCount,
-            moduleItem: getModuleItem(assignment: response),
-            hasUnreadComments: hasUnreadComments(for: submission?.attempt)
+            moduleItem: response.toModuleItem(),
+            hasUnreadComments: submissionComments.hasUnreadComments(for: submission?.attempt)
         )
-        didLoadAssignment(submissionProperties)
+        dependency.didLoadAssignment(submissionProperties)
     }
 
     private func getComments(for attempt: Int) {
-       commentInteractor.getComments(
-            assignmentID: assignmentID,
+        dependency.commentInteractor.getComments(
+            assignmentID: dependency.assignmentID,
             attempt: attempt,
             ignoreCache: false,
             beforeCursor: nil,
             last: 5
         )
         .replaceError(with: [])
-        .receive(on: scheduler)
+        .receive(on: dependency.scheduler)
         .sink { [weak self] comments in
             guard let self else { return }
             submissionComments = comments
-            submissionProperties?.hasUnreadComments = hasUnreadComments(for: attempt)
-            didLoadAssignment(submissionProperties)
+            submissionProperties?.hasUnreadComments = submissionComments.hasUnreadComments(
+                for: attempt
+            )
+            dependency.didLoadAssignment(submissionProperties)
         }
         .store(in: &subscriptions)
     }
 
     private func fetchExternalURL() {
         let tools = LTITools(
-            context: .course(courseID),
+            context: .course(dependency.courseID),
             id: assignment?.externalToolContentID,
             launchType: .assessment,
             isQuizLTI: assignment?.isQuizLTI,
-            assignmentID: assignmentID,
-            env: environment
+            assignmentID: dependency.assignmentID,
+            env: dependency.environment
         )
 
         isLoaderVisible = true
@@ -347,42 +312,43 @@ final class AssignmentDetailsViewModel {
         }
     }
 
-    private func hasUnreadComments(for attempt: Int?) -> Bool {
-       return submissionComments.contains { comment in
-            (comment.attempt == attempt || attempt == nil) && !comment.isRead
-        }
-    }
+    private func fetchSubmissions() {
+        dependency.interactor.getSubmissions(ignoreCache: true)
+            .sinkFailureOrValue(receiveFailure: { [weak self] error in
+                self?.isLoaderVisible = false
+                self?.errorMessage = error.localizedDescription
 
-    private func getModuleItem(assignment: HAssignment) -> HModuleItem {
-        HModuleItem(
-            id: assignment.id,
-            title: assignment.name,
-            htmlURL: nil,
-            isCompleted: false,
-            dueAt: assignment.dueAt,
-            type: .assignment(assignment.id),
-            isLocked: assignment.isLocked,
-            points: assignment.pointsPossible,
-            lockedDate: "",
-            visibleWhenLocked: true,
-            lockedForUser: false,
-            lockExplanation: assignment.lockExplanation,
-            courseID: assignment.courseID,
-            moduleID: "",
-            isQuizLTI: assignment.isQuizLTI ?? false
-        )
+            }, receiveValue: { [weak self] submissions in
+                guard let self else {
+                    return
+                }
+                self.submissions = submissions
+                let latestSubmission = submissions.first?.type ?? .text
+                selectedSubmission = hasSubmittedBefore ? latestSubmission : selectedSubmission
+                submission = submissions.first
+                assignment?.showSubmitButton = submission?.showSubmitButton ?? false
+                showConfirmationModal(
+                    viewModel: AssignmentConfirmationMessagesAssembly.makeSuccessAlertViewModel(
+                        submission: submission
+                    )
+                )
+                hasSubmittedBefore = true
+                isLoaderVisible = false
+                errorMessage = nil
+            })
+            .store(in: &subscriptions)
     }
 
     private func bindSubmissionAssignmentEvents() {
-        onTapAssignmentOptions
+        dependency.onTapAssignmentOptions
             .sink { [weak self] in
                 self?.isOverlayToolsPresented.toggle()
             }
             .store(in: &subscriptions)
 
-        interactor.attachments
+        dependency.interactor.attachments
             .removeDuplicates()
-            .receive(on: scheduler)
+            .receive(on: dependency.scheduler)
             .sink { [weak self] files in
                 guard let self else {
                     return
@@ -392,9 +358,9 @@ final class AssignmentDetailsViewModel {
             }
             .store(in: &subscriptions)
 
-        interactor
+        dependency.interactor
             .didUploadFiles
-            .receive(on: scheduler)
+            .receive(on: dependency.scheduler)
             .sink { [weak self] result in
                 switch result {
                 case .success:
@@ -402,29 +368,17 @@ final class AssignmentDetailsViewModel {
                 case let .failure(error):
                     self?.isLoaderVisible = false
                     self?.errorMessage = error.localizedDescription
-                    self?.interactor.cancelAllFiles()
+                    self?.dependency.interactor.cancelAllFiles()
                 }
             }
             .store(in: &subscriptions)
     }
 
-    private func saveTextEntry() {
-        textEntryInteractor.save(htmlContent)
-    }
-
-    private func fetchDrafts() {
-        let lastTextEntryDraft = textEntryInteractor.load()
-        htmlContent = lastTextEntryDraft?.text ?? ""
-        textEntryTimestamp = lastTextEntryDraft?.dateFormated
-        fileUploadTimestamp = attachedFiles.first?.createdAt?.formatted(format: "d/MM, h:mm a")
-        lastDraftSavedAt = fileUploadTimestamp
-    }
-
     private func submitTextEntry() {
-        interactor.submitTextEntry(
+        dependency.interactor.submitTextEntry(
             with: htmlContent,
-            moduleID: moduleID,
-            moduleItemID: itemID
+            moduleID: dependency.moduleID,
+            moduleItemID: dependency.itemID
         )
         .sink { [weak self] completion in
             if case let .failure(error) = completion {
@@ -433,7 +387,7 @@ final class AssignmentDetailsViewModel {
             }
         } receiveValue: { [weak self] _ in
             self?.htmlContent = ""
-            self?.textEntryInteractor.delete()
+            self?.dependency.textEntryInteractor.delete()
             self?.deleteDraft(isShowToast: false)
             self?.fetchSubmissions()
         }
@@ -446,32 +400,42 @@ final class AssignmentDetailsViewModel {
         case .text:
             submitTextEntry()
         case .fileUpload:
-            interactor.uploadFiles()
+            dependency.interactor.uploadFiles()
         default:
             break
         }
     }
 
-    private func setLastDraftSavedAt() {
-        switch selectedSubmission {
-        case .text:
-            lastDraftSavedAt = textEntryTimestamp
-        case .fileUpload:
-            lastDraftSavedAt = fileUploadTimestamp
-        default:
-            break
+    private func showConfirmationModal(viewModel: SubmissionAlertViewModel) {
+        assignmentPreference = .confirmation(viewModel: viewModel)
+        dependency.scheduler.schedule(after: dependency.scheduler.now.advanced(by: .seconds(0.2))) {
+            viewModel.isPresented = true
         }
+    }
+
+    // MARK: - Local Storage
+
+    private func saveTextEntry() {
+        dependency.textEntryInteractor.save(htmlContent)
+    }
+
+    private func fetchDrafts() {
+        let lastTextEntryDraft = dependency.textEntryInteractor.load()
+        htmlContent = lastTextEntryDraft?.text ?? ""
+        textEntryTimestamp = lastTextEntryDraft?.dateFormated
+        fileUploadTimestamp = attachedFiles.first?.createdAt?.formatted(format: "d/MM, h:mm a")
+        lastDraftSavedAt = fileUploadTimestamp
     }
 
     private func deleteDraft(isShowToast: Bool = true) {
         switch selectedSubmission {
         case .text:
-            textEntryInteractor.delete()
+            dependency.textEntryInteractor.delete()
             textEntryTimestamp = nil
             lastDraftSavedAt = nil
             htmlContent = ""
         case .fileUpload:
-            interactor.cancelAllFiles()
+            dependency.interactor.cancelAllFiles()
             fileUploadTimestamp = nil
             lastDraftSavedAt = nil
         default:
@@ -484,49 +448,74 @@ final class AssignmentDetailsViewModel {
         assignmentPreference = .toastViewModel(viewModel: draftToastViewModel)
     }
 
-    private func showConformationModal(viewModel: SubmissionAlertViewModel) {
-        assignmentPreference = .confirmation(viewModel: viewModel)
-        scheduler.schedule(after: scheduler.now.advanced(by: .seconds(0.2))) {
-            viewModel.isPresented = true
+    func addFile(url: URL) {
+        dependency.interactor.addFile(url: url)
+    }
+
+    func deleteFile(file: File) {
+        dependency.interactor.cancelFile(file)
+    }
+
+    private func setLastDraftSavedAt() {
+        switch selectedSubmission {
+        case .text:
+            lastDraftSavedAt = textEntryTimestamp
+        case .fileUpload:
+            lastDraftSavedAt = fileUploadTimestamp
+        default:
+            break
         }
     }
+}
 
-    private func makeConfirmationMessage() -> String {
-        guard isSegmentControlVisible else {
-            return AssignmentLocalizedKeys.confirmationNormalBody.title
+// MARK: - Dependency
+
+extension AssignmentDetailsViewModel {
+    struct Dependency {
+        let environment: AppEnvironment = .shared
+        let interactor: AssignmentInteractor
+        let moduleItemInteractor: ModuleItemSequenceInteractor
+        let textEntryInteractor: AssignmentTextEntryInteractor
+        let commentInteractor: SubmissionCommentInteractor
+        let isMarkedAsDone: Bool
+        var isCompletedItem: Bool
+        let moduleID: String
+        let itemID: String
+        let router: Router
+        let courseID: String
+        let assignmentID: String
+        let onTapAssignmentOptions: PassthroughSubject<Void, Never>
+        let scheduler: AnySchedulerOf<DispatchQueue>
+        let didLoadAssignment: (SubmissionProperties?) -> Void
+    }
+}
+
+private extension Array where Element == SubmissionComment {
+    func hasUnreadComments(for attempt: Int?) -> Bool {
+        return self.contains { comment in
+            (comment.attempt == attempt || attempt == nil) && !comment.isRead
         }
-        return selectedSubmission == .text
-        ? AssignmentLocalizedKeys.submitTextWithUploadFile.title
-        : AssignmentLocalizedKeys.submitUploadFileWithText.title
     }
+}
 
-    private func makeSubmissionAlertViewModel() -> SubmissionAlertViewModel {
-        SubmissionAlertViewModel(
-            title: AssignmentLocalizedKeys.confirmSubmission.title,
-            body: makeConfirmationMessage(),
-            button: .init(title: AssignmentLocalizedKeys.submitAttempt.title) { [weak self] in
-                self?.performSubmission()
-            }
-        )
-    }
-
-    private func makeDraftAlertViewModel() -> SubmissionAlertViewModel {
-        SubmissionAlertViewModel(
-            title: AssignmentLocalizedKeys.deleteDraftTitle.title,
-            body: AssignmentLocalizedKeys.deleteDraftBody.title,
-            button: .init(title: AssignmentLocalizedKeys.deleteDraftTitle.title) { [weak self] in
-                self?.deleteDraft()
-            }
-        )
-    }
-
-    private func makeSuccessAlertViewModel(submission: HSubmission?) -> SubmissionAlertViewModel {
-        SubmissionAlertViewModel(
-            title: AssignmentLocalizedKeys.successfullySubmitted.title,
-            body: AssignmentLocalizedKeys.successfullySubmittedBody.title,
-            type: .success,
-            submission: submission,
-            button: .init(title: AssignmentLocalizedKeys.viewSubmission.title) {}
+private extension HAssignment {
+    func toModuleItem() -> HModuleItem {
+        HModuleItem(
+            id: id,
+            title: name,
+            htmlURL: nil,
+            isCompleted: false,
+            dueAt: dueAt,
+            type: .assignment(id),
+            isLocked: isLocked,
+            points: pointsPossible,
+            lockedDate: nil,
+            visibleWhenLocked: true,
+            lockedForUser: false,
+            lockExplanation: lockExplanation,
+            courseID: courseID,
+            moduleID: "",
+            isQuizLTI: isQuizLTI ?? false
         )
     }
 }

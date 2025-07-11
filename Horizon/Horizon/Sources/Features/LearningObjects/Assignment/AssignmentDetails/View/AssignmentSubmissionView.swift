@@ -47,7 +47,7 @@ struct AssignmentSubmissionView: View {
     ) {
         self.viewModel = viewModel
         self.proxy = proxy
-        self.uploadParameters = .init(context: .course(viewModel.courseID))
+        self.uploadParameters = .init(context: .course(viewModel.dependency.courseID))
         self.dismissKeyboard = dismissKeyboard
     }
 
@@ -152,7 +152,7 @@ struct AssignmentSubmissionView: View {
         .id(rceID)
         .focused($focusedInput)
         .onChange(of: focusedInput) { _, newValue in
-            viewModel.isStartTyping = newValue
+            viewModel.isTyping = newValue
             if newValue {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     withAnimation {

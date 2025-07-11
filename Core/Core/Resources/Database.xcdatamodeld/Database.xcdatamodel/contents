@@ -357,44 +357,6 @@
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="rubricRaw" inverseEntity="Assignment"/>
         <relationship name="ratingsRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDRubricRating" inverseName="rubric" inverseEntity="CDRubricRating"/>
     </entity>
-    <entity name="CDRubricCriterion" representedClassName="Core.CDRubricCriterion" syncable="YES">
-        <attribute name="assignmentID" attributeType="String"/>
-        <attribute name="criterionUseRange" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="ignoreForScoring" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="longDescription" attributeType="String"/>
-        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="shortDescription" attributeType="String"/>
-        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="rubricRaw" inverseEntity="Assignment"/>
-        <relationship name="ratingsRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDRubricRating" inverseName="rubric" inverseEntity="CDRubricRating"/>
-    </entity>
-    <entity name="CDRubricCriterion" representedClassName="Core.CDRubricCriterion" syncable="YES">
-        <attribute name="assignmentID" attributeType="String"/>
-        <attribute name="criterionUseRange" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="ignoreForScoring" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="longDescription" attributeType="String"/>
-        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="shortDescription" attributeType="String"/>
-        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="rubricRaw" inverseEntity="Assignment"/>
-        <relationship name="ratingsRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDRubricRating" inverseName="rubric" inverseEntity="CDRubricRating"/>
-    </entity>
-    <entity name="CDRubricRating" representedClassName="Core.CDRubricRating" syncable="YES">
-        <attribute name="assignmentID" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="longDescription" attributeType="String"/>
-        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="shortDescription" attributeType="String"/>
-        <relationship name="rubric" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRubricCriterion" inverseName="ratingsRaw" inverseEntity="CDRubricCriterion"/>
-    </entity>
-    <entity name="CDRubricRating" representedClassName="Core.CDRubricRating" syncable="YES">
-        <attribute name="assignmentID" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="longDescription" attributeType="String"/>
-        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="shortDescription" attributeType="String"/>
-        <relationship name="rubric" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRubricCriterion" inverseName="ratingsRaw" inverseEntity="CDRubricCriterion"/>
-    </entity>
     <entity name="CDRubricRating" representedClassName="Core.CDRubricRating" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
@@ -530,7 +492,7 @@
         <attribute name="syllabusBody" optional="YES" attributeType="String"/>
         <attribute name="termName" optional="YES" attributeType="String"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="course" inverseEntity="ContextColor"/>
-        <relationship name="courseProgress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHCourse"/>
+        <relationship name="courseProgress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHCourse" inverseName="course" inverseEntity="CDHCourse"/>
         <relationship name="dashboardCards" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardCard" inverseName="course" inverseEntity="DashboardCard"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment"/>
         <relationship name="gradingPeriods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="course" inverseEntity="GradingPeriod"/>
@@ -1199,6 +1161,7 @@
         <attribute name="assignmentID" attributeType="String"/>
         <attribute name="attempt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="body" optional="YES" attributeType="String"/>
+        <attribute name="customGradeStatusId" optional="YES" attributeType="String"/>
         <attribute name="enteredGrade" optional="YES" attributeType="String"/>
         <attribute name="enteredScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="excusedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -1213,6 +1176,7 @@
         <attribute name="isLatest" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO"/>
         <attribute name="late" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="latePolicyStatusRaw" optional="YES" attributeType="String"/>
+        <attribute name="lateSeconds" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="missing" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="pointsDeductedRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="postedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

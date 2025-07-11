@@ -22,6 +22,7 @@ import Core
 import UniformTypeIdentifiers
 
 class SubmissionCommentsViewController: UIViewController, ErrorViewController {
+    @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var addCommentBorderView: UIView!
     @IBOutlet weak var addCommentButton: UIButton!
     @IBOutlet weak var addCommentTextView: UITextView!
@@ -62,12 +63,16 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
+        commentLabel.text = String(localized: "Comment", bundle: .student)
+        commentLabel.textColor = .textDark
+        commentLabel.font = .scaledNamedFont(.regular13)
+        commentLabel.accessibilityTraits = .header
         addCommentBorderView.backgroundColor = .backgroundLightest
         addCommentBorderView.layer.borderColor = UIColor.borderMedium.cgColor
         addCommentBorderView.layer.borderWidth = 1 / UIScreen.main.scale
         addCommentButton.accessibilityLabel = String(localized: "Send comment", bundle: .student)
         addCommentTextView.accessibilityLabel = String(localized: "Add a comment or reply to previous comments", bundle: .student)
-        addCommentTextView.placeholder = String(localized: "Comment", bundle: .student)
+        addCommentTextView.placeholder = String(localized: "Type here...", bundle: .student)
         addCommentTextView.placeholderColor = .textDark
         addCommentTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
         addCommentTextView.adjustsFontForContentSizeCategory = true

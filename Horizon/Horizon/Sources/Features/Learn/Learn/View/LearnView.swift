@@ -26,7 +26,7 @@ struct LearnView: View {
     var body: some View {
         VStack {
             if let courseDetailsViewModel = viewModel.courseDetailsViewModel {
-                LearnAssembly.makeCourseDetailsView(viewModel: courseDetailsViewModel)
+                LearnAssembly.makeCourseDetailsView(viewModel: courseDetailsViewModel, isBackButtonVisible: false)
             } else if viewModel.courseDetailsViewModel == nil, !viewModel.isLoaderVisible {
                ScrollView {
                     Text("You aren’t currently enrolled in a course.", bundle: .horizon)

@@ -219,6 +219,6 @@ private extension SnackBarViewModel {
 
 private extension CDCalendarFilterEntry {
     var optionItem: OptionItem {
-        .init(id: rawContextID, title: name, color: color)
+        .init(id: rawContextID, title: name, colorOverride: color)
     }
 }

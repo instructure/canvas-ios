@@ -134,17 +134,15 @@ struct NotebookNoteView: View {
             .padding(.top, .huiSpaces.space24)
 
         ZStack {
-            UITextViewWrapper(text: $viewModel.note) {
-                let tv = UITextView()
-                tv.translatesAutoresizingMaskIntoConstraints = false
-                tv.isScrollEnabled = false
-                tv.textContainer.widthTracksTextView = true
-                tv.textContainer.lineBreakMode = .byWordWrapping
-                tv.font = HorizonUI.fonts.uiFont(font: HorizonUI.Typography.Name.p1.font)
-                tv.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - (.huiSpaces.space24 * 2))
+            InstUI.UITextViewWrapper(text: $viewModel.note) { textView in
+                textView.translatesAutoresizingMaskIntoConstraints = false
+                textView.isScrollEnabled = false
+                textView.textContainer.widthTracksTextView = true
+                textView.textContainer.lineBreakMode = .byWordWrapping
+                textView.font = HorizonUI.fonts.uiFont(font: HorizonUI.Typography.Name.p1.font)
+                textView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - (.huiSpaces.space24 * 2))
                     .isActive = true
-                tv.backgroundColor = HorizonUI.colors.surface.cardSecondary.uiColor
-                return tv
+                textView.backgroundColor = HorizonUI.colors.surface.cardSecondary.uiColor
             }
             .frame(minHeight: 120)
             .onTapGesture { viewModel.edit() }

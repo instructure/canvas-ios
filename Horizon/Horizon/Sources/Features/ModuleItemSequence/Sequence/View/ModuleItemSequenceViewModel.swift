@@ -174,7 +174,8 @@ final class ModuleItemSequenceViewModel {
             assetType: assetType,
             assetId: assetId,
             moduleID: moduleID,
-            itemID: itemID
+            itemID: itemID,
+            ignoreCache: false
         )
         .sink { [weak self] result in
             self?.isLoaderVisible = false
@@ -339,7 +340,8 @@ final class ModuleItemSequenceViewModel {
             assetType: assetType,
             assetId: next.id,
             moduleID: next.moduleID,
-            itemID: next.id
+            itemID: next.id,
+            ignoreCache: true
         )
         .sink()
         .store(in: &subscriptions)
