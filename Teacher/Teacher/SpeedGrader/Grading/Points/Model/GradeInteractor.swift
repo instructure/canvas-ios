@@ -63,9 +63,9 @@ class GradeInteractorLive: GradeInteractor {
         }
 
         return GradeSubmission(
-            courseID: self.assignment.courseID,
-            assignmentID: self.assignment.id,
-            userID: self.submission.userID,
+            courseID: assignment.courseID,
+            assignmentID: assignment.id,
+            userID: submission.userID,
             excused: excused,
             grade: grade
         )
@@ -95,52 +95,14 @@ class GradeInteractorLive: GradeInteractor {
         .sink(
             receiveCompletion: { _ in },
             receiveValue: { [weak self] updatedSubmission, isRubricScoreAvailable, totalRubricScore in
-                self?.updateGradeState(
-                    from: updatedSubmission,
+                guard let self else { return }
+                let newState = updatedSubmission.gradeState(
+                    assignment: assignment,
                     isRubricScoreAvailable: isRubricScoreAvailable,
-                    totalRubricScore: totalRubricScore
-                )
+                    totalRubricScore: totalRubricScore)
+                gradeStateSubject.send(newState)
             }
         )
         .store(in: &cancellables)
-    }
-
-    private func updateGradeState(
-        from submission: Submission,
-        isRubricScoreAvailable: Bool,
-        totalRubricScore: Double
-    ) {
-        let newState = GradeState(
-            hasLateDeduction: submission.late &&
-                (submission.pointsDeducted ?? 0) > 0 &&
-                submission.grade?.isEmpty == false,
-            isGraded: (submission.grade?.isEmpty == false),
-            isExcused: (submission.excused == true),
-            isGradedButNotPosted: ((submission.grade?.isEmpty == false) && submission.postedAt == nil),
-            finalGradeText: GradeFormatter.longString(for: assignment, submission: submission, final: true),
-            gradeText: GradeFormatter.longString(
-                for: assignment,
-                submission: submission,
-                rubricScore: isRubricScoreAvailable ? totalRubricScore : nil,
-                final: false
-            ),
-            pointsDeductedText: String(localized: "\(-(submission.pointsDeducted ?? 0), specifier: "%g") pts", bundle: .core),
-            gradeAlertText: {
-                if submission.excused == true {
-                    return String(localized: "Excused", bundle: .teacher)
-                }
-
-                if submission.late &&
-                    (submission.pointsDeducted ?? 0) > 0 &&
-                    submission.grade?.isEmpty == false {
-                    return submission.enteredGrade ?? ""
-                }
-
-                return submission.grade ?? ""
-            }(),
-            score: submission.enteredScore ?? submission.score ?? 0
-        )
-
-        gradeStateSubject.send(newState)
     }
 }

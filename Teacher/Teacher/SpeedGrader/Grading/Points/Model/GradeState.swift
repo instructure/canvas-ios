@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
+
 struct GradeState {
     let hasLateDeduction: Bool
     let isGraded: Bool
@@ -59,5 +61,45 @@ struct GradeState {
         self.pointsDeductedText = ""
         self.gradeAlertText = ""
         self.score = 0
+    }
+}
+
+extension Submission {
+
+    internal func gradeState(
+        assignment: Assignment,
+        isRubricScoreAvailable: Bool,
+        totalRubricScore: Double
+    ) -> GradeState {
+        let isGraded = (grade?.isEmpty == false)
+        let hasLatePenaltyPoints = (pointsDeducted ?? 0) > 0
+        let isExcused = (excused == true)
+
+        return GradeState(
+            hasLateDeduction: late && isGraded && hasLatePenaltyPoints,
+            isGraded: isGraded,
+            isExcused: isExcused,
+            isGradedButNotPosted: (isGraded && postedAt == nil),
+            finalGradeText: GradeFormatter.longString(for: assignment, submission: self, final: true),
+            gradeText: GradeFormatter.longString(
+                for: assignment,
+                submission: self,
+                rubricScore: isRubricScoreAvailable ? totalRubricScore : nil,
+                final: false
+            ),
+            pointsDeductedText: String(localized: "\(-(pointsDeducted ?? 0), specifier: "%g") pts", bundle: .core),
+            gradeAlertText: {
+                if isExcused {
+                    return String(localized: "Excused", bundle: .teacher)
+                }
+
+                if late, isGraded, hasLatePenaltyPoints {
+                    return enteredGrade ?? ""
+                }
+
+                return grade ?? ""
+            }(),
+            score: enteredScore ?? score ?? 0
+        )
     }
 }
