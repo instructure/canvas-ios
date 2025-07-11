@@ -22,62 +22,68 @@ import SwiftUI
 
 struct SpeedGraderPageTabsView: View {
 
-    private let bottomInset: CGFloat
-    private let isDrawer: Bool
-    /// Used to match landscape drawer's segmented control height with the header height.
+    enum ContainerType {
+        case drawer
+        case splitView
+    }
 
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    @Binding private var tab: SpeedGraderPageTab
-    @Binding private var drawerState: DrawerState
-    @Binding private var profileHeaderSize: CGSize
+    private let containerType: ContainerType
+    private let bottomInset: CGFloat
 
+    @Binding private var selectedTab: SpeedGraderPageTab
     @AccessibilityFocusState private var focusedTab: SpeedGraderPageTab?
+    @Binding private var drawerState: DrawerState
+    @Binding private var splitViewHeaderHeight: CGFloat
 
-    @StateObject private var rubricsViewModel: RubricsViewModel
     @StateObject private var viewModel: SpeedGraderPageViewModel
+    @StateObject private var rubricsViewModel: RubricsViewModel
 
     init(
-        tab: Binding<SpeedGraderPageTab>,
-        drawerState: Binding<DrawerState>,
+        containerType: ContainerType,
         bottomInset: CGFloat,
-        isDrawer: Bool,
-        profileHeaderSize: Binding<CGSize>,
+        selectedTab: Binding<SpeedGraderPageTab>,
+        focusedTab: AccessibilityFocusState<SpeedGraderPageTab?>,
+        drawerState: Binding<DrawerState>,
+        splitViewHeaderHeight: Binding<CGFloat>,
         viewModel: SpeedGraderPageViewModel
     ) {
-        self._tab = tab
-        self._drawerState = drawerState
+        self.containerType = containerType
         self.bottomInset = bottomInset
-        self.isDrawer = isDrawer
-        self._profileHeaderSize = profileHeaderSize
+        self._selectedTab = selectedTab
+        self._focusedTab = focusedTab
+        self._drawerState = drawerState
+        self._splitViewHeaderHeight = splitViewHeaderHeight
 
         self._viewModel = StateObject(wrappedValue: viewModel)
-        _rubricsViewModel = StateObject(wrappedValue:
-                                            RubricsViewModel(
-                                                assignment: viewModel.assignment,
-                                                submission: viewModel.submission,
-                                                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission)
-                                            )
+        _rubricsViewModel = StateObject(
+            wrappedValue: RubricsViewModel(
+                assignment: viewModel.assignment,
+                submission: viewModel.submission,
+                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission)
+            )
         )
     }
 
     var body: some View {
         VStack(spacing: 0) {
             Group {
-                if isDrawer {
+                switch containerType {
+                case .drawer:
                     tabPicker
                         .padding(.bottom, 16)
-                        .onChange(of: tab) {
-                            if drawerState == .min { snapDrawer(to: .mid) }
+                        .onChange(of: selectedTab) {
+                            if drawerState.isClosed { snapDrawer(to: .mid) }
                             controller.view.endEditing(true)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                focusedTab = tab
+                                focusedTab = selectedTab
                             }
                         }
-                } else {
+                case .splitView:
                     tabPicker
-                        .frame(height: profileHeaderSize.height)
+                        .frame(height: splitViewHeaderHeight)
                 }
             }
             .padding(.horizontal, 16)
@@ -100,12 +106,12 @@ struct SpeedGraderPageTabsView: View {
                     gradesTab(bottomInset: bottomInset, geometry: geometry)
                         // `.clipped` and `.contentShape` don't prevent touches outside of the drawer on iOS17
                         // and it would block interaction with the attempts picker and the submission content.
-                        .allowsHitTesting(tab == .grades)
+                        .allowsHitTesting(selectedTab == .grades)
                     commentsTab(bottomInset: bottomInset, fileID: drawerFileID, geometry: geometry)
                 }
                 .frame(width: geometry.size.width, alignment: .leading)
                 .background(Color.backgroundLightest)
-                .offset(x: -CGFloat(tab.rawValue) * geometry.size.width)
+                .offset(x: -CGFloat(selectedTab.rawValue) * geometry.size.width)
             }
             // Since we are offsetting the content, we need to clip it to avoid showing other tabs outside of the drawer.
             .clipped()
@@ -115,7 +121,7 @@ struct SpeedGraderPageTabsView: View {
     }
 
     private var tabPicker: some View {
-        InstUI.SegmentedPicker(selection: $tab) {
+        InstUI.SegmentedPicker(selection: $selectedTab) {
             ForEach(SpeedGraderPageTab.allCases, id: \.self) { tab in
                 Text(tab.title)
                     .tag(tab)
@@ -130,11 +136,12 @@ struct SpeedGraderPageTabsView: View {
     }
 
     private func isTabOnScreen(_ tab: SpeedGraderPageTab) -> Bool {
-        let isTabSelected = (self.tab == tab)
+        let isTabSelected = (self.selectedTab == tab)
 
-        if isDrawer {
-            return (drawerState != .min && isTabSelected)
-        } else {
+        switch containerType {
+        case .drawer:
+            return (drawerState.isOpen && isTabSelected)
+        case .splitView:
             return isTabSelected
         }
     }
@@ -187,7 +194,7 @@ struct SpeedGraderPageTabsView: View {
                 focusedTab: _focusedTab
             )
             .clipped()
-            if drawerState == .min {
+            if drawerState.isClosed {
                 Spacer().frame(height: bottomInset)
             }
         }
