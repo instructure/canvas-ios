@@ -43,6 +43,7 @@ struct SubmissionGraderView: View {
 
     @StateObject private var rubricsViewModel: RubricsViewModel
     @StateObject private var viewModel: SubmissionGraderViewModel
+    @StateObject private var gradeViewModel: GradeViewModel
     @ObservedObject private var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
 
     private var handleRefresh: (() -> Void)?
@@ -57,20 +58,17 @@ struct SubmissionGraderView: View {
         env: AppEnvironment,
         userIndexInSubmissionList: Int,
         viewModel: SubmissionGraderViewModel,
+        rubricsViewModel: RubricsViewModel,
+        gradeViewModel: GradeViewModel,
         landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel,
         handleRefresh: (() -> Void)?
     ) {
         self.userIndexInSubmissionList = userIndexInSubmissionList
         self._viewModel = StateObject(wrappedValue: viewModel)
+        self._rubricsViewModel = StateObject(wrappedValue: rubricsViewModel)
+        self._gradeViewModel = StateObject(wrappedValue: gradeViewModel)
         self.landscapeSplitLayoutViewModel = landscapeSplitLayoutViewModel
         self.handleRefresh = handleRefresh
-        _rubricsViewModel = StateObject(wrappedValue:
-                                            RubricsViewModel(
-                                                assignment: viewModel.assignment,
-                                                submission: viewModel.submission,
-                                                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission)
-                                            )
-        )
     }
 
     var body: some View {
@@ -407,9 +405,9 @@ struct SubmissionGraderView: View {
             SubmissionGrades(
                 assignment: viewModel.assignment,
                 containerHeight: geometry.size.height,
-                submission: viewModel.submission,
                 rubricsViewModel: rubricsViewModel,
-                gradeStatusViewModel: viewModel.gradeStatusViewModel
+                gradeStatusViewModel: viewModel.gradeStatusViewModel,
+                gradeViewModel: gradeViewModel
             )
             .clipped()
             Spacer().frame(height: bottomInset)

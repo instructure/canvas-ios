@@ -178,21 +178,45 @@ extension SpeedGraderViewModel: PagesViewControllerDataSource {
             data.submissions.indices.contains(index)
         else { return nil }
 
+        let assignment = data.assignment
+        let submission = data.submissions[index]
+        let rubricGradingInteractor = RubricGradingInteractorLive(assignment: assignment, submission: submission)
+
+        let rubricsViewModel = RubricsViewModel(
+            assignment: assignment,
+            submission: submission,
+            interactor: rubricGradingInteractor
+        )
+
+        let gradeInteractor = GradeInteractorLive(
+            assignment: assignment,
+            submission: submission,
+            rubricGradingInteractor: rubricGradingInteractor
+        )
+
+        let gradeViewModel = GradeViewModel(
+            assignment: assignment,
+            submission: submission,
+            gradeInteractor: gradeInteractor
+        )
+
         return SubmissionGraderView(
             env: environment,
             userIndexInSubmissionList: index,
             viewModel: SubmissionGraderViewModel(
-                assignment: data.assignment,
-                latestSubmission: data.submissions[index],
+                assignment: assignment,
+                latestSubmission: submission,
                 contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
                 gradeStatusInteractor: interactor.gradeStatusInteractor,
                 env: environment
             ),
+            rubricsViewModel: rubricsViewModel,
+            gradeViewModel: gradeViewModel,
             landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,
             handleRefresh: { [weak self] in
                 guard let self else { return }
                 interactor
-                    .refreshSubmission(forUserId: data.submissions[index].userID)
+                    .refreshSubmission(forUserId: submission.userID)
                     .sink()
                     .store(in: &subscriptions)
             }

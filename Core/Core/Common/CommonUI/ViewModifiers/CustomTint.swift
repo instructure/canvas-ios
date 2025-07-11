@@ -19,8 +19,11 @@
 import SwiftUI
 
 extension View {
+
+    /// Applies a custom tint color to the view if the color is not nil.
+    /// If the color is nil, it returns the view unchanged.
     @ViewBuilder
-    func customTint(_ color: Color?) -> some View {
+    public func customTint(_ color: Color?) -> some View {
         if let color {
             self.tint(color)
         } else {
