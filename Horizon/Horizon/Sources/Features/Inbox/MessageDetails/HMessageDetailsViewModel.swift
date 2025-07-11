@@ -217,7 +217,10 @@ class HMessageDetailsViewModel {
             .sink { [weak self] conversationMessages in
                 guard let self = self else { return }
                 self.messages = conversationMessages
-                self.isAnimationEnabled = true
+                // Pause for the UI to update then execute a function
+                self.scheduler.schedule(after: self.scheduler.now.advanced(by: .milliseconds(100))) {
+                    self.isAnimationEnabled = true
+                }
             }
             .store(in: &subscriptions)
     }
