@@ -31,154 +31,88 @@ struct Announcement: Equatable, Identifiable, Hashable {
 }
 
 protocol AnnouncementsInteractor {
-    var messages: CurrentValueRelay<[Announcement]> { get }
+    var messages: CurrentValueSubject<[Announcement]?, Never> { get }
     var state: CurrentValueRelay<StoreState> { get }
 }
 
 class AnnouncementsInteractorLive: AnnouncementsInteractor {
     // MARK: - Outputs
-    let messages = CurrentValueRelay<[Announcement]>([])
+    let messages = CurrentValueSubject<[Announcement]?, Never>([])
     let state = CurrentValueRelay<StoreState>(.empty)
 
     // MARK: - Private
-    private var announcements: [Announcement] {
-        let account = accountAnnouncements ?? []
-        let course = courseAnnouncements ?? []
-        return (account + course)
-            .sorted { $0.date ?? Date.distantPast > $1.date ?? Date.distantPast }
-    }
-    private var accountNotificationsStore: Store<GetAccountNotifications>?
-    private var announcementsStore: Store<GetAnnouncementsUseCase>?
-    private var coursesProgressionStore: Store<GetHCoursesProgressionUseCase>?
-
-    private let environment: AppEnvironment
+    private var accountAnnouncements: CurrentValueSubject<[Announcement]?, any Error> = .init(nil)
+    private var accountNotificationsStore: ReactiveStore<GetAccountNotifications>?
+    private var announcementsStore: ReactiveStore<GetAnnouncementsUseCase>?
+    private var courseAnnouncements: CurrentValueSubject<[Announcement]?, any Error> = .init(nil)
+    private var coursesProgressionStore: ReactiveStore<GetHCoursesProgressionUseCase>?
     private var subscriptions: Set<AnyCancellable> = []
-    private var accountAnnouncements: [Announcement]? {
-        didSet { trySendAnnouncements() }
-    }
-    private var courseAnnouncements: [Announcement]? {
-        didSet { trySendAnnouncements() }
-    }
-    private let getAccountNotifications = GetAccountNotifications()
-    private let getAccountNotificationsState = CurrentValueSubject<StoreState, Never>(.empty)
-    private let getAnnouncementsState = CurrentValueSubject<StoreState, Never>(.empty)
-    private let coursesProgressionState = CurrentValueSubject<StoreState, Never>(.empty)
 
     // MARK: - Init
-    init(
-        environment: AppEnvironment = AppEnvironment.shared,
-        userID: String = AppEnvironment.shared.currentSession?.userID ?? ""
-    ) {
-        self.environment = environment
-
+    init(userID: String = AppEnvironment.shared.currentSession?.userID ?? "") {
         listenForAccountNotifications()
         listenForCourseAnnouncements(userID)
-
-        listenForStateChanges()
+        listenForCombinedAnnouncements()
     }
 
     // MARK: - Private
     private func listenForAccountNotifications() {
-        accountNotificationsStore = environment.subscribe(getAccountNotifications)
-
-        accountNotificationsStore?
-            .statePublisher
-            .subscribe(getAccountNotificationsState)
+        ReactiveStore(useCase: GetAccountNotifications())
+            .getEntities()
+            .map { $0.map { $0.announcement} }
+            .subscribe(accountAnnouncements)
             .store(in: &subscriptions)
-
-        accountNotificationsStore?
-            .allObjects
-            .sink { [weak self] accountNotifications in
-                self?.accountAnnouncements = accountNotifications.map { $0.announcement }
-            }
-            .store(in: &subscriptions)
-
-        accountNotificationsStore?.refresh()
     }
 
-    private func listenForAnnouncements(from courses: [CDHCourse]) -> AnyPublisher<[Announcement], Never> {
-        let getAnnouncements = GetAnnouncementsUseCase(
-            courseIds: courses.map { $0.courseID },
-            activeOnly: nil,
-            latestOnly: nil,
-            startDate: Date.now.addYears(-1),
-            endDate: Date.now
+    private func listenForAnnouncements(from courses: [CDHCourse]) -> AnyPublisher<[Announcement], any Error> {
+        ReactiveStore(
+            useCase: GetAnnouncementsUseCase(
+                courseIds: courses.map { $0.courseID },
+                activeOnly: nil,
+                latestOnly: nil,
+                startDate: Date.now.addYears(-1),
+                endDate: Date.now
+            )
         )
-
-        announcementsStore = environment.subscribe(getAnnouncements)
-
-        announcementsStore?
-            .statePublisher
-            .subscribe(getAnnouncementsState)
-            .store(in: &subscriptions)
-
-        announcementsStore?
-            .refresh()
-
-        return announcementsStore?
-            .allObjects
-            .map { discussionTopics in
-                discussionTopics.map { discussionTopic in
-                    discussionTopic.announcement(
-                        author: discussionTopic.author?.displayName ?? "",
-                        courseName: courses.first { $0.courseID == discussionTopic.courseID }?.course.name
-                    )
-                }
+        .getEntities()
+        .map { discussionTopics in
+            discussionTopics.map { discussionTopic in
+                discussionTopic.announcement(
+                    author: discussionTopic.author?.displayName ?? "",
+                    courseName: courses.first { $0.courseID == discussionTopic.courseID }?.course.name
+                )
             }
-            .eraseToAnyPublisher() ?? Just([]).eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
     }
 
     private func listenForCourseAnnouncements(_ userID: String) {
-        coursesProgressionStore = environment.subscribe(
-            GetHCoursesProgressionUseCase(userId: userID, horizonCourses: true)
+        ReactiveStore(
+            useCase: GetHCoursesProgressionUseCase(userId: userID, horizonCourses: true)
         )
-
-        coursesProgressionStore?
-            .statePublisher
-            .subscribe(coursesProgressionState)
-            .store(in: &subscriptions)
-
-        coursesProgressionStore?
-            .allObjects
-            .flatMap { [weak self] courses in
-                guard let self = self else { return Empty<[Announcement], Never>().eraseToAnyPublisher() }
-                return self.listenForAnnouncements(from: courses)
-            }
-            .sink { [weak self] courseAnnouncements in
-                self?.courseAnnouncements = courseAnnouncements
-            }
-            .store(in: &subscriptions)
-
-        coursesProgressionStore?.refresh()
-    }
-
-    private func listenForStateChanges() {
-        Publishers.CombineLatest3(
-            getAccountNotificationsState,
-            getAnnouncementsState,
-            coursesProgressionState
-        )
-            .sink { [weak self] accountState, announcements, coursesProgression in
-                guard let self = self else { return }
-                if accountState == .loading || announcements == .loading || coursesProgression == .loading {
-                    self.state.accept(.loading)
-                } else if accountState == .error || announcements == .error || coursesProgression == .error {
-                    self.state.accept(.error)
-                } else {
-                    self.state.accept(.data)
-                }
+        .getEntities()
+        .flatMap { [weak self] courses in
+            self?.listenForAnnouncements(from: courses) ?? Empty<[Announcement], any Error>().eraseToAnyPublisher()
         }
+        .compactMap { $0 }
+        .subscribe(courseAnnouncements)
         .store(in: &subscriptions)
     }
 
-    private func sendAnnoucements() {
-        messages.accept(announcements)
-    }
-
-    private func trySendAnnouncements() {
-        if accountAnnouncements != nil && courseAnnouncements != nil {
-            sendAnnoucements()
+    private func listenForCombinedAnnouncements() {
+        Publishers.CombineLatest(
+            accountAnnouncements,
+            courseAnnouncements
+        ).map { account, course in
+            guard let account = account, let course = course else {
+                return nil
+            }
+            return (account + course).sorted { $0.date ?? Date.distantPast > $1.date ?? Date.distantPast }
         }
+        .compactMap { $0 }
+        .replaceError(with: [])
+        .subscribe(messages)
+        .store(in: &subscriptions)
     }
 }
 

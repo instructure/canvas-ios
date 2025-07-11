@@ -17,10 +17,11 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
 import Foundation
 import HorizonUI
-import SwiftUI
+import Observation
 
 @Observable
 class AttachmentItemViewModel {
@@ -50,6 +51,7 @@ class AttachmentItemViewModel {
 
     // MARK: - Dependencies
     private let composeMessageInteractor: ComposeMessageInteractor
+    private let dispatchQueue: AnySchedulerOf<DispatchQueue>
     private let downloadFileInteractor: DownloadFileInteractor
     private let isOnlyForDownload: Bool
     private let router: Router
@@ -60,16 +62,18 @@ class AttachmentItemViewModel {
         isOnlyForDownload: Bool,
         router: Router,
         composeMessageInteractor: ComposeMessageInteractor,
-        downloadFileInteractor: DownloadFileInteractor
+        downloadFileInteractor: DownloadFileInteractor,
+        dispatchQueue: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.file = file
         self.isOnlyForDownload = isOnlyForDownload
         self.router = router
         self.composeMessageInteractor = composeMessageInteractor
         self.downloadFileInteractor = downloadFileInteractor
+        self.dispatchQueue = dispatchQueue
 
         file.objectWillChange
-            .receive(on: DispatchQueue.main)
+            .receive(on: dispatchQueue)
             .sink { [weak self] in
                 guard let self = self else { return }
                 self.file = file
@@ -84,7 +88,7 @@ class AttachmentItemViewModel {
         isDownloading = true
         downloadFileInteractor
             .download(file: file)
-            .receive(on: DispatchQueue.main)
+            .receive(on: dispatchQueue)
             .sink(
                 receiveCompletion: { [weak self] completion in
                     if case let .failure(error) = completion {

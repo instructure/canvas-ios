@@ -19,14 +19,14 @@
 import HorizonUI
 import SwiftUI
 
-struct PeopleSelectionView: View {
+struct RecipientSelectionView: View {
 
     var disabled: Bool
     let placeholder: String
-    @Bindable var viewModel: PeopleSelectionViewModel
+    @Bindable var viewModel: RecipientSelectionViewModel
 
     init(
-        viewModel: PeopleSelectionViewModel,
+        viewModel: RecipientSelectionViewModel,
         placeholder: String,
         disabled: Bool = false
     ) {

@@ -32,14 +32,13 @@ struct HMessageDetailsView: View {
     }
 
     var body: some View {
-        guard let attachmentViewModel = model.attachmentViewModel else {
-            return AnyView(content)
-        }
-        return AnyView(
+        if let attachmentViewModel = model.attachmentViewModel {
             AttachmentView(viewModel: attachmentViewModel) {
                 content
             }
-        )
+        } else {
+            content
+        }
     }
 
     private var content: some View {
@@ -106,9 +105,9 @@ struct HMessageDetailsView: View {
         }
     }
 
-    private func messageBody(_ message: HorizonMessageViewModel) -> some View {
+    private func messageBody(_ message: HMessageViewModel) -> some View {
         VStack(alignment: .leading, spacing: HorizonUI.spaces.space8) {
-            HStack {
+            HStack(spacing: .zero) {
                 Text(message.author)
                     .huiTypography(.labelLargeBold)
                 Spacer()
@@ -117,6 +116,7 @@ struct HMessageDetailsView: View {
                     .foregroundStyle(HorizonUI.colors.text.timestamp)
             }
             Text(message.body)
+                .foregroundStyle(HorizonUI.colors.text.body)
                 .huiTypography(.p1)
             if message.attachments.isNotEmpty {
                 VStack(spacing: HorizonUI.spaces.space8) {

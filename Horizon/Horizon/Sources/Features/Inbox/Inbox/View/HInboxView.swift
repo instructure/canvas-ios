@@ -78,7 +78,7 @@ struct HInboxView: View {
     }
 
     private var messageList: some View {
-        VStack {
+        VStack(spacing: .zero) {
             ForEach(viewModel.messageRows, id: \.id) { messageRow in
                 MessageRow(viewModel: messageRow) {
                     viewModel.viewMessage(
@@ -103,12 +103,12 @@ struct HInboxView: View {
     }
 
     private var peopleSelection: some View {
-        PeopleSelectionView(
+        RecipientSelectionView(
             viewModel: viewModel.peopleSelectionViewModel,
             placeholder: String(localized: "Filter by person", bundle: .horizon),
             disabled: viewModel.isSearchDisabled
         )
-        .padding(.horizontal, HorizonUI.spaces.space16 - 4)
+        .padding(.horizontal, HorizonUI.spaces.space12)
     }
 
     private var filterSelection: some View {
@@ -119,7 +119,7 @@ struct HInboxView: View {
             options: HInboxViewModel.FilterOption.allCases.map { $0.title },
             zIndex: 102
         )
-        .padding(.horizontal, HorizonUI.spaces.space16 - 4)
+        .padding(.horizontal, HorizonUI.spaces.space12)
     }
 
     private var topBar: some View {

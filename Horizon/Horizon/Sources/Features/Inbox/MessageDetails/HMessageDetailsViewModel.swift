@@ -17,8 +17,10 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
-import SwiftUI
+import Foundation
+import Observation
 
 @Observable
 class HMessageDetailsViewModel {
@@ -43,7 +45,7 @@ class HMessageDetailsViewModel {
     var loadingSpinnerOpacity: Double {
         isSending ? 1.0 : 0.0
     }
-    private(set) var messages: [HorizonMessageViewModel] = []
+    private(set) var messages: [HMessageViewModel] = []
     var isReplayAreaVisible: Bool = true
     private(set) var headerTitle: String = ""
 
@@ -63,6 +65,7 @@ class HMessageDetailsViewModel {
     private let myID: String
     private let messageDetailsInteractor: MessageDetailsInteractor?
     private let router: Router
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Initialization
     init(
@@ -73,7 +76,8 @@ class HMessageDetailsViewModel {
         composeMessageInteractor: ComposeMessageInteractor,
         downloadFileInteractor: DownloadFileInteractor = DownloadFileInteractorLive(),
         myID: String = AppEnvironment.shared.currentSession?.userID ?? "",
-        allowArchive: Bool
+        allowArchive: Bool,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.router = router
         self.conversationID = conversationID
@@ -87,6 +91,7 @@ class HMessageDetailsViewModel {
         self.myID = myID
         self.announcementsInteractor = nil
         self.announcementID = nil
+        self.scheduler = scheduler
 
         messageDetailsInteractor.conversation.sink { [weak self] conversations in
             self?.conversation = conversations.first { $0.id == conversationID }
@@ -103,12 +108,14 @@ class HMessageDetailsViewModel {
         environment: AppEnvironment = AppEnvironment.shared,
         router: Router = AppEnvironment.shared.router,
         announcementsInteractor: AnnouncementsInteractor = AnnouncementsInteractorLive(),
-        myID: String = AppEnvironment.shared.currentSession?.userID ?? ""
+        myID: String = AppEnvironment.shared.currentSession?.userID ?? "",
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.announcementID = announcementID
         self.router = router
         self.announcementsInteractor = announcementsInteractor
         self.myID = myID
+        self.scheduler = scheduler
 
         self.attachmentViewModel = nil
         self.messageDetailsInteractor = nil
@@ -161,39 +168,35 @@ class HMessageDetailsViewModel {
             return
         }
         isSending = true
-        Task { [weak self] in
-            guard let self = self else {
-                return
-            }
-            let recipientIDs = messageDetailsInteractor.userMap.map { $0.key }.filter { $0 != self.myID }
-            let attachmentIDs = attachmentViewModel?.items.compactMap { $0.id } ?? []
-            composeMessageInteractor.addConversationMessage(
-                parameters: MessageParameters(
-                    subject: conversation.subject,
-                    body: reply,
-                    recipientIDs: recipientIDs,
-                    attachmentIDs: attachmentIDs,
-                    conversationID: conversation.id,
-                    bulkMessage: true
-                )
-            ).sink(
-                receiveCompletion: { _ in },
-                receiveValue: { _ in
-                    performUIUpdate {
-                        self.isSending = false
-                        self.reply = ""
-                        self.composeMessageInteractor?.cancel()
-                        self.dismissKeyboard?()
-                    }
-                }
+        let recipientIDs = messageDetailsInteractor.userMap.map { $0.key }.filter { $0 != self.myID }
+        let attachmentIDs = attachmentViewModel?.items.compactMap { $0.id } ?? []
+        composeMessageInteractor.addConversationMessage(
+            parameters: MessageParameters(
+                subject: conversation.subject,
+                body: reply,
+                recipientIDs: recipientIDs,
+                attachmentIDs: attachmentIDs,
+                conversationID: conversation.id,
+                bulkMessage: true
             )
-            .store(in: &self.subscriptions)
-        }
+        )
+        .receive(on: scheduler)
+        .sink(
+            receiveCompletion: { _ in },
+            receiveValue: { _ in
+                self.isSending = false
+                self.reply = ""
+                self.composeMessageInteractor?.cancel()
+                self.dismissKeyboard?()
+            }
+        )
+        .store(in: &self.subscriptions)
     }
 
     // MARK: - Private Methods
     private func listenForAnnouncements() {
-        announcementsInteractor?.messages.sink { [weak self] announcements in
+        announcementsInteractor?.messages.sink { [weak self] messages in
+            let announcements = messages ?? []
             self?.headerTitle = announcements.first(where: { $0.id == self?.announcementID })?.title ?? String(localized: "Announcement", bundle: .horizon)
             self?.messages = announcements
                 .filter { $0.id == self?.announcementID }
@@ -218,7 +221,8 @@ class HMessageDetailsViewModel {
     }
 
     private func listenForSubject() {
-        announcementsInteractor?.messages.sink { [weak self] announcements in
+        announcementsInteractor?.messages.sink { [weak self] messages in
+            let announcements = messages ?? []
             let announcementTitle = announcements.first(where: { $0.id == self?.announcementID })?.title
             self?.headerTitle = announcementTitle ?? String(localized: "Announcement", bundle: .horizon)
         }
@@ -238,10 +242,11 @@ class HMessageDetailsViewModel {
             )
             .sink(
                 receiveCompletion: { _ in },
-                receiveValue: { _ in }
+                receiveValue: { [weak self] _ in
+                    self?.isMarkedAsRead = true
+                }
             )
             .store(in: &self.subscriptions)
-            isMarkedAsRead = true
         }
 
         return conversationMessages
@@ -251,14 +256,14 @@ class HMessageDetailsViewModel {
         conversationMessages.sorted { $0.createdAt ?? .distantPast < $1.createdAt ?? .distantPast }
     }
 
-    private func toViewModels(_ conversationMessages: [ConversationMessage]) -> [HorizonMessageViewModel] {
+    private func toViewModels(_ conversationMessages: [ConversationMessage]) -> [HMessageViewModel] {
         guard let composeMessageInteractor = composeMessageInteractor,
               let downloadFileInteractor = downloadFileInteractor,
               let userMap = messageDetailsInteractor?.userMap else {
             return []
         }
         return conversationMessages.map {
-            HorizonMessageViewModel(
+            HMessageViewModel(
                 conversationMessage: $0,
                 composeMessageInteractor: composeMessageInteractor,
                 downloadFileInteractor: downloadFileInteractor,
@@ -270,7 +275,7 @@ class HMessageDetailsViewModel {
     }
 }
 
-struct HorizonMessageViewModel: Identifiable, Hashable, Equatable {
+struct HMessageViewModel: Identifiable, Hashable, Equatable {
     let attachments: [AttachmentItemViewModel]
     let author: String
     let body: String
@@ -278,7 +283,7 @@ struct HorizonMessageViewModel: Identifiable, Hashable, Equatable {
     let id: String
 }
 
-extension HorizonMessageViewModel {
+extension HMessageViewModel {
     init(announcement: Announcement) {
         self.id = announcement.id
         self.body = announcement.title
@@ -288,7 +293,7 @@ extension HorizonMessageViewModel {
     }
 }
 
-extension HorizonMessageViewModel {
+extension HMessageViewModel {
     init(
         conversationMessage: ConversationMessage,
         composeMessageInteractor: ComposeMessageInteractor,

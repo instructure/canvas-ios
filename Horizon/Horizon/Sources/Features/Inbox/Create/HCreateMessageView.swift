@@ -190,7 +190,7 @@ struct HCreateMessageView: View {
     }
 
     private var peopleSelection: some View {
-        PeopleSelectionView(
+        RecipientSelectionView(
             viewModel: viewModel.peopleSelectionViewModel,
             placeholder: String(localized: "Recipients", bundle: .horizon),
             disabled: viewModel.isPeopleSelectionDisabled

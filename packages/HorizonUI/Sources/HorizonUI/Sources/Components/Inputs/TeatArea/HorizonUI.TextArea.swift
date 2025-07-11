@@ -123,7 +123,6 @@ extension HorizonUI {
                 AnyView(TextEditor(text: $text))
             return view
                 .padding(.huiSpaces.space12)
-                .padding(.trailing, .huiSpaces.space24)
                 .huiTypography(.p1)
                 .background(Color.huiColors.surface.pageSecondary)
                 .focused($focused)
@@ -133,8 +132,8 @@ extension HorizonUI {
                     ZStack {
                         Text(placeholder ?? "")
                             .foregroundColor(Color.huiColors.text.placeholder)
-                            .padding(.leading, 8)
-                            .padding(.top, 12)
+                            .padding(.leading, .huiSpaces.space8)
+                            .padding(.top, .huiSpaces.space12)
                             .opacity(text.isEmpty && !focused ? 1 : 0)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)

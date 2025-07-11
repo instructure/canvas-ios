@@ -89,7 +89,7 @@ class HCreateMessageViewModel {
         inboxMessageInteractor.courses.value.first(where: { $0.name == selectedCourse })?.courseId
     }
     private var isSending = false
-    let peopleSelectionViewModel: PeopleSelectionViewModel = .init()
+    let peopleSelectionViewModel: RecipientSelectionViewModel = .init()
     private var subscriptions: Set<AnyCancellable> = []
 
     // MARK: - Dependencies
@@ -175,7 +175,10 @@ class HCreateMessageViewModel {
         guard let courseID = courseID else {
             return
         }
-        await withCheckedContinuation { continuation in
+        await withCheckedContinuation { [weak self] continuation in
+            guard let self = self else {
+                return
+            }
             let attachmentIds = attachmentViewModel.items.compactMap { $0.id }
             return self.composeMessageInteractor.createConversation(
                 parameters: MessageParameters(

@@ -17,12 +17,14 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
+import Foundation
 import HorizonUI
-import SwiftUI
+import Observation
 
 @Observable
-class PeopleSelectionViewModel {
+class RecipientSelectionViewModel {
     // MARK: - Outputs
     var context: Context {
         didSet {
@@ -52,30 +54,47 @@ class PeopleSelectionViewModel {
     var searchLoading: Bool = false
 
     // MARK: - Private
-    private var searchAPITask: APITask?
     private var searchDebounceTask: Task<Void, Never>?
     var searchString: String = "" {
         didSet {
-            onSearchStringSet()
+            searchStringSubject.send(searchString)
         }
     }
+    private let searchStringSubject = CurrentValueSubject<String, Never>("")
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
     private let api: API
     private let currentUserID: String
+    private let dispatchQueue: AnySchedulerOf<DispatchQueue>
     private let environment: AppEnvironment
+    private let recipientsSearch: RecipientsSearchInteractor
 
     // MARK: - Init
     init(
         environment: AppEnvironment = .shared,
         api: API = AppEnvironment.shared.api,
-        currentUserID: String = AppEnvironment.shared.currentSession?.userID ?? ""
+        currentUserID: String = AppEnvironment.shared.currentSession?.userID ?? "",
+        dispatchQueue: AnySchedulerOf<DispatchQueue> = .main,
+        recipientsSearch: RecipientsSearchInteractor = RecipientsSearchInteractorLive()
     ) {
         self.environment = environment
         self.api = api
         self.currentUserID = currentUserID
         self.context = .user(currentUserID)
+        self.dispatchQueue = dispatchQueue
+        self.recipientsSearch = recipientsSearch
+
+        recipientsSearch.recipients
+            .sink { [weak self] recipients in
+                self?.personOptions = recipients.map {
+                    HorizonUI.MultiSelect.Option(
+                        id: $0.id,
+                        label: $0.name
+                    )
+                }
+            }
+            .store(in: &subscriptions)
     }
 
     // MARK: - Public Methods
@@ -87,28 +106,7 @@ class PeopleSelectionViewModel {
 
     // MARK: - Private Methods
     private func makeRequest() {
-        searchLoading = true
-        searchAPITask?.cancel()
-        searchAPITask = api.makeRequest(
-            GetSearchRecipientsRequest(
-                context: context,
-                search: searchString,
-                perPage: 10
-            )
-        ) { [weak self] apiSearchRecipients, _, _ in
-            guard let apiSearchRecipients = apiSearchRecipients else {
-                return
-            }
-            self?.personOptions = apiSearchRecipients
-                .filter { $0.id.value != self?.currentUserID }
-                .map {
-                    HorizonUI.MultiSelect.Option(
-                        id: $0.id.rawValue,
-                        label: $0.name
-                    )
-                }
-            self?.searchLoading = false
-        }
+        recipientsSearch.search(with: searchString, using: context)
     }
 
     private func onFocused(oldValue: Bool = false) {
@@ -122,13 +120,12 @@ class PeopleSelectionViewModel {
     }
 
     private func onSearchStringSet() {
-        searchDebounceTask?.cancel()
-        searchDebounceTask = Task { [weak self] in
-            try? await Task.sleep(nanoseconds: 500_000_000)
-            if Task.isCancelled {
-                return
+        searchStringSubject
+            .debounce(for: .milliseconds(500), scheduler: dispatchQueue)
+            .removeDuplicates()
+            .sink { [weak self] _ in
+                self?.makeRequest()
             }
-            self?.makeRequest()
-        }
+            .store(in: &subscriptions)
     }
 }

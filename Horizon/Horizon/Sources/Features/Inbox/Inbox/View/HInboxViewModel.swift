@@ -75,7 +75,7 @@ class HInboxViewModel {
     }
     var messageListOpacity = 0.0
     var messageRows: [MessageRowViewModel] = []
-    var peopleSelectionViewModel: PeopleSelectionViewModel!
+    var peopleSelectionViewModel: RecipientSelectionViewModel!
     var screenState: InstUI.ScreenState = .data
     var spinnerOpacity = 1.0
 
@@ -112,25 +112,9 @@ class HInboxViewModel {
 
         _ = inboxMessageInteractor.setContext(.user(userID))
 
-        weak var weakSelf = self
-        Publishers.CombineLatest(
-            inboxMessageInteractor.messages,
-            announcementsInteractor.messages
-        ).sink { _, _ in
-            guard let self = weakSelf else { return }
-            if inboxMessageInteractor.state.value != .data ||
-                announcementsInteractor.state.value != .data {
-                return
-            }
-            Publishers.CombineLatest(
-                self.filterSubject,
-                self.peopleSelectionViewModel.personFilterSubject
-            )
-            .sink { _ in weakSelf?.onInboxMessageListItems() }
-            .store(in: &self.subscriptions)
-        }
-        .store(in: &subscriptions)
+        listenForMessagesAndAnnouncements()
 
+        // When the message filter type changes, make the necessary updates.
         filterSubject.sink { [weak self] filterOption in
             if let inboxMessageInteractorScope = filterOption.inboxMessageInteractorScope {
                 _ = inboxMessageInteractor.setScope(inboxMessageInteractorScope)
@@ -141,6 +125,7 @@ class HInboxViewModel {
         }
         .store(in: &subscriptions)
 
+        // close the messages filter when the people selection view model is focused
         peopleSelectionViewModel.isFocusedSubject
             .sink { [weak self] isFocused in
                 if isFocused && self?.isMessagesFilterFocused == true {
@@ -219,7 +204,9 @@ class HInboxViewModel {
             filterSubject.value == .announcements
         ) && peopleSelectionViewModel.personFilterSubject.value.isEmpty
 
-        let announcements: [MessageRowViewModel] = isAnnouncementsShown ? announcementsInteractor.messages.value.map { $0.viewModel } : []
+        let messages = isAnnouncementsShown ? (announcementsInteractor.messages.value ?? []) : []
+
+        let announcements: [MessageRowViewModel] = messages.map { $0.viewModel }
         let isFinishedLoading = inboxMessageInteractor.hasNextPage.value == false
         // Combine the message rows and announcements, sorting them by date descending.
         let fullList = (messageRows + announcements).sorted { (lhs: MessageRowViewModel, rhs: MessageRowViewModel) in
@@ -232,6 +219,34 @@ class HInboxViewModel {
         return fullList.enumerated().filter { (index, row) in
             return !row.isAnnouncement || isFinishedLoading || index < indexOfLastNonAnnouncement
         }.map { $0.element }
+    }
+
+    private func listenForMessagesAndAnnouncements() {
+        Publishers.CombineLatest4(
+            inboxMessageInteractor.messages,
+            announcementsInteractor.messages,
+            self.filterSubject,
+            self.peopleSelectionViewModel.personFilterSubject
+        )
+        .filter { [weak self] _, announcements, _, _ in
+            self?.inboxMessageInteractor.state.value == .data && announcements != nil
+        }
+        .map { [weak self] _, _, filterSubject, _ in
+            guard let self = self,
+                  filterSubject.inboxMessageInteractorScope != nil else {
+                return []
+            }
+            return inboxMessageInteractor.messages.value
+                .filter(filterByPerson)
+                .map { $0.viewModel }
+        }
+        .sink { [weak self] (messages: [HInboxViewModel.MessageRowViewModel]) in
+            guard let self = self else { return }
+            self.messageRows = self.addAnnouncements(to: messages)
+            self.messageListOpacity = self.messageRows.count > 0 ? 1.0 : 0.0
+            self.spinnerOpacity = 0.0
+        }
+        .store(in: &subscriptions)
     }
 
     private func onInboxMessageListItems() {
