@@ -35,13 +35,13 @@ struct SubmissionCommentListView: View {
     @State private var isVideoRecorderVisible: Bool = false
     private let avPermissionViewModel: AVPermissionViewModel = .init()
 
-    @AccessibilityFocusState private var focusedTab: SpeedGraderPageView.GraderTab?
+    @AccessibilityFocusState private var focusedTab: SpeedGraderPageTab?
 
     init(
         viewModel: SubmissionCommentListViewModel,
         attempt: Binding<Int>,
         fileID: Binding<String?>,
-        focusedTab: AccessibilityFocusState<SpeedGraderPageView.GraderTab?>
+        focusedTab: AccessibilityFocusState<SpeedGraderPageTab?>
     ) {
         self.viewModel = viewModel
         self._attempt = attempt
