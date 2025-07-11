@@ -42,6 +42,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     var presenter: SubmissionCommentsPresenter?
     var submissionPresenter: SubmissionDetailsPresenter?
     var env: AppEnvironment = .shared
+    private let avPermissionViewModel: AVPermissionViewModel = .init()
 
     static func create(
         env: AppEnvironment,
@@ -106,30 +107,22 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     @IBAction func addMediaButtonPressed(_ sender: UIButton) {
         let title = String(localized: "Select Attachment Type", bundle: .student)
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(AlertAction(String(localized: "Record Audio", bundle: .student), style: .default) { _ in
-            AudioRecorderViewController.requestPermission { [weak self] allowed in
-                guard let self = self else { return }
-                guard allowed else {
-                    self.showPermissionError(.microphone)
-                    return
+        alert.addAction(
+            AlertAction(String(localized: "Record Audio", bundle: .student), style: .default) { [weak self] _ in
+                guard let self else { return }
+
+                avPermissionViewModel.performAfterMicrophonePermission(from: .init(self)) {
+                    let controller = AudioRecorderViewController.create()
+                    controller.delegate = self
+                    self.showMediaController(controller)
                 }
-                let controller = AudioRecorderViewController.create()
-                controller.delegate = self
-                self.showMediaController(controller)
             }
-        })
-        alert.addAction(AlertAction(String(localized: "Record Video", bundle: .student), style: .default) { _ in
-            VideoRecorder.requestPermission { [weak self] allowed in
-                guard let self = self else { return }
-                guard allowed else {
-                    self.showPermissionError(.camera)
-                    return
-                }
-                AudioRecorderViewController.requestPermission { allowed in
-                    guard allowed else {
-                        self.showPermissionError(.microphone)
-                        return
-                    }
+        )
+        alert.addAction(
+            AlertAction(String(localized: "Record Video", bundle: .student), style: .default) { [weak self] _ in
+                guard let self else { return }
+
+                avPermissionViewModel.performAfterVideoPermissions(from: .init(self)) {
                     let picker = UIImagePickerController()
                     picker.allowsEditing = true
                     picker.delegate = self
@@ -139,7 +132,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
                     self.present(picker, animated: true)
                 }
             }
-        })
+        )
         alert.addAction(AlertAction(String(localized: "Choose File", bundle: .student), style: .default) { [weak self] _ in
             guard let self else { return }
             let picker = FilePickerViewController.create(env: env)

@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-struct SubmissionHeaderView: View {
+struct SpeedGraderPageHeaderView: View {
     let assignment: Assignment
     let submission: Submission
     let isLandscapeLayout: Bool
@@ -28,21 +28,21 @@ struct SubmissionHeaderView: View {
     @Environment(\.viewController) var controller
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
-    @ObservedObject var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
+    @ObservedObject var landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel
     @State private var profileHeight: CGFloat = 0
-    @StateObject internal var viewModel: SubmissionHeaderViewModel
+    @StateObject internal var viewModel: SpeedGraderPageHeaderViewModel
 
     init(
         assignment: Assignment,
         submission: Submission,
         isLandscapeLayout: Bool,
-        landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
+        landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel
     ) {
         self.assignment = assignment
         self.submission = submission
         self.isLandscapeLayout = isLandscapeLayout
         self.landscapeSplitLayoutViewModel = landscapeSplitLayoutViewModel
-        _viewModel = StateObject(wrappedValue: SubmissionHeaderViewModel(assignment: assignment, submission: submission))
+        _viewModel = StateObject(wrappedValue: SpeedGraderPageHeaderViewModel(assignment: assignment, submission: submission))
     }
 
     var body: some View {
@@ -169,11 +169,11 @@ struct SubmissionHeaderView: View {
 
 #Preview {
     let testData = SpeedGraderAssembly.testData()
-    SubmissionHeaderView(
+    SpeedGraderPageHeaderView(
         assignment: testData.assignment,
         submission: testData.submissions[0],
         isLandscapeLayout: true,
-        landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel()
+        landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel()
     )
 }
 

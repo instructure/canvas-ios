@@ -20,7 +20,12 @@ import Core
 import SwiftUI
 import Combine
 
-struct SubmissionGraderView: View {
+/// A SpeedGrader page representing a student's submission.
+/// It doesn't have a navigaton bar (it's parent `SpeedGraderScreen` handles it),
+/// but has it's own header, split layout, drawer, etc.
+/// - Note: User's navigate between SpeedGrader pages via horizontal swipes.
+/// Makse sure subviews don't interfere with this gesture.
+struct SpeedGraderPageView: View {
     private enum Layout {
         case portrait
         case landscape // only on iPads no matter the iPhone screen size
@@ -35,7 +40,6 @@ struct SubmissionGraderView: View {
     @State private var drawerState: DrawerState = .min
     @State private var showAttempts = false
     @State private var tab: GraderTab = .grades
-    @State private var showRecorder: MediaCommentType?
     /** Used to work around an issue which caused the page to re-load after putting the app into background. See `layoutForWidth()` method for more. */
     @State private var lastPresentedLayout: Layout = .portrait
     /// Used to match landscape drawer's segmented control height with the header height.
@@ -43,8 +47,8 @@ struct SubmissionGraderView: View {
     @AccessibilityFocusState private var focusedTab: GraderTab?
 
     @StateObject private var rubricsViewModel: RubricsViewModel
-    @StateObject private var viewModel: SubmissionGraderViewModel
-    @ObservedObject private var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
+    @StateObject private var viewModel: SpeedGraderPageViewModel
+    @ObservedObject private var landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel
 
     private var handleRefresh: (() -> Void)?
     /// We can't measure the view's size because when keyboard appears it shrinks it
@@ -57,8 +61,8 @@ struct SubmissionGraderView: View {
     init(
         env: AppEnvironment,
         userIndexInSubmissionList: Int,
-        viewModel: SubmissionGraderViewModel,
-        landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel,
+        viewModel: SpeedGraderPageViewModel,
+        landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel,
         handleRefresh: (() -> Void)?
     ) {
         self.userIndexInSubmissionList = userIndexInSubmissionList
@@ -122,7 +126,7 @@ struct SubmissionGraderView: View {
     ) -> some View {
         HStack(spacing: 0) {
             VStack(spacing: 0) {
-                SubmissionHeaderView(
+                SpeedGraderPageHeaderView(
                     assignment: viewModel.assignment,
                     submission: viewModel.submission,
                     isLandscapeLayout: true,
@@ -180,7 +184,7 @@ struct SubmissionGraderView: View {
     ) -> some View {
         ZStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 0) {
-                SubmissionHeaderView(
+                SpeedGraderPageHeaderView(
                     assignment: viewModel.assignment,
                     submission: viewModel.submission,
                     isLandscapeLayout: false,
@@ -308,7 +312,7 @@ struct SubmissionGraderView: View {
         case grades
         case comments
 
-        func title(viewModel: SubmissionGraderViewModel) -> String {
+        func title(viewModel: SpeedGraderPageViewModel) -> String {
             switch self {
             case .grades: String(localized: "Grades", bundle: .teacher)
             case .comments: String(localized: "Comments", bundle: .teacher)
@@ -442,11 +446,10 @@ struct SubmissionGraderView: View {
                 viewModel: viewModel.commentListViewModel,
                 attempt: drawerAttempt,
                 fileID: fileID,
-                showRecorder: $showRecorder,
                 focusedTab: _focusedTab
             )
             .clipped()
-            if showRecorder != .video || drawerState == .min {
+            if drawerState == .min {
                 Spacer().frame(height: bottomInset)
             }
         }

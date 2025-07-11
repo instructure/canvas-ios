@@ -28,7 +28,7 @@ class FilePickerViewModelTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        testee = FilePickerViewModel(env: environment, interactor: interactor, onSelect: onSelect)
+        testee = FilePickerViewModel(interactor: interactor, router: router, onSelect: onSelect)
     }
 
     func testOutputBindings() {

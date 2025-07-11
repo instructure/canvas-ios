@@ -20,8 +20,8 @@ import Combine
 import Core
 import SwiftUI
 
-class SpeedGraderViewModel: ObservableObject {
-    typealias Page = CoreHostingController<SubmissionGraderView>
+class SpeedGraderScreenViewModel: ObservableObject {
+    typealias Page = CoreHostingController<SpeedGraderPageView>
 
     // MARK: - Outputs
 
@@ -42,7 +42,7 @@ class SpeedGraderViewModel: ObservableObject {
     // MARK: - Private
 
     private let interactor: SpeedGraderInteractor
-    private let landscapeSplitLayoutViewModel = SpeedGraderLandscapeSplitLayoutViewModel()
+    private let landscapeSplitLayoutViewModel = SpeedGraderPageLandscapeSplitLayoutViewModel()
     private let environment: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
@@ -150,7 +150,7 @@ class SpeedGraderViewModel: ObservableObject {
 
 // MARK: - PagesViewControllerDataSource
 
-extension SpeedGraderViewModel: PagesViewControllerDataSource {
+extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
 
     func pagesViewController(
         _ pages: PagesViewController,
@@ -172,16 +172,16 @@ extension SpeedGraderViewModel: PagesViewControllerDataSource {
         return controller
     }
 
-    private func grader(for index: Int) -> SubmissionGraderView? {
+    private func grader(for index: Int) -> SpeedGraderPageView? {
         guard
             let data = interactor.data,
             data.submissions.indices.contains(index)
         else { return nil }
 
-        return SubmissionGraderView(
+        return SpeedGraderPageView(
             env: environment,
             userIndexInSubmissionList: index,
-            viewModel: SubmissionGraderViewModel(
+            viewModel: SpeedGraderPageViewModel(
                 assignment: data.assignment,
                 latestSubmission: data.submissions[index],
                 contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
@@ -216,7 +216,7 @@ extension SpeedGraderViewModel: PagesViewControllerDataSource {
 
 // MARK: - PagesViewControllerDelegate
 
-extension SpeedGraderViewModel: PagesViewControllerDelegate {
+extension SpeedGraderScreenViewModel: PagesViewControllerDelegate {
 
     func pagesViewController(
         _ pages: PagesViewController,

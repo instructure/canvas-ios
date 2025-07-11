@@ -21,7 +21,7 @@ import Core
 import TestsFoundation
 import XCTest
 
-class SubmissionHeaderViewModelTests: TeacherTestCase {
+class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
 
     func testGroupSubmissionCheck() {
         let submission = Submission(context: databaseClient)
@@ -29,7 +29,7 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
         assignment.gradedIndividually = false
         submission.groupID = "TestGroupID"
 
-        let testee = SubmissionHeaderViewModel(
+        let testee = SpeedGraderPageHeaderViewModel(
             assignment: assignment,
             submission: submission,
         )
@@ -43,7 +43,7 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
         assignment.gradedIndividually = false
         submission.groupName = "TestGroup Name"
 
-        var testee = SubmissionHeaderViewModel(
+        var testee = SpeedGraderPageHeaderViewModel(
             assignment: assignment,
             submission: submission,
         )
@@ -51,7 +51,7 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
 
         submission.groupID = "TestGroupID"
 
-        testee = SubmissionHeaderViewModel(
+        testee = SpeedGraderPageHeaderViewModel(
             assignment: assignment,
             submission: submission,
         )
@@ -67,7 +67,7 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
         submission.userID = "testUserID"
         submission.groupID = "TestGroupID"
 
-        let testee = SubmissionHeaderViewModel(
+        let testee = SpeedGraderPageHeaderViewModel(
             assignment: assignment,
             submission: submission,
         )
@@ -83,7 +83,7 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
         submission.userID = "testUserID"
         submission.groupID = "TestGroupID"
 
-        let testee = SubmissionHeaderViewModel(
+        let testee = SpeedGraderPageHeaderViewModel(
             assignment: assignment,
             submission: submission,
         )
@@ -98,7 +98,7 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
         submission.excused = false
         try databaseClient.save()
 
-        let testee = SubmissionHeaderViewModel(
+        let testee = SpeedGraderPageHeaderViewModel(
             assignment: assignment,
             submission: submission
         )

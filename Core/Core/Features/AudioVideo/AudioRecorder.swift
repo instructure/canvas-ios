@@ -52,8 +52,4 @@ public struct AudioRecorder: UIViewControllerRepresentable {
     public func makeCoordinator() -> Coordinator {
         return Coordinator(view: self)
     }
-
-    public static func requestPermission(callback: @escaping (Bool) -> Void) {
-        AudioRecorderViewController.requestPermission(callback: callback)
-    }
 }

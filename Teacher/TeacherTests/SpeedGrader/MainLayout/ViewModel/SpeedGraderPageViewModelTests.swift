@@ -23,7 +23,7 @@ import XCTest
 @testable import Core
 @testable import Teacher
 
-class SubmissionGraderViewModelTests: TeacherTestCase {
+class SpeedGraderPageViewModelTests: TeacherTestCase {
 
     private enum TestConstants {
         static let submissionId = "some submissionId"
@@ -70,8 +70,8 @@ class SubmissionGraderViewModelTests: TeacherTestCase {
 
     private func makeViewModel(
         contextColor: AnyPublisher<Color, Never> = Publishers.typedEmpty()
-    ) -> SubmissionGraderViewModel {
-        SubmissionGraderViewModel(
+    ) -> SpeedGraderPageViewModel {
+        .init(
             assignment: assignment,
             latestSubmission: submission,
             contextColor: contextColor,
