@@ -20,18 +20,13 @@ import CombineExt
 
 struct AssistDataEnvironment {
     private(set) var courseID = CurrentValueRelay<String?>(nil)
-    private(set) var goal = CurrentValueRelay<(any Goal)?>(nil)
-    private(set) var pageContext = CurrentValueRelay<AssistChatPageContext?>(nil)
+    private(set) var goal = CurrentValueRelay<Goal?>(nil)
 
     func setCourseID(_ id: String?) {
         courseID.accept(id)
     }
 
-    func setPageContext(_ context: AssistChatPageContext?) {
-        pageContext.accept(context)
-    }
-
-    func setGoal(_ goal: (any Goal)?) {
+    func setGoal(_ goal: Goal?) {
         self.goal.accept(goal)
     }
 }

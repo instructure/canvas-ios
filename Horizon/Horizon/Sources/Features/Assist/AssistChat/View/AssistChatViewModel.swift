@@ -97,13 +97,12 @@ final class AssistChatViewModel {
             }
             .store(in: &subscriptions)
 
-        chatBotInteractor.publish(action: .chat())
+        chatBotInteractor.publish(action: .begin)
     }
 
     // MARK: - Inputs
 
     func setInitialState() {
-        chatBotInteractor.setInitialState()
         isRetryButtonVisible = false
         isBackButtonVisible = false
     }

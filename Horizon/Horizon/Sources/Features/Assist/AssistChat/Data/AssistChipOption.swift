@@ -20,28 +20,11 @@ import Foundation
 
 struct AssistChipOption: Equatable {
     let chip: String
-    let localResponse: AssistStaticLearnerResponse?
     let prompt: String?
 
-    init(chip: String, prompt: String = "") {
+    init(chip: String, prompt: String? = nil) {
         self.chip = chip
-        self.prompt = prompt
-
-        self.localResponse = nil
-    }
-
-    init(chip: String, localResponse: AssistStaticLearnerResponse) {
-        self.chip = chip
-        self.localResponse = localResponse
-
-        self.prompt = localResponse.chip
-    }
-
-    init(assistStaticLearnerResponse: AssistStaticLearnerResponse) {
-        self.chip = assistStaticLearnerResponse.chip
-        self.localResponse = assistStaticLearnerResponse
-
-        self.prompt = assistStaticLearnerResponse.chip
+        self.prompt = prompt ?? chip
     }
 
     enum Default: Codable, CaseIterable {
@@ -70,7 +53,6 @@ struct AssistChipOption: Equatable {
     // swiftlint:disable line_length
     init(_ option: Default, userShortName: String? = nil) {
         chip = option.rawValue
-        localResponse = nil
 
         var introduction = ""
         if let userShortName = userShortName {
@@ -101,7 +83,6 @@ extension AssistChipOption: Codable, Hashable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.chip = try container.decode(String.self, forKey: .chip)
         self.prompt = try container.decodeIfPresent(String.self, forKey: .prompt)
-        self.localResponse = nil  // Exclude from decoding
     }
 
     // Overload `==` for Equatable conformance

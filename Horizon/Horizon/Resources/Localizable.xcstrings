@@ -103,9 +103,6 @@
     "Arizona (-07:00)" : {
 
     },
-    "Ask a question" : {
-
-    },
     "Assignment due dates" : {
 
     },
@@ -271,9 +268,6 @@
     "Copenhagen (+01:00/+02:00)" : {
 
     },
-    "Create flash cards" : {
-
-    },
     "Cuiaba (-04:00/-04:00)" : {
 
     },
@@ -433,15 +427,6 @@
     "hours" : {
 
     },
-    "How can I help today with the %@ course material?" : {
-      "comment" : "Assist chat initial response when only one course is available"
-    },
-    "How can I help today?" : {
-
-    },
-    "How would you like to review today?" : {
-
-    },
     "Important" : {
 
     },
@@ -470,9 +455,6 @@
 
     },
     "Istanbul (+03:00/+03:00)" : {
-
-    },
-    "It looks like you're not enrolled in any courses yet. Please enroll in a course and come back!" : {
 
     },
     "Jakarta (+07:00)" : {
@@ -750,9 +732,6 @@
     "Quiz" : {
 
     },
-    "Quiz me" : {
-
-    },
     "Rangoon (+06:30/+06:30)" : {
 
     },
@@ -909,9 +888,6 @@
     "Text" : {
 
     },
-    "Thanks for visiting! Please check back later." : {
-
-    },
     "There are no scored activities in this course." : {
 
     },
@@ -1009,12 +985,6 @@
 
     },
     "West Central Africa (+01:00)" : {
-
-    },
-    "What is your question today?" : {
-
-    },
-    "Which of your courses would you like to discuss?" : {
 
     },
     "Yakutsk (+09:00/+09:00)" : {

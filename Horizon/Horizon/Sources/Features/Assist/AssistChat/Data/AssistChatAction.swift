@@ -20,8 +20,10 @@ import Core
 
 /// ChatBotActions are published to the  AssistChatInteractor. The Interactor reacts to the action and publishes one or more ChatBotResponses.
 enum AssistChatAction {
+    case begin
+
     /// the user is chatting with the bot
-    case chat(prompt: String = "", history: [AssistChatMessage] = [])
+    case chat(prompt: String? = nil, history: [AssistChatMessage] = [])
 
     /// the user has selected a chip while viewing a file
     case chip(option: AssistChipOption, history: [AssistChatMessage] = [])

@@ -70,20 +70,3 @@ struct CedarAnswerPromptMutationResponse: Codable {
 
     let data: ResponseData
 }
-
-extension CedarAnswerPromptMutation.DocumentInput {
-    /// A document block can be included  in the CedarAnswerPromptMutation to provide additional context for the model to generate a response.
-    /// This is used when the user is viewing a document and wants to generate a response based on the document.
-    static func build(from pageContext: AssistChatPageContext?) -> CedarAnswerPromptMutation.DocumentInput? {
-        guard let pageContext = pageContext,
-              let documentFormat = pageContext.format,
-              let source = pageContext.source
-        else {
-            return nil
-        }
-        return CedarAnswerPromptMutation.DocumentInput(
-            format: documentFormat,
-            base64Source: source
-        )
-    }
-}
