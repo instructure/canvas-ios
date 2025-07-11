@@ -127,10 +127,7 @@ final class AssignmentDetailsViewModel {
             hasSubmittedBefore = true
             submission = selectedSubmission
             shouldShowViewAttempts = selectedSubmission != submissions.first
-            submissionProperties?.hasUnreadComments = submissionComments.hasUnreadComments(
-                for: selectedSubmission?.attempt
-            )
-            dependency.didLoadAssignment(submissionProperties)
+            getComments(for: selectedSubmission?.attempt ?? 0)
         }
         dependency.router.show(view, from: controller, options: .modal(isDismissable: false))
     }
@@ -199,14 +196,26 @@ final class AssignmentDetailsViewModel {
         ignoreCache: Bool = false,
         completionHandler: (() -> Void)? = nil
     ) {
-        Publishers.Zip3(
+        Publishers.Zip(
             dependency.interactor.getAssignmentDetails(ignoreCache: ignoreCache),
-            dependency.interactor.getSubmissions(ignoreCache: ignoreCache),
-            dependency.commentInteractor.getComments(
-                assignmentID: dependency.assignmentID,
-                ignoreCache: ignoreCache
-            )
+            dependency.interactor.getSubmissions(ignoreCache: ignoreCache)
         )
+        .flatMap { [weak self] assignmentDetails, submissions -> AnyPublisher<(HAssignment, [HSubmission], [SubmissionComment]), Never> in
+            guard let firstAttempt = submissions.first?.attempt, let self else {
+                return Just((assignmentDetails, submissions, []))
+                    .eraseToAnyPublisher()
+            }
+            return self.dependency.commentInteractor.getComments(
+                assignmentID: self.dependency.assignmentID,
+                attempt: firstAttempt,
+                ignoreCache: false,
+                beforeCursor: nil,
+                last: 5
+            )
+            .replaceError(with: [])
+            .map {(assignmentDetails, submissions, $0)}
+            .eraseToAnyPublisher()
+        }
         .receive(on: dependency.scheduler)
         .sinkFailureOrValue(
             receiveFailure: { [weak self] error in
@@ -263,6 +272,27 @@ final class AssignmentDetailsViewModel {
             hasUnreadComments: submissionComments.hasUnreadComments(for: submission?.attempt)
         )
         dependency.didLoadAssignment(submissionProperties)
+    }
+
+    private func getComments(for attempt: Int) {
+        dependency.commentInteractor.getComments(
+            assignmentID: dependency.assignmentID,
+            attempt: attempt,
+            ignoreCache: false,
+            beforeCursor: nil,
+            last: 5
+        )
+        .replaceError(with: [])
+        .receive(on: dependency.scheduler)
+        .sink { [weak self] comments in
+            guard let self else { return }
+            submissionComments = comments
+            submissionProperties?.hasUnreadComments = submissionComments.hasUnreadComments(
+                for: attempt
+            )
+            dependency.didLoadAssignment(submissionProperties)
+        }
+        .store(in: &subscriptions)
     }
 
     private func fetchExternalURL() {

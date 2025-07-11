@@ -58,7 +58,7 @@ class CDHSubmissionTests: CoreTestCase {
 
         let response = GetHSubmissionCommentsResponse(data: dataModel)
 
-        let savedSubmission = CDHSubmission.save(response, assignmentID: assignmentId, in: databaseClient)
+        let savedSubmission = CDHSubmission.save(response, assignmentID: assignmentId, attempt: 1, pageID: nil, in: databaseClient)
 
         XCTAssertEqual(savedSubmission.id, submissionId)
         XCTAssertEqual(savedSubmission.assignmentID, assignmentId)
@@ -77,11 +77,18 @@ class CDHSubmissionTests: CoreTestCase {
     func testSaveWithEmptyData() {
         let response = GetHSubmissionCommentsResponse(data: nil)
 
-        let savedSubmission = CDHSubmission.save(response, assignmentID: "assignment-123", in: databaseClient)
+        let savedSubmission = CDHSubmission.save(
+            response,
+            assignmentID: "assignment-123",
+            attempt: 1,
+            pageID: "NDI",
+            in: databaseClient
+        )
 
         XCTAssertEqual(savedSubmission.id, "")
         XCTAssertEqual(savedSubmission.assignmentID, "assignment-123")
         XCTAssertEqual(savedSubmission.hasUnreadComment, false)
+        XCTAssertEqual(savedSubmission.pageID, "NDI")
         XCTAssertTrue(savedSubmission.comments.isEmpty)
     }
 
@@ -96,11 +103,18 @@ class CDHSubmissionTests: CoreTestCase {
             data: GetHSubmissionCommentsResponse.DataModel(submission: submission)
         )
 
-        let savedSubmission = CDHSubmission.save(response, assignmentID: "assignment-123", in: databaseClient)
+        let savedSubmission = CDHSubmission.save(
+            response,
+            assignmentID: "assignment-123",
+            attempt: 1,
+            pageID: "NFQ",
+            in: databaseClient
+        )
 
         XCTAssertEqual(savedSubmission.id, "submission-123")
         XCTAssertEqual(savedSubmission.assignmentID, "assignment-123")
         XCTAssertEqual(savedSubmission.hasUnreadComment, false)
+        XCTAssertEqual(savedSubmission.pageID, "NFQ")
         XCTAssertTrue(savedSubmission.comments.isEmpty)
     }
 }
