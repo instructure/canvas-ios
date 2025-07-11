@@ -96,7 +96,7 @@ class AnnouncementsProvider: TimelineProvider {
         guard let announcements = self.announcements, !announcements.pending else { return }
 
         let announcementItems = announcements.all.map { AnnouncementItem(dbEntity: $0) }
-        let announcementsEntry = AnnouncementsEntry(announcements: announcementItems, date: Clock.now)
+        let announcementsEntry = AnnouncementsEntry(announcements: announcementItems)
         let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
         let timeline = Timeline(entries: [announcementsEntry], policy: .after(refreshDate))
         completion(timeline)
