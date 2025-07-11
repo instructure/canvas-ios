@@ -23,8 +23,8 @@ import Combine
 /// A SpeedGrader page representing a student's submission.
 /// It doesn't have a navigaton bar (it's parent `SpeedGraderScreen` handles it),
 /// but has it's own header, split layout, drawer, etc.
-/// - Note: User's navigate between SpeedGrader pages via horizontal swipes.
-/// Makse sure subviews don't interfere with this gesture.
+/// - Note: Users navigate between SpeedGrader pages via horizontal swipes.
+/// Make sure subviews don't interfere with this gesture.
 struct SpeedGraderPageView: View {
     private enum Layout {
         case portrait
@@ -36,15 +36,14 @@ struct SpeedGraderPageView: View {
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    @State private var selectedDrawerTabIndex = 0
     @State private var drawerState: DrawerState = .min
     @State private var showAttempts = false
-    @State private var tab: GraderTab = .grades
+    @State private var tab: SpeedGraderPageTab = .grades
     /** Used to work around an issue which caused the page to re-load after putting the app into background. See `layoutForWidth()` method for more. */
     @State private var lastPresentedLayout: Layout = .portrait
     /// Used to match landscape drawer's segmented control height with the header height.
     @State private var profileHeaderSize: CGSize = .zero
-    @AccessibilityFocusState private var focusedTab: GraderTab?
+    @AccessibilityFocusState private var focusedTab: SpeedGraderPageTab?
 
     @StateObject private var rubricsViewModel: RubricsViewModel
     @StateObject private var viewModel: SpeedGraderPageViewModel
@@ -308,154 +307,21 @@ struct SpeedGraderPageView: View {
 
     // MARK: - Drawer
 
-    enum GraderTab: Int, CaseIterable {
-        case grades
-        case comments
-
-        func title(viewModel: SpeedGraderPageViewModel) -> String {
-            switch self {
-            case .grades: String(localized: "Grades", bundle: .teacher)
-            case .comments: String(localized: "Comments", bundle: .teacher)
-            }
-        }
-    }
-
-    @ViewBuilder
     private func tools(bottomInset: CGFloat, isDrawer: Bool) -> some View {
-        VStack(spacing: 0) {
-            Group {
-                if isDrawer {
-                    InstUI.SegmentedPicker(selection: $tab) {
-                        ForEach(GraderTab.allCases, id: \.self) { tab in
-                            Text(tab.title(viewModel: viewModel))
-                                .tag(tab)
-                        }
-                    }
-                    .padding(.bottom, 16)
-                    .onChange(of: tab) {
-                        if drawerState == .min { snapDrawer(to: .mid) }
-                        controller.view.endEditing(true)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            focusedTab = tab
-                        }
-                    }
-                } else {
-                    InstUI.SegmentedPicker(selection: $tab) {
-                        ForEach(GraderTab.allCases, id: \.self) { tab in
-                            Text(tab.title(viewModel: viewModel))
-                                .tag(tab)
-                        }
-                    }
-                    .frame(height: profileHeaderSize.height)
-                }
-            }
-            .padding(.horizontal, 16)
-            .identifier("SpeedGrader.toolPicker")
-
-            InstUI.Divider()
-
-            GeometryReader { geometry in
-                HStack(spacing: 0) {
-                    let drawerFileID = Binding<String?>(
-                        get: {
-                            viewModel.selectedFile?.id
-                        },
-                        set: {
-                            viewModel.didSelectFile(fileId: $0)
-                            snapDrawer(to: .min)
-                        }
-                    )
-
-                    gradesTab(bottomInset: bottomInset, isDrawer: isDrawer, geometry: geometry)
-                        // `.clipped` and `.contentShape` don't prevent touches outside of the drawer on iOS17
-                        // and it would block interaction with the attempts picker and the submission content.
-                        .allowsHitTesting(tab == .grades)
-                    commentsTab(bottomInset: bottomInset, isDrawer: isDrawer, fileID: drawerFileID, geometry: geometry)
-                }
-                .frame(width: geometry.size.width, alignment: .leading)
-                .background(Color.backgroundLightest)
-                .offset(x: -CGFloat(tab.rawValue) * geometry.size.width)
-            }
-            // Since we are offsetting the content, we need to clip it to avoid showing other tabs outside of the drawer.
-            .clipped()
-            // Clipping won't prevent user interaction so we need to limit it not to swallow touches outside of the drawer.
-            .contentShape(Rectangle())
-        }
+        SpeedGraderPageTabsView(
+            tab: $tab,
+            drawerState: $drawerState,
+            bottomInset: bottomInset,
+            isDrawer: isDrawer,
+            profileHeaderSize: $profileHeaderSize,
+            viewModel: viewModel
+        )
     }
 
     private func snapDrawer(to state: DrawerState) {
         withTransaction(DrawerState.transaction) {
             drawerState = state
         }
-    }
-
-    private func isGraderTabOnScreen(_ tab: GraderTab, isDrawer: Bool) -> Bool {
-        let isTabSelected = (self.tab == tab)
-
-        if isDrawer {
-            return (drawerState != .min && isTabSelected)
-        } else {
-            return isTabSelected
-        }
-    }
-
-    // MARK: - Tab Contents
-
-    @ViewBuilder
-    private func gradesTab(
-        bottomInset: CGFloat,
-        isDrawer: Bool,
-        geometry: GeometryProxy
-    ) -> some View {
-        let isGradesOnScreen = isGraderTabOnScreen(.grades, isDrawer: isDrawer)
-        VStack(spacing: 0) {
-            SubmissionGrades(
-                assignment: viewModel.assignment,
-                containerHeight: geometry.size.height,
-                submission: viewModel.submission,
-                rubricsViewModel: rubricsViewModel,
-                gradeStatusViewModel: viewModel.gradeStatusViewModel
-            )
-            .clipped()
-            Spacer().frame(height: bottomInset)
-        }
-        .frame(width: geometry.size.width, height: geometry.size.height)
-        .accessibilityElement(children: isGradesOnScreen ? .contain : .ignore)
-        .accessibility(hidden: !isGradesOnScreen)
-        .accessibilityFocused($focusedTab, equals: .grades)
-    }
-
-    @ViewBuilder
-    private func commentsTab(
-        bottomInset: CGFloat,
-        isDrawer: Bool,
-        fileID: Binding<String?>,
-        geometry: GeometryProxy
-    ) -> some View {
-        let drawerAttempt = Binding(
-            get: {
-                viewModel.selectedAttemptNumber
-            }, set: {
-                viewModel.didSelectAttempt(attemptNumber: $0)
-                snapDrawer(to: .min)
-            }
-        )
-        let isCommentsOnScreen = isGraderTabOnScreen(.comments, isDrawer: isDrawer)
-        VStack(spacing: 0) {
-            SubmissionCommentListView(
-                viewModel: viewModel.commentListViewModel,
-                attempt: drawerAttempt,
-                fileID: fileID,
-                focusedTab: _focusedTab
-            )
-            .clipped()
-            if drawerState == .min {
-                Spacer().frame(height: bottomInset)
-            }
-        }
-        .frame(width: geometry.size.width, height: geometry.size.height)
-        .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
-        .accessibility(hidden: !isCommentsOnScreen)
     }
 
     // MARK: - Rotation
