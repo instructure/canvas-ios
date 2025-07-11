@@ -19,12 +19,12 @@
 import XCTest
 @testable import Teacher
 
-class SpeedGraderLandscapeSplitLayoutViewModelTests: XCTestCase {
-    var testee: SpeedGraderLandscapeSplitLayoutViewModel!
+class SpeedGraderPageLandscapeSplitLayoutViewModelTests: XCTestCase {
+    var testee: SpeedGraderPageLandscapeSplitLayoutViewModel!
 
     override func setUp() {
         super.setUp()
-        testee = SpeedGraderLandscapeSplitLayoutViewModel()
+        testee = .init()
     }
 
     override func tearDown() {

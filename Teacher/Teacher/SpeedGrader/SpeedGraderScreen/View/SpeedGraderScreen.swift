@@ -20,6 +20,8 @@ import Combine
 import Core
 import SwiftUI
 
+/// The SpeedGrader screen itself: the container for the `SpeedGraderPage`s representing each student's submission.
+/// It displays the navigaton bar and handles paging.
 struct SpeedGraderScreen: View, ScreenViewTrackable {
     var screenViewTrackingParameters: ScreenViewTrackingParameters {
         viewModel.screenViewTrackingParameters
@@ -27,7 +29,7 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
 
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.viewController) private var controller
-    @StateObject private var viewModel: SpeedGraderViewModel
+    @StateObject private var viewModel: SpeedGraderScreenViewModel
     @ScaledMetric private var uiScale: CGFloat = 1
 
     private let screenConfig = InstUI.BaseScreenConfig(
@@ -40,9 +42,7 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
         )
     )
 
-    init(
-        viewModel: SpeedGraderViewModel
-    ) {
+    init(viewModel: SpeedGraderScreenViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
 

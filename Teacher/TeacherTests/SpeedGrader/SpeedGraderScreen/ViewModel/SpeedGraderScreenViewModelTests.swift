@@ -24,14 +24,14 @@ import Combine
 import TestsFoundation
 import SwiftUI
 
-class SpeedGraderViewModelTests: TeacherTestCase {
-    private var testee: SpeedGraderViewModel!
+class SpeedGraderScreenViewModelTests: TeacherTestCase {
+    private var testee: SpeedGraderScreenViewModel!
     private var interactorMock: SpeedGraderInteractorMock!
 
     override func setUp() {
         super.setUp()
         interactorMock = SpeedGraderInteractorMock()
-        testee = SpeedGraderViewModel(interactor: interactorMock, environment: environment)
+        testee = SpeedGraderScreenViewModel(interactor: interactorMock, environment: environment)
     }
 
     override func tearDown() {
@@ -80,7 +80,7 @@ class SpeedGraderViewModelTests: TeacherTestCase {
         testee.didShowPagesViewController.send(pagesController)
 
         // THEN
-        XCTAssertTrue(pagesController.children.allSatisfy { $0 is CoreHostingController<SubmissionGraderView> })
+        XCTAssertTrue(pagesController.children.allSatisfy { $0 is CoreHostingController<SpeedGraderPageView> })
     }
 
     func test_didTransitionTo_pausesPlayback() {
