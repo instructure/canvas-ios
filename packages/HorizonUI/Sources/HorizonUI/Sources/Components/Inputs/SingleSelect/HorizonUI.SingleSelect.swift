@@ -315,6 +315,7 @@ extension HorizonUI {
             filteredItems = options.filter { $0.lowercased().contains(text.lowercased()) }
 
             // If what they've typed leaves no filtered items, display all options
+
             if filteredItems.isEmpty {
                 filteredItems = options
             }
