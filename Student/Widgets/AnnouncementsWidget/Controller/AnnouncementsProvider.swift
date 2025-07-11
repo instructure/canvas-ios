@@ -21,6 +21,7 @@ import WidgetKit
 
 class AnnouncementsProvider: TimelineProvider {
     typealias Entry = AnnouncementsEntry
+
     private let env = AppEnvironment.shared
     private var colors: Store<GetCustomColors>?
     private var courses: Store<GetAllCourses>?
@@ -60,27 +61,30 @@ class AnnouncementsProvider: TimelineProvider {
             env.widgetUserDidLogout()
             return
         }
+
         if let current = env.currentSession, current == session { return }
         env.userDidLogin(session: session, isSilent: true)
     }
 
-    func fetchColors(_ completion: @escaping @Sendable (Timeline<AnnouncementsEntry>) -> Void) {
+    private func fetchColors(_ completion: @escaping @Sendable (Timeline<AnnouncementsEntry>) -> Void) {
         colors = env.subscribe(GetCustomColors())
         colors?.refresh { [weak self] _ in
             self?.fetchCourses(completion)
         }
     }
 
-    func fetchCourses(_ completion: @escaping @Sendable (Timeline<AnnouncementsEntry>) -> Void) {
+    private func fetchCourses(_ completion: @escaping @Sendable (Timeline<AnnouncementsEntry>) -> Void) {
         guard let colors = self.colors, !colors.pending else { return }
+
         courses = env.subscribe(GetAllCourses())
         courses?.refresh { [weak self] _ in
             self?.fetchAnnouncements(completion)
         }
     }
 
-    func fetchAnnouncements(_ completion: @escaping @Sendable (Timeline<AnnouncementsEntry>) -> Void) {
+    private func fetchAnnouncements(_ completion: @escaping @Sendable (Timeline<AnnouncementsEntry>) -> Void) {
         guard let courses = self.courses, !courses.pending else { return }
+
         let courseContextCodes = courses.map { Core.Context(.course, id: $0.id).canvasContextID }
         announcements = env.subscribe(GetWidgetAnnouncements(courseContextCodes: courseContextCodes))
         announcements?.refresh { [weak self] _ in
@@ -88,10 +92,11 @@ class AnnouncementsProvider: TimelineProvider {
         }
     }
 
-    func handleFetchFinished(_ completion: @escaping (Timeline<AnnouncementsEntry>) -> Void) {
+    private func handleFetchFinished(_ completion: @escaping (Timeline<AnnouncementsEntry>) -> Void) {
         guard let announcements = self.announcements, !announcements.pending else { return }
+
         let announcementItems = announcements.all.map { AnnouncementItem(dbEntity: $0) }
-        let announcementsEntry = AnnouncementsEntry(announcements: announcementItems, date: .now)
+        let announcementsEntry = AnnouncementsEntry(announcements: announcementItems, date: Clock.now)
         let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
         let timeline = Timeline(entries: [announcementsEntry], policy: .after(refreshDate))
         completion(timeline)
