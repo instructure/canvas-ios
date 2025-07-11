@@ -20,7 +20,7 @@ import Core
 import SwiftUI
 import Combine
 
-class SubmissionHeaderViewModel: ObservableObject {
+class SpeedGraderPageHeaderViewModel: ObservableObject {
     @Published private(set) var submissionStatus: SubmissionStatus
     let userNameModel: UserNameModel
     let routeToSubmitter: String?
