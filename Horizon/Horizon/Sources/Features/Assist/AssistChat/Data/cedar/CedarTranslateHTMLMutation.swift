@@ -71,5 +71,9 @@ struct CedarTranslatHTMLMutationResponse: Codable {
         let translation: String
     }
 
-    let data: TranslateHTML
+    struct Data: Codable {
+        let translateHTML: TranslateHTML
+    }
+
+    let data: Data
 }

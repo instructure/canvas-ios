@@ -28,6 +28,7 @@ class CoursePageGoal: Goal {
         case TellMeMore = "Tell me more"
         case FlashCards = "Flash Cards"
         case Quiz = "Quiz Questions"
+        case Translate = "Translate to Spanish"
     }
 
     private let cedar: DomainService
@@ -60,14 +61,18 @@ class CoursePageGoal: Goal {
                         return nilResponse
                       }
                 switch option {
+                case .KeyTakeaways:
+                    return self.keyTakeaways()
                 case .Summarize:
                     return self.summarizeContent()
+                case .TellMeMore:
+                    return self.tellMeMore()
                 case .Quiz:
                     return self.quiz()
                 case .FlashCards:
                     return self.flashcards()
-                default:
-                    return nilResponse
+                case .Translate:
+                    return self.translateToSpanish()
                 }
             }
             .eraseToAnyPublisher()
@@ -77,26 +82,6 @@ class CoursePageGoal: Goal {
     func isRequested() -> Bool { true }
 
     // MARK: - Private Methods
-    /// Makes a request to the cedar endpoint using the given prompt and returns an answer
-    /// https://github.com/instructure-internal/cedar/blob/main/docs/index.md#conversation
-    private func cedarConversation(
-        prompt: String,
-        history: [AssistChatMessage] = []
-    ) -> AnyPublisher<String?, Error> {
-        cedar.api()
-            .flatMap { cedarApi in
-                cedarApi.makeRequest(
-                    CedarConversationMutation(
-                        systemPrompt: prompt,
-                        messages: history.domainServiceConversationMessages
-                    )
-                )
-                .map { (response: CedarConversationMutationResponse?) in
-                    response?.data.conversation.response
-                }
-            }
-            .eraseToAnyPublisher()
-    }
 
     /// https://github.com/instructure-internal/cedar/blob/main/docs/index.md#answer-prompt
     private func cedarAnswerPrompt(
@@ -118,6 +103,28 @@ class CoursePageGoal: Goal {
             .eraseToAnyPublisher()
     }
 
+    /// Makes a request to the cedar endpoint using the given prompt and returns an answer
+    /// https://github.com/instructure-internal/cedar/blob/main/docs/index.md#conversation
+    private func cedarConversation(
+        prompt: String,
+        history: [AssistChatMessage] = []
+    ) -> AnyPublisher<String?, Error> {
+        cedar.api()
+            .flatMap { cedarApi in
+                cedarApi.makeRequest(
+                    CedarConversationMutation(
+                        systemPrompt: prompt,
+                        messages: history.domainServiceConversationMessages
+                    )
+                )
+                .map { (response: CedarConversationMutationResponse?) in
+                    response?.data.conversation.response
+                }
+            }
+            .eraseToAnyPublisher()
+    }
+
+    /// https://github.com/instructure-internal/cedar/blob/main/docs/index.md#summarize-content
     private func cedarSummarizeContent(content: String) -> AnyPublisher<[String]?, Error> {
         cedar.api()
             .flatMap { cedarApi in
@@ -126,6 +133,20 @@ class CoursePageGoal: Goal {
                 )
                 .map { (response: CedarSummarizeContentMutationResponse?) in
                     response?.data.summarizeContent.summarization
+                }
+                .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func cedarTranslate(html: String) -> AnyPublisher<String?, Error> {
+        cedar.api()
+            .flatMap { cedarApi in
+                cedarApi.makeRequest(
+                    CedarTranslateHTMLMutation(content: html)
+                )
+                .map { (response: CedarTranslatHTMLMutationResponse?) in
+                    response?.data.translateHTML.translation
                 }
                 .eraseToAnyPublisher()
             }
@@ -161,6 +182,24 @@ class CoursePageGoal: Goal {
             )
         )
         .setFailureType(to: Error.self)
+        .eraseToAnyPublisher()
+    }
+
+    private func keyTakeaways() -> AnyPublisher<AssistChatMessage?, Error> {
+        page.flatMap { [weak self] page in
+            guard let self = self else {
+                return Just<AssistChatMessage?>(nil)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            let body = page?.body ?? ""
+            let prompt = "You are a teaching assistant creating key takeaways for a student. Give me 3 key takeaways based on the included document contents. Ignore any HTML. Return the result in paragraph form. Each key takeaway is a single sentence bulletpoint. You should not refer to the format of the content, but rather the content itself. Here is the content: \(body)"
+            return self.cedarAnswerPrompt(prompt: prompt)
+                .map { (response: String?) in
+                    .init(botResponse: response ?? "No key takeaways found.")
+                }
+                .eraseToAnyPublisher()
+        }
         .eraseToAnyPublisher()
     }
 
@@ -209,6 +248,46 @@ class CoursePageGoal: Goal {
                 .map { (summaries: [String]?) in
                     AssistChatMessage(
                         botResponse: (summaries ?? []).joined(separator: "\n\n")
+                    )
+                }
+                .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
+    }
+
+    private func tellMeMore() -> AnyPublisher<AssistChatMessage?, Error> {
+        page.flatMap { [weak self] page in
+            guard let self = self else {
+                return Just<AssistChatMessage?>(nil)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            let body = page?.body ?? ""
+            let prompt = "You are a teaching assistant providing more information about the content. Give me more details based on the included document contents. Ignore any HTML. Return the result in paragraph form. Here is the content: \(body)"
+            return self.cedarAnswerPrompt(prompt: prompt)
+                .map { (response: String?) in
+                    AssistChatMessage(
+                        botResponse: response ?? "No additional information found."
+                    )
+                }
+                .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
+    }
+
+    private func translateToSpanish() -> AnyPublisher<AssistChatMessage?, Error> {
+        page.flatMap { [weak self] page in
+            guard let self = self else {
+                return Just<AssistChatMessage?>(nil)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            let body = page?.body ?? ""
+            let bodyTruncated = body.prefix(5000).description
+            return cedarTranslate(html: bodyTruncated)
+                .map { (translated: String?) in
+                    AssistChatMessage(
+                        botResponse: translated ?? "Translation failed."
                     )
                 }
                 .eraseToAnyPublisher()
