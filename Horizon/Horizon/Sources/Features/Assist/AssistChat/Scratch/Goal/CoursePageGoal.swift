@@ -32,8 +32,12 @@ class CoursePageGoal: Goal {
     }
 
     private let cedar: DomainService
-    private let courseID: String
-    private let pageURL: String
+    private var courseID: String? {
+        environment.courseID.value
+    }
+    private var pageURL: String? {
+        environment.pageURL.value
+    }
     private var options: [Option] {
         Option.allCases
     }
@@ -41,9 +45,10 @@ class CoursePageGoal: Goal {
         options.map(\.rawValue)
     }
 
-    init(courseID: String, pageURL: String, cedar: DomainService = DomainService(.cedar)) {
-        self.courseID = courseID
-        self.pageURL = pageURL
+    private let environment: AssistDataEnvironment
+
+    init(environment: AssistDataEnvironment, cedar: DomainService = DomainService(.cedar)) {
+        self.environment = environment
         self.cedar = cedar
     }
 
@@ -79,7 +84,7 @@ class CoursePageGoal: Goal {
     }
 
     override
-    func isRequested() -> Bool { true }
+    func isRequested() -> Bool { courseID != nil && pageURL != nil }
 
     // MARK: - Private Methods
 
@@ -209,7 +214,10 @@ class CoursePageGoal: Goal {
 
     /// Fetches a page to use for AI context
     private var page: AnyPublisher<Page?, Error> {
-        ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
+        guard let courseID = courseID, let pageURL = pageURL else {
+            return Just<Page?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
+        return ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
             .getEntities()
             .map { $0.first }
             .eraseToAnyPublisher()

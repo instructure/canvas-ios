@@ -21,18 +21,15 @@ import CombineExt
 struct AssistDataEnvironment {
     private(set) var courseID = CurrentValueRelay<String?>(nil)
     private(set) var fileID = CurrentValueRelay<String?>(nil)
-    private(set) var goal = CurrentValueRelay<Goal?>(nil)
     private(set) var pageURL = CurrentValueRelay<String?>(nil)
 
     init(
         courseID: String? = nil,
         fileID: String? = nil,
-        goal: Goal? = nil,
         pageURL: String? = nil
     ) {
         self.courseID.accept(courseID)
         self.fileID.accept(fileID)
-        self.goal.accept(goal)
         self.pageURL.accept(pageURL)
     }
 
@@ -40,7 +37,6 @@ struct AssistDataEnvironment {
         AssistDataEnvironment(
             courseID: courseID.value,
             fileID: fileID.value,
-            goal: goal.value,
             pageURL: pageURL.value
         )
     }

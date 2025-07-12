@@ -23,18 +23,22 @@ import Foundation
 class CourseDocumentGoal: Goal {
 
     private let cedar: DomainService
-    private let courseID: String
+    private var courseID: String? {
+        environment.courseID.value
+    }
     private let downloadFileInteractor: DownloadFileInteractor
-    private let fileID: String
+    private var fileID: String? {
+        environment.fileID.value
+    }
+
+    private let environment: AssistDataEnvironment
 
     init(
-        courseID: String,
-        fileID: String,
+        environment: AssistDataEnvironment,
         downloadFileInteractor: DownloadFileInteractor,
         cedar: DomainService = DomainService(.cedar)
     ) {
-        self.courseID = courseID
-        self.fileID = fileID
+        self.environment = environment
         self.downloadFileInteractor = downloadFileInteractor
         self.cedar = cedar
     }
@@ -44,20 +48,56 @@ class CourseDocumentGoal: Goal {
         guard let response = response, response.isNotEmpty else {
             return initialPrompt()
         }
-        return Just(nil)
-            .setFailureType(to: Error.self)
+        return fetch()
+            .flatMap { [weak self] (documentInput: CedarAnswerPromptMutation.DocumentInput?) -> AnyPublisher<AssistChatMessage?, any Error> in
+                guard let self = self, let documentInput = documentInput else {
+                    return Just(nil)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return self.cedarAnswerPrompt(
+                    prompt: response,
+                    document: documentInput
+                ).map {
+                    .init(botResponse: $0 ?? "Sorry, I don't have an answer right now")
+                }
+                .eraseToAnyPublisher()
+            }
             .eraseToAnyPublisher()
     }
 
     override
-    func isRequested() -> Bool { true }
+    func isRequested() -> Bool { courseID != nil && fileID != nil }
 
     // MARK: - Private Methods
+    private func cedarAnswerPrompt(
+        prompt: String,
+        document: CedarAnswerPromptMutation.DocumentInput? = nil
+    ) -> AnyPublisher<String?, Error> {
+        cedar.api()
+            .flatMap { cedarApi in
+                cedarApi.makeRequest(
+                    CedarAnswerPromptMutation(
+                        prompt: prompt,
+                        document: document
+                    )
+                )
+                .map { (response: CedarAnswerPromptMutationResponse?) in
+                    response?.data.answerPrompt
+                }
+            }
+            .eraseToAnyPublisher()
+    }
 
     /// If necessary, downloads the file and returns the page context.
     /// If we can't determine the format, we return an empty page context
     private func fetch() -> AnyPublisher<CedarAnswerPromptMutation.DocumentInput?, Error> {
-        ReactiveStore(useCase: GetFile(context: .course(courseID), fileID: fileID))
+        guard let courseID = courseID, let fileID = fileID else {
+            return Just<CedarAnswerPromptMutation.DocumentInput?>(nil)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        return ReactiveStore(useCase: GetFile(context: .course(courseID), fileID: fileID))
             .getEntities()
             .map { files in files.first }
             .flatMap { [weak self] (file: File?) in
@@ -67,7 +107,7 @@ class CourseDocumentGoal: Goal {
                     return Just<CedarAnswerPromptMutation.DocumentInput?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }
                 return self.downloadFileInteractor
-                    .download(fileID: self.fileID)
+                    .download(fileID: fileID)
                     .map { try? Data(contentsOf: $0) }
                     .map { $0?.base64EncodedString() }
                     .compactMap { (base64String: String?) in

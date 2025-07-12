@@ -38,6 +38,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     private let actionPublisher = CurrentValueRelay<AssistChatAction?>(nil)
     private var assistDataEnvironment: AssistDataEnvironment = AssistDataEnvironment()
     private var assistDateEnvironmentOriginal: AssistDataEnvironment = AssistDataEnvironment()
+    private let downloadFileInteractor: DownloadFileInteractor?
     private let responsePublisher = PassthroughSubject<AssistChatInteractorLive.State, Never>()
     private var subscriptions = Set<AnyCancellable>()
     private var goals: [Goal]
@@ -46,16 +47,35 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     init(
         courseID: String? = nil,
         fileID: String? = nil,
-        pageURL: String? = nil
+        pageURL: String? = nil,
+        downloadFileInteractor: DownloadFileInteractor? = nil
     ) {
-        self.assistDataEnvironment.courseID.accept(courseID)
-        self.assistDataEnvironment.fileID.accept(fileID)
-        self.goals = AssistChatInteractorLive.initializeGoals(assistDataEnvironment: assistDataEnvironment)
+        self.downloadFileInteractor = downloadFileInteractor
+        self.assistDataEnvironment = .init(
+            courseID: courseID,
+            fileID: fileID,
+            pageURL: pageURL
+        )
+        self.goals = AssistChatInteractorLive.initializeGoals(
+            assistDataEnvironment: assistDataEnvironment,
+            downloadFileInteractor: downloadFileInteractor
+        )
         self.assistDateEnvironmentOriginal = assistDataEnvironment.duplicate()
     }
 
-    static func initializeGoals(assistDataEnvironment: AssistDataEnvironment) -> [Goal] {
-        return [
+    private static func initializeGoals(
+        assistDataEnvironment: AssistDataEnvironment,
+        downloadFileInteractor: DownloadFileInteractor?
+    ) -> [Goal] {
+        // order matters
+        [
+            downloadFileInteractor.map {
+                CourseDocumentGoal(
+                    environment: assistDataEnvironment,
+                    downloadFileInteractor: $0
+                )
+            },
+            CoursePageGoal(environment: assistDataEnvironment),
             SelectCourseActionGoal(environment: assistDataEnvironment),
             SelectCourseGoal(environment: assistDataEnvironment)
         ].compactMap { $0 }
@@ -107,7 +127,10 @@ final class AssistChatInteractorLive: AssistChatInteractor {
 
     func setInitialState() {
         self.assistDataEnvironment = self.assistDateEnvironmentOriginal.duplicate()
-        self.goals = AssistChatInteractorLive.initializeGoals(assistDataEnvironment: assistDataEnvironment)
+        self.goals = AssistChatInteractorLive.initializeGoals(
+            assistDataEnvironment: assistDataEnvironment,
+            downloadFileInteractor: downloadFileInteractor
+        )
         publish(action: .begin)
     }
 

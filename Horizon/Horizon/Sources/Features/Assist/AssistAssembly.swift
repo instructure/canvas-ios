@@ -44,20 +44,19 @@ final class AssistAssembly {
         return navigationController
     }
 
-    static func makeChatBotInteractor(courseId: String? = nil, pageUrl: String? = nil, fileId: String? = nil) -> AssistChatInteractor {
-        if let courseId = courseId, let pageUrl = pageUrl {
-            return AssistChatInteractorLive(
-                courseID: courseId,
-                pageURL: pageUrl
-            )
-        }
-        if let courseId = courseId, let fileId = fileId {
-            return AssistChatInteractorLive(
-                courseID: courseId,
-                fileID: fileId
-            )
-        }
-        return AssistChatInteractorLive(courseID: courseId)
+    static func makeChatBotInteractor(
+        courseId: String? = nil,
+        pageUrl: String? = nil,
+        fileId: String? = nil
+    ) -> AssistChatInteractor {
+        AssistChatInteractorLive(
+            courseID: courseId,
+            fileID: fileId,
+            pageURL: pageUrl,
+            downloadFileInteractor: courseId.map {
+                DownloadFileInteractorLive(courseID: $0)
+            }
+        )
     }
 
     static func makeAIQuizView(
