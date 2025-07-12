@@ -47,7 +47,9 @@ class Goal {
         return cedar.api().flatMap { cedarAPI in
             cedarAPI.makeRequest(
                 CedarConversationMutation(
+                    // swiftlint:disable line_length
                     systemPrompt: "The user has been asked to select from a list of options. Here is that list of options comma separated: \(options.joined(separator: ", ")). Given the users response, tell me which option they've selected. Their answer doesn't have to be exact, but it should be close. If it appears to match none of the options, return an empty string; just the empty string without any explanation. If you find a match, return only the option selected without any additional information.",
+                    // swiftlint:enable line_length
                     messages: [
                         .init(text: userResponse, role: .User)
                     ]
