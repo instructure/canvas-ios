@@ -77,7 +77,7 @@ class CoursePageGoal: Goal {
                 case .FlashCards:
                     return self.flashcards()
                 case .Translate:
-                    return self.translateToSpanish()
+                    return self.translate(response: response)
                 }
             }
             .eraseToAnyPublisher()
@@ -144,11 +144,11 @@ class CoursePageGoal: Goal {
             .eraseToAnyPublisher()
     }
 
-    private func cedarTranslate(html: String) -> AnyPublisher<String?, Error> {
+    private func cedarTranslate(html: String, language: String = "es") -> AnyPublisher<String?, Error> {
         cedar.api()
             .flatMap { cedarApi in
                 cedarApi.makeRequest(
-                    CedarTranslateHTMLMutation(content: html)
+                    CedarTranslateHTMLMutation(content: html, targetLanguage: language)
                 )
                 .map { (response: CedarTranslatHTMLMutationResponse?) in
                     response?.data.translateHTML.translation
@@ -289,24 +289,61 @@ class CoursePageGoal: Goal {
         .eraseToAnyPublisher()
     }
 
-    private func translateToSpanish() -> AnyPublisher<AssistChatMessage?, Error> {
-        page.flatMap { [weak self] page in
-            guard let self = self else {
-                return Just<AssistChatMessage?>(nil)
+    private func translate(response: String) -> AnyPublisher<AssistChatMessage?, Error> {
+        translateDetermineLanguage(response: response)
+        .flatMap { [weak self] (language: String?) in
+            guard let language = language,
+                  let self = self else {
+                return Just<(Page?, String?)>((nil, nil)).setFailureType(to: Error.self).eraseToAnyPublisher()
+            }
+            return self.page.map { page in
+                (page, language)
+            }
+            .eraseToAnyPublisher()
+        }
+        .flatMap { [weak self] (tuple: (Page?, String?)) in
+            guard let body = tuple.0?.body,
+                  let language = tuple.1,
+                  let self = self else {
+                return Just<String?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
+            }
+            return self.cedarTranslate(
+                html: body.prefix(5000).description,
+                language: language
+            )
+        }
+        .flatMap { [weak self] (translation: String?) in
+            guard let translation = translation,
+                  let translationUtf8 = translation.data(using: .utf8)?.base64EncodedString(),
+                  let self = self else {
+                return Just<String?>(nil)
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
-            let body = page?.body ?? ""
-            let bodyTruncated = body.prefix(5000).description
-            return cedarTranslate(html: bodyTruncated)
-                .map { (translated: String?) in
-                    AssistChatMessage(
-                        botResponse: translated ?? "Translation failed."
-                    )
-                }
-                .eraseToAnyPublisher()
+            return self.cedarAnswerPrompt(
+                // swiftlint:disable line_length
+                prompt: "Convert this HTML document to a text document. Strip out all HTML tags and return the text content only. You may try to use ASCII to represent the HTML tags. For instance, * may be used for bullet points.",
+                // swiftlint:enable line_length
+                document: CedarAnswerPromptMutation.DocumentInput(
+                    format: .txt,
+                    base64Source: translationUtf8
+                )
+            )
+        }
+        .map { (result: String?) in
+            AssistChatMessage(
+                botResponse: result ?? "Sorry, I couldn't translate that page."
+            )
         }
         .eraseToAnyPublisher()
+    }
+
+    private func translateDetermineLanguage(response: String) -> AnyPublisher<String?, Error> {
+        cedarAnswerPrompt(
+            // swiftlint:disable line_length
+            prompt: "The user has asked to have a document translated. From their response, determine what language they would like the language translated to. Return the language as a two letter ISO 639-1 code. Only include the two letter code your response, nothing else"
+            // swiftlint:enable line_length
+        )
     }
 }
 
