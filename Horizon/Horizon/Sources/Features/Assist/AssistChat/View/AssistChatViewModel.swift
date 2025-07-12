@@ -49,7 +49,7 @@ final class AssistChatViewModel {
 
     // MARK: - Dependencies
 
-    private var chatBotInteractor: AssistChatInteractor
+    private var assistChatInteractor: AssistChatInteractor
     private let router: Router
 
     // MARK: - Private
@@ -78,9 +78,9 @@ final class AssistChatViewModel {
         self.fileId = fileId
         self.router = router
         self.scheduler = scheduler
-        self.chatBotInteractor = chatBotInteractor
+        self.assistChatInteractor = chatBotInteractor
 
-        self.chatBotInteractor
+        self.assistChatInteractor
             .listen
             .receive(on: scheduler)
             .sink { [weak self] result in
@@ -105,12 +105,13 @@ final class AssistChatViewModel {
     func setInitialState() {
         isRetryButtonVisible = false
         isBackButtonVisible = false
+        assistChatInteractor.setInitialState()
     }
 
     func retry() {
         guard let lastMessage = messages.popLast() else { return }
         chatMessages = chatMessages.dropLast()
-        chatBotInteractor.publish(action: .chat(prompt: lastMessage.content, history: chatMessages))
+        assistChatInteractor.publish(action: .chat(prompt: lastMessage.content, history: chatMessages))
         isRetryButtonVisible = false
         shouldOpenKeyboardPublisher.send(false)
     }
@@ -131,12 +132,12 @@ final class AssistChatViewModel {
     }
 
     func send(chipOption: AssistChipOption) {
-        chatBotInteractor.publish(action: .chip(option: chipOption, history: chatMessages))
+        assistChatInteractor.publish(action: .chip(option: chipOption, history: chatMessages))
         isBackButtonVisible = true
     }
 
     func send(message: String) {
-        chatBotInteractor.publish(action: .chat(prompt: message, history: chatMessages))
+        assistChatInteractor.publish(action: .chat(prompt: message, history: chatMessages))
         if hasAssistChipOptions {
             isBackButtonVisible = true
         }
@@ -144,7 +145,7 @@ final class AssistChatViewModel {
     }
 
     func scrollToBottom() {
-        showMoreButtonPublisher.send(messages.last?.id.uuidString ?? "")
+        showMoreButtonPublisher.send(messages.last?.id ?? "")
     }
 
     // MARK: - Private
@@ -155,24 +156,10 @@ final class AssistChatViewModel {
 
         var newMessages: [AssistChatMessageViewModel] = []
 
-        // How the chips are displayed will depend on the history
-        // If we have no history, they are displayed as semitransparent message bubbles
-        // If we do have a history, they are pills at the end of the last message
-        if response.chatHistory.isEmpty {
-            let chipOptions = response.chatHistory.last?.chipOptions ?? []
-            hasAssistChipOptions = true
-            shouldOpenKeyboardPublisher.send(false)
-            newMessages = chipOptions.map { chipOption in
-                chipOption.viewModel { [weak self] in
-                    self?.send(chipOption: chipOption)
-                }
-            }
-        } else {
-            shouldOpenKeyboardPublisher.send(messages.isEmpty)
-            newMessages = response.chatHistory.map {
-                $0.viewModel(response: response) { [weak self] quickResponse in
-                    self?.send(chipOption: quickResponse)
-                }
+        shouldOpenKeyboardPublisher.send(messages.count == 1)
+        newMessages = response.chatHistory.map {
+            $0.viewModel(response: response) { [weak self] quickResponse in
+                self?.send(chipOption: quickResponse)
             }
         }
 
@@ -211,7 +198,7 @@ final class AssistChatViewModel {
         }.forEach { message in
             self.messages.append(message)
         }
-        showMoreButtonPublisher.send(newMessages.last?.id.uuidString ?? "")
+        showMoreButtonPublisher.send(newMessages.last?.id ?? "")
     }
 
     /// remove any messages that are not in the new list of messages returned from the interactor
@@ -252,12 +239,16 @@ private extension AssistChipOption {
 }
 
 private extension AssistChatMessage {
-    func viewModel(response: AssistChatResponse, onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil) -> AssistChatMessageViewModel {
-        AssistChatMessageViewModel(
-            id: self.id,
+    func viewModel(
+        response: AssistChatResponse,
+        onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil
+    ) -> AssistChatMessageViewModel {
+        let chipOptions = self.id == response.chatHistory.last?.id ? (response.chatHistory.last?.chipOptions ?? []) : []
+        return .init(
+            id: "\(self.id)\(chipOptions.count)",
             content: self.text ?? "",
             style: self.role == .Assistant ? .transparent : .white,
-            chipOptions: self.id == response.chatHistory.last?.id ? (response.chatHistory.last?.chipOptions ?? []) : [],
+            chipOptions: chipOptions,
             onTapChipOption: onTapChipOption
         )
     }

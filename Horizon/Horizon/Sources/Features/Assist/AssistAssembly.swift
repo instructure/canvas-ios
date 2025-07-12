@@ -54,8 +54,7 @@ final class AssistAssembly {
         if let courseId = courseId, let fileId = fileId {
             return AssistChatInteractorLive(
                 courseID: courseId,
-                fileID: fileId,
-                downloadFileInteractor: DownloadFileInteractorLive(courseID: courseId)
+                fileID: fileId
             )
         }
         return AssistChatInteractorLive(courseID: courseId)

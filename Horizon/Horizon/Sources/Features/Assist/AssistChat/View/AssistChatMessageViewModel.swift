@@ -30,7 +30,7 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
         case transparent
     }
 
-    let id: UUID
+    let id: String
     let content: String
     let style: Style
     let isLoading: Bool
@@ -39,7 +39,7 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
     let onTapChipOption: OnTapChipOption?
 
     init(
-        id: UUID = UUID(),
+        id: String = UUID().uuidString,
         content: String = "",
         style: Style = .white,
         isLoading: Bool = false,
@@ -58,7 +58,7 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
 
     /// For when it's just a loading spinner
     init() {
-        self.id = UUID()
+        self.id = UUID().uuidString
         self.isLoading = true
         self.content = ""
         self.style = .transparent

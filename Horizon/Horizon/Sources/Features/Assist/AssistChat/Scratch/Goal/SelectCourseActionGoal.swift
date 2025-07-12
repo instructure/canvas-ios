@@ -84,7 +84,7 @@ class SelectCourseActionGoal: Goal {
         courseName.map { courseName in
             var prompt = "What would you like to discuss today?"
             if let courseName = courseName {
-                prompt = "What would you like to discuss about \(courseName)?"
+                prompt = "What would you like to discuss about the course \(courseName)?"
             }
             return AssistChatMessage(botResponse: prompt)
         }

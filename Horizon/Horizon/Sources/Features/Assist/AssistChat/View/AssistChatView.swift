@@ -74,9 +74,9 @@ struct AssistChatView: View {
     private func contentView() -> some View {
         ScrollViewReader { scrollViewProxy in
             LazyVStack(alignment: .leading, spacing: .huiSpaces.space16) {
-                ForEach(viewModel.messages) { message in
+                ForEach(viewModel.messages, id: \.id) { message in
                     AssistChatMessageView(message: message)
-                        .id(message.id.uuidString)
+                        .id(message.id)
                         .transition(.scaleAndFade)
                 }
                 .animation(.smooth, value: viewModel.isRetryButtonVisible)

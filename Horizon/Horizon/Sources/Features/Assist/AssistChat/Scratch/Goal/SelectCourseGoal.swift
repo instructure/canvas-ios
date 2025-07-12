@@ -59,7 +59,7 @@ class SelectCourseGoal: Goal {
                 .map { courseSelected in
                     if  let courseSelected = courseSelected,
                         let courseID = courseOptions.first(where: { courseSelected.contains($0.course.name ?? "") == true })?.courseID {
-                        self.environment.setCourseID(courseID)
+                        self.environment.courseID.accept(courseID)
                     }
                     return nil
                 }

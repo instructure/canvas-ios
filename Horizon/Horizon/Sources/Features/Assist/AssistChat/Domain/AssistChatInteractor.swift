@@ -22,8 +22,9 @@ import Core
 import Foundation
 
 protocol AssistChatInteractor {
-    func publish(action: AssistChatAction)
     var listen: AnyPublisher<AssistChatInteractorLive.State, Never> { get }
+    func publish(action: AssistChatAction)
+    func setInitialState()
 }
 
 final class AssistChatInteractorLive: AssistChatInteractor {
@@ -35,48 +36,29 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     // MARK: - Private
 
     private let actionPublisher = CurrentValueRelay<AssistChatAction?>(nil)
-    private let assistDataEnvironment: AssistDataEnvironment = AssistDataEnvironment()
+    private var assistDataEnvironment: AssistDataEnvironment = AssistDataEnvironment()
+    private var assistDateEnvironmentOriginal: AssistDataEnvironment = AssistDataEnvironment()
     private let responsePublisher = PassthroughSubject<AssistChatInteractorLive.State, Never>()
     private var subscriptions = Set<AnyCancellable>()
-    private let goalChain: [Goal]
+    private var goals: [Goal]
 
     // MARK: - init
-
-    /// Initializes the interactor when viewing a page for context
-    convenience init(
-        courseID: String,
-        pageURL: String
+    init(
+        courseID: String? = nil,
+        fileID: String? = nil,
+        pageURL: String? = nil
     ) {
-        self.init(
-            courseID: courseID,
-            additionalGoals: [CoursePageGoal(courseID: courseID, pageURL: pageURL)]
-        )
-        self.assistDataEnvironment.setCourseID(courseID)
+        self.assistDataEnvironment.courseID.accept(courseID)
+        self.assistDataEnvironment.fileID.accept(fileID)
+        self.goals = AssistChatInteractorLive.initializeGoals(assistDataEnvironment: assistDataEnvironment)
+        self.assistDateEnvironmentOriginal = assistDataEnvironment.duplicate()
     }
 
-    /// Initializes the interactor when viewing a file for context
-    convenience init(
-        courseID: String,
-        fileID: String,
-        downloadFileInteractor: DownloadFileInteractor
-    ) {
-        self.init(
-            courseID: courseID,
-            additionalGoals: [
-            CourseFileGoal(
-                courseID: courseID,
-                fileID: fileID,
-                downloadFileInteractor: downloadFileInteractor
-            )
-        ])
-    }
-
-    init(courseID: String? = nil, additionalGoals: [Goal] = []) {
-        self.goalChain = additionalGoals + [
+    static func initializeGoals(assistDataEnvironment: AssistDataEnvironment) -> [Goal] {
+        return [
             SelectCourseActionGoal(environment: assistDataEnvironment),
             SelectCourseGoal(environment: assistDataEnvironment)
-        ]
-        self.assistDataEnvironment.setCourseID(courseID)
+        ].compactMap { $0 }
     }
 
     // MARK: - Inputs
@@ -120,8 +102,13 @@ final class AssistChatInteractorLive: AssistChatInteractor {
 
     /// Subscribe to the responses from the interactor
     var listen: AnyPublisher<AssistChatInteractorLive.State, Never> {
-        responsePublisher
-            .eraseToAnyPublisher()
+        responsePublisher.eraseToAnyPublisher()
+    }
+
+    func setInitialState() {
+        self.assistDataEnvironment = self.assistDateEnvironmentOriginal.duplicate()
+        self.goals = AssistChatInteractorLive.initializeGoals(assistDataEnvironment: assistDataEnvironment)
+        publish(action: .begin)
     }
 
     // MARK: - Private
@@ -130,7 +117,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         prompt: String? = nil,
         history: [AssistChatMessage] = []
     ) -> AnyPublisher<AssistChatMessage?, any Error>? {
-        guard let goal = goalChain.first(where: { $0.isRequested() }) else {
+        guard let goal = goals.first(where: { $0.isRequested() }) else {
             return nil
         }
         return goal.execute(response: prompt, history: history)
