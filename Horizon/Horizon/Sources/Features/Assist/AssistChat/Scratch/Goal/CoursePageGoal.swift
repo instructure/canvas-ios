@@ -162,7 +162,9 @@ class CoursePageGoal: Goal {
                     .eraseToAnyPublisher()
             }
             let body = page?.body ?? ""
+            // swiftlint:disable line_length
             let prompt = "You are a teaching assistant creating flash cards to test a student. Give me 7 questions with answers based on the included document contents. Ignore any HTML. Return the result in JSON format like: [{question: '', answer: ''}, {question: '', answer: ''}] without any further description or text. Your flash cards should not refer to the format of the content, but rather the content itself. Here is the content: \(body)"
+            // swiftlint:enable line_length
             return self.cedarAnswerPrompt(prompt: prompt)
                 .map { (response: String?) in
                     AssistChatMessage(
@@ -193,7 +195,9 @@ class CoursePageGoal: Goal {
                     .eraseToAnyPublisher()
             }
             let body = page?.body ?? ""
+            // swiftlint:disable line_length
             let prompt = "You are a teaching assistant creating key takeaways for a student. Give me 3 key takeaways based on the included document contents. Ignore any HTML. Return the result in paragraph form. Each key takeaway is a single sentence bulletpoint. You should not refer to the format of the content, but rather the content itself. Here is the content: \(body)"
+            // swiftlint:enable line_length
             return self.cedarAnswerPrompt(prompt: prompt)
                 .map { (response: String?) in
                     .init(botResponse: response ?? "No key takeaways found.")
@@ -263,7 +267,9 @@ class CoursePageGoal: Goal {
                     .eraseToAnyPublisher()
             }
             let body = page?.body ?? ""
+            // swiftlint:disable line_length
             let prompt = "You are a teaching assistant providing more information about the content. Give me more details based on the included document contents. Ignore any HTML. Return the result in paragraph form. Here is the content: \(body)"
+            // swiftlint:enable line_length
             return self.cedarAnswerPrompt(prompt: prompt)
                 .map { (response: String?) in
                     AssistChatMessage(
