@@ -99,7 +99,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
 
         if let prompt = prompt {
             let message: AssistChatMessage = .init(userResponse: prompt)
-            let response: AssistChatResponse = .init(message, chatHistory: history)
+            let response: AssistChatResponse = .init(message, chatHistory: history, isLoading: true)
             responsePublisher.send(.success(response))
             history = response.chatHistory
         }

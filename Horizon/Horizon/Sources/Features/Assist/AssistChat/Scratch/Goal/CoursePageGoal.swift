@@ -53,15 +53,19 @@ class CoursePageGoal: Goal {
         }
         return choose(from: chipOptions, with: response, using: cedar)
             .flatMap { [weak self] chip in
-                let nilResponse = Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
+                let nilResponse = Just<AssistChatMessage?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
                 guard let self = self,
                       let chip = chip,
                       let option = self.options.first(where: { chip.contains($0.rawValue) }) else {
                         return nilResponse
                       }
                 switch option {
+                case .Summarize:
+                    return self.summarizeContent()
                 case .Quiz:
                     return self.quiz()
+                case .FlashCards:
+                    return self.flashcards()
                 default:
                     return nilResponse
                 }
@@ -74,42 +78,80 @@ class CoursePageGoal: Goal {
 
     // MARK: - Private Methods
     /// Makes a request to the cedar endpoint using the given prompt and returns an answer
-//    private func basicChat(prompt: String) -> AnyPublisher<String, Error> {
-//        cedar.api()
-//            .flatMap { cedarApi in
-//                cedarApi.makeRequest(
-//                    CedarAnswerPromptMutation(
-//                        prompt: prompt,
-//                        document: CedarAnswerPromptMutation.DocumentInput.build(from: pageContext)
-//                    )
-//                )
-//            }
-//            .map { graphQlResponse, _ in graphQlResponse.data.answerPrompt }
-//            .eraseToAnyPublisher()
-//    }
+    /// https://github.com/instructure-internal/cedar/blob/main/docs/index.md#conversation
+    private func cedarConversation(
+        prompt: String,
+        history: [AssistChatMessage] = []
+    ) -> AnyPublisher<String?, Error> {
+        cedar.api()
+            .flatMap { cedarApi in
+                cedarApi.makeRequest(
+                    CedarConversationMutation(
+                        systemPrompt: prompt,
+                        messages: history.domainServiceConversationMessages
+                    )
+                )
+                .map { (response: CedarConversationMutationResponse?) in
+                    response?.data.conversation.response
+                }
+            }
+            .eraseToAnyPublisher()
+    }
 
-    /// Fetches a page to use for AI context
-    private var page: AnyPublisher<Page?, Error>? {
-        ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
-            .getEntities()
-            .map { $0.first }
+    /// https://github.com/instructure-internal/cedar/blob/main/docs/index.md#answer-prompt
+    private func cedarAnswerPrompt(
+        prompt: String,
+        document: CedarAnswerPromptMutation.DocumentInput? = nil
+    ) -> AnyPublisher<String?, Error> {
+        cedar.api()
+            .flatMap { cedarApi in
+                cedarApi.makeRequest(
+                    CedarAnswerPromptMutation(
+                        prompt: prompt,
+                        document: document
+                    )
+                )
+                .map { (response: CedarAnswerPromptMutationResponse?) in
+                    response?.data.answerPrompt
+                }
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func cedarSummarizeContent(content: String) -> AnyPublisher<[String]?, Error> {
+        cedar.api()
+            .flatMap { cedarApi in
+                cedarApi.makeRequest(
+                    CedarSummarizeContentMutation(content: content)
+                )
+                .map { (response: CedarSummarizeContentMutationResponse?) in
+                    response?.data.summarizeContent.summarization
+                }
+                .eraseToAnyPublisher()
+            }
             .eraseToAnyPublisher()
     }
 
     /// Calls the basic chat endpoint to generate flashcards
-//    private func flashcards(page: Page) -> AnyPublisher<AssistChatResponse, Error> {
-//        let chipPrompt = AssistChipOption(AssistChipOption.Default.flashcards, userShortName: userShortName).prompt
-//        let pageContextPrompt = pageContext.prompt ?? ""
-//        let prompt = "\(chipPrompt) \(pageContextPrompt) \(history.json)"
-//        return basicChat(
-//            prompt: prompt,
-//            pageContext: pageContext
-//        )
-//        .compactMap { response in
-//            .init(flashCards: AssistChatFlashCard.build(from: response) ?? [])
-//        }
-//        .eraseToAnyPublisher()
-//    }
+    private func flashcards() -> AnyPublisher<AssistChatMessage?, Error> {
+        page.flatMap { [weak self] page in
+            guard let self = self else {
+                return Just<AssistChatMessage?>(nil)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            let body = page?.body ?? ""
+            let prompt = "You are a teaching assistant creating flash cards to test a student. Give me 7 questions with answers based on the included document contents. Ignore any HTML. Return the result in JSON format like: [{question: '', answer: ''}, {question: '', answer: ''}] without any further description or text. Your flash cards should not refer to the format of the content, but rather the content itself. Here is the content: \(body)"
+            return self.cedarAnswerPrompt(prompt: prompt)
+                .map { (response: String?) in
+                    AssistChatMessage(
+                        flashCards: AssistChatFlashCard.build(from: response ?? "") ?? []
+                    )
+                }
+                .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
+    }
 
     private func initialPrompt() -> AnyPublisher<AssistChatMessage?, Error> {
         Just(
@@ -122,28 +164,56 @@ class CoursePageGoal: Goal {
         .eraseToAnyPublisher()
     }
 
+    /// Fetches a page to use for AI context
+    private var page: AnyPublisher<Page?, Error> {
+        ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
+            .getEntities()
+            .map { $0.first }
+            .eraseToAnyPublisher()
+    }
+
     /// Calls the cedar endpoint to generate a quiz
-    private func quiz(prompt: String) -> AnyPublisher<AssistChatMessage, Error> {
-        page.flatMap { [weak self] page in
-            guard let self = self else {
-                return
+    private func quiz() -> AnyPublisher<AssistChatMessage?, Error> {
+        page.flatMap { [weak self] (page: Page?) in
+            guard let prompt = page?.body,
+                let self = self else {
+                return Just<AssistChatMessage?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
             }
-            let prompt = page.
             return cedar.api()
                 .flatMap { cedarApi in
-                    return cedarApi.makeRequest(
+                    cedarApi.makeRequest(
                         CedarGenerateQuizMutation(context: prompt)
                     )
                     .compactMap { (quizOutput: CedarGenerateQuizMutation.QuizOutput?) in
                         quizOutput.map { quizOutput in
-                                .init(
-                                    quizItems: quizOutput.quizItems
-                                )
+                            AssistChatMessage(
+                                quizItems: quizOutput.quizItems
+                            )
                         }
                     }
                 }
                 .eraseToAnyPublisher()
         }
+        .eraseToAnyPublisher()
+    }
+
+    private func summarizeContent() -> AnyPublisher<AssistChatMessage?, Error> {
+        page.flatMap { [weak self] page in
+            guard let self = self else {
+                return Just<AssistChatMessage?>(nil)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            let body = page?.body ?? ""
+            return self.cedarSummarizeContent(content: body)
+                .map { (summaries: [String]?) in
+                    AssistChatMessage(
+                        botResponse: (summaries ?? []).joined(separator: "\n\n")
+                    )
+                }
+                .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
     }
 }
 
