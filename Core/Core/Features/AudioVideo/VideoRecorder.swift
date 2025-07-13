@@ -69,24 +69,4 @@ public struct VideoRecorder: UIViewControllerRepresentable {
     public func makeCoordinator() -> Coordinator {
         return Coordinator(view: self)
     }
-
-    public static func requestPermission(cameraService: CameraPermissionService.Type = AVCaptureDevice.self, callback: @escaping (Bool) -> Void) {
-        switch cameraService.authorizationStatus(for: .video) {
-        case .authorized:
-            callback(true)
-        case .denied, .restricted:
-            callback(false)
-        default:
-            cameraService.requestAccess(for: .video) { allowed in performUIUpdate {
-                callback(allowed)
-            } }
-        }
-    }
 }
-
-public protocol CameraPermissionService {
-    static func authorizationStatus(for mediaType: AVMediaType) -> AVAuthorizationStatus
-    static func requestAccess(for mediaType: AVMediaType, completionHandler: @escaping (Bool) -> Void)
-}
-
-extension AVCaptureDevice: CameraPermissionService {}

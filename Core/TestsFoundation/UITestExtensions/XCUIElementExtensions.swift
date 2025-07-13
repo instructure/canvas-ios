@@ -46,10 +46,10 @@ public extension XCUIElement {
             case customApp(_ customApp: XCUIApplication)
         }
 
-        case swipeUp(_ target: Target = .onApp)
-        case swipeDown(_ target: Target = .onApp)
-        case swipeRight(_ target: Target = .onApp)
-        case swipeLeft(_ target: Target = .onApp)
+        case swipeUp(_ target: Target = .onApp, velocity: XCUIGestureVelocity = .default)
+        case swipeDown(_ target: Target = .onApp, velocity: XCUIGestureVelocity = .default)
+        case swipeRight(_ target: Target = .onApp, velocity: XCUIGestureVelocity = .default)
+        case swipeLeft(_ target: Target = .onApp, velocity: XCUIGestureVelocity = .default)
         case tap
         case showKeyboard
         case hideKeyboard
@@ -173,33 +173,33 @@ public extension XCUIElement {
             case .showKeyboard: CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
             case .hideKeyboard: CoreUITestCase.currentTestCase?.send(.hideKeyboard, ignoreErrors: true)
             case .pullToRefresh: app.pullToRefresh()
-            case .swipeUp(let target):
+            case .swipeUp(let target, let velocity):
                 switch target {
-                case .onApp: app.swipeUp()
-                case .onElement: swipeUp()
+                case .onApp: app.swipeUp(velocity: velocity)
+                case .onElement: swipeUp(velocity: velocity)
                 case .customApp(let customApp):
-                    customApp.swipeUp()
+                    customApp.swipeUp(velocity: velocity)
                 }
-            case .swipeDown(let target):
+            case .swipeDown(let target, let velocity):
                 switch target {
-                case .onApp: app.swipeDown()
-                case .onElement: swipeDown()
+                case .onApp: app.swipeDown(velocity: velocity)
+                case .onElement: swipeDown(velocity: velocity)
                 case .customApp(let customApp):
-                    customApp.swipeDown()
+                    customApp.swipeDown(velocity: velocity)
                 }
-            case .swipeRight(let target):
+            case .swipeRight(let target, let velocity):
                 switch target {
-                case .onApp: app.swipeRight()
-                case .onElement: swipeRight()
+                case .onApp: app.swipeRight(velocity: velocity)
+                case .onElement: swipeRight(velocity: velocity)
                 case .customApp(let customApp):
-                    customApp.swipeRight()
+                    customApp.swipeRight(velocity: velocity)
                 }
-            case .swipeLeft(let target):
+            case .swipeLeft(let target, let velocity):
                 switch target {
-                case .onApp: app.swipeLeft()
-                case .onElement: swipeLeft()
+                case .onApp: app.swipeLeft(velocity: velocity)
+                case .onElement: swipeLeft(velocity: velocity)
                 case .customApp(let customApp):
-                    customApp.swipeLeft()
+                    customApp.swipeLeft(velocity: velocity)
                 }
             case .forceTap: forceTap()
             case .longTap: longTap()
@@ -282,6 +282,10 @@ public extension XCUIElement {
 
     func tapAndHoldAndDragToElement(holdDuration: TimeInterval = 2, element: XCUIElement) {
         waitUntil(.visible).press(forDuration: holdDuration, thenDragTo: element)
+    }
+
+    var firstImage: XCUIElement? {
+        return descendants(matching: .image).firstMatch
     }
 
     // MARK: Find functions
