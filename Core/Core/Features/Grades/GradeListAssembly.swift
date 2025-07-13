@@ -28,8 +28,7 @@ public enum GradeListAssembly {
         GradeListInteractorLive(
             env: environment,
             courseID: courseID,
-            userID: userID,
-            env: env
+            userID: userID
         )
     }
 
