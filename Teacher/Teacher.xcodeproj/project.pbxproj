@@ -23,6 +23,7 @@
 		089AACBA2DD5F7FB0022F341 /* TeacherAssignmentDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AACB92DD5F7F80022F341 /* TeacherAssignmentDetailsScreen.swift */; };
 		089AACBE2DD5FAAE0022F341 /* TeacherDateSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AACBD2DD5FAAA0022F341 /* TeacherDateSection.swift */; };
 		089AACC02DD5FAF20022F341 /* TeacherSubmissionBreakdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AACBF2DD5FAEC0022F341 /* TeacherSubmissionBreakdownView.swift */; };
+		08BFD0B92E24611D0086DD69 /* SubmissionsSortComparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFD0B82E24611B0086DD69 /* SubmissionsSortComparator.swift */; };
 		13B07FBF1A68108700A75B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Assets.xcassets */; };
 		2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
 		2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */; };
@@ -275,6 +276,7 @@
 		089AACB92DD5F7F80022F341 /* TeacherAssignmentDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherAssignmentDetailsScreen.swift; sourceTree = "<group>"; };
 		089AACBD2DD5FAAA0022F341 /* TeacherDateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherDateSection.swift; sourceTree = "<group>"; };
 		089AACBF2DD5FAEC0022F341 /* TeacherSubmissionBreakdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSubmissionBreakdownView.swift; sourceTree = "<group>"; };
+		08BFD0B82E24611B0086DD69 /* SubmissionsSortComparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsSortComparator.swift; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C3DE5091F21494D00AE1D59 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				0856FCFF2DCB09CE009067CF /* SubmissionListItem.swift */,
 				0856FCD12DB64663009067CF /* SubmissionListInteractorLive.swift */,
 				0856FCCF2DB644EC009067CF /* SubmissionListInteractor.swift */,
+				08BFD0B82E24611B0086DD69 /* SubmissionsSortComparator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1804,6 +1807,7 @@
 				0856FCCC2DB641EC009067CF /* SubmissionListScreen.swift in Sources */,
 				CFFEADAC2E00703000277F69 /* RollCallSession.swift in Sources */,
 				7D742F382554D01400FD6CF1 /* RubricsView.swift in Sources */,
+				08BFD0B92E24611D0086DD69 /* SubmissionsSortComparator.swift in Sources */,
 				CF13E550299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* Routes.swift in Sources */,
 				CF13E559299D1AEC00F57F69 /* QuizSubmissionListView.swift in Sources */,

@@ -56,28 +56,13 @@ class SubmissionListViewModel: ObservableObject {
             interactor.submissions.receive(on: scheduler),
             $searchText.throttle(for: 1, scheduler: scheduler, latest: true)
         )
-        .map({ (list, searchText) in
-
+        .map({ [weak self] (list, searchText) in
             let searchTerm = searchText.lowercased()
             var curatedList: [Submission] = list
             if searchTerm.isNotEmpty {
                 curatedList = curatedList.filter { $0.user?.nameContains(searchTerm) ?? false }
             }
-
-            var itemIndex = 0
-            let sections = SubmissionListSection.Kind.allCases
-                .map { [weak self] kind in
-                    let items = curatedList
-                        .filter { kind.filter($0) }
-                        .map {
-                            itemIndex += 1
-                            return SubmissionListItem(submission: $0, assignment: self?.assignment, displayIndex: itemIndex)
-                        }
-                    return SubmissionListSection(kind: kind, items: items)
-                }
-                .filter { $0.items.isNotEmpty }
-
-            return sections
+            return curatedList.toSectionedItems(assignment: self?.assignment)
         })
         .assign(to: &$sections)
 
@@ -167,7 +152,6 @@ class SubmissionListViewModel: ObservableObject {
         let query = filterMode == .all ? "" : "?filter=\(filterMode.filters.map { $0.rawValue }.joined(separator: ","))"
         env.router.route(
             to: assignmentRoute + "/submissions/\(submission.originalUserID)\(query)",
-            userInfo: [SpeedGraderUserInfoKey.sortNeedsGradingSubmissionsFirst: true],
             from: controller.value,
             options: .modal(.fullScreen, isDismissable: false, embedInNav: true)
         )

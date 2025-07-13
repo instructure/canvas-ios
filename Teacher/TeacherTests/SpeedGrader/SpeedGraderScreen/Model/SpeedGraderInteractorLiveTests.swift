@@ -45,7 +45,6 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             assignmentID: testData.assignmentId,
             userID: testData.userId,
             filter: [],
-            sortNeedsGradingSubmissionsFirst: false,
             gradeStatusInteractor: gradeStatusInteractorMock,
             env: environment
         )
@@ -123,7 +122,6 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             assignmentID: testData.assignmentId,
             userID: "1",
             filter: [],
-            sortNeedsGradingSubmissionsFirst: true,
             gradeStatusInteractor: GradeStatusInteractorMock(),
             env: environment
         )
@@ -188,7 +186,6 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             assignmentID: testData.assignmentId,
             userID: testData.invalidUserId,
             filter: [],
-            sortNeedsGradingSubmissionsFirst: false,
             gradeStatusInteractor: GradeStatusInteractorMock(),
             env: environment
         )
