@@ -44,7 +44,7 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
         self.usersStore = env.subscribe(GetQuizSubmissionUsers(courseID: courseID))
         self.submissionsStore = env.subscribe(GetAllQuizSubmissions(courseID: courseID, quizID: quizID))
         self.quizStore = env.subscribe(GetQuiz(courseID: courseID, quizID: quizID))
-        self.courseStore = env.subscribe(GetCourse(courseID: courseID))
+        self.courseStore = env.root.subscribe(GetCourse(courseID: env.convertToRootID(courseID)))
 
         self.courseID = courseID
         self.quizID = quizID
