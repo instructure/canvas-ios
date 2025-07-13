@@ -30,7 +30,7 @@ public enum QuizSubmissionListAssembly {
         let interactor = QuizSubmissionListInteractorLive(env: env, courseID: courseID, quizID: quizID)
         let viewModel = QuizSubmissionListViewModel(router: env.router, filterValue: filter, interactor: interactor)
         let view = QuizSubmissionListView(model: viewModel)
-        return CoreHostingController(view)
+        return CoreHostingController(view, env: env)
     }
 
 #if DEBUG
