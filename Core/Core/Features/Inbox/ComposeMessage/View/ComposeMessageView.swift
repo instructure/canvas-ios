@@ -98,7 +98,8 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .foregroundColor(.textDarkest)
             .background(
                 GeometryReader { reader in
-                    return Color.backgroundLightest
+                    Color
+                        .backgroundLightest
                         .onTapGesture {
                             model.clearSearchedRecipients()
                             focusedInput = nil
@@ -127,15 +128,14 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             }
         }
         .sheet(isPresented: $model.isImagePickerVisible) {
-            ImagePickerViewController(sourceType: .photoLibrary, imageHandler: model.addFile)
+            AttachmentPickerAssembly.makeImagePicker(onSelect: model.addFile)
         }
         .sheet(isPresented: $model.isTakePhotoVisible) {
-            ImagePickerViewController(sourceType: .camera, imageHandler: model.addFile)
+            AttachmentPickerAssembly.makeImageRecorder(onSelect: model.addFile)
                 .interactiveDismissDisabled()
         }
         .sheet(isPresented: $model.isAudioRecordVisible) {
-            AttachmentPickerAssembly
-                .makeAudioPickerViewcontroller(env: model.env, onSelect: model.addFile)
+            AttachmentPickerAssembly.makeAudioRecorder(env: model.env, onSelect: model.addFile)
                 .interactiveDismissDisabled()
         }
         .confirmationAlert(
@@ -407,21 +407,16 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .padding(.leading, defaultHorizontalPaddingValue)
             .padding(.top, defaultVerticalPaddingValue)
 
-            UITextViewWrapper(text: $model.bodyText) {
-                let tv = UITextView()
+            InstUI.UITextViewWrapper(text: $model.bodyText) { tv in
                 tv.isScrollEnabled = false
                 tv.textContainer.widthTracksTextView = true
-                tv.textContainer.lineBreakMode = .byWordWrapping
+                tv.textColor = .textDarkest
                 tv.font = UIFont.scaledNamedFont(.regular16)
                 tv.translatesAutoresizingMaskIntoConstraints = false
                 tv.widthAnchor.constraint(equalToConstant: geometry.frame(in: .global).width - (2 * defaultHorizontalPaddingValue)).isActive = true
                 tv.backgroundColor = .backgroundLightest
-                return tv
             }
-            .font(.regular16, lineHeight: .condensed)
-            .textInputAutocapitalization(.sentences)
             .focused($focusedInput, equals: .message)
-            .foregroundColor(.textDarkest)
             .padding(.horizontal, defaultHorizontalPaddingValue)
             .frame(minHeight: 60)
             .accessibilityLabel(Text("Message Input", bundle: .core))

@@ -88,7 +88,7 @@ struct AssignmentAssigneePicker: View {
         EditorRow {
             switch assignee {
             case .everyone:
-                Avatar.Anonymous(isGroup: true)
+                Avatar(model: .anonymousGroup)
                     .padding(.trailing, 16).padding(.vertical, -4)
                 if selection.count <= 1 {
                     Text("Everyone", bundle: .core)

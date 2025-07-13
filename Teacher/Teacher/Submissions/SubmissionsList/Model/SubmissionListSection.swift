@@ -46,6 +46,7 @@ struct SubmissionListSection: Identifiable {
                 { $0.submittedAt != nil && $0.isGraded == false }
             case .unsubmitted:
                 { submission in
+                    if submission.excused == true { return false }
 
                     // This condition should be good for most cases.
                     if submission.workflowState == .unsubmitted { return true }

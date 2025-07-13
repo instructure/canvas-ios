@@ -90,10 +90,10 @@ public struct MultiSelectionView: View {
             title: item.title,
             subtitle: item.subtitle,
             isSelected: selectionBinding(for: item),
-            color: item.color,
-            accessoryView: { item.accessoryIcon?.foregroundStyle(item.color) },
+            accessoryView: { item.accessoryIcon },
             dividerStyle: viewModel.dividerStyle(for: item)
         )
+        .customTint(item.color)
     }
 
     private func selectionBinding(for item: OptionItem) -> Binding<Bool> {

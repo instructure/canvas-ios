@@ -20,11 +20,13 @@ import UIKit
 
 public enum GradeListAssembly {
     public static func makeInteractor(
+        environment: AppEnvironment,
         courseID: String,
         userID: String?,
         env: AppEnvironment
     ) -> GradeListInteractor {
         GradeListInteractorLive(
+            env: environment,
             courseID: courseID,
             userID: userID,
             env: env
@@ -47,6 +49,7 @@ public enum GradeListAssembly {
         userID: String?
     ) -> UIViewController {
         let interactor = makeInteractor(
+            environment: env,
             courseID: courseID,
             userID: userID,
             env: env

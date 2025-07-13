@@ -26,8 +26,6 @@ class ComposeMessageViewModelTests: CoreTestCase {
     private var mockInteractor: ComposeMessageInteractorMock!
     private var recipientInteractorMock: RecipientInteractorMock!
     private var inboxSettingsInteractor: InboxSettingsInteractorMock!
-    private var audioSession: AudioSessionMock!
-    private var cameraPermissionService = CameraPermissionServiceMock.self
     var testee: ComposeMessageViewModel!
     private var subscriptions = Set<AnyCancellable>()
 
@@ -36,56 +34,27 @@ class ComposeMessageViewModelTests: CoreTestCase {
         recipientInteractorMock = RecipientInteractorMock()
         mockInteractor = ComposeMessageInteractorMock()
         inboxSettingsInteractor = InboxSettingsInteractorMock()
-        audioSession = AudioSessionMock()
-        testee = ComposeMessageViewModel(
-            env: environment,
-            options: .init(
-                fromType: .new
-            ),
-            interactor: mockInteractor,
-            recipientInteractor: recipientInteractorMock,
-            inboxSettingsInteractor: inboxSettingsInteractor,
-            audioSession: audioSession,
-            cameraPermissionService: cameraPermissionService
-        )
+        testee = makeViewModel(options: .init(fromType: .new))
     }
 
     private func setupForReply() {
         let conversation: Conversation = .make()
-        testee = ComposeMessageViewModel(
-            env: environment,
-            options: .init(fromType: .reply(conversation: conversation, message: nil)),
-            interactor: mockInteractor,
-            recipientInteractor: recipientInteractorMock,
-            inboxSettingsInteractor: inboxSettingsInteractor,
-            audioSession: audioSession,
-            cameraPermissionService: cameraPermissionService
+        testee = makeViewModel(
+            options: .init(fromType: .reply(conversation: conversation, message: nil))
         )
     }
 
     private func setupForReplyAll() {
         let conversation: Conversation = .make()
-        testee = ComposeMessageViewModel(
-            env: environment,
-            options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
-            interactor: mockInteractor,
-            recipientInteractor: recipientInteractorMock,
-            inboxSettingsInteractor: inboxSettingsInteractor,
-            audioSession: audioSession,
-            cameraPermissionService: cameraPermissionService
+        testee = makeViewModel(
+            options: .init(fromType: .replyAll(conversation: conversation, message: nil))
         )
     }
 
     private func setupForForward() {
         let conversation: Conversation = .make()
-        testee = ComposeMessageViewModel(
-            env: environment,
-            options: .init(fromType: .forward(conversation: conversation, message: nil)),
-            interactor: mockInteractor,
-            recipientInteractor: recipientInteractorMock,
-            inboxSettingsInteractor: inboxSettingsInteractor,
-            audioSession: audioSession,
-            cameraPermissionService: cameraPermissionService
+        testee = makeViewModel(
+            options: .init(fromType: .forward(conversation: conversation, message: nil))
         )
     }
 
@@ -237,14 +206,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(
-            env: environment,
-            options: .init(fromType: .reply(conversation: conversation, message: message2)),
-            interactor: mockInteractor,
-            recipientInteractor: recipientInteractorMock,
-            inboxSettingsInteractor: inboxSettingsInteractor,
-            audioSession: audioSession,
-            cameraPermissionService: cameraPermissionService
+        testee = makeViewModel(
+            options: .init(fromType: .reply(conversation: conversation, message: message2))
         )
 
         XCTAssertEqual(testee.subject, "Test subject")
@@ -260,14 +223,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(
-            env: environment,
-            options: .init(fromType: .reply(conversation: conversation, message: nil)),
-            interactor: mockInteractor,
-            recipientInteractor: recipientInteractorMock,
-            inboxSettingsInteractor: inboxSettingsInteractor,
-            audioSession: audioSession,
-            cameraPermissionService: cameraPermissionService
+        testee = makeViewModel(
+            options: .init(fromType: .reply(conversation: conversation, message: nil))
         )
         XCTAssertEqual(testee.subject, "Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
@@ -282,14 +239,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(
-            env: environment,
-            options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
-            interactor: mockInteractor,
-            recipientInteractor: recipientInteractorMock,
-            inboxSettingsInteractor: inboxSettingsInteractor,
-            audioSession: audioSession,
-            cameraPermissionService: cameraPermissionService
+        testee = makeViewModel(
+            options: .init(fromType: .replyAll(conversation: conversation, message: nil))
         )
         XCTAssertEqual(testee.subject, "Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
@@ -304,14 +255,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(
-            env: environment,
-            options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
-            interactor: mockInteractor,
-            recipientInteractor: recipientInteractorMock,
-            inboxSettingsInteractor: inboxSettingsInteractor,
-            audioSession: audioSession,
-            cameraPermissionService: cameraPermissionService
+        testee = makeViewModel(
+            options: .init(fromType: .replyAll(conversation: conversation, message: nil))
         )
 
         XCTAssertEqual(testee.subject, "Test subject")
@@ -327,14 +272,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(
-            env: environment,
-            options: .init(fromType: .forward(conversation: conversation, message: message2)),
-            interactor: mockInteractor,
-            recipientInteractor: recipientInteractorMock,
-            inboxSettingsInteractor: inboxSettingsInteractor,
-            audioSession: audioSession,
-            cameraPermissionService: cameraPermissionService
+        testee = makeViewModel(
+            options: .init(fromType: .forward(conversation: conversation, message: message2))
         )
 
         XCTAssertEqual(testee.subject, "Fw: Test subject")
@@ -350,14 +289,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(
-            env: environment,
-            options: .init(fromType: .forward(conversation: conversation, message: nil)),
-            interactor: mockInteractor,
-            recipientInteractor: recipientInteractorMock,
-            inboxSettingsInteractor: inboxSettingsInteractor,
-            audioSession: audioSession,
-            cameraPermissionService: cameraPermissionService
+        testee = makeViewModel(
+            options: .init(fromType: .forward(conversation: conversation, message: nil))
         )
         XCTAssertEqual(testee.subject, "Fw: Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
@@ -413,69 +346,18 @@ class ComposeMessageViewModelTests: CoreTestCase {
 
         XCTAssertEqual(takePhotoAction?.title, String(localized: "Take photo", bundle: .core))
         XCTAssertEqual(takePhotoAction?.image, .cameraLine)
-        cameraPermissionService.mockAuthorizationStatus = .authorized
-        cameraPermissionService.mockRequestAccessResponse = true
-        takePhotoAction?.action()
-        XCTAssertTrue(testee.isFilePickerVisible)
-        XCTAssertTrue(testee.isImagePickerVisible)
-        XCTAssertTrue(testee.isTakePhotoVisible)
-        XCTAssertFalse(testee.isAudioRecordVisible)
 
         XCTAssertEqual(recordAudioAction?.title, String(localized: "Record audio", bundle: .core))
         XCTAssertEqual(recordAudioAction?.image, .audioLine)
-        audioSession.mockPermission = .granted
-        audioSession.shouldGrantPermission = true
-        recordAudioAction?.action()
-        XCTAssertTrue(testee.isFilePickerVisible)
-        XCTAssertTrue(testee.isImagePickerVisible)
-        XCTAssertTrue(testee.isTakePhotoVisible)
-        XCTAssertTrue(testee.isAudioRecordVisible)
 
         XCTAssertEqual(selectFileAction?.title, String(localized: "Attach from Canvas files", bundle: .core))
         XCTAssertEqual(selectFileAction?.image, .folderLine)
         selectFileAction?.action()
 
-        XCTAssertTrue(testee.isFilePickerVisible)
-        XCTAssertTrue(testee.isImagePickerVisible)
-        XCTAssertTrue(testee.isTakePhotoVisible)
-        XCTAssertTrue(testee.isAudioRecordVisible)
-
         wait(for: [router.showExpectation], timeout: 1)
 
         let presentedFilePicker = router.presented as? CoreHostingController<FilePickerView>
         XCTAssertNotNil(presentedFilePicker)
-    }
-
-    func test_attachmentOptionsDialog_audioRecordIsDisabled() {
-        // Given
-        let sourceView = UIViewController()
-        let viewController = WeakViewController(sourceView)
-        // When
-        testee.attachmentButtonDidTap(viewController: viewController)
-        let bottomSheet = router.presented as? BottomSheetPickerViewController
-        let recordAudioAction = bottomSheet?.actions[3]
-        audioSession.mockPermission = .denied
-        audioSession.shouldGrantPermission = false
-        recordAudioAction?.action()
-        // Then
-        XCTAssertFalse(testee.isAudioRecordVisible)
-        XCTAssertTrue(router.presented is UIAlertController)
-    }
-
-    func test_attachmentOptionsDialog_camerIsDisabled() {
-        // Given
-        let sourceView = UIViewController()
-        let viewController = WeakViewController(sourceView)
-        // When
-        testee.attachmentButtonDidTap(viewController: viewController)
-        let bottomSheet = router.presented as? BottomSheetPickerViewController
-        let cameraAction = bottomSheet?.actions[2]
-        cameraPermissionService.mockRequestAccessResponse = false
-        cameraPermissionService.mockAuthorizationStatus = .denied
-        cameraAction?.action()
-        // Then
-        XCTAssertFalse(testee.isTakePhotoVisible)
-        XCTAssertTrue(router.presented is UIAlertController)
     }
 
     func testIncludedMessagesExpansion() {
@@ -485,14 +367,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let conversation: Conversation = .make()
         conversation.messages = [message1, message2, message3]
         conversation.subject = "Test subject"
-        testee = ComposeMessageViewModel(
-            env: environment,
-            options: .init(fromType: .forward(conversation: conversation, message: nil)),
-            interactor: mockInteractor,
-            recipientInteractor: recipientInteractorMock,
-            inboxSettingsInteractor: inboxSettingsInteractor,
-            audioSession: audioSession,
-            cameraPermissionService: cameraPermissionService
+        testee = makeViewModel(
+            options: .init(fromType: .forward(conversation: conversation, message: nil))
         )
 
         XCTAssertTrue(testee.expandedIncludedMessageIds.isEmpty)
@@ -550,8 +426,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             bodyText: "bodyText",
             individualSend: true
         )
-        testee = ComposeMessageViewModel(
-            env: environment,
+        testee = makeViewModel(
             options: ComposeMessageOptions(
                 disabledFields: .init(),
                 fieldsContents: messageField,
@@ -560,12 +435,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
                     message: nil
                 ),
                 extras: .init()
-            ),
-            interactor: mockInteractor,
-            recipientInteractor: recipientInteractorMock,
-            inboxSettingsInteractor: inboxSettingsInteractor,
-            audioSession: audioSession,
-            cameraPermissionService: cameraPermissionService
+            )
         )
         testee.selectedRecipients.send([ReceiptStub.recipients[0], ReceiptStub.recipients[1]])
         testee.textRecipientSearch = "Can"
@@ -722,6 +592,16 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let pub = testee.$bodyText.dropFirst().eraseToAnyPublisher()
 
         XCTAssertNoOutput(pub)
+    }
+
+    private func makeViewModel(options: ComposeMessageOptions) -> ComposeMessageViewModel {
+        .init(
+            env: environment,
+            options: options,
+            interactor: mockInteractor,
+            recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor
+        )
     }
 }
 

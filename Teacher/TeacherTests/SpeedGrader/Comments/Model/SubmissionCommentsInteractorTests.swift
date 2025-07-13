@@ -88,6 +88,17 @@ class SubmissionCommentsInteractorTests: TeacherTestCase {
         }
     }
 
+    func test_getIsCommentLibraryEnabled() {
+        api.mock(
+            GetUserSettings(userID: "self"),
+            value: .make(comment_library_suggestions_enabled: true)
+        )
+
+        XCTAssertFirstValue(testee.getIsCommentLibraryEnabled()) { isEnabled in
+            XCTAssertEqual(isEnabled, true)
+        }
+    }
+
     // MARK: - Private helpers
 
     private func makeInteractor(

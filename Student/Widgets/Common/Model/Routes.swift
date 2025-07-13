@@ -70,4 +70,13 @@ extension URL {
             .addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         return .todoWidgetRoute("todo-widget/calendar/\(dateString)")
     }
+
+    static func gradesRoute(forCourse courseId: String, color: String? = nil) -> URL {
+        return .gradeListWidgetRoute("/courses/\(courseId)/grades")
+            .appending(
+                queryItems: [
+                    color.flatMap { URLQueryItem(name: "contextColor", value: $0) }
+                ].compactMap { $0 }
+            )
+    }
 }

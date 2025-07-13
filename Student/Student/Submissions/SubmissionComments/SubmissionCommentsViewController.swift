@@ -22,6 +22,7 @@ import Core
 import UniformTypeIdentifiers
 
 class SubmissionCommentsViewController: UIViewController, ErrorViewController {
+    @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var addCommentBorderView: UIView!
     @IBOutlet weak var addCommentButton: UIButton!
     @IBOutlet weak var addCommentTextView: UITextView!
@@ -41,6 +42,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     var presenter: SubmissionCommentsPresenter?
     var submissionPresenter: SubmissionDetailsPresenter?
     var env: AppEnvironment = .shared
+    private let avPermissionViewModel: AVPermissionViewModel = .init()
 
     static func create(
         env: AppEnvironment,
@@ -62,12 +64,16 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
+        commentLabel.text = String(localized: "Comment", bundle: .student)
+        commentLabel.textColor = .textDark
+        commentLabel.font = .scaledNamedFont(.regular13)
+        commentLabel.accessibilityTraits = .header
         addCommentBorderView.backgroundColor = .backgroundLightest
         addCommentBorderView.layer.borderColor = UIColor.borderMedium.cgColor
         addCommentBorderView.layer.borderWidth = 1 / UIScreen.main.scale
         addCommentButton.accessibilityLabel = String(localized: "Send comment", bundle: .student)
         addCommentTextView.accessibilityLabel = String(localized: "Add a comment or reply to previous comments", bundle: .student)
-        addCommentTextView.placeholder = String(localized: "Comment", bundle: .student)
+        addCommentTextView.placeholder = String(localized: "Type here...", bundle: .student)
         addCommentTextView.placeholderColor = .textDark
         addCommentTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
         addCommentTextView.adjustsFontForContentSizeCategory = true
@@ -101,30 +107,22 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     @IBAction func addMediaButtonPressed(_ sender: UIButton) {
         let title = String(localized: "Select Attachment Type", bundle: .student)
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(AlertAction(String(localized: "Record Audio", bundle: .student), style: .default) { _ in
-            AudioRecorderViewController.requestPermission { [weak self] allowed in
-                guard let self = self else { return }
-                guard allowed else {
-                    self.showPermissionError(.microphone)
-                    return
+        alert.addAction(
+            AlertAction(String(localized: "Record Audio", bundle: .student), style: .default) { [weak self] _ in
+                guard let self else { return }
+
+                avPermissionViewModel.performAfterMicrophonePermission(from: .init(self)) {
+                    let controller = AudioRecorderViewController.create()
+                    controller.delegate = self
+                    self.showMediaController(controller)
                 }
-                let controller = AudioRecorderViewController.create()
-                controller.delegate = self
-                self.showMediaController(controller)
             }
-        })
-        alert.addAction(AlertAction(String(localized: "Record Video", bundle: .student), style: .default) { _ in
-            VideoRecorder.requestPermission { [weak self] allowed in
-                guard let self = self else { return }
-                guard allowed else {
-                    self.showPermissionError(.camera)
-                    return
-                }
-                AudioRecorderViewController.requestPermission { allowed in
-                    guard allowed else {
-                        self.showPermissionError(.microphone)
-                        return
-                    }
+        )
+        alert.addAction(
+            AlertAction(String(localized: "Record Video", bundle: .student), style: .default) { [weak self] _ in
+                guard let self else { return }
+
+                avPermissionViewModel.performAfterVideoPermissions(from: .init(self)) {
                     let picker = UIImagePickerController()
                     picker.allowsEditing = true
                     picker.delegate = self
@@ -134,7 +132,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
                     self.present(picker, animated: true)
                 }
             }
-        })
+        )
         alert.addAction(AlertAction(String(localized: "Choose File", bundle: .student), style: .default) { [weak self] _ in
             guard let self else { return }
             let picker = FilePickerViewController.create(env: env)

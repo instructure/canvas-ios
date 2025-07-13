@@ -320,4 +320,58 @@ class CoreWebViewTests: CoreTestCase {
         testee = CoreWebView(frame: .zero)
         XCTAssertEqual(testee.features.count, 0)
     }
+
+    func test_modalPresentationMessage_invokesAccessibilityHelper() {
+        let testee = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        var mockHelper = MockA11yHelper()
+        testee.a11yHelper = mockHelper
+        let hostVC = UIViewController()
+        hostVC.view.addSubview(testee)
+
+        // WHEN
+        var js = "window.webkit.messageHandlers.modalPresentation.postMessage({open: true});"
+        let jsCompletedExpectation = expectation(description: "JS message handled")
+        testee.evaluateJavaScript(js) { _, _ in
+            jsCompletedExpectation.fulfill()
+        }
+        wait(for: [jsCompletedExpectation], timeout: 10)
+
+        // THEN
+        XCTAssertTrue(mockHelper.called)
+        XCTAssertEqual(mockHelper.receivedIsExclusive, true)
+        XCTAssertEqual(mockHelper.receivedView, testee)
+        XCTAssertEqual(mockHelper.receivedViewController, hostVC)
+
+        // GIVEN
+        mockHelper = MockA11yHelper()
+        testee.a11yHelper = mockHelper
+
+        // WHEN
+        js = "window.webkit.messageHandlers.modalPresentation.postMessage({open: false});"
+        let jsCompletedExpectation2 = expectation(description: "JS message handled")
+        testee.evaluateJavaScript(js) { _, _ in
+            jsCompletedExpectation2.fulfill()
+        }
+        wait(for: [jsCompletedExpectation2], timeout: 10)
+
+        // THEN
+        XCTAssertTrue(mockHelper.called)
+        XCTAssertEqual(mockHelper.receivedIsExclusive, false)
+        XCTAssertEqual(mockHelper.receivedView, testee)
+        XCTAssertEqual(mockHelper.receivedViewController, hostVC)
+    }
+}
+
+private class MockA11yHelper: CoreWebViewAccessibilityHelper {
+    var called = false
+    var receivedIsExclusive: Bool?
+    var receivedView: UIView?
+    var receivedViewController: UIViewController?
+
+    override func setExclusiveAccessibility(for view: UIView, isExclusive: Bool, viewController: UIViewController?) {
+        called = true
+        receivedIsExclusive = isExclusive
+        receivedView = view
+        receivedViewController = viewController
+    }
 }
