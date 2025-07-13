@@ -36,6 +36,7 @@ struct SubmissionGrades: View {
     @State var sliderValue: Double?
 
     @ObservedObject var rubricsViewModel: RubricsViewModel
+    @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
 
     var hasLateDeduction: Bool {
         submission.late &&
@@ -75,7 +76,7 @@ struct SubmissionGrades: View {
                                         final: false
                                     ))
                                 } else {
-                                    Image.addSolid.foregroundColor(Color(Brand.shared.linkColor))
+                                    Image.addSolid.foregroundStyle(.tint)
                                 }
                             })
                             .accessibility(hint: Text("Prompts for an updated grade", bundle: .teacher))
@@ -109,6 +110,8 @@ struct SubmissionGrades: View {
                         slider
                     }
 
+                    GradeStatusView(viewModel: gradeStatusViewModel)
+
                     if assignment.rubric?.isEmpty == false {
                         Divider().padding(.horizontal, 16)
                         RubricsView(
@@ -119,6 +122,8 @@ struct SubmissionGrades: View {
                     }
                 }.padding(.bottom, 16)
             } }
+            .animation(.smooth, value: gradeStatusViewModel.isShowingDaysLateSection)
+
             if rubricsViewModel.commentingOnCriterionID != nil {
                 commentEditor()
             }

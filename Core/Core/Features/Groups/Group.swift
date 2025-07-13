@@ -93,3 +93,7 @@ public final class Group: NSManagedObject, WriteableModel {
         return model
     }
 }
+
+extension Core.Group: UserNameProvider {
+    public var displayName: String { name }
+}

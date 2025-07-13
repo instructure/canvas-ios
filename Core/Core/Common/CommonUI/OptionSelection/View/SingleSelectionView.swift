@@ -65,7 +65,6 @@ public struct SingleSelectionView: View {
         )
     }
 
-    @ViewBuilder
     public var body: some View {
         LazyVStack(spacing: 0) {
             Section {
@@ -89,18 +88,18 @@ public struct SingleSelectionView: View {
                 title: item.title,
                 value: item,
                 selectedValue: selectionBinding,
-                color: item.color,
                 dividerStyle: viewModel.dividerStyle(for: item)
             )
+            .customTint(item.color)
         case .trailingCheckmark:
             InstUI.TrailingCheckmarkCell(
                 title: item.title,
                 subtitle: item.subtitle,
                 value: item,
                 selectedValue: selectionBinding,
-                color: item.color,
                 dividerStyle: viewModel.dividerStyle(for: item)
             )
+            .customTint(item.color)
         }
     }
 
@@ -136,6 +135,7 @@ public struct SingleSelectionView: View {
             ],
             selectedOption: .init(nil)
         )
+        .tint(.green)
         SingleSelectionView(
             title: "Item picker",
             allOptions: [
@@ -143,7 +143,7 @@ public struct SingleSelectionView: View {
                 .make(id: "B", title: "Option B", color: .textSuccess),
                 .make(id: "C", title: "Option C", color: .textInfo)
             ],
-            selectedOption: .init(nil),
+            selectedOption: .init(.make(id: "B")),
             style: .trailingCheckmark
         )
     }

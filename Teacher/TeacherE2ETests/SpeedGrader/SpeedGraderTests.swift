@@ -69,6 +69,35 @@ class SpeedGraderTests: E2ETestCase {
             XCTAssertVisible(SpeedGraderHelper.courseNameLabel(course: course).waitUntil(.visible))
         }
 
+        XCTContext.runActivity(named: "Check status picker values") { _ in
+            SpeedGraderHelper.drawerGripper.hit()
+            let statusPicker = SpeedGraderHelper.statusPicker
+            statusPicker.tapAt(CGPoint(x: statusPicker.frame.width - 20, y: 20))
+            XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.excused.waitUntil(.visible))
+            XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.late.waitUntil(.visible))
+            XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.missing.waitUntil(.visible))
+            XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.none.waitUntil(.visible))
+            XCTAssertTrue(SpeedGraderHelper.GradeStatusButtons.none.isSelected)
+        }
+
+        XCTContext.runActivity(named: "Update days late value") { _ in
+            SpeedGraderHelper.GradeStatusButtons.late.actionUntilElementCondition(action: .tap, condition: .vanish)
+            let daysLateButton = SpeedGraderHelper.daysLateButton
+            XCTAssertVisible(daysLateButton.waitUntil(.visible))
+            XCTAssertTrue(daysLateButton.label.hasPrefix("0 days late"))
+
+            daysLateButton.tapAt(CGPoint(x: daysLateButton.frame.width - 10, y: 20))
+            let daysLateTextField = SpeedGraderHelper.daysLateTextField
+            XCTAssertVisible(daysLateTextField.waitUntil(.visible))
+            daysLateTextField.writeText(text: XCUIKeyboardKey.delete.rawValue + "6")
+            daysLateTextField.waitUntil(.value(expected: "6"))
+            XCTAssertEqual(daysLateTextField.stringValue, "6")
+            SpeedGraderHelper.daysLateAlertOkButton.hit()
+
+            daysLateButton.waitUntil(.labelHasPrefix(expected: "6 days late"))
+            XCTAssertTrue(daysLateButton.label.hasPrefix("6 days late"))
+        }
+
         XCTContext.runActivity(named: "Swipe to the first student") { _ in
             let firstUserNameLabel = SpeedGraderHelper.userNameLabel(user: student1)
             firstUserNameLabel.actionUntilElementCondition(

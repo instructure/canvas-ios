@@ -194,7 +194,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             perPage: 100
         )
         api.mock(assignmentsRequest, value: assignmentGroups)
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .dueDate, baseOnGradedAssignment: true, gradingPeriodID: nil, ignoreCache: true)
             .sink(
@@ -231,7 +231,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             perPage: 100
         )
         api.mock(assignmentsRequest, value: assignmentGroups)
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
             .sink(
@@ -257,7 +257,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             multipleGradingPeriodsEnabled: true
         )
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
             .sink(
@@ -277,7 +277,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             multipleGradingPeriodsEnabled: true
         )
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: nil, ignoreCache: false)
             .sink(
@@ -298,7 +298,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             isRestrict: true
         )
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
             .sink(
@@ -317,7 +317,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             grades: .make(current_grade: "C", current_score: 42)
         )
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
             .sink(
@@ -335,7 +335,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             grades: .make(current_grade: "C", current_score: 42, final_score: 21),
             gradingPeriodID: nil
         )
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, gradingPeriodID: nil, ignoreCache: false)
             .sink(
@@ -359,7 +359,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             gradingPeriodID: nil
         )
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
@@ -382,7 +382,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             grades: .make(current_grade: "C", current_score: 42, final_score: 21)
         )
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, gradingPeriodID: "1", ignoreCache: false)
             .sink(
@@ -407,7 +407,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             gradingPeriodID: nil
         )
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
@@ -440,7 +440,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             ),
             gradingPeriodID: nil
         )
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
@@ -466,7 +466,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         )
         mockGetEnrollmentsAPI(grades: .make(current_grade: "C", current_score: 42))
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
             .sink(
@@ -487,7 +487,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         )
         mockGetEnrollmentsAPI(grades: .make(final_grade: "C", current_score: 42))
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
@@ -514,7 +514,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         )
         mockGetEnrollmentsAPI(grades: .make(final_grade: "C", current_score: 42))
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
@@ -541,7 +541,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         )
         mockGetEnrollmentsAPI(grades: .make(final_grade: "C", current_score: 42))
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
@@ -568,7 +568,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         )
         mockGetEnrollmentsAPI(grades: .make(final_grade: "C", current_score: 42))
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
@@ -594,7 +594,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
             isRestrict: true
         )
         mockGetEnrollmentsAPI(grades: .make(current_score: 42))
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
@@ -616,7 +616,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         mockGetCourseAPI(currentGradingPeriodId: "1", isRestrict: true)
         mockGetEnrollmentsAPI(grades: .make(current_score: 42))
 
-        let testee = GradeListInteractorLive(courseID: "1", userID: currentSession.userID, env: environment)
+        let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.getGrades(
             arrangeBy: .groupName,

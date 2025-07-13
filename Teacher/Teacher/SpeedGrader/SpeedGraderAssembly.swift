@@ -30,15 +30,21 @@ enum SpeedGraderAssembly {
         env: AppEnvironment
     ) -> UIViewController {
         let normalizedUserId = SpeedGraderUserIdNormalization.normalizeUserId(userId)
+        let gradeStatusInteractor = GradeStatusInteractorLive(
+            courseId: context.id,
+            assignmentId: assignmentId,
+            api: env.api
+        )
         let interactor = SpeedGraderInteractorLive(
             context: context,
             assignmentID: assignmentId,
             userID: normalizedUserId,
             filter: filter,
             sortNeedsGradingSubmissionsFirst: sortNeedsGradingSubmissionsFirst,
+            gradeStatusInteractor: gradeStatusInteractor,
             env: env
         )
-        let viewModel = SpeedGraderViewModel(
+        let viewModel = SpeedGraderScreenViewModel(
             interactor: interactor,
             environment: env
         )
@@ -60,7 +66,7 @@ enum SpeedGraderAssembly {
             interactor.data = testData()
         }
 
-        let viewModel = SpeedGraderViewModel(
+        let viewModel = SpeedGraderScreenViewModel(
             interactor: interactor,
             environment: .shared
         )

@@ -24,18 +24,15 @@ import SwiftUI
 
 class SubmissionCommentListViewModel: ObservableObject {
 
-    enum ViewState: Equatable {
-        case loading
-        case data
-        case error
-        case empty
-    }
-
     // MARK: - Outputs
 
-    @Published private(set) var state: ViewState = .loading
+    @Published private(set) var state: InstUI.ScreenState = .loading
     @Published private(set) var contextColor: Color = Color(Brand.shared.primary)
     @Published private(set) var cellViewModels: [SubmissionCommentListCellViewModel] = []
+    @Published private(set) var isCommentLibraryEnabled: Bool = false
+
+    // comment currently entered in comment input view
+    let comment: CurrentValueSubject<String, Never>
 
     // MARK: - Private variables
 
@@ -50,6 +47,7 @@ class SubmissionCommentListViewModel: ObservableObject {
 
     private let contextColorPublisher: AnyPublisher<Color, Never>
     private let interactor: SubmissionCommentsInteractor
+    private let commentLibraryViewModel: CommentLibraryViewModel
     private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
@@ -80,19 +78,25 @@ class SubmissionCommentListViewModel: ObservableObject {
         self.interactor = interactor
         self.env = env
 
+        let comment = CurrentValueSubject<String, Never>("")
+        self.comment = comment
+        self.commentLibraryViewModel = CommentLibraryViewModel(comment: comment)
+
         unowned let unownedSelf = self
 
         contextColor.assign(to: &$contextColor)
 
-        Publishers.CombineLatest3(
+        Publishers.CombineLatest4(
             interactor.getSubmissionAttempts(),
             interactor.getComments(),
-            interactor.getIsAssignmentEnhancementsEnabled()
+            interactor.getIsAssignmentEnhancementsEnabled(),
+            interactor.getIsCommentLibraryEnabled()
         )
-        .map { submissions, comments, isAssignmentEnhancementsEnabled in
+        .map { submissions, comments, isAssignmentEnhancementsEnabled, isCommentLibraryEnabled in
             unownedSelf.submissions = submissions
             unownedSelf.allComments = comments
             unownedSelf.isAssignmentEnhancementsEnabled = isAssignmentEnhancementsEnabled
+            unownedSelf.isCommentLibraryEnabled = isCommentLibraryEnabled
             return unownedSelf
                 .filterComments(comments, for: unownedSelf.selectedAttemptNumber)
                 .map(unownedSelf.commentViewModel)
@@ -176,6 +180,19 @@ class SubmissionCommentListViewModel: ObservableObject {
         interactor.createFileComment(batchId: batchId, attemptNumber: attemptNumberForNewComment) { result in
             completion(result.mapSendCommentResult())
         }
+    }
+
+    // MARK: - Navigation
+
+    func presentCommentLibrary(sendAction: @escaping () -> Void, source: WeakViewController) {
+        let vc = CoreHostingController(
+            CommentLibraryScreen(
+                viewModel: commentLibraryViewModel,
+                contextColor: contextColor,
+                sendAction: sendAction
+            )
+        )
+        env.router.show(vc, from: source, options: .modal(isDismissable: true, embedInNav: true))
     }
 }
 

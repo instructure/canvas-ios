@@ -24,6 +24,7 @@ protocol SubmissionCommentsInteractor: AnyObject {
     func getSubmissionAttempts() -> AnyPublisher<[Submission], Error>
     func getComments() -> AnyPublisher<[SubmissionComment], Error>
     func getIsAssignmentEnhancementsEnabled() -> AnyPublisher<Bool, Error>
+    func getIsCommentLibraryEnabled() -> AnyPublisher<Bool, Error>
 
     func createTextComment(_ text: String, attemptNumber: Int?, completion: @escaping (Result<Void, Error>) -> Void)
     func createMediaComment(type: MediaCommentType, url: URL, attemptNumber: Int?, completion: @escaping (Result<Void, Error>) -> Void)
@@ -44,6 +45,7 @@ final class SubmissionCommentsInteractorLive: SubmissionCommentsInteractor {
     private let localSubmissionsStore: ReactiveStore<GetSubmissionAttemptsLocal>
     private let submissionCommentsStore: ReactiveStore<GetSubmissionComments>
     private let featureFlagsStore: ReactiveStore<GetEnabledFeatureFlags>
+    private let userSettingsStore: ReactiveStore<GetUserSettings>
 
     // MARK: - Init
 
@@ -81,6 +83,10 @@ final class SubmissionCommentsInteractorLive: SubmissionCommentsInteractor {
             useCase: GetEnabledFeatureFlags(context: .course(courseId)),
             environment: env
         )
+
+        userSettingsStore = ReactiveStore(
+            useCase: GetUserSettings(userID: "self")
+        )
     }
 
     // MARK: - Get methods
@@ -101,6 +107,13 @@ final class SubmissionCommentsInteractorLive: SubmissionCommentsInteractor {
         featureFlagsStore
             .getEntities(keepObservingDatabaseChanges: true)
             .map { $0.isFeatureFlagEnabled(.assignmentEnhancements) }
+            .eraseToAnyPublisher()
+    }
+
+    func getIsCommentLibraryEnabled() -> AnyPublisher<Bool, Error> {
+        userSettingsStore
+            .getEntities()
+            .map { $0.first?.commentLibrarySuggestionsEnabled ?? false }
             .eraseToAnyPublisher()
     }
 

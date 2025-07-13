@@ -51,6 +51,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
     public let courseID: String
     private let userID: String?
     private let filterAssignmentsToUserID: Bool
+    private let env: AppEnvironment
 
     // MARK: - Private properties
     private let colorListStore: ReactiveStore<GetCustomColors>
@@ -62,14 +63,15 @@ public final class GradeListInteractorLive: GradeListInteractor {
     /// - parameters:
     ///   - filterAssignmentsToUserID: If true, the assignments will be filtered to the userID. This is used for parent accounts where the assignments API call returns all students' assignments.
     public init(
+        env: AppEnvironment,
         courseID: String,
         userID: String?,
-        filterAssignmentsToUserID: Bool? = nil,
-        env: AppEnvironment
+        filterAssignmentsToUserID: Bool? = nil
     ) {
+        self.env = env
         self.courseID = courseID
         self.userID = userID
-        self.filterAssignmentsToUserID = (env.app == .parent)
+        self.filterAssignmentsToUserID = filterAssignmentsToUserID ?? (env.app == .parent)
 
         colorListStore = ReactiveStore(
             useCase: GetCustomColors(),
@@ -122,7 +124,8 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 gradingPeriodID: gradingPeriodID,
                 types: ["StudentEnrollment"],
                 states: [.active, .completed]
-            )
+            ),
+            environment: env
         )
         let assignmentListStore = ReactiveStore(
             useCase: GetAssignmentsByGroup(
@@ -130,7 +133,8 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 gradingPeriodID: gradingPeriodID,
                 gradedOnly: true,
                 userID: filterAssignmentsToUserID ? userID : nil
-            )
+            ),
+            environment: env
         )
 
         return Publishers.Zip3(

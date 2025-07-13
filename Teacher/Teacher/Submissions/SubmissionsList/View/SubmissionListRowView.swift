@@ -59,36 +59,12 @@ struct SubmissionListRowView: View {
         .accessibilityIdentifier("SubmissionListCell.\(item.originalUserID)")
     }
 
-    @ViewBuilder
     private var avatarView: some View {
-        if anonymizeStudents != false {
-            Avatar.Anonymous(isGroup: item.groupID != nil)
-        } else if let groupName = item.groupName {
-            Avatar(name: groupName, url: nil)
-        } else {
-            Avatar(
-                name: item.user?.name ?? "",
-                url: item.user?.avatarURL
-            )
-        }
+        Avatar(model: item.userNameModel)
     }
 
     private var nameLabel: some View {
-        let nameText: Text = if anonymizeStudents != false {
-            if item.groupID != nil {
-                Text("Group \(item.orderInList)", bundle: .teacher)
-            } else {
-                Text("Student \(item.orderInList)", bundle: .teacher)
-            }
-        } else {
-            Text(
-                item.groupName ?? item.user.flatMap {
-                    User.displayName($0.name, pronouns: $0.pronouns)
-                } ?? ""
-            )
-        }
-
-        return nameText
+        return Text(item.userNameModel.name)
             .multilineTextAlignment(.leading)
             .font(.semibold16)
             .foregroundStyle(Color.textDarkest)
