@@ -295,7 +295,7 @@ final class ComposeMessageViewModel: ObservableObject {
 
             let picker = AttachmentPickerAssembly.makeCanvasFilePicker(router: env.router, onSelect: addFile)
             let controller = CoreHostingController(picker, env: env)
-            
+
             env.router.show(controller, from: top, options: .modal(isDismissable: true, embedInNav: true))
         }
 
