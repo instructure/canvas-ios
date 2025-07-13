@@ -22,8 +22,7 @@ public enum GradeListAssembly {
     public static func makeInteractor(
         environment: AppEnvironment,
         courseID: String,
-        userID: String?,
-        env: AppEnvironment
+        userID: String?
     ) -> GradeListInteractor {
         GradeListInteractorLive(
             env: environment,
@@ -50,8 +49,7 @@ public enum GradeListAssembly {
         let interactor = makeInteractor(
             environment: env,
             courseID: courseID,
-            userID: userID,
-            env: env
+            userID: userID
         )
         let viewModel = GradeListViewModel(
             interactor: interactor,
