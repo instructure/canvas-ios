@@ -86,6 +86,6 @@ class AssignmentDateSectionViewModelTests: CoreTestCase {
 
         testee.buttonTapped(router: router, viewController: WeakViewController(UIViewController()))
 
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/assignments/1/due_dates")!))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/assignments/1/due_dates")!))
     }
 }
