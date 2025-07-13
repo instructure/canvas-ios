@@ -26,7 +26,7 @@ class SubmissionFilterPickerViewController: UIViewController {
 
     var assignmentID = ""
     var context = Context.currentUser
-    let env = AppEnvironment.shared
+    private(set) var env = AppEnvironment.shared
     var filter: GetSubmissions.Filter?
     var onChange: ([GetSubmissions.Filter]) -> Void = { _ in }
     var outOfText: String?
@@ -38,12 +38,14 @@ class SubmissionFilterPickerViewController: UIViewController {
     }
 
     static func create(
+        env: AppEnvironment,
         context: Context,
         outOfText: String?,
         filter: [GetSubmissions.Filter],
         onChange: @escaping ([GetSubmissions.Filter]) -> Void
     ) -> SubmissionFilterPickerViewController {
         let controller = SubmissionFilterPickerViewController()
+        controller.env = env
         controller.context = context
         controller.outOfText = outOfText
         for f in filter {
