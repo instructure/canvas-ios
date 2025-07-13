@@ -71,7 +71,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
         self.env = env
         self.courseID = courseID
         self.userID = userID
-        self.filterAssignmentsToUserID = (env.app == .parent)
+        self.filterAssignmentsToUserID = filterAssignmentsToUserID ?? (env.app == .parent)
 
         colorListStore = ReactiveStore(
             useCase: GetCustomColors(),
