@@ -45,10 +45,10 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
         self?.updateNavBar()
         self?.update()
     }
-    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+    lazy var colors = env.root.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
+    lazy var course = env.root.subscribe(GetCourse(courseID: env.convertToRootID(context.id))) { [weak self] in
         self?.updateNavBar()
     }
     lazy var enrollments = env.subscribe(GetEnrollments(context: context)) { [weak self] in
@@ -162,8 +162,13 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
             )
         )
 
+        var composeURL = URLComponents()
+        composeURL.host = env.apiHost
+        composeURL.path = "/conversations/compose"
+        composeURL.queryItems = composeMessageOptions.queryItems
+
         env.router.route(
-            to: URLComponents.parse("/conversations/compose", queryItems: composeMessageOptions.queryItems),
+            to: composeURL,
             from: self,
             options: .modal(embedInNav: true)
         )
@@ -178,10 +183,12 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
 
     @objc func showFilters() {
         env.router.show(
-            SubmissionFilterPickerViewController.create(context: context, outOfText: assignment.first?.outOfText, filter: filter) { [weak self] in
-                self?.setFilter($0)
-            },
-            from: self, options: .modal(embedInNav: true)
+            SubmissionFilterPickerViewController
+                .create(env: env, context: context, outOfText: assignment.first?.outOfText, filter: filter) { [weak self] in
+                    self?.setFilter($0)
+                },
+            from: self,
+            options: .modal(embedInNav: true)
         )
     }
 }

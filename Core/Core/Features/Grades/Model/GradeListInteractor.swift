@@ -64,22 +64,26 @@ public final class GradeListInteractorLive: GradeListInteractor {
     public init(
         courseID: String,
         userID: String?,
-        filterAssignmentsToUserID: Bool = (AppEnvironment.shared.app == .parent)
+        filterAssignmentsToUserID: Bool? = nil,
+        env: AppEnvironment
     ) {
         self.courseID = courseID
         self.userID = userID
-        self.filterAssignmentsToUserID = filterAssignmentsToUserID
+        self.filterAssignmentsToUserID = (env.app == .parent)
 
         colorListStore = ReactiveStore(
-            useCase: GetCustomColors()
+            useCase: GetCustomColors(),
+            environment: env.root
         )
 
         courseStore = ReactiveStore(
-            useCase: GetCourse(courseID: courseID)
+            useCase: GetCourse(courseID: env.convertToRootID(courseID)),
+            environment: env.root
         )
 
         gradingPeriodListStore = ReactiveStore(
-            useCase: GetGradingPeriods(courseID: courseID)
+            useCase: GetGradingPeriods(courseID: courseID),
+            environment: env
         )
     }
 

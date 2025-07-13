@@ -21,11 +21,13 @@ import UIKit
 public enum GradeListAssembly {
     public static func makeInteractor(
         courseID: String,
-        userID: String?
+        userID: String?,
+        env: AppEnvironment
     ) -> GradeListInteractor {
         GradeListInteractorLive(
             courseID: courseID,
-            userID: userID
+            userID: userID,
+            env: env
         )
     }
 
@@ -46,7 +48,8 @@ public enum GradeListAssembly {
     ) -> UIViewController {
         let interactor = makeInteractor(
             courseID: courseID,
-            userID: userID
+            userID: userID,
+            env: env
         )
         let viewModel = GradeListViewModel(
             interactor: interactor,
@@ -54,23 +57,24 @@ public enum GradeListAssembly {
                 appEnvironment: env,
                 courseId: courseID
             ),
-            router: env.router
+            env: env
         )
-        let viewController = CoreHostingController(GradeListView(viewModel: viewModel))
+        let viewController = CoreHostingController(GradeListView(viewModel: viewModel), env: env)
         viewController.setDefaultViewRoute("/empty")
         return viewController
     }
 
     public static func makeGradeFilterViewController(
         dependency: GradeFilterViewModel.Dependency,
-        gradeFilterInteractor: GradeFilterInteractor
+        gradeFilterInteractor: GradeFilterInteractor,
+        env: AppEnvironment
     ) -> UIViewController {
         let viewModel = GradeFilterViewModel(
             dependency: dependency,
             gradeFilterInteractor: gradeFilterInteractor
         )
         let view = GradeFilterView(viewModel: viewModel)
-        let viewController = CoreHostingController(view)
+        let viewController = CoreHostingController(view, env: env)
         return viewController
     }
 }
