@@ -34,7 +34,7 @@ struct SpeedGraderPageTabsView: View {
     private let bottomInset: CGFloat
 
     @Binding private var selectedTab: SpeedGraderPageTab
-    @AccessibilityFocusState private var focusedTab: SpeedGraderPageTab?
+    @AccessibilityFocusState private var a11yFocusedTab: SpeedGraderPageTab?
     @Binding private var drawerState: DrawerState
     @Binding private var splitViewHeaderHeight: CGFloat
 
@@ -45,7 +45,7 @@ struct SpeedGraderPageTabsView: View {
         containerType: ContainerType,
         bottomInset: CGFloat,
         selectedTab: Binding<SpeedGraderPageTab>,
-        focusedTab: AccessibilityFocusState<SpeedGraderPageTab?>,
+        a11yFocusedTab: AccessibilityFocusState<SpeedGraderPageTab?>,
         drawerState: Binding<DrawerState>,
         splitViewHeaderHeight: Binding<CGFloat>,
         viewModel: SpeedGraderPageViewModel
@@ -53,7 +53,7 @@ struct SpeedGraderPageTabsView: View {
         self.containerType = containerType
         self.bottomInset = bottomInset
         self._selectedTab = selectedTab
-        self._focusedTab = focusedTab
+        self._a11yFocusedTab = a11yFocusedTab
         self._drawerState = drawerState
         self._splitViewHeaderHeight = splitViewHeaderHeight
 
@@ -86,7 +86,7 @@ struct SpeedGraderPageTabsView: View {
                 }
                 controller.view.endEditing(true)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    focusedTab = selectedTab
+                    a11yFocusedTab = selectedTab
                 }
             }
             .identifier("SpeedGrader.toolPicker")
@@ -170,7 +170,7 @@ struct SpeedGraderPageTabsView: View {
         .frame(width: geometry.size.width, height: geometry.size.height)
         .accessibilityElement(children: isGradesOnScreen ? .contain : .ignore)
         .accessibility(hidden: !isGradesOnScreen)
-        .accessibilityFocused($focusedTab, equals: .grades)
+        .accessibilityFocused($a11yFocusedTab, equals: .grades)
     }
 
     @ViewBuilder
@@ -193,7 +193,7 @@ struct SpeedGraderPageTabsView: View {
                 viewModel: viewModel.commentListViewModel,
                 attempt: drawerAttempt,
                 fileID: fileID,
-                focusedTab: _focusedTab
+                a11yFocusedTab: _a11yFocusedTab
             )
             .clipped()
             if drawerState.isClosed {

@@ -35,18 +35,18 @@ struct SubmissionCommentListView: View {
     @State private var isVideoRecorderVisible: Bool = false
     private let avPermissionViewModel: AVPermissionViewModel = .init()
 
-    @AccessibilityFocusState private var focusedTab: SpeedGraderPageTab?
+    @AccessibilityFocusState private var a11yFocusedTab: SpeedGraderPageTab?
 
     init(
         viewModel: SubmissionCommentListViewModel,
         attempt: Binding<Int>,
         fileID: Binding<String?>,
-        focusedTab: AccessibilityFocusState<SpeedGraderPageTab?>
+        a11yFocusedTab: AccessibilityFocusState<SpeedGraderPageTab?>
     ) {
         self.viewModel = viewModel
         self._attempt = attempt
         self._fileID = fileID
-        self._focusedTab = focusedTab
+        self._a11yFocusedTab = a11yFocusedTab
     }
 
     var body: some View {
@@ -112,7 +112,7 @@ struct SubmissionCommentListView: View {
             },
             sendAction: sendComment
         )
-        .accessibilityFocused($focusedTab, equals: .comments)
+        .accessibilityFocused($a11yFocusedTab, equals: .comments)
     }
 
     func sendComment() {

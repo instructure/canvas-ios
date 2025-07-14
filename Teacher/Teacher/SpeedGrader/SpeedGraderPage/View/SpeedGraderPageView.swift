@@ -42,7 +42,7 @@ struct SpeedGraderPageView: View {
 
     @State private var drawerState: DrawerState = .min
     @State private var selectedTab: SpeedGraderPageTab = .grades
-    @AccessibilityFocusState private var focusedTab: SpeedGraderPageTab?
+    @AccessibilityFocusState private var a11yFocusedTab: SpeedGraderPageTab?
 
     // MARK: - Layout properties
 
@@ -152,7 +152,7 @@ struct SpeedGraderPageView: View {
             // Auto focus voiceover on the selected tab when the right column is shown
             if isHidden { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                focusedTab = selectedTab
+                a11yFocusedTab = selectedTab
             }
         }
     }
@@ -340,7 +340,7 @@ struct SpeedGraderPageView: View {
             containerType: tabsContainerType,
             bottomInset: bottomInset,
             selectedTab: $selectedTab,
-            focusedTab: _focusedTab,
+            a11yFocusedTab: _a11yFocusedTab,
             drawerState: $drawerState,
             splitViewHeaderHeight: $headerHeight,
             viewModel: viewModel
