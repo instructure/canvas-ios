@@ -61,8 +61,8 @@ struct AnnouncementItem: Identifiable, Equatable {
     }
 }
 
-extension AnnouncementItem {
-    static let publicPreview: [Self] = [
+extension Array where Element == AnnouncementItem {
+    static let publicPreviewItems: [AnnouncementItem] = [
         .init(
             title: String(localized: "Finals are moving to next week.", comment: "Example announcement title"),
             date: Date(),

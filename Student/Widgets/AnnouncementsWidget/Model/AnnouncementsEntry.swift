@@ -19,7 +19,7 @@
 import WidgetKit
 
 struct AnnouncementsEntry: TimelineEntry {
-    static let publicPreview: Self = .init(announcements: AnnouncementItem.publicPreview)
+    static let publicPreview: Self = .init(announcements: .publicPreviewItems)
     static let loggedOutModel: Self = .init(isLoggedIn: false)
 
     let announcements: [AnnouncementItem]
