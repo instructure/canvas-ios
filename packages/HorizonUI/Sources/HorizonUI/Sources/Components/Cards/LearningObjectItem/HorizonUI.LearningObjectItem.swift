@@ -23,7 +23,7 @@ public extension HorizonUI {
         // MARK: - Properties
 
         private let cornerRadius: CornerRadius = .level3
-
+        private let screenWidth = UIScreen.main.bounds.width
         // MARK: - Dependencies
 
         private let name: String
@@ -98,7 +98,10 @@ public extension HorizonUI {
                     .multilineTextAlignment(.leading)
                     .huiTypography(.p2)
 
-                HStack(spacing: .huiSpaces.space16) {
+                HFlow(
+                    spacing: .huiSpaces.space16,
+                    lineSpacing: .huiSpaces.space4
+                ) {
                     HorizonUI.Pill(
                         title: type.name,
                         style: .inline(
@@ -121,23 +124,18 @@ public extension HorizonUI {
                             .foregroundStyle(Color.huiColors.text.timestamp)
                             .huiTypography(.labelSmall)
                     }
-                }
-                .padding(.top, .huiSpaces.space4)
 
-                HStack(spacing: .zero) {
                     if let dueDate {
                         dueDateView(dueDate)
-                            .padding(.top, .huiSpaces.space4)
-                            .padding(.trailing, .huiSpaces.space16)
                     }
 
                     if let points {
                         Text("\(points) pts")
                             .foregroundStyle(Color.huiColors.text.timestamp)
-                            .padding(.top, .huiSpaces.space4)
+                            .huiTypography(.labelSmall)
                     }
                 }
-                .huiTypography(.labelSmall)
+                .padding(.top, .huiSpaces.space4)
             }
         }
 

@@ -18,7 +18,7 @@
 
 import CoreData
 
-final public class CDHSubmissionComment: NSManagedObject {
+public final class CDHSubmissionComment: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var attemptFromAPI: NSNumber?
     @NSManaged public var authorID: String?
@@ -26,6 +26,7 @@ final public class CDHSubmissionComment: NSManagedObject {
     @NSManaged public var comment: String?
     @NSManaged public var createdAt: Date?
     @NSManaged public var isRead: Bool
+    @NSManaged public var attachments: Set<CDHCommentAttachment>?
 
     public var attempt: Int? {
         if let attemptFromAPI {
@@ -38,10 +39,9 @@ final public class CDHSubmissionComment: NSManagedObject {
     @discardableResult
     public static func save(
         _ apiEntity: GetHSubmissionCommentsResponse.Comment?,
-        assignmentID: String,
+        assignmentID _: String,
         in context: NSManagedObjectContext
     ) -> CDHSubmissionComment {
-
         let dbEntity: CDHSubmissionComment = context.first(
             where: #keyPath(CDHSubmissionComment.id),
             equals: apiEntity?.id
@@ -54,6 +54,15 @@ final public class CDHSubmissionComment: NSManagedObject {
         dbEntity.comment = apiEntity?.comment
         dbEntity.createdAt = apiEntity?.createdAt
         dbEntity.isRead = apiEntity?.read ?? true
+
+        if let attachments = apiEntity?.attachments {
+            let attachmentsEntities: [CDHCommentAttachment] = attachments.map { apiItem in
+                CDHCommentAttachment.save(apiItem, in: context)
+            }
+            dbEntity.attachments = Set(attachmentsEntities)
+        } else {
+            dbEntity.attachments = []
+        }
 
         return dbEntity
     }

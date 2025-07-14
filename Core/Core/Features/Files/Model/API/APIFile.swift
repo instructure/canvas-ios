@@ -21,7 +21,7 @@ import Foundation
 // https://canvas.instructure.com/doc/api/files.html#filePath
 public struct APIFile: Codable, Equatable {
     let id: ID
-    let uuid: String
+    let uuid: String?
     let folder_id: ID
     let display_name: String
     let filename: String
@@ -137,7 +137,7 @@ public struct APIFile: Codable, Equatable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(ID.self, forKey: .id)
-        uuid = try container.decode(String.self, forKey: .uuid)
+        uuid = try container.decodeIfPresent(String.self, forKey: .uuid)
         folder_id = try container.decode(ID.self, forKey: .folder_id)
         display_name = try container.decode(String.self, forKey: .display_name)
         contentType = try container.decode(String.self, forKey: .contentType)
@@ -427,7 +427,7 @@ public struct PostFileUploadRequest: APIRequestable {
     public let fileURL: URL
     public let target: FileUploadTarget
     public let loadBodyFromURL: Bool
-
+    public var shouldAddNoVerifierQuery: Bool
     /**
          Creates an `APIRequestable` instance for file upload.
          - Parameters:
@@ -438,10 +438,12 @@ public struct PostFileUploadRequest: APIRequestable {
     public init(
         fileURL: URL,
         target: FileUploadTarget,
-        isBodyFromURL: Bool = true
+        isBodyFromURL: Bool = true,
+        shouldAddNoVerifierQuery: Bool = true
     ) {
         self.fileURL = fileURL
         self.target = target
+        self.shouldAddNoVerifierQuery = shouldAddNoVerifierQuery
         loadBodyFromURL = isBodyFromURL
     }
 

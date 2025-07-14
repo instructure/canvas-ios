@@ -26,6 +26,7 @@ public final class AssignmentGroup: NSManagedObject {
     @NSManaged public var name: String
     @NSManaged public var position: Int
     @NSManaged public var courseID: String
+    @NSManaged public var groupWeight: NSNumber?
     @NSManaged public var assignments: Set<Assignment>?
 
     @discardableResult
@@ -34,6 +35,9 @@ public final class AssignmentGroup: NSManagedObject {
         model.id = item.id.value
         model.name = item.name
         model.position = item.position
+        if let groupWeight = item.group_weight {
+            model.groupWeight = NSNumber(value: groupWeight)
+        }
         model.courseID = courseID
 
         for a in item.assignments ?? [] {
