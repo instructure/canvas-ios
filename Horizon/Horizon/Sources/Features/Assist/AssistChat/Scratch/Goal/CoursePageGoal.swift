@@ -28,7 +28,6 @@ class CoursePageGoal: Goal {
         case TellMeMore = "Tell me more"
         case FlashCards = "Flash Cards"
         case Quiz = "Quiz Questions"
-        case Translate = "Translate to Spanish"
     }
 
     private let cedar: DomainService
