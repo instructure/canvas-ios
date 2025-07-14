@@ -36,6 +36,8 @@ public final class AppEnvironmentOverride: AppEnvironment {
         API(currentSession, baseURL: baseURL)
     }()
 
+    public override var root: AppEnvironment { base }
+
     public override var app: AppEnvironment.App? {
         get { base.app }
         set {}
