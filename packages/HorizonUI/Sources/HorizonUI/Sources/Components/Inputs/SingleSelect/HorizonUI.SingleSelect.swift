@@ -24,17 +24,19 @@ extension HorizonUI {
         // MARK: Dependencies
 
         private let disabled: Bool
+        private let isSearchable: Bool
         private let error: String?
         private let label: String?
         private let options: [String]
         private let placeholder: String?
-        private let zIndex: Double
         @Binding private var selection: String
 
         // MARK: Properties
 
+        private var originalSelection: String
+        @State private var text: String = ""
         private var bodyHeight: CGFloat {
-            textInputMeasuredHeight + errorHeight
+            textInputMeasuredHeight + displayedOptionHeight + errorHeight
         }
 
         // The computed height of a single option
@@ -49,7 +51,7 @@ extension HorizonUI {
         @State private var errorHeight: CGFloat = 0
 
         @Binding private var focused: Bool
-        private let focusedBinding: Binding<Bool>?
+        @FocusState private var searchFocuse: Bool
 
         // The computed height of the label
         @State private var labelMeasuredHeight: CGFloat = 0
@@ -58,18 +60,19 @@ extension HorizonUI {
         // of the entire component so when the options are displayed, it doesnt
         // push the content below it down
         @State private var textInputMeasuredHeight: CGFloat = 0
+        @State private var filteredItems: [String] = []
 
         // MARK: - Init
 
         public init(
             selection: Binding<String>,
             focused: Binding<Bool>,
+            isSearchable: Bool = true,
             label: String? = nil,
             options: [String],
             disabled: Bool = false,
             placeholder: String? = nil,
-            error: String? = nil,
-            zIndex: Double = 101
+            error: String? = nil
         ) {
             self.label = label
             self.options = options
@@ -77,30 +80,28 @@ extension HorizonUI {
             self.disabled = disabled
             self.placeholder = placeholder
             self.error = error
-            self.focusedBinding = focused
             self._focused = focused
-            self.zIndex = zIndex
+            self.text = selection.wrappedValue
+            self.isSearchable = isSearchable
+            self.filteredItems = options
+            self.originalSelection = selection.wrappedValue
         }
 
         public var body: some View {
-            VStack(spacing: 0) {
+            VStack {
                 VStack(spacing: 8) {
                     labelText
                     textInput
                 }
                 .onTapGesture(perform: onTapText)
-
                 ZStack(alignment: .top) {
                     errorText
                     displayedOptions
-                        .zIndex(zIndex)
                 }
             }
-            .background(.clear)
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: bodyHeight, alignment: .top)
-            .padding(3)
-            .zIndex(zIndex)
+            .zIndex(101)
         }
 
         // MARK: - Private
@@ -108,7 +109,7 @@ extension HorizonUI {
         private var displayedOptions: some View {
             ScrollView {
                 VStack(spacing: .zero) {
-                    ForEach(options, id: \.self) { item in
+                    ForEach(filteredItems, id: \.self) { item in
                         displayedOption(item)
                     }
                 }
@@ -119,7 +120,6 @@ extension HorizonUI {
             .background(Color.huiColors.surface.pageSecondary)
             .frame(height: displayedOptionsHeight)
             .cornerRadius(HorizonUI.CornerRadius.level1_5.attributes.radius)
-            .padding(.top, .huiSpaces.space12)
             .shadow(radius: HorizonUI.Elevations.level1.attributes.blur)
             .animation(.easeInOut, value: displayedOptionsHeight)
         }
@@ -146,6 +146,7 @@ extension HorizonUI {
                 .onTapGesture {
                     focused = false
                     selection = text
+                    searchFocuse = false
                 }
         }
 
@@ -195,19 +196,28 @@ extension HorizonUI {
 
         private var textInput: some View {
             ZStack(alignment: .trailing) {
-                Text(selection.isEmpty ? placeholder ?? "" : selection)
-                    .huiTypography(.p1)
-                    .foregroundColor(textInputTextColor)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(HorizonUI.spaces.space12)
-                    .padding(.trailing, .huiSpaces.space24)
-                    .overlay(textOverlay(isOuter: false))
-                    .background(
-                        HorizonUI.colors.surface.pageSecondary.clipShape(
-                            RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
-                        )
-                    )
-
+                if isSearchable {
+                    TextField(selection.isEmpty ? placeholder ?? "" : selection, text: $text)
+                        .focused($searchFocuse)
+                        .huiTypography(.p1)
+                        .foregroundColor(textInputTextColor)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(HorizonUI.spaces.space12)
+                        .padding(.trailing, .huiSpaces.space24)
+                        .overlay(textOverlay(isOuter: false))
+                        .onChange(of: searchFocuse, onFocusChange)
+                        .onChange(of: text, onTextChange)
+                        .onChange(of: selection) { _, newValue in text = newValue }
+                        .onChange(of: focused) { _, newValue in searchFocuse = newValue }
+                } else {
+                    Text(selection.isEmpty ? placeholder ?? "" : selection)
+                        .huiTypography(.p1)
+                        .foregroundColor(textInputTextColor)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(HorizonUI.spaces.space12)
+                        .padding(.trailing, .huiSpaces.space24)
+                        .overlay(textOverlay(isOuter: false))
+                }
                 Image.huiIcons.chevronRight
                     .padding(.horizontal, .huiSpaces.space12)
                     .tint(Color.huiColors.icon.default)
@@ -226,6 +236,7 @@ extension HorizonUI {
                 }
             }
             .onTapGesture(perform: onTapText)
+            .background(Color.huiColors.surface.cardPrimary)
             .opacity(disabled ? 0.5 : 1.0)
         }
 
@@ -274,6 +285,40 @@ extension HorizonUI {
                 }
             }
             return .huiColors.text.error
+        }
+
+        private func onFocusChange(oldValue: Bool, newValue: Bool) {
+            focused = newValue
+            if newValue {
+                filteredItems = options
+            } else {
+                let firstMatch = options.first { $0.lowercased() == text.lowercased() }
+                if firstMatch == nil {
+                    selection = originalSelection
+                    text = originalSelection
+                }
+            }
+        }
+
+        private func onTextChange(oldValue: String, newValue: String) {
+            if !focused {
+                return
+            }
+
+            // If the text input is empty, display all items
+            if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                filteredItems = options
+                return
+            }
+
+            // Display only the items that match what the user's input
+            filteredItems = options.filter { $0.lowercased().contains(text.lowercased()) }
+
+            // If what they've typed leaves no filtered items, display all options
+
+            if filteredItems.isEmpty {
+                filteredItems = options
+            }
         }
     }
 
@@ -324,34 +369,17 @@ extension HorizonUI {
     ]
 
     VStack {
-        VStack {
-            HorizonUI.SingleSelect(
-                selection: $selection,
-                focused: $focused,
-                label: "Words of the Alphabet",
-                options: options,
-                disabled: false,
-                placeholder: "Select an option",
-                error: "This is an error"
-            )
-            HorizonUI.SingleSelect(
-                selection: Binding(
-                    get: { "Test1" },
-                    set: { _ in }
-                ),
-                focused: Binding(
-                    get: { false },
-                    set: { _ in }
-                ),
-                label: "Test2",
-                options: [],
-                disabled: true,
-                placeholder: "Select an option"
-            )
-            HorizonUI.PrimaryButton("Save Changes", type: .black, fillsWidth: true) {}
-        }
-        .padding(.horizontal, .huiSpaces.space24)
+        HorizonUI.SingleSelect(
+            selection: $selection,
+            focused: $focused,
+            label: "Words of the Alphabet",
+            options: options,
+            disabled: false,
+            placeholder: "Select an option",
+            error: "This is an error"
+        )
+
+        HorizonUI.PrimaryButton("Save Changes", type: .black, fillsWidth: true) {}
     }
-    .frame(maxHeight: .infinity, alignment: .top)
-    .background(HorizonUI.colors.surface.pagePrimary)
+    .padding(.horizontal, .huiSpaces.space24)
 }
