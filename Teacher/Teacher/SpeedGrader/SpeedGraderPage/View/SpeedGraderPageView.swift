@@ -151,7 +151,9 @@ struct SpeedGraderPageView: View {
         .onChange(of: landscapeSplitLayoutViewModel.isRightColumnHidden) { _, isHidden in
             // Auto focus voiceover on the selected tab when the right column is shown
             if isHidden { return }
-            focusedTab = selectedTab
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                focusedTab = selectedTab
+            }
         }
     }
 
