@@ -166,7 +166,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         let submissionsUseCase = GetSubmissions(context: context, assignmentID: assignmentID, filter: filter)
         submissionsUseCase.shuffled = anonymizeStudents
         return ReactiveStore(useCase: submissionsUseCase, environment: env)
-            .getEntities(loadAllPages: true)
+            .getEntities(ignoreCache: true, loadAllPages: true)
             .eraseToAnyPublisher()
     }
 
