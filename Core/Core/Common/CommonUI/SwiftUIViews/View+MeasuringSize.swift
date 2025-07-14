@@ -66,4 +66,20 @@ extension View {
             binding.wrappedValue = size
         }
     }
+
+    public func onHeightChange(_ perform: @escaping (CGFloat) -> Void) -> some View {
+        onGeometryChange(for: CGFloat.self) { geometry in
+            geometry.size.height
+        } action: { height in
+            perform(height)
+        }
+    }
+
+    public func onHeightChange(update binding: Binding<CGFloat>) -> some View {
+        onGeometryChange(for: CGFloat.self) { geometry in
+            geometry.size.height
+        } action: { height in
+            binding.wrappedValue = height
+        }
+    }
 }
