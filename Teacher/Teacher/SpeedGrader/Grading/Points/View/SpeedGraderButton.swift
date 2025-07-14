@@ -28,7 +28,6 @@ struct SpeedGraderButton: View {
         Button(action: action) {
             Text(title)
                 .font(.regular16)
-                .foregroundStyle(.tint)
                 .padding(.bottom, 1)
                 .padding(.vertical, 8)
                 .padding(.horizontal, 17)

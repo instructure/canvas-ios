@@ -50,7 +50,7 @@ class GradeViewModel: ObservableObject {
         self.gradeInteractor = gradeInteractor
         self.mainScheduler = mainScheduler
 
-        setupBindings()
+        observeGradeStateChanges()
     }
 
     // MARK: - User Actions
@@ -82,7 +82,7 @@ class GradeViewModel: ObservableObject {
 
     // MARK: - Private Methods
 
-    private func setupBindings() {
+    private func observeGradeStateChanges() {
         gradeInteractor.gradeState
             .sink { [weak self] newState in
                 self?.state = newState

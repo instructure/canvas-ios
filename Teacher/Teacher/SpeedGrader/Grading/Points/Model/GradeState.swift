@@ -18,15 +18,30 @@
 
 import Core
 
+/// Represents the current state of a student's grade for a submission in SpeedGrader.
+/// This model encapsulates all grade-related information including status flags,
+/// formatted text for display, and the numerical score value.
 struct GradeState: Equatable {
     let hasLateDeduction: Bool
     let isGraded: Bool
     let isExcused: Bool
     let isGradedButNotPosted: Bool
+
+    /// The final grade after late deduction is applied.
     let finalGradeText: String
+
+    /// The original grade's text representation.
+    /// Late deduction is applied to this resulting in the final grade.
     let gradeText: String
+
+    /// Formatted text showing points deducted for late submissions.
     let pointsDeductedText: String
+
+    /// Text to display in grade alert during manual score entry.
     let gradeAlertText: String
+
+    /// The numerical score value for the submission.
+    /// Uses entered score if available, otherwise falls back to calculated score.
     let score: Double
 
     init(
