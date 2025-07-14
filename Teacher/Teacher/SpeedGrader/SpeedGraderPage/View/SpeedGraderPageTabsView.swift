@@ -74,19 +74,21 @@ struct SpeedGraderPageTabsView: View {
                 case .drawer:
                     tabPicker
                         .padding(.bottom, 16)
-                        .onChange(of: selectedTab) {
-                            if drawerState.isClosed { snapDrawer(to: .mid) }
-                            controller.view.endEditing(true)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                focusedTab = selectedTab
-                            }
-                        }
                 case .splitView:
                     tabPicker
                         .frame(height: splitViewHeaderHeight)
                 }
             }
             .padding(.horizontal, 16)
+            .onChange(of: selectedTab) {
+                if drawerState.isClosed {
+                    snapDrawer(to: .mid)
+                }
+                controller.view.endEditing(true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    focusedTab = selectedTab
+                }
+            }
             .identifier("SpeedGrader.toolPicker")
 
             InstUI.Divider()
