@@ -25,6 +25,7 @@ struct HMessageDetailsView: View {
     @Environment(\.viewController) private var viewController
     @State private var attachmentsHeight: CGFloat?
     @FocusState private var isTextAreaFocused: Bool
+    private let scrollOffsetNamespace = "ScrollOffsetNamespace"
 
     init(model: HMessageDetailsViewModel) {
         self.model = model
@@ -44,7 +45,6 @@ struct HMessageDetailsView: View {
     private var content: some View {
         VStack(alignment: .leading) {
             titleBar
-                .padding(.horizontal, HorizonUI.spaces.space24)
             messages
             replyArea
         }
@@ -57,12 +57,23 @@ struct HMessageDetailsView: View {
         ScrollViewReader { proxy in
             RefreshableScrollView(
                 content: {
-                    VStack(spacing: HorizonUI.spaces.space24) {
-                        messageBodies
-                        scrollOffsetReader
+                    ZStack(alignment: .top) {
+                        HorizonUI.Spinner(size: .small)
+                            .padding(.top, HorizonUI.spaces.space24)
+                            .opacity(model.spinnerOpacity)
+                            .animation(.easeInOut(duration: 0.3), value: model.loadingSpinnerOpacity)
+
+                        VStack(spacing: HorizonUI.spaces.space24) {
+                            messageBodies
+                            ScrollOffsetReader(named: "ScrollOffsetNamespace")
+                        }
+                        .padding([.leading, .trailing, .bottom], HorizonUI.spaces.space24)
+                        .padding(.top, HorizonUI.spaces.space16)
+                        .opacity(model.messagesOpacity)
+                        .animation(.easeInOut(duration: 0.3), value: model.messagesOpacity)
                     }
-                    .padding([.leading, .trailing, .bottom], HorizonUI.spaces.space24)
-                    .padding(.top, HorizonUI.spaces.space16)
+                    .frame(maxHeight: .infinity, alignment: .top)
+                    .frame(maxWidth: .infinity)
                 },
                 refreshAction: model.refresh
             )
@@ -86,8 +97,8 @@ struct HMessageDetailsView: View {
                     }
                 }
             }
-            .onPreferenceChange(ScrollOffsetPreferenceKey.self) { _ in
-                model.onScroll()
+            .onPreferenceChange(ScrollOffsetReader.ScrollOffsetPreferenceKey.self) { _ in
+                dismissKeyboard()
             }
         }
     }
@@ -226,14 +237,6 @@ struct HMessageDetailsView: View {
         }
     }
 
-    private var scrollOffsetReader: some View {
-        GeometryReader { geometry in
-            Color.clear
-                .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .global).minY)
-        }
-        .frame(height: 0)
-    }
-
     private var titleBar: some View {
         HStack {
             backButton
@@ -250,6 +253,7 @@ struct HMessageDetailsView: View {
             backButton
                 .opacity(0)
         }
+        .padding(.horizontal, HorizonUI.spaces.space24)
         .frame(maxWidth: .infinity)
     }
 
@@ -263,20 +267,7 @@ struct HMessageDetailsView: View {
     }
 
     private func dismissKeyboard() {
-        UIApplication.shared
-            .connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .flatMap { $0.windows }
-            .first { $0.isKeyWindow }?
-            .endEditing(true)
-    }
-}
-
-struct ScrollOffsetPreferenceKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
+        ScrollOffsetReader.dismissKeyboard()
     }
 }
 

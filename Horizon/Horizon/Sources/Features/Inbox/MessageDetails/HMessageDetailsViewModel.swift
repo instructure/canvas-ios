@@ -28,6 +28,9 @@ class HMessageDetailsViewModel {
     var attachmentItems: [AttachmentItemViewModel] {
         attachmentViewModel?.items ?? []
     }
+    var messagesOpacity: Double {
+        spinnerOpacity == 0.0 ? 1.0 : 0.0
+    }
     var dismissKeyboard: (() -> Void)?
     var isAnimationEnabled: Bool = false
     var isAnnouncementIconVisible: Bool {
@@ -36,6 +39,7 @@ class HMessageDetailsViewModel {
     var isAttachmentsListScrollViewVisible: Bool {
         (attachmentViewModel?.items.count ?? 0) > 3
     }
+    var spinnerOpacity: Double = 0.0
     var isSendDisabled: Bool {
         reply.trimmed().isEmpty || isSending || attachmentViewModel?.isUploading ?? false
     }
@@ -58,7 +62,11 @@ class HMessageDetailsViewModel {
     private let announcementsInteractor: AnnouncementsInteractor?
     private let announcementID: String?
     let attachmentViewModel: AttachmentViewModel?
-    private var conversation: Conversation?
+    private var conversation: Conversation? {
+        didSet {
+            markConversationAsRead()
+        }
+    }
     private let conversationID: String?
     private let composeMessageInteractor: ComposeMessageInteractor?
     private let downloadFileInteractor: DownloadFileInteractor?
@@ -139,10 +147,6 @@ class HMessageDetailsViewModel {
         attachmentViewModel?.isVisible = true
     }
 
-    func onScroll() {
-        dismissKeyboard?()
-    }
-
     func onTextAreaFocusChange(_ isFocused: Bool) {
         if !isFocused {
             reply = reply.trimmed()
@@ -209,9 +213,9 @@ class HMessageDetailsViewModel {
     }
 
     private func listenForMessages() {
+        spinnerOpacity = 1.0
         messageDetailsInteractor?
             .messages
-            .map(markMessageAsRead)
             .map(sortOldestToNewest)
             .map(toViewModels)
             .sink { [weak self] conversationMessages in
@@ -221,6 +225,7 @@ class HMessageDetailsViewModel {
                 self.scheduler.schedule(after: self.scheduler.now.advanced(by: .milliseconds(100))) {
                     self.isAnimationEnabled = true
                 }
+                self.spinnerOpacity = 0.0
             }
             .store(in: &subscriptions)
     }
@@ -239,8 +244,11 @@ class HMessageDetailsViewModel {
         .store(in: &subscriptions)
     }
 
-    private func markMessageAsRead(_ conversationMessages: [ConversationMessage]) -> [ConversationMessage] {
-        if let conversationID = conversationID, isMarkedAsRead == false {
+    private func markConversationAsRead() {
+        if let conversation = conversation,
+           let conversationID = conversationID,
+           conversation.workflowState != .read,
+           isMarkedAsRead == false {
             messageDetailsInteractor?.updateState(
                 messageId: conversationID,
                 state: .read
@@ -254,7 +262,6 @@ class HMessageDetailsViewModel {
             .store(in: &self.subscriptions)
         }
 
-        return conversationMessages
     }
 
     private func sortOldestToNewest(_ conversationMessages: [ConversationMessage]) -> [ConversationMessage] {

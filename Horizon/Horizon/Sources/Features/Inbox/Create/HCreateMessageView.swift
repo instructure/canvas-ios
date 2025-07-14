@@ -50,10 +50,13 @@ struct HCreateMessageView: View {
                     fileAttachments
                     Spacer()
                 }
+                .padding(.horizontal, .huiSpaces.space24)
                 .padding(.top, .huiSpaces.space12)
             }
-            .padding(.horizontal, .huiSpaces.space24)
             .frame(maxHeight: .infinity, alignment: .topLeading)
+            .onTapGesture {
+                ScrollOffsetReader.dismissKeyboard()
+            }
         }
     }
 
@@ -106,8 +109,8 @@ struct HCreateMessageView: View {
                     .opacity(viewModel.sendButtonOpacity)
             }
         }
-        .frame(height: 92)
         .frame(maxWidth: .infinity)
+        .padding(.vertical, .huiSpaces.space12)
         .padding(.horizontal, .huiSpaces.space24)
         .overlay(
             divider,
