@@ -147,10 +147,10 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
 
     private func loadCourse() -> AnyPublisher<Course, Error> {
         Publishers.CombineLatest(
-            ReactiveStore(useCase: GetCourse(courseID: env.convertToRootID(context.id)), environment: env.root)
+            ReactiveStore(useCase: GetCourse(courseID: context.id), environment: env)
                 .getEntities()
                 .tryMap { try $0.first.unwrapOrThrow() },
-            ReactiveStore(useCase: GetCustomColors(), environment: env.root)
+            ReactiveStore(useCase: GetCustomColors(), environment: env)
                 .getEntities()
         )
         .map { course, _ in course }

@@ -75,12 +75,12 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
         colorListStore = ReactiveStore(
             useCase: GetCustomColors(),
-            environment: env.root
+            environment: env
         )
 
         courseStore = ReactiveStore(
-            useCase: GetCourse(courseID: env.convertToRootID(courseID)),
-            environment: env.root
+            useCase: GetCourse(courseID: courseID),
+            environment: env
         )
 
         gradingPeriodListStore = ReactiveStore(
