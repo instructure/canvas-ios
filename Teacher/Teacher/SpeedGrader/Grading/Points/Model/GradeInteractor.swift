@@ -20,6 +20,9 @@ import Combine
 import Core
 import CoreData
 
+/// Protocol for managing grade state and grade saving operations in SpeedGrader.
+/// Provides reactive grade state updates based on Core Data changes and rubric interactions,
+/// and handles API calls on grade modifications.
 protocol GradeInteractor {
     var gradeState: AnyPublisher<GradeState, Never> { get }
     func saveGrade(excused: Bool?, grade: String?) -> AnyPublisher<Void, Error>
@@ -38,17 +41,20 @@ class GradeInteractorLive: GradeInteractor {
     private let assignment: Assignment
     private let submission: Submission
     private let rubricGradingInteractor: RubricGradingInteractor
+    private let gradeStateInteractor: GradeStateInteractor
 
     // MARK: - Initialization
 
     init(
         assignment: Assignment,
         submission: Submission,
-        rubricGradingInteractor: RubricGradingInteractor
+        rubricGradingInteractor: RubricGradingInteractor,
+        gradeStateInteractor: GradeStateInteractor = GradeStateInteractorLive()
     ) {
         self.assignment = assignment
         self.submission = submission
         self.rubricGradingInteractor = rubricGradingInteractor
+        self.gradeStateInteractor = gradeStateInteractor
         self.gradeState = gradeStateSubject.eraseToAnyPublisher()
 
         observeChanges(of: submission.objectID)
@@ -96,10 +102,12 @@ class GradeInteractorLive: GradeInteractor {
             receiveCompletion: { _ in },
             receiveValue: { [weak self] updatedSubmission, isRubricScoreAvailable, totalRubricScore in
                 guard let self else { return }
-                let newState = updatedSubmission.gradeState(
+                let newState = gradeStateInteractor.gradeState(
+                    submission: updatedSubmission,
                     assignment: assignment,
                     isRubricScoreAvailable: isRubricScoreAvailable,
-                    totalRubricScore: totalRubricScore)
+                    totalRubricScore: totalRubricScore
+                )
                 gradeStateSubject.send(newState)
             }
         )

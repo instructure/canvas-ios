@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
 import CoreData
 
@@ -38,13 +39,16 @@ class GradeViewModel: ObservableObject {
 
     private let gradeInteractor: GradeInteractor
     private var cancellables = Set<AnyCancellable>()
+    private let mainScheduler: AnySchedulerOf<DispatchQueue>
 
     init(
         assignment: Assignment,
         submission: Submission,
-        gradeInteractor: GradeInteractor
+        gradeInteractor: GradeInteractor,
+        mainScheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.gradeInteractor = gradeInteractor
+        self.mainScheduler = mainScheduler
 
         setupBindings()
     }
@@ -91,7 +95,7 @@ class GradeViewModel: ObservableObject {
         isSaving = true
 
         gradeInteractor.saveGrade(excused: excused, grade: grade)
-            .receive(on: DispatchQueue.main)
+            .receive(on: mainScheduler)
             .sink(
                 receiveCompletion: { [weak self] completion in
                     self?.isSaving = false
