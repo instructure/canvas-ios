@@ -30,6 +30,7 @@ extension HorizonUI {
         private let options: [String]
         private let placeholder: String?
         @Binding private var selection: String
+        private let zIndex: Double
 
         // MARK: Properties
 
@@ -72,7 +73,8 @@ extension HorizonUI {
             options: [String],
             disabled: Bool = false,
             placeholder: String? = nil,
-            error: String? = nil
+            error: String? = nil,
+            zIndex: Double = 101
         ) {
             self.label = label
             self.options = options
@@ -85,6 +87,7 @@ extension HorizonUI {
             self.isSearchable = isSearchable
             self.filteredItems = options
             self.originalSelection = selection.wrappedValue
+            self.zIndex = zIndex
         }
 
         public var body: some View {
@@ -101,7 +104,7 @@ extension HorizonUI {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: bodyHeight, alignment: .top)
-            .zIndex(101)
+            .zIndex(zIndex)
         }
 
         // MARK: - Private
@@ -224,6 +227,10 @@ extension HorizonUI {
                     .rotationEffect(.degrees(focused ? -90 : 90))
                     .animation(.easeInOut, value: focused)
             }
+            .background(
+                Color.huiColors.surface.cardPrimary
+                    .cornerRadius(textOverlayCornerRadius(isOuter: false))
+            )
             .padding(.huiSpaces.space4)
             .overlay(textOverlay(isOuter: true))
             .frame(maxWidth: .infinity)
@@ -236,7 +243,6 @@ extension HorizonUI {
                 }
             }
             .onTapGesture(perform: onTapText)
-            .background(Color.huiColors.surface.cardPrimary)
             .opacity(disabled ? 0.5 : 1.0)
         }
 
