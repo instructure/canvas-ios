@@ -30,6 +30,7 @@ struct ScoresAssignmentsView: View {
             HorizonUI.SingleSelect(
                 selection: $selectedSortOption,
                 focused: $selectionSortFocused,
+                isSearchable: false,
                 label: String(localized: "Sort By", bundle: .horizon),
                 options: ScoreDetails.SortOption.allCases.map(\.localizedTitle)
             )
