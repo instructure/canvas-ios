@@ -34,8 +34,9 @@ public class ComposeMessageInteractorPreview: ComposeMessageInteractor {
 
     public init() {}
 
-    public func addFile(url: URL) {
+    public func addFile(url: URL) -> File? {
         addFileWithURLCalled = true
+        return nil
     }
 
     public func addFile(file: File) {

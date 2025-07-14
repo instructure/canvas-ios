@@ -62,15 +62,17 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
         setupAttachmentListBinding()
     }
 
-    public func addFile(url: URL) {
+    public func addFile(url: URL) -> File? {
         do {
-            try uploadManager.add(url: url, batchID: batchId)
+            let file = try uploadManager.add(url: url, batchID: batchId)
             fileStore.refresh()
             uploadFiles()
+            return file
         } catch {
             // On any error, the file object will contaion the error message.
             // Use retry() function to retry.
         }
+        return nil
     }
 
     public func addFile(file: File) {

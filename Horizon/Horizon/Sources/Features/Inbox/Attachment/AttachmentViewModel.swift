@@ -53,6 +53,7 @@ class AttachmentViewModel {
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
+    private var observations = [String: NSKeyValueObservation]()
 
     // MARK: - Dependencies
     private let composeMessageInteractor: ComposeMessageInteractor
@@ -73,14 +74,10 @@ class AttachmentViewModel {
     }
 
     // MARK: - Inputs
-    func addFile(file: File) {
-        composeMessageInteractor.addFile(file: file)
-    }
-
     func addFile(url: URL) {
         dismiss()
-        if url.startAccessingSecurityScopedResource() {
-            composeMessageInteractor.addFile(url: url)
+        if let file = composeMessageInteractor.addFile(url: url) {
+            confirmFileUpload(for: file)
         }
     }
 
@@ -111,6 +108,23 @@ class AttachmentViewModel {
         }
     }
 
+    private func confirmFileUpload(for file: File) {
+        guard let createdAt = file.createdAt?.description else {
+            return
+        }
+        let observation = file.observe(\.url) { [weak self] file, _ in
+            guard let self = self,
+                  file.url != nil else {
+                return
+            }
+            self.downloadFileInteractor.download(file: file)
+                .sink()
+                .store(in: &self.subscriptions)
+            self.observations[createdAt]?.invalidate()
+        }
+        observations[createdAt] = observation
+    }
+
     private func dismiss() {
         isVisible = false
         isFilePickerVisible = false
@@ -124,7 +138,7 @@ class AttachmentViewModel {
             .sink { [weak self] files in
                 guard let self else { return }
                 self.items = files.map {
-                    AttachmentItemViewModel(
+                    return AttachmentItemViewModel(
                         $0,
                         isOnlyForDownload: false,
                         router: self.router,
