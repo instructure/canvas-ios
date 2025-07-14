@@ -54,9 +54,6 @@ extension HorizonUI {
         @Binding private var focused: Bool
         @FocusState private var searchFocuse: Bool
 
-        // The computed height of the label
-        @State private var labelMeasuredHeight: CGFloat = 0
-
         // The container height for the text input. This is used to fix the height
         // of the entire component so when the options are displayed, it doesnt
         // push the content below it down
@@ -91,12 +88,21 @@ extension HorizonUI {
         }
 
         public var body: some View {
-            VStack {
+            VStack(spacing: .zero) {
                 VStack(spacing: 8) {
                     labelText
                     textInput
                 }
                 .onTapGesture(perform: onTapText)
+                .background {
+                    GeometryReader { geometry in
+                        HStack {}
+                            .onAppear {
+                                textInputMeasuredHeight = geometry.size.height
+                            }
+                    }
+                }
+
                 ZStack(alignment: .top) {
                     errorText
                     displayedOptions
@@ -124,6 +130,7 @@ extension HorizonUI {
             .frame(height: displayedOptionsHeight)
             .cornerRadius(HorizonUI.CornerRadius.level1_5.attributes.radius)
             .shadow(radius: HorizonUI.Elevations.level1.attributes.blur)
+            .padding(.top, .huiSpaces.space8)
             .animation(.easeInOut, value: displayedOptionsHeight)
         }
 
@@ -164,17 +171,19 @@ extension HorizonUI {
                         .huiTypography(.p2)
                         .foregroundColor(.huiColors.text.error)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, .huiSpaces.space8)
+                .padding(.top, .huiSpaces.space2)
                 .background {
                     GeometryReader { geometry in
                         HStack {}
                             .onAppear {
-                                errorHeight = geometry.size.height
+                                if errorHeight != geometry.size.height {
+                                    errorHeight = geometry.size.height
+                                }
                             }
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, .huiSpaces.space8)
-                .padding(.top, .huiSpaces.space2)
             }
         }
 
@@ -186,14 +195,6 @@ extension HorizonUI {
                     .padding(.leading, .huiSpaces.space8)
                     .huiTypography(.labelLargeBold)
                     .foregroundColor(.huiColors.text.body)
-                    .background {
-                        GeometryReader { geometry in
-                            HStack {}
-                                .onAppear {
-                                    labelMeasuredHeight = geometry.size.height
-                                }
-                        }
-                    }
             }
         }
 
@@ -234,14 +235,6 @@ extension HorizonUI {
             .padding(.huiSpaces.space4)
             .overlay(textOverlay(isOuter: true))
             .frame(maxWidth: .infinity)
-            .background {
-                GeometryReader { geometry in
-                    HStack {}
-                        .onAppear {
-                            textInputMeasuredHeight = geometry.size.height
-                        }
-                }
-            }
             .onTapGesture(perform: onTapText)
             .opacity(disabled ? 0.5 : 1.0)
         }
