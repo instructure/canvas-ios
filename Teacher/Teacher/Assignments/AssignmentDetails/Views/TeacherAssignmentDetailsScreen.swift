@@ -39,7 +39,7 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
         self.courseID = courseID
 
         assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID))
-        course = env.root.subscribe(GetCourse(courseID: env.convertToRootID(courseID)))
+        course = env.subscribe(GetCourse(courseID: courseID))
 
         screenViewTrackingParameters = ScreenViewTrackingParameters(
             eventName: "/courses/\(courseID)/assignments/\(assignmentID)"

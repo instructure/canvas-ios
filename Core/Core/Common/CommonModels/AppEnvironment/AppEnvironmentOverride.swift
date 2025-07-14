@@ -32,18 +32,6 @@ public final class AppEnvironmentOverride: AppEnvironment {
         super.init()
     }
 
-    public override var root: AppEnvironment { base }
-
-    public override func convertToRootID(_ id: String) -> String {
-
-        guard let shardID = root.currentSession?.accessToken?.shardID
-        else { return id }
-
-        if id.hasShardID { return id }
-
-        return ID.expandTildeID("\(shardID)~\(id)")
-    }
-
     private lazy var apiOverride: API = {
         API(currentSession, baseURL: baseURL)
     }()
@@ -101,7 +89,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
                 masquerader: cSession.masquerader,
                 refreshToken: cSession.refreshToken,
                 userAvatarURL: cSession.userAvatarURL,
-                userID: cSession.userID,
+                userID: cSession.userID.localID,
                 userName: cSession.userName,
                 userEmail: cSession.userEmail,
                 clientID: cSession.clientID,

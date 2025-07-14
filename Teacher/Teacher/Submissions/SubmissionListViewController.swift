@@ -48,7 +48,7 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
     lazy var colors = env.root.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var course = env.root.subscribe(GetCourse(courseID: env.convertToRootID(context.id))) { [weak self] in
+    lazy var course = env.root.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
     lazy var enrollments = env.subscribe(GetEnrollments(context: context)) { [weak self] in

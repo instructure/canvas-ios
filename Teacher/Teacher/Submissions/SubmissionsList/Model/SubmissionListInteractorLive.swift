@@ -42,8 +42,8 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
         self.env = env
 
         courseStore = ReactiveStore(
-            useCase: GetCourse(courseID: env.convertToRootID(context.id)),
-            environment: env.root
+            useCase: GetCourse(courseID: context.id),
+            environment: env
         )
 
         assignmentStore = ReactiveStore(

@@ -64,7 +64,6 @@ open class AppEnvironment {
     }
 
     open var root: AppEnvironment { self }
-    open func convertToRootID(_ id: String) -> String { id }
 
     /**
      - parameters:

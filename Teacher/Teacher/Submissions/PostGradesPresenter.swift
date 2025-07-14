@@ -47,11 +47,11 @@ class PostGradesPresenter {
 
     private var subscriptions = Set<AnyCancellable>()
 
-    lazy var colors = env.root.subscribe(GetCustomColors()) { [weak self] in
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateColor()
     }
 
-    lazy var courses = env.root.subscribe(GetCourse(courseID: env.convertToRootID(courseID)), { [weak self] in
+    lazy var courses = env.subscribe(GetCourse(courseID: courseID), { [weak self] in
         self?.updateColor()
     })
 

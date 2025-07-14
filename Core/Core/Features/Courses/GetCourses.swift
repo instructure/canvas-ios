@@ -26,7 +26,7 @@ public class GetCourse: APIUseCase {
     private let include: [GetCourseRequest.Include]
 
     public init(courseID: String, include: [GetCourseRequest.Include] = GetCourseRequest.defaultIncludes) {
-        self.courseID = courseID
+        self.courseID = courseID.asRootID // Should always be used in root-form ID
         self.include = include
     }
 
@@ -40,6 +40,14 @@ public class GetCourse: APIUseCase {
 
     public var request: GetCourseRequest {
         return GetCourseRequest(courseID: courseID, include: include)
+    }
+
+    public func makeRequest(
+        environment: AppEnvironment,
+        completionHandler: @escaping (APICourse?, URLResponse?, Error?) -> Void
+    ) {
+        // Always call root API for use case
+        environment.root.api.makeRequest(request, callback: completionHandler)
     }
 }
 
