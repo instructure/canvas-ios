@@ -76,8 +76,10 @@ class CoursePageGoal: Goal {
                     return self.quiz()
                 case .FlashCards:
                     return self.flashcards()
-                case .Translate:
-                    return self.translate(response: response)
+                default:
+                    return Just(nil)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
                 }
             }
             .eraseToAnyPublisher()
