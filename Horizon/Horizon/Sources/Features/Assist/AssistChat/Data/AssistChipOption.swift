@@ -26,52 +26,6 @@ struct AssistChipOption: Equatable {
         self.chip = chip
         self.prompt = prompt ?? chip
     }
-
-    enum Default: Codable, CaseIterable {
-        case summarize
-        case keyTakeaways
-        case tellMeMore
-        case flashcards
-        case quiz
-
-        var rawValue: String {
-            switch self {
-            case .summarize:
-                return String(localized: "Summarize", bundle: .horizon)
-            case .keyTakeaways:
-                return String(localized: "Key takeaways", bundle: .horizon)
-            case .tellMeMore:
-                return String(localized: "Tell me more", bundle: .horizon)
-            case .flashcards:
-                return String(localized: "Flash cards", bundle: .horizon)
-            case .quiz:
-                return String(localized: "Quiz", bundle: .horizon)
-            }
-        }
-    }
-
-    // swiftlint:disable line_length
-    init(_ option: Default, userShortName: String? = nil) {
-        chip = option.rawValue
-
-        var introduction = ""
-        if let userShortName = userShortName {
-            introduction = "You can address me as \(userShortName)."
-        }
-        switch option {
-        case .summarize:
-            prompt = "\(introduction) Give me a 1-2 paragraph summary of the content; don't use any information besides the provided content."
-        case .keyTakeaways:
-            prompt = "\(introduction) Give some key takeaways from this content; don't use any information besides the provided content. Return the response as a bulleted list."
-        case .tellMeMore:
-            prompt = "\(introduction) In 1-2 paragraphs, tell me more about this content."
-        case .flashcards:
-            prompt = "\(introduction) I'm creating flash cards. Give me 7 questions with answers based on the content. Return the result in JSON format like: [{question: '', answer: ''}, {question: '', answer: ''}] without any further description or text. Your flash cards should not refer to the format of the content, but rather the content itself."
-        case .quiz:
-            prompt = "Generate a quiz"
-        }
-    }
-    // swiftlint:enable line_length
 }
 
 extension AssistChipOption: Codable, Hashable {

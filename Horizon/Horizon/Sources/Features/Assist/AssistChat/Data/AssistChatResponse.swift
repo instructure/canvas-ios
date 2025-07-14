@@ -20,7 +20,7 @@ import Core
 import Foundation
 
 /// A response from the interactor
-class AssistChatResponse {
+struct AssistChatResponse {
 
     // MARK: - Required
 
