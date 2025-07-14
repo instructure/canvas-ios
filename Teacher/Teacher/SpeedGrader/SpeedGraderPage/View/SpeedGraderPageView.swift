@@ -32,6 +32,7 @@ struct SpeedGraderPageView: View {
         case landscape // only on iPads no matter the iPhone screen size
     }
 
+    @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
@@ -348,7 +349,8 @@ struct SpeedGraderPageView: View {
             a11yFocusedTab: _a11yFocusedTab,
             drawerState: $drawerState,
             splitViewHeaderHeight: $headerHeight,
-            viewModel: viewModel
+            viewModel: viewModel,
+            env: env
         )
     }
 
