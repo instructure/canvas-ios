@@ -188,10 +188,10 @@ class HMessageDetailsViewModel {
         .receive(on: scheduler)
         .sink(
             receiveCompletion: { _ in },
-            receiveValue: { _ in
-                self.isSending = false
-                self.reply = ""
-                self.composeMessageInteractor?.cancel()
+            receiveValue: { [weak self] _ in
+                self?.isSending = false
+                self?.reply = ""
+                self?.composeMessageInteractor?.cancel()
             }
         )
         .store(in: &self.subscriptions)

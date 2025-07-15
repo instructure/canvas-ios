@@ -59,11 +59,6 @@ struct RecipientSelectionView: View {
     }
 
     private func dismissKeyboard() {
-        UIApplication.shared
-            .connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .flatMap { $0.windows }
-            .first { $0.isKeyWindow }?
-            .endEditing(true)
+        ScrollOffsetReader.dismissKeyboard()
     }
 }

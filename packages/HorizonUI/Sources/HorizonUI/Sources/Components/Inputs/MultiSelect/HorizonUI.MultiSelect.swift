@@ -118,8 +118,8 @@ extension HorizonUI {
         }
 
         public var body: some View {
-            VStack(spacing: 0) {
-                VStack(spacing: 8) {
+            VStack(spacing: .zero) {
+                VStack(spacing: .huiSpaces.space8) {
                     labelText
                     textFieldAndChevron
                 }
@@ -130,12 +130,12 @@ extension HorizonUI {
                     dropDownOptionsWithSpinner
                         .zIndex(zIndex)
                 }
-                .padding(.horizontal, 3)
+                .padding(.horizontal, .huiSpaces.space4)
             }
             .background(.clear)
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: bodyHeight, alignment: .top)
-            .padding(1)
+            .padding(.huiSpaces.space2)
             .zIndex(zIndex)
         }
 

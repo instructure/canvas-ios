@@ -142,7 +142,7 @@ extension HorizonUI {
                     )
                     .animation(.easeInOut, value: textFieldBorderColor)
             )
-            .padding(3)
+            .padding(.huiSpaces.space4)
             .background(Color.huiColors.surface.pageSecondary)
             .focused($focused)
             .disabled(disabled)

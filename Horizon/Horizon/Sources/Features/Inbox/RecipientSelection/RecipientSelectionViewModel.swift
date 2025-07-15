@@ -54,7 +54,6 @@ class RecipientSelectionViewModel {
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
-    private let api: API
     private let currentUserID: String
     private let dispatchQueue: AnySchedulerOf<DispatchQueue>
     private let environment: AppEnvironment
@@ -63,13 +62,11 @@ class RecipientSelectionViewModel {
     // MARK: - Init
     init(
         environment: AppEnvironment = .shared,
-        api: API = AppEnvironment.shared.api,
         currentUserID: String = AppEnvironment.shared.currentSession?.userID ?? "",
         dispatchQueue: AnySchedulerOf<DispatchQueue> = .main,
         recipientsSearch: RecipientsSearchInteractor = RecipientsSearchInteractorLive()
     ) {
         self.environment = environment
-        self.api = api
         self.currentUserID = currentUserID
         self.contextSubject = .init(.user(currentUserID))
         self.dispatchQueue = dispatchQueue

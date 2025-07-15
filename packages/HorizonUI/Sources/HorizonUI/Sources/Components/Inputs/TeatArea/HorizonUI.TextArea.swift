@@ -154,7 +154,7 @@ extension HorizonUI {
 
         private var textFieldContainer: some View {
             textField
-                .padding(3)
+                .padding(.huiSpaces.space4)
                 .overlay(
                     RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius + 2)
                         .stroke(

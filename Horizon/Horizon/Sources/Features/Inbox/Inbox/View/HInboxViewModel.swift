@@ -75,27 +75,23 @@ class HInboxViewModel {
     }
     var messageListOpacity = 0.0
     var messageRows: [MessageRowViewModel] = []
-    var peopleSelectionViewModel: RecipientSelectionViewModel!
+    var peopleSelectionViewModel: RecipientSelectionViewModel
     var screenState: InstUI.ScreenState = .data
     var spinnerOpacity = 1.0
 
     // MARK: - Private
     private var filterSubject: CurrentValueRelay<FilterOption> = CurrentValueRelay(FilterOption.all)
     private var hasNextPage: Bool = false
-    private var searchAPITask: APITask?
-    private var searchDebounceTask: Task<Void, Never>?
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
 
     private let announcementsInteractor: AnnouncementsInteractor
-    private let api: API
     private let inboxMessageInteractor: InboxMessageInteractor
     private let router: Router
 
     init(
         userID: String = AppEnvironment.shared.currentSession?.userID ?? "",
-        api: API = AppEnvironment.shared.api,
         router: Router = AppEnvironment.shared.router,
         inboxMessageInteractor: InboxMessageInteractor = InboxMessageInteractorLive(
             env: AppEnvironment.shared,
@@ -104,7 +100,6 @@ class HInboxViewModel {
         ),
         announcementsInteractor: AnnouncementsInteractor = AnnouncementsInteractorLive()
     ) {
-        self.api = api
         self.router = router
         self.inboxMessageInteractor = inboxMessageInteractor
         self.announcementsInteractor = announcementsInteractor
