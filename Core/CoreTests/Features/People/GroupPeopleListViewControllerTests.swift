@@ -24,7 +24,7 @@ class GroupPeopleListViewControllerTests: CoreTestCase {
     private let group = Context(.group, id: "1")
 
     func testSectionHeaderAbovePeopleRowsHidden() {
-        let testee = PeopleListViewController.create(context: group)
+        let testee = PeopleListViewController.create(env: environment, context: group)
         testee.loadView()
 
         let sectionHeight = testee.tableView?.delegate?.tableView?(testee.tableView!, heightForHeaderInSection: 0) ?? -1

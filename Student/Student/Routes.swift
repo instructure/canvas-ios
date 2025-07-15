@@ -376,9 +376,9 @@ let router = Router(routes: [
         return CoreHostingController(PageEditorView(context: context, url: slug))
     },
 
-    RouteHandler("/courses/:courseID/quizzes") { _, params, _ in
+    RouteHandler("/courses/:courseID/quizzes") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
-        return QuizListViewController.create(courseID: ID.expandTildeID(courseID))
+        return QuizListViewController.create(env: env, courseID: ID.expandTildeID(courseID))
     },
 
     RouteHandler("/courses/:courseID/quizzes/:quizID") { url, params, _ in
@@ -398,14 +398,14 @@ let router = Router(routes: [
     // No native support, fall back to web
     // "/courses/:courseID/settings": { url, _ in },
 
-    RouteHandler("/courses/:courseID/users") { _, params, _ in
+    RouteHandler("/courses/:courseID/users") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
-        return PeopleListViewController.create(context: .course(courseID))
+        return PeopleListViewController.create(env: env, context: .course(courseID))
     },
 
-    RouteHandler("/groups/:groupID/users") { _, params, _ in
+    RouteHandler("/groups/:groupID/users") { _, params, _, env in
         guard let groupID = params["groupID"] else { return nil }
-        return PeopleListViewController.create(context: .group(groupID))
+        return PeopleListViewController.create(env: env, context: .group(groupID))
     },
 
     RouteHandler("/courses/:courseID/users/:userID", factory: contextCard),
@@ -615,12 +615,12 @@ private func discussionViewController(
     }
 }
 
-private func contextCard(url _: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
+private func contextCard(url _: URLComponents, params: [String: String], userInfo _: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard let courseID = params["courseID"], let userID = params["userID"] else { return nil }
-    let currentUserID = AppEnvironment.shared.currentSession?.userID ?? ""
+    let currentUserID = env.currentSession?.userID ?? ""
     let showSubmissions = (currentUserID == userID)
-    let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: currentUserID, isSubmissionRowsVisible: showSubmissions, isLastActivityVisible: false)
-    return CoreHostingController(ContextCardView(model: viewModel))
+    let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: currentUserID, isSubmissionRowsVisible: showSubmissions, isLastActivityVisible: false, env: env)
+    return CoreHostingController(ContextCardView(model: viewModel), env: env)
 }
 
 private func groupContextCard(url _: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
