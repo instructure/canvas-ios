@@ -23,8 +23,11 @@ import Foundation
 final class SubmissionCommentInteractorPreview: SubmissionCommentInteractor {
     func getComments(
         assignmentID: String,
-        ignoreCache: Bool
-    ) -> AnyPublisher<[SubmissionComment], any Error> {
+        attempt: Int,
+        ignoreCache: Bool,
+        beforeCursor: String?,
+        last: Int?
+    ) -> AnyPublisher<[SubmissionComment], Error> {
         Just([
             SubmissionComment(
                 id: "1",
@@ -33,7 +36,10 @@ final class SubmissionCommentInteractorPreview: SubmissionCommentInteractor {
                 authorName: "Learner",
                 comment: "First comment on submission",
                 createdAt: Date(),
-                isCurrentUsersComment: true
+                isCurrentUsersComment: true,
+                hasNextPage: false,
+                hasPreviousPage: true,
+                startCursor: "NDI"
             ),
             SubmissionComment(
                 id: "2",
@@ -42,56 +48,13 @@ final class SubmissionCommentInteractorPreview: SubmissionCommentInteractor {
                 authorName: "Educator",
                 comment: "Replying to Learner",
                 createdAt: Date(),
-                isCurrentUsersComment: false
+                isCurrentUsersComment: false,
+                hasNextPage: false,
+                hasPreviousPage: true,
+                startCursor: "NDI",
             )
-        ])
-        .setFailureType(to: Error.self)
-        .eraseToAnyPublisher()
-    }
-
-    func getComments(
-        assignmentID _: String,
-        attempt _: Int? = nil,
-        ignoreCache: Bool = false
-    ) -> AnyPublisher<[SubmissionComment], any Error> {
-        Just([
-            SubmissionComment(
-                id: "1",
-                attempt: 1,
-                authorID: "1",
-                authorName: "Learner",
-                comment: "First comment on submission",
-                createdAt: Date(),
-                isCurrentUsersComment: true
-            ),
-            SubmissionComment(
-                id: "2",
-                attempt: 1,
-                authorID: "2",
-                authorName: "Educator",
-                comment: "Replying to Learner",
-                createdAt: Date(),
-                isCurrentUsersComment: false
-            ),
-            SubmissionComment(
-                id: "3",
-                attempt: 1,
-                authorID: "2",
-                authorName: "Educator",
-                comment: "Replying again",
-                createdAt: Date(),
-                isCurrentUsersComment: false
-            ),
-            SubmissionComment(
-                id: "4",
-                attempt: 1,
-                authorID: "1",
-                authorName: "Learner",
-                comment: "Dolor sit amet unc ut lacus ac libero ultrices vestibulum.",
-                createdAt: Date(),
-                isCurrentUsersComment: true
-            )
-        ])
+        ]
+        )
         .setFailureType(to: Error.self)
         .eraseToAnyPublisher()
     }
@@ -103,16 +66,6 @@ final class SubmissionCommentInteractorPreview: SubmissionCommentInteractor {
         text _: String
     ) -> AnyPublisher<Void, any Error> {
         Just(())
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-
-    func getNumberOfComments(
-        courseID _: String,
-        assignmentID _: String,
-        attempt _: Int?
-    ) -> AnyPublisher<Int, Error> {
-        Just(4)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
