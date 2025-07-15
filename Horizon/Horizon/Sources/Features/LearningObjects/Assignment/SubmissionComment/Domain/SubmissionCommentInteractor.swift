@@ -90,7 +90,9 @@ final class SubmissionCommentInteractorLive: SubmissionCommentInteractor {
         return ReactiveStore(useCase: useCase)
             .getEntities(ignoreCache: ignoreCache)
             .map { entities in
-                let firstComment = entities.last
+                let firstComment = entities.last?.pageInfo
+                print(firstComment?.hasPreviousPage)
+                print(firstComment?.hasNextPage)
                 let comments = entities.flatMap { $0.comments }
                 return comments.map { comment in
                     SubmissionComment(

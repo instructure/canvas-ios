@@ -23,12 +23,9 @@ final public class CDHSubmission: NSManagedObject {
     @NSManaged public var assignmentID: String
     @NSManaged public var hasUnreadComment: Bool
     @NSManaged public var comments: Set<CDHSubmissionComment>
-    @NSManaged public var startCursor: String?
-    @NSManaged public var hasNextPage: Bool
-    @NSManaged public var hasPreviousPage: Bool
     @NSManaged public var attempt: NSNumber
     @NSManaged public var pageID: String?
-
+    @NSManaged public var pageInfo: CDHSubmissionCommentPageInfo
     @discardableResult
     public static func save(
         _ apiEntity: GetHSubmissionCommentsResponse,
@@ -48,12 +45,16 @@ final public class CDHSubmission: NSManagedObject {
         let submission = apiEntity.data?.submission
         let pageInfo = submission?.commentsConnection?.pageInfo
         dbEntity.id = submission?.id ?? ""
+        dbEntity.pageInfo = CDHSubmissionCommentPageInfo.save(
+            pageInfo,
+            id: submission?.id ?? "",
+            attempt: attempt,
+            pageID: pageID,
+            in: context
+        )
         dbEntity.pageID = pageID ?? ""
         dbEntity.assignmentID = assignmentID
-        dbEntity.startCursor = pageInfo?.startCursor
         dbEntity.attempt = attempt as NSNumber
-        dbEntity.hasNextPage = pageInfo?.hasNextPage ?? false
-        dbEntity.hasPreviousPage = pageInfo?.hasPreviousPage ?? false
         dbEntity.hasUnreadComment = (submission?.unreadCommentCount ?? 0) > 0
 
         if let commentsConnection = submission?.commentsConnection?.edges {

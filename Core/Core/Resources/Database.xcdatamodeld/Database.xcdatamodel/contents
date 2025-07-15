@@ -286,13 +286,11 @@
     <entity name="CDHSubmission" representedClassName="Core.CDHSubmission" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
         <attribute name="attempt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="hasNextPage" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="hasPreviousPage" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="hasUnreadComment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="pageID" optional="YES" attributeType="String"/>
-        <attribute name="startCursor" optional="YES" attributeType="String"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHSubmissionComment" inverseName="relationship" inverseEntity="CDHSubmissionComment"/>
+        <relationship name="pageInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHSubmissionCommentPageInfo" inverseName="relationship" inverseEntity="CDHSubmissionCommentPageInfo"/>
     </entity>
     <entity name="CDHSubmissionComment" representedClassName="Core.CDHSubmissionComment" syncable="YES">
         <attribute name="attemptFromAPI" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -304,6 +302,14 @@
         <attribute name="isRead" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHCommentAttachment" inverseName="relationship" inverseEntity="CDHCommentAttachment"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHSubmission" inverseName="comments" inverseEntity="CDHSubmission"/>
+    </entity>
+    <entity name="CDHSubmissionCommentPageInfo" representedClassName="Core.CDHSubmissionCommentPageInfo" syncable="YES">
+        <attribute name="hasNextPage" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="hasPreviousPage" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="pageID" optional="YES" attributeType="String"/>
+        <attribute name="startCursor" optional="YES" attributeType="String"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHSubmission" inverseName="pageInfo" inverseEntity="CDHSubmission"/>
     </entity>
     <entity name="CDHSubmissionScores" representedClassName="Core.CDHSubmissionScores" syncable="YES">
         <attribute name="enrollmentID" attributeType="String"/>
