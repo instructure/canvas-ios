@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUICore
+import SwiftUI
 
 enum AssignmentPreferenceKeyType: Equatable {
     case confirmation(viewModel: SubmissionAlertViewModel)
