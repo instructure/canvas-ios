@@ -31,7 +31,6 @@ class HMessageDetailsViewModel {
     var messagesOpacity: Double {
         spinnerOpacity == 0.0 ? 1.0 : 0.0
     }
-    var dismissKeyboard: (() -> Void)?
     var isAnimationEnabled: Bool = false
     var isAnnouncementIconVisible: Bool {
         announcementID != nil
@@ -192,7 +191,6 @@ class HMessageDetailsViewModel {
                 self.isSending = false
                 self.reply = ""
                 self.composeMessageInteractor?.cancel()
-                self.dismissKeyboard?()
             }
         )
         .store(in: &self.subscriptions)

@@ -56,6 +56,7 @@ class AttachmentViewModel {
     private var observations = [String: NSKeyValueObservation]()
 
     // MARK: - Dependencies
+    private let acknowledgeFileUploadInteractor: AcknowledgeFileUploadInteractor
     private let composeMessageInteractor: ComposeMessageInteractor
     private let downloadFileInteractor: DownloadFileInteractor
     let router: Router
@@ -64,11 +65,13 @@ class AttachmentViewModel {
     init(
         router: Router = AppEnvironment.shared.router,
         composeMessageInteractor: ComposeMessageInteractor,
-        downloadFileInteractor: DownloadFileInteractor = DownloadFileInteractorLive()
+        downloadFileInteractor: DownloadFileInteractor = DownloadFileInteractorLive(),
+        acknowledgeFileUploadInteractor: AcknowledgeFileUploadInteractor = AcknowledgeFileUploadInteractorLive()
     ) {
         self.router = router
         self.composeMessageInteractor = composeMessageInteractor
         self.downloadFileInteractor = downloadFileInteractor
+        self.acknowledgeFileUploadInteractor = acknowledgeFileUploadInteractor
 
         self.listenForAttachments()
     }
@@ -109,20 +112,7 @@ class AttachmentViewModel {
     }
 
     private func confirmFileUpload(for file: File) {
-        guard let createdAt = file.createdAt?.description else {
-            return
-        }
-        let observation = file.observe(\.url) { [weak self] file, _ in
-            guard let self = self,
-                  file.url != nil else {
-                return
-            }
-            self.downloadFileInteractor.download(file: file)
-                .sink()
-                .store(in: &self.subscriptions)
-            self.observations[createdAt]?.invalidate()
-        }
-        observations[createdAt] = observation
+        acknowledgeFileUploadInteractor.acknowledgeUpload(of: file)
     }
 
     private func dismiss() {

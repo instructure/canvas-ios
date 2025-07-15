@@ -28,7 +28,7 @@ struct HCreateMessageView: View {
     @FocusState private var isSubjectFocused: Bool
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: .zero) {
             header
             bodyContent
             footer
@@ -146,7 +146,7 @@ struct HCreateMessageView: View {
     }
 
     private var header: some View {
-        HStack {
+        HStack(spacing: .zero) {
             Text("Create Message")
                 .huiTypography(.h2)
             Spacer()

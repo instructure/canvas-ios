@@ -49,8 +49,8 @@ class HCreateMessageViewModel {
     }
     var isCourseFocused: Bool = false {
         didSet {
-            if isCourseFocused == true && peopleSelectionViewModel.isFocused == true {
-                peopleSelectionViewModel.isFocused = false
+            if isCourseFocused == true && peopleSelectionViewModel.isFocusedSubject.value == true {
+                peopleSelectionViewModel.isFocusedSubject.accept(false)
             }
         }
     }

@@ -33,14 +33,15 @@ struct RecipientSelectionView: View {
         self.viewModel = viewModel
         self.placeholder = placeholder
         self.disabled = disabled
-
-        self.viewModel.dismissKeyboard = dismissKeyboard
     }
 
     var body: some View {
         HorizonUI.MultiSelect(
             selections: $viewModel.searchByPersonSelections,
-            focused: $viewModel.isFocused,
+            focused: Binding<Bool>(
+                get: { viewModel.isFocusedSubject.value },
+                set: onFocused
+            ),
             label: nil,
             textInput: $viewModel.searchString,
             options: viewModel.personOptions,
@@ -48,6 +49,13 @@ struct RecipientSelectionView: View {
             disabled: disabled,
             placeholder: placeholder
         )
+    }
+
+    private func onFocused(oldValue: Bool) {
+        viewModel.isFocusedSubject.accept(oldValue)
+        if !oldValue {
+            dismissKeyboard()
+        }
     }
 
     private func dismissKeyboard() {

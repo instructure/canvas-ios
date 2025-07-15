@@ -29,7 +29,6 @@ struct HMessageDetailsView: View {
 
     init(model: HMessageDetailsViewModel) {
         self.model = model
-        self.model.dismissKeyboard = dismissKeyboard
     }
 
     var body: some View {
@@ -229,6 +228,7 @@ struct HMessageDetailsView: View {
                     String(localized: "Send", bundle: .horizon),
                     type: .institution
                 ) {
+                    dismissKeyboard()
                     model.sendMessage(viewController: viewController)
                 }
                 .disabled(model.isSendDisabled)

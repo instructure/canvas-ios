@@ -272,8 +272,8 @@ class HInboxViewModel {
     }
 
     private func onMessagesFilterFocused() {
-        if isMessagesFilterFocused && peopleSelectionViewModel.isFocused {
-            peopleSelectionViewModel.isFocused = false
+        if isMessagesFilterFocused && peopleSelectionViewModel.isFocusedSubject.value {
+            peopleSelectionViewModel.isFocusedSubject.accept(false)
         }
     }
 

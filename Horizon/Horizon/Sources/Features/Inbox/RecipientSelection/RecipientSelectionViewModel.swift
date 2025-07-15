@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineExt
 import CombineSchedulers
 import Core
 import Foundation
@@ -26,13 +27,7 @@ import Observation
 @Observable
 class RecipientSelectionViewModel {
     // MARK: - Outputs
-    var isFocused: Bool = false {
-        didSet {
-            onFocused(oldValue: oldValue)
-        }
-    }
-    let isFocusedSubject = CurrentValueSubject<Bool, Never>(false)
-    var dismissKeyboard: (() -> Void)?
+    let isFocusedSubject = CurrentValueRelay<Bool>(false)
     var personOptions: [HorizonUI.MultiSelect.Option] = []
     var recipientIDs: [String] {
         searchByPersonSelections.map { $0.id }
@@ -96,13 +91,6 @@ class RecipientSelectionViewModel {
     }
 
     // MARK: - Private Methods
-
-    private func onFocused(oldValue: Bool = false) {
-        if oldValue && !isFocused {
-            dismissKeyboard?()
-        }
-        isFocusedSubject.send(isFocused)
-    }
 
     private func listenForRecipients() {
         recipientsSearch.recipients
