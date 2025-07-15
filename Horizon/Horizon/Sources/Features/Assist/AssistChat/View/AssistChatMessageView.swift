@@ -24,7 +24,7 @@ struct AssistChatMessageView: View {
     let message: AssistChatMessageViewModel
 
     var body: some View {
-        VStack(spacing: .zero) {
+        VStack(alignment: .leading, spacing: .zero) {
             messageContent
                 .frame(maxWidth: .infinity, alignment: message.alignment)
                 .onTapGesture {
@@ -43,6 +43,14 @@ struct AssistChatMessageView: View {
             }
             .padding(.vertical, .huiSpaces.space8)
             .frame(maxWidth: .infinity, alignment: .leading)
+            feedback
+        }
+    }
+
+    @ViewBuilder
+    private var feedback: some View {
+        if let onFeedbackChange = message.onFeedbackChange {
+            AssistFeedbackView(onChange: onFeedbackChange)
         }
     }
 
@@ -70,7 +78,15 @@ struct AssistChatMessageView: View {
 #Preview {
     VStack {
         AssistChatMessageView(message: .init(content: "Hi Horizon App", style: .semitransparent))
-        AssistChatMessageView(message: .init(content: "Hi Horizon App", style: .white))
+        AssistChatMessageView(
+            message: .init(
+                content: "Hi Horizon App",
+                style: .white,
+                onFeedbackChange: { _ in
+
+                }
+            )
+        )
         AssistChatMessageView(message: .init())
         AssistChatMessageView(message: .init(
             content: "You are a duck",

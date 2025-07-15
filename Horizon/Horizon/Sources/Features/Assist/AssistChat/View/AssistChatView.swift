@@ -77,7 +77,6 @@ struct AssistChatView: View {
                 ForEach(viewModel.messages, id: \.id) { message in
                     AssistChatMessageView(message: message)
                         .id(message.id)
-                        .transition(.scaleAndFade)
                 }
                 .animation(.smooth, value: viewModel.isRetryButtonVisible)
                 .animation(.smooth, value: viewModel.messages)
@@ -147,25 +146,6 @@ struct AssistChatView: View {
                 .disabled(viewModel.isDisableSendButton)
             }
         }
-    }
-}
-
-extension AnyTransition {
-    static var scaleAndFade: AnyTransition {
-        AnyTransition.opacity
-            .combined(with: .modifier(
-                active: ScaleEffectModifier(scale: 0.8),
-                identity: ScaleEffectModifier(scale: 1.0)
-            ))
-    }
-}
-
-struct ScaleEffectModifier: ViewModifier {
-    let scale: CGFloat
-
-    func body(content: Content) -> some View {
-        content
-            .scaleEffect(scale)
     }
 }
 

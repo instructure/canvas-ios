@@ -156,9 +156,17 @@ final class AssistChatViewModel {
         var newMessages: [AssistChatMessageViewModel] = []
 
         shouldOpenKeyboardPublisher.send(messages.count == 1)
-        newMessages = response.chatHistory.map {
-            $0.viewModel(response: response) { [weak self] quickResponse in
-                self?.send(chipOption: quickResponse)
+        newMessages = response.chatHistory.map { message in
+
+            let onFeedbackChange = message.isSolicitingFeedback(with: response) ?
+                self.onFeedbackChange :
+                nil
+
+            return message.viewModel(
+                response: response,
+                onFeedbackChange: onFeedbackChange
+            ) { quickResponse in
+                self.send(chipOption: quickResponse)
             }
         }
 
@@ -203,6 +211,12 @@ final class AssistChatViewModel {
         showMoreButtonPublisher.send(newMessages.last?.id ?? "")
     }
 
+    private func onFeedbackChange(_ isGood: Bool?) {
+        guard let isGood = isGood else { return }
+        let responseType = isGood ? "good" : "bad"
+        Analytics.shared.logEvent("learning-assist-chat\(responseType)-response")
+    }
+
     /// remove any messages that are not in the new list of messages returned from the interactor
     private func remove(notAppearingIn newMessages: [AssistChatMessageViewModel]) {
         messages.removeAll { message in
@@ -241,16 +255,27 @@ private extension AssistChipOption {
 }
 
 private extension AssistChatMessage {
+    func isFinalMessage(in history: [AssistChatMessage]) -> Bool {
+        guard let lastMessage = history.last else { return false }
+        return self.id == lastMessage.id && self.role == .Assistant
+    }
+
+    func isSolicitingFeedback(with response: AssistChatResponse) -> Bool {
+        return self.role == .Assistant && self.isFinalMessage(in: response.chatHistory) && !response.isLoading
+    }
+
     func viewModel(
         response: AssistChatResponse,
+        onFeedbackChange: AssistChatMessageViewModel.OnFeedbackChange? = nil,
         onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil
     ) -> AssistChatMessageViewModel {
         let chipOptions = self.id == response.chatHistory.last?.id ? (response.chatHistory.last?.chipOptions ?? []) : []
         return .init(
-            id: "\(self.id)\(chipOptions.count)",
+            id: "\(self.id)\(chipOptions.count)\(onFeedbackChange != nil ? "feedback" : ""))",
             content: self.text ?? "",
             style: self.role == .Assistant ? .transparent : .white,
             chipOptions: chipOptions,
+            onFeedbackChange: onFeedbackChange,
             onTapChipOption: onTapChipOption
         )
     }

@@ -21,6 +21,7 @@ import HorizonUI
 import SwiftUI
 
 struct AssistChatMessageViewModel: Identifiable, Equatable {
+    typealias OnFeedbackChange = (Bool?) -> Void
     typealias OnTapChipOption = (AssistChipOption) -> Void
     typealias OnTap = () -> Void
 
@@ -35,6 +36,7 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
     let style: Style
     let isLoading: Bool
     let chipOptions: [AssistChipOption]
+    let onFeedbackChange: OnFeedbackChange?
     let onTap: OnTap?
     let onTapChipOption: OnTapChipOption?
 
@@ -44,11 +46,13 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
         style: Style = .white,
         isLoading: Bool = false,
         chipOptions: [AssistChipOption] = [],
+        onFeedbackChange: OnFeedbackChange? = nil,
         onTapChipOption: OnTapChipOption? = nil,
         onTap: OnTap? = nil
     ) {
         self.id = id
         self.content = content
+        self.onFeedbackChange = onFeedbackChange
         self.style = style
         self.isLoading = isLoading
         self.chipOptions = chipOptions
@@ -61,6 +65,7 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
         self.id = UUID().uuidString
         self.isLoading = true
         self.content = ""
+        self.onFeedbackChange = nil
         self.style = .transparent
         self.chipOptions = []
         self.onTapChipOption = nil
