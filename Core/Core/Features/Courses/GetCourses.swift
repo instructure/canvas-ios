@@ -34,8 +34,9 @@ public class GetCourse: APIUseCase {
     public func modified(for env: AppEnvironment) -> Self {
         let modifiedCase = self
 
-        // Should always be used in root-form ID for this case
         if env.isRoot == false {
+            // Should always be used in root-form ID when this
+            // use case is used in inner course details pages
             modifiedCase.courseID = courseID.asRootID
             modifiedCase.isRootCalling = true
         }
@@ -59,6 +60,9 @@ public class GetCourse: APIUseCase {
         environment: AppEnvironment,
         completionHandler: @escaping (APICourse?, URLResponse?, Error?) -> Void
     ) {
+        // Even for instances where `isRootCalling` is set to false, this use case would
+        // still be calling the root API, the difference would be in tweaking `courseID`
+        // parameter. 
         let env = isRootCalling ? environment.root : environment
         env.api.makeRequest(request, callback: completionHandler)
     }
