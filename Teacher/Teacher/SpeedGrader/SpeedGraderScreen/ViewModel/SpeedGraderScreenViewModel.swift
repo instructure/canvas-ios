@@ -191,7 +191,8 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
         let gradeInteractor = GradeInteractorLive(
             assignment: assignment,
             submission: submission,
-            rubricGradingInteractor: rubricGradingInteractor
+            rubricGradingInteractor: rubricGradingInteractor,
+            env: environment
         )
 
         let gradeViewModel = GradeViewModel(

@@ -52,7 +52,8 @@ class GradeInteractorLiveTests: TeacherTestCase {
             assignment: assignment,
             submission: submission,
             rubricGradingInteractor: rubricInteractor,
-            gradeStateInteractor: gradeStateInteractor
+            gradeStateInteractor: gradeStateInteractor,
+            env: environment
         )
 
         // THEN
@@ -132,7 +133,8 @@ class GradeInteractorLiveTests: TeacherTestCase {
         let interactor = GradeInteractorLive(
             assignment: assignment,
             submission: submission,
-            rubricGradingInteractor: rubricInteractor
+            rubricGradingInteractor: rubricInteractor,
+            env: environment
         )
 
         // WHEN

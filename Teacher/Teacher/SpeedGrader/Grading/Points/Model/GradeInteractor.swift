@@ -42,6 +42,7 @@ class GradeInteractorLive: GradeInteractor {
     private let submission: Submission
     private let rubricGradingInteractor: RubricGradingInteractor
     private let gradeStateInteractor: GradeStateInteractor
+    private let env: AppEnvironment
 
     // MARK: - Initialization
 
@@ -49,12 +50,14 @@ class GradeInteractorLive: GradeInteractor {
         assignment: Assignment,
         submission: Submission,
         rubricGradingInteractor: RubricGradingInteractor,
-        gradeStateInteractor: GradeStateInteractor = GradeStateInteractorLive()
+        gradeStateInteractor: GradeStateInteractor = GradeStateInteractorLive(),
+        env: AppEnvironment
     ) {
         self.assignment = assignment
         self.submission = submission
         self.rubricGradingInteractor = rubricGradingInteractor
         self.gradeStateInteractor = gradeStateInteractor
+        self.env = env
         self.gradeState = gradeStateSubject.eraseToAnyPublisher()
 
         observeChanges(of: submission.objectID)
@@ -75,7 +78,7 @@ class GradeInteractorLive: GradeInteractor {
             excused: excused,
             grade: grade
         )
-        .fetchWithFuture()
+        .fetchWithFuture(environment: env)
         .mapToVoid()
         .eraseToAnyPublisher()
     }
@@ -87,7 +90,7 @@ class GradeInteractorLive: GradeInteractor {
             let predicate = NSPredicate(format: "SELF == %@", submissionObjectID)
             let scope = Scope(predicate: predicate, order: [])
             let useCase = LocalUseCase<Submission>(scope: scope)
-            return ReactiveStore(useCase: useCase)
+            return ReactiveStore(useCase: useCase, environment: env)
                 .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
                 .catch { _ in Just([]) }
                 .compactMap { $0.first }
