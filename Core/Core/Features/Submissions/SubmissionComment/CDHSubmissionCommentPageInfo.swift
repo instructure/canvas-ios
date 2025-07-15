@@ -20,7 +20,6 @@ import CoreData
 
 final public class CDHSubmissionCommentPageInfo: NSManagedObject {
     @NSManaged public var id: String
-//    @NSManaged public var attempt: NSNumber
     @NSManaged public var startCursor: String?
     @NSManaged public var hasNextPage: Bool
     @NSManaged public var hasPreviousPage: Bool
@@ -36,7 +35,6 @@ final public class CDHSubmissionCommentPageInfo: NSManagedObject {
     ) -> CDHSubmissionCommentPageInfo {
         let dbEntity: CDHSubmissionCommentPageInfo = context.insert()
         dbEntity.id = id
-//        dbEntity.attempt = attempt as NSNumber
         dbEntity.startCursor = apiEntity?.startCursor
         dbEntity.hasNextPage = apiEntity?.hasNextPage ?? false
         dbEntity.hasPreviousPage = apiEntity?.hasPreviousPage ?? false
