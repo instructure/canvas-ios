@@ -33,6 +33,7 @@ public protocol UseCase {
     func reset(context: NSManagedObjectContext)
     func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext)
     func getNext(from response: URLResponse) -> GetNextRequest<Response>?
+    func modified(for env: AppEnvironment) -> Self
 }
 
 public extension UseCase {
@@ -50,6 +51,10 @@ public extension UseCase {
 
     func reset(context _: NSManagedObjectContext) {
         // no-op
+    }
+
+    func modified(for env: AppEnvironment) -> Self {
+        self
     }
 
     func hasExpired(in client: NSManagedObjectContext) -> Bool {

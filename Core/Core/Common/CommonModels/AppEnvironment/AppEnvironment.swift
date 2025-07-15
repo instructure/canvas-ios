@@ -64,6 +64,7 @@ open class AppEnvironment {
     }
 
     open var root: AppEnvironment { self }
+    public var isRoot: Bool { root === self }
 
     /**
      - parameters:
@@ -132,7 +133,7 @@ open class AppEnvironment {
     public static var shared = AppEnvironment()
 
     public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler = { }) -> Store<U> where U: UseCase {
-        return Store(env: self, useCase: useCase, eventHandler: callback)
+        return Store(env: self, useCase: useCase.modified(for: self), eventHandler: callback)
     }
 
     public func subscribe<Model>(scope: Scope, _ callback: @escaping Store<LocalUseCase<Model>>.EventHandler = {}) -> Store<LocalUseCase<Model>> {

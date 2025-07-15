@@ -22,12 +22,25 @@ import CoreData
 public class GetCourse: APIUseCase {
     public typealias Model = Course
 
-    public let courseID: String
+    public private(set) var courseID: String
     private let include: [GetCourseRequest.Include]
+    private var isRootCalling: Bool = false
 
     public init(courseID: String, include: [GetCourseRequest.Include] = GetCourseRequest.defaultIncludes) {
-        self.courseID = courseID.asRootID // Should always be used in root-form ID
+        self.courseID = courseID
         self.include = include
+    }
+
+    public func modified(for env: AppEnvironment) -> Self {
+        let modifiedCase = self
+
+        // Should always be used in root-form ID for this case
+        if env.isRoot == false {
+            modifiedCase.courseID = courseID.asRootID
+            modifiedCase.isRootCalling = true
+        }
+
+        return modifiedCase
     }
 
     public var cacheKey: String? {
@@ -46,8 +59,8 @@ public class GetCourse: APIUseCase {
         environment: AppEnvironment,
         completionHandler: @escaping (APICourse?, URLResponse?, Error?) -> Void
     ) {
-        // Always call root API for use case
-        environment.root.api.makeRequest(request, callback: completionHandler)
+        let env = isRootCalling ? environment.root : environment
+        env.api.makeRequest(request, callback: completionHandler)
     }
 }
 
