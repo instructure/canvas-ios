@@ -70,7 +70,7 @@ class SelectCourseGoal: Goal {
     }
 
     private func initialPrompt(history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
-        let promptFirstTime = "Before we can chat, please let me know which course you'd like to discuss"
+        let promptFirstTime = "Hello! Which course you'd like to discuss today?"
         let promptAgain = "Sorry, can we try that again? Which course is it you'd like to discuss?"
         let didIJustAskThis = history.count > 1 && history[history.count - 2].text?.contains(promptFirstTime) == true
         let prompt = didIJustAskThis ? promptAgain : promptFirstTime
