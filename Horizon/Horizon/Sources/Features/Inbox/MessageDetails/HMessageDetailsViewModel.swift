@@ -181,7 +181,8 @@ class HMessageDetailsViewModel {
                 recipientIDs: recipientIDs,
                 attachmentIDs: attachmentIDs,
                 conversationID: conversation.id,
-                bulkMessage: true
+                bulkMessage: true,
+                includedMessages: messageDetailsInteractor.messages.value.map { $0.id }
             )
         )
         .receive(on: scheduler)
