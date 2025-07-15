@@ -46,6 +46,7 @@ class SpeedGraderPageViewModel: ObservableObject {
     private(set) var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
     let commentListViewModel: SubmissionCommentListViewModel
     let gradeStatusViewModel: GradeStatusViewModel
+    let studentNotesViewModel: StudentNotesViewModel
     let rubricsViewModel: RubricsViewModel
     let gradeViewModel: SpeedGraderSubmissionGradesViewModel
 
@@ -82,6 +83,10 @@ class SpeedGraderPageViewModel: ObservableObject {
             submissionId: submission.id,
             attempt: submission.attempt,
             interactor: gradeStatusInteractor
+        )
+        studentNotesViewModel = StudentNotesViewModel(
+            userId: submission.userID,
+            interactor: customGradebookColumnsInteractor
         )
         self.env = env
 

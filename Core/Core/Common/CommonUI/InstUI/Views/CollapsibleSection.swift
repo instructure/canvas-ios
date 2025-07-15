@@ -27,6 +27,8 @@ extension InstUI {
         private let itemCount: Int?
         private let content: () -> Content
 
+        @State private var isExpanded: Bool = true
+
         public init(
             title: String,
             itemCount: Int?,
@@ -41,6 +43,7 @@ extension InstUI {
 
         public var body: some View {
             DisclosureGroup(
+                isExpanded: $isExpanded,
                 content: {
                     content()
                         .accessibilityElement(children: .contain)

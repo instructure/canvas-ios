@@ -191,28 +191,7 @@ struct SpeedGraderPageTabsView: View {
             config: .init(refreshable: false)
         ) { _ in
             VStack(spacing: 0) {
-                InstUI.CollapsibleSection(title: String(localized: "Student Notes", bundle: .teacher), itemCount: 3) {
-                    VStack(spacing: 0) {
-                        ForEach(0..<3) { _ in
-                            Text(verbatim: "Submission Details View")
-                                .textStyle(.cellLabel)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .paddingStyle(set: .standardCell)
-                            InstUI.Divider()
-                        }
-                    }
-                }
-                InstUI.CollapsibleSection(title: "Student Notes 2", itemCount: 15) {
-                    VStack(spacing: 0) {
-                        ForEach(0..<15) { _ in
-                            Text(verbatim: "Submission Details View")
-                                .textStyle(.cellLabel)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .paddingStyle(set: .standardCell)
-                            InstUI.Divider()
-                        }
-                    }
-                }
+                StudentNotesView(viewModel: viewModel.studentNotesViewModel)
             }
         }
     }

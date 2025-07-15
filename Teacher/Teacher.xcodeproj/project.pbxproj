@@ -58,6 +58,7 @@
 		5B4F3E602DC8B169001A9126 /* SubmissionCommentListCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F3E5F2DC8B169001A9126 /* SubmissionCommentListCellViewModelTests.swift */; };
 		5B95A3382E20F74900022E70 /* SpeedGraderPageTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B95A3372E20F74000022E70 /* SpeedGraderPageTabsView.swift */; };
 		5B95A33C2E210DC500022E70 /* SpeedGraderPageTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B95A33B2E210DC500022E70 /* SpeedGraderPageTab.swift */; };
+		5B95A3482E267B8F00022E70 /* StudentNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B95A3472E267B8D00022E70 /* StudentNotesView.swift */; };
 		5B9C5C072DB9B04000103E21 /* SubmissionCommentsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9C5C062DB9B03A00103E21 /* SubmissionCommentsAssembly.swift */; };
 		5BB37BC22DB90F300096821B /* SubmissionCommentsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB37BC12DB90F270096821B /* SubmissionCommentsInteractor.swift */; };
 		5BDD37D72DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD37D62DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift */; };
@@ -336,6 +337,7 @@
 		5B4F3E5F2DC8B169001A9126 /* SubmissionCommentListCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentListCellViewModelTests.swift; sourceTree = "<group>"; };
 		5B95A3372E20F74000022E70 /* SpeedGraderPageTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPageTabsView.swift; sourceTree = "<group>"; };
 		5B95A33B2E210DC500022E70 /* SpeedGraderPageTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPageTab.swift; sourceTree = "<group>"; };
+		5B95A3472E267B8D00022E70 /* StudentNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentNotesView.swift; sourceTree = "<group>"; };
 		5B9C5C062DB9B03A00103E21 /* SubmissionCommentsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsAssembly.swift; sourceTree = "<group>"; };
 		5BB37BC12DB90F270096821B /* SubmissionCommentsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsInteractor.swift; sourceTree = "<group>"; };
 		5BDD37D62DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPageViewModelTests.swift; sourceTree = "<group>"; };
@@ -749,6 +751,7 @@
 		5B43249D2E1EAE7A00561B77 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5B95A3472E267B8D00022E70 /* StudentNotesView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2045,6 +2048,7 @@
 				D9624A5029AF94D000F5303F /* QuizSubmissionListInteractorPreview.swift in Sources */,
 				CF13E54C299D090500F57F69 /* QuizSubmissionListViewModel.swift in Sources */,
 				CFCADAF62D9D89D0003796E7 /* RubricCustomRatingView.swift in Sources */,
+				5B95A3482E267B8F00022E70 /* StudentNotesView.swift in Sources */,
 				5BB37BC22DB90F300096821B /* SubmissionCommentsInteractor.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */,
 				D91C051D29AE10170032BFB1 /* QuizSubmissionListItemView.swift in Sources */,

@@ -324,7 +324,7 @@ struct SpeedGraderPageView: View {
         .padding(.leading, 12)
         .padding(.trailing, 16)
         .padding(.vertical, 8)
-        .elevation(.pill, aboveBackground: .lightest)
+        .elevation(.pill, background: .backgroundLightestElevated)
     }
 
     // MARK: - Drawer

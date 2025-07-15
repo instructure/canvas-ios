@@ -23,14 +23,17 @@ import Core
 import Foundation
 
 final class CustomGradebookColumnsInteractorPreview: CustomGradebookColumnsInteractor {
+    var studentNoteEntries: [StudentNotesEntry] = [
+        .make(title: "Notes", content: "This is some note about a student"),
+        .make(title: "Other Notes", content: .loremIpsumLong)
+    ]
+
     func loadCustomColumnsData() -> AnyPublisher<Void, Error> {
         Publishers.typedJust()
     }
 
     func getStudentNotesEntries(userId: String) -> AnyPublisher<[StudentNotesEntry], Error> {
-        Publishers.typedJust([
-            .make(title: "Notes", content: "This is some note about a student")
-        ])
+        Publishers.typedJust(studentNoteEntries)
     }
 }
 
