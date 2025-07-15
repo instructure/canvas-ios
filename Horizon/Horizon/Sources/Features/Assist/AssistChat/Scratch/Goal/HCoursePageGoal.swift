@@ -20,7 +20,7 @@ import Combine
 import Core
 import Foundation
 
-class CoursePageGoal: Goal {
+class HCoursePageGoal: HGoal {
 
     private enum Option: String, CaseIterable {
         case Summarize = "Summarize"

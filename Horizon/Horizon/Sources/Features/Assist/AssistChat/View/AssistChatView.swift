@@ -92,6 +92,7 @@ struct AssistChatView: View {
                     .id(retryViewId)
                 }
             }
+            .animation(.smooth, value: viewModel.messages)
             .onReceive(viewModel.showMoreButtonPublisher) { id in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                     withAnimation {
@@ -124,7 +125,7 @@ struct AssistChatView: View {
 
             HStack(spacing: .huiSpaces.space16) {
                 TextEditor(text: $viewModel.message)
-                    .frame(minHeight: 44)
+                    .frame(minHeight: .huiSpaces.space36)
                     .frame(maxHeight: 100)
                     .fixedSize(horizontal: false, vertical: true)
                     .huiTypography(.p1)

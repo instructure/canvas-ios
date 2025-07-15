@@ -20,7 +20,7 @@ import Combine
 import Core
 import Foundation
 
-class SelectCourseGoal: Goal {
+class HSelectCourseGoal: HGoal {
     private let cedar: DomainService
     private let environment: AssistDataEnvironment
     private let userID: String
@@ -50,16 +50,19 @@ class SelectCourseGoal: Goal {
     }
 
     private func selectCourseFrom(response: String, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
-        courses.flatMap { [weak self] courseOptions in
-            guard let self = self else {
-                return Just<AssistChatMessage?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
+        weak var weakSelf = self
+        return courses.flatMap { courseOptions in
+            guard let weakSelf = weakSelf else {
+                return Just<AssistChatMessage?>(nil)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
             }
             let courseNames = courseOptions.compactMap { $0.course.name }
-            return self.choose(from: courseNames, with: response, using: self.cedar)
+            return weakSelf.choose(from: courseNames, with: response, using: weakSelf.cedar)
                 .map { courseSelected in
                     if  let courseSelected = courseSelected,
                         let courseID = courseOptions.first(where: { courseSelected.contains($0.course.name ?? "") == true })?.courseID {
-                        self.environment.courseID.accept(courseID)
+                        weakSelf.environment.courseID.accept(courseID)
                     }
                     return nil
                 }

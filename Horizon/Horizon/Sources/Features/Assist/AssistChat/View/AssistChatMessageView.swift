@@ -25,30 +25,44 @@ struct AssistChatMessageView: View {
 
     var body: some View {
         VStack(spacing: .zero) {
-            if !message.isLoading {
-                messageContent
-                    .frame(maxWidth: .infinity, alignment: message.alignment)
-                    .onTapGesture {
-                        message.onTap?()
-                    }
-            }
-            WrappingHStack(models: message.chipOptions) { quickResponse in
+            messageContent
+                .frame(maxWidth: .infinity, alignment: message.alignment)
+                .onTapGesture {
+                    message.onTap?()
+                }
+            WrappingHStack(
+                models: message.chipOptions,
+                horizontalSpacing: .zero
+            ) { quickResponse in
                 HorizonUI.Pill(title: quickResponse.chip, style: .outline(.light))
                     .onTapGesture {
                         message.onTapChipOption?(quickResponse)
                     }
+                    .padding(.vertical, .huiSpaces.space4)
+                    .padding(.trailing, .huiSpaces.space4)
             }
+            .padding(.vertical, .huiSpaces.space8)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 
     private var messageContent: some View {
-        Text(message.content.toAttributedStringWithLinks())
-            .frame(maxWidth: message.maxWidth, alignment: .leading)
-            .padding(message.padding)
-            .background(message.backgroundColor)
-            .foregroundColor(message.foregroundColor)
-            .cornerRadius(message.cornerRadius)
+        VStack(alignment: .center) {
+            if message.isLoading {
+                HStack(alignment: .center) {
+                    HorizonUI.Spinner(size: .xSmall, foregroundColor: .huiColors.surface.cardPrimary)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, .huiSpaces.space8)
+            } else {
+                Text(message.content.toAttributedStringWithLinks())
+                    .frame(maxWidth: message.maxWidth, alignment: .leading)
+                    .padding(message.padding)
+                    .background(message.backgroundColor)
+                    .foregroundColor(message.foregroundColor)
+                    .cornerRadius(message.cornerRadius)
+            }
+        }
     }
 }
 

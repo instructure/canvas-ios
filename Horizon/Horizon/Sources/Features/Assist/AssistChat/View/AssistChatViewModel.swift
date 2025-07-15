@@ -17,10 +17,10 @@
 //
 
 import Combine
-import Core
-import Observation
-import Foundation
 import CombineSchedulers
+import Core
+import Foundation
+import Observation
 
 @Observable
 final class AssistChatViewModel {
@@ -126,7 +126,6 @@ final class AssistChatViewModel {
 
     func send() {
         isRetryButtonVisible = false
-        isLoaderVisible = true
         shouldOpenKeyboardPublisher.send(true)
         send(message: message.trimmedEmptyLines)
     }
@@ -166,7 +165,10 @@ final class AssistChatViewModel {
         add(newMessages: newMessages)
         remove(notAppearingIn: newMessages)
         canSendMessage = !response.isLoading
-        isLoaderVisible = response.isLoading
+
+        if response.isLoading {
+            messages.append(.init(isLoading: true))
+        }
 
         let params = ["courseId": courseId, "pageUrl": pageUrl, "fileId": fileId].map { (key, value) in
             guard let value = value else { return nil }

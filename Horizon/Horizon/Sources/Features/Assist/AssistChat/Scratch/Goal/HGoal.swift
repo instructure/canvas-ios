@@ -20,15 +20,9 @@ import Combine
 import Core
 import Foundation
 
-protocol Tool {
-    /// A description of this tool provided to the AI for selection criteria
-    var description: String { get }
-
-    /// When this tool is selected to process the request, it generates the response
-    func response() -> AnyPublisher<AssistChatMessage, any Error>
-}
-
-class Goal {
+/// The purpose of the AssistGoal is to provide a base class for goals that can be executed within the Assist chat system.
+/// The "Goal"s are used to define specific tasks or objectives that the Assist system can help the user achieve.
+class HGoal {
     /// After a choice of options is made, we execute
     func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
         Just(nil)
@@ -61,20 +55,5 @@ class Goal {
             return result?.isEmpty == true ? nil : result
         }
         .eraseToAnyPublisher()
-    }
-}
-
-extension API {
-    func makeRequest<Request: APIRequestable>(_ requestable: Request) -> AnyPublisher<Request.Response?, Error> {
-        AnyPublisher<Request.Response?, Error> { [weak self] subscriber in
-            self?.makeRequest(requestable) { response, _, error in
-                if let error = error {
-                    subscriber.send(completion: .failure(error))
-                    return
-                }
-                subscriber.send(response)
-            }
-            return AnyCancellable { }
-        }
     }
 }

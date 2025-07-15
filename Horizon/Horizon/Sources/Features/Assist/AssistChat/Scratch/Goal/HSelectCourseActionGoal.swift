@@ -20,7 +20,7 @@ import Combine
 import Core
 import Foundation
 
-class SelectCourseActionGoal: Goal {
+class HSelectCourseActionGoal: HGoal {
 
     private let environment: AssistDataEnvironment
     private let pine: DomainService
@@ -74,8 +74,8 @@ class SelectCourseActionGoal: Goal {
             useCase: GetHCoursesProgressionUseCase(userId: userID)
         )
         .getEntities()
-        .map { courses in
-            courses.first { $0.courseID == self.environment.courseID.value }?.course.name ?? ""
+        .map { [weak self] courses in
+            courses.first { $0.courseID == self?.environment.courseID.value }?.course.name ?? ""
         }
         .eraseToAnyPublisher()
     }

@@ -41,7 +41,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     private let downloadFileInteractor: DownloadFileInteractor?
     private let responsePublisher = PassthroughSubject<AssistChatInteractorLive.State, Never>()
     private var subscriptions = Set<AnyCancellable>()
-    private var goals: [Goal]
+    private var goals: [HGoal]
 
     // MARK: - init
     init(
@@ -66,18 +66,18 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     private static func initializeGoals(
         assistDataEnvironment: AssistDataEnvironment,
         downloadFileInteractor: DownloadFileInteractor?
-    ) -> [Goal] {
+    ) -> [HGoal] {
         // order matters
         [
             downloadFileInteractor.map {
-                CourseDocumentGoal(
+                HCourseDocumentGoal(
                     environment: assistDataEnvironment,
                     downloadFileInteractor: $0
                 )
             },
-            CoursePageGoal(environment: assistDataEnvironment),
-            SelectCourseActionGoal(environment: assistDataEnvironment),
-            SelectCourseGoal(environment: assistDataEnvironment)
+            HCoursePageGoal(environment: assistDataEnvironment),
+            HSelectCourseActionGoal(environment: assistDataEnvironment),
+            HSelectCourseGoal(environment: assistDataEnvironment)
         ].compactMap { $0 }
     }
 
@@ -119,11 +119,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         )
         .store(in: &subscriptions)
     }
-
-    func regenerateQuiz() {
-
-    }
-
+    
     /// Subscribe to the responses from the interactor
     var listen: AnyPublisher<AssistChatInteractorLive.State, Never> {
         responsePublisher.eraseToAnyPublisher()

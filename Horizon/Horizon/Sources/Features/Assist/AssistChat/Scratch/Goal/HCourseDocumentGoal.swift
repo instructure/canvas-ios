@@ -20,7 +20,7 @@ import Combine
 import Core
 import Foundation
 
-class CourseDocumentGoal: Goal {
+class HCourseDocumentGoal: HGoal {
 
     private let cedar: DomainService
     private var courseID: String? {
