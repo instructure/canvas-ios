@@ -28,6 +28,9 @@ struct SubmissionComment: Identifiable {
     let createdAt: Date?
     let isCurrentUsersComment: Bool
     let isRead: Bool
+    let hasNextPage: Bool
+    let hasPreviousPage: Bool
+    let startCursor: String?
     let attachments: [CommentAttachment]
 
     var createdAtString: String? {
@@ -56,7 +59,10 @@ struct SubmissionComment: Identifiable {
 
     init(
         from entity: Core.CDHSubmissionComment,
-        isCurrentUsersComment: Bool
+        isCurrentUsersComment: Bool,
+        hasNextPage: Bool,
+        hasPreviousPage: Bool,
+        startCursor: String?
     ) {
         self.id = entity.id
         self.attempt = entity.attempt
@@ -66,6 +72,9 @@ struct SubmissionComment: Identifiable {
         self.createdAt = entity.createdAt
         self.isCurrentUsersComment = isCurrentUsersComment
         self.isRead = entity.isRead
+        self.hasNextPage = hasNextPage
+        self.hasPreviousPage = hasPreviousPage
+        self.startCursor = startCursor
         self.attachments = entity.attachments?.map { CommentAttachment(from: $0) } ?? []
     }
 
@@ -78,6 +87,9 @@ struct SubmissionComment: Identifiable {
         createdAt: Date?,
         isCurrentUsersComment: Bool,
         isRead: Bool = true,
+        hasNextPage: Bool,
+        hasPreviousPage: Bool,
+        startCursor: String?,
         attachments: [CommentAttachment] = []
     ) {
         self.id = id
@@ -88,6 +100,9 @@ struct SubmissionComment: Identifiable {
         self.createdAt = createdAt
         self.isCurrentUsersComment = isCurrentUsersComment
         self.isRead = isRead
+        self.hasNextPage = hasNextPage
+        self.hasPreviousPage = hasPreviousPage
+        self.startCursor = startCursor
         self.attachments = attachments
     }
 }

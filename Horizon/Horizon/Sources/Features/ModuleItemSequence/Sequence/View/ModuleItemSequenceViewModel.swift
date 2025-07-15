@@ -28,6 +28,7 @@ final class ModuleItemSequenceViewModel {
     // MARK: - Output
 
     private(set) var viewState: ModuleItemSequenceViewState?
+    private(set) var assignmentDetailsViewModel: AssignmentDetailsViewModel?
     private(set) var isNextButtonEnabled: Bool = false
     private(set) var isPreviousButtonEnabled: Bool = false
     private(set) var isLoaderVisible: Bool = false
@@ -265,6 +266,18 @@ final class ModuleItemSequenceViewModel {
                 isAssignmentAvailableInItemSequence = false
                  state = assignemtModuleItem
             }
+        }
+        if case let .assignment(courseID, assignmentID, isMarkedAsDone, isCompletedItem, moduleID, itemID) = state {
+            assignmentDetailsViewModel = AssignmentDetailsAssembly.makeViewModel(
+                courseID: courseID,
+                assignmentID: assignmentID,
+                isMarkedAsDone: isMarkedAsDone,
+                isCompletedItem: isCompletedItem,
+                moduleID: moduleID,
+                itemID: itemID,
+                onTapAssignmentOptions: onTapAssignmentOptions,
+                didLoadAssignment: didLoadAssignment
+            )
         }
         return state
     }

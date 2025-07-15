@@ -237,18 +237,11 @@ private struct ContentView: View {
                     }
                 case .locked(title: let title, lockExplanation: let lockExplanation):
                     ModuleItemSequenceAssembly.makeLockView(title: title, lockExplanation: lockExplanation)
-                case let .assignment(courseID, assignmentID, isMarkedAsDone, isCompleted, moduleID, itemID):
-                    AssignmentDetailsAssembly.makeView(
-                        courseID: courseID,
-                        assignmentID: assignmentID,
-                        isMarkedAsDone: isMarkedAsDone,
-                        isCompletedItem: isCompleted,
-                        moduleID: moduleID,
-                        itemID: itemID,
-                        onTapAssignmentOptions: viewModel.onTapAssignmentOptions,
-                        didLoadAssignment: viewModel.didLoadAssignment
-                    )
-                    .id(assignmentID)
+                case let .assignment(_, assignmentID, _, _, _, _):
+                    if let assignmentViewModel = viewModel.assignmentDetailsViewModel {
+                        AssignmentDetailsAssembly.makeView(viewModel: assignmentViewModel)
+                            .id( assignmentID)
+                    }
 
                 case let .file(context, fileID):
                     FileDetailsAssembly.makeView(
