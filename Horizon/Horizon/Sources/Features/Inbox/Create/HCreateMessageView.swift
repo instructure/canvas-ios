@@ -201,6 +201,7 @@ struct HCreateMessageView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     HCreateMessageView(
         viewModel: .init(
@@ -208,3 +209,4 @@ struct HCreateMessageView: View {
         )
     )
 }
+#endif
