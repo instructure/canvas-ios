@@ -40,7 +40,7 @@ public class ReactiveStore<U: UseCase> {
         environment: AppEnvironment = .shared
     ) {
         self.offlineModeInteractor = offlineModeInteractor
-        self.useCase = useCase
+        self.useCase = useCase.modified(for: environment)
         self.context = context
         self.environment = environment
     }
