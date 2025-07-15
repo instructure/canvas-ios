@@ -191,7 +191,7 @@ class HMessageDetailsViewModel {
             receiveValue: { [weak self] _ in
                 self?.isSending = false
                 self?.reply = ""
-                self?.composeMessageInteractor?.cancel()
+                self?.composeMessageInteractor?.attachments.send([])
             }
         )
         .store(in: &self.subscriptions)
