@@ -29,4 +29,8 @@ class CustomGradebookColumnsInteractorMock: CustomGradebookColumnsInteractor {
     func getStudentNotesEntries(userId: String) -> AnyPublisher<[StudentNotesEntry], Error> {
         Publishers.typedJust([])
     }
+
+    func getIsStudentNotesEmpty(userId: String) -> AnyPublisher<Bool, Error> {
+        Publishers.typedJust(true)
+    }
 }

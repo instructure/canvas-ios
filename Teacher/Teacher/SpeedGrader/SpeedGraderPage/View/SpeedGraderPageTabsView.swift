@@ -187,7 +187,7 @@ struct SpeedGraderPageTabsView: View {
 
     private var detailsTabContent: some View {
         InstUI.BaseScreen(
-            state: .data,
+            state: viewModel.isDetailsTabEmpty ? .empty : .data,
             config: .init(refreshable: false)
         ) { _ in
             VStack(spacing: 0) {

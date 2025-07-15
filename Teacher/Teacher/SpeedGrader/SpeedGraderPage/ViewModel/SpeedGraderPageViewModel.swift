@@ -38,7 +38,10 @@ class SpeedGraderPageViewModel: ObservableObject {
     @Published private(set) var selectedFileNumber: Int = 0
     @Published private(set) var selectedFileName: String = ""
 
+    @Published private(set) var isDetailsTabEmpty: Bool = true
+
     @Published private(set) var contextColor = Color(Brand.shared.primary)
+
     let assignment: Assignment
     let submission: Submission
 
@@ -92,8 +95,18 @@ class SpeedGraderPageViewModel: ObservableObject {
 
         contextColor.assign(to: &$contextColor)
 
+        updateDetailsTabState(on: customGradebookColumnsInteractor.getIsStudentNotesEmpty(userId: submission.userID))
         observeAttemptChangesInDatabase()
         didSelectAttempt(attemptNumber: submission.attempt)
+    }
+
+    private func updateDetailsTabState(on publisher: AnyPublisher<Bool, Error>) {
+        publisher
+            .replaceError(with: true)
+            .sink { [weak self] isStudentNotesEmpty in
+                self?.isDetailsTabEmpty = isStudentNotesEmpty
+            }
+            .store(in: &subscriptions)
     }
 
     func didSelectAttempt(attemptNumber: Int) {
