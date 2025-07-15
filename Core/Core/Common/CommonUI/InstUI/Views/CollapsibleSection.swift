@@ -27,23 +27,31 @@ extension InstUI {
         private let itemCount: Int?
         private let content: () -> Content
 
-        @State private var isExpanded: Bool = true
+        @State private var isExpandedState: Bool
+        private var isExpandedBinding: Binding<Bool>?
+        private var isExpanded: Binding<Bool> {
+            isExpandedBinding ?? $isExpandedState
+        }
 
         public init(
             title: String,
             itemCount: Int?,
+            isExpanded: Binding<Bool>? = nil,
+            isInitiallyExpanded: Bool = true,
             content: @escaping () -> Content
         ) {
             self.title = title
             self.itemCount = itemCount
             self.content = content
+            self.isExpandedState = isInitiallyExpanded
+            self.isExpandedBinding = isExpanded
         }
 
         // MARK: - Body
 
         public var body: some View {
             DisclosureGroup(
-                isExpanded: $isExpanded,
+                isExpanded: isExpanded,
                 content: {
                     content()
                         .accessibilityElement(children: .contain)
