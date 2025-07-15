@@ -13039,6 +13039,9 @@
         }
       }
     },
+    "Details" : {
+
+    },
     "Dismiss" : {
       "localizations" : {
         "ar" : {
@@ -40585,6 +40588,9 @@
           }
         }
       }
+    },
+    "Student Notes" : {
+
     },
     "Submission Filter" : {
       "localizations" : {

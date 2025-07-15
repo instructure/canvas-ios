@@ -33,6 +33,10 @@ extension InstUI {
             self.style = style
         }
 
+        public init(isLast: Bool) {
+            self.style = isLast ? .full : .padded
+        }
+
         public var body: some View {
             switch style {
             case .full:
