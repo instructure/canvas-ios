@@ -93,7 +93,7 @@ extension HorizonUI {
                 Text(helperText)
                     .huiTypography(.p2)
                     .foregroundColor(Color.huiColors.text.body)
-                    .padding(.leading, 5)
+                    .padding(.leading, .huiSpaces.space4)
                     .opacity(isHelperTextVisible ? 1 : 0)
                     .animation(.easeInOut, value: helperText)
             }
@@ -112,7 +112,7 @@ extension HorizonUI {
             if let label = self.label {
                 Text(label)
                     .huiTypography(.labelLargeBold)
-                    .padding(.leading, 5)
+                    .padding(.leading, .huiSpaces.space4)
             }
         }
 
@@ -156,7 +156,7 @@ extension HorizonUI {
             textField
                 .padding(.huiSpaces.space4)
                 .overlay(
-                    RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius + 2)
+                    RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius + .huiSpaces.space2)
                         .stroke(
                             textFieldContainerBorderColor,
                             lineWidth: HorizonUI.Borders.level2.rawValue

@@ -89,7 +89,7 @@ extension HorizonUI {
 
         public var body: some View {
             VStack(spacing: .zero) {
-                VStack(spacing: 8) {
+                VStack(spacing: .huiSpaces.space8) {
                     labelText
                     textInput
                 }

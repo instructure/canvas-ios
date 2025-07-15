@@ -18,7 +18,7 @@
 
 import Core
 import Combine
-import SwiftUI
+import Observation
 
 @Observable
 class HCreateMessageViewModel {

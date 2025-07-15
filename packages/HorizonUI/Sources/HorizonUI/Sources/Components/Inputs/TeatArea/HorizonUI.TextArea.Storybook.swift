@@ -26,7 +26,7 @@ extension HorizonUI.TextArea {
 
         var body: some View {
             ScrollView {
-                VStack(spacing: 32) {
+                VStack(spacing: .huiSpaces.space32) {
                     HorizonUI.TextArea(
                         .constant(""),
                         label: "This is an empty text input",
@@ -34,7 +34,7 @@ extension HorizonUI.TextArea {
                         placeholder: "This is placeholder text"
                     )
                 }
-                .padding(24)
+                .padding(.huiSpaces.space24)
             }
         }
     }
