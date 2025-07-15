@@ -33,7 +33,9 @@ class AcknowledgeFileUploadInteractorLive: AcknowledgeFileUploadInteractor {
     private let api: API
 
     // MARK: Init
-    init(api: API = AppEnvironment.shared.api) {
+    init(
+        api: API = AppEnvironment.shared.api
+    ) {
         self.api = api
     }
 

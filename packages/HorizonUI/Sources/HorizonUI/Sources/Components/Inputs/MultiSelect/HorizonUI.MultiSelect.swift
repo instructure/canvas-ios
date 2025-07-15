@@ -68,7 +68,11 @@ extension HorizonUI {
         // The computed height of the error text
         @State private var errorHeight: CGFloat = 0
 
-        @Binding private var focused: Bool
+        @Binding private var focused: Bool {
+            didSet {
+                textFieldFocusState = focused
+            }
+        }
 
         // The computed height of the label
         @State private var labelMeasuredHeight: CGFloat = 0
