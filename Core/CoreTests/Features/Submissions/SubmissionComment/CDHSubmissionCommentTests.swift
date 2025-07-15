@@ -40,7 +40,8 @@ class CDHSubmissionCommentTests: CoreTestCase {
             comment: commentText,
             read: true,
             updatedAt: createdAt,
-            createdAt: createdAt
+            createdAt: createdAt,
+            attachments: nil
         )
 
         let savedComment = CDHSubmissionComment.save(comment, assignmentID: assignmentId, in: databaseClient)
@@ -78,7 +79,8 @@ class CDHSubmissionCommentTests: CoreTestCase {
             comment: "First comment",
             read: true,
             updatedAt: Date(),
-            createdAt: Date()
+            createdAt: Date(),
+            attachments: nil
         )
 
         let savedComment1 = CDHSubmissionComment.save(comment1, assignmentID: "assignment-123", in: databaseClient)
@@ -94,7 +96,8 @@ class CDHSubmissionCommentTests: CoreTestCase {
             comment: "Updated comment",
             read: false,
             updatedAt: Date(),
-            createdAt: Date()
+            createdAt: Date(),
+            attachments: nil
         )
 
         let savedComment2 = CDHSubmissionComment.save(comment2, assignmentID: "assignment-123", in: databaseClient)

@@ -121,7 +121,8 @@ class LoginWebViewControllerTests: CoreTestCase {
                 effective_locale: "pt",
                 email: nil),
             real_user: nil,
-            expires_in: nil
+            expires_in: nil,
+            canvas_region: nil
         )
         api.mock(PostLoginOAuthRequest(client: controller.mobileVerifyModel!, code: "c"), value: token)
         action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?code=c")!)

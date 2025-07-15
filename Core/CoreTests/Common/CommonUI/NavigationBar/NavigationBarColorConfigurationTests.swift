@@ -28,7 +28,8 @@ class NavigationBarColorConfigurationTests: XCTestCase {
             link_color: "#FF0000",
             nav_text_color: "#0000FF"
         ),
-        headerImage: nil
+        headerImage: nil,
+        institutionLogo: nil    
     )
 
     func test_colors_whenStyleIsModal() {
