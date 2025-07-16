@@ -20,14 +20,9 @@ import Combine
 import Core
 import Foundation
 
+/// A goal for interacting with a course document in the Assist chat.
 class HCourseDocumentGoal: HCourseItemGoal {
-
-    override
-    var options: [Option] {
-        Option.allCases.filter { $0 != .Quiz }
-    }
-
-    private let downloadFileInteractor: DownloadFileInteractor
+    // MARK: - Private Properties
     private var fileID: String? {
         environment.fileID.value
     }
@@ -36,6 +31,10 @@ class HCourseDocumentGoal: HCourseItemGoal {
         bundle: .horizon
     )
 
+    // MARK: - Dependencies
+    private let downloadFileInteractor: DownloadFileInteractor
+
+    // MARK: - Initializer
     init(
         environment: AssistDataEnvironment,
         downloadFileInteractor: DownloadFileInteractor,
@@ -49,9 +48,7 @@ class HCourseDocumentGoal: HCourseItemGoal {
         )
     }
 
-    override
-    func isRequested() -> Bool { courseID != nil && fileID != nil }
-
+    // MARK: - Overrides
     /// If necessary, downloads the file and returns the page context.
     /// If we can't determine the format, we return an empty page context
     override
@@ -87,5 +84,13 @@ class HCourseDocumentGoal: HCourseItemGoal {
             }
             .compactMap { $0 }
             .eraseToAnyPublisher()
+    }
+
+    override
+    func isRequested() -> Bool { courseID != nil && fileID != nil }
+
+    override
+    var options: [Option] {
+        Option.allCases.filter { $0 != .Quiz }
     }
 }

@@ -20,14 +20,16 @@ import Combine
 import Core
 import Foundation
 
+/// Interacting with a course page in the context of the Assist feature.
 class HCoursePageGoal: HCourseItemGoal {
-
+    // MARK: - Private
     private var pageURL: String? {
         environment.pageURL.value
     }
 
     private let initialPrompt = String(localized: "How can I help you with this page?", bundle: .horizon)
 
+    // MARK: - Initializers
     init(environment: AssistDataEnvironment, cedar: DomainService = DomainService(.cedar)) {
         super.init(
             initialPrompt: initialPrompt,
@@ -36,11 +38,8 @@ class HCoursePageGoal: HCourseItemGoal {
         )
     }
 
-    override
-    func isRequested() -> Bool { courseID != nil && pageURL != nil }
-
-    // MARK: - Private Methods
-
+    // MARK: - Overrides
+    /// Converts the course page content into a document format suitable for Cedar API requests.
     override
     var document: AnyPublisher<CedarAnswerPromptMutation.DocumentInput?, Error> {
         body.map { body in
@@ -55,33 +54,10 @@ class HCoursePageGoal: HCourseItemGoal {
         .eraseToAnyPublisher()
     }
 
-    private var body: AnyPublisher<String?, Error> {
-        guard let courseID = courseID,
-              let pageURL = pageURL else {
-            return Just<String?>(nil)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        }
-        return ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
-            .getEntities()
-            .map { $0.first?.body }
-            .eraseToAnyPublisher()
-    }
+    override
+    func isRequested() -> Bool { courseID != nil && pageURL != nil }
 
-    private func cedarSummarizeContent(content: String) -> AnyPublisher<[String]?, Error> {
-        cedar.api()
-            .flatMap { cedarApi in
-                cedarApi.makeRequest(
-                    CedarSummarizeContentMutation(content: content)
-                )
-                .map { (response: CedarSummarizeContentMutationResponse?) in
-                    response?.data.summarizeContent.summarization
-                }
-                .eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
-    }
-
+    /// Generates a quiz from the page contents using the Cedar API.
     override
     func quiz() -> AnyPublisher<AssistChatMessage?, Error> {
         body.flatMap { [weak self] body in
@@ -109,7 +85,9 @@ class HCoursePageGoal: HCourseItemGoal {
         .eraseToAnyPublisher()
     }
 
-    private func summarizeContent() -> AnyPublisher<AssistChatMessage?, Error> {
+    /// Summarizes the page contents using the Cedar endpoint for content summarization.
+    override
+    func summarizeContent() -> AnyPublisher<AssistChatMessage?, Error> {
         body.flatMap { [weak self] body in
             guard let self = self,
                   let body = body else {
@@ -126,6 +104,36 @@ class HCoursePageGoal: HCourseItemGoal {
                 .eraseToAnyPublisher()
         }
         .eraseToAnyPublisher()
+    }
+
+    // MARK: - Private Methods
+    /// Fetches the body of the course page and returns it as a string.
+    private var body: AnyPublisher<String?, Error> {
+        guard let courseID = courseID,
+              let pageURL = pageURL else {
+            return Just<String?>(nil)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        return ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
+            .getEntities()
+            .map { $0.first?.body }
+            .eraseToAnyPublisher()
+    }
+
+    /// Given the document content, it returns a publisher that emits the summarized content.
+    private func cedarSummarizeContent(content: String) -> AnyPublisher<[String]?, Error> {
+        cedar.api()
+            .flatMap { cedarApi in
+                cedarApi.makeRequest(
+                    CedarSummarizeContentMutation(content: content)
+                )
+                .map { (response: CedarSummarizeContentMutationResponse?) in
+                    response?.data.summarizeContent.summarization
+                }
+                .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
     }
 }
 

@@ -18,6 +18,8 @@
 
 import Combine
 
+/// This is a base class for the course page and course document goals
+/// It's not meant to be instantiated directly, but rather to be subclassed
 class HCourseItemGoal: HGoal {
 
     enum Option: String, CaseIterable {
@@ -29,21 +31,31 @@ class HCourseItemGoal: HGoal {
     }
 
     // MARK: - Properties
-    let environment: AssistDataEnvironment
-    let cedar: DomainService
-
     var courseID: String? {
         environment.courseID.value
     }
-    private let initialPrompt: String
-    private var chipOptions: [String] {
-        options.map(\.rawValue)
+
+    var document: AnyPublisher<CedarAnswerPromptMutation.DocumentInput?, Error> {
+        return Just(nil)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 
     var options: [Option] {
         Option.allCases
     }
 
+    // MARK: - Dependencies
+    let environment: AssistDataEnvironment
+    let cedar: DomainService
+    private let initialPrompt: String
+
+    // MARK: - Private
+    private var chipOptions: [String] {
+        options.map(\.rawValue)
+    }
+
+    // MARK: - Initializers
     init(
         initialPrompt: String,
         environment: AssistDataEnvironment,
@@ -54,12 +66,8 @@ class HCourseItemGoal: HGoal {
         self.cedar = cedar
     }
 
-    var document: AnyPublisher<CedarAnswerPromptMutation.DocumentInput?, Error> {
-        return Just(nil)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-
+    /// Executes the goal based on the response from the user.
+    /// Chooses from one of the options or answers the user's question if no option is selected.
     override
     func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
         guard let response = response, response.isNotEmpty else {
@@ -102,24 +110,27 @@ class HCourseItemGoal: HGoal {
             .eraseToAnyPublisher()
     }
 
-    /// https://github.com/instructure-internal/cedar/blob/main/docs/index.md#answer-prompt
-    func cedarAnswerPrompt(
-        prompt: String,
-        document: CedarAnswerPromptMutation.DocumentInput
-    ) -> AnyPublisher<String?, Error> {
-        cedar.api()
-            .flatMap { cedarApi in
-                cedarApi.makeRequest(
-                    CedarAnswerPromptMutation(
-                        prompt: prompt,
-                        document: document
-                    )
+    /// Summarizes the content of the document
+    func summarizeContent() -> AnyPublisher<AssistChatMessage?, Error> {
+        document.flatMap { [weak self] document in
+            guard let self = self,
+                  let document = document else {
+                return Just<AssistChatMessage?>(nil)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            return self.cedarAnswerPrompt(
+                prompt: .summarizeContent,
+                document: document
+            )
+            .map { response in
+                AssistChatMessage(
+                    botResponse: response ?? String(localized: "No summary found.", bundle: .horizon)
                 )
-                .map { (response: CedarAnswerPromptMutationResponse?) in
-                    response?.data.answerPrompt
-                }
             }
             .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
     }
 
     func quiz() -> AnyPublisher<AssistChatMessage?, Error> {
@@ -128,6 +139,8 @@ class HCourseItemGoal: HGoal {
             .eraseToAnyPublisher()
     }
 
+    // MARK: - Private Functions
+    /// Given a prompt, fetches the page document and makes a request to the cedar endpoint for answering a question
     private func cedarAnswerPrompt(prompt: String) -> AnyPublisher<AssistChatMessage?, Error> {
         document
             .flatMap { [weak self] document in
@@ -143,6 +156,27 @@ class HCourseItemGoal: HGoal {
                         )
                     }
                     .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+
+    /// Given a prompt and a document, makes a request to the cedar endpoint for answering a question
+    /// https://github.com/instructure-internal/cedar/blob/main/docs/index.md#answer-prompt
+    private func cedarAnswerPrompt(
+        prompt: String,
+        document: CedarAnswerPromptMutation.DocumentInput
+    ) -> AnyPublisher<String?, Error> {
+        cedar.api()
+            .flatMap { cedarApi in
+                cedarApi.makeRequest(
+                    CedarAnswerPromptMutation(
+                        prompt: prompt,
+                        document: document
+                    )
+                )
+                .map { (response: CedarAnswerPromptMutationResponse?) in
+                    response?.data.answerPrompt
+                }
             }
             .eraseToAnyPublisher()
     }
@@ -168,7 +202,7 @@ class HCourseItemGoal: HGoal {
             .eraseToAnyPublisher()
     }
 
-    /// Calls the basic chat endpoint to generate flashcards
+    /// Calls the Cedar endpoint for generating flashcards based on the document content
     private func flashcards() -> AnyPublisher<AssistChatMessage?, Error> {
         document.flatMap { [weak self] document in
             guard
@@ -192,7 +226,8 @@ class HCourseItemGoal: HGoal {
         .eraseToAnyPublisher()
     }
 
-    func keyTakeaways() -> AnyPublisher<AssistChatMessage?, Error> {
+    /// Returns the key takeaways of the document
+    private func keyTakeaways() -> AnyPublisher<AssistChatMessage?, Error> {
         document.flatMap { [weak self] document in
             guard let self = self,
                   let document = document else {
@@ -212,19 +247,7 @@ class HCourseItemGoal: HGoal {
         .eraseToAnyPublisher()
     }
 
-    private func summarizeContent() -> AnyPublisher<AssistChatMessage?, Error> {
-        document.flatMap { [weak self] document in
-            guard let self = self,
-                  let document = document else {
-                return Just<AssistChatMessage?>(nil)
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            }
-            return self.cedarAnswerPrompt(prompt: .summarizeContent)
-        }
-        .eraseToAnyPublisher()
-    }
-
+    /// Returns more information about the document
     private func tellMeMore() -> AnyPublisher<AssistChatMessage?, Error> {
         document.flatMap { [weak self] document in
             guard let self = self,
