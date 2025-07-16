@@ -717,6 +717,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		5B0BDD122E27C27400D41C2A /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				5B43249A2E1EAE3700561B77 /* CustomGradebookColumns */,
+				5B0BDD132E27C27F00D41C2A /* WordCount */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		5B0BDD132E27C27F00D41C2A /* WordCount */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WordCount;
+			sourceTree = "<group>";
+		};
 		5B43249A2E1EAE3700561B77 /* CustomGradebookColumns */ = {
 			isa = PBXGroup;
 			children = (
@@ -802,7 +818,7 @@
 			children = (
 				CF0605CB2D95A4FA0014C2EC /* CommentLibrary */,
 				CF0605CD2D95A56C0014C2EC /* Comments */,
-				5B43249A2E1EAE3700561B77 /* CustomGradebookColumns */,
+				5B0BDD122E27C27400D41C2A /* Details */,
 				CF0605D32D95A83D0014C2EC /* Grading */,
 				CF0605D82D95A9340014C2EC /* SpeedGraderPage */,
 				CF0605DA2D95AAE90014C2EC /* SpeedGraderScreen */,
