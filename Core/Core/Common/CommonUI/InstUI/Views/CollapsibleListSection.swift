@@ -20,7 +20,7 @@ import SwiftUI
 
 extension InstUI {
 
-    public struct CollapsibleSection<Content: View>: View {
+    public struct CollapsibleListSection<Content: View>: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         private let title: String
@@ -59,10 +59,17 @@ extension InstUI {
                 },
                 label: {
                     Text(title)
+                        .textStyle(.sectionHeader)
                         .accessibilityLabel(headerAccessibilityLabel)
                 }
             )
-            .disclosureGroupStyle(.listSection)
+            .disclosureGroupStyle(
+                SectionDisclosureStyle(headerConfig: .init(
+                    paddingSet: .sectionHeader,
+                    accessoryIconSize: 18,
+                    hasDividerBelowHeader: true
+                ))
+            )
         }
 
         private var headerAccessibilityLabel: String {
@@ -78,57 +85,6 @@ extension InstUI {
     }
 }
 
-// MARK: - ListSectionDisclosureStyle
-
-private struct ListSectionDisclosureStyle: DisclosureGroupStyle {
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-
-    func makeBody(configuration: Configuration) -> some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Button(
-                action: {
-                    withAnimation(.smooth(duration: 0.3)) {
-                        configuration.isExpanded.toggle()
-                    }
-                },
-                label: {
-                    header(configuration: configuration)
-                        .paddingStyle(set: .sectionHeader)
-                        .contentShape(Rectangle())
-                        .background(.backgroundLightest) // to stop collapsing views above showing through
-                }
-            )
-            .buttonStyle(.plain)
-
-            InstUI.Divider()
-
-            if configuration.isExpanded {
-                configuration.content
-                    .background(.backgroundLightest) // to stop collapsing views above showing through
-            }
-        }
-    }
-
-    private func header(configuration: Configuration) -> some View {
-        HStack(alignment: .center, spacing: 0) {
-            configuration.label
-                .textStyle(.sectionHeader)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .accessibilityAddTraits([.isHeader])
-
-            Image.chevronDown
-                .scaledIcon(size: 18)
-                .foregroundStyle(.textDark)
-                .rotationEffect(.degrees(configuration.isExpanded ? 180 : 0))
-                .paddingStyle(.leading, .cellAccessoryPadding)
-        }
-    }
-}
-
-private extension DisclosureGroupStyle where Self == ListSectionDisclosureStyle {
-    static var listSection: Self { ListSectionDisclosureStyle() }
-}
-
 // MARK: - Previews
 
 #if DEBUG
@@ -139,7 +95,7 @@ private extension DisclosureGroupStyle where Self == ListSectionDisclosureStyle 
     InstUI.BaseScreen(state: .data) { _ in
         VStack(spacing: 0) {
             InstUI.Divider()
-            InstUI.CollapsibleSection(title: "First Section", itemCount: count1) {
+            InstUI.CollapsibleListSection(title: "First Section", itemCount: count1) {
                 VStack(spacing: 0) {
                     ForEach(0..<count1, id: \.self) { index in
                         Text(verbatim: "Item \(index)")
@@ -150,7 +106,7 @@ private extension DisclosureGroupStyle where Self == ListSectionDisclosureStyle 
                     }
                 }
             }
-            InstUI.CollapsibleSection(title: "Second Section", itemCount: count2) {
+            InstUI.CollapsibleListSection(title: "Second Section", itemCount: count2) {
                 VStack(spacing: 0) {
                     ForEach(0..<count2, id: \.self) { index in
                         Text(verbatim: "Item \(index)")

@@ -30,7 +30,7 @@ struct StudentNotesView: View {
     var body: some View {
         let title = String(localized: "Student Notes", bundle: .teacher)
         let itemCount = viewModel.entries.count > 1 ? viewModel.entries.count : nil
-        InstUI.CollapsibleSection(title: title, itemCount: itemCount) {
+        InstUI.CollapsibleListSection(title: title, itemCount: itemCount) {
             VStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
                 ForEach(viewModel.entries) { entry in
                     StudentNotesEntryView(title: entry.title, content: entry.content)
