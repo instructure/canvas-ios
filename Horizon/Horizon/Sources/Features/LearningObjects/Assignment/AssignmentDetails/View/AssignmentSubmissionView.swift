@@ -78,10 +78,10 @@ struct AssignmentSubmissionView: View {
                 }
             }
             .sheet(isPresented: $isImagePickerVisible) {
-                ImagePickerViewController(sourceType: .photoLibrary, imageHandler: addFile)
+                AttachmentPickerAssembly.makeImagePicker(onSelect: addFile)
             }
             .sheet(isPresented: $isTakePhotoVisible) {
-                ImagePickerViewController(sourceType: .camera, imageHandler: addFile)
+                AttachmentPickerAssembly.makeImageRecorder(onSelect: addFile)
                     .interactiveDismissDisabled()
             }
     }
