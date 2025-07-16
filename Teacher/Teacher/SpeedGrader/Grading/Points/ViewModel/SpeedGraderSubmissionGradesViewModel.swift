@@ -21,16 +21,17 @@ import CombineSchedulers
 import Core
 import CoreData
 
-class GradeViewModel: ObservableObject {
+class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     // MARK: - Outputs
 
     @Published var sliderValue: Double = 0
     @Published var isShowingErrorAlert = false
-    @Published private(set) var state = GradeState()
+    @Published var isNoGradeButtonDisabled = false
+    @Published private(set) var state = GradeState.empty
     @Published private(set) var isSaving = false
     @Published private(set) var errorAlertViewModel = ErrorAlertViewModel(
-        title: "",
+        title: String(localized: "Error", bundle: .teacher),
         message: "",
         buttonTitle: String(localized: "OK", bundle: .teacher)
     )
@@ -87,6 +88,7 @@ class GradeViewModel: ObservableObject {
             .sink { [weak self] newState in
                 self?.state = newState
                 self?.sliderValue = newState.score
+                self?.isNoGradeButtonDisabled = (!newState.isGraded && !newState.isExcused)
             }
             .store(in: &cancellables)
     }
@@ -110,9 +112,9 @@ class GradeViewModel: ObservableObject {
 
     private func showError(_ error: Error) {
         errorAlertViewModel = ErrorAlertViewModel(
-            title: String(localized: "Error", bundle: .core),
+            title: errorAlertViewModel.title,
             message: error.localizedDescription,
-            buttonTitle: String(localized: "OK", bundle: .teacher)
+            buttonTitle: errorAlertViewModel.buttonTitle
         )
         isShowingErrorAlert = true
     }

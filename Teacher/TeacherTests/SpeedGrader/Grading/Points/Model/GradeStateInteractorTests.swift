@@ -276,7 +276,7 @@ class GradeStateInteractorTests: TeacherTestCase {
             rubricScore: nil,
             final: false
         )
-        XCTAssertEqual(gradeState.gradeText, expectedText)
+        XCTAssertEqual(gradeState.originalGradeText, expectedText)
     }
 
     func test_gradeText_usesGradeFormatterWithRubricScore() {
@@ -296,7 +296,7 @@ class GradeStateInteractorTests: TeacherTestCase {
             rubricScore: 95,
             final: false
         )
-        XCTAssertEqual(gradeState.gradeText, expectedText)
+        XCTAssertEqual(gradeState.originalGradeText, expectedText)
     }
 
     // MARK: - pointsDeductedText Tests

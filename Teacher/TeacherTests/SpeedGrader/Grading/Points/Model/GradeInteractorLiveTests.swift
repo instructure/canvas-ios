@@ -147,9 +147,9 @@ class GradeInteractorLiveTests: TeacherTestCase {
 
 // MARK: - Mock Classes
 
-class GradeStateInteractorMock: GradeStateInteractor {
+private class GradeStateInteractorMock: GradeStateInteractor {
     var gradeStateCalled = false
-    var gradeStateToReturn = GradeState()
+    var gradeStateToReturn = GradeState.empty
     var lastSubmission: Submission?
     var lastAssignment: Assignment?
     var lastIsRubricScoreAvailable: Bool?
@@ -170,7 +170,7 @@ class GradeStateInteractorMock: GradeStateInteractor {
     }
 }
 
-class RubricGradingInteractorMock: RubricGradingInteractor {
+private class RubricGradingInteractorMock: RubricGradingInteractor {
     let assessments: AnyPublisher<APIRubricAssessmentMap, Never>
     let isSaving = CurrentValueSubject<Bool, Never>(false)
     let showSaveError = PassthroughSubject<Error, Never>()

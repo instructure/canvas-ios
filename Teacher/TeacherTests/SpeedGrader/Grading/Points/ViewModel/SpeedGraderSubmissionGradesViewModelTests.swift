@@ -23,7 +23,7 @@ import CombineSchedulers
 import TestsFoundation
 @testable import Teacher
 
-class GradeViewModelTests: TeacherTestCase {
+class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
     private enum TestData {
         static let sampleGradeState = GradeState(
             hasLateDeduction: false,
@@ -38,7 +38,7 @@ class GradeViewModelTests: TeacherTestCase {
         )
     }
     private var gradeInteractorMock: GradeInteractorMock!
-    private var viewModel: GradeViewModel!
+    private var viewModel: SpeedGraderSubmissionGradesViewModel!
     private var cancellables: Set<AnyCancellable>!
 
     override func setUp() {
@@ -49,7 +49,7 @@ class GradeViewModelTests: TeacherTestCase {
         let assignment = Assignment.make(from: .make(), in: databaseClient)
         let submission = Submission.make(from: .make(), in: databaseClient)
 
-        viewModel = GradeViewModel(
+        viewModel = SpeedGraderSubmissionGradesViewModel(
             assignment: assignment,
             submission: submission,
             gradeInteractor: gradeInteractorMock,
@@ -183,12 +183,68 @@ class GradeViewModelTests: TeacherTestCase {
         gradeInteractorMock.saveGradeSubject.send(completion: .failure(error))
         XCTAssertFalse(viewModel.isSaving)
     }
+
+    // MARK: - No Grade Button Tests
+
+    func test_isNoGradeButtonDisabled_withoutGradeAndNotExcused_isDisabled() {
+        let stateWithoutGrade = GradeState(
+            hasLateDeduction: false,
+            isGraded: false,
+            isExcused: false,
+            isGradedButNotPosted: false,
+            finalGradeText: "",
+            gradeText: "",
+            pointsDeductedText: "",
+            gradeAlertText: "",
+            score: 0
+        )
+
+        gradeInteractorMock.gradeStateSubject.send(stateWithoutGrade)
+
+        XCTAssertTrue(viewModel.isNoGradeButtonDisabled)
+    }
+
+    func test_isNoGradeButtonDisabled_withGrade_isEnabled() {
+        let stateWithGrade = GradeState(
+            hasLateDeduction: false,
+            isGraded: true,
+            isExcused: false,
+            isGradedButNotPosted: false,
+            finalGradeText: "85/100",
+            gradeText: "85",
+            pointsDeductedText: "",
+            gradeAlertText: "85",
+            score: 85
+        )
+
+        gradeInteractorMock.gradeStateSubject.send(stateWithGrade)
+
+        XCTAssertFalse(viewModel.isNoGradeButtonDisabled)
+    }
+
+    func test_isNoGradeButtonDisabled_withExcusedGrade_isEnabled() {
+        let stateWithExcusedGrade = GradeState(
+            hasLateDeduction: false,
+            isGraded: false,
+            isExcused: true,
+            isGradedButNotPosted: false,
+            finalGradeText: "Excused",
+            gradeText: "",
+            pointsDeductedText: "",
+            gradeAlertText: "Excused",
+            score: 0
+        )
+
+        gradeInteractorMock.gradeStateSubject.send(stateWithExcusedGrade)
+
+        XCTAssertFalse(viewModel.isNoGradeButtonDisabled)
+    }
 }
 
 // MARK: - Mock Classes
 
 class GradeInteractorMock: GradeInteractor {
-    let gradeStateSubject = CurrentValueSubject<GradeState, Never>(GradeState())
+    let gradeStateSubject = CurrentValueSubject<GradeState, Never>(GradeState.empty)
     let saveGradeSubject = PassthroughSubject<Void, Error>()
 
     var gradeState: AnyPublisher<GradeState, Never> {

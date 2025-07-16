@@ -195,7 +195,7 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
             env: environment
         )
 
-        let gradeViewModel = GradeViewModel(
+        let gradeViewModel = SpeedGraderSubmissionGradesViewModel(
             assignment: assignment,
             submission: submission,
             gradeInteractor: gradeInteractor
@@ -209,10 +209,10 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
                 latestSubmission: submission,
                 contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
                 gradeStatusInteractor: interactor.gradeStatusInteractor,
+                rubricsViewModel: rubricsViewModel,
+                gradeViewModel: gradeViewModel,
                 env: environment
             ),
-            rubricsViewModel: rubricsViewModel,
-            gradeViewModel: gradeViewModel,
             landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,
             handleRefresh: { [weak self] in
                 guard let self else { return }

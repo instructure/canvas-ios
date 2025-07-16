@@ -36,7 +36,7 @@ class GradeInteractorLive: GradeInteractor {
 
     // MARK: - Private Properties
 
-    private let gradeStateSubject = CurrentValueSubject<GradeState, Never>(GradeState())
+    private let gradeStateSubject = CurrentValueSubject<GradeState, Never>(GradeState.empty)
     private var cancellables = Set<AnyCancellable>()
     private let assignment: Assignment
     private let submission: Submission

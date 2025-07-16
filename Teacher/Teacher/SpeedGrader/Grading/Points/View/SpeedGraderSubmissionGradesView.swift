@@ -19,7 +19,7 @@
 import Core
 import SwiftUI
 
-struct SubmissionGrades: View {
+struct SpeedGraderSubmissionGradesView: View {
     let assignment: Assignment
     let containerHeight: CGFloat
 
@@ -33,7 +33,7 @@ struct SubmissionGrades: View {
 
     @ObservedObject var rubricsViewModel: RubricsViewModel
     @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
-    @ObservedObject var gradeViewModel: GradeViewModel
+    @ObservedObject var gradeViewModel: SpeedGraderSubmissionGradesViewModel
 
     var body: some View {
         if assignment.moderatedGrading {
@@ -60,7 +60,7 @@ struct SubmissionGrades: View {
                                 if gradeViewModel.state.isExcused {
                                     Text("Excused", bundle: .teacher)
                                 } else if gradeViewModel.state.isGraded {
-                                    Text(gradeViewModel.state.gradeText)
+                                    Text(gradeViewModel.state.originalGradeText)
                                 } else {
                                     Image.addSolid.foregroundStyle(.tint)
                                 }
@@ -125,12 +125,12 @@ struct SubmissionGrades: View {
 
     private var noGradeAndExcuseButtons: some View {
         HStack(spacing: 16) {
-            SpeedGraderButton(title: String(localized: "No Grade")) {
+            SpeedGraderButton(title: String(localized: "No Grade", bundle: .teacher)) {
                 gradeViewModel.removeGrade()
             }
-            .disabled(!gradeViewModel.state.isGraded && !gradeViewModel.state.isExcused)
+            .disabled(gradeViewModel.isNoGradeButtonDisabled)
 
-            SpeedGraderButton(title: String(localized: "Excuse Student")) {
+            SpeedGraderButton(title: String(localized: "Excuse Student", bundle: .teacher)) {
                 gradeViewModel.excuseStudent()
             }
             .disabled(gradeViewModel.state.isExcused)

@@ -22,6 +22,18 @@ import Core
 /// This model encapsulates all grade-related information including status flags,
 /// formatted text for display, and the numerical score value.
 struct GradeState: Equatable {
+    static let empty = GradeState(
+        hasLateDeduction: false,
+        isGraded: false,
+        isExcused: false,
+        isGradedButNotPosted: false,
+        finalGradeText: "",
+        gradeText: "",
+        pointsDeductedText: "",
+        gradeAlertText: "",
+        score: 0
+    )
+
     let hasLateDeduction: Bool
     let isGraded: Bool
     let isExcused: Bool
@@ -30,9 +42,8 @@ struct GradeState: Equatable {
     /// The final grade after late deduction is applied.
     let finalGradeText: String
 
-    /// The original grade's text representation.
     /// Late deduction is applied to this resulting in the final grade.
-    let gradeText: String
+    let originalGradeText: String
 
     /// Formatted text showing points deducted for late submissions.
     let pointsDeductedText: String
@@ -60,21 +71,9 @@ struct GradeState: Equatable {
         self.isExcused = isExcused
         self.isGradedButNotPosted = isGradedButNotPosted
         self.finalGradeText = finalGradeText
-        self.gradeText = gradeText
+        self.originalGradeText = gradeText
         self.pointsDeductedText = pointsDeductedText
         self.gradeAlertText = gradeAlertText
         self.score = score
-    }
-
-    init() {
-        self.hasLateDeduction = false
-        self.isGraded = false
-        self.isExcused = false
-        self.isGradedButNotPosted = false
-        self.finalGradeText = ""
-        self.gradeText = ""
-        self.pointsDeductedText = ""
-        self.gradeAlertText = ""
-        self.score = 0
     }
 }

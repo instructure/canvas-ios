@@ -78,7 +78,7 @@
 		7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A98423689DD4004EAEDF /* DatePickerViewControllerTests.swift */; };
 		7D64A9872368C6C0004EAEDF /* AttendanceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A9862368C6C0004EAEDF /* AttendanceViewControllerTests.swift */; };
 		7D7126B12534B980000DEDE4 /* DrawerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7126B02534B980000DEDE4 /* DrawerContainer.swift */; };
-		7D7126C025374446000DEDE4 /* SubmissionGrades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7126BF25374446000DEDE4 /* SubmissionGrades.swift */; };
+		7D7126C025374446000DEDE4 /* SpeedGraderSubmissionGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7126BF25374446000DEDE4 /* SpeedGraderSubmissionGradesView.swift */; };
 		7D7126C425374457000DEDE4 /* SubmissionCommentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7126C325374457000DEDE4 /* SubmissionCommentListView.swift */; };
 		7D7126C725374469000DEDE4 /* FileThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7126C625374469000DEDE4 /* FileThumbnailView.swift */; };
 		7D742F382554D01400FD6CF1 /* RubricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D742F372554D01400FD6CF1 /* RubricsView.swift */; };
@@ -125,7 +125,6 @@
 		CF05D85F2E1D4E4000F98B90 /* SpeedGraderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF05D85E2E1D4E3800F98B90 /* SpeedGraderButton.swift */; };
 		CF05D8622E1E561E00F98B90 /* CommentLibraryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF05D8612E1E561E00F98B90 /* CommentLibraryScreen.swift */; };
 		CF05D8642E1E563400F98B90 /* CommentLibraryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF05D8632E1E563400F98B90 /* CommentLibraryViewModelTests.swift */; };
-		CF05D86B2E1EC92500F98B90 /* GradeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF05D86A2E1EC92400F98B90 /* GradeViewModel.swift */; };
 		CF05D86D2E1FEA0D00F98B90 /* GradeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF05D86C2E1FEA0500F98B90 /* GradeInteractor.swift */; };
 		CF05D8702E1FEF3400F98B90 /* GradeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF05D86F2E1FEF3300F98B90 /* GradeState.swift */; };
 		CF0605E32D95C5A50014C2EC /* RubricCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0605E22D95C5A00014C2EC /* RubricCircle.swift */; };
@@ -158,9 +157,10 @@
 		CF835A972E21555300F33C1D /* GradeInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF835A962E21555300F33C1D /* GradeInteractorLiveTests.swift */; };
 		CF835A992E24F68500F33C1D /* GradeStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF835A982E24F68500F33C1D /* GradeStateInteractor.swift */; };
 		CF835A9B2E24F8BD00F33C1D /* GradeStateInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF835A9A2E24F8BD00F33C1D /* GradeStateInteractorTests.swift */; };
-		CF835A9E2E25094A00F33C1D /* GradeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF835A9C2E25094A00F33C1D /* GradeViewModelTests.swift */; };
+		CF835A9E2E25094A00F33C1D /* SpeedGraderSubmissionGradesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF835A9C2E25094A00F33C1D /* SpeedGraderSubmissionGradesViewModelTests.swift */; };
 		CF93FCB82D5A5AF600C4538F /* SpeedGraderAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93FCB72D5A5AF000C4538F /* SpeedGraderAssembly.swift */; };
 		CFAA40232AE2633A002C7AAE /* PSPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = CFAA40222AE2633A002C7AAE /* PSPDFKit */; };
+		CFB5ED622E27CB6A000009DF /* SpeedGraderSubmissionGradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB5ED612E27CB6A000009DF /* SpeedGraderSubmissionGradesViewModel.swift */; };
 		CFCADAEA2D9BE21F003796E7 /* RubricCriterionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCADAE92D9BE213003796E7 /* RubricCriterionViewModel.swift */; };
 		CFCADAF02D9D6E1D003796E7 /* RubricRatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCADAEF2D9D6E1B003796E7 /* RubricRatingViewModel.swift */; };
 		CFCADAF22D9D6FE4003796E7 /* RubricCustomRatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCADAF12D9D6FDF003796E7 /* RubricCustomRatingViewModel.swift */; };
@@ -348,7 +348,7 @@
 		7D64A98423689DD4004EAEDF /* DatePickerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewControllerTests.swift; sourceTree = "<group>"; };
 		7D64A9862368C6C0004EAEDF /* AttendanceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewControllerTests.swift; sourceTree = "<group>"; };
 		7D7126B02534B980000DEDE4 /* DrawerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerContainer.swift; sourceTree = "<group>"; };
-		7D7126BF25374446000DEDE4 /* SubmissionGrades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionGrades.swift; sourceTree = "<group>"; };
+		7D7126BF25374446000DEDE4 /* SpeedGraderSubmissionGradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderSubmissionGradesView.swift; sourceTree = "<group>"; };
 		7D7126C325374457000DEDE4 /* SubmissionCommentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentListView.swift; sourceTree = "<group>"; };
 		7D7126C625374469000DEDE4 /* FileThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileThumbnailView.swift; sourceTree = "<group>"; };
 		7D742F372554D01400FD6CF1 /* RubricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricsView.swift; sourceTree = "<group>"; };
@@ -391,7 +391,6 @@
 		CF05D85E2E1D4E3800F98B90 /* SpeedGraderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderButton.swift; sourceTree = "<group>"; };
 		CF05D8612E1E561E00F98B90 /* CommentLibraryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLibraryScreen.swift; sourceTree = "<group>"; };
 		CF05D8632E1E563400F98B90 /* CommentLibraryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLibraryViewModelTests.swift; sourceTree = "<group>"; };
-		CF05D86A2E1EC92400F98B90 /* GradeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeViewModel.swift; sourceTree = "<group>"; };
 		CF05D86C2E1FEA0500F98B90 /* GradeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeInteractor.swift; sourceTree = "<group>"; };
 		CF05D86F2E1FEF3300F98B90 /* GradeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeState.swift; sourceTree = "<group>"; };
 		CF0605E22D95C5A00014C2EC /* RubricCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricCircle.swift; sourceTree = "<group>"; };
@@ -424,8 +423,9 @@
 		CF835A962E21555300F33C1D /* GradeInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeInteractorLiveTests.swift; sourceTree = "<group>"; };
 		CF835A982E24F68500F33C1D /* GradeStateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStateInteractor.swift; sourceTree = "<group>"; };
 		CF835A9A2E24F8BD00F33C1D /* GradeStateInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStateInteractorTests.swift; sourceTree = "<group>"; };
-		CF835A9C2E25094A00F33C1D /* GradeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeViewModelTests.swift; sourceTree = "<group>"; };
+		CF835A9C2E25094A00F33C1D /* SpeedGraderSubmissionGradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderSubmissionGradesViewModelTests.swift; sourceTree = "<group>"; };
 		CF93FCB72D5A5AF000C4538F /* SpeedGraderAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderAssembly.swift; sourceTree = "<group>"; };
+		CFB5ED612E27CB6A000009DF /* SpeedGraderSubmissionGradesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderSubmissionGradesViewModel.swift; sourceTree = "<group>"; };
 		CFCADAE92D9BE213003796E7 /* RubricCriterionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricCriterionViewModel.swift; sourceTree = "<group>"; };
 		CFCADAEF2D9D6E1B003796E7 /* RubricRatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricRatingViewModel.swift; sourceTree = "<group>"; };
 		CFCADAF12D9D6FDF003796E7 /* RubricCustomRatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricCustomRatingViewModel.swift; sourceTree = "<group>"; };
@@ -986,7 +986,7 @@
 		CF05D8692E1EC91700F98B90 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				CF05D86A2E1EC92400F98B90 /* GradeViewModel.swift */,
+				CFB5ED612E27CB6A000009DF /* SpeedGraderSubmissionGradesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1091,7 +1091,7 @@
 			children = (
 				CF05D85E2E1D4E3800F98B90 /* SpeedGraderButton.swift */,
 				EB12071E2601F2C50038E875 /* GradeSlider.swift */,
-				7D7126BF25374446000DEDE4 /* SubmissionGrades.swift */,
+				7D7126BF25374446000DEDE4 /* SpeedGraderSubmissionGradesView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1388,7 +1388,7 @@
 		CF835A9D2E25094A00F33C1D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				CF835A9C2E25094A00F33C1D /* GradeViewModelTests.swift */,
+				CF835A9C2E25094A00F33C1D /* SpeedGraderSubmissionGradesViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1859,6 +1859,7 @@
 				CF4C5F7C2DA02401005AE000 /* SpeedGraderInteractorLive.swift in Sources */,
 				CF93FCB82D5A5AF600C4538F /* SpeedGraderAssembly.swift in Sources */,
 				CFFEADB12E007B0600277F69 /* IBDesignables.swift in Sources */,
+				CFB5ED622E27CB6A000009DF /* SpeedGraderSubmissionGradesViewModel.swift in Sources */,
 				7D3DC0C0252291B400B0EBC1 /* SubmissionFilterPickerViewController.swift in Sources */,
 				7D7126C425374457000DEDE4 /* SubmissionCommentListView.swift in Sources */,
 				7DCA320C2541D38F00458651 /* URLSubmissionViewer.swift in Sources */,
@@ -1877,7 +1878,6 @@
 				3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */,
 				7D0A28E2251A8284004FB3B6 /* SpeedGraderPageHeaderView.swift in Sources */,
 				5B9C5C072DB9B04000103E21 /* SubmissionCommentsAssembly.swift in Sources */,
-				CF05D86B2E1EC92500F98B90 /* GradeViewModel.swift in Sources */,
 				CF0605E32D95C5A50014C2EC /* RubricCircle.swift in Sources */,
 				CFCADAF42D9D871D003796E7 /* RubricRatingView.swift in Sources */,
 				CFFEADAE2E00705900277F69 /* SubmissionViewer.swift in Sources */,
@@ -1900,7 +1900,7 @@
 				7D64A95D23620A27004EAEDF /* AttendanceStatusController.swift in Sources */,
 				B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */,
 				CFFEADD12E05675900277F69 /* GradeStatusDaysLateView.swift in Sources */,
-				7D7126C025374446000DEDE4 /* SubmissionGrades.swift in Sources */,
+				7D7126C025374446000DEDE4 /* SpeedGraderSubmissionGradesView.swift in Sources */,
 				7D64A96023620A27004EAEDF /* DatePickerCollectionView.swift in Sources */,
 				CFF4AAAF2DFB0CCF00B0351F /* GradeStatusInteractorPreview.swift in Sources */,
 				EB12071F2601F2C50038E875 /* GradeSlider.swift in Sources */,
@@ -1975,7 +1975,7 @@
 				7D64A98123676E36004EAEDF /* RollCallSessionTests.swift in Sources */,
 				5B4F3E602DC8B169001A9126 /* SubmissionCommentListCellViewModelTests.swift in Sources */,
 				CF7D8D682DD24B5E00FA67CE /* SpeedGraderPageLandscapeSplitLayoutViewModelTests.swift in Sources */,
-				CF835A9E2E25094A00F33C1D /* GradeViewModelTests.swift in Sources */,
+				CF835A9E2E25094A00F33C1D /* SpeedGraderSubmissionGradesViewModelTests.swift in Sources */,
 				7D64A96D23626C22004EAEDF /* StatusCellTests.swift in Sources */,
 				CF56B71525F68CD3000DD32F /* SpeedGraderPageHeaderViewModelTests.swift in Sources */,
 				5BDD37D72DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift in Sources */,

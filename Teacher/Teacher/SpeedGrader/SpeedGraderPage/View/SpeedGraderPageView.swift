@@ -61,9 +61,7 @@ struct SpeedGraderPageView: View {
 
     // MARK: - Misc properties
 
-    @StateObject private var rubricsViewModel: RubricsViewModel
     @StateObject private var viewModel: SpeedGraderPageViewModel
-    @StateObject private var gradeViewModel: GradeViewModel
     @ObservedObject private var landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel
 
     private let handleRefresh: (() -> Void)?
@@ -74,15 +72,11 @@ struct SpeedGraderPageView: View {
         env: AppEnvironment,
         userIndexInSubmissionList: Int,
         viewModel: SpeedGraderPageViewModel,
-        rubricsViewModel: RubricsViewModel,
-        gradeViewModel: GradeViewModel,
         landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel,
         handleRefresh: (() -> Void)?
     ) {
         self.userIndexInSubmissionList = userIndexInSubmissionList
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self._rubricsViewModel = StateObject(wrappedValue: rubricsViewModel)
-        self._gradeViewModel = StateObject(wrappedValue: gradeViewModel)
         self.landscapeSplitLayoutViewModel = landscapeSplitLayoutViewModel
         self.handleRefresh = handleRefresh
     }
@@ -341,9 +335,7 @@ struct SpeedGraderPageView: View {
             a11yFocusedTab: _a11yFocusedTab,
             drawerState: $drawerState,
             splitViewHeaderHeight: $headerHeight,
-            viewModel: viewModel,
-            rubricsViewModel: rubricsViewModel,
-            gradeViewModel: gradeViewModel
+            viewModel: viewModel
         )
     }
 

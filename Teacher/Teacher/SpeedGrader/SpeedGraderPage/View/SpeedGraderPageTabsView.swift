@@ -39,8 +39,6 @@ struct SpeedGraderPageTabsView: View {
     @Binding private var splitViewHeaderHeight: CGFloat
 
     @StateObject private var viewModel: SpeedGraderPageViewModel
-    @ObservedObject private var rubricsViewModel: RubricsViewModel
-    @ObservedObject private var gradeViewModel: GradeViewModel
 
     init(
         containerType: ContainerType,
@@ -49,9 +47,7 @@ struct SpeedGraderPageTabsView: View {
         a11yFocusedTab: AccessibilityFocusState<SpeedGraderPageTab?>,
         drawerState: Binding<DrawerState>,
         splitViewHeaderHeight: Binding<CGFloat>,
-        viewModel: SpeedGraderPageViewModel,
-        rubricsViewModel: RubricsViewModel,
-        gradeViewModel: GradeViewModel
+        viewModel: SpeedGraderPageViewModel
     ) {
         self.containerType = containerType
         self.bottomInset = bottomInset
@@ -61,8 +57,6 @@ struct SpeedGraderPageTabsView: View {
         self._splitViewHeaderHeight = splitViewHeaderHeight
 
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self.rubricsViewModel = rubricsViewModel
-        self.gradeViewModel = gradeViewModel
     }
 
     var body: some View {
@@ -155,12 +149,12 @@ struct SpeedGraderPageTabsView: View {
     ) -> some View {
         let isGradesOnScreen = isTabOnScreen(.grades)
         VStack(spacing: 0) {
-            SubmissionGrades(
+            SpeedGraderSubmissionGradesView(
                 assignment: viewModel.assignment,
                 containerHeight: geometry.size.height,
-                rubricsViewModel: rubricsViewModel,
+                rubricsViewModel: viewModel.rubricsViewModel,
                 gradeStatusViewModel: viewModel.gradeStatusViewModel,
-                gradeViewModel: gradeViewModel
+                gradeViewModel: viewModel.gradeViewModel
             )
             .clipped()
             Spacer().frame(height: bottomInset)
