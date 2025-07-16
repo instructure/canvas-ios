@@ -93,3 +93,23 @@ class HSelectCourseActionGoal: HGoal {
         .eraseToAnyPublisher()
     }
 }
+
+extension Array where Element == AssistChatMessage {
+    var domainServiceConversationMessages: [DomainServiceConversationMessage] {
+        prependUserMessage()
+            .map {
+                DomainServiceConversationMessage(
+                    text: $0.text ?? $0.prompt ?? "",
+                    role: $0.role == .Assistant ? .Assistant : .User
+                )
+            }
+    }
+
+    /// The API requires that the first message is from the user, so we prepend a user message if the first message is not from the user.
+    private func prependUserMessage() -> [AssistChatMessage] {
+        guard let first = first, first.role != .User else {
+            return self
+        }
+        return [.init(userResponse: "Hello")] + self
+    }
+}

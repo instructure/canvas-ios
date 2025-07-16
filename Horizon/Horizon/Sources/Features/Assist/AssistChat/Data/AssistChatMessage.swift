@@ -94,36 +94,10 @@ struct AssistChatMessage {
         case Assistant
         case User
     }
-}
 
-extension Array where Element == AssistChatMessage {
-    var domainServiceConversationMessages: [DomainServiceConversationMessage] {
-        prependUserMessage()
-            .map {
-                DomainServiceConversationMessage(
-                    text: $0.text ?? $0.prompt ?? "",
-                    role: $0.role == .Assistant ? .Assistant : .User
-                )
-            }
-    }
-
-    private func prependUserMessage() -> [AssistChatMessage] {
-        guard let first = first, first.role != .User else {
-            return self
-        }
-        return [.init(userResponse: "Hello")] + self
-    }
-}
-
-extension Array where Element == AssistChatMessage {
-    var json: String {
-        let jsonItems = map {
-            "{ role: \"\($0.role.rawValue)\", content: \"\($0.prompt ?? $0.text ?? "")\")}"
-        }.joined(separator: ",")
-        let jsonList = "[\(jsonItems)]"
-        guard let encoded = jsonList.data(using: .utf8) else {
-            return ""
-        }
-        return String(data: encoded, encoding: .utf8) ?? "[]"
+    struct QuizItem: Codable, Equatable {
+        let question: String
+        let answers: [String]
+        let correctAnswerIndex: Int
     }
 }

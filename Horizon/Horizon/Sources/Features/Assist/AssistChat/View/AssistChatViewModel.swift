@@ -20,7 +20,6 @@ import Combine
 import CombineSchedulers
 import Core
 import Foundation
-import Observation
 
 @Observable
 final class AssistChatViewModel {

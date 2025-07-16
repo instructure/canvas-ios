@@ -16,9 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import Foundation
-
 /// A response from the interactor
 struct AssistChatResponse {
 

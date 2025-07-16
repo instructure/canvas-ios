@@ -138,7 +138,7 @@ class HCoursePageGoal: HCourseItemGoal {
 }
 
 extension CedarGenerateQuizMutation.QuizOutput {
-    var quizItems: [QuizItem] {
+    var quizItems: [AssistChatMessage.QuizItem] {
         data.generateQuiz.map {
             .init(
                 question: $0.question,

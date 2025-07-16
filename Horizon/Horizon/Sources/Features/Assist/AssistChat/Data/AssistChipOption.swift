@@ -16,8 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-
 struct AssistChipOption: Equatable {
     let chip: String
     let prompt: String?

@@ -34,7 +34,6 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     }
 
     // MARK: - Private
-
     private let actionPublisher = CurrentValueRelay<AssistChatAction?>(nil)
     private var assistDataEnvironment: AssistDataEnvironment = AssistDataEnvironment()
     private var assistDateEnvironmentOriginal: AssistDataEnvironment = AssistDataEnvironment()
@@ -44,7 +43,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     private var subscriptions = Set<AnyCancellable>()
     private var goals: [HGoal]
 
-    // MARK: - init
+    // MARK: - Init
     init(
         courseID: String? = nil,
         fileID: String? = nil,
@@ -64,26 +63,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         self.assistDateEnvironmentOriginal = assistDataEnvironment.duplicate()
     }
 
-    private static func initializeGoals(
-        assistDataEnvironment: AssistDataEnvironment,
-        downloadFileInteractor: DownloadFileInteractor?
-    ) -> [HGoal] {
-        // order matters
-        [
-            downloadFileInteractor.map {
-                HCourseDocumentGoal(
-                    environment: assistDataEnvironment,
-                    downloadFileInteractor: $0
-                )
-            },
-            HCoursePageGoal(environment: assistDataEnvironment),
-            HSelectCourseActionGoal(environment: assistDataEnvironment),
-            HSelectCourseGoal(environment: assistDataEnvironment)
-        ].compactMap { $0 }
-    }
-
     // MARK: - Inputs
-
     /// Publishes a new user action to the interactor
     func publish(action: AssistChatAction) {
         var prompt: String?
@@ -111,7 +91,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
             receiveCompletion: { _ in },
             receiveValue: { [weak self] assistChatResponse in
                 guard let assistChatResponse = assistChatResponse else {
-                    self?.publish(action: .chat(history: history))
+                    self?.publish(action: .chat(prompt: "", history: history))
                     return
                 }
                 let response: AssistChatResponse = .init(assistChatResponse, chatHistory: history)
@@ -135,6 +115,25 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         publish(action: .begin)
     }
 
+    // MARK: - Static
+    private static func initializeGoals(
+        assistDataEnvironment: AssistDataEnvironment,
+        downloadFileInteractor: DownloadFileInteractor?
+    ) -> [HGoal] {
+        // order matters
+        [
+            downloadFileInteractor.map {
+                HCourseDocumentGoal(
+                    environment: assistDataEnvironment,
+                    downloadFileInteractor: $0
+                )
+            },
+            HCoursePageGoal(environment: assistDataEnvironment),
+            HSelectCourseActionGoal(environment: assistDataEnvironment),
+            HSelectCourseGoal(environment: assistDataEnvironment)
+        ].compactMap { $0 }
+    }
+
     // MARK: - Private
 
     private func executeNextGoal(
@@ -145,31 +144,6 @@ final class AssistChatInteractorLive: AssistChatInteractor {
             return nil
         }
         return goal.execute(response: prompt, history: history)
-    }
-
-    /// Fetches the user's short name
-    private var userShortNamePublisher: AnyPublisher<String, Error> {
-        ReactiveStore(useCase: GetUserProfile())
-            .getEntities()
-            .map { $0.first?.shortName ?? String(localized: "Learner", bundle: .horizon) }
-            .eraseToAnyPublisher()
-    }
-}
-
-// MARK: - Extensions
-
-private extension String {
-    func toChipOptions() -> [AssistChipOption] {
-        guard let data = self.data(using: .utf8) else {
-            return []
-        }
-
-        do {
-            let chipOptions = try JSONDecoder().decode([AssistChipOption].self, from: data)
-            return chipOptions
-        } catch {
-            return []
-        }
     }
 }
 
