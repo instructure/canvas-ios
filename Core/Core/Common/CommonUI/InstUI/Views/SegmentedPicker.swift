@@ -24,13 +24,17 @@ extension InstUI {
 
         private var selection: Binding<SelectionValue>
         private let content: () -> Content
+        private let onTouch: (() -> Void)?
 
+        /// - Parameter onTouch: Called when the segmented picker is touched no matter if the selection changes or not. This is a touchDown event and not a regular tap that also includes the touchUp event.
         public init(
             selection: Binding<SelectionValue>,
+            onTouch: (() -> Void)? = nil,
             @ViewBuilder content: @escaping () -> Content
         ) {
             self.selection = selection
             self.content = content
+            self.onTouch = onTouch
             updateSegmentedControlAppearance()
         }
 
@@ -42,6 +46,7 @@ extension InstUI {
                    content: content
             )
             .pickerStyle(.segmented)
+            .overlay(TouchPassThroughView(onTouch: onTouch))
         }
 
         private func updateSegmentedControlAppearance() {
@@ -65,6 +70,44 @@ extension InstUI {
                 for: .selected
             )
             appearance.selectedSegmentTintColor = .backgroundLightest
+        }
+
+        // MARK: - Tap Detection
+
+        private struct TouchPassThroughView: UIViewRepresentable {
+            let onTouch: (() -> Void)?
+
+            func makeUIView(context: Self.Context) -> TouchDetectorView {
+                let view = TouchDetectorView()
+                view.backgroundColor = .clear
+                view.onTouch = onTouch
+                return view
+            }
+
+            func updateUIView(_ uiView: TouchDetectorView, context: Self.Context) {
+                uiView.onTouch = onTouch
+            }
+        }
+
+        private class TouchDetectorView: UIView {
+            var onTouch: (() -> Void)?
+            private var hasDetectedTouchRecently = false
+
+            override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+                guard !hasDetectedTouchRecently, bounds.contains(point) else {
+                    return nil
+                }
+
+                hasDetectedTouchRecently = true
+                onTouch?()
+
+                // Reset after a short delay to allow for new touches
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                    self?.hasDetectedTouchRecently = false
+                }
+
+                return nil
+            }
         }
     }
 }
