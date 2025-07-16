@@ -18,29 +18,13 @@
 
 import SwiftUI
 
-<<<<<<<< HEAD:Core/CoreTests/Features/Inbox/Mocks/AudioSessionMock.swift
 final class AudioSessionMock: AudioSessionProtocol {
     // MARK: - Properties
+
     var mockPermission: AVAudioApplication.recordPermission = .denied
     var shouldGrantPermission: Bool = false
 
     var recordPermission: AVAudioApplication.recordPermission {
         return mockPermission
     }
-========
-public protocol SearchViewsProvider {
-    associatedtype Filter: SearchPreference
-    associatedtype FilterEditor: View
-    associatedtype Support: SearchSupportAction
-    associatedtype SearchContent: View
-
-    var supportButtonModel: SearchSupportButtonModel<Support>? { get }
->>>>>>>> origin/master:Core/Core/Features/Search/View/SearchViewsProvider.swift
-
-    func contentView(_ filter: Binding<Filter?>) -> SearchContent
-    func filterEditorView(_ filter: Binding<Filter?>) -> FilterEditor
-}
-
-public protocol SearchPreference {
-    var isActive: Bool { get }
 }
