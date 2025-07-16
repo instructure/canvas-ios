@@ -16,10 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import AVKit
-@testable import Core
+import SwiftUI
 
+<<<<<<<< HEAD:Core/CoreTests/Features/Inbox/Mocks/AudioSessionMock.swift
 final class AudioSessionMock: AudioSessionProtocol {
     // MARK: - Properties
     var mockPermission: AVAudioApplication.recordPermission = .denied
@@ -28,9 +27,20 @@ final class AudioSessionMock: AudioSessionProtocol {
     var recordPermission: AVAudioApplication.recordPermission {
         return mockPermission
     }
+========
+public protocol SearchViewsProvider {
+    associatedtype Filter: SearchPreference
+    associatedtype FilterEditor: View
+    associatedtype Support: SearchSupportAction
+    associatedtype SearchContent: View
 
-    // MARK: - Simulate Behaviours
-    func requestRecordPermission(_ response: @escaping (Bool) -> Void) {
-        response(shouldGrantPermission)
-    }
+    var supportButtonModel: SearchSupportButtonModel<Support>? { get }
+>>>>>>>> origin/master:Core/Core/Features/Search/View/SearchViewsProvider.swift
+
+    func contentView(_ filter: Binding<Filter?>) -> SearchContent
+    func filterEditorView(_ filter: Binding<Filter?>) -> FilterEditor
+}
+
+public protocol SearchPreference {
+    var isActive: Bool { get }
 }

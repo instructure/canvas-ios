@@ -134,8 +134,9 @@ class BackgroundActivityTests: XCTestCase {
 
         // MARK: - THEN
         waitForExpectations(timeout: 1)
-        drainMainQueue()
-        XCTAssertFalse(mockProcessManager.isExecutingBackgroundBlock)
+        waitUntil(shouldFail: true) {
+            mockProcessManager.isExecutingBackgroundBlock == false
+        }
     }
 
     func testMultipleStartRequestOnlyOneBackgroundSession() {

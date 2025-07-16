@@ -16,19 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import AVKit
+import XCTest
 @testable import Core
 
-final class CameraPermissionServiceMock: CameraPermissionService {
-    static var mockAuthorizationStatus: AVAuthorizationStatus = .authorized
-    static var mockRequestAccessResponse: Bool = true
+final class RecurrenceRuleSelectionDescriptionTests: XCTestCase {
 
-    static func authorizationStatus(for mediaType: AVMediaType) -> AVAuthorizationStatus {
-        return mockAuthorizationStatus
-    }
-
-    static func requestAccess(for mediaType: AVMediaType, completionHandler: @escaping (Bool) -> Void) {
-        completionHandler(mockRequestAccessResponse)
+    func test_selectionText() {
+        XCTAssertEqual(RecurrenceFrequency.daily.selectionText, String(localized: "Daily", bundle: .core))
+        XCTAssertEqual(RecurrenceFrequency.weekly.selectionText, String(localized: "Weekly", bundle: .core))
+        XCTAssertEqual(RecurrenceFrequency.monthly.selectionText, String(localized: "Monthly", bundle: .core))
+        XCTAssertEqual(RecurrenceFrequency.yearly.selectionText, String(localized: "Yearly", bundle: .core))
     }
 }

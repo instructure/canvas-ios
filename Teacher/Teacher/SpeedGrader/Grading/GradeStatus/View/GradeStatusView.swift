@@ -28,9 +28,15 @@ struct GradeStatusView: View {
         VStack(spacing: 0) {
             statusPickerCell
                 .identifier("SpeedGrader.statusPicker")
+                .zIndex(1)
 
             if viewModel.isShowingDaysLateSection {
                 GradeStatusDaysLateView(viewModel: viewModel)
+                    .transition(.asymmetric(
+                        insertion: .push(from: .top),
+                        removal: .push(from: .bottom)
+                    ))
+                    .zIndex(0)
                     .identifier("SpeedGrader.DaysLateButton")
             }
         }
@@ -43,11 +49,16 @@ struct GradeStatusView: View {
                 .font(.semibold16, lineHeight: .fit)
                 .foregroundColor(Color.textDarkest)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            if viewModel.isLoading {
-                ProgressView().tint(nil)
-            } else {
+            // The loading and the data state have different heights, so we use a ZStack to
+            // keep both of them on screen ensuring the cell's constant height.
+            ZStack(alignment: .trailing) {
+                ProgressView()
+                    .tint(nil)
+                    .opacity(viewModel.isLoading ? 1 : 0)
                 statusDropDown
+                    .opacity(viewModel.isLoading ? 0 : 1)
             }
+            .animation(.none, value: viewModel.isLoading)
         }
         .paddingStyle(set: .standardCell)
         .background(Color.backgroundLightest)
@@ -67,7 +78,7 @@ struct GradeStatusView: View {
             allOptions: viewModel.options,
             identifierGroup: "SpeedGrader.GradeStatusMenuItem",
             label: {
-                Text(viewModel.selectedOption.title)
+                Text(viewModel.shouldHideSelectedOptionTitle ? "" : viewModel.selectedOption.title)
                     .font(.regular14, lineHeight: .fit)
                 Image.chevronDown
                     .scaledIcon(size: 24)
@@ -77,6 +88,7 @@ struct GradeStatusView: View {
             isPresented: $viewModel.isShowingSaveFailedAlert,
             presenting: viewModel.errorAlertViewModel
         )
+        .animation(.none, value: viewModel.selectedOption.title)
     }
 }
 
@@ -98,6 +110,7 @@ struct GradeStatusView: View {
                 interactor: GradeStatusInteractorPreview(gradeStatuses: statuses)
             )
         )
+        .frame(maxHeight: .infinity, alignment: .top)
     }
 }
 

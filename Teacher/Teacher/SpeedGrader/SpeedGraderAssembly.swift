@@ -44,7 +44,7 @@ enum SpeedGraderAssembly {
             gradeStatusInteractor: gradeStatusInteractor,
             env: env
         )
-        let viewModel = SpeedGraderViewModel(
+        let viewModel = SpeedGraderScreenViewModel(
             interactor: interactor,
             environment: env
         )
@@ -66,7 +66,7 @@ enum SpeedGraderAssembly {
             interactor.data = testData()
         }
 
-        let viewModel = SpeedGraderViewModel(
+        let viewModel = SpeedGraderScreenViewModel(
             interactor: interactor,
             environment: .shared
         )

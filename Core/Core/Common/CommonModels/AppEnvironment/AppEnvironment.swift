@@ -131,6 +131,15 @@ open class AppEnvironment {
         userDefaults = nil
     }
 
+    public func widgetUserDidLogout() {
+        OfflineModeAssembly.reset()
+        database = globalDatabase
+        api = API()
+        k5.userDidLogout()
+        currentSession = nil
+        userDefaults = nil
+    }
+
     private func deleteUserData(session: LoginSession) {
         CourseSyncCleanupInteractor(session: session)
             .clean()

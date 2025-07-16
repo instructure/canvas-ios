@@ -31,14 +31,14 @@ class GradeStatusViewModelTests: TeacherTestCase {
         XCTAssertEqual(testee.selectedOption.id, "none")
     }
 
-    func test_options_sorted_optionsMatchInteractor() {
+    func test_optionsOrder_matchInteractorOrder() {
         let interactor = GradeStatusInteractorMock()
         interactor.gradeStatuses = [
             GradeStatus(defaultStatusId: "Bravo"),
             GradeStatus(defaultStatusId: "Alpha")
         ]
         let testee = makeViewModel(interactor: interactor)
-        XCTAssertEqual(testee.options.map { $0.title }, ["Alpha", "Bravo"])
+        XCTAssertEqual(testee.options.map { $0.title }, ["Bravo", "Alpha"])
     }
 
     func test_didSelectGradeStatus_triggersUpdateAndSetsSelected() {
@@ -125,6 +125,31 @@ class GradeStatusViewModelTests: TeacherTestCase {
         waitUntil(shouldFail: true) {
             testee.selectedOption.id == option.id && testee.isLoading == false
         }
+    }
+
+    func test_didSelectGradeStatus_hidesNoneOptionTitle() {
+        let interactor = GradeStatusInteractorMock()
+        interactor.gradeStatuses = [
+            GradeStatus(defaultStatusId: "none"),
+            GradeStatus(defaultStatusId: "excused")
+        ]
+        let testee = makeViewModel(interactor: interactor)
+        XCTAssertEqual(testee.selectedOption.id, "none")
+        XCTAssertEqual(testee.shouldHideSelectedOptionTitle, true)
+
+        // WHEN
+        testee.didSelectGradeStatus.send(.init(id: "excused", title: ""))
+
+        // THEN
+        waitUntil(shouldFail: true) { testee.selectedOption.id == "excused" }
+        XCTAssertEqual(testee.shouldHideSelectedOptionTitle, false)
+
+        // WHEN
+        testee.didSelectGradeStatus.send(.init(id: "none", title: ""))
+
+        // THEN
+        waitUntil(shouldFail: true) { testee.selectedOption.id == "none" }
+        XCTAssertEqual(testee.shouldHideSelectedOptionTitle, true)
     }
 
     func test_didChangeLateDaysValue_triggersUpdateLateDays() {

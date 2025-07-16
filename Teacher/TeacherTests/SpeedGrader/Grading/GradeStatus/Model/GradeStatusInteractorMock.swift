@@ -51,8 +51,8 @@ final class GradeStatusInteractorMock: GradeStatusInteractor {
         latePolicyStatus: LatePolicyStatus?,
         isExcused: Bool?,
         isLate: Bool?
-    ) -> GradeStatus? {
-        return gradeStatuses.first
+    ) -> GradeStatus {
+        return gradeStatuses.first ?? .none
     }
 
     var observeGradeStatusChangesCalled = false
