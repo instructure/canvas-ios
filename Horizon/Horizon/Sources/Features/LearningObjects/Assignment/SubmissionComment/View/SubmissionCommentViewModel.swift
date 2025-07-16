@@ -47,13 +47,25 @@ final class SubmissionCommentViewModel {
 
     private(set) var viewState: ViewState = .initialLoading
     private(set) var isPostingComment: Bool = false
-    private(set) var comments: [SubmissionComment] = []
+    private(set) var arePaginationButtonsVisible: Bool = false
+    private(set) var isNextButtonEnabled: Bool = false
+    private(set) var isPreviousButtonEnabled: Bool = false
+    private(set) var comments: [SubmissionComment] = [] {
+        didSet {
+            let lastComment = comments.last
+            isNextButtonEnabled = lastComment?.hasNextPage ?? false
+            isPreviousButtonEnabled = lastComment?.hasPreviousPage ?? false
+        }
+    }
     private(set) var fileState: FileDownloadStatus = .initial
 
     // MARK: - Private properties
 
     private var subscriptions = Set<AnyCancellable>()
     private var fileSubscription: AnyCancellable?
+    private var paginatedComments: [Int: [SubmissionComment]] = [:]
+    private var ignoreCache = false
+    private var currentPage = 0
 
     // MARK: - Init
 
@@ -132,26 +144,59 @@ final class SubmissionCommentViewModel {
         fileState = .initial
     }
 
+    func goNext() {
+        currentPage -= 1
+        comments = paginatedComments[currentPage] ?? []
+    }
+
+    func goPrevious() {
+        currentPage += 1
+        viewState = .initialLoading
+        getComments(ignoreCache: ignoreCache, beforeCursor: comments.last?.startCursor)
+    }
+
+    func refresh() async {
+        await withCheckedContinuation { continuation in
+            getComments(ignoreCache: true) { [weak self] in
+                self?.ignoreCache = true
+                continuation.resume()
+            }
+        }
+    }
+
     // MARK: - Private functions
 
-    private func getComments(ignoreCache: Bool = false) {
-        weak var weakSelf = self
-
+    private func getComments(
+        ignoreCache: Bool = false,
+        beforeCursor: String? = nil,
+        completionHandler: (() -> Void)? = nil
+    ) {
         interactor.getComments(
             assignmentID: assignmentID,
-            attempt: attempt,
-            ignoreCache: ignoreCache
+            attempt: attempt ?? 0,
+            ignoreCache: ignoreCache,
+            beforeCursor: beforeCursor,
+            last: 5
         )
         .sink(
-            receiveCompletion: { completion in
+            receiveCompletion: { [weak self] completion in
                 if case .failure = completion {
-                    weakSelf?.viewState = .error
+                    self?.viewState = .error
                 }
+                completionHandler?()
             },
-            receiveValue: { comments in
-                weakSelf?.text = ""
-                weakSelf?.viewState = .data
-                weakSelf?.comments = comments
+            receiveValue: { [weak self] comments in
+                guard let self else { return }
+                text = ""
+                viewState = .data
+                let lastFiveComments = Array(comments.suffix(5))
+                self.comments = lastFiveComments
+                paginatedComments[currentPage] = lastFiveComments
+                if let lastComment = lastFiveComments.last {
+                    arePaginationButtonsVisible = lastComment.hasNextPage || lastComment.hasPreviousPage
+                    isPreviousButtonEnabled = lastComment.hasPreviousPage
+                    isNextButtonEnabled = lastComment.hasNextPage
+                }
             }
         )
         .store(in: &subscriptions)

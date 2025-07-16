@@ -76,6 +76,7 @@ extension HorizonUI {
                     helperTextView
                 }
             }
+            .padding(1)
         }
 
         // MARK: - Private
@@ -141,6 +142,7 @@ extension HorizonUI {
                     )
                     .animation(.easeInOut, value: textFieldBorderColor)
             )
+            .padding(.huiSpaces.space4)
             .background(Color.huiColors.surface.pageSecondary)
             .focused($focused)
             .disabled(disabled)

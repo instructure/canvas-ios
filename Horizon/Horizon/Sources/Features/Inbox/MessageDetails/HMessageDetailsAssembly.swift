@@ -1,0 +1,59 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Core
+import UIKit
+
+struct HorizonMessageDetailsAssembly {
+    public static func makeViewController(
+        conversationID: String,
+        allowArchive: Bool
+    ) -> UIViewController {
+        let batchID = UUID.string
+        let env = AppEnvironment.shared
+        let viewModel = HMessageDetailsViewModel(
+            conversationID: conversationID,
+            messageDetailsInteractor: MessageDetailsInteractorLive(
+                env: env,
+                conversationID: conversationID
+            ),
+            composeMessageInteractor: ComposeMessageInteractorLive(
+                batchId: batchID,
+                uploadFolderPath: "conversation attachments",
+                uploadManager: UploadManager(env: env, identifier: batchID)
+            ),
+            allowArchive: allowArchive
+        )
+        let view = HMessageDetailsView(model: viewModel)
+        return CoreHostingController(view)
+    }
+
+    public static func makeViewController(
+        announcementID: String,
+        announcement: Announcement? = nil
+    ) -> UIViewController {
+        CoreHostingController(
+            HMessageDetailsView(
+                model: HMessageDetailsViewModel(
+                    announcementID: announcementID,
+                    announcement: announcement
+                )
+            )
+        )
+    }
+}

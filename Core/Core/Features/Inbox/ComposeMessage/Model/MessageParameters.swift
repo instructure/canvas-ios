@@ -24,7 +24,7 @@ public struct MessageParameters {
     public let body: String
     public let recipientIDs: [String]
     public let attachmentIDs: [String]
-    public let context: Context
+    public let context: Context?
     public let conversationID: String?
     public let includedMessages: [String]?
     public let bulkMessage: Bool
@@ -34,7 +34,7 @@ public struct MessageParameters {
         body: String,
         recipientIDs: [String],
         attachmentIDs: [String] = [],
-        context: Context,
+        context: Context? = nil,
         conversationID: String? = nil,
         bulkMessage: Bool,
         includedMessages: [String]? = nil

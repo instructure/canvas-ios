@@ -76,6 +76,9 @@
     "Alaska (-09:00/-08:00)" : {
 
     },
+    "All Messages" : {
+
+    },
     "Almaty (+05:00/+05:00)" : {
 
     },
@@ -85,7 +88,16 @@
     "Amsterdam (+01:00/+02:00)" : {
 
     },
+    "Announcement" : {
+
+    },
     "Announcement from" : {
+
+    },
+    "Announcement in %@" : {
+
+    },
+    "Announcements" : {
 
     },
     "Announcements and Messages" : {
@@ -131,6 +143,9 @@
 
     },
     "Atlantic Time (Canada) (-04:00/-03:00)" : {
+
+    },
+    "Attach file" : {
 
     },
     "Attempt" : {
@@ -268,10 +283,19 @@
     "Congrats! You've completed your course." : {
 
     },
+    "Conversation" : {
+
+    },
     "Copenhagen (+01:00/+02:00)" : {
 
     },
     "Create a Quiz" : {
+        
+    },
+    "Create message" : {
+
+    },
+    "Create Message" : {
 
     },
     "Cuiaba (-04:00/-04:00)" : {
@@ -370,6 +394,15 @@
     "Filter" : {
 
     },
+<<<<<<< HEAD
+=======
+    "Filter by person" : {
+
+    },
+    "Flash cards" : {
+
+    },
+>>>>>>> feature/horizon
     "Fortaleza (-03:00/-03:00)" : {
 
     },
@@ -443,9 +476,6 @@
 
     },
     "In Progress" : {
-
-    },
-    "Inbox" : {
 
     },
     "Indiana (East) (-05:00/-04:00)" : {
@@ -557,6 +587,9 @@
 
     },
     "Melbourne (+10:00/+11:00)" : {
+
+    },
+    "Message" : {
 
     },
     "Mexico City (-06:00)" : {
@@ -750,10 +783,16 @@
     "Rangoon (+06:30/+06:30)" : {
 
     },
+    "Recipients" : {
+
+    },
     "Regenerate" : {
 
     },
     "Regenerate Flashcards" : {
+
+    },
+    "Reply" : {
 
     },
     "Result: %@" : {
@@ -810,7 +849,16 @@
     "Scoring Weight Changed" : {
 
     },
+    "Select a course" : {
+
+    },
     "Select a Submission Type" : {
+
+    },
+    "Send" : {
+
+    },
+    "Sent" : {
 
     },
     "Seoul (+09:00)" : {
@@ -927,6 +975,9 @@
     "Time Zone" : {
 
     },
+    "Title/Subject" : {
+
+    },
     "Tokelau Is. (+13:00/+13:00)" : {
 
     },
@@ -955,6 +1006,9 @@
 
     },
     "Unlimited" : {
+
+    },
+    "Unread" : {
 
     },
     "Unsupported Item" : {
@@ -1018,6 +1072,9 @@
 
     },
     "Yes" : {
+
+    },
+    "You" : {
 
     },
     "You are submitting a text-based attempt. Any uploaded files will be deleted upon submission. Once you submit this attempt, you won’t be able to make any changes." : {

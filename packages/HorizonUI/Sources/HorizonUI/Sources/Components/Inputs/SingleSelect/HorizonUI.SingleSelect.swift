@@ -24,16 +24,20 @@ extension HorizonUI {
         // MARK: Dependencies
 
         private let disabled: Bool
+        private let isSearchable: Bool
         private let error: String?
         private let label: String?
         private let options: [String]
         private let placeholder: String?
         @Binding private var selection: String
+        private let zIndex: Double
 
         // MARK: Properties
 
+        private var originalSelection: String
+        @State private var text: String = ""
         private var bodyHeight: CGFloat {
-            textInputMeasuredHeight + displayedOptionHeight + errorHeight
+            textInputMeasuredHeight + errorHeight
         }
 
         // The computed height of a single option
@@ -48,26 +52,26 @@ extension HorizonUI {
         @State private var errorHeight: CGFloat = 0
 
         @Binding private var focused: Bool
-        private let focusedBinding: Binding<Bool>?
-
-        // The computed height of the label
-        @State private var labelMeasuredHeight: CGFloat = 0
+        @FocusState private var searchFocuse: Bool
 
         // The container height for the text input. This is used to fix the height
         // of the entire component so when the options are displayed, it doesnt
         // push the content below it down
         @State private var textInputMeasuredHeight: CGFloat = 0
+        @State private var filteredItems: [String] = []
 
         // MARK: - Init
 
         public init(
             selection: Binding<String>,
             focused: Binding<Bool>,
+            isSearchable: Bool = true,
             label: String? = nil,
             options: [String],
             disabled: Bool = false,
             placeholder: String? = nil,
-            error: String? = nil
+            error: String? = nil,
+            zIndex: Double = 101
         ) {
             self.label = label
             self.options = options
@@ -75,17 +79,30 @@ extension HorizonUI {
             self.disabled = disabled
             self.placeholder = placeholder
             self.error = error
-            self.focusedBinding = focused
             self._focused = focused
+            self.text = selection.wrappedValue
+            self.isSearchable = isSearchable
+            self.filteredItems = options
+            self.originalSelection = selection.wrappedValue
+            self.zIndex = zIndex
         }
 
         public var body: some View {
-            VStack {
-                VStack(spacing: 8) {
+            VStack(spacing: .zero) {
+                VStack(spacing: .huiSpaces.space8) {
                     labelText
                     textInput
                 }
                 .onTapGesture(perform: onTapText)
+                .background {
+                    GeometryReader { geometry in
+                        HStack {}
+                            .onAppear {
+                                textInputMeasuredHeight = geometry.size.height
+                            }
+                    }
+                }
+
                 ZStack(alignment: .top) {
                     errorText
                     displayedOptions
@@ -93,7 +110,7 @@ extension HorizonUI {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: bodyHeight, alignment: .top)
-            .zIndex(101)
+            .zIndex(zIndex)
         }
 
         // MARK: - Private
@@ -101,7 +118,7 @@ extension HorizonUI {
         private var displayedOptions: some View {
             ScrollView {
                 VStack(spacing: .zero) {
-                    ForEach(options, id: \.self) { item in
+                    ForEach(filteredItems, id: \.self) { item in
                         displayedOption(item)
                     }
                 }
@@ -113,6 +130,7 @@ extension HorizonUI {
             .frame(height: displayedOptionsHeight)
             .cornerRadius(HorizonUI.CornerRadius.level1_5.attributes.radius)
             .shadow(radius: HorizonUI.Elevations.level1.attributes.blur)
+            .padding(.top, .huiSpaces.space8)
             .animation(.easeInOut, value: displayedOptionsHeight)
         }
 
@@ -138,6 +156,7 @@ extension HorizonUI {
                 .onTapGesture {
                     focused = false
                     selection = text
+                    searchFocuse = false
                 }
         }
 
@@ -152,17 +171,19 @@ extension HorizonUI {
                         .huiTypography(.p2)
                         .foregroundColor(.huiColors.text.error)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, .huiSpaces.space8)
+                .padding(.top, .huiSpaces.space2)
                 .background {
                     GeometryReader { geometry in
                         HStack {}
                             .onAppear {
-                                errorHeight = geometry.size.height
+                                if errorHeight != geometry.size.height {
+                                    errorHeight = geometry.size.height
+                                }
                             }
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, .huiSpaces.space8)
-                .padding(.top, .huiSpaces.space2)
             }
         }
 
@@ -174,45 +195,47 @@ extension HorizonUI {
                     .padding(.leading, .huiSpaces.space8)
                     .huiTypography(.labelLargeBold)
                     .foregroundColor(.huiColors.text.body)
-                    .background {
-                        GeometryReader { geometry in
-                            HStack {}
-                                .onAppear {
-                                    labelMeasuredHeight = geometry.size.height
-                                }
-                        }
-                    }
             }
         }
 
         private var textInput: some View {
             ZStack(alignment: .trailing) {
-                Text(selection.isEmpty ? placeholder ?? "" : selection)
-                    .huiTypography(.p1)
-                    .foregroundColor(textInputTextColor)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(HorizonUI.spaces.space12)
-                    .padding(.trailing, .huiSpaces.space24)
-                    .overlay(textOverlay(isOuter: false))
+                if isSearchable {
+                    TextField(selection.isEmpty ? placeholder ?? "" : selection, text: $text)
+                        .focused($searchFocuse)
+                        .huiTypography(.p1)
+                        .foregroundColor(textInputTextColor)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(HorizonUI.spaces.space12)
+                        .padding(.trailing, .huiSpaces.space24)
+                        .overlay(textOverlay(isOuter: false))
+                        .onChange(of: searchFocuse, onFocusChange)
+                        .onChange(of: text, onTextChange)
+                        .onChange(of: selection) { _, newValue in text = newValue }
+                        .onChange(of: focused) { _, newValue in searchFocuse = newValue }
+                } else {
+                    Text(selection.isEmpty ? placeholder ?? "" : selection)
+                        .huiTypography(.p1)
+                        .foregroundColor(textInputTextColor)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(HorizonUI.spaces.space12)
+                        .padding(.trailing, .huiSpaces.space24)
+                        .overlay(textOverlay(isOuter: false))
+                }
                 Image.huiIcons.chevronRight
                     .padding(.horizontal, .huiSpaces.space12)
                     .tint(Color.huiColors.icon.default)
                     .rotationEffect(.degrees(focused ? -90 : 90))
                     .animation(.easeInOut, value: focused)
             }
+            .background(
+                Color.huiColors.surface.cardPrimary
+                    .cornerRadius(textOverlayCornerRadius(isOuter: false))
+            )
             .padding(.huiSpaces.space4)
             .overlay(textOverlay(isOuter: true))
             .frame(maxWidth: .infinity)
-            .background {
-                GeometryReader { geometry in
-                    HStack {}
-                        .onAppear {
-                            textInputMeasuredHeight = geometry.size.height
-                        }
-                }
-            }
             .onTapGesture(perform: onTapText)
-            .background(Color.huiColors.surface.cardPrimary)
             .opacity(disabled ? 0.5 : 1.0)
         }
 
@@ -261,6 +284,40 @@ extension HorizonUI {
                 }
             }
             return .huiColors.text.error
+        }
+
+        private func onFocusChange(oldValue: Bool, newValue: Bool) {
+            focused = newValue
+            if newValue {
+                filteredItems = options
+            } else {
+                let firstMatch = options.first { $0.lowercased() == text.lowercased() }
+                if firstMatch == nil {
+                    selection = originalSelection
+                    text = originalSelection
+                }
+            }
+        }
+
+        private func onTextChange(oldValue: String, newValue: String) {
+            if !focused {
+                return
+            }
+
+            // If the text input is empty, display all items
+            if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                filteredItems = options
+                return
+            }
+
+            // Display only the items that match what the user's input
+            filteredItems = options.filter { $0.lowercased().contains(text.lowercased()) }
+
+            // If what they've typed leaves no filtered items, display all options
+
+            if filteredItems.isEmpty {
+                filteredItems = options
+            }
         }
     }
 

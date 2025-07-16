@@ -37,6 +37,7 @@ public extension HorizonUI {
         public let alarm = Image(.alarm)
         public let alignHorizontalLeft = Image(.alignHorizontalLeft)
         public let allInclusive = Image(.allInclusive)
+        public let announcement = Image(.announcement)
         public let api = Image(.api)
         public let appRegistratoin = Image(.appRegistratoin)
         public let apps = Image(.apps)
