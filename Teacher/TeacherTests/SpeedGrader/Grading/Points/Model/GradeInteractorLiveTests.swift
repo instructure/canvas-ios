@@ -169,22 +169,3 @@ private class GradeStateInteractorMock: GradeStateInteractor {
         return gradeStateToReturn
     }
 }
-
-private class RubricGradingInteractorMock: RubricGradingInteractor {
-    let assessments: AnyPublisher<APIRubricAssessmentMap, Never>
-    let isSaving = CurrentValueSubject<Bool, Never>(false)
-    let showSaveError = PassthroughSubject<Error, Never>()
-    let totalRubricScore = CurrentValueSubject<Double, Never>(0)
-    let isRubricScoreAvailable = CurrentValueSubject<Bool, Never>(false)
-
-    private let assessmentsSubject = CurrentValueSubject<APIRubricAssessmentMap, Never>([:])
-
-    init() {
-        self.assessments = assessmentsSubject.eraseToAnyPublisher()
-    }
-
-    func clearRating(criterionId: String) {}
-    func selectRating(criterionId: String, points: Double, ratingId: String) {}
-    func hasAssessmentUserComment(criterionId: String) -> Bool { false }
-    func updateComment(criterionId: String, comment: String?) {}
-}

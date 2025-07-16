@@ -240,25 +240,3 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         XCTAssertFalse(viewModel.isNoGradeButtonDisabled)
     }
 }
-
-// MARK: - Mock Classes
-
-class GradeInteractorMock: GradeInteractor {
-    let gradeStateSubject = CurrentValueSubject<GradeState, Never>(GradeState.empty)
-    let saveGradeSubject = PassthroughSubject<Void, Error>()
-
-    var gradeState: AnyPublisher<GradeState, Never> {
-        gradeStateSubject.eraseToAnyPublisher()
-    }
-
-    var saveGradeCalled = false
-    var lastExcused: Bool?
-    var lastGrade: String?
-
-    func saveGrade(excused: Bool?, grade: String?) -> AnyPublisher<Void, Error> {
-        saveGradeCalled = true
-        lastExcused = excused
-        lastGrade = grade
-        return saveGradeSubject.eraseToAnyPublisher()
-    }
-}
