@@ -181,20 +181,17 @@ let router = Router(routes: [
         )
     },
 
-    RouteHandler("/courses/:courseID/gradebook/speed_grader") { url, _, userInfo, env in
+    RouteHandler("/courses/:courseID/gradebook/speed_grader") { url, _, _, env in
         guard
             let context = Context(path: url.path),
             let assignmentId = url.queryValue(for: "assignment_id")
         else { return nil }
-
-        let sortNeedsGradingFirst = (userInfo?[SpeedGraderUserInfoKey.sortNeedsGradingSubmissionsFirst] as? Bool) ?? false
 
         return SpeedGraderAssembly.makeSpeedGraderViewController(
             context: context,
             assignmentId: assignmentId,
             userId: url.queryValue(for: "student_id"),
             filter: [],
-            sortNeedsGradingSubmissionsFirst: sortNeedsGradingFirst,
             env: env
         )
     },
@@ -217,7 +214,6 @@ let router = Router(routes: [
             assignmentId: assignmentId,
             userId: userId,
             filter: filter,
-            sortNeedsGradingSubmissionsFirst: false,
             env: env
         )
     },

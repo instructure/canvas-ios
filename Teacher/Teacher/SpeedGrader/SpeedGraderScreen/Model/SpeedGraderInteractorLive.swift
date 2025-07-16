@@ -34,14 +34,12 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     private let env: AppEnvironment
     private let filter: [GetSubmissions.Filter]
     private var subscriptions = Set<AnyCancellable>()
-    private let sortNeedsGradingSubmissionsFirst: Bool
 
     init(
         context: Context,
         assignmentID: String,
         userID: String,
         filter: [GetSubmissions.Filter],
-        sortNeedsGradingSubmissionsFirst: Bool,
         gradeStatusInteractor: GradeStatusInteractor,
         env: AppEnvironment
     ) {
@@ -50,7 +48,6 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         self.assignmentID = assignmentID
         self.userID = userID
         self.filter = filter
-        self.sortNeedsGradingSubmissionsFirst = sortNeedsGradingSubmissionsFirst
         self.gradeStatusInteractor = gradeStatusInteractor
     }
 
@@ -94,9 +91,8 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
             } receiveValue: { [weak self] (assignment: Assignment, fetchedSubmissions: [Submission]) in
                 guard let self else { return }
 
-                let submissions = sortNeedsGradingSubmissionsFirst
-                    ? fetchedSubmissions.sorted(by: Self.needsGradingFirstSortingStrategy)
-                    : fetchedSubmissions
+                let submissions = fetchedSubmissions
+                    .sorted(using: .submissionsSortComparator)
 
                 if submissions.isEmpty {
                     state.send(.error(.submissionNotFound))
@@ -170,28 +166,5 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         return ReactiveStore(useCase: enrollmentsUseCase, environment: env)
             .getEntities(loadAllPages: true)
             .eraseToAnyPublisher()
-    }
-}
-
-// MARK: - Grading-Based Sorting Strategy
-
-public enum SpeedGraderUserInfoKey {
-    static let sortNeedsGradingSubmissionsFirst = "sortNeedsGradingSubmissionsFirst"
-}
-
-private extension SpeedGraderInteractorLive {
-
-    static let needsGradingFirstSortingStrategy: (Submission, Submission) -> Bool = { sub1, sub2 in
-        /// Put 'Needs Grading' first
-        if sub1.needsGrading != sub2.needsGrading {
-            return sub1.needsGrading
-        }
-
-        /// Put 'Graded' last
-        if sub1.isGraded != sub2.isGraded {
-            return sub2.isGraded
-        }
-
-        return false
     }
 }
