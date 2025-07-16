@@ -119,7 +119,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         )
         .store(in: &subscriptions)
     }
-    
+
     /// Subscribe to the responses from the interactor
     var listen: AnyPublisher<AssistChatInteractorLive.State, Never> {
         responsePublisher.eraseToAnyPublisher()
