@@ -29,10 +29,32 @@ public class MessageViewModel: Identifiable {
     public let attachments: [File]
     public let mediaComment: MediaComment?
     public let showAttachments: Bool
-    public let conversationMessage: ConversationMessage
+    public let conversationMessage: ConversationMessage?
 
     private let router: Router
     public var controller: WeakViewController?
+
+    public init(
+        id: String,
+        body: String,
+        author: String,
+        date: String,
+        avatarName: String
+    ) {
+        self.id = id
+        self.body = body
+        self.author = author
+        self.date = date
+        self.avatarName = avatarName
+
+        self.avatarURL = nil
+        self.attachments = []
+        self.mediaComment = nil
+        self.showAttachments = false
+        self.conversationMessage = nil
+
+        self.router = AppEnvironment.shared.router
+    }
 
     public init(item: ConversationMessage, myID: String, userMap: [String: ConversationParticipant], router: Router) {
         self.id = item.id

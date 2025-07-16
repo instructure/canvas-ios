@@ -173,7 +173,9 @@ class GetAllAnnouncementsRequestTests: XCTestCase {
         XCTAssertEqual(request.query, [
             .array("context_codes", ["1", "2"]),
             .optionalBool("active_only", nil),
-            .optionalBool("latest_only", nil)
+            .optionalBool("latest_only", nil),
+            .optionalValue("start_date", nil),
+            .optionalValue("end_date", nil)
         ])
     }
 
@@ -182,7 +184,9 @@ class GetAllAnnouncementsRequestTests: XCTestCase {
         XCTAssertEqual(request.query, [
             .array("context_codes", ["1", "2"]),
             .optionalBool("active_only", true),
-            .optionalBool("latest_only", false)
+            .optionalBool("latest_only", false),
+            .optionalValue("start_date", nil),
+            .optionalValue("end_date", nil)
         ])
     }
 }

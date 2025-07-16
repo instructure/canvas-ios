@@ -20,20 +20,19 @@ import Observation
 import SwiftUI
 
 extension HorizonUI {
-    public struct TextInput: View {
+    public struct TextArea: View {
 
         @FocusState private var focused: Bool
 
         // MARK: - Properties
 
+        private let autoExpand: Bool
         private let error: String?
         private let helperText: String?
         private let label: String?
         private let placeholder: String?
         @Binding var text: String
         private let disabled: Bool
-        private let small: Bool
-        private let trailing: AnyView?
 
         // MARK: - Init
 
@@ -44,9 +43,8 @@ extension HorizonUI {
             helperText: String? = nil,
             placeholder: String? = nil,
             disabled: Bool = false,
-            small: Bool = false,
-            trailing: (any View)? = nil,
-            focused: FocusState<Bool>? = nil
+            focused: FocusState<Bool>? = nil,
+            autoExpand: Bool = false
         ) {
             self.error = error
             self.helperText = helperText
@@ -54,9 +52,8 @@ extension HorizonUI {
             self.placeholder = placeholder
             self._text = text
             self.disabled = disabled
-            self.small = small
-            self.trailing = trailing.map { AnyView($0) }
             self._focused = focused ?? FocusState()
+            self.autoExpand = autoExpand
         }
 
         // MARK: - Body
@@ -64,13 +61,7 @@ extension HorizonUI {
         public var body: some View {
             VStack(alignment: .leading) {
                 labelText
-                ZStack(alignment: .trailing) {
-                    textFieldContainer
-                    if let trailing = trailing {
-                        trailing
-                            .padding(.trailing, 15)
-                    }
-                }
+                textFieldContainer
                 ZStack {
                     errorView
                     helperTextView
@@ -102,7 +93,7 @@ extension HorizonUI {
                 Text(helperText)
                     .huiTypography(.p2)
                     .foregroundColor(Color.huiColors.text.body)
-                    .padding(.leading, 5)
+                    .padding(.leading, .huiSpaces.space4)
                     .opacity(isHelperTextVisible ? 1 : 0)
                     .animation(.easeInOut, value: helperText)
             }
@@ -121,39 +112,40 @@ extension HorizonUI {
             if let label = self.label {
                 Text(label)
                     .huiTypography(.labelLargeBold)
-                    .padding(.leading, 5)
+                    .padding(.leading, .huiSpaces.space4)
             }
         }
 
         private var textField: some View {
-            TextField(
-                placeholder ?? "",
-                text: $text
-            )
-            .padding(.huiSpaces.space12)
-            .padding(.trailing, .huiSpaces.space24)
-            .frame(height: textFieldHeight)
-            .huiTypography(textFieldTypography)
-            .overlay(
-                RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
-                    .stroke(
-                        textFieldBorderColor,
-                        lineWidth: HorizonUI.Borders.level1.rawValue
-                    )
-                    .animation(.easeInOut, value: textFieldBorderColor)
-            )
-            .padding(.huiSpaces.space4)
-            .background(Color.huiColors.surface.pageSecondary)
-            .focused($focused)
-            .disabled(disabled)
-        }
-
-        private var textFieldHeight: CGFloat {
-            small ? 34 : 44
-        }
-
-        private var textFieldTypography: HorizonUI.Typography.Name {
-            small ? .p1 : .buttonTextLarge
+            let cornerRadius = HorizonUI.CornerRadius.level1_5.attributes.radius
+            let view = autoExpand ?
+                AnyView(TextField("", text: $text, axis: .vertical).lineLimit(1 ... 10)) :
+                AnyView(TextEditor(text: $text))
+            return view
+                .padding(.huiSpaces.space12)
+                .huiTypography(.p1)
+                .background(Color.huiColors.surface.pageSecondary)
+                .focused($focused)
+                .disabled(disabled)
+                .cornerRadius(cornerRadius)
+                .overlay(
+                    ZStack {
+                        Text(placeholder ?? "")
+                            .foregroundColor(Color.huiColors.text.placeholder)
+                            .padding(.leading, .huiSpaces.space8)
+                            .padding(.top, .huiSpaces.space12)
+                            .opacity(text.isEmpty && !focused ? 1 : 0)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                        .stroke(
+                            textFieldBorderColor,
+                            lineWidth: HorizonUI.Borders.level1.rawValue
+                        )
+                        .animation(.easeInOut, value: textFieldBorderColor)
+                )
         }
 
         private var textFieldBorderColor: Color {
@@ -162,45 +154,22 @@ extension HorizonUI {
 
         private var textFieldContainer: some View {
             textField
-            .overlay(
-                RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius + 2)
-                    .stroke(
-                        textFieldContainerBorderColor,
-                        lineWidth: HorizonUI.Borders.level2.rawValue
-                    )
-                    .opacity(focused ? 1.0 : 0.0)
-                    .animation(.easeInOut, value: focused)
-                    .animation(.easeInOut, value: textFieldContainerBorderColor)
-            )
-            .opacity(disabled ? 0.5 : 1.0)
+                .padding(.huiSpaces.space4)
+                .overlay(
+                    RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius + .huiSpaces.space2)
+                        .stroke(
+                            textFieldContainerBorderColor,
+                            lineWidth: HorizonUI.Borders.level2.rawValue
+                        )
+                        .opacity(focused ? 1.0 : 0.0)
+                        .animation(.easeInOut, value: focused)
+                        .animation(.easeInOut, value: textFieldContainerBorderColor)
+                )
+                .opacity(disabled ? 0.5 : 1.0)
         }
 
         private var textFieldContainerBorderColor: Color {
             isErrorEmpty ? Color.huiColors.surface.institution : Color.huiColors.surface.error
         }
     }
-}
-
-#Preview {
-    @Previewable @State var text = ""
-    let disabled = false
-    let error: String? = nil
-    let small = true
-
-    ScrollView {
-        VStack {
-            HorizonUI.TextInput(
-                $text,
-                label: "Hello, World!",
-                error: error,
-                helperText: "This is some helper text",
-                placeholder: "Placeholder text",
-                disabled: disabled,
-                small: small,
-                trailing: Image.huiIcons.chevronRight
-            )
-        }
-        .frame(maxHeight: .infinity, alignment: .top)
-    }
-    .background(Color.huiColors.surface.pagePrimary)
 }
