@@ -197,6 +197,12 @@
         <attribute name="disableInboxSignatureBlockForStudents" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="enableInboxSignatureBlock" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
+    <entity name="CDHCommentAttachment" representedClassName="Core.CDHCommentAttachment" syncable="YES">
+        <attribute name="displayName" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHSubmissionComment" inverseName="attachments" inverseEntity="CDHSubmissionComment"/>
+    </entity>
     <entity name="CDHCourse" representedClassName="Core.CDHCourse" syncable="YES">
         <attribute name="completionPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="courseID" attributeType="String"/>
@@ -291,6 +297,7 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isRead" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHCommentAttachment" inverseName="relationship" inverseEntity="CDHCommentAttachment"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHSubmission" inverseName="comments" inverseEntity="CDHSubmission"/>
     </entity>
     <entity name="CDHSubmissionScores" representedClassName="Core.CDHSubmissionScores" syncable="YES">
@@ -1258,6 +1265,8 @@
         <attribute name="accountUUID" optional="YES" attributeType="String"/>
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
         <attribute name="calendarURL" optional="YES" attributeType="URI"/>
+        <attribute name="canUpdateAvatar" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="canUpdateName" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="defaultTimeZone" optional="YES" attributeType="String"/>
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
