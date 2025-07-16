@@ -188,7 +188,13 @@ struct SpeedGraderPageTabsView: View {
     private var detailsTabContent: some View {
         InstUI.BaseScreen(
             state: viewModel.isDetailsTabEmpty ? .empty : .data,
-            config: .init(refreshable: false)
+            config: .init(
+                refreshable: false,
+                emptyPandaConfig: .empty(
+                    title: String(localized: "We don’t have further details for this Student and Assignment", bundle: .teacher),
+                    subtitle: nil
+                )
+            )
         ) { _ in
             VStack(spacing: 0) {
                 StudentNotesView(viewModel: viewModel.studentNotesViewModel)
