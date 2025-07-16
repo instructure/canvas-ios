@@ -180,7 +180,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         files.refresh(force: true)
     }
 
-    func update() {
+    private func update() {
         if offlineFileInteractor?.isOffline == true {
             return handleOfflineFileLoad()
         }
