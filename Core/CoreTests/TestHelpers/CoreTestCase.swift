@@ -153,7 +153,8 @@ class CoreTestCase: XCTestCase {
             navIconFillActive: nil,
             navTextColor: nil,
             navTextColorActive: nil,
-            primary: nil
+            primary: nil,
+            institutionLogo: nil
         )
     }
 }

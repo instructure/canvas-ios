@@ -42,6 +42,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
 
     private var validSession: URLSession?
     private let submissionsStatus = FileSubmissionsStatus()
+    public let didUploadFile = PassthroughSubject<Result<Void, Error>, Never>()
     var backgroundSession: URLSession {
         if let validSession = validSession {
             return validSession
@@ -167,6 +168,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                                   baseURL: baseURL,
                                   callback: callback)
             } catch {
+                didUploadFile.send(.failure(error))
                 complete(file: file, error: error)
                 callback?()
             }
@@ -191,8 +193,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 return environment.api
             }
         }()
-
-        api.makeRequest(request) { response, _, error in
+        let shouldAddNoVerifierQuery = environment.app != .horizon
+        api.makeRequest(request) { [didUploadFile] response, _, error in
             self.context.performAndWait {
                 defer { callback?() }
                 guard let file = try? self.context.existingObject(with: fileObjectID) as? File else {
@@ -203,7 +205,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 }
                 do {
                     file.size = url.lookupFileSize()
-                    let request = PostFileUploadRequest(fileURL: url, target: target)
+                    let request = PostFileUploadRequest(fileURL: url, target: target, shouldAddNoVerifierQuery: shouldAddNoVerifierQuery)
                     let api = API(baseURL: target.upload_url, urlSession: self.backgroundSession)
                     var task = try api.uploadTask(request)
                     file.taskID = UUID.string
@@ -211,6 +213,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                     try self.context.save()
                     task.resume()
                 } catch let error {
+                    didUploadFile.send(.failure(error))
                     self.complete(file: file, error: error)
                 }
             }
@@ -378,6 +381,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                                     self.complete(file: file, error: error)
                                     return
                                 }
+                                self.didUploadFile.send(.success)
                                 NotificationCenter.default.post(
                                     name: UploadManager.AssignmentSubmittedNotification,
                                     object: nil,
@@ -452,7 +456,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 file.localFileURL = nil
             }
             try? context.save()
-            if error != nil {
+            if let error {
+                didUploadFile.send(.failure(error))
                 if case let .submission(courseID, assignmentID, _)? = file.context {
                     localNotifications.sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
                 } else {
