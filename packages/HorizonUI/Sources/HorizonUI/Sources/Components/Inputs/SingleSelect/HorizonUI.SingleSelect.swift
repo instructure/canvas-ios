@@ -51,7 +51,7 @@ extension HorizonUI {
         @State private var errorHeight: CGFloat = 0
 
         @Binding private var focused: Bool
-        @FocusState private var searchFocuse: Bool
+        @FocusState private var isSearchFocused: Bool
 
         // The computed height of the label
         @State private var labelMeasuredHeight: CGFloat = 0
