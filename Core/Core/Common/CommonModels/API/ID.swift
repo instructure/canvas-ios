@@ -146,4 +146,15 @@ public extension String {
         formatter.numberStyle = .decimal
         return formatter
     }()
+
+    var asRootID: String {
+        let env = AppEnvironment.shared
+
+        guard let shardID = env.currentSession?.accessToken?.shardID
+        else { return self }
+
+        if hasShardID { return self }
+
+        return ID.expandTildeID("\(shardID)~\(self)")
+    }
 }

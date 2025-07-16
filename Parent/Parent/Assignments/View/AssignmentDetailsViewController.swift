@@ -44,7 +44,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     var selectedDate: Date?
     var assignmentID = ""
     var courseID = ""
-    let env = AppEnvironment.shared
+    private(set) var env: AppEnvironment = .shared
     var studentID = ""
     private var minDate = Clock.now
     private var maxDate = Clock.now
@@ -68,6 +68,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     }
 
     static func create(
+        env: AppEnvironment,
         studentID: String,
         courseID: String,
         assignmentID: String,
@@ -75,6 +76,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         submissionURLInteractor: ParentSubmissionURLInteractor = ParentSubmissionURLInteractorLive()
     ) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
+        controller.env = env
         controller.assignmentID = assignmentID
         controller.courseID = courseID
         controller.studentID = studentID
@@ -288,7 +290,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                 autoTeacherSelect: true
             )
         )
-        let composeController = ComposeMessageAssembly.makeComposeMessageViewController(options: options)
+        let composeController = ComposeMessageAssembly.makeComposeMessageViewController(env: env, options: options)
         env.router.show(composeController, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
     }
 

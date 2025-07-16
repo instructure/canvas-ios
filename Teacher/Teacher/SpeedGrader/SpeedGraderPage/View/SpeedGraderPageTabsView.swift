@@ -27,6 +27,7 @@ struct SpeedGraderPageTabsView: View {
         case splitView
     }
 
+    @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
@@ -48,7 +49,8 @@ struct SpeedGraderPageTabsView: View {
         a11yFocusedTab: AccessibilityFocusState<SpeedGraderPageTab?>,
         drawerState: Binding<DrawerState>,
         splitViewHeaderHeight: Binding<CGFloat>,
-        viewModel: SpeedGraderPageViewModel
+        viewModel: SpeedGraderPageViewModel,
+        env: AppEnvironment
     ) {
         self.containerType = containerType
         self.bottomInset = bottomInset
@@ -62,7 +64,12 @@ struct SpeedGraderPageTabsView: View {
             wrappedValue: RubricsViewModel(
                 assignment: viewModel.assignment,
                 submission: viewModel.submission,
-                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission)
+                interactor: RubricGradingInteractorLive(
+                    assignment: viewModel.assignment,
+                    submission: viewModel.submission,
+                    env: env
+                ),
+                router: env.router
             )
         )
     }

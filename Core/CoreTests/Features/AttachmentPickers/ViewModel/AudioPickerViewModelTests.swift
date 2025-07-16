@@ -29,7 +29,7 @@ class AudioPickerViewModelTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        testee = AudioPickerViewModel(router: environment.router, interactor: interactor)
+        testee = AudioPickerViewModel(env: environment, interactor: interactor)
     }
 
     func testInitialisationState() {

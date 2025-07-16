@@ -22,12 +22,26 @@ import CoreData
 public class GetCourse: APIUseCase {
     public typealias Model = Course
 
-    public let courseID: String
+    public private(set) var courseID: String
     private let include: [GetCourseRequest.Include]
+    private var isRootCalling: Bool = false
 
     public init(courseID: String, include: [GetCourseRequest.Include] = GetCourseRequest.defaultIncludes) {
         self.courseID = courseID
         self.include = include
+    }
+
+    public func modified(for env: AppEnvironment) -> Self {
+        let modifiedCase = self
+
+        if env.isRoot == false {
+            // Should always be used in root-form ID when this
+            // use case is used in inner course details pages
+            modifiedCase.courseID = courseID.asRootID
+            modifiedCase.isRootCalling = true
+        }
+
+        return modifiedCase
     }
 
     public var cacheKey: String? {
@@ -40,6 +54,17 @@ public class GetCourse: APIUseCase {
 
     public var request: GetCourseRequest {
         return GetCourseRequest(courseID: courseID, include: include)
+    }
+
+    public func makeRequest(
+        environment: AppEnvironment,
+        completionHandler: @escaping (APICourse?, URLResponse?, Error?) -> Void
+    ) {
+        // Even for instances where `isRootCalling` is set to false, this use case would
+        // still be calling the root API, the difference would be in tweaking `courseID`
+        // parameter. 
+        let env = isRootCalling ? environment.root : environment
+        env.api.makeRequest(request, callback: completionHandler)
     }
 }
 

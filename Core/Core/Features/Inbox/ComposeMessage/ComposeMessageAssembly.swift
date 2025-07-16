@@ -23,7 +23,7 @@ import AVKit
 public enum ComposeMessageAssembly {
 
     public static func makeComposeMessageViewController(
-        env: AppEnvironment = .shared,
+        env: AppEnvironment,
         options: ComposeMessageOptions = ComposeMessageOptions()
     ) -> UIViewController {
 
@@ -39,7 +39,7 @@ public enum ComposeMessageAssembly {
         let recipientInteractor = RecipientInteractorLive()
         let settingsInteractor = InboxSettingsInteractorLive(environment: env)
         let viewModel = ComposeMessageViewModel(
-            router: env.router,
+            env: env,
             options: options,
             interactor: interactor,
             recipientInteractor: recipientInteractor,
@@ -47,14 +47,14 @@ public enum ComposeMessageAssembly {
         )
 
         let view = ComposeMessageView(model: viewModel)
-        return CoreHostingController(view)
+        return CoreHostingController(view, env: env)
     }
 
-    public static func makeComposeMessageViewController(env: AppEnvironment = .shared, url: URLComponents) -> UIViewController {
+    public static func makeComposeMessageViewController(env: AppEnvironment, url: URLComponents) -> UIViewController {
         if let queryItems = url.queryItems {
             return makeComposeMessageViewController(env: env, options: ComposeMessageOptions(queryItems: queryItems))
         } else {
-            return ComposeMessageAssembly.makeComposeMessageViewController()
+            return ComposeMessageAssembly.makeComposeMessageViewController(env: env)
         }
     }
 
@@ -65,7 +65,7 @@ public enum ComposeMessageAssembly {
         let interactor = ComposeMessageInteractorPreview()
         let options = ComposeMessageOptions()
         let viewModel = ComposeMessageViewModel(
-            router: env.router,
+            env: env,
             options: options,
             interactor: interactor,
             recipientInteractor: RecipientInteractorLive(),

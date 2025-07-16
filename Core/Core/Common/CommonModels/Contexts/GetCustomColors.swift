@@ -28,6 +28,14 @@ public class GetCustomColors: APIUseCase {
 
     public init() {}
 
+    public func makeRequest(
+        environment: AppEnvironment,
+        completionHandler: @escaping (APICustomColors?, URLResponse?, Error?) -> Void
+    ) {
+        // Always call root account API for this request.
+        environment.root.api.makeRequest(request, callback: completionHandler)
+    }
+
     public func write(response: APICustomColors?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         ContextColor.save(response, in: client)

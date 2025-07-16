@@ -314,7 +314,7 @@ struct SubmissionGrades: View {
             userID: submission.userID,
             excused: excused,
             grade: grade
-        ).fetch { _, _, error in performUIUpdate {
+        ).fetch(environment: env) { _, _, error in performUIUpdate {
             isSaving = false
             if let error = error { showError(error) }
         } }
@@ -332,7 +332,7 @@ extension UIAlertController {
     @objc public func performOKAlertAction() {
         if let ok = actions.first(where: { $0.title == String(localized: "OK", bundle: .teacher) }) as? AlertAction {
             ok.handler?(ok)
-            AppEnvironment.shared.router.dismiss(self)
+            dismiss(animated: true)
         }
     }
 }
