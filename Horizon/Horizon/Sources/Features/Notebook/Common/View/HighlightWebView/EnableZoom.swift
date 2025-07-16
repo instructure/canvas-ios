@@ -17,7 +17,6 @@
 //
 
 import Core
-import XCTest
 
 private class EnableZoom: CoreWebViewFeature {
     private let script: String =
