@@ -26,9 +26,8 @@ struct RubricRatingView: View {
 
     var body: some View {
         let value = Text(viewModel.value)
-        RubricCircle(
+        RubricRectangle(
             isOn: $viewModel.isSelected,
-            tooltip: viewModel.tooltip,
             containerFrame: containerFrameInGlobal
         ) {
             value

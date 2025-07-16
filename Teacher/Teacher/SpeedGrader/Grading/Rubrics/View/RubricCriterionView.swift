@@ -23,6 +23,7 @@ struct RubricCriterionView: View {
     @Environment(\.viewController) var controller
     private let containerFrameInGlobal: CGRect
     @ObservedObject var viewModel: RubricCriterionViewModel
+    @State private var isExpanded: Bool = false
 
     init(
         containerFrameInGlobal: CGRect,
@@ -33,35 +34,89 @@ struct RubricCriterionView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack { Spacer() }
-            Text(viewModel.description)
-                .font(.semibold16).foregroundColor(.textDarkest)
+        VStack(alignment: .leading, spacing: 12) {
+            descriptionLine
+
             if viewModel.shouldShowRubricNotUsedForScoringMessage {
-                Text("This criterion will not impact the score.", bundle: .teacher)
-                    .font(.regular12).foregroundColor(.textDark)
-                    .padding(.top, 2)
+                notUsedForScoringLine
             }
 
-            FlowStack(spacing: UIOffset(horizontal: 8, vertical: 8)) { leading, top in
-                preDefinedRubricRatingButtons(leading: leading, top: top)
-                RubricCustomRatingView(viewModel: viewModel.customRatingViewModel, leading: leading, top: top)
-            }
-            .padding(.top, 8)
-
-            let showAdd = viewModel.shouldShowAddFreeFormCommentButton
-            let showLong = viewModel.shouldShowLongDescriptionButton
-            if showAdd || showLong {
-                addButtons(
-                    showAdd: showAdd,
-                    showLong: showLong
-                )
-            }
+            ratingLine
 
             if let comment = viewModel.userComment {
                 freeFormRubricCommentBubbleWithEditButton(comment, criteriaID: viewModel.criterionId)
             }
+
+            InstUI.Divider()
+
+            HStack {
+                Text("Score")
+                    .font(.semibold16)
+                    .foregroundStyle(Color.textDarkest)
+                Spacer()
+                Text("Write score here")
+                    .font(.regular16)
+                    .foregroundStyle(Color.textDark)
+                Text("/ \(viewModel.points)")
+                    .font(.regular16)
+                    .foregroundStyle(Color.textDark)
+            }
+
+            InstUI.Divider()
+
+            noteLine
+
+            InstUI.Divider()
         }
+    }
+
+    private var descriptionLine: some View {
+        HStack {
+            Text(viewModel.description)
+                .font(.semibold16).foregroundColor(.textDarkest)
+            Spacer()
+            expandButton
+        }
+    }
+
+    private var expandButton: some View {
+        Button {
+            isExpanded.toggle()
+        } label: {
+            Image(systemName: "chevron.down")
+                .frame(width: 24, height: 24)
+        }
+    }
+
+    private var notUsedForScoringLine: some View {
+        Text("This criterion will not impact the score.", bundle: .teacher)
+            .font(.regular12).foregroundColor(.textDark)
+            .padding(.top, 2)
+    }
+
+    private var ratingLine: some View {
+        let selectedRating: RubricRatingViewModel? = viewModel.ratingViewModels.first { $0.isSelected }
+        return VStack {
+            FlowStack(spacing: UIOffset(horizontal: 16, vertical: 8)) { leading, top in
+                preDefinedRubricRatingButtons(leading: leading, top: top)
+            }
+            if let selectedRating {
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 24)
+                        .fill(.tint)
+                    Text(selectedRating.tooltip)
+                        .font(.regular14)
+                        .foregroundColor(.textLightest)
+                        .padding(12)
+                }
+            }
+        }
+    }
+
+    private var noteLine: some View {
+        Text("Rubric Note")
+            .font(.regular14)
+            .foregroundStyle(Color.textDark)
     }
 
     @ViewBuilder

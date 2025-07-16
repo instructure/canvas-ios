@@ -29,13 +29,9 @@ struct RubricsView: View {
 
     var body: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Rubric", bundle: .teacher)
-                    .font(.heavy24).foregroundColor(.textDarkest)
-                    .accessibilityAddTraits(.isHeader)
-                Text("\(currentScore, specifier: "%g") out of \(viewModel.maximumRubricPoints, specifier: "%g")", bundle: .teacher)
-                    .font(.medium14).foregroundColor(.textDark)
-            }
+            Text("Rubric", bundle: .teacher)
+                .font(.heavy24).foregroundColor(.textDarkest)
+                .accessibilityAddTraits(.isHeader)
             Spacer()
 
             if viewModel.isSaving {

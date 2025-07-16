@@ -37,7 +37,7 @@ struct RubricCustomRatingView: View {
             }
         )
 
-        return RubricCircle(isOn: isOnBinding) {
+        return RubricRectangle(isOn: isOnBinding) {
             switch viewModel.state {
             case .addCustomRating:
                 Image.addSolid
