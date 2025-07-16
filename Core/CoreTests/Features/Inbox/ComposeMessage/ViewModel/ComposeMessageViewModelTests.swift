@@ -754,7 +754,10 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
         numberOfCallingAddFile.append(url)
     }
 
-    func addFile(url _: URL) -> Core.File? { nil }
+    func addFile(url: URL) -> Core.File? {
+        numberOfCallingAddFile.append(url)
+        return nil
+    }
 
     func addFile(file _: Core.File) {
         isAddFileWithFileCalled = true
