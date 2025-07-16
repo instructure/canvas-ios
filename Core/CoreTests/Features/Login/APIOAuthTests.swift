@@ -19,8 +19,6 @@
 import XCTest
 import TestsFoundation
 @testable import Core
-import TestsFoundation
-import XCTest
 
 class APIOAuthTests: CoreTestCase {
     func testGetMobileVerifyRequest() {

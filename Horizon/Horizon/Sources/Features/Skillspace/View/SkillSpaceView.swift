@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/Skillspace/View/SkillSpaceView.swift
 import HorizonUI
 import SwiftUI
 
@@ -38,35 +37,3 @@ struct SkillSpaceView: View {
         }
     }
 }
-========
-import WidgetKit
-import SwiftUI
-
-struct TodoLoggedoutView: View {
-
-    var body: some View {
-        TodoContentView(
-            content: {
-                TodoStatusView(status: .loggedOut)
-            }
-        )
-    }
-}
-
-#if DEBUG
-struct TodoLoggedoutView_Previews: PreviewProvider {
-    static var previews: some View {
-
-        TodoLoggedoutView()
-            .defaultTodoWidgetContainer()
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
-            .previewDisplayName("Loggedout Todo - Medium")
-
-        TodoLoggedoutView()
-            .defaultTodoWidgetContainer()
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
-            .previewDisplayName("Loggedout Todo - Large")
-    }
-}
-#endif
->>>>>>>> origin/master:Student/Widgets/TodoWidget/View/ContentViews/TodoLoggedoutView.swift
