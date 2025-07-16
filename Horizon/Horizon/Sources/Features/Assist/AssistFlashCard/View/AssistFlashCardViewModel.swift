@@ -139,6 +139,6 @@ final class AssistFlashCardViewModel {
         currentPage = 0
         paginatedFlashCards = flashCardModels.chunked(into: 5)
         flashCards = paginatedFlashCards.first ?? []
-        isLoaderVisible = false
+        isLoaderVisible = response.isLoading
     }
 }

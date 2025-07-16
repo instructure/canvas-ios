@@ -196,6 +196,9 @@
     "Cairo (+02:00/+03:00)" : {
 
     },
+    "Can I answer any questions about this document for you?" : {
+
+    },
     "Canberra (+10:00/+11:00)" : {
 
     },
@@ -412,6 +415,9 @@
     "Hello, Career!" : {
 
     },
+    "Hello! Which course you'd like to discuss today?" : {
+
+    },
     "Helsinki (+02:00/+03:00)" : {
 
     },
@@ -428,6 +434,9 @@
 
     },
     "hours" : {
+
+    },
+    "How can I help you with this page?" : {
 
     },
     "Important" : {
@@ -617,6 +626,12 @@
 
     },
     "No" : {
+
+    },
+    "No additional information found." : {
+
+    },
+    "No key takeaways found." : {
 
     },
     "No notification activity yet." : {
@@ -819,6 +834,12 @@
     "Something went wrong" : {
 
     },
+    "Sorry, can we try that again? Which course is it you'd like to discuss?" : {
+
+    },
+    "Sorry, I don't have an answer for that right now." : {
+
+    },
     "Sort By" : {
 
     },
@@ -979,6 +1000,12 @@
 
     },
     "West Central Africa (+01:00)" : {
+
+    },
+    "What would you like to discuss about the course %@?" : {
+
+    },
+    "What would you like to discuss today?" : {
 
     },
     "Yakutsk (+09:00/+09:00)" : {

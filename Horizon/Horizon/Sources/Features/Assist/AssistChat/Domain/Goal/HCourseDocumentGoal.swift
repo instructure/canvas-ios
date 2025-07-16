@@ -20,78 +20,42 @@ import Combine
 import Core
 import Foundation
 
-class HCourseDocumentGoal: HGoal {
+class HCourseDocumentGoal: HCourseItemGoal {
 
-    private let cedar: DomainService
-    private var courseID: String? {
-        environment.courseID.value
+    override
+    var options: [Option] {
+        Option.allCases.filter { $0 != .Quiz }
     }
+
     private let downloadFileInteractor: DownloadFileInteractor
     private var fileID: String? {
         environment.fileID.value
     }
-
-    private let environment: AssistDataEnvironment
+    private let initialPrompt = String(
+        localized: "Can I answer any questions about this document for you?",
+        bundle: .horizon
+    )
 
     init(
         environment: AssistDataEnvironment,
         downloadFileInteractor: DownloadFileInteractor,
         cedar: DomainService = DomainService(.cedar)
     ) {
-        self.environment = environment
         self.downloadFileInteractor = downloadFileInteractor
-        self.cedar = cedar
-    }
-
-    override
-    func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
-        guard let response = response, response.isNotEmpty else {
-            return initialPrompt()
-        }
-        return fetch()
-            .flatMap { [weak self] (documentInput: CedarAnswerPromptMutation.DocumentInput?) -> AnyPublisher<AssistChatMessage?, any Error> in
-                guard let self = self, let documentInput = documentInput else {
-                    return Just(nil)
-                        .setFailureType(to: Error.self)
-                        .eraseToAnyPublisher()
-                }
-                return self.cedarAnswerPrompt(
-                    prompt: response,
-                    document: documentInput
-                ).map {
-                    .init(botResponse: $0 ?? "Sorry, I don't have an answer right now")
-                }
-                .eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
+        super.init(
+            initialPrompt: initialPrompt,
+            environment: environment,
+            cedar: cedar
+        )
     }
 
     override
     func isRequested() -> Bool { courseID != nil && fileID != nil }
 
-    // MARK: - Private Methods
-    private func cedarAnswerPrompt(
-        prompt: String,
-        document: CedarAnswerPromptMutation.DocumentInput? = nil
-    ) -> AnyPublisher<String?, Error> {
-        cedar.api()
-            .flatMap { cedarApi in
-                cedarApi.makeRequest(
-                    CedarAnswerPromptMutation(
-                        prompt: prompt,
-                        document: document
-                    )
-                )
-                .map { (response: CedarAnswerPromptMutationResponse?) in
-                    response?.data.answerPrompt
-                }
-            }
-            .eraseToAnyPublisher()
-    }
-
     /// If necessary, downloads the file and returns the page context.
     /// If we can't determine the format, we return an empty page context
-    private func fetch() -> AnyPublisher<CedarAnswerPromptMutation.DocumentInput?, Error> {
+    override
+    var document: AnyPublisher<CedarAnswerPromptMutation.DocumentInput?, Error> {
         guard let courseID = courseID, let fileID = fileID else {
             return Just<CedarAnswerPromptMutation.DocumentInput?>(nil)
                 .setFailureType(to: Error.self)
@@ -123,22 +87,5 @@ class HCourseDocumentGoal: HGoal {
             }
             .compactMap { $0 }
             .eraseToAnyPublisher()
-    }
-
-    private func initialPrompt() -> AnyPublisher<AssistChatMessage?, any Error> {
-        Just(.init(botResponse: "Can I answer any questions about this document for you?"))
-        .setFailureType(to: Error.self)
-        .eraseToAnyPublisher()
-    }
-}
-
-extension CedarAnswerPromptMutation.DocumentInput {
-    /// A document block can be included  in the CedarAnswerPromptMutation to provide additional context for the model to generate a response.
-    /// This is used when the user is viewing a document and wants to generate a response based on the document.
-    static func build(from documentFormat: AssistChatDocumentType, base64Source: String) -> CedarAnswerPromptMutation.DocumentInput {
-        CedarAnswerPromptMutation.DocumentInput(
-            format: documentFormat,
-            base64Source: base64Source
-        )
     }
 }

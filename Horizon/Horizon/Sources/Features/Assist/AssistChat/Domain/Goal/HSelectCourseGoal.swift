@@ -73,8 +73,8 @@ class HSelectCourseGoal: HGoal {
     }
 
     private func initialPrompt(history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
-        let promptFirstTime = "Hello! Which course you'd like to discuss today?"
-        let promptAgain = "Sorry, can we try that again? Which course is it you'd like to discuss?"
+        let promptFirstTime = String(localized: "Hello! Which course you'd like to discuss today?", bundle: .horizon)
+        let promptAgain = String(localized: "Sorry, can we try that again? Which course is it you'd like to discuss?", bundle: .horizon)
         let didIJustAskThis = history.count > 1 && history[history.count - 2].text?.contains(promptFirstTime) == true
         let prompt = didIJustAskThis ? promptAgain : promptFirstTime
         return courses.flatMap { courses in
@@ -82,6 +82,7 @@ class HSelectCourseGoal: HGoal {
                 .init(
                     botResponse: prompt,
                     chipOptions: courses
+                        .prefix(5)
                         .compactMap { $0.course.name }
                         .map { .init(chip: $0, prompt: $0) }
                 )

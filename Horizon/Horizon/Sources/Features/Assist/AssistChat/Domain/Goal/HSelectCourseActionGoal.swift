@@ -44,7 +44,8 @@ class HSelectCourseActionGoal: HGoal {
     override
     func execute(response: String?, history: [AssistChatMessage] = []) -> AnyPublisher<AssistChatMessage?, any Error> {
         guard let courseID = environment.courseID.value else {
-            return Fail(error: NSError(domain: "AssistChat", code: 0, userInfo: [NSLocalizedDescriptionKey: "No course selected"]))
+            return Just(nil)
+                .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
         guard let response = response, response.isNotEmpty else {
@@ -82,9 +83,10 @@ class HSelectCourseActionGoal: HGoal {
 
     private func initialPrompt(history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
         courseName.map { courseName in
-            var prompt = "What would you like to discuss today?"
+            var prompt = String(localized: "What would you like to discuss today?", bundle: .horizon)
             if let courseName = courseName {
-                prompt = "What would you like to discuss about the course \(courseName)?"
+                let format = String(localized: "What would you like to discuss about the course %@?", bundle: .horizon)
+                prompt = String(format: format, courseName)
             }
             return AssistChatMessage(botResponse: prompt)
         }
