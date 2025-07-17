@@ -136,9 +136,7 @@ final class AssistChatViewModel {
 
     func send(message: String) {
         assistChatInteractor.publish(action: .chat(prompt: message, history: chatMessages))
-        if hasAssistChipOptions {
-            isBackButtonVisible = true
-        }
+        isBackButtonVisible = true
         self.message = ""
     }
 

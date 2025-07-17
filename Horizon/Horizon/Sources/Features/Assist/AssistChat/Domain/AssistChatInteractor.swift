@@ -91,7 +91,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
             receiveCompletion: { _ in },
             receiveValue: { [weak self] assistChatResponse in
                 guard let assistChatResponse = assistChatResponse else {
-                    self?.publish(action: .chat(prompt: "", history: history))
+                    self?.publish(action: .chat(prompt: nil, history: history))
                     return
                 }
                 let response: AssistChatResponse = .init(assistChatResponse, chatHistory: history)
