@@ -22,10 +22,17 @@ import Foundation
 
 class AssistSelectCourseActionGoal: AssistGoal {
 
+    // MARK: - Privar Properties
+    private let options = [
+        AssistGoalOption(name: "Course Information", description: "The user is asking about course grades")
+    ]
+
+    // MARK: - Dependencies
     private let environment: AssistDataEnvironment
     private let pine: DomainService
     private var userID: String
 
+    // MARK: - Init
     init(
         environment: AssistDataEnvironment,
         userID: String = AppEnvironment.shared.currentSession?.userID ?? "",
@@ -36,6 +43,7 @@ class AssistSelectCourseActionGoal: AssistGoal {
         self.pine = pine
     }
 
+    // MARK: - Inputs
     func isRequested() -> Bool {
         environment.courseID.value != nil
     }
@@ -49,23 +57,23 @@ class AssistSelectCourseActionGoal: AssistGoal {
         guard let response = response, response.isNotEmpty else {
             return initialPrompt(history: history)
         }
-        return askAQuestion(response: response, history: history, courseID: courseID)
+        return askARAGQuestion(response: response, history: history, courseID: courseID)
     }
 
-    private func askAQuestion(response: String, history: [AssistChatMessage], courseID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        pine.api()
-            .flatMap { pineApi in
-                pineApi.makeRequest(
-                    PineQueryMutation(
-                        messages: history.domainServiceConversationMessages,
-                        courseID: courseID
-                    )
+    // MARK: - Private Methods
+    private func askARAGQuestion(response: String, history: [AssistChatMessage], courseID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
+        pine.api().flatMap { pineApi in
+            pineApi.makeRequest(
+                PineQueryMutation(
+                    messages: history.domainServiceConversationMessages,
+                    courseID: courseID
                 )
-                .compactMap { (ragData, _) in
-                    .init(botResponse: ragData.data.query.response)
-                }
+            )
+            .compactMap { (ragData, _) in
+                .init(botResponse: ragData.data.query.response)
             }
-            .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
     }
 
     private var courseName: AnyPublisher<String?, any Error> {

@@ -55,6 +55,10 @@ class AssistCourseItemGoal: AssistGoal {
         options.map(\.rawValue)
     }
 
+    private var goalOptions: [AssistGoalOption] {
+        options.map { AssistGoalOption(name: $0.rawValue) }
+    }
+
     // MARK: - Initializers
     init(
         initialPrompt: String,
@@ -79,7 +83,7 @@ class AssistCourseItemGoal: AssistGoal {
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
         }
-        return choose(from: chipOptions, with: response, using: cedar)
+        return choose(from: goalOptions, with: response, using: cedar)
             .flatMap { [weak self] chip in
                 let nilResponse = Just<AssistChatMessage?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
 
