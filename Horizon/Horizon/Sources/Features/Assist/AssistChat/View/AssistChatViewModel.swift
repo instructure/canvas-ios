@@ -60,7 +60,7 @@ final class AssistChatViewModel {
     private let courseId: String?
     private let pageUrl: String?
     private let fileId: String?
-    private var viewController = WeakViewController()
+    private weak var viewController: WeakViewController?
     private var hasAssistChipOptions: Bool = false
 
     // MARK: - Init
@@ -96,7 +96,7 @@ final class AssistChatViewModel {
             }
             .store(in: &subscriptions)
 
-        chatBotInteractor.publish(action: .begin)
+        self.assistChatInteractor.publish(action: .begin)
     }
 
     // MARK: - Inputs
@@ -149,23 +149,23 @@ final class AssistChatViewModel {
     // MARK: - Private
 
     /// handle the response from the interactor
-    private func onMessage(_ response: AssistChatResponse, viewController: WeakViewController) {
+    private func onMessage(_ response: AssistChatResponse, viewController: WeakViewController?) {
+        guard let viewController else { return }
+        weak var weakSelf = self
         self.chatMessages = response.chatHistory
-
         var newMessages: [AssistChatMessageViewModel] = []
 
         shouldOpenKeyboardPublisher.send(messages.count == 1)
         newMessages = response.chatHistory.map { message in
-
-            let onFeedbackChange = message.isSolicitingFeedback(with: response) ?
-                self.onFeedbackChange :
-                nil
+            let onFeedbackChange: ((Bool?) -> Void)? = message.isSolicitingFeedback(with: response) ? { isGood in
+                weakSelf?.onFeedbackChange(isGood)
+            } : nil
 
             return message.viewModel(
                 response: response,
                 onFeedbackChange: onFeedbackChange
             ) { quickResponse in
-                self.send(chipOption: quickResponse)
+                weakSelf?.send(chipOption: quickResponse)
             }
         }
 
@@ -200,13 +200,16 @@ final class AssistChatViewModel {
 
     /// add new messages to the list of messages
     private func add(newMessages: [AssistChatMessageViewModel]) {
-        newMessages.filter { newMessage in
-            !self.messages.contains { message in
-                message.id == newMessage.id
+        weak var weakSelf = self
+        newMessages
+            .filter { newMessage in
+                guard let self = weakSelf else { return false }
+                return !self.messages.contains { message in
+                    message.id == newMessage.id
+                }
+            }.forEach { message in
+                weakSelf?.messages.append(message)
             }
-        }.forEach { message in
-            self.messages.append(message)
-        }
         showMoreButtonPublisher.send(newMessages.last?.id ?? "")
     }
 
