@@ -71,6 +71,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     public private(set) var pending: Bool = false
     public private(set) var requested: Bool = false
     public private(set) var error: Error?
+    public private(set) var receivingResponse: Bool = false
 
     #if DEBUG
     public var isDebugLoggingEnabled = false
@@ -303,6 +304,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         willChange()
         requested = true
         pending = true
+        receivingResponse = false
         notify()
 
         if offlineModeInteractor.isOfflineModeEnabled() {
@@ -321,6 +323,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
                     willChange()
                     error = err
                     pending = false
+                    receivingResponse = true
 
                     if let urlResponse {
                         self.next = self.useCase.getNext(from: urlResponse)

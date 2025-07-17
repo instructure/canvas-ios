@@ -201,7 +201,11 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
                 } else {
                     showError(error)
                 }
-            } else if files.requested, !files.pending, localURL == nil {
+            } else if
+                files.requested,
+                !files.pending,
+                !files.receivingResponse, // We need to make sure the file is really deleted here. And perhaps, show some message for that.
+                localURL == nil {
                 // File was deleted, go back.
                 env.router.dismiss(self)
             }
