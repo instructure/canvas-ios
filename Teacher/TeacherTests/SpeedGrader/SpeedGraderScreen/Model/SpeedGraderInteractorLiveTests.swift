@@ -24,8 +24,7 @@ import TestsFoundation
 import SwiftUI
 
 class SpeedGraderInteractorLiveTests: TeacherTestCase {
-    private var testee: SpeedGraderInteractorLive!
-    private let testData = (
+    private static let testData = (
         context: Context(.course, id: "1"),
         assignmentId: "1",
         userId: "1",
@@ -35,27 +34,28 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
         courseName: "test course",
         courseColor: Color.course1
     )
+    private lazy var testData = Self.testData
+
+    private var testee: SpeedGraderInteractorLive!
     private var gradeStatusInteractorMock: GradeStatusInteractorMock!
+    private var submissionWordCountInteractor: SubmissionWordCountInteractorPreview!
     private var customGradebookColumnsInteractor: CustomGradebookColumnsInteractorMock!
 
     override func setUp() {
         super.setUp()
+
+        gradeStatusInteractorMock = .init()
+        submissionWordCountInteractor = .init()
+        customGradebookColumnsInteractor = .init()
         setupMocks()
-        testee = SpeedGraderInteractorLive(
-            context: testData.context,
-            assignmentID: testData.assignmentId,
-            userID: testData.userId,
-            filter: [],
-            gradeStatusInteractor: gradeStatusInteractorMock,
-            customGradebookColumnsInteractor: customGradebookColumnsInteractor,
-            env: environment,
-            mainScheduler: .immediate
-        )
+
+        testee = makeInteractor()
     }
 
     override func tearDown() {
         testee = nil
         gradeStatusInteractorMock = nil
+        submissionWordCountInteractor = nil
         customGradebookColumnsInteractor = nil
         super.tearDown()
     }
@@ -121,16 +121,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
         ])
 
         // When
-        testee = SpeedGraderInteractorLive(
-            context: testData.context,
-            assignmentID: testData.assignmentId,
-            userID: "1",
-            filter: [],
-            gradeStatusInteractor: GradeStatusInteractorMock(),
-            customGradebookColumnsInteractor: CustomGradebookColumnsInteractorMock(),
-            env: environment,
-            mainScheduler: .immediate
-        )
+        testee = makeInteractor(userId: "1")
 
         // Then
         XCTAssertEqual(testee.state.value, .loading)
@@ -187,16 +178,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
     }
 
     func test_errorState_userIdNotFound() {
-        testee = SpeedGraderInteractorLive(
-            context: testData.context,
-            assignmentID: testData.assignmentId,
-            userID: testData.invalidUserId,
-            filter: [],
-            gradeStatusInteractor: GradeStatusInteractorMock(),
-            customGradebookColumnsInteractor: CustomGradebookColumnsInteractorMock(),
-            env: environment,
-            mainScheduler: .immediate
-        )
+        testee = makeInteractor(userId: testData.invalidUserId)
         XCTAssertEqual(testee.state.value, .loading)
 
         // WHEN
@@ -207,9 +189,26 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
         XCTAssertSingleOutputEquals(publisher, .error(.userIdNotFound))
     }
 
+    // MARK: - Private helpers
+
+    private func makeInteractor(
+        userId: String = testData.userId,
+        filter: [GetSubmissions.Filter] = []
+    ) -> SpeedGraderInteractorLive {
+        SpeedGraderInteractorLive(
+            context: testData.context,
+            assignmentID: testData.assignmentId,
+            userID: userId,
+            filter: filter,
+            gradeStatusInteractor: gradeStatusInteractorMock,
+            submissionWordCountInteractor: submissionWordCountInteractor,
+            customGradebookColumnsInteractor: customGradebookColumnsInteractor,
+            env: environment,
+            mainScheduler: .immediate
+        )
+    }
+
     private func setupMocks() {
-        gradeStatusInteractorMock = GradeStatusInteractorMock()
-        customGradebookColumnsInteractor = CustomGradebookColumnsInteractorMock()
         let getAssignment = GetAssignment(
             courseID: testData.context.id,
             assignmentID: testData.assignmentId,
