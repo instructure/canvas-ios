@@ -29,7 +29,7 @@ struct FinalGradeRowView: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            Text("Final Grade")
+            Text("Final Grade", bundle: .teacher)
                 .font(.semibold16, lineHeight: .fit)
                 .foregroundColor(.textDarkest)
                 .paddingStyle(.trailing, .cellAccessoryPadding)

@@ -61,6 +61,8 @@ struct GradeSummaryView: View {
     }
 }
 
+#if DEBUG
+
 #Preview {
     VStack(spacing: 16) {
         GradeSummaryView(
@@ -88,3 +90,5 @@ struct GradeSummaryView: View {
     }
     .padding()
 }
+
+#endif
