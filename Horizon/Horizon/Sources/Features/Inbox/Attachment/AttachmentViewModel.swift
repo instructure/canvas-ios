@@ -38,7 +38,8 @@ class AttachmentViewModel {
         .pdf,
         .text,
         .spreadsheet,
-        .presentation
+        .presentation,
+        .zip
     ]
     var isVisible: Bool = false
     var isFilePickerVisible = false
