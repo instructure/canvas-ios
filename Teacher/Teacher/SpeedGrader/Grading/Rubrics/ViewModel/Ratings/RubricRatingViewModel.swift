@@ -19,7 +19,10 @@
 import Combine
 import Core
 
-class RubricRatingViewModel: ObservableObject, Identifiable {
+class RubricRatingViewModel: ObservableObject, Identifiable, Equatable {
+    static func == (lhs: RubricRatingViewModel, rhs: RubricRatingViewModel) -> Bool {
+        lhs.rating.id == rhs.rating.id
+    }
 
     // MARK: - Outputs
 
@@ -37,6 +40,8 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
         }
     }
     let tooltip: String
+    let shortDescription: String
+    let longDescription: String
     let value: String
     let accessibilityLabel: String
 
@@ -56,6 +61,8 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
         self.interactor = interactor
 
         tooltip = rating.shortDescription + (rating.longDescription.isEmpty ? "" : "\n" + rating.longDescription)
+        shortDescription = rating.shortDescription
+        longDescription = rating.longDescription
         value = rating.points.formatted()
         accessibilityLabel = rating.shortDescription.nilIfEmpty ?? value
         interactor.assessments

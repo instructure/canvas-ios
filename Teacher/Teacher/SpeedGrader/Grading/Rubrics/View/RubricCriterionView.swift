@@ -34,39 +34,28 @@ struct RubricCriterionView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            descriptionLine
+        ZStack {
+            RoundedRectangle(cornerRadius: RubricSizes.rectangleCornerRadius)
+                .fill(Color.backgroundLightest)
+            mainView
+                .padding(.vertical, RubricPadding.vertical)
+        }
+    }
 
+    private var mainView: some View {
+        VStack(alignment: .leading, spacing: RubricSpacing.vertical) {
+            descriptionLine
             if viewModel.shouldShowRubricNotUsedForScoringMessage {
                 notUsedForScoringLine
             }
-
-            ratingLine
-
+            RubricRatingsView(viewModel: viewModel, isExpanded: isExpanded)
             if let comment = viewModel.userComment {
                 freeFormRubricCommentBubbleWithEditButton(comment, criteriaID: viewModel.criterionId)
             }
-
             InstUI.Divider()
-
-            HStack {
-                Text("Score")
-                    .font(.semibold16)
-                    .foregroundStyle(Color.textDarkest)
-                Spacer()
-                Text("Write score here")
-                    .font(.regular16)
-                    .foregroundStyle(Color.textDark)
-                Text("/ \(viewModel.points)")
-                    .font(.regular16)
-                    .foregroundStyle(Color.textDark)
-            }
-
+            scoreLine
             InstUI.Divider()
-
             noteLine
-
-            InstUI.Divider()
         }
     }
 
@@ -77,6 +66,7 @@ struct RubricCriterionView: View {
             Spacer()
             expandButton
         }
+        .padding(.horizontal, RubricPadding.horizontal)
     }
 
     private var expandButton: some View {
@@ -92,82 +82,30 @@ struct RubricCriterionView: View {
         Text("This criterion will not impact the score.", bundle: .teacher)
             .font(.regular12).foregroundColor(.textDark)
             .padding(.top, 2)
+            .padding(.horizontal, RubricPadding.horizontal)
     }
 
-    private var ratingLine: some View {
-        let selectedRating: RubricRatingViewModel? = viewModel.ratingViewModels.first { $0.isSelected }
-        return VStack {
-            FlowStack(spacing: UIOffset(horizontal: 16, vertical: 8)) { leading, top in
-                preDefinedRubricRatingButtons(leading: leading, top: top)
-            }
-            if let selectedRating {
-                ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 24)
-                        .fill(.tint)
-                    Text(selectedRating.tooltip)
-                        .font(.regular14)
-                        .foregroundColor(.textLightest)
-                        .padding(12)
-                }
-            }
+    private var scoreLine: some View {
+        HStack {
+            Text("Score")
+                .font(.semibold16)
+                .foregroundStyle(Color.textDarkest)
+            Spacer()
+            Text("Write score here")
+                .font(.regular16)
+                .foregroundStyle(Color.textDark)
+            Text("/ \(viewModel.points) pts")
+                .font(.regular16)
+                .foregroundStyle(Color.textDark)
         }
+        .padding(.horizontal, RubricPadding.horizontal)
     }
 
     private var noteLine: some View {
         Text("Rubric Note")
             .font(.regular14)
             .foregroundStyle(Color.textDark)
-    }
-
-    @ViewBuilder
-    private func preDefinedRubricRatingButtons(
-        leading: @escaping (ViewDimensions) -> CGFloat,
-        top: @escaping (ViewDimensions) -> CGFloat
-    ) -> some View {
-        if viewModel.shouldShowRubricRatings {
-            ForEach(viewModel.ratingViewModels) { ratingViewModel in
-                RubricRatingView(viewModel: ratingViewModel, leading: leading, top: top, containerFrameInGlobal: containerFrameInGlobal)
-            }
-        }
-    }
-
-    private func addButtons(
-        showAdd: Bool,
-        showLong: Bool
-    ) -> some View {
-        HStack(spacing: 6) {
-            if showAdd {
-                Button(
-                    action: {
-                        withAnimation(.default) {
-                            viewModel.didTapAddCommentButton()
-                        }
-                    },
-                    label: {
-                        Text("Add Comment", bundle: .teacher)
-                            .font(.medium14)
-                    }
-                )
-                .identifier(viewModel.addCommentButtonA11yID)
-            }
-            if showAdd, showLong {
-                Text(verbatim: "•")
-                    .font(.regular12)
-                    .foregroundColor(.textDark)
-            }
-            if showLong {
-                Button(
-                    action: {
-                        viewModel.didTapShowLongDescriptionButton()
-                    },
-                    label: {
-                        Text("View Long Description", bundle: .teacher)
-                            .font(.medium14)
-                    }
-                )
-            }
-        }
-        .padding(.top, 8)
+            .padding(.horizontal, RubricPadding.horizontal)
     }
 
     private func freeFormRubricCommentBubbleWithEditButton(_ comment: String, criteriaID: String) -> some View {

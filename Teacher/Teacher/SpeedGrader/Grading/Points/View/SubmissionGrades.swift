@@ -119,6 +119,7 @@ struct SubmissionGrades: View {
                             containerFrameInGlobal: geometry.frame(in: .global),
                             viewModel: rubricsViewModel
                         )
+                        .background(Color.backgroundLight)
                     }
                 }.padding(.bottom, 16)
             } }

@@ -44,8 +44,11 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
     var description: String {
         criterion.shortDescription
     }
-    var points: Double {
-        criterion.points
+    var longDescription: String {
+        criterion.longDescription
+    }
+    var points: Int {
+        Int(criterion.points)
     }
     var shouldShowRubricRatings: Bool {
         !isFreeFormCommentsEnabled

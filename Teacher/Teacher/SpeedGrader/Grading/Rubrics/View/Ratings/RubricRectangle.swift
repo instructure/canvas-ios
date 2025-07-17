@@ -23,15 +23,18 @@ struct RubricRectangle<Content: View>: View {
     @Binding private var isOn: Bool
     private let content: Content
     private let containerFrame: CGRect
+    private let changeBackgroundOnTap: Bool
 
     init(
         isOn: Binding<Bool>,
         containerFrame: CGRect = .null,
+        changeBackgroundOnTap: Bool = true,
         @ViewBuilder content: () -> Content
     ) {
         self.content = content()
         self._isOn = isOn
         self.containerFrame = containerFrame
+        self.changeBackgroundOnTap = changeBackgroundOnTap
     }
 
     var body: some View {
@@ -39,7 +42,7 @@ struct RubricRectangle<Content: View>: View {
             .font(.regular16)
             .foregroundColor(isOn ? .textLightest : .textDarkest)
             .frame(minWidth: 42, minHeight: 38, maxHeight: 38)
-            .background(isOn ?
+            .background(changeBackgroundOnTap && isOn ?
                 RoundedRectangle(cornerRadius: 4).fill(.tint) :
                 nil
             )
@@ -47,7 +50,5 @@ struct RubricRectangle<Content: View>: View {
                 RoundedRectangle(cornerRadius: 4).stroke(Color.borderMedium) :
                 nil
             )
-            .accessibility(addTraits: isOn ? [.isButton, .isSelected] : .isButton)
-            .onTapGesture { isOn.toggle() }
     }
 }

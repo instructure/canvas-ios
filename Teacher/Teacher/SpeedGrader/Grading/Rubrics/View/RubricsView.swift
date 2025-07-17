@@ -29,19 +29,20 @@ struct RubricsView: View {
 
     var body: some View {
         HStack {
-            Text("Rubric", bundle: .teacher)
-                .font(.heavy24).foregroundColor(.textDarkest)
+            Text("Rubrics", bundle: .teacher)
+                .font(.semibold16).foregroundColor(.textDarkest)
                 .accessibilityAddTraits(.isHeader)
             Spacer()
 
             if viewModel.isSaving {
                 ProgressView()
-                    .progressViewStyle(.indeterminateCircle(size: 24))
+                    .progressViewStyle(.indeterminateCircle(size: 18))
             }
         }
-        .padding(.horizontal, 16).padding(.vertical, 12)
+        .padding(.horizontal, RubricPadding.horizontal)
+        .padding(.vertical, RubricPadding.vertical)
 
-        VStack(spacing: 12) {
+        VStack(spacing: RubricSpacing.vertical) {
             ForEach(viewModel.criterionViewModels) { viewModel in
                 RubricCriterionView(
                     containerFrameInGlobal: containerFrameInGlobal,
@@ -50,7 +51,7 @@ struct RubricsView: View {
             }
         }
         .multilineTextAlignment(.leading)
-        .padding(.horizontal, 16)
+        .padding(.horizontal, RubricPadding.horizontal)
         .onAppear {
             viewModel.controller = controller
         }

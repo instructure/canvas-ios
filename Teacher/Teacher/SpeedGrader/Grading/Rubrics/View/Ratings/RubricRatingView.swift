@@ -17,24 +17,74 @@
 //
 
 import SwiftUI
+import Core
 
 struct RubricRatingView: View {
     @ObservedObject var viewModel: RubricRatingViewModel
-    let leading: (ViewDimensions) -> CGFloat
-    let top: (ViewDimensions) -> CGFloat
-    let containerFrameInGlobal: CGRect
-
-    var body: some View {
-        let value = Text(viewModel.value)
-        RubricRectangle(
-            isOn: $viewModel.isSelected,
-            containerFrame: containerFrameInGlobal
-        ) {
+    let isExpanded: Bool
+    let value: Text
+    var rubricRectangle: RubricRectangle<Text> {
+        RubricRectangle(isOn: $viewModel.isSelected, changeBackgroundOnTap: !isExpanded) {
             value
         }
-        .accessibility(value: value)
-        .accessibility(label: Text(viewModel.accessibilityLabel))
-        .alignmentGuide(.leading, computeValue: leading)
-        .alignmentGuide(.top, computeValue: top)
+    }
+
+    init(viewModel: RubricRatingViewModel, isExpanded: Bool) {
+        self.viewModel = viewModel
+        self.isExpanded = isExpanded
+        self.value = Text(viewModel.value)
+    }
+
+    var body: some View {
+        if isExpanded {
+            expanded
+        } else {
+            collapsed
+        }
+    }
+
+    private var expanded: some View {
+        ZStack {
+            rectangleView
+            HStack(alignment: .top, spacing: RubricSpacing.horizontal) {
+                rubricRectangle
+                VStack {
+                    descriptionView
+                    Spacer()
+                }
+                Spacer()
+            }
+            .padding(.horizontal, RubricPadding.horizontal)
+            .padding(.vertical, RubricPadding.vertical)
+        }
+        .onTapGesture { viewModel.isSelected.toggle() }
+        .frame(minHeight: 80, maxHeight: 80)
+    }
+
+    private var collapsed: some View {
+        rubricRectangle
+            .onTapGesture { viewModel.isSelected.toggle() }
+            .accessibility(addTraits: viewModel.isSelected ? [.isButton, .isSelected] : .isButton)
+            .accessibility(value: value)
+            .accessibility(label: Text(viewModel.accessibilityLabel))
+    }
+
+    @ViewBuilder
+    private var rectangleView: some View {
+        if viewModel.isSelected {
+            RoundedRectangle(cornerRadius: RubricSizes.rectangleCornerRadius).fill(.tint)
+        } else {
+            RoundedRectangle(cornerRadius: RubricSizes.rectangleCornerRadius).fill(.background)
+        }
+    }
+
+    private var descriptionView: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(viewModel.shortDescription)
+                .font(.semibold16)
+            Text(viewModel.longDescription)
+                .font(.regular14)
+        }
+        .foregroundStyle(viewModel.isSelected ? .textLightest : .textDarkest)
     }
 }
