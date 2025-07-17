@@ -23,7 +23,7 @@ import Core
 class UpdateNotebookNoteUseCase: UseCase {
     var cacheKey: String?
 
-    typealias Model = CDNotebookNote
+    typealias Model = CDHNotebookNote
 
     // MARK: Dependencies
     let redwood: DomainService
@@ -32,7 +32,7 @@ class UpdateNotebookNoteUseCase: UseCase {
     let request: RedwoodUpdateNoteMutation
 
     public var scope: Scope {
-        Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.id), request.variables.id), order: [])
+        Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(CDHNotebookNote.id), request.variables.id), order: [])
     }
 
     // MARK: Private Properties
@@ -64,7 +64,7 @@ class UpdateNotebookNoteUseCase: UseCase {
         to client: NSManagedObjectContext
     ) {
         if let redwoodNote = response?.data.updateNote {
-            CDNotebookNote.save(
+            CDHNotebookNote.save(
                 redwoodNote,
                 userID: Context.currentUser.id,
                 in: client

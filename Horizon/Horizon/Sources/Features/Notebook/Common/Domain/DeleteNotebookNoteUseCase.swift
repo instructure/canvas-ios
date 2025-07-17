@@ -23,7 +23,7 @@ import Core
 class DeleteNotebookNoteUseCase: DeleteUseCase {
     var cacheKey: String?
 
-    typealias Model = CDNotebookNote
+    typealias Model = CDHNotebookNote
 
     // MARK: Dependencies
     let redwood: DomainService
@@ -32,7 +32,7 @@ class DeleteNotebookNoteUseCase: DeleteUseCase {
     let request: RedwoodDeleteNoteMutation
 
     public var scope: Scope {
-        Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.id), request.variables.id), order: [])
+        Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(CDHNotebookNote.id), request.variables.id), order: [])
     }
 
     // MARK: Private Properties
