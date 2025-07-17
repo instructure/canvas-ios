@@ -75,16 +75,27 @@ final class AssistQuizViewModel {
         self.chatBotInteractor
             .listen
             .receive(on: scheduler)
-            .sink { [weak self] result in
-                switch result {
-                case .success(let message):
-                    self?.onMessage(message)
-                case .failure(let error):
-                    self?.isLoaderVisible = false
-                    self?.errorMessage = error.localizedDescription
+            .sink (
+                receiveCompletion: { [weak self] completion in
+                    switch completion {
+                    case .finished:
+                        self?.isLoaderVisible = false
+                    case .failure(let error):
+                        self?.isLoaderVisible = false
+                        self?.errorMessage = error.localizedDescription
+                    }
+                },
+                receiveValue: { [weak self] result in
+                    switch result {
+                    case .success(let message):
+                        self?.onMessage(message)
+                    case .failure(let error):
+                        self?.isLoaderVisible = false
+                        self?.errorMessage = error.localizedDescription
+                    }
                 }
-            }
-        .store(in: &subscriptions)
+            )
+            .store(in: &subscriptions)
 
         quiz = quizzes.first
     }

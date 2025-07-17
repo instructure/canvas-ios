@@ -82,18 +82,26 @@ final class AssistChatViewModel {
         self.assistChatInteractor
             .listen
             .receive(on: scheduler)
-            .sink { [weak self] result in
-                guard let self else { return }
-                switch result {
-                case .success(let message):
-                    onMessage(message, viewController: viewController)
-                case .failure:
-                    isRetryButtonVisible = true
-                    isLoaderVisible = false
-                    canSendMessage = true
-                    isErrorToastPresented = true
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    guard let self else { return }
+                    switch completion {
+                    case .finished:
+                        break // No action needed on completion
+                    case .failure:
+                        self.onFailure()
+                    }
+                },
+                receiveValue: { [weak self] result in
+                    guard let self else { return }
+                    switch result {
+                    case .success(let message):
+                        onMessage(message, viewController: viewController)
+                    case .failure:
+                        self.onFailure()
+                    }
                 }
-            }
+            )
             .store(in: &subscriptions)
 
         self.assistChatInteractor.publish(action: .begin)
@@ -145,6 +153,13 @@ final class AssistChatViewModel {
     }
 
     // MARK: - Private
+    private func onFailure() {
+        isRetryButtonVisible = true
+        isLoaderVisible = false
+        canSendMessage = true
+        isErrorToastPresented = true
+        remove(notAppearingIn: messages)
+    }
 
     /// handle the response from the interactor
     private func onMessage(_ response: AssistChatResponse, viewController: WeakViewController?) {

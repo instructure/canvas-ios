@@ -22,7 +22,7 @@ import Core
 import Foundation
 
 protocol AssistChatInteractor {
-    var listen: AnyPublisher<AssistChatInteractorLive.State, Never> { get }
+    var listen: AnyPublisher<AssistChatInteractorLive.State, any Error> { get }
     func publish(action: AssistChatAction)
     func setInitialState()
 }
@@ -159,7 +159,7 @@ struct AssistChatInteractorPreview: AssistChatInteractor {
     var hasAssistChipOptions: Bool = true
 
     func publish(action: AssistChatAction) {}
-    var listen: AnyPublisher<AssistChatInteractorLive.State, Never> = Just(
+    var listen: AnyPublisher<AssistChatInteractorLive.State, any Error> = Just(
         .success(
             AssistChatResponse(
                 AssistChatMessage(
@@ -175,6 +175,7 @@ struct AssistChatInteractorPreview: AssistChatInteractor {
             )
         )
     )
+    .setFailureType(to: Error.self)
     .eraseToAnyPublisher()
 
     func setInitialState() {}
