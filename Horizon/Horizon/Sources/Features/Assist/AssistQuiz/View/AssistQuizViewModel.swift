@@ -75,7 +75,7 @@ final class AssistQuizViewModel {
         self.chatBotInteractor
             .listen
             .receive(on: scheduler)
-            .sink (
+            .sink(
                 receiveCompletion: { [weak self] completion in
                     switch completion {
                     case .finished:
