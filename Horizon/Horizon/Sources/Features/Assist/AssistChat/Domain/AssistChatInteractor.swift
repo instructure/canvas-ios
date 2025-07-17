@@ -39,7 +39,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     private var assistDateEnvironmentOriginal: AssistDataEnvironment = AssistDataEnvironment()
     private var goalCancellable: AnyCancellable?
     private let downloadFileInteractor: DownloadFileInteractor?
-    private let responsePublisher = PassthroughSubject<AssistChatInteractorLive.State, Never>()
+    private let responsePublisher = PassthroughSubject<AssistChatInteractorLive.State, Error>()
     private var subscriptions = Set<AnyCancellable>()
     private var goals: [any AssistGoal]
 
@@ -88,7 +88,11 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         }
 
         goalCancellable = executeNextGoal(prompt: prompt, history: history)?.sink(
-            receiveCompletion: { _ in },
+            receiveCompletion: { [weak self] completion in
+                if case let .failure(error) = completion {
+                    self?.responsePublisher.send(.failure(error))
+                }
+            },
             receiveValue: { [weak self] assistChatResponse in
                 guard let assistChatResponse = assistChatResponse else {
                     self?.publish(action: .chat(prompt: nil, history: history))
@@ -101,7 +105,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     }
 
     /// Subscribe to the responses from the interactor
-    var listen: AnyPublisher<AssistChatInteractorLive.State, Never> {
+    var listen: AnyPublisher<AssistChatInteractorLive.State, Error> {
         responsePublisher.eraseToAnyPublisher()
     }
 
