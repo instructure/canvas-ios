@@ -56,39 +56,41 @@ struct AssistFeedbackView: View {
 
     private var thumbUpIcon: some View {
         ZStack {
-            HorizonUI.icons.thumbUp
-                .renderingMode(.template)
-                .foregroundColor(HorizonUI.colors.text.surfaceColored)
-                .onTapGesture {
-                    onTap(true)
-                }
-            HorizonUI.icons.thumbUpFilled
-                .renderingMode(.template)
-                .foregroundColor(HorizonUI.colors.text.surfaceColored)
-                .opacity(thumbsUpOpacity)
-                .animation(.easeInOut(duration: 0.2), value: thumbsUpOpacity)
-                .onTapGesture {
-                    onTap(true)
-                }
+            HorizonUI.IconButton(
+                .huiIcons.thumbUp,
+                type: .whiteOutline
+            ) {
+                onTap(true)
+            }
+
+            HorizonUI.IconButton(
+                .huiIcons.thumbUpFilled,
+                type: .whiteOutline
+            ) {
+                onTap(true)
+            }
+            .opacity(thumbsUpOpacity)
+            .animation(.easeInOut(duration: 0.2), value: thumbsUpOpacity)
         }
     }
 
     private var thumbDownIcon: some View {
         ZStack {
-            HorizonUI.icons.thumbDown
-                .renderingMode(.template)
-                .foregroundColor(HorizonUI.colors.text.surfaceColored)
-                .onTapGesture {
-                    onTap(false)
-                }
-            HorizonUI.icons.thumbDownFilled
-                .renderingMode(.template)
-                .foregroundColor(HorizonUI.colors.text.surfaceColored)
-                .opacity(thumbsDownOpacity)
-                .animation(.easeInOut(duration: 0.2), value: thumbsDownOpacity)
-                .onTapGesture {
-                    onTap(false)
-                }
+            HorizonUI.IconButton(
+                .huiIcons.thumbDown,
+                type: .whiteOutline
+            ) {
+                onTap(false)
+            }
+
+            HorizonUI.IconButton(
+                .huiIcons.thumbDownFilled,
+                type: .whiteOutline
+            ) {
+                onTap(false)
+            }
+            .opacity(thumbsDownOpacity)
+            .animation(.easeInOut(duration: 0.2), value: thumbsDownOpacity)
         }
     }
 
@@ -97,6 +99,7 @@ struct AssistFeedbackView: View {
         thanksOpacity = 1.0
         selected = selected == value ? nil : value
         onChange(selected)
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             thanksOpacity = 0.0
         }

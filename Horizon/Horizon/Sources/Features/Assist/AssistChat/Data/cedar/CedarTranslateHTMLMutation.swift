@@ -18,7 +18,7 @@
 
 import Core
 
-class CedarTranslateHTMLMutation: APIGraphQLRequestable {
+struct CedarTranslateHTMLMutation: APIGraphQLRequestable {
     let variables: Input
 
     var path: String {

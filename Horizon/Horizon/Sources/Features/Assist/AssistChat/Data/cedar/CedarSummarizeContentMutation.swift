@@ -18,7 +18,7 @@
 
 import Core
 
-class CedarSummarizeContentMutation: APIGraphQLRequestable {
+struct CedarSummarizeContentMutation: APIGraphQLRequestable {
     let variables: Input
 
     var path: String {

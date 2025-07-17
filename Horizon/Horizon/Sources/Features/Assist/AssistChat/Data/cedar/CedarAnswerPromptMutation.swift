@@ -18,7 +18,7 @@
 
 import Core
 
-class CedarAnswerPromptMutation: APIGraphQLRequestable {
+struct CedarAnswerPromptMutation: APIGraphQLRequestable {
     let variables: Input
 
     var path: String {

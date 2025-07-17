@@ -18,7 +18,7 @@
 
 import Core
 
-class PineQueryMutation: APIGraphQLRequestable {
+struct PineQueryMutation: APIGraphQLRequestable {
     let variables: Variables
 
     var path: String {
