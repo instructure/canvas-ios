@@ -319,7 +319,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
                     guard let self else { return }
 
                     willChange()
-                    error = error
+                    error = err
                     pending = false
 
                     if let urlResponse {
