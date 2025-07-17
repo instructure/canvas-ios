@@ -16,18 +16,30 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Observation
 import SwiftUI
-import Core
 
-struct HInboxView: View {
-    @Environment(\.dismiss) private var dismiss
-    let viewModel: HEmbeddedWebPageContainerViewModel
+extension HorizonUI.TextArea {
+    struct Storybook: View {
 
-    var body: some View {
-        HEmbeddedWebPageContainerView(
-            viewModel: viewModel,
-            features: [.onTapBackButton { dismiss() }]
-        )
-        .background(Color.huiColors.surface.pagePrimary)
+        @State var emptyTextInput: String = ""
+
+        var body: some View {
+            ScrollView {
+                VStack(spacing: .huiSpaces.space32) {
+                    HorizonUI.TextArea(
+                        .constant(""),
+                        label: "This is an empty text input",
+                        helperText: "This is helper text",
+                        placeholder: "This is placeholder text"
+                    )
+                }
+                .padding(.huiSpaces.space24)
+            }
+        }
     }
+}
+
+#Preview {
+    HorizonUI.TextInput.Storybook()
 }

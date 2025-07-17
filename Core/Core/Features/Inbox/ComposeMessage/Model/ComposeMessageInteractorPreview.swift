@@ -32,8 +32,11 @@ public class ComposeMessageInteractorPreview: ComposeMessageInteractor {
     private var cancelCalled = false
     private var removeFileCalled = false
 
-    public func addFile(url: URL) {
+    public init() {}
+
+    public func addFile(url: URL) -> File? {
         addFileWithURLCalled = true
+        return nil
     }
 
     public func addFile(file: File) {

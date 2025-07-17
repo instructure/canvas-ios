@@ -64,7 +64,7 @@ final class MyAssignmentSubmissionsViewModel {
                     }
                 }, receiveValue: { [weak self] url in
                     self?.viewState = .initial
-                    self?.showShareSheet(fileURL: url, viewController: viewController)
+                    self?.router.showShareSheet(fileURL: url, viewController: viewController)
                 }
             )
     }
@@ -73,11 +73,17 @@ final class MyAssignmentSubmissionsViewModel {
         subscription?.cancel()
         viewState = .initial
     }
+}
 
-    // MARK: - Private Functions
-
-    private func showShareSheet(fileURL: URL, viewController: WeakViewController) {
-        let controller = CoreActivityViewController(activityItems: [fileURL], applicationActivities: nil)
-        router.show(controller, from: viewController, options: .modal())
+extension Router {
+    func showShareSheet(fileURL: URL, viewController: WeakViewController) {
+        show(
+            CoreActivityViewController(
+                activityItems: [fileURL],
+                applicationActivities: nil
+            ),
+            from: viewController,
+            options: .modal()
+        )
     }
 }

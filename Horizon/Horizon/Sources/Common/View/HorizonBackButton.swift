@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,25 +16,31 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import Foundation
+import Core
+import HorizonUI
+import SwiftUI
 
-public protocol ComposeMessageInteractor {
-    // MARK: - Outputs
-    var attachments: CurrentValueSubject<[File], Never> { get }
+struct HorizonBackButton: View {
+    typealias OnBack = (WeakViewController) -> Void
 
-    // MARK: - Inputs
-    func createConversation(parameters: MessageParameters) -> Future<URLResponse?, Error>
+    @Environment(\.viewController) private var viewController
 
-    func addConversationMessage(parameters: MessageParameters) -> Future<URLResponse?, Error>
+    let onBack: OnBack?
 
-    func addFile(url: URL) -> File?
+    init(onBack: OnBack? = nil) {
+        self.onBack = onBack
+    }
 
-    func addFile(file: File)
-
-    func retry()
-
-    func cancel()
-
-    func removeFile(file: File)
+    var body: some View {
+        HorizonUI.IconButton(
+            .huiIcons.arrowBack,
+            type: .white,
+            isSmall: true
+        ) {
+            onBack?(viewController)
+        }
+        .disabled(onBack == nil)
+        .opacity(onBack == nil ? 0 : 1)
+        .huiElevation(level: .level4)
+    }
 }
