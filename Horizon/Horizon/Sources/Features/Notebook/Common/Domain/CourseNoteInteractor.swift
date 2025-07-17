@@ -243,14 +243,14 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
 
 // MARK: - Extensions
 
-extension Array where Element == CDNotebookNote {
+extension Array where Element == CDHNotebookNote {
     var courseNotebookNotes: [CourseNotebookNote] {
         let count = self.count
         return enumerated().map { $1.courseNotebookNote(index: $0, count: count) }
     }
 }
 
-extension CDNotebookNote {
+extension CDHNotebookNote {
     func courseNotebookNote(index: Int, count: Int) -> CourseNotebookNote {
         CourseNotebookNote(
             id: id,
@@ -266,7 +266,7 @@ extension CDNotebookNote {
     }
 
     var courseNoteLabels: [CourseNoteLabel]? {
-        labels.deserializeLabels?.compactMap { CourseNoteLabel.init(rawValue: $0) }
+        CDHNotebookNote.deserializeLabels(from: labels)?.compactMap { CourseNoteLabel.init(rawValue: $0) }
     }
 
     var notebookHighlight: NotebookHighlight? {

@@ -235,7 +235,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                 .requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
                 guard error == nil && success else {
                     self.reminderSwitch.setOn(false, animated: true)
-                    return self.showPermissionError(.notifications)
+                    return self.showNotificationsPermissionError()
                 }
                 self.reminderDateButton.setTitle(defaultDate.dateTimeString, for: .normal)
                 self.selectedDate = defaultDate

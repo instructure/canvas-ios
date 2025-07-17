@@ -128,6 +128,10 @@ public class CalendarFilterInteractorLive: CalendarFilterInteractor {
         isCalendarFilterLimitEnabled: Bool,
         ignoreCache: Bool
     ) -> AnyPublisher<CalendarFilterCountLimit, Error> {
+        guard isCalendarFilterLimitEnabled else {
+            return Publishers.typedJust(.unlimited)
+        }
+
         let useCase = GetEnvironmentSettings()
         return ReactiveStore(useCase: useCase)
             .getEntities(ignoreCache: ignoreCache)
