@@ -23,11 +23,13 @@ struct RubricRatingsView: View {
     @ObservedObject var viewModel: RubricCriterionViewModel
     var isExpanded: Bool
     let selectedRating: RubricRatingViewModel?
+    let hasLongDescription: Bool
 
     init(viewModel: RubricCriterionViewModel, isExpanded: Bool) {
         self.viewModel = viewModel
         self.isExpanded = isExpanded
         self.selectedRating = viewModel.ratingViewModels.first(where: \.isSelected)
+        self.hasLongDescription = viewModel.longDescription != ""
     }
 
     var body: some View {
@@ -61,7 +63,11 @@ struct RubricRatingsView: View {
 
     var expanded: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(viewModel.longDescription)
+            if hasLongDescription {
+                Text(viewModel.longDescription)
+                    .padding(.horizontal, RubricPadding.horizontal)
+                    .padding(.vertical, RubricPadding.vertical)
+            }
             ForEach(viewModel.ratingViewModels) { ratingViewModel in
                 RubricRatingView(viewModel: ratingViewModel, isExpanded: isExpanded)
                 if let lastRatingViewModel = viewModel.ratingViewModels.last, ratingViewModel != lastRatingViewModel {

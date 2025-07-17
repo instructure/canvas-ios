@@ -23,6 +23,7 @@ struct RubricRatingView: View {
     @ObservedObject var viewModel: RubricRatingViewModel
     let isExpanded: Bool
     let value: Text
+    let hasLongDescription: Bool
     var rubricRectangle: RubricRectangle<Text> {
         RubricRectangle(isOn: $viewModel.isSelected, changeBackgroundOnTap: !isExpanded) {
             value
@@ -33,6 +34,7 @@ struct RubricRatingView: View {
         self.viewModel = viewModel
         self.isExpanded = isExpanded
         self.value = Text(viewModel.value)
+        self.hasLongDescription = viewModel.longDescription != ""
     }
 
     var body: some View {
@@ -44,13 +46,14 @@ struct RubricRatingView: View {
     }
 
     private var expanded: some View {
-        ZStack {
+        let height: CGFloat = hasLongDescription ? 90 : 70
+
+        return ZStack {
             rectangleView
             HStack(alignment: .top, spacing: RubricSpacing.horizontal) {
                 rubricRectangle
                 VStack {
                     descriptionView
-                    Spacer()
                 }
                 Spacer()
             }
@@ -58,7 +61,7 @@ struct RubricRatingView: View {
             .padding(.vertical, RubricPadding.vertical)
         }
         .onTapGesture { viewModel.isSelected.toggle() }
-        .frame(minHeight: 80, maxHeight: 80)
+        .frame(minHeight: height, maxHeight: height)
     }
 
     private var collapsed: some View {
