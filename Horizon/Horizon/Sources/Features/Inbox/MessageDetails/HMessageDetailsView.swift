@@ -139,7 +139,7 @@ struct HMessageDetailsView: View {
                             fileName: attachment.filename,
                             actionType: attachment.actionType
                         ) {
-                            attachment.download(viewController)
+                            attachment.performAction(viewController)
                         }
                     }
                 }

@@ -45,8 +45,11 @@ class AttachmentItemViewModel {
     var id: String? { file.id }
 
     // MARK: - Private
+    private var downloadCancellable: AnyCancellable?
     private var file: File
-    private var isDownloading = false
+    private var isDownloading: Bool {
+        downloadCancellable != nil
+    }
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
@@ -82,11 +85,17 @@ class AttachmentItemViewModel {
     }
 
     // MARK: - Inputs
-    func delete() { composeMessageInteractor.removeFile(file: file) }
+    func delete() {
+        composeMessageInteractor.removeFile(file: file)
+    }
 
-    func download(_ viewController: WeakViewController) {
-        isDownloading = true
-        downloadFileInteractor
+    func performAction(_ viewController: WeakViewController) {
+        if isDownloading {
+            downloadCancellable?.cancel()
+            downloadCancellable = nil
+            return
+        }
+        downloadCancellable = downloadFileInteractor
             .download(file: file)
             .receive(on: dispatchQueue)
             .sink(
@@ -96,11 +105,10 @@ class AttachmentItemViewModel {
                     }
                 },
                 receiveValue: { [weak self] url in
-                    self?.isDownloading = false
+                    self?.downloadCancellable = nil
                     self?.router.showShareSheet(fileURL: url, viewController: viewController)
                 }
             )
-            .store(in: &subscriptions)
     }
 }
 
