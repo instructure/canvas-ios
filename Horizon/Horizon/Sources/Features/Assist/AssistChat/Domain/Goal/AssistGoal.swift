@@ -37,14 +37,6 @@ protocol AssistGoal {
 }
 
 extension AssistGoal {
-    func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
-        Just(nil)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-
-    func isRequested() -> Bool { false }
-
     func choose(
         from options: [String],
         with userResponse: String,

@@ -109,6 +109,10 @@ class AssistCourseItemGoal: AssistGoal {
             .eraseToAnyPublisher()
     }
 
+    func isRequested() -> Bool {
+        false
+    }
+
     /// Summarizes the content of the document
     func summarizeContent() -> AnyPublisher<AssistChatMessage?, Error> {
         document.flatMap { [weak self] document in
