@@ -95,20 +95,6 @@ public class API {
         }
     }
 
-    /// Make an API request expecting a result on a stream
-    public func makeRequest<Request: APIRequestable>(_ requestable: Request) -> AnyPublisher<Request.Response?, Error> {
-        AnyPublisher<Request.Response?, Error> { [weak self] subscriber in
-            self?.makeRequest(requestable) { response, _, error in
-                if let error = error {
-                    subscriber.send(completion: .failure(error))
-                    return
-                }
-                subscriber.send(response)
-            }
-            return AnyCancellable { }
-        }
-    }
-
     @discardableResult
     public func makeRequest<Request: APIRequestable>(
         _ requestable: Request,

@@ -20,7 +20,7 @@ import Combine
 import Core
 import Foundation
 
-class HSelectCourseActionGoal: HGoal {
+class AssistSelectCourseActionGoal: AssistGoal {
 
     private let environment: AssistDataEnvironment
     private let pine: DomainService

@@ -20,7 +20,7 @@ import Combine
 
 /// This is a base class for the course page and course document goals
 /// It's not meant to be instantiated directly, but rather to be subclassed
-class HCourseItemGoal: HGoal {
+class AssistCourseItemGoal: AssistGoal {
 
     enum Option: String, CaseIterable {
         case Summarize = "Summarize"
@@ -174,8 +174,8 @@ class HCourseItemGoal: HGoal {
                         document: document
                     )
                 )
-                .map { (response: CedarAnswerPromptMutationResponse?) in
-                    response?.data.answerPrompt
+                .map { (response, _) in
+                    response.data.answerPrompt
                 }
             }
             .eraseToAnyPublisher()
@@ -195,8 +195,8 @@ class HCourseItemGoal: HGoal {
                         messages: history.domainServiceConversationMessages
                     )
                 )
-                .map { (response: CedarConversationMutationResponse?) in
-                    response?.data.conversation.response
+                .map { (response, _) in
+                    response.data.conversation.response
                 }
             }
             .eraseToAnyPublisher()

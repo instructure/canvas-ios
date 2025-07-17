@@ -21,7 +21,7 @@ import Core
 import Foundation
 
 /// Interacting with a course page in the context of the Assist feature.
-class HCoursePageGoal: HCourseItemGoal {
+class AssistCoursePageGoal: AssistCourseItemGoal {
     // MARK: - Private
     private var pageURL: String? {
         environment.pageURL.value
@@ -72,12 +72,10 @@ class HCoursePageGoal: HCourseItemGoal {
                     cedarApi.makeRequest(
                         CedarGenerateQuizMutation(context: body)
                     )
-                    .compactMap { (quizOutput: CedarGenerateQuizMutation.QuizOutput?) in
-                        quizOutput.map { quizOutput in
-                            AssistChatMessage(
-                                quizItems: quizOutput.quizItems
-                            )
-                        }
+                    .compactMap { (quizOutput, _) in
+                        AssistChatMessage(
+                            quizItems: quizOutput.quizItems
+                        )
                     }
                 }
                 .eraseToAnyPublisher()
@@ -128,8 +126,8 @@ class HCoursePageGoal: HCourseItemGoal {
                 cedarApi.makeRequest(
                     CedarSummarizeContentMutation(content: content)
                 )
-                .map { (response: CedarSummarizeContentMutationResponse?) in
-                    response?.data.summarizeContent.summarization
+                .map { (response, _) in
+                    response.data.summarizeContent.summarization
                 }
                 .eraseToAnyPublisher()
             }

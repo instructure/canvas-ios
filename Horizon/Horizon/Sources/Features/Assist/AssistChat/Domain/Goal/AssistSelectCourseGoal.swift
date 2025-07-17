@@ -20,7 +20,7 @@ import Combine
 import Core
 import Foundation
 
-class HSelectCourseGoal: HGoal {
+class AssistSelectCourseGoal: AssistGoal {
     private let cedar: DomainService
     private let environment: AssistDataEnvironment
     private let userID: String

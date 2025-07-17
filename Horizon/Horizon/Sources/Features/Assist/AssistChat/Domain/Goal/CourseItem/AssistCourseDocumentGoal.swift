@@ -21,7 +21,7 @@ import Core
 import Foundation
 
 /// A goal for interacting with a course document in the Assist chat.
-class HCourseDocumentGoal: HCourseItemGoal {
+class AssistCourseDocumentGoal: AssistCourseItemGoal {
     // MARK: - Private Properties
     private var fileID: String? {
         environment.fileID.value

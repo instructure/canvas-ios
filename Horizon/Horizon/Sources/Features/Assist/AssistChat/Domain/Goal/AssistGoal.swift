@@ -22,7 +22,7 @@ import Foundation
 
 /// The purpose of the AssistGoal is to provide a base class for goals that can be executed within the Assist chat system.
 /// The "Goal"s are used to define specific tasks or objectives that the Assist system can help the user achieve.
-class HGoal {
+class AssistGoal {
     /// After a choice of options is made, we execute
     func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
         Just(nil)

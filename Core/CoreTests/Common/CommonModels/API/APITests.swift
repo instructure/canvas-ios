@@ -155,20 +155,6 @@ class APITests: XCTestCase {
         XCTAssertNotNil(task)
     }
 
-    func testMakeRequestWithPublisherResponseSuccess() {
-        let expectation = XCTestExpectation(description: "request callback runs")
-        var result: [APIAccountResult]?
-        let cancellable = api.makeRequest(GetAccountsSearchRequest())
-            .sink(
-                receiveCompletion: { _ in },
-                receiveValue: { response in
-                    result = response
-                    expectation.fulfill()
-             })
-        wait(for: [expectation], timeout: 5.0)
-        XCTAssertNotNil(result)
-    }
-
     func testMakeDownloadRequestErrorNoCallback() {
         let task = api.makeDownloadRequest(URL(string: "custom://host.tld/api/v1")!)
         XCTAssertNotNil(task)
