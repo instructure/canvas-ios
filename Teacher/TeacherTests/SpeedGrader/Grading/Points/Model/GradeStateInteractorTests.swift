@@ -240,9 +240,9 @@ class GradeStateInteractorTests: TeacherTestCase {
         XCTAssertFalse(gradeState.isGradedButNotPosted)
     }
 
-    // MARK: - finalGradeText Tests
+    // MARK: - originalGradeText Tests
 
-    func test_finalGradeText_usesGradeFormatter() {
+    func test_originalGradeText_usesGradeFormatter() {
         let assignment = Assignment.make(from: .make(points_possible: 100), in: databaseClient)
         let submission = Submission.make(from: .make(grade: "85"), in: databaseClient)
 
@@ -253,11 +253,11 @@ class GradeStateInteractorTests: TeacherTestCase {
             totalRubricScore: 0
         )
 
-        let expectedText = GradeFormatter.longString(for: assignment, submission: submission, final: true)
-        XCTAssertEqual(gradeState.finalGradeText, expectedText)
+        let expectedText = GradeFormatter.longString(for: assignment, submission: submission, final: false)
+        XCTAssertEqual(gradeState.originalGradeText, expectedText)
     }
 
-    // MARK: - gradeText Tests
+    // MARK: - originalGradeText Tests (with rubric score)
 
     func test_gradeText_usesGradeFormatterWithoutRubricScore() {
         let assignment = Assignment.make(from: .make(points_possible: 100), in: databaseClient)

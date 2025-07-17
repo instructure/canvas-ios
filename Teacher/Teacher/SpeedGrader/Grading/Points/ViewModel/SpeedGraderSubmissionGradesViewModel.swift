@@ -29,6 +29,10 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     @Published var isShowingErrorAlert = false
     @Published var isNoGradeButtonDisabled = false
     @Published private(set) var state = GradeState.empty
+    @Published private(set) var shouldShowGradeSummary = false
+    @Published private(set) var pointsRowModel: PointsRowViewModel?
+    @Published private(set) var latePenaltyRowModel: LatePenaltyRowViewModel?
+    @Published private(set) var finalGradeRowModel: FinalGradeRowViewModel?
     @Published private(set) var isSaving = false
     @Published private(set) var errorAlertViewModel = ErrorAlertViewModel(
         title: String(localized: "Error", bundle: .teacher),
@@ -86,9 +90,14 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     private func observeGradeStateChanges() {
         gradeInteractor.gradeState
             .sink { [weak self] newState in
-                self?.state = newState
-                self?.sliderValue = newState.score
-                self?.isNoGradeButtonDisabled = (!newState.isGraded && !newState.isExcused)
+                guard let self else { return }
+                state = newState
+                sliderValue = newState.score
+                isNoGradeButtonDisabled = (!newState.isGraded && !newState.isExcused)
+                shouldShowGradeSummary = (!newState.isExcused && newState.gradingType != .not_graded)
+                pointsRowModel = newState.pointsRowModel
+                latePenaltyRowModel = newState.latePenaltyRowModel
+                finalGradeRowModel = newState.finalGradeRowModel
             }
             .store(in: &cancellables)
     }
@@ -117,5 +126,46 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
             buttonTitle: errorAlertViewModel.buttonTitle
         )
         isShowingErrorAlert = true
+    }
+}
+
+// MARK: - GradeState Extension
+
+extension GradeState {
+
+    var pointsRowModel: PointsRowViewModel? {
+        if gradingType == .points, !hasLateDeduction {
+            return nil
+        }
+        return PointsRowViewModel(
+            currentPoints: originalScoreWithoutMetric,
+            maxPointsWithUnit: pointsPossibleText
+        )
+    }
+
+    var latePenaltyRowModel: LatePenaltyRowViewModel? {
+        if hasLateDeduction {
+            return LatePenaltyRowViewModel(penaltyText: pointsDeductedText)
+        } else {
+            return nil
+        }
+    }
+
+    var finalGradeRowModel: FinalGradeRowViewModel {
+        let suffix: FinalGradeRowViewModel.SuffixType
+
+        switch gradingType {
+        case .percent:
+            suffix = .percentage
+        case .pass_fail, .letter_grade, .gpa_scale, .not_graded:
+            suffix = .none
+        case .points:
+            suffix = .maxGradeWithUnit(pointsPossibleText)
+        }
+
+        return FinalGradeRowViewModel(
+            currentGradeText: finalGradeWithoutMetric,
+            suffixType: suffix
+        )
     }
 }
