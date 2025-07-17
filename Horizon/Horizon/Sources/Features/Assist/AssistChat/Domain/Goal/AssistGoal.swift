@@ -22,15 +22,27 @@ import Foundation
 
 /// The purpose of the AssistGoal is to provide a base class for goals that can be executed within the Assist chat system.
 /// The "Goal"s are used to define specific tasks or objectives that the Assist system can help the user achieve.
-class AssistGoal {
+protocol AssistGoal {
     /// After a choice of options is made, we execute
+    func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error>
+
+    /// Whether or not this goal should be selected in this list of goals
+    func isRequested() -> Bool
+
+    func choose(
+        from options: [String],
+        with userResponse: String,
+        using cedar: DomainService
+    ) -> AnyPublisher<String?, any Error>
+}
+
+extension AssistGoal {
     func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
         Just(nil)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    /// Whether or not this goal should be selected in this list of goals
     func isRequested() -> Bool { false }
 
     func choose(
@@ -38,7 +50,7 @@ class AssistGoal {
         with userResponse: String,
         using cedar: DomainService
     ) -> AnyPublisher<String?, any Error> {
-        return cedar.api().flatMap { cedarAPI in
+        cedar.api().flatMap { cedarAPI in
             cedarAPI.makeRequest(
                 CedarConversationMutation(
                     systemPrompt: .optionSelection(from: options),
@@ -48,9 +60,9 @@ class AssistGoal {
                 )
             )
         }
-        .tryMap { response in
-            let result = response?.data.conversation.response.replacing(/\"\"/, with: "")
-            return result?.isEmpty == true ? nil : result
+        .tryMap { (response, _) in
+            let result = response.data.conversation.response.replacing(/\"\"/, with: "")
+            return result.isEmpty == true ? nil : result
         }
         .eraseToAnyPublisher()
     }

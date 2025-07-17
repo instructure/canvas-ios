@@ -54,7 +54,6 @@ class AssistCoursePageGoal: AssistCourseItemGoal {
         .eraseToAnyPublisher()
     }
 
-    override
     func isRequested() -> Bool { courseID != nil && pageURL != nil }
 
     /// Generates a quiz from the page contents using the Cedar API.

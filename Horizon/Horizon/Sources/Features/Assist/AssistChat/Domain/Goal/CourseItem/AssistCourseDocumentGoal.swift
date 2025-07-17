@@ -86,7 +86,6 @@ class AssistCourseDocumentGoal: AssistCourseItemGoal {
             .eraseToAnyPublisher()
     }
 
-    override
     func isRequested() -> Bool { courseID != nil && fileID != nil }
 
     override

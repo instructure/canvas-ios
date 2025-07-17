@@ -68,7 +68,6 @@ class AssistCourseItemGoal: AssistGoal {
 
     /// Executes the goal based on the response from the user.
     /// Chooses from one of the options or answers the user's question if no option is selected.
-    override
     func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
         guard let response = response, response.isNotEmpty else {
             return Just(

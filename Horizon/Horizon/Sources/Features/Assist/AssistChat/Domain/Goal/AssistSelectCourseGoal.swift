@@ -35,12 +35,10 @@ class AssistSelectCourseGoal: AssistGoal {
         self.userID = userID
     }
 
-    override
     func isRequested() -> Bool {
         environment.courseID.value == nil
     }
 
-    override
     func execute(response: String? = nil, history: [AssistChatMessage] = []) -> AnyPublisher<AssistChatMessage?, any Error> {
         guard let response = response, response.isNotEmpty else {
             return initialPrompt(history: history)

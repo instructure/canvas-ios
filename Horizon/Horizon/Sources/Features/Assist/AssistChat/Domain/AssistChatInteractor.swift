@@ -41,7 +41,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     private let downloadFileInteractor: DownloadFileInteractor?
     private let responsePublisher = PassthroughSubject<AssistChatInteractorLive.State, Never>()
     private var subscriptions = Set<AnyCancellable>()
-    private var goals: [AssistGoal]
+    private var goals: [any AssistGoal]
 
     // MARK: - Init
     init(
@@ -119,19 +119,23 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     private static func initializeGoals(
         assistDataEnvironment: AssistDataEnvironment,
         downloadFileInteractor: DownloadFileInteractor?
-    ) -> [AssistGoal] {
+    ) -> [any AssistGoal] {
         // order matters
-        [
-            downloadFileInteractor.map {
+        var goals = [any AssistGoal]()
+        if let downloadFileInteractor = downloadFileInteractor {
+            goals.append(
                 AssistCourseDocumentGoal(
                     environment: assistDataEnvironment,
-                    downloadFileInteractor: $0
+                    downloadFileInteractor: downloadFileInteractor
                 )
-            },
+            )
+        }
+        goals += [
             AssistCoursePageGoal(environment: assistDataEnvironment),
             AssistSelectCourseActionGoal(environment: assistDataEnvironment),
             AssistSelectCourseGoal(environment: assistDataEnvironment)
-        ].compactMap { $0 }
+        ]
+        return goals
     }
 
     // MARK: - Private

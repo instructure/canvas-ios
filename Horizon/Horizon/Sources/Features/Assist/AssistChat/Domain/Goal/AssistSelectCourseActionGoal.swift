@@ -36,12 +36,10 @@ class AssistSelectCourseActionGoal: AssistGoal {
         self.pine = pine
     }
 
-    override
     func isRequested() -> Bool {
         environment.courseID.value != nil
     }
 
-    override
     func execute(response: String?, history: [AssistChatMessage] = []) -> AnyPublisher<AssistChatMessage?, any Error> {
         guard let courseID = environment.courseID.value else {
             return Just(nil)
@@ -63,8 +61,8 @@ class AssistSelectCourseActionGoal: AssistGoal {
                         courseID: courseID
                     )
                 )
-                .compactMap { ragData in
-                    .init(botResponse: ragData.map { $0.data.query.response } ?? "")
+                .compactMap { (ragData, _) in
+                    .init(botResponse: ragData.data.query.response)
                 }
             }
             .eraseToAnyPublisher()
