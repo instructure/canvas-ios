@@ -16,15 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import CombineExt
 
-/// ChatBotActions are published to the  AssistChatInteractor. The Interactor reacts to the action and publishes one or more ChatBotResponses.
-enum AssistChatAction {
-    case begin
+struct AssistDataEnvironment {
+    private(set) var courseID = CurrentValueRelay<String?>(nil)
+    private(set) var fileID = CurrentValueRelay<String?>(nil)
+    private(set) var pageURL = CurrentValueRelay<String?>(nil)
 
-    /// the user is chatting with the bot
-    case chat(prompt: String?, history: [AssistChatMessage] = [])
+    init(
+        courseID: String? = nil,
+        fileID: String? = nil,
+        pageURL: String? = nil
+    ) {
+        self.courseID.accept(courseID)
+        self.fileID.accept(fileID)
+        self.pageURL.accept(pageURL)
+    }
 
-    /// the user has selected a chip while viewing a file
-    case chip(option: AssistChipOption, history: [AssistChatMessage] = [])
+    func duplicate() -> AssistDataEnvironment {
+        AssistDataEnvironment(
+            courseID: courseID.value,
+            fileID: fileID.value,
+            pageURL: pageURL.value
+        )
+    }
 }

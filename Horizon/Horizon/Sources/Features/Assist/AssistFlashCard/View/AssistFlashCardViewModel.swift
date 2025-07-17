@@ -74,15 +74,26 @@ final class AssistFlashCardViewModel {
         self.chatBotInteractor
             .listen
             .receive(on: scheduler)
-            .sink { [weak self] result in
-                switch result {
-                case .success(let message):
-                    self?.onMessage(message)
-                case .failure(let error):
-                    self?.isLoaderVisible = false
-                    self?.errorMessage = error.localizedDescription
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    switch completion {
+                    case .finished:
+                        self?.isLoaderVisible = false
+                    case .failure(let error):
+                        self?.isLoaderVisible = false
+                        self?.errorMessage = error.localizedDescription
+                    }
+                },
+                receiveValue: { [weak self] result in
+                    switch result {
+                    case .success(let message):
+                        self?.onMessage(message)
+                    case .failure(let error):
+                        self?.isLoaderVisible = false
+                        self?.errorMessage = error.localizedDescription
+                    }
                 }
-            }
+            )
         .store(in: &subscriptions)
     }
 
@@ -115,7 +126,13 @@ final class AssistFlashCardViewModel {
             isLoaderVisible = true
             currentPage = 0
             chatBotInteractor.publish(
-                action: .chip(option: AssistChipOption(.flashcards), history: chatHistory)
+                action: .chip(
+                    option: AssistChipOption(
+                        chip: String(localized: "Generate Flash Cards", bundle: .horizon),
+                        prompt: "Generate Flash Cards"
+                    ),
+                    history: chatHistory
+                )
             )
             return
         }
@@ -126,13 +143,13 @@ final class AssistFlashCardViewModel {
 
     private func onMessage(_ response: AssistChatResponse) {
         chatHistory = response.chatHistory
-        guard let flashCardModels =  response.flashCards?.flashCardModels else {
+        guard let flashCardModels =  response.chatHistory.last?.flashCards?.flashCardModels else {
             return
         }
         currentCardIndex = 0
         currentPage = 0
         paginatedFlashCards = flashCardModels.chunked(into: 5)
         flashCards = paginatedFlashCards.first ?? []
-        isLoaderVisible = false
+        isLoaderVisible = response.isLoading
     }
 }

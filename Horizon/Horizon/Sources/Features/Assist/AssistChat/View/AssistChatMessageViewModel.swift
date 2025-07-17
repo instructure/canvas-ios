@@ -21,6 +21,7 @@ import HorizonUI
 import SwiftUI
 
 struct AssistChatMessageViewModel: Identifiable, Equatable {
+    typealias OnFeedbackChange = (Bool?) -> Void
     typealias OnTapChipOption = (AssistChipOption) -> Void
     typealias OnTap = () -> Void
 
@@ -30,25 +31,28 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
         case transparent
     }
 
-    let id: UUID
+    let id: String
     let content: String
     let style: Style
     let isLoading: Bool
     let chipOptions: [AssistChipOption]
+    let onFeedbackChange: OnFeedbackChange?
     let onTap: OnTap?
     let onTapChipOption: OnTapChipOption?
 
     init(
-        id: UUID = UUID(),
+        id: String = UUID().uuidString,
         content: String = "",
         style: Style = .white,
         isLoading: Bool = false,
         chipOptions: [AssistChipOption] = [],
+        onFeedbackChange: OnFeedbackChange? = nil,
         onTapChipOption: OnTapChipOption? = nil,
         onTap: OnTap? = nil
     ) {
         self.id = id
         self.content = content
+        self.onFeedbackChange = onFeedbackChange
         self.style = style
         self.isLoading = isLoading
         self.chipOptions = chipOptions
@@ -58,9 +62,10 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
 
     /// For when it's just a loading spinner
     init() {
-        self.id = UUID()
+        self.id = UUID().uuidString
         self.isLoading = true
         self.content = ""
+        self.onFeedbackChange = nil
         self.style = .transparent
         self.chipOptions = []
         self.onTapChipOption = nil

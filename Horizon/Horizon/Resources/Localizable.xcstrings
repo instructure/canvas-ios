@@ -211,6 +211,9 @@
     "Cairo (+02:00/+03:00)" : {
 
     },
+    "Can I answer any questions about this document for you?" : {
+
+    },
     "Canberra (+10:00/+11:00)" : {
 
     },
@@ -284,6 +287,9 @@
 
     },
     "Copenhagen (+01:00/+02:00)" : {
+
+    },
+    "Create a Quiz" : {
 
     },
     "Create message" : {
@@ -391,9 +397,6 @@
     "Filter by person" : {
 
     },
-    "Flash cards" : {
-
-    },
     "Fortaleza (-03:00/-03:00)" : {
 
     },
@@ -401,6 +404,9 @@
 
     },
     "Full Name can only be changed by your institution." : {
+
+    },
+    "Generate Flash Cards" : {
 
     },
     "Georgetown (-04:00/-04:00)" : {
@@ -436,6 +442,9 @@
     "Hello, Career!" : {
 
     },
+    "Hello! Which course you'd like to discuss today?" : {
+
+    },
     "Helsinki (+02:00/+03:00)" : {
 
     },
@@ -454,7 +463,7 @@
     "hours" : {
 
     },
-    "How can I help today?" : {
+    "How can I help you with this page?" : {
 
     },
     "Important" : {
@@ -505,9 +514,6 @@
     "Kathmandu (+05:45/+05:45)" : {
 
     },
-    "Key takeaways" : {
-
-    },
     "Kolkata (+05:30)" : {
 
     },
@@ -533,9 +539,6 @@
 
     },
     "Learn" : {
-
-    },
-    "Learner" : {
 
     },
     "Lima (-05:00/-05:00)" : {
@@ -649,7 +652,16 @@
     "No" : {
 
     },
+    "No additional information found." : {
+
+    },
+    "No key takeaways found." : {
+
+    },
     "No notification activity yet." : {
+
+    },
+    "No summary found." : {
 
     },
     "Norfolk Island (+11:00/+12:00)" : {
@@ -759,9 +771,6 @@
     "Quito (-05:00/-05:00)" : {
 
     },
-    "Quiz" : {
-
-    },
     "Rangoon (+06:30/+06:30)" : {
 
     },
@@ -867,6 +876,12 @@
     "Something went wrong" : {
 
     },
+    "Sorry, can we try that again? Which course is it you'd like to discuss?" : {
+
+    },
+    "Sorry, I don't have an answer for that right now." : {
+
+    },
     "Sort By" : {
 
     },
@@ -897,9 +912,6 @@
     "Submitted" : {
 
     },
-    "Summarize" : {
-
-    },
     "Support" : {
 
     },
@@ -927,10 +939,10 @@
     "Tehran (+03:30/+03:30)" : {
 
     },
-    "Tell me more" : {
+    "Text" : {
 
     },
-    "Text" : {
+    "Thank you for your feedback!" : {
 
     },
     "There are no scored activities in this course." : {
@@ -1036,6 +1048,12 @@
 
     },
     "West Central Africa (+01:00)" : {
+
+    },
+    "What would you like to discuss about the course %@?" : {
+
+    },
+    "What would you like to discuss today?" : {
 
     },
     "Yakutsk (+09:00/+09:00)" : {

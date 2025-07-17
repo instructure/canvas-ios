@@ -18,7 +18,7 @@
 
 import Core
 
-struct CedarAnswerPromptMutation: APIGraphQLRequestable {
+struct CedarTranslateTextMutation: APIGraphQLRequestable {
     let variables: Input
 
     var path: String {
@@ -33,40 +33,43 @@ struct CedarAnswerPromptMutation: APIGraphQLRequestable {
     }
 
     public init(
-        prompt: String,
-        document: DocumentInput? = nil,
-        model: AIModel = .claude3Sonnet20240229V10
+        content: String,
+        targetLanguage: String = "es",
+        sourceLanguage: String = "en"
     ) {
-        self.variables = Variables(model: model.rawValue, prompt: prompt, document: document)
+        self.variables = Variables(
+            content: content,
+            targetLanguage: targetLanguage,
+            sourceLanguage: sourceLanguage
+        )
     }
 
-    public static let operationName: String = "AnswerPrompt"
+    public static let operationName: String = "TranslateText"
     public static var query: String = """
-        mutation \(operationName)($model: String!, $prompt: String!, $document: DocumentInput) {
-            answerPrompt(input: { model: $model, prompt: $prompt, document: $document})
+        mutation \(operationName)($content: String!, $targetLanguage: String!, $sourceLanguage: String!) {
+            translateText(input: { content: $content, targetLanguage: $targetLanguage, sourceLanguage: $sourceLanguage }) {
+                sourceLanguage
+                translation
+            }
         }
     """
 
-    typealias Response = CedarAnswerPromptMutationResponse
+    typealias Response = CedarTranslateTextMutationResponse
 
     struct Input: Codable, Equatable {
-        let model: String
-        let prompt: String
-        let document: DocumentInput?
-    }
-
-    struct DocumentInput: Codable, Equatable {
-        let format: AssistChatDocumentType
-        let base64Source: String
+        let content: String
+        let targetLanguage: String
+        let sourceLanguage: String
     }
 }
 
 // MARK: - Codeables
 
-struct CedarAnswerPromptMutationResponse: Codable {
-    struct ResponseData: Codable {
-        let answerPrompt: String
+struct CedarTranslateTextMutationResponse: Codable {
+    struct TranslateText: Codable {
+        let sourceLanguage: String
+        let translation: String
     }
 
-    let data: ResponseData
+    let data: TranslateText
 }

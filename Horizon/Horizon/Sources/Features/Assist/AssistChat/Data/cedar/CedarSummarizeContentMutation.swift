@@ -18,7 +18,7 @@
 
 import Core
 
-struct CedarAnswerPromptMutation: APIGraphQLRequestable {
+struct CedarSummarizeContentMutation: APIGraphQLRequestable {
     let variables: Input
 
     var path: String {
@@ -33,39 +33,37 @@ struct CedarAnswerPromptMutation: APIGraphQLRequestable {
     }
 
     public init(
-        prompt: String,
-        document: DocumentInput? = nil,
-        model: AIModel = .claude3Sonnet20240229V10
+        content: String,
+        numParagraphs: Int = 1
     ) {
-        self.variables = Variables(model: model.rawValue, prompt: prompt, document: document)
+        self.variables = Variables(content: content, numParagraphs: numParagraphs)
     }
 
-    public static let operationName: String = "AnswerPrompt"
+    public static let operationName: String = "SummarizeContent"
     public static var query: String = """
-        mutation \(operationName)($model: String!, $prompt: String!, $document: DocumentInput) {
-            answerPrompt(input: { model: $model, prompt: $prompt, document: $document})
+        mutation \(operationName)($content: String!, $numParagraphs: Float!) {
+            summarizeContent(input: { content: $content, numParagraphs: $numParagraphs}) {
+                summarization
+            }
         }
     """
 
-    typealias Response = CedarAnswerPromptMutationResponse
+    typealias Response = CedarSummarizeContentMutationResponse
 
     struct Input: Codable, Equatable {
-        let model: String
-        let prompt: String
-        let document: DocumentInput?
-    }
-
-    struct DocumentInput: Codable, Equatable {
-        let format: AssistChatDocumentType
-        let base64Source: String
+        let content: String
+        let numParagraphs: Int
     }
 }
 
 // MARK: - Codeables
 
-struct CedarAnswerPromptMutationResponse: Codable {
+struct CedarSummarizeContentMutationResponse: Codable {
+    struct SummarizeContent: Codable {
+        let summarization: [String]
+    }
     struct ResponseData: Codable {
-        let answerPrompt: String
+        let summarizeContent: SummarizeContent
     }
 
     let data: ResponseData

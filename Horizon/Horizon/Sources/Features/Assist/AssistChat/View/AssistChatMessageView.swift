@@ -24,31 +24,53 @@ struct AssistChatMessageView: View {
     let message: AssistChatMessageViewModel
 
     var body: some View {
-        VStack(spacing: .zero) {
-            if !message.isLoading {
-                messageContent
-                    .frame(maxWidth: .infinity, alignment: message.alignment)
-                    .onTapGesture {
-                        message.onTap?()
-                    }
-            }
-            WrappingHStack(models: message.chipOptions) { quickResponse in
+        VStack(alignment: .leading, spacing: .zero) {
+            messageContent
+                .frame(maxWidth: .infinity, alignment: message.alignment)
+                .onTapGesture {
+                    message.onTap?()
+                }
+            WrappingHStack(
+                models: message.chipOptions,
+                horizontalSpacing: .zero
+            ) { quickResponse in
                 HorizonUI.Pill(title: quickResponse.chip, style: .outline(.light))
                     .onTapGesture {
                         message.onTapChipOption?(quickResponse)
                     }
+                    .padding(.vertical, .huiSpaces.space4)
+                    .padding(.trailing, .huiSpaces.space4)
             }
+            .padding(.vertical, .huiSpaces.space8)
             .frame(maxWidth: .infinity, alignment: .leading)
+            feedback
+        }
+    }
+
+    @ViewBuilder
+    private var feedback: some View {
+        if let onFeedbackChange = message.onFeedbackChange {
+            AssistFeedbackView(onChange: onFeedbackChange)
         }
     }
 
     private var messageContent: some View {
-        Text(message.content.toAttributedStringWithLinks())
-            .frame(maxWidth: message.maxWidth, alignment: .leading)
-            .padding(message.padding)
-            .background(message.backgroundColor)
-            .foregroundColor(message.foregroundColor)
-            .cornerRadius(message.cornerRadius)
+        VStack(alignment: .center) {
+            if message.isLoading {
+                HStack(alignment: .center) {
+                    HorizonUI.Spinner(size: .xSmall, foregroundColor: .huiColors.surface.cardPrimary)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, .huiSpaces.space8)
+            } else {
+                Text(message.content.toAttributedStringWithLinks())
+                    .frame(maxWidth: message.maxWidth, alignment: .leading)
+                    .padding(message.padding)
+                    .background(message.backgroundColor)
+                    .foregroundColor(message.foregroundColor)
+                    .cornerRadius(message.cornerRadius)
+            }
+        }
     }
 }
 
@@ -56,7 +78,15 @@ struct AssistChatMessageView: View {
 #Preview {
     VStack {
         AssistChatMessageView(message: .init(content: "Hi Horizon App", style: .semitransparent))
-        AssistChatMessageView(message: .init(content: "Hi Horizon App", style: .white))
+        AssistChatMessageView(
+            message: .init(
+                content: "Hi Horizon App",
+                style: .white,
+                onFeedbackChange: { _ in
+
+                }
+            )
+        )
         AssistChatMessageView(message: .init())
         AssistChatMessageView(message: .init(
             content: "You are a duck",

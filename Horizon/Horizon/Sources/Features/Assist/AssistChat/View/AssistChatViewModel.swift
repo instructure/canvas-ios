@@ -17,10 +17,9 @@
 //
 
 import Combine
-import Core
-import Observation
-import Foundation
 import CombineSchedulers
+import Core
+import Foundation
 
 @Observable
 final class AssistChatViewModel {
@@ -49,7 +48,7 @@ final class AssistChatViewModel {
 
     // MARK: - Dependencies
 
-    private var chatBotInteractor: AssistChatInteractor
+    private var assistChatInteractor: AssistChatInteractor
     private let router: Router
 
     // MARK: - Private
@@ -61,7 +60,7 @@ final class AssistChatViewModel {
     private let courseId: String?
     private let pageUrl: String?
     private let fileId: String?
-    private var viewController = WeakViewController()
+    private weak var viewController: WeakViewController?
     private var hasAssistChipOptions: Bool = false
 
     // MARK: - Init
@@ -78,40 +77,48 @@ final class AssistChatViewModel {
         self.fileId = fileId
         self.router = router
         self.scheduler = scheduler
-        self.chatBotInteractor = chatBotInteractor
+        self.assistChatInteractor = chatBotInteractor
 
-        self.chatBotInteractor
+        self.assistChatInteractor
             .listen
             .receive(on: scheduler)
-            .sink { [weak self] result in
-                guard let self else { return }
-                switch result {
-                case .success(let message):
-                    onMessage(message, viewController: viewController)
-                case .failure:
-                    isRetryButtonVisible = true
-                    isLoaderVisible = false
-                    canSendMessage = true
-                    isErrorToastPresented = true
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    guard let self else { return }
+                    switch completion {
+                    case .finished:
+                        break // No action needed on completion
+                    case .failure:
+                        self.onFailure()
+                    }
+                },
+                receiveValue: { [weak self] result in
+                    guard let self else { return }
+                    switch result {
+                    case .success(let message):
+                        onMessage(message, viewController: viewController)
+                    case .failure:
+                        self.onFailure()
+                    }
                 }
-            }
+            )
             .store(in: &subscriptions)
 
-        chatBotInteractor.publish(action: .chat())
+        self.assistChatInteractor.publish(action: .begin)
     }
 
     // MARK: - Inputs
 
     func setInitialState() {
-        chatBotInteractor.setInitialState()
         isRetryButtonVisible = false
         isBackButtonVisible = false
+        assistChatInteractor.setInitialState()
     }
 
     func retry() {
         guard let lastMessage = messages.popLast() else { return }
         chatMessages = chatMessages.dropLast()
-        chatBotInteractor.publish(action: .chat(prompt: lastMessage.content, history: chatMessages))
+        assistChatInteractor.publish(action: .chat(prompt: lastMessage.content, history: chatMessages))
         isRetryButtonVisible = false
         shouldOpenKeyboardPublisher.send(false)
     }
@@ -126,74 +133,75 @@ final class AssistChatViewModel {
 
     func send() {
         isRetryButtonVisible = false
-        isLoaderVisible = true
         shouldOpenKeyboardPublisher.send(true)
         send(message: message.trimmedEmptyLines)
     }
 
     func send(chipOption: AssistChipOption) {
-        chatBotInteractor.publish(action: .chip(option: chipOption, history: chatMessages))
+        assistChatInteractor.publish(action: .chip(option: chipOption, history: chatMessages))
         isBackButtonVisible = true
     }
 
     func send(message: String) {
-        chatBotInteractor.publish(action: .chat(prompt: message, history: chatMessages))
-        if hasAssistChipOptions {
-            isBackButtonVisible = true
-        }
+        assistChatInteractor.publish(action: .chat(prompt: message, history: chatMessages))
+        isBackButtonVisible = true
         self.message = ""
     }
 
     func scrollToBottom() {
-        showMoreButtonPublisher.send(messages.last?.id.uuidString ?? "")
+        showMoreButtonPublisher.send(messages.last?.id ?? "")
     }
 
     // MARK: - Private
+    private func onFailure() {
+        isRetryButtonVisible = true
+        isLoaderVisible = false
+        canSendMessage = true
+        isErrorToastPresented = true
+        remove(notAppearingIn: messages)
+    }
 
     /// handle the response from the interactor
-    private func onMessage(_ response: AssistChatResponse, viewController: WeakViewController) {
+    private func onMessage(_ response: AssistChatResponse, viewController: WeakViewController?) {
+        guard let viewController else { return }
+        weak var weakSelf = self
         self.chatMessages = response.chatHistory
-
         var newMessages: [AssistChatMessageViewModel] = []
 
-        // How the chips are displayed will depend on the history
-        // If we have no history, they are displayed as semitransparent message bubbles
-        // If we do have a history, they are pills at the end of the last message
-        if response.chatHistory.isEmpty {
-            let chipOptions = response.chipOptions ?? []
-            hasAssistChipOptions = true
-            shouldOpenKeyboardPublisher.send(false)
-            newMessages = chipOptions.map { chipOption in
-                chipOption.viewModel { [weak self] in
-                    self?.send(chipOption: chipOption)
-                }
-            }
-        } else {
-            shouldOpenKeyboardPublisher.send(messages.isEmpty)
-            newMessages = response.chatHistory.map {
-                $0.viewModel(response: response) { [weak self] quickResponse in
-                    self?.send(chipOption: quickResponse)
-                }
+        shouldOpenKeyboardPublisher.send(messages.count == 1)
+        newMessages = response.chatHistory.map { message in
+            let onFeedbackChange: ((Bool?) -> Void)? = message.isSolicitingFeedback(with: response) ? { isGood in
+                weakSelf?.onFeedbackChange(isGood)
+            } : nil
+
+            return message.viewModel(
+                response: response,
+                onFeedbackChange: onFeedbackChange
+            ) { quickResponse in
+                weakSelf?.send(chipOption: quickResponse)
             }
         }
 
         add(newMessages: newMessages)
         remove(notAppearingIn: newMessages)
         canSendMessage = !response.isLoading
-        isLoaderVisible = response.isLoading
+
+        if response.isLoading {
+            messages.append(.init(isLoading: true))
+        }
 
         let params = ["courseId": courseId, "pageUrl": pageUrl, "fileId": fileId].map { (key, value) in
             guard let value = value else { return nil }
             return "\(key)=\(value)"
         }.compactMap { $0 }.joined(separator: "&")
 
-        if let flashCards = response.flashCards?.flashCardModels, flashCards.count > 0 {
+        if let flashCards = response.chatHistory.last?.flashCards?.flashCardModels, flashCards.count > 0 {
             router.route(
                 to: "/assistant/flashcards?\(params)",
                 userInfo: ["flashCards": flashCards],
                 from: viewController
             )
-        } else if let quizItems = response.quizItems {
+        } else if let quizItems = response.chatHistory.last?.quizItems {
             let quizzes = quizItems.map { AssistQuizModel(from: $0) }
             router.route(
                 to: "/assistant/quiz?\(params)",
@@ -205,14 +213,23 @@ final class AssistChatViewModel {
 
     /// add new messages to the list of messages
     private func add(newMessages: [AssistChatMessageViewModel]) {
-        newMessages.filter { newMessage in
-            !self.messages.contains { message in
-                message.id == newMessage.id
+        weak var weakSelf = self
+        newMessages
+            .filter { newMessage in
+                guard let self = weakSelf else { return false }
+                return !self.messages.contains { message in
+                    message.id == newMessage.id
+                }
+            }.forEach { message in
+                weakSelf?.messages.append(message)
             }
-        }.forEach { message in
-            self.messages.append(message)
-        }
-        showMoreButtonPublisher.send(newMessages.last?.id.uuidString ?? "")
+        showMoreButtonPublisher.send(newMessages.last?.id ?? "")
+    }
+
+    private func onFeedbackChange(_ isGood: Bool?) {
+        guard let isGood = isGood else { return }
+        let responseType = isGood ? "good" : "bad"
+        Analytics.shared.logEvent("learning-assist-chat\(responseType)-response")
     }
 
     /// remove any messages that are not in the new list of messages returned from the interactor
@@ -253,12 +270,27 @@ private extension AssistChipOption {
 }
 
 private extension AssistChatMessage {
-    func viewModel(response: AssistChatResponse, onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil) -> AssistChatMessageViewModel {
-        AssistChatMessageViewModel(
-            id: self.id,
-            content: self.text,
+    func isFinalMessage(in history: [AssistChatMessage]) -> Bool {
+        guard let lastMessage = history.last else { return false }
+        return self.id == lastMessage.id && self.role == .Assistant
+    }
+
+    func isSolicitingFeedback(with response: AssistChatResponse) -> Bool {
+        return self.role == .Assistant && self.isFinalMessage(in: response.chatHistory) && !response.isLoading
+    }
+
+    func viewModel(
+        response: AssistChatResponse,
+        onFeedbackChange: AssistChatMessageViewModel.OnFeedbackChange? = nil,
+        onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil
+    ) -> AssistChatMessageViewModel {
+        let chipOptions = self.id == response.chatHistory.last?.id ? (response.chatHistory.last?.chipOptions ?? []) : []
+        return .init(
+            id: "\(self.id)\(chipOptions.count)\(onFeedbackChange != nil ? "feedback" : ""))",
+            content: self.text ?? "",
             style: self.role == .Assistant ? .transparent : .white,
-            chipOptions: self == response.chatHistory.last ? (response.chipOptions ?? []) : [],
+            chipOptions: chipOptions,
+            onFeedbackChange: onFeedbackChange,
             onTapChipOption: onTapChipOption
         )
     }

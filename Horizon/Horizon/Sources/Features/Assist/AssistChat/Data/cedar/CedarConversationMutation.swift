@@ -18,7 +18,7 @@
 
 import Core
 
-struct CedarAnswerPromptMutation: APIGraphQLRequestable {
+struct CedarConversationMutation: APIGraphQLRequestable {
     let variables: Input
 
     var path: String {
@@ -33,39 +33,41 @@ struct CedarAnswerPromptMutation: APIGraphQLRequestable {
     }
 
     public init(
-        prompt: String,
-        document: DocumentInput? = nil,
-        model: AIModel = .claude3Sonnet20240229V10
+        systemPrompt: String,
+        messages: [DomainServiceConversationMessage]
     ) {
-        self.variables = Variables(model: model.rawValue, prompt: prompt, document: document)
+        self.variables = Variables(
+            messages: messages,
+            systemPrompt: systemPrompt
+        )
     }
 
-    public static let operationName: String = "AnswerPrompt"
+    public static let operationName: String = "Conversation"
     public static var query: String = """
-        mutation \(operationName)($model: String!, $prompt: String!, $document: DocumentInput) {
-            answerPrompt(input: { model: $model, prompt: $prompt, document: $document})
+        mutation \(operationName)($systemPrompt: String!, $messages: [MessageInput!]!) {
+            conversation(input: { systemPrompt: $systemPrompt, messages: $messages } ) {
+                response
+            }
         }
     """
 
-    typealias Response = CedarAnswerPromptMutationResponse
+    typealias Response = CedarConversationMutationResponse
 
     struct Input: Codable, Equatable {
-        let model: String
-        let prompt: String
-        let document: DocumentInput?
-    }
-
-    struct DocumentInput: Codable, Equatable {
-        let format: AssistChatDocumentType
-        let base64Source: String
+        let messages: [DomainServiceConversationMessage]
+        let systemPrompt: String
     }
 }
 
 // MARK: - Codeables
 
-struct CedarAnswerPromptMutationResponse: Codable {
-    struct ResponseData: Codable {
-        let answerPrompt: String
+struct CedarConversationMutationResponse: Codable {
+    struct Conversation: Codable, Equatable {
+        let response: String
+    }
+
+    struct ResponseData: Codable, Equatable {
+        let conversation: Conversation
     }
 
     let data: ResponseData

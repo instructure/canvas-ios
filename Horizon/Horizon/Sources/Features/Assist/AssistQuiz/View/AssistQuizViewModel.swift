@@ -75,16 +75,27 @@ final class AssistQuizViewModel {
         self.chatBotInteractor
             .listen
             .receive(on: scheduler)
-            .sink { [weak self] result in
-                switch result {
-                case .success(let message):
-                    self?.onMessage(message)
-                case .failure(let error):
-                    self?.isLoaderVisible = false
-                    self?.errorMessage = error.localizedDescription
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    switch completion {
+                    case .finished:
+                        self?.isLoaderVisible = false
+                    case .failure(let error):
+                        self?.isLoaderVisible = false
+                        self?.errorMessage = error.localizedDescription
+                    }
+                },
+                receiveValue: { [weak self] result in
+                    switch result {
+                    case .success(let message):
+                        self?.onMessage(message)
+                    case .failure(let error):
+                        self?.isLoaderVisible = false
+                        self?.errorMessage = error.localizedDescription
+                    }
                 }
-            }
-        .store(in: &subscriptions)
+            )
+            .store(in: &subscriptions)
 
         quiz = quizzes.first
     }
@@ -128,7 +139,7 @@ final class AssistQuizViewModel {
 
     private func onMessage(_ response: AssistChatResponse) {
         chatHistory = response.chatHistory
-        guard let quizItems = response.quizItems else {
+        guard let quizItems = response.chatHistory.last?.quizItems else {
             return
         }
         let quizzes = quizItems.map { AssistQuizModel(from: $0) }
@@ -139,7 +150,13 @@ final class AssistQuizViewModel {
         isLoaderVisible = true
         currentQuizIndex = 0
         chatBotInteractor.publish(
-            action: .chip(option: AssistChipOption(.quiz), history: chatHistory)
+            action: .chip(
+                option: AssistChipOption(
+                    chip: String(localized: "Create a Quiz", bundle: .horizon),
+                    prompt: "Create a Quiz"
+                ),
+                history: chatHistory
+            )
         )
     }
 }
