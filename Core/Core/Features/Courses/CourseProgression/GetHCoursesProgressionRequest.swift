@@ -62,6 +62,7 @@ public struct GetHCoursesProgressionRequest: APIGraphQLRequestable {
                                            id
                                            title
                                            dueAt
+                                           isNewQuiz
                                            __typename
                                          }
                                          ... on Discussion {

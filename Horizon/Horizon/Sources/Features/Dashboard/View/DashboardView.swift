@@ -153,8 +153,9 @@ struct DashboardView: View {
                     moduleTitle: model.moduleTitle,
                     learningObjectName: model.learningObjectName,
                     duration: model.estimatedTime,
-                    type: model.type,
-                    dueDate: model.dueDate
+                    type: model.type?.rawValue,
+                    dueDate: model.dueDate,
+                    icon: model.type?.getIcon(isAssessment: model.isNewQuiz)
                 )
             }
         }

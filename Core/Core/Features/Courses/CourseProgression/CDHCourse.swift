@@ -40,6 +40,7 @@ public final class CDHCourse: NSManagedObject, WriteableModel {
     @NSManaged public var nextModuleItemDueDate: Date?
     @NSManaged public var nextModuleItemEstimatedTime: String?
     @NSManaged public var nextModuleItemURL: String?
+    @NSManaged public var nextModuleItemIsNewQuiz: Bool
 
     @discardableResult
     public static func save(
@@ -114,6 +115,7 @@ public final class CDHCourse: NSManagedObject, WriteableModel {
             model.nextModuleName = nil
             model.nextModuleItemURL = nil
             model.nextModuleItemName = nil
+            model.nextModuleItemIsNewQuiz = false
             return model
         }
 
@@ -138,6 +140,7 @@ public final class CDHCourse: NSManagedObject, WriteableModel {
                 model.nextModuleName = node?.name
                 model.nextModuleItemURL = firstItem.url
                 model.nextModuleItemName = firstItem.content?.title
+                model.nextModuleItemIsNewQuiz = firstItem.content?.isNewQuiz ?? false
             } else {
                 model.nextModuleID = nil
                 model.nextModuleItemID = nil
@@ -147,6 +150,7 @@ public final class CDHCourse: NSManagedObject, WriteableModel {
                 model.nextModuleName = nil
                 model.nextModuleItemURL = nil
                 model.nextModuleItemName = nil
+                model.nextModuleItemIsNewQuiz = false
             }
             // If user has already started the course, set the module from "incompleteModuleItemsConnections"
         } else {
@@ -158,6 +162,7 @@ public final class CDHCourse: NSManagedObject, WriteableModel {
             model.nextModuleName = nextModule?.name
             model.nextModuleItemURL = nextModuleItem?.url
             model.nextModuleItemName = nextModuleItem?.content?.title
+            model.nextModuleItemIsNewQuiz = nextModuleItem?.content?.isNewQuiz ?? false
         }
         return model
     }

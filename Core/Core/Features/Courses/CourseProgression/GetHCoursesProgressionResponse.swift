@@ -102,6 +102,7 @@ public struct GetHCoursesProgressionResponse: Codable {
             let title: String?
             let __typename: String?
             let dueAt: Date?
+            let isNewQuiz: Bool?
         }
     }
 
@@ -128,5 +129,6 @@ public struct GetHCoursesProgressionResponse: Codable {
         public let dueAt: Date?
         public let position: Double?
         public let __typename: String?
+        public let isNewQuiz: Bool?
     }
 }

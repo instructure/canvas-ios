@@ -212,6 +212,7 @@
         <attribute name="nextModuleItemDueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="nextModuleItemEstimatedTime" optional="YES" attributeType="String"/>
         <attribute name="nextModuleItemID" optional="YES" attributeType="String"/>
+        <attribute name="nextModuleItemIsNewQuiz" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="nextModuleItemName" optional="YES" attributeType="String"/>
         <attribute name="nextModuleItemType" optional="YES" attributeType="String"/>
         <attribute name="nextModuleItemURL" optional="YES" attributeType="String"/>
