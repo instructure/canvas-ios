@@ -23,6 +23,7 @@ import SwiftUI
 protocol SpeedGraderInteractor: AnyObject {
     var gradeStatusInteractor: GradeStatusInteractor { get }
     var customGradebookColumnsInteractor: CustomGradebookColumnsInteractor { get }
+    var submissionWordCountInteractor: SubmissionWordCountInteractor { get }
 
     var state: CurrentValueSubject<SpeedGraderInteractorState, Never> { get }
     var data: SpeedGraderData? { get }

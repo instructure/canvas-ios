@@ -22,18 +22,9 @@ import Combine
 import Core
 import Foundation
 
-final class CustomGradebookColumnsInteractorPreview: CustomGradebookColumnsInteractor {
-    var studentNoteEntries: [StudentNotesEntry] = [
-        .make(title: "Notes", content: "This is some note about a student"),
-        .make(title: "Other Notes", content: .loremIpsumLong)
-    ]
-
-    func loadCustomColumnsData() -> AnyPublisher<Void, Error> {
-        Publishers.typedJust()
-    }
-
-    func getStudentNotesEntries(userId: String) -> AnyPublisher<[StudentNotesEntry], Error> {
-        Publishers.typedJust(studentNoteEntries)
+final class SubmissionWordCountInteractorPreview: SubmissionWordCountInteractor {
+    func getWordCount(userId: String, attempt: Int) -> AnyPublisher<Int?, Error> {
+        Publishers.typedJust(42)
     }
 }
 

@@ -197,7 +197,18 @@ struct SpeedGraderPageTabsView: View {
             )
         ) { _ in
             VStack(spacing: 0) {
-                StudentNotesView(viewModel: viewModel.studentNotesViewModel)
+                InstUI.TopDivider()
+
+                if viewModel.submissionWordCountViewModel.hasContent {
+                    InstUI.LabelValueCell(
+                        label: Text("Word Count", bundle: .teacher),
+                        value: viewModel.submissionWordCountViewModel.wordCount
+                    )
+                }
+
+                if viewModel.studentNotesViewModel.hasContent {
+                    StudentNotesView(viewModel: viewModel.studentNotesViewModel)
+                }
             }
         }
     }

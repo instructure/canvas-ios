@@ -18,18 +18,24 @@
 
 import Core
 import Combine
+import CombineExt
 import SwiftUI
 
-final class StudentNotesViewModel: ObservableObject {
+final class SubmissionWordCountViewModel: ObservableObject {
 
     // MARK: - Outputs
 
-    @Published private(set) var entries: [StudentNotesEntry] = []
+    @Published private(set) var wordCount: String = ""
     @Published private(set) var hasContent: Bool = false
 
-    // MARK: - Private properties
+    // MARK: - Inputs
 
-    private let interactor: CustomGradebookColumnsInteractor
+    let didChangeAttempt = PassthroughSubject<Int, Never>()
+
+    // MARK: - Private
+
+    private let userId: String
+    private let interactor: SubmissionWordCountInteractor
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -37,15 +43,31 @@ final class StudentNotesViewModel: ObservableObject {
 
     init(
         userId: String,
-        interactor: CustomGradebookColumnsInteractor
+        attempt: Int,
+        interactor: SubmissionWordCountInteractor
     ) {
+        self.userId = userId
         self.interactor = interactor
 
-        interactor.getStudentNotesEntries(userId: userId)
+        updateWordCount(on: didChangeAttempt)
+        updateWordCount(attempt: attempt)
+    }
+
+    private func updateWordCount(on publisher: PassthroughSubject<Int, Never>) {
+        publisher
+            .sink { [weak self] attempt in
+                self?.updateWordCount(attempt: attempt)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func updateWordCount(attempt: Int) {
+        interactor.getWordCount(userId: userId, attempt: attempt)
+            .replaceError(with: nil)
+            .map { $0.flatMap(String.init) ?? "" }
             .receive(on: RunLoop.main)
-            .replaceError(with: [])
             .sink { [weak self] in
-                self?.entries = $0
+                self?.wordCount = $0
                 self?.hasContent = $0.isNotEmpty
             }
             .store(in: &subscriptions)

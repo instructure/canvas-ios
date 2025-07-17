@@ -24,6 +24,7 @@ import Core
 class SpeedGraderInteractorPreview: SpeedGraderInteractor {
     var gradeStatusInteractor: GradeStatusInteractor = GradeStatusInteractorPreview()
     var customGradebookColumnsInteractor: CustomGradebookColumnsInteractor = CustomGradebookColumnsInteractorPreview()
+    var submissionWordCountInteractor: SubmissionWordCountInteractor = SubmissionWordCountInteractorPreview()
 
     let contextInfo = CurrentValueSubject<SpeedGraderContextInfo?, Never>(
         .init(

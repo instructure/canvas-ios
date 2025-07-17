@@ -23,7 +23,6 @@ import Foundation
 protocol CustomGradebookColumnsInteractor {
     func loadCustomColumnsData() -> AnyPublisher<Void, Error>
     func getStudentNotesEntries(userId: String) -> AnyPublisher<[StudentNotesEntry], Error>
-    func getIsStudentNotesEmpty(userId: String) -> AnyPublisher<Bool, Error>
 }
 
 final class CustomGradebookColumnsInteractorLive: CustomGradebookColumnsInteractor {
@@ -117,12 +116,6 @@ final class CustomGradebookColumnsInteractorLive: CustomGradebookColumnsInteract
                     .collect()
                     .eraseToAnyPublisher()
             }
-            .eraseToAnyPublisher()
-    }
-
-    func getIsStudentNotesEmpty(userId: String) -> AnyPublisher<Bool, Error> {
-        getStudentNotesEntries(userId: userId)
-            .map(\.isEmpty)
             .eraseToAnyPublisher()
     }
 }

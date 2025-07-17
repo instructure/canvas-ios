@@ -49,7 +49,22 @@ extension InstUI {
         }
 
         private var divider: some View {
-            SwiftUI.Divider().overlay(Color.borderMedium)
+            SwiftUI.Divider()
+                .overlay(Color.borderMedium)
+        }
+    }
+
+    public struct TopDivider: View {
+
+        private let style: Divider.Style
+
+        public init(_ style: Divider.Style = .full) {
+            self.style = style
+        }
+
+        public var body: some View {
+            InstUI.Divider(style)
+                .offset(y: -1)
         }
     }
 }

@@ -49,11 +49,14 @@ class SpeedGraderPageViewModel: ObservableObject {
     private(set) var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
     let commentListViewModel: SubmissionCommentListViewModel
     let gradeStatusViewModel: GradeStatusViewModel
+    let submissionWordCountViewModel: SubmissionWordCountViewModel
     let studentNotesViewModel: StudentNotesViewModel
     let rubricsViewModel: RubricsViewModel
     let gradeViewModel: SpeedGraderSubmissionGradesViewModel
 
     // MARK: - Inputs
+
+    // MARK: - Private properties
 
     private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
@@ -63,6 +66,7 @@ class SpeedGraderPageViewModel: ObservableObject {
         latestSubmission: Submission,
         contextColor: AnyPublisher<Color, Never>,
         gradeStatusInteractor: GradeStatusInteractor,
+        submissionWordCountInteractor: SubmissionWordCountInteractor,
         customGradebookColumnsInteractor: CustomGradebookColumnsInteractor,
         rubricsViewModel: RubricsViewModel,
         gradeViewModel: SpeedGraderSubmissionGradesViewModel,
@@ -87,6 +91,11 @@ class SpeedGraderPageViewModel: ObservableObject {
             attempt: submission.attempt,
             interactor: gradeStatusInteractor
         )
+        submissionWordCountViewModel = SubmissionWordCountViewModel(
+            userId: submission.userID,
+            attempt: submission.attempt,
+            interactor: submissionWordCountInteractor
+        )
         studentNotesViewModel = StudentNotesViewModel(
             userId: submission.userID,
             interactor: customGradebookColumnsInteractor
@@ -95,18 +104,20 @@ class SpeedGraderPageViewModel: ObservableObject {
 
         contextColor.assign(to: &$contextColor)
 
-        updateDetailsTabState(on: customGradebookColumnsInteractor.getIsStudentNotesEmpty(userId: submission.userID))
+        observeDetailsTabComponentsEmptyState()
         observeAttemptChangesInDatabase()
         didSelectAttempt(attemptNumber: submission.attempt)
     }
 
-    private func updateDetailsTabState(on publisher: AnyPublisher<Bool, Error>) {
-        publisher
-            .replaceError(with: true)
-            .sink { [weak self] isStudentNotesEmpty in
-                self?.isDetailsTabEmpty = isStudentNotesEmpty
-            }
-            .store(in: &subscriptions)
+    private func observeDetailsTabComponentsEmptyState() {
+        Publishers.CombineLatest(
+            submissionWordCountViewModel.$hasContent,
+            studentNotesViewModel.$hasContent
+        )
+        .sink { [weak self] in
+            self?.isDetailsTabEmpty = !($0.0 || $0.1)
+        }
+        .store(in: &subscriptions)
     }
 
     func didSelectAttempt(attemptNumber: Int) {
@@ -137,6 +148,7 @@ class SpeedGraderPageViewModel: ObservableObject {
 
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selectedAttempt)
         gradeStatusViewModel.didChangeAttempt.send(attemptNumber)
+        submissionWordCountViewModel.didChangeAttempt.send(attemptNumber)
     }
 
     func didSelectFile(fileId: String?) {

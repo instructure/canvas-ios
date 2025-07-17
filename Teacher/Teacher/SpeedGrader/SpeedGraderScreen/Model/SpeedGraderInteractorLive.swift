@@ -31,6 +31,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     public let context: Context
 
     let gradeStatusInteractor: GradeStatusInteractor
+    let submissionWordCountInteractor: SubmissionWordCountInteractor
     let customGradebookColumnsInteractor: CustomGradebookColumnsInteractor
 
     private let env: AppEnvironment
@@ -44,6 +45,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         userID: String,
         filter: [GetSubmissions.Filter],
         gradeStatusInteractor: GradeStatusInteractor,
+        submissionWordCountInteractor: SubmissionWordCountInteractor,
         customGradebookColumnsInteractor: CustomGradebookColumnsInteractor,
         env: AppEnvironment,
         mainScheduler: AnySchedulerOf<DispatchQueue> = .main
@@ -53,6 +55,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         self.userID = userID
         self.filter = filter
         self.gradeStatusInteractor = gradeStatusInteractor
+        self.submissionWordCountInteractor = submissionWordCountInteractor
         self.customGradebookColumnsInteractor = customGradebookColumnsInteractor
         self.env = env
         self.mainScheduler = mainScheduler
