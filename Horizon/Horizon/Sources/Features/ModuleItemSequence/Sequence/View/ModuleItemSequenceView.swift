@@ -78,9 +78,11 @@ public struct ModuleItemSequenceView: View {
         .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
         .animation(isHeaderAnimationEnabled ? .linear : nil, value: isShowHeader)
         .alert(String(localized: "Error", bundle: .core), isPresented: $viewModel.isShowErrorAlert) {
-            Button(String(localized: "Ok", bundle: .core), role: .cancel) { }
+            Button(String(localized: "Ok", bundle: .core), role: .cancel) {
+                viewModel.pop(from: viewController)
+            }
         } message: {
-            Text(viewModel.errorMessage)
+            Text(viewModel.errorMessage ?? String(localized: "An error occurred", bundle: .horizon))
         }
         .onWillDisappear { onShowNavigationBarAndTabBar(true) }
         .onWillAppear { onShowNavigationBarAndTabBar(false) }
