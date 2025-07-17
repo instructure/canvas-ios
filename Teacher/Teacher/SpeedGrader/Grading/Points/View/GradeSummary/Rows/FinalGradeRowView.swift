@@ -20,6 +20,7 @@ import SwiftUI
 import Core
 
 struct FinalGradeRowView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     let viewModel: FinalGradeRowViewModel
 
     init(viewModel: FinalGradeRowViewModel) {
@@ -45,6 +46,7 @@ struct FinalGradeRowView: View {
         .paddingStyle(set: .standardCell)
         .padding(.vertical, 2)
         .background(.backgroundLightest)
+        .accessibilityElement(children: .combine)
     }
 }
 

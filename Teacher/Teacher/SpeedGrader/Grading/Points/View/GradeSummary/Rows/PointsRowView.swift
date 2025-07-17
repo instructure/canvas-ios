@@ -20,6 +20,7 @@ import SwiftUI
 import Core
 
 struct PointsRowView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     let viewModel: PointsRowViewModel
 
     init(viewModel: PointsRowViewModel) {
@@ -39,6 +40,7 @@ struct PointsRowView: View {
         .paddingStyle(set: .standardCell)
         .padding(.vertical, 2)
         .background(.backgroundLightest)
+        .accessibilityElement(children: .combine)
     }
 }
 

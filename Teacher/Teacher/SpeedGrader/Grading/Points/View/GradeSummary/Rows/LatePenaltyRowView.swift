@@ -20,6 +20,7 @@ import SwiftUI
 import Core
 
 struct LatePenaltyRowView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     let viewModel: LatePenaltyRowViewModel
 
     init(viewModel: LatePenaltyRowViewModel) {
@@ -38,6 +39,7 @@ struct LatePenaltyRowView: View {
         .paddingStyle(set: .standardCell)
         .padding(.vertical, 2)
         .background(.backgroundLightest)
+        .accessibilityElement(children: .combine)
     }
 }
 
