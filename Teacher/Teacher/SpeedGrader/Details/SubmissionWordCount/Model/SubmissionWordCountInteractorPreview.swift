@@ -23,6 +23,9 @@ import Core
 import Foundation
 
 final class SubmissionWordCountInteractorPreview: SubmissionWordCountInteractor {
+
+    let assignmentId: String = ""
+
     func getWordCount(userId: String, attempt: Int) -> AnyPublisher<Int?, Error> {
         Publishers.typedJust(42)
     }

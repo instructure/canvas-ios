@@ -21,13 +21,22 @@ import Core
 import Foundation
 
 protocol CustomGradebookColumnsInteractor {
+    var courseId: String { get }
+
+    /// Loads all Custom Columns data from API into CoreData, ignoring cache.
+    /// It loads entries from all columns, for all students.
     func loadCustomColumnsData() -> AnyPublisher<Void, Error>
+
+    /// Fetches all entries for the given `columnId`. Each entry is assumed to belong to a different student.
+    func getCustomColumnEntries(columnId: String, ignoreCache: Bool) -> AnyPublisher<[CDCustomGradebookColumnEntry], Error>
+
+    /// Fetches all Student Notes entries for the given `userId`.
     func getStudentNotesEntries(userId: String) -> AnyPublisher<[StudentNotesEntry], Error>
 }
 
 final class CustomGradebookColumnsInteractorLive: CustomGradebookColumnsInteractor {
 
-    private let courseId: String
+    let courseId: String
 
     init(courseId: String) {
         self.courseId = courseId
@@ -37,14 +46,15 @@ final class CustomGradebookColumnsInteractorLive: CustomGradebookColumnsInteract
 
     /// Loads all Custom Columns data from API into CoreData, ignoring cache.
     /// It loads entries from all columns, for all students.
+    /// This method is intended to be called when opening SpeedGrader to make sure it starts with fresh data.
+    /// It's not intended to be called while paging between the students.
     func loadCustomColumnsData() -> AnyPublisher<Void, Error> {
         return getCustomColumns(ignoreCache: true)
-            .flatMap { [weak self] columns -> AnyPublisher<Void, Error> in
-                guard let self else { return Publishers.typedEmpty() }
+            .flatMap { [self] columns -> AnyPublisher<Void, Error> in
                 guard columns.isNotEmpty else { return Publishers.typedJust() }
 
                 let publishers = columns.map { column in
-                    self.getCustomColumnEntries(columnId: column.id, ignoreCache: true)
+                    getCustomColumnEntries(columnId: column.id, ignoreCache: true)
                         .mapToVoid()
                         .eraseToAnyPublisher()
                 }
@@ -57,7 +67,7 @@ final class CustomGradebookColumnsInteractorLive: CustomGradebookColumnsInteract
             .eraseToAnyPublisher()
     }
 
-    func getCustomColumns(ignoreCache: Bool = false) -> AnyPublisher<[CDCustomGradebookColumn], Error> {
+    private func getCustomColumns(ignoreCache: Bool = false) -> AnyPublisher<[CDCustomGradebookColumn], Error> {
         let useCase = GetCustomGradebookColumns(courseId: courseId)
         return ReactiveStore(useCase: useCase)
             .getEntities(ignoreCache: ignoreCache)
@@ -73,7 +83,7 @@ final class CustomGradebookColumnsInteractorLive: CustomGradebookColumnsInteract
     }
 
     /// Fetches the first entry for the given `columnId` with the given `userId`. Each entry in a column is assumed to belong to a different student.
-    func getCustomColumnEntry(columnId: String, with userId: String) -> AnyPublisher<CDCustomGradebookColumnEntry?, Error> {
+    private func getCustomColumnEntry(columnId: String, with userId: String) -> AnyPublisher<CDCustomGradebookColumnEntry?, Error> {
         getCustomColumnEntries(columnId: columnId)
             .map { entries in
                 entries.first { $0.userId == userId }
@@ -85,7 +95,7 @@ final class CustomGradebookColumnsInteractorLive: CustomGradebookColumnsInteract
 
     /// Fetches the columns which are marked as `teacher_notes` (and aren't hidden).
     /// There should be only one "Notes" column at most, but we preapare for multiple.
-    func getStudentNotesColumns() -> AnyPublisher<[CDCustomGradebookColumn], Error> {
+    private func getStudentNotesColumns() -> AnyPublisher<[CDCustomGradebookColumn], Error> {
         getCustomColumns()
             .map { columns in
                 columns.filter { $0.isTeacherNotes && !$0.isHidden }
@@ -93,14 +103,14 @@ final class CustomGradebookColumnsInteractorLive: CustomGradebookColumnsInteract
             .eraseToAnyPublisher()
     }
 
+    /// Fetches all Student Notes entries for the given `userId`.
     func getStudentNotesEntries(userId: String) -> AnyPublisher<[StudentNotesEntry], Error> {
         getStudentNotesColumns()
-            .flatMap { [weak self] columns -> AnyPublisher<[StudentNotesEntry], Error> in
-                guard let self else { return Publishers.typedEmpty() }
+            .flatMap { [self] columns -> AnyPublisher<[StudentNotesEntry], Error> in
                 guard columns.isNotEmpty else { return Publishers.typedJust([]) }
 
                 let publishers = columns.enumerated().map { (index, column) -> AnyPublisher<StudentNotesEntry, Error> in
-                    self.getCustomColumnEntry(columnId: column.id, with: userId)
+                    getCustomColumnEntry(columnId: column.id, with: userId)
                         .compactMap { $0 }
                         .map {
                             StudentNotesEntry(

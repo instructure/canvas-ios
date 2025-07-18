@@ -28,8 +28,14 @@ final class CustomGradebookColumnsInteractorPreview: CustomGradebookColumnsInter
         .make(title: "Other Notes", content: .loremIpsumLong)
     ]
 
+    var courseId: String = ""
+
     func loadCustomColumnsData() -> AnyPublisher<Void, Error> {
         Publishers.typedJust()
+    }
+
+    func getCustomColumnEntries(columnId: String, ignoreCache: Bool) -> AnyPublisher<[CDCustomGradebookColumnEntry], Error> {
+        Publishers.typedJust([])
     }
 
     func getStudentNotesEntries(userId: String) -> AnyPublisher<[StudentNotesEntry], Error> {

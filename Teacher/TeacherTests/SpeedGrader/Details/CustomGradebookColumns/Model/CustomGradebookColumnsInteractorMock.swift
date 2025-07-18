@@ -23,10 +23,16 @@ import Foundation
 
 class CustomGradebookColumnsInteractorMock: CustomGradebookColumnsInteractor {
 
+    let courseId: String = ""
+
     private(set) var loadCustomColumnsDataCallsCount = 0
     func loadCustomColumnsData() -> AnyPublisher<Void, Error> {
         loadCustomColumnsDataCallsCount += 1
         return Publishers.typedJust()
+    }
+
+    func getCustomColumnEntries(columnId: String, ignoreCache: Bool) -> AnyPublisher<[CDCustomGradebookColumnEntry], Error> {
+        Publishers.typedJust([])
     }
 
     private(set) var getStudentNotesEntriesCallsCount = 0

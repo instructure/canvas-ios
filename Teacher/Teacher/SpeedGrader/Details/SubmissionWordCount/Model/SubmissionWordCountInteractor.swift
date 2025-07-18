@@ -21,12 +21,14 @@ import Core
 import Foundation
 
 protocol SubmissionWordCountInteractor {
+    var assignmentId: String { get }
+
     func getWordCount(userId: String, attempt: Int) -> AnyPublisher<Int?, Error>
 }
 
 final class SubmissionWordCountInteractorLive: SubmissionWordCountInteractor {
 
-    private let assignmentId: String
+    let assignmentId: String
     private let api: API
 
     init(assignmentId: String, api: API) {

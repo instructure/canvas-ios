@@ -23,6 +23,8 @@ import Foundation
 
 final class SubmissionWordCountInteractorMock: SubmissionWordCountInteractor {
 
+    let assignmentId: String = ""
+
     private(set) var getWordCountCallsCount = 0
     private(set) var getWordCountInput: (userId: String, attempt: Int)?
     var getWordCountOutput: AnyPublisher<Int?, Error>?
