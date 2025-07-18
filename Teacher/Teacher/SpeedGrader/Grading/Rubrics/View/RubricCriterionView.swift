@@ -59,6 +59,7 @@ struct RubricCriterionView: View {
         .padding(.horizontal, RubricPadding.horizontal.rawValue)
     }
 
+    // TODO: Update button to be animated
     private var expandButton: some View {
         Button {
             isExpanded.toggle()

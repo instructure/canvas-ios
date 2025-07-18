@@ -53,7 +53,7 @@ struct SubmissionGrades: View {
                 }
             }
         } else {
-            GeometryReader { geometry in ScrollView {
+            ScrollView {
                 VStack(spacing: 0) {
                     HStack(spacing: 0) {
                         Text("Grade", bundle: .teacher)
@@ -116,10 +116,10 @@ struct SubmissionGrades: View {
                         Divider().padding(.horizontal, 16)
                         RubricsView(viewModel: rubricsViewModel)
                             .background(Color.backgroundLight)
-                            .padding(.bottom, 16)
                     }
-                }.padding(.bottom, 16)
-            } }
+                }
+                .padding(.bottom, 16)
+            }
             .animation(.smooth, value: gradeStatusViewModel.isShowingDaysLateSection)
 
             if rubricsViewModel.commentingOnCriterionID != nil {

@@ -24,13 +24,11 @@ struct RubricRatingView: View {
 
     let isExpanded: Bool
     let value: Text
-    let expandedFrameHeight: CGFloat
 
     init(viewModel: RubricRatingViewModel, isExpanded: Bool) {
         self.viewModel = viewModel
         self.isExpanded = isExpanded
         self.value = Text(viewModel.value)
-        self.expandedFrameHeight = viewModel.hasLongDescription ? 90 : 70
     }
 
     var body: some View {
@@ -53,7 +51,6 @@ struct RubricRatingView: View {
         }
         .padding(.horizontal, RubricPadding.horizontal.rawValue)
         .padding(.vertical, RubricPadding.vertical.rawValue)
-        .frame(minHeight: expandedFrameHeight, maxHeight: expandedFrameHeight)
         .background(rectangleView)
         .onTapGesture { viewModel.isSelected.toggle() }
     }
