@@ -25,8 +25,11 @@ final class LTIQuizViewModel {
     // MARK: - Outputs
 
     private(set) var externalURL: URL?
-    private(set) var isLoaderVisible = true
     private(set) var isButtonLoaderVisible: Bool = false
+
+    // MARK: - Inputs / Outputs
+    
+    var isLoaderVisible = true
 
     // MARK: - Dependancies
 
@@ -66,7 +69,6 @@ final class LTIQuizViewModel {
             env: environment
         )
         tools.getSessionlessLaunch { [weak self] value in
-            self?.isLoaderVisible = false
             self?.externalURL = value?.url
         }
     }
