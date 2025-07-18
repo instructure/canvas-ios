@@ -25,12 +25,20 @@ import XCTest
 
 class SpeedGraderPageViewModelTests: TeacherTestCase {
 
-    private enum TestConstants {
-        static let submissionId = "some submissionId"
-    }
+    private static let testData = (
+        submissionId: "some submissionId",
+        placeholder: ""
+    )
+    private lazy var testData = Self.testData
+
+    private var testee: SpeedGraderPageViewModel!
 
     private var assignment: Assignment!
     private var submission: Submission!
+
+    private var gradeStatusInteractorMock: GradeStatusInteractorMock!
+    private var submissionWordCountInteractor: SubmissionWordCountInteractorMock!
+    private var customGradebookColumnsInteractor: CustomGradebookColumnsInteractorMock!
 
     override func setUp() {
         super.setUp()
@@ -38,12 +46,20 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
         assignment = Assignment(context: databaseClient)
 
         submission = Submission(context: databaseClient)
-        submission.id = TestConstants.submissionId
+        submission.id = testData.submissionId
+
+        gradeStatusInteractorMock = .init()
+        submissionWordCountInteractor = .init()
+        customGradebookColumnsInteractor = .init()
     }
 
     override func tearDown() {
         assignment = nil
         submission = nil
+        gradeStatusInteractorMock = nil
+        submissionWordCountInteractor = nil
+        customGradebookColumnsInteractor = nil
+        testee = nil
         super.tearDown()
     }
 
@@ -67,6 +83,55 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
         XCTAssertEqual(testee.contextColor.hexString, Color.green.hexString)
     }
 
+    // MARK: - isDetailsTabEmpty
+
+    func test_isDetailsTabEmpty() {
+        let studentNotesEntries = PassthroughSubject<[StudentNotesEntry], Error>()
+        let wordCount = PassthroughSubject<Int?, Error>()
+        customGradebookColumnsInteractor.getStudentNotesEntriesOutput = studentNotesEntries.eraseToAnyPublisher()
+        submissionWordCountInteractor.getWordCountOutput = wordCount.eraseToAnyPublisher()
+
+        testee = makeViewModel()
+        XCTAssertEqual(testee.isDetailsTabEmpty, true)
+
+        // add student notes
+        studentNotesEntries.send([.make()])
+        waitUntil(shouldFail: true) { testee.isDetailsTabEmpty == false }
+
+        // clear student notes
+        studentNotesEntries.send([])
+        waitUntil(shouldFail: true) { testee.isDetailsTabEmpty == true }
+
+        // add word count
+        wordCount.send(42)
+        waitUntil(shouldFail: true) { testee.isDetailsTabEmpty == false }
+
+        // clear word count
+        wordCount.send(nil)
+        waitUntil(shouldFail: true) { testee.isDetailsTabEmpty == true }
+
+        // add everything
+        studentNotesEntries.send([.make()])
+        wordCount.send(42)
+        waitUntil(shouldFail: true) { testee.isDetailsTabEmpty == false }
+
+        // clear everything
+        studentNotesEntries.send([])
+        wordCount.send(nil)
+        waitUntil(shouldFail: true) { testee.isDetailsTabEmpty == true }
+    }
+
+    // MARK: - didSelectAttempt
+
+    func test_didSelectAttempt_shouldSignalSubViewModels() {
+        testee = makeViewModel()
+
+        testee.didSelectAttempt(attemptNumber: 42)
+
+        XCTAssertEqual(submissionWordCountInteractor.getWordCountInput?.attempt, 42)
+        XCTAssertEqual(gradeStatusInteractorMock.observeGradeStatusChangesInput?.attempt, 42)
+    }
+
     // MARK: - Private helpers
 
     private func makeViewModel(
@@ -86,7 +151,8 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
                 userId: submission.userID,
                 submissionId: submission.id,
                 attempt: submission.attempt,
-                interactor: GradeStatusInteractorMock()
+                interactor: gradeStatusInteractorMock,
+                scheduler: .immediate
             ),
             commentListViewModel: .init(
                 assignment: assignment,
@@ -105,11 +171,13 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
             submissionWordCountViewModel: .init(
                 userId: submission.userID,
                 attempt: submission.attempt,
-                interactor: SubmissionWordCountInteractorPreview()
+                interactor: submissionWordCountInteractor,
+                scheduler: .immediate
             ),
             studentNotesViewModel: .init(
                 userId: submission.userID,
-                interactor: CustomGradebookColumnsInteractorMock()
+                interactor: customGradebookColumnsInteractor,
+                scheduler: .immediate
             )
         )
     }

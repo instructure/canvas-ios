@@ -24,11 +24,14 @@ import Foundation
 final class SubmissionWordCountInteractorMock: SubmissionWordCountInteractor {
 
     private(set) var getWordCountCallsCount = 0
-    var getWordCountResult: AnyPublisher<Int?, Error>?
-    var getWordCountResultValue: Int? = nil
+    private(set) var getWordCountInput: (userId: String, attempt: Int)?
+    var getWordCountOutput: AnyPublisher<Int?, Error>?
+    var getWordCountOutputValue: Int?
 
     func getWordCount(userId: String, attempt: Int) -> AnyPublisher<Int?, Error> {
         getWordCountCallsCount += 1
-        return getWordCountResult ?? Publishers.typedJust(getWordCountResultValue)
+        getWordCountInput = (userId, attempt)
+        return getWordCountOutput
+            ?? Publishers.typedJust(getWordCountOutputValue)
     }
 }

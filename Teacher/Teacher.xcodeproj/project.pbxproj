@@ -901,7 +901,7 @@
 				CF0606052D96E4C20014C2EC /* Comments */,
 				5B0BDD312E294B9000D41C2A /* Details */,
 				CF0605F92D96E4190014C2EC /* Grading */,
-				CF0606002D96E4750014C2EC /* MainLayout */,
+				CF0606002D96E4750014C2EC /* SpeedGraderPage */,
 				CF0605FC2D96E43B0014C2EC /* SpeedGraderScreen */,
 				CF0605FE2D96E4570014C2EC /* SubmissionRenderer */,
 			);
@@ -1401,12 +1401,12 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		CF0606002D96E4750014C2EC /* MainLayout */ = {
+		CF0606002D96E4750014C2EC /* SpeedGraderPage */ = {
 			isa = PBXGroup;
 			children = (
 				CF7D8D692DD24B6E00FA67CE /* ViewModel */,
 			);
-			path = MainLayout;
+			path = SpeedGraderPage;
 			sourceTree = "<group>";
 		};
 		CF0606022D96E4920014C2EC /* CommentLibrary */ = {

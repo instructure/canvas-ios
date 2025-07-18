@@ -18,6 +18,7 @@
 
 import Core
 import Combine
+import CombineSchedulers
 import SwiftUI
 
 final class StudentNotesViewModel: ObservableObject {
@@ -37,12 +38,13 @@ final class StudentNotesViewModel: ObservableObject {
 
     init(
         userId: String,
-        interactor: CustomGradebookColumnsInteractor
+        interactor: CustomGradebookColumnsInteractor,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
 
         interactor.getStudentNotesEntries(userId: userId)
-            .receive(on: RunLoop.main)
+            .receive(on: scheduler)
             .replaceError(with: [])
             .sink { [weak self] in
                 self?.entries = $0

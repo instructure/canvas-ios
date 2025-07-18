@@ -38,7 +38,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
 
     private var testee: SpeedGraderInteractorLive!
     private var gradeStatusInteractorMock: GradeStatusInteractorMock!
-    private var submissionWordCountInteractor: SubmissionWordCountInteractorPreview!
+    private var submissionWordCountInteractor: SubmissionWordCountInteractorMock!
     private var customGradebookColumnsInteractor: CustomGradebookColumnsInteractorMock!
 
     override func setUp() {

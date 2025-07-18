@@ -18,7 +18,7 @@
 
 import Core
 import Combine
-import CombineExt
+import CombineSchedulers
 import SwiftUI
 
 final class SubmissionWordCountViewModel: ObservableObject {
@@ -37,6 +37,7 @@ final class SubmissionWordCountViewModel: ObservableObject {
     private let userId: String
     private let interactor: SubmissionWordCountInteractor
 
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -44,10 +45,12 @@ final class SubmissionWordCountViewModel: ObservableObject {
     init(
         userId: String,
         attempt: Int,
-        interactor: SubmissionWordCountInteractor
+        interactor: SubmissionWordCountInteractor,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.userId = userId
         self.interactor = interactor
+        self.scheduler = scheduler
 
         updateWordCount(on: didChangeAttempt)
         updateWordCount(attempt: attempt)
@@ -65,7 +68,7 @@ final class SubmissionWordCountViewModel: ObservableObject {
         interactor.getWordCount(userId: userId, attempt: attempt)
             .replaceError(with: nil)
             .map { $0.flatMap(String.init) ?? "" }
-            .receive(on: RunLoop.main)
+            .receive(on: scheduler)
             .sink { [weak self] in
                 self?.wordCount = $0
                 self?.hasContent = $0.isNotEmpty

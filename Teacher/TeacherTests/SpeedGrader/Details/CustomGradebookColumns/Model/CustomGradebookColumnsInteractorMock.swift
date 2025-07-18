@@ -29,11 +29,15 @@ class CustomGradebookColumnsInteractorMock: CustomGradebookColumnsInteractor {
         return Publishers.typedJust()
     }
 
-    func getStudentNotesEntries(userId: String) -> AnyPublisher<[StudentNotesEntry], Error> {
-        Publishers.typedJust([])
-    }
+    private(set) var getStudentNotesEntriesCallsCount = 0
+    private(set) var getStudentNotesEntriesInput: String?
+    var getStudentNotesEntriesOutput: AnyPublisher<[StudentNotesEntry], Error>?
+    var getStudentNotesEntriesOutputValue: [StudentNotesEntry] = []
 
-    func getIsStudentNotesEmpty(userId: String) -> AnyPublisher<Bool, Error> {
-        Publishers.typedJust(true)
+    func getStudentNotesEntries(userId: String) -> AnyPublisher<[StudentNotesEntry], Error> {
+        getStudentNotesEntriesCallsCount += 1
+        getStudentNotesEntriesInput = userId
+        return getStudentNotesEntriesOutput
+            ?? Publishers.typedJust(getStudentNotesEntriesOutputValue)
     }
 }

@@ -120,7 +120,7 @@ class SpeedGraderScreenViewModelTests: TeacherTestCase {
 
 class SpeedGraderInteractorMock: SpeedGraderInteractor {
     var gradeStatusInteractor: GradeStatusInteractor = GradeStatusInteractorMock()
-    var submissionWordCountInteractor: SubmissionWordCountInteractor = SubmissionWordCountInteractorPreview()
+    var submissionWordCountInteractor: SubmissionWordCountInteractor = SubmissionWordCountInteractorMock()
     var customGradebookColumnsInteractor: CustomGradebookColumnsInteractor = CustomGradebookColumnsInteractorMock()
 
     var state = CurrentValueSubject<SpeedGraderInteractorState, Never>(.loading)
