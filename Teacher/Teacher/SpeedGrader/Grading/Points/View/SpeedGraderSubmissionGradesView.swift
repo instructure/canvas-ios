@@ -30,6 +30,7 @@ struct SpeedGraderSubmissionGradesView: View {
     @State var sliderCleared = false
     @State var sliderExcused = false
     @State var sliderTimer: Timer?
+    @State private var gradeSliderViewModel = GradeSliderViewModel()
 
     @ObservedObject var rubricsViewModel: RubricsViewModel
     @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
@@ -153,46 +154,34 @@ struct SpeedGraderSubmissionGradesView: View {
             sliderCleared ? Text("No Grade", bundle: .teacher) :
             sliderExcused ? Text("Excused", bundle: .teacher) :
             assignment.gradingType == .percent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
-            Text(score)
+            Text(gradeSliderViewModel.formatScore(score, maxPoints: possible))
         let maxScore = assignment.gradingType == .percent ? 100 : possible
 
         HStack(spacing: 8) {
-            VStack {
-                Spacer()
-                Text(0)
-                    .frame(width: 30, height: 30)
-                    .onTapGesture {
-                        updateGrade(0)
-                    }
-                    .onLongPressGesture {
-                        updateGrade(noMark: true)
-                    }
-                Spacer()
-            }
-            VStack {
-                Spacer()
-                ZStack {
-                    // disables page swipe around the slider
-                    Rectangle()
-                        .contentShape(Rectangle())
-                        .foregroundColor(.clear)
-                        .gesture(DragGesture(minimumDistance: 0).onChanged { _ in })
-                    GradeSlider(value: Binding(get: { score }, set: sliderChangedValue),
-                                range: 0 ... (assignment.pointsPossible ?? 0),
-                                showTooltip: showTooltip,
-                                tooltipText: tooltipText,
-                                score: score,
-                                possible: possible,
-                                onEditingChanged: sliderChangedState)
+            Text(0)
+                .frame(width: 30, height: 30)
+                .onTapGesture {
+                    updateGrade(0)
                 }
+            ZStack {
+                // disables page swipe around the slider
+                Rectangle()
+                    .contentShape(Rectangle())
+                    .foregroundColor(.clear)
+                    .gesture(DragGesture(minimumDistance: 0).onChanged { _ in })
+                GradeSlider(value: Binding(get: { score }, set: sliderChangedValue),
+                            maxValue: assignment.pointsPossible ?? 0,
+                            showTooltip: showTooltip,
+                            tooltipText: tooltipText,
+                            score: score,
+                            possible: possible,
+                            onEditingChanged: sliderChangedState,
+                            viewModel: gradeSliderViewModel)
             }
             Text(maxScore)
                 .frame(width: 30, height: 30)
                 .onTapGesture {
                     updateGrade(maxScore)
-                }
-                .onLongPressGesture {
-                    updateGrade(excused: true)
                 }
         }
         .font(.medium14).foregroundColor(.textDarkest)

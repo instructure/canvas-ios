@@ -154,6 +154,8 @@
 		CF64BDD42E28FF64005929E6 /* LatePenaltyRowViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF64BDD02E28FF64005929E6 /* LatePenaltyRowViewModelTests.swift */; };
 		CF64BDD52E28FF64005929E6 /* PointsRowViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF64BDD12E28FF64005929E6 /* PointsRowViewModelTests.swift */; };
 		CF64BDD62E28FF64005929E6 /* FinalGradeRowViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF64BDCF2E28FF64005929E6 /* FinalGradeRowViewModelTests.swift */; };
+		CF64BDDB2E2945F8005929E6 /* GradeSliderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF64BDDA2E2945F8005929E6 /* GradeSliderViewModel.swift */; };
+		CF64BDDD2E294A4D005929E6 /* GradeSliderViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF64BDDC2E294A4D005929E6 /* GradeSliderViewModelTests.swift */; };
 		CF67D00A2B18E9A1009D826A /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF67D0092B18E9A1009D826A /* InfoPlist.xcstrings */; };
 		CF67D00C2B18E9A1009D826A /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF67D00B2B18E9A1009D826A /* InfoPlist.xcstrings */; };
 		CF67D00E2B18E9A1009D826A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF67D00D2B18E9A1009D826A /* Localizable.xcstrings */; };
@@ -213,7 +215,6 @@
 		E841D8B123D6472F00685A63 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8B423D6472F00685A63 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EB12071F2601F2C50038E875 /* GradeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12071E2601F2C50038E875 /* GradeSlider.swift */; };
-		EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A24D261206CA0003241C /* GradeSliderTests.swift */; };
 		EBAF32F627AACFC9000ACD32 /* CommentLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF32F527AACFC9000ACD32 /* CommentLibraryViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -433,6 +434,8 @@
 		CF64BDCF2E28FF64005929E6 /* FinalGradeRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalGradeRowViewModelTests.swift; sourceTree = "<group>"; };
 		CF64BDD02E28FF64005929E6 /* LatePenaltyRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatePenaltyRowViewModelTests.swift; sourceTree = "<group>"; };
 		CF64BDD12E28FF64005929E6 /* PointsRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsRowViewModelTests.swift; sourceTree = "<group>"; };
+		CF64BDDA2E2945F8005929E6 /* GradeSliderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSliderViewModel.swift; sourceTree = "<group>"; };
+		CF64BDDC2E294A4D005929E6 /* GradeSliderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSliderViewModelTests.swift; sourceTree = "<group>"; };
 		CF67D0092B18E9A1009D826A /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CF67D00B2B18E9A1009D826A /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CF67D00D2B18E9A1009D826A /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -493,7 +496,6 @@
 		E841D8BA23D6472F00685A63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F6CFFE23045A01004347D9 /* CoreUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB12071E2601F2C50038E875 /* GradeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSlider.swift; sourceTree = "<group>"; };
-		EB71A24D261206CA0003241C /* GradeSliderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSliderTests.swift; sourceTree = "<group>"; };
 		EBAF32F527AACFC9000ACD32 /* CommentLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLibraryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1013,6 +1015,7 @@
 		CF05D8692E1EC91700F98B90 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CF64BDDA2E2945F8005929E6 /* GradeSliderViewModel.swift */,
 				CFB5ED612E27CB6A000009DF /* SpeedGraderSubmissionGradesViewModel.swift */,
 				CFB5ED492E26A03A000009DF /* GradeSummary */,
 			);
@@ -1209,17 +1212,8 @@
 			children = (
 				CF835A942E214E5800F33C1D /* Model */,
 				CF835A9D2E25094A00F33C1D /* ViewModel */,
-				CF0605FB2D96E42C0014C2EC /* View */,
 			);
 			path = Points;
-			sourceTree = "<group>";
-		};
-		CF0605FB2D96E42C0014C2EC /* View */ = {
-			isa = PBXGroup;
-			children = (
-				EB71A24D261206CA0003241C /* GradeSliderTests.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		CF0605FC2D96E43B0014C2EC /* SpeedGraderScreen */ = {
@@ -1454,6 +1448,7 @@
 			isa = PBXGroup;
 			children = (
 				CF64BDD32E28FF64005929E6 /* GradeSummary */,
+				CF64BDDC2E294A4D005929E6 /* GradeSliderViewModelTests.swift */,
 				CF835A9C2E25094A00F33C1D /* SpeedGraderSubmissionGradesViewModelTests.swift */,
 			);
 			path = ViewModel;
@@ -2030,6 +2025,7 @@
 				CFCADAF62D9D89D0003796E7 /* RubricCustomRatingView.swift in Sources */,
 				5BB37BC22DB90F300096821B /* SubmissionCommentsInteractor.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */,
+				CF64BDDB2E2945F8005929E6 /* GradeSliderViewModel.swift in Sources */,
 				D91C051D29AE10170032BFB1 /* QuizSubmissionListItemView.swift in Sources */,
 				5B95A33C2E210DC500022E70 /* SpeedGraderPageTab.swift in Sources */,
 				CFB5ED582E26A0EC000009DF /* FinalGradeRowView.swift in Sources */,
@@ -2099,6 +2095,7 @@
 				D9624A7E29C4AEF000F5303F /* QuizSubmissionListItemTests.swift in Sources */,
 				D9B4850029CCA8090004EBB5 /* QuizSubmissionListInteractorLiveTests.swift in Sources */,
 				7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */,
+				CF64BDDD2E294A4D005929E6 /* GradeSliderViewModelTests.swift in Sources */,
 				CFFEADB62E01B90F00277F69 /* GradeStatusInteractorMock.swift in Sources */,
 				CF0F18922DC0E7EC0054D21A /* SpeedGraderInteractorLiveTests.swift in Sources */,
 				D9B484FE29CC91A70004EBB5 /* QuizSubmissionViewModelTests.swift in Sources */,
@@ -2109,7 +2106,6 @@
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
 				CFD96BA92719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift in Sources */,
 				CF64BDC42E27D834005929E6 /* RubricGradingInteractorMock.swift in Sources */,
-				EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */,
 				CF0F18902DC0DAB50054D21A /* SpeedGraderUserIdNormalizationTests.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,
 				089AAC902DCC01370022F341 /* SubmissionListItemTests.swift in Sources */,
