@@ -22,11 +22,12 @@ import TestsFoundation
 @testable import Teacher
 
 class GradeSliderViewModelTests: TeacherTestCase {
-
+    let formatter = NumberFormatter()
     var viewModel: GradeSliderViewModel!
 
     override func setUp() {
         super.setUp()
+        formatter.numberStyle = .decimal
         viewModel = GradeSliderViewModel()
     }
 
@@ -96,20 +97,45 @@ class GradeSliderViewModelTests: TeacherTestCase {
     }
 
     func test_formatScore_0to10_returns2Decimals() {
-        XCTAssertEqual(viewModel.formatScore(5.123, maxPoints: 10), "5.12")
-        XCTAssertEqual(viewModel.formatScore(7.5, maxPoints: 5), "7.50")
-        XCTAssertEqual(viewModel.formatScore(0, maxPoints: 10), "0.00")
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+
+        let expected1 = formatter.string(from: NSNumber(value: 5.12)) ?? "5.12"
+        let expected2 = formatter.string(from: NSNumber(value: 7.50)) ?? "7.50"
+        let expected3 = formatter.string(from: NSNumber(value: 0.00)) ?? "0.00"
+
+        XCTAssertEqual(viewModel.formatScore(5.123, maxPoints: 10), expected1)
+        XCTAssertEqual(viewModel.formatScore(7.5, maxPoints: 5), expected2)
+        XCTAssertEqual(viewModel.formatScore(0, maxPoints: 10), expected3)
     }
 
     func test_formatScore_10to20_returns1Decimal() {
-        XCTAssertEqual(viewModel.formatScore(15.67, maxPoints: 20), "15.7")
-        XCTAssertEqual(viewModel.formatScore(12.3, maxPoints: 15), "12.3")
-        XCTAssertEqual(viewModel.formatScore(10, maxPoints: 12), "10.0")
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+
+        let expected1 = formatter.string(from: NSNumber(value: 15.7)) ?? "15.7"
+        let expected2 = formatter.string(from: NSNumber(value: 12.3)) ?? "12.3"
+        let expected3 = formatter.string(from: NSNumber(value: 10.0)) ?? "10.0"
+
+        XCTAssertEqual(viewModel.formatScore(15.67, maxPoints: 20), expected1)
+        XCTAssertEqual(viewModel.formatScore(12.3, maxPoints: 15), expected2)
+        XCTAssertEqual(viewModel.formatScore(10, maxPoints: 12), expected3)
     }
 
     func test_formatScore_above20_returnsWholeNumbers() {
-        XCTAssertEqual(viewModel.formatScore(25.67, maxPoints: 50), "26")
-        XCTAssertEqual(viewModel.formatScore(89.1, maxPoints: 100), "89")
-        XCTAssertEqual(viewModel.formatScore(42, maxPoints: 25), "42")
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 0
+
+        let expected1 = formatter.string(from: NSNumber(value: 26)) ?? "26"
+        let expected2 = formatter.string(from: NSNumber(value: 89)) ?? "89"
+        let expected3 = formatter.string(from: NSNumber(value: 42)) ?? "42"
+
+        XCTAssertEqual(viewModel.formatScore(25.67, maxPoints: 50), expected1)
+        XCTAssertEqual(viewModel.formatScore(89.1, maxPoints: 100), expected2)
+        XCTAssertEqual(viewModel.formatScore(42, maxPoints: 25), expected3)
     }
 }

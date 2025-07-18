@@ -20,6 +20,13 @@ import Foundation
 
 class GradeSliderViewModel {
 
+    private let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.locale = Locale.current
+        return formatter
+    }()
+
     /// Represents the different grade precision modes based on maximum points
     private enum GradePrecisionMode {
         case quarters
@@ -43,12 +50,12 @@ class GradeSliderViewModel {
             case .wholes: return 1.0
             }
         }
-
-        var formatString: String {
+        
+        var decimalPlaces: Int {
             switch self {
-            case .quarters: return "%.2f"
-            case .halves: return "%.1f"
-            case .wholes: return "%.0f"
+            case .quarters: return 2
+            case .halves: return 1
+            case .wholes: return 0
             }
         }
     }
@@ -82,6 +89,9 @@ class GradeSliderViewModel {
     /// - Returns: A formatted string with appropriate decimal places
     func formatScore(_ score: Double, maxPoints: Double) -> String {
         let precisionMode = GradePrecisionMode(maxPoints: maxPoints)
-        return String(format: precisionMode.formatString, score)
+        numberFormatter.minimumFractionDigits = precisionMode.decimalPlaces
+        numberFormatter.maximumFractionDigits = precisionMode.decimalPlaces
+        
+        return numberFormatter.string(from: NSNumber(value: score)) ?? "\(score)"
     }
 }
