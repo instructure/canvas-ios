@@ -28,7 +28,7 @@ final class LTIQuizViewModel {
     private(set) var isButtonLoaderVisible: Bool = false
 
     // MARK: - Inputs / Outputs
-    
+
     var isLoaderVisible = true
 
     // MARK: - Dependancies
