@@ -357,7 +357,7 @@ extension HorizonUI {
         // MARK: - Private Functions
 
         private func onTapText() {
-            if disabled || optionsFiltered.isEmpty {
+            if disabled {
                 return
             }
             focused = !focused
