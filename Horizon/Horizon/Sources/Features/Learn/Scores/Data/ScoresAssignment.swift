@@ -126,7 +126,7 @@ extension ScoresAssignment {
             case .submitted:
                 return String(localized: "Submitted", bundle: .horizon)
             case .notSubmitted:
-                return String(localized: "Not Submitted", bundle: .horizon)
+                return String(localized: "Not submitted", bundle: .horizon)
             case .excused:
                 return String(localized: "Excused", bundle: .horizon)
             }

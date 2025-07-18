@@ -26,7 +26,7 @@ enum CourseDetailsTabs: Int, CaseIterable, Identifiable {
     var localizedString: String {
         switch self {
         case .myProgress:
-            return String(localized: "My Progress", bundle: .horizon)
+            return String(localized: "My progress", bundle: .horizon)
         case .overview:
             return String(localized: "Overview", bundle: .horizon)
         case .scores:
