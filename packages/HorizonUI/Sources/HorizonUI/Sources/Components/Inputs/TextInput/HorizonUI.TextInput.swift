@@ -25,7 +25,7 @@ extension HorizonUI {
         @FocusState private var focused: Bool
 
         // MARK: - Properties
-
+        private let characterLimit: Int?
         private let error: String?
         private let helperText: String?
         private let label: String?
@@ -46,7 +46,8 @@ extension HorizonUI {
             disabled: Bool = false,
             small: Bool = false,
             trailing: (any View)? = nil,
-            focused: FocusState<Bool>? = nil
+            focused: FocusState<Bool>? = nil,
+            characterLimit: Int? = nil
         ) {
             self.error = error
             self.helperText = helperText
@@ -57,6 +58,7 @@ extension HorizonUI {
             self.small = small
             self.trailing = trailing.map { AnyView($0) }
             self._focused = focused ?? FocusState()
+            self.characterLimit = characterLimit
         }
 
         // MARK: - Body
@@ -146,6 +148,11 @@ extension HorizonUI {
             .background(Color.huiColors.surface.pageSecondary)
             .focused($focused)
             .disabled(disabled)
+            .onChange(of: text) { newValue, _ in
+                if let limit = characterLimit, newValue.count > limit {
+                    text = String(newValue.prefix(limit))
+                }
+            }
         }
 
         private var textFieldHeight: CGFloat {

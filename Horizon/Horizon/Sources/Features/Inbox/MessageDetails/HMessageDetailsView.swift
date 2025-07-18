@@ -247,6 +247,7 @@ struct HMessageDetailsView: View {
                     .foregroundStyle(HorizonUI.colors.surface.institution)
             }
             Text(model.headerTitle)
+                .lineLimit(2)
                 .huiTypography(.labelLargeBold)
                 .foregroundColor(HorizonUI.colors.surface.institution)
             Spacer()
