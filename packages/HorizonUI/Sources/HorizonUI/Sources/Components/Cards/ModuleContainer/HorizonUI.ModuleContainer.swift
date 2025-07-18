@@ -64,7 +64,7 @@ public extension HorizonUI {
             HStack(alignment: .top, spacing: .huiSpaces.space8) {
                 collapsedImage
                     .foregroundStyle(Color.huiColors.icon.default)
-                VStack(alignment: .leading, spacing: .huiSpaces.space4) {
+                VStack(alignment: .leading, spacing: .huiSpaces.space8) {
                     StatusView(status: status)
                     headerView
                     moduleOverview
@@ -95,11 +95,11 @@ public extension HorizonUI {
 
         private var moduleOverview: some View {
             HStack(spacing: .huiSpaces.space12) {
-                Text("\(numberOfItems.description) Items")
+                Text("\(numberOfItems.description) items")
                     .foregroundStyle(Color.huiColors.text.body)
 
                 if numberOfPastDueItems > 0 {
-                    Text("\(numberOfPastDueItems.description) Past Due")
+                    Text("\(numberOfPastDueItems.description) Past due")
                         .foregroundStyle(Color.huiColors.text.error)
                 }
 

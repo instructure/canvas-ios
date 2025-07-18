@@ -69,7 +69,7 @@ struct NotebookView: View {
                 if viewModel.isEmptyCardVisible {
                     emptyCard
                 } else {
-                    VStack {
+                    VStack(spacing: .huiSpaces.space24) {
                         filterButtons
                         notesBody
                         forwardBackButtons
@@ -77,7 +77,8 @@ struct NotebookView: View {
                 }
             }
         }
-        .padding(.huiSpaces.space16)
+        .padding(.top, viewModel.isNavigationBarVisible ? .huiSpaces.space16 : .zero)
+        .padding([.horizontal, .bottom], .huiSpaces.space16)
         .padding(.horizontal, .huiSpaces.space8)
         .animation(.smooth, value: viewModel.notes.count)
     }
@@ -134,9 +135,8 @@ struct NotebookView: View {
 
     @ViewBuilder
     private var filterButtons: some View {
-        if viewModel.isFiltersVisible {
+        VStack(spacing: .huiSpaces.space12) {
             NotebookSectionHeading(title: String(localized: "Filter", bundle: .horizon))
-                .padding(.top, .huiSpaces.space24)
             HStack(spacing: .huiSpaces.space12) {
                 ForEach(viewModel.courseNoteLabels, id: \.rawValue) { filter in
                     NoteCardFilterButton(type: filter, selected: viewModel.isEnabled(filter: filter))

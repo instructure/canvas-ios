@@ -30,7 +30,7 @@ public extension HorizonUI.ModuleContainer {
             switch self {
             case .optional: ""
             case .notStarted: String(localized: "Not started")
-            case .inProgress: String(localized: "In Progress")
+            case .inProgress: String(localized: "In progress")
             case .completed: String(localized: "Completed")
             case .locked: String(localized: "Locked")
             }
