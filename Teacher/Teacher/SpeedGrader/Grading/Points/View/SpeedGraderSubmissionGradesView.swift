@@ -74,24 +74,8 @@ struct SpeedGraderSubmissionGradesView: View {
                         }
                     }
                     .font(.heavy24)
-                    .foregroundColor(gradeViewModel.state.hasLateDeduction ? .textDark : .textDarkest)
+                    .foregroundColor(.textDarkest)
                     .padding(.horizontal, 16).padding(.vertical, 12)
-                    if gradeViewModel.state.hasLateDeduction {
-                        HStack {
-                            Text("Late", bundle: .teacher)
-                            Spacer()
-                            Text(gradeViewModel.state.pointsDeductedText)
-                        }
-                        .font(.medium14).foregroundColor(.textWarning)
-                        .padding(EdgeInsets(top: -10, leading: 16, bottom: -4, trailing: 16))
-                        HStack {
-                            Text("Final Grade", bundle: .teacher)
-                            Spacer()
-                            Text(gradeViewModel.state.finalGradeText)
-                        }
-                        .font(.heavy24).foregroundColor(.textDarkest)
-                        .padding(.horizontal, 16).padding(.vertical, 12)
-                    }
 
                     if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
                         slider
@@ -101,8 +85,16 @@ struct SpeedGraderSubmissionGradesView: View {
 
                     GradeStatusView(viewModel: gradeStatusViewModel)
 
+                    if gradeViewModel.shouldShowGradeSummary {
+                        GradeSummaryView(
+                            pointsRow: gradeViewModel.pointsRowModel,
+                            latePenaltyRow: gradeViewModel.latePenaltyRowModel,
+                            finalGradeRow: gradeViewModel.finalGradeRowModel
+                        )
+                        .paddingStyle(.horizontal, .standard)
+                    }
+
                     if assignment.rubric?.isEmpty == false {
-                        Divider().padding(.horizontal, 16)
                         RubricsView(
                             currentScore: rubricsViewModel.totalRubricScore,
                             containerFrameInGlobal: geometry.frame(in: .global),

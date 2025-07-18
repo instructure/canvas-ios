@@ -30,11 +30,14 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
-            finalGradeText: "85/100",
-            gradeText: "85",
+            originalGradeText: "85/100",
             pointsDeductedText: "0 pts",
             gradeAlertText: "85",
-            score: 85
+            score: 85,
+            pointsPossibleText: "100 pts",
+            gradingType: .points,
+            originalScoreWithoutMetric: "85",
+            finalGradeWithoutMetric: "85"
         )
     }
     private var gradeInteractorMock: GradeInteractorMock!
@@ -192,11 +195,14 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             isGraded: false,
             isExcused: false,
             isGradedButNotPosted: false,
-            finalGradeText: "",
-            gradeText: "",
+            originalGradeText: "",
             pointsDeductedText: "",
             gradeAlertText: "",
-            score: 0
+            score: 0,
+            pointsPossibleText: "100 pts",
+            gradingType: .points,
+            originalScoreWithoutMetric: nil,
+            finalGradeWithoutMetric: nil
         )
 
         gradeInteractorMock.gradeStateSubject.send(stateWithoutGrade)
@@ -210,11 +216,14 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
-            finalGradeText: "85/100",
-            gradeText: "85",
+            originalGradeText: "85/100",
             pointsDeductedText: "",
             gradeAlertText: "85",
-            score: 85
+            score: 85,
+            pointsPossibleText: "100 pts",
+            gradingType: .points,
+            originalScoreWithoutMetric: "85",
+            finalGradeWithoutMetric: "85"
         )
 
         gradeInteractorMock.gradeStateSubject.send(stateWithGrade)
@@ -228,15 +237,228 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             isGraded: false,
             isExcused: true,
             isGradedButNotPosted: false,
-            finalGradeText: "Excused",
-            gradeText: "",
+            originalGradeText: "Excused",
             pointsDeductedText: "",
             gradeAlertText: "Excused",
-            score: 0
+            score: 0,
+            pointsPossibleText: "100 pts",
+            gradingType: .points,
+            originalScoreWithoutMetric: nil,
+            finalGradeWithoutMetric: "Excused"
         )
 
         gradeInteractorMock.gradeStateSubject.send(stateWithExcusedGrade)
 
         XCTAssertFalse(viewModel.isNoGradeButtonDisabled)
+    }
+
+    // MARK: - GradeState Extension Tests
+
+    func test_pointsRowModel_returnsNilForPointsGradingWithoutLateDeduction() {
+        let state = GradeState(
+            hasLateDeduction: false,
+            isGraded: true,
+            isExcused: false,
+            isGradedButNotPosted: false,
+            originalGradeText: "85/100",
+            pointsDeductedText: "0 pts",
+            gradeAlertText: "85",
+            score: 85,
+            pointsPossibleText: "100 pts",
+            gradingType: .points,
+            originalScoreWithoutMetric: "85",
+            finalGradeWithoutMetric: "85"
+        )
+
+        XCTAssertNil(state.pointsRowModel)
+    }
+
+    func test_pointsRowModel_returnsViewModelForPointsGradingWithLateDeduction() {
+        let state = GradeState(
+            hasLateDeduction: true,
+            isGraded: true,
+            isExcused: false,
+            isGradedButNotPosted: false,
+            originalGradeText: "85/100",
+            pointsDeductedText: "10 pts",
+            gradeAlertText: "85",
+            score: 85,
+            pointsPossibleText: "100 pts",
+            gradingType: .points,
+            originalScoreWithoutMetric: "95",
+            finalGradeWithoutMetric: "85"
+        )
+
+        let result = state.pointsRowModel
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result?.currentPoints, "95")
+        XCTAssertEqual(result?.maxPointsWithUnit, "   / 100 pts")
+    }
+
+    func test_pointsRowModel_returnsViewModelForNonPointsGrading() {
+        let state = GradeState(
+            hasLateDeduction: false,
+            isGraded: true,
+            isExcused: false,
+            isGradedButNotPosted: false,
+            originalGradeText: "85%",
+            pointsDeductedText: "0 pts",
+            gradeAlertText: "85",
+            score: 85,
+            pointsPossibleText: "100 pts",
+            gradingType: .percent,
+            originalScoreWithoutMetric: "85",
+            finalGradeWithoutMetric: "85"
+        )
+
+        let result = state.pointsRowModel
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result?.currentPoints, "85")
+        XCTAssertEqual(result?.maxPointsWithUnit, "   / 100 pts")
+    }
+
+    func test_latePenaltyRowModel_returnsNilWhenNoLateDeduction() {
+        let state = GradeState(
+            hasLateDeduction: false,
+            isGraded: true,
+            isExcused: false,
+            isGradedButNotPosted: false,
+            originalGradeText: "85/100",
+            pointsDeductedText: "0 pts",
+            gradeAlertText: "85",
+            score: 85,
+            pointsPossibleText: "100 pts",
+            gradingType: .points,
+            originalScoreWithoutMetric: "85",
+            finalGradeWithoutMetric: "85"
+        )
+
+        XCTAssertNil(state.latePenaltyRowModel)
+    }
+
+    func test_latePenaltyRowModel_returnsViewModelWhenHasLateDeduction() {
+        let state = GradeState(
+            hasLateDeduction: true,
+            isGraded: true,
+            isExcused: false,
+            isGradedButNotPosted: false,
+            originalGradeText: "85/100",
+            pointsDeductedText: "-10 pts",
+            gradeAlertText: "85",
+            score: 85,
+            pointsPossibleText: "100 pts",
+            gradingType: .points,
+            originalScoreWithoutMetric: "95",
+            finalGradeWithoutMetric: "85"
+        )
+
+        let result = state.latePenaltyRowModel
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result?.penaltyText, "-10 pts")
+    }
+
+    func test_finalGradeRowModel_returnsCorrectSuffixForPointsGrading() {
+        let state = GradeState(
+            hasLateDeduction: false,
+            isGraded: true,
+            isExcused: false,
+            isGradedButNotPosted: false,
+            originalGradeText: "85/100",
+            pointsDeductedText: "0 pts",
+            gradeAlertText: "85",
+            score: 85,
+            pointsPossibleText: "100 pts",
+            gradingType: .points,
+            originalScoreWithoutMetric: "85",
+            finalGradeWithoutMetric: "85"
+        )
+
+        let result = state.finalGradeRowModel
+        XCTAssertEqual(result.currentGradeText, "85")
+        XCTAssertEqual(result.suffixText, "   / 100 pts")
+    }
+
+    func test_finalGradeRowModel_returnsCorrectSuffixForPercentGrading() {
+        let state = GradeState(
+            hasLateDeduction: false,
+            isGraded: true,
+            isExcused: false,
+            isGradedButNotPosted: false,
+            originalGradeText: "85%",
+            pointsDeductedText: "0 pts",
+            gradeAlertText: "85",
+            score: 85,
+            pointsPossibleText: "100 pts",
+            gradingType: .percent,
+            originalScoreWithoutMetric: "85",
+            finalGradeWithoutMetric: "85"
+        )
+
+        let result = state.finalGradeRowModel
+        XCTAssertEqual(result.currentGradeText, "85")
+        XCTAssertEqual(result.suffixText, "   %")
+    }
+
+    func test_finalGradeRowModel_returnsCorrectSuffixForLetterGrading() {
+        let state = GradeState(
+            hasLateDeduction: false,
+            isGraded: true,
+            isExcused: false,
+            isGradedButNotPosted: false,
+            originalGradeText: "B+",
+            pointsDeductedText: "0 pts",
+            gradeAlertText: "B+",
+            score: 87,
+            pointsPossibleText: "100 pts",
+            gradingType: .letter_grade,
+            originalScoreWithoutMetric: "87",
+            finalGradeWithoutMetric: "B+"
+        )
+
+        let result = state.finalGradeRowModel
+        XCTAssertEqual(result.currentGradeText, "B+")
+        XCTAssertEqual(result.suffixText, "")
+    }
+
+    func test_finalGradeRowModel_returnsCorrectSuffixForPassFailGrading() {
+        let state = GradeState(
+            hasLateDeduction: false,
+            isGraded: true,
+            isExcused: false,
+            isGradedButNotPosted: false,
+            originalGradeText: "Complete",
+            pointsDeductedText: "0 pts",
+            gradeAlertText: "Complete",
+            score: 100,
+            pointsPossibleText: "100 pts",
+            gradingType: .pass_fail,
+            originalScoreWithoutMetric: "100",
+            finalGradeWithoutMetric: "Complete"
+        )
+
+        let result = state.finalGradeRowModel
+        XCTAssertEqual(result.currentGradeText, "Complete")
+        XCTAssertEqual(result.suffixText, "")
+    }
+
+    func test_finalGradeRowModel_handlesNilFinalGradeWithoutMetric() {
+        let state = GradeState(
+            hasLateDeduction: false,
+            isGraded: false,
+            isExcused: false,
+            isGradedButNotPosted: false,
+            originalGradeText: "",
+            pointsDeductedText: "0 pts",
+            gradeAlertText: "",
+            score: 0,
+            pointsPossibleText: "100 pts",
+            gradingType: .points,
+            originalScoreWithoutMetric: nil,
+            finalGradeWithoutMetric: nil
+        )
+
+        let result = state.finalGradeRowModel
+        XCTAssertEqual(result.currentGradeText, "-")
+        XCTAssertEqual(result.suffixText, "   / 100 pts")
     }
 }

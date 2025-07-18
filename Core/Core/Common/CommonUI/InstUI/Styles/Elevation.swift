@@ -25,11 +25,13 @@ extension InstUI.Styles {
         public enum Shape {
             case card
             case pill
+            case cardLarge
 
             var cornerRadius: CGFloat {
                 switch self {
                 case .card: 6
                 case .pill: 100
+                case .cardLarge: 24
                 }
             }
         }

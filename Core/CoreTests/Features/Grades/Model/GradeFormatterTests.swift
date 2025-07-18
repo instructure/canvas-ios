@@ -471,4 +471,151 @@ class GradeFormatterTests: CoreTestCase {
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "--")
         XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
     }
+
+    // MARK: - originalScoreWithoutMetric Tests
+
+    func test_originalScoreWithoutMetric_handlesVariousInputs() {
+        let submission = Submission.make()
+
+        // Test with valid entered score
+        submission.enteredScore = 87.5
+        XCTAssertEqual(GradeFormatter.originalScoreWithoutMetric(for: submission), "87.5")
+
+        // Test with nil entered score
+        submission.enteredScore = nil
+        XCTAssertEqual(GradeFormatter.originalScoreWithoutMetric(for: submission), nil)
+
+        // Test decimal truncation
+        submission.enteredScore = 87.666666
+        XCTAssertEqual(GradeFormatter.originalScoreWithoutMetric(for: submission), "87.67")
+
+        // Test zero score
+        submission.enteredScore = 0
+        XCTAssertEqual(GradeFormatter.originalScoreWithoutMetric(for: submission), "0")
+
+        // Test whole number (should not show decimal)
+        submission.enteredScore = 100
+        XCTAssertEqual(GradeFormatter.originalScoreWithoutMetric(for: submission), "100")
+    }
+
+    // MARK: - finalGradeWithoutMetric Tests
+
+    func test_finalGradeWithoutMetric_handlesExcusedSubmissions() {
+        let assignment = Assignment.make()
+        let submission = Submission.make()
+        submission.excused = true
+
+        // Should return "Excused" regardless of grading type
+        assignment.gradingType = .points
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "Excused")
+
+        assignment.gradingType = .percent
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "Excused")
+
+        assignment.gradingType = .letter_grade
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "Excused")
+    }
+
+    func test_finalGradeWithoutMetric_handlesPointsGrading() {
+        let assignment = Assignment.make()
+        let submission = Submission.make()
+        assignment.gradingType = .points
+
+        // Test with valid score
+        submission.score = 85.5
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "85.5")
+
+        // Test with nil score
+        submission.score = nil
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), nil)
+
+        // Test with zero score
+        submission.score = 0
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "0")
+
+        // Test decimal truncation
+        submission.score = 87.666666
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "87.67")
+    }
+
+    func test_finalGradeWithoutMetric_handlesPercentGrading() {
+        let assignment = Assignment.make()
+        let submission = Submission.make()
+        assignment.gradingType = .percent
+
+        // Test with valid grade (removes % sign)
+        submission.grade = "85%"
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "85")
+
+        // Test with nil grade
+        submission.grade = nil
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), nil)
+
+        // Test with decimal percentage
+        submission.grade = "87.5%"
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "87.5")
+
+        // Test with percentage without % sign
+        submission.grade = "92"
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "92")
+    }
+
+    func test_finalGradeWithoutMetric_handlesLetterAndGpaGrading() {
+        let assignment = Assignment.make()
+        let submission = Submission.make()
+
+        // Test letter grade
+        assignment.gradingType = .letter_grade
+        submission.grade = "A-"
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "A-")
+
+        // Test GPA grade
+        assignment.gradingType = .gpa_scale
+        submission.grade = "3.7"
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "3.7")
+
+        // Test with nil grades
+        submission.grade = nil
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), nil)
+
+        assignment.gradingType = .letter_grade
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), nil)
+    }
+
+    func test_finalGradeWithoutMetric_handlesPassFailGrading() {
+        let assignment = Assignment.make()
+        let submission = Submission.make()
+        assignment.gradingType = .pass_fail
+
+        // Test standard pass/fail grades (localized)
+        submission.grade = "complete"
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "Complete")
+
+        submission.grade = "incomplete"
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "Incomplete")
+
+        submission.grade = "pass"
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "Pass")
+
+        submission.grade = "fail"
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "Fail")
+
+        // Test custom grade (returns as-is)
+        submission.grade = "Custom Grade"
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), "Custom Grade")
+
+        // Test nil grade
+        submission.grade = nil
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), nil)
+    }
+
+    func test_finalGradeWithoutMetric_handlesNotGradedType() {
+        let assignment = Assignment.make()
+        let submission = Submission.make()
+        assignment.gradingType = .not_graded
+        submission.grade = "some grade"
+
+        // Should always return nil for not graded type
+        XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission), nil)
+    }
 }

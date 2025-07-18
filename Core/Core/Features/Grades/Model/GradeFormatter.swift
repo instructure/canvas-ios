@@ -40,7 +40,7 @@ public class GradeFormatter {
         case oneDash
         case doubleDash
 
-        var stringValue: String {
+        public var stringValue: String {
             switch self {
             case .oneDash:
                 String(localized: "-", bundle: .core, comment: "placeholder for the score of an ungraded submission")
@@ -217,6 +217,59 @@ public class GradeFormatter {
     public static func truncate(_ value: Double, factor: Double = 100) -> NSNumber {
         let rounded = round(value * factor) / factor
         return NSNumber(value: rounded)
+    }
+
+    /// Returns the original score (before late penalties) as a plain string without metric suffixes.
+    /// This method ignores the "hide quantitative data" flag.
+    public static func originalScoreWithoutMetric(
+        for submission: Submission
+    ) -> String? {
+        guard let originalScore = submission.enteredScore else {
+            return nil
+        }
+
+        return numberFormatter.string(from: truncate(originalScore))
+    }
+
+    /// Returns the final grade (with late penalties applied) formatted according to the grading type without units,
+    /// (e.g., "85", "A", "Complete"), or nil if no grade exists. This method ignores the "hide quantitative data" flag.
+    public static func finalGradeWithoutMetric(
+        for assignment: Assignment,
+        submission: Submission
+    ) -> String? {
+        guard submission.excused != true else {
+            return String(localized: "Excused", bundle: .core)
+        }
+
+        switch assignment.gradingType {
+        case .points:
+            guard let score = submission.score else { return nil }
+            return numberFormatter.string(from: truncate(score))
+
+        case .percent:
+            guard let grade = submission.grade else { return nil }
+            return grade.replacingOccurrences(of: "%", with: "")
+
+        case .letter_grade, .gpa_scale:
+            return submission.grade
+
+        case .pass_fail:
+            switch submission.grade {
+            case "complete":
+                return String(localized: "Complete", bundle: .core)
+            case "incomplete":
+                return String(localized: "Incomplete", bundle: .core)
+            case "pass":
+                return String(localized: "Pass", bundle: .core)
+            case "fail":
+                return String(localized: "Fail", bundle: .core)
+            default:
+                return submission.grade
+            }
+
+        case .not_graded:
+            return nil
+        }
     }
 
     // For teachers & graders in submission list
