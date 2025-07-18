@@ -50,7 +50,7 @@ class GradeSliderViewModel {
             case .wholes: return 1.0
             }
         }
-        
+
         var decimalPlaces: Int {
             switch self {
             case .quarters: return 2
@@ -91,7 +91,7 @@ class GradeSliderViewModel {
         let precisionMode = GradePrecisionMode(maxPoints: maxPoints)
         numberFormatter.minimumFractionDigits = precisionMode.decimalPlaces
         numberFormatter.maximumFractionDigits = precisionMode.decimalPlaces
-        
+
         return numberFormatter.string(from: NSNumber(value: score)) ?? "\(score)"
     }
 }
