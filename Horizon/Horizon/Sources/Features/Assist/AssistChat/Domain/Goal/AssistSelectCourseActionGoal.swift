@@ -21,12 +21,6 @@ import Core
 import Foundation
 
 class AssistSelectCourseActionGoal: AssistGoal {
-
-    // MARK: - Privar Properties
-    private let options = [
-        AssistGoalOption(name: "Course Information", description: "The user is asking about course grades")
-    ]
-
     // MARK: - Dependencies
     private let environment: AssistDataEnvironment
     private let pine: DomainService
@@ -55,24 +49,39 @@ class AssistSelectCourseActionGoal: AssistGoal {
                 .eraseToAnyPublisher()
         }
         guard let response = response, response.isNotEmpty else {
-            return initialPrompt(history: history)
+            return initialPrompt(history: history, courseID: courseID)
         }
-        return askARAGQuestion(response: response, history: history, courseID: courseID)
+        return askARAGQuestion(history: history, courseID: courseID)
     }
 
     // MARK: - Private Methods
-    private func askARAGQuestion(response: String, history: [AssistChatMessage], courseID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        pine.api().flatMap { pineApi in
-            pineApi.makeRequest(
+    private func askARAGQuestion(question: String, courseID: String) -> AnyPublisher<String?, any Error> {
+        askARAGQuestion(
+            messages: [.init(text: question, role: .User)],
+            courseID: courseID
+        )
+        .eraseToAnyPublisher()
+    }
+
+    private func askARAGQuestion(messages: [DomainServiceConversationMessage], courseID: String) -> AnyPublisher<String?, any Error> {
+        pine.api().flatMap { pineAPI in
+            pineAPI.makeRequest(
                 PineQueryMutation(
-                    messages: history.domainServiceConversationMessages,
+                    messages: messages,
                     courseID: courseID
                 )
             )
             .compactMap { (ragData, _) in
-                .init(botResponse: ragData.data.query.response)
+                ragData.data.query.response
             }
+            .eraseToAnyPublisher()
         }
+        .eraseToAnyPublisher()
+    }
+
+    private func askARAGQuestion(history: [AssistChatMessage], courseID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
+        askARAGQuestion(messages: history.domainServiceConversationMessages, courseID: courseID)
+        .map { $0.map { AssistChatMessage(botResponse: $0) } }
         .eraseToAnyPublisher()
     }
 
@@ -87,18 +96,52 @@ class AssistSelectCourseActionGoal: AssistGoal {
         .eraseToAnyPublisher()
     }
 
-    private func initialPrompt(history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
-        courseName.map { courseName in
-            var prompt = String(localized: "What would you like to discuss today?", bundle: .horizon)
-            if let courseName = courseName {
-                let format = String(localized: "What would you like to discuss about the course %@?", bundle: .horizon)
-                prompt = String(format: format, courseName)
+    private func initialPrompt(history: [AssistChatMessage], courseID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
+        askARAGQuestion(question: .generateSuggestionsPrompt, courseID: courseID)
+            .flatMap { [weak self] suggestionsJSON in
+                guard let self = self else {
+                    return Just<AssistChatMessage?>(nil)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                let chipOptions = suggestionsJSON.map { self.parseChipOptions(from: $0) } ?? []
+                return courseName.map { courseName in
+                    AssistChatMessage(
+                        botResponse: courseName.map { .initialPrompt(with: $0) } ?? .initialPrompt(),
+                        chipOptions: chipOptions
+                    )
+                }
+                .eraseToAnyPublisher()
             }
-            return AssistChatMessage(botResponse: prompt)
+            .eraseToAnyPublisher()
+    }
+
+    private func parseChipOptions(from json: String) -> [AssistChipOption] {
+        guard let data = json.data(using: .utf8) else { return [] }
+        do {
+            let suggestions = try JSONDecoder().decode([AssistChipOption].self, from: data)
+            return suggestions
+        } catch {
+            print("Failed to decode suggestions JSON: \(error)")
+            return []
         }
-        .eraseToAnyPublisher()
     }
 }
+
+// swiftlint:disable line_length
+private extension String {
+    static var generateSuggestionsPrompt: String {
+        "Generate up to 5 suggestions for questions the user might ask about the course content. The response will be returned in JSON format. Each entry will have the JSON format {\"chip\": \"\", \"prompt\": \"\"}. \"chip\" is a 1-3 word abbreviation for each suggestion. \"prompt\" is a full sentence that the user can ask to get more information about the course content. The response should be in JSON format with no other text."
+    }
+    static func initialPrompt() -> String {
+        String(localized: "What would you like to discuss today?", bundle: .horizon)
+    }
+    static func initialPrompt(with courseName: String) -> String {
+        let format = String(localized: "What would you like to discuss about the course %@?", bundle: .horizon)
+        return String(format: format, courseName)
+    }
+}
+// swiftlint:enable line_length
 
 extension Array where Element == AssistChatMessage {
     var domainServiceConversationMessages: [DomainServiceConversationMessage] {

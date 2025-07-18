@@ -80,12 +80,15 @@ final class AssistChatInteractorLive: AssistChatInteractor {
             break
         }
 
+        // if the user said something, we publish it as a message
+        // otherwise, we just publish that we're loading
+        var response: AssistChatResponse = .init(chatHistory: history, isLoading: true)
         if let prompt = prompt {
             let message: AssistChatMessage = .init(userResponse: prompt)
-            let response: AssistChatResponse = .init(message, chatHistory: history, isLoading: true)
-            responsePublisher.send(.success(response))
-            history = response.chatHistory
+            response = .init(message, chatHistory: history, isLoading: true)
         }
+        responsePublisher.send(.success(response))
+        history = response.chatHistory
 
         goalCancellable = executeNextGoal(prompt: prompt, history: history)?.sink(
             receiveCompletion: { [weak self] completion in
