@@ -49,8 +49,8 @@ class HCreateMessageViewModel {
     }
     var isCourseFocused: Bool = false {
         didSet {
-            if isCourseFocused == true && peopleSelectionViewModel.isFocusedSubject.value == true {
-                peopleSelectionViewModel.isFocusedSubject.accept(false)
+            if isCourseFocused == true && recipientSelectionViewModel.isFocusedSubject.value == true {
+                recipientSelectionViewModel.isFocusedSubject.accept(false)
             }
         }
     }
@@ -61,7 +61,7 @@ class HCreateMessageViewModel {
         selectedCourse.isEmpty ||
             subject.trimmed().isEmpty ||
             body.trimmed().isEmpty ||
-            peopleSelectionViewModel.searchByPersonSelections.isEmpty ||
+            recipientSelectionViewModel.searchByPersonSelections.isEmpty ||
             isSending ||
             attachmentViewModel.isUploading
     }
@@ -70,9 +70,9 @@ class HCreateMessageViewModel {
     }
     var selectedCourse: String = "" {
         didSet {
-            peopleSelectionViewModel.clearSearch()
+            recipientSelectionViewModel.clearSearch()
             if let courseID = courseID {
-                peopleSelectionViewModel.setContext(.course(courseID))
+                recipientSelectionViewModel.setContext(.course(courseID))
             }
         }
     }
@@ -89,7 +89,7 @@ class HCreateMessageViewModel {
         inboxMessageInteractor.courses.value.first(where: { $0.name == selectedCourse })?.courseId
     }
     private var isSending = false
-    let peopleSelectionViewModel: RecipientSelectionViewModel = .init()
+    let recipientSelectionViewModel: RecipientSelectionViewModel = .init()
     private var subscriptions: Set<AnyCancellable> = []
 
     // MARK: - Dependencies
@@ -120,7 +120,7 @@ class HCreateMessageViewModel {
         self.inboxMessageInteractor = inboxMessageInteractor
         self.router = router
 
-        peopleSelectionViewModel
+        recipientSelectionViewModel
             .isFocusedSubject
             .sink { [weak self] isFocused in
                 if isFocused && self?.isCourseFocused == true {
@@ -136,6 +136,8 @@ class HCreateMessageViewModel {
                 self?.courses = courses
             }
             .store(in: &subscriptions)
+
+        listenForRecipientChange()
     }
 
     // MARK: - Inputs
@@ -184,7 +186,7 @@ class HCreateMessageViewModel {
                 parameters: MessageParameters(
                     subject: self.subject,
                     body: self.body,
-                    recipientIDs: self.peopleSelectionViewModel.recipientIDs,
+                    recipientIDs: self.recipientSelectionViewModel.recipientIDs,
                     attachmentIDs: attachmentIds,
                     context: .course(courseID),
                     bulkMessage: false
@@ -198,6 +200,19 @@ class HCreateMessageViewModel {
             )
             .store(in: &self.subscriptions)
         }
+    }
+
+    private func listenForRecipientChange() {
+        // This is here to triggeer a swift ui rerender when the recipient selection changes.
+        recipientSelectionViewModel
+            .personFilterSubject
+            .sink { [weak self] _ in
+                guard let self = self else {
+                    return
+                }
+                self.subject = self.subject.trimmed()
+            }
+            .store(in: &subscriptions)
     }
 
     private func refreshSentMessages() async {
