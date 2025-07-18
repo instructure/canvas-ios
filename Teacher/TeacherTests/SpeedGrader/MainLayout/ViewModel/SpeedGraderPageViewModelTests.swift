@@ -52,6 +52,7 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
 
         XCTAssertEqual(testee.selectedAttempt, submission)
         XCTAssertEqual(testee.studentAnnotationViewModel.submissionId, submission.id)
+        XCTAssertEqual(testee.isDetailsTabEmpty, true)
     }
 
     // MARK: - contextColor
@@ -91,7 +92,7 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
             latestSubmission: submission,
             contextColor: contextColor,
             gradeStatusInteractor: GradeStatusInteractorMock(),
-            submissionWordCountInteractor: SubmissionWordCountInteractorPreview(),
+            submissionWordCountInteractor: SubmissionWordCountInteractorMock(),
             customGradebookColumnsInteractor: CustomGradebookColumnsInteractorMock(),
             rubricsViewModel: rubricsViewModel,
             gradeViewModel: gradeViewModel,

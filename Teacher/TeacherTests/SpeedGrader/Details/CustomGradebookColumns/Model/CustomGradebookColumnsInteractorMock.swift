@@ -22,8 +22,11 @@ import Foundation
 @testable import Teacher
 
 class CustomGradebookColumnsInteractorMock: CustomGradebookColumnsInteractor {
+
+    private(set) var loadCustomColumnsDataCallsCount = 0
     func loadCustomColumnsData() -> AnyPublisher<Void, Error> {
-        Publishers.typedJust()
+        loadCustomColumnsDataCallsCount += 1
+        return Publishers.typedJust()
     }
 
     func getStudentNotesEntries(userId: String) -> AnyPublisher<[StudentNotesEntry], Error> {

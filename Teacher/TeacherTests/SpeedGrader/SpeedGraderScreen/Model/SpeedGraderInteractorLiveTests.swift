@@ -95,6 +95,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
         XCTAssertEqual(receivedData.assignment.name, testData.assignmentName)
         XCTAssertEqual(receivedData.focusedSubmissionIndex, 0)
         XCTAssertEqual(gradeStatusInteractorMock.fetchGradeStatusesCalled, true)
+        XCTAssertEqual(customGradebookColumnsInteractor.loadCustomColumnsDataCallsCount, 1)
     }
 
     func test_dataState_gradingBased_sorting() throws {
