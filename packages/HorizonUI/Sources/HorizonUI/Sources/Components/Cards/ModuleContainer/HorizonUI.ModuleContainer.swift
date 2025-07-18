@@ -64,7 +64,7 @@ public extension HorizonUI {
             HStack(alignment: .top, spacing: .huiSpaces.space8) {
                 collapsedImage
                     .foregroundStyle(Color.huiColors.icon.default)
-                VStack(alignment: .leading, spacing: .huiSpaces.space4) {
+                VStack(alignment: .leading, spacing: .huiSpaces.space8) {
                     StatusView(status: status)
                     headerView
                     moduleOverview
