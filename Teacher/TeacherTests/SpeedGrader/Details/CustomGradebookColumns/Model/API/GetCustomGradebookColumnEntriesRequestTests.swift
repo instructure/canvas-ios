@@ -16,33 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
+@testable import Core
+@testable import Teacher
 
-/// Stores properties for a Student Notes entry (aka `teacher_note` in API, `Notes` in web UI, `Student Notes` in mobile UI).
-/// There should be only one in the given context, but we support multiple.
-/// The `index` is not an ID coming from API, it's just a workaround to identify the entry.
-struct StudentNotesEntry: Identifiable, Equatable {
-    let index: Int
-    let title: String
-    let content: String
+class GetCustomGradebookColumnEntriesRequestTests: XCTestCase {
 
-    var id: Int { index }
-}
+    private static let testData = (
+        courseId: "some courseId",
+        columnId: "some columnId"
+    )
+    private lazy var testData = Self.testData
 
-#if DEBUG
-
-extension StudentNotesEntry {
-    public static func make(
-        index: Int = 0,
-        title: String = "",
-        content: String = ""
-    ) -> StudentNotesEntry {
-        .init(
-            index: index,
-            title: title,
-            content: content
+    func test_properties() {
+        let testee = GetCustomGradebookColumnEntriesRequest(
+            courseId: testData.courseId,
+            columnId: testData.columnId
         )
+
+        XCTAssertEqual(testee.method, .get)
+        XCTAssertEqual(testee.path, "courses/\(testData.courseId)/custom_gradebook_columns/\(testData.columnId)/data")
+        XCTAssertEqual(testee.courseId, testData.courseId)
+        XCTAssertEqual(testee.columnId, testData.columnId)
     }
 }
-
-#endif

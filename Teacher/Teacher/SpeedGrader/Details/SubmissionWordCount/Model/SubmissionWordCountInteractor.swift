@@ -41,14 +41,14 @@ final class SubmissionWordCountInteractorLive: SubmissionWordCountInteractor {
         return api.makeRequest(request)
             .map { $0.body }
             .map { response in
-                let submissionAttempt = response.submissionAttempts.first { $0.node.attempt == attempt }
+                let submissionAttempt = response.submissionAttempts.first { $0.attempt == attempt }
                 guard let submissionAttempt,
-                      let wordCount = submissionAttempt.node.wordCount
+                      let wordCount = submissionAttempt.wordCount
                 else { return nil }
 
                 // This check is needed for now, because API returns non-null `wordCount` values (like zero)
                 // for some not currently countable submission types, like "online_upload".
-                if submissionAttempt.node.submissionType == SubmissionType.online_text_entry.rawValue {
+                if submissionAttempt.submissionType == SubmissionType.online_text_entry.rawValue {
                     return Int(wordCount)
                 }
 

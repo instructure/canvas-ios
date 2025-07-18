@@ -65,6 +65,14 @@
 		5B95A33C2E210DC500022E70 /* SpeedGraderPageTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B95A33B2E210DC500022E70 /* SpeedGraderPageTab.swift */; };
 		5B95A3482E267B8F00022E70 /* StudentNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B95A3472E267B8D00022E70 /* StudentNotesView.swift */; };
 		5B989DDC2E2A64CA00945292 /* SubmissionCommentsInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B989DDB2E2A64CA00945292 /* SubmissionCommentsInteractorMock.swift */; };
+		5B989DE62E2AF28B00945292 /* GetCustomGradebookColumnEntriesRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B989DE42E2AF28B00945292 /* GetCustomGradebookColumnEntriesRequestTests.swift */; };
+		5B989DE82E2AF45400945292 /* GetCustomGradebookColumnsRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B989DE72E2AF45400945292 /* GetCustomGradebookColumnsRequestTests.swift */; };
+		5B989DEB2E2AF82C00945292 /* GetCustomGradebookColumnEntriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B989DEA2E2AF82C00945292 /* GetCustomGradebookColumnEntriesTests.swift */; };
+		5B989DED2E2B03B600945292 /* GetCustomGradebookColumnsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B989DEC2E2B03B600945292 /* GetCustomGradebookColumnsTests.swift */; };
+		5B989DEF2E2B063F00945292 /* CustomGradebookColumnsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B989DEE2E2B063F00945292 /* CustomGradebookColumnsInteractorTests.swift */; };
+		5B989DF12E2B227B00945292 /* SubmissionWordCountInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B989DF02E2B227B00945292 /* SubmissionWordCountInteractorTests.swift */; };
+		5B989DF52E2C4B9100945292 /* StudentNotesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B989DF42E2C4B9100945292 /* StudentNotesViewModelTests.swift */; };
+		5B989DF72E2C4BA700945292 /* SubmissionWordCountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B989DF62E2C4BA700945292 /* SubmissionWordCountViewModelTests.swift */; };
 		5B9C5C072DB9B04000103E21 /* SubmissionCommentsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9C5C062DB9B03A00103E21 /* SubmissionCommentsAssembly.swift */; };
 		5BB37BC22DB90F300096821B /* SubmissionCommentsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB37BC12DB90F270096821B /* SubmissionCommentsInteractor.swift */; };
 		5BDD37D72DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD37D62DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift */; };
@@ -350,6 +358,14 @@
 		5B95A33B2E210DC500022E70 /* SpeedGraderPageTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPageTab.swift; sourceTree = "<group>"; };
 		5B95A3472E267B8D00022E70 /* StudentNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentNotesView.swift; sourceTree = "<group>"; };
 		5B989DDB2E2A64CA00945292 /* SubmissionCommentsInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsInteractorMock.swift; sourceTree = "<group>"; };
+		5B989DE42E2AF28B00945292 /* GetCustomGradebookColumnEntriesRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomGradebookColumnEntriesRequestTests.swift; sourceTree = "<group>"; };
+		5B989DE72E2AF45400945292 /* GetCustomGradebookColumnsRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomGradebookColumnsRequestTests.swift; sourceTree = "<group>"; };
+		5B989DEA2E2AF82C00945292 /* GetCustomGradebookColumnEntriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomGradebookColumnEntriesTests.swift; sourceTree = "<group>"; };
+		5B989DEC2E2B03B600945292 /* GetCustomGradebookColumnsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomGradebookColumnsTests.swift; sourceTree = "<group>"; };
+		5B989DEE2E2B063F00945292 /* CustomGradebookColumnsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGradebookColumnsInteractorTests.swift; sourceTree = "<group>"; };
+		5B989DF02E2B227B00945292 /* SubmissionWordCountInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionWordCountInteractorTests.swift; sourceTree = "<group>"; };
+		5B989DF42E2C4B9100945292 /* StudentNotesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentNotesViewModelTests.swift; sourceTree = "<group>"; };
+		5B989DF62E2C4BA700945292 /* SubmissionWordCountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionWordCountViewModelTests.swift; sourceTree = "<group>"; };
 		5B9C5C062DB9B03A00103E21 /* SubmissionCommentsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsAssembly.swift; sourceTree = "<group>"; };
 		5BB37BC12DB90F270096821B /* SubmissionCommentsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsInteractor.swift; sourceTree = "<group>"; };
 		5BDD37D62DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPageViewModelTests.swift; sourceTree = "<group>"; };
@@ -787,6 +803,7 @@
 			isa = PBXGroup;
 			children = (
 				5B0BDD332E294BB000D41C2A /* Model */,
+				5B989DF32E2C4B7500945292 /* ViewModel */,
 			);
 			path = SubmissionWordCount;
 			sourceTree = "<group>";
@@ -795,6 +812,7 @@
 			isa = PBXGroup;
 			children = (
 				5B0BDD342E294BDF00D41C2A /* SubmissionWordCountInteractorMock.swift */,
+				5B989DF02E2B227B00945292 /* SubmissionWordCountInteractorTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -859,6 +877,7 @@
 			isa = PBXGroup;
 			children = (
 				5B4324BC2E206B0500561B77 /* Model */,
+				5B989DF22E2C4B6600945292 /* ViewModel */,
 			);
 			path = CustomGradebookColumns;
 			sourceTree = "<group>";
@@ -866,9 +885,46 @@
 		5B4324BC2E206B0500561B77 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5B989DE52E2AF28B00945292 /* API */,
+				5B989DE92E2AF80000945292 /* UseCase */,
 				5B4324BD2E206B1C00561B77 /* CustomGradebookColumnsInteractorMock.swift */,
+				5B989DEE2E2B063F00945292 /* CustomGradebookColumnsInteractorTests.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5B989DE52E2AF28B00945292 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5B989DE42E2AF28B00945292 /* GetCustomGradebookColumnEntriesRequestTests.swift */,
+				5B989DE72E2AF45400945292 /* GetCustomGradebookColumnsRequestTests.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		5B989DE92E2AF80000945292 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				5B989DEA2E2AF82C00945292 /* GetCustomGradebookColumnEntriesTests.swift */,
+				5B989DEC2E2B03B600945292 /* GetCustomGradebookColumnsTests.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		5B989DF22E2C4B6600945292 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B989DF42E2C4B9100945292 /* StudentNotesViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5B989DF32E2C4B7500945292 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B989DF62E2C4BA700945292 /* SubmissionWordCountViewModelTests.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		5BB37BC42DB90F410096821B /* Model */ = {
@@ -2194,15 +2250,20 @@
 				CF835A9E2E25094A00F33C1D /* SpeedGraderSubmissionGradesViewModelTests.swift in Sources */,
 				7D64A96D23626C22004EAEDF /* StatusCellTests.swift in Sources */,
 				CF56B71525F68CD3000DD32F /* SpeedGraderPageHeaderViewModelTests.swift in Sources */,
+				5B989DF12E2B227B00945292 /* SubmissionWordCountInteractorTests.swift in Sources */,
 				5BDD37D72DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift in Sources */,
 				CFB5ED652E27D46C000009DF /* GradeInteractorMock.swift in Sources */,
 				CFFEADC32E029A4300277F69 /* GradeStatusViewModelTests.swift in Sources */,
+				5B989DED2E2B03B600945292 /* GetCustomGradebookColumnsTests.swift in Sources */,
+				5B989DE82E2AF45400945292 /* GetCustomGradebookColumnsRequestTests.swift in Sources */,
 				0856FCFC2DCA4196009067CF /* SubmissionListViewModelTests.swift in Sources */,
 				5B0BDD352E294BDF00D41C2A /* SubmissionWordCountInteractorMock.swift in Sources */,
 				D9624A7E29C4AEF000F5303F /* QuizSubmissionListItemTests.swift in Sources */,
 				D9B4850029CCA8090004EBB5 /* QuizSubmissionListInteractorLiveTests.swift in Sources */,
+				5B989DF52E2C4B9100945292 /* StudentNotesViewModelTests.swift in Sources */,
 				7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */,
 				CFFEADB62E01B90F00277F69 /* GradeStatusInteractorMock.swift in Sources */,
+				5B989DEB2E2AF82C00945292 /* GetCustomGradebookColumnEntriesTests.swift in Sources */,
 				CF0F18922DC0E7EC0054D21A /* SpeedGraderInteractorLiveTests.swift in Sources */,
 				D9B484FE29CC91A70004EBB5 /* QuizSubmissionViewModelTests.swift in Sources */,
 				D9B4851E29CDED990004EBB5 /* QuizSubmissionListFilterTests.swift in Sources */,
@@ -2215,11 +2276,13 @@
 				CF64BDC42E27D834005929E6 /* RubricGradingInteractorMock.swift in Sources */,
 				EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */,
 				CF0F18902DC0DAB50054D21A /* SpeedGraderUserIdNormalizationTests.swift in Sources */,
+				5B989DF72E2C4BA700945292 /* SubmissionWordCountViewModelTests.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,
 				089AAC902DCC01370022F341 /* SubmissionListItemTests.swift in Sources */,
 				B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */,
 				0856FCFE2DCA41B6009067CF /* SubmissionListInteractorLiveTests.swift in Sources */,
 				D900B41A29CA0E230042852D /* QuizSubmissionListItemViewModelTests.swift in Sources */,
+				5B989DE62E2AF28B00945292 /* GetCustomGradebookColumnEntriesRequestTests.swift in Sources */,
 				7D3DC0CB252432ED00B0EBC1 /* SubmissionListViewControllerTests.swift in Sources */,
 				B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */,
 				089AAC942DCC02200022F341 /* MockSubmissionListInteractor.swift in Sources */,
@@ -2230,6 +2293,7 @@
 				CFFEADDC2E09B05300277F69 /* UpdateSubmissionGradeStatusTests.swift in Sources */,
 				CF05D8642E1E563400F98B90 /* CommentLibraryViewModelTests.swift in Sources */,
 				7D64A9872368C6C0004EAEDF /* AttendanceViewControllerTests.swift in Sources */,
+				5B989DEF2E2B063F00945292 /* CustomGradebookColumnsInteractorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

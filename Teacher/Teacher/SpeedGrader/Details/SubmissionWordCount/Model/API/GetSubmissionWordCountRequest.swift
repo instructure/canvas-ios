@@ -51,8 +51,10 @@ struct GetSubmissionWordCountRequest: APIGraphQLRequestable {
 }
 
 struct GetSubmissionWordCountResponse: Codable, Equatable {
-    var submissionAttempts: [Data.Submission.SubmissionHistoriesConnection.SubmissionHistoryEdge] {
-        data.submission.submissionHistoriesConnection.edges
+    typealias SubmissionAttempt = Data.Submission.SubmissionHistoriesConnection.SubmissionHistoryEdge.SubmissionHistory
+
+    var submissionAttempts: [SubmissionAttempt] {
+        data.submission.submissionHistoriesConnection.edges.map(\.node)
     }
 
     let data: Data
@@ -81,3 +83,35 @@ struct GetSubmissionWordCountResponse: Codable, Equatable {
         }
     }
 }
+
+#if DEBUG
+
+extension GetSubmissionWordCountResponse {
+    init(submissionAttempts: [SubmissionAttempt]) {
+        self.data = .init(
+            submission: .init(
+                submissionHistoriesConnection: .init(
+                    edges: submissionAttempts.map {
+                        .init(node: $0)
+                    }
+                )
+            )
+        )
+    }
+}
+
+extension GetSubmissionWordCountResponse.SubmissionAttempt {
+    static func make(
+        attempt: Int = 0,
+        wordCount: Double? = nil,
+        submissionType: String? = nil
+    ) -> Self {
+        .init(
+            attempt: attempt,
+            wordCount: wordCount,
+            submissionType: submissionType
+        )
+    }
+}
+
+#endif

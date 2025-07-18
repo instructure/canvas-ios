@@ -25,6 +25,8 @@ protocol CustomGradebookColumnsInteractor {
 
     /// Loads all Custom Columns data from API into CoreData, ignoring cache.
     /// It loads entries from all columns, for all students.
+    /// This method is intended to be called when opening SpeedGrader to make sure it starts with fresh data.
+    /// It's not intended to be called while paging between the students.
     func loadCustomColumnsData() -> AnyPublisher<Void, Error>
 
     /// Fetches all entries for the given `columnId`. Each entry is assumed to belong to a different student.
