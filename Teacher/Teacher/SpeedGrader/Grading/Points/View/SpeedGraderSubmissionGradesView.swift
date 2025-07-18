@@ -185,7 +185,7 @@ struct SpeedGraderSubmissionGradesView: View {
                 }
         }
         .font(.medium14).foregroundColor(.textDarkest)
-        .padding(.horizontal, 16).padding(.vertical, 12)
+        .padding(.horizontal, 16).padding(.vertical, 14)
     }
 
     func updateGrade(excused: Bool? = nil, noMark: Bool? = false, _ grade: Double? = nil) {
