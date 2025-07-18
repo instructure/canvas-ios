@@ -58,49 +58,31 @@ class SpeedGraderPageViewModel: ObservableObject {
 
     // MARK: - Private properties
 
-    private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
     init(
         assignment: Assignment,
         latestSubmission: Submission,
         contextColor: AnyPublisher<Color, Never>,
-        gradeStatusInteractor: GradeStatusInteractor,
-        submissionWordCountInteractor: SubmissionWordCountInteractor,
-        customGradebookColumnsInteractor: CustomGradebookColumnsInteractor,
-        rubricsViewModel: RubricsViewModel,
+        studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel,
         gradeViewModel: SpeedGraderSubmissionGradesViewModel,
-        env: AppEnvironment
+        gradeStatusViewModel: GradeStatusViewModel,
+        commentListViewModel: SubmissionCommentListViewModel,
+        rubricsViewModel: RubricsViewModel,
+        submissionWordCountViewModel: SubmissionWordCountViewModel,
+        studentNotesViewModel: StudentNotesViewModel
     ) {
         self.assignment = assignment
         self.submission = latestSubmission
-        selectedAttempt = latestSubmission
-        self.rubricsViewModel = rubricsViewModel
+        self.selectedAttempt = latestSubmission
+
+        self.studentAnnotationViewModel = studentAnnotationViewModel
         self.gradeViewModel = gradeViewModel
-        studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
-        commentListViewModel = SubmissionCommentsAssembly.makeCommentListViewModel(
-            assignment: assignment,
-            latestSubmission: latestSubmission,
-            latestAttemptNumber: latestSubmission.attempt,
-            contextColor: contextColor,
-            env: env
-        )
-        gradeStatusViewModel = GradeStatusViewModel(
-            userId: submission.userID,
-            submissionId: submission.id,
-            attempt: submission.attempt,
-            interactor: gradeStatusInteractor
-        )
-        submissionWordCountViewModel = SubmissionWordCountViewModel(
-            userId: submission.userID,
-            attempt: submission.attempt,
-            interactor: submissionWordCountInteractor
-        )
-        studentNotesViewModel = StudentNotesViewModel(
-            userId: submission.userID,
-            interactor: customGradebookColumnsInteractor
-        )
-        self.env = env
+        self.gradeStatusViewModel = gradeStatusViewModel
+        self.commentListViewModel = commentListViewModel
+        self.rubricsViewModel = rubricsViewModel
+        self.submissionWordCountViewModel = submissionWordCountViewModel
+        self.studentNotesViewModel = studentNotesViewModel
 
         contextColor.assign(to: &$contextColor)
 

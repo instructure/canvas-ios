@@ -72,31 +72,45 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
     private func makeViewModel(
         contextColor: AnyPublisher<Color, Never> = Publishers.typedEmpty()
     ) -> SpeedGraderPageViewModel {
-        let rubricGradingInteractor = RubricGradingInteractorMock()
-
-        let rubricsViewModel = RubricsViewModel(
-            assignment: assignment,
-            submission: submission,
-            interactor: rubricGradingInteractor
-        )
-
-        let gradeInteractor = GradeInteractorMock()
-        let gradeViewModel = SpeedGraderSubmissionGradesViewModel(
-            assignment: assignment,
-            submission: submission,
-            gradeInteractor: gradeInteractor
-        )
-
-        return .init(
+        .init(
             assignment: assignment,
             latestSubmission: submission,
             contextColor: contextColor,
-            gradeStatusInteractor: GradeStatusInteractorMock(),
-            submissionWordCountInteractor: SubmissionWordCountInteractorMock(),
-            customGradebookColumnsInteractor: CustomGradebookColumnsInteractorMock(),
-            rubricsViewModel: rubricsViewModel,
-            gradeViewModel: gradeViewModel,
-            env: environment
+            studentAnnotationViewModel: .init(submission: submission),
+            gradeViewModel: .init(
+                assignment: assignment,
+                submission: submission,
+                gradeInteractor: GradeInteractorMock()
+            ),
+            gradeStatusViewModel: .init(
+                userId: submission.userID,
+                submissionId: submission.id,
+                attempt: submission.attempt,
+                interactor: GradeStatusInteractorMock()
+            ),
+            commentListViewModel: .init(
+                assignment: assignment,
+                latestSubmission: submission,
+                latestAttemptNumber: submission.attempt,
+                currentUserId: "",
+                contextColor: contextColor,
+                interactor: SubmissionCommentsInteractorMock(),
+                env: environment
+            ),
+            rubricsViewModel: .init(
+                assignment: assignment,
+                submission: submission,
+                interactor: RubricGradingInteractorMock()
+            ),
+            submissionWordCountViewModel: .init(
+                userId: submission.userID,
+                attempt: submission.attempt,
+                interactor: SubmissionWordCountInteractorPreview()
+            ),
+            studentNotesViewModel: .init(
+                userId: submission.userID,
+                interactor: CustomGradebookColumnsInteractorMock()
+            )
         )
     }
 }

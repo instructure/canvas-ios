@@ -69,7 +69,6 @@ struct SpeedGraderPageView: View {
     // MARK: - Init
 
     init(
-        env: AppEnvironment,
         userIndexInSubmissionList: Int,
         viewModel: SpeedGraderPageViewModel,
         landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel,
