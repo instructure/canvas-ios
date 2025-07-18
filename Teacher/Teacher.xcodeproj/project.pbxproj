@@ -127,7 +127,6 @@
 		CF04D3162BC5714F009D8C86 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CF04D3152BC5714F009D8C86 /* PrivacyInfo.xcprivacy */; };
 		CF05D8622E1E561E00F98B90 /* CommentLibraryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF05D8612E1E561E00F98B90 /* CommentLibraryScreen.swift */; };
 		CF05D8642E1E563400F98B90 /* CommentLibraryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF05D8632E1E563400F98B90 /* CommentLibraryViewModelTests.swift */; };
-		CF0605E32D95C5A50014C2EC /* RubricCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0605E22D95C5A00014C2EC /* RubricCircle.swift */; };
 		CF06060C2D96EA100014C2EC /* RubricCriterionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF06060B2D96EA100014C2EC /* RubricCriterionView.swift */; };
 		CF0606122D9A9A990014C2EC /* RubricsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0606112D9A9A950014C2EC /* RubricsViewModel.swift */; };
 		CF0E06942DA8FFC6007AC131 /* SpeedGraderPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0E06932DA8FFC4007AC131 /* SpeedGraderPageViewModel.swift */; };
@@ -160,7 +159,6 @@
 		CFCADAF02D9D6E1D003796E7 /* RubricRatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCADAEF2D9D6E1B003796E7 /* RubricRatingViewModel.swift */; };
 		CFCADAF22D9D6FE4003796E7 /* RubricCustomRatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCADAF12D9D6FDF003796E7 /* RubricCustomRatingViewModel.swift */; };
 		CFCADAF42D9D871D003796E7 /* RubricRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCADAF32D9D871C003796E7 /* RubricRatingView.swift */; };
-		CFCADAF62D9D89D0003796E7 /* RubricCustomRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCADAF52D9D89CE003796E7 /* RubricCustomRatingView.swift */; };
 		CFCADAFB2D9D9AE0003796E7 /* RubricGradingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCADAFA2D9D9AD7003796E7 /* RubricGradingInteractor.swift */; };
 		CFD96BA72719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */; };
 		CFD96BA92719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */; };
@@ -388,7 +386,6 @@
 		CF04D3152BC5714F009D8C86 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		CF05D8612E1E561E00F98B90 /* CommentLibraryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLibraryScreen.swift; sourceTree = "<group>"; };
 		CF05D8632E1E563400F98B90 /* CommentLibraryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLibraryViewModelTests.swift; sourceTree = "<group>"; };
-		CF0605E22D95C5A00014C2EC /* RubricCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricCircle.swift; sourceTree = "<group>"; };
 		CF06060B2D96EA100014C2EC /* RubricCriterionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricCriterionView.swift; sourceTree = "<group>"; };
 		CF0606112D9A9A950014C2EC /* RubricsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricsViewModel.swift; sourceTree = "<group>"; };
 		CF0E06932DA8FFC4007AC131 /* SpeedGraderPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPageViewModel.swift; sourceTree = "<group>"; };
@@ -420,7 +417,6 @@
 		CFCADAEF2D9D6E1B003796E7 /* RubricRatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricRatingViewModel.swift; sourceTree = "<group>"; };
 		CFCADAF12D9D6FDF003796E7 /* RubricCustomRatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricCustomRatingViewModel.swift; sourceTree = "<group>"; };
 		CFCADAF32D9D871C003796E7 /* RubricRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricRatingView.swift; sourceTree = "<group>"; };
-		CFCADAF52D9D89CE003796E7 /* RubricCustomRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricCustomRatingView.swift; sourceTree = "<group>"; };
 		CFCADAFA2D9D9AD7003796E7 /* RubricGradingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricGradingInteractor.swift; sourceTree = "<group>"; };
 		CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewerViewModel.swift; sourceTree = "<group>"; };
 		CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewerViewModelTests.swift; sourceTree = "<group>"; };
@@ -1346,9 +1342,7 @@
 		CFCADAF72D9D9086003796E7 /* Ratings */ = {
 			isa = PBXGroup;
 			children = (
-				CF0605E22D95C5A00014C2EC /* RubricCircle.swift */,
 				8BDD3CFF2E269A1F00AA4D58 /* RubricRectangle.swift */,
-				CFCADAF52D9D89CE003796E7 /* RubricCustomRatingView.swift */,
 				CFCADAF32D9D871C003796E7 /* RubricRatingView.swift */,
 				8BDD3D022E27D37500AA4D58 /* RubricRatingsView.swift */,
 			);
@@ -1828,7 +1822,6 @@
 				3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */,
 				7D0A28E2251A8284004FB3B6 /* SpeedGraderPageHeaderView.swift in Sources */,
 				5B9C5C072DB9B04000103E21 /* SubmissionCommentsAssembly.swift in Sources */,
-				CF0605E32D95C5A50014C2EC /* RubricCircle.swift in Sources */,
 				CFCADAF42D9D871D003796E7 /* RubricRatingView.swift in Sources */,
 				CFFEADAE2E00705900277F69 /* SubmissionViewer.swift in Sources */,
 				7D742F452556566F00FD6CF1 /* OldCommentEditorView.swift in Sources */,
@@ -1873,7 +1866,6 @@
 				5B1E28662DC0C47000540B3D /* SubmissionCommentListCellViewModel.swift in Sources */,
 				D9624A5029AF94D000F5303F /* QuizSubmissionListInteractorPreview.swift in Sources */,
 				CF13E54C299D090500F57F69 /* QuizSubmissionListViewModel.swift in Sources */,
-				CFCADAF62D9D89D0003796E7 /* RubricCustomRatingView.swift in Sources */,
 				5BB37BC22DB90F300096821B /* SubmissionCommentsInteractor.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */,
 				D91C051D29AE10170032BFB1 /* QuizSubmissionListItemView.swift in Sources */,

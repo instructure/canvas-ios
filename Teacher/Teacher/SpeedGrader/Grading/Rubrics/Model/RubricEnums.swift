@@ -18,17 +18,16 @@
 
 import Foundation
 
-public struct RubricPadding {
-    static let all = CGFloat(16)
-    static let horizontal = CGFloat(16)
-    static let vertical = CGFloat(12)
+public enum RubricPadding: CGFloat {
+    case horizontal = 16
+    case vertical = 12
 }
 
-public struct RubricSpacing {
-    static let horizontal = CGFloat(16)
-    static let vertical = CGFloat(12)
+public enum RubricSpacing: CGFloat {
+    case horizontal = 16
+    case vertical = 12
 }
 
-public struct RubricSizes {
-    static let rectangleCornerRadius = CGFloat(24)
+public enum RubricSizes: CGFloat {
+    case rectangleCornerRadius = 24
 }

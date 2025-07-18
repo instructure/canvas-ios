@@ -42,8 +42,10 @@ class RubricRatingViewModel: ObservableObject, Identifiable, Equatable {
     let tooltip: String
     let shortDescription: String
     let longDescription: String
+    let hasLongDescription: Bool
     let value: String
     let accessibilityLabel: String
+    let shouldShowRubricRatings: Bool
 
     // MARK: - Private Properties
 
@@ -54,15 +56,18 @@ class RubricRatingViewModel: ObservableObject, Identifiable, Equatable {
     init(
         rating: CDRubricRating,
         criterionId: String,
-        interactor: RubricGradingInteractor
+        interactor: RubricGradingInteractor,
+        shouldShowRubricRatings: Bool
     ) {
         self.rating = rating
         self.criterionId = criterionId
         self.interactor = interactor
+        self.shouldShowRubricRatings = shouldShowRubricRatings
 
         tooltip = rating.shortDescription + (rating.longDescription.isEmpty ? "" : "\n" + rating.longDescription)
         shortDescription = rating.shortDescription
         longDescription = rating.longDescription
+        hasLongDescription = longDescription != ""
         value = rating.points.formatted()
         accessibilityLabel = rating.shortDescription.nilIfEmpty ?? value
         interactor.assessments

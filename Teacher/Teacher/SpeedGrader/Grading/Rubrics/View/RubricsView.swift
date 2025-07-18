@@ -20,17 +20,20 @@ import Core
 import SwiftUI
 
 struct RubricsView: View {
-    let currentScore: Double
-    let containerFrameInGlobal: CGRect
     @ObservedObject var viewModel: RubricsViewModel
-
-    @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
+    @Environment(\.appEnvironment) var env
 
     var body: some View {
+        header
+        content
+    }
+
+    var header: some View {
         HStack {
             Text("Rubrics", bundle: .teacher)
-                .font(.semibold16).foregroundColor(.textDarkest)
+                .font(.semibold16)
+                .foregroundColor(.textDarkest)
                 .accessibilityAddTraits(.isHeader)
             Spacer()
 
@@ -39,19 +42,18 @@ struct RubricsView: View {
                     .progressViewStyle(.indeterminateCircle(size: 18))
             }
         }
-        .padding(.horizontal, RubricPadding.horizontal)
-        .padding(.vertical, RubricPadding.vertical)
+        .padding(.horizontal, RubricPadding.horizontal.rawValue)
+        .padding(.vertical, RubricPadding.vertical.rawValue)
+    }
 
-        VStack(spacing: RubricSpacing.vertical) {
+    var content: some View {
+        VStack(spacing: RubricSpacing.vertical.rawValue) {
             ForEach(viewModel.criterionViewModels) { viewModel in
-                RubricCriterionView(
-                    containerFrameInGlobal: containerFrameInGlobal,
-                    viewModel: viewModel
-                )
+                RubricCriterionView(viewModel: viewModel)
             }
         }
         .multilineTextAlignment(.leading)
-        .padding(.horizontal, RubricPadding.horizontal)
+        .padding(.horizontal, RubricPadding.horizontal.rawValue)
         .onAppear {
             viewModel.controller = controller
         }

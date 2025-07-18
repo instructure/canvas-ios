@@ -21,20 +21,16 @@ import Core
 
 struct RubricRatingView: View {
     @ObservedObject var viewModel: RubricRatingViewModel
+
     let isExpanded: Bool
     let value: Text
-    let hasLongDescription: Bool
-    var rubricRectangle: RubricRectangle<Text> {
-        RubricRectangle(isOn: $viewModel.isSelected, changeBackgroundOnTap: !isExpanded) {
-            value
-        }
-    }
+    let expandedFrameHeight: CGFloat
 
     init(viewModel: RubricRatingViewModel, isExpanded: Bool) {
         self.viewModel = viewModel
         self.isExpanded = isExpanded
         self.value = Text(viewModel.value)
-        self.hasLongDescription = viewModel.longDescription != ""
+        self.expandedFrameHeight = viewModel.hasLongDescription ? 90 : 70
     }
 
     var body: some View {
@@ -46,22 +42,20 @@ struct RubricRatingView: View {
     }
 
     private var expanded: some View {
-        let height: CGFloat = hasLongDescription ? 90 : 70
-
-        return ZStack {
-            rectangleView
-            HStack(alignment: .top, spacing: RubricSpacing.horizontal) {
+        HStack(alignment: .top, spacing: RubricSpacing.horizontal.rawValue) {
+            if viewModel.shouldShowRubricRatings {
                 rubricRectangle
-                VStack {
-                    descriptionView
-                }
-                Spacer()
+            } else {
+                InstUI.RadioButton(isSelected: viewModel.isSelected)
             }
-            .padding(.horizontal, RubricPadding.horizontal)
-            .padding(.vertical, RubricPadding.vertical)
+            descriptionView
+            Spacer()
         }
+        .padding(.horizontal, RubricPadding.horizontal.rawValue)
+        .padding(.vertical, RubricPadding.vertical.rawValue)
+        .frame(minHeight: expandedFrameHeight, maxHeight: expandedFrameHeight)
+        .background(rectangleView)
         .onTapGesture { viewModel.isSelected.toggle() }
-        .frame(minHeight: height, maxHeight: height)
     }
 
     private var collapsed: some View {
@@ -72,12 +66,17 @@ struct RubricRatingView: View {
             .accessibility(label: Text(viewModel.accessibilityLabel))
     }
 
+    private var rubricRectangle: some View {
+        RubricRectangle(isOn: $viewModel.isSelected, changeBackgroundOnTap: !isExpanded) { value }
+    }
+
     @ViewBuilder
     private var rectangleView: some View {
-        if viewModel.isSelected {
-            RoundedRectangle(cornerRadius: RubricSizes.rectangleCornerRadius).fill(.tint)
+        let roundedRectangle = RoundedRectangle(cornerRadius: RubricSizes.rectangleCornerRadius.rawValue)
+        if viewModel.isSelected, viewModel.shouldShowRubricRatings {
+            roundedRectangle.fill(.tint)
         } else {
-            RoundedRectangle(cornerRadius: RubricSizes.rectangleCornerRadius).fill(.background)
+            roundedRectangle.fill(.background)
         }
     }
 
@@ -88,6 +87,6 @@ struct RubricRatingView: View {
             Text(viewModel.longDescription)
                 .font(.regular14)
         }
-        .foregroundStyle(viewModel.isSelected ? .textLightest : .textDarkest)
+        .foregroundStyle(viewModel.isSelected && viewModel.shouldShowRubricRatings ? .textLightest : .textDarkest)
     }
 }

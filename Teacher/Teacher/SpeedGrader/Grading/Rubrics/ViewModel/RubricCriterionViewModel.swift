@@ -47,6 +47,9 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
     var longDescription: String {
         criterion.longDescription
     }
+    var hasLongDescription: Bool {
+        longDescription != ""
+    }
     var points: Int {
         Int(criterion.points)
     }
@@ -92,7 +95,8 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
                 RubricRatingViewModel(
                     rating: $0,
                     criterionId: criterion.id,
-                    interactor: interactor
+                    interactor: interactor,
+                    shouldShowRubricRatings: !isFreeFormCommentsEnabled
                 )
             }
         customRatingViewModel = RubricCustomRatingViewModel(criterion: criterion, interactor: interactor)

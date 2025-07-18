@@ -114,12 +114,9 @@ struct SubmissionGrades: View {
 
                     if assignment.rubric?.isEmpty == false {
                         Divider().padding(.horizontal, 16)
-                        RubricsView(
-                            currentScore: rubricsViewModel.totalRubricScore,
-                            containerFrameInGlobal: geometry.frame(in: .global),
-                            viewModel: rubricsViewModel
-                        )
-                        .background(Color.backgroundLight)
+                        RubricsView(viewModel: rubricsViewModel)
+                            .background(Color.backgroundLight)
+                            .padding(.bottom, 16)
                     }
                 }.padding(.bottom, 16)
             } }

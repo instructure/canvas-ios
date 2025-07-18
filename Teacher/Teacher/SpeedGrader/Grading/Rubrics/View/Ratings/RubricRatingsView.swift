@@ -21,15 +21,14 @@ import Core
 
 struct RubricRatingsView: View {
     @ObservedObject var viewModel: RubricCriterionViewModel
+
     var isExpanded: Bool
     let selectedRating: RubricRatingViewModel?
-    let hasLongDescription: Bool
 
     init(viewModel: RubricCriterionViewModel, isExpanded: Bool) {
         self.viewModel = viewModel
         self.isExpanded = isExpanded
         self.selectedRating = viewModel.ratingViewModels.first(where: \.isSelected)
-        self.hasLongDescription = viewModel.longDescription != ""
     }
 
     var body: some View {
@@ -42,39 +41,61 @@ struct RubricRatingsView: View {
 
     var collapsed: some View {
         VStack(alignment: .leading) {
-            HStack(spacing: RubricSpacing.horizontal) {
-                ForEach(viewModel.ratingViewModels) { ratingViewModel in
-                    RubricRatingView(viewModel: ratingViewModel, isExpanded: isExpanded)
+            if viewModel.shouldShowRubricRatings {
+                HStack(spacing: RubricSpacing.horizontal.rawValue) {
+                    ForEach(viewModel.ratingViewModels) { ratingViewModel in
+                        RubricRatingView(
+                            viewModel: ratingViewModel,
+                            isExpanded: isExpanded
+                        )
+                    }
                 }
             }
             if let selectedRating {
-                ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 24)
-                        .fill(.tint)
-                    Text(selectedRating.tooltip)
-                        .font(.regular14)
-                        .foregroundColor(.textLightest)
-                        .padding(RubricPadding.vertical)
-                }
+                selectedRatingLine
             }
         }
-        .padding(.horizontal, RubricPadding.horizontal)
+        .padding(.horizontal, RubricPadding.horizontal.rawValue)
     }
 
     var expanded: some View {
         VStack(alignment: .leading, spacing: 0) {
-            if hasLongDescription {
+            if viewModel.hasLongDescription {
                 Text(viewModel.longDescription)
-                    .padding(.horizontal, RubricPadding.horizontal)
-                    .padding(.vertical, RubricPadding.vertical)
+                    .font(.regular14)
+                    .padding(.horizontal, RubricPadding.horizontal.rawValue)
+                    .padding(.vertical, RubricPadding.vertical.rawValue)
             }
             ForEach(viewModel.ratingViewModels) { ratingViewModel in
-                RubricRatingView(viewModel: ratingViewModel, isExpanded: isExpanded)
+                RubricRatingView(
+                    viewModel: ratingViewModel,
+                    isExpanded: isExpanded
+                )
                 if let lastRatingViewModel = viewModel.ratingViewModels.last, ratingViewModel != lastRatingViewModel {
                     InstUI.Divider()
-                        .padding(.horizontal, RubricPadding.horizontal)
+                        .padding(.horizontal, RubricPadding.horizontal.rawValue)
                 }
             }
         }
+    }
+
+    var selectedRatingLine: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(selectedRating!.shortDescription)
+                    .font(.semibold16)
+                if selectedRating!.longDescription != "" {
+                    Text(selectedRating!.longDescription)
+                        .font(.regular14)
+                }
+            }
+            Spacer()
+        }
+        .foregroundColor(.textLightest)
+        .padding(RubricPadding.vertical.rawValue)
+        .background(
+            RoundedRectangle(cornerRadius: RubricSizes.rectangleCornerRadius.rawValue)
+                .fill(.tint)
+        )
     }
 }

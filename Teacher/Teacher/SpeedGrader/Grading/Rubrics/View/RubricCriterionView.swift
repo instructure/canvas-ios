@@ -21,29 +21,11 @@ import SwiftUI
 
 struct RubricCriterionView: View {
     @Environment(\.viewController) var controller
-    private let containerFrameInGlobal: CGRect
     @ObservedObject var viewModel: RubricCriterionViewModel
     @State private var isExpanded: Bool = false
 
-    init(
-        containerFrameInGlobal: CGRect,
-        viewModel: RubricCriterionViewModel
-    ) {
-        self.containerFrameInGlobal = containerFrameInGlobal
-        self.viewModel = viewModel
-    }
-
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: RubricSizes.rectangleCornerRadius)
-                .fill(Color.backgroundLightest)
-            mainView
-                .padding(.vertical, RubricPadding.vertical)
-        }
-    }
-
-    private var mainView: some View {
-        VStack(alignment: .leading, spacing: RubricSpacing.vertical) {
+        VStack(alignment: .leading, spacing: RubricSpacing.vertical.rawValue) {
             descriptionLine
             if viewModel.shouldShowRubricNotUsedForScoringMessage {
                 notUsedForScoringLine
@@ -53,20 +35,28 @@ struct RubricCriterionView: View {
                 freeFormRubricCommentBubbleWithEditButton(comment, criteriaID: viewModel.criterionId)
             }
             InstUI.Divider()
-            scoreLine
-            InstUI.Divider()
+            if viewModel.shouldShowRubricRatings {
+                scoreLine
+                InstUI.Divider()
+            }
             noteLine
         }
+        .padding(.vertical, RubricPadding.vertical.rawValue)
+        .background(
+            RoundedRectangle(cornerRadius: RubricSizes.rectangleCornerRadius.rawValue)
+                .fill(Color.backgroundLightest)
+        )
     }
 
     private var descriptionLine: some View {
         HStack {
             Text(viewModel.description)
-                .font(.semibold16).foregroundColor(.textDarkest)
+                .font(.semibold16)
+                .foregroundColor(.textDarkest)
             Spacer()
             expandButton
         }
-        .padding(.horizontal, RubricPadding.horizontal)
+        .padding(.horizontal, RubricPadding.horizontal.rawValue)
     }
 
     private var expandButton: some View {
@@ -82,9 +72,10 @@ struct RubricCriterionView: View {
         Text("This criterion will not impact the score.", bundle: .teacher)
             .font(.regular12).foregroundColor(.textDark)
             .padding(.top, 2)
-            .padding(.horizontal, RubricPadding.horizontal)
+            .padding(.horizontal, RubricPadding.horizontal.rawValue)
     }
 
+    // TODO: Upgrade to be editable (TextField) as it is on the Grades view
     private var scoreLine: some View {
         HStack {
             Text("Score")
@@ -98,14 +89,15 @@ struct RubricCriterionView: View {
                 .font(.regular16)
                 .foregroundStyle(Color.textDark)
         }
-        .padding(.horizontal, RubricPadding.horizontal)
+        .padding(.horizontal, RubricPadding.horizontal.rawValue)
     }
 
+    // TODO: Update comment (Rubric Note) feature (everything under this line)
     private var noteLine: some View {
         Text("Rubric Note")
             .font(.regular14)
             .foregroundStyle(Color.textDark)
-            .padding(.horizontal, RubricPadding.horizontal)
+            .padding(.horizontal, RubricPadding.horizontal.rawValue)
     }
 
     private func freeFormRubricCommentBubbleWithEditButton(_ comment: String, criteriaID: String) -> some View {
