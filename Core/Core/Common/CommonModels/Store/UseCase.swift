@@ -51,7 +51,13 @@ public extension UseCase {
     func reset(context _: NSManagedObjectContext) {
         // no-op
     }
+}
 
+// MARK: - The actual UseCase logic
+
+public extension UseCase {
+
+    /// Cache expiration check used by the legacy `Store`.
     func hasExpired(in client: NSManagedObjectContext) -> Bool {
         guard let cacheKey = cacheKey, !ProcessInfo.isUITest else { return true }
         var expired = true
@@ -63,6 +69,7 @@ public extension UseCase {
         return expired
     }
 
+    /// Private helper method, used by both closure based and reactive `fetch()` methods.
     func updateTTL(in client: NSManagedObjectContext) {
         guard let cacheKey = cacheKey else { return }
         let predicate = NSPredicate(format: "%K == %@", #keyPath(TTL.key), cacheKey)
@@ -71,6 +78,7 @@ public extension UseCase {
         cache.lastRefresh = Clock.now
     }
 
+    /// Closure based `fetch()`, used by the legacy `Store` and directly from other places.
     func fetch(environment: AppEnvironment = .shared, force: Bool = false, _ callback: RequestCallback? = nil) {
         // Make sure we write to the database that initiated this request
         let database = environment.database
@@ -106,6 +114,7 @@ public extension UseCase {
         }
     }
 
+    /// Cache expiration check used by the `ReactiveStore`.
     func hasCacheExpired(environment: AppEnvironment = .shared) -> Future<Bool, Never> {
         Future<Bool, Never> { promise in
             environment.database.performWriteTask { context in
@@ -114,6 +123,7 @@ public extension UseCase {
         }
     }
 
+    /// Reactive `fetch()`, used by the `ReactiveStore` and directly from other places.
     func fetchWithFuture(environment: AppEnvironment = .shared) -> Future<URLResponse?, Error> {
         Future<URLResponse?, Error> { promise in
             self.makeRequest(environment: environment) { response, urlResponse, error in
@@ -145,6 +155,9 @@ public extension UseCase {
     }
 }
 
+// MARK: - API UseCases
+
+/// A `UseCase` that provides a default `makeRequest()` implementation which uses the provided API `request`.
 public protocol APIUseCase: UseCase {
     associatedtype Request: APIRequestable
     var request: Request { get }
@@ -162,6 +175,9 @@ public extension APIUseCase where Response == Request.Response {
     }
 }
 
+/// An `APIUseCase` that deletes all existing CoreData entities matching `scope` before each `write`.
+/// This is needed when the new collection should replace the old collection as a whole.
+/// Otherwise elements not in the new collection would stay in CoreData, which is usually a bug.
 public protocol CollectionUseCase: APIUseCase {}
 public extension CollectionUseCase {
     func reset(context: NSManagedObjectContext) {
@@ -169,6 +185,7 @@ public extension CollectionUseCase {
     }
 }
 
+/// An `APIUseCase` that sends `request` and on success it deletes all CoreData entities matching `scope`.
 public protocol DeleteUseCase: APIUseCase {}
 public extension DeleteUseCase {
     func write(response _: Response?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
@@ -200,6 +217,11 @@ public struct GetNextUseCase<U: UseCase>: APIUseCase {
     }
 }
 
+// MARK: - WriteableModel
+
+/// Defines basic `save()` methods for CoreData entities which doesn't require additional parameters besides their corresponding API model.
+/// These allow for default `UseCase.write()` implementations, making the `UseCase` using the entity a bit simpler.
+/// The associated type `JSON` is the corresponding API model used to save the entity.
 public protocol WriteableModel {
     associatedtype JSON
 
@@ -235,6 +257,9 @@ public extension UseCase where Model: WriteableModel, Response: Collection, Mode
     }
 }
 
+// MARK: - Local UseCases
+
+/// Does not send out an API request, only fetches the entities from CoreData.
 public class LocalUseCase<T>: UseCase where T: NSManagedObject {
     public typealias Model = T
     // Response doesn't matter so this is just a Codable stub
@@ -255,6 +280,7 @@ public class LocalUseCase<T>: UseCase where T: NSManagedObject {
     public func write(response _: Int?, urlResponse _: URLResponse?, to _: NSManagedObjectContext) {}
 }
 
+/// A `LocalUseCase` that deletes all CoreData entities matching `scope`.
 public class DeleteLocalUseCase<T>: UseCase where T: NSManagedObject {
     public typealias Model = T
     // Response doesn't matter so this is just a Codable stub
