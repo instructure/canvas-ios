@@ -71,7 +71,7 @@ class AssistSelectCourseGoal: AssistGoal {
     }
 
     private func initialPrompt(history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
-        let promptFirstTime = String(localized: "Hello! Which course you'd like to discuss today?", bundle: .horizon)
+        let promptFirstTime = String(localized: "Hello! Which course would you like to discuss today?", bundle: .horizon)
         let promptAgain = String(localized: "Sorry, can we try that again? Which course is it you'd like to discuss?", bundle: .horizon)
         let didIJustAskThis = history.count > 1 && history[history.count - 2].text?.contains(promptFirstTime) == true
         let prompt = didIJustAskThis ? promptAgain : promptFirstTime
