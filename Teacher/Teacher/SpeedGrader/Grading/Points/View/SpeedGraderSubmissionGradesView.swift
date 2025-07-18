@@ -19,30 +19,21 @@
 import Core
 import SwiftUI
 
-struct SubmissionGrades: View {
+struct SpeedGraderSubmissionGradesView: View {
     let assignment: Assignment
     let containerHeight: CGFloat
-    @ObservedObject var submission: Submission
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
-
-    @State var isSaving = false
 
     @State var showTooltip = false
     @State var sliderCleared = false
     @State var sliderExcused = false
     @State var sliderTimer: Timer?
-    @State var sliderValue: Double?
 
     @ObservedObject var rubricsViewModel: RubricsViewModel
     @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
-
-    var hasLateDeduction: Bool {
-        submission.late &&
-            (submission.pointsDeducted ?? 0) > 0 &&
-            submission.grade?.isEmpty == false
-    }
+    @ObservedObject var gradeViewModel: SpeedGraderSubmissionGradesViewModel
 
     var body: some View {
         if assignment.moderatedGrading {
@@ -59,22 +50,17 @@ struct SubmissionGrades: View {
                         Text("Grade", bundle: .teacher)
                             .accessibilityAddTraits(.isHeader)
                         Spacer()
-                        if isSaving {
+                        if gradeViewModel.isSaving {
                             ProgressView()
                                 .progressViewStyle(.indeterminateCircle(size: 24))
                         } else if assignment.gradingType == .not_graded {
                             Text("Not Graded", bundle: .teacher)
                         } else {
                             Button(action: promptNewGrade, label: {
-                                if submission.excused == true {
+                                if gradeViewModel.state.isExcused {
                                     Text("Excused", bundle: .teacher)
-                                } else if submission.grade?.isEmpty == false {
-                                    Text(GradeFormatter.longString(
-                                        for: assignment,
-                                        submission: submission,
-                                        rubricScore: rubricsViewModel.isRubricScoreAvailable ? rubricsViewModel.totalRubricScore : nil,
-                                        final: false
-                                    ))
+                                } else if gradeViewModel.state.isGraded {
+                                    Text(gradeViewModel.state.originalGradeText)
                                 } else {
                                     Image.addSolid.foregroundStyle(.tint)
                                 }
@@ -82,33 +68,36 @@ struct SubmissionGrades: View {
                             .accessibility(hint: Text("Prompts for an updated grade", bundle: .teacher))
                             .identifier("SpeedGrader.gradeButton")
                         }
-                        if submission.grade?.isEmpty == false, submission.postedAt == nil {
+                        if gradeViewModel.state.isGradedButNotPosted {
                             Image.offLine.foregroundColor(.textDanger)
                                 .padding(.leading, 12)
                         }
                     }
                     .font(.heavy24)
-                    .foregroundColor(hasLateDeduction ? .textDark : .textDarkest)
+                    .foregroundColor(gradeViewModel.state.hasLateDeduction ? .textDark : .textDarkest)
                     .padding(.horizontal, 16).padding(.vertical, 12)
-                    if hasLateDeduction, let deducted = submission.pointsDeducted {
+                    if gradeViewModel.state.hasLateDeduction {
                         HStack {
                             Text("Late", bundle: .teacher)
                             Spacer()
-                            Text("\(-deducted, specifier: "%g") pts", bundle: .core)
+                            Text(gradeViewModel.state.pointsDeductedText)
                         }
                         .font(.medium14).foregroundColor(.textWarning)
                         .padding(EdgeInsets(top: -10, leading: 16, bottom: -4, trailing: 16))
                         HStack {
                             Text("Final Grade", bundle: .teacher)
                             Spacer()
-                            Text(GradeFormatter.longString(for: assignment, submission: submission, final: true))
+                            Text(gradeViewModel.state.finalGradeText)
                         }
                         .font(.heavy24).foregroundColor(.textDarkest)
                         .padding(.horizontal, 16).padding(.vertical, 12)
                     }
+
                     if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
                         slider
                     }
+
+                    noGradeAndExcuseButtons
 
                     GradeStatusView(viewModel: gradeStatusViewModel)
 
@@ -123,11 +112,30 @@ struct SubmissionGrades: View {
                 }.padding(.bottom, 16)
             } }
             .animation(.smooth, value: gradeStatusViewModel.isShowingDaysLateSection)
+            .errorAlert(
+                isPresented: $gradeViewModel.isShowingErrorAlert,
+                presenting: gradeViewModel.errorAlertViewModel
+            )
 
             if rubricsViewModel.commentingOnCriterionID != nil {
                 commentEditor()
             }
         }
+    }
+
+    private var noGradeAndExcuseButtons: some View {
+        HStack(spacing: 16) {
+            SpeedGraderButton(title: String(localized: "No Grade", bundle: .teacher)) {
+                gradeViewModel.removeGrade()
+            }
+            .disabled(gradeViewModel.isNoGradeButtonDisabled)
+
+            SpeedGraderButton(title: String(localized: "Excuse Student", bundle: .teacher)) {
+                gradeViewModel.excuseStudent()
+            }
+            .disabled(gradeViewModel.state.isExcused)
+        }
+        .paddingStyle(.horizontal, .standard)
     }
 
     private func commentEditor() -> some View {
@@ -147,7 +155,7 @@ struct SubmissionGrades: View {
 
     @ViewBuilder
     var slider: some View {
-        let score = sliderValue ?? submission.enteredScore ?? submission.score ?? 0
+        let score = gradeViewModel.sliderValue
         let possible = assignment.pointsPossible ?? 0
         let tooltipText =
             sliderCleared ? Text("No Grade", bundle: .teacher) :
@@ -200,40 +208,37 @@ struct SubmissionGrades: View {
     }
 
     func updateGrade(excused: Bool? = nil, noMark: Bool? = false, _ grade: Double? = nil) {
-        var gradeString: String?
         if excused == true {
-            gradeString = nil
+            gradeViewModel.excuseStudent()
         } else if noMark == true {
-            gradeString = ""
-        } else {
-            if let grade = grade {
-                gradeString = String(grade)
-            }
+            gradeViewModel.removeGrade()
+        } else if let grade = grade {
+            gradeViewModel.setPointsGrade(grade)
         }
-        saveGrade(excused: excused, gradeString)
-        sliderValue = grade
     }
 
     func sliderChangedState(_ editing: Bool) {
         withAnimation(.default) { showTooltip = editing }
-        if editing == false, let value = sliderValue {
+        if editing == false {
+            let value = gradeViewModel.sliderValue
             sliderTimer?.invalidate()
             sliderTimer = nil
             if sliderCleared {
-                saveGrade("")
+                gradeViewModel.removeGrade()
             } else if sliderExcused {
                 updateGrade(excused: true, 0)
             } else if assignment.gradingType == .percent {
-                saveGrade("\(round(value / max(assignment.pointsPossible ?? 0, 0.01) * 100))%")
+                let percentValue = round(value / max(assignment.pointsPossible ?? 0, 0.01) * 100)
+                gradeViewModel.setPercentGrade(percentValue)
             } else if assignment.gradingType == .points {
-                saveGrade(String(value))
+                gradeViewModel.setPointsGrade(value)
             }
         }
     }
 
     func sliderChangedValue(_ value: Double) {
-        let previous = sliderValue.map { $0 }
-        sliderValue = value
+        let previous = gradeViewModel.sliderValue
+        gradeViewModel.sliderValue = value
         guard previous != value || sliderTimer == nil else { return }
         sliderTimer?.invalidate()
         sliderTimer = nil
@@ -257,7 +262,6 @@ struct SubmissionGrades: View {
     // MARK: Prompt for an updated grade
 
     func promptNewGrade() {
-        sliderValue = nil
         var message: String?
         switch assignment.gradingType {
         case .gpa_scale:
@@ -271,27 +275,31 @@ struct SubmissionGrades: View {
         case .points:
             message = assignment.outOfText
         }
+
         let prompt = UIAlertController(title: String(localized: "Customize Grade", bundle: .teacher), message: message, preferredStyle: .alert)
         if assignment.gradingType == .pass_fail {
-            prompt.addAction(AlertAction(String(localized: "Complete", bundle: .teacher)) { _ in saveGrade("complete") })
-            prompt.addAction(AlertAction(String(localized: "Incomplete", bundle: .teacher)) { _ in saveGrade("incomplete") })
+            prompt.addAction(AlertAction(String(localized: "Complete", bundle: .teacher)) { _ in
+                gradeViewModel.setPassFailGrade(complete: true)
+            })
+            prompt.addAction(AlertAction(String(localized: "Incomplete", bundle: .teacher)) { _ in
+                gradeViewModel.setPassFailGrade(complete: false)
+            })
         } else {
             prompt.addTextField { field in
                 field.placeholder = ""
                 field.returnKeyType = .done
-                field.text = submission.excused == true ? String(localized: "Excused", bundle: .teacher) :
-                    hasLateDeduction ? submission.enteredGrade : submission.grade
+                field.text = gradeViewModel.state.gradeAlertText
                 field.addTarget(prompt, action: #selector(UIAlertController.performOKAlertAction), for: .editingDidEndOnExit)
                 field.accessibilityLabel = String(localized: "Grade", bundle: .teacher)
             }
         }
-        prompt.addAction(AlertAction(String(localized: "No Grade", bundle: .teacher)) { _ in saveGrade("") })
-        if submission.excused != true {
-            prompt.addAction(AlertAction(String(localized: "Excuse Student", bundle: .teacher)) { _ in saveGrade(excused: true) })
-        }
         if assignment.gradingType != .pass_fail {
             prompt.addAction(AlertAction(String(localized: "OK", bundle: .teacher)) { _ in
-                saveGrade(prompt.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
+                var grade = prompt.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+                if assignment.gradingType == .percent, !grade.isEmpty, !grade.hasSuffix("%") {
+                    grade = "\(grade)%"
+                }
+                gradeViewModel.setGrade(grade)
             })
         }
         prompt.addAction(AlertAction(String(localized: "Cancel", bundle: .teacher), style: .cancel))
@@ -299,32 +307,6 @@ struct SubmissionGrades: View {
     }
 
     // MARK: Save
-
-    func saveGrade(excused: Bool? = nil, _ grade: String? = nil) {
-        guard !(submission.excused == true && grade == String(localized: "Excused", bundle: .teacher)) else { return }
-        var grade = grade
-        if assignment.gradingType == .percent, let percent = grade, !percent.hasSuffix("%") {
-            grade = "\(percent)%"
-        }
-
-        isSaving = true
-        GradeSubmission(
-            courseID: assignment.courseID,
-            assignmentID: assignment.id,
-            userID: submission.userID,
-            excused: excused,
-            grade: grade
-        ).fetch { _, _, error in performUIUpdate {
-            isSaving = false
-            if let error = error { showError(error) }
-        } }
-    }
-
-    func showError(_ error: Error) {
-        let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(AlertAction(String(localized: "OK", bundle: .teacher), style: .default))
-        env.router.show(alert, from: controller, options: .modal())
-    }
 }
 
 extension UIAlertController {

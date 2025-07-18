@@ -46,7 +46,8 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             userID: testData.userId,
             filter: [],
             gradeStatusInteractor: gradeStatusInteractorMock,
-            env: environment
+            env: environment,
+            mainScheduler: .immediate
         )
     }
 
@@ -123,7 +124,8 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             userID: "1",
             filter: [],
             gradeStatusInteractor: GradeStatusInteractorMock(),
-            env: environment
+            env: environment,
+            mainScheduler: .immediate
         )
 
         // Then
@@ -187,7 +189,8 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             userID: testData.invalidUserId,
             filter: [],
             gradeStatusInteractor: GradeStatusInteractorMock(),
-            env: environment
+            env: environment,
+            mainScheduler: .immediate
         )
         XCTAssertEqual(testee.state.value, .loading)
 

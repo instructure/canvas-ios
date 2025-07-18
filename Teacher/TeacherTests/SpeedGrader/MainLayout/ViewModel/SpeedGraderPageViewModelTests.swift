@@ -71,11 +71,28 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
     private func makeViewModel(
         contextColor: AnyPublisher<Color, Never> = Publishers.typedEmpty()
     ) -> SpeedGraderPageViewModel {
-        .init(
+        let rubricGradingInteractor = RubricGradingInteractorMock()
+
+        let rubricsViewModel = RubricsViewModel(
+            assignment: assignment,
+            submission: submission,
+            interactor: rubricGradingInteractor
+        )
+
+        let gradeInteractor = GradeInteractorMock()
+        let gradeViewModel = SpeedGraderSubmissionGradesViewModel(
+            assignment: assignment,
+            submission: submission,
+            gradeInteractor: gradeInteractor
+        )
+
+        return .init(
             assignment: assignment,
             latestSubmission: submission,
             contextColor: contextColor,
             gradeStatusInteractor: GradeStatusInteractorMock(),
+            rubricsViewModel: rubricsViewModel,
+            gradeViewModel: gradeViewModel,
             env: environment
         )
     }

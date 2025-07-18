@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
 import Foundation
 
@@ -34,6 +35,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     private let env: AppEnvironment
     private let filter: [GetSubmissions.Filter]
     private var subscriptions = Set<AnyCancellable>()
+    private let mainScheduler: AnySchedulerOf<DispatchQueue>
 
     init(
         context: Context,
@@ -41,7 +43,8 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         userID: String,
         filter: [GetSubmissions.Filter],
         gradeStatusInteractor: GradeStatusInteractor,
-        env: AppEnvironment
+        env: AppEnvironment,
+        mainScheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.env = env
         self.context = context
@@ -49,6 +52,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         self.userID = userID
         self.filter = filter
         self.gradeStatusInteractor = gradeStatusInteractor
+        self.mainScheduler = mainScheduler
     }
 
     func load() {
@@ -84,6 +88,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                 .map { (assignment, $0.1) }
                 .eraseToAnyPublisher()
             }
+            .receive(on: mainScheduler)
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
                     self?.state.send(.error(.unexpectedError(error)))

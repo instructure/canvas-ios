@@ -16,18 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Combine
+@testable import Core
+@testable import Teacher
 
-extension View {
+class GradeInteractorMock: GradeInteractor {
+    let gradeStateSubject = CurrentValueSubject<GradeState, Never>(GradeState.empty)
+    let saveGradeSubject = PassthroughSubject<Void, Error>()
 
-    /// Applies a custom tint color to the view if the color is not nil.
-    /// If the color is nil, it returns the view unchanged.
-    @ViewBuilder
-    public func customTint(_ color: Color?) -> some View {
-        if let color {
-            self.tint(color)
-        } else {
-            self
-        }
+    var gradeState: AnyPublisher<GradeState, Never> {
+        gradeStateSubject.eraseToAnyPublisher()
+    }
+
+    var saveGradeCalled = false
+    var lastExcused: Bool?
+    var lastGrade: String?
+
+    func saveGrade(excused: Bool?, grade: String?) -> AnyPublisher<Void, Error> {
+        saveGradeCalled = true
+        lastExcused = excused
+        lastGrade = grade
+        return saveGradeSubject.eraseToAnyPublisher()
     }
 }

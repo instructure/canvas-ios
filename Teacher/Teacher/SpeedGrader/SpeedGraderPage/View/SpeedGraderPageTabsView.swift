@@ -39,7 +39,6 @@ struct SpeedGraderPageTabsView: View {
     @Binding private var splitViewHeaderHeight: CGFloat
 
     @StateObject private var viewModel: SpeedGraderPageViewModel
-    @StateObject private var rubricsViewModel: RubricsViewModel
 
     init(
         containerType: ContainerType,
@@ -58,13 +57,6 @@ struct SpeedGraderPageTabsView: View {
         self._splitViewHeaderHeight = splitViewHeaderHeight
 
         self._viewModel = StateObject(wrappedValue: viewModel)
-        _rubricsViewModel = StateObject(
-            wrappedValue: RubricsViewModel(
-                assignment: viewModel.assignment,
-                submission: viewModel.submission,
-                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission)
-            )
-        )
     }
 
     var body: some View {
@@ -157,12 +149,12 @@ struct SpeedGraderPageTabsView: View {
     ) -> some View {
         let isGradesOnScreen = isTabOnScreen(.grades)
         VStack(spacing: 0) {
-            SubmissionGrades(
+            SpeedGraderSubmissionGradesView(
                 assignment: viewModel.assignment,
                 containerHeight: geometry.size.height,
-                submission: viewModel.submission,
-                rubricsViewModel: rubricsViewModel,
-                gradeStatusViewModel: viewModel.gradeStatusViewModel
+                rubricsViewModel: viewModel.rubricsViewModel,
+                gradeStatusViewModel: viewModel.gradeStatusViewModel,
+                gradeViewModel: viewModel.gradeViewModel
             )
             .clipped()
             Spacer().frame(height: bottomInset)
