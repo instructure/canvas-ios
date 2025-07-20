@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 public extension InteractivePanda {
     struct Config: Equatable {
@@ -41,6 +42,30 @@ public extension InteractivePanda {
 }
 
 public extension InteractivePanda.Config {
+
+    static func horizonError(
+        scene: PandaScene = (HorizonPanda() as PandaScene),
+        title: String = String(localized: "Something Went Wrong", bundle: .core),
+        subtitle: String = String(localized: "Pull to refresh to try again", bundle: .core)
+    ) -> Self {
+        .init(
+            scene: scene,
+            title: title,
+            subtitle: subtitle
+        )
+    }
+
+    static func horizonEmpty(
+        scene: PandaScene = (HorizonPanda() as PandaScene),
+        title: String = String(localized: "This screen is empty", bundle: .core),
+        subtitle: String = String(localized: "Pull to refresh to reload", bundle: .core)
+    ) -> Self {
+        .init(
+            scene: scene,
+            title: title,
+            subtitle: subtitle
+        )
+    }
 
     static func error(
         scene: PandaScene = (NoResultsPanda() as PandaScene),

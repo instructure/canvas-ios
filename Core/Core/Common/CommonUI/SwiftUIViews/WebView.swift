@@ -32,6 +32,7 @@ public struct WebView: UIViewRepresentable {
     private let features: [CoreWebViewFeature]
     private let baseURL: URL?
 
+    private var isScrollEnabled: Bool = true
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
 
@@ -40,6 +41,7 @@ public struct WebView: UIViewRepresentable {
     public init(url: URL?,
                 features: [CoreWebViewFeature] = [],
                 canToggleTheme: Bool = false,
+                isScrollEnabled: Bool = true,
                 configuration: WKWebViewConfiguration = .defaultConfiguration
     ) {
         source = url.map { .request(URLRequest(url: $0)) }
@@ -53,12 +55,14 @@ public struct WebView: UIViewRepresentable {
                 baseURL: URL? = nil,
                 features: [CoreWebViewFeature] = [],
                 canToggleTheme: Bool = false,
+                isScrollEnabled: Bool = true,
                 configuration: WKWebViewConfiguration = .defaultConfiguration
     ) {
         source = html.map { .html($0) }
         self.baseURL = baseURL
         self.features = features
         self.canToggleTheme = canToggleTheme
+        self.isScrollEnabled = isScrollEnabled
         self.configuration = configuration
     }
 
@@ -129,6 +133,7 @@ public struct WebView: UIViewRepresentable {
             webView.pin(inside: webViewContainer)
         }
         webView.autoresizesHeight = true
+        webView.scrollView.isScrollEnabled = isScrollEnabled
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.alwaysBounceVertical = false
         webView.backgroundColor = .backgroundLightest

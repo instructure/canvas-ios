@@ -32,6 +32,7 @@ public struct LoginSession: Codable, Hashable {
     public let userEmail: String?
     public let clientID: String?
     public let clientSecret: String?
+    public let canvasRegion: String?
 
     /** Returns the acted user's ID. If the session isn't masquaraded this property returns nil. */
     public var actAsUserID: String? {
@@ -74,7 +75,8 @@ public struct LoginSession: Codable, Hashable {
         userEmail: String? = nil,
         clientID: String? = nil,
         clientSecret: String? = nil,
-        isFakeStudent: Bool = false
+        canvasRegion: String? = nil,
+        isFakeStudent: Bool = false,
     ) {
         self.accessToken = accessToken
         // remove trailing slash
@@ -92,6 +94,7 @@ public struct LoginSession: Codable, Hashable {
         self.userEmail = userEmail
         self.clientID = clientID
         self.clientSecret = clientSecret
+        self.canvasRegion = canvasRegion
     }
 
     // Only keep 1 entry per account user

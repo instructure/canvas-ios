@@ -178,21 +178,46 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
             data.submissions.indices.contains(index)
         else { return nil }
 
+        let assignment = data.assignment
+        let submission = data.submissions[index]
+        let rubricGradingInteractor = RubricGradingInteractorLive(assignment: assignment, submission: submission)
+
+        let rubricsViewModel = RubricsViewModel(
+            assignment: assignment,
+            submission: submission,
+            interactor: rubricGradingInteractor
+        )
+
+        let gradeInteractor = GradeInteractorLive(
+            assignment: assignment,
+            submission: submission,
+            rubricGradingInteractor: rubricGradingInteractor,
+            env: environment
+        )
+
+        let gradeViewModel = SpeedGraderSubmissionGradesViewModel(
+            assignment: assignment,
+            submission: submission,
+            gradeInteractor: gradeInteractor
+        )
+
         return SpeedGraderPageView(
             env: environment,
             userIndexInSubmissionList: index,
             viewModel: SpeedGraderPageViewModel(
-                assignment: data.assignment,
-                latestSubmission: data.submissions[index],
+                assignment: assignment,
+                latestSubmission: submission,
                 contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
                 gradeStatusInteractor: interactor.gradeStatusInteractor,
+                rubricsViewModel: rubricsViewModel,
+                gradeViewModel: gradeViewModel,
                 env: environment
             ),
             landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,
             handleRefresh: { [weak self] in
                 guard let self else { return }
                 interactor
-                    .refreshSubmission(forUserId: data.submissions[index].userID)
+                    .refreshSubmission(forUserId: submission.userID)
                     .sink()
                     .store(in: &subscriptions)
             }

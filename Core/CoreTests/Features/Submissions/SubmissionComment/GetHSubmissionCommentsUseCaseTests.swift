@@ -53,7 +53,8 @@ class GetHSubmissionCommentsUseCaseTests: CoreTestCase {
             comment: "This is a test comment",
             read: true,
             updatedAt: Date(),
-            createdAt: Date()
+            createdAt: Date(),
+            attachments: nil
         )
 
         let edge = GetHSubmissionCommentsResponse.Edge(node: comment)

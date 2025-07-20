@@ -21,6 +21,7 @@ import UIKit
 public struct Brand: Equatable {
 
     public var headerImage: UIImage?
+    public var institutionLogo: URL?
 
     public var buttonPrimaryBackground: UIColor {
         UIColor.getColor(dark: buttonPrimaryBackgroundDark, light: buttonPrimaryBackgroundLight)
@@ -119,10 +120,11 @@ public struct Brand: Equatable {
         navIconFillActive: UIColor?,
         navTextColor: UIColor?,
         navTextColorActive: UIColor?,
-        primary: UIColor?
+        primary: UIColor?,
+        institutionLogo: URL?
     ) {
         self.headerImage = headerImage ?? UIImage(named: "defaultHeaderImage", in: .core, compatibleWith: nil)
-
+        self.institutionLogo = institutionLogo
         self.buttonPrimaryBackgroundLight = buttonPrimaryBackground ?? .backgroundInfo
         self.buttonPrimaryTextLight = buttonPrimaryText != nil ? buttonPrimaryText!.ensureContrast(against: self.buttonPrimaryBackgroundLight) : .textLightest.variantForLightMode
         self.buttonSecondaryBackgroundLight = buttonSecondaryBackground ?? .backgroundDarkest
@@ -156,7 +158,11 @@ public struct Brand: Equatable {
         self.primaryDark = primary != nil ? primary!.ensureContrast(against: .backgroundLightest) : .textInfo
     }
 
-    public init(response: APIBrandVariables, headerImage: UIImage?) {
+    public init(
+        response: APIBrandVariables,
+        headerImage: UIImage?,
+        institutionLogo: URL?
+    ) {
         self.init(
             buttonPrimaryBackground: UIColor(hexString: response.button_primary_bgd),
             buttonPrimaryText: UIColor(hexString: response.button_primary_text),
@@ -173,7 +179,8 @@ public struct Brand: Equatable {
             navIconFillActive: UIColor(hexString: response.nav_icon_fill_active),
             navTextColor: UIColor(hexString: response.nav_text_color),
             navTextColorActive: UIColor(hexString: response.nav_text_color_active),
-            primary: UIColor(hexString: response.primary)
+            primary: UIColor(hexString: response.primary),
+            institutionLogo: institutionLogo
         )
     }
 
@@ -193,7 +200,8 @@ public struct Brand: Equatable {
         navIconFillActive: nil,
         navTextColor: nil,
         navTextColorActive: nil,
-        primary: nil
+        primary: nil,
+        institutionLogo: nil
     )
 
     public func color(_ name: String) -> UIColor? {

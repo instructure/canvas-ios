@@ -29,15 +29,22 @@ public extension HorizonUI {
         // MARK: - Private
 
         private let spinDuration = 3.0
-        private let backgroundColor: Color = Color.huiColors.lineAndBorders.lineDivider
-        private let foregroundColor = Color.huiColors.surface.institution
+        private let backgroundColor: Color
+        private let foregroundColor: Color
         @State private var rotation: Double = 0
 
         // MARK: - Init
 
-        public init(size: HorizonUI.Spinner.Size = .medium, showBackground: Bool = false) {
+        public init(
+            size: HorizonUI.Spinner.Size = .medium,
+            showBackground: Bool = false,
+            backgroundColor: Color = Color.huiColors.lineAndBorders.lineDivider,
+            foregroundColor: Color = Color.huiColors.surface.institution
+        ) {
             self.size = size
             self.showBackground = showBackground
+            self.backgroundColor = backgroundColor
+            self.foregroundColor = foregroundColor
         }
 
         public var body: some View {

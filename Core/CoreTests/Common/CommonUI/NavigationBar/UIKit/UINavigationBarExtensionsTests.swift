@@ -54,7 +54,8 @@ class UINavigationBarExtensionsTests: XCTestCase {
             navIconFillActive: .textLightest.variantForLightMode,
             navTextColor: .textLightest.variantForLightMode,
             navTextColorActive: .textLightest.variantForLightMode,
-            primary: .textLightest.variantForLightMode
+            primary: .textLightest.variantForLightMode,
+            institutionLogo: nil
         )
         bar.useGlobalNavStyle(brand: shiny)
         XCTAssertEqual(bar.barStyle, .default)

@@ -146,6 +146,17 @@ public struct APIProfile: Codable, Equatable {
     public let uuid: String?
     public let account_uuid: String?
     public let time_zone: String?
+    public let permissions: APIProfile.Permissions?
+
+    public struct Permissions: Codable, Equatable {
+        public let canUpdateName: Bool?
+        public let canUpdateAvatar: Bool?
+
+        enum CodingKeys: String, CodingKey {
+            case canUpdateName = "can_update_name"
+            case canUpdateAvatar = "can_update_avatar"
+        }
+    }
 }
 
 #if DEBUG
@@ -244,7 +255,8 @@ extension APIProfile {
         k5_user: Bool? = nil,
         uuid: String? = nil,
         account_uuid: String? = nil,
-        time_zone: String? = nil
+        time_zone: String? = nil,
+        permissions: APIProfile.Permissions? = nil
     ) -> APIProfile {
         return APIProfile(
             id: id,
@@ -259,7 +271,8 @@ extension APIProfile {
             k5_user: k5_user,
             uuid: uuid,
             account_uuid: account_uuid,
-            time_zone: time_zone
+            time_zone: time_zone,
+            permissions: permissions
         )
     }
 }

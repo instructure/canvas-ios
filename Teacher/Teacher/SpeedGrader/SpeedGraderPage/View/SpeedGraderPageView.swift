@@ -32,7 +32,6 @@ struct SpeedGraderPageView: View {
         case landscape // only on iPads no matter the iPhone screen size
     }
 
-    @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
@@ -62,7 +61,6 @@ struct SpeedGraderPageView: View {
 
     // MARK: - Misc properties
 
-    @StateObject private var rubricsViewModel: RubricsViewModel
     @StateObject private var viewModel: SpeedGraderPageViewModel
     @ObservedObject private var landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel
 
@@ -81,18 +79,6 @@ struct SpeedGraderPageView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.landscapeSplitLayoutViewModel = landscapeSplitLayoutViewModel
         self.handleRefresh = handleRefresh
-        _rubricsViewModel = StateObject(
-            wrappedValue: RubricsViewModel(
-                assignment: viewModel.assignment,
-                submission: viewModel.submission,
-                interactor: RubricGradingInteractorLive(
-                    assignment: viewModel.assignment,
-                    submission: viewModel.submission,
-                    env: env
-                ),
-                router: env.router
-            )
-        )
     }
 
     // MARK: - Body
@@ -349,8 +335,7 @@ struct SpeedGraderPageView: View {
             a11yFocusedTab: _a11yFocusedTab,
             drawerState: $drawerState,
             splitViewHeaderHeight: $headerHeight,
-            viewModel: viewModel,
-            env: env
+            viewModel: viewModel
         )
     }
 

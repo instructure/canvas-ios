@@ -46,6 +46,8 @@ class SpeedGraderPageViewModel: ObservableObject {
     private(set) var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
     let commentListViewModel: SubmissionCommentListViewModel
     let gradeStatusViewModel: GradeStatusViewModel
+    let rubricsViewModel: RubricsViewModel
+    let gradeViewModel: SpeedGraderSubmissionGradesViewModel
 
     // MARK: - Inputs
 
@@ -57,11 +59,15 @@ class SpeedGraderPageViewModel: ObservableObject {
         latestSubmission: Submission,
         contextColor: AnyPublisher<Color, Never>,
         gradeStatusInteractor: GradeStatusInteractor,
+        rubricsViewModel: RubricsViewModel,
+        gradeViewModel: SpeedGraderSubmissionGradesViewModel,
         env: AppEnvironment
     ) {
         self.assignment = assignment
         self.submission = latestSubmission
         selectedAttempt = latestSubmission
+        self.rubricsViewModel = rubricsViewModel
+        self.gradeViewModel = gradeViewModel
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
         commentListViewModel = SubmissionCommentsAssembly.makeCommentListViewModel(
             assignment: assignment,

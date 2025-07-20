@@ -439,6 +439,21 @@ extension Submission {
     }
 }
 
+extension Submission: Comparable {
+
+    /// This nearly matching ordering used in GetSubmissions use case.
+    public static func < (lhs: Submission, rhs: Submission) -> Bool {
+        let lhsSortableName = lhs.sortableName ?? lhs.user?.sortableName
+        let rhsSortableName = rhs.sortableName ?? rhs.user?.sortableName
+
+        if let name1 = lhsSortableName, let name2 = rhsSortableName {
+            return name1 < name2
+        }
+
+        return lhs.userID < rhs.userID
+    }
+}
+
 /// This is merely used to properly describe the state of submission in certain contexts.
 /// It is not strictly matching `SubmissionStatus` in all cases. And it is not
 /// meant to replace status cases, or be used in all related areas of the apps.
