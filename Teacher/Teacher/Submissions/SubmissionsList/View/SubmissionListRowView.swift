@@ -77,7 +77,7 @@ struct SubmissionListRowView: View {
         }
         .font(.regular14)
         .foregroundStyle(item.status.redesignAppearance.color)
-        .accessibilityHidden(isGradeBlank == false && item.status == .graded)
+        .accessibilityHidden(isGradeBlank == false && item.status.isGraded)
     }
 
     private var statusDivider: some View {

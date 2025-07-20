@@ -41,6 +41,7 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var attempt: Int
     @NSManaged public var body: String?
     @NSManaged public var customGradeStatusId: String?
+    @NSManaged public var customGradeStatusName: String?
     @NSManaged public var discussionEntries: Set<DiscussionEntry>?
     @NSManaged public var enteredGrade: String?
     @NSManaged var enteredScoreRaw: NSNumber?
@@ -161,6 +162,12 @@ extension Submission: WriteableModel {
         model.attempt = item.attempt ?? 0
         model.body = item.body
         model.customGradeStatusId = item.custom_grade_status_id
+
+        if let customStatusId = item.custom_grade_status_id,
+           let customStatus: CustomGradeStatus = client.first(where: #keyPath(CustomGradeStatus.id), equals: customStatusId) {
+            model.customGradeStatusName = customStatus.name
+        }
+
         model.enteredGrade = item.entered_grade
         model.enteredScore = item.entered_score
         model.excused = item.excused
@@ -418,9 +425,9 @@ extension Submission {
         // Graded check
         switch desc {
         case .usingStatus(.submitted):
-            return needsGrading == false ? .graded : desc // Maintaining the old logic
+            return needsGrading == false ? .graded(gradedState) : desc // Maintaining the old logic
         case .onPaper, .noSubmission:
-            return isGraded ? .graded : desc
+            return isGraded ? .graded(gradedState) : desc
         default:
             return desc
         }
@@ -434,8 +441,29 @@ extension Submission {
     }
 
     public var statusIncludingGradedState: SubmissionStatus {
-        if isGraded { return excused == true ? .excused : .graded }
+        if isGraded { return excused == true ? .excused : .graded(gradedState) }
         return status
+    }
+
+    private var gradedState: GradedState {
+        if let name = customGradeStatusName {
+            return .custom(name)
+        }
+        return .default
+    }
+}
+
+public enum GradedState: Hashable {
+    case custom(String)
+    case `default`
+
+    var name: String {
+        switch self {
+        case .custom(let name):
+            name
+        case .default:
+            String(localized: "Graded", bundle: .core)
+        }
     }
 }
 
@@ -462,7 +490,7 @@ public enum SubmissionStateDisplayProperties: Equatable {
     case usingStatus(SubmissionStatus)
     case onPaper
     case noSubmission
-    case graded
+    case graded(GradedState)
 
     public var text: String {
         switch self {
@@ -472,8 +500,8 @@ public enum SubmissionStateDisplayProperties: Equatable {
             return String(localized: "On Paper", bundle: .core)
         case .noSubmission:
             return String(localized: "No Submission", bundle: .core)
-        case .graded:
-            return String(localized: "Graded", bundle: .core)
+        case .graded(let status):
+            return status.name
         }
     }
 
@@ -500,13 +528,18 @@ public enum SubmissionStateDisplayProperties: Equatable {
     }
 }
 
-public enum SubmissionStatus {
+public enum SubmissionStatus: Hashable {
     case late
     case missing
     case submitted
     case notSubmitted
-    case graded
+    case graded(GradedState)
     case excused
+
+    public var isGraded: Bool {
+        if case .graded = self { return true }
+        return false
+    }
 
     public var text: String {
         switch self {
@@ -520,8 +553,8 @@ public enum SubmissionStatus {
             return String(localized: "Not Submitted", bundle: .core)
         case .excused:
             return String(localized: "Excused", bundle: .core)
-        case .graded:
-            return String(localized: "Graded", bundle: .core)
+        case .graded(let state):
+            return state.name
         }
     }
 

@@ -503,6 +503,11 @@
         <attribute name="name" attributeType="String"/>
         <relationship name="tabs" toMany="YES" deletionRule="Nullify" destinationEntity="Tab" inverseName="course" inverseEntity="Tab"/>
     </entity>
+    <entity name="CustomGradeStatus" representedClassName="Core.CustomGradeStatus" syncable="YES">
+        <attribute name="courseID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+    </entity>
     <entity name="DashboardCard" representedClassName="Core.DashboardCard" syncable="YES">
         <attribute name="courseCode" attributeType="String"/>
         <attribute name="enrollmentType" attributeType="String"/>
@@ -1138,6 +1143,7 @@
         <attribute name="attempt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="body" optional="YES" attributeType="String"/>
         <attribute name="customGradeStatusId" optional="YES" attributeType="String"/>
+        <attribute name="customGradeStatusName" optional="YES" attributeType="String"/>
         <attribute name="enteredGrade" optional="YES" attributeType="String"/>
         <attribute name="enteredScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="excusedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
