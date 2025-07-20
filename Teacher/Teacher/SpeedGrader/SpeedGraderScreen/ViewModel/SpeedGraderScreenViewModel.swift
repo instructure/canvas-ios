@@ -180,12 +180,17 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
 
         let assignment = data.assignment
         let submission = data.submissions[index]
-        let rubricGradingInteractor = RubricGradingInteractorLive(assignment: assignment, submission: submission)
+        let rubricGradingInteractor = RubricGradingInteractorLive(
+            assignment: assignment,
+            submission: submission,
+            env: environment
+        )
 
         let rubricsViewModel = RubricsViewModel(
             assignment: assignment,
             submission: submission,
-            interactor: rubricGradingInteractor
+            interactor: rubricGradingInteractor,
+            router: router
         )
 
         let gradeInteractor = GradeInteractorLive(

@@ -23,10 +23,10 @@ import XCTest
 class SubmissionFilterPickerViewControllerTests: TeacherTestCase {
     lazy var controller = SubmissionFilterPickerViewController
         .create(
-            env: environment,
             context: .course("1"),
             outOfText: "Out of 10",
-            filter: [ .section([ "1" ]), .late ]
+            filter: [ .section([ "1" ]), .late ],
+            env: environment,
         ) { [weak self] value in
             self?.filter = value
         }

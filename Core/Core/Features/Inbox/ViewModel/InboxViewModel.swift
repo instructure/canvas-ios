@@ -181,7 +181,7 @@ public class InboxViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
         newMessageDidTap
-            .sink { [router, messageInteractor, weak env] source in
+            .sink { [router, messageInteractor, env] source in
                 // In the parent app we need a different logic for student context picker
                 if messageInteractor.isParentApp {
                     if let bottomSheet = router.match("/conversations/new_message") {
@@ -189,7 +189,7 @@ public class InboxViewModel: ObservableObject {
                     }
                 } else {
                     router.show(
-                        ComposeMessageAssembly.makeComposeMessageViewController(env: env ?? .shared),
+                        ComposeMessageAssembly.makeComposeMessageViewController(env: env),
                         from: source,
                         options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
                     )

@@ -147,6 +147,10 @@ public extension String {
         return formatter
     }()
 
+    /// Get a copy of this ID where `shardID` of the original login session being
+    /// inserted as prefix to it.
+    /// For example, ID of **`239`** transformed to **`217540000000000239`**
+    /// with **`21754`** as being `shardID` extracted from the original access token.
     var asRootID: String {
         let env = AppEnvironment.shared
 

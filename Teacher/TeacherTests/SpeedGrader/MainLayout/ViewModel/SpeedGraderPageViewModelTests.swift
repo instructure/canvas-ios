@@ -76,7 +76,8 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
         let rubricsViewModel = RubricsViewModel(
             assignment: assignment,
             submission: submission,
-            interactor: rubricGradingInteractor
+            interactor: rubricGradingInteractor,
+            router: environment.router
         )
 
         let gradeInteractor = GradeInteractorMock()

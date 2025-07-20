@@ -38,10 +38,10 @@ class SubmissionFilterPickerViewController: UIViewController {
     }
 
     static func create(
-        env: AppEnvironment,
         context: Context,
         outOfText: String?,
         filter: [GetSubmissions.Filter],
+        env: AppEnvironment,
         onChange: @escaping ([GetSubmissions.Filter]) -> Void
     ) -> SubmissionFilterPickerViewController {
         let controller = SubmissionFilterPickerViewController()

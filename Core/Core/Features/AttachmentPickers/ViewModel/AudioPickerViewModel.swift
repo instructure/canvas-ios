@@ -56,12 +56,12 @@ class AudioPickerViewModel: NSObject, ObservableObject {
     // MARK: Private
 
     private let formatter: DateComponentsFormatter
-    private let env: AppEnvironment
+    private let router: Router
     private var subscriptions = Set<AnyCancellable>()
     private var onSelect: (URL) -> Void
 
-    public init(env: AppEnvironment, interactor: AudioPickerInteractor, onSelect: @escaping (URL) -> Void = { _ in }) {
-        self.env = env
+    public init(router: Router, interactor: AudioPickerInteractor, onSelect: @escaping (URL) -> Void = { _ in }) {
+        self.router = router
         self.onSelect = onSelect
         self.interactor = interactor
 
@@ -88,7 +88,7 @@ class AudioPickerViewModel: NSObject, ObservableObject {
                 top.dismiss(animated: false)
             }
             alert.addAction(action)
-            env.router.show(alert, from: top, options: .modal())
+            router.show(alert, from: top, options: .modal())
         }
     }
 
@@ -173,7 +173,7 @@ class AudioPickerViewModel: NSObject, ObservableObject {
         cancelButtonDidTap
             .sink { [weak self] viewController in
                 self?.interactor.cancel()
-                self?.env.router.dismiss(viewController)
+                self?.router.dismiss(viewController)
             }
             .store(in: &subscriptions)
 

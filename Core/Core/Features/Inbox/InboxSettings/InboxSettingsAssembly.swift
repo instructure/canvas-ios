@@ -22,7 +22,7 @@ import UIKit
 public enum InboxSettingsAssembly {
     public static func makeInboxSettingsViewController(env: AppEnvironment) -> UIViewController {
         let interactor = InboxSettingsInteractorLive(environment: env)
-        let viewModel = InboxSettingsViewModel(interactor: interactor, env: env)
+        let viewModel = InboxSettingsViewModel(interactor: interactor, router: env.router)
         return CoreHostingController(InboxSettingsView(viewModel: viewModel), env: env)
     }
 }

@@ -64,10 +64,10 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
 
     // MARK: - Public Interface -
 
-    public init(env: AppEnvironment, courseID: String, quizID: String) {
-        self.env = env
+    public init(courseID: String, quizID: String, env: AppEnvironment) {
         self.quizID = quizID
         self.courseID = courseID
+        self.env = env
     }
 
     public func viewDidAppear() {
@@ -128,7 +128,7 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
                 assignmentDateSectionViewModel = AssignmentDateSectionViewModel(assignment: assignment)
                 assignmentSubmissionBreakdownViewModel = AssignmentSubmissionBreakdownViewModel(env: env, courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
             } else {
-                quizSubmissionBreakdownViewModel = TeacherQuizSubmissionBreakdownViewModelLive(env: env, courseID: courseID, quizID: quizID)
+                quizSubmissionBreakdownViewModel = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID, env: env)
                 quizDateSectionViewModel = TeacherQuizDateSectionViewModelLive(quiz: quiz)
             }
             state = .ready
