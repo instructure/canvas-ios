@@ -36,7 +36,7 @@ struct FinalGradeRowView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             Text(viewModel.currentGradeText)
-                .font(.semibold16, lineHeight: .fit)
+                .font(.bold16, lineHeight: .fit)
                 .foregroundColor(.textDarkest)
 
             Text(viewModel.suffixText)
@@ -44,7 +44,6 @@ struct FinalGradeRowView: View {
                 .foregroundColor(.textDark)
         }
         .paddingStyle(set: .standardCell)
-        .padding(.vertical, 2)
         .background(.backgroundLightest)
         .accessibilityElement(children: .combine)
     }

@@ -38,7 +38,6 @@ struct PointsRowView: View {
         .font(.regular16, lineHeight: .fit)
         .foregroundColor(.textDark)
         .paddingStyle(set: .standardCell)
-        .padding(.vertical, 2)
         .background(.backgroundLightest)
         .accessibilityElement(children: .combine)
     }
