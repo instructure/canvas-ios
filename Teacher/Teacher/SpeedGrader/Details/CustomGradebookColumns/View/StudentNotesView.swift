@@ -61,6 +61,7 @@ struct StudentNotesEntryView: View {
                 .font(.regular16, lineHeight: .fit)
                 .foregroundStyle(Color.textDarkest)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .paddingStyle(.standard)
         .elevation(.cardLarge, background: .backgroundLight)
         .accessibilityElement(children: .combine)
