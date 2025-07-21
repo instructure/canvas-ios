@@ -13039,6 +13039,9 @@
         }
       }
     },
+    "Details" : {
+
+    },
     "Dismiss" : {
       "localizations" : {
         "ar" : {
@@ -40586,6 +40589,9 @@
         }
       }
     },
+    "Student Notes" : {
+
+    },
     "Submission Filter" : {
       "localizations" : {
         "ar" : {
@@ -48275,6 +48281,12 @@
           }
         }
       }
+    },
+    "We don’t have further details for this Student and Assignment" : {
+
+    },
+    "Word Count" : {
+
     },
     "Write your Comment here" : {
       "extractionState" : "stale",

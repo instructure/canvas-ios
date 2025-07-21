@@ -180,37 +180,16 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
 
         let assignment = data.assignment
         let submission = data.submissions[index]
-        let rubricGradingInteractor = RubricGradingInteractorLive(assignment: assignment, submission: submission)
-
-        let rubricsViewModel = RubricsViewModel(
-            assignment: assignment,
-            submission: submission,
-            interactor: rubricGradingInteractor
-        )
-
-        let gradeInteractor = GradeInteractorLive(
-            assignment: assignment,
-            submission: submission,
-            rubricGradingInteractor: rubricGradingInteractor,
-            env: environment
-        )
-
-        let gradeViewModel = SpeedGraderSubmissionGradesViewModel(
-            assignment: assignment,
-            submission: submission,
-            gradeInteractor: gradeInteractor
-        )
 
         return SpeedGraderPageView(
-            env: environment,
             userIndexInSubmissionList: index,
-            viewModel: SpeedGraderPageViewModel(
+            viewModel: SpeedGraderAssembly.makePageViewModel(
                 assignment: assignment,
-                latestSubmission: submission,
+                submission: submission,
                 contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
                 gradeStatusInteractor: interactor.gradeStatusInteractor,
-                rubricsViewModel: rubricsViewModel,
-                gradeViewModel: gradeViewModel,
+                submissionWordCountInteractor: interactor.submissionWordCountInteractor,
+                customGradebookColumnsInteractor: interactor.customGradebookColumnsInteractor,
                 env: environment
             ),
             landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,

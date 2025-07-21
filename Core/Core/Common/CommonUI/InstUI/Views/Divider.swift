@@ -33,6 +33,10 @@ extension InstUI {
             self.style = style
         }
 
+        public init(isLast: Bool) {
+            self.style = isLast ? .full : .padded
+        }
+
         public var body: some View {
             switch style {
             case .full:
@@ -45,7 +49,25 @@ extension InstUI {
         }
 
         private var divider: some View {
-            SwiftUI.Divider().overlay(Color.borderMedium)
+            SwiftUI.Divider()
+                .overlay(Color.borderMedium)
+        }
+    }
+
+    /// A Divider that slides under the view above it.
+    /// It can be used before the first item of a list to make it
+    /// have a top divider visible only when it is scrolled down.
+    public struct TopDivider: View {
+
+        private let style: Divider.Style
+
+        public init(_ style: Divider.Style = .full) {
+            self.style = style
+        }
+
+        public var body: some View {
+            InstUI.Divider(style)
+                .offset(y: -1)
         }
     }
 }
