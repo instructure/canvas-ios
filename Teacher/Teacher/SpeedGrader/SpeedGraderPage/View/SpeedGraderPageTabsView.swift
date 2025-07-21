@@ -115,7 +115,10 @@ struct SpeedGraderPageTabsView: View {
     }
 
     private var tabPicker: some View {
-        InstUI.SegmentedPicker(selection: $selectedTab) {
+        InstUI.SegmentedPicker(
+            selection: $selectedTab,
+            onTouch: openDrawerToMidIfClosedInPortrait
+        ) {
             ForEach(SpeedGraderPageTab.allCases, id: \.self) { tab in
                 Text(tab.title)
                     .tag(tab)
@@ -138,6 +141,14 @@ struct SpeedGraderPageTabsView: View {
         case .splitView:
             return isTabSelected
         }
+    }
+
+    private func openDrawerToMidIfClosedInPortrait() {
+        guard containerType == .drawer, drawerState.isClosed else {
+            return
+        }
+
+        snapDrawer(to: .mid)
     }
 
     // MARK: - Tab Contents
