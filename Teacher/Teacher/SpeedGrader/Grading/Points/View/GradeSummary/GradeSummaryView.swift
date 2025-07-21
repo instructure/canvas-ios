@@ -56,8 +56,7 @@ struct GradeSummaryView: View {
                 FinalGradeRowView(viewModel: finalGradeRow)
             }
         }
-        .background(Color.backgroundLightest)
-        .elevation(.cardLarge, aboveBackground: .lightest)
+        .elevation(.cardLarge, background: .backgroundLightest)
     }
 }
 
