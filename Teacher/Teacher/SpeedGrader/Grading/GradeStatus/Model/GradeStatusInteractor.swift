@@ -38,7 +38,7 @@ protocol GradeStatusInteractor {
         latePolicyStatus: LatePolicyStatus?,
         isExcused: Bool?,
         isLate: Bool?
-    ) -> GradeStatus?
+    ) -> GradeStatus
 
     func observeGradeStatusChanges(
         submissionId: String,
@@ -72,7 +72,21 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
             .map { [weak self] response in
                 let defaults = response.defaultGradeStatuses.map { GradeStatus(defaultStatusId: $0) }
                 let custom = response.customGradeStatuses.map { GradeStatus(userDefinedName: $0.name, id: $0.id) }
-                self?.gradeStatuses = defaults + custom
+                var sortedStatuses: [GradeStatus] = []
+
+                // Add "None" first if it exists
+                if let noneStatus = defaults.first(where: { $0 == .none }) {
+                    sortedStatuses.append(noneStatus)
+                }
+
+                // Add remaining standard statuses in API order
+                let remainingDefaults = defaults.filter { $0 != .none }
+                sortedStatuses.append(contentsOf: remainingDefaults)
+
+                // Add custom statuses in API order
+                sortedStatuses.append(contentsOf: custom)
+
+                self?.gradeStatuses = sortedStatuses
             }
             .eraseToAnyPublisher()
     }
@@ -102,17 +116,20 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
         latePolicyStatus: LatePolicyStatus?,
         isExcused: Bool?,
         isLate: Bool?
-    ) -> GradeStatus? {
+    ) -> GradeStatus {
+        var result: GradeStatus?
+
         if let customGradeStatusId {
-            return gradeStatuses.first { $0.isUserDefined && $0.id == customGradeStatusId }
+            result = gradeStatuses.first { $0.isUserDefined && $0.id == customGradeStatusId }
         } else if let lateStatus = latePolicyStatus?.rawValue {
-            return gradeStatuses.first { !$0.isUserDefined && $0.id == lateStatus }
+            result = gradeStatuses.first { !$0.isUserDefined && $0.id == lateStatus }
         } else if isExcused == true {
-            return gradeStatuses.first { $0 == .excused }
+            result = gradeStatuses.first { $0 == .excused }
         } else if isLate == true {
-            return gradeStatuses.first { $0 == .late }
+            result = gradeStatuses.first { $0 == .late }
         }
-        return nil
+
+        return result ?? .none
     }
 
     func observeGradeStatusChanges(
@@ -125,18 +142,16 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
         return store.getEntities(keepObservingDatabaseChanges: true)
             .map { $0.first }
             .compactMap { [weak self] submission in
-                guard
-                    let self,
-                    let submission,
-                    let status = self.gradeStatusFor(
-                        customGradeStatusId: submission.customGradeStatusId,
-                        latePolicyStatus: submission.latePolicyStatus,
-                        isExcused: submission.excused,
-                        isLate: submission.late
-                    )
-                else {
+                guard let self, let submission else {
                     return nil
                 }
+
+                let status = self.gradeStatusFor(
+                    customGradeStatusId: submission.customGradeStatusId,
+                    latePolicyStatus: submission.latePolicyStatus,
+                    isExcused: submission.excused,
+                    isLate: submission.late
+                )
                 let daysLate = Int(ceil(Double(submission.lateSeconds) / (24 * 60 * 60.0)))
                 let dueDate = submission.assignment?.dueAt
                 return (status, daysLate, dueDate)

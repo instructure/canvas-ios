@@ -57,8 +57,8 @@ class GradeStatusInteractorPreview: GradeStatusInteractor {
         latePolicyStatus: Core.LatePolicyStatus?,
         isExcused: Bool?,
         isLate: Bool?
-    ) -> GradeStatus? {
-        nil
+    ) -> GradeStatus {
+        .none
     }
 
     func observeGradeStatusChanges(submissionId: String, attempt: Int) -> AnyPublisher<(GradeStatus, daysLate: Int, dueDate: Date?), Never> {

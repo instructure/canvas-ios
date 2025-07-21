@@ -37,7 +37,7 @@ class CourseSettingsTests: CoreTestCase {
         let apiResponse = APICourseSettings(usage_rights_required: true,
                                             syllabus_course_summary: true,
                                             restrict_quantitative_data: true,
-                                            hide_final_grade: nil)
+                                            hide_final_grade: false)
         let testee = CourseSettings.save(apiResponse, courseID: "1", in: databaseClient)
 
         XCTAssertTrue(testee.restrictQuantitativeData)
@@ -50,7 +50,7 @@ class CourseSettingsTests: CoreTestCase {
         let apiResponse = APICourseSettings(usage_rights_required: true,
                                             syllabus_course_summary: true,
                                             restrict_quantitative_data: true,
-                                            hide_final_grade: nil)
+                                            hide_final_grade: false)
         let testee = CourseSettings.save(apiResponse, courseID: "1", in: databaseClient)
 
         XCTAssertFalse(testee.restrictQuantitativeData)

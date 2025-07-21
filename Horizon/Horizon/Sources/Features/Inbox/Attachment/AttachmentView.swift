@@ -37,10 +37,10 @@ struct AttachmentView<Content: View>: View {
                 onCompletion: viewModel.fileSelectionComplete
             )
             .sheet(isPresented: $viewModel.isImagePickerVisible) {
-                ImagePickerViewController(sourceType: .photoLibrary, imageHandler: viewModel.addFile)
+                AttachmentPickerAssembly.makeImagePicker(onSelect: viewModel.addFile)
             }
             .sheet(isPresented: $viewModel.isTakePhotoVisible) {
-                ImagePickerViewController(sourceType: .camera, imageHandler: viewModel.addFile)
+                AttachmentPickerAssembly.makeImageRecorder(onSelect: viewModel.addFile)
                     .interactiveDismissDisabled()
             }
     }

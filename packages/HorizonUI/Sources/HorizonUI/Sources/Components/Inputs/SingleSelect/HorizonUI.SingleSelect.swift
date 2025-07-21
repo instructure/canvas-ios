@@ -224,6 +224,7 @@ extension HorizonUI {
                 }
                 Image.huiIcons.chevronRight
                     .padding(.horizontal, .huiSpaces.space12)
+                    .padding(.horizontal, .huiSpaces.space8)
                     .tint(Color.huiColors.icon.default)
                     .rotationEffect(.degrees(focused ? -90 : 90))
                     .animation(.easeInOut, value: focused)

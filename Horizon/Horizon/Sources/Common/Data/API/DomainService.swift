@@ -73,7 +73,6 @@ final class DomainService {
         horizonApi
             .makeRequest(
                 JWTTokenRequest(
-                    audience: audience,
                     service: option.service
                 )
             )
@@ -141,12 +140,10 @@ extension DomainService {
 extension DomainService {
     private struct JWTTokenRequest: APIRequestable {
         typealias Response = Result
-
-        let audience: String
         let service: String
 
         var path: String {
-            "/api/v1/jwts?audience=\(audience)&workflows[]=\(service)"
+            "/api/v1/jwts?canvas_audience=false&workflows[]=\(service)"
         }
 
         var method: APIMethod { .post }

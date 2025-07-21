@@ -21,7 +21,7 @@ import CoreData
 import Combine
 
 class GetNotebookNotesUseCase: CollectionUseCase {
-    typealias Model = CDNotebookNote
+    typealias Model = CDHNotebookNote
 
     // MARK: - Dependencies
     let redwood: DomainService
@@ -35,20 +35,20 @@ class GetNotebookNotesUseCase: CollectionUseCase {
 
     public var scope: Scope {
         var predicates: [NSPredicate] = [
-            NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.userID), Context.currentUser.id)
+            NSPredicate(format: "%K == %@", #keyPath(CDHNotebookNote.userID), Context.currentUser.id)
         ]
         if let courseID = courseID {
-            predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.courseID), courseID))
+            predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDHNotebookNote.courseID), courseID))
         }
         labels?.forEach { label in
-            predicates.append(NSPredicate(format: "%K CONTAINS %@", #keyPath(CDNotebookNote.labels), label))
+            predicates.append(NSPredicate(format: "%K CONTAINS %@", #keyPath(CDHNotebookNote.labels), label))
         }
         if let pageID = pageID {
-            predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.pageID), pageID))
+            predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDHNotebookNote.pageID), pageID))
         }
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
 
-        let order = [NSSortDescriptor(key: #keyPath(CDNotebookNote.date), ascending: false)]
+        let order = [NSSortDescriptor(key: #keyPath(CDHNotebookNote.date), ascending: false)]
         return Scope(predicate: predicate, order: order)
     }
 
@@ -93,35 +93,35 @@ class GetNotebookNotesUseCase: CollectionUseCase {
        urlResponse _: URLResponse?,
        to client: NSManagedObjectContext
     ) {
-        let fetchRequest = NSFetchRequest<CDNotebookNote>(entityName: String(describing: CDNotebookNote.self))
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(CDNotebookNote.date), ascending: false)]
+        let fetchRequest = NSFetchRequest<CDHNotebookNote>(entityName: String(describing: CDHNotebookNote.self))
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(CDHNotebookNote.date), ascending: false)]
 
         let result = (try? client.fetch(fetchRequest)) ?? []
 
-        let tuple = changed(redwoodNotes: response?.data.notes.edges.map { $0.node } ?? [], cdNotebookNotes: result)
+        let tuple = changed(redwoodNotes: response?.data.notes.edges.map { $0.node } ?? [], cdHNotebookNotes: result)
         let changed = tuple.0
         let removed = tuple.1
 
         changed.forEach { redwoodNote in
-            CDNotebookNote.save(
+            CDHNotebookNote.save(
                 redwoodNote,
                 userID: Context.currentUser.id,
                 in: client
             )
         }
 
-        removed.forEach { cdNotebookNote in
-            client.delete(cdNotebookNote)
+        removed.forEach { cdHNotebookNote in
+            client.delete(cdHNotebookNote)
         }
     }
 
     // Returns the notes that have been added or updated in the first item, the ones that have been removed in the second item
-    func changed(redwoodNotes: [RedwoodNote], cdNotebookNotes: [CDNotebookNote]) -> ([RedwoodNote], [CDNotebookNote]) {
+    func changed(redwoodNotes: [RedwoodNote], cdHNotebookNotes: [CDHNotebookNote]) -> ([RedwoodNote], [CDHNotebookNote]) {
         let redwoodNotesAddedOrUpdated = redwoodNotes.filter { redwoodNote in
-            let cdNotebookNote = cdNotebookNotes.first { $0.id == redwoodNote.id }
-            return cdNotebookNote?.content != redwoodNote.userText || cdNotebookNote?.labels != redwoodNote.reaction?.serializeLabels
+            let cdHNotebookNote = cdHNotebookNotes.first { $0.id == redwoodNote.id }
+            return cdHNotebookNote?.content != redwoodNote.userText || cdHNotebookNote?.labels != CDHNotebookNote.serializeLabels(from: redwoodNote.reaction)
         }
-        let notebookNotesRemoved = cdNotebookNotes.filter { cdNotebookNote in
+        let notebookNotesRemoved = cdHNotebookNotes.filter { cdNotebookNote in
             !redwoodNotes.contains { $0.id == cdNotebookNote.id }
         }
         return (redwoodNotesAddedOrUpdated, notebookNotesRemoved)

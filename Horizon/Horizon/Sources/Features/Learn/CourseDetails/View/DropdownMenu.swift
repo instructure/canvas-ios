@@ -73,7 +73,7 @@ struct DropdownMenu: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .foregroundStyle(Color.huiColors.primitives.black174)
 
-                Image.huiIcons.keyboardArrowUp
+                Image.huiIcons.keyboardArrowDown
                     .tint(Color.huiColors.icon.default)
                     .rotationEffect(.degrees(isExpanded ? 180 : 0))
                     .animation(.easeInOut, value: isExpanded)

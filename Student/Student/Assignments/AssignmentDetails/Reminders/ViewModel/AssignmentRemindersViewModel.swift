@@ -111,7 +111,7 @@ public class AssignmentRemindersViewModel: ObservableObject {
             .receive(on: scheduler)
             .sink { [weak self] in
                 if $0 == .noPermission {
-                    self?.newReminderView?.showPermissionError(.notifications)
+                    self?.newReminderView?.showNotificationsPermissionError()
                 } else {
                     let message: String
 

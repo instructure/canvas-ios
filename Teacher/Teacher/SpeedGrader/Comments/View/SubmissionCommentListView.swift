@@ -24,29 +24,29 @@ struct SubmissionCommentListView: View {
     let filePicker = FilePicker(env: .shared)
     @Binding var attempt: Int
     @Binding var fileID: String?
-    @Binding var showRecorder: MediaCommentType?
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
     @ObservedObject private var viewModel: SubmissionCommentListViewModel
 
-    @State var error: Text?
+    @State private var error: Text?
+    @State private var isAudioRecorderVisible: Bool = false
+    @State private var isVideoRecorderVisible: Bool = false
+    private let avPermissionViewModel: AVPermissionViewModel = .init()
 
-    @AccessibilityFocusState private var focusedTab: SubmissionGraderView.GraderTab?
+    @AccessibilityFocusState private var a11yFocusedTab: SpeedGraderPageTab?
 
     init(
         viewModel: SubmissionCommentListViewModel,
         attempt: Binding<Int>,
         fileID: Binding<String?>,
-        showRecorder: Binding<MediaCommentType?>,
-        focusedTab: AccessibilityFocusState<SubmissionGraderView.GraderTab?>
+        a11yFocusedTab: AccessibilityFocusState<SpeedGraderPageTab?>
     ) {
         self.viewModel = viewModel
         self._attempt = attempt
         self._fileID = fileID
-        self._showRecorder = showRecorder
-        self._focusedTab = focusedTab
+        self._a11yFocusedTab = a11yFocusedTab
     }
 
     var body: some View {
@@ -64,29 +64,14 @@ struct SubmissionCommentListView: View {
             .background(Color.backgroundLightest)
             .scaleEffect(y: viewModel.state == .data ? -1 : 1)
             .safeAreaInset(edge: .bottom) {
-                switch showRecorder {
-                case .audio:
-                    InstUI.Divider()
-                    AudioRecorder {
-                        show(recorder: nil)
-                        sendMediaComment(type: .audio, url: $0)
-                    }
-                    .background(Color.backgroundLight)
-                    .frame(height: 240)
-                    .transition(.move(edge: .bottom))
-                case .video:
-                    InstUI.Divider()
-                    VideoRecorder(camera: .front) {
-                        show(recorder: nil)
-                        sendMediaComment(type: .video, url: $0)
-                    }
-                    .background(Color.backgroundLight)
-                    .frame(height: geometry.size.height)
-                    .transition(.move(edge: .bottom))
-                case nil:
-                    toolbar
-                        .transition(.opacity)
-                }
+                commentInputView
+                    .transition(.opacity)
+            }
+            .sheet(isPresented: $isAudioRecorderVisible) {
+                audioRecorder
+            }
+            .sheet(isPresented: $isVideoRecorderVisible) {
+                videoRecorder
             }
         }
     }
@@ -109,7 +94,7 @@ struct SubmissionCommentListView: View {
         }
     }
 
-    private var toolbar: some View {
+    private var commentInputView: some View {
         CommentInputView(
             comment: viewModel.comment,
             commentLibraryButtonType: viewModel.isCommentLibraryEnabled ? .openLibrary : .hidden,
@@ -120,14 +105,14 @@ struct SubmissionCommentListView: View {
             },
             addAttachmentAction: { type in
                 switch type {
-                case .audio: recordAudio()
-                case .video: recordVideo()
-                case .file: chooseFile()
+                case .audio: showAudioRecorder()
+                case .video: showVideoRecorder()
+                case .file: showFilePicker()
                 }
             },
             sendAction: sendComment
         )
-        .accessibilityFocused($focusedTab, equals: .comments)
+        .accessibilityFocused($a11yFocusedTab, equals: .comments)
     }
 
     func sendComment() {
@@ -144,30 +129,32 @@ struct SubmissionCommentListView: View {
         }
     }
 
-    func recordAudio() {
-        AudioRecorder.requestPermission { allowed in
-            guard allowed else {
-                controller.value.showPermissionError(.microphone)
-                return
-            }
-            show(recorder: .audio)
+    func showAudioRecorder() {
+        avPermissionViewModel.performAfterMicrophonePermission(from: controller) {
+            isAudioRecorderVisible = true
         }
     }
 
-    func recordVideo() {
-        VideoRecorder.requestPermission { allowed in
-            guard allowed else {
-                controller.value.showPermissionError(.camera)
-                return
-            }
-            AudioRecorder.requestPermission { allowed in
-                guard allowed else {
-                    controller.value.showPermissionError(.microphone)
-                    return
-                }
-                show(recorder: .video)
-            }
+    var audioRecorder: some View {
+        AttachmentPickerAssembly.makeAudioRecorder(router: env.router) {
+            isAudioRecorderVisible = false
+            sendMediaComment(type: .audio, url: $0)
         }
+        .interactiveDismissDisabled()
+    }
+
+    func showVideoRecorder() {
+        avPermissionViewModel.performAfterVideoPermissions(from: controller) {
+            isVideoRecorderVisible = true
+        }
+    }
+
+    var videoRecorder: some View {
+        AttachmentPickerAssembly.makeVideoRecorder {
+            isVideoRecorderVisible = false
+            sendMediaComment(type: .video, url: $0)
+        }
+        .interactiveDismissDisabled()
     }
 
     func sendMediaComment(type: MediaCommentType, url: URL?) {
@@ -179,7 +166,7 @@ struct SubmissionCommentListView: View {
         }
     }
 
-    func chooseFile() {
+    func showFilePicker() {
         filePicker.env = env
         filePicker.pickAttachments(from: controller) {
             sendFileComment(batchID: $0)
@@ -200,12 +187,6 @@ struct SubmissionCommentListView: View {
         case .failure(let error):
             self.error = Text(error.localizedDescription)
             UIAccessibility.announce(error.localizedDescription)
-        }
-    }
-
-    func show(recorder: MediaCommentType?) {
-        withAnimation(.default) {
-            showRecorder = recorder
         }
     }
 }

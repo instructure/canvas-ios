@@ -25,6 +25,26 @@ struct AssistFlashCardView: View {
     @Environment(\.viewController) private var viewController
 
     var body: some View {
+        ZStack {
+            loaderView
+            content
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .applyHorizonGradient()
+    }
+}
+
+// MARK: - Components
+
+extension AssistFlashCardView {
+    @ViewBuilder
+    private var loaderView: some View {
+        HorizonUI.Spinner(size: .small, foregroundColor: Color.huiColors.surface.cardPrimary)
+            .opacity(viewModel.isLoaderVisible ? 1 : 0)
+            .animation(.smooth, value: viewModel.isLoaderVisible)
+    }
+
+    private var content: some View {
         VStack {
             headerView
                 .padding(.horizontal, .huiSpaces.space24)
@@ -58,25 +78,8 @@ struct AssistFlashCardView: View {
             }
             .padding([.bottom, .top], .huiSpaces.space16)
         }
-        .applyHorizonGradient()
-        .overlay { loaderView }
-    }
-}
-
-// MARK: - Components
-
-extension AssistFlashCardView {
-    @ViewBuilder
-    private var loaderView: some View {
-        if viewModel.isLoaderVisible {
-            ZStack {
-                Rectangle()
-                    .fill(Color.clear)
-                    .applyHorizonGradient()
-                    .ignoresSafeArea()
-                HorizonUI.Spinner(size: .small, foregroundColor: Color.huiColors.surface.cardPrimary)
-            }
-        }
+        .opacity(viewModel.isLoaderVisible ? 0 : 1)
+        .animation(.smooth, value: viewModel.isLoaderVisible)
     }
 
     private var headerView: some View {

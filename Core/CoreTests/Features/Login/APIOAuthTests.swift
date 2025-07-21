@@ -16,9 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
-import TestsFoundation
 import XCTest
+import TestsFoundation
+@testable import Core
 
 class APIOAuthTests: CoreTestCase {
     func testGetMobileVerifyRequest() {

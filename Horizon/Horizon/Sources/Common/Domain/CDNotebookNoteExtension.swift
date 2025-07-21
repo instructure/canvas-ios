@@ -19,15 +19,15 @@
 import Core
 import CoreData
 
-extension CDNotebookNote {
+extension CDHNotebookNote {
     @discardableResult
     public static func save(
         _ item: RedwoodNote,
         userID: String,
-        notebookNote: CDNotebookNote? = nil,
+        notebookNote: CDHNotebookNote? = nil,
         in context: NSManagedObjectContext
-    ) -> CDNotebookNote {
-        let model: CDNotebookNote = notebookNote ?? context.first(where: #keyPath(CDNotebookNote.id), equals: item.id) ?? context.insert()
+    ) -> CDHNotebookNote {
+        let model: CDHNotebookNote = notebookNote ?? context.first(where: #keyPath(CDHNotebookNote.id), equals: item.id) ?? context.insert()
         model.userID = userID
         model.content = item.userText
         model.courseID = item.courseId
@@ -40,7 +40,7 @@ extension CDNotebookNote {
             model.endOffset = NSNumber(value: endOffset)
         }
         model.id = item.id
-        model.labels = item.reaction?.serializeLabels
+        model.labels = CDHNotebookNote.serializeLabels(from: item.reaction)
         model.objectType = item.objectType
         model.pageID = item.objectId
         model.selectedText = item.highlightData?.selectedText

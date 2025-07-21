@@ -23,6 +23,7 @@
     "Core\/Common\/Extensions\/UIKit\/UINavigationControllerExtensions.swift",
     "Core\/Common\/Extensions\/UIKit\/UISplitViewControllerExtensions.swift",
     "Core\/Common\/Extensions\/UIKit\/UITabBarControllerExtensions.swift",
+    "Core\/Features\/AudioVideo\/AVPermissionInteractor.swift",
     "Core\/Features\/DocViewer\/ViewModel\/AnnotationDrag\/Gesture",
     "Core\/Features\/Files\/FileUploadProgress\/View\/PreviewSupport\/",
     "Core\/Features\/Grades\/Model\/Entities\/GradeListData.swift",

@@ -89,7 +89,7 @@ class SpeedGraderTests: E2ETestCase {
             daysLateButton.tapAt(CGPoint(x: daysLateButton.frame.width - 10, y: 20))
             let daysLateTextField = SpeedGraderHelper.daysLateTextField
             XCTAssertVisible(daysLateTextField.waitUntil(.visible))
-            daysLateTextField.writeText(text: "6")
+            daysLateTextField.writeText(text: XCUIKeyboardKey.delete.rawValue + "6")
             daysLateTextField.waitUntil(.value(expected: "6"))
             XCTAssertEqual(daysLateTextField.stringValue, "6")
             SpeedGraderHelper.daysLateAlertOkButton.hit()

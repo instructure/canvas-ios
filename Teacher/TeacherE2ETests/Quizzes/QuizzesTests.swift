@@ -144,21 +144,29 @@ class QuizzesTests: E2ETestCase {
         let addDueDate = EditorHelper.addDueDate.waitUntil(.visible)
         XCTAssertTrue(addDueDate.isVisible)
 
-        timeLimit.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
-        timeLimit.hit()
+        timeLimit.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
+        let timeLimitToggleImage = timeLimit.firstImage?.waitUntil(.visible)
+        XCTAssertNotNil(timeLimitToggleImage)
+        timeLimitToggleImage!.hit()
         XCTAssertTrue(length.waitUntil(.visible).isVisible)
 
-        allowMultipleAttempts.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
-        allowMultipleAttempts.hit()
+        allowMultipleAttempts.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
+        let allowMultipleAttemptsImage = allowMultipleAttempts.firstImage?.waitUntil(.visible)
+        XCTAssertNotNil(allowMultipleAttemptsImage)
+        allowMultipleAttemptsImage!.hit()
         XCTAssertTrue(allowedAttempts.waitUntil(.visible).isVisible)
         XCTAssertTrue(scoreToKeep.waitUntil(.visible).isVisible)
 
-        showOneQuestionAtATime.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
-        showOneQuestionAtATime.hit()
+        showOneQuestionAtATime.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
+        let showOneQuestionAtATimeImage = showOneQuestionAtATime.firstImage?.waitUntil(.visible)
+        XCTAssertNotNil(showOneQuestionAtATimeImage)
+        showOneQuestionAtATimeImage!.hit()
         XCTAssertTrue(lockQuestions.waitUntil(.visible).isVisible)
 
-        requireAccessCode.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
-        requireAccessCode.hit()
+        requireAccessCode.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
+        let requireAccessCodeImage = requireAccessCode.firstImage?.waitUntil(.visible)
+        XCTAssertNotNil(requireAccessCodeImage)
+        requireAccessCodeImage!.hit()
         XCTAssertTrue(accessCode.waitUntil(.visible).isVisible)
     }
 }

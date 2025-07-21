@@ -188,14 +188,27 @@ extension UIViewController {
         return observations
     }
 
-    public func showPermissionError(_ error: PermissionError) {
-        let alert = UIAlertController(title: String(localized: "Permission Needed", bundle: .core), message: error.message, preferredStyle: .alert)
-        alert.addAction(AlertAction(String(localized: "Settings", bundle: .core), style: .default) { _ in
-            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
-            AppEnvironment.shared.loginDelegate?.openExternalURL(url)
-        })
-        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
-        AppEnvironment.shared.router.show(alert, from: self, options: .modal())
+    public func showNotificationsPermissionError() {
+        let env = AppEnvironment.shared
+
+        let alert = UIAlertController(
+            title: String(localized: "Permission Needed", bundle: .core),
+            message: String(localized: "You must allow notifications in Settings to set reminders.", bundle: .core),
+            preferredStyle: .alert
+        )
+
+        alert.addAction(
+            AlertAction(String(localized: "Settings", bundle: .core), style: .default) { _ in
+                guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+                AppEnvironment.shared.loginDelegate?.openExternalURL(url)
+            }
+        )
+
+        alert.addAction(
+            AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel)
+        )
+
+        env.router.show(alert, from: self, options: .modal())
     }
 
     public func showThemeSelectorAlert() {
@@ -219,21 +232,6 @@ extension UIViewController {
         env.userDefaults?.interfaceStyle = style
         if let window = env.window {
             window.updateInterfaceStyle(style)
-        }
-    }
-
-    public enum PermissionError {
-        case camera, microphone, notifications
-
-        var message: String {
-            switch self {
-            case .camera:
-                return String(localized: "You must enable Camera permissions in Settings.", bundle: .core)
-            case .microphone:
-                return String(localized: "You must enable Microphone permissions in Settings.", bundle: .core)
-            case .notifications:
-                return String(localized: "You must allow notifications in Settings to set reminders.", bundle: .core)
-            }
         }
     }
 

@@ -19,7 +19,7 @@
 import Foundation
 
 /// A message returned from the interactor
-struct AssistChatMessage: Codable, Equatable {
+struct AssistChatMessage {
 
     let id: UUID
 
@@ -27,43 +27,77 @@ struct AssistChatMessage: Codable, Equatable {
     /// If set to null, then it is removed from the list of messages sent to the AI
     let prompt: String?
 
-    /// The text shown to the user in the history. This may be different from the prompt sent to the AI
-    let text: String
+    /// The text shown to the user on screen. This may be different from the prompt sent to the AI
+    let text: String?
 
     /// Whether or not this came from the AI
     let role: Role
 
-    init(botResponse: String) {
-        prompt = botResponse
-        text = botResponse
-        role = .Assistant
-        id = UUID()
+    /// A list of options that the user can select from.
+    let chipOptions: [AssistChipOption]?
+
+    let flashCards: [AssistChatFlashCard]?
+
+    let quizItems: [QuizItem]?
+
+    init(botResponse: String, chipOptions: [AssistChipOption] = []) {
+        self.init(
+            role: .Assistant,
+            prompt: botResponse,
+            text: botResponse,
+            chipOptions: chipOptions
+        )
     }
 
-    init(userResponse: String) {
-        prompt = userResponse
-        text = userResponse
-        role = .User
-        id = UUID()
+    /// The user has asked for FlashCards
+    init(flashCards: [AssistChatFlashCard]) {
+        self.init(
+            role: .Assistant,
+            flashCards: flashCards
+        )
     }
 
-    init(prompt: String?, text: String, role: Role = .User) {
+    /// The user has asked for a quiz
+    init(quizItems: [QuizItem]) {
+        self.init(
+            role: .Assistant,
+            quizItems: quizItems
+        )
+    }
+
+    init(userResponse: String, prompt: String? = nil) {
+        self.init(
+            role: .User,
+            prompt: prompt ?? userResponse,
+            text: userResponse
+        )
+    }
+
+    private init(
+        role: Role,
+        prompt: String? = nil,
+        text: String? = nil,
+        chipOptions: [AssistChipOption] = [],
+        flashCards: [AssistChatFlashCard] = [],
+        quizItems: [QuizItem]? = nil
+    ) {
+        self.id = UUID()
+        self.role = role
         self.prompt = prompt
         self.text = text
-        id = UUID()
-
-        self.role = role
-    }
-
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(prompt, forKey: .prompt)
-        try container.encode(text, forKey: .text)
-        try container.encode(role, forKey: .role)
+        self.chipOptions = chipOptions
+        self.flashCards = flashCards
+        self.quizItems = quizItems
     }
 
     enum Role: String, Codable, Equatable {
         case Assistant
         case User
+    }
+
+    struct QuizItem: Codable, Equatable {
+        let question: String
+        let answers: [String]
+        let correctAnswerIndex: Int
     }
 }

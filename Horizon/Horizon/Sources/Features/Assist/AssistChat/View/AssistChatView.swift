@@ -74,10 +74,9 @@ struct AssistChatView: View {
     private func contentView() -> some View {
         ScrollViewReader { scrollViewProxy in
             LazyVStack(alignment: .leading, spacing: .huiSpaces.space16) {
-                ForEach(viewModel.messages) { message in
+                ForEach(viewModel.messages, id: \.id) { message in
                     AssistChatMessageView(message: message)
-                        .id(message.id.uuidString)
-                        .transition(.scaleAndFade)
+                        .id(message.id)
                 }
                 .animation(.smooth, value: viewModel.isRetryButtonVisible)
                 .animation(.smooth, value: viewModel.messages)
@@ -92,6 +91,7 @@ struct AssistChatView: View {
                     .id(retryViewId)
                 }
             }
+            .animation(.smooth, value: viewModel.messages)
             .onReceive(viewModel.showMoreButtonPublisher) { id in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                     withAnimation {
@@ -124,7 +124,7 @@ struct AssistChatView: View {
 
             HStack(spacing: .huiSpaces.space16) {
                 TextEditor(text: $viewModel.message)
-                    .frame(minHeight: 44)
+                    .frame(minHeight: 36)
                     .frame(maxHeight: 100)
                     .fixedSize(horizontal: false, vertical: true)
                     .huiTypography(.p1)
@@ -146,25 +146,6 @@ struct AssistChatView: View {
                 .disabled(viewModel.isDisableSendButton)
             }
         }
-    }
-}
-
-extension AnyTransition {
-    static var scaleAndFade: AnyTransition {
-        AnyTransition.opacity
-            .combined(with: .modifier(
-                active: ScaleEffectModifier(scale: 0.8),
-                identity: ScaleEffectModifier(scale: 1.0)
-            ))
-    }
-}
-
-struct ScaleEffectModifier: ViewModifier {
-    let scale: CGFloat
-
-    func body(content: Content) -> some View {
-        content
-            .scaleEffect(scale)
     }
 }
 

@@ -22,17 +22,21 @@ public struct WrappingHStack<Model, V>: View where Model: Hashable, V: View {
     public typealias ViewGenerator = (Model) -> V
     var models: [Model]
     var viewGenerator: ViewGenerator
-    var horizontalSpacing: CGFloat = 5
-    var verticalSpacing: CGFloat = 5
+    var horizontalSpacing: CGFloat
+    var verticalSpacing: CGFloat
 
     @State private var totalHeight = CGFloat.zero
 
     public init(
         models: [Model],
+        horizontalSpacing: CGFloat = 5,
+        verticalSpacing: CGFloat = 5,
         viewGenerator: @escaping ViewGenerator
     ) {
         self.models = models
         self.viewGenerator = viewGenerator
+        self.horizontalSpacing = horizontalSpacing
+        self.verticalSpacing = horizontalSpacing
     }
 
     public var body: some View {

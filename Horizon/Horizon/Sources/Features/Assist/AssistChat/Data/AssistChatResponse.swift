@@ -25,58 +25,16 @@ struct AssistChatResponse {
 
     // MARK: - Optional
 
-    let chipOptions: [AssistChipOption]?
-    let flashCards: [AssistChatFlashCard]?
     let isLoading: Bool
-    let quizItems: [QuizItem]?
-
-    init(chipOptions: [AssistChipOption], chatHistory: [AssistChatMessage] = []) {
-        self.chipOptions = chipOptions
-        self.chatHistory = chatHistory
-
-        self.isLoading = false
-        self.flashCards = nil
-        self.quizItems = nil
-    }
-
-    /// The user has asked for FlashCards, so we're giving it to them
-    init(flashCards: [AssistChatFlashCard], chatHistory: [AssistChatMessage]) {
-        self.flashCards = flashCards
-        self.chatHistory = chatHistory
-
-        self.isLoading = false
-        self.chipOptions = nil
-        self.quizItems = nil
-    }
-
-    /// The user has asked for a quiz, so we're giving it to them
-    init(quizItems: [QuizItem], chatHistory: [AssistChatMessage]) {
-        self.chatHistory = chatHistory
-        self.quizItems = quizItems
-
-        self.isLoading = false
-        self.chipOptions = nil
-        self.flashCards = nil
-    }
 
     /// Publishing an updated chat history. This happens when chatting with the bot
     init(
-        message: AssistChatMessage,
-        chipOptions: [AssistChipOption] = [],
+        _ message: AssistChatMessage,
         chatHistory: [AssistChatMessage] = [],
-        isLoading: Bool = false
+        isLoading: Bool = false,
+        isFreeTextAvailable: Bool = true
     ) {
         self.chatHistory = chatHistory + [message]
-        self.chipOptions = chipOptions
         self.isLoading = isLoading
-
-        self.flashCards = nil
-        self.quizItems = nil
-    }
-
-    struct QuizItem {
-        let question: String
-        let answers: [String]
-        let correctAnswerIndex: Int
     }
 }

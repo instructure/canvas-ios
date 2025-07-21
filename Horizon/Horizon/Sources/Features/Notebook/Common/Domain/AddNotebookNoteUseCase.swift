@@ -23,7 +23,7 @@ import Core
 class AddNotebookNoteUseCase: UseCase {
     var cacheKey: String?
 
-    typealias Model = CDNotebookNote
+    typealias Model = CDHNotebookNote
 
     // MARK: Dependencies
     let redwood: DomainService
@@ -56,7 +56,7 @@ class AddNotebookNoteUseCase: UseCase {
 
     func write(response: RedwoodCreateNoteMutationResponse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         if let redwoodNote = response?.data.createNote {
-            CDNotebookNote.save(
+            CDHNotebookNote.save(
                 redwoodNote,
                 userID: Context.currentUser.id,
                 in: client

@@ -19,9 +19,13 @@
 import UIKit
 
 internal class DynamicFontSize: CoreWebViewFeature {
+    /// Selectors below the body are for discussions.
     private var script: String {
         let css = """
-        body {
+        body,
+        [class*="formFieldLayout"],
+        [class*="checkboxFacade"],
+        [class*="textInput"] {
             -webkit-text-size-adjust: \(percentScale) !important
         }
         """

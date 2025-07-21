@@ -16,76 +16,34 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct AssistChipOption: Codable, Hashable {
+struct AssistChipOption: Equatable {
     let chip: String
-    let prompt: String
+    let prompt: String?
 
-    init(chip: String, prompt: String = "") {
+    init(chip: String, prompt: String? = nil) {
         self.chip = chip
-        self.prompt = prompt
+        self.prompt = prompt ?? chip
+    }
+}
+
+extension AssistChipOption: Codable, Hashable {
+    enum CodingKeys: String, CodingKey {
+        case chip, prompt
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        chip = try container.decode(String.self, forKey: .chip)
-        prompt = try container.decode(String.self, forKey: .prompt)
+        self.chip = try container.decode(String.self, forKey: .chip)
+        self.prompt = try container.decodeIfPresent(String.self, forKey: .prompt)
     }
 
-    enum Default: CaseIterable {
-        case summarize
-        case keyTakeaways
-        case tellMeMore
-        case flashcards
-        case quiz
-
-        var rawValue: String {
-            switch self {
-            case .summarize:
-                return String(localized: "Summarize", bundle: .horizon)
-            case .keyTakeaways:
-                return String(localized: "Key takeaways", bundle: .horizon)
-            case .tellMeMore:
-                return String(localized: "Tell me more", bundle: .horizon)
-            case .flashcards:
-                return String(localized: "Flash cards", bundle: .horizon)
-            case .quiz:
-                return String(localized: "Quiz", bundle: .horizon)
-            }
-        }
+    // Overload `==` for Equatable conformance
+    static func == (lhs: AssistChipOption, rhs: AssistChipOption) -> Bool {
+        return lhs.chip == rhs.chip && lhs.prompt == rhs.prompt
     }
 
-    // swiftlint:disable line_length
-    init(_ option: Default, userShortName: String? = nil) {
-        chip = option.rawValue
-
-        var introduction = ""
-        if let userShortName = userShortName {
-            introduction = "You can address me as \(userShortName)."
-        }
-        switch option {
-        case .summarize:
-            prompt = "\(introduction) Give me a 1-2 paragraph summary of the content; don't use any information besides the provided content."
-        case .keyTakeaways:
-            prompt = "\(introduction) Give some key takeaways from this content; don't use any information besides the provided content. Return the response as a bulleted list."
-        case .tellMeMore:
-            prompt = "\(introduction) In 1-2 paragraphs, tell me more about this content."
-        case .flashcards:
-            prompt = """
-            \(introduction) please generate exactly 20 questions and answers based on the provided content for the front and back of flashcards, respectively. If the content contains only an iframe dont try to generate an answer. Flashcards are best suited for definitions and terminology, key concepts and theories, language learning, historical events and dates, and other content that might benefit from active recall and repetition. Prioritize this type of content within the flashcards.
-
-            Return the flashcards as a valid JSON array in the following format:
-            [
-              {
-                "question": "What is the title of the video?",
-                "answer": "What Is Accountability?"
-              }
-            ]
-
-            without any further description or text. Please keep the questions and answers concise (under 35 words). Each question and answer will be shown on a flashcard, so no need to repeat the question in the answer. Make sure the JSON is valid.
-            """
-        case .quiz:
-            prompt = "Generate a quiz"
-        }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(chip)
+        hasher.combine(prompt)
     }
-    // swiftlint:enable line_length
 }

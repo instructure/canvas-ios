@@ -127,14 +127,14 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             }
         }
         .sheet(isPresented: $model.isImagePickerVisible) {
-            ImagePickerViewController(sourceType: .photoLibrary, imageHandler: model.addFile)
+            AttachmentPickerAssembly.makeImagePicker(onSelect: model.addFile)
         }
         .sheet(isPresented: $model.isTakePhotoVisible) {
-            ImagePickerViewController(sourceType: .camera, imageHandler: model.addFile)
+            AttachmentPickerAssembly.makeImageRecorder(onSelect: model.addFile)
                 .interactiveDismissDisabled()
         }
         .sheet(isPresented: $model.isAudioRecordVisible) {
-            AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: model.router, onSelect: model.addFile)
+            AttachmentPickerAssembly.makeAudioRecorder(router: model.router, onSelect: model.addFile)
                 .interactiveDismissDisabled()
         }
         .confirmationAlert(
