@@ -53,7 +53,8 @@ class CustomGradebookColumnsInteractorTests: TeacherTestCase {
         setupAPIMocks()
 
         testee = .init(
-            courseId: testData.courseId
+            courseId: testData.courseId,
+            env: environment
         )
     }
 

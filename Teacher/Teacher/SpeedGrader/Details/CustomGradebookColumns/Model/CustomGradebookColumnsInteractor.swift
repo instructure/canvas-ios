@@ -39,9 +39,11 @@ protocol CustomGradebookColumnsInteractor {
 final class CustomGradebookColumnsInteractorLive: CustomGradebookColumnsInteractor {
 
     let courseId: String
+    private let env: AppEnvironment
 
-    init(courseId: String) {
+    init(courseId: String, env: AppEnvironment) {
         self.courseId = courseId
+        self.env = env
     }
 
     // MARK: - Custom Columns
@@ -71,7 +73,7 @@ final class CustomGradebookColumnsInteractorLive: CustomGradebookColumnsInteract
 
     private func getCustomColumns(ignoreCache: Bool = false) -> AnyPublisher<[CDCustomGradebookColumn], Error> {
         let useCase = GetCustomGradebookColumns(courseId: courseId)
-        return ReactiveStore(useCase: useCase)
+        return ReactiveStore(useCase: useCase, environment: env)
             .getEntities(ignoreCache: ignoreCache)
             .eraseToAnyPublisher()
     }
@@ -79,7 +81,7 @@ final class CustomGradebookColumnsInteractorLive: CustomGradebookColumnsInteract
     /// Fetches all entries for the given `columnId`. Each entry is assumed to belong to a different student.
     func getCustomColumnEntries(columnId: String, ignoreCache: Bool = false) -> AnyPublisher<[CDCustomGradebookColumnEntry], Error> {
         let useCase = GetCustomGradebookColumnEntries(courseId: courseId, columnId: columnId)
-        return ReactiveStore(useCase: useCase)
+        return ReactiveStore(useCase: useCase, environment: env)
             .getEntities(ignoreCache: ignoreCache)
             .eraseToAnyPublisher()
     }

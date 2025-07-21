@@ -37,7 +37,7 @@ enum SpeedGraderAssembly {
             api: env.api
         )
         let submissionWordCountInteractor = SubmissionWordCountInteractorLive(assignmentId: assignmentId, api: env.api)
-        let customGradebookColumnsInteractor = CustomGradebookColumnsInteractorLive(courseId: context.id)
+        let customGradebookColumnsInteractor = CustomGradebookColumnsInteractorLive(courseId: context.id, env: env)
         let interactor = SpeedGraderInteractorLive(
             context: context,
             assignmentID: assignmentId,
