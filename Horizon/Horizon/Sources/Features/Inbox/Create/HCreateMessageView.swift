@@ -185,7 +185,8 @@ struct HCreateMessageView: View {
             $viewModel.subject,
             placeholder: String(localized: "Title/Subject", bundle: .horizon),
             disabled: viewModel.isSubjectDisabled,
-            focused: _isSubjectFocused
+            focused: _isSubjectFocused,
+            characterLimit: 255
         )
         .onChange(of: isSubjectFocused) { _, _ in
             viewModel.subjectFocusedChange(isFocused: isSubjectFocused)
@@ -194,7 +195,7 @@ struct HCreateMessageView: View {
 
     private var peopleSelection: some View {
         RecipientSelectionView(
-            viewModel: viewModel.peopleSelectionViewModel,
+            viewModel: viewModel.recipientSelectionViewModel,
             placeholder: String(localized: "Recipients", bundle: .horizon),
             disabled: viewModel.isPeopleSelectionDisabled
         )

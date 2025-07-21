@@ -31,7 +31,7 @@ struct ScoresAssignmentsView: View {
                 selection: $selectedSortOption,
                 focused: $selectionSortFocused,
                 isSearchable: false,
-                label: String(localized: "Sort By", bundle: .horizon),
+                label: String(localized: "Sort by", bundle: .horizon),
                 options: ScoreDetails.SortOption.allCases.map(\.localizedTitle)
             )
             .padding(.horizontal, .huiSpaces.space24)
@@ -41,7 +41,7 @@ struct ScoresAssignmentsView: View {
                     VStack(alignment: .leading, spacing: .huiSpaces.space12) {
                         Text("Name: \(assignment.name)", bundle: .horizon)
                         if let dueAtString = assignment.dueAtString {
-                            Text("Due Date: \(dueAtString)", bundle: .horizon)
+                            Text("Due date: \(dueAtString)", bundle: .horizon)
                         }
 
                         let submissionStatus = assignment.status
