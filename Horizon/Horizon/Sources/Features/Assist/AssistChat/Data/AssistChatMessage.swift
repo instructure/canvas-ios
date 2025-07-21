@@ -51,7 +51,8 @@ struct AssistChatMessage {
             role: .Assistant,
             prompt: botResponse,
             text: botResponse,
-            chipOptions: chipOptions
+            chipOptions: chipOptions,
+            citations: citations
         )
     }
 

@@ -52,45 +52,34 @@ struct AssistFeedbackView: View {
                 .opacity(thanksOpacity)
                 .animation(.easeInOut(duration: 0.2), value: thanksOpacity)
         }
+        .padding(.top, .huiSpaces.space4)
     }
 
     private var thumbUpIcon: some View {
         ZStack {
-            HorizonUI.IconButton(
-                .huiIcons.thumbUp,
-                type: .whiteOutline
-            ) {
-                onTap(true)
-            }
+            HorizonUI.icons.thumbUp
+                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
+                .onTapGesture { onTap(true) }
 
-            HorizonUI.IconButton(
-                .huiIcons.thumbUpFilled,
-                type: .whiteOutline
-            ) {
-                onTap(true)
-            }
-            .opacity(thumbsUpOpacity)
-            .animation(.easeInOut(duration: 0.2), value: thumbsUpOpacity)
+            HorizonUI.icons.thumbUp
+                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
+                .onTapGesture { onTap(true) }
+                .opacity(thumbsUpOpacity)
+                .animation(.easeInOut(duration: 0.2), value: thumbsUpOpacity)
         }
     }
 
     private var thumbDownIcon: some View {
         ZStack {
-            HorizonUI.IconButton(
-                .huiIcons.thumbDown,
-                type: .whiteOutline
-            ) {
-                onTap(false)
-            }
+            HorizonUI.icons.thumbDown
+                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
+                .onTapGesture { onTap(false) }
 
-            HorizonUI.IconButton(
-                .huiIcons.thumbDownFilled,
-                type: .whiteOutline
-            ) {
-                onTap(false)
-            }
-            .opacity(thumbsDownOpacity)
-            .animation(.easeInOut(duration: 0.2), value: thumbsDownOpacity)
+            HorizonUI.icons.thumbDown
+                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
+                .onTapGesture { onTap(false) }
+                .opacity(thumbsUpOpacity)
+                .animation(.easeInOut(duration: 0.2), value: thumbsUpOpacity)
         }
     }
 

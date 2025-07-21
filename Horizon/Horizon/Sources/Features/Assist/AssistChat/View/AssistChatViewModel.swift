@@ -284,14 +284,15 @@ private extension AssistChatMessage {
         onFeedbackChange: AssistChatMessageViewModel.OnFeedbackChange? = nil,
         onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil
     ) -> AssistChatMessageViewModel {
-        let chipOptions = self.id == response.chatHistory.last?.id ? (response.chatHistory.last?.chipOptions ?? []) : []
+        let chipOptions = id == response.chatHistory.last?.id ? (response.chatHistory.last?.chipOptions ?? []) : []
         return .init(
-            id: "\(self.id)\(chipOptions.count)\(onFeedbackChange != nil ? "feedback" : ""))",
-            content: self.text ?? "",
-            style: self.role == .Assistant ? .transparent : .white,
+            id: "\(id)\(chipOptions.count)\(onFeedbackChange != nil ? "feedback" : ""))",
+            content: text ?? "",
+            style: role == .Assistant ? .transparent : .white,
             chipOptions: chipOptions,
             onFeedbackChange: onFeedbackChange,
-            onTapChipOption: onTapChipOption
+            onTapChipOption: onTapChipOption,
+            citations: citations
         )
     }
 }

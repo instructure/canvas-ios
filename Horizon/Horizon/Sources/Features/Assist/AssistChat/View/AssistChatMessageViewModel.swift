@@ -39,6 +39,7 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
     let onFeedbackChange: OnFeedbackChange?
     let onTap: OnTap?
     let onTapChipOption: OnTapChipOption?
+    let citations: [String]
 
     init(
         id: String = UUID().uuidString,
@@ -48,7 +49,8 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
         chipOptions: [AssistChipOption] = [],
         onFeedbackChange: OnFeedbackChange? = nil,
         onTapChipOption: OnTapChipOption? = nil,
-        onTap: OnTap? = nil
+        onTap: OnTap? = nil,
+        citations: [String] = []
     ) {
         self.id = id
         self.content = content
@@ -58,6 +60,7 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
         self.chipOptions = chipOptions
         self.onTapChipOption = onTapChipOption
         self.onTap = onTap
+        self.citations = citations
     }
 
     /// For when it's just a loading spinner
@@ -70,6 +73,7 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
         self.chipOptions = []
         self.onTapChipOption = nil
         self.onTap = nil
+        self.citations = []
     }
 
     static func == (lhs: AssistChatMessageViewModel, rhs: AssistChatMessageViewModel) -> Bool {

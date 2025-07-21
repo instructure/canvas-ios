@@ -32,7 +32,7 @@ struct AssistChatView: View {
         VStack(spacing: .huiSpaces.space32) {
             topHeader
             ScrollView {
-                contentView()
+                contentView
             }
             .scrollDismissesKeyboard(.immediately)
             sendMessageView
@@ -71,7 +71,7 @@ struct AssistChatView: View {
         }
     }
 
-    private func contentView() -> some View {
+    private var contentView: some View {
         ScrollViewReader { scrollViewProxy in
             LazyVStack(alignment: .leading, spacing: .huiSpaces.space16) {
                 ForEach(viewModel.messages, id: \.id) { message in

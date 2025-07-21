@@ -96,12 +96,12 @@ final class AssistChatInteractorLive: AssistChatInteractor {
                     self?.responsePublisher.send(.failure(error))
                 }
             },
-            receiveValue: { [weak self] assistChatResponse in
-                guard let assistChatResponse = assistChatResponse else {
+            receiveValue: { [weak self] assistChatMessage in
+                guard let assistChatMessage = assistChatMessage else {
                     self?.publish(action: .chat(prompt: nil, history: history))
                     return
                 }
-                let response: AssistChatResponse = .init(assistChatResponse, chatHistory: history)
+                let response: AssistChatResponse = .init(assistChatMessage, chatHistory: history)
                 self?.responsePublisher.send(.success(response))
             }
         )

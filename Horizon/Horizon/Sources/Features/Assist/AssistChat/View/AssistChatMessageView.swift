@@ -24,26 +24,40 @@ struct AssistChatMessageView: View {
     let message: AssistChatMessageViewModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: .zero) {
+        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
             messageContent
                 .frame(maxWidth: .infinity, alignment: message.alignment)
                 .onTapGesture {
                     message.onTap?()
                 }
-            WrappingHStack(
-                models: message.chipOptions,
-                horizontalSpacing: .zero
-            ) { quickResponse in
-                HorizonUI.Pill(title: quickResponse.chip, style: .outline(.light))
-                    .onTapGesture {
-                        message.onTapChipOption?(quickResponse)
-                    }
-                    .padding(.vertical, .huiSpaces.space4)
-                    .padding(.trailing, .huiSpaces.space4)
-            }
-            .padding(.vertical, .huiSpaces.space8)
-            .frame(maxWidth: .infinity, alignment: .leading)
+            citations
             feedback
+            suggestedResponses
+        }
+    }
+
+    @ViewBuilder
+    private var citations: some View {
+        if message.citations.isNotEmpty {
+            WrappingHStack(
+                models: message.citations,
+                horizontalSpacing: .zero
+            ) {
+                Text($0)
+                    .huiTypography(.labelSmall)
+                    .baselineOffset(2)
+                    .foregroundColor(.huiColors.text.surfaceColored)
+                    .underline()
+                    .padding(.horizontal, .huiSpaces.space4)
+                    .overlay(
+                        Rectangle()
+                            .fill(HorizonUI.colors.text.surfaceColored)
+                            .frame(width: $0 == message.citations.last ? 0 : 1),
+                        alignment: .trailing
+                    )
+                    .onTapGesture {
+                    }
+            }
         }
     }
 
@@ -58,7 +72,10 @@ struct AssistChatMessageView: View {
         VStack(alignment: .center) {
             if message.isLoading {
                 HStack(alignment: .center) {
-                    HorizonUI.Spinner(size: .xSmall, foregroundColor: .huiColors.surface.cardPrimary)
+                    HorizonUI.Spinner(
+                        size: .xSmall,
+                        foregroundColor: .huiColors.surface.cardPrimary
+                    )
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, .huiSpaces.space8)
@@ -72,31 +89,43 @@ struct AssistChatMessageView: View {
             }
         }
     }
+
+    @ViewBuilder
+    private var suggestedResponses: some View {
+        if message.chipOptions.isNotEmpty {
+            WrappingHStack(
+                models: message.chipOptions,
+                horizontalSpacing: .zero
+            ) { quickResponse in
+                HorizonUI.Pill(title: quickResponse.chip, style: .outline(.light))
+                    .onTapGesture {
+                        message.onTapChipOption?(quickResponse)
+                    }
+                    .padding(.vertical, .huiSpaces.space4)
+                    .padding(.trailing, .huiSpaces.space4)
+            }
+            .padding(.top, .huiSpaces.space16)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
 }
 
 #if DEBUG
 #Preview {
     VStack {
         AssistChatMessageView(message: .init(content: "Hi Horizon App", style: .semitransparent))
-        AssistChatMessageView(
-            message: .init(
-                content: "Hi Horizon App",
-                style: .white,
-                onFeedbackChange: { _ in
-
-                }
-            )
-        )
         AssistChatMessageView(message: .init())
         AssistChatMessageView(message: .init(
-            content: "You are a duck",
+            content: "AI response Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             style: .transparent,
             chipOptions: [
                 AssistChipOption(chip: "Quick Response 1"),
                 AssistChipOption(chip: "Quick Response 2"),
                 AssistChipOption(chip: "Quick Response 3"),
                 AssistChipOption(chip: "Quick Response 4")
-            ]
+            ],
+            onFeedbackChange: { _ in },
+            citations: ["Citation 1", "Citation 2", "Citation 3"]
         ))
     }
     .frame(maxHeight: .infinity)
