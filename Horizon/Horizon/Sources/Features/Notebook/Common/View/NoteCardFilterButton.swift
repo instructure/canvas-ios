@@ -32,6 +32,7 @@ struct NoteCardFilterButton: View {
                 .frame(width: .huiSpaces.space24, height: .huiSpaces.space24)
             Text(type.label)
                 .huiTypography(.buttonTextLarge)
+                .foregroundStyle(Color.huiColors.text.body)
         }
         .frame(height: 102)
         .frame(maxWidth: .infinity)

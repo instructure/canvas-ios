@@ -117,7 +117,7 @@ struct AssignmentSubmissionView: View {
         switch viewModel.selectedSubmission {
         case .text:
             VStack(spacing: .huiSpaces.space16) {
-                Text("Your Submission", bundle: .horizon)
+                Text("Your submission", bundle: .horizon)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .huiTypography(.h3)
                     .foregroundStyle(Color.huiColors.text.title)

@@ -168,7 +168,7 @@ struct SubmissionCommentView: View {
     @ViewBuilder
     private func addCommentView(proxy: GeometryProxy) -> some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space8) {
-            Text("Add Comment", bundle: .horizon)
+            Text("Add comment", bundle: .horizon)
                 .huiTypography(.labelLargeBold)
                 .foregroundStyle(Color.huiColors.text.title)
             TextArea(

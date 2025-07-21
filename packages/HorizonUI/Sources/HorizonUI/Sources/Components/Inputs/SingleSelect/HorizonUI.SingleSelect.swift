@@ -45,7 +45,10 @@ extension HorizonUI {
 
         // Computed height of the container for all options
         private var displayedOptionsHeight: CGFloat {
-            focused ? min(displayedOptionHeight * CGFloat(options.count) + .huiSpaces.space4, 300) : 0
+            // The `-4` offset is applied as a manual adjustment to compensate for extra spacing,
+            focused
+            ? min(displayedOptionHeight * CGFloat(options.count) + .huiSpaces.space4, 300) - 4
+            : 0
         }
 
         // The computed height of the error text
@@ -124,7 +127,6 @@ extension HorizonUI {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Color.huiColors.surface.pageSecondary)
-                .padding(.vertical, .huiSpaces.space4)
             }
             .background(Color.huiColors.surface.pageSecondary)
             .frame(height: displayedOptionsHeight)
@@ -151,7 +153,11 @@ extension HorizonUI {
                             }
                     }
                 }
-                .background(Color.huiColors.surface.pageSecondary)
+                .background(text == selection
+                            ? Color.huiColors.surface.institution
+                            : Color.huiColors.surface.pageSecondary
+                )
+
                 .huiTypography(.p1)
                 .onTapGesture {
                     focused = false

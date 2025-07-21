@@ -53,17 +53,17 @@ enum AssignmentLocalizedKeys {
     var title: String {
         switch self {
         case .submissionText:
-            return String(localized: "Your Text Submission", bundle: .horizon)
+            return String(localized: "Your text submission", bundle: .horizon)
         case .submissionFileUpload:
             return String(localized: "Your Uploaded Submission", bundle: .horizon)
         case .addSubmissionText:
             return String(localized: "Add your text entry", bundle: .horizon)
         case .selectSubmissionType:
-            return String(localized: "Select a Submission Type", bundle: .horizon)
+            return String(localized: "Select a aubmission type", bundle: .horizon)
         case .newAttempt:
-            return String(localized: "New Attempt", bundle: .horizon)
+            return String(localized: "New attempt", bundle: .horizon)
         case .submitAssignment:
-            return String(localized: "Submit Assignment", bundle: .horizon)
+            return String(localized: "Submit assignment", bundle: .horizon)
         case .chooseFile:
             return String(localized: "Choose File", bundle: .horizon)
         case .takeMedia:
@@ -71,13 +71,13 @@ enum AssignmentLocalizedKeys {
         case .selectMedia:
             return String(localized: "Choose Photo or Video", bundle: .horizon)
         case .uploadFile:
-            return String(localized: "Upload File", bundle: .horizon)
+            return String(localized: "Upload file", bundle: .horizon)
         case .deleteDraft:
-            return String(localized: "Delete Draft", bundle: .horizon)
+            return String(localized: "Delete draft", bundle: .horizon)
         case .savedAt:
             return String(localized: "Saved at ", bundle: .horizon)
         case .attemptHistory:
-            return String(localized: "Attempt History", bundle: .horizon)
+            return String(localized: "Attempt history", bundle: .horizon)
         case .comments:
             return String(localized: "Comments", bundle: .horizon)
         case .tools:
@@ -112,7 +112,7 @@ enum AssignmentLocalizedKeys {
         case .viewSubmission:
             return String(localized: "View Submission", bundle: .horizon)
         case .deleteDraftTitle:
-            return String(localized: "Delete Draft", bundle: .horizon)
+            return String(localized: "Delete draft", bundle: .horizon)
         case .deleteDraftBody:
             return String(localized: "Once deleted, this draft cannot be recovered.", bundle: .horizon)
         case .draftDeletedAlert:

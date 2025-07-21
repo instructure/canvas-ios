@@ -22,22 +22,18 @@ import SwiftUI
 
 struct NotebookView: View {
 
-    @State var viewModel: NotebookViewModel
+    @Bindable var viewModel: NotebookViewModel
     @Environment(\.viewController) private var viewController
 
     var body: some View {
         VStack {
-            if viewModel.isLoaderVisible {
-                loadingView
+            if viewModel.isNavigationBarVisible {
+                ScrollView(showsIndicators: false) { content }
+                    .refreshable {
+                        await viewModel.refresh()
+                    }
             } else {
-                if viewModel.isNavigationBarVisible {
-                    ScrollView(showsIndicators: false) { content }
-                        .refreshable {
-                            await viewModel.refresh()
-                        }
-                } else {
-                    ScrollView(showsIndicators: false) { content }
-                }
+                ScrollView(showsIndicators: false) { content }
             }
         }
         .background(HorizonUI.colors.surface.pagePrimary)
@@ -46,6 +42,11 @@ struct NotebookView: View {
         .safeAreaInset(edge: .top, spacing: .zero) {
             if viewModel.isNavigationBarVisible {
                 navigationBar
+            }
+        }
+        .overlay {
+            if viewModel.isLoaderVisible {
+                loadingView
             }
         }
     }
@@ -76,11 +77,11 @@ struct NotebookView: View {
                     }
                 }
             }
+            .padding(.top, viewModel.isNavigationBarVisible ? .huiSpaces.space16 : .zero)
+            .padding([.horizontal, .bottom], .huiSpaces.space16)
+            .padding(.horizontal, .huiSpaces.space8)
+            .animation(.smooth, value: viewModel.notes.count)
         }
-        .padding(.top, viewModel.isNavigationBarVisible ? .huiSpaces.space16 : .zero)
-        .padding([.horizontal, .bottom], .huiSpaces.space16)
-        .padding(.horizontal, .huiSpaces.space8)
-        .animation(.smooth, value: viewModel.notes.count)
     }
 
     @ViewBuilder
@@ -131,6 +132,7 @@ struct NotebookView: View {
                 }
             }
         }
+        .hidden(viewModel.notes.isEmpty)
     }
 
     @ViewBuilder
@@ -147,6 +149,7 @@ struct NotebookView: View {
             }
             .frame(maxWidth: .infinity)
         }
+        .hidden(viewModel.notes.isEmpty)
     }
 
     private var emptyCard: some View {
