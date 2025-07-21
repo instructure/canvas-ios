@@ -69,7 +69,6 @@ struct SpeedGraderPageView: View {
     // MARK: - Init
 
     init(
-        env: AppEnvironment,
         userIndexInSubmissionList: Int,
         viewModel: SpeedGraderPageViewModel,
         landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel,
@@ -195,7 +194,8 @@ struct SpeedGraderPageView: View {
 
                 if viewModel.hasSubmissions {
                     attemptAndFilePickers
-                        .accessibility(hidden: drawerState.isFullyOpen)
+                        .accessibilityElement(children: .contain)
+                        .accessibilityHidden(drawerState.isFullyOpen)
                     InstUI.Divider()
                 }
 
@@ -203,6 +203,7 @@ struct SpeedGraderPageView: View {
                     similarityScoreView
                     submissionViewer
                 }
+                .accessibilityElement(children: .contain)
                 .accessibilityHidden(drawerState.isOpen)
 
                 Spacer()

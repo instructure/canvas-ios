@@ -31,16 +31,14 @@ enum DrawerState {
 
 // Place after the main content in a ZStack(alignment: .bottom)
 struct DrawerContainer<Content: View>: View {
-    let content: Content
-    let minHeight: CGFloat
-    let maxHeight: CGFloat
 
-    let openHalfScreen = Text("Open drawer half screen", bundle: .teacher)
-    let openFullScreen = Text("Open drawer full screen", bundle: .teacher)
-    let collapseHalfScreen = Text("Collapse drawer half screen", bundle: .teacher)
-    let closeDrawer = Text("Close drawer", bundle: .teacher)
+    @Environment(\.viewController) var controller
 
-    var height: CGFloat {
+    private let content: Content
+    private let minHeight: CGFloat
+    private let maxHeight: CGFloat
+
+    private var height: CGFloat {
         switch state {
         case .min: return minHeight
         case .mid: return (minHeight + maxHeight) / 2
@@ -48,16 +46,19 @@ struct DrawerContainer<Content: View>: View {
         }
     }
 
-    @Environment(\.viewController) var controller
-
-    @Binding var state: DrawerState {
+    @Binding private var state: DrawerState {
         didSet {
-            if state == .min {
+            if state.isClosed {
                 controller.view.endEditing(true)
             }
         }
     }
-    @State var translation: CGFloat = 0
+    @State private var translation: CGFloat = 0
+
+    private let openHalfScreenText = Text("Open drawer half screen", bundle: .teacher)
+    private let openFullScreenText = Text("Open drawer full screen", bundle: .teacher)
+    private let collapseHalfScreenText = Text("Collapse drawer half screen", bundle: .teacher)
+    private let closeDrawerText = Text("Close drawer", bundle: .teacher)
 
     init(
         state: Binding<DrawerState>,
@@ -92,7 +93,9 @@ struct DrawerContainer<Content: View>: View {
             .shadow(color: Color.black.opacity(0.3), radius: 3, x: 0, y: 0)
         )
     }
+
     // MARK: - Expand/Collapse Button
+
     private var expandCollapseButton: some View {
         Button(action: expandCollapseButtonAction) {
             expandCollapseButtonImage
@@ -104,22 +107,24 @@ struct DrawerContainer<Content: View>: View {
         }
     }
 
-    private var expandCollapseButtonImage: some View {
-        state == .max ? Image.exitFullScreenLine : Image.fullScreenLine
-    }
-
     private func expandCollapseButtonAction() {
         switch state {
-        case .mid: snapDrawer(to: .max)
-        default: snapDrawer(to: .mid)
+        case .min, .mid: snapDrawer(to: .max)
+        case .max: snapDrawer(to: .mid)
+        }
+    }
+
+    private var expandCollapseButtonImage: Image {
+        switch state {
+        case .min, .mid: .fullScreenLine
+        case .max: .exitFullScreenLine
         }
     }
 
     private var expandCollapseButtonAccessibilityText: Text {
         switch state {
-        case .min: openHalfScreen
-        case .mid: openFullScreen
-        case .max: collapseHalfScreen
+        case .min, .mid: openFullScreenText
+        case .max: collapseHalfScreenText
         }
     }
 
@@ -157,9 +162,9 @@ struct DrawerContainer<Content: View>: View {
 
     private var dragIndicatorAccessibilityText: Text {
         switch state {
-        case .min: openHalfScreen
-        case .mid: openFullScreen
-        case .max: closeDrawer
+        case .min: openHalfScreenText
+        case .mid: openFullScreenText
+        case .max: closeDrawerText
         }
     }
 
@@ -176,20 +181,27 @@ struct DrawerContainer<Content: View>: View {
         }
     }
 
-    private var openCloseButtonImage: some View {
-        Image.chevronDown
-            .rotationEffect(state != .min ? .degrees(0) : .degrees(180))
-    }
-
     private func openCloseButtonAction() {
         switch state {
-        case .min: snapDrawer(to: .max)
-        default: snapDrawer(to: .min)
+        case .min: snapDrawer(to: .mid)
+        case .mid, .max: snapDrawer(to: .min)
         }
     }
 
+    private var openCloseButtonImage: some View {
+        let isOpenAction = switch state {
+        case .min: true
+        case .mid, .max: false
+        }
+        return Image.chevronDown
+            .rotationEffect(isOpenAction ? .degrees(180) : .degrees(0))
+    }
+
     private var openCloseButtonAccessibilityText: Text {
-        state == .min ? openFullScreen : closeDrawer
+        switch state {
+        case .min: openHalfScreenText
+        case .mid, .max: closeDrawerText
+        }
     }
 
     // MARK: - Drawer Management
