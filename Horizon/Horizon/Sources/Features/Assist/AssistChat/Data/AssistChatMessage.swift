@@ -40,7 +40,13 @@ struct AssistChatMessage {
 
     let quizItems: [QuizItem]?
 
-    init(botResponse: String, chipOptions: [AssistChipOption] = []) {
+    let citations: [String]
+
+    init(
+        botResponse: String,
+        chipOptions: [AssistChipOption] = [],
+        citations: [String] = []
+    ) {
         self.init(
             role: .Assistant,
             prompt: botResponse,
@@ -79,7 +85,8 @@ struct AssistChatMessage {
         text: String? = nil,
         chipOptions: [AssistChipOption] = [],
         flashCards: [AssistChatFlashCard] = [],
-        quizItems: [QuizItem]? = nil
+        quizItems: [QuizItem]? = nil,
+        citations: [String] = []
     ) {
         self.id = UUID()
         self.role = role
@@ -88,6 +95,7 @@ struct AssistChatMessage {
         self.chipOptions = chipOptions
         self.flashCards = flashCards
         self.quizItems = quizItems
+        self.citations = citations
     }
 
     enum Role: String, Codable, Equatable {

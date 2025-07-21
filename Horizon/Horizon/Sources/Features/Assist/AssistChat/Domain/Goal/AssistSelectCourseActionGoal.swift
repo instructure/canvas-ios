@@ -60,10 +60,11 @@ class AssistSelectCourseActionGoal: AssistGoal {
             messages: [.init(text: question, role: .User)],
             courseID: courseID
         )
+        .map { $0?.response }
         .eraseToAnyPublisher()
     }
 
-    private func askARAGQuestion(messages: [DomainServiceConversationMessage], courseID: String) -> AnyPublisher<String?, any Error> {
+    private func askARAGQuestion(messages: [DomainServiceConversationMessage], courseID: String) -> AnyPublisher<PineQueryMutation.RagResponse?, any Error> {
         pine.api().flatMap { pineAPI in
             pineAPI.makeRequest(
                 PineQueryMutation(
@@ -72,7 +73,7 @@ class AssistSelectCourseActionGoal: AssistGoal {
                 )
             )
             .compactMap { (ragData, _) in
-                ragData.data.query.response
+                ragData.data.query
             }
             .eraseToAnyPublisher()
         }
@@ -81,7 +82,14 @@ class AssistSelectCourseActionGoal: AssistGoal {
 
     private func askARAGQuestion(history: [AssistChatMessage], courseID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
         askARAGQuestion(messages: history.domainServiceConversationMessages, courseID: courseID)
-        .map { $0.map { AssistChatMessage(botResponse: $0) } }
+        .map {
+            $0.map {
+                AssistChatMessage(
+                    botResponse: $0.response,
+                    citations: $0.citations.compactMap { $0.metadata["title"] }
+                )
+            }
+        }
         .eraseToAnyPublisher()
     }
 
