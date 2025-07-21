@@ -28,6 +28,7 @@ public extension HorizonUI {
         private let duration: String?
         private let type: String?
         private let dueDate: String?
+        private let icon: Image?
 
         // MARK: - Init
 
@@ -37,7 +38,8 @@ public extension HorizonUI {
             learningObjectName: String,
             duration: String? = nil,
             type: String? = nil,
-            dueDate: String? = nil
+            dueDate: String? = nil,
+            icon: Image? = nil
         ) {
             self.status = status
             self.moduleTitle = moduleTitle
@@ -45,6 +47,7 @@ public extension HorizonUI {
             self.duration = duration
             self.type = type
             self.dueDate = dueDate
+            self.icon = icon
         }
 
         public var body: some View {
@@ -104,7 +107,7 @@ public extension HorizonUI {
                         style: .inline(.init(textColor: .huiColors.text.body, iconColor: .huiColors.surface.institution)),
                         isSmall: true,
                         isUppercased: false,
-                        icon: Image.huiIcons.textSnippet
+                        icon: icon ?? Image.huiIcons.textSnippet
                     )
                 }
 
