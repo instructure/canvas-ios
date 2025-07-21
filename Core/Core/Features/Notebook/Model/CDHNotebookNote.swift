@@ -42,7 +42,10 @@ public final class CDHNotebookNote: NSManagedObject {
         string?.split(separator: ";").map { String($0) }
     }
 
-    public static func serializeLabels(from strings: [String]) -> String? {
-        strings.sorted().joined(separator: ";")
+    public static func serializeLabels(from strings: [String]?) -> String? {
+        guard let strings else {
+            return nil
+        }
+        return strings.sorted().joined(separator: ";")
     }
 }

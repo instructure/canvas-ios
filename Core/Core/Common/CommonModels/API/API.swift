@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Foundation
 
 public class API {
@@ -118,7 +119,12 @@ public class API {
                                     callback: ((URL?, URLResponse?, Error?) -> Void)? = nil)
     -> APITask? {
         var request = URLRequest(url: url)
-
+        
+        if AppEnvironment.shared.app == .horizon {
+            let token = AppEnvironment.shared.currentSession?.accessToken ?? ""
+            request.setValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
+        }
+        
         if let method {
             request.httpMethod = method.rawValue.uppercased()
         }
