@@ -33,6 +33,9 @@ struct LTIQuizView: View {
                     .hideReturnButtonInQuizLTI,
                     .onSubmitQuiz {
                         viewModel.refershCourse()
+                    },
+                    .onAppearElement(Id: "Spinner___0") {
+                        viewModel.isLoaderVisible = false
                     }
                 ]
             )
@@ -65,11 +68,7 @@ struct LTIQuizView: View {
     @ViewBuilder
     private var loaderView: some View {
         if viewModel.isLoaderVisible {
-            ZStack {
-                Color.huiColors.surface.pageSecondary
-                    .ignoresSafeArea()
-                HorizonUI.Spinner(size: .small, showBackground: true)
-            }
+            HorizonUI.Spinner(size: .small, showBackground: true)
         }
     }
 }
