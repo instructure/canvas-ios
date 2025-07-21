@@ -90,7 +90,8 @@ class CDHCourseTests: CoreTestCase {
                                                             title: "Content 2",
                                                             dueAt: dueDate,
                                                             position: 2.0,
-                                                            __typename: "Quiz"
+                                                            __typename: "Quiz",
+                                                            isNewQuiz: false
                                                         )
                                                     )
                                                 ]
@@ -115,6 +116,7 @@ class CDHCourseTests: CoreTestCase {
         XCTAssertEqual(course.nextModuleName, "Module 2")
         XCTAssertEqual(course.nextModuleItemURL, "https://example.com/item2")
         XCTAssertEqual(course.nextModuleItemName, "Content 2")
+        XCTAssertEqual(course.nextModuleItemIsNewQuiz, false)
     }
 
     func testAPIResponseSave_nextModuleItemFromModulesConnection() {
@@ -153,7 +155,8 @@ class CDHCourseTests: CoreTestCase {
                                             id: "content_3",
                                             title: "Content 3",
                                             __typename: "Assignment",
-                                            dueAt: dueDate
+                                            dueAt: dueDate,
+                                            isNewQuiz: false
                                         )
                                     )
                                 ]
@@ -173,5 +176,6 @@ class CDHCourseTests: CoreTestCase {
         XCTAssertEqual(course.nextModuleName, "Module 3")
         XCTAssertEqual(course.nextModuleItemURL, "https://example.com/item3")
         XCTAssertEqual(course.nextModuleItemName, "Content 3")
+        XCTAssertEqual(course.nextModuleItemIsNewQuiz, false)
     }
 }

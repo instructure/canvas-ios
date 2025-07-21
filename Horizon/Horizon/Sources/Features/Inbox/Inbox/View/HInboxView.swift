@@ -165,9 +165,11 @@ struct MessageRow: View {
                 }
                 VStack(alignment: .leading) {
                     Text(viewModel.title)
+                        .lineLimit(1)
                         .huiTypography(.labelMediumBold)
 
                     Text(viewModel.subtitle)
+                        .lineLimit(1)
                         .huiTypography(.labelMediumBold)
                 }
             }
