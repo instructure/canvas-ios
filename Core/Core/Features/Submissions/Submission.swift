@@ -465,6 +465,20 @@ public enum GradedState: Hashable {
             String(localized: "Graded", bundle: .core)
         }
     }
+
+    var icon: UIImage {
+        switch self {
+        case .custom: .flagLine
+        case .default: .completeSolid
+        }
+    }
+
+    var color: UIColor {
+        switch self {
+        case .custom: .textInfo
+        case .default: .textSuccess
+        }
+    }
 }
 
 extension Submission: Comparable {
@@ -500,8 +514,8 @@ public enum SubmissionStateDisplayProperties: Equatable {
             return String(localized: "On Paper", bundle: .core)
         case .noSubmission:
             return String(localized: "No Submission", bundle: .core)
-        case .graded(let status):
-            return status.name
+        case .graded(let state):
+            return state.name
         }
     }
 
@@ -511,8 +525,8 @@ public enum SubmissionStateDisplayProperties: Equatable {
             return status.color
         case .onPaper, .noSubmission:
             return .textDark
-        case .graded:
-            return .textSuccess
+        case .graded(let state):
+            return state.color
         }
     }
 
@@ -522,8 +536,8 @@ public enum SubmissionStateDisplayProperties: Equatable {
             return status.icon
         case .onPaper, .noSubmission:
             return .noSolid
-        case .graded:
-            return .completeSolid
+        case .graded(let state):
+            return state.icon
         }
     }
 }
@@ -570,8 +584,8 @@ public enum SubmissionStatus: Hashable {
             return .textDark
         case .excused:
             return .textWarning
-        case .graded:
-            return .textSuccess
+        case .graded(let state):
+            return state.color
         }
     }
 
@@ -583,8 +597,10 @@ public enum SubmissionStatus: Hashable {
             return .clockSolid
         case .missing, .notSubmitted:
             return .noSolid
-        case .excused, .graded:
+        case .excused:
             return .completeSolid
+        case .graded(let state):
+            return state.icon
         }
     }
 }

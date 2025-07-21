@@ -138,8 +138,10 @@ private extension SubmissionStatus.RedesignAppearance {
             return .textWarning
         case .missing:
             return .textDanger
-        case .submitted, .graded:
+        case .submitted:
             return .textSuccess
+        case .graded(let state):
+            return state == .default ? .textSuccess : .textInfo
         case .notSubmitted:
             return .textDark
         }
@@ -149,8 +151,10 @@ private extension SubmissionStatus.RedesignAppearance {
         switch submissionStatus {
         case .submitted:
             return .completeLine
-        case .graded, .excused:
+        case .excused:
             return .completeSolid
+        case .graded(let state):
+            return state == .default ? .completeSolid : .flagLine
         case .late:
             return .clockLine
         case .missing, .notSubmitted:
