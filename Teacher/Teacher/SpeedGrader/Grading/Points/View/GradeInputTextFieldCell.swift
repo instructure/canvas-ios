@@ -118,24 +118,24 @@ struct GradeInputTextFieldCell: View {
 
 extension GradeInputTextFieldCell {
 
-    enum GradingType {
+    enum InputType {
         case points
         case percentage
     }
 
     init(
         title: String,
-        gradingType: GradingType,
+        inputType: InputType,
         pointsPossible: String,
         isExcused: Bool,
         text: Binding<String>
     ) {
-        let subtitle: String? = switch gradingType {
+        let subtitle: String? = switch inputType {
         case .points: nil
         case .percentage: "(\(pointsPossible))"
         }
 
-        let placeholder = switch gradingType {
+        let placeholder = switch inputType {
         case .points: String(localized: "Write score here", bundle: .teacher)
         case .percentage: String(localized: "Write percentage here", bundle: .teacher)
         }
@@ -144,7 +144,7 @@ extension GradeInputTextFieldCell {
         if isExcused {
             suffix = nil
         } else {
-            suffix = switch gradingType {
+            suffix = switch inputType {
             case .points: "/ \(pointsPossible)"
             case .percentage: "%"
             }

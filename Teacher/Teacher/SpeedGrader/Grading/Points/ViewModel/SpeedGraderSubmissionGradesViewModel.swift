@@ -38,6 +38,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     @Published private(set) var gradeState: GradeState = .empty
     @Published private(set) var gradeInputType: GradeInputType?
     @Published private(set) var isSaving: Bool = false
+    let shouldShowPointsInput: Bool
     let shouldShowSlider: Bool
     @Published var sliderValue: Double = 0
     @Published var isNoGradeButtonDisabled: Bool = false
@@ -76,6 +77,8 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
         // - Course level feature, needs to be enabled before setting this on an assignment.
         // In that case we display a relevant empty panda.
         self.state = assignment.moderatedGrading ? .empty : .data
+
+        self.shouldShowPointsInput = [.gpa_scale, .letter_grade].contains(assignment.gradingType)
 
         self.shouldShowSlider = !assignment.useRubricForGrading
             && [.points, .percent].contains(assignment.gradingType)

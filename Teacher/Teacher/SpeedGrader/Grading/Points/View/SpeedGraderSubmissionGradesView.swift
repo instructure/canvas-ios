@@ -81,6 +81,14 @@ struct SpeedGraderSubmissionGradesView: View {
 //            oldGradeRow
             gradeRow
 
+            if gradeViewModel.shouldShowPointsInput {
+                gradeInputTextField(
+                    title: String(localized: "Points", bundle: .core),
+                    inputType: .points,
+                    textValue: gradeViewModel.gradeState.originalScoreWithoutMetric ?? ""
+                )
+            }
+
             if gradeViewModel.shouldShowSlider {
                 slider
             }
@@ -103,57 +111,80 @@ struct SpeedGraderSubmissionGradesView: View {
 
         switch gradeViewModel.gradeInputType {
         case .pointsTextField:
-            GradeInputTextFieldCell(
+            gradeInputTextField(
                 title: title,
-                gradingType: .points,
-                pointsPossible: gradeState.pointsPossibleText,
-                isExcused: gradeState.isExcused,
-                text: Binding(
-                    get: { gradeState.originalGradeWithoutMetric ?? "" },
-                    set: {
-                        guard let value = Double($0) else { return }
-                        gradeViewModel.setPointsGrade(value)
-                    }
-                )
+                inputType: .points,
+                textValue: gradeState.originalGradeWithoutMetric ?? ""
             )
         case .percentageTextField:
-            GradeInputTextFieldCell(
+            gradeInputTextField(
                 title: title,
-                gradingType: .percentage,
-                pointsPossible: gradeState.pointsPossibleText,
-                isExcused: gradeState.isExcused,
-                text: Binding(
-                    get: { gradeState.originalGradeWithoutMetric ?? "" },
-                    set: {
-                        guard let value = Double($0) else { return }
-                        gradeViewModel.setPercentGrade(value)
-                    }
-                )
+                inputType: .percentage,
+                textValue: gradeState.originalGradeWithoutMetric ?? ""
             )
         case .pointsDisplayOnly:
-            let value = gradeState.originalScoreWithoutMetric ?? "-"
-            let suffix = gradeState.isExcused ? nil : "/ \(gradeState.pointsPossibleText)"
-            HStack(alignment: .center, spacing: 8) {
-                Text(title)
-                    .textStyle(.cellLabel)
-
-                Text(value)
-                    .font(.regular16, lineHeight: .fit)
-                    .foregroundStyle(.textDark)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-
-                if let suffix {
-                    Text(suffix)
-                        .font(.regular16, lineHeight: .fit)
-                        .foregroundStyle(.textDark)
-                }
-            }
-            .paddingStyle(set: .standardCell)
+            gradeInputDisplayOnlyView(
+                title: title,
+                textValue: gradeState.originalScoreWithoutMetric ?? "-"
+            )
         case .gradePicker:
             SwiftUI.EmptyView()
         case nil:
             SwiftUI.EmptyView()
         }
+    }
+
+    @ViewBuilder
+    private func gradeInputTextField(
+        title: String,
+        inputType: GradeInputTextFieldCell.InputType,
+        textValue: String
+    ) -> some View {
+        let gradeState = gradeViewModel.gradeState
+
+        GradeInputTextFieldCell(
+            title: title,
+            inputType: inputType,
+            pointsPossible: gradeState.pointsPossibleText,
+            isExcused: gradeState.isExcused,
+            text: Binding(
+                get: { textValue },
+                set: {
+                    guard let value = Double($0) else { return }
+
+                    switch inputType {
+                    case .points: gradeViewModel.setPointsGrade(value)
+                    case .percentage: gradeViewModel.setPercentGrade(value)
+                    }
+                }
+            )
+        )
+    }
+
+    @ViewBuilder
+    private func gradeInputDisplayOnlyView(
+        title: String,
+        textValue: String
+    ) -> some View {
+        let gradeState = gradeViewModel.gradeState
+        let suffix = gradeState.isExcused ? nil : "/ \(gradeState.pointsPossibleText)"
+
+        HStack(alignment: .center, spacing: 8) {
+            Text(title)
+                .textStyle(.cellLabel)
+
+            Text(textValue)
+                .font(.regular16, lineHeight: .fit)
+                .foregroundStyle(.textDark)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+
+            if let suffix {
+                Text(suffix)
+                    .font(.regular16, lineHeight: .fit)
+                    .foregroundStyle(.textDark)
+            }
+        }
+        .paddingStyle(set: .standardCell)
     }
 
     private var noGradeAndExcuseButtons: some View {
