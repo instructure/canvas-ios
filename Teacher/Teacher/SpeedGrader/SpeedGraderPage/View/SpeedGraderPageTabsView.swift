@@ -122,9 +122,9 @@ struct SpeedGraderPageTabsView: View {
             SpeedGraderSubmissionGradesView(
                 assignment: viewModel.assignment,
                 containerHeight: geometry.size.height,
-                rubricsViewModel: viewModel.rubricsViewModel,
+                gradeViewModel: viewModel.gradeViewModel,
                 gradeStatusViewModel: viewModel.gradeStatusViewModel,
-                gradeViewModel: viewModel.gradeViewModel
+                rubricsViewModel: viewModel.rubricsViewModel
             )
             .clipped()
             Spacer().frame(height: bottomInset)

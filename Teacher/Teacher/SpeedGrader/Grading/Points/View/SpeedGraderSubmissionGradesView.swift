@@ -26,94 +26,79 @@ struct SpeedGraderSubmissionGradesView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
+    // slider
+    @State private var gradeSliderViewModel = GradeSliderViewModel()
     @State var showTooltip = false
     @State var sliderCleared = false
     @State var sliderExcused = false
     @State var sliderTimer: Timer?
-    @State private var gradeSliderViewModel = GradeSliderViewModel()
 
-    @ObservedObject var rubricsViewModel: RubricsViewModel
-    @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
     @ObservedObject var gradeViewModel: SpeedGraderSubmissionGradesViewModel
+    @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
+    @ObservedObject var rubricsViewModel: RubricsViewModel
 
     var body: some View {
-        if assignment.moderatedGrading {
-            GeometryReader { geometry in
-                ScrollView {
-                    EmptyPanda(.Unsupported, message: Text("Moderated Grading Unsupported", bundle: .teacher))
-                        .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
+        InstUI.BaseScreen(
+            state: gradeViewModel.state,
+            config: .init(
+                refreshable: false,
+                emptyPandaConfig: .init(
+                    scene: SpacePanda(), // TODO: use `.Unsupported`
+                    title: String(localized: "Moderated Grading Unsupported", bundle: .teacher)
+                )
+            )
+        ) { geometry in
+            VStack(spacing: 0) {
+                gradingSection()
+                commentsSection()
+                if assignment.rubric?.isEmpty == false {
+                    rubricsSection(geometry: geometry)
                 }
             }
-        } else {
-            GeometryReader { geometry in ScrollView {
-                VStack(spacing: 0) {
-                    HStack(spacing: 0) {
-                        Text("Grade", bundle: .teacher)
-                            .accessibilityAddTraits(.isHeader)
-                        Spacer()
-                        if gradeViewModel.isSaving {
-                            ProgressView()
-                                .progressViewStyle(.indeterminateCircle(size: 24))
-                        } else if assignment.gradingType == .not_graded {
-                            Text("Not Graded", bundle: .teacher)
-                        } else {
-                            Button(action: promptNewGrade, label: {
-                                if gradeViewModel.state.isExcused {
-                                    Text("Excused", bundle: .teacher)
-                                } else if gradeViewModel.state.isGraded {
-                                    Text(gradeViewModel.state.originalGradeText)
-                                } else {
-                                    Image.addSolid.foregroundStyle(.tint)
-                                }
-                            })
-                            .accessibility(hint: Text("Prompts for an updated grade", bundle: .teacher))
-                            .identifier("SpeedGrader.gradeButton")
-                        }
-                        if gradeViewModel.state.isGradedButNotPosted {
-                            Image.offLine.foregroundColor(.textDanger)
-                                .padding(.leading, 12)
-                        }
-                    }
-                    .font(.heavy24)
-                    .foregroundColor(.textDarkest)
-                    .padding(.horizontal, 16).padding(.vertical, 12)
+            .padding(.bottom, 16)
+        }
+    }
 
-                    if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
-                        slider
-                    }
+    private func gradingSection() -> some View {
+        VStack(spacing: 0) {
+            gradingInputViews()
 
-                    noGradeAndExcuseButtons
-
-                    GradeStatusView(viewModel: gradeStatusViewModel)
-
-                    if gradeViewModel.shouldShowGradeSummary {
-                        GradeSummaryView(
-                            pointsRow: gradeViewModel.pointsRowModel,
-                            latePenaltyRow: gradeViewModel.latePenaltyRowModel,
-                            finalGradeRow: gradeViewModel.finalGradeRowModel
-                        )
-                        .paddingStyle(.horizontal, .standard)
-                    }
-
-                    if assignment.rubric?.isEmpty == false {
-                        RubricsView(
-                            currentScore: rubricsViewModel.totalRubricScore,
-                            containerFrameInGlobal: geometry.frame(in: .global),
-                            viewModel: rubricsViewModel
-                        )
-                    }
-                }.padding(.bottom, 16)
-            } }
-            .animation(.smooth, value: gradeStatusViewModel.isShowingDaysLateSection)
-            .errorAlert(
-                isPresented: $gradeViewModel.isShowingErrorAlert,
-                presenting: gradeViewModel.errorAlertViewModel
-            )
-
-            if rubricsViewModel.commentingOnCriterionID != nil {
-                commentEditor()
+            if gradeViewModel.shouldShowGradeSummary {
+                GradeSummaryView(
+                    pointsRow: gradeViewModel.pointsRowModel,
+                    latePenaltyRow: gradeViewModel.latePenaltyRowModel,
+                    finalGradeRow: gradeViewModel.finalGradeRowModel
+                )
+                .paddingStyle(.horizontal, .standard)
             }
         }
+    }
+
+    // MARK: - Grading Inputs
+
+    private func gradingInputViews() -> some View {
+        VStack(spacing: 0) {
+            oldGradeRow
+//            gradeRow
+
+            if gradeViewModel.shouldShowSlider {
+                slider
+            }
+
+            noGradeAndExcuseButtons
+
+            GradeStatusView(viewModel: gradeStatusViewModel)
+        }
+        .animation(.smooth, value: gradeStatusViewModel.isShowingDaysLateSection)
+        .errorAlert(
+            isPresented: $gradeViewModel.isShowingErrorAlert,
+            presenting: gradeViewModel.errorAlertViewModel
+        )
+    }
+
+    private var gradeRow: some View {
+        // TODO
+        Text(verbatim: "Grade")
     }
 
     private var noGradeAndExcuseButtons: some View {
@@ -126,22 +111,9 @@ struct SpeedGraderSubmissionGradesView: View {
             SpeedGraderButton(title: String(localized: "Excuse Student", bundle: .teacher)) {
                 gradeViewModel.excuseStudent()
             }
-            .disabled(gradeViewModel.state.isExcused)
+            .disabled(gradeViewModel.gradeState.isExcused)
         }
         .paddingStyle(.horizontal, .standard)
-    }
-
-    private func commentEditor() -> some View {
-        OldCommentEditorView(
-            text: $rubricsViewModel.criterionComment,
-            shouldShowCommentLibrary: false,
-            showCommentLibrary: .constant(false),
-            action: rubricsViewModel.saveComment,
-            containerHeight: containerHeight,
-            contextColor: Color(Brand.shared.primary)
-        )
-        .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
-        .background(Color.backgroundLight)
     }
 
     // MARK: Slider
@@ -240,7 +212,40 @@ struct SpeedGraderSubmissionGradesView: View {
         }
     }
 
-    // MARK: Prompt for an updated grade
+    // MARK: Old Grade row and input dialog
+
+    private var oldGradeRow: some View {
+        HStack(spacing: 0) {
+            Text("Grade", bundle: .teacher)
+                .accessibilityAddTraits(.isHeader)
+            Spacer()
+            if gradeViewModel.isSaving {
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle(size: 24))
+            } else if assignment.gradingType == .not_graded {
+                Text("Not Graded", bundle: .teacher)
+            } else {
+                Button(action: promptNewGrade, label: {
+                    if gradeViewModel.gradeState.isExcused {
+                        Text("Excused", bundle: .teacher)
+                    } else if gradeViewModel.gradeState.isGraded {
+                        Text(gradeViewModel.gradeState.originalGradeText)
+                    } else {
+                        Image.addSolid.foregroundStyle(.tint)
+                    }
+                })
+                .accessibility(hint: Text("Prompts for an updated grade", bundle: .teacher))
+                .identifier("SpeedGrader.gradeButton")
+            }
+            if gradeViewModel.gradeState.isGradedButNotPosted {
+                Image.offLine.foregroundColor(.textDanger)
+                    .padding(.leading, 12)
+            }
+        }
+        .font(.heavy24)
+        .foregroundColor(.textDarkest)
+        .padding(.horizontal, 16).padding(.vertical, 12)
+    }
 
     func promptNewGrade() {
         var message: String?
@@ -269,7 +274,7 @@ struct SpeedGraderSubmissionGradesView: View {
             prompt.addTextField { field in
                 field.placeholder = ""
                 field.returnKeyType = .done
-                field.text = gradeViewModel.state.gradeAlertText
+                field.text = gradeViewModel.gradeState.gradeAlertText
                 field.addTarget(prompt, action: #selector(UIAlertController.performOKAlertAction), for: .editingDidEndOnExit)
                 field.accessibilityLabel = String(localized: "Grade", bundle: .teacher)
             }
@@ -287,7 +292,41 @@ struct SpeedGraderSubmissionGradesView: View {
         env.router.show(prompt, from: controller, options: .modal())
     }
 
-    // MARK: Save
+    // MARK: - Comments
+
+    private func commentsSection() -> some View {
+        // TODO
+        SwiftUI.EmptyView()
+    }
+
+    // MARK: - Rubrics
+
+    private func rubricsSection(geometry: GeometryProxy) -> some View {
+        VStack(spacing: 0) {
+            RubricsView(
+                currentScore: rubricsViewModel.totalRubricScore,
+                containerFrameInGlobal: geometry.frame(in: .global),
+                viewModel: rubricsViewModel
+            )
+
+            if rubricsViewModel.commentingOnCriterionID != nil {
+                commentEditor()
+            }
+        }
+    }
+
+    private func commentEditor() -> some View {
+        OldCommentEditorView(
+            text: $rubricsViewModel.criterionComment,
+            shouldShowCommentLibrary: false,
+            showCommentLibrary: .constant(false),
+            action: rubricsViewModel.saveComment,
+            containerHeight: containerHeight,
+            contextColor: Color(Brand.shared.primary)
+        )
+        .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+        .background(Color.backgroundLight)
+    }
 }
 
 extension UIAlertController {

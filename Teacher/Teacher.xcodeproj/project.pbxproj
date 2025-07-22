@@ -1753,9 +1753,9 @@
 		CFF4AA9A2DF9CEC200B0351F /* GradeStatus */ = {
 			isa = PBXGroup;
 			children = (
-				CFF4AAA82DFAD30500B0351F /* View */,
-				CFF4AAA12DF9E76D00B0351F /* ViewModel */,
 				CFF4AA9B2DF9CECE00B0351F /* Model */,
+				CFF4AAA12DF9E76D00B0351F /* ViewModel */,
+				CFF4AAA82DFAD30500B0351F /* View */,
 			);
 			path = GradeStatus;
 			sourceTree = "<group>";

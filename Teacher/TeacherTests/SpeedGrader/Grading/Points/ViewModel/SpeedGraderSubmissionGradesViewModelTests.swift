@@ -72,7 +72,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
     func test_gradeStateChanges_updateStateAndSliderValue() {
         gradeInteractorMock.gradeStateSubject.send(TestData.sampleGradeState)
 
-        XCTAssertEqual(viewModel.state, TestData.sampleGradeState)
+        XCTAssertEqual(viewModel.gradeState, TestData.sampleGradeState)
         XCTAssertEqual(viewModel.sliderValue, 85)
     }
 

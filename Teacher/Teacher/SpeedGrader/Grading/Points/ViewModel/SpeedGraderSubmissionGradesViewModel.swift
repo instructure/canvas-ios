@@ -25,26 +25,33 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     // MARK: - Outputs
 
+    let state: InstUI.ScreenState
+
+    // Grading inputs
+    @Published private(set) var gradeState: GradeState = .empty
+    @Published private(set) var isSaving: Bool = false
+    let shouldShowSlider: Bool
     @Published var sliderValue: Double = 0
-    @Published var isShowingErrorAlert = false
-    @Published var isNoGradeButtonDisabled = false
-    @Published private(set) var state = GradeState.empty
-    @Published private(set) var shouldShowGradeSummary = false
+    @Published var isNoGradeButtonDisabled: Bool = false
+
+    // Grade summary
+    @Published private(set) var shouldShowGradeSummary: Bool = false
     @Published private(set) var pointsRowModel: PointsRowViewModel?
     @Published private(set) var latePenaltyRowModel: LatePenaltyRowViewModel?
     @Published private(set) var finalGradeRowModel: FinalGradeRowViewModel?
-    @Published private(set) var isSaving = false
-    @Published private(set) var errorAlertViewModel = ErrorAlertViewModel(
-        title: String(localized: "Error", bundle: .teacher),
-        message: "",
-        buttonTitle: String(localized: "OK", bundle: .teacher)
-    )
+
+    // Error alert
+    @Published var isShowingErrorAlert: Bool = false
+    private(set) var errorAlertViewModel: ErrorAlertViewModel = .empty
 
     // MARK: - Private Properties
 
+    private let assignment: Assignment
     private let gradeInteractor: GradeInteractor
     private var cancellables = Set<AnyCancellable>()
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
+
+    // MARK: - Init
 
     init(
         assignment: Assignment,
@@ -52,8 +59,18 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
         gradeInteractor: GradeInteractor,
         mainScheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
+        self.assignment = assignment
         self.gradeInteractor = gradeInteractor
         self.mainScheduler = mainScheduler
+
+        // On mobile we don't support Moderated Grading at the moment.
+        // - It's multiple graders grading and then a moderator giving final grade.
+        // - Course level feature, needs to be enabled before setting this on an assignment.
+        // In that case we display a relevant empty panda.
+        self.state = assignment.moderatedGrading ? .empty : .data
+
+        self.shouldShowSlider = !assignment.useRubricForGrading
+            && [.points, .percent].contains(assignment.gradingType)
 
         observeGradeStateChanges()
     }
@@ -91,7 +108,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
         gradeInteractor.gradeState
             .sink { [weak self] newState in
                 guard let self else { return }
-                state = newState
+                gradeState = newState
                 sliderValue = newState.score
                 isNoGradeButtonDisabled = (!newState.isGraded && !newState.isExcused)
                 shouldShowGradeSummary = (!newState.isExcused && newState.gradingType != .not_graded)

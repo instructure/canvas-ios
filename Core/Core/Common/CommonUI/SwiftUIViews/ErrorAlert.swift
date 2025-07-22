@@ -33,6 +33,12 @@ public struct ErrorAlertViewModel {
         self.message = message
         self.buttonTitle = buttonTitle
     }
+
+    public static let empty: ErrorAlertViewModel = .init(
+        title: String(localized: "Error", bundle: .core),
+        message: "",
+        buttonTitle: String(localized: "OK", bundle: .core)
+    )
 }
 
 public extension View {
