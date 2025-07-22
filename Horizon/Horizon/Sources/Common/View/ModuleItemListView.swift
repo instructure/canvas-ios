@@ -43,7 +43,7 @@ struct ModuleItemListView: View {
                 if let type = item.type {
                     if type == .subHeader {
                         subHeaderText(for: item)
-                    } else  if type.assetType != .discussion {
+                    } else if type.assetType != .discussion {
                         moduleItemButton(item: item, type: type)
                     }
                 }
