@@ -43,9 +43,9 @@ struct AssignmentDetails: View {
                 }
                 topView
                 VStack(spacing: .huiSpaces.space24) {
-                    startQuizButton
                     introView
                         .id(viewModel.dependency.courseID)
+                    startQuizButton
                     mainContentView(proxy: proxy)
                     errorView
                     if !viewModel.hasSubmittedBefore, let date = viewModel.lastDraftSavedAt {
