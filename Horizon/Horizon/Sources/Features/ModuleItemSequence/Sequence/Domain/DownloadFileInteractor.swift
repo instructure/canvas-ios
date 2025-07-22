@@ -21,6 +21,7 @@ import Core
 import Combine
 
 protocol DownloadFileInteractor {
+    var courseID: String? { get set }
     func download(fileID: String) -> AnyPublisher<URL, Error>
     func download(file: File) -> AnyPublisher<URL, Error>
     func download(remoteURL: URL, fileName: String) -> AnyPublisher<URL, Error>
@@ -29,7 +30,7 @@ protocol DownloadFileInteractor {
 final class DownloadFileInteractorLive: DownloadFileInteractor {
     // MARK: - Dependencies
 
-    private let courseID: String?
+    var courseID: String?
     private let fileManager: FileManager
 
     // MARK: - Init

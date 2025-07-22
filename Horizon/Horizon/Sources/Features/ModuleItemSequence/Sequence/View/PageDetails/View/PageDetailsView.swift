@@ -41,10 +41,51 @@ struct PageDetailsView: View {
             header
             ZStack(alignment: .top) {
                 spinner
+                locked
                 page
+                file
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .frame(maxHeight: .infinity, alignment: .top)
+        .alert(isPresented: Binding(
+            get: { viewModel.isErrorPresented },
+            set: {
+                viewModel.isErrorPresented = $0
+                viewModel.close(viewController: viewController)
+            }
+        )) {
+            Alert(
+                title: Text(
+                    viewModel.errorMessage ??
+                    String(localized: "An error occurred while marking as done.")
+                )
+            )
+        }
+    }
+
+    @ViewBuilder
+    var file: some View {
+        if let courseID = viewModel.courseID,
+           let fileID = viewModel.fileID {
+            FileDetailsAssembly.makeView(
+                courseID: courseID,
+                fileID: fileID,
+                context: viewModel.context,
+                fileName: ""
+            )
+            .id(fileID)
+        }
+    }
+
+    @ViewBuilder
+    var locked: some View {
+        ModuleItemLockedView(
+            title: String(localized: "Locked Content", bundle: .horizon),
+            lockExplanation: String(localized: "This content is locked and cannot be accessed at this time.", bundle: .horizon)
+        )
+        .opacity(viewModel.lockedOpacity)
+        .animation(.easeInOut, value: viewModel.lockedOpacity)
     }
 
     @ViewBuilder
@@ -67,18 +108,9 @@ struct PageDetailsView: View {
                     }
                     .padding(.horizontal, .huiSpaces.space24)
                     .padding(.bottom, .huiSpaces.space16)
-                    .alert(
-                        isPresented: Binding(
-                            get: { model.isErrorPresented },
-                            set: { _ in model.errorMessage = nil }
-                        )
-                    ) {
-                        Alert(
-                            title: Text(model.errorMessage ?? String(localized: "An error occurred while marking as done."))
-                        )
-                    }
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
             .opacity(viewModel.bodyOpacity)
             .animation(.easeInOut, value: viewModel.bodyOpacity)
@@ -89,6 +121,8 @@ struct PageDetailsView: View {
     var spinner: some View {
         HorizonUI.Spinner(size: .xSmall)
             .padding(.top, .huiSpaces.space24)
+            .opacity(viewModel.loaderOpacity)
+            .animation(.easeInOut, value: viewModel.loaderOpacity)
     }
 
     @ViewBuilder
@@ -115,25 +149,3 @@ struct PageDetailsView: View {
         }
     }
 }
-
-#if DEBUG
-class PageDetailsViewModelPreview: PageDetailsViewModel {
-    var context: Core.Context { .init(.course, id: "477") }
-    var pageURL: String? { "" }
-    var bodyOpacity: Double { 0.0 }
-    var isHeaderVisible: Bool { true }
-    var loaderOpacity: Double { 1.0 }
-    var itemID: String? { "4446" }
-    var markAsDoneViewModel: MarkAsDoneViewModel? { nil }
-
-    func close(viewController: WeakViewController) {
-
-    }
-}
-
-#Preview {
-    PageDetailsView(
-        viewModel: PageDetailsViewModelPreview()
-    )
-}
-#endif

@@ -55,25 +55,13 @@ final class AssistChatViewModel {
 
     private var chatMessages: [AssistChatMessage] = []
     private var dispatchWorkItem: DispatchWorkItem?
+    private var downloadFileInteractor: DownloadFileInteractor?
     private var canSendMessage: Bool = true
     private var subscriptions = Set<AnyCancellable>()
     private let courseId: String?
     private let pageUrl: String?
     private let fileId: String?
-    weak var viewController: WeakViewController? {
-        didSet {
-            if let viewController = viewController {
-//                router.route(
-//                    to: "/courses/477/modules/items/4446?asset_type=Page",
-//                    from: viewController
-//                )
-                router.route(
-                    to: "/courses/477/modules/items/4446/modal",
-                    from: viewController
-                )
-            }
-        }
-    }
+    weak var viewController: WeakViewController?
     private var hasAssistChipOptions: Bool = false
 
     // MARK: - Init
@@ -82,6 +70,7 @@ final class AssistChatViewModel {
         pageUrl: String? = nil,
         fileId: String? = nil,
         chatBotInteractor: AssistChatInteractor,
+        downloadFileInteractor: DownloadFileInteractor? = nil,
         router: Router = AppEnvironment.shared.router,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
@@ -89,6 +78,7 @@ final class AssistChatViewModel {
         self.pageUrl = pageUrl
         self.fileId = fileId
         self.router = router
+        self.downloadFileInteractor = downloadFileInteractor
         self.scheduler = scheduler
         self.assistChatInteractor = chatBotInteractor
 
@@ -249,7 +239,11 @@ final class AssistChatViewModel {
         guard let viewController = viewController,
         let courseID = citation.courseID,
         let sourceID = citation.sourceID,
-        let assetType = citation.sourceType else { return }
+        var assetType = citation.sourceType else { return }
+
+        if assetType == "attachment" {
+            assetType = GetModuleItemSequenceRequest.AssetType.file.rawValue
+        }
         router.route(
             to: "/courses/\(courseID)/modules/items/\(sourceID)/\(assetType)",
             from: viewController
@@ -263,6 +257,11 @@ final class AssistChatViewModel {
                 message.id == newMessage.id
             } || message.isLoading
         }
+    }
+
+    private func showShareSheet(fileURL: URL, viewController: WeakViewController) {
+        let controller = CoreActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+        router.show(controller, from: viewController, options: .modal())
     }
 }
 

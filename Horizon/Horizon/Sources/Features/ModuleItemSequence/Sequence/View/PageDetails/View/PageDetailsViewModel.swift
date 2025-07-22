@@ -21,25 +21,26 @@ import Observation
 import Combine
 import Core
 
-protocol PageDetailsViewModel {
-    var bodyOpacity: Double { get }
-    var context: Core.Context { get }
-    var pageURL: String? { get }
-    var isHeaderVisible: Bool { get }
-    var itemID: String? { get }
-    var loaderOpacity: Double { get }
-    var markAsDoneViewModel: MarkAsDoneViewModel? { get }
-
-    func close(viewController: WeakViewController)
-}
-
 @Observable
-final class PageDetailsViewModelLive: PageDetailsViewModel {
+final class PageDetailsViewModel {
     // MARK: - Outputs
     var bodyOpacity: Double {
-        loaderOpacity == 0.0 ? 1.0 : 0.0
+        loaderOpacity == 0.0 &&
+            lockedOpacity == 0.0 &&
+            fileOpacity == 0.0 ?
+                1.0 :
+                0.0
     }
-    private(set) var errorMessage: String?
+    var isErrorPresented: Bool = false {
+        didSet {
+            if !isErrorPresented && errorMessage !=  nil {
+                errorMessage = nil
+            }
+        }
+    }
+    var fileOpacity: Double {
+        fileID == nil ? 0.0 : 1.0
+    }
     var isHeaderVisible: Bool {
         router != nil
     }
@@ -47,15 +48,27 @@ final class PageDetailsViewModelLive: PageDetailsViewModel {
         markAsDoneViewModel != nil
     }
     var loaderOpacity: Double {
-        itemID == nil || pageURL == nil ? 1.0 : 0.0
+        (itemID == nil || pageURL == nil) &&
+            fileID == nil &&
+            lockedOpacity == 0.0 ? 1.0 : 0.0
     }
+    var lockedOpacity: Double = 0.0
     private(set) var url: URL?
 
     // MARK: - Properties
+    private(set) var errorMessage: String? {
+        didSet {
+            if errorMessage != nil && isErrorPresented == false {
+                isErrorPresented = errorMessage != nil
+            }
+        }
+    }
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
     let context: Core.Context
+    let courseID: String?
+    var fileID: String?
     var itemID: String?
     let markAsDoneViewModel: MarkAsDoneViewModel?
     let moduleItemSequenceInteractor: ModuleItemSequenceInteractor?
@@ -71,6 +84,7 @@ final class PageDetailsViewModelLive: PageDetailsViewModel {
         router: Router = AppEnvironment.shared.router
     ) {
         self.context = .init(.course, id: courseID)
+        self.courseID = courseID
         self.markAsDoneViewModel = nil
         self.moduleItemSequenceInteractor = moduleItemSequenceInteractor
         self.router = router
@@ -85,12 +99,23 @@ final class PageDetailsViewModelLive: PageDetailsViewModel {
         .sink { [weak self] tuple in
             guard let self = self,
                   let moduleItem = tuple.1 else {
+                self?.errorMessage = String(
+                    localized: "Sorry, we were not able to display this page right now.",
+                    bundle: .horizon
+                )
                 return
             }
-            if case let .page(url) = moduleItem.type {
-                self.pageURL = url
-            }
+            lockedOpacity = moduleItem.isLocked ? 1.0 : 0.0
             self.itemID = moduleItem.id
+
+            switch moduleItem.type {
+            case .page(let url):
+                self.pageURL = url
+            case .file(let fileID):
+                self.fileID = fileID
+            default:
+                break
+            }
         }
         .store(in: &subscriptions)
     }
@@ -107,6 +132,12 @@ final class PageDetailsViewModelLive: PageDetailsViewModel {
         self.markAsDoneViewModel = markAsDoneViewModel
         self.moduleItemSequenceInteractor = nil
         self.router = nil
+        self.courseID = nil
+        self.fileID = nil
+
+        markAsDoneViewModel.onError = { [weak self] errorMessage in
+            self?.errorMessage = errorMessage
+        }
     }
 
     func close(viewController: WeakViewController) {
@@ -117,14 +148,15 @@ final class PageDetailsViewModelLive: PageDetailsViewModel {
 /// A view model specific to the ability to toggle a module item as done or not done.
 @Observable
 final class MarkAsDoneViewModel {
+    typealias OnError = ((String) -> Void)?
+
     // MARK: - Properties
     private var subscriptions = Set<AnyCancellable>()
-    var errorMessage: String?
-    var isCompleted: Bool
-    var isErrorPresented: Bool {
-        errorMessage != nil
-    }
     var isLoading: Bool = false
+    var onError: OnError = nil
+
+    // MARK: - Dependencies
+    var isCompleted: Bool
     let itemID: String
     let moduleID: String
     let moduleItemInteractor: ModuleItemSequenceInteractor
@@ -150,7 +182,7 @@ final class MarkAsDoneViewModel {
         )
         .sink { [weak self] completion in
             if case let .failure(error) = completion {
-                self?.errorMessage = error.localizedDescription
+                self?.onError?(error.localizedDescription)
             }
             self?.isLoading = false
         } receiveValue: { [weak self] _ in

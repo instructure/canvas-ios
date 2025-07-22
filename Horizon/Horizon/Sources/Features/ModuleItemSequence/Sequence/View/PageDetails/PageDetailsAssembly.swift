@@ -27,7 +27,7 @@ struct PageDetailsAssembly {
     ) -> UIViewController {
         CoreHostingController(
             PageDetailsView(
-                viewModel: PageDetailsViewModelLive(
+                viewModel: PageDetailsViewModel(
                     courseID: courseID,
                     assetID: assetID,
                     assetType: assetType,
@@ -51,7 +51,7 @@ struct PageDetailsAssembly {
             courseID: context.id,
             getCoursesInteractor: GetCoursesInteractorLive()
         )
-        let viewModel = PageDetailsViewModelLive(
+        let viewModel = PageDetailsViewModel(
             context: context,
             pageURL: pageURL,
             itemID: itemID,
