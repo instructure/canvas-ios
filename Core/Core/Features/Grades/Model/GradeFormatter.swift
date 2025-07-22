@@ -220,17 +220,21 @@ public class GradeFormatter {
     }
 
     /// Returns the original score (before late penalties) as a plain string without metric suffixes.
+    /// Returns "Excused" when submission is excused.
     /// This method ignores the "hide quantitative data" flag.
     public static func originalScoreWithoutMetric(for submission: Submission) -> String? {
-        guard let originalScore = submission.enteredScore else {
-            return nil
-        }
-
-        return numberFormatter.string(from: truncate(originalScore))
+        formatGradeWithoutMetric(
+            gradingType: .points, // ensures result is based on `enteredScore`
+            isExcused: submission.excused,
+            score: submission.enteredScore,
+            grade: nil
+        )
     }
 
     /// Returns the original grade (before late penalties) formatted according to the grading type without units,
-    /// (e.g., "85", "A", "Complete"), or nil if no grade exists. This method ignores the "hide quantitative data" flag.
+    /// (e.g., "85", "A", "Complete"), or nil if no grade exists.
+    /// Returns "Excused" when submission is excused.
+    /// This method ignores the "hide quantitative data" flag.
     public static func originalGradeWithoutMetric(for submission: Submission, gradingType: GradingType) -> String? {
         formatGradeWithoutMetric(
             gradingType: gradingType,
@@ -241,7 +245,9 @@ public class GradeFormatter {
     }
 
     /// Returns the final grade (with late penalties applied) formatted according to the grading type without units,
-    /// (e.g., "85", "A", "Complete"), or nil if no grade exists. This method ignores the "hide quantitative data" flag.
+    /// (e.g., "85", "A", "Complete"), or nil if no grade exists.
+    /// Returns "Excused" when submission is excused.
+    /// This method ignores the "hide quantitative data" flag.
     public static func finalGradeWithoutMetric(for submission: Submission, gradingType: GradingType) -> String? {
         formatGradeWithoutMetric(
             gradingType: gradingType,

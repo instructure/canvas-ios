@@ -99,15 +99,17 @@ struct SpeedGraderSubmissionGradesView: View {
     @ViewBuilder
     private var gradeRow: some View {
         let title = String(localized: "Grade", bundle: .teacher)
+        let gradeState = gradeViewModel.gradeState
+
         switch gradeViewModel.gradeInputType {
         case .pointsTextField:
             GradeInputTextFieldCell(
                 title: title,
                 gradingType: .points,
-                pointsPossible: gradeViewModel.gradeState.pointsPossibleText,
-                isExcused: gradeViewModel.gradeState.isExcused,
+                pointsPossible: gradeState.pointsPossibleText,
+                isExcused: gradeState.isExcused,
                 text: Binding(
-                    get: { gradeViewModel.gradeState.originalGradeWithoutMetric ?? "" },
+                    get: { gradeState.originalGradeWithoutMetric ?? "" },
                     set: {
                         guard let value = Double($0) else { return }
                         gradeViewModel.setPointsGrade(value)
@@ -118,10 +120,10 @@ struct SpeedGraderSubmissionGradesView: View {
             GradeInputTextFieldCell(
                 title: title,
                 gradingType: .percentage,
-                pointsPossible: gradeViewModel.gradeState.pointsPossibleText,
-                isExcused: gradeViewModel.gradeState.isExcused,
+                pointsPossible: gradeState.pointsPossibleText,
+                isExcused: gradeState.isExcused,
                 text: Binding(
-                    get: { gradeViewModel.gradeState.originalGradeWithoutMetric ?? "" },
+                    get: { gradeState.originalGradeWithoutMetric ?? "" },
                     set: {
                         guard let value = Double($0) else { return }
                         gradeViewModel.setPercentGrade(value)
@@ -129,7 +131,24 @@ struct SpeedGraderSubmissionGradesView: View {
                 )
             )
         case .pointsDisplayOnly:
-            SwiftUI.EmptyView()
+            let value = gradeState.originalScoreWithoutMetric ?? "-"
+            let suffix = gradeState.isExcused ? nil : "/ \(gradeState.pointsPossibleText)"
+            HStack(alignment: .center, spacing: 8) {
+                Text(title)
+                    .textStyle(.cellLabel)
+
+                Text(value)
+                    .font(.regular16, lineHeight: .fit)
+                    .foregroundStyle(.textDark)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+
+                if let suffix {
+                    Text(suffix)
+                        .font(.regular16, lineHeight: .fit)
+                        .foregroundStyle(.textDark)
+                }
+            }
+            .paddingStyle(set: .standardCell)
         case .gradePicker:
             SwiftUI.EmptyView()
         case nil:
