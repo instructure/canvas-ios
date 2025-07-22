@@ -22,8 +22,9 @@ import SwiftUI
 
 struct AssistChatMessageViewModel: Identifiable, Equatable {
     typealias OnFeedbackChange = (Bool?) -> Void
-    typealias OnTapChipOption = (AssistChipOption) -> Void
     typealias OnTap = () -> Void
+    typealias OnTapChipOption = (AssistChipOption) -> Void
+    typealias OnTapCitation = (AssistChatMessage.Citation) -> Void
 
     enum Style {
         case white
@@ -38,8 +39,9 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
     let chipOptions: [AssistChipOption]
     let onFeedbackChange: OnFeedbackChange?
     let onTap: OnTap?
+    let onTapCitation: OnTapCitation?
     let onTapChipOption: OnTapChipOption?
-    let citations: [String]
+    let citations: [AssistChatMessage.Citation]
 
     init(
         id: String = UUID().uuidString,
@@ -47,10 +49,11 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
         style: Style = .white,
         isLoading: Bool = false,
         chipOptions: [AssistChipOption] = [],
+        citations: [AssistChatMessage.Citation] = [],
         onFeedbackChange: OnFeedbackChange? = nil,
         onTapChipOption: OnTapChipOption? = nil,
-        onTap: OnTap? = nil,
-        citations: [String] = []
+        onTapCitation: OnTapCitation? = nil,
+        onTap: OnTap? = nil
     ) {
         self.id = id
         self.content = content
@@ -58,9 +61,10 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
         self.style = style
         self.isLoading = isLoading
         self.chipOptions = chipOptions
-        self.onTapChipOption = onTapChipOption
-        self.onTap = onTap
         self.citations = citations
+        self.onTapChipOption = onTapChipOption
+        self.onTapCitation = onTapCitation
+        self.onTap = onTap
     }
 
     /// For when it's just a loading spinner
@@ -70,10 +74,11 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
         self.content = ""
         self.onFeedbackChange = nil
         self.style = .transparent
+        self.citations = []
         self.chipOptions = []
         self.onTapChipOption = nil
+        self.onTapCitation = nil
         self.onTap = nil
-        self.citations = []
     }
 
     static func == (lhs: AssistChatMessageViewModel, rhs: AssistChatMessageViewModel) -> Bool {

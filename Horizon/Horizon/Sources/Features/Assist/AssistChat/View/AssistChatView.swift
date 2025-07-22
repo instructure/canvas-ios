@@ -41,7 +41,7 @@ struct AssistChatView: View {
         .onReceive(viewModel.shouldOpenKeyboardPublisher) { value in
             isFocused = value
         }
-        .onFirstAppear { viewModel.setViewController(viewController) }
+        .onFirstAppear { viewModel.viewController = viewController }
         .padding(.huiSpaces.space24)
         .animation(.smooth, value: [viewModel.isBackButtonVisible, viewModel.isRetryButtonVisible])
         .applyHorizonGradient()

@@ -21,68 +21,140 @@ import Observation
 import Combine
 import Core
 
+protocol PageDetailsViewModel {
+    var bodyOpacity: Double { get }
+    var context: Core.Context { get }
+    var pageURL: String? { get }
+    var isHeaderVisible: Bool { get }
+    var itemID: String? { get }
+    var loaderOpacity: Double { get }
+    var markAsDoneViewModel: MarkAsDoneViewModel? { get }
+
+    func close(viewController: WeakViewController)
+}
+
 @Observable
-final class PageDetailsViewModel {
+final class PageDetailsViewModelLive: PageDetailsViewModel {
     // MARK: - Outputs
-
+    var bodyOpacity: Double {
+        loaderOpacity == 0.0 ? 1.0 : 0.0
+    }
+    private(set) var errorMessage: String?
+    var isHeaderVisible: Bool {
+        router != nil
+    }
+    var isMarkedAsDoneButtonVisible: Bool {
+        markAsDoneViewModel != nil
+    }
+    var loaderOpacity: Double {
+        itemID == nil || pageURL == nil ? 1.0 : 0.0
+    }
     private(set) var url: URL?
-    private(set) var content: String?
-    private(set) var isCompletedItem: Bool
-    private(set) var isMarkAsDoneLoaderVisible = false
-    private(set) var errorMessage = ""
-
-    // MARK: - Input / Output
-
-    var isShowErrorAlert = false
 
     // MARK: - Properties
-
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
-
-    private let moduleItemInteractor: ModuleItemSequenceInteractor
-    private let moduleID: String
     let context: Core.Context
-    let itemID: String
-    let pageURL: String
-    let isMarkedAsDoneButtonVisible: Bool
+    var itemID: String?
+    let markAsDoneViewModel: MarkAsDoneViewModel?
+    let moduleItemSequenceInteractor: ModuleItemSequenceInteractor?
+    var pageURL: String?
+    private var router: Router?
 
     // MARK: - Init
+    init(
+        courseID: String,
+        assetID: String,
+        assetType: GetModuleItemSequenceRequest.AssetType,
+        moduleItemSequenceInteractor: ModuleItemSequenceInteractor,
+        router: Router = AppEnvironment.shared.router
+    ) {
+        self.context = .init(.course, id: courseID)
+        self.markAsDoneViewModel = nil
+        self.moduleItemSequenceInteractor = moduleItemSequenceInteractor
+        self.router = router
+
+        moduleItemSequenceInteractor.fetchModuleItems(
+            assetType: assetType,
+            assetID: assetID,
+            moduleID: nil,
+            itemID: nil,
+            ignoreCache: false
+        )
+        .sink { [weak self] tuple in
+            guard let self = self,
+                  let moduleItem = tuple.1 else {
+                return
+            }
+            if case let .page(url) = moduleItem.type {
+                self.pageURL = url
+            }
+            self.itemID = moduleItem.id
+        }
+        .store(in: &subscriptions)
+    }
 
     init(
-        moduleItemInteractor: ModuleItemSequenceInteractor,
         context: Core.Context,
         pageURL: String,
-        isCompletedItem: Bool,
+        itemID: String,
+        markAsDoneViewModel: MarkAsDoneViewModel
+    ) {
+        self.context = context
+        self.pageURL = pageURL
+        self.itemID = itemID
+        self.markAsDoneViewModel = markAsDoneViewModel
+        self.moduleItemSequenceInteractor = nil
+        self.router = nil
+    }
+
+    func close(viewController: WeakViewController) {
+        router?.dismiss(viewController)
+    }
+}
+
+/// A view model specific to the ability to toggle a module item as done or not done.
+@Observable
+final class MarkAsDoneViewModel {
+    // MARK: - Properties
+    private var subscriptions = Set<AnyCancellable>()
+    var errorMessage: String?
+    var isCompleted: Bool
+    var isErrorPresented: Bool {
+        errorMessage != nil
+    }
+    var isLoading: Bool = false
+    let itemID: String
+    let moduleID: String
+    let moduleItemInteractor: ModuleItemSequenceInteractor
+
+    init(
         moduleID: String,
         itemID: String,
-        isMarkedAsDoneButtonVisible: Bool
+        isCompleted: Bool,
+        moduleItemSequenceInteractor: ModuleItemSequenceInteractor
     ) {
-        self.moduleItemInteractor = moduleItemInteractor
-        self.context = context
-        self.isCompletedItem = isCompletedItem
-        self.pageURL = pageURL
         self.moduleID = moduleID
         self.itemID = itemID
-        self.isMarkedAsDoneButtonVisible = isMarkedAsDoneButtonVisible
+        self.isCompleted = isCompleted
+        self.moduleItemInteractor = moduleItemSequenceInteractor
     }
 
     func markAsDone() {
-        isMarkAsDoneLoaderVisible = true
+        isLoading = true
         moduleItemInteractor.markAsDone(
-            completed: !isCompletedItem,
+            completed: !isCompleted,
             moduleID: moduleID,
             itemID: itemID
         )
         .sink { [weak self] completion in
             if case let .failure(error) = completion {
                 self?.errorMessage = error.localizedDescription
-                self?.isShowErrorAlert = true
             }
-            self?.isMarkAsDoneLoaderVisible = false
+            self?.isLoading = false
         } receiveValue: { [weak self] _ in
-            self?.isCompletedItem.toggle()
+            self?.isCompleted.toggle()
         }
         .store(in: &subscriptions)
     }

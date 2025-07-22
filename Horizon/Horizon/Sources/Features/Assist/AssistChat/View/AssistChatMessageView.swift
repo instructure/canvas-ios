@@ -24,12 +24,8 @@ struct AssistChatMessageView: View {
     let message: AssistChatMessageViewModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
+        VStack(alignment: .leading, spacing: .zero) {
             messageContent
-                .frame(maxWidth: .infinity, alignment: message.alignment)
-                .onTapGesture {
-                    message.onTap?()
-                }
             citations
             feedback
             suggestedResponses
@@ -42,22 +38,25 @@ struct AssistChatMessageView: View {
             WrappingHStack(
                 models: message.citations,
                 horizontalSpacing: .zero
-            ) {
-                Text($0)
+            ) { (citation: AssistChatMessage.Citation) in
+                Text(citation.title)
                     .huiTypography(.labelSmall)
                     .baselineOffset(2)
                     .foregroundColor(.huiColors.text.surfaceColored)
                     .underline()
-                    .padding(.horizontal, .huiSpaces.space4)
+                    .padding(.leading, citation != message.citations.first ? .huiSpaces.space4 : .zero)
+                    .padding(.trailing, .huiSpaces.space4)
                     .overlay(
                         Rectangle()
                             .fill(HorizonUI.colors.text.surfaceColored)
-                            .frame(width: $0 == message.citations.last ? 0 : 1),
+                            .frame(width: citation == message.citations.last ? 0 : 1),
                         alignment: .trailing
                     )
                     .onTapGesture {
+                        message.onTapCitation?(citation)
                     }
             }
+            .padding(.top, .huiSpaces.space8)
         }
     }
 
@@ -88,6 +87,10 @@ struct AssistChatMessageView: View {
                     .cornerRadius(message.cornerRadius)
             }
         }
+        .frame(maxWidth: .infinity, alignment: message.alignment)
+        .onTapGesture {
+            message.onTap?()
+        }
     }
 
     @ViewBuilder
@@ -104,7 +107,7 @@ struct AssistChatMessageView: View {
                     .padding(.vertical, .huiSpaces.space4)
                     .padding(.trailing, .huiSpaces.space4)
             }
-            .padding(.top, .huiSpaces.space16)
+            .padding(.top, .huiSpaces.space24)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
@@ -124,8 +127,12 @@ struct AssistChatMessageView: View {
                 AssistChipOption(chip: "Quick Response 3"),
                 AssistChipOption(chip: "Quick Response 4")
             ],
-            onFeedbackChange: { _ in },
-            citations: ["Citation 1", "Citation 2", "Citation 3"]
+            citations: [
+                .init(title: "Citation 1", courseID: "", sourceID: "", sourceType: ""),
+                .init(title: "Citation 2", courseID: "", sourceID: "", sourceType: ""),
+                .init(title: "Citation 3", courseID: "", sourceID: "", sourceType: "")
+            ],
+            onFeedbackChange: { _ in }
         ))
     }
     .frame(maxHeight: .infinity)

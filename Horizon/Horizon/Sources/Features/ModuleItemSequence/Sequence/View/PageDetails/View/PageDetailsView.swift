@@ -27,6 +27,7 @@ struct PageDetailsView: View {
 
     // MARK: - Dependencies
 
+    @Environment(\.viewController) private var viewController: WeakViewController
     @State private var viewModel: PageDetailsViewModel
 
     // MARK: - Init
@@ -36,27 +37,103 @@ struct PageDetailsView: View {
     }
 
     var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            PageViewRepresentable(
-                isScrollTopReached: $isShowHeader,
-                context: viewModel.context,
-                pageURL: viewModel.pageURL,
-                itemID: viewModel.itemID
-            )
-            if viewModel.isMarkedAsDoneButtonVisible {
-                MarkAsDoneButton(
-                    isCompleted: viewModel.isCompletedItem,
-                    isLoading: viewModel.isMarkAsDoneLoaderVisible
-                ) {
-                    viewModel.markAsDone()
-                }
-                .padding(.horizontal, .huiSpaces.space24)
-                .padding(.bottom, .huiSpaces.space16)
+        VStack(spacing: .zero) {
+            header
+            ZStack(alignment: .top) {
+                spinner
+                page
             }
         }
-        .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
-        .alert(isPresented: $viewModel.isShowErrorAlert) {
-            Alert(title: Text(viewModel.errorMessage))
+        .frame(maxHeight: .infinity, alignment: .top)
+    }
+
+    @ViewBuilder
+    var page: some View {
+        if let pageURL = viewModel.pageURL,
+           let itemID = viewModel.itemID {
+            ZStack(alignment: .bottomTrailing) {
+                PageViewRepresentable(
+                    isScrollTopReached: $isShowHeader,
+                    context: viewModel.context,
+                    pageURL: pageURL,
+                    itemID: itemID
+                )
+                if let model = viewModel.markAsDoneViewModel {
+                    MarkAsDoneButton(
+                        isCompleted: model.isCompleted,
+                        isLoading: model.isLoading
+                    ) {
+                        model.markAsDone()
+                    }
+                    .padding(.horizontal, .huiSpaces.space24)
+                    .padding(.bottom, .huiSpaces.space16)
+                    .alert(
+                        isPresented: Binding(
+                            get: { model.isErrorPresented },
+                            set: { _ in model.errorMessage = nil }
+                        )
+                    ) {
+                        Alert(
+                            title: Text(model.errorMessage ?? String(localized: "An error occurred while marking as done."))
+                        )
+                    }
+                }
+            }
+            .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
+            .opacity(viewModel.bodyOpacity)
+            .animation(.easeInOut, value: viewModel.bodyOpacity)
+        }
+    }
+
+    @ViewBuilder
+    var spinner: some View {
+        HorizonUI.Spinner(size: .xSmall)
+            .padding(.top, .huiSpaces.space24)
+    }
+
+    @ViewBuilder
+    var header: some View {
+        if viewModel.isHeaderVisible {
+            VStack(alignment: .trailing, spacing: .zero) {
+                HorizonUI.IconButton(
+                    .huiIcons.close,
+                    type: .white,
+                    isSmall: true
+                ) {
+                    viewModel.close(viewController: viewController)
+                }
+            }
+            .padding(.horizontal, .huiSpaces.space16)
+            .padding(.vertical, .huiSpaces.space8)
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .overlay(
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(Color.huiColors.surface.divider),
+                alignment: .bottom
+            )
         }
     }
 }
+
+#if DEBUG
+class PageDetailsViewModelPreview: PageDetailsViewModel {
+    var context: Core.Context { .init(.course, id: "477") }
+    var pageURL: String? { "" }
+    var bodyOpacity: Double { 0.0 }
+    var isHeaderVisible: Bool { true }
+    var loaderOpacity: Double { 1.0 }
+    var itemID: String? { "4446" }
+    var markAsDoneViewModel: MarkAsDoneViewModel? { nil }
+
+    func close(viewController: WeakViewController) {
+
+    }
+}
+
+#Preview {
+    PageDetailsView(
+        viewModel: PageDetailsViewModelPreview()
+    )
+}
+#endif

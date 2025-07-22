@@ -139,7 +139,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         }
         goals += [
             AssistCoursePageGoal(environment: assistDataEnvironment),
-            AssistSelectCourseActionGoal(environment: assistDataEnvironment),
+            AssistCourseActionGoal(environment: assistDataEnvironment),
             AssistSelectCourseGoal(environment: assistDataEnvironment)
         ]
         return goals

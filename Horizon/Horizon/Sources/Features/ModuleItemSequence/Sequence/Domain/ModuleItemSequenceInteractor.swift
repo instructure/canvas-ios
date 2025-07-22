@@ -24,7 +24,7 @@ import Foundation
 protocol ModuleItemSequenceInteractor {
     func fetchModuleItems(
         assetType: GetModuleItemSequenceRequest.AssetType,
-        assetId: String,
+        assetID: String,
         moduleID: String?,
         itemID: String?,
         ignoreCache: Bool
@@ -66,12 +66,12 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
 
     func fetchModuleItems(
         assetType: GetModuleItemSequenceRequest.AssetType,
-        assetId: String,
-        moduleID: String?,
-        itemID: String?,
-        ignoreCache: Bool,
+        assetID: String,
+        moduleID: String? = nil,
+        itemID: String? = nil,
+        ignoreCache: Bool = false
     ) -> AnyPublisher<(HModuleItemSequence?, HModuleItem?), Never> {
-        let sequenceUseCase = GetModuleItemSequence(courseID: courseID, assetType: assetType, assetID: assetId)
+        let sequenceUseCase = GetModuleItemSequence(courseID: courseID, assetType: assetType, assetID: assetID)
         let sequencePublisher = ReactiveStore(useCase: sequenceUseCase)
             .getEntities()
             .replaceError(with: [])

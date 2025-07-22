@@ -172,7 +172,7 @@ final class ModuleItemSequenceViewModel {
         isLoaderVisible = true
         moduleItemInteractor.fetchModuleItems(
             assetType: assetType,
-            assetId: assetId,
+            assetID: assetId,
             moduleID: moduleID,
             itemID: itemID,
             ignoreCache: false
@@ -338,7 +338,7 @@ final class ModuleItemSequenceViewModel {
         guard let next = sequence?.next else { return }
         moduleItemInteractor.fetchModuleItems(
             assetType: assetType,
-            assetId: next.id,
+            assetID: next.id,
             moduleID: next.moduleID,
             itemID: next.id,
             ignoreCache: true

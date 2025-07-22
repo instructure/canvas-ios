@@ -99,6 +99,20 @@ enum HorizonRoutes {
                     assetID: itemID,
                     url: url
                 )
+            },
+            // For displaying a single module item in a modal
+            RouteHandler("/courses/:courseID/modules/items/:assetID/:assetType") { _, params, _, _ in
+                if let courseID = params["courseID"],
+                      let assetID = params["assetID"],
+                      let assetType = params["assetType"],
+                      let assetTypeEnum = GetModuleItemSequenceRequest.AssetType(rawValue: assetType) {
+                    PageDetailsAssembly.makeView(
+                        courseID: courseID,
+                        assetID: assetID,
+                        assetType: assetTypeEnum
+                    ).showAsPageSheet()
+                }
+                return nil
             }
         ]
     }
@@ -436,5 +450,17 @@ extension HorizonRoutes {
             )
         }
         return viewController
+    }
+}
+
+extension UIViewController {
+    func showAsPageSheet() {
+        guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return }
+        let router: Router = AppEnvironment.shared.router
+        router.show(
+            self,
+            from: vc,
+            options: .modal(.pageSheet, isDismissable: false)
+        )
     }
 }
