@@ -98,22 +98,35 @@ struct SpeedGraderSubmissionGradesView: View {
 
     @ViewBuilder
     private var gradeRow: some View {
+        let title = String(localized: "Grade", bundle: .teacher)
         switch gradeViewModel.gradeInputType {
         case .pointsTextField:
-            SwiftUI.EmptyView()
-        case .percentageTextField:
-            let score = gradeViewModel.gradeState.originalGradeWithoutMetric
             GradeInputTextFieldCell(
-                title: String(localized: "Grade", bundle: .teacher),
-                placeholder: String(localized: "Write percentage here", bundle: .teacher),
-                suffix: "%",
+                title: title,
+                gradingType: .points,
+                pointsPossible: gradeViewModel.gradeState.pointsPossibleText,
+                isExcused: gradeViewModel.gradeState.isExcused,
                 text: Binding(
-                    get: { score ?? "" },
+                    get: { gradeViewModel.gradeState.originalGradeWithoutMetric ?? "" },
+                    set: {
+                        guard let value = Double($0) else { return }
+                        gradeViewModel.setPointsGrade(value)
+                    }
+                )
+            )
+        case .percentageTextField:
+            GradeInputTextFieldCell(
+                title: title,
+                gradingType: .percentage,
+                pointsPossible: gradeViewModel.gradeState.pointsPossibleText,
+                isExcused: gradeViewModel.gradeState.isExcused,
+                text: Binding(
+                    get: { gradeViewModel.gradeState.originalGradeWithoutMetric ?? "" },
                     set: {
                         guard let value = Double($0) else { return }
                         gradeViewModel.setPercentGrade(value)
                     }
-                ),
+                )
             )
         case .pointsDisplayOnly:
             SwiftUI.EmptyView()

@@ -25,7 +25,7 @@ struct GradeInputTextFieldCell: View {
     private let title: String
     private let subtitle: String?
     private let placeholder: String
-    private let suffix: String
+    private let suffix: String?
 
     @Binding private var externalText: String
     @State private var internalText: String
@@ -34,9 +34,9 @@ struct GradeInputTextFieldCell: View {
 
     init(
         title: String,
-        subtitle: String? = nil,
+        subtitle: String?,
         placeholder: String,
-        suffix: String,
+        suffix: String?,
         text: Binding<String>
     ) {
         self.title = title
@@ -48,11 +48,16 @@ struct GradeInputTextFieldCell: View {
     }
 
     var body: some View {
-        HStack(alignment: .center, spacing: 0) {
+        HStack(alignment: .center, spacing: 8) {
             Text(title)
                 .textStyle(.cellLabel)
-                .paddingStyle(.trailing, .standard)
                 .accessibility(hidden: true)
+
+            if let subtitle {
+                Text(subtitle)
+                    .font(.regular16, lineHeight: .fit)
+                    .foregroundStyle(.textDark)
+            }
 
             textField
                 .frame(maxWidth: .infinity, alignment: .trailing)
@@ -66,6 +71,12 @@ struct GradeInputTextFieldCell: View {
                         externalText = internalText
                     }
                 }
+
+            if let suffix {
+                Text(suffix)
+                    .font(.regular16, lineHeight: .fit)
+                    .foregroundStyle(.textDark)
+            }
         }
         .paddingStyle(set: .standardCell)
         .contentShape(Rectangle())
@@ -102,5 +113,49 @@ struct GradeInputTextFieldCell: View {
                 }
             }
         }
+    }
+}
+
+extension GradeInputTextFieldCell {
+
+    enum GradingType {
+        case points
+        case percentage
+    }
+
+    init(
+        title: String,
+        gradingType: GradingType,
+        pointsPossible: String,
+        isExcused: Bool,
+        text: Binding<String>
+    ) {
+        let subtitle: String? = switch gradingType {
+        case .points: nil
+        case .percentage: "(\(pointsPossible))"
+        }
+
+        let placeholder = switch gradingType {
+        case .points: String(localized: "Write score here", bundle: .teacher)
+        case .percentage: String(localized: "Write percentage here", bundle: .teacher)
+        }
+
+        let suffix: String?
+        if isExcused {
+            suffix = nil
+        } else {
+            suffix = switch gradingType {
+            case .points: "/ \(pointsPossible)"
+            case .percentage: "%"
+            }
+        }
+
+        self.init(
+            title: title,
+            subtitle: subtitle,
+            placeholder: placeholder,
+            suffix: suffix,
+            text: text
+        )
     }
 }
