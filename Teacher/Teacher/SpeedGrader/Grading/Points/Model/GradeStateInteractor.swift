@@ -41,6 +41,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
         let hasLatePenaltyPoints = (submission.pointsDeducted ?? 0) > 0
         let isExcused = (submission.excused == true)
         let score = submission.enteredScore ?? submission.score ?? 0
+        let gradingType = assignment.gradingType
 
         return GradeState(
             hasLateDeduction: submission.late && isGraded && hasLatePenaltyPoints,
@@ -67,9 +68,10 @@ class GradeStateInteractorLive: GradeStateInteractor {
             }(),
             score: score,
             pointsPossibleText: assignment.pointsPossibleText,
-            gradingType: assignment.gradingType,
+            gradingType: gradingType,
             originalScoreWithoutMetric: GradeFormatter.originalScoreWithoutMetric(for: submission),
-            finalGradeWithoutMetric: GradeFormatter.finalGradeWithoutMetric(for: assignment, submission: submission)
+            originalGradeWithoutMetric: GradeFormatter.originalGradeWithoutMetric(for: submission, gradingType: gradingType),
+            finalGradeWithoutMetric: GradeFormatter.finalGradeWithoutMetric(for: submission, gradingType: gradingType)
         )
     }
 }

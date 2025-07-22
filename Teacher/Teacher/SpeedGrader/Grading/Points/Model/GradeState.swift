@@ -34,6 +34,7 @@ struct GradeState: Equatable {
         pointsPossibleText: "",
         gradingType: .points,
         originalScoreWithoutMetric: nil,
+        originalGradeWithoutMetric: nil,
         finalGradeWithoutMetric: nil
     )
 
@@ -59,5 +60,6 @@ struct GradeState: Equatable {
     let gradingType: GradingType
 
     let originalScoreWithoutMetric: String?
+    let originalGradeWithoutMetric: String?
     let finalGradeWithoutMetric: String?
 }

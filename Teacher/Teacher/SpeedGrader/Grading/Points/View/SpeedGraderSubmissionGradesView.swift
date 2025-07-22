@@ -102,7 +102,7 @@ struct SpeedGraderSubmissionGradesView: View {
         case .pointsTextField:
             SwiftUI.EmptyView()
         case .percentageTextField:
-            let score = gradeViewModel.gradeState.originalScoreWithoutMetric
+            let score = gradeViewModel.gradeState.originalGradeWithoutMetric
             GradeInputTextFieldCell(
                 title: String(localized: "Grade", bundle: .teacher),
                 placeholder: String(localized: "Write percentage here", bundle: .teacher),
