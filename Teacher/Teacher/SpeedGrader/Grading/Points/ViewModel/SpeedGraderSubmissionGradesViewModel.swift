@@ -21,6 +21,13 @@ import CombineSchedulers
 import Core
 import CoreData
 
+enum GradeInputType {
+    case pointsTextField
+    case percentageTextField
+    case pointsDisplayOnly // for Complete/Incomplete
+    case gradePicker // for GPA & Lettergrade
+}
+
 class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     // MARK: - Outputs
@@ -29,6 +36,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     // Grading inputs
     @Published private(set) var gradeState: GradeState = .empty
+    @Published private(set) var gradeInputType: GradeInputType?
     @Published private(set) var isSaving: Bool = false
     let shouldShowSlider: Bool
     @Published var sliderValue: Double = 0
@@ -109,6 +117,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
             .sink { [weak self] newState in
                 guard let self else { return }
                 gradeState = newState
+                gradeInputType = newState.gradeInputType
                 sliderValue = newState.score
                 isNoGradeButtonDisabled = (!newState.isGraded && !newState.isExcused)
                 shouldShowGradeSummary = (!newState.isExcused && newState.gradingType != .not_graded)
@@ -184,5 +193,22 @@ extension GradeState {
             currentGradeText: finalGradeWithoutMetric,
             suffixType: suffix
         )
+    }
+}
+
+private extension GradeState {
+    var gradeInputType: GradeInputType? {
+        switch gradingType {
+        case .percent:
+            .percentageTextField
+        case .points:
+            .pointsTextField
+        case .pass_fail:
+            .pointsDisplayOnly
+        case .gpa_scale, .letter_grade:
+            .gradePicker
+        case .not_graded:
+            nil
+        }
     }
 }

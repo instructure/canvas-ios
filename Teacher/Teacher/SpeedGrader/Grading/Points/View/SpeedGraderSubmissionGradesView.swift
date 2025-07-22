@@ -78,8 +78,8 @@ struct SpeedGraderSubmissionGradesView: View {
 
     private func gradingInputViews() -> some View {
         VStack(spacing: 0) {
-            oldGradeRow
-//            gradeRow
+//            oldGradeRow
+            gradeRow
 
             if gradeViewModel.shouldShowSlider {
                 slider
@@ -96,9 +96,32 @@ struct SpeedGraderSubmissionGradesView: View {
         )
     }
 
+    @ViewBuilder
     private var gradeRow: some View {
-        // TODO
-        Text(verbatim: "Grade")
+        switch gradeViewModel.gradeInputType {
+        case .pointsTextField:
+            SwiftUI.EmptyView()
+        case .percentageTextField:
+            let score = gradeViewModel.gradeState.originalScoreWithoutMetric
+            GradeInputTextFieldCell(
+                title: String(localized: "Grade", bundle: .teacher),
+                placeholder: String(localized: "Write percentage here", bundle: .teacher),
+                suffix: "%",
+                text: Binding(
+                    get: { score ?? "" },
+                    set: {
+                        guard let value = Double($0) else { return }
+                        gradeViewModel.setPercentGrade(value)
+                    }
+                ),
+            )
+        case .pointsDisplayOnly:
+            SwiftUI.EmptyView()
+        case .gradePicker:
+            SwiftUI.EmptyView()
+        case nil:
+            SwiftUI.EmptyView()
+        }
     }
 
     private var noGradeAndExcuseButtons: some View {
