@@ -43,7 +43,7 @@ struct ModuleItemListView: View {
                 if let type = item.type {
                     if type == .subHeader {
                         subHeaderText(for: item)
-                    } else {
+                    } else  if type.assetType != .discussion {
                         moduleItemButton(item: item, type: type)
                     }
                 }
@@ -69,7 +69,7 @@ struct ModuleItemListView: View {
                     status: item.status,
                     type: item.isQuizLTI ? .assessment : itemType,
                     duration: item.estimatedDurationFormatted,
-                    dueDate: item.dueAt?.dateOnlyString,
+                    dueDate: item.dueAt?.formatted(format: "MM/dd"),
                     lockedMessage: item.lockedMessage,
                     points: item.points?.trimmedString,
                     description: item.statusDescription,

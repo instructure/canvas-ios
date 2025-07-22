@@ -107,7 +107,7 @@ struct DashboardView: View {
                     Text("Congrats! You've completed your course.", bundle: .horizon)
                         .huiTypography(.h3)
                         .foregroundStyle(Color.huiColors.text.title)
-                        .padding(.top, .huiSpaces.space32)
+                        .padding(.top, .huiSpaces.space16)
                     Text("View your progress and scores on the Learn page.", bundle: .horizon)
                         .huiTypography(.p1)
                         .foregroundStyle(Color.huiColors.text.title)
@@ -136,7 +136,7 @@ struct DashboardView: View {
 
     private func learningObjectCard(model: HCourse.LearningObjectCard, progress: Double) -> some View {
         VStack(alignment: .leading, spacing: .zero) {
-            Text("Resume Learning", bundle: .horizon)
+            Text("Resume learning", bundle: .horizon)
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
                 .padding(.top, .huiSpaces.space36)
