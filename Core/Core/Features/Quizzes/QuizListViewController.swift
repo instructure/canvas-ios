@@ -47,10 +47,10 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
         self?.update()
     }
 
-    public static func create(env: AppEnvironment, courseID: String) -> QuizListViewController {
+    public static func create(courseID: String, env: AppEnvironment) -> QuizListViewController {
         let controller = loadFromStoryboard()
-        controller.env = env
         controller.courseID = courseID
+        controller.env = env
         return controller
     }
 
