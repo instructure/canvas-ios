@@ -56,7 +56,7 @@ let router = Router(routes: [
 
     RouteHandler("/conversations/:conversationID") { _, params, _ in
         guard let conversationID = params["conversationID"] else { return nil }
-        return MessageDetailsAssembly.makeViewController(env: .shared, conversationID: conversationID, allowArchive: true)
+        return MessageDetailsAssembly.makeViewController(conversationID: conversationID, allowArchive: true, env: .shared)
     },
 
     RouteHandler("/courses") { _, _, _ in

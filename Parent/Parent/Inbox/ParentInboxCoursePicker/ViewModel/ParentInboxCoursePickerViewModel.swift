@@ -61,7 +61,7 @@ public class ParentInboxCoursePickerViewModel: ObservableObject {
                 let parent = controller.value.presentingViewController
                 router.dismiss(controller) {
                     self.router.show(
-                        ComposeMessageAssembly.makeComposeMessageViewController(env: self.environemnt, options: options),
+                        ComposeMessageAssembly.makeComposeMessageViewController(options: options, env: self.environemnt),
                         from: parent ?? controller.value,
                         options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
                     )
