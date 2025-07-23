@@ -82,7 +82,7 @@ public struct ModuleItemSequenceView: View {
                 viewModel.pop(from: viewController)
             }
         } message: {
-            Text(viewModel.errorMessage ?? String(localized: "An error occurred", bundle: .horizon))
+            Text(viewModel.errorMessage ?? String(localized: "An error has occurred", bundle: .horizon))
         }
         .onWillDisappear { onShowNavigationBarAndTabBar(true) }
         .onWillAppear { onShowNavigationBarAndTabBar(false) }
