@@ -148,7 +148,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
         Divider().padding(.horizontal, 16)
 
         if isTeacherEnrollment {
-            let viewModel = AssignmentSubmissionBreakdownViewModel(env: env, courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
+            let viewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes, env: env)
             SubmissionBreakdown(viewModel: viewModel)
             Divider().padding(.horizontal, 16)
         }

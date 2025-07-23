@@ -109,20 +109,20 @@ final class ComposeMessageViewModel: ObservableObject {
 
     // MARK: Public interface
     public init(
-        env: AppEnvironment,
         options: ComposeMessageOptions,
         interactor: ComposeMessageInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         recipientInteractor: RecipientInteractor,
-        inboxSettingsInteractor: InboxSettingsInteractor
+        inboxSettingsInteractor: InboxSettingsInteractor,
+        env: AppEnvironment
     ) {
-        self.env = env
         self.interactor = interactor
         self.scheduler = scheduler
         self.messageType = options.messageType
         self.recipientInteractor = recipientInteractor
         self.settingsInteractor = inboxSettingsInteractor
         self.avPermissionViewModel = .init()
+        self.env = env
         setIncludedMessages(messageType: options.messageType)
         setOptionItems(options: options)
 
@@ -204,11 +204,11 @@ final class ComposeMessageViewModel: ObservableObject {
     func addRecipientButtonDidTap(viewController: WeakViewController) {
         guard let context = selectedContext else { return }
         let addressbook = AddressBookAssembly.makeAddressbookRoleViewController(
-            env: env,
             recipientContext: context,
             teacherOnly: teacherOnly,
             didSelectRecipient: didSelectRecipient,
-            selectedRecipients: selectedRecipients
+            selectedRecipients: selectedRecipients,
+            env: env
         )
         env.router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }

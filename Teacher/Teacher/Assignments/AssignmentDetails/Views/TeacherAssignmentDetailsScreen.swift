@@ -103,11 +103,11 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
 
         TeacherSubmissionBreakdownView(
             viewModel: AssignmentSubmissionBreakdownViewModel(
-                env: env,
                 courseID: courseID,
                 assignmentID: assignmentID,
                 submissionTypes: assignment.submissionTypes,
-                color: course.first?.color
+                color: course.first?.color,
+                env: env
             )
         )
 

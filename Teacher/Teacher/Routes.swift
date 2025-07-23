@@ -67,7 +67,7 @@ let router = Router(routes: [
         return InboxSettingsAssembly.makeInboxSettingsViewController(env: env)
     },
 
-    RouteHandler("/conversations/:conversationID") { _, params, userInfo in
+    RouteHandler("/conversations/:conversationID") { _, params, userInfo, env in
         guard let conversationID = params["conversationID"] else { return nil }
         let allowArchive: Bool = {
             if let userInfo, let allowArchiveParam = userInfo["allowArchive"] as? Bool {
@@ -77,9 +77,9 @@ let router = Router(routes: [
             }
         }()
         return MessageDetailsAssembly.makeViewController(
-            env: AppEnvironment.shared,
             conversationID: conversationID,
-            allowArchive: allowArchive
+            allowArchive: allowArchive,
+            env: env
         )
     },
 

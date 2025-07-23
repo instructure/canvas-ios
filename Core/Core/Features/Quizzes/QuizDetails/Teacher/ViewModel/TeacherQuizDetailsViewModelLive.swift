@@ -126,7 +126,7 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
             if let assignmentID = quiz.assignmentID, let assignment = assignmentsUseCase.first(where: { $0.id == assignmentID }) {
                 self.assignment = assignment
                 assignmentDateSectionViewModel = AssignmentDateSectionViewModel(assignment: assignment)
-                assignmentSubmissionBreakdownViewModel = AssignmentSubmissionBreakdownViewModel(env: env, courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
+                assignmentSubmissionBreakdownViewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes, env: env)
             } else {
                 quizSubmissionBreakdownViewModel = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID, env: env)
                 quizDateSectionViewModel = TeacherQuizDateSectionViewModelLive(quiz: quiz)

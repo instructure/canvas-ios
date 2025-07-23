@@ -54,11 +54,11 @@ class MessageDetailsViewModel: ObservableObject {
     private let myID: String
     private let allowArchive: Bool
 
-    public init(env: AppEnvironment, interactor: MessageDetailsInteractor, myID: String, allowArchive: Bool) {
-        self.env = env
+    public init(interactor: MessageDetailsInteractor, myID: String, allowArchive: Bool, env: AppEnvironment) {
         self.interactor = interactor
         self.myID = myID
         self.allowArchive = allowArchive
+        self.env = env
 
         setupOutputBindings()
         setupInputBindings()
@@ -189,10 +189,10 @@ class MessageDetailsViewModel: ObservableObject {
         if let conversation = conversations.first {
             env.router.show(
                 ComposeMessageAssembly.makeComposeMessageViewController(
-                    env: env,
                     options: .init(
                         fromType: .forward(conversation: conversation, message: message)
-                    )
+                    ),
+                    env: env
                 ),
                 from: viewController,
                 options: .modal(
@@ -208,7 +208,7 @@ class MessageDetailsViewModel: ObservableObject {
     public func replyTapped(message: ConversationMessage?, viewController: WeakViewController) {
         if let conversation = conversations.first {
             env.router.show(
-                ComposeMessageAssembly.makeComposeMessageViewController(env: env, options: .init(fromType: .reply(conversation: conversation, message: message))),
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .reply(conversation: conversation, message: message)), env: env),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
@@ -218,7 +218,7 @@ class MessageDetailsViewModel: ObservableObject {
     public func replyAllTapped(message: ConversationMessage?, viewController: WeakViewController) {
         if let conversation = conversations.first {
             env.router.show(
-                ComposeMessageAssembly.makeComposeMessageViewController(env: env, options: .init(fromType: .replyAll(conversation: conversation, message: message))),
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .replyAll(conversation: conversation, message: message)), env: env),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
