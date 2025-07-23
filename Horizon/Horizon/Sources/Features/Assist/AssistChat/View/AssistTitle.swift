@@ -28,8 +28,8 @@ struct AssistTitle: View {
     private var title: some View {
         HStack {
             HorizonUI.icons.ai
-            Text(String(localized: "Assist", bundle: .horizon))
-                .huiTypography(.h3)
+            Text(String(localized: "IgniteAI", bundle: .horizon))
+                .huiTypography(.h4)
 
         }
         .foregroundStyle(Color.textLightest)
