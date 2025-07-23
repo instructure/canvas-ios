@@ -104,6 +104,12 @@ struct AssistChatMessage {
         case User
     }
 
+    enum SourceType: String, Codable {
+        case attachment
+        case unknown
+        case wiki_page
+    }
+
     struct QuizItem: Codable, Equatable {
         let question: String
         let answers: [String]
@@ -114,6 +120,6 @@ struct AssistChatMessage {
         let title: String
         let courseID: String?
         let sourceID: String?
-        let sourceType: String?
+        let sourceType: SourceType?
     }
 }

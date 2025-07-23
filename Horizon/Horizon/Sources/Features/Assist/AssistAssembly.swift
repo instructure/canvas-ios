@@ -27,7 +27,6 @@ final class AssistAssembly {
         pageUrl: String? = nil,
         fileId: String? = nil
     ) -> UINavigationController {
-        let downloadInteractor: DownloadFileInteractor? = DownloadFileInteractorLive(courseID: courseId)
         let viewModel = AssistChatViewModel(
             courseId: courseId,
             pageUrl: pageUrl,
@@ -35,10 +34,8 @@ final class AssistAssembly {
             chatBotInteractor: makeChatBotInteractor(
                 courseId: courseId,
                 pageUrl: pageUrl,
-                fileId: fileId,
-                downloadInteractor: downloadInteractor
-            ),
-            downloadFileInteractor: downloadInteractor
+                fileId: fileId
+            )
         )
         let view = AssistChatView(viewModel: viewModel)
         let viewController = CoreHostingController(view)
@@ -50,14 +47,15 @@ final class AssistAssembly {
     static func makeChatBotInteractor(
         courseId: String? = nil,
         pageUrl: String? = nil,
-        fileId: String? = nil,
-        downloadInteractor: DownloadFileInteractor? = nil
+        fileId: String? = nil
     ) -> AssistChatInteractor {
         AssistChatInteractorLive(
             courseID: courseId,
             fileID: fileId,
             pageURL: pageUrl,
-            downloadFileInteractor: downloadInteractor
+            downloadFileInteractor: courseId.map {
+                DownloadFileInteractorLive(courseID: $0)
+            }
         )
     }
 

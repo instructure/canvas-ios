@@ -161,7 +161,7 @@ private extension PineQueryMutation.RagCitation {
             title: title,
             courseID: metadata["courseId"],
             sourceID: sourceID,
-            sourceType: sourceType == "wiki_page" ? "Page" : sourceType,
+            sourceType: AssistChatMessage.SourceType.init(rawValue: sourceType) ?? .unknown
         )
     }
 }

@@ -67,9 +67,9 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
     func fetchModuleItems(
         assetType: GetModuleItemSequenceRequest.AssetType,
         assetID: String,
-        moduleID: String? = nil,
-        itemID: String? = nil,
-        ignoreCache: Bool = false
+        moduleID: String?,
+        itemID: String?,
+        ignoreCache: Bool
     ) -> AnyPublisher<(HModuleItemSequence?, HModuleItem?), Never> {
         let sequenceUseCase = GetModuleItemSequence(courseID: courseID, assetType: assetType, assetID: assetID)
         let sequencePublisher = ReactiveStore(useCase: sequenceUseCase)

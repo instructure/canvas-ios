@@ -55,7 +55,6 @@ final class AssistChatViewModel {
 
     private var chatMessages: [AssistChatMessage] = []
     private var dispatchWorkItem: DispatchWorkItem?
-    private var downloadFileInteractor: DownloadFileInteractor?
     private var canSendMessage: Bool = true
     private var subscriptions = Set<AnyCancellable>()
     private let courseId: String?
@@ -70,7 +69,6 @@ final class AssistChatViewModel {
         pageUrl: String? = nil,
         fileId: String? = nil,
         chatBotInteractor: AssistChatInteractor,
-        downloadFileInteractor: DownloadFileInteractor? = nil,
         router: Router = AppEnvironment.shared.router,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
@@ -78,7 +76,6 @@ final class AssistChatViewModel {
         self.pageUrl = pageUrl
         self.fileId = fileId
         self.router = router
-        self.downloadFileInteractor = downloadFileInteractor
         self.scheduler = scheduler
         self.assistChatInteractor = chatBotInteractor
 
@@ -237,13 +234,10 @@ final class AssistChatViewModel {
 
     private func onTapCitation(citation: AssistChatMessage.Citation) {
         guard let viewController = viewController,
-        let courseID = citation.courseID,
-        let sourceID = citation.sourceID,
-        var assetType = citation.sourceType else { return }
+              let courseID = citation.courseID,
+              let sourceID = citation.sourceID,
+              let  assetType = citation.sourceType?.assetType else { return }
 
-        if assetType == "attachment" {
-            assetType = GetModuleItemSequenceRequest.AssetType.file.rawValue
-        }
         router.route(
             to: "/courses/\(courseID)/modules/items/\(sourceID)/\(assetType)",
             from: viewController
@@ -257,11 +251,6 @@ final class AssistChatViewModel {
                 message.id == newMessage.id
             } || message.isLoading
         }
-    }
-
-    private func showShareSheet(fileURL: URL, viewController: WeakViewController) {
-        let controller = CoreActivityViewController(activityItems: [fileURL], applicationActivities: nil)
-        router.show(controller, from: viewController, options: .modal())
     }
 }
 
@@ -319,5 +308,18 @@ private extension AssistChatMessage {
             onTapChipOption: onTapChipOption,
             onTapCitation: onTapCitation
         )
+    }
+}
+
+private extension AssistChatMessage.SourceType {
+    var assetType: GetModuleItemSequenceRequest.AssetType? {
+        switch self {
+        case .attachment:
+            return .file
+        case .wiki_page:
+            return .page
+        default:
+            return nil
+        }
     }
 }
