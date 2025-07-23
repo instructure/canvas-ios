@@ -201,11 +201,10 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
                 } else {
                     showError(error)
                 }
-            } else if
-                files.requested,
-                !files.pending,
-                !files.isToBeUpdated,
-                localURL == nil {
+            } else if files.requested,
+                      !files.pending,
+                      !files.isToBeUpdated,
+                      localURL == nil {
                 // File was deleted, go back.
                 env.router.dismiss(self)
             }
