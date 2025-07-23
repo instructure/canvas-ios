@@ -35,18 +35,19 @@ class GradeInteractorLiveTests: TeacherTestCase {
         rubricInteractor.isRubricScoreAvailable.value = false
         rubricInteractor.totalRubricScore.value = 0
         let initialGradeState = GradeState(
-            hasLateDeduction: false,
+            gradingType: .points,
+            pointsPossibleText: "",
             isGraded: false,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "",
-            pointsDeductedText: "0 pts",
-            gradeAlertText: "",
+            hasLateDeduction: false,
             score: 0,
-            pointsPossibleText: "",
-            gradingType: .points,
             originalScoreWithoutMetric: nil,
-            finalGradeWithoutMetric: nil
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: nil,
+            pointsDeductedText: "0 pts",
+            originalGradeText: "",
+            gradeAlertText: ""
         )
         gradeStateInteractor.gradeStateToReturn = initialGradeState
 
@@ -73,18 +74,19 @@ class GradeInteractorLiveTests: TeacherTestCase {
         rubricInteractor.isRubricScoreAvailable.value = true
         rubricInteractor.totalRubricScore.value = 85.5
         let updatedGradeState = GradeState(
-            hasLateDeduction: false,
+            gradingType: .points,
+            pointsPossibleText: "100 pts",
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "90/100",
-            pointsDeductedText: "0 pts",
-            gradeAlertText: "90",
+            hasLateDeduction: false,
             score: 90,
-            pointsPossibleText: "100 pts",
-            gradingType: .points,
             originalScoreWithoutMetric: "90",
-            finalGradeWithoutMetric: "90"
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: "90",
+            pointsDeductedText: "0 pts",
+            originalGradeText: "90/100",
+            gradeAlertText: "90"
         )
         gradeStateInteractor.gradeStateToReturn = updatedGradeState
         gradeStateInteractor.gradeStateCalled = false

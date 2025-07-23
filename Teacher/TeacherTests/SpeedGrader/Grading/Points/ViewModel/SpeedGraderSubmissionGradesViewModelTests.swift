@@ -26,18 +26,19 @@ import TestsFoundation
 class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
     private enum TestData {
         static let sampleGradeState = GradeState(
-            hasLateDeduction: false,
+            gradingType: .points,
+            pointsPossibleText: "100 pts",
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "85/100",
-            pointsDeductedText: "0 pts",
-            gradeAlertText: "85",
+            hasLateDeduction: false,
             score: 85,
-            pointsPossibleText: "100 pts",
-            gradingType: .points,
             originalScoreWithoutMetric: "85",
-            finalGradeWithoutMetric: "85"
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: "85",
+            pointsDeductedText: "0 pts",
+            originalGradeText: "85/100",
+            gradeAlertText: "85"
         )
     }
     private var gradeInteractorMock: GradeInteractorMock!
@@ -191,18 +192,19 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
     func test_isNoGradeButtonDisabled_withoutGradeAndNotExcused_isDisabled() {
         let stateWithoutGrade = GradeState(
-            hasLateDeduction: false,
+            gradingType: .points,
+            pointsPossibleText: "100 pts",
             isGraded: false,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "",
-            pointsDeductedText: "",
-            gradeAlertText: "",
+            hasLateDeduction: false,
             score: 0,
-            pointsPossibleText: "100 pts",
-            gradingType: .points,
             originalScoreWithoutMetric: nil,
-            finalGradeWithoutMetric: nil
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: nil,
+            pointsDeductedText: "",
+            originalGradeText: "",
+            gradeAlertText: ""
         )
 
         gradeInteractorMock.gradeStateSubject.send(stateWithoutGrade)
@@ -212,18 +214,19 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
     func test_isNoGradeButtonDisabled_withGrade_isEnabled() {
         let stateWithGrade = GradeState(
-            hasLateDeduction: false,
+            gradingType: .points,
+            pointsPossibleText: "100 pts",
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "85/100",
-            pointsDeductedText: "",
-            gradeAlertText: "85",
+            hasLateDeduction: false,
             score: 85,
-            pointsPossibleText: "100 pts",
-            gradingType: .points,
             originalScoreWithoutMetric: "85",
-            finalGradeWithoutMetric: "85"
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: "85",
+            pointsDeductedText: "",
+            originalGradeText: "85/100",
+            gradeAlertText: "85"
         )
 
         gradeInteractorMock.gradeStateSubject.send(stateWithGrade)
@@ -233,18 +236,19 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
     func test_isNoGradeButtonDisabled_withExcusedGrade_isEnabled() {
         let stateWithExcusedGrade = GradeState(
-            hasLateDeduction: false,
+            gradingType: .points,
+            pointsPossibleText: "100 pts",
             isGraded: false,
             isExcused: true,
             isGradedButNotPosted: false,
-            originalGradeText: "Excused",
-            pointsDeductedText: "",
-            gradeAlertText: "Excused",
+            hasLateDeduction: false,
             score: 0,
-            pointsPossibleText: "100 pts",
-            gradingType: .points,
             originalScoreWithoutMetric: nil,
-            finalGradeWithoutMetric: "Excused"
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: "Excused",
+            pointsDeductedText: "",
+            originalGradeText: "Excused",
+            gradeAlertText: "Excused"
         )
 
         gradeInteractorMock.gradeStateSubject.send(stateWithExcusedGrade)
@@ -256,18 +260,19 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
     func test_pointsRowModel_returnsNilForPointsGradingWithoutLateDeduction() {
         let state = GradeState(
-            hasLateDeduction: false,
+            gradingType: .points,
+            pointsPossibleText: "100 pts",
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "85/100",
-            pointsDeductedText: "0 pts",
-            gradeAlertText: "85",
+            hasLateDeduction: false,
             score: 85,
-            pointsPossibleText: "100 pts",
-            gradingType: .points,
             originalScoreWithoutMetric: "85",
-            finalGradeWithoutMetric: "85"
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: "85",
+            pointsDeductedText: "0 pts",
+            originalGradeText: "85/100",
+            gradeAlertText: "85"
         )
 
         XCTAssertNil(state.pointsRowModel)
@@ -275,18 +280,19 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
     func test_pointsRowModel_returnsViewModelForPointsGradingWithLateDeduction() {
         let state = GradeState(
-            hasLateDeduction: true,
+            gradingType: .points,
+            pointsPossibleText: "100 pts",
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "85/100",
-            pointsDeductedText: "10 pts",
-            gradeAlertText: "85",
+            hasLateDeduction: true,
             score: 85,
-            pointsPossibleText: "100 pts",
-            gradingType: .points,
             originalScoreWithoutMetric: "95",
-            finalGradeWithoutMetric: "85"
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: "85",
+            pointsDeductedText: "10 pts",
+            originalGradeText: "85/100",
+            gradeAlertText: "85"
         )
 
         let result = state.pointsRowModel
@@ -297,18 +303,19 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
     func test_pointsRowModel_returnsViewModelForNonPointsGrading() {
         let state = GradeState(
-            hasLateDeduction: false,
+            gradingType: .percent,
+            pointsPossibleText: "100 pts",
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "85%",
-            pointsDeductedText: "0 pts",
-            gradeAlertText: "85",
+            hasLateDeduction: false,
             score: 85,
-            pointsPossibleText: "100 pts",
-            gradingType: .percent,
             originalScoreWithoutMetric: "85",
-            finalGradeWithoutMetric: "85"
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: "85",
+            pointsDeductedText: "0 pts",
+            originalGradeText: "85%",
+            gradeAlertText: "85"
         )
 
         let result = state.pointsRowModel
@@ -319,18 +326,19 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
     func test_latePenaltyRowModel_returnsNilWhenNoLateDeduction() {
         let state = GradeState(
-            hasLateDeduction: false,
+            gradingType: .points,
+            pointsPossibleText: "100 pts",
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "85/100",
-            pointsDeductedText: "0 pts",
-            gradeAlertText: "85",
+            hasLateDeduction: false,
             score: 85,
-            pointsPossibleText: "100 pts",
-            gradingType: .points,
             originalScoreWithoutMetric: "85",
-            finalGradeWithoutMetric: "85"
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: "85",
+            pointsDeductedText: "0 pts",
+            originalGradeText: "85/100",
+            gradeAlertText: "85"
         )
 
         XCTAssertNil(state.latePenaltyRowModel)
@@ -338,18 +346,19 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
     func test_latePenaltyRowModel_returnsViewModelWhenHasLateDeduction() {
         let state = GradeState(
-            hasLateDeduction: true,
+            gradingType: .points,
+            pointsPossibleText: "100 pts",
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "85/100",
-            pointsDeductedText: "-10 pts",
-            gradeAlertText: "85",
+            hasLateDeduction: true,
             score: 85,
-            pointsPossibleText: "100 pts",
-            gradingType: .points,
             originalScoreWithoutMetric: "95",
-            finalGradeWithoutMetric: "85"
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: "85",
+            pointsDeductedText: "-10 pts",
+            originalGradeText: "85/100",
+            gradeAlertText: "85"
         )
 
         let result = state.latePenaltyRowModel
@@ -359,18 +368,19 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
     func test_finalGradeRowModel_returnsCorrectSuffixForPointsGrading() {
         let state = GradeState(
-            hasLateDeduction: false,
+            gradingType: .points,
+            pointsPossibleText: "100 pts",
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "85/100",
-            pointsDeductedText: "0 pts",
-            gradeAlertText: "85",
+            hasLateDeduction: false,
             score: 85,
-            pointsPossibleText: "100 pts",
-            gradingType: .points,
             originalScoreWithoutMetric: "85",
-            finalGradeWithoutMetric: "85"
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: "85",
+            pointsDeductedText: "0 pts",
+            originalGradeText: "85/100",
+            gradeAlertText: "85"
         )
 
         let result = state.finalGradeRowModel
@@ -380,18 +390,19 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
     func test_finalGradeRowModel_returnsCorrectSuffixForPercentGrading() {
         let state = GradeState(
-            hasLateDeduction: false,
+            gradingType: .percent,
+            pointsPossibleText: "100 pts",
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "85%",
-            pointsDeductedText: "0 pts",
-            gradeAlertText: "85",
+            hasLateDeduction: false,
             score: 85,
-            pointsPossibleText: "100 pts",
-            gradingType: .percent,
             originalScoreWithoutMetric: "85",
-            finalGradeWithoutMetric: "85"
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: "85",
+            pointsDeductedText: "0 pts",
+            originalGradeText: "85%",
+            gradeAlertText: "85"
         )
 
         let result = state.finalGradeRowModel
@@ -401,18 +412,19 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
     func test_finalGradeRowModel_returnsCorrectSuffixForLetterGrading() {
         let state = GradeState(
-            hasLateDeduction: false,
+            gradingType: .letter_grade,
+            pointsPossibleText: "100 pts",
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "B+",
-            pointsDeductedText: "0 pts",
-            gradeAlertText: "B+",
+            hasLateDeduction: false,
             score: 87,
-            pointsPossibleText: "100 pts",
-            gradingType: .letter_grade,
             originalScoreWithoutMetric: "87",
-            finalGradeWithoutMetric: "B+"
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: "B+",
+            pointsDeductedText: "0 pts",
+            originalGradeText: "B+",
+            gradeAlertText: "B+"
         )
 
         let result = state.finalGradeRowModel
@@ -422,18 +434,19 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
     func test_finalGradeRowModel_returnsCorrectSuffixForPassFailGrading() {
         let state = GradeState(
-            hasLateDeduction: false,
+            gradingType: .pass_fail,
+            pointsPossibleText: "100 pts",
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "Complete",
-            pointsDeductedText: "0 pts",
-            gradeAlertText: "Complete",
+            hasLateDeduction: false,
             score: 100,
-            pointsPossibleText: "100 pts",
-            gradingType: .pass_fail,
             originalScoreWithoutMetric: "100",
-            finalGradeWithoutMetric: "Complete"
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: "Complete",
+            pointsDeductedText: "0 pts",
+            originalGradeText: "Complete",
+            gradeAlertText: "Complete"
         )
 
         let result = state.finalGradeRowModel
@@ -443,18 +456,19 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
     func test_finalGradeRowModel_handlesNilFinalGradeWithoutMetric() {
         let state = GradeState(
-            hasLateDeduction: false,
+            gradingType: .points,
+            pointsPossibleText: "100 pts",
             isGraded: false,
             isExcused: false,
             isGradedButNotPosted: false,
-            originalGradeText: "",
-            pointsDeductedText: "0 pts",
-            gradeAlertText: "",
+            hasLateDeduction: false,
             score: 0,
-            pointsPossibleText: "100 pts",
-            gradingType: .points,
             originalScoreWithoutMetric: nil,
-            finalGradeWithoutMetric: nil
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: nil,
+            pointsDeductedText: "0 pts",
+            originalGradeText: "",
+            gradeAlertText: ""
         )
 
         let result = state.finalGradeRowModel

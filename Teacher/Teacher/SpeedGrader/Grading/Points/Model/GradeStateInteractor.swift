@@ -44,17 +44,26 @@ class GradeStateInteractorLive: GradeStateInteractor {
         let gradingType = assignment.gradingType
 
         return GradeState(
-            hasLateDeduction: submission.late && isGraded && hasLatePenaltyPoints,
+            gradingType: gradingType,
+            pointsPossibleText: assignment.pointsPossibleText,
+
             isGraded: isGraded,
             isExcused: isExcused,
             isGradedButNotPosted: (isGraded && submission.postedAt == nil),
+            hasLateDeduction: submission.late && isGraded && hasLatePenaltyPoints,
+
+            score: score,
+            originalScoreWithoutMetric: GradeFormatter.originalScoreWithoutMetric(for: submission),
+            originalGradeWithoutMetric: GradeFormatter.originalGradeWithoutMetric(for: submission, gradingType: gradingType),
+            finalGradeWithoutMetric: GradeFormatter.finalGradeWithoutMetric(for: submission, gradingType: gradingType),
+            pointsDeductedText: String(localized: "\(-(submission.pointsDeducted ?? 0), specifier: "%g") pts", bundle: .core),
+
             originalGradeText: GradeFormatter.longString(
                 for: assignment,
                 submission: submission,
                 rubricScore: isRubricScoreAvailable ? totalRubricScore : nil,
                 final: false
             ),
-            pointsDeductedText: String(localized: "\(-(submission.pointsDeducted ?? 0), specifier: "%g") pts", bundle: .core),
             gradeAlertText: {
                 if isExcused {
                     return String(localized: "Excused", bundle: .teacher)
@@ -65,13 +74,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
                 }
 
                 return submission.grade ?? ""
-            }(),
-            score: score,
-            pointsPossibleText: assignment.pointsPossibleText,
-            gradingType: gradingType,
-            originalScoreWithoutMetric: GradeFormatter.originalScoreWithoutMetric(for: submission),
-            originalGradeWithoutMetric: GradeFormatter.originalGradeWithoutMetric(for: submission, gradingType: gradingType),
-            finalGradeWithoutMetric: GradeFormatter.finalGradeWithoutMetric(for: submission, gradingType: gradingType)
+            }()
         )
     }
 }
