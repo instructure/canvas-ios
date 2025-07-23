@@ -80,7 +80,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
             break
         }
 
-        // if the user said something, we publish it as a message
+        // if the user has said something, we publish it as a message
         // otherwise, we just publish that we're loading
         var response: AssistChatResponse = .init(chatHistory: history, isLoading: true)
         if let prompt = prompt {
