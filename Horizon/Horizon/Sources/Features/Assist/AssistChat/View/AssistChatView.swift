@@ -29,45 +29,38 @@ struct AssistChatView: View {
     @Environment(\.viewController) private var viewController
 
     var body: some View {
-        VStack(spacing: .huiSpaces.space32) {
+        VStack(spacing: .zero) {
             topHeader
-            ScrollView {
-                contentView
+            VStack(spacing: .zero) {
+                ScrollView {
+                    contentView
+                }
+                .scrollDismissesKeyboard(.immediately)
+                sendMessageView
             }
-            .scrollDismissesKeyboard(.immediately)
-            sendMessageView
+            .scrollIndicators(.hidden)
+            .onReceive(viewModel.shouldOpenKeyboardPublisher) { value in
+                isFocused = value
+            }
+            .onFirstAppear { viewModel.viewController = viewController }
+            .padding(.horizontal, .huiSpaces.space16)
+            .animation(.smooth, value: [viewModel.isBackButtonVisible, viewModel.isRetryButtonVisible])
+            .overlay {
+                if viewModel.isLoaderVisible {
+                    HorizonUI.Spinner(size: .small, foregroundColor: Color.huiColors.surface.cardPrimary)
+                }
+            }
+            .huiToast(
+                viewModel: .init(text: String(localized: "Error fetching response.", bundle: .horizon), style: .error),
+                isPresented: $viewModel.isErrorToastPresented
+            )
         }
-        .scrollIndicators(.hidden)
-        .onReceive(viewModel.shouldOpenKeyboardPublisher) { value in
-            isFocused = value
-        }
-        .onFirstAppear { viewModel.viewController = viewController }
-        .padding(.huiSpaces.space24)
-        .animation(.smooth, value: [viewModel.isBackButtonVisible, viewModel.isRetryButtonVisible])
         .applyHorizonGradient()
-        .overlay {
-            if viewModel.isLoaderVisible {
-                HorizonUI.Spinner(size: .small, foregroundColor: Color.huiColors.surface.cardPrimary)
-            }
-        }
-        .huiToast(
-            viewModel: .init(text: String(localized: "Error fetching response.", bundle: .horizon), style: .error),
-            isPresented: $viewModel.isErrorToastPresented
-        )
     }
 
     private var topHeader: some View {
-        HStack {
-            HorizonUI.IconButton(Image.huiIcons.arrowBack, type: .white, isSmall: true) {
-                viewModel.setInitialState()
-            }
-            .hidden(!viewModel.isBackButtonVisible)
-            Spacer()
-            AssistTitle()
-            Spacer()
-            HorizonUI.IconButton(Image.huiIcons.close, type: .white, isSmall: true) {
-                viewModel.dismiss(controller: viewController)
-            }
+        AssistTitle(onBack: viewModel.isBackButtonVisible ? viewModel.setInitialState : nil) {
+            viewModel.dismiss(controller: viewController)
         }
     }
 
@@ -100,6 +93,7 @@ struct AssistChatView: View {
                 }
             }
         }
+        .padding(.vertical, .huiSpaces.space16)
     }
 
     private var retryView: some View {
@@ -116,36 +110,44 @@ struct AssistChatView: View {
     }
 
     private var sendMessageView: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
-
-            Text(String(localized: "Enter a Prompt", bundle: .horizon))
-                .huiTypography(.labelLargeBold)
-                .foregroundStyle(Color.huiColors.text.surfaceColored)
-
-            HStack(spacing: .huiSpaces.space16) {
-                TextEditor(text: $viewModel.message)
-                    .frame(minHeight: 36)
-                    .frame(maxHeight: 100)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .huiTypography(.p1)
-                    .focused($isFocused)
-                    .cornerRadius(HorizonUI.CornerRadius.level1.attributes.radius)
-                    .padding(.huiSpaces.space4)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
-                            .inset(by: 0.6)
-                            .stroke(Color.huiColors.surface.overlayWhite, lineWidth: 1.2)
-                    )
-                    .foregroundColor(Color.huiColors.text.surfaceColored)
-                    .scrollContentBackground(.hidden)
-                    .background(.clear)
-
-                HorizonUI.IconButton(Image.huiIcons.arrowUpward, type: .white) {
-                    viewModel.send()
-                }
-                .disabled(viewModel.isDisableSendButton)
+        VStack(alignment: .leading) {
+            textInputMessageView
+            HStack(spacing: .zero) {
+                Spacer()
+                textInputSendButton
             }
+            .overlay(
+                Rectangle()
+                    .fill(Color.huiColors.surface.divider)
+                    .frame(height: 1),
+                alignment: .top
+            )
         }
+        .background(
+            RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level2.attributes.radius)
+                .fill(Color.huiColors.surface.cardPrimary)
+        )
+    }
+
+    private var textInputMessageView: some View {
+        TextEditor(text: $viewModel.message)
+            .frame(minHeight: 22)
+            .frame(maxHeight: 100)
+            .fixedSize(horizontal: false, vertical: true)
+            .huiTypography(.p1)
+            .focused($isFocused)
+            .padding(.horizontal, .huiSpaces.space12)
+            .padding(.top, .huiSpaces.space12)
+            .foregroundColor(Color.huiColors.text.timestamp)
+            .scrollContentBackground(.hidden)
+    }
+
+    private var textInputSendButton: some View {
+        HorizonUI.IconButton(Image.huiIcons.sendFilled, type: .black) {
+            viewModel.send()
+        }
+        .padding(.huiSpaces.space12)
+        .disabled(viewModel.isDisableSendButton)
     }
 }
 

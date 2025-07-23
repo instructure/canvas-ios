@@ -24,33 +24,35 @@ struct AssistQuizView: View {
     @Environment(\.viewController) private var viewController
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: .zero) {
-                headerView
-                    .padding(.bottom, .huiSpaces.space32)
-                if let errorMessage = viewModel.errorMessage {
-                    Text(errorMessage)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .huiTypography(.p1)
-                        .foregroundStyle(Color.huiColors.text.surfaceColored)
-                } else {
-                    questionTitle
-                        .padding(.bottom, .huiSpaces.space16)
-                    answerOptions
+        VStack(spacing: .zero) {
+            headerView
+            ScrollView {
+                VStack(spacing: .zero) {
+                    if let errorMessage = viewModel.errorMessage {
+                        Text(errorMessage)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .huiTypography(.p1)
+                            .foregroundStyle(Color.huiColors.text.surfaceColored)
+                    } else {
+                        questionTitle
+                            .padding(.bottom, .huiSpaces.space16)
+                        answerOptions
+                    }
+                }
+                .animation(.smooth, value: viewModel.didSubmitQuiz)
+                .padding(.huiSpaces.space16)
+            }
+            .padding(.top, .huiSpaces.space16)
+            .scrollBounceBehavior(.basedOnSize)
+            .animation(.smooth, value: viewModel.selectedAnswer)
+            .safeAreaInset(edge: .bottom) {
+                if !viewModel.isLoaderVisible {
+                    footerView
                 }
             }
-            .animation(.smooth, value: viewModel.didSubmitQuiz)
-            .padding(.huiSpaces.space16)
+            .overlay { loaderView }
         }
-        .scrollBounceBehavior(.basedOnSize)
         .applyHorizonGradient()
-        .animation(.smooth, value: viewModel.selectedAnswer)
-        .safeAreaInset(edge: .bottom) {
-            if !viewModel.isLoaderVisible {
-                footerView
-            }
-        }
-        .overlay { loaderView }
     }
 }
 
@@ -71,16 +73,8 @@ extension AssistQuizView {
     }
 
     private var headerView: some View {
-        HStack {
-            HorizonUI.IconButton(Image.huiIcons.arrowBack, type: .white, isSmall: true) {
-                viewModel.pop(controller: viewController)
-            }
-            Spacer()
-            AssistTitle()
-            Spacer()
-            HorizonUI.IconButton(Image.huiIcons.close, type: .white, isSmall: true) {
-                viewModel.dismiss(controller: viewController)
-            }
+        AssistTitle(onBack: { viewModel.pop(controller: viewController) }) {
+            viewModel.dismiss(controller: viewController)
         }
     }
 
