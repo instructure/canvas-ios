@@ -53,7 +53,6 @@ struct DashboardView: View {
                     } else {
                         topView
                         contentView(courses: viewModel.courses)
-                            .padding(.bottom, .huiSpaces.space16)
                     }
                 }
             }
@@ -81,7 +80,7 @@ struct DashboardView: View {
 
     private var topView: some View {
         Color.clear
-            .frame(height: 0)
+            .frame(height: 16)
             .readingFrame { frame in
                 isShowHeader = frame.minY > -100
             }
@@ -102,7 +101,7 @@ struct DashboardView: View {
 
                 if let learningObjectCardModel = course.learningObjectCardModel {
                     learningObjectCard(model: learningObjectCardModel, progress: course.progress)
-                        .padding(.bottom, .huiSpaces.space16)
+                        .padding(.bottom, .huiSpaces.space48)
                 } else {
                     Text("Congrats! You've completed your course.", bundle: .horizon)
                         .huiTypography(.h3)
@@ -112,6 +111,7 @@ struct DashboardView: View {
                         .huiTypography(.p1)
                         .foregroundStyle(Color.huiColors.text.title)
                         .padding(.top, .huiSpaces.space12)
+                        .padding(.bottom, .huiSpaces.space48)
                 }
             }
             .padding(.horizontal, .huiSpaces.space24)
@@ -119,13 +119,11 @@ struct DashboardView: View {
     }
 
     private func courseProgressionView(course: HCourse) -> some View {
-        Group {
+        VStack(spacing: .huiSpaces.space16) {
             Text(course.name)
                 .huiTypography(.h1)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundStyle(Color.huiColors.text.title)
-                .padding(.top, .huiSpaces.space16)
-                .padding(.bottom, .huiSpaces.space16)
-
             HorizonUI.ProgressBar(
                 progress: course.progress / 100.0,
                 size: .medium,
@@ -139,7 +137,7 @@ struct DashboardView: View {
             Text("Resume learning", bundle: .horizon)
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
-                .padding(.top, .huiSpaces.space36)
+                .padding(.top, .huiSpaces.space24)
                 .padding(.bottom, .huiSpaces.space12)
                 .frame(maxWidth: .infinity, alignment: .leading)
 

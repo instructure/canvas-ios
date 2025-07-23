@@ -117,7 +117,7 @@ public extension HorizonUI {
                     )
                     .readingFrame { frame in
                         if pillHeight == nil {
-                            pillHeight = frame.size.height
+                            pillHeight = frame.size.height - 1
                         }
                     }
                     Text(description)
