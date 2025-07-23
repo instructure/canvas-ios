@@ -37,6 +37,7 @@ public extension HorizonUI {
         private let points: String?
         private let description: String
         private let isOverdue: Bool
+        @State private var pillHeight: CGFloat?
 
         // MARK: - Init
 
@@ -114,25 +115,34 @@ public extension HorizonUI {
                         isUppercased: true,
                         icon: type.icon
                     )
+                    .readingFrame { frame in
+                        if pillHeight == nil {
+                            pillHeight = frame.size.height - 1
+                        }
+                    }
                     Text(description)
                         .foregroundStyle(Color.huiColors.text.body)
                         .huiTypography(.labelSmall)
                         .foregroundStyle(Color.huiColors.text.timestamp)
+                        .frame(height: pillHeight, alignment: .bottom)
 
                     if let duration {
                         Text(duration)
                             .foregroundStyle(Color.huiColors.text.timestamp)
                             .huiTypography(.labelSmall)
+                            .frame(height: pillHeight, alignment: .bottom)
                     }
 
                     if let dueDate {
                         dueDateView(dueDate)
+                            .frame(height: pillHeight, alignment: .bottom)
                     }
 
                     if let points {
                         Text("\(points) pts")
                             .foregroundStyle(Color.huiColors.text.timestamp)
                             .huiTypography(.labelSmall)
+                            .frame(height: pillHeight, alignment: .bottom)
                     }
                 }
                 .padding(.top, .huiSpaces.space4)
