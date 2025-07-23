@@ -32,7 +32,7 @@ struct HAssignment: Identifiable {
     let submissionTypes: [SubmissionType]
     let courseID: String
     let courseName: String
-    let courseState: String = "Not Started"
+    let courseState: String = "Not started"
     let courseProgress: Double = 0.75
     let courseDueDate: String = "Due 01/12/2024"
     let workflowState: SubmissionWorkflowState?

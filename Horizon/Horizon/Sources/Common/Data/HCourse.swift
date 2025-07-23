@@ -28,10 +28,11 @@ struct HCourse: Identifiable {
     struct LearningObjectCard {
         let moduleTitle: String
         let learningObjectName: String
-        let type: String?
+        let type: LearningObjectType?
         let dueDate: String?
         let url: URL?
         let estimatedTime: String?
+        let isNewQuiz: Bool
     }
 
     let id: String
@@ -84,10 +85,11 @@ struct HCourse: Identifiable {
             self.learningObjectCardModel = LearningObjectCard(
                 moduleTitle: entity.nextModuleName ?? "",
                 learningObjectName: entity.nextModuleItemName ?? "",
-                type: entity.nextModuleItemType,
+                type: LearningObjectType(rawValue: entity.nextModuleItemType ?? ""),
                 dueDate: entity.nextModuleItemDueDate?.relativeShortDateOnlyString,
                 url: URL(string: entity.nextModuleItemURL ?? ""),
-                estimatedTime: entity.nextModuleItemEstimatedTime?.toISO8601Duration
+                estimatedTime: entity.nextModuleItemEstimatedTime?.toISO8601Duration,
+                isNewQuiz: entity.nextModuleItemIsNewQuiz
             )
         } else {
             self.learningObjectCardModel = nil

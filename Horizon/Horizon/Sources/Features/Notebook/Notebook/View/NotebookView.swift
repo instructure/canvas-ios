@@ -22,22 +22,18 @@ import SwiftUI
 
 struct NotebookView: View {
 
-    @State var viewModel: NotebookViewModel
+    @Bindable var viewModel: NotebookViewModel
     @Environment(\.viewController) private var viewController
 
     var body: some View {
         VStack {
-            if viewModel.isLoaderVisible {
-                loadingView
+            if viewModel.isNavigationBarVisible {
+                ScrollView(showsIndicators: false) { content }
+                    .refreshable {
+                        await viewModel.refresh()
+                    }
             } else {
-                if viewModel.isNavigationBarVisible {
-                    ScrollView(showsIndicators: false) { content }
-                        .refreshable {
-                            await viewModel.refresh()
-                        }
-                } else {
-                    ScrollView(showsIndicators: false) { content }
-                }
+                ScrollView(showsIndicators: false) { content }
             }
         }
         .background(HorizonUI.colors.surface.pagePrimary)
@@ -46,6 +42,11 @@ struct NotebookView: View {
         .safeAreaInset(edge: .top, spacing: .zero) {
             if viewModel.isNavigationBarVisible {
                 navigationBar
+            }
+        }
+        .overlay {
+            if viewModel.isLoaderVisible {
+                loadingView
             }
         }
     }
@@ -69,17 +70,18 @@ struct NotebookView: View {
                 if viewModel.isEmptyCardVisible {
                     emptyCard
                 } else {
-                    VStack {
+                    VStack(spacing: .huiSpaces.space24) {
                         filterButtons
                         notesBody
                         forwardBackButtons
                     }
                 }
             }
+            .padding(.top, viewModel.isNavigationBarVisible ? .huiSpaces.space16 : .zero)
+            .padding([.horizontal, .bottom], .huiSpaces.space16)
+            .padding(.horizontal, .huiSpaces.space8)
+            .animation(.smooth, value: viewModel.notes.count)
         }
-        .padding(.huiSpaces.space16)
-        .padding(.horizontal, .huiSpaces.space8)
-        .animation(.smooth, value: viewModel.notes.count)
     }
 
     @ViewBuilder
@@ -130,13 +132,13 @@ struct NotebookView: View {
                 }
             }
         }
+        .hidden(viewModel.notes.isEmpty)
     }
 
     @ViewBuilder
     private var filterButtons: some View {
-        if viewModel.isFiltersVisible {
+        VStack(spacing: .huiSpaces.space12) {
             NotebookSectionHeading(title: String(localized: "Filter", bundle: .horizon))
-                .padding(.top, .huiSpaces.space24)
             HStack(spacing: .huiSpaces.space12) {
                 ForEach(viewModel.courseNoteLabels, id: \.rawValue) { filter in
                     NoteCardFilterButton(type: filter, selected: viewModel.isEnabled(filter: filter))
@@ -147,6 +149,7 @@ struct NotebookView: View {
             }
             .frame(maxWidth: .infinity)
         }
+        .hidden(viewModel.notes.isEmpty)
     }
 
     private var emptyCard: some View {

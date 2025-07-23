@@ -20,9 +20,6 @@
         }
       }
     },
-    "%@ Attempts Allowed" : {
-      "comment" : "The number of attempts allowed for this assignment."
-    },
     "%lld Attempts Allowed" : {
       "comment" : "The number of attempts allowed for this assignment.",
       "localizations" : {
@@ -61,7 +58,7 @@
     "Add a Note (Optional)" : {
 
     },
-    "Add Comment" : {
+    "Add comment" : {
 
     },
     "Add your text entry" : {
@@ -154,11 +151,14 @@
     "Attempt" : {
 
     },
-    "Attempt History" : {
+    "Attempt history" : {
 
     },
     "Attempts" : {
 
+    },
+    "Attempts Allowed" : {
+      "comment" : "The number of attempts allowed for this assignment."
     },
     "Auckland (+12:00/+13:00)" : {
 
@@ -307,7 +307,7 @@
     "Darwin (+09:30)" : {
 
     },
-    "Delete Draft" : {
+    "Delete draft" : {
 
     },
     "Dhaka (+06:00/+06:00)" : {
@@ -337,7 +337,7 @@
     "Due Date Changed" : {
 
     },
-    "Due Date: %@" : {
+    "Due date: %@" : {
 
     },
     "E-mail" : {
@@ -391,7 +391,7 @@
     "Fiji (+12:00/+12:00)" : {
 
     },
-    "File Upload" : {
+    "File upload" : {
 
     },
     "Filter" : {
@@ -481,7 +481,7 @@
     "Important" : {
 
     },
-    "In Progress" : {
+    "In progress" : {
 
     },
     "Indiana (East) (-05:00/-04:00)" : {
@@ -637,6 +637,9 @@
     "Muscat (+04:00/+04:00)" : {
 
     },
+    "My progress" : {
+
+    },
     "My Progress" : {
 
     },
@@ -652,7 +655,7 @@
     "Name: %@" : {
 
     },
-    "New Attempt" : {
+    "New attempt" : {
 
     },
     "New Caledonia (+11:00/+11:00)" : {
@@ -679,10 +682,10 @@
     "Noronha (-02:00/-02:00)" : {
 
     },
-    "Not Started" : {
+    "Not started" : {
 
     },
-    "Not Submitted" : {
+    "Not submitted" : {
 
     },
     "Notebook" : {
@@ -849,10 +852,10 @@
     "Scoring Weight Changed" : {
 
     },
-    "Select a course" : {
+    "Select a aubmission type" : {
 
     },
-    "Select a Submission Type" : {
+    "Select a course" : {
 
     },
     "Send" : {
@@ -894,7 +897,7 @@
     "Sorry, we were not able to display this page right now." : {
 
     },
-    "Sort By" : {
+    "Sort by" : {
 
     },
     "Srednekolymsk (+11:00/+11:00)" : {
@@ -906,7 +909,7 @@
     "St. Petersburg (+03:00)" : {
 
     },
-    "Start Quiz" : {
+    "Start quiz" : {
 
     },
     "Status: " : {
@@ -915,7 +918,7 @@
     "Stockholm (+01:00/+02:00)" : {
 
     },
-    "Submit Assignment" : {
+    "Submit assignment" : {
 
     },
     "Submit Attempt" : {
@@ -1020,7 +1023,7 @@
     "Unsupported Item" : {
 
     },
-    "Upload File" : {
+    "Upload file" : {
 
     },
     "Urumqi (+06:00/+06:00)" : {
@@ -1101,10 +1104,10 @@
     "Your note has been saved" : {
 
     },
-    "Your Submission" : {
+    "Your submission" : {
 
     },
-    "Your Text Submission" : {
+    "Your text submission" : {
 
     },
     "Your Uploaded Submission" : {

@@ -110,7 +110,7 @@ struct CourseDetailsView: View {
     }
 
     private func learningContentView() -> some View {
-        VStack(spacing: .huiSpaces.space24) {
+        VStack(spacing: .huiSpaces.space16) {
             tabSelectorView
             tabDetailsView()
         }
@@ -170,7 +170,6 @@ private struct CotentView: View {
                 .id(viewModel.course.id)
         case .overview:
             overview(htmlString: viewModel.overviewDescription)
-                .padding(.bottom, .huiSpaces.space24)
         case .scores:
             ScoresAssembly.makeView(courseID: viewModel.course.id, enrollmentID: viewModel.course.enrollmentID)
                 .padding(.horizontal, .huiSpaces.space24)
