@@ -47,6 +47,22 @@ class AssistSelectCourseGoal: AssistGoal {
                     .eraseToAnyPublisher()
             }
 
+            // When not enrolled in any courses
+            if courseOptions.isEmpty {
+                return Just<AssistChatMessage?>(
+                        .init(
+                            botResponse: String(
+                                localized: "It doesn't look like you have any courses available. Enroll in a course to get started.",
+                                bundle: .horizon
+                            )
+                        )
+                    )
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher(
+                )
+            }
+
+            // When enrolled in only 1 course
             if let courseID = courseOptions.first?.courseID,
                courseOptions.count == 1 {
                 self.environment.courseID.accept(courseID)
@@ -55,10 +71,12 @@ class AssistSelectCourseGoal: AssistGoal {
                     .eraseToAnyPublisher()
             }
 
+            // Ask the user to select a course if multiple courses are available
             guard let response = response, response.isNotEmpty else {
                 return initialPrompt(history: history)
             }
 
+            // Select the course from the users response
             return selectCourseFrom(response: response, history: history)
         }
         .eraseToAnyPublisher()
