@@ -93,6 +93,7 @@ class AttachmentItemViewModel {
         if isDownloading {
             downloadCancellable?.cancel()
             downloadCancellable = nil
+            
             return
         }
         downloadCancellable = downloadFileInteractor
