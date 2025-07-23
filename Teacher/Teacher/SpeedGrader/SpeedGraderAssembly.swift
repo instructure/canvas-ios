@@ -16,8 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import UIKit
+import SwiftUI
 
 enum SpeedGraderAssembly {
 
@@ -34,12 +36,16 @@ enum SpeedGraderAssembly {
             assignmentId: assignmentId,
             api: env.api
         )
+        let submissionWordCountInteractor = SubmissionWordCountInteractorLive(assignmentId: assignmentId, api: env.api)
+        let customGradebookColumnsInteractor = CustomGradebookColumnsInteractorLive(courseId: context.id, env: env)
         let interactor = SpeedGraderInteractorLive(
             context: context,
             assignmentID: assignmentId,
             userID: normalizedUserId,
             filter: filter,
             gradeStatusInteractor: gradeStatusInteractor,
+            submissionWordCountInteractor: submissionWordCountInteractor,
+            customGradebookColumnsInteractor: customGradebookColumnsInteractor,
             env: env
         )
         let viewModel = SpeedGraderScreenViewModel(
@@ -50,6 +56,67 @@ enum SpeedGraderAssembly {
             viewModel: viewModel
         )
         return CoreHostingController(view, env: env)
+    }
+
+    static func makePageViewModel(
+        assignment: Assignment,
+        submission: Submission,
+        contextColor: AnyPublisher<Color, Never>,
+        gradeStatusInteractor: GradeStatusInteractor,
+        submissionWordCountInteractor: SubmissionWordCountInteractor,
+        customGradebookColumnsInteractor: CustomGradebookColumnsInteractor,
+        env: AppEnvironment
+    ) -> SpeedGraderPageViewModel {
+        let rubricGradingInteractor = RubricGradingInteractorLive(
+            assignment: assignment,
+            submission: submission
+        )
+
+        let gradeInteractor = GradeInteractorLive(
+            assignment: assignment,
+            submission: submission,
+            rubricGradingInteractor: rubricGradingInteractor,
+            env: env
+        )
+
+        return SpeedGraderPageViewModel(
+            assignment: assignment,
+            latestSubmission: submission,
+            contextColor: contextColor,
+            studentAnnotationViewModel: .init(submission: submission),
+            gradeViewModel: .init(
+                assignment: assignment,
+                submission: submission,
+                gradeInteractor: gradeInteractor
+            ),
+            gradeStatusViewModel: .init(
+                userId: submission.userID,
+                submissionId: submission.id,
+                attempt: submission.attempt,
+                interactor: gradeStatusInteractor
+            ),
+            commentListViewModel: SubmissionCommentsAssembly.makeCommentListViewModel(
+                assignment: assignment,
+                latestSubmission: submission,
+                latestAttemptNumber: submission.attempt,
+                contextColor: contextColor,
+                env: env
+            ),
+            rubricsViewModel: .init(
+                assignment: assignment,
+                submission: submission,
+                interactor: rubricGradingInteractor
+            ),
+            submissionWordCountViewModel: .init(
+                userId: submission.userID,
+                attempt: submission.attempt,
+                interactor: submissionWordCountInteractor
+            ),
+            studentNotesViewModel: .init(
+                userId: submission.userID,
+                interactor: customGradebookColumnsInteractor
+            )
+        )
     }
 
 #if DEBUG

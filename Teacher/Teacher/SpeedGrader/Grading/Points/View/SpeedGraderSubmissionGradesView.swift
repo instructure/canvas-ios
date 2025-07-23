@@ -30,6 +30,7 @@ struct SpeedGraderSubmissionGradesView: View {
     @State var sliderCleared = false
     @State var sliderExcused = false
     @State var sliderTimer: Timer?
+    @State private var gradeSliderViewModel = GradeSliderViewModel()
 
     @ObservedObject var rubricsViewModel: RubricsViewModel
     @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
@@ -74,24 +75,8 @@ struct SpeedGraderSubmissionGradesView: View {
                         }
                     }
                     .font(.heavy24)
-                    .foregroundColor(gradeViewModel.state.hasLateDeduction ? .textDark : .textDarkest)
+                    .foregroundColor(.textDarkest)
                     .padding(.horizontal, 16).padding(.vertical, 12)
-                    if gradeViewModel.state.hasLateDeduction {
-                        HStack {
-                            Text("Late", bundle: .teacher)
-                            Spacer()
-                            Text(gradeViewModel.state.pointsDeductedText)
-                        }
-                        .font(.medium14).foregroundColor(.textWarning)
-                        .padding(EdgeInsets(top: -10, leading: 16, bottom: -4, trailing: 16))
-                        HStack {
-                            Text("Final Grade", bundle: .teacher)
-                            Spacer()
-                            Text(gradeViewModel.state.finalGradeText)
-                        }
-                        .font(.heavy24).foregroundColor(.textDarkest)
-                        .padding(.horizontal, 16).padding(.vertical, 12)
-                    }
 
                     if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
                         slider
@@ -101,8 +86,16 @@ struct SpeedGraderSubmissionGradesView: View {
 
                     GradeStatusView(viewModel: gradeStatusViewModel)
 
+                    if gradeViewModel.shouldShowGradeSummary {
+                        GradeSummaryView(
+                            pointsRow: gradeViewModel.pointsRowModel,
+                            latePenaltyRow: gradeViewModel.latePenaltyRowModel,
+                            finalGradeRow: gradeViewModel.finalGradeRowModel
+                        )
+                        .paddingStyle(.horizontal, .standard)
+                    }
+
                     if assignment.rubric?.isEmpty == false {
-                        Divider().padding(.horizontal, 16)
                         RubricsView(
                             currentScore: rubricsViewModel.totalRubricScore,
                             containerFrameInGlobal: geometry.frame(in: .global),
@@ -161,50 +154,38 @@ struct SpeedGraderSubmissionGradesView: View {
             sliderCleared ? Text("No Grade", bundle: .teacher) :
             sliderExcused ? Text("Excused", bundle: .teacher) :
             assignment.gradingType == .percent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
-            Text(score)
+            Text(gradeSliderViewModel.formatScore(score, maxPoints: possible))
         let maxScore = assignment.gradingType == .percent ? 100 : possible
 
         HStack(spacing: 8) {
-            VStack {
-                Spacer()
-                Text(0)
-                    .frame(width: 30, height: 30)
-                    .onTapGesture {
-                        updateGrade(0)
-                    }
-                    .onLongPressGesture {
-                        updateGrade(noMark: true)
-                    }
-                Spacer()
-            }
-            VStack {
-                Spacer()
-                ZStack {
-                    // disables page swipe around the slider
-                    Rectangle()
-                        .contentShape(Rectangle())
-                        .foregroundColor(.clear)
-                        .gesture(DragGesture(minimumDistance: 0).onChanged { _ in })
-                    GradeSlider(value: Binding(get: { score }, set: sliderChangedValue),
-                                range: 0 ... (assignment.pointsPossible ?? 0),
-                                showTooltip: showTooltip,
-                                tooltipText: tooltipText,
-                                score: score,
-                                possible: possible,
-                                onEditingChanged: sliderChangedState)
+            Text(0)
+                .frame(width: 30, height: 30)
+                .onTapGesture {
+                    updateGrade(0)
                 }
+            ZStack {
+                // disables page swipe around the slider
+                Rectangle()
+                    .contentShape(Rectangle())
+                    .foregroundColor(.clear)
+                    .gesture(DragGesture(minimumDistance: 0).onChanged { _ in })
+                GradeSlider(value: Binding(get: { score }, set: sliderChangedValue),
+                            maxValue: assignment.pointsPossible ?? 0,
+                            showTooltip: showTooltip,
+                            tooltipText: tooltipText,
+                            score: score,
+                            possible: possible,
+                            onEditingChanged: sliderChangedState,
+                            viewModel: gradeSliderViewModel)
             }
             Text(maxScore)
                 .frame(width: 30, height: 30)
                 .onTapGesture {
                     updateGrade(maxScore)
                 }
-                .onLongPressGesture {
-                    updateGrade(excused: true)
-                }
         }
         .font(.medium14).foregroundColor(.textDarkest)
-        .padding(.horizontal, 16).padding(.vertical, 12)
+        .padding(.horizontal, 16).padding(.vertical, 14)
     }
 
     func updateGrade(excused: Bool? = nil, noMark: Bool? = false, _ grade: Double? = nil) {
