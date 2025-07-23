@@ -68,20 +68,20 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     }
 
     static func create(
-        env: AppEnvironment,
         studentID: String,
         courseID: String,
         assignmentID: String,
         userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current(),
-        submissionURLInteractor: ParentSubmissionURLInteractor = ParentSubmissionURLInteractorLive()
+        submissionURLInteractor: ParentSubmissionURLInteractor = ParentSubmissionURLInteractorLive(),
+        env: AppEnvironment
     ) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
-        controller.env = env
         controller.assignmentID = assignmentID
         controller.courseID = courseID
         controller.studentID = studentID
         controller.userNotificationCenter = userNotificationCenter
         controller.submissionURLInteractor = submissionURLInteractor
+        controller.env = env
         return controller
     }
 
