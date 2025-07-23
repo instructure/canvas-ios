@@ -100,7 +100,6 @@ final class HighlightWebView: CoreWebView {
     // MARK: - Override Functions
 
     override func buildMenu(with builder: any UIMenuBuilder) {
-        // Prevent overlapping highlights
         guard !isOverlapped else { return }
 
         let actions = actionDefinitions.map { actionDefinition in
