@@ -128,7 +128,15 @@ struct SpeedGraderSubmissionGradesView: View {
                 textValue: gradeState.originalScoreWithoutMetric ?? "-"
             )
         case .gradePicker:
-            SwiftUI.EmptyView()
+            SpeedGraderPickerCell(
+                title: title,
+                placeholder: String(localized: "Select Grade", bundle: .core),
+                identifierGroup: "SpeedGrader.GradeInputMenuItem",
+                allOptions: gradeState.gradingSchemeOptions,
+                selectedOption: gradeViewModel.selectedGradePickerOption,
+                didSelectOption: gradeViewModel.didSelectGradePickerOption,
+                isSaving: gradeViewModel.isSavingGrade
+            )
         case nil:
             SwiftUI.EmptyView()
         }

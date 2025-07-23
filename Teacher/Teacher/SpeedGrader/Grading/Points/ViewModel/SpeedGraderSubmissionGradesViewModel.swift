@@ -37,11 +37,16 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     // Grading inputs
     @Published private(set) var gradeState: GradeState = .empty
     @Published private(set) var gradeInputType: GradeInputType?
-    @Published private(set) var isSaving: Bool = false
+    @Published private(set) var isSaving: Bool = false {
+        didSet { isSavingGrade.send(isSaving) }
+    }
+    let isSavingGrade = CurrentValueSubject<Bool, Never>(false)
     let shouldShowPointsInput: Bool
     let shouldShowSlider: Bool
     @Published var sliderValue: Double = 0
     @Published var isNoGradeButtonDisabled: Bool = false
+    let selectedGradePickerOption = CurrentValueSubject<OptionItem?, Never>(nil)
+    let didSelectGradePickerOption = PassthroughSubject<OptionItem?, Never>()
 
     // Grade summary
     @Published private(set) var shouldShowGradeSummary: Bool = false
@@ -83,6 +88,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
         self.shouldShowSlider = !assignment.useRubricForGrading
             && [.points, .percent].contains(assignment.gradingType)
 
+        updateGradeOnGradePickerSelection()
         observeGradeStateChanges()
     }
 
@@ -117,18 +123,42 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     private func observeGradeStateChanges() {
         gradeInteractor.gradeState
-            .sink { [weak self] newState in
-                guard let self else { return }
-                gradeState = newState
-                gradeInputType = newState.gradeInputType
-                sliderValue = newState.score
-                isNoGradeButtonDisabled = (!newState.isGraded && !newState.isExcused)
-                shouldShowGradeSummary = (!newState.isExcused && newState.gradingType != .not_graded)
-                pointsRowModel = newState.pointsRowModel
-                latePenaltyRowModel = newState.latePenaltyRowModel
-                finalGradeRowModel = newState.finalGradeRowModel
+            .sink { [weak self] in
+                self?.updateGradeState($0)
             }
             .store(in: &cancellables)
+    }
+
+    private func updateGradeOnGradePickerSelection() {
+        didSelectGradePickerOption
+            .removeDuplicates()
+            .sink { [weak self] in
+                if let grade = $0?.id {
+                    self?.setGrade(grade)
+                } else {
+                    self?.removeGrade()
+                }
+            }
+            .store(in: &cancellables)
+    }
+
+    private func updateGradeState(_ gradeState: GradeState ) {
+        self.gradeState = gradeState
+
+        gradeInputType = gradeState.gradeInputType
+        sliderValue = gradeState.score
+        isNoGradeButtonDisabled = (!gradeState.isGraded && !gradeState.isExcused)
+
+        if gradeState.gradeInputType == .gradePicker {
+            let option = gradeState.gradingSchemeOptions
+                .option(with: gradeState.originalGradeWithoutMetric)
+            selectedGradePickerOption.send(option)
+        }
+
+        shouldShowGradeSummary = (!gradeState.isExcused && gradeState.gradingType != .not_graded)
+        pointsRowModel = gradeState.pointsRowModel
+        latePenaltyRowModel = gradeState.latePenaltyRowModel
+        finalGradeRowModel = gradeState.finalGradeRowModel
     }
 
     private func saveGrade(excused: Bool? = nil, grade: String? = nil) {

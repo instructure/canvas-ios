@@ -37,6 +37,7 @@ class GradeInteractorLiveTests: TeacherTestCase {
         let initialGradeState = GradeState(
             gradingType: .points,
             pointsPossibleText: "",
+            gradingSchemeOptions: [],
             isGraded: false,
             isExcused: false,
             isGradedButNotPosted: false,
@@ -76,6 +77,7 @@ class GradeInteractorLiveTests: TeacherTestCase {
         let updatedGradeState = GradeState(
             gradingType: .points,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,

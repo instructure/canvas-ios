@@ -28,6 +28,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         static let sampleGradeState = GradeState(
             gradingType: .points,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
@@ -194,6 +195,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         let stateWithoutGrade = GradeState(
             gradingType: .points,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: false,
             isExcused: false,
             isGradedButNotPosted: false,
@@ -216,6 +218,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         let stateWithGrade = GradeState(
             gradingType: .points,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
@@ -238,6 +241,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         let stateWithExcusedGrade = GradeState(
             gradingType: .points,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: false,
             isExcused: true,
             isGradedButNotPosted: false,
@@ -262,6 +266,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         let state = GradeState(
             gradingType: .points,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
@@ -282,6 +287,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         let state = GradeState(
             gradingType: .points,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
@@ -305,6 +311,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         let state = GradeState(
             gradingType: .percent,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
@@ -328,6 +335,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         let state = GradeState(
             gradingType: .points,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
@@ -348,6 +356,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         let state = GradeState(
             gradingType: .points,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
@@ -370,6 +379,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         let state = GradeState(
             gradingType: .points,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
@@ -392,6 +402,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         let state = GradeState(
             gradingType: .percent,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
@@ -414,6 +425,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         let state = GradeState(
             gradingType: .letter_grade,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
@@ -436,6 +448,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         let state = GradeState(
             gradingType: .pass_fail,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: true,
             isExcused: false,
             isGradedButNotPosted: false,
@@ -458,6 +471,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         let state = GradeState(
             gradingType: .points,
             pointsPossibleText: "100 pts",
+            gradingSchemeOptions: [],
             isGraded: false,
             isExcused: false,
             isGradedButNotPosted: false,

@@ -27,6 +27,7 @@ struct GradeState: Equatable {
 
     let gradingType: GradingType
     let pointsPossibleText: String
+    let gradingSchemeOptions: [OptionItem]
 
     // MARK: - Status
 
@@ -63,6 +64,7 @@ extension GradeState {
     static let empty = GradeState(
         gradingType: .points,
         pointsPossibleText: "",
+        gradingSchemeOptions: [],
         isGraded: false,
         isExcused: false,
         isGradedButNotPosted: false,

@@ -46,6 +46,13 @@ class GradeStateInteractorLive: GradeStateInteractor {
         return GradeState(
             gradingType: gradingType,
             pointsPossibleText: assignment.pointsPossibleText,
+            gradingSchemeOptions: assignment.gradingScheme?.entries.map {
+                OptionItem(
+                    id: $0.name,
+                    title: $0.name,
+                    subtitle: String($0.value)
+                )
+            } ?? [],
 
             isGraded: isGraded,
             isExcused: isExcused,
