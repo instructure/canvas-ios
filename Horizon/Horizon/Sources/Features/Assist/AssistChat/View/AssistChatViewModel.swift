@@ -236,7 +236,7 @@ final class AssistChatViewModel {
         guard let viewController = viewController,
               let courseID = citation.courseID,
               let sourceID = citation.sourceID,
-              let  assetType = citation.sourceType?.assetType else { return }
+              let assetType = citation.sourceType?.assetType?.rawValue else { return }
 
         router.route(
             to: "/courses/\(courseID)/modules/items/\(sourceID)/\(assetType)",
