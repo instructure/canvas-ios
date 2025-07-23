@@ -378,7 +378,7 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/quizzes") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
-        return QuizListViewController.create(env: env, courseID: ID.expandTildeID(courseID))
+        return QuizListViewController.create(courseID: ID.expandTildeID(courseID), env: env)
     },
 
     RouteHandler("/courses/:courseID/quizzes/:quizID") { url, params, _ in
@@ -400,12 +400,12 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/users") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
-        return PeopleListViewController.create(env: env, context: .course(courseID))
+        return PeopleListViewController.create(context: .course(courseID), env: env)
     },
 
     RouteHandler("/groups/:groupID/users") { _, params, _, env in
         guard let groupID = params["groupID"] else { return nil }
-        return PeopleListViewController.create(env: env, context: .group(groupID))
+        return PeopleListViewController.create(context: .group(groupID), env: env)
     },
 
     RouteHandler("/courses/:courseID/users/:userID", factory: contextCard),
