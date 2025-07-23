@@ -99,18 +99,17 @@ final class HighlightWebView: CoreWebView {
 
     // MARK: - Override Functions
 
-    public override func buildMenu(with builder: any UIMenuBuilder) {
-        // for now at least, don't allow overlapping highlights
-        if isOverlapped {
-            return
+    override func buildMenu(with builder: any UIMenuBuilder) {
+        guard !isOverlapped else { return }
+
+        let actions = actionDefinitions.map { actionDefinition in
+            UIAction(title: actionDefinition.title) { [weak self] action in
+                self?.onMenuAction(action)
+            }
         }
 
-        let actions: [UIMenuElement] = actionDefinitions.map {
-            UIAction(title: $0.1, handler: onMenuAction)
-        }
-
-        let menu = UIMenu(title: "Add a Note", children: actions)
-        builder.insertSibling(menu, beforeMenu: .standardEdit)
+        let menu = UIMenu(title: "", options: .displayInline, children: actions)
+        builder.insertChild(menu, atStartOfMenu: .standardEdit)
     }
 
     override func html(for content: String) -> String {
