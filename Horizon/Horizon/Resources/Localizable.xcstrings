@@ -469,6 +469,15 @@
     "How can I help you with this page?" : {
 
     },
+    "I don't have a summary for this content." : {
+
+    },
+    "I don't have any additional information for you." : {
+
+    },
+    "I'm not able to rephrase this content" : {
+
+    },
     "Important" : {
 
     },
@@ -655,16 +664,10 @@
     "No" : {
 
     },
-    "No additional information found." : {
-
-    },
     "No key takeaways found." : {
 
     },
     "No notification activity yet." : {
-
-    },
-    "No summary found." : {
 
     },
     "Norfolk Island (+11:00/+12:00)" : {
