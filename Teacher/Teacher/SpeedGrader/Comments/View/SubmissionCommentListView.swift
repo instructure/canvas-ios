@@ -35,45 +35,44 @@ struct SubmissionCommentListView: View {
     @State private var isVideoRecorderVisible: Bool = false
     private let avPermissionViewModel: AVPermissionViewModel = .init()
 
-    @AccessibilityFocusState private var a11yFocusedTab: SpeedGraderPageTab?
-
     init(
         viewModel: SubmissionCommentListViewModel,
         attempt: Binding<Int>,
-        fileID: Binding<String?>,
-        a11yFocusedTab: AccessibilityFocusState<SpeedGraderPageTab?>
+        fileID: Binding<String?>
     ) {
         self.viewModel = viewModel
         self._attempt = attempt
         self._fileID = fileID
-        self._a11yFocusedTab = a11yFocusedTab
     }
 
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView {
+//        GeometryReader { geometry in
+        VStack(spacing: 0) {
+            Group {
                 switch viewModel.state {
                 case .data:
                     comments
                     // Assume already loaded by parent, so skip loading & error
-                case .loading, .empty, .error:
-                    EmptyPanda(.NoComments, message: Text("There are no messages yet.", bundle: .teacher))
-                        .frame(minWidth: geometry.size.width, minHeight: geometry.size.height - 40)
+                case .loading, .empty, .error: SwiftUI.EmptyView()
+                    //                    EmptyPanda(.NoComments, message: Text("There are no messages yet.", bundle: .teacher))
+                    //                        .frame(minWidth: geometry.size.width, minHeight: geometry.size.height - 40)
                 }
             }
             .background(Color.backgroundLightest)
             .scaleEffect(y: viewModel.state == .data ? -1 : 1)
-            .safeAreaInset(edge: .bottom) {
-                commentInputView
-                    .transition(.opacity)
-            }
-            .sheet(isPresented: $isAudioRecorderVisible) {
-                audioRecorder
-            }
-            .sheet(isPresented: $isVideoRecorderVisible) {
-                videoRecorder
-            }
+//            .safeAreaInset(edge: .bottom) {
+//                commentInputView
+//                    .transition(.opacity)
+//            }
+            commentInputView
         }
+        .sheet(isPresented: $isAudioRecorderVisible) {
+            audioRecorder
+        }
+        .sheet(isPresented: $isVideoRecorderVisible) {
+            videoRecorder
+        }
+//        }
     }
 
     @ViewBuilder
@@ -83,6 +82,7 @@ struct SubmissionCommentListView: View {
                 .font(.semibold16).foregroundColor(.textDanger)
                 .padding(16)
                 .scaleEffect(y: -1)
+
             ForEach(viewModel.cellViewModels, id: \.id) { cellViewModel in
                 SubmissionCommentListCell(
                     viewModel: cellViewModel,
@@ -112,7 +112,6 @@ struct SubmissionCommentListView: View {
             },
             sendAction: sendComment
         )
-        .accessibilityFocused($a11yFocusedTab, equals: .comments)
     }
 
     func sendComment() {
@@ -190,3 +189,11 @@ struct SubmissionCommentListView: View {
         }
     }
 }
+
+#if DEBUG
+
+#Preview {
+    SpeedGraderAssembly.makeSpeedGraderViewControllerPreview(state: .data)
+}
+
+#endif

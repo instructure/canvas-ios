@@ -146,8 +146,8 @@ enum SpeedGraderAssembly {
     static func testData() -> SpeedGraderData {
         let context = PreviewEnvironment().database.viewContext
         let assignment = Assignment.save(.make(), in: context, updateSubmission: false, updateScoreStatistics: false)
-        let submission1 = Submission.save(.make(id: "1", user: .make(name: "User 1")), in: context)
-        let submission2 = Submission.save(.make(id: "2", user: .make(name: "User 2")), in: context)
+        let submission1 = Submission.save(.make(id: "1", submission_comments: [.make()], user: .make(name: "User 1")), in: context)
+        let submission2 = Submission.save(.make(id: "2", submission_comments: [.make()], user: .make(name: "User 2")), in: context)
         return SpeedGraderData(
             assignment: assignment,
             submissions: [submission1, submission2],

@@ -63,7 +63,7 @@ extension InstUI {
                 textView.font(.scaledNamedFont(font), lineHeight: lineHeight)
             }
             .scrollContentBackground(.hidden)
-            .frame(maxHeight: height, alignment: .topLeading)
+            .frame(height: height, alignment: .topLeading)
             .overlay(placeholderView, alignment: .topLeading)
         }
 

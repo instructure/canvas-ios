@@ -23,6 +23,9 @@ struct SpeedGraderSubmissionGradesView: View {
     let assignment: Assignment
     let containerHeight: CGFloat
 
+    let attempt: Binding<Int>
+    let fileID: Binding<String?>
+
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
@@ -35,6 +38,7 @@ struct SpeedGraderSubmissionGradesView: View {
     @ObservedObject var rubricsViewModel: RubricsViewModel
     @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
     @ObservedObject var gradeViewModel: SpeedGraderSubmissionGradesViewModel
+    @ObservedObject var commentListViewModel: SubmissionCommentListViewModel
 
     var body: some View {
         if assignment.moderatedGrading {
@@ -45,65 +49,70 @@ struct SpeedGraderSubmissionGradesView: View {
                 }
             }
         } else {
-            GeometryReader { geometry in ScrollView {
-                VStack(spacing: 0) {
-                    HStack(spacing: 0) {
-                        Text("Grade", bundle: .teacher)
-                            .accessibilityAddTraits(.isHeader)
-                        Spacer()
-                        if gradeViewModel.isSaving {
-                            ProgressView()
-                                .progressViewStyle(.indeterminateCircle(size: 24))
-                        } else if assignment.gradingType == .not_graded {
-                            Text("Not Graded", bundle: .teacher)
-                        } else {
-                            Button(action: promptNewGrade, label: {
-                                if gradeViewModel.state.isExcused {
-                                    Text("Excused", bundle: .teacher)
-                                } else if gradeViewModel.state.isGraded {
-                                    Text(gradeViewModel.state.originalGradeText)
-                                } else {
-                                    Image.addSolid.foregroundStyle(.tint)
-                                }
-                            })
-                            .accessibility(hint: Text("Prompts for an updated grade", bundle: .teacher))
-                            .identifier("SpeedGrader.gradeButton")
+            GeometryReader { geometry in
+                ScrollView {
+                    VStack(spacing: 0) {
+                        HStack(spacing: 0) {
+                            Text("Grade", bundle: .teacher)
+                                .accessibilityAddTraits(.isHeader)
+                            Spacer()
+                            if gradeViewModel.isSaving {
+                                ProgressView()
+                                    .progressViewStyle(.indeterminateCircle(size: 24))
+                            } else if assignment.gradingType == .not_graded {
+                                Text("Not Graded", bundle: .teacher)
+                            } else {
+                                Button(action: promptNewGrade, label: {
+                                    if gradeViewModel.state.isExcused {
+                                        Text("Excused", bundle: .teacher)
+                                    } else if gradeViewModel.state.isGraded {
+                                        Text(gradeViewModel.state.originalGradeText)
+                                    } else {
+                                        Image.addSolid.foregroundStyle(.tint)
+                                    }
+                                })
+                                .accessibility(hint: Text("Prompts for an updated grade", bundle: .teacher))
+                                .identifier("SpeedGrader.gradeButton")
+                            }
+                            if gradeViewModel.state.isGradedButNotPosted {
+                                Image.offLine.foregroundColor(.textDanger)
+                                    .padding(.leading, 12)
+                            }
                         }
-                        if gradeViewModel.state.isGradedButNotPosted {
-                            Image.offLine.foregroundColor(.textDanger)
-                                .padding(.leading, 12)
+                        .font(.heavy24)
+                        .foregroundColor(.textDarkest)
+                        .padding(.horizontal, 16).padding(.vertical, 12)
+
+                        if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
+                            slider
+                        }
+
+                        noGradeAndExcuseButtons
+
+                        GradeStatusView(viewModel: gradeStatusViewModel)
+
+                        if gradeViewModel.shouldShowGradeSummary {
+                            GradeSummaryView(
+                                pointsRow: gradeViewModel.pointsRowModel,
+                                latePenaltyRow: gradeViewModel.latePenaltyRowModel,
+                                finalGradeRow: gradeViewModel.finalGradeRowModel
+                            )
+                            .paddingStyle(.horizontal, .standard)
+                        }
+
+                        comments
+
+                        if assignment.rubric?.isEmpty == false {
+                            RubricsView(
+                                currentScore: rubricsViewModel.totalRubricScore,
+                                containerFrameInGlobal: geometry.frame(in: .global),
+                                viewModel: rubricsViewModel
+                            )
                         }
                     }
-                    .font(.heavy24)
-                    .foregroundColor(.textDarkest)
-                    .padding(.horizontal, 16).padding(.vertical, 12)
-
-                    if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
-                        slider
-                    }
-
-                    noGradeAndExcuseButtons
-
-                    GradeStatusView(viewModel: gradeStatusViewModel)
-
-                    if gradeViewModel.shouldShowGradeSummary {
-                        GradeSummaryView(
-                            pointsRow: gradeViewModel.pointsRowModel,
-                            latePenaltyRow: gradeViewModel.latePenaltyRowModel,
-                            finalGradeRow: gradeViewModel.finalGradeRowModel
-                        )
-                        .paddingStyle(.horizontal, .standard)
-                    }
-
-                    if assignment.rubric?.isEmpty == false {
-                        RubricsView(
-                            currentScore: rubricsViewModel.totalRubricScore,
-                            containerFrameInGlobal: geometry.frame(in: .global),
-                            viewModel: rubricsViewModel
-                        )
-                    }
-                }.padding(.bottom, 16)
-            } }
+                    .padding(.bottom, 16)
+                }
+            }
             .animation(.smooth, value: gradeStatusViewModel.isShowingDaysLateSection)
             .errorAlert(
                 isPresented: $gradeViewModel.isShowingErrorAlert,
@@ -151,10 +160,10 @@ struct SpeedGraderSubmissionGradesView: View {
         let score = gradeViewModel.sliderValue
         let possible = assignment.pointsPossible ?? 0
         let tooltipText =
-            sliderCleared ? Text("No Grade", bundle: .teacher) :
-            sliderExcused ? Text("Excused", bundle: .teacher) :
-            assignment.gradingType == .percent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
-            Text(gradeSliderViewModel.formatScore(score, maxPoints: possible))
+        sliderCleared ? Text("No Grade", bundle: .teacher) :
+        sliderExcused ? Text("Excused", bundle: .teacher) :
+        assignment.gradingType == .percent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
+        Text(gradeSliderViewModel.formatScore(score, maxPoints: possible))
         let maxScore = assignment.gradingType == .percent ? 100 : possible
 
         HStack(spacing: 8) {
@@ -186,6 +195,56 @@ struct SpeedGraderSubmissionGradesView: View {
         }
         .font(.medium14).foregroundColor(.textDarkest)
         .padding(.horizontal, 16).padding(.vertical, 14)
+    }
+
+    @ViewBuilder
+    private var comments: some View {
+        let commentCount = commentListViewModel.commentCount
+        let header = HStack(spacing: 20) {
+            Image.discussionLine
+                .foregroundStyle(.tint)
+
+            Text("Comments (\(commentCount))", bundle: .teacher)
+                .foregroundStyle(.textDarkest)
+                .font(.medium16)
+        }
+
+        VStack(spacing: 0) {
+            InstUI.Divider()
+
+            if assignment.rubric?.isNotEmpty == true {
+                DisclosureGroup {
+                    SubmissionCommentListView(
+                        viewModel: commentListViewModel,
+                        attempt: attempt,
+                        fileID: fileID
+                    )
+                } label: {
+                    header
+                }
+                .disclosureGroupStyle(
+                    InstUI.SectionDisclosureStyle(
+                        headerConfig: .init(
+                            paddingSet: .iconCell,
+                            accessoryIconSize: 24,
+                            hasDividerBelowHeader: true
+                        )
+                    )
+                )
+            } else {
+                header
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .paddingStyle(set: .iconCell)
+                InstUI.Divider()
+
+                SubmissionCommentListView(
+                    viewModel: commentListViewModel,
+                    attempt: attempt,
+                    fileID: fileID
+                )
+            }
+        }
+        .padding(.top, 16)
     }
 
     func updateGrade(excused: Bool? = nil, noMark: Bool? = false, _ grade: Double? = nil) {
@@ -299,3 +358,11 @@ extension UIAlertController {
         }
     }
 }
+
+#if DEBUG
+
+#Preview {
+    SpeedGraderAssembly.makeSpeedGraderViewControllerPreview(state: .data)
+}
+
+#endif

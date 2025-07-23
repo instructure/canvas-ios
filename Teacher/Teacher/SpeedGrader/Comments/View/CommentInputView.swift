@@ -70,7 +70,7 @@ struct CommentInputView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            InstUI.Divider()
+//            InstUI.Divider()
             content
                 .paddingStyle(.horizontal, .standard)
                 .padding(.vertical, 8)
@@ -208,6 +208,22 @@ struct CommentInputView: View {
 
 #Preview {
     VStack {
+        ScrollView {
+            VStack {
+                CommentInputView(
+                    comment: .init(""),
+                    commentLibraryButtonType: .openLibrary,
+                    isAttachmentButtonEnabled: true,
+                    contextColor: .green,
+                    commentLibraryAction: {},
+                    addAttachmentAction: { _ in },
+                    sendAction: {}
+                )
+//                .frame(minHeight: 160)
+                .background(Color.backgroundLightest)
+            }
+        }
+
         CommentInputView(
             comment: .init(.loremIpsumShort),
             commentLibraryButtonType: .openLibrary,

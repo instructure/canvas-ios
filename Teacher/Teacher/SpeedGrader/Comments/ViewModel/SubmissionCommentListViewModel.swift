@@ -124,6 +124,8 @@ class SubmissionCommentListViewModel: ObservableObject {
 
     // MARK: - Get comments
 
+    var commentCount: Int { allComments.count }
+
     private func updateComments(attempt: Int?) {
         selectedAttemptNumber = attempt
         guard state == .data || state == .empty else { return }
