@@ -184,7 +184,7 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
     @objc func showFilters() {
         env.router.show(
             SubmissionFilterPickerViewController
-                .create(env: env, context: context, outOfText: assignment.first?.outOfText, filter: filter) { [weak self] in
+                .create(context: context, outOfText: assignment.first?.outOfText, filter: filter, env: env) { [weak self] in
                     self?.setFilter($0)
                 },
             from: self,

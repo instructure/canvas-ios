@@ -53,7 +53,8 @@ class CourseSyncSyllabusInteractorLiveTests: CoreTestCase {
         api.mock(GetCourseSettings(courseID: "testCourse"),
                  value: .init(usage_rights_required: false,
                               syllabus_course_summary: true,
-                              restrict_quantitative_data: false))
+                              restrict_quantitative_data: false,
+                              hide_final_grade: false))
         api.mock(GetCalendarEvents(context: .course("testCourse"),
                                    type: .assignment),
                  value: [.make(id: "1")])

@@ -24,7 +24,8 @@ class UITabBarExtensionsTests: XCTestCase {
     func testUseGlobalNavStyle() {
         Brand.shared = Brand(
             response: APIBrandVariables.make(primary: "#333"),
-            headerImage: nil
+            headerImage: nil,
+            institutionLogo: nil
         )
         let tabBar = UITabBar()
         tabBar.items = [ UITabBarItem(title: "", image: nil, selectedImage: nil) ]
@@ -46,7 +47,7 @@ class UITabBarExtensionsTests: XCTestCase {
         let shiny = Brand(response: APIBrandVariables.make(
             nav_text_color: "#333",
             primary: "#ffffff"
-        ), headerImage: nil)
+        ), headerImage: nil, institutionLogo: nil)
         tabBar.useGlobalNavStyle(brand: shiny)
         XCTAssertEqual(tabBar.standardAppearance.stackedLayoutAppearance.selected.iconColor?.hexString, shiny.primary.darkenToEnsureContrast(against: .backgroundLightest).hexString)
     }

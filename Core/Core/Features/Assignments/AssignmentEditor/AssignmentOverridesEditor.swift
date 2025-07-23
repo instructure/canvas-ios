@@ -117,11 +117,11 @@ public struct AssignmentOverridesEditor: View {
 
     func pickAssignee(for override: Override) {
         let picker = AssignmentAssigneePicker(
-            env: env,
             courseID: courseID,
             groupCategoryID: groupCategoryID,
             overrides: $overrides,
-            override: override
+            override: override,
+            env: env
         )
         env.router.show(CoreHostingController(picker, env: env), from: controller)
     }

@@ -23,8 +23,8 @@ import AVKit
 public enum ComposeMessageAssembly {
 
     public static func makeComposeMessageViewController(
-        env: AppEnvironment,
-        options: ComposeMessageOptions = ComposeMessageOptions()
+        options: ComposeMessageOptions = ComposeMessageOptions(),
+        env: AppEnvironment
     ) -> UIViewController {
 
         let batchId = UUID.string
@@ -39,11 +39,11 @@ public enum ComposeMessageAssembly {
         let recipientInteractor = RecipientInteractorLive()
         let settingsInteractor = InboxSettingsInteractorLive(environment: env)
         let viewModel = ComposeMessageViewModel(
-            env: env,
             options: options,
             interactor: interactor,
             recipientInteractor: recipientInteractor,
-            inboxSettingsInteractor: settingsInteractor
+            inboxSettingsInteractor: settingsInteractor,
+            env: env
         )
 
         let view = ComposeMessageView(model: viewModel)
@@ -52,7 +52,7 @@ public enum ComposeMessageAssembly {
 
     public static func makeComposeMessageViewController(env: AppEnvironment, url: URLComponents) -> UIViewController {
         if let queryItems = url.queryItems {
-            return makeComposeMessageViewController(env: env, options: ComposeMessageOptions(queryItems: queryItems))
+            return makeComposeMessageViewController(options: ComposeMessageOptions(queryItems: queryItems), env: env)
         } else {
             return ComposeMessageAssembly.makeComposeMessageViewController(env: env)
         }
@@ -65,11 +65,11 @@ public enum ComposeMessageAssembly {
         let interactor = ComposeMessageInteractorPreview()
         let options = ComposeMessageOptions()
         let viewModel = ComposeMessageViewModel(
-            env: env,
             options: options,
             interactor: interactor,
             recipientInteractor: RecipientInteractorLive(),
-            inboxSettingsInteractor: InboxSettingsInteractorPreview()
+            inboxSettingsInteractor: InboxSettingsInteractorPreview(),
+            env: env
         )
         return ComposeMessageView(model: viewModel)
     }

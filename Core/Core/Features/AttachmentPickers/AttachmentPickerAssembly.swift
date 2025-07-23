@@ -47,7 +47,7 @@ public enum AttachmentPickerAssembly {
         onSelect: @escaping (URL) -> Void
     ) -> AudioPickerView {
         let interactor = AudioPickerInteractorLive()
-        let viewModel = AudioPickerViewModel(env: env, interactor: interactor, onSelect: onSelect)
+        let viewModel = AudioPickerViewModel(router: env.router, interactor: interactor, onSelect: onSelect)
         return AudioPickerView(viewModel: viewModel)
     }
 
@@ -65,7 +65,7 @@ public enum AttachmentPickerAssembly {
 
     public static func makeAudioPickerPreview(env: AppEnvironment) -> AudioPickerView {
         let interactor = AudioPickerInteractorPreview()
-        let viewModel = AudioPickerViewModel(env: env, interactor: interactor) { _ in }
+        let viewModel = AudioPickerViewModel(router: env.router, interactor: interactor) { _ in }
         return AudioPickerView(viewModel: viewModel)
     }
 

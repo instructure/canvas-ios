@@ -36,7 +36,7 @@ public class TeacherQuizSubmissionBreakdownViewModelLive: SubmissionBreakdownVie
     private var enrollments: Store<GetEnrollments>
     private var submissionsPath: String { "/courses/\(courseID)/quizzes/\(quizID)/submissions" }
 
-    init(env: AppEnvironment, courseID: String, quizID: String) {
+    init(courseID: String, quizID: String, env: AppEnvironment) {
         self.quizID = quizID
         self.courseID = courseID
 

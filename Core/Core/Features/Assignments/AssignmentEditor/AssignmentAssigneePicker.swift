@@ -40,7 +40,7 @@ struct AssignmentAssigneePicker: View {
         groups.state == .loading || sections.state == .loading || students.state == .loading
     }
 
-    init(env: AppEnvironment, courseID: String, groupCategoryID: String?, overrides: Binding<[Override]>, override: Override) {
+    init(courseID: String, groupCategoryID: String?, overrides: Binding<[Override]>, override: Override, env: AppEnvironment) {
         self.courseID = courseID
         self.groupCategoryID = groupCategoryID
         self.override = override
@@ -135,10 +135,10 @@ struct AssignmentAssigneePicker: View {
         env.router.show(
             CoreHostingController(
                 AssigmentAssigneeList(
-                    env: env,
                     courseID: courseID,
                     groupCategoryID: groupCategoryID,
-                    selection: $selection
+                    selection: $selection,
+                    env: env
                 ),
                 env: env
             ),

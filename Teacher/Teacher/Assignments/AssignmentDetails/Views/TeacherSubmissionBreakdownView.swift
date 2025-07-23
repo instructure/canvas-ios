@@ -135,7 +135,7 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
             }
             .padding(16)
         }
-        .elevation(.card, aboveBackground: .lightest)
+        .elevation(.cardSmall, background: .backgroundLightestElevated)
         .padding(16)
         .accessibilityElement(children: .contain)
         .identifier("AssignmentDetails.viewAllSubmissionsButton")

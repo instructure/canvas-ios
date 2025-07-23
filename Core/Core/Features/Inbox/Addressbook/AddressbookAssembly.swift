@@ -23,13 +23,13 @@ import UIKit
 public enum AddressBookAssembly {
 
     public static func makeAddressbookRecipientViewController(
-        env: AppEnvironment,
         recipientContext: RecipientContext,
         roleName: String,
         recipients: [Recipient],
         canSelectAllRecipient: Bool,
         recipientDidSelect: PassthroughRelay<Recipient>,
-        selectedRecipients: CurrentValueSubject<[Recipient], Never>
+        selectedRecipients: CurrentValueSubject<[Recipient], Never>,
+        env: AppEnvironment
     ) -> UIViewController {
         let viewModel = AddressbookRecipientViewModel(
             router: env.router,
@@ -44,11 +44,11 @@ public enum AddressBookAssembly {
     }
 
     public static func makeAddressbookRoleViewController(
-        env: AppEnvironment,
         recipientContext: RecipientContext,
         teacherOnly: Bool,
         didSelectRecipient: PassthroughRelay<Recipient>,
-        selectedRecipients: CurrentValueSubject<[Recipient], Never>
+        selectedRecipients: CurrentValueSubject<[Recipient], Never>,
+        env: AppEnvironment
     ) -> UIViewController {
         let interactor = AddressbookInteractorLive(env: env, recipientContext: recipientContext)
         let viewModel = AddressbookRoleViewModel(

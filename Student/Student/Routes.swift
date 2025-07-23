@@ -82,9 +82,9 @@ let router = Router(routes: [
             }
         }()
         return MessageDetailsAssembly.makeViewController(
-            env: env,
             conversationID: conversationID,
-            allowArchive: allowArchive
+            allowArchive: allowArchive,
+            env: env
         )
     },
 
@@ -160,10 +160,10 @@ let router = Router(routes: [
             )
         }
         return AssignmentDetailsViewController.create(
-            env: env,
             courseID: ID.expandTildeID(courseID),
             assignmentID: ID.expandTildeID(assignmentID),
-            fragment: url.fragment
+            fragment: url.fragment,
+            env: env
         )
     },
 
@@ -183,10 +183,10 @@ let router = Router(routes: [
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else { return nil }
         if url.originIsCalendar || url.originIsNotification {
             return AssignmentDetailsViewController.create(
-                env: env,
                 courseID: ID.expandTildeID(courseID),
                 assignmentID: ID.expandTildeID(assignmentID),
-                fragment: url.fragment
+                fragment: url.fragment,
+                env: env
             )
         } else {
             let selectedAttempt = Int(url.queryValue(for: "selectedAttempt") ?? "")

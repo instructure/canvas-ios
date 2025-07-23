@@ -56,7 +56,7 @@ let router = Router(routes: [
 
     RouteHandler("/conversations/:conversationID") { _, params, _ in
         guard let conversationID = params["conversationID"] else { return nil }
-        return MessageDetailsAssembly.makeViewController(env: .shared, conversationID: conversationID, allowArchive: true)
+        return MessageDetailsAssembly.makeViewController(conversationID: conversationID, allowArchive: true, env: .shared)
     },
 
     RouteHandler("/courses") { _, _, _ in
@@ -69,7 +69,7 @@ let router = Router(routes: [
         if assignmentID == "syllabus" {
             return SyllabusViewController.create(courseID: courseID)
         }
-        return AssignmentDetailsViewController.create(env: .shared, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
+        return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID, env: .shared)
     },
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { _, params, _ in
@@ -77,7 +77,7 @@ let router = Router(routes: [
               let assignmentID = params["assignmentID"],
               let studentID = params["userID"]
         else { return nil }
-        return AssignmentDetailsViewController.create(env: .shared, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
+        return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID, env: .shared)
     },
 
     RouteHandler("/courses/:courseID/grades") { _, params, _ in

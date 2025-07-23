@@ -38,7 +38,10 @@ class SpeedGraderPageViewModel: ObservableObject {
     @Published private(set) var selectedFileNumber: Int = 0
     @Published private(set) var selectedFileName: String = ""
 
+    @Published private(set) var isDetailsTabEmpty: Bool = true
+
     @Published private(set) var contextColor = Color(Brand.shared.primary)
+
     let assignment: Assignment
     let submission: Submission
 
@@ -46,42 +49,57 @@ class SpeedGraderPageViewModel: ObservableObject {
     private(set) var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
     let commentListViewModel: SubmissionCommentListViewModel
     let gradeStatusViewModel: GradeStatusViewModel
+    let submissionWordCountViewModel: SubmissionWordCountViewModel
+    let studentNotesViewModel: StudentNotesViewModel
+    let rubricsViewModel: RubricsViewModel
+    let gradeViewModel: SpeedGraderSubmissionGradesViewModel
 
     // MARK: - Inputs
 
-    private let env: AppEnvironment
+    // MARK: - Private properties
+
     private var subscriptions = Set<AnyCancellable>()
 
     init(
         assignment: Assignment,
         latestSubmission: Submission,
         contextColor: AnyPublisher<Color, Never>,
-        gradeStatusInteractor: GradeStatusInteractor,
-        env: AppEnvironment
+        studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel,
+        gradeViewModel: SpeedGraderSubmissionGradesViewModel,
+        gradeStatusViewModel: GradeStatusViewModel,
+        commentListViewModel: SubmissionCommentListViewModel,
+        rubricsViewModel: RubricsViewModel,
+        submissionWordCountViewModel: SubmissionWordCountViewModel,
+        studentNotesViewModel: StudentNotesViewModel
     ) {
         self.assignment = assignment
         self.submission = latestSubmission
-        selectedAttempt = latestSubmission
-        studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
-        commentListViewModel = SubmissionCommentsAssembly.makeCommentListViewModel(
-            assignment: assignment,
-            latestSubmission: latestSubmission,
-            latestAttemptNumber: latestSubmission.attempt,
-            contextColor: contextColor,
-            env: env
-        )
-        gradeStatusViewModel = GradeStatusViewModel(
-            userId: submission.userID,
-            submissionId: submission.id,
-            attempt: submission.attempt,
-            interactor: gradeStatusInteractor
-        )
-        self.env = env
+        self.selectedAttempt = latestSubmission
+
+        self.studentAnnotationViewModel = studentAnnotationViewModel
+        self.gradeViewModel = gradeViewModel
+        self.gradeStatusViewModel = gradeStatusViewModel
+        self.commentListViewModel = commentListViewModel
+        self.rubricsViewModel = rubricsViewModel
+        self.submissionWordCountViewModel = submissionWordCountViewModel
+        self.studentNotesViewModel = studentNotesViewModel
 
         contextColor.assign(to: &$contextColor)
 
+        observeDetailsTabComponentsEmptyState()
         observeAttemptChangesInDatabase()
         didSelectAttempt(attemptNumber: submission.attempt)
+    }
+
+    private func observeDetailsTabComponentsEmptyState() {
+        Publishers.CombineLatest(
+            submissionWordCountViewModel.$hasContent,
+            studentNotesViewModel.$hasContent
+        )
+        .sink { [weak self] in
+            self?.isDetailsTabEmpty = !($0.0 || $0.1)
+        }
+        .store(in: &subscriptions)
     }
 
     func didSelectAttempt(attemptNumber: Int) {
@@ -112,6 +130,7 @@ class SpeedGraderPageViewModel: ObservableObject {
 
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selectedAttempt)
         gradeStatusViewModel.didChangeAttempt.send(attemptNumber)
+        submissionWordCountViewModel.didChangeAttempt.send(attemptNumber)
     }
 
     func didSelectFile(fileId: String?) {
