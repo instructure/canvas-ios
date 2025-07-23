@@ -74,6 +74,7 @@ struct IntroBlock: View {
                 Spacer()
                 menuButton
             }
+            .padding(.top, .huiSpaces.space16)
             moduleInfoView
             if let attemptsAllowed = attemptsAllowed {
                 Text(attemptsAllowed)
@@ -130,11 +131,14 @@ struct IntroBlock: View {
         }
     }
 
+    @ViewBuilder
     private var moduleInfoView: some View {
-        Text(moduleItemInfo)
-            .foregroundStyle(foregroundColor)
-            .huiTypography(.p2)
-            .padding(.horizontal, .huiSpaces.space16)
+        if !moduleItemInfo.isEmpty {
+            Text(moduleItemInfo)
+                .foregroundStyle(foregroundColor)
+                .huiTypography(.p2)
+                .padding(.horizontal, .huiSpaces.space16)
+        }
     }
 
     private var moduleItemInfo: String {
@@ -153,13 +157,14 @@ struct IntroBlock: View {
             return String(
                 localized: "\(attempts) Attempts Allowed",
                 comment: "The number of attempts allowed for this assignment."
-            )
+            ).lowercased()
         }
 
-        return String(
-            localized: "\(attemptCount) Attempts Allowed",
+        let attemptsAllowed = String(
+            localized: "Attempts Allowed",
             comment: "The number of attempts allowed for this assignment."
-        )
+        ).lowercased()
+        return "\(attemptCount) \(attemptsAllowed)"
     }
 }
 

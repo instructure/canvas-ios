@@ -67,18 +67,22 @@ struct NoteCardView: View {
     // MARK: - Private
 
     private func noteCardLabelView(type: CourseNoteLabel) -> some View {
-        HStack {
-            type.image()
-            Text(type.label)
-                .font(.regular12)
-                .foregroundStyle(type.color)
+        switch type {
+        case .confusing:
+            HorizonUI.Pill(
+                title: type.label,
+                style: .outline(.danger),
+                isUppercased: true,
+                icon: Image.huiIcons.help
+            )
+        default:
+            HorizonUI.Pill(
+                title: type.label,
+                style: .outline(.institution),
+                isUppercased: true,
+                icon: Image.huiIcons.flag2
+            )
         }
-        .padding()
-        .frame(height: 34)
-        .background(
-            RoundedRectangle(cornerRadius: 17)
-                .stroke(type.color, lineWidth: 1)
-        )
     }
 }
 
