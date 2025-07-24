@@ -209,9 +209,6 @@ struct HCreateMessageView: View {
         .onChange(of: isSubjectFocused) { _, _ in
             viewModel.subjectFocusedChange(isFocused: isSubjectFocused)
         }
-        .readingFrame { frame in
-            print(frame.height, "messageTitleInput")
-        }
     }
 
     private var peopleSelection: some View {
@@ -220,9 +217,6 @@ struct HCreateMessageView: View {
             placeholder: String(localized: "Recipients", bundle: .horizon),
             disabled: viewModel.isPeopleSelectionDisabled
         )
-        .readingFrame { frame in
-            print(frame.height, "peopleSelection")
-        }
     }
 }
 
