@@ -61,7 +61,7 @@ struct AttachmentView<Content: View>: View {
     private var chooseFileButton: HorizonUI.Overlay.ButtonAttribute {
         HorizonUI.Overlay.ButtonAttribute(
             title: AssignmentLocalizedKeys.chooseFile.title,
-            icon: Image.huiIcons.image,
+            icon: Image.huiIcons.folder,
             onAction: viewModel.chooseFile
         )
     }
