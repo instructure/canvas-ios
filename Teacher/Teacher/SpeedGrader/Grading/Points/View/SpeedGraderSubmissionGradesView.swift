@@ -129,17 +129,26 @@ struct SpeedGraderSubmissionGradesView: View {
         case .pointsDisplayOnly:
             gradeInputDisplayOnlyView(
                 title: title,
-                textValue: gradeState.originalScoreWithoutMetric ?? "-"
+                textValue: gradeState.originalScoreWithoutMetric ?? "-",
+                suffix: gradeState.isExcused ? nil : "/ \(gradeState.pointsPossibleText)"
             )
         case .gradePicker:
             SpeedGraderPickerCell(
                 title: title,
-                placeholder: String(localized: "Select Grade", bundle: .core),
+                placeholder: String(localized: "Select Grade", bundle: .teacher),
                 identifierGroup: "SpeedGrader.GradeInputPickerItem",
                 allOptions: gradeState.gradeOptions,
                 selectOption: gradeViewModel.selectGradeOption,
                 didSelectOption: gradeViewModel.didSelectGradeOption,
                 isSaving: gradeViewModel.isSavingGrade
+            )
+        case .statusDisplayOnly:
+            gradeInputDisplayOnlyView(
+                title: title,
+                textValue: gradeState.isExcused
+                    ? String(localized: "Excused", bundle: .teacher)
+                    : String(localized: "Not Graded", bundle: .teacher),
+                suffix: nil
             )
         case nil:
             SwiftUI.EmptyView()
@@ -177,11 +186,9 @@ struct SpeedGraderSubmissionGradesView: View {
     @ViewBuilder
     private func gradeInputDisplayOnlyView(
         title: String,
-        textValue: String
+        textValue: String,
+        suffix: String?
     ) -> some View {
-        let gradeState = gradeViewModel.gradeState
-        let suffix = gradeState.isExcused ? nil : "/ \(gradeState.pointsPossibleText)"
-
         HStack(alignment: .center, spacing: 8) {
             Text(title)
                 .textStyle(.cellLabel)
@@ -220,7 +227,10 @@ struct SpeedGraderSubmissionGradesView: View {
 
     private var noGradeAndExcuseButtons: some View {
         HStack(spacing: 16) {
-            SpeedGraderButton(title: String(localized: "No Grade", bundle: .teacher)) {
+            let noGradeTitle = gradeViewModel.gradeState.gradingType == .not_graded
+                ? String(localized: "Reset Status", bundle: .teacher)
+                : String(localized: "No Grade", bundle: .teacher)
+            SpeedGraderButton(title: noGradeTitle) {
                 gradeViewModel.removeGrade()
             }
             .disabled(gradeViewModel.isNoGradeButtonDisabled)

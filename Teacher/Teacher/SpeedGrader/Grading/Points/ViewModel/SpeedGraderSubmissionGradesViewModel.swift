@@ -26,6 +26,7 @@ enum GradeInputType {
     case percentageTextField
     case pointsDisplayOnly // for Complete/Incomplete
     case gradePicker // for GPA & Lettergrade
+    case statusDisplayOnly // for Not Graded
 }
 
 class SpeedGraderSubmissionGradesViewModel: ObservableObject {
@@ -245,7 +246,7 @@ extension GradeState {
 }
 
 private extension GradeState {
-    var gradeInputType: GradeInputType? {
+    var gradeInputType: GradeInputType {
         switch gradingType {
         case .percent:
             .percentageTextField
@@ -256,7 +257,7 @@ private extension GradeState {
         case .gpa_scale, .letter_grade:
             .gradePicker
         case .not_graded:
-            nil
+            .statusDisplayOnly
         }
     }
 }
