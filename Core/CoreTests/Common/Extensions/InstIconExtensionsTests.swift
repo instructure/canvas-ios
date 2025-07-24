@@ -258,6 +258,7 @@ class InstIconExtensionTests: XCTestCase {
         XCTAssertEqual(UIImage.dashboardTab, UIImage(named: "dashboardTab", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.dashboardTabActive, UIImage(named: "dashboardTabActive", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.dropdown, UIImage(named: "dropdown", in: .core, compatibleWith: nil))
+        XCTAssertEqual(UIImage.dropdownLine, UIImage(named: "dropdownLine", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.filterCheckbox, UIImage(named: "filterCheckbox", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.grab, UIImage(named: "grab", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.homeroomTab, UIImage(named: "homeroomTab", in: .core, compatibleWith: nil))

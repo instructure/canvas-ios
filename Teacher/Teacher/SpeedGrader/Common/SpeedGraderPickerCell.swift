@@ -78,7 +78,7 @@ struct SpeedGraderPickerCell: View {
             label: {
                 Text(viewModel.selectedOption?.title ?? placeholder ?? "")
                     .font(.regular14, lineHeight: .fit)
-                Image.chevronDown
+                Image.dropdownLine
                     .scaledIcon(size: 24)
             }
         )
