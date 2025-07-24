@@ -49,14 +49,14 @@ class QuizDetailsViewModelTests: CoreTestCase {
         let testee = TeacherQuizDetailsViewModelLive(courseID: courseID, quizID: quizID, env: environment)
         testee.viewDidAppear()
         testee.editTapped(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/quizzes/2/edit")!))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/quizzes/2/edit")!))
     }
 
     func testPreviewTapped() {
         let testee = TeacherQuizDetailsViewModelLive(courseID: courseID, quizID: quizID, env: environment)
         testee.viewDidAppear()
         testee.previewTapped(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/quizzes/2/preview")!))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/quizzes/2/preview")!))
     }
 
     func testRefresh() {
