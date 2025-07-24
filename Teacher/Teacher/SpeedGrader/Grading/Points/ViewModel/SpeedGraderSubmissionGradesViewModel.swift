@@ -37,9 +37,8 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     // Grading inputs
     @Published private(set) var gradeState: GradeState
     @Published private(set) var gradeInputType: GradeInputType?
-    @Published private(set) var isSaving: Bool = false {
-        didSet { isSavingGrade.send(isSaving) }
-    }
+    // TODO: remove
+    @Published private(set) var isSaving: Bool = false
     let isSavingGrade = CurrentValueSubject<Bool, Never>(false)
     let shouldShowPointsInput: Bool
     let shouldShowSlider: Bool
@@ -177,12 +176,14 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     private func saveGrade(excused: Bool? = nil, grade: String? = nil) {
         isSaving = true
+        isSavingGrade.send(true)
 
         gradeInteractor.saveGrade(excused: excused, grade: grade)
             .receive(on: mainScheduler)
             .sink(
                 receiveCompletion: { [weak self] completion in
                     self?.isSaving = false
+                    self?.isSavingGrade.send(false)
                     if case .failure(let error) = completion {
                         self?.showError(error)
                     }

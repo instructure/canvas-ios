@@ -24,12 +24,10 @@ struct SpeedGraderPickerCell: View {
 
     @StateObject var viewModel: SingleSelectionViewModel
 
-    @State private var isSavingSubject = CurrentValueSubject<Bool, Never>(false)
-    @State private var isSaving: Bool = false
-
     private let title: String
     private let placeholder: String?
     private let identifierGroup: String?
+    private let isSaving: CurrentValueSubject<Bool, Never>
 
     init(
         title: String,
@@ -43,7 +41,7 @@ struct SpeedGraderPickerCell: View {
         self.title = title
         self.placeholder = placeholder
         self.identifierGroup = identifierGroup
-        self.isSavingSubject = isSaving
+        self.isSaving = isSaving
 
         self._viewModel = StateObject(wrappedValue: .init(
             title: nil,
@@ -59,25 +57,14 @@ struct SpeedGraderPickerCell: View {
                 .textStyle(.cellLabel)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-            // The loading and the data state have different heights, so we use a ZStack to
-            // keep both of them on screen ensuring the cell's constant height.
-            ZStack(alignment: .trailing) {
-                ProgressView()
-                    .tint(nil)
-                    .opacity(isSaving ? 1 : 0)
-                picker
-                    .opacity(isSaving ? 0 : 1)
-            }
-            .animation(.none, value: isSaving)
+            picker
+                .swapWithSpinner(onLoading: isSaving, alignment: .trailing)
         }
         .paddingStyle(set: .standardCell)
         .background(Color.backgroundLightest)
         .accessibilityElement(children: .combine)
         // PickerMenu already has "Pop up button" trait.
         .accessibilityRemoveTraits(.isButton)
-        .onReceive(isSavingSubject) {
-            isSaving = $0
-        }
     }
 
     private var picker: some View {
@@ -98,3 +85,27 @@ struct SpeedGraderPickerCell: View {
         .animation(.none, value: viewModel.selectedOption?.title)
     }
 }
+
+#if DEBUG
+
+#Preview {
+    let statuses: [GradeStatus] = [
+        .none,
+        .excused,
+        .late
+    ]
+
+    VStack(spacing: 20) {
+        GradeStatusView(
+            viewModel: .init(
+                userId: "",
+                submissionId: "",
+                attempt: 0,
+                interactor: GradeStatusInteractorPreview(gradeStatuses: statuses)
+            )
+        )
+        .frame(maxHeight: .infinity, alignment: .top)
+    }
+}
+
+#endif

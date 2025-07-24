@@ -169,7 +169,8 @@ struct SpeedGraderSubmissionGradesView: View {
                     case .percentage: gradeViewModel.setPercentGrade(value)
                     }
                 }
-            )
+            ),
+            isSaving: gradeViewModel.isSavingGrade
         )
     }
 
@@ -185,16 +186,19 @@ struct SpeedGraderSubmissionGradesView: View {
             Text(title)
                 .textStyle(.cellLabel)
 
-            Text(textValue)
-                .font(.regular16, lineHeight: .fit)
-                .foregroundStyle(.textDark)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-
-            if let suffix {
-                Text(suffix)
+            HStack(alignment: .center, spacing: 8) {
+                Text(textValue)
                     .font(.regular16, lineHeight: .fit)
                     .foregroundStyle(.textDark)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+
+                if let suffix {
+                    Text(suffix)
+                        .font(.regular16, lineHeight: .fit)
+                        .foregroundStyle(.textDark)
+                }
             }
+            .swapWithSpinner(onLoading: gradeViewModel.isSavingGrade, alignment: .trailing)
         }
         .paddingStyle(set: .standardCell)
     }

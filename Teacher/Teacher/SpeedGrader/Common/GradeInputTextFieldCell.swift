@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import Foundation
 import SwiftUI
@@ -31,13 +32,15 @@ struct GradeInputTextFieldCell: View {
     @State private var internalText: String
 
     @FocusState private var isFocused: Bool
+    private let isSaving: CurrentValueSubject<Bool, Never>
 
     init(
         title: String,
         subtitle: String?,
         placeholder: String,
         suffix: String?,
-        text: Binding<String>
+        text: Binding<String>,
+        isSaving: CurrentValueSubject<Bool, Never>
     ) {
         self.title = title
         self.subtitle = subtitle
@@ -45,6 +48,7 @@ struct GradeInputTextFieldCell: View {
         self.suffix = suffix
         self._externalText = text
         self.internalText = text.wrappedValue
+        self.isSaving = isSaving
     }
 
     var body: some View {
@@ -59,6 +63,19 @@ struct GradeInputTextFieldCell: View {
                     .foregroundStyle(.textDark)
             }
 
+            textFieldViews
+                .swapWithSpinner(onLoading: isSaving, alignment: .trailing)
+        }
+        .paddingStyle(set: .standardCell)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            isFocused = true
+        }
+    }
+
+    @ViewBuilder
+    private var textFieldViews: some View {
+        HStack(alignment: .center, spacing: 8) {
             textField
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .focused($isFocused)
@@ -77,11 +94,6 @@ struct GradeInputTextFieldCell: View {
                     .font(.regular16, lineHeight: .fit)
                     .foregroundStyle(.textDark)
             }
-        }
-        .paddingStyle(set: .standardCell)
-        .contentShape(Rectangle())
-        .onTapGesture {
-            isFocused = true
         }
     }
 
@@ -128,7 +140,8 @@ extension GradeInputTextFieldCell {
         inputType: InputType,
         pointsPossible: String,
         isExcused: Bool,
-        text: Binding<String>
+        text: Binding<String>,
+        isSaving: CurrentValueSubject<Bool, Never>
     ) {
         let subtitle: String? = switch inputType {
         case .points: nil
@@ -155,7 +168,8 @@ extension GradeInputTextFieldCell {
             subtitle: subtitle,
             placeholder: placeholder,
             suffix: suffix,
-            text: text
+            text: text,
+            isSaving: isSaving
         )
     }
 }

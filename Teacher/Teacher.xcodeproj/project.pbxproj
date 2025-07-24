@@ -63,7 +63,6 @@
 		5B4324BE2E206B1C00561B77 /* CustomGradebookColumnsInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4324BD2E206B1C00561B77 /* CustomGradebookColumnsInteractorMock.swift */; };
 		5B4F3E602DC8B169001A9126 /* SubmissionCommentListCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F3E5F2DC8B169001A9126 /* SubmissionCommentListCellViewModelTests.swift */; };
 		5B71EC382E305208009F5E6D /* SpeedGraderPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71EC372E305201009F5E6D /* SpeedGraderPickerCell.swift */; };
-		5B71EC3B2E319241009F5E6D /* SpeedGraderPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71EC3A2E319241009F5E6D /* SpeedGraderPickerViewModel.swift */; };
 		5B95A3382E20F74900022E70 /* SpeedGraderPageTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B95A3372E20F74000022E70 /* SpeedGraderPageTabsView.swift */; };
 		5B95A33C2E210DC500022E70 /* SpeedGraderPageTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B95A33B2E210DC500022E70 /* SpeedGraderPageTab.swift */; };
 		5B95A3482E267B8F00022E70 /* StudentNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B95A3472E267B8D00022E70 /* StudentNotesView.swift */; };
@@ -77,6 +76,7 @@
 		5B989DF52E2C4B9100945292 /* StudentNotesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B989DF42E2C4B9100945292 /* StudentNotesViewModelTests.swift */; };
 		5B989DF72E2C4BA700945292 /* SubmissionWordCountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B989DF62E2C4BA700945292 /* SubmissionWordCountViewModelTests.swift */; };
 		5B9C5C072DB9B04000103E21 /* SubmissionCommentsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9C5C062DB9B03A00103E21 /* SubmissionCommentsAssembly.swift */; };
+		5B9C78762E32D8F400A9BF35 /* SwapWithSpinnerViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9C78752E32D8F400A9BF35 /* SwapWithSpinnerViewModifier.swift */; };
 		5BB37BC22DB90F300096821B /* SubmissionCommentsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB37BC12DB90F270096821B /* SubmissionCommentsInteractor.swift */; };
 		5BDD37D72DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD37D62DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift */; };
 		61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* TeacherAppDelegate.swift */; };
@@ -370,7 +370,6 @@
 		5B4324BD2E206B1C00561B77 /* CustomGradebookColumnsInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGradebookColumnsInteractorMock.swift; sourceTree = "<group>"; };
 		5B4F3E5F2DC8B169001A9126 /* SubmissionCommentListCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentListCellViewModelTests.swift; sourceTree = "<group>"; };
 		5B71EC372E305201009F5E6D /* SpeedGraderPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPickerCell.swift; sourceTree = "<group>"; };
-		5B71EC3A2E319241009F5E6D /* SpeedGraderPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPickerViewModel.swift; sourceTree = "<group>"; };
 		5B95A3372E20F74000022E70 /* SpeedGraderPageTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPageTabsView.swift; sourceTree = "<group>"; };
 		5B95A33B2E210DC500022E70 /* SpeedGraderPageTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPageTab.swift; sourceTree = "<group>"; };
 		5B95A3472E267B8D00022E70 /* StudentNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentNotesView.swift; sourceTree = "<group>"; };
@@ -384,6 +383,7 @@
 		5B989DF42E2C4B9100945292 /* StudentNotesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentNotesViewModelTests.swift; sourceTree = "<group>"; };
 		5B989DF62E2C4BA700945292 /* SubmissionWordCountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionWordCountViewModelTests.swift; sourceTree = "<group>"; };
 		5B9C5C062DB9B03A00103E21 /* SubmissionCommentsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsAssembly.swift; sourceTree = "<group>"; };
+		5B9C78752E32D8F400A9BF35 /* SwapWithSpinnerViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapWithSpinnerViewModifier.swift; sourceTree = "<group>"; };
 		5BB37BC12DB90F270096821B /* SubmissionCommentsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsInteractor.swift; sourceTree = "<group>"; };
 		5BDD37D62DEF293700C8B7AD /* SpeedGraderPageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderPageViewModelTests.swift; sourceTree = "<group>"; };
 		61BD85FB1EB2933C005A09A5 /* TeacherAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherAppDelegate.swift; sourceTree = "<group>"; };
@@ -955,6 +955,17 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		5B9C78742E32D85800A9BF35 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5B18041E2E2F901900823B4A /* GradeInputTextFieldCell.swift */,
+				CF05D85E2E1D4E3800F98B90 /* SpeedGraderButton.swift */,
+				5B71EC372E305201009F5E6D /* SpeedGraderPickerCell.swift */,
+				5B9C78752E32D8F400A9BF35 /* SwapWithSpinnerViewModifier.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		5BB37BC42DB90F410096821B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -966,6 +977,7 @@
 		7D0A28E0251A8104004FB3B6 /* SpeedGrader */ = {
 			isa = PBXGroup;
 			children = (
+				5B9C78742E32D85800A9BF35 /* Common */,
 				CF0605CB2D95A4FA0014C2EC /* CommentLibrary */,
 				CF0605CD2D95A56C0014C2EC /* Comments */,
 				5B0BDD122E27C27400D41C2A /* Details */,
@@ -1255,7 +1267,6 @@
 			children = (
 				CFB5ED492E26A03A000009DF /* GradeSummary */,
 				CF64BDDA2E2945F8005929E6 /* GradeSliderViewModel.swift */,
-				5B71EC3A2E319241009F5E6D /* SpeedGraderPickerViewModel.swift */,
 				CFB5ED612E27CB6A000009DF /* SpeedGraderSubmissionGradesViewModel.swift */,
 			);
 			path = ViewModel;
@@ -1360,11 +1371,8 @@
 			isa = PBXGroup;
 			children = (
 				CFB5ED432E268AFA000009DF /* GradeSummary */,
-				CF05D85E2E1D4E3800F98B90 /* SpeedGraderButton.swift */,
-				5B71EC372E305201009F5E6D /* SpeedGraderPickerCell.swift */,
 				EB12071E2601F2C50038E875 /* GradeSlider.swift */,
 				7D7126BF25374446000DEDE4 /* SpeedGraderSubmissionGradesView.swift */,
-				5B18041E2E2F901900823B4A /* GradeInputTextFieldCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2273,6 +2281,7 @@
 				CFCADAF62D9D89D0003796E7 /* RubricCustomRatingView.swift in Sources */,
 				5B95A3482E267B8F00022E70 /* StudentNotesView.swift in Sources */,
 				5BB37BC22DB90F300096821B /* SubmissionCommentsInteractor.swift in Sources */,
+				5B9C78762E32D8F400A9BF35 /* SwapWithSpinnerViewModifier.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */,
 				5B0BDD252E27C4BB00D41C2A /* SubmissionWordCountInteractor.swift in Sources */,
 				5B0BDD282E27C4BB00D41C2A /* SubmissionWordCountInteractorPreview.swift in Sources */,
@@ -2292,7 +2301,6 @@
 				0856FD022DCB09F5009067CF /* SubmissionListSection.swift in Sources */,
 				5B95A3382E20F74900022E70 /* SpeedGraderPageTabsView.swift in Sources */,
 				0856FCD62DB6583C009067CF /* SubmissionListAssembly.swift in Sources */,
-				5B71EC3B2E319241009F5E6D /* SpeedGraderPickerViewModel.swift in Sources */,
 				0856FD002DCB09D6009067CF /* SubmissionListItem.swift in Sources */,
 				CF1247262DB012B700EB10F6 /* SpeedGraderScreenViewModel.swift in Sources */,
 				5B0BDD2F2E284B4A00D41C2A /* SubmissionWordCountViewModel.swift in Sources */,
