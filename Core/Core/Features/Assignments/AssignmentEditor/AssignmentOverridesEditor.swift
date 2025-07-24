@@ -120,9 +120,10 @@ public struct AssignmentOverridesEditor: View {
             courseID: courseID,
             groupCategoryID: groupCategoryID,
             overrides: $overrides,
-            override: override
+            override: override,
+            env: env
         )
-        env.router.show(CoreHostingController(picker), from: controller)
+        env.router.show(CoreHostingController(picker, env: env), from: controller)
     }
 
     static func alert(toRemove: Override, from overrides: Binding<[Override]>) -> Alert {

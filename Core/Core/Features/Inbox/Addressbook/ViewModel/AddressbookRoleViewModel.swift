@@ -170,7 +170,8 @@ class AddressbookRoleViewModel: ObservableObject {
                             recipients: recipients,
                             canSelectAllRecipient: self.canSelectAllRecipient,
                             recipientDidSelect: recipientDidSelect,
-                            selectedRecipients: selectedRecipients
+                            selectedRecipients: selectedRecipients,
+                            env: env
                         ),
                         from: viewController
                     )
