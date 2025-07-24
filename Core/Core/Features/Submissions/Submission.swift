@@ -41,6 +41,7 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var attempt: Int
     @NSManaged public var body: String?
     @NSManaged public var customGradeStatusId: String?
+    @NSManaged public var customGradeStatusName: String?
     @NSManaged public var discussionEntries: Set<DiscussionEntry>?
     @NSManaged public var enteredGrade: String?
     @NSManaged var enteredScoreRaw: NSNumber?
@@ -161,6 +162,12 @@ extension Submission: WriteableModel {
         model.attempt = item.attempt ?? 0
         model.body = item.body
         model.customGradeStatusId = item.custom_grade_status_id
+
+        if let customStatusId = item.custom_grade_status_id,
+           let customStatus: CDCustomGradeStatus = client.first(where: #keyPath(CDCustomGradeStatus.id), equals: customStatusId) {
+            model.customGradeStatusName = customStatus.name
+        }
+
         model.enteredGrade = item.entered_grade
         model.enteredScore = item.entered_score
         model.excused = item.excused
@@ -418,9 +425,9 @@ extension Submission {
         // Graded check
         switch desc {
         case .usingStatus(.submitted):
-            return needsGrading == false ? .graded : desc // Maintaining the old logic
+            return needsGrading == false ? .graded(gradedStatusVariant) : desc // Maintaining the old logic
         case .onPaper, .noSubmission:
-            return isGraded ? .graded : desc
+            return isGraded ? .graded(gradedStatusVariant) : desc
         default:
             return desc
         }
@@ -434,8 +441,43 @@ extension Submission {
     }
 
     public var statusIncludingGradedState: SubmissionStatus {
-        if isGraded { return excused == true ? .excused : .graded }
+        if isGraded { return excused == true ? .excused : .graded(gradedStatusVariant) }
         return status
+    }
+
+    private var gradedStatusVariant: GradedStatusVariant {
+        if let name = customGradeStatusName {
+            return .custom(name: name)
+        }
+        return .none
+    }
+}
+
+public enum GradedStatusVariant: Hashable {
+    case custom(name: String)
+    case none
+
+    var name: String {
+        switch self {
+        case .custom(let name):
+            name
+        case .none:
+            String(localized: "Graded", bundle: .core)
+        }
+    }
+
+    var icon: UIImage {
+        switch self {
+        case .custom: .flagLine
+        case .none: .completeSolid
+        }
+    }
+
+    var color: UIColor {
+        switch self {
+        case .custom: .textInfo
+        case .none: .textSuccess
+        }
     }
 }
 
@@ -462,7 +504,7 @@ public enum SubmissionStateDisplayProperties: Equatable {
     case usingStatus(SubmissionStatus)
     case onPaper
     case noSubmission
-    case graded
+    case graded(GradedStatusVariant)
 
     public var text: String {
         switch self {
@@ -472,8 +514,8 @@ public enum SubmissionStateDisplayProperties: Equatable {
             return String(localized: "On Paper", bundle: .core)
         case .noSubmission:
             return String(localized: "No Submission", bundle: .core)
-        case .graded:
-            return String(localized: "Graded", bundle: .core)
+        case .graded(let variant):
+            return variant.name
         }
     }
 
@@ -483,8 +525,8 @@ public enum SubmissionStateDisplayProperties: Equatable {
             return status.color
         case .onPaper, .noSubmission:
             return .textDark
-        case .graded:
-            return .textSuccess
+        case .graded(let variant):
+            return variant.color
         }
     }
 
@@ -494,19 +536,24 @@ public enum SubmissionStateDisplayProperties: Equatable {
             return status.icon
         case .onPaper, .noSubmission:
             return .noSolid
-        case .graded:
-            return .completeSolid
+        case .graded(let variant):
+            return variant.icon
         }
     }
 }
 
-public enum SubmissionStatus {
+public enum SubmissionStatus: Hashable {
     case late
     case missing
     case submitted
     case notSubmitted
-    case graded
+    case graded(GradedStatusVariant)
     case excused
+
+    public var isGraded: Bool {
+        if case .graded = self { return true }
+        return false
+    }
 
     public var text: String {
         switch self {
@@ -520,8 +567,8 @@ public enum SubmissionStatus {
             return String(localized: "Not Submitted", bundle: .core)
         case .excused:
             return String(localized: "Excused", bundle: .core)
-        case .graded:
-            return String(localized: "Graded", bundle: .core)
+        case .graded(let variant):
+            return variant.name
         }
     }
 
@@ -537,8 +584,8 @@ public enum SubmissionStatus {
             return .textDark
         case .excused:
             return .textWarning
-        case .graded:
-            return .textSuccess
+        case .graded(let variant):
+            return variant.color
         }
     }
 
@@ -550,8 +597,10 @@ public enum SubmissionStatus {
             return .clockSolid
         case .missing, .notSubmitted:
             return .noSolid
-        case .excused, .graded:
+        case .excused:
             return .completeSolid
+        case .graded(let variant):
+            return variant.icon
         }
     }
 }

@@ -39,8 +39,18 @@ struct ContextCardSubmissionRow: View {
                         .font(.semibold16).foregroundColor(.textDarkest)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
-                    Text(submission.status.text)
-                        .font(.regular14).foregroundColor(Color(submission.status.color))
+
+                    HStack(spacing: 2) {
+
+                        Image(uiImage: submission.stateDisplayProperties.icon)
+                            .scaledIcon(size: 16)
+                            .foregroundColor(Color(submission.stateDisplayProperties.color))
+
+                        Text(submission.stateDisplayProperties.text)
+                            .font(.regular14)
+                            .foregroundColor(Color(submission.stateDisplayProperties.color))
+                    }
+
                     if submission.needsGrading {
                         needsGradingCapsule()
                     } else if submission.workflowState == .graded, submission.score != nil {

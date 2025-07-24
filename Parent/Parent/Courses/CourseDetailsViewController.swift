@@ -37,6 +37,8 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         case grades, syllabus, summary
     }
 
+    lazy var customStatuses = env.subscribe(GetCustomGradeStatuses(courseID: courseID))
+
     lazy var student = env.subscribe(GetSearchRecipients(context: .course(courseID), userID: studentID)) { [weak self] in
         self?.messagingReady()
     }
@@ -77,6 +79,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: String(localized: "Back", bundle: .parent), style: .plain, target: nil, action: nil)
 
         delegate = self
+        customStatuses.refresh()
         courses.refresh(force: true)
         frontPages.refresh(force: true)
         tabs.refresh(force: true)

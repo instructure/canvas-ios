@@ -69,7 +69,7 @@ class SubmissionListItemTests: TeacherTestCase {
         XCTAssertEqual(item.userAsRecipient?.ids.first, "u23244")
         XCTAssertEqual(item.userAsRecipient?.displayName, "Smith")
         XCTAssertEqual(item.userAsRecipient?.avatarURL, URL(string: "https://example.com/avatar"))
-        XCTAssertEqual(item.status, .graded)
+        XCTAssertEqual(item.status, .graded(.none))
         XCTAssertEqual(item.needsGrading, false)
         XCTAssertEqual(item.gradeFormatted, expectedGrade)
     }
