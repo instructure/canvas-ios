@@ -23,23 +23,38 @@ final public class CDHSubmission: NSManagedObject {
     @NSManaged public var assignmentID: String
     @NSManaged public var hasUnreadComment: Bool
     @NSManaged public var comments: Set<CDHSubmissionComment>
-
+    @NSManaged public var attempt: NSNumber
+    @NSManaged public var pageID: String?
+    @NSManaged public var pageInfo: CDHSubmissionCommentPageInfo
     @discardableResult
     public static func save(
         _ apiEntity: GetHSubmissionCommentsResponse,
         assignmentID: String,
+        attempt: Int,
+        pageID: String?,
         in context: NSManagedObjectContext
     ) -> CDHSubmission {
 
-        let dbEntity: CDHSubmission = context.first(
-            where: #keyPath(CDHSubmission.id),
-            equals: apiEntity.data?.submission?.id
-        ) ?? context.insert()
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "%K == %@", #keyPath(CDHSubmission.id), apiEntity.data?.submission?.id ?? ""),
+            NSPredicate(format: "%K == %@", #keyPath(CDHSubmission.attempt), attempt as NSNumber),
+            NSPredicate(format: "%K == %@", #keyPath(CDHSubmission.pageID), pageID ?? "0")
+        ])
 
+        let dbEntity: CDHSubmission = context.fetch(predicate).first ?? context.insert()
         let submission = apiEntity.data?.submission
-
+        let pageInfo = submission?.commentsConnection?.pageInfo
         dbEntity.id = submission?.id ?? ""
+        dbEntity.pageInfo = CDHSubmissionCommentPageInfo.save(
+            pageInfo,
+            id: submission?.id ?? "",
+            attempt: attempt,
+            pageID: pageID,
+            in: context
+        )
+        dbEntity.pageID = pageID ?? ""
         dbEntity.assignmentID = assignmentID
+        dbEntity.attempt = attempt as NSNumber
         dbEntity.hasUnreadComment = (submission?.unreadCommentCount ?? 0) > 0
 
         if let commentsConnection = submission?.commentsConnection?.edges {
@@ -50,8 +65,6 @@ final public class CDHSubmission: NSManagedObject {
         } else {
             dbEntity.comments = []
         }
-
         return dbEntity
     }
-
 }

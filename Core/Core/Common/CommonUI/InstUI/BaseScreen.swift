@@ -40,6 +40,7 @@ public extension InstUI {
         public let scrollBounce: ScrollBounceBehavior
         public let errorPandaConfig: InteractivePanda.Config
         public let emptyPandaConfig: InteractivePanda.Config
+        public let loaderBackgroundColor: Color
 
         /**
          - parameters:
@@ -52,8 +53,10 @@ public extension InstUI {
             showsScrollIndicators: Bool = true,
             scrollAxes: Axis.Set = .vertical,
             scrollBounce: ScrollBounceBehavior = .automatic,
-            errorPandaConfig: InteractivePanda.Config = .error(),
-            emptyPandaConfig: InteractivePanda.Config = .empty()
+            errorPandaConfig: InteractivePanda.Config = AppEnvironment.shared.app == .horizon ? .horizonError() : .error(),
+            emptyPandaConfig: InteractivePanda.Config = AppEnvironment.shared.app == .horizon ? .horizonEmpty() : .empty(),
+            loaderBackgroundColor: Color = .backgroundLightest
+
         ) {
             self.refreshable = refreshable
             self.showsScrollIndicators = showsScrollIndicators
@@ -61,6 +64,7 @@ public extension InstUI {
             self.scrollBounce = scrollBounce
             self.errorPandaConfig = errorPandaConfig
             self.emptyPandaConfig = emptyPandaConfig
+            self.loaderBackgroundColor = loaderBackgroundColor
         }
     }
 
@@ -120,7 +124,7 @@ public extension InstUI {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(showOverlay
                     ? Color.backgroundGrouped.opacity(0.5)
-                    : Color.backgroundLightest
+                    : config.loaderBackgroundColor
                 )
         }
 
@@ -165,8 +169,8 @@ public extension InstUI {
                     .frame(width: geometry.size.width, height: geometry.size.height)
                 }
             }
+            .background(AppEnvironment.shared.app == .horizon ? Color.clear : Color.backgroundLightest)
             .scrollBounceBehavior(config.scrollBounce)
-            .background(Color.backgroundLightest)
         }
     }
 }

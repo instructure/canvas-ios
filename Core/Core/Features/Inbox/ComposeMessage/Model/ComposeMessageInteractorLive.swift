@@ -40,7 +40,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     private let alreadyUploadedFiles = CurrentValueSubject<[File], Never>([])
     private lazy var fileStore = uploadManager.subscribe(batchID: batchId, eventHandler: {})
 
-    init(
+    public init(
         env: AppEnvironment = .shared,
         batchId: String,
         uploadFolderPath: String? = nil,
@@ -62,15 +62,17 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
         setupAttachmentListBinding()
     }
 
-    public func addFile(url: URL) {
+    public func addFile(url: URL) -> File? {
         do {
-            try uploadManager.add(url: url, batchID: batchId)
+            let file = try uploadManager.add(url: url, batchID: batchId)
             fileStore.refresh()
             uploadFiles()
+            return file
         } catch {
             // On any error, the file object will contaion the error message.
             // Use retry() function to retry.
         }
+        return nil
     }
 
     public func addFile(file: File) {
@@ -127,7 +129,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
             subject: parameters.subject,
             body: parameters.body,
             recipientIDs: parameters.recipientIDs,
-            canvasContextID: parameters.context.canvasContextID,
+            canvasContextID: parameters.context?.canvasContextID,
             attachmentIDs: parameters.attachmentIDs,
             bulkMessage: parameters.bulkMessage
         )

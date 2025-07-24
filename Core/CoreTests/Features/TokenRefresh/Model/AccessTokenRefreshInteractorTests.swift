@@ -55,7 +55,7 @@ class AccessTokenRefreshInteractorTests: CoreTestCase {
             ),
             real_user: .init(id: "new_real_id", name: "new_real_name"),
             expires_in: 0,
-            canvas_region: "dub"
+            canvas_region: "us-east-1"
         )
         api.mock(request, value: response)
         let expectedToken = loginSession.refresh(
