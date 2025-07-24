@@ -71,6 +71,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     public private(set) var pending: Bool = false
     public private(set) var requested: Bool = false
     public private(set) var error: Error?
+    public private(set) var isToBeUpdated: Bool = false
 
     #if DEBUG
     public var isDebugLoggingEnabled = false
@@ -314,16 +315,25 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
                 callback?(nil)
             }
         } else {
-            useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in
-                self?.willChange()
-                self?.error = error
-                self?.pending = false
-                if let urlResponse = urlResponse {
-                    self?.next = self?.useCase.getNext(from: urlResponse)
-                }
-                self?.notify()
-                self?.publishState()
-                performUIUpdate {
+            isToBeUpdated = true
+            useCase.fetch(environment: env, force: force) { response, urlResponse, err in
+                performUIUpdate { [weak self] in
+                    guard let self else { return }
+
+                    willChange()
+                    error = err
+                    pending = false
+
+                    if let urlResponse {
+                        self.next = self.useCase.getNext(from: urlResponse)
+                    }
+
+                    if err != nil, !isToBeUpdated {
+                        isToBeUpdated = false
+                    }
+
+                    notify()
+                    publishState()
                     callback?(response)
                 }
             }
@@ -382,6 +392,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
 
     @objc
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        isToBeUpdated = false
         notify()
         allObjectsSubject.send(all)
         publishState()

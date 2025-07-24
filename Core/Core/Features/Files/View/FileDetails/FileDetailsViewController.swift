@@ -185,7 +185,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         files.refresh(force: true)
     }
 
-    func update() {
+    private func update() {
         if offlineFileInteractor?.isOffline == true {
             return handleOfflineFileLoad()
         }
@@ -206,7 +206,10 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
                 } else {
                     showError(error)
                 }
-            } else if files.requested, !files.pending, localURL == nil {
+            } else if files.requested,
+                      !files.pending,
+                      !files.isToBeUpdated,
+                      localURL == nil {
                 // File was deleted, go back.
                 env.router.dismiss(self)
             }
