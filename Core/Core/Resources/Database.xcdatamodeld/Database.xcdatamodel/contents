@@ -196,7 +196,7 @@
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
-        </entity>
+    </entity>
     <entity name="CDCustomGradebookColumn" representedClassName="Core.CDCustomGradebookColumn" syncable="YES">
         <attribute name="courseId" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
