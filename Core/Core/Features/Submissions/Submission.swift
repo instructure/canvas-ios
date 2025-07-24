@@ -164,7 +164,7 @@ extension Submission: WriteableModel {
         model.customGradeStatusId = item.custom_grade_status_id
 
         if let customStatusId = item.custom_grade_status_id,
-           let customStatus: CustomGradeStatus = client.first(where: #keyPath(CustomGradeStatus.id), equals: customStatusId) {
+           let customStatus: CDCustomGradeStatus = client.first(where: #keyPath(CDCustomGradeStatus.id), equals: customStatusId) {
             model.customGradeStatusName = customStatus.name
         }
 

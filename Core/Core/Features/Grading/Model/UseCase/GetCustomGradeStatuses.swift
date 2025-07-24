@@ -20,7 +20,7 @@ import CoreData
 import Foundation
 
 public struct GetCustomGradeStatuses: CollectionUseCase {
-    public typealias Model = CustomGradeStatus
+    public typealias Model = CDCustomGradeStatus
 
     public let courseID: String
 
@@ -37,14 +37,14 @@ public struct GetCustomGradeStatuses: CollectionUseCase {
     }
 
     public var scope: Scope {
-        .where(#keyPath(CustomGradeStatus.courseID), equals: courseID)
+        .where(#keyPath(CDCustomGradeStatus.courseID), equals: courseID)
     }
 
     public func write(response: GetCustomGradeStatusesRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response else { return }
 
         response.data.course.customGradeStatusesConnection.nodes.forEach { customStatus in
-            CustomGradeStatus.save(customStatus, courseID: courseID, in: client)
+            CDCustomGradeStatus.save(customStatus, courseID: courseID, in: client)
         }
     }
 }

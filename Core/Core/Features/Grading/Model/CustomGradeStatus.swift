@@ -19,15 +19,15 @@
 import CoreData
 import UIKit
 
-public class CustomGradeStatus: NSManagedObject {
+public class CDCustomGradeStatus: NSManagedObject {
 
     @NSManaged public var id: String
     @NSManaged public var name: String
     @NSManaged public var courseID: String
 
     @discardableResult
-    static public func save(_ item: APICustomGradeStatus, courseID: String, in client: NSManagedObjectContext) -> CustomGradeStatus {
-        let model: CustomGradeStatus = client.first(where: #keyPath(CustomGradeStatus.id), equals: item.id) ?? client.insert()
+    static public func save(_ item: APICustomGradeStatus, courseID: String, in client: NSManagedObjectContext) -> CDCustomGradeStatus {
+        let model: CDCustomGradeStatus = client.first(where: #keyPath(CDCustomGradeStatus.id), equals: item.id) ?? client.insert()
         model.id = item.id
         model.name = item.name
         model.courseID = courseID

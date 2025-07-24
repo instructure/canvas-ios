@@ -192,6 +192,11 @@
         <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="tabID" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="CDCustomGradeStatus" representedClassName="Core.CDCustomGradeStatus" syncable="YES">
+        <attribute name="courseID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+    </entity>
     <entity name="CDEnvironmentSettings" representedClassName="Core.CDEnvironmentSettings" syncable="YES">
         <attribute name="calendarContextsLimitRaw" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="disableInboxSignatureBlockForStudents" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -502,11 +507,6 @@
         <attribute name="isUnpublished" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="tabs" toMany="YES" deletionRule="Nullify" destinationEntity="Tab" inverseName="course" inverseEntity="Tab"/>
-    </entity>
-    <entity name="CustomGradeStatus" representedClassName="Core.CustomGradeStatus" syncable="YES">
-        <attribute name="courseID" optional="YES" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="name" attributeType="String"/>
     </entity>
     <entity name="DashboardCard" representedClassName="Core.DashboardCard" syncable="YES">
         <attribute name="courseCode" attributeType="String"/>

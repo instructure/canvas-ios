@@ -41,7 +41,7 @@ class GetCustomGradeStatusesTests: CoreTestCase {
         let courseID = "23443"
         GetCustomGradeStatuses(courseID: courseID).write(response: apiResponse, urlResponse: nil, to: databaseClient)
 
-        let customStatuses: [CustomGradeStatus] = databaseClient.fetch(scope: .all(orderBy: "id"))
+        let customStatuses: [CDCustomGradeStatus] = databaseClient.fetch(scope: .all(orderBy: "id"))
         XCTAssertEqual(customStatuses.count, 3)
 
         XCTAssertEqual(customStatuses[0].id, "22")
@@ -82,7 +82,7 @@ class GetCustomGradeStatusesTests: CoreTestCase {
         GetCustomGradeStatuses(courseID: "23443")
             .write(response: apiResponse, urlResponse: nil, to: databaseClient)
 
-        let customStatuses: [CustomGradeStatus] = databaseClient.fetch()
+        let customStatuses: [CDCustomGradeStatus] = databaseClient.fetch()
         XCTAssertEqual(customStatuses.count, 1)
 
         XCTAssertEqual(customStatuses[0].id, "33")
@@ -94,7 +94,7 @@ class GetCustomGradeStatusesTests: CoreTestCase {
     }
 
     func testSubmissionFetch() throws {
-        let customStatus = CustomGradeStatus(context: databaseClient)
+        let customStatus = CDCustomGradeStatus(context: databaseClient)
         customStatus.id = "44"
         customStatus.name = "Very good"
 
