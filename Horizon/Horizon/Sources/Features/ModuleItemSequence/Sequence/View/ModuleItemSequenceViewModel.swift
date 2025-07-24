@@ -32,7 +32,7 @@ final class ModuleItemSequenceViewModel {
     private(set) var isNextButtonEnabled: Bool = false
     private(set) var isPreviousButtonEnabled: Bool = false
     private(set) var isLoaderVisible: Bool = false
-    private(set) var errorMessage = ""
+    private(set) var errorMessage: String?
     private(set) var courseName = ""
     private(set) var moduleItem: HModuleItem?
     private(set) var assignmentAttemptCount: String?
@@ -73,7 +73,7 @@ final class ModuleItemSequenceViewModel {
     var hasUnreadComments: Bool = false
 
     // MARK: - Dependencies
-
+    private var error: String?
     private let moduleItemInteractor: ModuleItemSequenceInteractor
     private let moduleItemStateInteractor: ModuleItemStateInteractor
     private let router: Router
@@ -179,6 +179,11 @@ final class ModuleItemSequenceViewModel {
         )
         .sink { [weak self] result in
             self?.isLoaderVisible = false
+            if result.0?.current == nil {
+                self?.errorMessage = String(localized: "Sorry, we were unable to find this item.", bundle: .horizon)
+                self?.isShowErrorAlert = true
+                return
+            }
             self?.assetType = .moduleItem
             let firstSequence = result.0
             self?.sequence = firstSequence
