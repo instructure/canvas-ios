@@ -21,6 +21,7 @@ import Combine
 import CoreData
 import SwiftUI
 import WidgetKit
+import WebKit
 
 public protocol AppEnvironmentDelegate {
     var environment: AppEnvironment { get }
@@ -52,6 +53,8 @@ open class AppEnvironment {
     public var lastLoginAccount: APIAccountResult?
     public let k5 = K5State()
     public weak var loginDelegate: LoginDelegate?
+    public var userDidLogin: (() -> Void)?
+
     public weak var window: UIWindow?
     open var isTest: Bool { false }
     private var subscriptions = Set<AnyCancellable>()
@@ -89,13 +92,15 @@ open class AppEnvironment {
         refreshWidgets()
         saveAccount(for: session)
 
-        Just(())
-            .receive(on: RunLoop.main)
-            .flatMap { CoreWebView.deleteAllCookies() }
-            .sink {
-                CoreWebView.refreshKeepAliveCookies()
-            }
-            .store(in: &subscriptions)
+        if AppEnvironment.shared.app != .horizon {
+            Just(())
+                .receive(on: RunLoop.main)
+                .flatMap { CoreWebView.deleteAllCookies() }
+                .sink {
+                    CoreWebView.refreshKeepAliveCookies()
+                }
+                .store(in: &subscriptions)
+        }
     }
 
     public func userDidLogout(session: LoginSession) {
@@ -109,6 +114,12 @@ open class AppEnvironment {
         router.courseTabUrlInteractor?.cancelTabSubscription()
         refreshWidgets()
         deleteUserData(session: session)
+        if AppEnvironment.shared.app == .horizon {
+            // doing cleanup of webviews so that logged in user data is not available
+            WKWebsiteDataStore.default().removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(),
+                                                    modifiedSince: Date(timeIntervalSince1970: 0),
+                                                    completionHandler: {})
+        }
     }
 
     public func widgetUserDidLogout() {
@@ -184,6 +195,22 @@ open class AppEnvironment {
         guard let lastLoginAccount = lastLoginAccount, session.baseURL.host == lastLoginAccount.domain else { return }
         let data = try? APIJSONEncoder().encode(lastLoginAccount)
         UserDefaults.standard.set(data, forKey: "lastLoginAccount")
+    }
+
+    public func tabBar(isVisible: Bool) {
+        let currentTabBar = (window?.rootViewController as? UITabBarController)
+        if #available(iOS 18, *) {
+            currentTabBar?.setTabBarHidden(!isVisible, animated: false)
+        } else {
+            currentTabBar?.tabBar.isHidden = !isVisible
+        }
+    }
+
+    public func navigationBar(isVisible: Bool) {
+        let currentTabBar = (window?.rootViewController as? UITabBarController)
+        if let currentNavigation = currentTabBar?.selectedViewController as? UINavigationController {
+            currentNavigation.setNavigationBarHidden(!isVisible, animated: false)
+        }
     }
 
     public var apiHost: String? {

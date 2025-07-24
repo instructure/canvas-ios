@@ -27,20 +27,20 @@ struct GradeState: Equatable {
         isGraded: false,
         isExcused: false,
         isGradedButNotPosted: false,
-        finalGradeText: "",
-        gradeText: "",
+        originalGradeText: "",
         pointsDeductedText: "",
         gradeAlertText: "",
-        score: 0
+        score: 0,
+        pointsPossibleText: "",
+        gradingType: .points,
+        originalScoreWithoutMetric: nil,
+        finalGradeWithoutMetric: nil
     )
 
     let hasLateDeduction: Bool
     let isGraded: Bool
     let isExcused: Bool
     let isGradedButNotPosted: Bool
-
-    /// The final grade after late deduction is applied.
-    let finalGradeText: String
 
     /// Late deduction is applied to this resulting in the final grade.
     let originalGradeText: String
@@ -55,25 +55,9 @@ struct GradeState: Equatable {
     /// Uses entered score if available, otherwise falls back to calculated score.
     let score: Double
 
-    init(
-        hasLateDeduction: Bool,
-        isGraded: Bool,
-        isExcused: Bool,
-        isGradedButNotPosted: Bool,
-        finalGradeText: String,
-        gradeText: String,
-        pointsDeductedText: String,
-        gradeAlertText: String,
-        score: Double
-    ) {
-        self.hasLateDeduction = hasLateDeduction
-        self.isGraded = isGraded
-        self.isExcused = isExcused
-        self.isGradedButNotPosted = isGradedButNotPosted
-        self.finalGradeText = finalGradeText
-        self.originalGradeText = gradeText
-        self.pointsDeductedText = pointsDeductedText
-        self.gradeAlertText = gradeAlertText
-        self.score = score
-    }
+    let pointsPossibleText: String
+    let gradingType: GradingType
+
+    let originalScoreWithoutMetric: String?
+    let finalGradeWithoutMetric: String?
 }
