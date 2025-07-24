@@ -17,8 +17,29 @@
 //
 
 import Core
+import UIKit
 
 struct PageDetailsAssembly {
+    static func makeView(
+        courseID: String,
+        assetID: String,
+        assetType: GetModuleItemSequenceRequest.AssetType
+    ) -> UIViewController {
+        CoreHostingController(
+            PageDetailsView(
+                viewModel: PageDetailsViewModel(
+                    courseID: courseID,
+                    assetID: assetID,
+                    assetType: assetType,
+                    moduleItemSequenceInteractor: ModuleItemSequenceInteractorLive(
+                        courseID: courseID,
+                        getCoursesInteractor: GetCoursesInteractorLive()
+                    )
+                )
+            )
+        )
+    }
+
     static func makeView(context: Core.Context,
                          pageURL: String,
                          isCompletedItem: Bool,
@@ -31,13 +52,15 @@ struct PageDetailsAssembly {
             getCoursesInteractor: GetCoursesInteractorLive()
         )
         let viewModel = PageDetailsViewModel(
-            moduleItemInteractor: interactor,
             context: context,
             pageURL: pageURL,
-            isCompletedItem: isCompletedItem,
-            moduleID: moduleID,
             itemID: itemID,
-            isMarkedAsDoneButtonVisible: isMarkedAsDoneButtonVisible
+            markAsDoneViewModel: .init(
+                moduleID: moduleID,
+                itemID: itemID,
+                isCompleted: isCompletedItem,
+                moduleItemSequenceInteractor: interactor
+            )
         )
         return PageDetailsView(viewModel: viewModel)
     }

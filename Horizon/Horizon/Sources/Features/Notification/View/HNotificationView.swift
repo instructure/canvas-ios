@@ -43,20 +43,16 @@ struct HNotificationView: View {
         VStack(spacing: .zero) {
             contentView
 
-            if viewModel.isFooterVisible {
-                Divider()
-                    .hidden(viewModel.notifications.isEmpty)
-                footerView
-                    .padding(.top, .huiSpaces.space16)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.huiColors.surface.pageSecondary)
-            }
+            Divider()
+                .hidden(viewModel.notifications.isEmpty)
+                .hidden(!viewModel.isFooterVisible)
+            footerView
+                .padding(.top, .huiSpaces.space16)
+                .frame(maxWidth: .infinity)
+                .background(Color.huiColors.surface.pageSecondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(viewModel.isFooterVisible
-                    ? Color.huiColors.surface.pagePrimary
-                    : Color.huiColors.surface.pageSecondary
-        )
+        .background(Color.huiColors.surface.pagePrimary)
         .overlay { loaderView }
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         .onWillDisappear { onShowNavigationBarAndTabBar(true) }
@@ -132,21 +128,18 @@ struct HNotificationView: View {
     }
 
     private var navigationBar: some View {
-        ZStack(alignment: .leading) {
+        TitleBar(
+            onBack: { _ in dismiss() },
+            onClose: nil
+        ) {
             Text("Notifications", bundle: .horizon)
                 .frame(maxWidth: .infinity)
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
-
-            Button {
-                dismiss()
-            } label: {
-                Image.huiIcons.arrowBack
-            }
-            .foregroundStyle(Color.huiColors.icon.default)
-            .frame(width: 44, height: 44)
         }
+        .padding(.bottom, .huiSpaces.space16)
         .padding(.horizontal, .huiSpaces.space16)
+        .background(Color.huiColors.surface.pagePrimary)
     }
 
     @ViewBuilder
@@ -162,16 +155,17 @@ struct HNotificationView: View {
 
     private var footerView: some View {
         HStack(spacing: .huiSpaces.space8) {
-            HorizonUI.IconButton(Image.huiIcons.chevronLeft, type: .black) {
-                viewModel.goPrevious()
-            }
-            .disabled(!viewModel.isPreviousButtonEnabled)
+            if viewModel.isFooterVisible {
+                HorizonUI.IconButton(Image.huiIcons.chevronLeft, type: .black) {
+                    viewModel.goPrevious()
+                }
+                .disabled(!viewModel.isPreviousButtonEnabled)
 
-            HorizonUI.IconButton(Image.huiIcons.chevronRight, type: .black) {
-                viewModel.goNext()
+                HorizonUI.IconButton(Image.huiIcons.chevronRight, type: .black) {
+                    viewModel.goNext()
+                }
+                .disabled(!viewModel.isNextButtonEnabled)
             }
-            .disabled(!viewModel.isNextButtonEnabled)
-
         }
         .hidden(viewModel.notifications.isEmpty)
         .padding(.top, .huiSpaces.space10)

@@ -73,7 +73,7 @@
     "Alaska (-09:00/-08:00)" : {
 
     },
-    "All messages" : {
+    "All Messages" : {
 
     },
     "Almaty (+05:00/+05:00)" : {
@@ -85,7 +85,7 @@
     "Amsterdam (+01:00/+02:00)" : {
 
     },
-    "An error has occurred" : {
+    "An error occurred while marking as done." : {
 
     },
     "Announcement" : {
@@ -256,10 +256,10 @@
     "Choose and complete one of the required items." : {
 
     },
-    "Choose file" : {
+    "Choose File" : {
 
     },
-    "Choose photo or video" : {
+    "Choose Photo or Video" : {
 
     },
     "Comments" : {
@@ -274,7 +274,7 @@
     "Completed" : {
 
     },
-    "Confirm submission" : {
+    "Confirm Submission" : {
 
     },
     "Confirmation" : {
@@ -296,6 +296,9 @@
 
     },
     "Create message" : {
+
+    },
+    "Create Message" : {
 
     },
     "Cuiaba (-04:00/-04:00)" : {
@@ -379,7 +382,7 @@
     "Excused" : {
 
     },
-    "External tool" : {
+    "External Tool" : {
 
     },
     "Feedback: " : {
@@ -466,6 +469,15 @@
     "How can I help you with this page?" : {
 
     },
+    "I don't have a summary for this content." : {
+
+    },
+    "I don't have any additional information for you." : {
+
+    },
+    "I'm not able to rephrase this content" : {
+
+    },
     "Important" : {
 
     },
@@ -491,6 +503,9 @@
 
     },
     "Istanbul (+03:00/+03:00)" : {
+
+    },
+    "It doesn't look like you have any courses available. Enroll in a course to get started." : {
 
     },
     "Jakarta (+07:00)" : {
@@ -568,7 +583,7 @@
     "Manaus (-04:00/-04:00)" : {
 
     },
-    "Mark as done" : {
+    "Mark as Done" : {
 
     },
     "Marshall Is. (+12:00/+12:00)" : {
@@ -655,16 +670,10 @@
     "No" : {
 
     },
-    "No additional information found." : {
-
-    },
     "No key takeaways found." : {
 
     },
     "No notification activity yet." : {
-
-    },
-    "No summary found." : {
 
     },
     "Norfolk Island (+11:00/+12:00)" : {
@@ -843,10 +852,10 @@
     "Scoring Weight Changed" : {
 
     },
-    "Select a course" : {
+    "Select a aubmission type" : {
 
     },
-    "Select a submission type" : {
+    "Select a course" : {
 
     },
     "Send" : {
@@ -879,13 +888,19 @@
     "Something went wrong" : {
 
     },
+    "Sorry, we were unable to find this item." : {
+
+    },
+    "Sort By" : {
+
+    },
     "Sorry, can we try that again? Which course is it you'd like to discuss?" : {
 
     },
     "Sorry, I don't have an answer for that right now." : {
 
     },
-    "Sorry, we were unable to find this item." : {
+    "Sorry, we were not able to display this page right now." : {
 
     },
     "Sort by" : {
@@ -912,7 +927,7 @@
     "Submit assignment" : {
 
     },
-    "Submit attempt" : {
+    "Submit Attempt" : {
 
     },
     "Submitted" : {
@@ -927,7 +942,7 @@
     "Taipei (+08:00)" : {
 
     },
-    "Take photo or video" : {
+    "Take Photo or Video" : {
 
     },
     "Tallinn (+02:00/+03:00)" : {
@@ -960,6 +975,9 @@
     "This assignment allows multiple attempts. Once you've made a submission, you can view it here." : {
 
     },
+    "This content is locked and cannot be accessed at this time." : {
+
+    },
     "This is where all your notes, taken directly within your learning objects, are stored and organized. It's your personal hub for keeping track of key insights, important excerpts, and reflections as you learn. Dive in to review or expand on your notes anytime!" : {
 
     },
@@ -972,7 +990,7 @@
     "Time Zone" : {
 
     },
-    "Title/subject" : {
+    "Title/Subject" : {
 
     },
     "Tokelau Is. (+13:00/+13:00)" : {
@@ -1023,7 +1041,7 @@
     "Vienna (+01:00/+02:00)" : {
 
     },
-    "View submission" : {
+    "View Submission" : {
 
     },
     "View your progress and scores on the Learn page." : {
@@ -1098,7 +1116,7 @@
     "Your text submission" : {
 
     },
-    "Your uploaded submission" : {
+    "Your Uploaded Submission" : {
 
     },
     "Zagreb (+01:00/+02:00)" : {

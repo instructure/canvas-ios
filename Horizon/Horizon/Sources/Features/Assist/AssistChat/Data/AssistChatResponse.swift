@@ -18,23 +18,18 @@
 
 /// A response from the interactor
 struct AssistChatResponse {
-
-    // MARK: - Required
-
+    // MARK: - Properties
     let chatHistory: [AssistChatMessage]
-
-    // MARK: - Optional
-
     let isLoading: Bool
 
-    /// Publishing an updated chat history. This happens when chatting with the bot
+    // MARK: - Init
     init(
-        _ message: AssistChatMessage,
+        _ message: AssistChatMessage? = nil,
         chatHistory: [AssistChatMessage] = [],
         isLoading: Bool = false,
         isFreeTextAvailable: Bool = true
     ) {
-        self.chatHistory = chatHistory + [message]
+        self.chatHistory = chatHistory + (message.map { [$0] } ?? [])
         self.isLoading = isLoading
     }
 }

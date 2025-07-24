@@ -26,24 +26,37 @@ struct AssistChatMessageView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
             messageContent
-                .frame(maxWidth: .infinity, alignment: message.alignment)
-                .onTapGesture {
-                    message.onTap?()
-                }
-            WrappingHStack(
-                models: message.chipOptions,
-                horizontalSpacing: .zero
-            ) { quickResponse in
-                HorizonUI.Pill(title: quickResponse.chip, style: .outline(.light))
-                    .onTapGesture {
-                        message.onTapChipOption?(quickResponse)
-                    }
-                    .padding(.vertical, .huiSpaces.space4)
-                    .padding(.trailing, .huiSpaces.space4)
-            }
-            .padding(.vertical, .huiSpaces.space8)
-            .frame(maxWidth: .infinity, alignment: .leading)
+            citations
             feedback
+            suggestedResponses
+        }
+    }
+
+    @ViewBuilder
+    private var citations: some View {
+        if message.citations.isNotEmpty {
+            WrappingHStack(
+                models: message.citations,
+                horizontalSpacing: .zero
+            ) { (citation: AssistChatMessage.Citation) in
+                Text(citation.title)
+                    .huiTypography(.labelSmall)
+                    .baselineOffset(2)
+                    .foregroundColor(.huiColors.text.surfaceColored)
+                    .underline()
+                    .padding(.leading, citation != message.citations.first ? .huiSpaces.space4 : .zero)
+                    .padding(.trailing, .huiSpaces.space4)
+                    .overlay(
+                        Rectangle()
+                            .fill(HorizonUI.colors.text.surfaceColored)
+                            .frame(width: citation == message.citations.last ? 0 : 1),
+                        alignment: .trailing
+                    )
+                    .onTapGesture {
+                        message.onTapCitation?(citation)
+                    }
+            }
+            .padding(.top, .huiSpaces.space8)
         }
     }
 
@@ -58,7 +71,10 @@ struct AssistChatMessageView: View {
         VStack(alignment: .center) {
             if message.isLoading {
                 HStack(alignment: .center) {
-                    HorizonUI.Spinner(size: .xSmall, foregroundColor: .huiColors.surface.cardPrimary)
+                    HorizonUI.Spinner(
+                        size: .xSmall,
+                        foregroundColor: .huiColors.surface.cardPrimary
+                    )
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, .huiSpaces.space8)
@@ -71,6 +87,29 @@ struct AssistChatMessageView: View {
                     .cornerRadius(message.cornerRadius)
             }
         }
+        .frame(maxWidth: .infinity, alignment: message.alignment)
+        .onTapGesture {
+            message.onTap?()
+        }
+    }
+
+    @ViewBuilder
+    private var suggestedResponses: some View {
+        if message.chipOptions.isNotEmpty {
+            WrappingHStack(
+                models: message.chipOptions,
+                horizontalSpacing: .zero
+            ) { quickResponse in
+                HorizonUI.Pill(title: quickResponse.chip, style: .outline(.light))
+                    .onTapGesture {
+                        message.onTapChipOption?(quickResponse)
+                    }
+                    .padding(.vertical, .huiSpaces.space4)
+                    .padding(.trailing, .huiSpaces.space4)
+            }
+            .padding(.top, .huiSpaces.space24)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
     }
 }
 
@@ -78,25 +117,22 @@ struct AssistChatMessageView: View {
 #Preview {
     VStack {
         AssistChatMessageView(message: .init(content: "Hi Horizon App", style: .semitransparent))
-        AssistChatMessageView(
-            message: .init(
-                content: "Hi Horizon App",
-                style: .white,
-                onFeedbackChange: { _ in
-
-                }
-            )
-        )
         AssistChatMessageView(message: .init())
         AssistChatMessageView(message: .init(
-            content: "You are a duck",
+            content: "AI response Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             style: .transparent,
             chipOptions: [
                 AssistChipOption(chip: "Quick Response 1"),
                 AssistChipOption(chip: "Quick Response 2"),
                 AssistChipOption(chip: "Quick Response 3"),
                 AssistChipOption(chip: "Quick Response 4")
-            ]
+            ],
+            citations: [
+                .init(title: "Citation 1", courseID: "", sourceID: "", sourceType: .attachment),
+                .init(title: "Citation 2", courseID: "", sourceID: "", sourceType: .wiki_page),
+                .init(title: "Citation 3", courseID: "", sourceID: "", sourceType: .unknown)
+            ],
+            onFeedbackChange: { _ in }
         ))
     }
     .frame(maxHeight: .infinity)

@@ -22,6 +22,7 @@ import Combine
 import Core
 
 class DownloadFileInteractorPreview: DownloadFileInteractor {
+
     func download(file: Core.File) -> AnyPublisher<URL, any Error> {
         Just(URL(string: "https://github.com/instructure/canvas-ios")!)
             .setFailureType(to: Error.self)
