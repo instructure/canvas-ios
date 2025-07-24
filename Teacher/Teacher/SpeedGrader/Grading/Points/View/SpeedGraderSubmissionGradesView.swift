@@ -296,7 +296,7 @@ struct SpeedGraderSubmissionGradesView: View {
             } else if assignment.gradingType == .percent {
                 let percentValue = round(value / max(assignment.pointsPossible ?? 0, 0.01) * 100)
                 gradeViewModel.setPercentGrade(percentValue)
-            } else if assignment.gradingType == .points {
+            } else { // slider uses points in all other cases where visible (points, gpa, letterGrade)
                 gradeViewModel.setPointsGrade(value)
             }
         }
