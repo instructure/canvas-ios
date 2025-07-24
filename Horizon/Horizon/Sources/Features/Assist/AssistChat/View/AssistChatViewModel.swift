@@ -60,7 +60,7 @@ final class AssistChatViewModel {
     private let courseId: String?
     private let pageUrl: String?
     private let fileId: String?
-    private weak var viewController: WeakViewController?
+    weak var viewController: WeakViewController?
     private var hasAssistChipOptions: Bool = false
 
     // MARK: - Init
@@ -96,7 +96,7 @@ final class AssistChatViewModel {
                     guard let self else { return }
                     switch result {
                     case .success(let message):
-                        onMessage(message, viewController: viewController)
+                        onMessage(message)
                     case .failure:
                         self.onFailure()
                     }
@@ -125,10 +125,6 @@ final class AssistChatViewModel {
 
     func dismiss(controller: WeakViewController) {
         router.dismiss(controller)
-    }
-
-    func setViewController(_ viewController: WeakViewController) {
-        self.viewController = viewController
     }
 
     func send() {
@@ -162,7 +158,7 @@ final class AssistChatViewModel {
     }
 
     /// handle the response from the interactor
-    private func onMessage(_ response: AssistChatResponse, viewController: WeakViewController?) {
+    private func onMessage(_ response: AssistChatResponse) {
         guard let viewController else { return }
         weak var weakSelf = self
         self.chatMessages = response.chatHistory
@@ -176,10 +172,10 @@ final class AssistChatViewModel {
 
             return message.viewModel(
                 response: response,
-                onFeedbackChange: onFeedbackChange
-            ) { quickResponse in
-                weakSelf?.send(chipOption: quickResponse)
-            }
+                onFeedbackChange: onFeedbackChange,
+                onTapChipOption: onTapChipOption,
+                onTapCitation: onTapCitation
+            )
         }
 
         add(newMessages: newMessages)
@@ -232,6 +228,22 @@ final class AssistChatViewModel {
         Analytics.shared.logEvent("learning-assist-chat\(responseType)-response")
     }
 
+    private func onTapChipOption(_ quickResponse: AssistChipOption) {
+        send(chipOption: quickResponse)
+    }
+
+    private func onTapCitation(citation: AssistChatMessage.Citation) {
+        guard let viewController = viewController,
+              let courseID = citation.courseID,
+              let sourceID = citation.sourceID,
+              let assetType = citation.sourceType?.assetType?.rawValue else { return }
+
+        router.route(
+            to: "/courses/\(courseID)/modules/items/\(sourceID)/\(assetType)",
+            from: viewController
+        )
+    }
+
     /// remove any messages that are not in the new list of messages returned from the interactor
     private func remove(notAppearingIn newMessages: [AssistChatMessageViewModel]) {
         messages.removeAll { message in
@@ -282,16 +294,32 @@ private extension AssistChatMessage {
     func viewModel(
         response: AssistChatResponse,
         onFeedbackChange: AssistChatMessageViewModel.OnFeedbackChange? = nil,
-        onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil
+        onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil,
+        onTapCitation: AssistChatMessageViewModel.OnTapCitation? = nil
     ) -> AssistChatMessageViewModel {
-        let chipOptions = self.id == response.chatHistory.last?.id ? (response.chatHistory.last?.chipOptions ?? []) : []
+        let chipOptions = id == response.chatHistory.last?.id ? (response.chatHistory.last?.chipOptions ?? []) : []
         return .init(
-            id: "\(self.id)\(chipOptions.count)\(onFeedbackChange != nil ? "feedback" : ""))",
-            content: self.text ?? "",
-            style: self.role == .Assistant ? .transparent : .white,
+            id: "\(id)\(chipOptions.count)\(onFeedbackChange != nil ? "feedback" : ""))",
+            content: text ?? "",
+            style: role == .Assistant ? .transparent : .white,
             chipOptions: chipOptions,
+            citations: citations,
             onFeedbackChange: onFeedbackChange,
-            onTapChipOption: onTapChipOption
+            onTapChipOption: onTapChipOption,
+            onTapCitation: onTapCitation
         )
+    }
+}
+
+private extension AssistChatMessage.SourceType {
+    var assetType: GetModuleItemSequenceRequest.AssetType? {
+        switch self {
+        case .attachment:
+            return .file
+        case .wiki_page:
+            return .page
+        default:
+            return nil
+        }
     }
 }

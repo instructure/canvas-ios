@@ -28,6 +28,7 @@ class AssistCourseItemGoal: AssistGoal {
         case TellMeMore = "Tell me more"
         case FlashCards = "Flash Cards"
         case Quiz = "Quiz Questions"
+        case Rephrase = "Rephrase Content"
     }
 
     // MARK: - Properties
@@ -55,6 +56,10 @@ class AssistCourseItemGoal: AssistGoal {
         options.map(\.rawValue)
     }
 
+    private var goalOptions: [AssistGoalOption] {
+        options.map { AssistGoalOption(name: $0.rawValue) }
+    }
+
     // MARK: - Initializers
     init(
         initialPrompt: String,
@@ -79,7 +84,7 @@ class AssistCourseItemGoal: AssistGoal {
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
         }
-        return choose(from: chipOptions, with: response, using: cedar)
+        return choose(from: goalOptions, with: response, using: cedar)
             .flatMap { [weak self] chip in
                 let nilResponse = Just<AssistChatMessage?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
 
@@ -94,16 +99,18 @@ class AssistCourseItemGoal: AssistGoal {
                 }
 
                 switch option {
+                case .FlashCards:
+                    return self.flashcards()
                 case .KeyTakeaways:
                     return self.keyTakeaways()
+                case .Quiz:
+                    return self.quiz()
+                case .Rephrase:
+                    return self.rephrase()
                 case .Summarize:
                     return self.summarizeContent()
                 case .TellMeMore:
                     return self.tellMeMore()
-                case .Quiz:
-                    return self.quiz()
-                case .FlashCards:
-                    return self.flashcards()
                 }
             }
             .eraseToAnyPublisher()
@@ -113,33 +120,21 @@ class AssistCourseItemGoal: AssistGoal {
         false
     }
 
-    /// Summarizes the content of the document
-    func summarizeContent() -> AnyPublisher<AssistChatMessage?, Error> {
-        document.flatMap { [weak self] document in
-            guard let self = self,
-                  let document = document else {
-                return Just<AssistChatMessage?>(nil)
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            }
-            return self.cedarAnswerPrompt(
-                prompt: .summarizeContent,
-                document: document
-            )
-            .map { response in
-                AssistChatMessage(
-                    botResponse: response ?? String(localized: "No summary found.", bundle: .horizon)
-                )
-            }
-            .eraseToAnyPublisher()
-        }
-        .eraseToAnyPublisher()
-    }
-
+    // Quiz is not available for a document at the moment
+    // And for a page, there's a separate cedar endpoint for generating the quiz
+    // This method is overridden in the course page goal
     func quiz() -> AnyPublisher<AssistChatMessage?, Error> {
         Just(nil)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
+    }
+
+    /// Summarizes the content of the document
+    func summarizeContent() -> AnyPublisher<AssistChatMessage?, Error> {
+        cedarAnswerPrompt(
+            forOption: .Summarize,
+            errorResponse: String(localized: "I don't have a summary for this content.", bundle: .horizon)
+        )
     }
 
     // MARK: - Private Functions
@@ -184,6 +179,30 @@ class AssistCourseItemGoal: AssistGoal {
             .eraseToAnyPublisher()
     }
 
+    /// Given a Goal Option, makes a request to the cedar endpoint for answering a question
+    private func cedarAnswerPrompt(
+        forOption goalOption: AssistCourseItemGoal.Option,
+        errorResponse: String
+    ) -> AnyPublisher<AssistChatMessage?, Error> {
+        document.flatMap { [weak self] document in
+            guard let self = self,
+                  let document = document else {
+                return Just<AssistChatMessage?>(nil)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            return self.cedarAnswerPrompt(
+                prompt: goalOption.prompt,
+                document: document
+            )
+            .map { (response: String?) in
+                .init(botResponse: response ?? errorResponse)
+            }
+            .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
+    }
+
     /// Makes a request to the cedar endpoint using the given prompt and returns an answer
     /// https://github.com/instructure-internal/cedar/blob/main/docs/index.md#conversation
     private func cedarConversation(
@@ -216,7 +235,7 @@ class AssistCourseItemGoal: AssistGoal {
                     .eraseToAnyPublisher()
             }
             return self.cedarAnswerPrompt(
-                prompt: .flashCards,
+                prompt: Option.FlashCards.prompt,
                 document: document
             )
                 .map { (response: String?) in
@@ -231,46 +250,26 @@ class AssistCourseItemGoal: AssistGoal {
 
     /// Returns the key takeaways of the document
     private func keyTakeaways() -> AnyPublisher<AssistChatMessage?, Error> {
-        document.flatMap { [weak self] document in
-            guard let self = self,
-                  let document = document else {
-                return Just<AssistChatMessage?>(nil)
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            }
-            return self.cedarAnswerPrompt(
-                prompt: .keyTakeaways,
-                document: document
-            )
-            .map { (response: String?) in
-                .init(botResponse: response ?? String(localized: "No key takeaways found.", bundle: .horizon))
-            }
-            .eraseToAnyPublisher()
-        }
-        .eraseToAnyPublisher()
+        cedarAnswerPrompt(
+            forOption: .KeyTakeaways,
+            errorResponse: String(localized: "No key takeaways found.", bundle: .horizon)
+        )
+    }
+
+    /// Rephrases the content of the document
+    private func rephrase() -> AnyPublisher<AssistChatMessage?, Error> {
+        cedarAnswerPrompt(
+            forOption: .Rephrase,
+            errorResponse: String(localized: "I'm not able to rephrase this content", bundle: .horizon)
+        )
     }
 
     /// Returns more information about the document
     private func tellMeMore() -> AnyPublisher<AssistChatMessage?, Error> {
-        document.flatMap { [weak self] document in
-            guard let self = self,
-                  let document = document else {
-                return Just<AssistChatMessage?>(nil)
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            }
-            return self.cedarAnswerPrompt(
-                prompt: .tellMeMore,
-                document: document
-            )
-                .map { (response: String?) in
-                    AssistChatMessage(
-                        botResponse: response ?? String(localized: "No additional information found.", bundle: .horizon)
-                    )
-                }
-                .eraseToAnyPublisher()
-        }
-        .eraseToAnyPublisher()
+        cedarAnswerPrompt(
+            forOption: .TellMeMore,
+            errorResponse: String(localized: "I don't have any additional information for you.", bundle: .horizon)
+        )
     }
 }
 
@@ -282,8 +281,19 @@ extension String {
 }
 
 // swiftlint:disable line_length
-extension String {
-    static var flashCards: String {
+extension AssistCourseItemGoal.Option {
+    var prompt: String {
+        let prompts: [AssistCourseItemGoal.Option: String] = [
+            .Summarize: summarizeContent,
+            .KeyTakeaways: keyTakeaways,
+            .TellMeMore: tellMeMore,
+            .FlashCards: flashCards,
+            .Quiz: "",
+            .Rephrase: rephraseContent
+        ]
+        return prompts[self] ?? ""
+    }
+    private var flashCards: String {
         """
             generate exactly 20 questions and answers based on the provided content for the front and back of flashcards, respectively. If the content contains only an iframe dont try to generate an answer. Flashcards are best suited for definitions and terminology, key concepts and theories, language learning, historical events and dates, and other content that might benefit from active recall and repetition. Prioritize this type of content within the flashcards.
                         Return the flashcards as a valid JSON array in the following format:
@@ -296,17 +306,22 @@ extension String {
             without any further description or text. Please keep the questions and answers concise (under 35 words). Each question and answer will be shown on a flashcard, so no need to repeat the question in the answer. Make sure the JSON is valid.
         """
     }
-    static var keyTakeaways: String {
+    private var keyTakeaways: String {
         "You are a teaching assistant creating key takeaways for a student. Give me 3 key takeaways based on the included document contents. Ignore any HTML. Return the result in paragraph form. Each key takeaway is a single sentence bulletpoint. You should not refer to the format of the content, but rather the content itself."
     }
-    static var summarizeContent: String {
+    private var summarizeContent: String {
         """
             You are a teaching assistant summarizing content. Give me a summary based on the included document contents. Ignore any HTML. Return the result in paragraph form.
         """
     }
-    static var tellMeMore: String {
+    private var tellMeMore: String {
         """
             You are a teaching assistant providing more information about the content. Give me more details based on the included document contents. Ignore any HTML. Return the result in paragraph form.
+        """
+    }
+    private var rephraseContent: String {
+        """
+            You are a teaching assistant rephrasing content. Rephrase the provided content in a more concise and clear manner. Ignore any HTML. Return the result in paragraph form.
         """
     }
 }

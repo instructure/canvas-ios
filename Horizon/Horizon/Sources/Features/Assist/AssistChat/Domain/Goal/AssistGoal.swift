@@ -20,6 +20,16 @@ import Combine
 import Core
 import Foundation
 
+struct AssistGoalOption: Codable, Hashable {
+    let name: String
+    let description: String
+
+    init(name: String, description: String? = nil) {
+        self.name = name
+        self.description = description ?? name
+    }
+}
+
 /// The purpose of the AssistGoal is to provide a base class for goals that can be executed within the Assist chat system.
 /// The "Goal"s are used to define specific tasks or objectives that the Assist system can help the user achieve.
 protocol AssistGoal {
@@ -30,22 +40,28 @@ protocol AssistGoal {
     func isRequested() -> Bool
 
     func choose(
-        from options: [String],
+        from options: [AssistGoalOption],
         with userResponse: String,
         using cedar: DomainService
     ) -> AnyPublisher<String?, any Error>
 }
 
 extension AssistGoal {
+
     func choose(
-        from options: [String],
+        from options: [AssistGoalOption],
         with userResponse: String,
         using cedar: DomainService
     ) -> AnyPublisher<String?, any Error> {
-        cedar.api().flatMap { cedarAPI in
+        guard let prompt: String = .optionSelection(from: options) else {
+            return Just<String?>(nil)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        return cedar.api().flatMap { cedarAPI in
             cedarAPI.makeRequest(
                 CedarConversationMutation(
-                    systemPrompt: .optionSelection(from: options),
+                    systemPrompt: prompt,
                     messages: [
                         .init(text: userResponse, role: .User)
                     ]
@@ -62,8 +78,12 @@ extension AssistGoal {
 
 extension String {
     // swiftlint:disable line_length
-    static func optionSelection(from options: [String]) -> String {
-        "The user has been asked to select from a list of options. Here is that list of options comma separated: \(options.joined(separator: ", ")). Given the users response, tell me which option they've selected. Their answer doesn't have to be exact, but it should be close. If it appears to match none of the options, return an empty string; just the empty string without any explanation. If you find a match, return only the option selected without any additional information."
+    static func optionSelection(from options: [AssistGoalOption]) -> String? {
+        guard let jsonData = try? JSONEncoder().encode(options),
+              let jsonString = String(data: jsonData, encoding: .utf8) else {
+            return nil
+        }
+        return "The user has been asked to select from a list of options. Given the users response, tell me the name of which option they've selected based off of the description of the option. If it appears to match none of the options, return an empty string; just the empty string without any other explanation. If you find a match, return only the name of the option selected without any additional information. Here are the names and descriptions of the options as JSON:\n\n\(jsonString)"
     }
     // swiftlint:enable line_length
 }

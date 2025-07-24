@@ -80,12 +80,15 @@ final class AssistChatInteractorLive: AssistChatInteractor {
             break
         }
 
+        // if the user has said something, we publish it as a message
+        // otherwise, we just publish that we're loading
+        var response: AssistChatResponse = .init(chatHistory: history, isLoading: true)
         if let prompt = prompt {
             let message: AssistChatMessage = .init(userResponse: prompt)
-            let response: AssistChatResponse = .init(message, chatHistory: history, isLoading: true)
-            responsePublisher.send(.success(response))
-            history = response.chatHistory
+            response = .init(message, chatHistory: history, isLoading: true)
         }
+        responsePublisher.send(.success(response))
+        history = response.chatHistory
 
         goalCancellable = executeNextGoal(prompt: prompt, history: history)?.sink(
             receiveCompletion: { [weak self] completion in
@@ -93,12 +96,12 @@ final class AssistChatInteractorLive: AssistChatInteractor {
                     self?.responsePublisher.send(.failure(error))
                 }
             },
-            receiveValue: { [weak self] assistChatResponse in
-                guard let assistChatResponse = assistChatResponse else {
+            receiveValue: { [weak self] assistChatMessage in
+                guard let assistChatMessage = assistChatMessage else {
                     self?.publish(action: .chat(prompt: nil, history: history))
                     return
                 }
-                let response: AssistChatResponse = .init(assistChatResponse, chatHistory: history)
+                let response: AssistChatResponse = .init(assistChatMessage, chatHistory: history)
                 self?.responsePublisher.send(.success(response))
             }
         )
@@ -136,7 +139,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         }
         goals += [
             AssistCoursePageGoal(environment: assistDataEnvironment),
-            AssistSelectCourseActionGoal(environment: assistDataEnvironment),
+            AssistCourseActionGoal(environment: assistDataEnvironment),
             AssistSelectCourseGoal(environment: assistDataEnvironment)
         ]
         return goals

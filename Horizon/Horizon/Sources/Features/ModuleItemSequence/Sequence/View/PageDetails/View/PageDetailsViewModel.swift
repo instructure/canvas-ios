@@ -24,65 +24,169 @@ import Core
 @Observable
 final class PageDetailsViewModel {
     // MARK: - Outputs
-
+    var bodyOpacity: Double {
+        loaderOpacity == 0.0 &&
+            lockedOpacity == 0.0 &&
+            fileOpacity == 0.0 ?
+                1.0 :
+                0.0
+    }
+    var isErrorPresented: Bool = false {
+        didSet {
+            if !isErrorPresented && errorMessage !=  nil {
+                errorMessage = nil
+            }
+        }
+    }
+    var fileOpacity: Double {
+        fileID == nil ? 0.0 : 1.0
+    }
+    var isHeaderVisible: Bool {
+        router != nil
+    }
+    var isMarkedAsDoneButtonVisible: Bool {
+        markAsDoneViewModel != nil
+    }
+    var loaderOpacity: Double {
+        (itemID == nil || pageURL == nil) &&
+            fileID == nil &&
+            lockedOpacity == 0.0 ? 1.0 : 0.0
+    }
+    var lockedOpacity: Double = 0.0
     private(set) var url: URL?
-    private(set) var content: String?
-    private(set) var isCompletedItem: Bool
-    private(set) var isMarkAsDoneLoaderVisible = false
-    private(set) var errorMessage = ""
-
-    // MARK: - Input / Output
-
-    var isShowErrorAlert = false
 
     // MARK: - Properties
-
+    private(set) var errorMessage: String? {
+        didSet {
+            if errorMessage != nil && isErrorPresented == false {
+                isErrorPresented = errorMessage != nil
+            }
+        }
+    }
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
-
-    private let moduleItemInteractor: ModuleItemSequenceInteractor
-    private let moduleID: String
     let context: Core.Context
-    let itemID: String
-    let pageURL: String
-    let isMarkedAsDoneButtonVisible: Bool
+    let courseID: String?
+    var fileID: String?
+    var itemID: String?
+    let markAsDoneViewModel: MarkAsDoneViewModel?
+    let moduleItemSequenceInteractor: ModuleItemSequenceInteractor?
+    var pageURL: String?
+    private var router: Router?
 
     // MARK: - Init
+    init(
+        courseID: String,
+        assetID: String,
+        assetType: GetModuleItemSequenceRequest.AssetType,
+        moduleItemSequenceInteractor: ModuleItemSequenceInteractor,
+        router: Router = AppEnvironment.shared.router
+    ) {
+        self.context = .init(.course, id: courseID)
+        self.courseID = courseID
+        self.markAsDoneViewModel = nil
+        self.moduleItemSequenceInteractor = moduleItemSequenceInteractor
+        self.router = router
+
+        moduleItemSequenceInteractor.fetchModuleItems(
+            assetType: assetType,
+            assetID: assetID,
+            moduleID: nil,
+            itemID: nil,
+            ignoreCache: false
+        )
+        .sink { [weak self] tuple in
+            guard let self = self,
+                  let moduleItem = tuple.1 else {
+                self?.errorMessage = String(
+                    localized: "Sorry, we were not able to display this page right now.",
+                    bundle: .horizon
+                )
+                return
+            }
+            lockedOpacity = moduleItem.isLocked ? 1.0 : 0.0
+            self.itemID = moduleItem.id
+
+            switch moduleItem.type {
+            case .page(let url):
+                self.pageURL = url
+            case .file(let fileID):
+                self.fileID = fileID
+            default:
+                break
+            }
+        }
+        .store(in: &subscriptions)
+    }
 
     init(
-        moduleItemInteractor: ModuleItemSequenceInteractor,
         context: Core.Context,
         pageURL: String,
-        isCompletedItem: Bool,
+        itemID: String,
+        markAsDoneViewModel: MarkAsDoneViewModel
+    ) {
+        self.context = context
+        self.pageURL = pageURL
+        self.itemID = itemID
+        self.markAsDoneViewModel = markAsDoneViewModel
+        self.moduleItemSequenceInteractor = nil
+        self.router = nil
+        self.courseID = nil
+        self.fileID = nil
+
+        markAsDoneViewModel.onError = { [weak self] errorMessage in
+            self?.errorMessage = errorMessage
+        }
+    }
+
+    func close(viewController: WeakViewController) {
+        router?.dismiss(viewController)
+    }
+}
+
+/// A view model specific to the ability to toggle a module item as done or not done.
+@Observable
+final class MarkAsDoneViewModel {
+    typealias OnError = ((String) -> Void)?
+
+    // MARK: - Properties
+    private var subscriptions = Set<AnyCancellable>()
+    var isLoading: Bool = false
+    var onError: OnError = nil
+
+    // MARK: - Dependencies
+    var isCompleted: Bool
+    let itemID: String
+    let moduleID: String
+    let moduleItemInteractor: ModuleItemSequenceInteractor
+
+    init(
         moduleID: String,
         itemID: String,
-        isMarkedAsDoneButtonVisible: Bool
+        isCompleted: Bool,
+        moduleItemSequenceInteractor: ModuleItemSequenceInteractor
     ) {
-        self.moduleItemInteractor = moduleItemInteractor
-        self.context = context
-        self.isCompletedItem = isCompletedItem
-        self.pageURL = pageURL
         self.moduleID = moduleID
         self.itemID = itemID
-        self.isMarkedAsDoneButtonVisible = isMarkedAsDoneButtonVisible
+        self.isCompleted = isCompleted
+        self.moduleItemInteractor = moduleItemSequenceInteractor
     }
 
     func markAsDone() {
-        isMarkAsDoneLoaderVisible = true
+        isLoading = true
         moduleItemInteractor.markAsDone(
-            completed: !isCompletedItem,
+            completed: !isCompleted,
             moduleID: moduleID,
             itemID: itemID
         )
         .sink { [weak self] completion in
             if case let .failure(error) = completion {
-                self?.errorMessage = error.localizedDescription
-                self?.isShowErrorAlert = true
+                self?.onError?(error.localizedDescription)
             }
-            self?.isMarkAsDoneLoaderVisible = false
+            self?.isLoading = false
         } receiveValue: { [weak self] _ in
-            self?.isCompletedItem.toggle()
+            self?.isCompleted.toggle()
         }
         .store(in: &subscriptions)
     }

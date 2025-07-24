@@ -40,12 +40,19 @@ struct AssistChatMessage {
 
     let quizItems: [QuizItem]?
 
-    init(botResponse: String, chipOptions: [AssistChipOption] = []) {
+    let citations: [Citation]
+
+    init(
+        botResponse: String,
+        chipOptions: [AssistChipOption] = [],
+        citations: [Citation] = []
+    ) {
         self.init(
             role: .Assistant,
             prompt: botResponse,
             text: botResponse,
-            chipOptions: chipOptions
+            chipOptions: chipOptions,
+            citations: citations
         )
     }
 
@@ -79,7 +86,8 @@ struct AssistChatMessage {
         text: String? = nil,
         chipOptions: [AssistChipOption] = [],
         flashCards: [AssistChatFlashCard] = [],
-        quizItems: [QuizItem]? = nil
+        quizItems: [QuizItem]? = nil,
+        citations: [Citation] = []
     ) {
         self.id = UUID()
         self.role = role
@@ -88,6 +96,7 @@ struct AssistChatMessage {
         self.chipOptions = chipOptions
         self.flashCards = flashCards
         self.quizItems = quizItems
+        self.citations = citations
     }
 
     enum Role: String, Codable, Equatable {
@@ -95,9 +104,22 @@ struct AssistChatMessage {
         case User
     }
 
+    enum SourceType: String, Codable {
+        case attachment
+        case unknown
+        case wiki_page
+    }
+
     struct QuizItem: Codable, Equatable {
         let question: String
         let answers: [String]
         let correctAnswerIndex: Int
+    }
+
+    struct Citation: Codable, Equatable, Hashable {
+        let title: String
+        let courseID: String?
+        let sourceID: String?
+        let sourceType: SourceType?
     }
 }

@@ -27,6 +27,7 @@ struct PageDetailsView: View {
 
     // MARK: - Dependencies
 
+    @Environment(\.viewController) private var viewController: WeakViewController
     @State private var viewModel: PageDetailsViewModel
 
     // MARK: - Init
@@ -36,27 +37,115 @@ struct PageDetailsView: View {
     }
 
     var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            PageViewRepresentable(
-                isScrollTopReached: $isShowHeader,
-                context: viewModel.context,
-                pageURL: viewModel.pageURL,
-                itemID: viewModel.itemID
-            )
-            if viewModel.isMarkedAsDoneButtonVisible {
-                MarkAsDoneButton(
-                    isCompleted: viewModel.isCompletedItem,
-                    isLoading: viewModel.isMarkAsDoneLoaderVisible
-                ) {
-                    viewModel.markAsDone()
-                }
-                .padding(.horizontal, .huiSpaces.space24)
-                .padding(.bottom, .huiSpaces.space16)
+        VStack(spacing: .zero) {
+            header
+            ZStack(alignment: .top) {
+                spinner
+                locked
+                page
+                file
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
-        .alert(isPresented: $viewModel.isShowErrorAlert) {
-            Alert(title: Text(viewModel.errorMessage))
+        .frame(maxHeight: .infinity, alignment: .top)
+        .alert(isPresented: Binding(
+            get: { viewModel.isErrorPresented },
+            set: {
+                viewModel.isErrorPresented = $0
+                viewModel.close(viewController: viewController)
+            }
+        )) {
+            Alert(
+                title: Text(
+                    viewModel.errorMessage ??
+                    String(localized: "An error occurred while marking as done.")
+                )
+            )
+        }
+    }
+
+    @ViewBuilder
+    var file: some View {
+        if let courseID = viewModel.courseID,
+           let fileID = viewModel.fileID {
+            FileDetailsAssembly.makeView(
+                courseID: courseID,
+                fileID: fileID,
+                context: viewModel.context,
+                fileName: ""
+            )
+            .id(fileID)
+        }
+    }
+
+    @ViewBuilder
+    var locked: some View {
+        ModuleItemLockedView(
+            title: String(localized: "Locked Content", bundle: .horizon),
+            lockExplanation: String(localized: "This content is locked and cannot be accessed at this time.", bundle: .horizon)
+        )
+        .opacity(viewModel.lockedOpacity)
+        .animation(.easeInOut, value: viewModel.lockedOpacity)
+    }
+
+    @ViewBuilder
+    var page: some View {
+        if let pageURL = viewModel.pageURL,
+           let itemID = viewModel.itemID {
+            ZStack(alignment: .bottomTrailing) {
+                PageViewRepresentable(
+                    isScrollTopReached: $isShowHeader,
+                    context: viewModel.context,
+                    pageURL: pageURL,
+                    itemID: itemID
+                )
+                if let model = viewModel.markAsDoneViewModel {
+                    MarkAsDoneButton(
+                        isCompleted: model.isCompleted,
+                        isLoading: model.isLoading
+                    ) {
+                        model.markAsDone()
+                    }
+                    .padding(.horizontal, .huiSpaces.space24)
+                    .padding(.bottom, .huiSpaces.space16)
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
+            .opacity(viewModel.bodyOpacity)
+            .animation(.easeInOut, value: viewModel.bodyOpacity)
+        }
+    }
+
+    @ViewBuilder
+    var spinner: some View {
+        HorizonUI.Spinner(size: .xSmall)
+            .padding(.top, .huiSpaces.space24)
+            .opacity(viewModel.loaderOpacity)
+            .animation(.easeInOut, value: viewModel.loaderOpacity)
+    }
+
+    @ViewBuilder
+    var header: some View {
+        if viewModel.isHeaderVisible {
+            VStack(alignment: .trailing, spacing: .zero) {
+                HorizonUI.IconButton(
+                    .huiIcons.close,
+                    type: .white,
+                    isSmall: true
+                ) {
+                    viewModel.close(viewController: viewController)
+                }
+            }
+            .padding(.horizontal, .huiSpaces.space16)
+            .padding(.vertical, .huiSpaces.space8)
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .overlay(
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(Color.huiColors.surface.divider),
+                alignment: .bottom
+            )
         }
     }
 }

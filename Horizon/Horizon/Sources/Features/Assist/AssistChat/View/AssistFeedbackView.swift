@@ -25,6 +25,7 @@ struct AssistFeedbackView: View {
     @State private var selected: Bool?
     @State private var thumbsOpacity: Double = 1.0
     @State private var thanksOpacity: Double = 0.0
+    @State private var viewHeight: CGFloat = 0 // Dynamically measured height
 
     init(onChange: @escaping AssistChatMessageViewModel.OnFeedbackChange) {
         self.onChange = onChange
@@ -45,6 +46,7 @@ struct AssistFeedbackView: View {
             }
             .opacity(thumbsOpacity)
             .animation(.easeInOut(duration: 0.2), value: thumbsOpacity)
+            .padding(.top, .huiSpaces.space8)
 
             Text(String(localized: "Thank you for your feedback!", bundle: .horizon))
                 .huiTypography(.p1)
@@ -52,45 +54,43 @@ struct AssistFeedbackView: View {
                 .opacity(thanksOpacity)
                 .animation(.easeInOut(duration: 0.2), value: thanksOpacity)
         }
+        .background(
+            GeometryReader { proxy in
+                Color.clear
+                    .onAppear {
+                        viewHeight = proxy.size.height
+                    }
+            }
+        )
+        .frame(height: viewHeight)
+        .animation(.easeInOut(duration: 0.2), value: viewHeight)
     }
 
     private var thumbUpIcon: some View {
         ZStack {
-            HorizonUI.IconButton(
-                .huiIcons.thumbUp,
-                type: .whiteOutline
-            ) {
-                onTap(true)
-            }
+            HorizonUI.icons.thumbUp
+                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
+                .onTapGesture { onTap(true) }
 
-            HorizonUI.IconButton(
-                .huiIcons.thumbUpFilled,
-                type: .whiteOutline
-            ) {
-                onTap(true)
-            }
-            .opacity(thumbsUpOpacity)
-            .animation(.easeInOut(duration: 0.2), value: thumbsUpOpacity)
+            HorizonUI.icons.thumbUp
+                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
+                .onTapGesture { onTap(true) }
+                .opacity(thumbsUpOpacity)
+                .animation(.easeInOut(duration: 0.2), value: thumbsUpOpacity)
         }
     }
 
     private var thumbDownIcon: some View {
         ZStack {
-            HorizonUI.IconButton(
-                .huiIcons.thumbDown,
-                type: .whiteOutline
-            ) {
-                onTap(false)
-            }
+            HorizonUI.icons.thumbDown
+                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
+                .onTapGesture { onTap(false) }
 
-            HorizonUI.IconButton(
-                .huiIcons.thumbDownFilled,
-                type: .whiteOutline
-            ) {
-                onTap(false)
-            }
-            .opacity(thumbsDownOpacity)
-            .animation(.easeInOut(duration: 0.2), value: thumbsDownOpacity)
+            HorizonUI.icons.thumbDown
+                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
+                .onTapGesture { onTap(false) }
+                .opacity(thumbsUpOpacity)
+                .animation(.easeInOut(duration: 0.2), value: thumbsUpOpacity)
         }
     }
 
@@ -102,19 +102,7 @@ struct AssistFeedbackView: View {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             thanksOpacity = 0.0
+            viewHeight = 0
         }
     }
-}
-
-#Preview {
-    @Previewable @State var selected: Bool?
-
-    VStack(spacing: HorizonUI.spaces.space16) {
-        AssistFeedbackView {
-            selected = $0
-        }
-    }
-    .frame(maxWidth: .infinity)
-    .frame(maxHeight: .infinity)
-    .background(HorizonUI.colors.surface.igniteAIPrimaryGradient)
 }

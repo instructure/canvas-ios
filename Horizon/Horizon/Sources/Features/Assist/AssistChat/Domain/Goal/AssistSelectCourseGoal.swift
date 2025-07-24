@@ -40,11 +40,46 @@ class AssistSelectCourseGoal: AssistGoal {
     }
 
     func execute(response: String? = nil, history: [AssistChatMessage] = []) -> AnyPublisher<AssistChatMessage?, any Error> {
-        guard let response = response, response.isNotEmpty else {
-            return initialPrompt(history: history)
-        }
+        return courses.flatMap { [weak self] courseOptions in
+            guard let self = self else {
+                return Just<AssistChatMessage?>(nil)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
 
-        return selectCourseFrom(response: response, history: history)
+            // When not enrolled in any courses
+            if courseOptions.isEmpty {
+                return Just<AssistChatMessage?>(
+                        .init(
+                            botResponse: String(
+                                localized: "It doesn't look like you have any courses available. Enroll in a course to get started.",
+                                bundle: .horizon
+                            )
+                        )
+                    )
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher(
+                )
+            }
+
+            // When enrolled in only 1 course
+            if let courseID = courseOptions.first?.courseID,
+               courseOptions.count == 1 {
+                self.environment.courseID.accept(courseID)
+                return Just<AssistChatMessage?>(nil)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+
+            // Ask the user to select a course if multiple courses are available
+            guard let response = response, response.isNotEmpty else {
+                return initialPrompt(history: history)
+            }
+
+            // Select the course from the users response
+            return selectCourseFrom(response: response, history: history)
+        }
+        .eraseToAnyPublisher()
     }
 
     private func selectCourseFrom(response: String, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
@@ -55,7 +90,11 @@ class AssistSelectCourseGoal: AssistGoal {
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
-            let courseNames = courseOptions.compactMap { $0.course.name }
+
+            let courseNames = courseOptions.compactMap {
+                $0.course.name.map { AssistGoalOption(name: $0) }
+            }
+
             return weakSelf.choose(from: courseNames, with: response, using: weakSelf.cedar)
                 .map { courseSelected in
                     if  let courseSelected = courseSelected,
