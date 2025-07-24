@@ -22,7 +22,10 @@ import SwiftUI
 
 struct SpeedGraderPickerCell: View {
 
-    @StateObject var viewModel: SpeedGraderPickerViewModel
+    @StateObject var viewModel: SingleSelectionViewModel
+
+    @State private var isSavingSubject = CurrentValueSubject<Bool, Never>(false)
+    @State private var isSaving: Bool = false
 
     private let title: String
     private let placeholder: String?
@@ -33,19 +36,20 @@ struct SpeedGraderPickerCell: View {
         placeholder: String?,
         identifierGroup: String? = nil,
         allOptions: [OptionItem],
-        selectedOption: CurrentValueSubject<OptionItem?, Never>,
+        selectOption: CurrentValueSubject<OptionItem?, Never>,
         didSelectOption: PassthroughSubject<OptionItem?, Never>,
         isSaving: CurrentValueSubject<Bool, Never>
     ) {
         self.title = title
         self.placeholder = placeholder
         self.identifierGroup = identifierGroup
+        self.isSavingSubject = isSaving
 
         self._viewModel = StateObject(wrappedValue: .init(
+            title: nil,
             allOptions: allOptions,
-            selectedOption: selectedOption,
-            didSelectOption: didSelectOption,
-            isSaving: isSaving
+            selectedOption: selectOption,
+            didSelectOption: didSelectOption
         ))
     }
 
@@ -60,24 +64,27 @@ struct SpeedGraderPickerCell: View {
             ZStack(alignment: .trailing) {
                 ProgressView()
                     .tint(nil)
-                    .opacity(viewModel.isSaving ? 1 : 0)
+                    .opacity(isSaving ? 1 : 0)
                 picker
-                    .opacity(viewModel.isSaving ? 0 : 1)
+                    .opacity(isSaving ? 0 : 1)
             }
-            .animation(.none, value: viewModel.isSaving)
+            .animation(.none, value: isSaving)
         }
         .paddingStyle(set: .standardCell)
         .background(Color.backgroundLightest)
         .accessibilityElement(children: .combine)
         // PickerMenu already has "Pop up button" trait.
         .accessibilityRemoveTraits(.isButton)
+        .onReceive(isSavingSubject) {
+            isSaving = $0
+        }
     }
 
     private var picker: some View {
         InstUI.PickerMenu(
             selectedOption: Binding(
                 get: { viewModel.selectedOption },
-                set: { viewModel.didSelectOption.send($0) }
+                set: { viewModel.didSelectOption?.send($0) }
             ),
             allOptions: viewModel.allOptions,
             identifierGroup: identifierGroup,

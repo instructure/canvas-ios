@@ -35,7 +35,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     let state: InstUI.ScreenState
 
     // Grading inputs
-    @Published private(set) var gradeState: GradeState = .empty
+    @Published private(set) var gradeState: GradeState
     @Published private(set) var gradeInputType: GradeInputType?
     @Published private(set) var isSaving: Bool = false {
         didSet { isSavingGrade.send(isSaving) }
@@ -43,10 +43,11 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     let isSavingGrade = CurrentValueSubject<Bool, Never>(false)
     let shouldShowPointsInput: Bool
     let shouldShowSlider: Bool
+    let shouldShowSelector: Bool
     @Published var sliderValue: Double = 0
     @Published var isNoGradeButtonDisabled: Bool = false
-    let selectedGradePickerOption = CurrentValueSubject<OptionItem?, Never>(nil)
-    let didSelectGradePickerOption = PassthroughSubject<OptionItem?, Never>()
+    let selectGradeOption = CurrentValueSubject<OptionItem?, Never>(nil)
+    let didSelectGradeOption = PassthroughSubject<OptionItem?, Never>()
 
     // Grade summary
     @Published private(set) var shouldShowGradeSummary: Bool = false
@@ -83,10 +84,16 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
         // In that case we display a relevant empty panda.
         self.state = assignment.moderatedGrading ? .empty : .data
 
+        self.gradeState = GradeStateInteractorLive.gradeState(usingOnly: assignment)
+
         self.shouldShowPointsInput = [.gpa_scale, .letter_grade].contains(assignment.gradingType)
 
         self.shouldShowSlider = !assignment.useRubricForGrading
-            && [.points, .percent].contains(assignment.gradingType)
+            && [.points, .percent, .gpa_scale, .letter_grade].contains(assignment.gradingType)
+
+        self.shouldShowSelector = [.pass_fail].contains(assignment.gradingType)
+
+        updateGradeState(gradeState)
 
         updateGradeOnGradePickerSelection()
         observeGradeStateChanges()
@@ -102,6 +109,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
         saveGrade(excused: true)
     }
 
+    // TODO: remove
     func setGrade(_ grade: String) {
         saveGrade(grade: grade)
     }
@@ -115,6 +123,11 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
         saveGrade(grade: percentValue)
     }
 
+    func setGradeOption(_ item: OptionItem) {
+        saveGrade(grade: item.id)
+    }
+
+    // TODO: remove
     func setPassFailGrade(complete: Bool) {
         saveGrade(grade: complete ? "complete" : "incomplete")
     }
@@ -123,6 +136,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     private func observeGradeStateChanges() {
         gradeInteractor.gradeState
+            .removeDuplicates()
             .sink { [weak self] in
                 self?.updateGradeState($0)
             }
@@ -130,11 +144,12 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     }
 
     private func updateGradeOnGradePickerSelection() {
-        didSelectGradePickerOption
-            .removeDuplicates()
+        didSelectGradeOption
+            // Not removing duplicates, because it would swallow reselecting the last selected option
+            // if it was deselected in the meantime from elsewhere.
             .sink { [weak self] in
-                if let grade = $0?.id {
-                    self?.setGrade(grade)
+                if let gradeOption = $0 {
+                    self?.setGradeOption(gradeOption)
                 } else {
                     self?.removeGrade()
                 }
@@ -149,10 +164,9 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
         sliderValue = gradeState.score
         isNoGradeButtonDisabled = (!gradeState.isGraded && !gradeState.isExcused)
 
-        if gradeState.gradeInputType == .gradePicker {
-            let option = gradeState.gradingSchemeOptions
-                .option(with: gradeState.originalGradeWithoutMetric)
-            selectedGradePickerOption.send(option)
+        if gradeState.gradeOptions.isNotEmpty {
+            let selectedOption = gradeState.gradeOptions.option(with: gradeState.originalGrade)
+            selectGradeOption.send(selectedOption)
         }
 
         shouldShowGradeSummary = (!gradeState.isExcused && gradeState.gradingType != .not_graded)

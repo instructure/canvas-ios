@@ -27,7 +27,7 @@ struct GradeState: Equatable {
 
     let gradingType: GradingType
     let pointsPossibleText: String
-    let gradingSchemeOptions: [OptionItem]
+    let gradeOptions: [OptionItem]
 
     // MARK: - Status
 
@@ -41,6 +41,8 @@ struct GradeState: Equatable {
     /// The numerical score value for the submission.
     /// Uses entered score if available, otherwise falls back to calculated score.
     let score: Double
+
+    let originalGrade: String?
 
     let originalScoreWithoutMetric: String?
 
@@ -64,12 +66,13 @@ extension GradeState {
     static let empty = GradeState(
         gradingType: .points,
         pointsPossibleText: "",
-        gradingSchemeOptions: [],
+        gradeOptions: [],
         isGraded: false,
         isExcused: false,
         isGradedButNotPosted: false,
         hasLateDeduction: false,
         score: 0,
+        originalGrade: nil,
         originalScoreWithoutMetric: nil,
         originalGradeWithoutMetric: nil,
         finalGradeWithoutMetric: nil,
@@ -78,3 +81,45 @@ extension GradeState {
         gradeAlertText: ""
     )
 }
+
+#if DEBUG
+
+extension GradeState {
+    static func make(
+        gradingType: GradingType = .not_graded,
+        pointsPossibleText: String = "",
+        gradeOptions: [OptionItem] = [],
+        isGraded: Bool = false,
+        isExcused: Bool = false,
+        isGradedButNotPosted: Bool = false,
+        hasLateDeduction: Bool = false,
+        score: Double = 0,
+        originalGrade: String? = nil,
+        originalScoreWithoutMetric: String? = nil,
+        originalGradeWithoutMetric: String? = nil,
+        finalGradeWithoutMetric: String? = nil,
+        pointsDeductedText: String = "",
+        originalGradeText: String = "",
+        gradeAlertText: String = ""
+    ) -> GradeState {
+        .init(
+            gradingType: gradingType,
+            pointsPossibleText: pointsPossibleText,
+            gradeOptions: gradeOptions,
+            isGraded: isGraded,
+            isExcused: isExcused,
+            isGradedButNotPosted: isGradedButNotPosted,
+            hasLateDeduction: hasLateDeduction,
+            score: score,
+            originalGrade: originalGrade,
+            originalScoreWithoutMetric: originalScoreWithoutMetric,
+            originalGradeWithoutMetric: originalGradeWithoutMetric,
+            finalGradeWithoutMetric: finalGradeWithoutMetric,
+            pointsDeductedText: pointsDeductedText,
+            originalGradeText: originalGradeText,
+            gradeAlertText: gradeAlertText
+        )
+    }
+}
+
+#endif

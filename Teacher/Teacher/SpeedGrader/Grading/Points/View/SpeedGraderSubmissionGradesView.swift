@@ -93,6 +93,10 @@ struct SpeedGraderSubmissionGradesView: View {
                 slider
             }
 
+            if gradeViewModel.shouldShowSelector {
+                gradeInputSelector()
+            }
+
             noGradeAndExcuseButtons
 
             GradeStatusView(viewModel: gradeStatusViewModel)
@@ -131,10 +135,10 @@ struct SpeedGraderSubmissionGradesView: View {
             SpeedGraderPickerCell(
                 title: title,
                 placeholder: String(localized: "Select Grade", bundle: .core),
-                identifierGroup: "SpeedGrader.GradeInputMenuItem",
-                allOptions: gradeState.gradingSchemeOptions,
-                selectedOption: gradeViewModel.selectedGradePickerOption,
-                didSelectOption: gradeViewModel.didSelectGradePickerOption,
+                identifierGroup: "SpeedGrader.GradeInputPickerItem",
+                allOptions: gradeState.gradeOptions,
+                selectOption: gradeViewModel.selectGradeOption,
+                didSelectOption: gradeViewModel.didSelectGradeOption,
                 isSaving: gradeViewModel.isSavingGrade
             )
         case nil:
@@ -193,6 +197,21 @@ struct SpeedGraderSubmissionGradesView: View {
             }
         }
         .paddingStyle(set: .standardCell)
+    }
+
+    @ViewBuilder
+    private func gradeInputSelector() -> some View {
+        VStack(spacing: 0) {
+            InstUI.Divider()
+            SingleSelectionView(
+                title: nil,
+                identifierGroup: "SpeedGrader.GradeInputSelectorItem",
+                allOptions: gradeViewModel.gradeState.gradeOptions,
+                selectOption: gradeViewModel.selectGradeOption,
+                didSelectOption: gradeViewModel.didSelectGradeOption
+            )
+            .paddingStyle(.bottom, .standard)
+        }
     }
 
     private var noGradeAndExcuseButtons: some View {

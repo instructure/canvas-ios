@@ -37,22 +37,17 @@ class GradeStateInteractorLive: GradeStateInteractor {
         isRubricScoreAvailable: Bool,
         totalRubricScore: Double
     ) -> GradeState {
+        let gradingType = assignment.gradingType
+
         let isGraded = (submission.grade?.isEmpty == false)
         let hasLatePenaltyPoints = (submission.pointsDeducted ?? 0) > 0
         let isExcused = (submission.excused == true)
         let score = submission.enteredScore ?? submission.score ?? 0
-        let gradingType = assignment.gradingType
 
         return GradeState(
             gradingType: gradingType,
             pointsPossibleText: assignment.pointsPossibleText,
-            gradingSchemeOptions: assignment.gradingScheme?.entries.map {
-                OptionItem(
-                    id: $0.name,
-                    title: $0.name,
-                    subtitle: String($0.value)
-                )
-            } ?? [],
+            gradeOptions: Self.gradeOptions(for: gradingType, assignment: assignment),
 
             isGraded: isGraded,
             isExcused: isExcused,
@@ -60,6 +55,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
             hasLateDeduction: submission.late && isGraded && hasLatePenaltyPoints,
 
             score: score,
+            originalGrade: submission.enteredGrade,
             originalScoreWithoutMetric: GradeFormatter.originalScoreWithoutMetric(for: submission),
             originalGradeWithoutMetric: GradeFormatter.originalGradeWithoutMetric(for: submission, gradingType: gradingType),
             finalGradeWithoutMetric: GradeFormatter.finalGradeWithoutMetric(for: submission, gradingType: gradingType),
@@ -83,5 +79,50 @@ class GradeStateInteractorLive: GradeStateInteractor {
                 return submission.grade ?? ""
             }()
         )
+    }
+
+    /// Returns a placeholder GradeState which sets only the properties available from `assignment`.
+    static func gradeState(usingOnly assignment: Assignment) -> GradeState {
+        let gradingType = assignment.gradingType
+
+        return GradeState(
+            gradingType: gradingType,
+            pointsPossibleText: assignment.pointsPossibleText,
+            gradeOptions: gradeOptions(for: gradingType, assignment: assignment),
+
+            isGraded: false,
+            isExcused: false,
+            isGradedButNotPosted: false,
+            hasLateDeduction: false,
+            score: 0,
+            originalGrade: nil,
+            originalScoreWithoutMetric: nil,
+            originalGradeWithoutMetric: nil,
+            finalGradeWithoutMetric: nil,
+            pointsDeductedText: "",
+            originalGradeText: "",
+            gradeAlertText: ""
+        )
+    }
+
+    private static func gradeOptions(for gradingType: GradingType, assignment: Assignment) -> [OptionItem] {
+        switch gradingType {
+        case .gpa_scale, .letter_grade:
+            guard let entries = assignment.gradingScheme?.entries else { return [] }
+            return entries.map {
+                OptionItem(
+                    id: $0.name,
+                    title: $0.name,
+                    subtitle: String($0.value)
+                )
+            }
+        case .pass_fail:
+            return [
+                .init(id: "complete", title: String(localized: "Complete", bundle: .teacher)),
+                .init(id: "incomplete", title: String(localized: "Incomplete", bundle: .teacher))
+            ]
+        case .percent, .points, .not_graded:
+            return []
+        }
     }
 }
