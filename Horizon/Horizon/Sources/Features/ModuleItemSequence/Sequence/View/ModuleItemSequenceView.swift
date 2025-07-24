@@ -78,9 +78,11 @@ public struct ModuleItemSequenceView: View {
         .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
         .animation(isHeaderAnimationEnabled ? .linear : nil, value: isShowHeader)
         .alert(String(localized: "Error", bundle: .core), isPresented: $viewModel.isShowErrorAlert) {
-            Button(String(localized: "Ok", bundle: .core), role: .cancel) { }
+            Button(String(localized: "Ok", bundle: .core), role: .cancel) {
+                viewModel.pop(from: viewController)
+            }
         } message: {
-            Text(viewModel.errorMessage)
+            Text(viewModel.errorMessage ?? String(localized: "An error has occurred", bundle: .horizon))
         }
         .onWillDisappear { onShowNavigationBarAndTabBar(true) }
         .onWillAppear { onShowNavigationBarAndTabBar(false) }
@@ -139,7 +141,7 @@ public struct ModuleItemSequenceView: View {
                 moduleItemName: viewModel.moduleItem?.title ?? "",
                 duration: viewModel.estimatedTime,
                 countOfPoints: viewModel.moduleItem?.points?.trimmedString,
-                dueDate: viewModel.moduleItem?.dueAt?.formatted(format: "dd/MM"),
+                dueDate: viewModel.moduleItem?.dueAt?.formatted(format: "MM/dd, h:mm a"),
                 isOverdue: viewModel.moduleItem?.isOverDue ?? false,
                 attemptCount: viewModel.assignmentAttemptCount,
                 isMenuButtonVisible: viewModel.isNextButtonEnabled || viewModel.isPreviousButtonEnabled,
