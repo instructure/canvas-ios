@@ -35,7 +35,7 @@ enum AssignmentSubmissionType: String {
         switch self {
         case .text: String(localized: "Text", bundle: .horizon)
         case .fileUpload: String(localized: "File upload", bundle: .horizon)
-        case .externalTool: String(localized: "External Tool", bundle: .horizon)
+        case .externalTool: String(localized: "External tool", bundle: .horizon)
         }
     }
 

@@ -21,7 +21,7 @@ import Combine
 import Observation
 
 @Observable
-class HCreateMessageViewModel {
+final class HCreateMessageViewModel {
     // MARK: - Outputs
     var body: String = ""
     var cancelButtonOpacity: Double {

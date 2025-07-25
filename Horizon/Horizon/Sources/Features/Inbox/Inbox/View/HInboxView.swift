@@ -145,15 +145,17 @@ struct MessageRow: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            HStack(alignment: .top) {
-                Text(viewModel.dateString)
-                    .huiTypography(.p2)
-                    .padding(.bottom, .huiSpaces.space8)
+            if viewModel.isNew || !viewModel.dateString.isEmpty {
+                HStack(alignment: .top) {
+                    Text(viewModel.dateString)
+                        .huiTypography(.p2)
+                        .padding(.bottom, .huiSpaces.space8)
 
-                Spacer()
+                    Spacer()
 
-                if viewModel.isNew {
-                    newIndicatorBadge
+                    if viewModel.isNew {
+                        newIndicatorBadge
+                    }
                 }
             }
 

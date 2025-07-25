@@ -35,7 +35,7 @@ class HInboxViewModel {
         var title: String {
             switch self {
             case .all:
-                return String(localized: "All Messages", bundle: .horizon)
+                return String(localized: "All messages", bundle: .horizon)
             case .announcements:
                 return String(localized: "Announcements", bundle: .horizon)
             case .unread:

@@ -55,21 +55,21 @@ enum AssignmentLocalizedKeys {
         case .submissionText:
             return String(localized: "Your text submission", bundle: .horizon)
         case .submissionFileUpload:
-            return String(localized: "Your Uploaded Submission", bundle: .horizon)
+            return String(localized: "Your uploaded submission", bundle: .horizon)
         case .addSubmissionText:
             return String(localized: "Add your text entry", bundle: .horizon)
         case .selectSubmissionType:
-            return String(localized: "Select a aubmission type", bundle: .horizon)
+            return String(localized: "Select a submission type", bundle: .horizon)
         case .newAttempt:
             return String(localized: "New attempt", bundle: .horizon)
         case .submitAssignment:
             return String(localized: "Submit assignment", bundle: .horizon)
         case .chooseFile:
-            return String(localized: "Choose File", bundle: .horizon)
+            return String(localized: "Choose file", bundle: .horizon)
         case .takeMedia:
-            return String(localized: "Take Photo or Video", bundle: .horizon)
+            return String(localized: "Take photo or video", bundle: .horizon)
         case .selectMedia:
-            return String(localized: "Choose Photo or Video", bundle: .horizon)
+            return String(localized: "Choose photo or video", bundle: .horizon)
         case .uploadFile:
             return String(localized: "Upload file", bundle: .horizon)
         case .deleteDraft:
@@ -88,13 +88,13 @@ enum AssignmentLocalizedKeys {
                 bundle: .horizon
             )
         case .confirmSubmission:
-            return String(localized: "Confirm Submission", bundle: .horizon)
+            return String(localized: "Confirm submission", bundle: .horizon)
         case .confirmationNormalBody:
             return String(localized: "Once you submit this attempt, you won’t be able to make any changes.", bundle: .horizon)
         case .cancel:
             return String(localized: "Cancel", bundle: .horizon)
         case .submitAttempt:
-            return String(localized: "Submit Attempt", bundle: .horizon)
+            return String(localized: "Submit attempt", bundle: .horizon)
         case .submitUploadFileWithText:
             return String(
                 localized: "You are submitting an uploaded file. Any content in the text field will be deleted upon submission. Once you submit this attempt, you won’t be able to make any changes.",
@@ -110,7 +110,7 @@ enum AssignmentLocalizedKeys {
         case .successfullySubmittedBody:
             return String(localized: "We received your submission. You will be notified once it's been reviewed.", bundle: .horizon)
         case .viewSubmission:
-            return String(localized: "View Submission", bundle: .horizon)
+            return String(localized: "View submission", bundle: .horizon)
         case .deleteDraftTitle:
             return String(localized: "Delete draft", bundle: .horizon)
         case .deleteDraftBody:
@@ -118,7 +118,7 @@ enum AssignmentLocalizedKeys {
         case .draftDeletedAlert:
             return String(localized: "Your draft was deleted.", bundle: .horizon)
         case .markAsDone:
-            return String(localized: "Mark as Done", bundle: .horizon)
+            return String(localized: "Mark as done", bundle: .horizon)
         case .done:
             return String(localized: "Done", bundle: .horizon)
         }
