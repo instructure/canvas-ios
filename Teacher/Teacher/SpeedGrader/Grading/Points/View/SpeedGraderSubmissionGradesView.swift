@@ -280,7 +280,7 @@ struct SpeedGraderSubmissionGradesView: View {
             Text(maxScore)
                 .frame(width: 30, height: 30)
                 .onTapGesture {
-                    updateGrade(maxScore)
+                    updateGrade(possible)
                 }
         }
         .font(.medium14).foregroundColor(.textDarkest)
