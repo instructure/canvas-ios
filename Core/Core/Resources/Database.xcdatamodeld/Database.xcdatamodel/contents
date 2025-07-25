@@ -192,6 +192,21 @@
         <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="tabID" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="CDCustomGradebookColumn" representedClassName="Core.CDCustomGradebookColumn" syncable="YES">
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isHidden" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isReadOnly" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isTeacherNotes" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String"/>
+    </entity>
+    <entity name="CDCustomGradebookColumnEntry" representedClassName="Core.CDCustomGradebookColumnEntry" syncable="YES">
+        <attribute name="columnId" attributeType="String"/>
+        <attribute name="content" attributeType="String"/>
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="userId" attributeType="String"/>
+    </entity>
     <entity name="CDEnvironmentSettings" representedClassName="Core.CDEnvironmentSettings" syncable="YES">
         <attribute name="calendarContextsLimitRaw" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="disableInboxSignatureBlockForStudents" attributeType="Boolean" usesScalarValueType="YES"/>

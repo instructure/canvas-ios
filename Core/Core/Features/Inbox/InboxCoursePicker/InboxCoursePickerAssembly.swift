@@ -19,7 +19,7 @@
 import UIKit
 
 public enum InboxCoursePickerAssembly {
-    public static func makeInboxCoursePickerViewController(selected: RecipientContext?, didSelect: @escaping ((RecipientContext) -> Void), env: AppEnvironment = .shared) -> UIViewController {
+    public static func makeInboxCoursePickerViewController(env: AppEnvironment, selected: RecipientContext?, didSelect: @escaping ((RecipientContext) -> Void)) -> UIViewController {
         let interactor = InboxCoursePickerInteractorLive(env: env)
         let viewModel = InboxCoursePickerViewModel(interactor: interactor, selected: selected, didSelect: didSelect)
         let view = InboxCoursePickerView(viewModel: viewModel)

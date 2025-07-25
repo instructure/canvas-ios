@@ -72,7 +72,8 @@ public final class GradeListViewModel: ObservableObject {
 
     // MARK: - Private properties
     private var subscriptions = Set<AnyCancellable>()
-    private let router: Router
+    private let env: AppEnvironment
+    private var router: Router { env.router }
     private let gradeFilterInteractor: GradeFilterInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let triggerGradeRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion?)>()
@@ -83,11 +84,11 @@ public final class GradeListViewModel: ObservableObject {
     public init(
         interactor: GradeListInteractor,
         gradeFilterInteractor: GradeFilterInteractor,
-        router: Router,
-        scheduler: AnySchedulerOf<DispatchQueue> = .main
+        env: AppEnvironment,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
     ) {
         self.interactor = interactor
-        self.router = router
+        self.env = env
         self.gradeFilterInteractor = gradeFilterInteractor
         self.scheduler = scheduler
 
@@ -136,8 +137,8 @@ public final class GradeListViewModel: ObservableObject {
 
         didSelectAssignment
             .receive(on: scheduler)
-            .sink { vc, assignment in
-                router.route(to: "/courses/\(interactor.courseID)/assignments/\(assignment.id)", from: vc, options: .detail)
+            .sink { [weak self] vc, assignment in
+                self?.router.route(to: "/courses/\(interactor.courseID)/assignments/\(assignment.id)", from: vc, options: .detail)
             }
             .store(in: &subscriptions)
 
@@ -231,7 +232,8 @@ public final class GradeListViewModel: ObservableObject {
 
         let filterView = GradeListAssembly.makeGradeFilterViewController(
             dependency: dependency,
-            gradeFilterInteractor: gradeFilterInteractor
+            gradeFilterInteractor: gradeFilterInteractor,
+            env: env
         )
         router.show(
             filterView,

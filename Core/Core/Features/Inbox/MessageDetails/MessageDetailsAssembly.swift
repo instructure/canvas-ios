@@ -21,19 +21,19 @@ import UIKit
 public enum MessageDetailsAssembly {
 
     public static func makeViewController(
-        env: AppEnvironment,
         conversationID: String,
-        allowArchive: Bool
+        allowArchive: Bool,
+        env: AppEnvironment
     ) -> UIViewController {
         let interactor = MessageDetailsInteractorLive(env: env, conversationID: conversationID)
         let viewModel = MessageDetailsViewModel(
-            router: env.router,
             interactor: interactor,
             myID: env.currentSession?.userID ?? "",
-            allowArchive: allowArchive
+            allowArchive: allowArchive,
+            env: env
         )
         let view = MessageDetailsView(model: viewModel)
-        return CoreHostingController(view)
+        return CoreHostingController(view, env: env)
     }
 
 #if DEBUG
@@ -44,10 +44,10 @@ public enum MessageDetailsAssembly {
     -> MessageDetailsView {
         let interactor = MessageDetailsInteractorPreview(env: env, subject: subject, messages: messages)
         let viewModel = MessageDetailsViewModel(
-            router: env.router,
             interactor: interactor,
             myID: env.currentSession?.userID ?? "",
-            allowArchive: true
+            allowArchive: true,
+            env: env
         )
         return MessageDetailsView(model: viewModel)
     }

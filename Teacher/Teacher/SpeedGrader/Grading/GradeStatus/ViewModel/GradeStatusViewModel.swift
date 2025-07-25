@@ -18,7 +18,7 @@
 
 import Core
 import Combine
-import CombineExt
+import CombineSchedulers
 import SwiftUI
 
 class GradeStatusViewModel: ObservableObject {
@@ -53,6 +53,7 @@ class GradeStatusViewModel: ObservableObject {
     private let interactor: GradeStatusInteractor
     private let submissionId: String
     private let userId: String
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
     private var databaseObservation: AnyCancellable?
 
@@ -60,11 +61,13 @@ class GradeStatusViewModel: ObservableObject {
         userId: String,
         submissionId: String,
         attempt: Int,
-        interactor: GradeStatusInteractor
+        interactor: GradeStatusInteractor,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
-        self.interactor = interactor
-        self.submissionId = submissionId
         self.userId = userId
+        self.submissionId = submissionId
+        self.interactor = interactor
+        self.scheduler = scheduler
         // Placeholder until we read the actual status from the database.
         self.selectedOption = .from(.none)
         self.shouldHideSelectedOptionTitle = true
@@ -126,7 +129,7 @@ class GradeStatusViewModel: ObservableObject {
             .flatMap { (result: Result<Void, Error>, oldOption: OptionItem) in
                 Self.announceSuccessfulSaveIfNecessary(result: result, oldOption: oldOption)
             }
-            .receive(on: RunLoop.main)
+            .receive(on: scheduler)
             .sink { [weak self] result, oldOption in
                 guard let self else { return }
 
@@ -146,7 +149,7 @@ class GradeStatusViewModel: ObservableObject {
 
     private func observeGradeStatusOnAttemptInDatabase(on publisher: PassthroughSubject<Int, Never>) {
         publisher
-            .receive(on: RunLoop.main)
+            .receive(on: scheduler)
             .sink { [weak self] attempt in
                 guard let self else { return }
                 let gradeStatusChanged = self.interactor.observeGradeStatusChanges(
@@ -163,7 +166,7 @@ class GradeStatusViewModel: ObservableObject {
             .map { (status, daysLate, dueDate) -> (OptionItem, daysLate: Int, dueDate: String) in
                 (OptionItem.from(status), daysLate, dueDate?.relativeDateTimeString ?? "")
             }
-            .receive(on: RunLoop.main)
+            .receive(on: scheduler)
             .sink { [weak self] (option, daysLate, dueDate) in
                 guard let self else { return }
                 selectedOption = option
@@ -213,7 +216,7 @@ class GradeStatusViewModel: ObservableObject {
                     return Just(result).eraseToAnyPublisher()
                 }
             }
-            .receive(on: RunLoop.main)
+            .receive(on: scheduler)
             .sink { [weak self] result in
                 if result.isFailure {
                     self?.isShowingSaveFailedAlert = true

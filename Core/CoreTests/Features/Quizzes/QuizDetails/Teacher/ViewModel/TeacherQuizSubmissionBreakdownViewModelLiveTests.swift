@@ -26,7 +26,7 @@ class QuizSubmissionBreakdownViewModelTests: CoreTestCase {
     func testProperties() {
         mockSubmissions()
         mockEnrollments()
-        let testee = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID, env: environment)
         testee.viewDidAppear()
 
         XCTAssertEqual(testee.color, .accentColor)
@@ -37,16 +37,16 @@ class QuizSubmissionBreakdownViewModelTests: CoreTestCase {
     }
 
     func testRouting() {
-        let testee = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID, env: environment)
 
         testee.routeToAll(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/quizzes/2/submissions")!))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/quizzes/2/submissions")!))
 
         testee.routeToGraded(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/quizzes/2/submissions?filter=submitted")!))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/quizzes/2/submissions?filter=submitted")!))
 
         testee.routeToUnsubmitted(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/quizzes/2/submissions?filter=not_submitted")!))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/quizzes/2/submissions?filter=not_submitted")!))
     }
 
     private func mockSubmissions() {

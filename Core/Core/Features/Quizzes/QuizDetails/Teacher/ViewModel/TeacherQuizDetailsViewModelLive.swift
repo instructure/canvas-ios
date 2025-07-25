@@ -46,7 +46,7 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
     @Published private var assignment: Assignment?
     @Published private var course: Course?
 
-    private let env = AppEnvironment.shared
+    private let env: AppEnvironment
     private let quizID: String
     private let courseID: String
     private var refreshCompletion: (() -> Void)?
@@ -64,9 +64,10 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
 
     // MARK: - Public Interface -
 
-    public init(courseID: String, quizID: String) {
+    public init(courseID: String, quizID: String, env: AppEnvironment) {
         self.quizID = quizID
         self.courseID = courseID
+        self.env = env
     }
 
     public func viewDidAppear() {
@@ -77,7 +78,7 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
 
     public func editTapped(router: Router, viewController: WeakViewController) {
         router.route(
-            to: "courses/\(courseID)/quizzes/\(quizID)/edit",
+            to: "/courses/\(courseID)/quizzes/\(quizID)/edit",
             from: viewController,
             options: .modal(isDismissable: false, embedInNav: true)
         )
@@ -85,7 +86,7 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
 
     public func previewTapped(router: Router, viewController: WeakViewController) {
         router.route(
-            to: "courses/\(courseID)/quizzes/\(quizID)/preview",
+            to: "/courses/\(courseID)/quizzes/\(quizID)/preview",
             from: viewController,
             options: .modal(.fullScreen, isDismissable: false, embedInNav: true, addDoneButton: true)
         )
@@ -125,9 +126,9 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
             if let assignmentID = quiz.assignmentID, let assignment = assignmentsUseCase.first(where: { $0.id == assignmentID }) {
                 self.assignment = assignment
                 assignmentDateSectionViewModel = AssignmentDateSectionViewModel(assignment: assignment)
-                assignmentSubmissionBreakdownViewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
+                assignmentSubmissionBreakdownViewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes, env: env)
             } else {
-                quizSubmissionBreakdownViewModel = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID)
+                quizSubmissionBreakdownViewModel = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID, env: env)
                 quizDateSectionViewModel = TeacherQuizDateSectionViewModelLive(quiz: quiz)
             }
             state = .ready

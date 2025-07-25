@@ -54,18 +54,19 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
     private let availableQuizTypes = [QuizType.assignment, QuizType.practice_quiz, QuizType.graded_survey, QuizType.survey]
     private var assignmentGroups: [AssignmentGroup] = []
     private let showErrorPopupSubject = PassthroughSubject<UIAlertController, Never>()
-    private let env = AppEnvironment.shared
+    private let env: AppEnvironment
 
-    public init(courseID: String, quizID: String) {
+    public init(courseID: String, quizID: String, env: AppEnvironment) {
         self.quizID = quizID
         self.courseID = courseID
+        self.env = env
         fetchQuiz()
         fetchAssignmentGroups()
     }
 
     func fetchQuiz() {
         let useCase = GetQuiz(courseID: courseID, quizID: quizID)
-        useCase.fetch(force: true) { _, _, fetchError in
+        useCase.fetch(environment: env, force: true) { _, _, fetchError in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 if fetchError != nil {
@@ -87,7 +88,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
         }
 
         let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases)
-        useCase.fetch(force: true) { _, _, fetchError in
+        useCase.fetch(environment: env, force: true) { _, _, fetchError in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 if fetchError != nil {
@@ -103,7 +104,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
 
     func fetchAssignmentGroups() {
         let useCase = GetAssignmentGroups(courseID: courseID)
-        useCase.fetch(force: true) { _, _, fetchError in
+        useCase.fetch(environment: env, force: true) { _, _, fetchError in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 if fetchError != nil {
@@ -205,7 +206,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
                     return
                 } else {
                     GetQuiz(courseID: self.courseID, quizID: self.quizID)
-                        .fetch(force: true)
+                        .fetch(environment: self.env, force: true)
                     self.saveAssignment(router: router, viewController: viewController)
                 }
             }
@@ -279,19 +280,22 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
             pointsPossible: assignment.pointsPossible,
             published: published,
             unlockAt: unlockAt
-        ).fetch { [weak self] result, _, error in performUIUpdate {
-            guard let self = self else { return }
-            if error != nil {
-                // Practice quizzes don't necessary have assignments
-                self.dismiss(router: router, viewController: viewController.value)
-                return
+        )
+        .fetch(environment: env) { [weak self] result, _, error in
+            performUIUpdate {
+                guard let self = self else { return }
+                if error != nil {
+                    // Practice quizzes don't necessary have assignments
+                    self.dismiss(router: router, viewController: viewController.value)
+                    return
+                }
+                if result != nil {
+                    GetAssignment(courseID: self.courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases)
+                        .fetch(environment: self.env, force: true)
+                    self.dismiss(router: router, viewController: viewController.value)
+                }
             }
-            if result != nil {
-                GetAssignment(courseID: self.courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases)
-                    .fetch(force: true)
-                self.dismiss(router: router, viewController: viewController.value)
-            }
-        } }
+        }
     }
 
     private func dismiss(router: Router, viewController: UIViewController) {

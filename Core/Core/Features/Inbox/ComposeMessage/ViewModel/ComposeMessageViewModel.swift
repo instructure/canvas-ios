@@ -86,7 +86,7 @@ final class ComposeMessageViewModel: ObservableObject {
         confirmButtonTitle: String(localized: "Retry", bundle: .core),
         isDestructive: false
     )
-    let router: Router
+    let env: AppEnvironment
 
     // MARK: - Private
     private var initialMessageProperties = ComposeMessageProperties()
@@ -109,31 +109,31 @@ final class ComposeMessageViewModel: ObservableObject {
 
     // MARK: Public interface
     public init(
-        router: Router,
         options: ComposeMessageOptions,
         interactor: ComposeMessageInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         recipientInteractor: RecipientInteractor,
-        inboxSettingsInteractor: InboxSettingsInteractor
+        inboxSettingsInteractor: InboxSettingsInteractor,
+        env: AppEnvironment
     ) {
         self.interactor = interactor
-        self.router = router
         self.scheduler = scheduler
         self.messageType = options.messageType
         self.recipientInteractor = recipientInteractor
         self.settingsInteractor = inboxSettingsInteractor
         self.avPermissionViewModel = .init()
+        self.env = env
         setIncludedMessages(messageType: options.messageType)
         setOptionItems(options: options)
 
         setupOutputBindings()
-        setupInputBindings(router: router)
+        setupInputBindings()
         bindSearchRecipients()
     }
 
     private func getRecipients() {
         recipientInteractor
-            .getRecipients(by: selectedContext?.context, qualifier: nil)
+            .getRecipients(by: selectedContext?.context, qualifier: nil, env: env)
             .map { [selectedRecipients] values in
                 values.filter { recipient in
                     !selectedRecipients.value.contains(where: { selectedRecipient in recipient == selectedRecipient })
@@ -146,7 +146,7 @@ final class ComposeMessageViewModel: ObservableObject {
 
         if autoTeacherSelect {
             recipientInteractor
-                .getRecipients(by: selectedContext?.context, qualifier: .teachers)
+                .getRecipients(by: selectedContext?.context, qualifier: .teachers, env: env)
                 .sink { [weak self] result in
                     self?.selectedRecipients.send(result)
                 }
@@ -181,9 +181,13 @@ final class ComposeMessageViewModel: ObservableObject {
     }
 
     func courseSelectButtonDidTap(viewController: WeakViewController) {
-        router.show(InboxCoursePickerAssembly.makeInboxCoursePickerViewController(selected: selectedContext) { [weak self] course in
-            self?.courseDidSelect(selectedContext: course, viewController: viewController)
-        }, from: viewController)
+        env.router.show(
+            InboxCoursePickerAssembly
+                .makeInboxCoursePickerViewController(env: env, selected: selectedContext) { [weak self] course in
+                    self?.courseDidSelect(selectedContext: course, viewController: viewController)
+                },
+            from: viewController
+        )
     }
 
     func courseDidSelect(selectedContext: RecipientContext?, viewController: WeakViewController) {
@@ -203,8 +207,10 @@ final class ComposeMessageViewModel: ObservableObject {
             recipientContext: context,
             teacherOnly: teacherOnly,
             didSelectRecipient: didSelectRecipient,
-            selectedRecipients: selectedRecipients)
-        router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
+            selectedRecipients: selectedRecipients,
+            env: env
+        )
+        env.router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }
 
     func attachmentButtonDidTap(viewController: WeakViewController) {
@@ -285,13 +291,15 @@ final class ComposeMessageViewModel: ObservableObject {
             title: String(localized: "Attach from Canvas files", bundle: .core),
             accessibilityIdentifier: nil
         ) { [weak self] in
-            guard let self, let top = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return }
+            guard let self, let top = env.window?.rootViewController?.topMostViewController() else { return }
 
-            let picker = AttachmentPickerAssembly.makeCanvasFilePicker(router: router, onSelect: addFile)
-            router.show(CoreHostingController(picker), from: top, options: .modal(isDismissable: true, embedInNav: true))
+            let picker = AttachmentPickerAssembly.makeCanvasFilePicker(router: env.router, onSelect: addFile)
+            let controller = CoreHostingController(picker, env: env)
+
+            env.router.show(controller, from: top, options: .modal(isDismissable: true, embedInNav: true))
         }
 
-        router.show(sheet, from: viewController, options: .modal())
+        env.router.show(sheet, from: viewController, options: .modal())
     }
 
     // MARK: Private helpers
@@ -447,7 +455,7 @@ final class ComposeMessageViewModel: ObservableObject {
         )
     }
 
-    private func setupInputBindings(router: Router) {
+    private func setupInputBindings() {
         didTapCancel
             .handleEvents(receiveOutput: { [weak self] viewController in
                 guard let self else {
@@ -456,7 +464,7 @@ final class ComposeMessageViewModel: ObservableObject {
                 if self.didApplyChanges() {
                     self.isShowingCancelDialog = true
                 } else {
-                    self.router.dismiss(viewController)
+                    self.env.router.dismiss(viewController)
                 }
             })
             .flatMap { [confirmAlert] value in
@@ -464,7 +472,7 @@ final class ComposeMessageViewModel: ObservableObject {
             }
             .sink { [weak self] viewController in
                 self?.interactor.cancel()
-                self?.router.dismiss(viewController)
+                self?.env.router.dismiss(viewController)
             }
             .store(in: &subscriptions)
 
@@ -505,9 +513,9 @@ final class ComposeMessageViewModel: ObservableObject {
                 }
             })
             .store(in: &subscriptions)
-        didSelectFile.sink(receiveCompletion: { _ in }, receiveValue: { (controller, url) in
-            guard let url else { return }
-            router.route(
+        didSelectFile.sink(receiveCompletion: { _ in }, receiveValue: { [weak self] (controller, url) in
+            guard let url, let self else { return }
+            self.env.router.route(
                 to: url.appendingQueryItems(.init(name: "canEdit", value: "false")),
                 from: controller,
                 options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
@@ -536,7 +544,7 @@ final class ComposeMessageViewModel: ObservableObject {
 
     private func didSendMessage(viewController: WeakViewController) {
         viewController.findSnackBarViewModel()?.showSnack(InboxMessageScope.sent.localizedName)
-        router.dismiss(viewController)
+        env.router.dismiss(viewController)
     }
 
     private func didFailSendingMessage() {

@@ -73,7 +73,7 @@ class AudioPickerViewModel: NSObject, ObservableObject {
 
         super.init()
 
-        setupControlBindings(router: router)
+        setupControlBindings()
         setupRecordBindings(interactor: interactor)
         setupPlaybackBindings()
         setupOutputBindings()
@@ -169,11 +169,11 @@ class AudioPickerViewModel: NSObject, ObservableObject {
         formatter.string(from: timestamp ?? 0) ?? ""
     }
 
-    private func setupControlBindings(router: Router) {
+    private func setupControlBindings() {
         cancelButtonDidTap
-            .sink { [weak self, router] viewController in
+            .sink { [weak self] viewController in
                 self?.interactor.cancel()
-                router.dismiss(viewController)
+                self?.router.dismiss(viewController)
             }
             .store(in: &subscriptions)
 

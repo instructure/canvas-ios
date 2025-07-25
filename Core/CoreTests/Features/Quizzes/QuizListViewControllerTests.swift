@@ -27,7 +27,7 @@ class QuizListViewControllerTests: CoreTestCase {
         static let date0720 = DateComponents(calendar: .current, year: 2020, month: 7, day: 20, hour: 14).date!
     }
 
-    lazy var controller = QuizListViewController.create(courseID: "1")
+    lazy var controller = QuizListViewController.create(courseID: "1", env: environment)
 
     override func setUp() {
         super.setUp()
@@ -182,7 +182,7 @@ class QuizListCellTests: CoreTestCase {
     }
 
     private func loadTestee() {
-        let host = QuizListViewController.create(courseID: "")
+        let host = QuizListViewController.create(courseID: "", env: environment)
         host.loadViewIfNeeded()
         testee = (host.tableView.dequeueReusableCell(withIdentifier: "QuizListCell") as! QuizListCell)
     }

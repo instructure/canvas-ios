@@ -38,9 +38,9 @@ class PostGradesViewController: UIViewController {
     var viewModel = APIPostPolicy()
     var color: UIColor = .textInfo
 
-    static func create(courseID: String, assignmentID: String) -> PostGradesViewController {
+    static func create(courseID: String, assignmentID: String, env: AppEnvironment) -> PostGradesViewController {
         let controller = loadFromStoryboard()
-        controller.presenter = PostGradesPresenter(courseID: courseID, assignmentID: assignmentID, view: controller)
+        controller.presenter = PostGradesPresenter(courseID: courseID, assignmentID: assignmentID, view: controller, env: env)
         return controller
     }
 

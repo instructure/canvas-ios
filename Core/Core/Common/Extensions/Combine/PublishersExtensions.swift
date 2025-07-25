@@ -57,7 +57,7 @@ extension Publishers {
         return Just(value).setFailureType(to: failureType).eraseToAnyPublisher()
     }
 
-    public static func typedJust<Failure: Error>(failureType: Failure.Type) -> AnyPublisher<Void, Failure> {
+    public static func typedJust<Failure: Error>(failureType: Failure.Type = Failure.self) -> AnyPublisher<Void, Failure> {
         return Just(()).setFailureType(to: failureType).eraseToAnyPublisher()
     }
 }

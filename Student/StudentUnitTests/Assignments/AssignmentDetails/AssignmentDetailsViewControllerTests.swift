@@ -31,7 +31,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
     override func setUp() {
         super.setUp()
         viewController = AssignmentDetailsViewController
-            .create(env: env, courseID: courseID, assignmentID: assignmentID)
+            .create(courseID: courseID, assignmentID: assignmentID, env: env)
         prevSpeed = AppEnvironment.shared.window?.layer.speed ?? 1
         AppEnvironment.shared.window?.layer.speed = 100
     }

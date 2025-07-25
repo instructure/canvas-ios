@@ -24,8 +24,7 @@ import TestsFoundation
 import SwiftUI
 
 class SpeedGraderInteractorLiveTests: TeacherTestCase {
-    private var testee: SpeedGraderInteractorLive!
-    private let testData = (
+    private static let testData = (
         context: Context(.course, id: "1"),
         assignmentId: "1",
         userId: "1",
@@ -35,25 +34,29 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
         courseName: "test course",
         courseColor: Color.course1
     )
+    private lazy var testData = Self.testData
+
+    private var testee: SpeedGraderInteractorLive!
     private var gradeStatusInteractorMock: GradeStatusInteractorMock!
+    private var submissionWordCountInteractor: SubmissionWordCountInteractorMock!
+    private var customGradebookColumnsInteractor: CustomGradebookColumnsInteractorMock!
 
     override func setUp() {
         super.setUp()
+
+        gradeStatusInteractorMock = .init()
+        submissionWordCountInteractor = .init()
+        customGradebookColumnsInteractor = .init()
         setupMocks()
-        testee = SpeedGraderInteractorLive(
-            context: testData.context,
-            assignmentID: testData.assignmentId,
-            userID: testData.userId,
-            filter: [],
-            sortNeedsGradingSubmissionsFirst: false,
-            gradeStatusInteractor: gradeStatusInteractorMock,
-            env: environment
-        )
+
+        testee = makeInteractor()
     }
 
     override func tearDown() {
         testee = nil
         gradeStatusInteractorMock = nil
+        submissionWordCountInteractor = nil
+        customGradebookColumnsInteractor = nil
         super.tearDown()
     }
 
@@ -92,6 +95,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
         XCTAssertEqual(receivedData.assignment.name, testData.assignmentName)
         XCTAssertEqual(receivedData.focusedSubmissionIndex, 0)
         XCTAssertEqual(gradeStatusInteractorMock.fetchGradeStatusesCalled, true)
+        XCTAssertEqual(customGradebookColumnsInteractor.loadCustomColumnsDataCallsCount, 1)
     }
 
     func test_dataState_gradingBased_sorting() throws {
@@ -110,23 +114,15 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             assignmentID: testData.assignmentId
         )
         api.mock(getSubmission, value: [
-            .make(id: "1", submission_history: [], submission_type: .online_upload, user_id: "1", workflow_state: .unsubmitted),
+            .make(id: "1", submission_history: [], submission_type: .online_upload, submitted_at: nil, user_id: "1", workflow_state: .unsubmitted),
             .make(id: "2", submission_history: [], submission_type: .online_upload, user_id: "2", workflow_state: .pending_review),
             .make(id: "3", score: 98, submission_history: [], submission_type: .online_upload, user_id: "3", workflow_state: .graded),
-            .make(id: "4", submission_history: [], submission_type: .online_upload, user_id: "4", workflow_state: .unsubmitted),
+            .make(id: "4", submission_history: [], submission_type: .online_upload, submitted_at: nil, user_id: "4", workflow_state: .unsubmitted),
             .make(id: "5", submission_history: [], submission_type: .online_upload, user_id: "5")
         ])
 
         // When
-        testee = SpeedGraderInteractorLive(
-            context: testData.context,
-            assignmentID: testData.assignmentId,
-            userID: "1",
-            filter: [],
-            sortNeedsGradingSubmissionsFirst: true,
-            gradeStatusInteractor: GradeStatusInteractorMock(),
-            env: environment
-        )
+        testee = makeInteractor(userId: "1")
 
         // Then
         XCTAssertEqual(testee.state.value, .loading)
@@ -183,15 +179,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
     }
 
     func test_errorState_userIdNotFound() {
-        testee = SpeedGraderInteractorLive(
-            context: testData.context,
-            assignmentID: testData.assignmentId,
-            userID: testData.invalidUserId,
-            filter: [],
-            sortNeedsGradingSubmissionsFirst: false,
-            gradeStatusInteractor: GradeStatusInteractorMock(),
-            env: environment
-        )
+        testee = makeInteractor(userId: testData.invalidUserId)
         XCTAssertEqual(testee.state.value, .loading)
 
         // WHEN
@@ -202,8 +190,26 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
         XCTAssertSingleOutputEquals(publisher, .error(.userIdNotFound))
     }
 
+    // MARK: - Private helpers
+
+    private func makeInteractor(
+        userId: String = testData.userId,
+        filter: [GetSubmissions.Filter] = []
+    ) -> SpeedGraderInteractorLive {
+        SpeedGraderInteractorLive(
+            context: testData.context,
+            assignmentID: testData.assignmentId,
+            userID: userId,
+            filter: filter,
+            gradeStatusInteractor: gradeStatusInteractorMock,
+            submissionWordCountInteractor: submissionWordCountInteractor,
+            customGradebookColumnsInteractor: customGradebookColumnsInteractor,
+            env: environment,
+            mainScheduler: .immediate
+        )
+    }
+
     private func setupMocks() {
-        gradeStatusInteractorMock = GradeStatusInteractorMock()
         let getAssignment = GetAssignment(
             courseID: testData.context.id,
             assignmentID: testData.assignmentId,

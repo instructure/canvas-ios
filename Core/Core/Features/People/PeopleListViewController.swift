@@ -30,7 +30,7 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
     @IBOutlet weak var tableView: UITableView!
 
     public var color: UIColor?
-    let env = AppEnvironment.shared
+    private(set) var env: AppEnvironment = .shared
     public var titleSubtitleView = TitleSubtitleView.create()
     var context = Context.currentUser
     var enrollmentType: BaseEnrollmentType?
@@ -58,10 +58,11 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
     private weak var accessibilityFocusAfterReload: UIView?
     private var offlineModelInteractor: OfflineModeInteractor?
 
-    public static func create(context: Context, offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) -> PeopleListViewController {
+    public static func create(context: Context, offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(), env: AppEnvironment) -> PeopleListViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.offlineModelInteractor = offlineModeInteractor
+        controller.env = env
         return controller
     }
 

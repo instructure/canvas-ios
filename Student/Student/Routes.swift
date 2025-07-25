@@ -54,25 +54,25 @@ let router = Router(routes: [
 
     RouteHandler("/conversations"),
 
-    RouteHandler("/conversations/settings") { _, _, _ in
-        return InboxSettingsAssembly.makeInboxSettingsViewController()
+    RouteHandler("/conversations/settings") { _, _, _, env in
+        return InboxSettingsAssembly.makeInboxSettingsViewController(env: env)
     },
 
-    RouteHandler("/conversations/compose") { url, _, _ in
-        return ComposeMessageAssembly.makeComposeMessageViewController(url: url)
+    RouteHandler("/conversations/compose") { url, _, _, env in
+        return ComposeMessageAssembly.makeComposeMessageViewController(env: env, url: url)
     },
 
     // Special Inbox Compose route to handle 'New Message' action. This action has different implementation in the Parent app
-    RouteHandler("/conversations/new_message") { url, _, _ in
-        return ComposeMessageAssembly.makeComposeMessageViewController(url: url)
+    RouteHandler("/conversations/new_message") { url, _, _, env in
+        return ComposeMessageAssembly.makeComposeMessageViewController(env: env, url: url)
 
     },
 
-    RouteHandler("/conversations/compose") { url, _, _ in
-        return ComposeMessageAssembly.makeComposeMessageViewController(url: url)
+    RouteHandler("/conversations/compose") { url, _, _, env in
+        return ComposeMessageAssembly.makeComposeMessageViewController(env: env, url: url)
     },
 
-    RouteHandler("/conversations/:conversationID") { _, params, userInfo in
+    RouteHandler("/conversations/:conversationID") { _, params, userInfo, env in
         guard let conversationID = params["conversationID"] else { return nil }
         let allowArchive: Bool = {
             if let userInfo, let allowArchiveParam = userInfo["allowArchive"] as? Bool {
@@ -82,9 +82,9 @@ let router = Router(routes: [
             }
         }()
         return MessageDetailsAssembly.makeViewController(
-            env: AppEnvironment.shared,
             conversationID: conversationID,
-            allowArchive: allowArchive
+            allowArchive: allowArchive,
+            env: env
         )
     },
 
@@ -160,10 +160,10 @@ let router = Router(routes: [
             )
         }
         return AssignmentDetailsViewController.create(
-            env: env,
             courseID: ID.expandTildeID(courseID),
             assignmentID: ID.expandTildeID(assignmentID),
-            fragment: url.fragment
+            fragment: url.fragment,
+            env: env
         )
     },
 
@@ -183,10 +183,10 @@ let router = Router(routes: [
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else { return nil }
         if url.originIsCalendar || url.originIsNotification {
             return AssignmentDetailsViewController.create(
-                env: env,
                 courseID: ID.expandTildeID(courseID),
                 assignmentID: ID.expandTildeID(assignmentID),
-                fragment: url.fragment
+                fragment: url.fragment,
+                env: env
             )
         } else {
             let selectedAttempt = Int(url.queryValue(for: "selectedAttempt") ?? "")
@@ -376,9 +376,9 @@ let router = Router(routes: [
         return CoreHostingController(PageEditorView(context: context, url: slug))
     },
 
-    RouteHandler("/courses/:courseID/quizzes") { _, params, _ in
+    RouteHandler("/courses/:courseID/quizzes") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
-        return QuizListViewController.create(courseID: ID.expandTildeID(courseID))
+        return QuizListViewController.create(courseID: ID.expandTildeID(courseID), env: env)
     },
 
     RouteHandler("/courses/:courseID/quizzes/:quizID") { url, params, _ in
@@ -398,14 +398,14 @@ let router = Router(routes: [
     // No native support, fall back to web
     // "/courses/:courseID/settings": { url, _ in },
 
-    RouteHandler("/courses/:courseID/users") { _, params, _ in
+    RouteHandler("/courses/:courseID/users") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
-        return PeopleListViewController.create(context: .course(courseID))
+        return PeopleListViewController.create(context: .course(courseID), env: env)
     },
 
-    RouteHandler("/groups/:groupID/users") { _, params, _ in
+    RouteHandler("/groups/:groupID/users") { _, params, _, env in
         guard let groupID = params["groupID"] else { return nil }
-        return PeopleListViewController.create(context: .group(groupID))
+        return PeopleListViewController.create(context: .group(groupID), env: env)
     },
 
     RouteHandler("/courses/:courseID/users/:userID", factory: contextCard),
@@ -615,12 +615,12 @@ private func discussionViewController(
     }
 }
 
-private func contextCard(url _: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
+private func contextCard(url _: URLComponents, params: [String: String], userInfo _: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard let courseID = params["courseID"], let userID = params["userID"] else { return nil }
-    let currentUserID = AppEnvironment.shared.currentSession?.userID ?? ""
+    let currentUserID = env.currentSession?.userID ?? ""
     let showSubmissions = (currentUserID == userID)
-    let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: currentUserID, isSubmissionRowsVisible: showSubmissions, isLastActivityVisible: false)
-    return CoreHostingController(ContextCardView(model: viewModel))
+    let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: currentUserID, isSubmissionRowsVisible: showSubmissions, isLastActivityVisible: false, env: env)
+    return CoreHostingController(ContextCardView(model: viewModel), env: env)
 }
 
 private func groupContextCard(url _: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {

@@ -22,7 +22,7 @@ import XCTest
 class PeopleListViewControllerTests: CoreTestCase {
     let course1 = Context(.course, id: "1")
     let course2 = Context(.course, id: "2")
-    lazy var controller = PeopleListViewController.create(context: course1)
+    lazy var controller = PeopleListViewController.create(context: course1, env: environment)
 
     override func setUp() {
         super.setUp()

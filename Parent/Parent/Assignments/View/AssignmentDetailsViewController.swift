@@ -44,7 +44,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     var selectedDate: Date?
     var assignmentID = ""
     var courseID = ""
-    let env = AppEnvironment.shared
+    private(set) var env: AppEnvironment = .shared
     var studentID = ""
     private var minDate = Clock.now
     private var maxDate = Clock.now
@@ -72,7 +72,8 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         courseID: String,
         assignmentID: String,
         userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current(),
-        submissionURLInteractor: ParentSubmissionURLInteractor = ParentSubmissionURLInteractorLive()
+        submissionURLInteractor: ParentSubmissionURLInteractor = ParentSubmissionURLInteractorLive(),
+        env: AppEnvironment
     ) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
@@ -80,6 +81,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         controller.studentID = studentID
         controller.userNotificationCenter = userNotificationCenter
         controller.submissionURLInteractor = submissionURLInteractor
+        controller.env = env
         return controller
     }
 
@@ -288,7 +290,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                 autoTeacherSelect: true
             )
         )
-        let composeController = ComposeMessageAssembly.makeComposeMessageViewController(options: options)
+        let composeController = ComposeMessageAssembly.makeComposeMessageViewController(options: options, env: env)
         env.router.show(composeController, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
     }
 

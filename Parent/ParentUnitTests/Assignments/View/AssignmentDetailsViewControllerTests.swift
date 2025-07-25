@@ -26,7 +26,8 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         studentID: "1",
         courseID: "1",
         assignmentID: "1",
-        userNotificationCenter: notificationCenter
+        userNotificationCenter: notificationCenter,
+        env: env
     )
     let url = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
     let dueAt = Clock.now.addDays(2).startOfDay()
@@ -144,7 +145,8 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
             courseID: "1",
             assignmentID: "1",
             userNotificationCenter: notificationCenter,
-            submissionURLInteractor: submissionURLInteractorMock
+            submissionURLInteractor: submissionURLInteractorMock,
+            env: env
         )
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)

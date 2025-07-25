@@ -152,11 +152,12 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     private var gradeSectionBoundsObservation: NSKeyValueObservation?
     private lazy var remindersInteractor = AssignmentRemindersInteractorLive(notificationCenter: UNUserNotificationCenter.current())
 
-    static func create(env: AppEnvironment,
-                       courseID: String,
-                       assignmentID: String,
-                       fragment: String? = nil,
-                       offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
+    static func create(
+        courseID: String,
+        assignmentID: String,
+        fragment: String? = nil,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(),
+        env: AppEnvironment
     ) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID.localID

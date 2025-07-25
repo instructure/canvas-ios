@@ -23,25 +23,15 @@ extension InstUI.Styles {
     public enum Elevation {
 
         public enum Shape {
-            case card
+            case cardSmall
+            case cardLarge
             case pill
 
             var cornerRadius: CGFloat {
                 switch self {
-                case .card: 6
+                case .cardSmall: 6
+                case .cardLarge: 24
                 case .pill: 100
-                }
-            }
-        }
-
-        public enum BaseBackground {
-            case light
-            case lightest
-
-            var elevationBackground: Color {
-                switch self {
-                case .light: .backgroundLightest
-                case .lightest: .backgroundLightestElevated
                 }
             }
         }
@@ -52,10 +42,10 @@ extension View {
 
     public func elevation(
         _ shape: InstUI.Styles.Elevation.Shape,
-        aboveBackground baseBackground: InstUI.Styles.Elevation.BaseBackground
+        background: Color
     ) -> some View {
         self
-            .background(baseBackground.elevationBackground)
+            .background(background)
             .cornerRadius(shape.cornerRadius)
             .shadow(color: .black.opacity(0.08), radius: 2, y: 2)
             .shadow(color: .black.opacity(0.16), radius: 2, y: 1)

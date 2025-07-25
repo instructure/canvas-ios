@@ -19,6 +19,8 @@
 import SwiftUI
 
 public struct InteractivePanda: View {
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
+
     private let scene: PandaScene
     private let title: Text?
     private let subtitle: Text?
@@ -82,6 +84,7 @@ public struct InteractivePanda: View {
                 title
                     .font(.bold20)
                     .foregroundColor(.textDarkest)
+                    .multilineTextAlignment(.center)
                     .padding(.bottom, 8)
             }
 

@@ -224,8 +224,6 @@ open class Router {
         guard let window = AppEnvironment.shared.window else { return }
         UIView.transition(with: window, duration: 0.5, options: isLoginTransition ? .transitionFlipFromRight : .transitionFlipFromLeft) {
             window.rootViewController = viewController
-            // TODO: root vc analytics
-//            Analytics.shared.logScreenView(route: "/login", viewController: window.rootViewController)
         }
     }
 

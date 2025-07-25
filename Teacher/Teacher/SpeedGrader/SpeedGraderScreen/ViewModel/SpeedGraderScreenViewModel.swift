@@ -178,21 +178,25 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
             data.submissions.indices.contains(index)
         else { return nil }
 
+        let assignment = data.assignment
+        let submission = data.submissions[index]
+
         return SpeedGraderPageView(
-            env: environment,
             userIndexInSubmissionList: index,
-            viewModel: SpeedGraderPageViewModel(
-                assignment: data.assignment,
-                latestSubmission: data.submissions[index],
+            viewModel: SpeedGraderAssembly.makePageViewModel(
+                assignment: assignment,
+                submission: submission,
                 contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
                 gradeStatusInteractor: interactor.gradeStatusInteractor,
+                submissionWordCountInteractor: interactor.submissionWordCountInteractor,
+                customGradebookColumnsInteractor: interactor.customGradebookColumnsInteractor,
                 env: environment
             ),
             landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,
             handleRefresh: { [weak self] in
                 guard let self else { return }
                 interactor
-                    .refreshSubmission(forUserId: data.submissions[index].userID)
+                    .refreshSubmission(forUserId: submission.userID)
                     .sink()
                     .store(in: &subscriptions)
             }

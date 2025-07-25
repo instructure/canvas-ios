@@ -120,6 +120,8 @@ class SpeedGraderScreenViewModelTests: TeacherTestCase {
 
 class SpeedGraderInteractorMock: SpeedGraderInteractor {
     var gradeStatusInteractor: GradeStatusInteractor = GradeStatusInteractorMock()
+    var submissionWordCountInteractor: SubmissionWordCountInteractor = SubmissionWordCountInteractorMock()
+    var customGradebookColumnsInteractor: CustomGradebookColumnsInteractor = CustomGradebookColumnsInteractorMock()
 
     var state = CurrentValueSubject<SpeedGraderInteractorState, Never>(.loading)
     var data: SpeedGraderData?
@@ -138,7 +140,7 @@ class SpeedGraderInteractorMock: SpeedGraderInteractor {
     private(set) var isRefreshSubmissionCalled = false
     func refreshSubmission(forUserId: String) -> AnyPublisher<Void, Error> {
         isRefreshSubmissionCalled = true
-        return Publishers.typedJust(failureType: Error.self)
+        return Publishers.typedJust()
     }
 
     func mockData(viewContext: NSManagedObjectContext) {

@@ -316,8 +316,8 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         progressView.isHidden = true
         let courseID = context?.contextType == .course ? context?.id : nil
         NotificationCenter.default.post(moduleItem: .file(fileID), completedRequirement: .view, courseID: courseID ?? "")
-        DispatchQueue.main.async {
-            self.didFinishLoading()
+        DispatchQueue.main.async { [weak self] in
+            self?.didFinishLoading()
         }
     }
 
