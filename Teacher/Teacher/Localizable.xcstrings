@@ -11242,6 +11242,7 @@
       }
     },
     "Comments" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -11496,6 +11497,9 @@
           }
         }
       }
+    },
+    "Comments (%lld)" : {
+
     },
     "Complete" : {
       "localizations" : {
@@ -42388,6 +42392,7 @@
       }
     },
     "There are no messages yet." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

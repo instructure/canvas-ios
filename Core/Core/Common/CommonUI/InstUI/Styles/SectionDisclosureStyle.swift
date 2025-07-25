@@ -26,6 +26,12 @@ extension InstUI {
             let paddingSet: InstUI.Styles.PaddingSet
             let accessoryIconSize: CGFloat
             let hasDividerBelowHeader: Bool
+
+            public init(paddingSet: InstUI.Styles.PaddingSet, accessoryIconSize: CGFloat, hasDividerBelowHeader: Bool) {
+                self.paddingSet = paddingSet
+                self.accessoryIconSize = accessoryIconSize
+                self.hasDividerBelowHeader = hasDividerBelowHeader
+            }
         }
 
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize

@@ -35,50 +35,42 @@ struct SubmissionCommentListView: View {
     @State private var isVideoRecorderVisible: Bool = false
     private let avPermissionViewModel: AVPermissionViewModel = .init()
 
-    @AccessibilityFocusState private var a11yFocusedTab: SpeedGraderPageTab?
-
     init(
         viewModel: SubmissionCommentListViewModel,
         attempt: Binding<Int>,
         fileID: Binding<String?>,
-        a11yFocusedTab: AccessibilityFocusState<SpeedGraderPageTab?>
     ) {
         self.viewModel = viewModel
         self._attempt = attempt
         self._fileID = fileID
-        self._a11yFocusedTab = a11yFocusedTab
     }
 
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView {
+        VStack(spacing: 0) {
+            Group {
                 switch viewModel.state {
                 case .data:
                     comments
                     // Assume already loaded by parent, so skip loading & error
-                case .loading, .empty, .error:
-                    EmptyPanda(.NoComments, message: Text("There are no messages yet.", bundle: .teacher))
-                        .frame(minWidth: geometry.size.width, minHeight: geometry.size.height - 40)
+                default: SwiftUI.EmptyView()
+                    SwiftUI.EmptyView()
                 }
             }
             .background(Color.backgroundLightest)
             .scaleEffect(y: viewModel.state == .data ? -1 : 1)
-            .safeAreaInset(edge: .bottom) {
-                commentInputView
-                    .transition(.opacity)
-            }
-            .sheet(isPresented: $isAudioRecorderVisible) {
-                audioRecorder
-            }
-            .sheet(isPresented: $isVideoRecorderVisible) {
-                videoRecorder
-            }
+            commentInputView
+        }
+        .sheet(isPresented: $isAudioRecorderVisible) {
+            audioRecorder
+        }
+        .sheet(isPresented: $isVideoRecorderVisible) {
+            videoRecorder
         }
     }
 
     @ViewBuilder
     private var comments: some View {
-        LazyVStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
             error?
                 .font(.semibold16).foregroundColor(.textDanger)
                 .padding(16)
@@ -112,7 +104,6 @@ struct SubmissionCommentListView: View {
             },
             sendAction: sendComment
         )
-        .accessibilityFocused($a11yFocusedTab, equals: .comments)
     }
 
     func sendComment() {
@@ -190,3 +181,9 @@ struct SubmissionCommentListView: View {
         }
     }
 }
+
+#if DEBUG
+#Preview {
+    SpeedGraderAssembly.makeSpeedGraderViewControllerPreview(state: .data)
+}
+#endif

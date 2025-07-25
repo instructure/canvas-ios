@@ -55,6 +55,8 @@ class SubmissionCommentListViewModel: ObservableObject {
         isAssignmentEnhancementsEnabled ? selectedAttemptNumber : nil
     }
 
+    var commentCount: Int { allComments.count }
+
     // MARK: - Init
 
     init(
