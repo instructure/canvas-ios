@@ -91,7 +91,7 @@ struct SpeedGraderPageTabsView: View {
                         // `.clipped` and `.contentShape` don't prevent touches outside of the drawer on iOS17
                         // and it would block interaction with the attempts picker and the submission content.
                         .allowsHitTesting(selectedTab == .grades)
-                    commentsTab(geometry: geometry)
+//                    commentsTab(geometry: geometry)
                     detailsTab(geometry: geometry)
                 }
                 .frame(width: geometry.size.width, alignment: .leading)

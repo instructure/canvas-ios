@@ -33,6 +33,7 @@ struct SubmissionCommentListView: View {
     @State private var error: Text?
     @State private var isAudioRecorderVisible: Bool = false
     @State private var isVideoRecorderVisible: Bool = false
+    @FocusState private var isInputFocused: Bool
     private let avPermissionViewModel: AVPermissionViewModel = .init()
 
     //    @AccessibilityFocusState private var a11yFocusedTab: SpeedGraderPageTab?
@@ -64,6 +65,10 @@ struct SubmissionCommentListView: View {
 //                        .frame(minWidth: geometry.size.width, minHeight: geometry.size.height - 40)
                 }
             }
+            .background(
+                InstUI.TapArea()
+                    .onTapGesture { isInputFocused = false }
+            )
             .background(Color.backgroundLightest)
             .scaleEffect(y: viewModel.state == .data ? -1 : 1)
 //            .safeAreaInset(edge: .bottom) {
@@ -115,7 +120,8 @@ struct SubmissionCommentListView: View {
                 case .file: showFilePicker()
                 }
             },
-            sendAction: sendComment
+            sendAction: sendComment,
+            isInputFocused: $isInputFocused
         )
         //        .accessibilityFocused($a11yFocusedTab, equals: .comments)
     }

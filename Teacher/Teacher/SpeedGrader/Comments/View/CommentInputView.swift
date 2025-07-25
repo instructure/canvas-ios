@@ -48,7 +48,7 @@ struct CommentInputView: View {
     private let sendAction: () -> Void
 
     @State private var showAttachmentTypeSheet = false
-    @FocusState private var isFocused: Bool
+    @FocusState.Binding private var isFocused: Bool
 
     init(
         comment: CurrentValueSubject<String, Never>,
@@ -57,7 +57,8 @@ struct CommentInputView: View {
         contextColor: Color,
         commentLibraryAction: @escaping () -> Void,
         addAttachmentAction: @escaping (AttachmentType) -> Void,
-        sendAction: @escaping () -> Void
+        sendAction: @escaping () -> Void,
+        isInputFocused: FocusState<Bool>.Binding
     ) {
         self.commentSubject = comment
         self.commentLibraryButtonType = commentLibraryButtonType
@@ -66,6 +67,7 @@ struct CommentInputView: View {
         self.commentLibraryAction = commentLibraryAction
         self.addAttachmentAction = addAttachmentAction
         self.sendAction = sendAction
+        self._isFocused = isInputFocused
     }
 
     var body: some View {
@@ -207,6 +209,8 @@ struct CommentInputView: View {
 #if DEBUG
 
 #Preview {
+    @FocusState var isInputFocused: Bool
+
     VStack {
         CommentInputView(
             comment: .init(.loremIpsumShort),
@@ -215,7 +219,8 @@ struct CommentInputView: View {
             contextColor: .green,
             commentLibraryAction: {},
             addAttachmentAction: { _ in },
-            sendAction: {}
+            sendAction: {},
+            isInputFocused: $isInputFocused
         )
         .background(Color.backgroundLightest)
 
@@ -226,7 +231,8 @@ struct CommentInputView: View {
             contextColor: .green,
             commentLibraryAction: {},
             addAttachmentAction: { _ in },
-            sendAction: {}
+            sendAction: {},
+            isInputFocused: $isInputFocused
         )
         .background(Color.backgroundLightest)
 
@@ -237,7 +243,8 @@ struct CommentInputView: View {
             contextColor: .green,
             commentLibraryAction: {},
             addAttachmentAction: { _ in },
-            sendAction: {}
+            sendAction: {},
+            isInputFocused: $isInputFocused
         )
         .background(Color.backgroundLightest)
 
@@ -248,7 +255,8 @@ struct CommentInputView: View {
             contextColor: .green,
             commentLibraryAction: {},
             addAttachmentAction: { _ in },
-            sendAction: {}
+            sendAction: {},
+            isInputFocused: $isInputFocused
         )
         .background(Color.backgroundLightest)
     }

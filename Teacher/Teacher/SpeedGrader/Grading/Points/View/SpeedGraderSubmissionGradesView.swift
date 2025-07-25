@@ -49,67 +49,70 @@ struct SpeedGraderSubmissionGradesView: View {
                 }
             }
         } else {
-            GeometryReader { geometry in ScrollView {
-                VStack(spacing: 0) {
-                    HStack(spacing: 0) {
-                        Text("Grade", bundle: .teacher)
-                            .accessibilityAddTraits(.isHeader)
-                        Spacer()
-                        if gradeViewModel.isSaving {
-                            ProgressView()
-                                .progressViewStyle(.indeterminateCircle(size: 24))
-                        } else if assignment.gradingType == .not_graded {
-                            Text("Not Graded", bundle: .teacher)
-                        } else {
-                            Button(action: promptNewGrade, label: {
-                                if gradeViewModel.state.isExcused {
-                                    Text("Excused", bundle: .teacher)
-                                } else if gradeViewModel.state.isGraded {
-                                    Text(gradeViewModel.state.originalGradeText)
-                                } else {
-                                    Image.addSolid.foregroundStyle(.tint)
-                                }
-                            })
-                            .accessibility(hint: Text("Prompts for an updated grade", bundle: .teacher))
-                            .identifier("SpeedGrader.gradeButton")
+            GeometryReader { geometry in
+                ScrollView {
+                    VStack(spacing: 0) {
+                        HStack(spacing: 0) {
+                            Text("Grade", bundle: .teacher)
+                                .accessibilityAddTraits(.isHeader)
+                            Spacer()
+                            if gradeViewModel.isSaving {
+                                ProgressView()
+                                    .progressViewStyle(.indeterminateCircle(size: 24))
+                            } else if assignment.gradingType == .not_graded {
+                                Text("Not Graded", bundle: .teacher)
+                            } else {
+                                Button(action: promptNewGrade, label: {
+                                    if gradeViewModel.state.isExcused {
+                                        Text("Excused", bundle: .teacher)
+                                    } else if gradeViewModel.state.isGraded {
+                                        Text(gradeViewModel.state.originalGradeText)
+                                    } else {
+                                        Image.addSolid.foregroundStyle(.tint)
+                                    }
+                                })
+                                .accessibility(hint: Text("Prompts for an updated grade", bundle: .teacher))
+                                .identifier("SpeedGrader.gradeButton")
+                            }
+                            if gradeViewModel.state.isGradedButNotPosted {
+                                Image.offLine.foregroundColor(.textDanger)
+                                    .padding(.leading, 12)
+                            }
                         }
-                        if gradeViewModel.state.isGradedButNotPosted {
-                            Image.offLine.foregroundColor(.textDanger)
-                                .padding(.leading, 12)
+                        .font(.heavy24)
+                        .foregroundColor(.textDarkest)
+                        .padding(.horizontal, 16).padding(.vertical, 12)
+
+                        if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
+                            slider
                         }
-                    }
-                    .font(.heavy24)
-                    .foregroundColor(.textDarkest)
-                    .padding(.horizontal, 16).padding(.vertical, 12)
 
-                    if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
-                        slider
-                    }
+                        noGradeAndExcuseButtons
 
-                    noGradeAndExcuseButtons
+                        GradeStatusView(viewModel: gradeStatusViewModel)
 
-                    GradeStatusView(viewModel: gradeStatusViewModel)
+                        if gradeViewModel.shouldShowGradeSummary {
+                            GradeSummaryView(
+                                pointsRow: gradeViewModel.pointsRowModel,
+                                latePenaltyRow: gradeViewModel.latePenaltyRowModel,
+                                finalGradeRow: gradeViewModel.finalGradeRowModel
+                            )
+                            .paddingStyle(.horizontal, .standard)
+                        }
 
-                    if gradeViewModel.shouldShowGradeSummary {
-                        GradeSummaryView(
-                            pointsRow: gradeViewModel.pointsRowModel,
-                            latePenaltyRow: gradeViewModel.latePenaltyRowModel,
-                            finalGradeRow: gradeViewModel.finalGradeRowModel
-                        )
-                        .paddingStyle(.horizontal, .standard)
-                    }
+                        comments
 
-                    comments
-
-                    if assignment.rubric?.isEmpty == false {
-                        RubricsView(
-                            currentScore: rubricsViewModel.totalRubricScore,
-                            containerFrameInGlobal: geometry.frame(in: .global),
-                            viewModel: rubricsViewModel
-                        )
-                    }
-                }.padding(.bottom, 16)
-            } }
+                        if assignment.rubric?.isEmpty == false {
+                            RubricsView(
+                                currentScore: rubricsViewModel.totalRubricScore,
+                                containerFrameInGlobal: geometry.frame(in: .global),
+                                viewModel: rubricsViewModel
+                            )
+                        }
+                    }.padding(.bottom, 16)
+                }
+                .scrollDismissesKeyboard(.interactively)
+            }
             .animation(.smooth, value: gradeStatusViewModel.isShowingDaysLateSection)
             .errorAlert(
                 isPresented: $gradeViewModel.isShowingErrorAlert,

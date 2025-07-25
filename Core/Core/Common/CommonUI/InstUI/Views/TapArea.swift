@@ -26,6 +26,8 @@ extension InstUI {
             Color.clear
                 .contentShape(Rectangle())
         }
+
+        public init() { }
     }
 }
 

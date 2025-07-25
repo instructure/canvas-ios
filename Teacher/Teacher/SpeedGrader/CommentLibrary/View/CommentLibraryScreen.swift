@@ -24,6 +24,8 @@ struct CommentLibraryScreen: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
     @Environment(\.viewController) private var controller
 
+    @FocusState private var isInputFocused: Bool
+
     @ObservedObject private var viewModel: CommentLibraryViewModel
 
     private let contextColor: Color
@@ -64,7 +66,8 @@ struct CommentLibraryScreen: View {
                 sendAction: {
                     sendAction()
                     dismiss()
-                }
+                },
+                isInputFocused: $isInputFocused
             )
         }
         .navigationBarTitleView(String(localized: "Comment Library", bundle: .teacher))
