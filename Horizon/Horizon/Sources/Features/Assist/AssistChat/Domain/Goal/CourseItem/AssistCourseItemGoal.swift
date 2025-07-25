@@ -23,12 +23,12 @@ import Combine
 class AssistCourseItemGoal: AssistGoal {
 
     enum Option: String, CaseIterable {
-        case Summarize = "Summarize the content"
-        case KeyTakeaways = "What are the key takeaways?"
-        case TellMeMore = "Tell me more"
-        case FlashCards = "Generate flash cards"
-        case Quiz = "Generate quiz questions"
-        case Rephrase = "Rephrase the content"
+        case Quiz = "Quiz me on this material"
+        case Summarize = "Summarize this material"
+        case KeyTakeaways = "Give me key takeaways"
+        case TellMeMore = "Tell me more about this topic"
+        case FlashCards = "Generate some study flashcards"
+        case Rephrase = "Rephrase the material"
     }
 
     // MARK: - Properties
