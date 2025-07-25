@@ -26,17 +26,29 @@ struct HCreateMessageView: View {
     @Bindable var viewModel: HCreateMessageViewModel
     @FocusState private var isBodyFocused: Bool
     @FocusState private var isSubjectFocused: Bool
+    @State private var isRecipientFocused: Bool = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
             header
             bodyContent
-            footer
+
+            if isFooterVisiable {
+                footer
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     // MARK: - Private
+
+    private var isFooterVisiable: Bool {
+        !viewModel.isCourseFocused
+        && !isSubjectFocused
+        && !viewModel.isCourseFocused
+        && !isRecipientFocused
+        && !isBodyFocused
+    }
 
     private var bodyContent: some View {
         AttachmentView(viewModel: viewModel.attachmentViewModel) {
@@ -58,6 +70,9 @@ struct HCreateMessageView: View {
                 ScrollOffsetReader.dismissKeyboard()
             }
         }
+        .onReceive(viewModel.recipientSelectionViewModel.isFocusedSubject) { value in
+            isRecipientFocused = value
+        }
     }
 
     private var courseSelection: some View {
@@ -69,6 +84,9 @@ struct HCreateMessageView: View {
             placeholder: String(localized: "Select a course", bundle: .horizon),
             zIndex: 102
         )
+        .readingFrame { frame in
+            print(frame.height, "courseSelection")
+        }
     }
 
     private var fileAttachmentButtonRow: some View {
@@ -147,7 +165,7 @@ struct HCreateMessageView: View {
 
     private var header: some View {
         HStack(spacing: .zero) {
-            Text("Create Message")
+            Text("Create message")
                 .huiTypography(.h2)
             Spacer()
             HorizonUI.IconButton(
@@ -183,7 +201,7 @@ struct HCreateMessageView: View {
     private var messageTitleInput: some View {
         HorizonUI.TextInput(
             $viewModel.subject,
-            placeholder: String(localized: "Title/Subject", bundle: .horizon),
+            placeholder: String(localized: "Title/subject", bundle: .horizon),
             disabled: viewModel.isSubjectDisabled,
             focused: _isSubjectFocused,
             characterLimit: 255

@@ -73,7 +73,7 @@
     "Alaska (-09:00/-08:00)" : {
 
     },
-    "All Messages" : {
+    "All messages" : {
 
     },
     "Almaty (+05:00/+05:00)" : {
@@ -83,6 +83,9 @@
 
     },
     "Amsterdam (+01:00/+02:00)" : {
+
+    },
+    "An error has occurred" : {
 
     },
     "An error occurred while marking as done." : {
@@ -256,10 +259,10 @@
     "Choose and complete one of the required items." : {
 
     },
-    "Choose File" : {
+    "Choose file" : {
 
     },
-    "Choose Photo or Video" : {
+    "Choose photo or video" : {
 
     },
     "Comments" : {
@@ -274,7 +277,7 @@
     "Completed" : {
 
     },
-    "Confirm Submission" : {
+    "Confirm submission" : {
 
     },
     "Confirmation" : {
@@ -296,9 +299,6 @@
 
     },
     "Create message" : {
-
-    },
-    "Create Message" : {
 
     },
     "Cuiaba (-04:00/-04:00)" : {
@@ -382,7 +382,7 @@
     "Excused" : {
 
     },
-    "External Tool" : {
+    "External tool" : {
 
     },
     "Feedback: " : {
@@ -583,7 +583,7 @@
     "Manaus (-04:00/-04:00)" : {
 
     },
-    "Mark as Done" : {
+    "Mark as done" : {
 
     },
     "Marshall Is. (+12:00/+12:00)" : {
@@ -852,10 +852,10 @@
     "Scoring Weight Changed" : {
 
     },
-    "Select a aubmission type" : {
+    "Select a course" : {
 
     },
-    "Select a course" : {
+    "Select a submission type" : {
 
     },
     "Send" : {
@@ -888,12 +888,6 @@
     "Something went wrong" : {
 
     },
-    "Sorry, we were unable to find this item." : {
-
-    },
-    "Sort By" : {
-
-    },
     "Sorry, can we try that again? Which course is it you'd like to discuss?" : {
 
     },
@@ -901,6 +895,9 @@
 
     },
     "Sorry, we were not able to display this page right now." : {
+
+    },
+    "Sorry, we were unable to find this item." : {
 
     },
     "Sort by" : {
@@ -927,7 +924,7 @@
     "Submit assignment" : {
 
     },
-    "Submit Attempt" : {
+    "Submit attempt" : {
 
     },
     "Submitted" : {
@@ -942,7 +939,7 @@
     "Taipei (+08:00)" : {
 
     },
-    "Take Photo or Video" : {
+    "Take photo or video" : {
 
     },
     "Tallinn (+02:00/+03:00)" : {
@@ -990,7 +987,7 @@
     "Time Zone" : {
 
     },
-    "Title/Subject" : {
+    "Title/subject" : {
 
     },
     "Tokelau Is. (+13:00/+13:00)" : {
@@ -1041,7 +1038,7 @@
     "Vienna (+01:00/+02:00)" : {
 
     },
-    "View Submission" : {
+    "View submission" : {
 
     },
     "View your progress and scores on the Learn page." : {
@@ -1116,7 +1113,7 @@
     "Your text submission" : {
 
     },
-    "Your Uploaded Submission" : {
+    "Your uploaded submission" : {
 
     },
     "Zagreb (+01:00/+02:00)" : {
