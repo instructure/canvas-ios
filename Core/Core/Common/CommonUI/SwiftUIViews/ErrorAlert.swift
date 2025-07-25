@@ -20,25 +20,19 @@ import Combine
 import SwiftUI
 
 public struct ErrorAlertViewModel {
-    public let title: String
-    public let message: String
-    public let buttonTitle: String
+    public var title: String
+    public var message: String
+    public var buttonTitle: String
 
     public init(
-        title: String,
-        message: String,
-        buttonTitle: String
+        title: String? = nil,
+        message: String? = nil,
+        buttonTitle: String? = nil
     ) {
-        self.title = title
-        self.message = message
-        self.buttonTitle = buttonTitle
+        self.title = title ?? String(localized: "Error", bundle: .core)
+        self.message = message ?? ""
+        self.buttonTitle = buttonTitle ?? String(localized: "OK", bundle: .core)
     }
-
-    public static let empty: ErrorAlertViewModel = .init(
-        title: String(localized: "Error", bundle: .core),
-        message: "",
-        buttonTitle: String(localized: "OK", bundle: .core)
-    )
 }
 
 public extension View {

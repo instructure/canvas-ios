@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "\"%@\" is not a valid grade." : {
+
+    },
     "%@ to %@" : {
       "localizations" : {
         "en" : {
@@ -26765,6 +26768,9 @@
           }
         }
       }
+    },
+    "Invalid Grade" : {
+
     },
     "It seems there aren't any valid submissions to grade." : {
       "localizations" : {

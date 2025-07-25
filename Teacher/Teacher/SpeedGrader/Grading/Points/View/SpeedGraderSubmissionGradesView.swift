@@ -174,14 +174,7 @@ struct SpeedGraderSubmissionGradesView: View {
             isExcused: gradeState.isExcused,
             text: Binding(
                 get: { textValue },
-                set: {
-                    guard let value = Double($0) else { return }
-
-                    switch inputType {
-                    case .points: gradeViewModel.setPointsGrade(value)
-                    case .percentage: gradeViewModel.setPercentGrade(value)
-                    }
-                }
+                set: { gradeViewModel.setGradeFromTextField($0, inputType: inputType) }
             ),
             isSaving: gradeViewModel.isSavingGrade
         )

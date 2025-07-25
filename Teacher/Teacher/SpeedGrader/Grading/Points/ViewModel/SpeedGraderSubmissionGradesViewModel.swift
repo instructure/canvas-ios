@@ -57,7 +57,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     // Error alert
     @Published var isShowingErrorAlert: Bool = false
-    private(set) var errorAlertViewModel: ErrorAlertViewModel = .empty
+    private(set) var errorAlertViewModel: ErrorAlertViewModel = .init()
 
     // MARK: - Private Properties
 
@@ -112,6 +112,18 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     // TODO: remove
     func setGrade(_ grade: String) {
         saveGrade(grade: grade)
+    }
+
+    func setGradeFromTextField(_ text: String, inputType: GradeInputTextFieldCell.InputType) {
+        guard let value = text.doubleValueByFixingDecimalSeparator else {
+            showInvalidGradeError(grade: text)
+            return
+        }
+
+        switch inputType {
+        case .points: setPointsGrade(value)
+        case .percentage: setPercentGrade(value)
+        }
     }
 
     func setPointsGrade(_ points: Double) {
@@ -195,10 +207,14 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     }
 
     private func showError(_ error: Error) {
-        errorAlertViewModel = ErrorAlertViewModel(
-            title: errorAlertViewModel.title,
-            message: error.localizedDescription,
-            buttonTitle: errorAlertViewModel.buttonTitle
+        errorAlertViewModel = .init(message: error.localizedDescription)
+        isShowingErrorAlert = true
+    }
+
+    private func showInvalidGradeError(grade: String) {
+        errorAlertViewModel = .init(
+            title: String(localized: "Invalid Grade", bundle: .teacher),
+            message: String(localized: "\"\(grade)\" is not a valid grade.", bundle: .teacher)
         )
         isShowingErrorAlert = true
     }
@@ -260,5 +276,24 @@ private extension GradeState {
         case .not_graded:
             .statusDisplayOnly
         }
+    }
+}
+
+private extension String {
+    private static let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.locale = Locale.current
+        return formatter
+    }()
+
+    /// API expects US formatted numbers, which use "." as decimal separator, but users may use a different separator.
+    /// For example keyboard provides a localized separator.
+    var doubleValueByFixingDecimalSeparator: Double? {
+        if let value = Double(self) {
+            return value
+        }
+
+        return Self.numberFormatter.number(from: self)?.doubleValue
     }
 }
