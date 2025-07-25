@@ -20,20 +20,19 @@
 import XCTest
 
 class CourseSmartSearchViewAttributesTests: CoreTestCase {
-    
     func test_default_properties() {
         let testee = CourseSmartSearchViewAttributes.default
-        
+
         XCTAssertEqual(testee.context, .currentUser)
         XCTAssertNil(testee.accentColor)
     }
-    
+
     func test_custom_properties() {
         let testee = CourseSmartSearchViewAttributes(
             context: .course("1"),
             color: .red
         )
-        
+
         XCTAssertEqual(testee.context, .course("1"))
         XCTAssertEqual(testee.accentColor, .red)
         XCTAssertEqual(testee.searchPrompt, String(localized: "Search in this course", bundle: .core))
