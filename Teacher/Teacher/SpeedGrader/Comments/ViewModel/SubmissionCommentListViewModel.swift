@@ -55,6 +55,8 @@ class SubmissionCommentListViewModel: ObservableObject {
         isAssignmentEnhancementsEnabled ? selectedAttemptNumber : nil
     }
 
+    var commentCount: Int { allComments.count }
+
     // MARK: - Init
 
     init(
@@ -123,8 +125,6 @@ class SubmissionCommentListViewModel: ObservableObject {
     }
 
     // MARK: - Get comments
-
-    var commentCount: Int { allComments.count }
 
     private func updateComments(attempt: Int?) {
         selectedAttemptNumber = attempt
