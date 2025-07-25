@@ -131,7 +131,7 @@ struct AssistChatView: View {
 
     private var textInputMessageView: some View {
         TextEditor(text: $viewModel.message)
-            .frame(minHeight: 22)
+            .frame(minHeight: 36)
             .frame(maxHeight: 100)
             .fixedSize(horizontal: false, vertical: true)
             .huiTypography(.p1)
