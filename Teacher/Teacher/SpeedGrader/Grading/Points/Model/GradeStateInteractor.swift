@@ -109,13 +109,37 @@ class GradeStateInteractorLive: GradeStateInteractor {
         switch gradingType {
         case .gpa_scale, .letter_grade:
             guard let entries = assignment.gradingScheme?.entries else { return [] }
-            return entries.map {
-                OptionItem(
-                    id: $0.name,
-                    title: $0.name,
-                    subtitle: String($0.value)
+
+            // Assumptions:
+            // - values are always normalized in [0, 1]
+            // - values have 2 decimal digits at most (they can be converted to integer percents precisely)
+            var items: [OptionItem] = []
+            let maxValue = String(localized: "\(100)%", bundle: .teacher)
+            var upperBound = maxValue
+            entries.forEach {
+                let lowerBound = String(localized: "\(Int($0.value * 100))%", bundle: .core)
+
+                let subtitle: String
+                if upperBound == maxValue {
+                    subtitle = String(localized: "\(maxValue) to \(lowerBound)", bundle: .teacher)
+                } else {
+                    subtitle = String(localized: "< \(upperBound) to \(lowerBound)", bundle: .teacher)
+                }
+
+                let a11yLabel = [String.accessibiltyLetterGrade($0.name), subtitle].joined(separator: ",")
+
+                items.append(
+                    OptionItem(
+                        id: $0.name,
+                        title: $0.name,
+                        subtitle: subtitle,
+                        customAccessibilityLabel: a11yLabel
+                    )
                 )
+
+                upperBound = lowerBound
             }
+            return items
         case .pass_fail:
             return [
                 .init(id: "complete", title: String(localized: "Complete", bundle: .teacher)),

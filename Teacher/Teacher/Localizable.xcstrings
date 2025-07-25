@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ to %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ to %2$@"
+          }
+        }
+      }
+    },
     "%1$@, submitted on %2$@" : {
       "comment" : "Attempt 30, submitted on 2025. Feb 6. at 18:21",
       "localizations" : {
@@ -1760,6 +1770,19 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "%lld%%" : {
+
+    },
+    "< %@ to %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "< %1$@ to %2$@"
           }
         }
       }

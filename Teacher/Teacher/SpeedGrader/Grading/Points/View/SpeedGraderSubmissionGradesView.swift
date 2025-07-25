@@ -142,6 +142,10 @@ struct SpeedGraderSubmissionGradesView: View {
                 didSelectOption: gradeViewModel.didSelectGradeOption,
                 isSaving: gradeViewModel.isSavingGrade
             )
+            .accessibilityLabel(
+                [title, String.accessibiltyLetterGrade(gradeState.originalGrade)]
+                    .joined(separator: ",")
+            )
         case .statusDisplayOnly:
             gradeInputDisplayOnlyView(
                 title: title,
