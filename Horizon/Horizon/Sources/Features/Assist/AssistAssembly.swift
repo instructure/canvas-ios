@@ -23,18 +23,18 @@ import Core
 final class AssistAssembly {
 
     static func makeAssistChatView(
-        courseId: String? = nil,
-        pageUrl: String? = nil,
-        fileId: String? = nil
+        courseID: String? = nil,
+        fileID: String? = nil,
+        pageURL: String? = nil
     ) -> UINavigationController {
         let viewModel = AssistChatViewModel(
-            courseId: courseId,
-            pageUrl: pageUrl,
-            fileId: fileId,
-            chatBotInteractor: makeChatBotInteractor(
-                courseId: courseId,
-                pageUrl: pageUrl,
-                fileId: fileId
+            courseID: courseID,
+            fileID: fileID,
+            pageURL: pageURL,
+            assistChatInteractor: makeChatBotInteractor(
+                courseID: courseID,
+                fileID: fileID,
+                pageURL: pageURL
             )
         )
         let view = AssistChatView(viewModel: viewModel)
@@ -45,46 +45,46 @@ final class AssistAssembly {
     }
 
     static func makeChatBotInteractor(
-        courseId: String? = nil,
-        pageUrl: String? = nil,
-        fileId: String? = nil
+        courseID: String? = nil,
+        fileID: String? = nil,
+        pageURL: String? = nil
     ) -> AssistChatInteractor {
         AssistChatInteractorLive(
-            courseID: courseId,
-            fileID: fileId,
-            pageURL: pageUrl,
-            downloadFileInteractor: courseId.map {
+            courseID: courseID,
+            fileID: fileID,
+            pageURL: pageURL,
+            downloadFileInteractor: courseID.map {
                 DownloadFileInteractorLive(courseID: $0)
             }
         )
     }
 
     static func makeAIQuizView(
-        courseId: String? = nil,
-        fileId: String? = nil,
-        pageUrl: String? = nil,
+        courseID: String? = nil,
+        fileID: String? = nil,
+        pageURL: String? = nil,
         quizzes: [AssistQuizModel] = []
     ) -> AssistQuizView {
         let chatBotInteractor = makeChatBotInteractor(
-            courseId: courseId,
-            pageUrl: pageUrl,
-            fileId: fileId
+            courseID: courseID,
+            fileID: fileID,
+            pageURL: pageURL
         )
         let viewModel = AssistQuizViewModel(chatBotInteractor: chatBotInteractor, quizzes: quizzes)
         return AssistQuizView(viewModel: viewModel)
     }
 
     static func makeAIFlashCardView(
-        courseId: String? = nil,
-        fileId: String? = nil,
-        pageUrl: String? = nil,
+        courseID: String? = nil,
+        fileID: String? = nil,
+        pageURL: String? = nil,
         flashCards: [AssistFlashCardModel]
     ) -> AssistFlashCardView {
         let router = AppEnvironment.shared.router
         let chatBotInteractor = makeChatBotInteractor(
-            courseId: courseId,
-            pageUrl: pageUrl,
-            fileId: fileId
+            courseID: courseID,
+            fileID: fileID,
+            pageURL: pageURL
         )
         let viewModel = AssistFlashCardViewModel(
             flashCards: flashCards,
@@ -92,5 +92,44 @@ final class AssistAssembly {
             chatBotInteractor: chatBotInteractor
         )
         return AssistFlashCardView(viewModel: viewModel)
+    }
+
+    struct RoutingParams {
+        let courseID: String?
+        let fileID: String?
+        let pageURL: String?
+
+        private static let courseIDKey = "courseID"
+        private static let fileIDKey = "fileID"
+        private static let pageURLKey = "pageURL"
+
+        init(
+            courseID: String? = nil,
+            fileID: String? = nil,
+            pageURL: String? = nil
+        ) {
+            self.courseID = courseID
+            self.fileID = fileID
+            self.pageURL = pageURL
+        }
+
+        init(from queryItems: [URLQueryItem]) {
+            self.courseID = queryItems.first(where: { $0.name == RoutingParams.courseIDKey })?.value
+            self.fileID = queryItems.first(where: { $0.name == RoutingParams.fileIDKey })?.value
+            self.pageURL = queryItems.first(where: { $0.name == RoutingParams.pageURLKey })?.value
+        }
+
+        var queryString: String {
+            [
+                RoutingParams.courseIDKey: courseID,
+                RoutingParams.fileIDKey: fileID,
+                RoutingParams.pageURLKey: pageURL
+            ].map { (key, value) in
+                guard let value = value else { return nil }
+                return "\(key)=\(value)"
+            }
+            .compactMap { $0 }
+            .joined(separator: "&")
+        }
     }
 }

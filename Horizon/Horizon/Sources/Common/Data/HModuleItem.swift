@@ -66,7 +66,6 @@ struct HModuleItem: Equatable {
         moduleName: String? = nil,
         estimatedDuration: String? = nil,
         completionRequirement: CompletionRequirement? = nil
-
     ) {
         self.id = id
         self.title = title

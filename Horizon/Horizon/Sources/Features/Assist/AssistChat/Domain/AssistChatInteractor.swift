@@ -21,17 +21,24 @@ import CombineExt
 import Core
 import Foundation
 
-protocol AssistChatInteractor {
-    var listen: AnyPublisher<AssistChatInteractorLive.State, any Error> { get }
-    func publish(action: AssistChatAction)
-    func setInitialState()
-}
+class AssistChatInteractor {
+    var listen: AnyPublisher<State, any Error> { Empty().eraseToAnyPublisher() }
+    func publish(action: AssistChatAction) { }
+    func setInitialState() { }
 
-final class AssistChatInteractorLive: AssistChatInteractor {
     enum State {
         case success(AssistChatResponse)
         case failure(Error)
     }
+
+    enum AssetType: String, Codable {
+        case attachment
+        case unknown
+        case wiki_page
+    }
+}
+
+final class AssistChatInteractorLive: AssistChatInteractor {
 
     // MARK: - Private
     private let actionPublisher = CurrentValueRelay<AssistChatAction?>(nil)
@@ -65,6 +72,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
 
     // MARK: - Inputs
     /// Publishes a new user action to the interactor
+    override
     func publish(action: AssistChatAction) {
         var prompt: String?
         var history: [AssistChatMessage] = []
@@ -108,10 +116,12 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     }
 
     /// Subscribe to the responses from the interactor
+    override
     var listen: AnyPublisher<AssistChatInteractorLive.State, Error> {
         responsePublisher.eraseToAnyPublisher()
     }
 
+    override
     func setInitialState() {
         goalCancellable?.cancel()
         self.assistDataEnvironment = self.assistDateEnvironmentOriginal.duplicate()
@@ -158,28 +168,34 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     }
 }
 
-struct AssistChatInteractorPreview: AssistChatInteractor {
+class AssistChatInteractorPreview: AssistChatInteractor {
     var hasAssistChipOptions: Bool = true
 
+    override
     func publish(action: AssistChatAction) {}
-    var listen: AnyPublisher<AssistChatInteractorLive.State, any Error> = Just(
-        .success(
-            AssistChatResponse(
-                AssistChatMessage(
-                    quizItems: [
-                        .init(
-                            question: "What is the capital of France?",
-                            answers: ["Paris", "London", "Berlin", "Madrid"],
-                            correctAnswerIndex: 0
-                        )
-                    ]
-                ),
-                chatHistory: []
+
+    override
+    var listen: AnyPublisher<State, any Error> {
+        Just(
+            .success(
+                AssistChatResponse(
+                    AssistChatMessage(
+                        quizItems: [
+                            .init(
+                                question: "What is the capital of France?",
+                                answers: ["Paris", "London", "Berlin", "Madrid"],
+                                correctAnswerIndex: 0
+                            )
+                        ]
+                    ),
+                    chatHistory: []
+                )
             )
         )
-    )
-    .setFailureType(to: Error.self)
-    .eraseToAnyPublisher()
+        .setFailureType(to: Error.self)
+        .eraseToAnyPublisher()
+    }
 
+    override
     func setInitialState() {}
 }

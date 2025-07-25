@@ -32,12 +32,21 @@ struct PineQueryMutation: APIGraphQLRequestable {
         ]
     }
 
-    public init(messages: [DomainServiceConversationMessage], courseID: String) {
+    public init(
+        messages: [DomainServiceConversationMessage],
+        courseID: String? = nil,
+        sourceID: String? = nil,
+        sourceType: String? = nil
+    ) {
         self.variables = Variables(
             input: RagQueryInput(
                 messages: messages,
                 source: "canvas",
-                metadata: ["courseId": courseID]
+                metadata: [
+                    "courseId": courseID,
+                    "sourceId": sourceID,
+                    "sourceType": sourceType
+                ].compactMapValues { $0 }
             )
         )
     }

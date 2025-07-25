@@ -36,23 +36,10 @@ class AssistCoursePageGoal: AssistCourseItemGoal {
             environment: environment,
             cedar: cedar
         )
+        sourceType = .wiki_page
     }
 
     // MARK: - Overrides
-    /// Converts the course page content into a document format suitable for Cedar API requests.
-    override
-    var document: AnyPublisher<CedarAnswerPromptMutation.DocumentInput?, Error> {
-        body.map { body in
-            guard let base64Source = body?.base64EncodedString else {
-                return nil
-            }
-            return CedarAnswerPromptMutation.DocumentInput(
-                format: .txt,
-                base64Source: base64Source
-            )
-        }
-        .eraseToAnyPublisher()
-    }
 
     override
     func isRequested() -> Bool { courseID != nil && pageURL != nil }
@@ -83,27 +70,6 @@ class AssistCoursePageGoal: AssistCourseItemGoal {
         .eraseToAnyPublisher()
     }
 
-    /// Summarizes the page contents using the Cedar endpoint for content summarization.
-    override
-    func summarizeContent() -> AnyPublisher<AssistChatMessage?, Error> {
-        body.flatMap { [weak self] body in
-            guard let self = self,
-                  let body = body else {
-                return Just<AssistChatMessage?>(nil)
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            }
-            return self.cedarSummarizeContent(content: body)
-                .map { (summaries: [String]?) in
-                    AssistChatMessage(
-                        botResponse: (summaries ?? []).joined(separator: "\n\n")
-                    )
-                }
-                .eraseToAnyPublisher()
-        }
-        .eraseToAnyPublisher()
-    }
-
     // MARK: - Private Methods
     /// Fetches the body of the course page and returns it as a string.
     private var body: AnyPublisher<String?, Error> {
@@ -116,21 +82,6 @@ class AssistCoursePageGoal: AssistCourseItemGoal {
         return ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
             .getEntities()
             .map { $0.first?.body }
-            .eraseToAnyPublisher()
-    }
-
-    /// Given the document content, it returns a publisher that emits the summarized content.
-    private func cedarSummarizeContent(content: String) -> AnyPublisher<[String]?, Error> {
-        cedar.api()
-            .flatMap { cedarApi in
-                cedarApi.makeRequest(
-                    CedarSummarizeContentMutation(content: content)
-                )
-                .map { (response, _) in
-                    response.data.summarizeContent.summarization
-                }
-                .eraseToAnyPublisher()
-            }
             .eraseToAnyPublisher()
     }
 }

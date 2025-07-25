@@ -310,46 +310,32 @@ enum HorizonRoutes {
     private static var aiRoutes: [RouteHandler] {
         [
             RouteHandler("/assistant") { url, _, _ in
-
-                let queryItems = url.queryItems ?? []
-
-                let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
-                let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
-                let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
+                let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
                 return AssistAssembly.makeAssistChatView(
-                    courseId: courseId,
-                    pageUrl: pageUrl,
-                    fileId: fileId
+                    courseID: routingParams?.courseID,
+                    fileID: routingParams?.fileID,
+                    pageURL: routingParams?.pageURL
                 )
             },
-            RouteHandler("/assistant/flashcards") {url, _, userInfo in
+            RouteHandler("/assistant/flashcards") { url, _, userInfo in
                 let flashCards = userInfo?["flashCards"] as? [AssistFlashCardModel] ?? []
-                let queryItems = url.queryItems ?? []
-                let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
-                let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
-                let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
+                let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
                 return CoreHostingController(
                     AssistAssembly.makeAIFlashCardView(
-                        courseId: courseId,
-                        fileId: fileId,
-                        pageUrl: pageUrl,
+                        courseID: routingParams?.courseID,
+                        fileID: routingParams?.fileID,
+                        pageURL: routingParams?.pageURL,
                         flashCards: flashCards
                     )
                 )
             },
             RouteHandler("/assistant/quiz") { url, _, userInfo in
-                let queryItems = url.queryItems ?? []
-
-                let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
-                let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
-                let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
-
                 let quizzes = userInfo?["quizzes"] as? [AssistQuizModel]
-
+                let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
                 let quizView = AssistAssembly.makeAIQuizView(
-                    courseId: courseId,
-                    fileId: fileId,
-                    pageUrl: pageUrl,
+                    courseID: routingParams?.courseID,
+                    fileID: routingParams?.fileID,
+                    pageURL: routingParams?.pageURL,
                     quizzes: quizzes ?? []
                 )
 

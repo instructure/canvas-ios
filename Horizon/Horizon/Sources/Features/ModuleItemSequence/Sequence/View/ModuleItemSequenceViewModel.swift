@@ -203,30 +203,24 @@ final class ModuleItemSequenceViewModel {
     }
 
     private func navigateToTutor(viewController: WeakViewController) {
-        guard let courseId = moduleItem?.courseID else {
+        guard let courseID = moduleItem?.courseID else {
             return
         }
 
-        var fileId: String?
-        var pageUrl: String?
-
-        switch moduleItem?.type {
-        case .file(let id):
-                fileId = id
-        case .page(let url):
-                pageUrl = url
-        default:
-            break
+        var pageURL: String?
+        var fileID: String?
+        if case let .page(url) = moduleItem?.type {
+            pageURL = url
         }
+        if case let .file(file) = moduleItem?.type {
+            fileID = file
+        }
+        let params = AssistAssembly.RoutingParams(
+            courseID: courseID,
+            fileID: fileID,
+            pageURL: pageURL
+        ).queryString
 
-        let params = [
-            "courseId": courseId,
-            "pageUrl": pageUrl,
-            "fileId": fileId
-        ].map { key, value in
-            guard let value = value else { return nil }
-            return "\(key)=\(value)"
-        }.compactMap { $0 }.joined(separator: "&")
         router.route(to: "/assistant?\(params)", from: viewController, options: .modal())
     }
 
@@ -350,5 +344,18 @@ final class ModuleItemSequenceViewModel {
         )
         .sink()
         .store(in: &subscriptions)
+    }
+}
+
+private extension ModuleItemType {
+    var interactorAssetType: AssistChatInteractor.AssetType? {
+        switch self {
+        case .file:
+            return .attachment
+        case .page:
+            return .wiki_page
+        default:
+            return nil
+        }
     }
 }

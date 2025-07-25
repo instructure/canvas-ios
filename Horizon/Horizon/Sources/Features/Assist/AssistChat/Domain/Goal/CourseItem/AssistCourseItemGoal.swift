@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Core
 
 /// This is a base class for the course page and course document goals
 /// It's not meant to be instantiated directly, but rather to be subclassed
@@ -36,12 +37,6 @@ class AssistCourseItemGoal: AssistGoal {
         environment.courseID.value
     }
 
-    var document: AnyPublisher<CedarAnswerPromptMutation.DocumentInput?, Error> {
-        return Just(nil)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-
     var options: [Option] {
         Option.allCases
     }
@@ -50,12 +45,13 @@ class AssistCourseItemGoal: AssistGoal {
     let environment: AssistDataEnvironment
     let cedar: DomainService
     private let initialPrompt: String
+    private let pine: DomainService
+    var sourceType: AssistChatInteractor.AssetType = .unknown
 
     // MARK: - Private
     private var chipOptions: [String] {
         options.map(\.rawValue)
     }
-
     private var goalOptions: [AssistGoalOption] {
         options.map { AssistGoalOption(name: $0.rawValue) }
     }
@@ -64,11 +60,13 @@ class AssistCourseItemGoal: AssistGoal {
     init(
         initialPrompt: String,
         environment: AssistDataEnvironment,
-        cedar: DomainService = DomainService(.cedar)
+        cedar: DomainService = DomainService(.cedar),
+        pine: DomainService = DomainService(.pine)
     ) {
         self.initialPrompt = initialPrompt
         self.environment = environment
         self.cedar = cedar
+        self.pine = pine
     }
 
     /// Executes the goal based on the response from the user.
@@ -95,7 +93,14 @@ class AssistCourseItemGoal: AssistGoal {
                 // If a chip wasn't chosen, just try to answer what they said
                 guard let chip = chip,
                       let option = self.options.first(where: { chip.contains($0.rawValue) }) else {
-                    return self.cedarAnswerPrompt(prompt: response)
+                    return self.pineAnswerPrompt(prompt: response)
+                        .map { response in
+                            AssistChatMessage(
+                                botResponse: response ??
+                                    String(localized: "Sorry, I don't have an answer for this.", bundle: .horizon)
+                            )
+                        }
+                        .eraseToAnyPublisher()
                 }
 
                 switch option {
@@ -116,9 +121,7 @@ class AssistCourseItemGoal: AssistGoal {
             .eraseToAnyPublisher()
     }
 
-    func isRequested() -> Bool {
-        false
-    }
+    func isRequested() -> Bool { false }
 
     // Quiz is not available for a document at the moment
     // And for a page, there's a separate cedar endpoint for generating the quiz
@@ -137,88 +140,51 @@ class AssistCourseItemGoal: AssistGoal {
         )
     }
 
-    // MARK: - Private Functions
-    /// Given a prompt, fetches the page document and makes a request to the cedar endpoint for answering a question
-    private func cedarAnswerPrompt(prompt: String) -> AnyPublisher<AssistChatMessage?, Error> {
-        document
-            .flatMap { [weak self] document in
-                guard let self = self, let document = document else {
-                    return Just<AssistChatMessage?>(nil)
-                        .setFailureType(to: Error.self)
-                        .eraseToAnyPublisher()
-                }
-                return self.cedarAnswerPrompt(prompt: prompt, document: document)
-                    .map { response in
-                        AssistChatMessage(
-                            botResponse: response ?? String(localized: "Sorry, I don't have an answer for that right now.", bundle: .horizon)
-                        )
-                    }
-                    .eraseToAnyPublisher()
+    var sourceID: AnyPublisher<String?, Error> {
+        guard let courseID = environment.courseID.value,
+            let pageURL = environment.pageURL.value else {
+            return Just(nil)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        return ReactiveStore(useCase: GetPages(context: .course(courseID)))
+            .getEntities()
+            .map { pages in
+                pages.first { $0.url == pageURL }?.id
             }
             .eraseToAnyPublisher()
     }
 
-    /// Given a prompt and a document, makes a request to the cedar endpoint for answering a question
-    /// https://github.com/instructure-internal/cedar/blob/main/docs/index.md#answer-prompt
-    private func cedarAnswerPrompt(
-        prompt: String,
-        document: CedarAnswerPromptMutation.DocumentInput
-    ) -> AnyPublisher<String?, Error> {
-        cedar.api()
-            .flatMap { cedarApi in
-                cedarApi.makeRequest(
-                    CedarAnswerPromptMutation(
-                        prompt: prompt,
-                        document: document
-                    )
-                )
-                .map { (response, _) in
-                    response.data.answerPrompt
-                }
-            }
-            .eraseToAnyPublisher()
-    }
-
-    /// Given a Goal Option, makes a request to the cedar endpoint for answering a question
-    private func cedarAnswerPrompt(
-        forOption goalOption: AssistCourseItemGoal.Option,
-        errorResponse: String
-    ) -> AnyPublisher<AssistChatMessage?, Error> {
-        document.flatMap { [weak self] document in
+    private func pineAnswerPrompt(prompt: String) -> AnyPublisher<String?, Error> {
+        sourceID.flatMap { [weak self] sourceID in
             guard let self = self,
-                  let document = document else {
-                return Just<AssistChatMessage?>(nil)
+                  let sourceID = sourceID else {
+                return Just<String?>(nil)
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
-            return self.cedarAnswerPrompt(
-                prompt: goalOption.prompt,
-                document: document
+            return self.pine.askARAGQuestion(
+                question: prompt,
+                courseID: courseID,
+                sourceID: sourceID,
+                sourceType: sourceType.rawValue
             )
-            .map { (response: String?) in
-                .init(botResponse: response ?? errorResponse)
-            }
-            .eraseToAnyPublisher()
         }
         .eraseToAnyPublisher()
     }
 
-    /// Makes a request to the cedar endpoint using the given prompt and returns an answer
-    /// https://github.com/instructure-internal/cedar/blob/main/docs/index.md#conversation
-    private func cedarConversation(
-        prompt: String,
-        history: [AssistChatMessage] = []
-    ) -> AnyPublisher<String?, Error> {
-        cedar.api()
-            .flatMap { cedarApi in
-                cedarApi.makeRequest(
-                    CedarConversationMutation(
-                        systemPrompt: prompt,
-                        messages: history.domainServiceConversationMessages
+    private func cedarAnswerPrompt(
+        forOption option: Option,
+        errorResponse: String? = nil
+    ) -> AnyPublisher<AssistChatMessage?, Error> {
+        pineAnswerPrompt(prompt: option.prompt)
+            .map { response in
+                if let response = response, !response.isEmpty {
+                    return AssistChatMessage(botResponse: response)
+                } else {
+                    return AssistChatMessage(
+                        botResponse: errorResponse ?? String(localized: "I don't have an answer for this.", bundle: .horizon)
                     )
-                )
-                .map { (response, _) in
-                    response.data.conversation.response
                 }
             }
             .eraseToAnyPublisher()
@@ -226,24 +192,11 @@ class AssistCourseItemGoal: AssistGoal {
 
     /// Calls the Cedar endpoint for generating flashcards based on the document content
     private func flashcards() -> AnyPublisher<AssistChatMessage?, Error> {
-        document.flatMap { [weak self] document in
-            guard
-                let self = self,
-                let document = document else {
-                return Just<AssistChatMessage?>(nil)
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            }
-            return self.cedarAnswerPrompt(
-                prompt: Option.FlashCards.prompt,
-                document: document
+        self.pineAnswerPrompt(prompt: Option.FlashCards.prompt)
+        .map { (response: String?) in
+            AssistChatMessage(
+                flashCards: AssistChatFlashCard.build(from: response ?? "") ?? []
             )
-                .map { (response: String?) in
-                    AssistChatMessage(
-                        flashCards: AssistChatFlashCard.build(from: response ?? "") ?? []
-                    )
-                }
-                .eraseToAnyPublisher()
         }
         .eraseToAnyPublisher()
     }
@@ -273,13 +226,6 @@ class AssistCourseItemGoal: AssistGoal {
     }
 }
 
-extension String {
-    var base64EncodedString: String? {
-        guard let data = data(using: .utf8) else { return nil }
-        return data.base64EncodedString()
-    }
-}
-
 // swiftlint:disable line_length
 extension AssistCourseItemGoal.Option {
     var prompt: String {
@@ -288,7 +234,7 @@ extension AssistCourseItemGoal.Option {
             .KeyTakeaways: keyTakeaways,
             .TellMeMore: tellMeMore,
             .FlashCards: flashCards,
-            .Quiz: "",
+            .Quiz: quiz,
             .Rephrase: rephraseContent
         ]
         return prompts[self] ?? ""
@@ -309,6 +255,16 @@ extension AssistCourseItemGoal.Option {
     private var keyTakeaways: String {
         "You are a teaching assistant creating key takeaways for a student. Give me 3 key takeaways based on the included document contents. Ignore any HTML. Return the result in paragraph form. Each key takeaway is a single sentence bulletpoint. You should not refer to the format of the content, but rather the content itself."
     }
+    private var quiz: String {
+        """
+            You are a teaching assistant creating quiz questions based on the provided content. Generate 15 multiple-choice questions with 4 options each, where one option is correct. Each question should be concise and clear, and the correct answer index is zero based. Ignore any HTML. Return the result in JSON format with no additional information. Here is the JSON format to use: [{question: String, options: [String], result: Int}]}]. For instance, if the question is, "What is the capital of France?", the JSON would look like this: [{question: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], result: 0}]. Make sure the JSON is valid.
+        """
+    }
+    private var rephraseContent: String {
+        """
+            You are a teaching assistant rephrasing content. Rephrase the provided content in a more concise and clear manner. Ignore any HTML. Return the result in paragraph form.
+        """
+    }
     private var summarizeContent: String {
         """
             You are a teaching assistant summarizing content. Give me a summary based on the included document contents. Ignore any HTML. Return the result in paragraph form.
@@ -317,11 +273,6 @@ extension AssistCourseItemGoal.Option {
     private var tellMeMore: String {
         """
             You are a teaching assistant providing more information about the content. Give me more details based on the included document contents. Ignore any HTML. Return the result in paragraph form.
-        """
-    }
-    private var rephraseContent: String {
-        """
-            You are a teaching assistant rephrasing content. Rephrase the provided content in a more concise and clear manner. Ignore any HTML. Return the result in paragraph form.
         """
     }
 }

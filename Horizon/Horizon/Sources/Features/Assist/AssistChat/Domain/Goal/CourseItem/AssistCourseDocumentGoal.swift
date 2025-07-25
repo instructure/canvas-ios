@@ -46,51 +46,19 @@ class AssistCourseDocumentGoal: AssistCourseItemGoal {
             environment: environment,
             cedar: cedar
         )
+        sourceType = .attachment
     }
 
     // MARK: - Overrides
     /// If necessary, downloads the file and returns the page context.
     /// If we can't determine the format, we return an empty page context
     override
-    var document: AnyPublisher<CedarAnswerPromptMutation.DocumentInput?, Error> {
-        guard let courseID = courseID, let fileID = fileID else {
-            return Just<CedarAnswerPromptMutation.DocumentInput?>(nil)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        }
-        return ReactiveStore(useCase: GetFile(context: .course(courseID), fileID: fileID))
-            .getEntities()
-            .map { files in files.first }
-            .flatMap { [weak self] (file: File?) in
-                guard let self = self,
-                      let file = file,
-                      let format = AssistChatDocumentType.from(mimeType: file.contentType) else {
-                    return Just<CedarAnswerPromptMutation.DocumentInput?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
-                }
-                return self.downloadFileInteractor
-                    .download(fileID: fileID)
-                    .map { try? Data(contentsOf: $0) }
-                    .map { $0?.base64EncodedString() }
-                    .compactMap { (base64String: String?) in
-                        guard let base64String = base64String else {
-                            return nil
-                        }
-                        return CedarAnswerPromptMutation.DocumentInput(
-                            format: format,
-                            base64Source: base64String
-                        )
-                    }
-                    .eraseToAnyPublisher()
-            }
-            .compactMap { $0 }
-            .eraseToAnyPublisher()
-    }
-
-    override
     func isRequested() -> Bool { courseID != nil && fileID != nil }
 
     override
-    var options: [Option] {
-        Option.allCases.filter { $0 != .Quiz }
+    var sourceID: AnyPublisher<String?, Error> {
+        Just(fileID)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }
