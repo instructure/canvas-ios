@@ -20,43 +20,46 @@ import SwiftUI
 
 struct GradeSlider: View {
     var value: Binding<Double>
-    var range: ClosedRange<Double>
+    var maxValue: Double
     var showTooltip: Bool
     var tooltipText: Text
     var score: Double
     var possible: Double
     var onEditingChanged: (Bool) -> Void = { _ in }
+    let viewModel: GradeSliderViewModel
 
     var body: some View {
         GeometryReader { geometry in
-            Slider(value: value, in: range, onEditingChanged: onEditingChanged)
-                .gesture(DragGesture(minimumDistance: 0).onChanged { changeValue in
-                    value.wrappedValue = grade(for: changeValue.location.x, in: geometry.size.width)
-                    onEditingChanged(true)
-                }.onEnded { _ in
-                    onEditingChanged(false)
-                })
+            Slider(value: value, in: 0...maxValue, onEditingChanged: onEditingChanged)
+                .gesture(
+                    DragGesture(minimumDistance: 0)
+                        .onChanged { changeValue in
+                            value.wrappedValue = viewModel.gradeValue(for: changeValue.location.x, in: geometry.size.width, maxValue: maxValue)
+                            onEditingChanged(true)
+                        }.onEnded { _ in
+                            onEditingChanged(false)
+                        }
+                )
                 .accessibility(label: Text("Grade Slider", bundle: .teacher))
                 .accessibility(value: tooltipText)
-                .overlay(!showTooltip ? nil : GeometryReader { geometry in
-                    let x = CGFloat(score / max(possible, 0.01))
-                        * (geometry.size.width - 26) + 13 // center on slider thumb 26 wide
-                    tooltipText
-                        .foregroundColor(.textLightest)
-                        .padding(8)
-                        .background(TooltipBackground().fill(Color.backgroundDarkest))
-                        .position()
-                        .offset(x: x, y: -26)
-                }, alignment: .bottom)
+                .overlay(tooltip, alignment: .bottom)
         }
     }
 
-    func grade(for position: CGFloat, in width: CGFloat) -> Double {
-        let percent = min(max(0, Double(position / width)), 1)
-        let rangeSize = range.upperBound - range.lowerBound
-        let roundingRule: FloatingPointRoundingRule = (percent * rangeSize) > rangeSize.rounded(.down) ? .up : .toNearestOrAwayFromZero
-        let newValue = range.lowerBound + (percent * rangeSize).rounded(roundingRule)
-        return min(max(newValue, range.lowerBound), range.upperBound)
+    @ViewBuilder
+    private var tooltip: some View {
+        if showTooltip {
+            GeometryReader { geometry in
+                let x = CGFloat(score / max(possible, 0.01))
+                    * (geometry.size.width - 26) + 13 // center on slider thumb 26 wide
+                tooltipText
+                    .foregroundColor(.textLightest)
+                    .padding(8)
+                    .background(TooltipBackground().fill(Color.backgroundDarkest))
+                    .position()
+                    .offset(x: x, y: -26)
+            }
+        }
     }
 }
 

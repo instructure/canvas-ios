@@ -20,16 +20,17 @@ import UIKit
 
 public struct QuizPreviewAssembly {
 
-    public static func makeQuizPreviewViewController(courseID: String,
-                                                     quizID: String,
-                                                     env: AppEnvironment = .shared)
-    -> UIViewController {
+    public static func makeQuizPreviewViewController(
+        courseID: String,
+        quizID: String,
+        env: AppEnvironment
+    ) -> UIViewController {
         let interactor = QuizPreviewInteractorLive(courseID: courseID,
                                                    quizID: quizID,
                                                    env: env)
         let viewModel = QuizPreviewViewModel(interactor: interactor)
         let view = QuizPreviewView(viewModel: viewModel)
-        let viewHost = CoreHostingController(view)
+        let viewHost = CoreHostingController(view, env: env)
         viewHost.preferredStatusBarStyleOverride = { viewController in
             viewController.traitCollection.isDarkInterface ? .lightContent : .darkContent
         }

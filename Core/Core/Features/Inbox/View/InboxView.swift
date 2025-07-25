@@ -22,6 +22,9 @@ public struct InboxView: View, ScreenViewTrackable {
     @ObservedObject private var model: InboxViewModel
     @Environment(\.viewController) private var controller
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
+    private let appSpecificForegroundColor = AppEnvironment.shared.app == .horizon ?
+        .backgroundDarkest :
+        Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground))
 
     public init(model: InboxViewModel) {
         self.model = model
@@ -210,7 +213,7 @@ public struct InboxView: View, ScreenViewTrackable {
         } label: {
             // TODO: Remove the condition once horizon-specific logic is no longer needed.
             Image.hamburgerSolid
-                .foregroundColor(AppEnvironment.shared.app == .horizon ? .backgroundDarkest : Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+                .foregroundColor(appSpecificForegroundColor)
         }
         .frame(width: 44, height: 44).padding(.leading, -6)
         .identifier("Inbox.profileButton")
@@ -223,7 +226,7 @@ public struct InboxView: View, ScreenViewTrackable {
         } label: {
             Image.addSolid
             // TODO: Remove the condition once horizon-specific logic is no longer needed.
-                .foregroundColor(AppEnvironment.shared.app == .horizon ? .backgroundDarkest : Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+                .foregroundColor(appSpecificForegroundColor)
         }
         .frame(width: 44, height: 44).padding(.trailing, -6)
         .identifier("Inbox.newMessageButton")

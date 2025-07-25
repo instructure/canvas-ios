@@ -136,7 +136,7 @@ struct SubmissionCommentListView: View {
     }
 
     var audioRecorder: some View {
-        AttachmentPickerAssembly.makeAudioRecorder(router: env.router) {
+        AttachmentPickerAssembly.makeAudioRecorder(env: env) {
             isAudioRecorderVisible = false
             sendMediaComment(type: .audio, url: $0)
         }

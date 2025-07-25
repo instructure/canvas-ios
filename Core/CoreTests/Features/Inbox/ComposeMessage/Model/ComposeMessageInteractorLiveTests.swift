@@ -27,7 +27,12 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         super.setUp()
         mockData()
 
-        testee = ComposeMessageInteractorLive(batchId: "testId", uploadFolderPath: "", uploadManager: uploadManager)
+        testee = ComposeMessageInteractorLive(env: environment, batchId: "testId", uploadFolderPath: "", uploadManager: uploadManager)
+    }
+
+    override func tearDown() {
+        testee = nil
+        super.tearDown()
     }
 
     override func tearDown() {
@@ -181,7 +186,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
     func testAddFileFromUserFilesWithDuplicate() {
         var subscriptions: [AnyCancellable] = []
         let path = ""
-        testee = ComposeMessageInteractorLive(batchId: "testId", uploadFolderPath: path, restrictForFolderPath: true, uploadManager: uploadManager)
+        testee = ComposeMessageInteractorLive(env: environment, batchId: "testId", uploadFolderPath: path, restrictForFolderPath: true, uploadManager: uploadManager)
         let rootFolderRequest = GetContextFolderHierarchyRequest(context: .currentUser, fullPath: path)
         let rootFolderResponse = [APIFolder.make(id: "1")]
         api.mock(rootFolderRequest, value: rootFolderResponse)
@@ -245,7 +250,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
     }
 
     func testRemoveAlreadyUploadedFile() {
-        testee = ComposeMessageInteractorLive(batchId: "testRemoveAlreadyUploadedFile", uploadFolderPath: "", uploadManager: uploadManager)
+        testee = ComposeMessageInteractorLive(env: environment, batchId: "testRemoveAlreadyUploadedFile", uploadFolderPath: "", uploadManager: uploadManager)
         var subscriptions: [AnyCancellable] = []
         var attachments: [File] = []
         let fileAddedExp = expectation(description: "fileAdded")
@@ -271,7 +276,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
     }
 
     func testRemoveAndDeleteUploadedFile() {
-        testee = ComposeMessageInteractorLive(batchId: "testRemoveAndDeleteUploadedFile", uploadFolderPath: "", uploadManager: uploadManager)
+        testee = ComposeMessageInteractorLive(env: environment, batchId: "testRemoveAndDeleteUploadedFile", uploadFolderPath: "", uploadManager: uploadManager)
         var subscriptions: [AnyCancellable] = []
         var attachments: [File] = []
         let fileAddedExp = expectation(description: "fileAdded")

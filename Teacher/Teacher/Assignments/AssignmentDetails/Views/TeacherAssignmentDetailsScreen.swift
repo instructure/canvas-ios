@@ -106,9 +106,11 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
                 courseID: courseID,
                 assignmentID: assignmentID,
                 submissionTypes: assignment.submissionTypes,
-                color: course.first?.color
+                color: course.first?.color,
+                env: env
             )
         )
+
         InstUI.Divider()
 
         TeacherDateSection(viewModel: AssignmentDateSectionViewModel(assignment: assignment))
@@ -311,7 +313,7 @@ extension TeacherAssignmentDetailsScreen {
                 image: .editLine,
                 actionHandler: { [_isTeacherEnrollment] in
                     if _isTeacherEnrollment.wrappedValue {
-                        env.router.route(to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
+                        env.router.route(to: "/courses/\(courseID)/assignments/\(assignmentID)/edit",
                                          from: controller,
                                          options: .modal(isDismissable: false, embedInNav: true))
                     } else {
@@ -333,7 +335,6 @@ extension TeacherAssignmentDetailsScreen {
                     actionHandler: {
                         env.router.route(
                             to: "/courses/\(courseID)/gradebook/speed_grader?assignment_id=\(assignmentID)",
-                            userInfo: [SpeedGraderUserInfoKey.sortNeedsGradingSubmissionsFirst: true],
                             from: controller,
                             options: .modal(.fullScreen, isDismissable: false, embedInNav: true)
                         )

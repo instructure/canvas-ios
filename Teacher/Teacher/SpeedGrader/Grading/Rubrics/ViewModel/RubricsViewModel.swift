@@ -56,7 +56,7 @@ class RubricsViewModel: ObservableObject {
         assignment: Assignment,
         submission: Submission,
         interactor: RubricGradingInteractor,
-        router: Router = AppEnvironment.shared.router
+        router: Router
     ) {
         self.submission = submission
         self.interactor = interactor

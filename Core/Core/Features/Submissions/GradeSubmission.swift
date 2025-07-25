@@ -68,6 +68,7 @@ public class GradeSubmission: APIUseCase {
             item.attempt ?? 0
         )
         guard let model: Submission = client.fetch(predicate).first else { return }
+        model.customGradeStatusId = item.custom_grade_status_id
         model.enteredGrade = item.entered_grade
         model.enteredScore = item.entered_score
         model.excused = item.excused
