@@ -30,8 +30,6 @@ struct SubmissionCommentListView: View {
 
     @ObservedObject private var viewModel: SubmissionCommentListViewModel
 
-    @FocusState private var isInputFocused: Bool
-
     @State private var error: Text?
     @State private var isAudioRecorderVisible: Bool = false
     @State private var isVideoRecorderVisible: Bool = false

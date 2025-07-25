@@ -212,10 +212,10 @@ struct SpeedGraderSubmissionGradesView: View {
         let score = gradeViewModel.sliderValue
         let possible = assignment.pointsPossible ?? 0
         let tooltipText =
-            sliderCleared ? Text("No Grade", bundle: .teacher) :
-            sliderExcused ? Text("Excused", bundle: .teacher) :
-            assignment.gradingType == .percent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
-            Text(gradeSliderViewModel.formatScore(score, maxPoints: possible))
+        sliderCleared ? Text("No Grade", bundle: .teacher) :
+        sliderExcused ? Text("Excused", bundle: .teacher) :
+        assignment.gradingType == .percent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
+        Text(gradeSliderViewModel.formatScore(score, maxPoints: possible))
         let maxScore = assignment.gradingType == .percent ? 100 : possible
 
         HStack(spacing: 8) {
