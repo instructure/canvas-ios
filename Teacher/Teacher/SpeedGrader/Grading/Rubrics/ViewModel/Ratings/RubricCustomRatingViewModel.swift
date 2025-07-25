@@ -96,3 +96,13 @@ class RubricCustomRatingViewModel: ObservableObject, Identifiable {
         interactor.clearRating(criterionId: criterion.id)
     }
 }
+
+extension UIAlertController {
+
+    @objc public func performOKAlertAction() {
+        if let ok = actions.first(where: { $0.title == String(localized: "OK", bundle: .teacher) }) as? AlertAction {
+            ok.handler?(ok)
+            dismiss(animated: true)
+        }
+    }
+}

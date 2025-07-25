@@ -17,10 +17,12 @@
 //
 
 import Core
+import SwiftUI
 
 struct FinalGradeRowViewModel: Equatable {
     let currentGradeText: String
     let suffixText: String
+    let shouldShowNotPostedIcon: Bool
 
     enum SuffixType {
         case none
@@ -28,7 +30,7 @@ struct FinalGradeRowViewModel: Equatable {
         case percentage
     }
 
-    init(currentGradeText: String?, suffixType: SuffixType) {
+    init(currentGradeText: String?, suffixType: SuffixType, isGradedButNotPosted: Bool) {
         self.currentGradeText = currentGradeText ?? GradeFormatter.BlankPlaceholder.oneDash.stringValue
 
         switch suffixType {
@@ -39,5 +41,7 @@ struct FinalGradeRowViewModel: Equatable {
         case .percentage:
             self.suffixText = "   %"
         }
+
+        self.shouldShowNotPostedIcon = isGradedButNotPosted
     }
 }

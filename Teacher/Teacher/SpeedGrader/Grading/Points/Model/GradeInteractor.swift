@@ -58,7 +58,9 @@ class GradeInteractorLive: GradeInteractor {
         self.rubricGradingInteractor = rubricGradingInteractor
         self.gradeStateInteractor = gradeStateInteractor
         self.env = env
-        self.gradeState = gradeStateSubject.eraseToAnyPublisher()
+        self.gradeState = gradeStateSubject
+            .dropFirst() // to skip initial empty value
+            .eraseToAnyPublisher()
 
         observeChanges(of: submission.objectID)
     }
