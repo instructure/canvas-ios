@@ -16,29 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/Skillspace/View/SkillSpaceView.swift
-import HorizonUI
-import SwiftUI
-
-struct SkillSpaceView: View {
-    let viewModel: HEmbeddedWebPageContainerViewModel
-
-    var body: some View {
-        HEmbeddedWebPageContainerView(viewModel: viewModel)
-            .toolbar(.hidden)
-            .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
-    }
-
-    private var navigationBar: some View {
-        HStack(spacing: .zero) {
-            InstitutionLogo()
-            Spacer()
-                .padding(.horizontal, .huiSpaces.space24)
-                .padding(.bottom, .huiSpaces.space4)
-        }
-    }
-}
-========
 import WidgetKit
 import SwiftUI
 
@@ -69,4 +46,3 @@ struct TodoLoggedoutView_Previews: PreviewProvider {
     }
 }
 #endif
->>>>>>>> origin/master:Student/Widgets/TodoWidget/View/ContentViews/TodoLoggedoutView.swift

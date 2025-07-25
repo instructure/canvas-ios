@@ -26,6 +26,7 @@ struct HCreateMessageAssembly {
             HCreateMessageView(viewModel:
                 .init(
                     composeMessageInteractor: ComposeMessageInteractorLive(
+                        env: AppEnvironment.shared,
                         batchId: uploadIdentifier,
                         uploadFolderPath: "conversation attachments",
                         uploadManager: UploadManager(

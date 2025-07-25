@@ -17,24 +17,6 @@
 //
 
 import XCTest
-<<<<<<<< HEAD:Student/StudentUnitTests/WidgetRouting/StudentAppViewProxyTests.swift
-@testable import Student
-
-class StudentAppViewProxyTests: StudentTestCase {
-
-    func testIntialization() throws {
-        let controller = UIViewController()
-        let window = UIWindow()
-        window.rootViewController = controller
-
-        let viewProxy = try XCTUnwrap(StudentAppViewProxy(window: window, env: env))
-        XCTAssertTrue(viewProxy.rootViewController === controller)
-        XCTAssertTrue(viewProxy.env === env)
-    }
-
-    func testIntializationNoWindow() throws {
-        XCTAssertNil(StudentAppViewProxy(window: nil, env: env))
-========
 @testable import Core
 @testable import Teacher
 
@@ -54,6 +36,5 @@ class GetCustomGradebookColumnsRequestTests: XCTestCase {
         XCTAssertEqual(testee.method, .get)
         XCTAssertEqual(testee.path, "courses/\(testData.courseId)/custom_gradebook_columns")
         XCTAssertEqual(testee.courseId, testData.courseId)
->>>>>>>> origin/master:Teacher/TeacherTests/SpeedGrader/Details/CustomGradebookColumns/Model/API/GetCustomGradebookColumnsRequestTests.swift
     }
 }

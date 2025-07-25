@@ -16,21 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Teacher/Teacher/SpeedGrader/SpeedGraderPage/ViewModel/SpeedGraderPageTab.swift
 import Foundation
 
-enum SpeedGraderPageTab: Int, CaseIterable {
-    case grades
-    case comments
-
-    var title: String {
-        switch self {
-        case .grades: String(localized: "Grades", bundle: .teacher)
-        case .comments: String(localized: "Comments", bundle: .teacher)
-        }
-========
 enum SpeedGraderUserIdNormalization {
-
     /// Helper function to help normalize user ids coming from webview urls
     static func normalizeUserId(_ userId: String?) -> String {
         if let userId, userId.containsOnlyNumbers {
@@ -38,6 +26,5 @@ enum SpeedGraderUserIdNormalization {
         }
 
         return SpeedGraderAllUsersUserId
->>>>>>>> origin/master:Teacher/Teacher/SpeedGrader/SpeedGraderScreen/Model/SpeedGraderUserIdNormalization.swift
     }
 }

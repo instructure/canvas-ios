@@ -16,52 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Core/CoreTests/Features/Courses/SmartSearch/Model/CourseSmartSearchViewAttributesTests.swift
 @testable import Core
 import XCTest
 
 class CourseSmartSearchViewAttributesTests: CoreTestCase {
-
+    
     func test_default_properties() {
         let testee = CourseSmartSearchViewAttributes.default
-
+        
         XCTAssertEqual(testee.context, .currentUser)
         XCTAssertNil(testee.accentColor)
     }
-
+    
     func test_custom_properties() {
         let testee = CourseSmartSearchViewAttributes(
             context: .course("1"),
             color: .red
         )
-
+        
         XCTAssertEqual(testee.context, .course("1"))
         XCTAssertEqual(testee.accentColor, .red)
         XCTAssertEqual(testee.searchPrompt, String(localized: "Search in this course", bundle: .core))
-========
-import XCTest
-@testable import Core
-import TestsFoundation
-@testable import Teacher
-
-class LatePenaltyRowViewModelTests: TeacherTestCase {
-
-    func test_init_withValidPenaltyText() {
-        let viewModel = LatePenaltyRowViewModel(penaltyText: "-5 pts")
-
-        XCTAssertEqual(viewModel.penaltyText, "-5 pts")
-    }
-
-    func test_init_withNilPenaltyText() {
-        let viewModel = LatePenaltyRowViewModel(penaltyText: nil)
-
-        XCTAssertEqual(viewModel.penaltyText, GradeFormatter.BlankPlaceholder.oneDash.stringValue)
-    }
-
-    func test_init_withEmptyPenaltyText() {
-        let viewModel = LatePenaltyRowViewModel(penaltyText: "")
-
-        XCTAssertEqual(viewModel.penaltyText, "")
->>>>>>>> origin/master:Teacher/TeacherTests/SpeedGrader/Grading/Points/ViewModel/GradeSummary/Rows/LatePenaltyRowViewModelTests.swift
     }
 }

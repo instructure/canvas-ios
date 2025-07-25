@@ -16,33 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Core/CoreTests/Features/Courses/SmartSearch/Model/CourseSmartSearchViewAttributesTests.swift
 @testable import Core
-import XCTest
-
-class CourseSmartSearchViewAttributesTests: CoreTestCase {
-
-    func test_default_properties() {
-        let testee = CourseSmartSearchViewAttributes.default
-
-        XCTAssertEqual(testee.context, .currentUser)
-        XCTAssertNil(testee.accentColor)
-    }
-
-    func test_custom_properties() {
-        let testee = CourseSmartSearchViewAttributes(
-            context: .course("1"),
-            color: .red
-        )
-
-        XCTAssertEqual(testee.context, .course("1"))
-        XCTAssertEqual(testee.accentColor, .red)
-        XCTAssertEqual(testee.searchPrompt, String(localized: "Search in this course", bundle: .core))
-========
-import XCTest
-@testable import Core
-import TestsFoundation
 @testable import Teacher
+import XCTest
 
 class LatePenaltyRowViewModelTests: TeacherTestCase {
 
@@ -62,6 +38,5 @@ class LatePenaltyRowViewModelTests: TeacherTestCase {
         let viewModel = LatePenaltyRowViewModel(penaltyText: "")
 
         XCTAssertEqual(viewModel.penaltyText, "")
->>>>>>>> origin/master:Teacher/TeacherTests/SpeedGrader/Grading/Points/ViewModel/GradeSummary/Rows/LatePenaltyRowViewModelTests.swift
     }
 }
