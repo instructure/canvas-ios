@@ -240,7 +240,8 @@ extension GradeState {
 
         return FinalGradeRowViewModel(
             currentGradeText: finalGradeWithoutMetric,
-            suffixType: suffix
+            suffixType: suffix,
+            isGradedButNotPosted: isGradedButNotPosted
         )
     }
 }
