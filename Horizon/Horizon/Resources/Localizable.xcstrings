@@ -133,9 +133,6 @@
     "Assignment Successfully Submitted!" : {
 
     },
-    "Assist" : {
-
-    },
     "Astana (+05:00/+05:00)" : {
 
     },
@@ -364,9 +361,6 @@
     "Enable iOS Notifications" : {
 
     },
-    "Enter a Prompt" : {
-
-    },
     "Error" : {
 
     },
@@ -476,6 +470,9 @@
 
     },
     "I'm not able to rephrase this content" : {
+
+    },
+    "IgniteAI" : {
 
     },
     "Important" : {

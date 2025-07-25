@@ -16,21 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
 import SwiftUI
 
 struct HorizonGradientModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .background(
-                LinearGradient(
-                    gradient: Gradient(colors: [
-                        Color(red: 34/255, green: 79/255, blue: 138/255),
-                        Color(red: 124/255, green: 34/255, blue: 58/255)
-                    ]),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-            )
+            .background(HorizonUI.colors.surface.igniteAIPrimaryGradient)
     }
 }
 

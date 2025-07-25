@@ -20,28 +20,77 @@ import HorizonUI
 import SwiftUI
 
 struct AssistTitle: View {
+    typealias OnBack = () -> Void
+    typealias OnClose = () -> Void
+
+    // MARK: - Private Properties
+    private var backOpacity: Double {
+        onBack == nil ? 0 : 1
+    }
+    private let onBack: OnBack?
+    private let onClose: OnClose
+
+    // MARK: - Init
+    init(onBack: OnBack? = nil, onClose: @escaping OnClose) {
+        self.onBack = onBack
+        self.onClose = onClose
+    }
 
     var body: some View {
-        title
+        HStack(spacing: .huiSpaces.space8) {
+            title
+            Spacer()
+            back
+            close
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, .huiSpaces.space16)
+        .padding(.horizontal, .huiSpaces.space16)
+        .overlay(
+            HorizonUI.colors.surface.pageSecondary
+                .frame(height: 1)
+                .frame(maxWidth: .infinity),
+            alignment: .bottom
+        )
+    }
+
+    // MARK: - Private
+    private var back: some View {
+        HorizonUI.IconButton(
+            Image.huiIcons.arrowBack,
+            type: .whiteOutline,
+            isSmall: true,
+            action: onBack ?? { }
+        )
+        .opacity(backOpacity)
+        .animation(.easeInOut(duration: 0.2), value: backOpacity)
+    }
+
+    private var close: some View {
+        HorizonUI.IconButton(
+            Image.huiIcons.close,
+            type: .whiteOutline,
+            isSmall: true,
+            action: onClose
+        )
     }
 
     private var title: some View {
         HStack {
-            HorizonUI.icons.ai
-            Text(String(localized: "Assist", bundle: .horizon))
-                .huiTypography(.h3)
+            HorizonUI.icons.aiFilled
+            Text(String(localized: "IgniteAI", bundle: .horizon))
+                .huiTypography(.h4)
 
         }
         .foregroundStyle(Color.textLightest)
         .foregroundStyle(Color.huiColors.text.surfaceColored)
-        .frame(maxWidth: .infinity)
     }
 
 }
 
 #Preview {
     VStack(alignment: .leading) {
-        AssistTitle()
+        AssistTitle(onClose: { })
     }
     .frame(maxHeight: .infinity)
     .padding(.horizontal, .huiSpaces.space16)

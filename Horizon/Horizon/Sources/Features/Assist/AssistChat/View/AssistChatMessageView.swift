@@ -79,8 +79,9 @@ struct AssistChatMessageView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, .huiSpaces.space8)
             } else {
-                Text(message.content.toAttributedStringWithLinks())
+                Text(message.content)
                     .frame(maxWidth: message.maxWidth, alignment: .leading)
+                    .huiTypography(.p1)
                     .padding(message.padding)
                     .background(message.backgroundColor)
                     .foregroundColor(message.foregroundColor)
@@ -100,12 +101,14 @@ struct AssistChatMessageView: View {
                 models: message.chipOptions,
                 horizontalSpacing: .zero
             ) { quickResponse in
-                HorizonUI.Pill(title: quickResponse.chip, style: .outline(.light))
-                    .onTapGesture {
-                        message.onTapChipOption?(quickResponse)
-                    }
-                    .padding(.vertical, .huiSpaces.space4)
-                    .padding(.trailing, .huiSpaces.space4)
+                HorizonUI.PrimaryButton(
+                    quickResponse.chip,
+                    type: .whiteOutline
+                ) {
+                    message.onTapChipOption?(quickResponse)
+                }
+                .padding(.vertical, .huiSpaces.space8)
+                .padding(.trailing, .huiSpaces.space8)
             }
             .padding(.top, .huiSpaces.space24)
             .frame(maxWidth: .infinity, alignment: .leading)
