@@ -39,7 +39,10 @@ public extension AboutInfoEntry {
         var appName = UnknownLabel
 
         if let app {
-            appName = "Canvas \(app.rawValue.capitalized)"
+            switch app {
+            case .student: appName = "Canvas"
+            default: appName = "Canvas \(app.rawValue.capitalized)"
+            }
         }
 
         return Self(title: String(localized: "App", bundle: .core),

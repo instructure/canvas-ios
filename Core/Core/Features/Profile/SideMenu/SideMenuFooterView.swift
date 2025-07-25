@@ -21,10 +21,17 @@ import SwiftUI
 struct SideMenuFooterView: View {
     @Environment(\.appEnvironment) private var env
 
+    var appName: String {
+        switch env.app {
+        case .student: "Canvas"
+        default: "Canvas \(env.app?.rawValue.capitalized ?? "")"
+        }
+    }
+
     var body: some View {
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
             HStack {
-                Text(verbatim: "Canvas \(env.app?.rawValue.capitalized ?? "") V. \(version)")
+                Text(verbatim: "\(appName) V. \(version)")
                     .padding(.leading, 10)
                     .font(.regular14)
                     .foregroundColor(.textDark)

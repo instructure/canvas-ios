@@ -30,7 +30,7 @@ public struct SubmitAssignmentExtensionView: View {
 
     @AccessibilityFocusState private var accessibilityFocus: AccessibilityFocusArea?
 
-    private let title: String = String(localized: "Canvas Student", bundle: .core)
+    private let title: String = String(localized: "Canvas", bundle: .core)
 
     public init(viewModel: SubmitAssignmentExtensionViewModel) {
         self.viewModel = viewModel
