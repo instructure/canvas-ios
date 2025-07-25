@@ -365,47 +365,34 @@ class GradeFormatterTests: CoreTestCase {
 
         s.grade = "2.1189%"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "2.12%")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100 (2.12%)")
         s.grade = "99.999%"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "100%")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100 (100%)")
         s.grade = "bogus"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "--")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100")
 
         a.gradingType = .points
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "--")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100")
         s.score = 2.1189
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "2.12")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "2.12/100")
         s.score = 99.999
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "100")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "100/100")
 
         a.gradingType = .pass_fail
         s.score = 0
         s.grade = "pass"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Pass")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100 (Pass)")
         s.grade = "fail"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Fail")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100 (Fail)")
         s.grade = "complete"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Complete")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100 (Complete)")
         s.grade = "incomplete"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Incomplete")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100 (Incomplete)")
         s.grade = "10.1234"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "10.12")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100 (10.12)")
         s.grade = "Something Else"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Something Else")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100 (Something Else)")
         s.grade = nil
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "--")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100")
     }
 
     func testGraderStringsScoresHidden() {
@@ -429,47 +416,34 @@ class GradeFormatterTests: CoreTestCase {
 
         s.grade = "2.1189%"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
         s.grade = "99.999%"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
         s.grade = "bogus"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
 
         a.gradingType = .points
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
         s.score = 2.1189
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
         s.score = 99.999
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
 
         a.gradingType = .pass_fail
         s.score = 0
         s.grade = "pass"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Pass")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "Pass")
         s.grade = "fail"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Fail")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "Fail")
         s.grade = "complete"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Complete")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "Complete")
         s.grade = "incomplete"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Incomplete")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "Incomplete")
         s.grade = "10.1234"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
         s.grade = "Something Else"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Something Else")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "Something Else")
         s.grade = nil
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "--")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
     }
 
     // MARK: - originalScoreWithoutMetric Tests

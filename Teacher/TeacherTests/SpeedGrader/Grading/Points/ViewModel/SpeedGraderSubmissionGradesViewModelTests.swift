@@ -38,9 +38,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             originalScoreWithoutMetric: "85",
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: "85",
-            pointsDeductedText: "0 pts",
-            originalGradeText: "85/100",
-            gradeAlertText: "85"
+            pointsDeductedText: "0 pts"
         )
     }
     private var gradeInteractorMock: GradeInteractorMock!
@@ -98,11 +96,11 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
     }
 
     func test_setGrade_callsSaveGradeWithProvidedGrade() {
-        viewModel.setGrade("A")
+        viewModel.setGradeFromTextField("42", inputType: .points)
 
         XCTAssertTrue(gradeInteractorMock.saveGradeCalled)
         XCTAssertNil(gradeInteractorMock.lastExcused)
-        XCTAssertEqual(gradeInteractorMock.lastGrade, "A")
+        XCTAssertEqual(gradeInteractorMock.lastGrade, "42.0")
     }
 
     func test_setPointsGrade_callsSaveGradeWithPointsAsString() {
@@ -127,42 +125,26 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         XCTAssertEqual(gradeInteractorMock.lastGrade, "88.0%")
     }
 
-    func test_setPassFailGrade_complete_callsSaveGradeWithComplete() {
-        viewModel.setPassFailGrade(complete: true)
-
-        XCTAssertTrue(gradeInteractorMock.saveGradeCalled)
-        XCTAssertNil(gradeInteractorMock.lastExcused)
-        XCTAssertEqual(gradeInteractorMock.lastGrade, "complete")
-    }
-
-    func test_setPassFailGrade_incomplete_callsSaveGradeWithIncomplete() {
-        viewModel.setPassFailGrade(complete: false)
-
-        XCTAssertTrue(gradeInteractorMock.saveGradeCalled)
-        XCTAssertNil(gradeInteractorMock.lastExcused)
-        XCTAssertEqual(gradeInteractorMock.lastGrade, "incomplete")
-    }
-
     // MARK: - Saving State Tests
 
     func test_saveGrade_setsSavingStateCorrectly() {
-        XCTAssertFalse(viewModel.isSaving)
+        XCTAssertFalse(viewModel.isSavingGrade.value)
 
-        viewModel.setGrade("B")
-        XCTAssertTrue(viewModel.isSaving)
+        viewModel.setPointsGrade(0)
+        XCTAssertTrue(viewModel.isSavingGrade.value)
 
         gradeInteractorMock.saveGradeSubject.send(completion: .finished)
-        XCTAssertFalse(viewModel.isSaving)
+        XCTAssertFalse(viewModel.isSavingGrade.value)
     }
 
     func test_saveGradeSuccess_clearsSavingState() {
-        viewModel.setGrade("A")
-        XCTAssertTrue(viewModel.isSaving)
+        viewModel.setPointsGrade(0)
+        XCTAssertTrue(viewModel.isSavingGrade.value)
 
         gradeInteractorMock.saveGradeSubject.send(())
         gradeInteractorMock.saveGradeSubject.send(completion: .finished)
 
-        XCTAssertFalse(viewModel.isSaving)
+        XCTAssertFalse(viewModel.isSavingGrade.value)
     }
 
     // MARK: - Error Handling Tests
@@ -170,24 +152,24 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
     func test_saveGradeError_showsErrorAlert() {
         XCTAssertFalse(viewModel.isShowingErrorAlert)
 
-        viewModel.setGrade("B")
+        viewModel.setPointsGrade(0)
         gradeInteractorMock.saveGradeSubject.send(completion: .failure(NSError.internalError()))
 
         XCTAssertEqual(viewModel.isShowingErrorAlert, true)
         XCTAssertEqual(viewModel.errorAlertViewModel.title, "Error")
         XCTAssertEqual(viewModel.errorAlertViewModel.message, "Internal Error")
         XCTAssertEqual(viewModel.errorAlertViewModel.buttonTitle, "OK")
-        XCTAssertFalse(viewModel.isSaving)
+        XCTAssertFalse(viewModel.isSavingGrade.value)
     }
 
     func test_saveGradeError_clearsIsSavingState() {
         let error = NSError(domain: "TestError", code: 1)
 
         viewModel.excuseStudent()
-        XCTAssertTrue(viewModel.isSaving)
+        XCTAssertTrue(viewModel.isSavingGrade.value)
 
         gradeInteractorMock.saveGradeSubject.send(completion: .failure(error))
-        XCTAssertFalse(viewModel.isSaving)
+        XCTAssertFalse(viewModel.isSavingGrade.value)
     }
 
     // MARK: - No Grade Button Tests
@@ -236,9 +218,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             originalScoreWithoutMetric: "85",
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: "85",
-            pointsDeductedText: "0 pts",
-            originalGradeText: "85/100",
-            gradeAlertText: "85"
+            pointsDeductedText: "0 pts"
         )
 
         XCTAssertNil(state.pointsRowModel)
@@ -253,9 +233,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             originalScoreWithoutMetric: "95",
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: "85",
-            pointsDeductedText: "10 pts",
-            originalGradeText: "85/100",
-            gradeAlertText: "85"
+            pointsDeductedText: "10 pts"
         )
 
         let result = state.pointsRowModel
@@ -273,9 +251,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             originalScoreWithoutMetric: "85",
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: "85",
-            pointsDeductedText: "0 pts",
-            originalGradeText: "85%",
-            gradeAlertText: "85"
+            pointsDeductedText: "0 pts"
         )
 
         let result = state.pointsRowModel
@@ -293,9 +269,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             originalScoreWithoutMetric: "85",
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: "85",
-            pointsDeductedText: "0 pts",
-            originalGradeText: "85/100",
-            gradeAlertText: "85"
+            pointsDeductedText: "0 pts"
         )
 
         XCTAssertNil(state.latePenaltyRowModel)
@@ -310,9 +284,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             originalScoreWithoutMetric: "95",
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: "85",
-            pointsDeductedText: "-10 pts",
-            originalGradeText: "85/100",
-            gradeAlertText: "85"
+            pointsDeductedText: "-10 pts"
         )
 
         let result = state.latePenaltyRowModel
@@ -329,9 +301,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             originalScoreWithoutMetric: "85",
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: "85",
-            pointsDeductedText: "0 pts",
-            originalGradeText: "85/100",
-            gradeAlertText: "85"
+            pointsDeductedText: "0 pts"
         )
 
         let result = state.finalGradeRowModel
@@ -348,9 +318,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             originalScoreWithoutMetric: "85",
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: "85",
-            pointsDeductedText: "0 pts",
-            originalGradeText: "85%",
-            gradeAlertText: "85"
+            pointsDeductedText: "0 pts"
         )
 
         let result = state.finalGradeRowModel
@@ -367,9 +335,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             originalScoreWithoutMetric: "87",
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: "B+",
-            pointsDeductedText: "0 pts",
-            originalGradeText: "B+",
-            gradeAlertText: "B+"
+            pointsDeductedText: "0 pts"
         )
 
         let result = state.finalGradeRowModel
@@ -386,9 +352,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             originalScoreWithoutMetric: "100",
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: "Complete",
-            pointsDeductedText: "0 pts",
-            originalGradeText: "Complete",
-            gradeAlertText: "Complete"
+            pointsDeductedText: "0 pts"
         )
 
         let result = state.finalGradeRowModel
@@ -405,9 +369,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             originalScoreWithoutMetric: nil,
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: nil,
-            pointsDeductedText: "0 pts",
-            originalGradeText: "",
-            gradeAlertText: ""
+            pointsDeductedText: "0 pts"
         )
 
         let result = state.finalGradeRowModel

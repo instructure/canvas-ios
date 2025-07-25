@@ -348,24 +348,4 @@ public class GradeFormatter {
             }
         }
     }
-
-    public static func longString(for assignment: Assignment, submission: Submission, rubricScore: Double? = nil, final: Bool = true) -> String {
-        let score = (final ? submission.score : rubricScore ?? submission.enteredScore) ?? 0
-        let scoreString = numberFormatter.string(from: truncate(score)) ?? "0"
-        let possibleString = numberFormatter.string(from: truncate(assignment.pointsPossible ?? 0)) ?? "0"
-        let grade = assignment.gradingType == .points ? nil : gradeString(for: assignment, submission: submission, final: final)
-        if assignment.hideQuantitativeData {
-            return grade ?? ""
-        }
-        if let grade = grade {
-            return String.localizedStringWithFormat(
-                String(localized: "%@/%@ (%@)", bundle: .core, comment: "score/points possible (grade)"),
-                scoreString, possibleString, grade
-            )
-        }
-        return String.localizedStringWithFormat(
-            String(localized: "%@/%@", bundle: .core, comment: "score/points"),
-            scoreString, possibleString
-        )
-    }
 }

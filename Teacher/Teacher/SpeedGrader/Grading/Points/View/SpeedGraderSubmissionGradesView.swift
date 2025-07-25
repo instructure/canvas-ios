@@ -78,7 +78,6 @@ struct SpeedGraderSubmissionGradesView: View {
 
     private func gradingInputViews() -> some View {
         VStack(spacing: 0) {
-//            oldGradeRow
             gradeRow
 
             if gradeViewModel.shouldShowPointsInput {
@@ -336,86 +335,6 @@ struct SpeedGraderSubmissionGradesView: View {
         }
     }
 
-    // MARK: Old Grade row and input dialog
-
-    private var oldGradeRow: some View {
-        HStack(spacing: 0) {
-            Text("Grade", bundle: .teacher)
-                .accessibilityAddTraits(.isHeader)
-            Spacer()
-            if gradeViewModel.isSaving {
-                ProgressView()
-                    .progressViewStyle(.indeterminateCircle(size: 24))
-            } else if assignment.gradingType == .not_graded {
-                Text("Not Graded", bundle: .teacher)
-            } else {
-                Button(action: promptNewGrade, label: {
-                    if gradeViewModel.gradeState.isExcused {
-                        Text("Excused", bundle: .teacher)
-                    } else if gradeViewModel.gradeState.isGraded {
-                        Text(gradeViewModel.gradeState.originalGradeText)
-                    } else {
-                        Image.addSolid.foregroundStyle(.tint)
-                    }
-                })
-                .accessibility(hint: Text("Prompts for an updated grade", bundle: .teacher))
-                .identifier("SpeedGrader.gradeButton")
-            }
-            if gradeViewModel.gradeState.isGradedButNotPosted {
-                Image.offLine.foregroundColor(.textDanger)
-                    .padding(.leading, 12)
-            }
-        }
-        .font(.heavy24)
-        .foregroundColor(.textDarkest)
-        .padding(.horizontal, 16).padding(.vertical, 12)
-    }
-
-    func promptNewGrade() {
-        var message: String?
-        switch assignment.gradingType {
-        case .gpa_scale:
-            message = String(localized: "GPA", bundle: .teacher)
-        case .letter_grade:
-            message = String(localized: "Letter grade", bundle: .teacher)
-        case .not_graded, .pass_fail:
-            message = nil
-        case .percent:
-            message = String(localized: "Percent (%)", bundle: .teacher)
-        case .points:
-            message = assignment.outOfText
-        }
-
-        let prompt = UIAlertController(title: String(localized: "Customize Grade", bundle: .teacher), message: message, preferredStyle: .alert)
-        if assignment.gradingType == .pass_fail {
-            prompt.addAction(AlertAction(String(localized: "Complete", bundle: .teacher)) { _ in
-                gradeViewModel.setPassFailGrade(complete: true)
-            })
-            prompt.addAction(AlertAction(String(localized: "Incomplete", bundle: .teacher)) { _ in
-                gradeViewModel.setPassFailGrade(complete: false)
-            })
-        } else {
-            prompt.addTextField { field in
-                field.placeholder = ""
-                field.returnKeyType = .done
-                field.text = gradeViewModel.gradeState.gradeAlertText
-                field.addTarget(prompt, action: #selector(UIAlertController.performOKAlertAction), for: .editingDidEndOnExit)
-                field.accessibilityLabel = String(localized: "Grade", bundle: .teacher)
-            }
-        }
-        if assignment.gradingType != .pass_fail {
-            prompt.addAction(AlertAction(String(localized: "OK", bundle: .teacher)) { _ in
-                var grade = prompt.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-                if assignment.gradingType == .percent, !grade.isEmpty, !grade.hasSuffix("%") {
-                    grade = "\(grade)%"
-                }
-                gradeViewModel.setGrade(grade)
-            })
-        }
-        prompt.addAction(AlertAction(String(localized: "Cancel", bundle: .teacher), style: .cancel))
-        env.router.show(prompt, from: controller, options: .modal())
-    }
-
     // MARK: - Comments
 
     private func commentsSection() -> some View {
@@ -450,15 +369,5 @@ struct SpeedGraderSubmissionGradesView: View {
         )
         .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
         .background(Color.backgroundLight)
-    }
-}
-
-extension UIAlertController {
-
-    @objc public func performOKAlertAction() {
-        if let ok = actions.first(where: { $0.title == String(localized: "OK", bundle: .teacher) }) as? AlertAction {
-            ok.handler?(ok)
-            dismiss(animated: true)
-        }
     }
 }

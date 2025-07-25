@@ -20523,6 +20523,7 @@
       }
     },
     "GPA" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -27288,6 +27289,7 @@
 
     },
     "Letter grade" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -33703,6 +33705,7 @@
       }
     },
     "Percent (%)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -36007,6 +36010,7 @@
       }
     },
     "Prompts for an updated grade" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

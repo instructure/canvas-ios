@@ -52,14 +52,6 @@ struct GradeState: Equatable {
 
     /// Formatted text showing points deducted for late submissions.
     let pointsDeductedText: String
-
-    // MARK: - Old UI (will be removed)
-
-    /// Late deduction is applied to this resulting in the final grade.
-    let originalGradeText: String
-
-    /// Text to display in grade alert during manual score entry.
-    let gradeAlertText: String
 }
 
 extension GradeState {
@@ -76,9 +68,7 @@ extension GradeState {
         originalScoreWithoutMetric: nil,
         originalGradeWithoutMetric: nil,
         finalGradeWithoutMetric: nil,
-        pointsDeductedText: "",
-        originalGradeText: "",
-        gradeAlertText: ""
+        pointsDeductedText: ""
     )
 }
 
@@ -98,9 +88,7 @@ extension GradeState {
         originalScoreWithoutMetric: String? = nil,
         originalGradeWithoutMetric: String? = nil,
         finalGradeWithoutMetric: String? = nil,
-        pointsDeductedText: String = "",
-        originalGradeText: String = "",
-        gradeAlertText: String = ""
+        pointsDeductedText: String = ""
     ) -> GradeState {
         .init(
             gradingType: gradingType,
@@ -115,9 +103,7 @@ extension GradeState {
             originalScoreWithoutMetric: originalScoreWithoutMetric,
             originalGradeWithoutMetric: originalGradeWithoutMetric,
             finalGradeWithoutMetric: finalGradeWithoutMetric,
-            pointsDeductedText: pointsDeductedText,
-            originalGradeText: originalGradeText,
-            gradeAlertText: gradeAlertText
+            pointsDeductedText: pointsDeductedText
         )
     }
 }

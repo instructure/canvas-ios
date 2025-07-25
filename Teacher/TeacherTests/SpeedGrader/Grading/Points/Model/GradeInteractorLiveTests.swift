@@ -47,9 +47,7 @@ class GradeInteractorLiveTests: TeacherTestCase {
             originalScoreWithoutMetric: nil,
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: nil,
-            pointsDeductedText: "0 pts",
-            originalGradeText: "",
-            gradeAlertText: ""
+            pointsDeductedText: "0 pts"
         )
         gradeStateInteractor.gradeStateToReturn = initialGradeState
 
@@ -88,9 +86,7 @@ class GradeInteractorLiveTests: TeacherTestCase {
             originalScoreWithoutMetric: "90",
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: "90",
-            pointsDeductedText: "0 pts",
-            originalGradeText: "90/100",
-            gradeAlertText: "90"
+            pointsDeductedText: "0 pts"
         )
         gradeStateInteractor.gradeStateToReturn = updatedGradeState
         gradeStateInteractor.gradeStateCalled = false

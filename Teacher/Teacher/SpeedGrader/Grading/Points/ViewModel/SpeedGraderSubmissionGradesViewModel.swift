@@ -38,8 +38,6 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     // Grading inputs
     @Published private(set) var gradeState: GradeState
     @Published private(set) var gradeInputType: GradeInputType?
-    // TODO: remove
-    @Published private(set) var isSaving: Bool = false
     let isSavingGrade = CurrentValueSubject<Bool, Never>(false)
     let shouldShowPointsInput: Bool
     let shouldShowSlider: Bool
@@ -109,11 +107,6 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
         saveGrade(excused: true)
     }
 
-    // TODO: remove
-    func setGrade(_ grade: String) {
-        saveGrade(grade: grade)
-    }
-
     func setGradeFromTextField(_ text: String, inputType: GradeInputTextFieldCell.InputType) {
         guard let value = text.doubleValueByFixingDecimalSeparator else {
             showInvalidGradeError(grade: text)
@@ -137,11 +130,6 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     func setGradeOption(_ item: OptionItem) {
         saveGrade(grade: item.id)
-    }
-
-    // TODO: remove
-    func setPassFailGrade(complete: Bool) {
-        saveGrade(grade: complete ? "complete" : "incomplete")
     }
 
     // MARK: - Private Methods
@@ -188,14 +176,12 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     }
 
     private func saveGrade(excused: Bool? = nil, grade: String? = nil) {
-        isSaving = true
         isSavingGrade.send(true)
 
         gradeInteractor.saveGrade(excused: excused, grade: grade)
             .receive(on: mainScheduler)
             .sink(
                 receiveCompletion: { [weak self] completion in
-                    self?.isSaving = false
                     self?.isSavingGrade.send(false)
                     if case .failure(let error) = completion {
                         self?.showError(error)

@@ -240,65 +240,6 @@ class GradeStateInteractorTests: TeacherTestCase {
         XCTAssertFalse(gradeState.isGradedButNotPosted)
     }
 
-    // MARK: - originalGradeText Tests
-
-    func test_originalGradeText_usesGradeFormatter() {
-        let assignment = Assignment.make(from: .make(points_possible: 100), in: databaseClient)
-        let submission = Submission.make(from: .make(grade: "85"), in: databaseClient)
-
-        let gradeState = testee.gradeState(
-            submission: submission,
-            assignment: assignment,
-            isRubricScoreAvailable: false,
-            totalRubricScore: 0
-        )
-
-        let expectedText = GradeFormatter.longString(for: assignment, submission: submission, final: false)
-        XCTAssertEqual(gradeState.originalGradeText, expectedText)
-    }
-
-    // MARK: - originalGradeText Tests (with rubric score)
-
-    func test_gradeText_usesGradeFormatterWithoutRubricScore() {
-        let assignment = Assignment.make(from: .make(points_possible: 100), in: databaseClient)
-        let submission = Submission.make(from: .make(grade: "85"), in: databaseClient)
-
-        let gradeState = testee.gradeState(
-            submission: submission,
-            assignment: assignment,
-            isRubricScoreAvailable: false,
-            totalRubricScore: 95
-        )
-
-        let expectedText = GradeFormatter.longString(
-            for: assignment,
-            submission: submission,
-            rubricScore: nil,
-            final: false
-        )
-        XCTAssertEqual(gradeState.originalGradeText, expectedText)
-    }
-
-    func test_gradeText_usesGradeFormatterWithRubricScore() {
-        let assignment = Assignment.make(from: .make(points_possible: 100), in: databaseClient)
-        let submission = Submission.make(from: .make(grade: "85"), in: databaseClient)
-
-        let gradeState = testee.gradeState(
-            submission: submission,
-            assignment: assignment,
-            isRubricScoreAvailable: true,
-            totalRubricScore: 95
-        )
-
-        let expectedText = GradeFormatter.longString(
-            for: assignment,
-            submission: submission,
-            rubricScore: 95,
-            final: false
-        )
-        XCTAssertEqual(gradeState.originalGradeText, expectedText)
-    }
-
     // MARK: - pointsDeductedText Tests
 
     func test_pointsDeductedText_formatsCorrectly() {
@@ -329,70 +270,6 @@ class GradeStateInteractorTests: TeacherTestCase {
 
         let expectedText = String(localized: "-\(0, specifier: "%g") pts", bundle: .core)
         XCTAssertEqual(gradeState.pointsDeductedText, expectedText)
-    }
-
-    // MARK: - gradeAlertText Tests
-
-    func test_gradeAlertText_returnsExcusedWhenExcused() {
-        let assignment = Assignment.make(from: .make(points_possible: 100), in: databaseClient)
-        let submission = Submission.make(from: .make(excused: true), in: databaseClient)
-
-        let gradeState = testee.gradeState(
-            submission: submission,
-            assignment: assignment,
-            isRubricScoreAvailable: false,
-            totalRubricScore: 0
-        )
-
-        let expectedText = String(localized: "Excused", bundle: .teacher)
-        XCTAssertEqual(gradeState.gradeAlertText, expectedText)
-    }
-
-    func test_gradeAlertText_returnsEnteredGradeWhenLateGradedWithDeduction() {
-        let assignment = Assignment.make(from: .make(points_possible: 100), in: databaseClient)
-        let submission = Submission.make(from: .make(
-            entered_grade: "95",
-            grade: "85",
-            late: true,
-            points_deducted: 10
-        ), in: databaseClient)
-
-        let gradeState = testee.gradeState(
-            submission: submission,
-            assignment: assignment,
-            isRubricScoreAvailable: false,
-            totalRubricScore: 0
-        )
-
-        XCTAssertEqual(gradeState.gradeAlertText, "95")
-    }
-
-    func test_gradeAlertText_returnsGradeWhenNotExcusedAndNotLateWithDeduction() {
-        let assignment = Assignment.make(from: .make(points_possible: 100), in: databaseClient)
-        let submission = Submission.make(from: .make(grade: "85"), in: databaseClient)
-
-        let gradeState = testee.gradeState(
-            submission: submission,
-            assignment: assignment,
-            isRubricScoreAvailable: false,
-            totalRubricScore: 0
-        )
-
-        XCTAssertEqual(gradeState.gradeAlertText, "85")
-    }
-
-    func test_gradeAlertText_returnsEmptyStringWhenGradeIsNil() {
-        let assignment = Assignment.make(from: .make(points_possible: 100), in: databaseClient)
-        let submission = Submission.make(from: .make(grade: nil), in: databaseClient)
-
-        let gradeState = testee.gradeState(
-            submission: submission,
-            assignment: assignment,
-            isRubricScoreAvailable: false,
-            totalRubricScore: 0
-        )
-
-        XCTAssertEqual(gradeState.gradeAlertText, "")
     }
 
     // MARK: - score Tests

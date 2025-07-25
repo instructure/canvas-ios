@@ -24,8 +24,8 @@ protocol GradeStateInteractor {
     func gradeState(
         submission: Submission,
         assignment: Assignment,
-        isRubricScoreAvailable: Bool,
-        totalRubricScore: Double
+        isRubricScoreAvailable: Bool, // TODO: remove if not needed for rubrics
+        totalRubricScore: Double // TODO: remove if not needed for rubrics
     ) -> GradeState
 }
 
@@ -59,25 +59,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
             originalScoreWithoutMetric: GradeFormatter.originalScoreWithoutMetric(for: submission),
             originalGradeWithoutMetric: GradeFormatter.originalGradeWithoutMetric(for: submission, gradingType: gradingType),
             finalGradeWithoutMetric: GradeFormatter.finalGradeWithoutMetric(for: submission, gradingType: gradingType),
-            pointsDeductedText: String(localized: "\(-(submission.pointsDeducted ?? 0), specifier: "%g") pts", bundle: .core),
-
-            originalGradeText: GradeFormatter.longString(
-                for: assignment,
-                submission: submission,
-                rubricScore: isRubricScoreAvailable ? totalRubricScore : nil,
-                final: false
-            ),
-            gradeAlertText: {
-                if isExcused {
-                    return String(localized: "Excused", bundle: .teacher)
-                }
-
-                if submission.late, isGraded, hasLatePenaltyPoints {
-                    return submission.enteredGrade ?? ""
-                }
-
-                return submission.grade ?? ""
-            }()
+            pointsDeductedText: String(localized: "\(-(submission.pointsDeducted ?? 0), specifier: "%g") pts", bundle: .core)
         )
     }
 
@@ -99,9 +81,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
             originalScoreWithoutMetric: nil,
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: nil,
-            pointsDeductedText: "",
-            originalGradeText: "",
-            gradeAlertText: ""
+            pointsDeductedText: ""
         )
     }
 
