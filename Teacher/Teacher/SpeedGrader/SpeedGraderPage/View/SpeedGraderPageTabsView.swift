@@ -91,7 +91,6 @@ struct SpeedGraderPageTabsView: View {
                         // `.clipped` and `.contentShape` don't prevent touches outside of the drawer on iOS17
                         // and it would block interaction with the attempts picker and the submission content.
                         .allowsHitTesting(selectedTab == .grades)
-//                    commentsTab(geometry: geometry)
                     detailsTab(geometry: geometry)
                 }
                 .frame(width: geometry.size.width, alignment: .leading)
@@ -146,43 +145,6 @@ struct SpeedGraderPageTabsView: View {
         .accessibilityElement(children: .contain)
         .accessibilityHidden(!isTabOnScreen(.grades))
         .accessibilityFocused($a11yFocusedTab, equals: .grades)
-    }
-
-    @ViewBuilder
-    private func commentsTab(geometry: GeometryProxy) -> some View {
-        let attempt = Binding(
-            get: {
-                viewModel.selectedAttemptNumber
-            },
-            set: {
-                viewModel.didSelectAttempt(attemptNumber: $0)
-                snapDrawer(to: .min)
-            }
-        )
-        let fileID = Binding(
-            get: {
-                viewModel.selectedFile?.id
-            },
-            set: {
-                viewModel.didSelectFile(fileId: $0)
-                snapDrawer(to: .min)
-            }
-        )
-        VStack(spacing: 0) {
-            SubmissionCommentListView(
-                viewModel: viewModel.commentListViewModel,
-                attempt: attempt,
-                fileID: fileID
-//                a11yFocusedTab: _a11yFocusedTab
-            )
-            .clipped()
-            if drawerState.isClosed {
-                Spacer().frame(height: bottomInset)
-            }
-        }
-        .frame(width: geometry.size.width, height: geometry.size.height)
-        .accessibilityElement(children: .contain)
-//        .accessibilityHidden(!isTabOnScreen(.comments))
     }
 
     @ViewBuilder

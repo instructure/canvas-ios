@@ -50,7 +50,7 @@ struct SpeedGraderSubmissionGradesView: View {
             }
         } else {
             GeometryReader { geometry in
-                ScrollView {
+                ScrollViewWithReader { proxy in
                     VStack(spacing: 0) {
                         HStack(spacing: 0) {
                             Text("Grade", bundle: .teacher)
@@ -101,6 +101,10 @@ struct SpeedGraderSubmissionGradesView: View {
                         }
 
                         comments
+                            .id("comments")
+                            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
+                                withAnimation { proxy.scrollTo("comments") }
+                            }
 
                         if assignment.rubric?.isEmpty == false {
                             RubricsView(
@@ -109,7 +113,8 @@ struct SpeedGraderSubmissionGradesView: View {
                                 viewModel: rubricsViewModel
                             )
                         }
-                    }.padding(.bottom, 16)
+                    }
+                    .padding(.bottom, 16)
                 }
                 .scrollDismissesKeyboard(.interactively)
             }

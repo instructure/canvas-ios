@@ -66,8 +66,7 @@ struct CommentLibraryScreen: View {
                 sendAction: {
                     sendAction()
                     dismiss()
-                },
-                isInputFocused: $isInputFocused
+                }
             )
         }
         .navigationBarTitleView(String(localized: "Comment Library", bundle: .teacher))

@@ -30,51 +30,36 @@ struct SubmissionCommentListView: View {
 
     @ObservedObject private var viewModel: SubmissionCommentListViewModel
 
+    @FocusState private var isInputFocused: Bool
+
     @State private var error: Text?
     @State private var isAudioRecorderVisible: Bool = false
     @State private var isVideoRecorderVisible: Bool = false
-    @FocusState private var isInputFocused: Bool
     private let avPermissionViewModel: AVPermissionViewModel = .init()
-
-    //    @AccessibilityFocusState private var a11yFocusedTab: SpeedGraderPageTab?
 
     init(
         viewModel: SubmissionCommentListViewModel,
         attempt: Binding<Int>,
-        fileID: Binding<String?>
-        //        a11yFocusedTab: AccessibilityFocusState<SpeedGraderPageTab?>
+        fileID: Binding<String?>,
     ) {
         self.viewModel = viewModel
         self._attempt = attempt
         self._fileID = fileID
-        //        self._a11yFocusedTab = a11yFocusedTab
     }
 
     var body: some View {
         VStack(spacing: 0) {
-//            GeometryReader { geometry in
             Group {
                 switch viewModel.state {
                 case .data:
                     comments
                     // Assume already loaded by parent, so skip loading & error
-                case .empty: SwiftUI.EmptyView()
-                case .loading, .error:
+                default: SwiftUI.EmptyView()
                     SwiftUI.EmptyView()
-//                    EmptyPanda(.NoComments, message: Text("There are no messages yet.", bundle: .teacher))
-//                        .frame(minWidth: geometry.size.width, minHeight: geometry.size.height - 40)
                 }
             }
-            .background(
-                InstUI.TapArea()
-                    .onTapGesture { isInputFocused = false }
-            )
             .background(Color.backgroundLightest)
             .scaleEffect(y: viewModel.state == .data ? -1 : 1)
-//            .safeAreaInset(edge: .bottom) {
-//                commentInputView
-//                    .transition(.opacity)
-//            }
             commentInputView
         }
         .sheet(isPresented: $isAudioRecorderVisible) {
@@ -83,7 +68,6 @@ struct SubmissionCommentListView: View {
         .sheet(isPresented: $isVideoRecorderVisible) {
             videoRecorder
         }
-//    }
     }
 
     @ViewBuilder
@@ -120,10 +104,8 @@ struct SubmissionCommentListView: View {
                 case .file: showFilePicker()
                 }
             },
-            sendAction: sendComment,
-            isInputFocused: $isInputFocused
+            sendAction: sendComment
         )
-        //        .accessibilityFocused($a11yFocusedTab, equals: .comments)
     }
 
     func sendComment() {
