@@ -139,7 +139,6 @@ struct HInboxView: View {
 }
 
 struct MessageRow: View {
-
     let viewModel: HInboxViewModel.MessageRowViewModel
     let onTap: () -> Void
 
