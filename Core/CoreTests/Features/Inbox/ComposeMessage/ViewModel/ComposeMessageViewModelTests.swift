@@ -596,11 +596,11 @@ class ComposeMessageViewModelTests: CoreTestCase {
 
     private func makeViewModel(options: ComposeMessageOptions) -> ComposeMessageViewModel {
         .init(
-            router: router,
             options: options,
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
-            inboxSettingsInteractor: inboxSettingsInteractor
+            inboxSettingsInteractor: inboxSettingsInteractor,
+            env: environment
         )
     }
 }
@@ -634,7 +634,12 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
         numberOfCallingAddFile.append(url)
     }
 
-    func addFile(file: Core.File) {
+    func addFile(url: URL) -> Core.File? {
+        numberOfCallingAddFile.append(url)
+        return nil
+    }
+
+    func addFile(file _: Core.File) {
         isAddFileWithFileCalled = true
     }
 

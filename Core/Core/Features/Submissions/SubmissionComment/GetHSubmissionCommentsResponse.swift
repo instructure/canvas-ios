@@ -61,7 +61,7 @@ public struct GetHSubmissionCommentsResponse: Codable {
         }
     }
 
-    struct PageInfo: Codable {
+  public struct PageInfo: Codable {
         let endCursor, startCursor: String?
         let hasPreviousPage, hasNextPage: Bool?
     }

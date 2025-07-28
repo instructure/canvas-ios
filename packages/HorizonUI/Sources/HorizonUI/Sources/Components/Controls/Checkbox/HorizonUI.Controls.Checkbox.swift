@@ -38,7 +38,7 @@ public extension HorizonUI.Controls {
 
         public init(
             isOn: Binding<Bool>,
-            style: Style,
+            style: Style = .default,
             title: String,
             description: String? = nil,
             errorMessage: String? = nil,

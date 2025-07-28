@@ -52,6 +52,7 @@ extension UploadManager {
         file.localFileURL = uploadURL
         file.batchID = batchID
         file.size = uploadURL.lookupFileSize()
+        file.createdAt = Date()
         if let session = environment.currentSession {
             file.user = File.User(id: session.userID, baseURL: session.baseURL, masquerader: session.masquerader)
         }

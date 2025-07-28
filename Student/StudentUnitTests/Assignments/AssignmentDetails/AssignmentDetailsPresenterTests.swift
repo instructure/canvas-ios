@@ -70,7 +70,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         )
         presenter.submissionButtonPresenter = mockButton
         viewController = AssignmentDetailsViewController
-            .create(env: env, courseID: "1", assignmentID: "1")
+            .create(courseID: "1", assignmentID: "1", env: env)
         viewController.presenter = presenter
         resultingAttemptPickerActiveState = nil
         resultingAttemptPickerItems = nil

@@ -36,6 +36,8 @@ public final class AppEnvironmentOverride: AppEnvironment {
         API(currentSession, baseURL: baseURL)
     }()
 
+    public override var root: AppEnvironment { base }
+
     public override var app: AppEnvironment.App? {
         get { base.app }
         set {}
@@ -89,7 +91,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
                 masquerader: cSession.masquerader,
                 refreshToken: cSession.refreshToken,
                 userAvatarURL: cSession.userAvatarURL,
-                userID: cSession.userID,
+                userID: cSession.userID.localID,
                 userName: cSession.userName,
                 userEmail: cSession.userEmail,
                 clientID: cSession.clientID,

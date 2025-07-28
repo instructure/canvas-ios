@@ -39,7 +39,6 @@ struct SpeedGraderPageTabsView: View {
     @Binding private var splitViewHeaderHeight: CGFloat
 
     @StateObject private var viewModel: SpeedGraderPageViewModel
-    @StateObject private var rubricsViewModel: RubricsViewModel
 
     init(
         containerType: ContainerType,
@@ -58,13 +57,6 @@ struct SpeedGraderPageTabsView: View {
         self._splitViewHeaderHeight = splitViewHeaderHeight
 
         self._viewModel = StateObject(wrappedValue: viewModel)
-        _rubricsViewModel = StateObject(
-            wrappedValue: RubricsViewModel(
-                assignment: viewModel.assignment,
-                submission: viewModel.submission,
-                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission)
-            )
-        )
     }
 
     var body: some View {
@@ -95,21 +87,12 @@ struct SpeedGraderPageTabsView: View {
 
             GeometryReader { geometry in
                 HStack(spacing: 0) {
-                    let drawerFileID = Binding<String?>(
-                        get: {
-                            viewModel.selectedFile?.id
-                        },
-                        set: {
-                            viewModel.didSelectFile(fileId: $0)
-                            snapDrawer(to: .min)
-                        }
-                    )
-
-                    gradesTab(bottomInset: bottomInset, geometry: geometry)
+                    gradesTab(geometry: geometry)
                         // `.clipped` and `.contentShape` don't prevent touches outside of the drawer on iOS17
                         // and it would block interaction with the attempts picker and the submission content.
                         .allowsHitTesting(selectedTab == .grades)
-                    commentsTab(bottomInset: bottomInset, fileID: drawerFileID, geometry: geometry)
+                    commentsTab(geometry: geometry)
+                    detailsTab(geometry: geometry)
                 }
                 .frame(width: geometry.size.width, alignment: .leading)
                 .background(Color.backgroundLightest)
@@ -134,6 +117,115 @@ struct SpeedGraderPageTabsView: View {
         }
     }
 
+    private func openDrawerToMidIfClosedInPortrait() {
+        guard containerType == .drawer, drawerState.isClosed else {
+            return
+        }
+
+        snapDrawer(to: .mid)
+    }
+
+    // MARK: - Tab Contents
+
+    @ViewBuilder
+    private func gradesTab(geometry: GeometryProxy) -> some View {
+        VStack(spacing: 0) {
+            SpeedGraderSubmissionGradesView(
+                assignment: viewModel.assignment,
+                containerHeight: geometry.size.height,
+                rubricsViewModel: viewModel.rubricsViewModel,
+                gradeStatusViewModel: viewModel.gradeStatusViewModel,
+                gradeViewModel: viewModel.gradeViewModel
+            )
+            .clipped()
+            Spacer().frame(height: bottomInset)
+        }
+        .frame(width: geometry.size.width, height: geometry.size.height)
+        .accessibilityElement(children: .contain)
+        .accessibilityHidden(!isTabOnScreen(.grades))
+        .accessibilityFocused($a11yFocusedTab, equals: .grades)
+    }
+
+    @ViewBuilder
+    private func commentsTab(geometry: GeometryProxy) -> some View {
+        let attempt = Binding(
+            get: {
+                viewModel.selectedAttemptNumber
+            },
+            set: {
+                viewModel.didSelectAttempt(attemptNumber: $0)
+                snapDrawer(to: .min)
+            }
+        )
+        let fileID = Binding(
+            get: {
+                viewModel.selectedFile?.id
+            },
+            set: {
+                viewModel.didSelectFile(fileId: $0)
+                snapDrawer(to: .min)
+            }
+        )
+        VStack(spacing: 0) {
+            SubmissionCommentListView(
+                viewModel: viewModel.commentListViewModel,
+                attempt: attempt,
+                fileID: fileID,
+                a11yFocusedTab: _a11yFocusedTab
+            )
+            .clipped()
+            if drawerState.isClosed {
+                Spacer().frame(height: bottomInset)
+            }
+        }
+        .frame(width: geometry.size.width, height: geometry.size.height)
+        .accessibilityElement(children: .contain)
+        .accessibilityHidden(!isTabOnScreen(.comments))
+    }
+
+    @ViewBuilder
+    private func detailsTab(geometry: GeometryProxy) -> some View {
+        VStack(spacing: 0) {
+            detailsTabContent
+                .clipped()
+            Spacer().frame(height: bottomInset)
+        }
+        .frame(width: geometry.size.width, height: geometry.size.height)
+        .accessibilityElement(children: .contain)
+        .accessibilityHidden(!isTabOnScreen(.details))
+        .accessibilityFocused($a11yFocusedTab, equals: .details)
+    }
+
+    private var detailsTabContent: some View {
+        InstUI.BaseScreen(
+            state: viewModel.isDetailsTabEmpty ? .empty : .data,
+            config: .init(
+                refreshable: false,
+                emptyPandaConfig: .empty(
+                    title: String(localized: "We don’t have further details for this Student and Assignment", bundle: .teacher),
+                    subtitle: nil
+                )
+            )
+        ) { _ in
+            VStack(spacing: 0) {
+                InstUI.TopDivider()
+
+                if viewModel.submissionWordCountViewModel.hasContent {
+                    InstUI.LabelValueCell(
+                        label: Text("Word Count", bundle: .teacher),
+                        value: viewModel.submissionWordCountViewModel.wordCount
+                    )
+                }
+
+                if viewModel.studentNotesViewModel.hasContent {
+                    StudentNotesView(viewModel: viewModel.studentNotesViewModel)
+                }
+            }
+        }
+    }
+
+    // MARK: - Private helpers
+
     private func snapDrawer(to state: DrawerState) {
         withTransaction(DrawerState.transaction) {
             drawerState = state
@@ -149,71 +241,6 @@ struct SpeedGraderPageTabsView: View {
         case .splitView:
             return isTabSelected
         }
-    }
-
-    private func openDrawerToMidIfClosedInPortrait() {
-        guard containerType == .drawer, drawerState.isClosed else {
-            return
-        }
-
-        snapDrawer(to: .mid)
-    }
-
-    // MARK: - Tab Contents
-
-    @ViewBuilder
-    private func gradesTab(
-        bottomInset: CGFloat,
-        geometry: GeometryProxy
-    ) -> some View {
-        let isGradesOnScreen = isTabOnScreen(.grades)
-        VStack(spacing: 0) {
-            SubmissionGrades(
-                assignment: viewModel.assignment,
-                containerHeight: geometry.size.height,
-                submission: viewModel.submission,
-                rubricsViewModel: rubricsViewModel,
-                gradeStatusViewModel: viewModel.gradeStatusViewModel
-            )
-            .clipped()
-            Spacer().frame(height: bottomInset)
-        }
-        .frame(width: geometry.size.width, height: geometry.size.height)
-        .accessibilityElement(children: isGradesOnScreen ? .contain : .ignore)
-        .accessibility(hidden: !isGradesOnScreen)
-        .accessibilityFocused($a11yFocusedTab, equals: .grades)
-    }
-
-    @ViewBuilder
-    private func commentsTab(
-        bottomInset: CGFloat,
-        fileID: Binding<String?>,
-        geometry: GeometryProxy
-    ) -> some View {
-        let drawerAttempt = Binding(
-            get: {
-                viewModel.selectedAttemptNumber
-            }, set: {
-                viewModel.didSelectAttempt(attemptNumber: $0)
-                snapDrawer(to: .min)
-            }
-        )
-        let isCommentsOnScreen = isTabOnScreen(.comments)
-        VStack(spacing: 0) {
-            SubmissionCommentListView(
-                viewModel: viewModel.commentListViewModel,
-                attempt: drawerAttempt,
-                fileID: fileID,
-                a11yFocusedTab: _a11yFocusedTab
-            )
-            .clipped()
-            if drawerState.isClosed {
-                Spacer().frame(height: bottomInset)
-            }
-        }
-        .frame(width: geometry.size.width, height: geometry.size.height)
-        .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
-        .accessibility(hidden: !isCommentsOnScreen)
     }
 }
 

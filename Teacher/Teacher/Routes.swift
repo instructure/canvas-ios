@@ -55,19 +55,19 @@ let router = Router(routes: [
     RouteHandler("/conversations"),
 
     // Special Inbox Compose route to handle 'New Message' action. This action has different implementation in the Parent app
-    RouteHandler("/conversations/new_message") { url, _, _ in
-        return ComposeMessageAssembly.makeComposeMessageViewController(url: url)
+    RouteHandler("/conversations/new_message") { url, _, _, env in
+        return ComposeMessageAssembly.makeComposeMessageViewController(env: env, url: url)
     },
 
-    RouteHandler("/conversations/compose") { url, _, _ in
-        return ComposeMessageAssembly.makeComposeMessageViewController(url: url)
+    RouteHandler("/conversations/compose") { url, _, _, env in
+        return ComposeMessageAssembly.makeComposeMessageViewController(env: env, url: url)
     },
 
-    RouteHandler("/conversations/settings") { _, _, _ in
-        return InboxSettingsAssembly.makeInboxSettingsViewController()
+    RouteHandler("/conversations/settings") { _, _, _, env in
+        return InboxSettingsAssembly.makeInboxSettingsViewController(env: env)
     },
 
-    RouteHandler("/conversations/:conversationID") { _, params, userInfo in
+    RouteHandler("/conversations/:conversationID") { _, params, userInfo, env in
         guard let conversationID = params["conversationID"] else { return nil }
         let allowArchive: Bool = {
             if let userInfo, let allowArchiveParam = userInfo["allowArchive"] as? Bool {
@@ -77,9 +77,9 @@ let router = Router(routes: [
             }
         }()
         return MessageDetailsAssembly.makeViewController(
-            env: AppEnvironment.shared,
             conversationID: conversationID,
-            allowArchive: allowArchive
+            allowArchive: allowArchive,
+            env: env
         )
     },
 
@@ -162,9 +162,9 @@ let router = Router(routes: [
             .makeViewController(env: env, courseID: courseID, assignmentID: assignmentID)
     },
 
-    RouteHandler("/courses/:courseID/assignments/:assignmentID/post_policy") { _, params, _ in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID/post_policy") { _, params, _, env in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
-        return PostSettingsViewController.create(courseID: courseID, assignmentID: assignmentID)
+        return PostSettingsViewController.create(courseID: courseID, assignmentID: assignmentID, env: env)
     },
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions") { url, params, _, env in
@@ -365,40 +365,46 @@ let router = Router(routes: [
         return CoreHostingController(PageEditorView(context: context, url: slug))
     },
 
-    RouteHandler("/courses/:courseID/quizzes") { _, params, _ in
+    RouteHandler("/courses/:courseID/quizzes") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
-        return QuizListViewController.create(courseID: courseID)
+        return QuizListViewController.create(courseID: courseID, env: env)
     },
 
-    RouteHandler("/courses/:courseID/quizzes/:quizID") { _, params, _ in
+    RouteHandler("/courses/:courseID/quizzes/:quizID") { _, params, _, env in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        let viewModel = TeacherQuizDetailsViewModelLive(courseID: courseID, quizID: quizID)
-        return CoreHostingController(TeacherQuizDetailsView(viewModel: viewModel))
+        let viewModel = TeacherQuizDetailsViewModelLive(courseID: courseID, quizID: quizID, env: env)
+        return CoreHostingController(TeacherQuizDetailsView(viewModel: viewModel), env: env)
     },
-    RouteHandler("/courses/:courseID/quizzes/:quizID/preview") { _, params, _ in
+    RouteHandler("/courses/:courseID/quizzes/:quizID/preview") { _, params, _, env in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        return QuizPreviewAssembly.makeQuizPreviewViewController(courseID: courseID, quizID: quizID)
+        return QuizPreviewAssembly.makeQuizPreviewViewController(courseID: courseID, quizID: quizID, env: env)
     },
-    RouteHandler("/courses/:courseID/quizzes/:quizID/edit") { _, params, _ in
+    RouteHandler("/courses/:courseID/quizzes/:quizID/edit") { _, params, _, env in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        let viewModel = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID)
-        return CoreHostingController(TeacherQuizEditorView(viewModel: viewModel))
+        let viewModel = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID, env: env)
+        return CoreHostingController(TeacherQuizEditorView(viewModel: viewModel), env: env)
     },
-    RouteHandler("/courses/:courseID/quizzes/:quizID/submissions") { url, params, _ in
+    RouteHandler("/courses/:courseID/quizzes/:quizID/submissions") { url, params, _, env in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
         let filter = QuizSubmissionListFilter(rawValue: url.queryValue(for: "filter"))
-        return QuizSubmissionListAssembly.makeViewController(env: AppEnvironment.shared, courseID: courseID, quizID: quizID, filter: filter)
+        return QuizSubmissionListAssembly.makeViewController(env: env, courseID: courseID, quizID: quizID, filter: filter)
     },
-    RouteHandler("/courses/:courseID/users") { _, params, _ in
+    RouteHandler("/courses/:courseID/users") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
-        return PeopleListViewController.create(context: .course(courseID))
+        return PeopleListViewController.create(context: .course(courseID), env: env)
     },
 
-    RouteHandler("/courses/:courseID/users/:userID") { _, params, userInfo in
+    RouteHandler("/courses/:courseID/users/:userID") { _, params, userInfo, env in
         guard let courseID = params["courseID"], let userID = params["userID"] else { return nil }
         let isModal = isModalPresentation(userInfo)
-        let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: AppEnvironment.shared.currentSession?.userID ?? "", isModal: isModal)
-        return CoreHostingController(ContextCardView(model: viewModel))
+        let viewModel = ContextCardViewModel(
+            courseID: courseID,
+            userID: userID,
+            currentUserID: env.currentSession?.userID ?? "",
+            isModal: isModal,
+            env: env
+        )
+        return CoreHostingController(ContextCardView(model: viewModel), env: env)
     },
 
     RouteHandler("/dev-menu") { _, _, _ in

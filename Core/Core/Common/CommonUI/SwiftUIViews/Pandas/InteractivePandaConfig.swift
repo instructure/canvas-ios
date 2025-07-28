@@ -70,7 +70,7 @@ public extension InteractivePanda.Config {
     static func error(
         scene: PandaScene = (NoResultsPanda() as PandaScene),
         title: String = String(localized: "Something Went Wrong", bundle: .core),
-        subtitle: String = String(localized: "Pull to refresh to try again", bundle: .core)
+        subtitle: String? = String(localized: "Pull to refresh to try again", bundle: .core)
     ) -> Self {
         .init(
             scene: scene,
@@ -82,7 +82,7 @@ public extension InteractivePanda.Config {
     static func empty(
         scene: PandaScene = (SpacePanda() as PandaScene),
         title: String = String(localized: "This screen is empty", bundle: .core),
-        subtitle: String = String(localized: "Pull to refresh to reload", bundle: .core)
+        subtitle: String? = String(localized: "Pull to refresh to reload", bundle: .core)
     ) -> Self {
         .init(
             scene: scene,
