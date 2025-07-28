@@ -20,15 +20,12 @@ import Core
 import SwiftUI
 
 struct RedesignedRubricsView: View {
-    let currentScore: Double
-    let containerFrameInGlobal: CGRect
-    @ObservedObject var viewModel: RubricsViewModel
+    @ObservedObject var viewModel: RedesignedRubricsViewModel
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
     var body: some View {
-
         VStack {
 
             InstUI.Divider()
@@ -161,7 +158,7 @@ struct RedesignedRubricsView: View {
     let submission = Submission(context: env.database.viewContext)
 
     let model = {
-        let rubrics = RubricsViewModel(
+        let rubrics = RedesignedRubricsViewModel(
             assignment: assignment,
             submission: submission,
             interactor: RubricGradingInteractorPreview(),
@@ -182,16 +179,9 @@ struct RedesignedRubricsView: View {
                 title: String(localized: "Moderated Grading Unsupported", bundle: .teacher)
             )
         )
-    ) { geometry in
-
-        VStack(spacing: 0) {
-            RedesignedRubricsView(
-                currentScore: 43,
-                containerFrameInGlobal: geometry.frame(in: .global),
-                viewModel: model
-            )
-        }
-        .padding(.bottom, 16)
+    ) { _ in
+        RedesignedRubricsView(viewModel: model)
+            .padding(.bottom, 16)
     }
     .environment(\.appEnvironment, env)
 }

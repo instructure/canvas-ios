@@ -20,11 +20,11 @@ import SwiftUI
 import Core
 
 struct RubricRatingExpandedView: View {
-    @ObservedObject var viewModel: RubricRatingViewModel
+    @ObservedObject var viewModel: RedesignedRubricRatingViewModel
 
     var body: some View {
 
-        let halign: VerticalAlignment = viewModel.subtitle.isEmpty ? .center : .top
+        let halign: VerticalAlignment = viewModel.bubble.subtitle.isEmpty ? .center : .top
 
         HStack(alignment: halign, spacing: 16) {
 
@@ -41,13 +41,14 @@ struct RubricRatingExpandedView: View {
             let textColor: Color = viewModel.isSelected ? .textLightest : .textDarkest
 
             VStack(alignment: .leading) {
+                let bubble = viewModel.bubble
 
-                Text(viewModel.title)
+                Text(bubble.title)
                     .font(.semibold16)
                     .foregroundStyle(textColor)
 
-                if viewModel.subtitle.isNotEmpty {
-                    Text(viewModel.subtitle)
+                if bubble.subtitle.isNotEmpty {
+                    Text(bubble.subtitle)
                         .font(.regular14)
                         .foregroundStyle(textColor)
                         .lineLimit(2)
@@ -56,7 +57,7 @@ struct RubricRatingExpandedView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.vertical, 12)
+        .padding(.vertical, 14)
         .padding(.horizontal, 16)
         .background(
             viewModel.isSelected ? RoundedRectangle(cornerRadius: 24).fill(.tint) : nil
@@ -73,7 +74,7 @@ struct RubricRatingExpandedView: View {
     let env = PreviewEnvironment()
     let context = env.database.viewContext
     let model = {
-        let model = RubricRatingViewModel(
+        let model = RedesignedRubricRatingViewModel(
             rating: CDRubricRating(context: context).with { rat in
                 rat.points = 3
                 rat.shortDescription = "Excellent"

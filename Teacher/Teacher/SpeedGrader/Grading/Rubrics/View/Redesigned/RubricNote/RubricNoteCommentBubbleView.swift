@@ -19,15 +19,28 @@
 import SwiftUI
 import Core
 
-struct RedesignedRubricRatingView: View {
-    @ObservedObject var viewModel: RubricRatingViewModel
+struct RubricNoteCommentBubbleView: View {
+
+    let comment: String
+    let onEdit: () -> Void
 
     var body: some View {
-        let value = Text(viewModel.value)
-        RubricSquare(isOn: $viewModel.isSelected) {
-            value
+        HStack(spacing: 0) {
+            Text(comment)
+                .font(.regular14)
+                .foregroundStyle(Color.textDarkest)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(8)
+                .background(Color.backgroundLight)
+                .cornerRadius(16)
+            Button(action: onEdit) {
+                Image
+                    .editLine
+                    .scaledIcon(size: 24)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
+            }
+            .tint(.textDark)
         }
-        .accessibility(value: value)
-        .accessibility(label: Text(viewModel.accessibilityLabel))
     }
 }

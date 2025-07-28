@@ -31,6 +31,14 @@
 		08FF9EB82E36D167005D8C36 /* QuizSubmissionListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C051C29AE10170032BFB1 /* QuizSubmissionListItemView.swift */; };
 		08FF9EBB2E36E92E005D8C36 /* RubricSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9EBA2E36E925005D8C36 /* RubricSquare.swift */; };
 		08FF9EBF2E36F67E005D8C36 /* RubricRatingExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9EBE2E36F5C6005D8C36 /* RubricRatingExpandedView.swift */; };
+		08FF9EC62E37D2E1005D8C36 /* RedesignedRubricCriterionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9EC52E37D2DF005D8C36 /* RedesignedRubricCriterionViewModel.swift */; };
+		08FF9EC82E37D334005D8C36 /* RedesignedRubricsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9EC72E37D333005D8C36 /* RedesignedRubricsViewModel.swift */; };
+		08FF9ECA2E37D371005D8C36 /* RedesignedRubricRatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9EC92E37D36B005D8C36 /* RedesignedRubricRatingViewModel.swift */; };
+		08FF9ECE2E37D754005D8C36 /* RubricPointsRatingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9ECD2E37D752005D8C36 /* RubricPointsRatingsListView.swift */; };
+		08FF9ED02E37D774005D8C36 /* RubricScoreInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9ECF2E37D773005D8C36 /* RubricScoreInputView.swift */; };
+		08FF9ED22E37D781005D8C36 /* RubricNoteCommentEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9ED12E37D77F005D8C36 /* RubricNoteCommentEditView.swift */; };
+		08FF9ED42E37D79E005D8C36 /* RubricNoteCommentBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9ED32E37D79D005D8C36 /* RubricNoteCommentBubbleView.swift */; };
+		08FF9ED62E37D7B4005D8C36 /* RubricTextRatingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9ED52E37D7B3005D8C36 /* RubricTextRatingsListView.swift */; };
 		13B07FBF1A68108700A75B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Assets.xcassets */; };
 		2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
 		2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */; };
@@ -339,6 +347,14 @@
 		08FF9EB12E365652005D8C36 /* RedesignedRubricRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedesignedRubricRatingView.swift; sourceTree = "<group>"; };
 		08FF9EBA2E36E925005D8C36 /* RubricSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricSquare.swift; sourceTree = "<group>"; };
 		08FF9EBE2E36F5C6005D8C36 /* RubricRatingExpandedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricRatingExpandedView.swift; sourceTree = "<group>"; };
+		08FF9EC52E37D2DF005D8C36 /* RedesignedRubricCriterionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedesignedRubricCriterionViewModel.swift; sourceTree = "<group>"; };
+		08FF9EC72E37D333005D8C36 /* RedesignedRubricsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedesignedRubricsViewModel.swift; sourceTree = "<group>"; };
+		08FF9EC92E37D36B005D8C36 /* RedesignedRubricRatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedesignedRubricRatingViewModel.swift; sourceTree = "<group>"; };
+		08FF9ECD2E37D752005D8C36 /* RubricPointsRatingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricPointsRatingsListView.swift; sourceTree = "<group>"; };
+		08FF9ECF2E37D773005D8C36 /* RubricScoreInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricScoreInputView.swift; sourceTree = "<group>"; };
+		08FF9ED12E37D77F005D8C36 /* RubricNoteCommentEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricNoteCommentEditView.swift; sourceTree = "<group>"; };
+		08FF9ED32E37D79D005D8C36 /* RubricNoteCommentBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricNoteCommentBubbleView.swift; sourceTree = "<group>"; };
+		08FF9ED52E37D7B3005D8C36 /* RubricTextRatingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricTextRatingsListView.swift; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C3DE5091F21494D00AE1D59 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -703,13 +719,45 @@
 		08FF9EAE2E36490F005D8C36 /* Redesigned */ = {
 			isa = PBXGroup;
 			children = (
-				08FF9EBE2E36F5C6005D8C36 /* RubricRatingExpandedView.swift */,
-				08FF9EB12E365652005D8C36 /* RedesignedRubricRatingView.swift */,
+				08FF9ED82E37D7DE005D8C36 /* RatingsList */,
+				08FF9ED72E37D7D0005D8C36 /* RubricNote */,
+				08FF9ECF2E37D773005D8C36 /* RubricScoreInputView.swift */,
 				08FF9EAF2E364B14005D8C36 /* RedesignedRubricCriterionView.swift */,
 				08FF9EA82E361109005D8C36 /* RedesignedRubricsView.swift */,
 				08FF9EAA2E36185E005D8C36 /* FlowLayout.swift */,
 			);
 			path = Redesigned;
+			sourceTree = "<group>";
+		};
+		08FF9EC42E37D2D8005D8C36 /* Redesigned */ = {
+			isa = PBXGroup;
+			children = (
+				08FF9EC92E37D36B005D8C36 /* RedesignedRubricRatingViewModel.swift */,
+				08FF9EC72E37D333005D8C36 /* RedesignedRubricsViewModel.swift */,
+				08FF9EC52E37D2DF005D8C36 /* RedesignedRubricCriterionViewModel.swift */,
+			);
+			path = Redesigned;
+			sourceTree = "<group>";
+		};
+		08FF9ED72E37D7D0005D8C36 /* RubricNote */ = {
+			isa = PBXGroup;
+			children = (
+				08FF9ED32E37D79D005D8C36 /* RubricNoteCommentBubbleView.swift */,
+				08FF9ED12E37D77F005D8C36 /* RubricNoteCommentEditView.swift */,
+			);
+			path = RubricNote;
+			sourceTree = "<group>";
+		};
+		08FF9ED82E37D7DE005D8C36 /* RatingsList */ = {
+			isa = PBXGroup;
+			children = (
+				08FF9ED52E37D7B3005D8C36 /* RubricTextRatingsListView.swift */,
+				08FF9ECD2E37D752005D8C36 /* RubricPointsRatingsListView.swift */,
+				08FF9EBA2E36E925005D8C36 /* RubricSquare.swift */,
+				08FF9EB12E365652005D8C36 /* RedesignedRubricRatingView.swift */,
+				08FF9EBE2E36F5C6005D8C36 /* RubricRatingExpandedView.swift */,
+			);
+			path = RatingsList;
 			sourceTree = "<group>";
 		};
 		13B07FAE1A68108700A75B9A /* Teacher */ = {
@@ -1560,6 +1608,7 @@
 		CF0606132D9A9ABB0014C2EC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				08FF9EC42E37D2D8005D8C36 /* Redesigned */,
 				CFCADAF82D9D909A003796E7 /* Ratings */,
 				CFCADAE92D9BE213003796E7 /* RubricCriterionViewModel.swift */,
 				CF0606112D9A9A950014C2EC /* RubricsViewModel.swift */,
@@ -1768,7 +1817,6 @@
 		CFCADAF72D9D9086003796E7 /* Ratings */ = {
 			isa = PBXGroup;
 			children = (
-				08FF9EBA2E36E925005D8C36 /* RubricSquare.swift */,
 				CF0605E22D95C5A00014C2EC /* RubricCircle.swift */,
 				CFCADAF52D9D89CE003796E7 /* RubricCustomRatingView.swift */,
 				CFCADAF32D9D871C003796E7 /* RubricRatingView.swift */,
@@ -2232,6 +2280,7 @@
 				7D64A96323620A27004EAEDF /* Status.swift in Sources */,
 				CF4C5F7C2DA02401005AE000 /* SpeedGraderInteractorLive.swift in Sources */,
 				CF93FCB82D5A5AF600C4538F /* SpeedGraderAssembly.swift in Sources */,
+				08FF9ECE2E37D754005D8C36 /* RubricPointsRatingsListView.swift in Sources */,
 				CFB5ED462E268AFA000009DF /* GradeSummaryView.swift in Sources */,
 				CFFEADB12E007B0600277F69 /* IBDesignables.swift in Sources */,
 				CFB5ED622E27CB6A000009DF /* SpeedGraderSubmissionGradesViewModel.swift in Sources */,
@@ -2251,9 +2300,11 @@
 				CF13E559299D1AEC00F57F69 /* QuizSubmissionListView.swift in Sources */,
 				089AACBE2DD5FAAE0022F341 /* TeacherDateSection.swift in Sources */,
 				7D7126B12534B980000DEDE4 /* DrawerContainer.swift in Sources */,
+				08FF9EC82E37D334005D8C36 /* RedesignedRubricsViewModel.swift in Sources */,
 				5B4324BA2E2067C100561B77 /* CustomGradebookColumnsInteractorPreview.swift in Sources */,
 				CFF4AAAB2DFB048200B0351F /* GradeStatusViewModel.swift in Sources */,
 				3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */,
+				08FF9ED62E37D7B4005D8C36 /* RubricTextRatingsListView.swift in Sources */,
 				7D0A28E2251A8284004FB3B6 /* SpeedGraderPageHeaderView.swift in Sources */,
 				5B9C5C072DB9B04000103E21 /* SubmissionCommentsAssembly.swift in Sources */,
 				CF0605E32D95C5A50014C2EC /* RubricCircle.swift in Sources */,
@@ -2288,9 +2339,12 @@
 				CFF4AAAF2DFB0CCF00B0351F /* GradeStatusInteractorPreview.swift in Sources */,
 				EB12071F2601F2C50038E875 /* GradeSlider.swift in Sources */,
 				5B4324B32E1F184900561B77 /* GetCustomGradebookColumnEntries.swift in Sources */,
+				08FF9ED02E37D774005D8C36 /* RubricScoreInputView.swift in Sources */,
+				08FF9ED42E37D79E005D8C36 /* RubricNoteCommentBubbleView.swift in Sources */,
 				5B4324A22E1EBEC400561B77 /* GetCustomGradebookColumnEntriesRequest.swift in Sources */,
 				CF13E557299D1A1100F57F69 /* QuizSubmissionListItem.swift in Sources */,
 				089AACBA2DD5F7FB0022F341 /* TeacherAssignmentDetailsScreen.swift in Sources */,
+				08FF9ECA2E37D371005D8C36 /* RedesignedRubricRatingViewModel.swift in Sources */,
 				CFF4AAA72DFAD2D400B0351F /* GradeStatusView.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
 				D91C051F29AE107B0032BFB1 /* QuizSubmissionListItemViewModel.swift in Sources */,
@@ -2301,6 +2355,7 @@
 				CF05D86D2E1FEA0D00F98B90 /* GradeInteractor.swift in Sources */,
 				7D264DC72537A6E1007CDD90 /* SimilarityScoreView.swift in Sources */,
 				CFCADAF22D9D6FE4003796E7 /* RubricCustomRatingViewModel.swift in Sources */,
+				08FF9ED22E37D781005D8C36 /* RubricNoteCommentEditView.swift in Sources */,
 				CF0E06942DA8FFC6007AC131 /* SpeedGraderPageViewModel.swift in Sources */,
 				CFFEADD82E099C8000277F69 /* UpdateSubmissionGradeStatus.swift in Sources */,
 				CFFEADBC2E01BE3A00277F69 /* GradeStatus.swift in Sources */,
@@ -2345,6 +2400,7 @@
 				3B18E82B230C683D006CAF5C /* PostGradesPresenter.swift in Sources */,
 				5B71EC382E305208009F5E6D /* SpeedGraderPickerCell.swift in Sources */,
 				7D64A96123620A27004EAEDF /* DatePickerViewController.swift in Sources */,
+				08FF9EC62E37D2E1005D8C36 /* RedesignedRubricCriterionViewModel.swift in Sources */,
 				CF05D8622E1E561E00F98B90 /* CommentLibraryScreen.swift in Sources */,
 				CF0606122D9A9A990014C2EC /* RubricsViewModel.swift in Sources */,
 				CFF4AAA52DFAB93000B0351F /* GradeStatusInteractor.swift in Sources */,

@@ -36,6 +36,7 @@ struct SpeedGraderSubmissionGradesView: View {
     @ObservedObject var gradeViewModel: SpeedGraderSubmissionGradesViewModel
     @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
     @ObservedObject var rubricsViewModel: RubricsViewModel
+    @ObservedObject var redesignedRubricsViewModel: RedesignedRubricsViewModel
 
     var body: some View {
         InstUI.BaseScreen(
@@ -368,11 +369,7 @@ struct SpeedGraderSubmissionGradesView: View {
         } else {
 
             Spacer().frame(height: 16)
-            RedesignedRubricsView(
-                currentScore: rubricsViewModel.totalRubricScore,
-                containerFrameInGlobal: geometry.frame(in: .global),
-                viewModel: rubricsViewModel
-            )
+            RedesignedRubricsView(viewModel: redesignedRubricsViewModel)
         }
     }
 

@@ -21,13 +21,16 @@ import SwiftUI
 
 struct RedesignedRubricCriterionView: View {
     @Environment(\.viewController) var controller
-    @ObservedObject var viewModel: RubricCriterionViewModel
+    @ObservedObject var viewModel: RedesignedRubricCriterionViewModel
 
-    @State private var isExpanded: Bool = false
+    @State private var isExpanded: Bool
     @State private var isCommentEditing: Bool = false
 
-    init(viewModel: RubricCriterionViewModel) {
+    init(viewModel: RedesignedRubricCriterionViewModel) {
         self.viewModel = viewModel
+
+        let expanded = viewModel.hideRubricPoints && viewModel.userRatingId == nil
+        self._isExpanded = .init(initialValue: expanded)
     }
 
     var body: some View {
@@ -51,68 +54,21 @@ struct RedesignedRubricCriterionView: View {
                         .padding(.horizontal, 16)
 
                 }
-
-                if viewModel.shouldShowRubricNotUsedForScoringMessage {
-                    Spacer().frame(height: 16)
-
-                    Text("This criterion will not impact the score.", bundle: .teacher)
-                        .font(.regular12)
-                        .foregroundColor(.textDark)
-                        .padding(.top, 2)
-                }
             }
+
+            Spacer().frame(height: 16)
 
             if viewModel.shouldShowRubricRatings {
-                Spacer().frame(height: 16)
-
-                if isExpanded {
-
-                    VStack {
-                        let ratingModels = Array(viewModel.ratingViewModels.reversed())
-                        ForEach(ratingModels) { ratingViewModel in
-                            RubricRatingExpandedView(viewModel: ratingViewModel)
-                        }
-                    }
-                    .padding(.bottom, 8)
-
+                if viewModel.hideRubricPoints {
+                    RubricTextRatingsListView(isExpanded: $isExpanded, viewModel: viewModel)
                 } else {
-                    FlowLayout(spacing: 16, minimumLineSpacing: 16) {
-                        ForEach(viewModel.ratingViewModels) { ratingViewModel in
-                            RedesignedRubricRatingView(viewModel: ratingViewModel)
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, 8)
+                    RubricPointsRatingsListView(isExpanded: $isExpanded, viewModel: viewModel)
                 }
             }
 
-            if let bubble = viewModel.userRatingBubble, isExpanded == false {
-
-                VStack(alignment: .leading) {
-                    Text(bubble.title)
-                        .font(.semibold16)
-                        .foregroundStyle(Color.textLightest)
-
-                    if bubble.subtitle.isNotEmpty {
-                        Text(bubble.subtitle)
-                            .font(.regular14)
-                            .foregroundStyle(Color.textLightest)
-                    }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(16)
-                .background(content: {
-                    RoundedRectangle(cornerRadius: 24).fill(.tint)
-                })
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
+            if shouldShowPointsScoreInput {
+                RubricScoreInputView(viewModel: viewModel)
             }
-
-            if isExpanded {
-                InstUI.Divider()
-            }
-
-            RubricScoreInputView(viewModel: viewModel)
 
             VStack(alignment: .leading, spacing: 8) {
                 Text("Rubric Note")
@@ -155,112 +111,12 @@ struct RedesignedRubricCriterionView: View {
             .rotationEffect(isExpanded ? .degrees(180) : .zero)
         }
     }
-}
 
-struct RubricScoreInputView: View {
-
-    @ObservedObject var viewModel: RubricCriterionViewModel
-
-    init(viewModel: RubricCriterionViewModel) {
-        self.viewModel = viewModel
-    }
-
-    var body: some View {
-        let textBinding = Binding(
-            get: { userPoints },
-            set: { newText in
-                if let number = newText.doubleValue {
-                    viewModel.updateCustomRating(number)
-                }
-            }
-        )
-
-        GradeInputTextFieldCell(
-            title: "Score",
-            inputType: .points,
-            pointsPossible: viewModel.pointsPossibleText,
-            isExcused: false,
-            text: textBinding,
-            isSaving: viewModel.isSaving
-        )
-    }
-
-    private var userPoints: String {
-        viewModel.userPoints?.formatted() ?? ""
-    }
-}
-
-struct RubricNoteCommentEditView: View {
-
-    @State private var text: String
-    private var onSendTapped: (String) -> Void
-
-    init(comment: String, onSendTapped: @escaping (String) -> Void) {
-        self._text = .init(initialValue: comment)
-        self.onSendTapped = onSendTapped
-    }
-
-    @ScaledMetric private var uiScale: CGFloat = 1
-
-    var body: some View {
-        TextField("Note", text: $text, axis: .vertical)
-            .textFieldStyle(.plain)
-            .font(.regular14)
-            .lineLimit(3)
-            .padding(.leading, 13)
-            .padding(.trailing, 30 * uiScale)
-            .padding(.vertical, 8)
-            .overlay(alignment: .bottomTrailing) {
-                Button(
-                    action: {
-                        onSendTapped(text)
-                    }
-                ) {
-
-                    let image = Image
-                        .circleArrowUpSolid
-                        .scaledIcon(size: 24)
-
-                    if text.isEmpty {
-                        image.foregroundStyle(Color.disabledGray)
-                    } else {
-                        image.foregroundStyle(.tint)
-                    }
-                }
-                .padding(.trailing, 4)
-                .padding(.bottom, 4)
-            }
-            .overlay {
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.borderMedium, lineWidth: 0.5)
-                    .frame(minHeight: 32)
-            }
-            .padding(.trailing, 16)
-    }
-}
-
-struct RubricNoteCommentBubbleView: View {
-
-    let comment: String
-    let onEdit: () -> Void
-
-    var body: some View {
-        HStack(spacing: 0) {
-            Text(comment)
-                .font(.regular14)
-                .foregroundStyle(Color.textDarkest)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(8)
-                .background(Color.backgroundLight)
-                .cornerRadius(16)
-            Button(action: onEdit) {
-                Image
-                    .editLine
-                    .scaledIcon(size: 24)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 12)
-            }
-            .tint(.textDark)
+    private var shouldShowPointsScoreInput: Bool {
+        if viewModel.shouldShowRubricRatings {
+            return viewModel.hideRubricPoints == false
+        } else {
+            return viewModel.hideRubricPoints == false && isExpanded == false
         }
     }
 }
@@ -274,6 +130,8 @@ struct RubricNoteCommentBubbleView: View {
     let assignment = Assignment(context: context)
         .with { assignment in
             assignment.id = "234"
+            assignment.hideRubricPoints = true
+            assignment.freeFormCriterionCommentsOnRubric = false
             assignment.rubric = [
                 CDRubricCriterion(context: context).with({ cret in
                     cret.points = 12
@@ -319,15 +177,19 @@ struct RubricNoteCommentBubbleView: View {
 
     let model = {
 
-        let model = RubricsViewModel(
+        let model = RedesignedRubricsViewModel(
             assignment: assignment,
             submission: submission,
             interactor: interactor,
             router: env.router
         ).criterionViewModels.first!
 
-        model.ratingViewModels.first?.isSelected = true
+        model.ratingViewModels.last?.isSelected = true
         model.userComment = "Content is perfectly placed, highly relevant, and enhances clarity. Shows strong understanding of audience and purpose."
+        model.userRatingBubble = .init(
+            title: "Excellent",
+            subtitle: "Comprehensive, insightful, and relevant. Information is completely accurate."
+        )
 
         return model
     }()
@@ -343,13 +205,3 @@ struct RubricNoteCommentBubbleView: View {
 }
 
 #endif
-
-enum Formatters {
-    static let number = NumberFormatter()
-}
-
-extension String {
-    var doubleValue: Double? {
-        Formatters.number.number(from: self)?.doubleValue
-    }
-}

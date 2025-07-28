@@ -164,3 +164,13 @@ extension String? {
         return self.isEmpty
     }
 }
+
+extension String {
+    public var doubleValue: Double? {
+        StringFormatUtils.numberFormatter.number(from: self)?.doubleValue
+    }
+}
+
+private enum StringFormatUtils {
+    static let numberFormatter = NumberFormatter()
+}

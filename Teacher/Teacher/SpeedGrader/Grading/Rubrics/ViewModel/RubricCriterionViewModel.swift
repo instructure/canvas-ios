@@ -32,9 +32,6 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
     @Binding var rubricComment: String
     @Binding var rubricCommentID: String?
     @Published var userComment: String?
-    @Published var userPoints: Double?
-    @Published var userRatingId: String?
-    @Published var userRatingBubble: RubricRatingBubble?
 
     // MARK: - Outputs
 
@@ -47,14 +44,6 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
     var description: String {
         criterion.shortDescription
     }
-    var longDescription: String {
-        criterion.longDescription
-    }
-
-    var isSaving: CurrentValueSubject<Bool, Never> {
-        interactor.isSaving
-    }
-
     var shouldShowRubricRatings: Bool {
         !isFreeFormCommentsEnabled
     }
@@ -67,9 +56,6 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
     var criterionId: String {
         criterion.id
     }
-    var criterionPoints: Double {
-        criterion.points
-    }
     var ratingViewModels: [RubricRatingViewModel]
     var customRatingViewModel: RubricCustomRatingViewModel
 
@@ -79,8 +65,6 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
     private let isFreeFormCommentsEnabled: Bool
     private let router: Router
     private let interactor: RubricGradingInteractor
-
-    private var subscriptions = Set<AnyCancellable>()
 
     init(
         criterion: CDRubricCriterion,
@@ -96,69 +80,22 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
         self._rubricComment = rubricComment
         self._rubricCommentID = rubricCommentID
         self.router = router
-
-        if criterion.criterionUseRange,
-           ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled == false {
-
-            let ratings = (criterion.ratings ?? []).sorted(by: { $0.points < $1.points })
-            var ratingModels = [RubricRatingViewModel]()
-            var lowerPoints: Double = 0
-
-            for rating in ratings {
-                ratingModels.append(
-                    RubricRatingViewModel(
-                        rating: rating,
-                        ratingPointsLowerBound: lowerPoints,
-                        criterionId: criterion.id,
-                        interactor: interactor
-                    )
+        ratingViewModels = (criterion.ratings ?? [])
+            .reversed()
+            .map {
+                RubricRatingViewModel(
+                    rating: $0,
+                    criterionId: criterion.id,
+                    interactor: interactor
                 )
-                lowerPoints = rating.points
             }
-
-            ratingViewModels = ratingModels
-
-        } else {
-
-            ratingViewModels = (criterion.ratings ?? [])
-                .reversed()
-                .map {
-                    RubricRatingViewModel(
-                        rating: $0,
-                        criterionId: criterion.id,
-                        interactor: interactor
-                    )
-                }
-        }
-
         customRatingViewModel = RubricCustomRatingViewModel(criterion: criterion, interactor: interactor)
 
-        interactor
-            .assessments
-            .sink { [weak self] assessments in
-                self?.updateUserValues(assessments)
+        interactor.assessments
+            .map { assessments in
+                assessments[criterion.id]?.comments
             }
-            .store(in: &subscriptions)
-    }
-
-    func updateUserValues(_ assessments: APIRubricAssessmentMap) {
-        let assessment = assessments[criterion.id]
-
-        userComment = assessment?.comments
-        userPoints = assessment?.points
-        userRatingId = assessment?.rating_id
-
-        let ratingModel = userRatingId
-            .flatMap { ratingId in ratingViewModels.first { $0.rating.id == ratingId } }
-        ?? userPoints
-            .flatMap({ points in ratingViewModels.first { $0.matchPoints(points) } })
-
-        userRatingBubble = ratingModel.flatMap({ model in
-            RubricRatingBubble(
-                title: model.title,
-                subtitle: model.subtitle
-            )
-        })
+            .assign(to: &$userComment)
     }
 
     // MARK: - User Actions
@@ -175,22 +112,4 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
         web.addDoneButton(side: .right)
         router.show(web, from: controller, options: .modal(embedInNav: true))
     }
-
-    func updateComment(_ newComment: String) {
-        interactor.updateComment(criterionId: criterionId, comment: newComment)
-    }
-
-    func updateCustomRating(_ newPoints: Double) {
-        interactor.selectRating(criterionId: criterion.id, points: newPoints, ratingId: APIRubricAssessment.customRatingId)
-    }
-
-    var pointsPossibleText: String {
-        let format = String(localized: "g_pts", bundle: .core)
-        return String.localizedStringWithFormat(format, criterion.points)
-    }
-}
-
-struct RubricRatingBubble {
-    let title: String
-    let subtitle: String
 }

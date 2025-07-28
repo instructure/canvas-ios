@@ -19,7 +19,7 @@
 import Combine
 import Core
 
-class RubricRatingViewModel: ObservableObject, Identifiable {
+class RedesignedRubricRatingViewModel: ObservableObject, Identifiable {
 
     // MARK: - Outputs
 
@@ -36,35 +36,63 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
             }
         }
     }
-    let tooltip: String
-    let value: String
-    let accessibilityLabel: String
+
+    var value: String {
+        rating.points.formatted()
+    }
+
+    var accessibilityLabel: String {
+        rating.shortDescription.nilIfEmpty ?? value
+    }
+
+    var bubble: RubricRatingBubble {
+        RubricRatingBubble(
+            title: rating.shortDescription,
+            subtitle: rating.longDescription
+        )
+    }
 
     // MARK: - Private Properties
 
-    private let rating: CDRubricRating
+    let rating: CDRubricRating
+    let ratingPointsLowerBound: Double?
     private let criterionId: String
     private let interactor: RubricGradingInteractor
 
     init(
         rating: CDRubricRating,
+        ratingPointsLowerBound: Double? = nil,
         criterionId: String,
         interactor: RubricGradingInteractor
     ) {
         self.rating = rating
+        self.ratingPointsLowerBound = ratingPointsLowerBound
         self.criterionId = criterionId
         self.interactor = interactor
 
-        tooltip = rating.shortDescription + (rating.longDescription.isEmpty ? "" : "\n" + rating.longDescription)
-        value = rating.points.formatted()
-        accessibilityLabel = rating.shortDescription.nilIfEmpty ?? value
         interactor.assessments
-            .map {
+            .map { [weak self] in
                 let assessmentForRubric = $0[criterionId]
-                let isThisRatingSelected = assessmentForRubric?.rating_id == rating.id
-                return isThisRatingSelected
+                guard let assessment = assessmentForRubric else { return false }
+
+                if assessment.rating_id == rating.id {
+                    return true
+                }
+
+                if let points = assessment.points {
+                    return self?.matchPoints(points, strict: true) ?? false
+                }
+
+                return false
             }
             .removeDuplicates()
             .assign(to: &$isSelected)
+    }
+
+    func matchPoints(_ points: Double, strict: Bool = false) -> Bool {
+        if let ratingPointsLowerBound, !strict {
+            return points > ratingPointsLowerBound && points <= rating.points
+        }
+        return points == rating.points
     }
 }
