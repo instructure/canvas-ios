@@ -53,8 +53,10 @@ struct RedesignedRubricsView: View {
                 viewModel.controller = controller
             }
 
+            Spacer().frame(height: 32)
+
+            InstUI.Divider()
         }
-        .padding(.bottom, 32)
         .background(Color.backgroundLight)
     }
 }

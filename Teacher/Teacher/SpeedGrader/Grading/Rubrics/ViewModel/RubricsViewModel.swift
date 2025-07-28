@@ -76,8 +76,7 @@ class RubricsViewModel: ObservableObject {
                 isFreeFormCommentsEnabled: assignment.freeFormCriterionCommentsOnRubric,
                 interactor: interactor,
                 rubricComment: rubricCommentBinding,
-                rubricCommentID: rubricCommentIdBinding,
-                maximumRubricPoints: assignment.rubricPointsPossible ?? 0
+                rubricCommentID: rubricCommentIdBinding
             )
         }
 

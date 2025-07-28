@@ -20522,6 +20522,9 @@
         }
       }
     },
+    "g_pts" : {
+
+    },
     "GPA" : {
       "extractionState" : "stale",
       "localizations" : {

@@ -26,10 +26,7 @@ struct RedesignedRubricCriterionView: View {
     @State private var isExpanded: Bool = false
     @State private var isCommentEditing: Bool = false
 
-    init(
-        viewModel: RubricCriterionViewModel
-    ) {
-        
+    init(viewModel: RubricCriterionViewModel) {
         self.viewModel = viewModel
     }
 
@@ -71,7 +68,8 @@ struct RedesignedRubricCriterionView: View {
                 if isExpanded {
 
                     VStack {
-                        ForEach(viewModel.ratingViewModels) { ratingViewModel in
+                        let ratingModels = Array(viewModel.ratingViewModels.reversed())
+                        ForEach(ratingModels) { ratingViewModel in
                             RubricRatingExpandedView(viewModel: ratingViewModel)
                         }
                     }
@@ -88,15 +86,15 @@ struct RedesignedRubricCriterionView: View {
                 }
             }
 
-            if let model = viewModel.ratingViewModels.first(where: { $0.isSelected }), isExpanded == false {
+            if let bubble = viewModel.userRatingBubble, isExpanded == false {
 
                 VStack(alignment: .leading) {
-                    Text(model.title)
+                    Text(bubble.title)
                         .font(.semibold16)
                         .foregroundStyle(Color.textLightest)
 
-                    if model.subtitle.isNotEmpty {
-                        Text(model.subtitle)
+                    if bubble.subtitle.isNotEmpty {
+                        Text(bubble.subtitle)
                             .font(.regular14)
                             .foregroundStyle(Color.textLightest)
                     }
@@ -128,7 +126,7 @@ struct RedesignedRubricCriterionView: View {
                 } else {
                     let comment = viewModel.userComment ?? ""
                     RubricNoteCommentEditView(comment: comment) { newComment in
-                        viewModel.updateComment(newComment)
+                        viewModel.updateComment(newComment.trimmed())
                         isCommentEditing = false
                     }
                 }
@@ -162,35 +160,33 @@ struct RedesignedRubricCriterionView: View {
 struct RubricScoreInputView: View {
 
     @ObservedObject var viewModel: RubricCriterionViewModel
-    @State private var text: String = ""
 
     init(viewModel: RubricCriterionViewModel) {
         self.viewModel = viewModel
-        self._text = .init(initialValue: viewModel.userPoints?.formatted() ?? "")
-    }
-
-    private var pointsPossible: String {
-        let pts = viewModel.criterionPoints.formatted(.number.precision(.fractionLength(0)))
-        return String.localizedStringWithFormat("%@ pts", pts)
     }
 
     var body: some View {
+        let textBinding = Binding(
+            get: { userPoints },
+            set: { newText in
+                if let number = newText.doubleValue {
+                    viewModel.updateCustomRating(number)
+                }
+            }
+        )
+
         GradeInputTextFieldCell(
             title: "Score",
             inputType: .points,
-            pointsPossible: pointsPossible,
+            pointsPossible: viewModel.pointsPossibleText,
             isExcused: false,
-            text: $text,
+            text: textBinding,
             isSaving: viewModel.isSaving
         )
-        .onChange(of: text) { _, newValue in
-            let formatter = NumberFormatter()
-            guard let newPoints = formatter.number(from: newValue)?.doubleValue else { return }
-            viewModel.updateCustomRating(newPoints)
-        }
-        .onChange(of: viewModel.userPoints) { _, newValue in
-            text = newValue?.formatted() ?? ""
-        }
+    }
+
+    private var userPoints: String {
+        viewModel.userPoints?.formatted() ?? ""
     }
 }
 
@@ -278,10 +274,9 @@ struct RubricNoteCommentBubbleView: View {
     let assignment = Assignment(context: context)
         .with { assignment in
             assignment.id = "234"
-            assignment.rubricPointsPossible = 13
             assignment.rubric = [
                 CDRubricCriterion(context: context).with({ cret in
-                    cret.points = 7
+                    cret.points = 12
                     cret.shortDescription = "Effective Use of Space"
                     cret.longDescription = "Great use of space to show depth with use of foreground, middleground, and background."
                     cret.id = "1"
@@ -348,3 +343,13 @@ struct RubricNoteCommentBubbleView: View {
 }
 
 #endif
+
+enum Formatters {
+    static let number = NumberFormatter()
+}
+
+extension String {
+    var doubleValue: Double? {
+        Formatters.number.number(from: self)?.doubleValue
+    }
+}

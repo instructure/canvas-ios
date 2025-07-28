@@ -50,7 +50,8 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
 
     // MARK: - Private Properties
 
-    private let rating: CDRubricRating
+    let rating: CDRubricRating
+    let ratingPointsLowerBound: Double?
     private let criterionId: String
     private let interactor: RubricGradingInteractor
 
@@ -61,27 +62,38 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
         interactor: RubricGradingInteractor
     ) {
         self.rating = rating
+        self.ratingPointsLowerBound = ratingPointsLowerBound
         self.criterionId = criterionId
         self.interactor = interactor
 
         tooltip = rating.shortDescription + (rating.longDescription.isEmpty ? "" : "\n" + rating.longDescription)
-
-        if let ratingPointsLowerBound {
-            let upperBound = rating.points.formatted()
-            let lowerBound = ratingPointsLowerBound.formatted()
-            value = "\(lowerBound) < \(upperBound)"
-        } else {
-            value = rating.points.formatted()
-        }
+        value = rating.points.formatted()
 
         accessibilityLabel = rating.shortDescription.nilIfEmpty ?? value
         interactor.assessments
-            .map {
+            .map { [weak self] in
                 let assessmentForRubric = $0[criterionId]
-                let isThisRatingSelected = assessmentForRubric?.rating_id == rating.id
-                return isThisRatingSelected
+                guard let assessment = assessmentForRubric else { return false }
+
+                if assessment.rating_id == rating.id {
+                    return true
+                }
+
+                if let points = assessment.points,
+                   ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled == false {
+                    return self?.matchPoints(points, strict: true) ?? false
+                }
+
+                return false
             }
             .removeDuplicates()
             .assign(to: &$isSelected)
+    }
+
+    func matchPoints(_ points: Double, strict: Bool = false) -> Bool {
+        if let ratingPointsLowerBound, !strict {
+            return points > ratingPointsLowerBound && points <= rating.points
+        }
+        return points == rating.points
     }
 }

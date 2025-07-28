@@ -77,7 +77,7 @@ struct RubricRatingExpandedView: View {
             rating: CDRubricRating(context: context).with { rat in
                 rat.points = 3
                 rat.shortDescription = "Excellent"
-                //rat.longDescription = "Comprehensive, insightful, and relevant. Information is completely accurate."
+                // rat.longDescription = "Comprehensive, insightful, and relevant. Information is completely accurate."
             },
             criterionId: "123",
             interactor: RubricGradingInteractorPreview()
