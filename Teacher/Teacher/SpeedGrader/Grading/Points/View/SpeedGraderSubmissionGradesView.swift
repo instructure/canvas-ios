@@ -183,7 +183,9 @@ struct SpeedGraderSubmissionGradesView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .paddingStyle(set: .iconCell)
 
-                InstUI.Divider()
+                if commentCount != 0 {
+                    InstUI.Divider()
+                }
 
                 content
             }

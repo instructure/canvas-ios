@@ -52,7 +52,7 @@ struct SubmissionCommentListView: View {
                 case .data:
                     comments
                     // Assume already loaded by parent, so skip loading & error
-                default: SwiftUI.EmptyView()
+                default:
                     SwiftUI.EmptyView()
                 }
             }
@@ -83,6 +83,7 @@ struct SubmissionCommentListView: View {
                 )
                 .scaleEffect(y: -1)
             }
+            .paddingStyle(.vertical, .cellAccessoryPadding)
         }
     }
 
