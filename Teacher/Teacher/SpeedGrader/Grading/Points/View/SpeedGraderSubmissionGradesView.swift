@@ -51,11 +51,15 @@ struct SpeedGraderSubmissionGradesView: View {
             VStack(spacing: 0) {
                 gradingSection()
                 commentsSection()
+
                 if assignment.rubric?.isEmpty == false {
                     rubricsSection(geometry: geometry)
                 }
+
+                if ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled {
+                    Spacer().frame(height: 16)
+                }
             }
-            .padding(.bottom, 16)
         }
     }
 
@@ -363,14 +367,12 @@ struct SpeedGraderSubmissionGradesView: View {
 
         } else {
 
-            VStack(spacing: 0) {
-                Spacer().frame(height: 16)
-                RedesignedRubricsView(
-                    currentScore: rubricsViewModel.totalRubricScore,
-                    containerFrameInGlobal: geometry.frame(in: .global),
-                    viewModel: rubricsViewModel
-                )
-            }
+            Spacer().frame(height: 16)
+            RedesignedRubricsView(
+                currentScore: rubricsViewModel.totalRubricScore,
+                containerFrameInGlobal: geometry.frame(in: .global),
+                viewModel: rubricsViewModel
+            )
         }
     }
 

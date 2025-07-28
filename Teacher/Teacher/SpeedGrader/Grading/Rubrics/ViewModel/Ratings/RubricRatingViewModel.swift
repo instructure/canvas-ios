@@ -40,7 +40,6 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
     let value: String
     let accessibilityLabel: String
 
-
     var title: String {
         rating.shortDescription
     }
@@ -57,6 +56,7 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
 
     init(
         rating: CDRubricRating,
+        ratingPointsLowerBound: Double? = nil,
         criterionId: String,
         interactor: RubricGradingInteractor
     ) {
@@ -65,7 +65,15 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
         self.interactor = interactor
 
         tooltip = rating.shortDescription + (rating.longDescription.isEmpty ? "" : "\n" + rating.longDescription)
-        value = rating.points.formatted()
+
+        if let ratingPointsLowerBound {
+            let upperBound = rating.points.formatted()
+            let lowerBound = ratingPointsLowerBound.formatted()
+            value = "\(lowerBound) < \(upperBound)"
+        } else {
+            value = rating.points.formatted()
+        }
+
         accessibilityLabel = rating.shortDescription.nilIfEmpty ?? value
         interactor.assessments
             .map {

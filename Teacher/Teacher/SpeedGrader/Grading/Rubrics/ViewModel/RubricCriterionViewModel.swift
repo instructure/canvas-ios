@@ -95,15 +95,41 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
         self._rubricCommentID = rubricCommentID
         self.maximumRubricPoints = maximumRubricPoints
         self.router = router
-        ratingViewModels = (criterion.ratings ?? [])
-            .reversed()
-            .map {
-                RubricRatingViewModel(
-                    rating: $0,
-                    criterionId: criterion.id,
-                    interactor: interactor
+
+        if criterion.criterionUseRange,
+           ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled == false {
+
+            let ratings = (criterion.ratings ?? []).sorted(by: { $0.points < $1.points })
+            var ratingModels = [RubricRatingViewModel]()
+            var lowerPoints: Double = 0
+
+            for rating in ratings {
+                ratingModels.append(
+                    RubricRatingViewModel(
+                        rating: rating,
+                        ratingPointsLowerBound: lowerPoints,
+                        criterionId: criterion.id,
+                        interactor: interactor
+                    )
                 )
+                lowerPoints = rating.points
             }
+
+            ratingViewModels = ratingModels
+
+        } else {
+
+            ratingViewModels = (criterion.ratings ?? [])
+                .reversed()
+                .map {
+                    RubricRatingViewModel(
+                        rating: $0,
+                        criterionId: criterion.id,
+                        interactor: interactor
+                    )
+                }
+        }
+
         customRatingViewModel = RubricCustomRatingViewModel(criterion: criterion, interactor: interactor)
 
         interactor.assessments
