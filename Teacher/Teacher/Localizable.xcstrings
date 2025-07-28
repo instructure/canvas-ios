@@ -21011,6 +21011,9 @@
         }
       }
     },
+    "Grade & Rubric" : {
+
+    },
     "Grade post policy" : {
       "localizations" : {
         "ar" : {
@@ -22040,6 +22043,7 @@
       }
     },
     "Grades" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

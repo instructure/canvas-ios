@@ -107,7 +107,7 @@ struct SpeedGraderPageTabsView: View {
     private var tabPicker: some View {
         InstUI.SegmentedPicker(selection: $selectedTab) {
             ForEach(SpeedGraderPageTab.allCases, id: \.self) { tab in
-                Text(tab.title)
+                Text(tabTitle(tab))
                     .tag(tab)
             }
         }
@@ -204,6 +204,14 @@ struct SpeedGraderPageTabsView: View {
             return (drawerState.isOpen && isTabSelected)
         case .splitView:
             return isTabSelected
+        }
+    }
+
+    private func tabTitle(_ tab: SpeedGraderPageTab) -> String {
+        switch (tab, viewModel.assignment.rubric?.isEmpty) {
+        case (.details, _): String(localized: "Details", bundle: .teacher)
+        case (.grades, nil), (.grades, .some(true)): String(localized: "Grade", bundle: .teacher)
+        case (.grades, .some(false)): String(localized: "Grade & Rubric", bundle: .teacher)
         }
     }
 }
