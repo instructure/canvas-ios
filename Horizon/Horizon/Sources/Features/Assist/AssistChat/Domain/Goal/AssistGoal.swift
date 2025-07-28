@@ -83,7 +83,7 @@ extension String {
               let jsonString = String(data: jsonData, encoding: .utf8) else {
             return nil
         }
-        return "The user has been asked to select from a list of options. Given the users response, tell me the name of which option they've selected based off of the description of the option. If it appears to match none of the options, return an empty string; just the empty string without any other explanation. If you find a match, return only the name of the option selected without any additional information. Here are the names and descriptions of the options as JSON:\n\n\(jsonString)"
+        return "The user has been asked to select from a list of options. Given the users response, return the JSON {name: \"\", description:\"\"} of the option they've selected based off of the JSON description of the option. Their response needs to match one of the options closely. For instance, if one of the options is \"Nursing Fundamentals\" and the user responds, \"Tell me about the nursing fundamentals course.\", this would not be a match. But if they indicate they want to talk about the course, such as, \"Let's talk about nursing fundamentals\" or \"Nursing fundamentals\", that would be a match. If it appears to match none of the options or the user is asking an unrelated question, return an empty JSON object {} with no other explanation. For instance, do not say \"I will return an empty JSON object:\"; Just return {}. The response MUST be valid JSON. Here are the names and descriptions of the options as JSON:\n\n\(jsonString)"
     }
     // swiftlint:enable line_length
 }

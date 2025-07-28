@@ -42,8 +42,8 @@ class AssistCourseDocumentGoal: AssistCourseItemGoal {
     ) {
         self.downloadFileInteractor = downloadFileInteractor
         super.init(
-            initialPrompt: initialPrompt,
             environment: environment,
+            initialPrompt: initialPrompt,
             cedar: cedar
         )
         sourceType = .attachment

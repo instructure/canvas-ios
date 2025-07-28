@@ -475,9 +475,6 @@
     "I don't have a summary for this content." : {
 
     },
-    "I don't have an answer for this." : {
-
-    },
     "I don't have any additional information for you." : {
 
     },
@@ -897,9 +894,6 @@
     "Sorry, can we try that again? Which course is it you'd like to discuss?" : {
 
     },
-    "Sorry, I don't have an answer for this." : {
-
-    },
     "Sorry, we were not able to display this page right now." : {
 
     },
@@ -1075,6 +1069,9 @@
 
     },
     "West Central Africa (+01:00)" : {
+
+    },
+    "What questions can I answer about your courses for you today?" : {
 
     },
     "What would you like to discuss about the course %@?" : {

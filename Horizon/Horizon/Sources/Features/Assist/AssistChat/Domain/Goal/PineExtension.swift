@@ -19,12 +19,13 @@
 import Combine
 
 extension DomainService {
-    func askARAGQuestion(
+
+    /// For when you want to ask Pine a single question that isn't meant to be part of the overall conversation
+    func askARAGSingleQuestion(
         question: String,
         courseID: String? = nil,
         sourceID: String? = nil,
         sourceType: String? = nil
-
     ) -> AnyPublisher<String?, any Error> {
         askARAGQuestion(
             messages: [.init(text: question, role: .User)],
@@ -34,7 +35,7 @@ extension DomainService {
         )
         .map { $0?.response }
         .eraseToAnyPublisher()
-    }
+   }
 
     func askARAGQuestion(
         messages: [DomainServiceConversationMessage],
@@ -60,13 +61,15 @@ extension DomainService {
     }
 
     func askARAGQuestion(
-        history: [AssistChatMessage],
+        question: String,
+        history: [AssistChatMessage] = [],
         courseID: String? = nil,
         sourceID: String? = nil,
         sourceType: String? = nil
     ) -> AnyPublisher<AssistChatMessage?, any Error> {
-        askARAGQuestion(
-            messages: history.domainServiceConversationMessages,
+        let newHistory = [AssistChatMessage(userResponse: question)] + history
+        return askARAGQuestion(
+            messages: newHistory.domainServiceConversationMessages,
             courseID: courseID,
             sourceID: sourceID,
             sourceType: sourceType

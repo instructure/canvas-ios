@@ -23,15 +23,18 @@ import Foundation
 class AssistSelectCourseGoal: AssistGoal {
     private let cedar: DomainService
     private let environment: AssistDataEnvironment
+    private let pine: DomainService
     private let userID: String
 
     init(
         environment: AssistDataEnvironment,
         cedar: DomainService = DomainService(.cedar),
+        pine: DomainService = DomainService(.pine),
         userID: String = AppEnvironment.shared.currentSession?.userID ?? ""
     ) {
         self.environment = environment
         self.cedar = cedar
+        self.pine = pine
         self.userID = userID
     }
 
@@ -96,16 +99,21 @@ class AssistSelectCourseGoal: AssistGoal {
             }
 
             return weakSelf.choose(from: courseNames, with: response, using: weakSelf.cedar)
-                .map { courseSelected in
+                .flatMap { courseSelected in
                     if  let courseSelected = courseSelected,
-                        let courseID = courseOptions.first(where: { courseSelected.contains($0.course.name ?? "") == true })?.courseID {
+                        let courseIDData = courseSelected.data(using: .utf8),
+                        let optionChosen = try? JSONDecoder().decode(AssistGoalOption.self, from: courseIDData),
+                        let courseID = courseOptions.first(where: { optionChosen.name == $0.course.name })?.courseID {
                         weakSelf.environment.courseID.accept(courseID)
+                        return Just<AssistChatMessage?>(nil)
+                            .setFailureType(to: Error.self)
+                            .eraseToAnyPublisher()
                     }
-                    return nil
+                    return weakSelf.pine.askARAGQuestion(question: response)
+                        .eraseToAnyPublisher()
                 }
                 .eraseToAnyPublisher()
         }
-        .map { _ in nil }
         .eraseToAnyPublisher()
     }
 

@@ -51,7 +51,9 @@ class AssistCourseActionGoal: AssistGoal {
         guard let response = response, response.isNotEmpty else {
             return initialPrompt(history: history, courseID: courseID)
         }
-        return pine.askARAGQuestion(history: history, courseID: courseID)
+        return Just(nil)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 
     // MARK: - Private Methods
@@ -67,7 +69,7 @@ class AssistCourseActionGoal: AssistGoal {
     }
 
     private func initialPrompt(history: [AssistChatMessage], courseID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        pine.askARAGQuestion(question: .generateSuggestionsPrompt, courseID: courseID)
+        pine.askARAGSingleQuestion(question: .generateSuggestionsPrompt, courseID: courseID)
             .flatMap { [weak self] suggestionsJSON in
                 guard let self = self else {
                     return Just<AssistChatMessage?>(nil)

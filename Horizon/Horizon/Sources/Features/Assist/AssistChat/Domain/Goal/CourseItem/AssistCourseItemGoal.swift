@@ -37,7 +37,7 @@ class AssistCourseItemGoal: AssistGoal {
         environment.courseID.value
     }
 
-    var options: [Option] {
+    private var options: [Option] {
         Option.allCases
     }
 
@@ -58,8 +58,11 @@ class AssistCourseItemGoal: AssistGoal {
 
     // MARK: - Initializers
     init(
-        initialPrompt: String,
         environment: AssistDataEnvironment,
+        initialPrompt: String = String(
+            localized: "What questions can I answer about your courses for you today?",
+            bundle: .horizon
+        ),
         cedar: DomainService = DomainService(.cedar),
         pine: DomainService = DomainService(.pine)
     ) {
@@ -94,13 +97,6 @@ class AssistCourseItemGoal: AssistGoal {
                 guard let chip = chip,
                       let option = self.options.first(where: { chip.contains($0.rawValue) }) else {
                     return self.pineAnswerPrompt(prompt: response)
-                        .map { response in
-                            AssistChatMessage(
-                                botResponse: response ??
-                                    String(localized: "Sorry, I don't have an answer for this.", bundle: .horizon)
-                            )
-                        }
-                        .eraseToAnyPublisher()
                 }
 
                 switch option {
@@ -121,7 +117,7 @@ class AssistCourseItemGoal: AssistGoal {
             .eraseToAnyPublisher()
     }
 
-    func isRequested() -> Bool { false }
+    func isRequested() -> Bool { true }
 
     // Quiz is not available for a document at the moment
     // And for a page, there's a separate cedar endpoint for generating the quiz
@@ -142,25 +138,15 @@ class AssistCourseItemGoal: AssistGoal {
     }
 
     var sourceID: AnyPublisher<String?, Error> {
-        guard let courseID = environment.courseID.value,
-            let pageURL = environment.pageURL.value else {
-            return Just(nil)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        }
-        return ReactiveStore(useCase: GetPages(context: .course(courseID)))
-            .getEntities()
-            .map { pages in
-                pages.first { $0.url == pageURL }?.id
-            }
+        return Just(nil)
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    private func pineAnswerPrompt(prompt: String) -> AnyPublisher<String?, Error> {
+    private func pineAnswerPrompt(prompt: String) -> AnyPublisher<AssistChatMessage?, Error> {
         sourceID.flatMap { [weak self] sourceID in
-            guard let self = self,
-                  let sourceID = sourceID else {
-                return Just<String?>(nil)
+            guard let self = self else {
+                return Just<AssistChatMessage?>(nil)
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
@@ -179,21 +165,11 @@ class AssistCourseItemGoal: AssistGoal {
         errorResponse: String? = nil
     ) -> AnyPublisher<AssistChatMessage?, Error> {
         pineAnswerPrompt(prompt: option.prompt)
-            .map { response in
-                if let response = response, !response.isEmpty {
-                    return AssistChatMessage(botResponse: response)
-                } else {
-                    return AssistChatMessage(
-                        botResponse: errorResponse ?? String(localized: "I don't have an answer for this.", bundle: .horizon)
-                    )
-                }
-            }
-            .eraseToAnyPublisher()
     }
 
     /// Calls the Cedar endpoint for generating flashcards based on the document content
     private func flashcards() -> AnyPublisher<AssistChatMessage?, Error> {
-        self.pineAnswerPrompt(prompt: Option.FlashCards.prompt)
+        pine.askARAGSingleQuestion(question: Option.FlashCards.prompt)
         .map { (response: String?) in
             AssistChatMessage(
                 flashCards: AssistChatFlashCard.build(from: response ?? "") ?? []

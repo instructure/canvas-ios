@@ -32,8 +32,8 @@ class AssistCoursePageGoal: AssistCourseItemGoal {
     // MARK: - Initializers
     init(environment: AssistDataEnvironment, cedar: DomainService = DomainService(.cedar)) {
         super.init(
-            initialPrompt: initialPrompt,
             environment: environment,
+            initialPrompt: initialPrompt,
             cedar: cedar
         )
         sourceType = .wiki_page
@@ -43,6 +43,22 @@ class AssistCoursePageGoal: AssistCourseItemGoal {
 
     override
     func isRequested() -> Bool { courseID != nil && pageURL != nil }
+
+    override
+    var sourceID: AnyPublisher<String?, Error> {
+        guard let courseID = environment.courseID.value,
+            let pageURL = pageURL else {
+            return Just(nil)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        return ReactiveStore(useCase: GetPages(context: .course(courseID)))
+            .getEntities()
+            .map { pages in
+                pages.first { $0.url == pageURL }?.id
+            }
+            .eraseToAnyPublisher()
+    }
 
     /// Generates a quiz from the page contents using the Cedar API.
     override
