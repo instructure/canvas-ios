@@ -162,8 +162,13 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
             )
         )
 
+        var composeURL = URLComponents()
+        composeURL.host = env.apiHost
+        composeURL.path = "/conversations/compose"
+        composeURL.queryItems = composeMessageOptions.queryItems
+
         env.router.route(
-            to: URLComponents.parse("/conversations/compose", queryItems: composeMessageOptions.queryItems),
+            to: composeURL,
             from: self,
             options: .modal(embedInNav: true)
         )
@@ -178,10 +183,12 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
 
     @objc func showFilters() {
         env.router.show(
-            SubmissionFilterPickerViewController.create(context: context, outOfText: assignment.first?.outOfText, filter: filter) { [weak self] in
-                self?.setFilter($0)
-            },
-            from: self, options: .modal(embedInNav: true)
+            SubmissionFilterPickerViewController
+                .create(context: context, outOfText: assignment.first?.outOfText, filter: filter, env: env) { [weak self] in
+                    self?.setFilter($0)
+                },
+            from: self,
+            options: .modal(embedInNav: true)
         )
     }
 }

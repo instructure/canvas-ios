@@ -40,7 +40,7 @@ public class ReactiveStore<U: UseCase> {
         environment: AppEnvironment = .shared
     ) {
         self.offlineModeInteractor = offlineModeInteractor
-        self.useCase = useCase
+        self.useCase = useCase.modified(for: environment)
         self.context = context
         self.environment = environment
     }
@@ -138,7 +138,8 @@ public class ReactiveStore<U: UseCase> {
         context: NSManagedObjectContext,
         environment: AppEnvironment
     ) -> AnyPublisher<[T], Error> {
-        return useCase.hasCacheExpired()
+        return useCase
+            .hasCacheExpired(environment: environment)
             .setFailureType(to: Error.self)
             .flatMap { hasExpired -> AnyPublisher<[T], Error> in
                 if hasExpired {

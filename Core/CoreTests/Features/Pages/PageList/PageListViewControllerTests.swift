@@ -115,7 +115,7 @@ class PageListViewControllerTests: CoreTestCase {
         XCTAssertNotNil(controller.navigationItem.rightBarButtonItem)
     }
 
-    func testPaginatedRefresh() {
+    func testPaginatedRefresh() throws {
         // The controller needs to be on screen for this test because the Loading cell needs to appear to trigger the next page load
         window.rootViewController = controller
         drainMainQueue()
@@ -133,7 +133,11 @@ class PageListViewControllerTests: CoreTestCase {
         XCTAssertNotNil(loading)
         drainMainQueue() // Give some time for the loading cell to trigger the next page load and for the tableview to refresh
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
-        let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as! PageListCell
+
+        let cell = try XCTUnwrap(
+            tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as? PageListCell
+        )
+
         XCTAssertEqual(cell.titleLabel.text, "z next page")
     }
 

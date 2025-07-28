@@ -169,8 +169,7 @@ public extension InstUI {
                     .frame(width: geometry.size.width, height: geometry.size.height)
                 }
             }
-            // TODO: Check if it's needed here
-//            .background(Color.backgroundLightest)
+            .background(AppEnvironment.shared.app == .horizon ? Color.clear : Color.backgroundLightest)
             .scrollBounceBehavior(config.scrollBounce)
         }
     }
