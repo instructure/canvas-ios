@@ -32,6 +32,7 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
     @Binding var rubricComment: String
     @Binding var rubricCommentID: String?
     @Published var userComment: String?
+    @Published var userPoints: Double?
 
     // MARK: - Outputs
 
@@ -44,6 +45,14 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
     var description: String {
         criterion.shortDescription
     }
+    var longDescription: String {
+        criterion.longDescription
+    }
+
+    var isSaving: CurrentValueSubject<Bool, Never> {
+        interactor.isSaving
+    }
+
     var shouldShowRubricRatings: Bool {
         !isFreeFormCommentsEnabled
     }
@@ -56,6 +65,9 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
     var criterionId: String {
         criterion.id
     }
+    var criterionPoints: Double {
+        criterion.points
+    }
     var ratingViewModels: [RubricRatingViewModel]
     var customRatingViewModel: RubricCustomRatingViewModel
 
@@ -65,6 +77,7 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
     private let isFreeFormCommentsEnabled: Bool
     private let router: Router
     private let interactor: RubricGradingInteractor
+    let maximumRubricPoints: Double
 
     init(
         criterion: CDRubricCriterion,
@@ -72,6 +85,7 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
         interactor: RubricGradingInteractor,
         rubricComment: Binding<String>,
         rubricCommentID: Binding<String?>,
+        maximumRubricPoints: Double,
         router: Router = AppEnvironment.shared.router
     ) {
         self.criterion = criterion
@@ -79,6 +93,7 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
         self.interactor = interactor
         self._rubricComment = rubricComment
         self._rubricCommentID = rubricCommentID
+        self.maximumRubricPoints = maximumRubricPoints
         self.router = router
         ratingViewModels = (criterion.ratings ?? [])
             .reversed()
@@ -96,6 +111,12 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
                 assessments[criterion.id]?.comments
             }
             .assign(to: &$userComment)
+
+        interactor.assessments
+            .map { assessments in
+                assessments[criterion.id]?.points
+            }
+            .assign(to: &$userPoints)
     }
 
     // MARK: - User Actions
@@ -111,5 +132,13 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
         web.webView.loadHTMLString(criterion.longDescription)
         web.addDoneButton(side: .right)
         router.show(web, from: controller, options: .modal(embedInNav: true))
+    }
+
+    func updateComment(_ newComment: String) {
+        interactor.updateComment(criterionId: criterionId, comment: newComment)
+    }
+
+    func updateCustomRating(_ newPoints: Double) {
+        interactor.selectRating(criterionId: criterion.id, points: newPoints, ratingId: APIRubricAssessment.customRatingId)
     }
 }

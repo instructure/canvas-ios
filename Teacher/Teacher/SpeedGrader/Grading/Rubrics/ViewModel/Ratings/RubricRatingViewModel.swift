@@ -40,6 +40,15 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
     let value: String
     let accessibilityLabel: String
 
+
+    var title: String {
+        rating.shortDescription
+    }
+
+    var subtitle: String {
+        rating.longDescription
+    }
+
     // MARK: - Private Properties
 
     private let rating: CDRubricRating

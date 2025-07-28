@@ -344,16 +344,32 @@ struct SpeedGraderSubmissionGradesView: View {
 
     // MARK: - Rubrics
 
+    @ViewBuilder
     private func rubricsSection(geometry: GeometryProxy) -> some View {
-        VStack(spacing: 0) {
-            RubricsView(
-                currentScore: rubricsViewModel.totalRubricScore,
-                containerFrameInGlobal: geometry.frame(in: .global),
-                viewModel: rubricsViewModel
-            )
 
-            if rubricsViewModel.commentingOnCriterionID != nil {
-                commentEditor()
+        if ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled {
+
+            VStack(spacing: 0) {
+                RubricsView(
+                    currentScore: rubricsViewModel.totalRubricScore,
+                    containerFrameInGlobal: geometry.frame(in: .global),
+                    viewModel: rubricsViewModel
+                )
+
+                if rubricsViewModel.commentingOnCriterionID != nil {
+                    commentEditor()
+                }
+            }
+
+        } else {
+
+            VStack(spacing: 0) {
+                Spacer().frame(height: 16)
+                RedesignedRubricsView(
+                    currentScore: rubricsViewModel.totalRubricScore,
+                    containerFrameInGlobal: geometry.frame(in: .global),
+                    viewModel: rubricsViewModel
+                )
             }
         }
     }
