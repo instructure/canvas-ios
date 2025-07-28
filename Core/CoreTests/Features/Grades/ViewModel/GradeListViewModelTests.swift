@@ -27,7 +27,7 @@ class GradeListViewModelTests: CoreTestCase {
         let testee = GradeListViewModel(
             interactor: GradeListInteractorErrorMock(),
             gradeFilterInteractor: GradeFilterInteractorMock(),
-            router: PreviewEnvironment.shared.router,
+            env: PreviewEnvironment.shared,
             scheduler: .immediate
         )
         XCTAssertEqual(testee.state, .error)
@@ -37,7 +37,7 @@ class GradeListViewModelTests: CoreTestCase {
         let testee = GradeListViewModel(
             interactor: GradeListInteractorEmptySectionsMock(),
             gradeFilterInteractor: GradeFilterInteractorMock(),
-            router: PreviewEnvironment.shared.router,
+            env: PreviewEnvironment.shared,
             scheduler: .immediate
         )
         XCTAssertEqual(testee.state, .empty(emptySections))
@@ -48,7 +48,7 @@ class GradeListViewModelTests: CoreTestCase {
         _ = GradeListViewModel(
             interactor: GradeListInteractorEmptySectionsMock(),
             gradeFilterInteractor: gradeFilterInteractor,
-            router: PreviewEnvironment.shared.router,
+            env: PreviewEnvironment.shared,
             scheduler: .immediate
         )
         XCTAssertTrue(gradeFilterInteractor.selectedSortByIdIsCalled)
@@ -61,7 +61,7 @@ class GradeListViewModelTests: CoreTestCase {
         let testee = GradeListViewModel(
             interactor: interactor,
             gradeFilterInteractor: GradeFilterInteractorMock(),
-            router: PreviewEnvironment.shared.router,
+            env: PreviewEnvironment.shared,
             scheduler: .immediate
         )
 
@@ -90,7 +90,7 @@ class GradeListViewModelTests: CoreTestCase {
         let testee = GradeListViewModel(
             interactor: interactor,
             gradeFilterInteractor: gradeFilterInteractor,
-            router: PreviewEnvironment.shared.router,
+            env: PreviewEnvironment.shared,
             scheduler: .immediate
         )
 
@@ -115,7 +115,7 @@ class GradeListViewModelTests: CoreTestCase {
         let testee = GradeListViewModel(
             interactor: interactor,
             gradeFilterInteractor: GradeFilterInteractorMock(),
-            router: PreviewEnvironment.shared.router,
+            env: PreviewEnvironment.shared,
             scheduler: .immediate
         )
         testee.didSelectGradingPeriod.accept("999")
@@ -133,7 +133,7 @@ class GradeListViewModelTests: CoreTestCase {
         let testee = GradeListViewModel(
             interactor: interactor,
             gradeFilterInteractor: GradeFilterInteractorMock(),
-            router: PreviewEnvironment.shared.router,
+            env: PreviewEnvironment.shared,
             scheduler: .immediate
         )
         testee.pullToRefreshDidTrigger.accept(completion)
@@ -144,10 +144,12 @@ class GradeListViewModelTests: CoreTestCase {
 
     func testDidSelectAssignment() {
         let router = TestRouter()
+        let env = environment
+        env.router = router
         let testee = GradeListViewModel(
             interactor: GradeListInteractorMock(),
             gradeFilterInteractor: GradeFilterInteractorMock(),
-            router: router,
+            env: env,
             scheduler: .immediate
         )
         testee.didSelectAssignment.accept((WeakViewController(), Assignment.make()))
@@ -162,7 +164,7 @@ class GradeListViewModelTests: CoreTestCase {
         let testee = GradeListViewModel(
             interactor: interactor,
             gradeFilterInteractor: GradeFilterInteractorMock(),
-            router: PreviewEnvironment.shared.router,
+            env: PreviewEnvironment.shared,
             scheduler: .immediate
         )
 

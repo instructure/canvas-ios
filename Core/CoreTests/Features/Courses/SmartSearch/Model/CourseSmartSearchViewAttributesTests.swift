@@ -20,7 +20,6 @@
 import XCTest
 
 class CourseSmartSearchViewAttributesTests: CoreTestCase {
-
     func test_default_properties() {
         let testee = CourseSmartSearchViewAttributes.default
 

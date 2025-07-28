@@ -596,11 +596,11 @@ class ComposeMessageViewModelTests: CoreTestCase {
 
     private func makeViewModel(options: ComposeMessageOptions) -> ComposeMessageViewModel {
         .init(
-            router: router,
             options: options,
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
-            inboxSettingsInteractor: inboxSettingsInteractor
+            inboxSettingsInteractor: inboxSettingsInteractor,
+            env: environment
         )
     }
 }
