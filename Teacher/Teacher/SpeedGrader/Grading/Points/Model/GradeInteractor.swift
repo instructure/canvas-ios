@@ -68,12 +68,7 @@ class GradeInteractorLive: GradeInteractor {
     // MARK: - Public Methods
 
     func saveGrade(excused: Bool? = nil, grade: String? = nil) -> AnyPublisher<Void, Error> {
-        let currentState = gradeStateSubject.value
-        if currentState.isExcused, grade == String(localized: "Excused", bundle: .teacher) {
-            return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
-        }
-
-        return GradeSubmission(
+        GradeSubmission(
             courseID: assignment.courseID,
             assignmentID: assignment.id,
             userID: submission.userID,
