@@ -56,7 +56,7 @@ struct GradeState: Equatable {
 
 extension GradeState {
     static let empty = GradeState(
-        gradingType: .points,
+        gradingType: .not_graded,
         pointsPossibleText: "",
         gradeOptions: [],
         isGraded: false,
