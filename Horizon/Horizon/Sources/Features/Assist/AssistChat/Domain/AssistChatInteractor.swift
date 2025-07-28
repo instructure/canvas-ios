@@ -165,16 +165,10 @@ struct AssistChatInteractorPreview: AssistChatInteractor {
     var listen: AnyPublisher<AssistChatInteractorLive.State, any Error> = Just(
         .success(
             AssistChatResponse(
-                AssistChatMessage(
-                    quizItems: [
-                        .init(
-                            question: "What is the capital of France?",
-                            answers: ["Paris", "London", "Berlin", "Madrid"],
-                            correctAnswerIndex: 0
-                        )
-                    ]
-                ),
-                chatHistory: []
+                .init(botResponse: "Hello from the bot!"),
+                chatHistory: [
+                    .init(userResponse: "Hello from the human.")
+                ]
             )
         )
     )

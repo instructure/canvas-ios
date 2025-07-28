@@ -119,7 +119,7 @@ struct AssistChatMessageView: View {
 #if DEBUG
 #Preview {
     VStack {
-        AssistChatMessageView(message: .init(content: "Hi Horizon App", style: .semitransparent))
+        AssistChatMessageView(message: .init(content: "Hi Horizon App", style: .semitransparentDark))
         AssistChatMessageView(message: .init())
         AssistChatMessageView(message: .init(
             content: "AI response Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",

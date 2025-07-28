@@ -29,6 +29,7 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
     enum Style {
         case white
         case semitransparent
+        case semitransparentDark
         case transparent
     }
 
@@ -87,7 +88,7 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
 
     var alignment: Alignment {
         switch style {
-        case .white:
+        case .white, .semitransparentDark:
             return .trailing
         default:
             return .center
@@ -97,9 +98,11 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
     var backgroundColor: Color {
         switch style {
         case .white:
-            return Color.huiColors.surface.cardPrimary
+            return .huiColors.surface.cardPrimary
         case .semitransparent:
-            return Color.huiColors.surface.cardPrimary.opacity(0.1)
+            return .huiColors.surface.cardPrimary.opacity(0.1)
+        case .semitransparentDark:
+            return .huiColors.surface.trueBlack.opacity(0.1)
         case .transparent:
             return .clear
         }
@@ -125,7 +128,7 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
 
     var maxWidth: CGFloat? {
         switch style {
-        case .white:
+        case .white, .semitransparentDark:
             return nil
         default:
             return .infinity

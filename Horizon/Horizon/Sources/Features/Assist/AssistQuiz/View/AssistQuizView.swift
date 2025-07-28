@@ -119,7 +119,7 @@ extension AssistQuizView {
     private var regenerateQuizButton: some View {
         HorizonUI.PrimaryButton(
             String(localized: "Regenerate", bundle: .horizon),
-            type: .black,
+            type: .whiteOutline,
             fillsWidth: true
         ) {
             viewModel.regenerateQuiz()
@@ -130,7 +130,7 @@ extension AssistQuizView {
         Button(action: {
             viewModel.regenerateQuiz()
         }) {
-            Text("Try Again", bundle: .horizon)
+            Text("Regenerate", bundle: .horizon)
                 .frame(maxWidth: .infinity)
                 .frame(height: 50)
                 .background(Color.backgroundLightest)
@@ -154,6 +154,22 @@ extension AssistQuizView {
 
 #if DEBUG
 #Preview {
-    AssistQuizView(viewModel: .init(chatBotInteractor: AssistChatInteractorPreview(), quizzes: []))
+    AssistQuizView(
+        viewModel: .init(
+            chatBotInteractor: AssistChatInteractorPreview(),
+            quizzes: [
+                .init(
+                    question: "What's your first name?",
+                    options: [
+                        .init("John"),
+                        .init("Sally"),
+                        .init("Bob"),
+                        .init("Alice")
+                    ],
+                    correctAnswerIndex: 0
+                )
+            ]
+        )
+    )
 }
 #endif
