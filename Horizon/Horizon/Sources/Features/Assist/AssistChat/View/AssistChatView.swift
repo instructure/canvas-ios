@@ -131,6 +131,15 @@ struct AssistChatView: View {
 
     private var textInputMessageView: some View {
         TextEditor(text: $viewModel.message)
+            .overlay(
+                ZStack {
+                    Text("Ask a question")
+                        .foregroundColor(Color.huiColors.text.placeholder)
+                        .padding(.top, .huiSpaces.space8)
+                        .opacity(viewModel.message.isEmpty && !isFocused ? 1 : 0)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            )
             .frame(minHeight: 36)
             .frame(maxHeight: 100)
             .fixedSize(horizontal: false, vertical: true)
