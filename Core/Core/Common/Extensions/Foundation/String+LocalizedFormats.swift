@@ -57,25 +57,21 @@ extension String {
     /// Modifed letter grade to be used with VoiceOver.
     ///
     /// It fixes the following issues:
-    /// - Grades like "B-" are read out as "B", with the "-" ommited. It converts "-" to "minus".
+    /// - Grades like "B-" are read out as "B", with the "-" ommited. This method converts "-" to "minus".
     ///   Grades like "B+" are read out as "B plus" by default.
-    /// - The letter "A" in grades are read out without emphasis. It makes it read like a standalone letter.
+    /// - The letter "A" in grades like "A+" or "A-" is read out without emphasis. This method makes it read like a standalone letter.
     public static func accessibiltyLetterGrade(_ grade: String?) -> String? {
         guard let grade else { return nil }
 
-        if grade == "A+" {
-            return "'A' +"
-        }
-
-        if grade == "A-" {
-            return "'A' \(gradeMinus)"
-        }
-
         if grade.hasSuffix("-") {
-            return String(grade.dropLast()) + " \(gradeMinus)"
+            return "'\(String(grade.dropLast()))' \(gradeMinus)"
         }
 
-        return grade
+        if grade.hasSuffix("+") {
+            return "'\(String(grade.dropLast()))' +"
+        }
+
+        return "'\(grade)'"
     }
     private static let gradeMinus = String(localized: "minus", bundle: .core, comment: "As in grades 'A-' or 'C-'")
 }

@@ -173,3 +173,57 @@ extension GradeInputTextFieldCell {
         )
     }
 }
+
+#if DEBUG
+
+#Preview {
+    @Previewable @State var textEmpty: String = ""
+    @Previewable @State var textLong: String = .loremIpsumMedium
+    @Previewable @State var textNumber: String = "24"
+
+    VStack {
+        InstUI.Divider()
+        GradeInputTextFieldCell(
+            title: "Label",
+            subtitle: "(stuff)",
+            placeholder: "Add text here",
+            suffix: "The End",
+            text: $textEmpty,
+            isSaving: .init(false)
+        )
+        GradeInputTextFieldCell(
+            title: "Label",
+            subtitle: "Some subtitle",
+            placeholder: "Add text here",
+            suffix: "The End",
+            text: $textLong,
+            isSaving: .init(false)
+        )
+        GradeInputTextFieldCell(
+            title: "Score",
+            inputType: .points,
+            pointsPossible: "42 pts",
+            isExcused: false,
+            text: $textNumber,
+            isSaving: .init(false)
+        )
+        GradeInputTextFieldCell(
+            title: "Grade",
+            inputType: .percentage,
+            pointsPossible: "42 pts",
+            isExcused: false,
+            text: $textNumber,
+            isSaving: .init(false)
+        )
+        GradeInputTextFieldCell(
+            title: "Grade",
+            inputType: .percentage,
+            pointsPossible: "42 pts",
+            isExcused: false,
+            text: $textNumber,
+            isSaving: .init(true)
+        )
+    }
+}
+
+#endif

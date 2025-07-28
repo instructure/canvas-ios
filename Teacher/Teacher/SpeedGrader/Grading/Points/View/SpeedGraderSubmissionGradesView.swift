@@ -128,7 +128,7 @@ struct SpeedGraderSubmissionGradesView: View {
         case .pointsDisplayOnly:
             gradeInputDisplayOnlyView(
                 title: title,
-                textValue: gradeState.originalScoreWithoutMetric ?? "-",
+                textValue: gradeState.originalScoreWithoutMetric ?? GradeFormatter.BlankPlaceholder.oneDash.stringValue,
                 suffix: gradeState.isExcused ? nil : "/ \(gradeState.pointsPossibleText)"
             )
         case .gradePicker:
@@ -254,6 +254,7 @@ struct SpeedGraderSubmissionGradesView: View {
 
         HStack(spacing: 8) {
             Text(0)
+                .foregroundStyle(.tint)
                 .frame(width: 30, height: 30)
                 .onTapGesture {
                     updateGrade(0)
@@ -274,6 +275,7 @@ struct SpeedGraderSubmissionGradesView: View {
                             viewModel: gradeSliderViewModel)
             }
             Text(maxScore)
+                .foregroundStyle(.tint)
                 .frame(width: 30, height: 30)
                 .onTapGesture {
                     updateGrade(possible)

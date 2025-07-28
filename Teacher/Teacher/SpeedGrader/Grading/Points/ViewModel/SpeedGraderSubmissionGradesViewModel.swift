@@ -108,6 +108,11 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     }
 
     func setGradeFromTextField(_ text: String, inputType: GradeInputTextFieldCell.InputType) {
+        if text.isEmpty {
+            removeGrade()
+            return
+        }
+
         guard let value = text.doubleValueByFixingDecimalSeparator else {
             showInvalidGradeError(grade: text)
             return
