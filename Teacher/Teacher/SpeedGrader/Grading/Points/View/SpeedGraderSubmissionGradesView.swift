@@ -133,7 +133,7 @@ struct SpeedGraderSubmissionGradesView: View {
     @ViewBuilder
     private var comments: some View {
         let commentCount = commentListViewModel.commentCount
-        let header = HStack(spacing: 20) {
+        let header = HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
             Image.discussionLine
                 .foregroundStyle(.tint)
 
