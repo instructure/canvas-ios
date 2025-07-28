@@ -5,6 +5,7 @@
 
     },
     "%@ to %@" : {
+      "comment" : "'100% to 94%', or '400 to 230 pts'",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1781,6 +1782,7 @@
 
     },
     "< %@ to %@" : {
+      "comment" : "'< 94% to 84%', or '< 230 to 160 pts'",
       "localizations" : {
         "en" : {
           "stringUnit" : {

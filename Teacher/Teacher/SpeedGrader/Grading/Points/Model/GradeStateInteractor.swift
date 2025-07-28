@@ -101,9 +101,9 @@ class GradeStateInteractorLive: GradeStateInteractor {
 
                 let subtitle: String
                 if upperBound == maxValue {
-                    subtitle = String(localized: "\(maxValue) to \(lowerBound)", bundle: .teacher)
+                    subtitle = String(localized: "\(maxValue) to \(lowerBound)", bundle: .teacher, comment: "'100% to 94%', or '400 to 230 pts'")
                 } else {
-                    subtitle = String(localized: "< \(upperBound) to \(lowerBound)", bundle: .teacher)
+                    subtitle = String(localized: "< \(upperBound) to \(lowerBound)", bundle: .teacher, comment: "'< 94% to 84%', or '< 230 to 160 pts'")
                 }
 
                 let a11yLabel = [String.accessibiltyLetterGrade($0.name), subtitle].joined(separator: ",")
