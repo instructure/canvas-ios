@@ -94,11 +94,14 @@ class LoginStartViewController: UIViewController {
         whatsNewLink.setTitle(String(localized: "See what's new.", bundle: .core), for: .normal)
         useQRCodeButton.setTitle(String(localized: "QR Login", bundle: .core), for: .normal)
         whatsNewContainer.isHidden = loginDelegate?.whatsNewURL == nil
-        wordmarkLabel.attributedText = NSAttributedString.init(string: (
-            Bundle.main.isParentApp ? "PARENT"
-            : Bundle.main.isTeacherApp ? "TEACHER"
-            : "STUDENT"
-        ), attributes: [.kern: 2])
+
+        let wordMarkLabelAttributes: [NSAttributedString.Key: Any] = [.kern: 2]
+        if Bundle.main.isParentApp {
+            wordmarkLabel.attributedText = .init(string: "PARENT", attributes: wordMarkLabelAttributes)
+        } else if Bundle.main.isTeacherApp {
+            wordmarkLabel.attributedText = .init(string: "TEACHER", attributes: wordMarkLabelAttributes)
+        }
+
         wordmarkLabel.textColor = .textDarkest
         logoView.superview?.accessibilityLabel = "Canvas " + (wordmarkLabel.text ?? "")
         let loginText = String(localized: "Log In", bundle: .core)
