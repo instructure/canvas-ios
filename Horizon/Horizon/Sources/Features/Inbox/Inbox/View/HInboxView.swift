@@ -28,43 +28,42 @@ struct HInboxView: View {
     let coordinateSpaceName: String = "scroll"
 
     var body: some View {
-            VStack {
-                topBar
-                GeometryReader { scrollViewProxy in
-                    InstUI.BaseScreen(
-                        state: viewModel.screenState,
-                        config: .init(refreshable: true),
-                        refreshAction: viewModel.refresh
-                    ) { _ in
-                        VStack(alignment: .leading, spacing: HorizonUI.spaces.space12) {
-                            filterSelection
-
-                            peopleSelection
-
-                            messageArea
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(
-                            GeometryReader { contentProxy in
-                                Color.clear
-                                    .onChange(of: contentProxy.frame(in: .named(coordinateSpaceName)).minY) {
-                                        viewModel.loadMoreIfScrolledEnough(
-                                            scrollViewProxy: scrollViewProxy,
-                                            contentProxy: contentProxy,
-                                            coordinateSpaceName: coordinateSpaceName
-                                        )
-                                    }
-                            }
-                        )
+        GeometryReader { scrollViewProxy in
+            InstUI.BaseScreen(
+                state: viewModel.screenState,
+                config: .init(refreshable: true),
+                refreshAction: viewModel.refresh
+            ) { _ in
+                VStack(alignment: .leading, spacing: HorizonUI.spaces.space8) {
+                    filterSelection
+                    peopleSelection
+                    messageArea
                 }
-                .coordinateSpace(name: coordinateSpaceName)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(
+                    GeometryReader { contentProxy in
+                        Color.clear
+                            .onChange(of: contentProxy.frame(in: .named(coordinateSpaceName)).minY) {
+                                viewModel.loadMoreIfScrolledEnough(
+                                    scrollViewProxy: scrollViewProxy,
+                                    contentProxy: contentProxy,
+                                    coordinateSpaceName: coordinateSpaceName
+                                )
+                            }
+                    }
+                )
             }
+            .coordinateSpace(name: coordinateSpaceName)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(HorizonUI.colors.surface.pagePrimary)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .safeAreaInset(edge: .top, spacing: .zero) { topBar }
         .navigationBarHidden(true)
+        .onTapGesture {
+            ScrollOffsetReader.dismissKeyboard()
+        }
     }
 
     private var messageArea: some View {
@@ -115,6 +114,7 @@ struct HInboxView: View {
         HorizonUI.SingleSelect(
             selection: $viewModel.filterTitle,
             focused: $viewModel.isMessagesFilterFocused,
+            isSearchable: false,
             label: nil,
             options: HInboxViewModel.FilterOption.allCases.map { $0.title },
             zIndex: 102
@@ -134,7 +134,7 @@ struct HInboxView: View {
                 viewModel.goToComposeMessage(viewController)
             }
         }
-        .padding(.horizontal, .huiSpaces.space16)
+        .padding(.huiSpaces.space16)
     }
 }
 

@@ -53,7 +53,7 @@ struct HCreateMessageView: View {
     private var bodyContent: some View {
         AttachmentView(viewModel: viewModel.attachmentViewModel) {
             ScrollView {
-                VStack(alignment: .leading, spacing: .huiSpaces.space12) {
+                VStack(alignment: .leading, spacing: .huiSpaces.space8) {
                     courseSelection
                     peopleSelection
                     messageTitleInput

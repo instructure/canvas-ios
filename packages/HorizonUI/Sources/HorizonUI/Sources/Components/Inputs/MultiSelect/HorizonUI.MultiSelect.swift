@@ -276,11 +276,13 @@ extension HorizonUI {
         private var textFieldAndOptions: some View {
             VStack(alignment: .leading) {
                 textField
-                optionsView
+                if !selections.isEmpty {
+                    optionsView
+                }
             }
             .foregroundColor(textInputTextColor)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(HorizonUI.spaces.space12)
+            .padding(.huiSpaces.space12)
             .padding(.trailing, .huiSpaces.space24)
             .overlay(textOverlay(isOuter: false))
             .background(
@@ -304,7 +306,6 @@ extension HorizonUI {
                         focused = textFieldFocusState
                     }
                 }
-                .padding(.bottom, .huiSpaces.space4)
                 .huiTypography(.p1)
             }
         }
@@ -327,14 +328,15 @@ extension HorizonUI {
 
         @ViewBuilder
         private func option(_ option: Option) -> some View {
-            HStack {
+            HStack(spacing: .huiSpaces.space8) {
                 Text(option.label)
                     .huiTypography(.p3)
                 HorizonUI.icons.closeSmall
-                    .frame(width: HorizonUI.spaces.space12, height: HorizonUI.spaces.space12)
+                    .frame(width: 16, height: 16)
             }
             .padding(.vertical, .huiSpaces.space4)
-            .padding(.horizontal, .huiSpaces.space8)
+            .padding(.leading, .huiSpaces.space12)
+            .padding(.trailing, .huiSpaces.space8)
             .background(
                 HorizonUI.colors.surface.cardSecondary
                     .clipShape(
