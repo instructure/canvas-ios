@@ -127,14 +127,15 @@ class AssistCourseItemGoal: AssistGoal {
     // And for a page, there's a separate cedar endpoint for generating the quiz
     // This method is overridden in the course page goal
     func quiz() -> AnyPublisher<AssistChatMessage?, Error> {
-        Just(nil)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        pineAnswerPrompt(
+            forOption: .Quiz,
+            errorResponse: String(localized: "I don't have a quiz for this content.", bundle: .horizon)
+        )
     }
 
     /// Summarizes the content of the document
     func summarizeContent() -> AnyPublisher<AssistChatMessage?, Error> {
-        cedarAnswerPrompt(
+        pineAnswerPrompt(
             forOption: .Summarize,
             errorResponse: String(localized: "I don't have a summary for this content.", bundle: .horizon)
         )
@@ -173,7 +174,7 @@ class AssistCourseItemGoal: AssistGoal {
         .eraseToAnyPublisher()
     }
 
-    private func cedarAnswerPrompt(
+    private func pineAnswerPrompt(
         forOption option: Option,
         errorResponse: String? = nil
     ) -> AnyPublisher<AssistChatMessage?, Error> {
@@ -203,7 +204,7 @@ class AssistCourseItemGoal: AssistGoal {
 
     /// Returns the key takeaways of the document
     private func keyTakeaways() -> AnyPublisher<AssistChatMessage?, Error> {
-        cedarAnswerPrompt(
+        pineAnswerPrompt(
             forOption: .KeyTakeaways,
             errorResponse: String(localized: "No key takeaways found.", bundle: .horizon)
         )
@@ -211,7 +212,7 @@ class AssistCourseItemGoal: AssistGoal {
 
     /// Rephrases the content of the document
     private func rephrase() -> AnyPublisher<AssistChatMessage?, Error> {
-        cedarAnswerPrompt(
+        pineAnswerPrompt(
             forOption: .Rephrase,
             errorResponse: String(localized: "I'm not able to rephrase this content", bundle: .horizon)
         )
@@ -219,7 +220,7 @@ class AssistCourseItemGoal: AssistGoal {
 
     /// Returns more information about the document
     private func tellMeMore() -> AnyPublisher<AssistChatMessage?, Error> {
-        cedarAnswerPrompt(
+        pineAnswerPrompt(
             forOption: .TellMeMore,
             errorResponse: String(localized: "I don't have any additional information for you.", bundle: .horizon)
         )
