@@ -50,7 +50,7 @@ struct SpeedGraderSubmissionGradesView: View {
             }
         } else {
             GeometryReader { geometry in
-                ScrollViewWithReader { proxy in
+                ScrollViewWithReader { scrollViewProxy in
                     VStack(spacing: 0) {
                         HStack(spacing: 0) {
                             Text("Grade", bundle: .teacher)
@@ -103,7 +103,7 @@ struct SpeedGraderSubmissionGradesView: View {
                         comments
                             .id("comments")
                             .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
-                                withAnimation { proxy.scrollTo("comments") }
+                                withAnimation { scrollViewProxy.scrollTo("comments") }
                             }
 
                         if assignment.rubric?.isEmpty == false {
@@ -135,23 +135,32 @@ struct SpeedGraderSubmissionGradesView: View {
         let commentCount = commentListViewModel.commentCount
         let header = HStack(spacing: 20) {
             Image.discussionLine
+                .scaledIcon()
                 .foregroundStyle(.tint)
+                .accessibilityHidden(true)
 
             Text("Comments (\(commentCount))", bundle: .teacher)
                 .foregroundStyle(.textDarkest)
-                .font(.medium16)
+                .font(.semibold16)
+                .accessibilityLabel(
+                    [String(localized: "Comments", bundle: .core),
+                     String.localizedNumberOfItems(commentCount)
+                    ].joined(separator: ", ")
+                )
+                .accessibilityAddTraits(.isHeader)
         }
+        let content = SubmissionCommentListView(
+            viewModel: commentListViewModel,
+            attempt: attempt,
+            fileID: fileID
+        )
 
         VStack(spacing: 0) {
             InstUI.Divider()
 
             if assignment.rubric?.isNotEmpty == true {
                 DisclosureGroup {
-                    SubmissionCommentListView(
-                        viewModel: commentListViewModel,
-                        attempt: attempt,
-                        fileID: fileID
-                    )
+                    content
                 } label: {
                     header
                 }
@@ -167,11 +176,7 @@ struct SpeedGraderSubmissionGradesView: View {
 
                 InstUI.Divider()
 
-                SubmissionCommentListView(
-                    viewModel: commentListViewModel,
-                    attempt: attempt,
-                    fileID: fileID
-                )
+                content
             }
         }
         .padding(.top, 16)
@@ -212,11 +217,11 @@ struct SpeedGraderSubmissionGradesView: View {
         let score = gradeViewModel.sliderValue
         let possible = assignment.pointsPossible ?? 0
         let tooltipText =
-        sliderCleared ? Text("No Grade", bundle: .teacher) :
-        sliderExcused ? Text("Excused", bundle: .teacher) :
-        assignment.gradingType == .percent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
-        Text(gradeSliderViewModel.formatScore(score, maxPoints: possible))
-        let maxScore = assignment.gradingType == .percent ? 100 : possible
+            sliderCleared ? Text("No Grade", bundle: .teacher) :
+            sliderExcused ? Text("Excused", bundle: .teacher) :
+            assignment.gradingType == .percent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
+            Text(gradeSliderViewModel.formatScore(score, maxPoints: possible))
+            let maxScore = assignment.gradingType == .percent ? 100 : possible
 
         HStack(spacing: 8) {
             Text(0)
