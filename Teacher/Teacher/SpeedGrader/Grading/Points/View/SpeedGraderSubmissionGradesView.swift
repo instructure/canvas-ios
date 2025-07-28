@@ -40,6 +40,8 @@ struct SpeedGraderSubmissionGradesView: View {
     @ObservedObject var gradeViewModel: SpeedGraderSubmissionGradesViewModel
     @ObservedObject var commentListViewModel: SubmissionCommentListViewModel
 
+    @FocusState private var isCommentsFocused: Bool
+
     var body: some View {
         if assignment.moderatedGrading {
             GeometryReader { geometry in
@@ -102,8 +104,15 @@ struct SpeedGraderSubmissionGradesView: View {
 
                         comments
                             .id("comments")
-                            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
-                                withAnimation { scrollViewProxy.scrollTo("comments") }
+                            .focused($isCommentsFocused)
+                            .onChange(of: isCommentsFocused) {
+                                if isCommentsFocused {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        withAnimation {
+                                            scrollViewProxy.scrollTo("comments")
+                                        }
+                                    }
+                                }
                             }
 
                         if assignment.rubric?.isEmpty == false {
