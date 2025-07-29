@@ -24,14 +24,14 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var findSchoolButton: DynamicButton!
     @IBOutlet weak var lastLoginButton: UIButton!
     @IBOutlet weak var logoView: UIImageView!
-//    @IBOutlet weak var wordmark: UIImageView!
+    @IBOutlet weak var wordmark: UIImageView!
     @IBOutlet weak var previousLoginsLabel: UILabel!
     @IBOutlet weak var previousLoginsTableView: UITableView!
     @IBOutlet weak var previousLoginsView: UIView!
     @IBOutlet weak var whatsNewContainer: UIView!
     @IBOutlet weak var whatsNewLabel: UILabel!
     @IBOutlet weak var whatsNewLink: UIButton!
-//    @IBOutlet weak var wordmarkLabel: UILabel!
+    @IBOutlet weak var wordmarkLabel: UILabel!
     @IBOutlet weak var useQRCodeButton: UIButton!
     @IBOutlet weak var useQRCodeDivider: UIView!
 
@@ -85,7 +85,7 @@ class LoginStartViewController: UIViewController {
         }
         authenticationMethodLabel.isHidden = true
         logoView.tintColor = .currentLogoColor()
-//        wordmark.tintColor = .textDarkest
+        wordmark.tintColor = .textDarkest
         animatableLogo.tintColor = logoView.tintColor
         previousLoginsView.isHidden = true
         self.lastLoginAccount = nil
@@ -95,23 +95,15 @@ class LoginStartViewController: UIViewController {
         useQRCodeButton.setTitle(String(localized: "QR Login", bundle: .core), for: .normal)
         whatsNewContainer.isHidden = loginDelegate?.whatsNewURL == nil
 
-        logoView.image = if Bundle.main.isStudentApp {
-            UIImage(resource: .canvasStudent)
-        } else if Bundle.main.isParentApp {
-            UIImage(resource: .canvasParent)
-        } else {
-            UIImage(resource: .canvasTeacher)
+        let wordMarkLabelAttributes: [NSAttributedString.Key: Any] = [.kern: 2]
+        if Bundle.main.isParentApp {
+            wordmarkLabel.attributedText = .init(string: "PARENT", attributes: wordMarkLabelAttributes)
+        } else if Bundle.main.isTeacherApp {
+            wordmarkLabel.attributedText = .init(string: "TEACHER", attributes: wordMarkLabelAttributes)
         }
 
-//        let wordMarkLabelAttributes: [NSAttributedString.Key: Any] = [.kern: 2]
-//        if Bundle.main.isParentApp {
-//            wordmarkLabel.attributedText = .init(string: "PARENT", attributes: wordMarkLabelAttributes)
-//        } else if Bundle.main.isTeacherApp {
-//            wordmarkLabel.attributedText = .init(string: "TEACHER", attributes: wordMarkLabelAttributes)
-//        }
-
-//        wordmarkLabel.textColor = .textDarkest
-        logoView.superview?.accessibilityLabel = "Canvas " /*+ (wordmarkLabel.text ?? "")*/
+        wordmarkLabel.textColor = .textDarkest
+        logoView.superview?.accessibilityLabel = "Canvas " + (wordmarkLabel.text ?? "")
         let loginText = String(localized: "Log In", bundle: .core)
         if MDMManager.shared.host != nil {
             findSchoolButton.isHidden = true
