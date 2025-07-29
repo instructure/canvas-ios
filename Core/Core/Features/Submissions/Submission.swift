@@ -532,11 +532,6 @@ public enum SubmissionStatus: Hashable {
     case excused
     case custom(String)
 
-//    public var isGraded: Bool {
-//        if case .graded = self { return true }
-//        return false
-//    }
-
     public var text: String {
         switch self {
         case .late:
