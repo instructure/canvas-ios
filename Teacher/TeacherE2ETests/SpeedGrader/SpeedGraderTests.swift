@@ -159,17 +159,18 @@ class SpeedGraderTests: E2ETestCase {
         if speedGraderGradeSlider.isVanished {
             XCTAssertTrue(speedGraderDrawerGripper.isVisible)
             speedGraderDrawerGripper.swipeUp()
+            sleep(1)
+            XCTAssertTrue(speedGraderDrawerGripper.isVisible)
+            speedGraderDrawerGripper.swipeUp()
         }
 
-        let speedGraderGradeButton = SpeedGraderHelper.gradeButton.waitUntil(.visible)
         speedGraderGradeSlider.waitUntil(.visible)
-        XCTAssertTrue(speedGraderGradeButton.isVisible)
         XCTAssertTrue(speedGraderGradeSlider.isVisible)
-        XCTAssertEqual(speedGraderGradeSlider.stringValue, "0")
+        XCTAssertEqual(speedGraderGradeSlider.stringValue, "0.00")
 
-        speedGraderGradeSlider.swipeRight()
-        speedGraderGradeSlider.waitUntil(.value(expected: "1"))
-        XCTAssertEqual(speedGraderGradeSlider.stringValue, "1")
+        speedGraderGradeSlider.swipeRight(velocity: .slow)
+        speedGraderGradeSlider.waitUntil(.value(expected: "0.75"))
+        XCTAssertEqual(speedGraderGradeSlider.stringValue, "0.75")
 
         speedGraderDoneButton.hit()
         submissionItem.waitUntil(.vanish)
