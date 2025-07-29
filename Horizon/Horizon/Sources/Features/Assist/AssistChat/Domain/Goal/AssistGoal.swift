@@ -38,12 +38,6 @@ protocol AssistGoal {
 
     /// Whether or not this goal should be selected in this list of goals
     func isRequested() -> Bool
-
-    func choose(
-        from options: [AssistGoalOption],
-        with userResponse: String,
-        using cedar: DomainService
-    ) -> AnyPublisher<String?, any Error>
 }
 
 extension AssistGoal {
