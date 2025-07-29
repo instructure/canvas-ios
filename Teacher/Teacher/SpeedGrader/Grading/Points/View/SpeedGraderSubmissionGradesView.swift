@@ -44,27 +44,35 @@ struct SpeedGraderSubmissionGradesView: View {
     @FocusState private var isCommentsFocused: Bool
 
     var body: some View {
-        // TODO: resolve conflict
-//        GeometryReader { geometry in
-//            ScrollViewWithReader { scrollViewProxy in
-        InstUI.BaseScreen(
-            state: gradeViewModel.state,
-            config: .init(
-                refreshable: false,
-                emptyPandaConfig: .init(
-                    scene: SpacePanda(), // TODO: use `.Unsupported`
-                    title: String(localized: "Moderated Grading Unsupported", bundle: .teacher)
+        // BaseScreen currently doesn't support ScrollViewReader.
+        // This is a workaround until we either add support for it or separate BaseScreen statehandling from view structure.
+        if gradeViewModel.state == .empty {
+            InstUI.BaseScreen(
+                state: .empty,
+                config: .init(
+                    refreshable: false,
+                    emptyPandaConfig: .init(
+                        scene: SpacePanda(), // TODO: use `.Unsupported`
+                        title: String(localized: "Moderated Grading Unsupported", bundle: .teacher)
+                    )
                 )
-            )
-        ) { geometry in
-            VStack(spacing: 0) {
-                gradingSection()
-                commentsSection()
-                if assignment.rubric?.isEmpty == false {
-                    rubricsSection(geometry: geometry)
-                }
+            ) { _ in
+                SwiftUI.EmptyView()
             }
-            .padding(.bottom, 16)
+        } else {
+            GeometryReader { geometry in
+                ScrollViewWithReader { scrollViewProxy in
+                    VStack(spacing: 0) {
+                        gradingSection()
+                        commentsSection(scrollViewProxy: scrollViewProxy)
+                        if assignment.rubric?.isEmpty == false {
+                            rubricsSection(geometry: geometry)
+                        }
+                    }
+                    .padding(.bottom, 16)
+                }
+                .scrollDismissesKeyboard(.interactively)
+            }
         }
     }
 
@@ -348,7 +356,7 @@ struct SpeedGraderSubmissionGradesView: View {
 
     // MARK: - Comments
 
-    private func commentsSection() -> some View {
+    private func commentsSection(scrollViewProxy: ScrollViewProxy) -> some View {
         comments
             .id("comments")
             .focused($isCommentsFocused)
@@ -356,7 +364,7 @@ struct SpeedGraderSubmissionGradesView: View {
                 if isCommentsFocused {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         withAnimation {
-                            scrollViewProxy.scrollTo("comments")
+                            scrollViewProxy.scrollTo("comments", anchor: .bottom)
                         }
                     }
                 }
