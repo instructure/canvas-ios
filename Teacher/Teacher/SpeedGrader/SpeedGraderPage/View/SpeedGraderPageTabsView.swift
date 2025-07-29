@@ -226,10 +226,15 @@ struct SpeedGraderPageTabsView: View {
     }
 
     private func tabTitle(_ tab: SpeedGraderPageTab) -> String {
-        switch (tab, viewModel.assignment.rubric?.isEmpty) {
-        case (.details, _): String(localized: "Details", bundle: .teacher)
-        case (.grades, nil), (.grades, .some(true)): String(localized: "Grade", bundle: .teacher)
-        case (.grades, .some(false)): String(localized: "Grade & Rubric", bundle: .teacher)
+        switch tab {
+        case .details:
+            String(localized: "Details", bundle: .teacher)
+        case .grades:
+            if viewModel.assignment.hasRubrics {
+                String(localized: "Grade & Rubric", bundle: .teacher)
+            } else {
+                String(localized: "Grade", bundle: .teacher)
+            }
         }
     }
 }

@@ -44,11 +44,9 @@ struct SpeedGraderSubmissionGradesView: View {
     @FocusState private var isCommentsFocused: Bool
 
     var body: some View {
-        // BaseScreen currently doesn't support ScrollViewReader.
-        // This is a workaround until we either add support for it or separate BaseScreen statehandling from view structure.
-        if gradeViewModel.state == .empty {
+        ScrollViewReader { scrollViewProxy in
             InstUI.BaseScreen(
-                state: .empty,
+                state: gradeViewModel.state,
                 config: .init(
                     refreshable: false,
                     emptyPandaConfig: .init(
@@ -56,23 +54,17 @@ struct SpeedGraderSubmissionGradesView: View {
                         title: String(localized: "Moderated Grading Unsupported", bundle: .teacher)
                     )
                 )
-            ) { _ in
-                SwiftUI.EmptyView()
-            }
-        } else {
-            GeometryReader { geometry in
-                ScrollViewWithReader { scrollViewProxy in
-                    VStack(spacing: 0) {
-                        gradingSection()
-                        commentsSection(scrollViewProxy: scrollViewProxy)
-                        if assignment.rubric?.isEmpty == false {
-                            rubricsSection(geometry: geometry)
-                        }
+            ) { geometry in
+                VStack(spacing: 0) {
+                    gradingSection()
+                    commentsSection(scrollViewProxy: scrollViewProxy)
+                    if assignment.rubric?.isEmpty == false {
+                        rubricsSection(geometry: geometry)
                     }
-                    .padding(.bottom, 16)
                 }
-                .scrollDismissesKeyboard(.interactively)
+                .padding(.bottom, 16)
             }
+            .scrollDismissesKeyboard(.interactively)
         }
     }
 
@@ -399,7 +391,7 @@ struct SpeedGraderSubmissionGradesView: View {
         VStack(spacing: 0) {
             InstUI.Divider()
 
-            if assignment.rubric?.isNotEmpty == true {
+            if assignment.hasRubrics {
                 DisclosureGroup {
                     content
                 } label: {
@@ -415,9 +407,7 @@ struct SpeedGraderSubmissionGradesView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .paddingStyle(set: .iconCell)
 
-                if commentCount != 0 {
-                    InstUI.Divider()
-                }
+                InstUI.Divider()
 
                 content
             }
@@ -453,6 +443,10 @@ struct SpeedGraderSubmissionGradesView: View {
         .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
         .background(Color.backgroundLight)
     }
+}
+
+extension Assignment {
+    var hasRubrics: Bool { rubric?.isNotEmpty ?? false }
 }
 
 #if DEBUG

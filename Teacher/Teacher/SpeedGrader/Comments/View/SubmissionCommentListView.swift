@@ -51,6 +51,7 @@ struct SubmissionCommentListView: View {
                 switch viewModel.state {
                 case .data:
                     comments
+                    InstUI.Divider()
                     // Assume already loaded by parent, so skip loading & error
                 default:
                     SwiftUI.EmptyView()
@@ -83,7 +84,7 @@ struct SubmissionCommentListView: View {
                 )
                 .scaleEffect(y: -1)
             }
-            .paddingStyle(.vertical, .cellAccessoryPadding)
+            .padding(.vertical, 12)
         }
     }
 
@@ -93,6 +94,7 @@ struct SubmissionCommentListView: View {
             commentLibraryButtonType: viewModel.isCommentLibraryEnabled ? .openLibrary : .hidden,
             isAttachmentButtonEnabled: true,
             contextColor: viewModel.contextColor,
+            hasDividerAbove: false,
             commentLibraryAction: {
                 viewModel.presentCommentLibrary(sendAction: sendComment, source: controller)
             },
