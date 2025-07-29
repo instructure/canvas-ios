@@ -91,7 +91,6 @@ struct SpeedGraderPageTabsView: View {
                         // `.clipped` and `.contentShape` don't prevent touches outside of the drawer on iOS17
                         // and it would block interaction with the attempts picker and the submission content.
                         .allowsHitTesting(selectedTab == .grades)
-                    commentsTab(geometry: geometry)
                     detailsTab(geometry: geometry)
                 }
                 .frame(width: geometry.size.width, alignment: .leading)
@@ -109,7 +108,7 @@ struct SpeedGraderPageTabsView: View {
     private func tabPicker(shouldOpenDrawerIfNeeded: Bool) -> some View {
         let content = {
             ForEach(SpeedGraderPageTab.allCases, id: \.self) { tab in
-                Text(tab.title)
+                Text(tabTitle(tab))
                     .tag(tab)
             }
         }
@@ -136,12 +135,25 @@ struct SpeedGraderPageTabsView: View {
 
     @ViewBuilder
     private func gradesTab(geometry: GeometryProxy) -> some View {
+        let attempt = Binding { viewModel.selectedAttemptNumber } set: {
+            viewModel.didSelectAttempt(attemptNumber: $0)
+            snapDrawer(to: .min)
+        }
+
+        let fileID = Binding { viewModel.selectedFile?.id } set: {
+            viewModel.didSelectFile(fileId: $0)
+            snapDrawer(to: .min)
+        }
+
         VStack(spacing: 0) {
             SpeedGraderSubmissionGradesView(
                 assignment: viewModel.assignment,
                 containerHeight: geometry.size.height,
+                attempt: attempt,
+                fileID: fileID,
                 gradeViewModel: viewModel.gradeViewModel,
                 gradeStatusViewModel: viewModel.gradeStatusViewModel,
+                commentListViewModel: viewModel.commentListViewModel,
                 rubricsViewModel: viewModel.rubricsViewModel
             )
             .clipped()
@@ -151,43 +163,6 @@ struct SpeedGraderPageTabsView: View {
         .accessibilityElement(children: .contain)
         .accessibilityHidden(!isTabOnScreen(.grades))
         .accessibilityFocused($a11yFocusedTab, equals: .grades)
-    }
-
-    @ViewBuilder
-    private func commentsTab(geometry: GeometryProxy) -> some View {
-        let attempt = Binding(
-            get: {
-                viewModel.selectedAttemptNumber
-            },
-            set: {
-                viewModel.didSelectAttempt(attemptNumber: $0)
-                snapDrawer(to: .min)
-            }
-        )
-        let fileID = Binding(
-            get: {
-                viewModel.selectedFile?.id
-            },
-            set: {
-                viewModel.didSelectFile(fileId: $0)
-                snapDrawer(to: .min)
-            }
-        )
-        VStack(spacing: 0) {
-            SubmissionCommentListView(
-                viewModel: viewModel.commentListViewModel,
-                attempt: attempt,
-                fileID: fileID,
-                a11yFocusedTab: _a11yFocusedTab
-            )
-            .clipped()
-            if drawerState.isClosed {
-                Spacer().frame(height: bottomInset)
-            }
-        }
-        .frame(width: geometry.size.width, height: geometry.size.height)
-        .accessibilityElement(children: .contain)
-        .accessibilityHidden(!isTabOnScreen(.comments))
     }
 
     @ViewBuilder
@@ -247,6 +222,19 @@ struct SpeedGraderPageTabsView: View {
             return (drawerState.isOpen && isTabSelected)
         case .splitView:
             return isTabSelected
+        }
+    }
+
+    private func tabTitle(_ tab: SpeedGraderPageTab) -> String {
+        switch tab {
+        case .details:
+            String(localized: "Details", bundle: .teacher)
+        case .grades:
+            if viewModel.assignment.hasRubrics {
+                String(localized: "Grade & Rubric", bundle: .teacher)
+            } else {
+                String(localized: "Grade", bundle: .teacher)
+            }
         }
     }
 }

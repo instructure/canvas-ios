@@ -11525,6 +11525,9 @@
         }
       }
     },
+    "Comments (%lld)" : {
+
+    },
     "Complete" : {
       "localizations" : {
         "ar" : {
@@ -21037,6 +21040,9 @@
         }
       }
     },
+    "Grade & Rubric" : {
+
+    },
     "Grade post policy" : {
       "localizations" : {
         "ar" : {
@@ -22066,6 +22072,7 @@
       }
     },
     "Grades" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -42432,6 +42439,7 @@
       }
     },
     "There are no messages yet." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
