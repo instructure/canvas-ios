@@ -114,7 +114,6 @@ struct HInboxView: View {
         HorizonUI.SingleSelect(
             selection: $viewModel.filterTitle,
             focused: $viewModel.isMessagesFilterFocused,
-            isSearchable: false,
             label: nil,
             options: HInboxViewModel.FilterOption.allCases.map { $0.title },
             zIndex: 102
