@@ -109,7 +109,8 @@ class AssistSelectCourseGoal: AssistGoal {
                             .setFailureType(to: Error.self)
                             .eraseToAnyPublisher()
                     }
-                    return weakSelf.pine.askARAGQuestion(question: response)
+                    return Just(nil)
+                        .setFailureType(to: Error.self)
                         .eraseToAnyPublisher()
                 }
                 .eraseToAnyPublisher()

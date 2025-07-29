@@ -160,9 +160,9 @@ enum HorizonRoutes {
 
     private static var quizRoutes: [RouteHandler] {
         [
-            RouteHandler("/courses/:courseID/quizzes") { _, params, _ in
+            RouteHandler("/courses/:courseID/quizzes") { _, params, _, env in
                 guard let courseID = params["courseID"] else { return nil }
-                return QuizListViewController.create(courseID: ID.expandTildeID(courseID))
+                return QuizListViewController.create(courseID: ID.expandTildeID(courseID), env: env)
             },
 
             RouteHandler("/courses/:courseID/quizzes/:quizID") { url, params, _, env in

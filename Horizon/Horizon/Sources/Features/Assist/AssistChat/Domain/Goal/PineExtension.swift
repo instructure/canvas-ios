@@ -23,7 +23,7 @@ extension DomainService {
     /// For when you want to ask Pine a single question that isn't meant to be part of the overall conversation
     func askARAGSingleQuestion(
         question: String,
-        courseID: String? = nil,
+        courseID: String,
         sourceID: String? = nil,
         sourceType: String? = nil
     ) -> AnyPublisher<String?, any Error> {
@@ -39,7 +39,7 @@ extension DomainService {
 
     func askARAGQuestion(
         messages: [DomainServiceConversationMessage],
-        courseID: String? = nil,
+        courseID: String,
         sourceID: String? = nil,
         sourceType: String? = nil
     ) -> AnyPublisher<PineQueryMutation.RagResponse?, any Error> {
@@ -53,7 +53,7 @@ extension DomainService {
                 )
             )
             .compactMap { (ragData, _) in
-                ragData.data.query
+                ragData.data.courseQuery
             }
             .eraseToAnyPublisher()
         }
@@ -63,7 +63,7 @@ extension DomainService {
     func askARAGQuestion(
         question: String,
         history: [AssistChatMessage] = [],
-        courseID: String? = nil,
+        courseID: String,
         sourceID: String? = nil,
         sourceType: String? = nil
     ) -> AnyPublisher<AssistChatMessage?, any Error> {

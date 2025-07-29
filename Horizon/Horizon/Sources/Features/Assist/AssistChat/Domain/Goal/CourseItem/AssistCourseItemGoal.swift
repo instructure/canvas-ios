@@ -145,7 +145,8 @@ class AssistCourseItemGoal: AssistGoal {
 
     private func pineAnswerPrompt(prompt: String) -> AnyPublisher<AssistChatMessage?, Error> {
         sourceID.flatMap { [weak self] sourceID in
-            guard let self = self else {
+            guard let self = self,
+                  let courseID = courseID else {
                 return Just<AssistChatMessage?>(nil)
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
@@ -169,11 +170,24 @@ class AssistCourseItemGoal: AssistGoal {
 
     /// Calls the Cedar endpoint for generating flashcards based on the document content
     private func flashcards() -> AnyPublisher<AssistChatMessage?, Error> {
-        pine.askARAGSingleQuestion(question: Option.FlashCards.prompt)
-        .map { (response: String?) in
-            AssistChatMessage(
-                flashCards: AssistChatFlashCard.build(from: response ?? "") ?? []
+        sourceID.flatMap { [weak self] sourceID in
+            guard let self = self,
+                  let courseID = courseID else {
+                return Just<AssistChatMessage?>(nil)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            return pine.askARAGSingleQuestion(
+                question: Option.FlashCards.prompt,
+                courseID: courseID,
+                sourceID: sourceID
             )
+            .map { (response: String?) in
+                AssistChatMessage(
+                    flashCards: AssistChatFlashCard.build(from: response ?? "") ?? []
+                )
+            }
+            .eraseToAnyPublisher()
         }
         .eraseToAnyPublisher()
     }
