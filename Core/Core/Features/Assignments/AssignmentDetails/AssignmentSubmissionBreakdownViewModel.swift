@@ -81,8 +81,11 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     }
 
     private func update() {
-        let customSubmitted = customGradeStatedCount(for: .submitted)
         let customUnsubmitted = customGradeStatedCount(for: .unsubmitted)
+        let customSubmitted = customGradeStatedCount(
+            noScoreChecked: true,
+            for: .submitted, .pending_review, .graded
+        )
 
         graded = (summary.first?.graded ?? 0) + customSubmitted + customUnsubmitted
         ungraded = (summary.first?.ungraded ?? 0) - customSubmitted
@@ -95,22 +98,17 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     /// This is used because of a limitation on API for **`GetSubmissionSummary`**, by
     /// which submissions of custom grade status is not being counted for **`graded`**
     /// when workflow state equals to `unsubmitted` or `submitted`
-    private func customGradeStatedCount(for state: SubmissionWorkflowState) -> Int {
-        let context = env.database.viewContext
-
-        let predicate = NSCompoundPredicate(type: .and, subpredicates: [
-            NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID),
-            NSPredicate(
-                format: "%K != true AND %K != nil AND %K == %@",
-                #keyPath(Submission.excusedRaw),
-                #keyPath(Submission.customGradeStatusId),
-                #keyPath(Submission.workflowStateRaw), state.rawValue
+    private func customGradeStatedCount(
+        noScoreChecked: Bool = false,
+        for state: SubmissionWorkflowState...
+    ) -> Int {
+        return env
+            .database
+            .viewContext
+            .submissionsCountOfCustomGradeStatus(
+                forAssignment: assignmentID,
+                invalidScoreChecked: noScoreChecked,
+                atStates: state
             )
-        ])
-
-        let request = Submission.fetchRequest()
-        request.predicate = predicate
-
-        return (try? context.count(for: request)) ?? 0
     }
 }

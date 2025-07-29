@@ -77,7 +77,7 @@ struct SubmissionListRowView: View {
         }
         .font(.regular14)
         .foregroundStyle(item.status.redesignAppearance.color)
-        .accessibilityHidden(isGradeBlank == false && item.status.isGraded)
+        .accessibilityHidden(isGradeBlank == false && item.status == .graded)
     }
 
     private var statusDivider: some View {
@@ -140,9 +140,9 @@ private extension SubmissionStatus.RedesignAppearance {
             return .textDanger
         case .submitted:
             return .textSuccess
-        case .graded(.none):
+        case .graded:
             return .textSuccess
-        case .graded(.custom):
+        case .custom:
             return .textInfo
         case .notSubmitted:
             return .textDark
@@ -155,9 +155,9 @@ private extension SubmissionStatus.RedesignAppearance {
             return .completeLine
         case .excused:
             return .completeSolid
-        case .graded(.none):
+        case .graded:
             return .completeSolid
-        case .graded(.custom):
+        case .custom:
             return .flagLine
         case .late:
             return .clockLine
