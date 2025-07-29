@@ -28,7 +28,7 @@ final class InboxMessageFavouriteInteractorLiveTests: CoreTestCase {
 
     // MARK: - Life Cycle
     override func setUpWithError() throws {
-        sut = InboxMessageFavouriteInteractorLive()
+        sut = InboxMessageFavouriteInteractorLive(env: environment)
     }
 
     override func tearDownWithError() throws {

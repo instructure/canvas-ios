@@ -46,8 +46,10 @@ extension UINavigationBar {
     }
 
     public func useGlobalNavStyle(brand: Brand = Brand.shared) {
-        let background = brand.navBackground
-        let foreground = brand.navTextColor
+        // TODO: Remove the isHorizon condition once horizon-specific logic is no longer needed.
+        let isHorizon = AppEnvironment.shared.app == .horizon
+        let background: UIColor = isHorizon ? .backgroundLightest : brand.navBackground
+        let foreground: UIColor = isHorizon ? .backgroundDarkest : brand.navTextColor
         titleTextAttributes = [.foregroundColor: foreground]
         tintColor = foreground
         barTintColor = background
@@ -98,5 +100,21 @@ extension UINavigationBar {
 
         standardAppearance = appearance
         scrollEdgeAppearance = standardAppearance
+    }
+
+    // TODO: Remove the isHorizon condition once horizon-specific logic is no longer needed.
+    private func clearNavigation() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = .backgroundLightest
+        appearance.shadowColor = .backgroundLightest
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.textDarkest]
+
+        tintColor = UIColor.textDarkest
+        standardAppearance = appearance
+        scrollEdgeAppearance = appearance
+        compactAppearance = appearance
+        isTranslucent = true
+        self.backgroundColor = .backgroundLightest
     }
 }

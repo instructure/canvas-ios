@@ -31,7 +31,7 @@ class QuizDetailsViewModelTests: CoreTestCase {
     }
 
     func testProperties() {
-        let testee = TeacherQuizDetailsViewModelLive(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizDetailsViewModelLive(courseID: courseID, quizID: quizID, env: environment)
         testee.viewDidAppear()
 
         XCTAssertEqual(testee.title, "Quiz Details")
@@ -46,22 +46,22 @@ class QuizDetailsViewModelTests: CoreTestCase {
     }
 
     func testEditTapped() {
-        let testee = TeacherQuizDetailsViewModelLive(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizDetailsViewModelLive(courseID: courseID, quizID: quizID, env: environment)
         testee.viewDidAppear()
         testee.editTapped(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/quizzes/2/edit")!))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/quizzes/2/edit")!))
     }
 
     func testPreviewTapped() {
-        let testee = TeacherQuizDetailsViewModelLive(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizDetailsViewModelLive(courseID: courseID, quizID: quizID, env: environment)
         testee.viewDidAppear()
         testee.previewTapped(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/quizzes/2/preview")!))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/quizzes/2/preview")!))
     }
 
     func testRefresh() {
         let refreshExpectation = expectation(description: "Refresh finished")
-        let testee = TeacherQuizDetailsViewModelLive(courseID: courseID, quizID: quizID)
+        let testee = TeacherQuizDetailsViewModelLive(courseID: courseID, quizID: quizID, env: environment)
         testee.refresh {
             refreshExpectation.fulfill()
         }
@@ -121,7 +121,7 @@ class QuizDetailsViewModelTests: CoreTestCase {
     func testPointsPossibleTextWhenQuantitativeDataEnabled() {
         // MARK: GIVEN
         mockDataForQuantitativeDataTests(restrict_quantitative_data: true)
-        let testee = TeacherQuizDetailsViewModelLive(courseID: "1", quizID: "123")
+        let testee = TeacherQuizDetailsViewModelLive(courseID: "1", quizID: "123", env: environment)
 
         // MARK: WHEN
         testee.viewDidAppear()
@@ -133,7 +133,7 @@ class QuizDetailsViewModelTests: CoreTestCase {
     func testPointsPossibleTextWhenQuantitativeDataDisabled() {
         // MARK: GIVEN
         mockDataForQuantitativeDataTests(restrict_quantitative_data: false)
-        let testee = TeacherQuizDetailsViewModelLive(courseID: "1", quizID: "123")
+        let testee = TeacherQuizDetailsViewModelLive(courseID: "1", quizID: "123", env: environment)
 
         // MARK: WHEN
         testee.viewDidAppear()
@@ -145,7 +145,7 @@ class QuizDetailsViewModelTests: CoreTestCase {
     func testPointsPossibleTextWhenQuantitativeDataNotSpecified() {
         // MARK: GIVEN
         mockDataForQuantitativeDataTests(restrict_quantitative_data: nil)
-        let testee = TeacherQuizDetailsViewModelLive(courseID: "1", quizID: "123")
+        let testee = TeacherQuizDetailsViewModelLive(courseID: "1", quizID: "123", env: environment)
 
         // MARK: WHEN
         testee.viewDidAppear()

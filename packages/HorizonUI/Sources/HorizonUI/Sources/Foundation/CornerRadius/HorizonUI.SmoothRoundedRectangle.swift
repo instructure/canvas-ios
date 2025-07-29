@@ -29,7 +29,7 @@ public extension HorizonUI {
 
         // MARK: - Init
 
-        init(radius: CGFloat, corners: Corners, smoothness: CGFloat) {
+        public init(radius: CGFloat, corners: Corners, smoothness: CGFloat) {
             self.init(
                 topLeft: corners.contains(.topLeft) ? radius : 0,
                 topRight: corners.contains(.topRight) ? radius : 0,

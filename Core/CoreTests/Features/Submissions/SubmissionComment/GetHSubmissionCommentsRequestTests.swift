@@ -23,16 +23,16 @@ class GetHSubmissionCommentsRequestTests: CoreTestCase {
     func testInit() {
         let assignmentId = "assignment-123"
         let userId = "user-456"
-        let request = GetHSubmissionCommentsRequest(assignmentId: assignmentId, userId: userId)
+        let request = GetHSubmissionCommentsRequest(assignmentId: assignmentId, userId: userId, forAttempt: 1, beforeCursor: "NDI", last: 5)
 
         XCTAssertEqual(request.variables.assignmentId, assignmentId)
         XCTAssertEqual(request.variables.userId, userId)
     }
 
     func testInputEquality() {
-        let input1 = GetHSubmissionCommentsRequest.Input(userId: "user-1", assignmentId: "assignment-1")
-        let input2 = GetHSubmissionCommentsRequest.Input(userId: "user-1", assignmentId: "assignment-1")
-        let input3 = GetHSubmissionCommentsRequest.Input(userId: "user-2", assignmentId: "assignment-1")
+        let input1 = GetHSubmissionCommentsRequest.Input(userId: "user-1", assignmentId: "assignment-1", forAttempt: 1, beforeCursor: "NDI", last: 5)
+        let input2 = GetHSubmissionCommentsRequest.Input(userId: "user-1", assignmentId: "assignment-1", forAttempt: 1, beforeCursor: "NDI", last: 5)
+        let input3 = GetHSubmissionCommentsRequest.Input(userId: "user-2", assignmentId: "assignment-1", forAttempt: 3, beforeCursor: "CGE", last: 5)
 
         XCTAssertEqual(input1, input2)
         XCTAssertNotEqual(input1, input3)
@@ -41,11 +41,11 @@ class GetHSubmissionCommentsRequestTests: CoreTestCase {
     func testQueryContainsExpectedFields() {
         let query = GetHSubmissionCommentsRequest.query
 
-        XCTAssertTrue(query.contains("query GetSubmissionComments($assignmentId: ID!, $userId: ID!)"))
+        XCTAssertTrue(query.contains("query GetSubmissionComments($assignmentId: ID!, $userId: ID!, $forAttempt: Int, $beforeCursor: String, $last: Int)"))
         XCTAssertTrue(query.contains("submission(assignmentId: $assignmentId, userId: $userId)"))
         XCTAssertTrue(query.contains("id: _id"))
         XCTAssertTrue(query.contains("unreadCommentCount"))
-        XCTAssertTrue(query.contains("commentsConnection(sortOrder: asc, filter:{allComments: true})"))
+        XCTAssertTrue(query.contains("commentsConnection(last: $last, sortOrder: asc, before: $beforeCursor, filter: { forAttempt: $forAttempt })"))
         XCTAssertTrue(query.contains("pageInfo"))
         XCTAssertTrue(query.contains("edges"))
         XCTAssertTrue(query.contains("node"))
@@ -57,7 +57,7 @@ class GetHSubmissionCommentsRequestTests: CoreTestCase {
     }
 
     func testCodingInput() throws {
-        let input = GetHSubmissionCommentsRequest.Input(userId: "user-123", assignmentId: "assignment-456")
+        let input = GetHSubmissionCommentsRequest.Input(userId: "user-123", assignmentId: "assignment-456", forAttempt: 10, beforeCursor: nil, last: nil)
 
         let encoder = JSONEncoder()
         let data = try encoder.encode(input)
@@ -67,5 +67,6 @@ class GetHSubmissionCommentsRequestTests: CoreTestCase {
 
         XCTAssertEqual(decodedInput.userId, "user-123")
         XCTAssertEqual(decodedInput.assignmentId, "assignment-456")
+        XCTAssertEqual(decodedInput.forAttempt, 10)
     }
 }

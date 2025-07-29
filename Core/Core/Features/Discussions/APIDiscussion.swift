@@ -600,17 +600,29 @@ public struct GetAllAnnouncementsRequest: APIRequestable {
     var contextCodes: [String] = []
     private let activeOnly: Bool?
     private let latestOnly: Bool?
+    private let startDate: Date?
+    private let endDate: Date?
 
-    public init(contextCodes: [String], activeOnly: Bool? = nil, latestOnly: Bool? = nil) {
+    public init(
+        contextCodes: [String],
+        activeOnly: Bool? = nil,
+        latestOnly: Bool? = nil,
+        startDate: Date? = nil,
+        endDate: Date? = nil
+    ) {
         self.contextCodes = contextCodes
         self.activeOnly = activeOnly
         self.latestOnly = latestOnly
+        self.startDate = startDate
+        self.endDate = endDate
     }
 
     public var path = "announcements"
     public var query: [APIQueryItem] {[
         .array("context_codes", contextCodes),
         .optionalBool("active_only", activeOnly),
-        .optionalBool("latest_only", latestOnly)
+        .optionalBool("latest_only", latestOnly),
+        .optionalValue("start_date", startDate?.isoString()),
+        .optionalValue("end_date", endDate?.isoString())
     ]}
 }

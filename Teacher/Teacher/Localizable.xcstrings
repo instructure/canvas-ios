@@ -1,6 +1,20 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "\"%@\" is not a valid grade." : {
+
+    },
+    "%@ to %@" : {
+      "comment" : "'100% to 94%', or '400 to 230 pts'",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ to %2$@"
+          }
+        }
+      }
+    },
     "%1$@, submitted on %2$@" : {
       "comment" : "Attempt 30, submitted on 2025. Feb 6. at 18:21",
       "localizations" : {
@@ -1760,6 +1774,20 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "%lld%%" : {
+
+    },
+    "< %@ to %@" : {
+      "comment" : "'< 94% to 84%', or '< 230 to 160 pts'",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "< %1$@ to %2$@"
           }
         }
       }
@@ -20500,6 +20528,7 @@
       }
     },
     "GPA" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -25978,6 +26007,9 @@
         }
       }
     },
+    "Hidden" : {
+
+    },
     "Hide Grades" : {
       "localizations" : {
         "ar" : {
@@ -26747,6 +26779,9 @@
         }
       }
     },
+    "Invalid Grade" : {
+
+    },
     "It seems there aren't any valid submissions to grade." : {
       "localizations" : {
         "ar" : {
@@ -27263,6 +27298,7 @@
 
     },
     "Letter grade" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -33678,6 +33714,7 @@
       }
     },
     "Percent (%)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -35982,6 +36019,7 @@
       }
     },
     "Prompts for an updated grade" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -37260,6 +37298,9 @@
           }
         }
       }
+    },
+    "Reset Status" : {
+
     },
     "Retry" : {
       "localizations" : {
@@ -38802,6 +38843,9 @@
           }
         }
       }
+    },
+    "Select Grade" : {
+
     },
     "Select to change the roll call date" : {
       "localizations" : {
@@ -48297,6 +48341,12 @@
 
     },
     "Word Count" : {
+
+    },
+    "Write percentage here" : {
+
+    },
+    "Write score here" : {
 
     },
     "Write your Comment here" : {

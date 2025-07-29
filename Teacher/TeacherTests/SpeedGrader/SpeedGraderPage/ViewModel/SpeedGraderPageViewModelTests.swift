@@ -166,7 +166,8 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
             rubricsViewModel: .init(
                 assignment: assignment,
                 submission: submission,
-                interactor: RubricGradingInteractorMock()
+                interactor: RubricGradingInteractorMock(),
+                router: environment.router
             ),
             submissionWordCountViewModel: .init(
                 userId: submission.userID,

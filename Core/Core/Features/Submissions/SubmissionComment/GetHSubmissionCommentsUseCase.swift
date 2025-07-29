@@ -29,16 +29,22 @@ public struct GetHSubmissionCommentsUseCase: APIUseCase {
     // MARK: - Properties
 
     public var cacheKey: String? {
-        return "Submission-\(assignmentId)-\(userId)-Comments"
+        return "Submission-\(assignmentId)-\(userId)-\(forAttempt)-\(beforeCursor ?? "")-Comments"
     }
 
     private let userId: String
     private let assignmentId: String
+    private let forAttempt: Int
+    private let beforeCursor: String?
+    private let last: Int?
 
     public var request: GetHSubmissionCommentsRequest {
         .init(
             assignmentId: assignmentId,
-            userId: userId
+            userId: userId,
+            forAttempt: forAttempt,
+            beforeCursor: beforeCursor,
+            last: last
         )
     }
 
@@ -46,10 +52,16 @@ public struct GetHSubmissionCommentsUseCase: APIUseCase {
 
     public init(
         userId: String,
-        assignmentId: String
+        assignmentId: String,
+        forAttempt: Int,
+        beforeCursor: String? = nil,
+        last: Int? = nil
     ) {
         self.userId = userId
         self.assignmentId = assignmentId
+        self.forAttempt = forAttempt
+        self.beforeCursor = beforeCursor
+        self.last = last
     }
 
     // MARK: - Functions
@@ -65,11 +77,20 @@ public struct GetHSubmissionCommentsUseCase: APIUseCase {
         CDHSubmission.save(
             response,
             assignmentID: assignmentId,
+            attempt: forAttempt,
+            pageID: beforeCursor,
             in: client
         )
     }
 
     public var scope: Scope {
-        return .where(#keyPath(CDHSubmission.assignmentID), equals: assignmentId)
+        let predicate = NSCompoundPredicate(
+            andPredicateWithSubpredicates: [
+                NSPredicate(format: "%K == %@", #keyPath(CDHSubmission.assignmentID), assignmentId),
+                NSPredicate(format: "%K == %@", #keyPath(CDHSubmission.attempt), forAttempt as NSNumber),
+                NSPredicate(format: "%K == %@", #keyPath(CDHSubmission.pageID), beforeCursor ?? "")
+            ]
+        )
+        return Scope(predicate: predicate, order: [])
     }
 }

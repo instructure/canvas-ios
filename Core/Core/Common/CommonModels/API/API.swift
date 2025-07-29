@@ -119,6 +119,11 @@ public class API {
     -> APITask? {
         var request = URLRequest(url: url)
 
+        if AppEnvironment.shared.app == .horizon {
+            let token = AppEnvironment.shared.currentSession?.accessToken ?? ""
+            request.setValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
+        }
+
         if let method {
             request.httpMethod = method.rawValue.uppercased()
         }
