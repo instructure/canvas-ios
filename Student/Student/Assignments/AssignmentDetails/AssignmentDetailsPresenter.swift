@@ -64,6 +64,10 @@ class AssignmentDetailsPresenter {
         self?.selectLatestSubmissionIfNecessary()
         self?.update()
     }
+
+    lazy var customGradeStatuses = env.subscribe(GetCustomGradeStatuses(courseID: courseID)) { [weak self] in
+        self?.update()
+    }
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
     }
@@ -254,6 +258,7 @@ class AssignmentDetailsPresenter {
     }
 
     func viewIsReady() {
+        customGradeStatuses.refresh()
         colors.refresh()
         courses.refresh(force: true)
         assignments.refresh(force: true)
