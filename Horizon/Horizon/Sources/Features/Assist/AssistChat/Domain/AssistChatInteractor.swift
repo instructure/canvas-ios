@@ -45,7 +45,6 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     private var assistDataEnvironment: AssistDataEnvironment = AssistDataEnvironment()
     private var assistDateEnvironmentOriginal: AssistDataEnvironment = AssistDataEnvironment()
     private var goalCancellable: AnyCancellable?
-    private let downloadFileInteractor: DownloadFileInteractor?
     private let responsePublisher = PassthroughSubject<AssistChatInteractorLive.State, Error>()
     private var subscriptions = Set<AnyCancellable>()
     private var goals: [any AssistGoal]
@@ -54,19 +53,19 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     init(
         courseID: String? = nil,
         fileID: String? = nil,
-        pageURL: String? = nil,
-        downloadFileInteractor: DownloadFileInteractor? = nil
+        pageURL: String? = nil
     ) {
-        self.downloadFileInteractor = downloadFileInteractor
         self.assistDataEnvironment = .init(
             courseID: courseID,
             fileID: fileID,
             pageURL: pageURL
         )
-        self.goals = AssistChatInteractorLive.initializeGoals(
-            assistDataEnvironment: assistDataEnvironment,
-            downloadFileInteractor: downloadFileInteractor
-        )
+        self.goals = [
+            AssistCourseDocumentGoal(environment: assistDataEnvironment),
+            AssistCoursePageGoal(environment: assistDataEnvironment),
+            AssistCourseActionGoal(environment: assistDataEnvironment),
+            AssistSelectCourseGoal(environment: assistDataEnvironment)
+        ]
         self.assistDateEnvironmentOriginal = assistDataEnvironment.duplicate()
     }
 
@@ -80,9 +79,6 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         switch action {
         case .chat(let message, let chatHistory):
             prompt = message
-            history = chatHistory
-        case .chip(let option, let chatHistory):
-            prompt = option.prompt
             history = chatHistory
         default:
             break
@@ -125,34 +121,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     func setInitialState() {
         goalCancellable?.cancel()
         self.assistDataEnvironment = self.assistDateEnvironmentOriginal.duplicate()
-        self.goals = AssistChatInteractorLive.initializeGoals(
-            assistDataEnvironment: assistDataEnvironment,
-            downloadFileInteractor: downloadFileInteractor
-        )
         publish(action: .begin)
-    }
-
-    // MARK: - Static
-    private static func initializeGoals(
-        assistDataEnvironment: AssistDataEnvironment,
-        downloadFileInteractor: DownloadFileInteractor?
-    ) -> [any AssistGoal] {
-        // order matters
-        var goals = [any AssistGoal]()
-        if let downloadFileInteractor = downloadFileInteractor {
-            goals.append(
-                AssistCourseDocumentGoal(
-                    environment: assistDataEnvironment,
-                    downloadFileInteractor: downloadFileInteractor
-                )
-            )
-        }
-        goals += [
-            AssistCoursePageGoal(environment: assistDataEnvironment),
-            AssistCourseActionGoal(environment: assistDataEnvironment),
-            AssistSelectCourseGoal(environment: assistDataEnvironment)
-        ]
-        return goals
     }
 
     // MARK: - Private

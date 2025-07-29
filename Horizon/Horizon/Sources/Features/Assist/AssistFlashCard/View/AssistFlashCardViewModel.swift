@@ -126,11 +126,8 @@ final class AssistFlashCardViewModel {
             isLoaderVisible = true
             currentPage = 0
             chatBotInteractor.publish(
-                action: .chip(
-                    option: AssistChipOption(
-                        chip: String(localized: "Generate Flash Cards", bundle: .horizon),
-                        prompt: "Generate Flash Cards"
-                    ),
+                action: .chat(
+                    prompt: "Generate Flash Cards",
                     history: chatHistory
                 )
             )

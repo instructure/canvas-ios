@@ -31,16 +31,11 @@ class AssistCourseDocumentGoal: AssistCourseItemGoal {
         bundle: .horizon
     )
 
-    // MARK: - Dependencies
-    private let downloadFileInteractor: DownloadFileInteractor
-
     // MARK: - Initializer
     init(
         environment: AssistDataEnvironment,
-        downloadFileInteractor: DownloadFileInteractor,
         cedar: DomainService = DomainService(.cedar)
     ) {
-        self.downloadFileInteractor = downloadFileInteractor
         super.init(
             environment: environment,
             initialPrompt: initialPrompt,

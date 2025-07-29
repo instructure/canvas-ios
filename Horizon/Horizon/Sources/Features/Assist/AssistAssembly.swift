@@ -52,10 +52,7 @@ final class AssistAssembly {
         AssistChatInteractorLive(
             courseID: courseID,
             fileID: fileID,
-            pageURL: pageURL,
-            downloadFileInteractor: courseID.map {
-                DownloadFileInteractorLive(courseID: $0)
-            }
+            pageURL: pageURL
         )
     }
 
