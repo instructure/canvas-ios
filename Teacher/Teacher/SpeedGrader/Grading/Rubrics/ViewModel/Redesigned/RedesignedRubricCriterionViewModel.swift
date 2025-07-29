@@ -56,7 +56,6 @@ class RedesignedRubricCriterionViewModel: ObservableObject, Identifiable {
         criterion.longDescription
     }
 
-
     // MARK: - Private Properties
 
     private let interactor: RubricGradingInteractor

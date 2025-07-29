@@ -47,7 +47,7 @@ class RedesignedRubricRatingViewModel: ObservableObject, Identifiable {
             subtitle: rating.longDescription
         )
     }
-    
+
     var accessibilityLabel: String {
         rating.shortDescription.nilIfEmpty ?? value
     }
