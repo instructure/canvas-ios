@@ -27,7 +27,16 @@ public class CDCustomGradeStatus: NSManagedObject {
 
     @discardableResult
     static public func save(_ item: APICustomGradeStatus, courseID: String, in client: NSManagedObjectContext) -> CDCustomGradeStatus {
-        let model: CDCustomGradeStatus = client.first(where: #keyPath(CDCustomGradeStatus.id), equals: item.id) ?? client.insert()
+
+        let predicate = NSCompoundPredicate(type: .and, subpredicates: [
+            NSPredicate(key: #keyPath(CDCustomGradeStatus.id), equals: item.id),
+            NSPredicate(key: #keyPath(CDCustomGradeStatus.courseID), equals: courseID),
+        ])
+
+        let model: CDCustomGradeStatus = client.first(
+            scope: .init(predicate: predicate, orderBy: #keyPath(CDCustomGradeStatus.id))
+        ) ?? client.insert()
+
         model.id = item.id
         model.name = item.name
         model.courseID = courseID

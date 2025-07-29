@@ -192,11 +192,6 @@
         <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="tabID" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="CDCustomGradeStatus" representedClassName="Core.CDCustomGradeStatus" syncable="YES">
-        <attribute name="courseID" optional="YES" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="name" attributeType="String"/>
-    </entity>
     <entity name="CDCustomGradebookColumn" representedClassName="Core.CDCustomGradebookColumn" syncable="YES">
         <attribute name="courseId" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
@@ -211,6 +206,11 @@
         <attribute name="content" attributeType="String"/>
         <attribute name="courseId" attributeType="String"/>
         <attribute name="userId" attributeType="String"/>
+    </entity>
+    <entity name="CDCustomGradeStatus" representedClassName="Core.CDCustomGradeStatus" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
     </entity>
     <entity name="CDEnvironmentSettings" representedClassName="Core.CDEnvironmentSettings" syncable="YES">
         <attribute name="calendarContextsLimitRaw" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
