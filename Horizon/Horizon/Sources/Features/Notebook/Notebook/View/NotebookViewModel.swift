@@ -57,7 +57,7 @@ final class NotebookViewModel {
         !(isNextDisabled && isPreviousDisabled)
     }
     private(set) var isPreviousDisabled: Bool = true
-    var navigationBarTopPadding: CGFloat { courseId == nil ? .zero : .huiSpaces.space24 }
+    var navigationBarTopPadding: CGFloat { courseId == nil ? .huiSpaces.space16 : .huiSpaces.space24 }
     private(set) var notes: [NotebookNote] = []
     private(set) var isLoaderVisible = true
     private(set) var title: String = ""
@@ -99,16 +99,16 @@ final class NotebookViewModel {
     }
 
     func goToModuleItem(_ note: NotebookNote, viewController: WeakViewController) {
-        // This is just a business rule that says if the user got here from viewing a module,
-        // We should not allow them to then navigate to it again.
-        let isDisabled = courseId != nil && pageUrl != nil
-        if isDisabled {
-            return
+        let isNavigatingFromModule = courseId != nil && pageUrl != nil
+        let courseNote = note.courseNotebookNote
+
+        if isNavigatingFromModule {
+            let noteVC = NotebookNoteAssembly.makeViewNoteViewController(courseNotebookNote: courseNote)
+            router.show(noteVC, from: viewController)
+        } else {
+            let routePath = "/courses/\(courseNote.courseId)/modules/items/\(courseNote.objectId)?asset_type=Page&notebook_disabled=true"
+            router.route(to: routePath, from: viewController)
         }
-        router.route(
-            to: "/courses/\(note.courseNotebookNote.courseId)/modules/items/\(note.courseNotebookNote.objectId)?asset_type=Page&notebook_disabled=true",
-            from: viewController
-        )
     }
 
     func isEnabled(filter: CourseNoteLabel) -> Bool {
