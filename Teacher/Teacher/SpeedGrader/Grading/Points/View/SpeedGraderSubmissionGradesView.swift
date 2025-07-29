@@ -445,10 +445,6 @@ struct SpeedGraderSubmissionGradesView: View {
     }
 }
 
-extension Assignment {
-    var hasRubrics: Bool { rubric?.isNotEmpty ?? false }
-}
-
 #if DEBUG
 #Preview {
     SpeedGraderAssembly.makeSpeedGraderViewControllerPreview(state: .data)
