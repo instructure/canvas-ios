@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "symbol-student-light.svg",
+      "filename" : "typo-student-light-v2.svg",
       "idiom" : "universal"
     },
     {
@@ -11,15 +11,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "symbol-student-dark.svg",
+      "filename" : "typo-student-dark-v2.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }

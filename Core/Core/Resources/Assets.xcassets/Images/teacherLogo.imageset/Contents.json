@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "teacher-light.svg",
+      "filename" : "symbol-teacher-light.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "teacher-dark.svg",
+      "filename" : "symbol-teacher-dark.svg",
       "idiom" : "universal"
     }
   ],
