@@ -392,6 +392,7 @@ extension Submission {
     /// See canvas-lms submission.rb `def needs_grading?`
     public var needsGrading: Bool {
         return excused != true &&
+            customGradeStatusId == nil &&
             (type != nil && (workflowState == .pending_review ||
                                 ([.graded, .submitted].contains(workflowState) &&
                                     (score == nil || !gradeMatchesCurrentSubmission))
@@ -399,7 +400,9 @@ extension Submission {
     }
 
     public var isGraded: Bool {
-        return excused == true || (score != nil && workflowState == .graded)
+        return excused == true
+            || customGradeStatusId != nil
+            || (score != nil && workflowState == .graded)
     }
 
     /// Returns the appropriate display properties for submission, with consideration for
@@ -425,9 +428,9 @@ extension Submission {
         // Graded check
         switch desc {
         case .usingStatus(.submitted):
-            return needsGrading == false ? .graded(gradedStatusVariant) : desc // Maintaining the old logic
+            return needsGrading == false ? .graded(.none) : desc // Maintaining the old logic
         case .onPaper, .noSubmission:
-            return isGraded ? .graded(gradedStatusVariant) : desc
+            return isGraded ? .graded(.none) : desc
         default:
             return desc
         }
@@ -436,13 +439,19 @@ extension Submission {
     public var status: SubmissionStatus {
         if late { return .late }
         if missing { return .missing }
+        if excused == true { return .excused }
+        if customGradeStatusId != nil { return .graded(gradedStatusVariant) }
         if submittedAt != nil { return .submitted }
         return .notSubmitted
     }
 
     public var statusIncludingGradedState: SubmissionStatus {
-        if isGraded { return excused == true ? .excused : .graded(gradedStatusVariant) }
-        return status
+        switch status {
+        case .graded, .excused:
+            return status
+        default:
+            return isGraded ? .graded(.none) : status
+        }
     }
 
     private var gradedStatusVariant: GradedStatusVariant {

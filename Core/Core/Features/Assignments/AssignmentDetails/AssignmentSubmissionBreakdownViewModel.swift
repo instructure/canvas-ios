@@ -37,6 +37,7 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
 
     public private(set) var color: Color = .accentColor
 
+    private let env: AppEnvironment
     private let assignmentID: String
     private let courseID: String
     private let submissionTypes: [SubmissionType]
@@ -48,6 +49,7 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
         self.courseID = courseID
         self.submissionTypes = submissionTypes
         self.color = color?.asColor ?? .accentColor
+        self.env = env
 
         summary = env.subscribe(GetSubmissionSummary(
             context: .course(courseID),
@@ -79,10 +81,36 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     }
 
     private func update() {
-        graded = summary.first?.graded ?? 0
-        ungraded = summary.first?.ungraded ?? 0
-        unsubmitted = summary.first?.unsubmitted ?? 0
+        let customSubmitted = customGradeStatedCount(for: .submitted)
+        let customUnsubmitted = customGradeStatedCount(for: .unsubmitted)
+
+        graded = (summary.first?.graded ?? 0) + customSubmitted + customUnsubmitted
+        ungraded = (summary.first?.ungraded ?? 0) - customSubmitted
+        unsubmitted = (summary.first?.unsubmitted ?? 0) - customUnsubmitted
+
         submissionCount = summary.first?.submissionCount ?? 0
         isReady = true
+    }
+
+    /// This is used because of a limitation on API for **`GetSubmissionSummary`**, by
+    /// which submissions of custom grade status is not being counted for **`graded`**
+    /// when workflow state equals to `unsubmitted` or `submitted`
+    private func customGradeStatedCount(for state: SubmissionWorkflowState) -> Int {
+        let context = env.database.viewContext
+
+        let predicate = NSCompoundPredicate(type: .and, subpredicates: [
+            NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID),
+            NSPredicate(
+                format: "%K != true AND %K != nil AND %K == %@",
+                #keyPath(Submission.excusedRaw),
+                #keyPath(Submission.customGradeStatusId),
+                #keyPath(Submission.workflowStateRaw), state.rawValue
+            )
+        ])
+
+        let request = Submission.fetchRequest()
+        request.predicate = predicate
+
+        return (try? context.count(for: request)) ?? 0
     }
 }
