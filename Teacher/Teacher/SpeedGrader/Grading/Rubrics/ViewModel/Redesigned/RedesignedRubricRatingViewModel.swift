@@ -41,15 +41,15 @@ class RedesignedRubricRatingViewModel: ObservableObject, Identifiable {
         rating.points.formatted()
     }
 
-    var accessibilityLabel: String {
-        rating.shortDescription.nilIfEmpty ?? value
-    }
-
     var bubble: RubricRatingBubble {
         RubricRatingBubble(
             title: rating.shortDescription,
             subtitle: rating.longDescription
         )
+    }
+    
+    var accessibilityLabel: String {
+        rating.shortDescription.nilIfEmpty ?? value
     }
 
     // MARK: - Private Properties

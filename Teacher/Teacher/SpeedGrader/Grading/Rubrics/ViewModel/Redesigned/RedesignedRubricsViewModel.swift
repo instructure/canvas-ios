@@ -28,14 +28,9 @@ class RedesignedRubricsViewModel: ObservableObject {
     @Published private(set) var submission: Submission
 
     private(set) var criterionViewModels: [RedesignedRubricCriterionViewModel] = []
-
     let interactor: RubricGradingInteractor
 
-    var controller = WeakViewController() {
-        didSet {
-            criterionViewModels.forEach { $0.controller = controller }
-        }
-    }
+    var controller = WeakViewController()
 
     // MARK: - Private
 

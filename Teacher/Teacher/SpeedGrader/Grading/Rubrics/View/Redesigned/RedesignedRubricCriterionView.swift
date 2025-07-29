@@ -35,30 +35,45 @@ struct RedesignedRubricCriterionView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Spacer().frame(height: 16)
-            Text(viewModel.description)
-                .font(.semibold16)
-                .foregroundColor(.textDarkest)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 16)
+            Button(
+                action: {
+                    withAnimation { isExpanded.toggle() }
+                },
+                label: {
+                    HStack {
+                        Text(viewModel.title)
+                            .font(.semibold16)
+                            .foregroundColor(.textDarkest)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, 16)
+
+                        Image
+                            .chevronDown
+                            .scaledIcon(size: 24)
+                            .foregroundStyle(Color.textDark)
+                            .padding(12)
+                            .rotationEffect(isExpanded ? .degrees(180) : .zero)
+                    }
+                    .contentShape(Rectangle())
+                }
+            )
+            .buttonStyle(.plain)
 
             if isExpanded {
 
                 if viewModel.longDescription.isNotEmpty {
-                    Spacer().frame(height: 16)
 
                     Text(viewModel.longDescription)
                         .font(.regular14)
                         .foregroundColor(.textDarkest)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 16)
-
+                        .padding(.bottom, 16)
                 }
             }
 
-            Spacer().frame(height: 16)
-
             if viewModel.shouldShowRubricRatings {
+
                 if viewModel.hideRubricPoints {
                     RubricTextRatingsListView(isExpanded: $isExpanded, viewModel: viewModel)
                 } else {
@@ -96,20 +111,6 @@ struct RedesignedRubricCriterionView: View {
             }
         }
         .elevation(.cardLarge, background: Color.backgroundLightest)
-        .overlay(alignment: .topTrailing) {
-            Button(
-                action: {
-                    withAnimation { isExpanded.toggle() }
-                }
-            ) {
-                Image
-                    .chevronDown
-                    .scaledIcon(size: 24)
-                    .padding(12)
-            }
-            .tint(.textDark)
-            .rotationEffect(isExpanded ? .degrees(180) : .zero)
-        }
     }
 
     private var shouldShowPointsScoreInput: Bool {

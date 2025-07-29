@@ -22,9 +22,7 @@ import SwiftUI
 
 class RedesignedRubricCriterionViewModel: ObservableObject, Identifiable {
 
-    // MARK: - Inputs
-
-    var controller = WeakViewController()
+    // MARK: - Published
 
     @Published var userComment: String?
     @Published var userPoints: Double?
@@ -33,16 +31,13 @@ class RedesignedRubricCriterionViewModel: ObservableObject, Identifiable {
 
     // MARK: - Outputs
 
+    let criterion: CDRubricCriterion
+    let isFreeFormCommentsEnabled: Bool
+    let hideRubricPoints: Bool
+    let ratingViewModels: [RedesignedRubricRatingViewModel]
+
     var shouldShowRubricNotUsedForScoringMessage: Bool {
         criterion.ignoreForScoring
-    }
-
-    var description: String {
-        criterion.shortDescription
-    }
-
-    var longDescription: String {
-        criterion.longDescription
     }
 
     var isSaving: CurrentValueSubject<Bool, Never> {
@@ -53,41 +48,33 @@ class RedesignedRubricCriterionViewModel: ObservableObject, Identifiable {
         !isFreeFormCommentsEnabled
     }
 
-    var criterionId: String {
-        criterion.id
+    var title: String {
+        criterion.shortDescription
     }
 
-    var criterionPoints: Double {
-        criterion.points
+    var longDescription: String {
+        criterion.longDescription
     }
 
-    var ratingViewModels: [RedesignedRubricRatingViewModel]
 
     // MARK: - Private Properties
 
-    let isFreeFormCommentsEnabled: Bool
-    let hideRubricPoints: Bool
-
-    private let criterion: CDRubricCriterion
-    private let router: Router
     private let interactor: RubricGradingInteractor
-
     private var subscriptions = Set<AnyCancellable>()
 
     init(
         criterion: CDRubricCriterion,
         isFreeFormCommentsEnabled: Bool,
         hideRubricPoints: Bool,
-        interactor: RubricGradingInteractor,
-        router: Router = AppEnvironment.shared.router
+        interactor: RubricGradingInteractor
     ) {
         self.criterion = criterion
         self.isFreeFormCommentsEnabled = isFreeFormCommentsEnabled
         self.hideRubricPoints = hideRubricPoints
         self.interactor = interactor
-        self.router = router
 
-        let ratings = (criterion.ratings ?? []).sorted(by: { $0.points < $1.points })
+        let ratings = (criterion.ratings ?? [])
+            .sorted(by: { $0.points < $1.points })
 
         if criterion.criterionUseRange {
 
@@ -146,7 +133,7 @@ class RedesignedRubricCriterionViewModel: ObservableObject, Identifiable {
     // MARK: - User Actions
 
     func updateComment(_ newComment: String) {
-        interactor.updateComment(criterionId: criterionId, comment: newComment)
+        interactor.updateComment(criterionId: criterion.id, comment: newComment)
     }
 
     func updateCustomRating(_ newPoints: Double) {

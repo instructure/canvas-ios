@@ -28,36 +28,39 @@ struct RubricTextRatingsListView: View {
 
     var body: some View {
         if isExpanded {
+
             VStack(spacing: 0) {
                 let ratingModels = Array(viewModel.ratingViewModels.reversed())
                 let lastRatingId = ratingModels.last?.id
                 ForEach(ratingModels) { ratingViewModel in
 
-                    HStack(alignment: .top, spacing: 0) {
-                        InstUI
-                            .RadioButton(isSelected: ratingViewModel.isSelected)
-                            .paddingStyle(.trailing, .cellIconText)
-
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(ratingViewModel.bubble.title)
-                                .textStyle(.cellLabel)
-                            Text(ratingViewModel.bubble.subtitle)
-                                .font(.regular14)
-                                .foregroundStyle(Color.textDarkest)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    .padding(.vertical, 12)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
+                    Button(action: {
                         ratingViewModel.isSelected.toggle()
-                    }
+                    }) {
+                        HStack(alignment: .top, spacing: 0) {
+                            InstUI
+                                .RadioButton(isSelected: ratingViewModel.isSelected)
+                                .paddingStyle(.trailing, .cellIconText)
 
-                    InstUI.Divider(isLast: ratingViewModel.id != lastRatingId)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(ratingViewModel.bubble.title)
+                                    .textStyle(.cellLabel)
+                                Text(ratingViewModel.bubble.subtitle)
+                                    .font(.regular14)
+                                    .foregroundStyle(Color.textDarkest)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        .padding(.vertical, 12)
+                        .padding(.horizontal, 16)
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+
+                    InstUI.Divider(ratingViewModel.id == lastRatingId ? .hidden : .padded)
                 }
             }
             .padding(.bottom, 8)
-            .padding(.horizontal, 16)
 
         } else if let bubble = viewModel.userRatingBubble {
 

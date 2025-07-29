@@ -47,7 +47,7 @@ struct RubricPointsRatingsListView: View {
                 }
             }
             .padding(.horizontal, 16)
-            .padding(.bottom, 8)
+            .padding(.vertical, 8)
         }
 
         if let bubble = viewModel.userRatingBubble, isExpanded == false {
@@ -69,7 +69,6 @@ struct RubricPointsRatingsListView: View {
                 RoundedRectangle(cornerRadius: 24).fill(.tint)
             })
             .padding(.horizontal, 16)
-            .padding(.vertical, 8)
         }
     }
 }
