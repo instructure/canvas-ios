@@ -154,7 +154,8 @@ struct SpeedGraderPageTabsView: View {
                 gradeViewModel: viewModel.gradeViewModel,
                 gradeStatusViewModel: viewModel.gradeStatusViewModel,
                 commentListViewModel: viewModel.commentListViewModel,
-                rubricsViewModel: viewModel.rubricsViewModel
+                rubricsViewModel: viewModel.rubricsViewModel,
+                redesignedRubricsViewModel: viewModel.redesignedRubricsViewModel
             )
             .clipped()
             Spacer().frame(height: bottomInset)
