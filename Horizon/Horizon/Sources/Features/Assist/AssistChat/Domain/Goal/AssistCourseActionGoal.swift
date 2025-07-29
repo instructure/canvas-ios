@@ -73,7 +73,7 @@ class AssistCourseActionGoal: AssistGoal {
                 )
             )
             .compactMap { (ragData, _) in
-                ragData.data.query
+                ragData.data.courseQuery
             }
             .eraseToAnyPublisher()
         }

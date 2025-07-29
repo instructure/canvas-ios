@@ -28,6 +28,7 @@ struct PineQueryMutation: APIGraphQLRequestable {
     var headers: [String: String?] {
         [
             "x-apollo-operation-name": "\(Self.operationName)",
+            "x-feature-slug": "canvas-career-ios",
             HttpHeader.accept: "application/json"
         ]
     }
@@ -36,16 +37,15 @@ struct PineQueryMutation: APIGraphQLRequestable {
         self.variables = Variables(
             input: RagQueryInput(
                 messages: messages,
-                source: "canvas",
-                metadata: ["courseId": courseID]
+                courseId: courseID
             )
         )
     }
 
-    public static let operationName: String = "ChatPrompt"
+    public static let operationName: String = "CourseQuery"
     public static var query: String = """
-        mutation \(operationName)($input: RagQueryInput!) {
-            query(input: $input) {
+        mutation \(operationName)($input: CourseRagQueryInput!) {
+            courseQuery(input: $input) {
                 response
                 citations {
                     sourceType
@@ -64,8 +64,7 @@ struct PineQueryMutation: APIGraphQLRequestable {
 
     struct RagQueryInput: Codable, Equatable {
         let messages: [DomainServiceConversationMessage]
-        let source: String
-        let metadata: [String: String]
+        let courseId: String
     }
 
     struct RagData: Codable {
@@ -73,7 +72,7 @@ struct PineQueryMutation: APIGraphQLRequestable {
     }
 
     struct RagQuery: Codable {
-        let query: RagResponse
+        let courseQuery: RagResponse
     }
 
     struct RagResponse: Codable {
