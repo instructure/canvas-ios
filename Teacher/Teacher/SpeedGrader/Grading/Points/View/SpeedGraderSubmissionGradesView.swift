@@ -23,6 +23,9 @@ struct SpeedGraderSubmissionGradesView: View {
     let assignment: Assignment
     let containerHeight: CGFloat
 
+    let attempt: Binding<Int>
+    let fileID: Binding<String?>
+
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
@@ -35,32 +38,53 @@ struct SpeedGraderSubmissionGradesView: View {
 
     @ObservedObject var gradeViewModel: SpeedGraderSubmissionGradesViewModel
     @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
+    @ObservedObject var commentListViewModel: SubmissionCommentListViewModel
     @ObservedObject var rubricsViewModel: RubricsViewModel
     @ObservedObject var redesignedRubricsViewModel: RedesignedRubricsViewModel
 
+    private enum FocusedInput: Hashable {
+        case gradeRow
+        case points
+        case comment
+        case rubric(Int)
+    }
+    @FocusState private var focusedInput: FocusedInput?
+
     var body: some View {
-        InstUI.BaseScreen(
-            state: gradeViewModel.state,
-            config: .init(
-                refreshable: false,
-                emptyPandaConfig: .init(
-                    scene: SpacePanda(), // TODO: use `.Unsupported`
-                    title: String(localized: "Moderated Grading Unsupported", bundle: .teacher)
+        ScrollViewReader { scrollViewProxy in
+            InstUI.BaseScreen(
+                state: gradeViewModel.state,
+                config: .init(
+                    refreshable: false,
+                    emptyPandaConfig: .init(
+                        scene: SpacePanda(), // TODO: use `.Unsupported`
+                        title: String(localized: "Moderated Grading Unsupported", bundle: .teacher)
+                    )
                 )
-            )
-        ) { geometry in
-            VStack(spacing: 0) {
-                gradingSection()
-                commentsSection()
+            ) { geometry in
+                VStack(spacing: 0) {
+                    gradingSection()
+                    commentsSection(scrollViewProxy: scrollViewProxy)
+                    if assignment.rubric?.isEmpty == false {
+                        rubricsSection(geometry: geometry)
+                    }
 
-                if assignment.rubric?.isEmpty == false {
-                    rubricsSection(geometry: geometry)
-                }
-
-                if ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled {
-                    Spacer().frame(height: 16)
+                    if ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled {
+                        Spacer().frame(height: 16)
+                    }
                 }
             }
+            .toolbar {
+                // This can't be used on the TextField itself, because it would recreate the Done buttons for each TextField :(
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button(String(localized: "Done", bundle: .teacher)) {
+                        focusedInput = nil
+                    }
+                    .font(.regular16, lineHeight: .fit)
+                }
+            }
+            .scrollDismissesKeyboard(focusedInput == .comment ? .interactively : .never)
         }
     }
 
@@ -84,6 +108,7 @@ struct SpeedGraderSubmissionGradesView: View {
     private func gradingInputViews() -> some View {
         VStack(spacing: 0) {
             gradeRow
+                .focused($focusedInput, equals: .gradeRow)
 
             if gradeViewModel.shouldShowPointsInput {
                 gradeInputTextField(
@@ -91,6 +116,7 @@ struct SpeedGraderSubmissionGradesView: View {
                     inputType: .points,
                     textValue: gradeViewModel.gradeState.originalScoreWithoutMetric ?? ""
                 )
+                .focused($focusedInput, equals: .points)
             }
 
             if gradeViewModel.shouldShowSlider {
@@ -344,9 +370,71 @@ struct SpeedGraderSubmissionGradesView: View {
 
     // MARK: - Comments
 
-    private func commentsSection() -> some View {
-        // TODO
-        SwiftUI.EmptyView()
+    private func commentsSection(scrollViewProxy: ScrollViewProxy) -> some View {
+        comments
+            .id("comments")
+            .focused($focusedInput, equals: .comment)
+            .onChange(of: focusedInput) {
+                if focusedInput == .comment {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        withAnimation {
+                            scrollViewProxy.scrollTo("comments", anchor: .bottom)
+                        }
+                    }
+                }
+            }
+    }
+
+    @ViewBuilder
+    private var comments: some View {
+        let commentCount = commentListViewModel.commentCount
+        let header = HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
+            Image.discussionLine
+                .scaledIcon()
+                .foregroundStyle(.tint)
+                .accessibilityHidden(true)
+
+            Text("Comments (\(commentCount))", bundle: .teacher)
+                .foregroundStyle(.textDarkest)
+                .font(.semibold16)
+                .accessibilityLabel(
+                    [String(localized: "Comments", bundle: .core),
+                     String.localizedNumberOfItems(commentCount)
+                    ].joined(separator: ", ")
+                )
+                .accessibilityAddTraits(.isHeader)
+        }
+        let content = SubmissionCommentListView(
+            viewModel: commentListViewModel,
+            attempt: attempt,
+            fileID: fileID
+        )
+
+        VStack(spacing: 0) {
+            InstUI.Divider()
+
+            if assignment.hasRubrics {
+                DisclosureGroup {
+                    content
+                } label: {
+                    header
+                }
+                .disclosureGroupStyle(InstUI.SectionDisclosureStyle(headerConfig: .init(
+                    paddingSet: .iconCell,
+                    accessoryIconSize: 24,
+                    hasDividerBelowHeader: true
+                )))
+            } else {
+                header
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .paddingStyle(set: .iconCell)
+
+                InstUI.Divider()
+
+                content
+            }
+        }
+        .padding(.top, 16)
     }
 
     // MARK: - Rubrics
@@ -388,3 +476,9 @@ struct SpeedGraderSubmissionGradesView: View {
         .background(Color.backgroundLight)
     }
 }
+
+#if DEBUG
+#Preview {
+    SpeedGraderAssembly.makeSpeedGraderViewControllerPreview(state: .data)
+}
+#endif
