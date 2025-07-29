@@ -334,13 +334,13 @@ class SubmissionTests: CoreTestCase {
         XCTAssertEqual(notSubmitted.status, .notSubmitted)
 
         let graded = Submission.make(from: .make(excused: false, score: 95, submitted_at: Date(), workflow_state: .graded))
-        XCTAssertEqual(graded.statusIncludingGradedState, .graded(.none))
+        XCTAssertEqual(graded.statusIncludingGradedState, .graded)
         XCTAssertEqual(graded.status, .submitted)
         XCTAssertEqual(graded.status, graded.status)
 
         let excused = Submission.make(from: .make(excused: true, score: 95, submitted_at: Date(), workflow_state: .graded))
         XCTAssertEqual(excused.statusIncludingGradedState, .excused)
-        XCTAssertEqual(excused.status, .submitted)
+        XCTAssertEqual(excused.status, .excused)
         XCTAssertEqual(excused.status, excused.status)
     }
 
@@ -383,7 +383,7 @@ class SubmissionTests: CoreTestCase {
         onPaperGradedSubmission.workflowState = .graded
         onPaperGradedSubmission.assignment = assignment
 
-        XCTAssertEqual(onPaperGradedSubmission.stateDisplayProperties, .graded(.none))
+        XCTAssertEqual(onPaperGradedSubmission.stateDisplayProperties, .graded)
     }
 }
 

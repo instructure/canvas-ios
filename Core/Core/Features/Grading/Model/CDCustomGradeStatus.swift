@@ -30,7 +30,7 @@ public class CDCustomGradeStatus: NSManagedObject {
 
         let predicate = NSCompoundPredicate(type: .and, subpredicates: [
             NSPredicate(key: #keyPath(CDCustomGradeStatus.id), equals: item.id),
-            NSPredicate(key: #keyPath(CDCustomGradeStatus.courseID), equals: courseID),
+            NSPredicate(key: #keyPath(CDCustomGradeStatus.courseID), equals: courseID)
         ])
 
         let model: CDCustomGradeStatus = client.first(
