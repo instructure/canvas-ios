@@ -78,13 +78,16 @@ public extension HorizonUI {
                 }
             }
             .padding(.huiSpaces.space16)
-            .huiBorder(
-                level: .level1,
-                color: isSelected
-                ? Color.huiColors.surface.institution
-                : Color.huiColors.lineAndBorders.lineStroke,
-                radius: cornerRadius.attributes.radius
-            )
+            .background {
+                RoundedRectangle(cornerRadius: cornerRadius.attributes.radius)
+                    .fill(Color.huiColors.surface.cardPrimary)
+                    .huiBorder(level: .level1,
+                               color: isSelected
+                               ? Color.huiColors.surface.institution
+                               : Color.huiColors.lineAndBorders.lineStroke,
+                               radius: cornerRadius.attributes.radius
+                    )
+            }
         }
     }
 }

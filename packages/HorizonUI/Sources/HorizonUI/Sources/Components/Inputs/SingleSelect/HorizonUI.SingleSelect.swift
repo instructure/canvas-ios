@@ -142,7 +142,7 @@ extension HorizonUI {
                 .minimumScaleFactor(0.5)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, .huiSpaces.space12)
-                .padding(.vertical, .huiSpaces.space8)
+                .padding(.vertical, .huiSpaces.space12)
                 .background {
                     GeometryReader { geometry in
                         HStack {}
@@ -219,6 +219,7 @@ extension HorizonUI {
                         .onChange(of: text, onTextChange)
                         .onChange(of: selection) { _, newValue in text = newValue }
                         .onChange(of: focused) { _, newValue in searchFocuse = newValue }
+                        .frame(height: 44)
                 } else {
                     Text(selection.isEmpty ? placeholder ?? "" : selection)
                         .huiTypography(.p1)
@@ -227,6 +228,7 @@ extension HorizonUI {
                         .padding(HorizonUI.spaces.space12)
                         .padding(.trailing, .huiSpaces.space24)
                         .overlay(textOverlay(isOuter: false))
+                        .frame(height: 44)
                 }
                 Image.huiIcons.chevronRight
                     .padding(.horizontal, .huiSpaces.space12)
