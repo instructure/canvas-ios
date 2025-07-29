@@ -53,4 +53,25 @@ extension String {
     public static func localizedAttemptNumber(_ attempt: Int) -> String {
         String.localizedStringWithFormat(String(localized: "Attempt %d", bundle: .core), attempt)
     }
+
+    /// Modifed letter grade to be used with VoiceOver.
+    ///
+    /// It fixes the following issues:
+    /// - Grades like "B-" are read out as "B", with the "-" ommited. This method converts "-" to "minus".
+    ///   Grades like "B+" are read out as "B plus" by default.
+    /// - The letter "A" in grades like "A+" or "A-" is read out without emphasis. This method makes it read like a standalone letter.
+    public static func accessibiltyLetterGrade(_ grade: String?) -> String? {
+        guard let grade else { return nil }
+
+        if grade.hasSuffix("-") {
+            return "'\(String(grade.dropLast()))' \(gradeMinus)"
+        }
+
+        if grade.hasSuffix("+") {
+            return "'\(String(grade.dropLast()))' +"
+        }
+
+        return "'\(grade)'"
+    }
+    private static let gradeMinus = String(localized: "minus", bundle: .core, comment: "As in grades 'A-' or 'C-'")
 }
