@@ -41,7 +41,13 @@ struct SpeedGraderSubmissionGradesView: View {
     @ObservedObject var commentListViewModel: SubmissionCommentListViewModel
     @ObservedObject var rubricsViewModel: RubricsViewModel
 
-    @FocusState private var isCommentsFocused: Bool
+    private enum FocusedInput: Hashable {
+        case gradeRow
+        case points
+        case comment
+        case rubric(Int)
+    }
+    @FocusState private var focusedInput: FocusedInput?
 
     var body: some View {
         ScrollViewReader { scrollViewProxy in
@@ -64,7 +70,7 @@ struct SpeedGraderSubmissionGradesView: View {
                 }
                 .padding(.bottom, 16)
             }
-            .scrollDismissesKeyboard(.interactively)
+            .scrollDismissesKeyboard(focusedInput == .comment ? .interactively : .never)
         }
     }
 
@@ -88,6 +94,7 @@ struct SpeedGraderSubmissionGradesView: View {
     private func gradingInputViews() -> some View {
         VStack(spacing: 0) {
             gradeRow
+                .focused($focusedInput, equals: .gradeRow)
 
             if gradeViewModel.shouldShowPointsInput {
                 gradeInputTextField(
@@ -95,6 +102,7 @@ struct SpeedGraderSubmissionGradesView: View {
                     inputType: .points,
                     textValue: gradeViewModel.gradeState.originalScoreWithoutMetric ?? ""
                 )
+                .focused($focusedInput, equals: .points)
             }
 
             if gradeViewModel.shouldShowSlider {
@@ -351,9 +359,9 @@ struct SpeedGraderSubmissionGradesView: View {
     private func commentsSection(scrollViewProxy: ScrollViewProxy) -> some View {
         comments
             .id("comments")
-            .focused($isCommentsFocused)
-            .onChange(of: isCommentsFocused) {
-                if isCommentsFocused {
+            .focused($focusedInput, equals: .comment)
+            .onChange(of: focusedInput) {
+                if focusedInput == .comment {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         withAnimation {
                             scrollViewProxy.scrollTo("comments", anchor: .bottom)
