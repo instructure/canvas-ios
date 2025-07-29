@@ -301,7 +301,7 @@ private extension AssistChatMessage {
         return .init(
             id: "\(id)\(chipOptions.count)\(onFeedbackChange != nil ? "feedback" : ""))",
             content: text ?? "",
-            style: role == .Assistant ? .transparent : .white,
+            style: role == .Assistant ? .transparent : .semitransparentDark,
             chipOptions: chipOptions,
             citations: citations,
             onFeedbackChange: onFeedbackChange,
