@@ -53,7 +53,7 @@ class AboutInfoEntryTests: XCTestCase {
 
     func testAppEntryWithStudentApp() {
         let testee = AboutInfoEntry.app(.student)
-        XCTAssertEqual(testee.label, "Canvas Student")
+        XCTAssertEqual(testee.label, "Canvas")
     }
 
     func testAppEntryWithTeacherApp() {
