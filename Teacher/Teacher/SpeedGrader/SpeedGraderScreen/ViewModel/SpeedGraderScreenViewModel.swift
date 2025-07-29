@@ -228,5 +228,7 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDelegate {
     ) {
         pages.pauseWebViewPlayback()
         pages.pauseMediaPlayback()
+        // Close keyboard
+        pages.view.endEditing(true)
     }
 }
