@@ -457,8 +457,6 @@ struct SpeedGraderSubmissionGradesView: View {
             }
 
         } else {
-
-            Spacer().frame(height: 16)
             RedesignedRubricsView(viewModel: redesignedRubricsViewModel)
         }
     }

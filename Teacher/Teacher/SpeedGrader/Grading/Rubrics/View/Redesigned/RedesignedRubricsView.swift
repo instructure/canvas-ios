@@ -27,7 +27,6 @@ struct RedesignedRubricsView: View {
 
     var body: some View {
         VStack {
-
             InstUI.Divider()
 
             Text("Rubric", bundle: .teacher)

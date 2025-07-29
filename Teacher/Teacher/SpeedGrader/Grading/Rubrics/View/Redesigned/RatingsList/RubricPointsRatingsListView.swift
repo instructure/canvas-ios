@@ -33,12 +33,7 @@ struct RubricPointsRatingsListView: View {
                 let lastRatingId = ratingModels.last?.id
                 ForEach(ratingModels) { ratingViewModel in
                     RubricRatingExpandedView(viewModel: ratingViewModel)
-
-                    if ratingViewModel.id != lastRatingId {
-                        InstUI
-                            .Divider()
-                            .padding(.horizontal, 16)
-                    }
+                    InstUI.Divider(ratingViewModel.id == lastRatingId ? .hidden : .padded)
                 }
             }
             .padding(.bottom, 8)

@@ -53,9 +53,7 @@ struct RubricTextRatingsListView: View {
                         ratingViewModel.isSelected.toggle()
                     }
 
-                    if ratingViewModel.id != lastRatingId {
-                        InstUI.Divider()
-                    }
+                    InstUI.Divider(isLast: ratingViewModel.id != lastRatingId)
                 }
             }
             .padding(.bottom, 8)
