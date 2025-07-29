@@ -108,15 +108,6 @@ struct GradeInputTextFieldCell: View {
         .foregroundStyle(.tint)
         .multilineTextAlignment(.trailing)
         .keyboardType(.decimalPad)
-        .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button(String(localized: "Done", bundle: .teacher)) {
-                    isFocused = false
-                }
-                .font(.regular16, lineHeight: .fit)
-            }
-        }
         .onChange(of: isFocused) {
             // on begin editing: select text
             if isFocused && externalText.isNotEmpty {

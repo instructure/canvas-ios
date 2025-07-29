@@ -70,6 +70,16 @@ struct SpeedGraderSubmissionGradesView: View {
                 }
                 .padding(.bottom, 16)
             }
+            .toolbar {
+                // This can't be used on the TextField itself, because it would recreate the Done buttons for each TextField :(
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button(String(localized: "Done", bundle: .teacher)) {
+                        focusedInput = nil
+                    }
+                    .font(.regular16, lineHeight: .fit)
+                }
+            }
             .scrollDismissesKeyboard(focusedInput == .comment ? .interactively : .never)
         }
     }
