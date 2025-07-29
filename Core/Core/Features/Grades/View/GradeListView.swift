@@ -455,7 +455,7 @@ struct GradeListViewPreview: PreviewProvider {
                     appEnvironment: .shared,
                     courseId: "courseId"
                 ),
-                router: PreviewEnvironment.shared.router
+                env: PreviewEnvironment.shared
             )
         )
     }

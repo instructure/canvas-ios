@@ -96,10 +96,10 @@ public class InboxSettingsViewModel: ObservableObject {
                     .eraseToAnyPublisher()
             }
             .receive(on: DispatchQueue.main)
-            .sink { [weak self, router] controller in
+            .sink { [weak self] controller in
                 if let controller {
                     _ = UIAccessibility.announcePersistently(String(localized: "Changes successfully saved", bundle: .core))
-                    router.pop(from: controller)
+                    self?.router.pop(from: controller)
                 } else {
                     self?.showFailedToSaveDialog = true
                 }
@@ -113,8 +113,8 @@ public class InboxSettingsViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         didTapBack
-            .sink { [router] controller in
-                router.pop(from: controller)
+            .sink { [weak self] controller in
+                self?.router.pop(from: controller)
             }
             .store(in: &subscriptions)
 

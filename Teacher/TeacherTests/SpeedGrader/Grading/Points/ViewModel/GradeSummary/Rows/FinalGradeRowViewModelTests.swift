@@ -26,7 +26,8 @@ class FinalGradeRowViewModelTests: TeacherTestCase {
     func test_init_withNoneSuffixType() {
         let viewModel = FinalGradeRowViewModel(
             currentGradeText: "A",
-            suffixType: .none
+            suffixType: .none,
+            isGradedButNotPosted: false
         )
 
         XCTAssertEqual(viewModel.currentGradeText, "A")
@@ -36,7 +37,8 @@ class FinalGradeRowViewModelTests: TeacherTestCase {
     func test_init_withMaxGradeWithUnitSuffixType() {
         let viewModel = FinalGradeRowViewModel(
             currentGradeText: "85",
-            suffixType: .maxGradeWithUnit("100 pts")
+            suffixType: .maxGradeWithUnit("100 pts"),
+            isGradedButNotPosted: false
         )
 
         XCTAssertEqual(viewModel.currentGradeText, "85")
@@ -46,7 +48,8 @@ class FinalGradeRowViewModelTests: TeacherTestCase {
     func test_init_withPercentageSuffixType() {
         let viewModel = FinalGradeRowViewModel(
             currentGradeText: "92",
-            suffixType: .percentage
+            suffixType: .percentage,
+            isGradedButNotPosted: false
         )
 
         XCTAssertEqual(viewModel.currentGradeText, "92")
@@ -56,10 +59,23 @@ class FinalGradeRowViewModelTests: TeacherTestCase {
     func test_init_withNilCurrentGradeText() {
         let viewModel = FinalGradeRowViewModel(
             currentGradeText: nil,
-            suffixType: .none
+            suffixType: .none,
+            isGradedButNotPosted: false
         )
 
         XCTAssertEqual(viewModel.currentGradeText, GradeFormatter.BlankPlaceholder.oneDash.stringValue)
         XCTAssertEqual(viewModel.suffixText, "")
+    }
+
+    func test_init_whenIsGradedButNotPostedIsTrue() {
+        let viewModel = FinalGradeRowViewModel(
+            currentGradeText: "85",
+            suffixType: .maxGradeWithUnit("100 pts"),
+            isGradedButNotPosted: true
+        )
+
+        XCTAssertEqual(viewModel.currentGradeText, "85")
+        XCTAssertEqual(viewModel.suffixText, "   / 100 pts")
+        XCTAssertEqual(viewModel.shouldShowNotPostedIcon, true)
     }
 }

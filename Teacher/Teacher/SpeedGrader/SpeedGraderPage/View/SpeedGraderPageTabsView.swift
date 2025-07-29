@@ -64,10 +64,10 @@ struct SpeedGraderPageTabsView: View {
             Group {
                 switch containerType {
                 case .drawer:
-                    tabPicker
+                    tabPicker(shouldOpenDrawerIfNeeded: true)
                         .padding(.bottom, 16)
                 case .splitView:
-                    tabPicker
+                    tabPicker(shouldOpenDrawerIfNeeded: false)
                         .frame(height: splitViewHeaderHeight)
                 }
             }
@@ -105,12 +105,30 @@ struct SpeedGraderPageTabsView: View {
         }
     }
 
-    private var tabPicker: some View {
-        InstUI.SegmentedPicker(selection: $selectedTab) {
+    @ViewBuilder
+    private func tabPicker(shouldOpenDrawerIfNeeded: Bool) -> some View {
+        let content = {
             ForEach(SpeedGraderPageTab.allCases, id: \.self) { tab in
                 Text(tab.title)
                     .tag(tab)
             }
+        }
+        if shouldOpenDrawerIfNeeded {
+            InstUI.SegmentedPicker(
+                selection: $selectedTab,
+                segmentCount: SpeedGraderPageTab.allCases.count,
+                onTapSelectedTab: {
+                    if drawerState.isClosed {
+                        snapDrawer(to: .mid)
+                    }
+                },
+                content: content
+            )
+        } else {
+            InstUI.SegmentedPicker(
+                selection: $selectedTab,
+                content: content
+            )
         }
     }
 
@@ -122,9 +140,9 @@ struct SpeedGraderPageTabsView: View {
             SpeedGraderSubmissionGradesView(
                 assignment: viewModel.assignment,
                 containerHeight: geometry.size.height,
-                rubricsViewModel: viewModel.rubricsViewModel,
+                gradeViewModel: viewModel.gradeViewModel,
                 gradeStatusViewModel: viewModel.gradeStatusViewModel,
-                gradeViewModel: viewModel.gradeViewModel
+                rubricsViewModel: viewModel.rubricsViewModel
             )
             .clipped()
             Spacer().frame(height: bottomInset)

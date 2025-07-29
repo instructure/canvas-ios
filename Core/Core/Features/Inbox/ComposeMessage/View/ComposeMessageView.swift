@@ -98,7 +98,8 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .foregroundColor(.textDarkest)
             .background(
                 GeometryReader { reader in
-                    return Color.backgroundLightest
+                    Color
+                        .backgroundLightest
                         .onTapGesture {
                             model.clearSearchedRecipients()
                             focusedInput = nil
@@ -134,7 +135,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .interactiveDismissDisabled()
         }
         .sheet(isPresented: $model.isAudioRecordVisible) {
-            AttachmentPickerAssembly.makeAudioRecorder(router: model.router, onSelect: model.addFile)
+            AttachmentPickerAssembly.makeAudioRecorder(env: model.env, onSelect: model.addFile)
                 .interactiveDismissDisabled()
         }
         .confirmationAlert(

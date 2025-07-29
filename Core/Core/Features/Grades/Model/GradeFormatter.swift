@@ -220,41 +220,67 @@ public class GradeFormatter {
     }
 
     /// Returns the original score (before late penalties) as a plain string without metric suffixes.
+    /// Returns "Excused" when submission is excused.
     /// This method ignores the "hide quantitative data" flag.
-    public static func originalScoreWithoutMetric(
-        for submission: Submission
-    ) -> String? {
-        guard let originalScore = submission.enteredScore else {
-            return nil
-        }
+    public static func originalScoreWithoutMetric(for submission: Submission) -> String? {
+        formatGradeWithoutMetric(
+            gradingType: .points, // ensures result is based on `enteredScore`
+            isExcused: submission.excused,
+            score: submission.enteredScore,
+            grade: nil
+        )
+    }
 
-        return numberFormatter.string(from: truncate(originalScore))
+    /// Returns the original grade (before late penalties) formatted according to the grading type without units,
+    /// (e.g., "85", "A", "Complete"), or nil if no grade exists.
+    /// Returns "Excused" when submission is excused.
+    /// This method ignores the "hide quantitative data" flag.
+    public static func originalGradeWithoutMetric(for submission: Submission, gradingType: GradingType) -> String? {
+        formatGradeWithoutMetric(
+            gradingType: gradingType,
+            isExcused: submission.excused,
+            score: submission.enteredScore,
+            grade: submission.enteredGrade
+        )
     }
 
     /// Returns the final grade (with late penalties applied) formatted according to the grading type without units,
-    /// (e.g., "85", "A", "Complete"), or nil if no grade exists. This method ignores the "hide quantitative data" flag.
-    public static func finalGradeWithoutMetric(
-        for assignment: Assignment,
-        submission: Submission
+    /// (e.g., "85", "A", "Complete"), or nil if no grade exists.
+    /// Returns "Excused" when submission is excused.
+    /// This method ignores the "hide quantitative data" flag.
+    public static func finalGradeWithoutMetric(for submission: Submission, gradingType: GradingType) -> String? {
+        formatGradeWithoutMetric(
+            gradingType: gradingType,
+            isExcused: submission.excused,
+            score: submission.score,
+            grade: submission.grade
+        )
+    }
+
+    private static func formatGradeWithoutMetric(
+        gradingType: GradingType,
+        isExcused: Bool?,
+        score: Double?,
+        grade: String?
     ) -> String? {
-        guard submission.excused != true else {
+        if isExcused ?? false {
             return String(localized: "Excused", bundle: .core)
         }
 
-        switch assignment.gradingType {
+        switch gradingType {
         case .points:
-            guard let score = submission.score else { return nil }
+            guard let score else { return nil }
             return numberFormatter.string(from: truncate(score))
 
         case .percent:
-            guard let grade = submission.grade else { return nil }
+            guard let grade else { return nil }
             return grade.replacingOccurrences(of: "%", with: "")
 
         case .letter_grade, .gpa_scale:
-            return submission.grade
+            return grade
 
         case .pass_fail:
-            switch submission.grade {
+            switch grade {
             case "complete":
                 return String(localized: "Complete", bundle: .core)
             case "incomplete":
@@ -264,7 +290,7 @@ public class GradeFormatter {
             case "fail":
                 return String(localized: "Fail", bundle: .core)
             default:
-                return submission.grade
+                return grade
             }
 
         case .not_graded:
@@ -321,25 +347,5 @@ public class GradeFormatter {
                     ?? grade
             }
         }
-    }
-
-    public static func longString(for assignment: Assignment, submission: Submission, rubricScore: Double? = nil, final: Bool = true) -> String {
-        let score = (final ? submission.score : rubricScore ?? submission.enteredScore) ?? 0
-        let scoreString = numberFormatter.string(from: truncate(score)) ?? "0"
-        let possibleString = numberFormatter.string(from: truncate(assignment.pointsPossible ?? 0)) ?? "0"
-        let grade = assignment.gradingType == .points ? nil : gradeString(for: assignment, submission: submission, final: final)
-        if assignment.hideQuantitativeData {
-            return grade ?? ""
-        }
-        if let grade = grade {
-            return String.localizedStringWithFormat(
-                String(localized: "%@/%@ (%@)", bundle: .core, comment: "score/points possible (grade)"),
-                scoreString, possibleString, grade
-            )
-        }
-        return String.localizedStringWithFormat(
-            String(localized: "%@/%@", bundle: .core, comment: "score/points"),
-            scoreString, possibleString
-        )
     }
 }

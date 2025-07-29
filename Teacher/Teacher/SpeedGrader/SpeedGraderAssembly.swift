@@ -55,7 +55,7 @@ enum SpeedGraderAssembly {
         let view = SpeedGraderScreen(
             viewModel: viewModel
         )
-        return CoreHostingController(view)
+        return CoreHostingController(view, env: env)
     }
 
     static func makePageViewModel(
@@ -69,7 +69,8 @@ enum SpeedGraderAssembly {
     ) -> SpeedGraderPageViewModel {
         let rubricGradingInteractor = RubricGradingInteractorLive(
             assignment: assignment,
-            submission: submission
+            submission: submission,
+            env: env
         )
 
         let gradeInteractor = GradeInteractorLive(
@@ -105,7 +106,8 @@ enum SpeedGraderAssembly {
             rubricsViewModel: .init(
                 assignment: assignment,
                 submission: submission,
-                interactor: rubricGradingInteractor
+                interactor: rubricGradingInteractor,
+                router: env.router
             ),
             submissionWordCountViewModel: .init(
                 userId: submission.userID,
