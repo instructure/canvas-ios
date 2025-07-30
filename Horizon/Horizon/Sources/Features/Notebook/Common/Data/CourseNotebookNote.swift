@@ -114,8 +114,7 @@ extension CourseNotebookNote {
             highlightData: NotebookHighlight(
                 selectedText: "Selected Text",
                 textPosition: NotebookHighlight.TextPosition(start: 0, end: 0),
-                range: NotebookHighlight.Range(startContainer: "", startOffset: 0, endContainer: "", endOffset: 0),
-                iconSVG: CourseNoteLabel.important.iconSVG
+                range: NotebookHighlight.Range(startContainer: "", startOffset: 0, endContainer: "", endOffset: 0)
             ),
             labels: [CourseNoteLabel.confusing]
         )

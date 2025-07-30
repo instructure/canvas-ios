@@ -20,18 +20,15 @@ public struct NotebookHighlight: Codable, Equatable {
     public let selectedText: String
     public let textPosition: TextPosition
     public let range: Range
-    public let iconSVG: String
 
     public init(
         selectedText: String,
         textPosition: TextPosition,
-        range: Range,
-        iconSVG: String
+        range: Range
     ) {
         self.selectedText = selectedText
         self.textPosition = textPosition
         self.range = range
-        self.iconSVG = iconSVG
     }
 
     public struct TextPosition: Codable, Equatable {

@@ -294,8 +294,7 @@ extension CDHNotebookNote {
                 startOffset: Int(truncating: startOffset),
                 endContainer: endContainer,
                 endOffset: Int(truncating: endOffset),
-            ),
-            iconSVG: CourseNoteLabel.important.iconSVG
+            )
         )
     }
 }

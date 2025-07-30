@@ -292,8 +292,7 @@ extension NotebookTextSelection {
         NotebookHighlight(
             selectedText: selectedText,
             textPosition: textPosition.textPosition,
-            range: range.range,
-            iconSVG: label.iconSVG
+            range: range.range
         )
     }
 }
