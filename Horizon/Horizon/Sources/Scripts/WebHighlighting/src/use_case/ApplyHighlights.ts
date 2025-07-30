@@ -10,11 +10,7 @@ export default function applyHighlights(highlights: [NotebookTextSelection]) {
 const highlightClassName = "notebook-highlight";
 const highlightIconClassName = "notebook-highlight-icon";
 
-export const addHighlight = (
-  notebookTextSelection: NotebookTextSelection
-):
-  | { notebookTextSelection: NotebookTextSelection; highlightElement: Node }
-  | undefined => {
+export const addHighlight = (notebookTextSelection: NotebookTextSelection) => {
   let parent = document.getElementById("parent-container");
   if (!parent) return;
 
@@ -35,7 +31,6 @@ export const addHighlight = (
 
     if (!highlightElement) return;
     parent.replaceChild(highlightElement, textNode);
-    highlightElement.appendChild(createIcon(notebookTextSelection));
     return highlightElement;
   });
 
@@ -43,7 +38,7 @@ export const addHighlight = (
     ? highlightElements[0]
     : undefined;
   if (!highlightElement) return;
-  return { notebookTextSelection, highlightElement };
+  highlightElement.appendChild(createIcon(notebookTextSelection));
 };
 
 function createIcon(notebookTextSelection: NotebookTextSelection): Node {
