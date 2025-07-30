@@ -50,7 +50,6 @@ struct RubricNoteCommentEditView: View {
                     Image
                         .circleArrowUpSolid
                         .scaledIcon(size: 24)
-                        //.foregroundStyle(.tint)
                 }
                 .padding(.trailing, 4)
                 .padding(.bottom, 4)
