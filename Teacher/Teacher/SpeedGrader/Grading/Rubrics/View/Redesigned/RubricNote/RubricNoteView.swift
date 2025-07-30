@@ -36,16 +36,14 @@ struct RubricNoteView: View {
             if let comment, comment.isNotEmpty, !isEditFieldShown {
                 RubricNoteCommentBubbleView(comment: comment) {
                     isEditFieldShown = true
-                    isEditFieldFocused = true
                 }
             } else {
                 RubricNoteCommentEditView(comment: comment ?? "") { newComment in
-                    updated(newComment.trimmed())
+                    updated(newComment)
                     isEditFieldShown = false
-                    isEditFieldFocused = false
                 }
-                .focused($isEditFieldFocused)
                 .paddingStyle(.trailing, .standard)
+                .focused($isEditFieldFocused)
                 .onChange(of: isEditFieldFocused) { _, newValue in
                     if newValue == false {
                         isEditFieldShown = false

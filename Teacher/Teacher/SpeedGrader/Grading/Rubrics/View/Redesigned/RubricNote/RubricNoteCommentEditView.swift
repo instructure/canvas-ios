@@ -21,18 +21,20 @@ import Core
 
 struct RubricNoteCommentEditView: View {
 
-    @ScaledMetric private var uiScale: CGFloat = 1
-
-    @State private var text: String
-
+    private let comment: String
     private var onSendTapped: (String) -> Void
+
+    @ScaledMetric private var uiScale: CGFloat = 1
+    @FocusState private var isFocused: Bool
+    @State private var text: String
 
     init(
         comment: String,
         onSendTapped: @escaping (String) -> Void
     ) {
-        self._text = .init(initialValue: comment)
+        self.comment = comment
         self.onSendTapped = onSendTapped
+        self._text = .init(initialValue: comment)
     }
 
     var body: some View {
@@ -44,61 +46,44 @@ struct RubricNoteCommentEditView: View {
             .padding(.trailing, 30 * uiScale)
             .padding(.vertical, 8)
             .overlay(alignment: .bottomTrailing) {
-                Button(
-                    action: {
-                        onSendTapped(text)
-                    }
-                ) {
-
-                    let image = Image
+                Button(action: submitText) {
+                    Image
                         .circleArrowUpSolid
                         .scaledIcon(size: 24)
-
-                    if text.isEmpty {
-                        image.foregroundStyle(Color.disabledGray)
-                    } else {
-                        image.foregroundStyle(.tint)
-                    }
+                        //.foregroundStyle(.tint)
                 }
                 .padding(.trailing, 4)
                 .padding(.bottom, 4)
+                .disabled(text.isEmpty && comment.isEmpty)
             }
             .overlay {
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(Color.borderMedium, lineWidth: 0.5)
                     .frame(minHeight: 32)
             }
+            .onSubmit(submitText)
+            .focused($isFocused)
+            .onFirstAppear {
+                guard comment.isNotEmpty else { return }
+                isFocused = true
+            }
+    }
+
+    private func submitText() {
+        defer { isFocused = false }
+        guard comment.trimmed() != text.trimmed() else { return }
+        onSendTapped(text.trimmed())
     }
 }
 
 #if DEBUG
 
 struct RubricNoteCommentEditView_Previews: PreviewProvider {
-
-    private struct ContentView: View {
-
-        @FocusState private var isFocused: Bool
-
-        var body: some View {
-            VStack(spacing: 30) {
-
-                RubricNoteCommentEditView(comment: "Hello, World") { submitted in
-                    print(submitted)
-                }
-                .focused($isFocused)
-
-                Button("Focus") {
-                    isFocused = true
-                }
-                .buttonStyle(.bordered)
-                .buttonBorderShape(.capsule)
-            }
-            .padding()
-        }
-    }
-
     static var previews: some View {
-        ContentView()
+        RubricNoteCommentEditView(comment: "Some Comment") { submitted in
+            print(submitted)
+        }
+        .padding()
     }
 }
 
