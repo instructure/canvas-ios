@@ -187,6 +187,7 @@ private class NotebookTextSelectionChangeMessageHandler: NSObject, WKScriptMessa
 struct NotebookTextSelection: Codable, Equatable {
     let backgroundColor: String?
     let borderColor: String?
+    let iconSVG: String
     let range: RangeSelector
     let selectedText: String
     let textPosition: TextPositionSelector

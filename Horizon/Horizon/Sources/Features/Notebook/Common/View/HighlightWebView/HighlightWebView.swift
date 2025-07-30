@@ -201,11 +201,10 @@ final class HighlightWebView: CoreWebView {
             return
         }
 
-        guard let notebookTextSelection = currentNotebookTextSelection,
-              let notebookHighlight = notebookTextSelection.notebookHighlight else {
+        guard let notebookTextSelection = currentNotebookTextSelection else {
             return
         }
-
+        let notebookHighlight = notebookTextSelection.notebookHighlight(label: label)
         if label == .other,
             let urlEncodedpageURL = pageURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             router.route(
@@ -235,42 +234,17 @@ final class HighlightWebView: CoreWebView {
 // MARK: - Extensions
 extension CourseNotebookNote {
     var notebookTextSelection: NotebookTextSelection? {
-        let label = labels?.first
         guard let highlightData = highlightData,
-              let rangeSelector = rangeSelector,
-              let textPositionSelector = textPositionSelector else {
+              let label = labels?.first else {
             return nil
         }
         return NotebookTextSelection(
-            backgroundColor: label?.backgroundColorCSS ?? "\(Color.huiColors.surface.attention.hexString)33",
-            borderColor: label?.borderColorCSS ?? Color.huiColors.surface.attention.hexString,
-            range: rangeSelector,
+            backgroundColor: label.backgroundColorCSS,
+            borderColor: label.borderColorCSS,
+            iconSVG: label.iconSVG,
+            range: highlightData.range.rangeSelector,
             selectedText: highlightData.selectedText,
-            textPosition: textPositionSelector
-        )
-    }
-
-    var range: NotebookHighlight.Range? {
-        guard let highlightData = highlightData else {
-            return nil
-        }
-        return .init(
-            startContainer: highlightData.range.startContainer,
-            startOffset: highlightData.range.startOffset,
-            endContainer: highlightData.range.endContainer,
-            endOffset: highlightData.range.endOffset
-        )
-    }
-
-    var rangeSelector: NotebookTextSelection.RangeSelector? {
-        guard let highlightData = highlightData else {
-            return nil
-        }
-        return .init(
-            startContainer: highlightData.range.startContainer,
-            endContainer: highlightData.range.endContainer,
-            startOffset: highlightData.range.startOffset,
-            endOffset: highlightData.range.endOffset
+            textPosition: highlightData.textPosition.textPositionSelector
         )
     }
 
@@ -280,26 +254,49 @@ extension CourseNotebookNote {
         }
         return .init(start: highlightData.textPosition.start, end: highlightData.textPosition.end)
     }
+}
 
-    var textPosition: NotebookHighlight.TextPosition? {
-        guard let highlightData = highlightData else {
-            return nil
-        }
-        return .init(start: highlightData.textPosition.start, end: highlightData.textPosition.end)
+extension NotebookHighlight.TextPosition {
+    var textPositionSelector: NotebookTextSelection.TextPositionSelector {
+        .init(start: start, end: end)
+    }
+}
+
+extension NotebookHighlight.Range {
+    var rangeSelector: NotebookTextSelection.RangeSelector {
+        .init(
+            startContainer: startContainer,
+            endContainer: endContainer,
+            startOffset: startOffset,
+            endOffset: endOffset
+        )
+    }
+}
+
+extension NotebookTextSelection.TextPositionSelector {
+    var textPosition: NotebookHighlight.TextPosition {
+        .init(start: start, end: end)
+    }
+}
+
+extension NotebookTextSelection.RangeSelector {
+    var range: NotebookHighlight.Range {
+        .init(
+            startContainer: startContainer,
+            startOffset: startOffset,
+            endContainer: endContainer,
+            endOffset: endOffset
+        )
     }
 }
 
 extension NotebookTextSelection {
-    var notebookHighlight: NotebookHighlight? {
-        guard let textPosition = textPosition,
-              let range = range else {
-            return nil
-        }
-        return NotebookHighlight(
+    func notebookHighlight(label: CourseNoteLabel) -> NotebookHighlight {
+        NotebookHighlight(
             selectedText: selectedText,
-            textPosition: textPosition,
-            range: range,
-            iconSVG: labels?.first?.iconSVG ?? CourseNoteLabel.important.iconSVG
+            textPosition: textPosition.textPosition,
+            range: range.range,
+            iconSVG: label.iconSVG
         )
     }
 }

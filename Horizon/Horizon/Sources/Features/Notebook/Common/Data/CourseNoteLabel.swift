@@ -65,6 +65,6 @@ enum CourseNoteLabel: String, CaseIterable {
     }
 
     var iconSVG: String {
-        CourseNoteLabel.imageMap[self]?.1 ?? CourseNoteLabel.flagSVG
+        CourseNoteLabel.imageMap[self]?.1.trimmed() ?? CourseNoteLabel.flagSVG
     }
 }
