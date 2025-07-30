@@ -32,7 +32,7 @@ struct NotebookNoteView: View {
                 viewModel: .init(
                     text: String(localized: "Your note has been saved", bundle: .horizon),
                     style: .success,
-                    isShowCancelButton: false
+                    isShowCancelButton: true
                 )
             )
             .padding(.top, .huiSpaces.space32)
@@ -50,12 +50,12 @@ struct NotebookNoteView: View {
                 refreshable: false,
                 loaderBackgroundColor: .huiColors.surface.pagePrimary
             )
-        ) { _ in
+        ) { proxy in
             VStack(spacing: 0) {
                 titleBar
                 highlightedText
                 labels
-                note
+                noteView(proxy: proxy)
                 ZStack {
                     saveButton
                     deleteButton
@@ -110,6 +110,7 @@ struct NotebookNoteView: View {
     @ViewBuilder
     private var labels: some View {
         NotebookSectionHeading(title: String(localized: "Label", bundle: .horizon))
+            .padding(.top, .huiSpaces.space24)
 
         HStack(spacing: .huiSpaces.space8) {
             NoteCardFilterButton(
@@ -129,29 +130,15 @@ struct NotebookNoteView: View {
     }
 
     @ViewBuilder
-    private var note: some View {
+    private func noteView(proxy: GeometryProxy) -> some View {
         NotebookSectionHeading(title: String(localized: "Add a Note (Optional)", bundle: .horizon))
             .padding(.top, .huiSpaces.space24)
 
         ZStack {
-            InstUI.UITextViewWrapper(text: $viewModel.note) { textView in
-                textView.translatesAutoresizingMaskIntoConstraints = false
-                textView.isScrollEnabled = false
-                textView.textContainer.widthTracksTextView = true
-                textView.textContainer.lineBreakMode = .byWordWrapping
-                textView.font = HorizonUI.fonts.uiFont(font: HorizonUI.Typography.Name.p1.font)
-                textView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - (.huiSpaces.space24 * 2))
-                    .isActive = true
-                textView.backgroundColor = HorizonUI.colors.surface.cardSecondary.uiColor
-            }
-            .frame(minHeight: 120)
-            .onTapGesture { viewModel.edit() }
-            .cornerRadius(.huiSpaces.space12)
-            .background(
-                RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
-                    .stroke(HorizonUI.colors.lineAndBorders.containerStroke, lineWidth: 1)
-            )
-            .focused($isTextFieldFocused)
+            TextArea(text: $viewModel.note, proxy: proxy)
+                .frame(minHeight: 120)
+                .onTapGesture { viewModel.edit() }
+                .focused($isTextFieldFocused)
 
             if viewModel.isTextEditorEditable == false {
                 Color.clear.contentShape(Rectangle())

@@ -257,7 +257,7 @@ struct SubmissionCommentView: View {
 }
 
 // TODO: Implement a proper design system component
-private struct TextArea: View {
+struct TextArea: View {
     @Binding var text: String
     let proxy: GeometryProxy
 
@@ -280,7 +280,7 @@ private struct TextArea: View {
             textView.textContainer.lineBreakMode = .byWordWrapping
             textView.translatesAutoresizingMaskIntoConstraints = false
             textView.font = HorizonUI.fonts.uiFont(font: HorizonUI.Typography.Name.p1.font)
-            textView.widthAnchor.constraint(equalToConstant: proxy.frame(in: .global).width - (2 * 16)).isActive = true
+            textView.widthAnchor.constraint(equalToConstant: proxy.frame(in: .global).width - (2 * .huiSpaces.space32 * 2)).isActive = true
         }
         .foregroundStyle(text.isEmpty ? Color.huiColors.text.placeholder : Color.huiColors.text.body)
         .frame(minHeight: 120, alignment: .top)
