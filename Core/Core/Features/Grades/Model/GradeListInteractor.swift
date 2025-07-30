@@ -100,7 +100,9 @@ public final class GradeListInteractorLive: GradeListInteractor {
         return Publishers.Zip4(
             customStatusesStore.getEntities(
                 ignoreCache: ignoreCache
-            ),
+            )
+            .replaceError(with: [])
+            .setFailureType(to: Error.self),
             colorListStore.getEntities(
                 ignoreCache: ignoreCache
             ),

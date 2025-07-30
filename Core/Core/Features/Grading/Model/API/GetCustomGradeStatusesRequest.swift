@@ -56,7 +56,7 @@ public extension GetCustomGradeStatusesRequest {
             public let course: Course
 
             public struct Course: Codable, Equatable {
-                public let customGradeStatusesConnection: CustomGradeStatusesConnection
+                public let customGradeStatusesConnection: CustomGradeStatusesConnection?
 
                 public struct CustomGradeStatusesConnection: Codable, Equatable {
                     public let nodes: [CustomGradeStatus]

@@ -43,7 +43,7 @@ public struct GetCustomGradeStatuses: CollectionUseCase {
     public func write(response: GetCustomGradeStatusesRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response else { return }
 
-        response.data.course.customGradeStatusesConnection.nodes.forEach { customStatus in
+        response.data.course.customGradeStatusesConnection?.nodes.forEach { customStatus in
             CDCustomGradeStatus.save(customStatus, courseID: courseID, in: client)
         }
     }

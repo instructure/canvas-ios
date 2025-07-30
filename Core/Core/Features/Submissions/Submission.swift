@@ -163,9 +163,11 @@ extension Submission: WriteableModel {
         model.body = item.body
         model.customGradeStatusId = item.custom_grade_status_id
 
-        if let customStatusId = item.custom_grade_status_id,
-           let customStatus: CDCustomGradeStatus = client.first(where: #keyPath(CDCustomGradeStatus.id), equals: customStatusId) {
-            model.customGradeStatusName = customStatus.name
+        if let customStatusId = item.custom_grade_status_id {
+            let customStatus: CDCustomGradeStatus? = client.first(
+                where: #keyPath(CDCustomGradeStatus.id), equals: customStatusId
+            )
+            model.customGradeStatusName = customStatus?.name
         }
 
         model.enteredGrade = item.entered_grade
@@ -428,9 +430,9 @@ extension Submission {
         // Graded check
         switch desc {
         case .usingStatus(.submitted):
-            return needsGrading == false ? .graded : desc // Maintaining the old logic
+            return needsGrading == false ? gradedState : desc // Maintaining the old logic
         case .onPaper, .noSubmission:
-            return isGraded ? .graded : desc
+            return isGraded ? gradedState : desc
         default:
             return desc
         }
@@ -439,22 +441,28 @@ extension Submission {
     public var status: SubmissionStatus {
         if late { return .late }
         if missing { return .missing }
-        if excused == true { return .excused }
-        if customGradeStatusId != nil { return customGradeStatus }
         if submittedAt != nil { return .submitted }
         return .notSubmitted
     }
 
     public var statusIncludingGradedState: SubmissionStatus {
-        switch status {
-        case .custom, .excused:
-            return status
-        default:
-            return isGraded ? .graded : status
+        if isGraded {
+            if excused == true { return .excused }
+            if customGradeStatusId != nil { return customGradedStatus }
+            return .graded
         }
+        return status
     }
 
-    private var customGradeStatus: SubmissionStatus {
+    private var gradedState: SubmissionStateDisplayProperties {
+        if customGradeStatusId != nil,
+           let name = customGradeStatusName {
+            return .usingStatus(.custom(name))
+        }
+        return .graded
+    }
+
+    private var customGradedStatus: SubmissionStatus {
         if let name = customGradeStatusName {
             return .custom(name)
         }
@@ -583,6 +591,11 @@ public enum SubmissionStatus: Hashable {
         case .custom:
             return .flagLine
         }
+    }
+
+    public var isCustom: Bool {
+        if case .custom = self { return true }
+        return false
     }
 }
 

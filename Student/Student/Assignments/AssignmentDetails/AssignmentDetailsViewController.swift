@@ -344,7 +344,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             updateSubmissionLabels(state: onlineUploadState)
         }
 
-        if submission.status == .notSubmitted {
+        if submission.workflowState == .unsubmitted {
             hideGradeCell()
             submissionRubricButtonSection?.isHidden = false
             return
