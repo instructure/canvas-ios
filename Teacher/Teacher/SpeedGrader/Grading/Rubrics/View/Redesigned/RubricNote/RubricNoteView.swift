@@ -33,10 +33,7 @@ struct RubricNoteView: View {
                 .font(.semibold14)
                 .foregroundStyle(Color.textDark)
 
-            if let comment,
-               comment.isNotEmpty,
-               !isEditFieldShown,
-               !isEditFieldFocused {
+            if let comment, comment.isNotEmpty, !isEditFieldShown {
                 RubricNoteCommentBubbleView(comment: comment) {
                     isEditFieldShown = true
                     isEditFieldFocused = true
@@ -49,6 +46,11 @@ struct RubricNoteView: View {
                 }
                 .focused($isEditFieldFocused)
                 .paddingStyle(.trailing, .standard)
+                .onChange(of: isEditFieldFocused) { _, newValue in
+                    if newValue == false {
+                        isEditFieldShown = false
+                    }
+                }
             }
         }
         .padding(.top, 8)
