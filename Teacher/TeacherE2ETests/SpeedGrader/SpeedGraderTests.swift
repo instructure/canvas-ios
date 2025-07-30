@@ -220,6 +220,8 @@ class SpeedGraderTests: E2ETestCase {
         editButton.hit()
         let titleField = EditorHelper.titleField.waitUntil(.visible)
         let pointsField = EditorHelper.pointsField.waitUntil(.visible)
+        titleField.waitUntil(.value(expected: assignment.name))
+        pointsField.waitUntil(.value(expected: score))
         XCTAssertTrue(titleField.isVisible)
         XCTAssertEqual(titleField.stringValue, assignment.name)
         XCTAssertTrue(pointsField.isVisible)
@@ -237,6 +239,7 @@ class SpeedGraderTests: E2ETestCase {
         // MARK: Check new score
         doneButton.hit()
         let pointsLabel = DetailsHelper.points.waitUntil(.visible)
+        pointsLabel.waitUntil(.label(expected: "\(newScore) pts"))
         XCTAssertTrue(pointsLabel.isVisible)
         XCTAssertEqual(pointsLabel.label, "\(newScore) pts")
     }
