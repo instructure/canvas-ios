@@ -132,6 +132,7 @@ class RedesignedRubricCriterionViewModel: ObservableObject, Identifiable {
     // MARK: - User Actions
 
     func updateComment(_ newComment: String) {
+        userComment = newComment
         interactor.updateComment(criterionId: criterion.id, comment: newComment)
     }
 

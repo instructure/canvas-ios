@@ -34,8 +34,7 @@ struct RedesignedRubricsView: View {
                 .foregroundColor(.textDarkest)
                 .accessibilityAddTraits(.isHeader)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.vertical, 14)
-                .padding(.horizontal, 16)
+                .paddingStyle(set: .standardCell)
 
             VStack(spacing: 16) {
                 ForEach(viewModel.criterionViewModels) { viewModel in

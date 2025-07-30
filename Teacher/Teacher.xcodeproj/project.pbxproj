@@ -39,6 +39,7 @@
 		08FF9ED22E37D781005D8C36 /* RubricNoteCommentEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9ED12E37D77F005D8C36 /* RubricNoteCommentEditView.swift */; };
 		08FF9ED42E37D79E005D8C36 /* RubricNoteCommentBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9ED32E37D79D005D8C36 /* RubricNoteCommentBubbleView.swift */; };
 		08FF9ED62E37D7B4005D8C36 /* RubricTextRatingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9ED52E37D7B3005D8C36 /* RubricTextRatingsListView.swift */; };
+		08FF9EE22E39EB6C005D8C36 /* RubricNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9EE12E39EB6A005D8C36 /* RubricNoteView.swift */; };
 		13B07FBF1A68108700A75B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Assets.xcassets */; };
 		2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
 		2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */; };
@@ -355,6 +356,7 @@
 		08FF9ED12E37D77F005D8C36 /* RubricNoteCommentEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricNoteCommentEditView.swift; sourceTree = "<group>"; };
 		08FF9ED32E37D79D005D8C36 /* RubricNoteCommentBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricNoteCommentBubbleView.swift; sourceTree = "<group>"; };
 		08FF9ED52E37D7B3005D8C36 /* RubricTextRatingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricTextRatingsListView.swift; sourceTree = "<group>"; };
+		08FF9EE12E39EB6A005D8C36 /* RubricNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricNoteView.swift; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C3DE5091F21494D00AE1D59 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -742,6 +744,7 @@
 		08FF9ED72E37D7D0005D8C36 /* RubricNote */ = {
 			isa = PBXGroup;
 			children = (
+				08FF9EE12E39EB6A005D8C36 /* RubricNoteView.swift */,
 				08FF9ED32E37D79D005D8C36 /* RubricNoteCommentBubbleView.swift */,
 				08FF9ED12E37D77F005D8C36 /* RubricNoteCommentEditView.swift */,
 			);
@@ -2377,6 +2380,7 @@
 				5B4324B82E20649400561B77 /* StudentNotesViewModel.swift in Sources */,
 				CF64BDDB2E2945F8005929E6 /* GradeSliderViewModel.swift in Sources */,
 				CFB5ED582E26A0EC000009DF /* FinalGradeRowView.swift in Sources */,
+				08FF9EE22E39EB6C005D8C36 /* RubricNoteView.swift in Sources */,
 				08FF9EBF2E36F67E005D8C36 /* RubricRatingExpandedView.swift in Sources */,
 				CFB5ED592E26A0EC000009DF /* LatePenaltyRowView.swift in Sources */,
 				CFB5ED5A2E26A0EC000009DF /* PointsRowView.swift in Sources */,

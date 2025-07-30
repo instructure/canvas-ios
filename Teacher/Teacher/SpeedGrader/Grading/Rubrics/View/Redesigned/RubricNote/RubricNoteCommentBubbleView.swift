@@ -40,7 +40,16 @@ struct RubricNoteCommentBubbleView: View {
                     .padding(.horizontal, 16)
                     .padding(.vertical, 12)
             }
-            .tint(.textDark)
         }
     }
 }
+
+#if DEBUG
+
+struct RubricNoteCommentBubbleView_Previews: PreviewProvider {
+    static var previews: some View {
+        RubricNoteCommentBubbleView(comment: "Hello, World!", onEdit: { })
+    }
+}
+
+#endif

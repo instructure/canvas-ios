@@ -21,15 +21,19 @@ import Core
 
 struct RubricNoteCommentEditView: View {
 
+    @ScaledMetric private var uiScale: CGFloat = 1
+
     @State private var text: String
+
     private var onSendTapped: (String) -> Void
 
-    init(comment: String, onSendTapped: @escaping (String) -> Void) {
+    init(
+        comment: String,
+        onSendTapped: @escaping (String) -> Void
+    ) {
         self._text = .init(initialValue: comment)
         self.onSendTapped = onSendTapped
     }
-
-    @ScaledMetric private var uiScale: CGFloat = 1
 
     var body: some View {
         TextField("Note", text: $text, axis: .vertical)
@@ -64,6 +68,38 @@ struct RubricNoteCommentEditView: View {
                     .stroke(Color.borderMedium, lineWidth: 0.5)
                     .frame(minHeight: 32)
             }
-            .padding(.trailing, 16)
     }
 }
+
+#if DEBUG
+
+struct RubricNoteCommentEditView_Previews: PreviewProvider {
+
+    private struct ContentView: View {
+
+        @FocusState private var isFocused: Bool
+
+        var body: some View {
+            VStack(spacing: 30) {
+
+                RubricNoteCommentEditView(comment: "Hello, World") { submitted in
+                    print(submitted)
+                }
+                .focused($isFocused)
+
+                Button("Focus") {
+                    isFocused = true
+                }
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.capsule)
+            }
+            .padding()
+        }
+    }
+
+    static var previews: some View {
+        ContentView()
+    }
+}
+
+#endif

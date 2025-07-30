@@ -24,7 +24,6 @@ struct RedesignedRubricCriterionView: View {
     @ObservedObject var viewModel: RedesignedRubricCriterionViewModel
 
     @State private var isExpanded: Bool
-    @State private var isCommentEditing: Bool = false
 
     init(viewModel: RedesignedRubricCriterionViewModel) {
         self.viewModel = viewModel
@@ -85,29 +84,8 @@ struct RedesignedRubricCriterionView: View {
                 RubricScoreInputView(viewModel: viewModel)
             }
 
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Rubric Note")
-                    .font(.semibold14)
-                    .foregroundStyle(Color.textDark)
-
-                if let comment = viewModel.userComment, comment.isNotEmpty, !isCommentEditing {
-                    RubricNoteCommentBubbleView(comment: comment) {
-                        isCommentEditing = true
-                    }
-                } else {
-                    let comment = viewModel.userComment ?? ""
-                    RubricNoteCommentEditView(comment: comment) { newComment in
-                        viewModel.updateComment(newComment.trimmed())
-                        isCommentEditing = false
-                    }
-                }
-            }
-            .padding(.top, 8)
-            .padding(.leading, 16)
-            .padding(.bottom, 16)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .overlay(alignment: .top) {
-                InstUI.Divider()
+            RubricNoteView(comment: viewModel.userComment) { newComment in
+                viewModel.updateComment(newComment)
             }
         }
         .elevation(.cardLarge, background: Color.backgroundLightest)
