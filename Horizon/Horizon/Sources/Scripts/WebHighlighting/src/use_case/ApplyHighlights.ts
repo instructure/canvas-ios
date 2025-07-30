@@ -2,14 +2,19 @@ import { RangeAnchor } from "../util/RangeAnchor";
 
 export default function applyHighlights(highlights: [NotebookTextSelection]) {
   clearHighlights();
-  highlights.forEach(addHighlight);
+  highlights.map(addHighlight);
 }
 
 // *********************** Private *********************** //
 
 const highlightClassName = "notebook-highlight";
+const highlightIconClassName = "notebook-highlight-icon";
 
-export const addHighlight = (notebookTextSelection: NotebookTextSelection) => {
+export const addHighlight = (
+  notebookTextSelection: NotebookTextSelection
+):
+  | { notebookTextSelection: NotebookTextSelection; highlightElement: Node }
+  | undefined => {
   let parent = document.getElementById("parent-container");
   if (!parent) return;
 
@@ -20,7 +25,7 @@ export const addHighlight = (notebookTextSelection: NotebookTextSelection) => {
   if (!range) return;
 
   const textNodeSpans = getHighlightRange(range);
-  for (const textNode of textNodeSpans) {
+  const highlightElements = textNodeSpans.map((textNode) => {
     const parent = textNode.parentNode as HTMLElement;
 
     const highlightElement = createHighlightElement({
@@ -29,31 +34,51 @@ export const addHighlight = (notebookTextSelection: NotebookTextSelection) => {
     });
 
     if (!highlightElement) return;
-    highlightElement.appendChild(createFlagIcon(notebookTextSelection));
     parent.replaceChild(highlightElement, textNode);
-  }
+    highlightElement.appendChild(createIcon(notebookTextSelection));
+    return highlightElement;
+  });
+
+  const highlightElement = highlightElements.length
+    ? highlightElements[0]
+    : undefined;
+  if (!highlightElement) return;
+  return { notebookTextSelection, highlightElement };
 };
 
-function createFlagIcon(notebookTextSelection: NotebookTextSelection): Node {
+function createIcon(notebookTextSelection: NotebookTextSelection): Node {
   const flagSpan = document.createElement("span");
-  flagSpan.innerHTML =
-    `
-    <div style="display: flex; align-items: center; justify-content: center; position: absolute; left: 0px; top: 0px; border-radius: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; background-color: ` +
+  flagSpan.classList.add(highlightIconClassName);
+  flagSpan.style.cssText =
+    `display: flex; align-items: center; justify-content: center; position: absolute; left: 0px; top: 0px; border-radius: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; background-color: ` +
     notebookTextSelection.borderColor +
-    `; z-index: 100;">
-      <svg viewBox="0 -960 960 960" rotate="0" width="12" height="12" aria-hidden="true" role="presentation" focusable="false" class="css-f8fjsy-inlineSVG-svgIcon" style="width: 12px; height: 12px;">
-        <g role="presentation">
-          <path fill="#FFFFFF" d="` +
-    notebookTextSelection.iconSVG +
-    `">
-          </path>
-        </g>
-      </svg>
-    </div>`;
+    `; z-index: 100;`;
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", "0 -960 960 960");
+  svg.setAttribute("width", "12");
+  svg.setAttribute("height", "12");
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("role", "presentation");
+  svg.setAttribute("focusable", "false");
+
+  const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  g.setAttribute("role", "presentation");
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("fill", "#FFFFFF");
+  if (notebookTextSelection.iconSVG)
+    path.setAttribute("d", notebookTextSelection.iconSVG);
+  g.appendChild(path);
+  svg.appendChild(g);
+  flagSpan.appendChild(svg);
   return flagSpan;
 }
 
 function clearHighlights() {
+  const icons = document.getElementsByClassName(highlightIconClassName);
+  while (icons.length) {
+    const icon = icons[0];
+    icon.parentElement?.removeChild(icon);
+  }
   const elements = document.getElementsByClassName(highlightClassName);
   while (elements.length) {
     const element = elements[0];

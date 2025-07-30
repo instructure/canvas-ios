@@ -31,13 +31,11 @@ enum HighlightJSInterfaceError: Error {
 class HighlightWebFeature: CoreWebViewFeature {
 
     // MARK: - Private
-
     private let documentLoadedRelay = CurrentValueRelay<Void>(())
     private let highlightTapRelay = CurrentValueRelay<NotebookTextSelection?>(nil)
     private let textSelectionChangeRelay = CurrentValueRelay<NotebookTextSelection?>(nil)
 
     // MARK: - Public
-
     /// Applies the highlights to the web view
     func apply(webView: WKWebView, notebookTextSelections: [NotebookTextSelection]) async {
         await withCheckedContinuation { continuation in
@@ -187,7 +185,7 @@ private class NotebookTextSelectionChangeMessageHandler: NSObject, WKScriptMessa
 struct NotebookTextSelection: Codable, Equatable {
     let backgroundColor: String?
     let borderColor: String?
-    let iconSVG: String
+    let iconSVG: String?
     let range: RangeSelector
     let selectedText: String
     let textPosition: TextPositionSelector

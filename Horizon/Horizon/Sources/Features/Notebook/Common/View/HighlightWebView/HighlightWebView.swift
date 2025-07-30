@@ -196,14 +196,11 @@ final class HighlightWebView: CoreWebView {
         guard let label = actionDefinitions.first(where: { action.title == $0.title })?.label,
             let courseID = courseID,
             let pageURL = pageURL,
-            let viewController = self.viewController
-        else {
+            let viewController = self.viewController,
+            let notebookTextSelection = currentNotebookTextSelection else {
             return
         }
 
-        guard let notebookTextSelection = currentNotebookTextSelection else {
-            return
-        }
         let notebookHighlight = notebookTextSelection.notebookHighlight(label: label)
         if label == .other,
             let urlEncodedpageURL = pageURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
