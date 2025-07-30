@@ -70,7 +70,16 @@ struct SpeedGraderSubmissionGradesView: View {
                 }
                 .padding(.bottom, 16)
             }
-            .scrollDismissesKeyboard(focusedInput == .comment ? .interactively : .never)
+            .scrollDismissesKeyboard(keyboardDismissalMode)
+        }
+    }
+
+    private var keyboardDismissalMode: ScrollDismissesKeyboardMode {
+        switch focusedInput {
+        case .gradeRow, .points:
+            return .never
+        default:
+            return .interactively
         }
     }
 
