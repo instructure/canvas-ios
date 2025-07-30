@@ -108,6 +108,7 @@ struct GradeInputTextFieldCell: View {
         .foregroundStyle(.tint)
         .multilineTextAlignment(.trailing)
         .keyboardType(.decimalPad)
+        .keyboardToolbarDoneButton($isFocused)
         .onChange(of: isFocused) {
             // on begin editing: select text
             if isFocused && externalText.isNotEmpty {
