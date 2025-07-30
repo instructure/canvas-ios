@@ -2,7 +2,7 @@ import { RangeAnchor } from "../util/RangeAnchor";
 
 export default function applyHighlights(highlights: [NotebookTextSelection]) {
   clearHighlights();
-  highlights.map(addHighlight);
+  highlights.forEach(addHighlight);
 }
 
 // *********************** Private *********************** //
