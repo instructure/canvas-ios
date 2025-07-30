@@ -56,7 +56,6 @@ public extension HorizonUI {
                     textView
                         .padding(.huiSpaces.space16)
                     groupButtons
-                        .padding(.bottom, .huiSpaces.space16)
                 }
                 trailingButtons
             }
@@ -113,6 +112,7 @@ public extension HorizonUI {
                         confirmButton.action()
                     }
                 }
+                .padding(.bottom, .huiSpaces.space16)
             }
         }
     }
