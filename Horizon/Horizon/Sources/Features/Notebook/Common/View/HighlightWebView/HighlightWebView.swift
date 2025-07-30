@@ -201,11 +201,10 @@ final class HighlightWebView: CoreWebView {
             return
         }
 
-        guard let notebookTextSelection = self.currentNotebookTextSelection else {
+        guard let notebookTextSelection = currentNotebookTextSelection,
+              let notebookHighlight = notebookTextSelection.notebookHighlight else {
             return
         }
-
-        let notebookHighlight = notebookTextSelection.notebookHighlight
 
         if label == .other,
             let urlEncodedpageURL = pageURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
@@ -234,42 +233,73 @@ final class HighlightWebView: CoreWebView {
 }
 
 // MARK: - Extensions
-
-extension NotebookTextSelection {
-    var notebookHighlight: NotebookHighlight {
-        NotebookHighlight(
-            selectedText: selectedText,
-            textPosition: NotebookHighlight.TextPosition(
-                start: textPosition.start,
-                end: textPosition.end
-            ),
-            range: NotebookHighlight.Range(
-                startContainer: range.startContainer,
-                startOffset: range.startOffset,
-                endContainer: range.endContainer,
-                endOffset: range.endOffset
-            )
-        )
-    }
-}
-
 extension CourseNotebookNote {
     var notebookTextSelection: NotebookTextSelection? {
         let label = labels?.first
-        guard let highlightData = highlightData else {
+        guard let highlightData = highlightData,
+              let rangeSelector = rangeSelector,
+              let textPositionSelector = textPositionSelector else {
             return nil
         }
         return NotebookTextSelection(
             backgroundColor: label?.backgroundColorCSS ?? "\(Color.huiColors.surface.attention.hexString)33",
             borderColor: label?.borderColorCSS ?? Color.huiColors.surface.attention.hexString,
-            range: .init(
-                startContainer: highlightData.range.startContainer,
-                endContainer: highlightData.range.endContainer,
-                startOffset: highlightData.range.startOffset,
-                endOffset: highlightData.range.endOffset
-            ),
+            range: rangeSelector,
             selectedText: highlightData.selectedText,
-            textPosition: .init(start: highlightData.textPosition.start, end: highlightData.textPosition.end)
+            textPosition: textPositionSelector
+        )
+    }
+
+    var range: NotebookHighlight.Range? {
+        guard let highlightData = highlightData else {
+            return nil
+        }
+        return .init(
+            startContainer: highlightData.range.startContainer,
+            startOffset: highlightData.range.startOffset,
+            endContainer: highlightData.range.endContainer,
+            endOffset: highlightData.range.endOffset
+        )
+    }
+
+    var rangeSelector: NotebookTextSelection.RangeSelector? {
+        guard let highlightData = highlightData else {
+            return nil
+        }
+        return .init(
+            startContainer: highlightData.range.startContainer,
+            endContainer: highlightData.range.endContainer,
+            startOffset: highlightData.range.startOffset,
+            endOffset: highlightData.range.endOffset
+        )
+    }
+
+    var textPositionSelector: NotebookTextSelection.TextPositionSelector? {
+        guard let highlightData = highlightData else {
+            return nil
+        }
+        return .init(start: highlightData.textPosition.start, end: highlightData.textPosition.end)
+    }
+
+    var textPosition: NotebookHighlight.TextPosition? {
+        guard let highlightData = highlightData else {
+            return nil
+        }
+        return .init(start: highlightData.textPosition.start, end: highlightData.textPosition.end)
+    }
+}
+
+extension NotebookTextSelection {
+    var notebookHighlight: NotebookHighlight? {
+        guard let textPosition = textPosition,
+              let range = range else {
+            return nil
+        }
+        return NotebookHighlight(
+            selectedText: selectedText,
+            textPosition: textPosition,
+            range: range,
+            iconSVG: labels?.first?.iconSVG ?? CourseNoteLabel.important.iconSVG
         )
     }
 }

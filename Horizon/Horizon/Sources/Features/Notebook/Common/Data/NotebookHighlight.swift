@@ -20,33 +20,23 @@ public struct NotebookHighlight: Codable, Equatable {
     public let selectedText: String
     public let textPosition: TextPosition
     public let range: Range
+    public let iconSVG: String
 
     public init(
         selectedText: String,
         textPosition: TextPosition,
-        range: Range
+        range: Range,
+        iconSVG: String
     ) {
         self.selectedText = selectedText
         self.textPosition = textPosition
         self.range = range
-    }
-
-    enum CodingKeys: String, CodingKey {
-        case selectedText, textPosition, range
+        self.iconSVG = iconSVG
     }
 
     public struct TextPosition: Codable, Equatable {
         public let start: Int
         public let end: Int
-
-        public init(start: Int, end: Int) {
-            self.start = start
-            self.end = end
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case start, end
-        }
     }
 
     public struct Range: Codable, Equatable {
@@ -54,21 +44,5 @@ public struct NotebookHighlight: Codable, Equatable {
         public let startOffset: Int
         public let endContainer: String
         public let endOffset: Int
-
-        public init(
-            startContainer: String,
-            startOffset: Int,
-            endContainer: String,
-            endOffset: Int
-        ) {
-            self.startContainer = startContainer
-            self.startOffset = startOffset
-            self.endContainer = endContainer
-            self.endOffset = endOffset
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case startContainer, startOffset, endContainer, endOffset
-        }
     }
 }

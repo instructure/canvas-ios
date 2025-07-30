@@ -269,6 +269,10 @@ extension CDHNotebookNote {
         CDHNotebookNote.deserializeLabels(from: labels)?.compactMap { CourseNoteLabel.init(rawValue: $0) }
     }
 
+    var iconSVG: String {
+        courseNoteLabels?.first?.iconSVG ?? CourseNoteLabel.important.iconSVG
+    }
+
     var notebookHighlight: NotebookHighlight? {
         guard let selectedText = selectedText,
            let startContainer = startContainer,
@@ -289,8 +293,9 @@ extension CDHNotebookNote {
                 startContainer: startContainer,
                 startOffset: Int(truncating: startOffset),
                 endContainer: endContainer,
-                endOffset: Int(truncating: endOffset)
-            )
+                endOffset: Int(truncating: endOffset),
+            ),
+            iconSVG: CourseNoteLabel.important.iconSVG
         )
     }
 }
