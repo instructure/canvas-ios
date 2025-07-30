@@ -92,17 +92,20 @@ class LoginStartViewController: UIViewController {
         useQRCodeButton.setTitle(String(localized: "QR Login", bundle: .core), for: .normal)
         whatsNewContainer.isHidden = loginDelegate?.whatsNewURL == nil
 
-        let (logoImage, wordmarkImage, logoAccessibilityLabel) = if Bundle.main.isParentApp {
-            (UIImage(resource: .parentLogo), UIImage(resource: .parentWordmark), "Canvas Parent")
-        } else if Bundle.main.isTeacherApp {
-            (UIImage(resource: .teacherLogo), UIImage(resource: .teacherWordmark), "Canvas Teacher")
-        } else {
-            (UIImage(resource: .studentLogo), UIImage(resource: .studentWordmark), "Canvas")
+        switch self.app {
+        case .parent:
+            logoView.image = UIImage(resource: .parentLogo)
+            wordmark.image = UIImage(resource: .parentWordmark)
+            logoView.superview?.accessibilityLabel = "Canvas Parent"
+        case .teacher:
+            logoView.image = UIImage(resource: .teacherLogo)
+            wordmark.image = UIImage(resource: .teacherWordmark)
+            logoView.superview?.accessibilityLabel = "Canvas Teacher"
+        default:
+            logoView.image = UIImage(resource: .studentLogo)
+            wordmark.image = UIImage(resource: .studentWordmark)
+            logoView.superview?.accessibilityLabel = "Canvas"
         }
-
-        logoView.image = logoImage
-        wordmark.image = wordmarkImage
-        logoView.superview?.accessibilityLabel = logoAccessibilityLabel
 
         let loginText = String(localized: "Log In", bundle: .core)
         if MDMManager.shared.host != nil {
