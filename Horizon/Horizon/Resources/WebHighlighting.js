@@ -13,153 +13,880 @@
 // GNU Affero General Public License for more details.
 //
 // You should have received a copy of the GNU Affero General Public License
-// along with this program.  If not, see <https://www.gnu.org/licenses/>.
-//
+// along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+// --- Start: dist/util/utils.js ---
+
+/**
+ * Calculates the text content length of a given node.
+ * @param {Node} node - The DOM node.
+ * @returns {number} The length of the text content.
  */
-/******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({
+const nodeTextLength = (node) => {
+    switch (node.nodeType) {
+        case Node.ELEMENT_NODE:
+        case Node.TEXT_NODE:
+            return node.textContent?.length ?? 0;
+        default:
+            return 0;
+    }
+};
 
-/***/ "./dist/main.js":
-/*!**********************!*\
-  !*** ./dist/main.js ***!
-  \**********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/**
+ * Calculates the total text length of all previous siblings of a given node.
+ * @param {Node} node - The DOM node.
+ * @returns {number} The total length of text content of previous siblings.
+ */
+const previousSiblingsTextLength = (node) => {
+    let sibling = node.previousSibling;
+    let length = 0;
+    while (sibling) {
+        length += nodeTextLength(sibling);
+        sibling = sibling.previousSibling;
+    }
+    return length;
+};
 
-eval("\n//\n// This file is part of Canvas.\n// Copyright (C) 2025-present  Instructure, Inc.\n//\n// This program is free software: you can redistribute it and/or modify\n// it under the terms of the GNU Affero General Public License as\n// published by the Free Software Foundation, either version 3 of the\n// License, or (at your option) any later version.\n//\n// This program is distributed in the hope that it will be useful,\n// but WITHOUT ANY WARRANTY; without even the implied warranty of\n// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n// GNU Affero General Public License for more details.\n//\n// You should have received a copy of the GNU Affero General Public License\n// along with this program.  If not, see <https://www.gnu.org/licenses/>.\n//\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nconst ApplyHighlights_1 = __importDefault(__webpack_require__(/*! ./use_case/ApplyHighlights */ \"./dist/use_case/ApplyHighlights.js\"));\nconst GetCurrentTextSelection_1 = __importDefault(__webpack_require__(/*! ./use_case/GetCurrentTextSelection */ \"./dist/use_case/GetCurrentTextSelection.js\"));\nconst NotifyTextSelectionChange_1 = __importDefault(__webpack_require__(/*! ./use_case/NotifyTextSelectionChange */ \"./dist/use_case/NotifyTextSelectionChange.js\"));\n//This file is just an interface. No implementation details here!\nwindow.applyHighlights = ApplyHighlights_1.default;\nwindow.getCurrentTextSelection = GetCurrentTextSelection_1.default;\n(0, NotifyTextSelectionChange_1.default)();\n\n\n//# sourceURL=webpack:///./dist/main.js?");
+/**
+ * Resolves character offsets within an element to specific text nodes and offsets.
+ * @param {Element} element - The root element to resolve offsets within.
+ * @param {...number} offsets - One or more character offsets to resolve.
+ * @returns {Array<{node: Text, offset: number}>} An array of objects, each containing the text node and the resolved offset within that node.
+ */
+const resolveOffsets = (element, ...offsets) => {
+    let nextOffset = offsets.shift();
+    const nodeIter = element.ownerDocument.createNodeIterator(element, NodeFilter.SHOW_TEXT);
+    const results = [];
+    let currentNode = nodeIter.nextNode();
+    let textNode = null;
+    let length = 0;
 
-/***/ }),
+    while (nextOffset !== undefined && currentNode) {
+        textNode = currentNode;
+        if (length + textNode.data.length > nextOffset) {
+            results.push({ node: textNode, offset: nextOffset - length });
+            nextOffset = offsets.shift();
+        } else {
+            currentNode = nodeIter.nextNode();
+            length += textNode.data.length;
+        }
+    }
 
-/***/ "./dist/use_case/ApplyHighlights.js":
-/*!******************************************!*\
-  !*** ./dist/use_case/ApplyHighlights.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+    // Handle cases where the offset is exactly at the end of a text node
+    while (nextOffset !== undefined && textNode && length === nextOffset) {
+        results.push({ node: textNode, offset: textNode.data.length });
+        nextOffset = offsets.shift();
+    }
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.buildHighlightStyle = exports.addHighlight = void 0;\nexports[\"default\"] = applyHighlights;\nconst RangeAnchor_1 = __webpack_require__(/*! ../util/RangeAnchor */ \"./dist/util/RangeAnchor.js\");\nfunction applyHighlights(highlights) {\n    clearHighlights();\n    highlights.forEach(exports.addHighlight);\n}\n// *********************** Private *********************** //\nconst highlightClassName = \"notebook-highlight\";\nconst addHighlight = (notebookTextSelection) => {\n    var _a;\n    let parent = document.getElementById(\"parent-container\");\n    if (!parent)\n        return;\n    let range = (_a = RangeAnchor_1.RangeAnchor.fromSelector(parent, notebookTextSelection.range)) === null || _a === void 0 ? void 0 : _a.toRange();\n    if (!range)\n        return;\n    const textNodeSpans = getHighlightRange(range);\n    for (const textNode of textNodeSpans) {\n        const parent = textNode.parentNode;\n        const highlightElement = createHighlightElement({\n            textContent: textNode.textContent,\n            notebookTextSelection,\n        });\n        if (!highlightElement)\n            return;\n        parent.replaceChild(highlightElement, textNode);\n    }\n};\nexports.addHighlight = addHighlight;\nfunction clearHighlights() {\n    const elements = document.getElementsByClassName(highlightClassName);\n    while (elements.length) {\n        const element = elements[0];\n        element.replaceWith(...element.childNodes);\n    }\n}\n// Find all of the text nodes in the range and group them into spans\nconst getHighlightRange = (range) => {\n    const textNodes = wholeTextNodesInRange(range);\n    const whitespace = /^\\s*$/;\n    // Filter out text nodes that consist only of whitespace\n    return textNodes.filter((node) => {\n        const parentElement = node.parentElement;\n        return (((parentElement === null || parentElement === void 0 ? void 0 : parentElement.childNodes.length) === 1 &&\n            (parentElement === null || parentElement === void 0 ? void 0 : parentElement.tagName) === \"SPAN\") ||\n            !whitespace.test(node.data));\n    });\n};\nconst wholeTextNodesInRange = (range) => {\n    var _a;\n    if (range.collapsed) {\n        return [];\n    }\n    let root = range.commonAncestorContainer;\n    if (root && root.nodeType !== Node.ELEMENT_NODE) {\n        root = root.parentElement;\n    }\n    if (!root) {\n        return [];\n    }\n    const textNodes = [];\n    const nodeIter = (_a = root === null || root === void 0 ? void 0 : root.ownerDocument) === null || _a === void 0 ? void 0 : _a.createNodeIterator(root, NodeFilter.SHOW_TEXT // Only return `Text` nodes.\n    );\n    let node = (nodeIter === null || nodeIter === void 0 ? void 0 : nodeIter.nextNode()) || null;\n    while (node) {\n        if (!isNodeInRange(range, node)) {\n            node = (nodeIter === null || nodeIter === void 0 ? void 0 : nodeIter.nextNode()) || null;\n            continue;\n        }\n        const text = node;\n        if (text === range.startContainer && range.startOffset > 0) {\n            text.splitText(range.startOffset);\n            node = (nodeIter === null || nodeIter === void 0 ? void 0 : nodeIter.nextNode()) || null;\n            continue;\n        }\n        if (text === range.endContainer && range.endOffset < text.data.length) {\n            text.splitText(range.endOffset);\n        }\n        textNodes.push(text);\n        node = (nodeIter === null || nodeIter === void 0 ? void 0 : nodeIter.nextNode()) || null;\n    }\n    return textNodes;\n};\nconst isNodeInRange = (range, node) => {\n    var _a, _b;\n    try {\n        const length = (_b = (_a = node.nodeValue) === null || _a === void 0 ? void 0 : _a.length) !== null && _b !== void 0 ? _b : node.childNodes.length;\n        return (range.comparePoint(node, 0) <= 0 && range.comparePoint(node, length) >= 0);\n    }\n    catch (_c) {\n        return false;\n    }\n};\n// Notify the native code that a highlight has been tapped\nconst notifyiOSOfHighlightTap = (notebookTextSelection) => {\n    var _a;\n    const messageHandlers = (_a = window.webkit) === null || _a === void 0 ? void 0 : _a.messageHandlers;\n    if (!messageHandlers)\n        return;\n    messageHandlers.notebookHighlightTap.postMessage(JSON.stringify(notebookTextSelection));\n};\n// Given our text to wrap and the notebookTextSelection object, wrap the text in a span with the appropriate styles\n// Applies an onclick handler to call when a highlight is tapped\nconst createHighlightElement = ({ textContent, notebookTextSelection, }) => {\n    if (!textContent)\n        return null;\n    const span = document.createElement(\"span\");\n    span.classList.add(highlightClassName);\n    span.onclick = () => notifyiOSOfHighlightTap(notebookTextSelection);\n    span.style.cssText = (0, exports.buildHighlightStyle)(notebookTextSelection);\n    span.textContent = textContent;\n    return span;\n};\n// Given the NotebookTextSelection, build the CSS to apply to the highlights\nconst buildHighlightStyle = (notebookTextSelection) => `position: relative;\n   padding: 0px;\n   border-top: none;\n   border-right: none;\n   border-bottom: 1px solid ${notebookTextSelection.borderColor};\n   background-color: ${notebookTextSelection.backgroundColor};`;\nexports.buildHighlightStyle = buildHighlightStyle;\n\n\n//# sourceURL=webpack:///./dist/use_case/ApplyHighlights.js?");
+    if (nextOffset !== undefined) {
+        console.error("Offset exceeds text length");
+    }
+    return results;
+};
 
-/***/ }),
+// --- End: dist/util/utils.js ---
 
-/***/ "./dist/use_case/GetCurrentTextSelection.js":
-/*!**************************************************!*\
-  !*** ./dist/use_case/GetCurrentTextSelection.js ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports[\"default\"] = getCurrentTextSelection;\nconst RangeAnchor_1 = __webpack_require__(/*! ../util/RangeAnchor */ \"./dist/util/RangeAnchor.js\");\nconst TextPositionAnchor_1 = __webpack_require__(/*! ../util/TextPositionAnchor */ \"./dist/util/TextPositionAnchor.js\");\nfunction getCurrentTextSelection() {\n    const selection = window.getSelection();\n    const range = selection === null || selection === void 0 ? void 0 : selection.getRangeAt(0);\n    const parentRef = document.getElementById(\"parent-container\");\n    const rangeAnchor = parentRef && range ? RangeAnchor_1.RangeAnchor.fromRange(parentRef, range) : null;\n    const textAnchor = parentRef && range ? TextPositionAnchor_1.TextPositionAnchor.fromRange(parentRef, range) : null;\n    return {\n        selectedText: selection === null || selection === void 0 ? void 0 : selection.toString(),\n        textPosition: textAnchor === null || textAnchor === void 0 ? void 0 : textAnchor.toSelector(),\n        range: rangeAnchor === null || rangeAnchor === void 0 ? void 0 : rangeAnchor.toSelector(),\n    };\n}\n\n\n//# sourceURL=webpack:///./dist/use_case/GetCurrentTextSelection.js?");
+// --- Start: dist/util/xpath.js ---
 
-/***/ }),
+/**
+ * Gets the node name in a format suitable for XPath.
+ * @param {Node} node - The DOM node.
+ * @returns {string} The node name.
+ */
+const getNodeName = (node) => {
+    const nodeName = node.nodeName.toLowerCase();
+    return nodeName === "#text" ? "text()" : nodeName;
+};
 
-/***/ "./dist/use_case/NotifyTextSelectionChange.js":
-/*!****************************************************!*\
-  !*** ./dist/use_case/NotifyTextSelectionChange.js ***!
-  \****************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/**
+ * Gets the position of a node among its siblings of the same name.
+ * @param {Node} node - The DOM node.
+ * @returns {number} The position (1-based index).
+ */
+function getNodePosition(node) {
+    let pos = 0;
+    let tmp = node;
+    while (tmp) {
+        if (tmp.nodeName === node.nodeName) {
+            pos += 1;
+        }
+        tmp = tmp.previousSibling;
+    }
+    return pos;
+}
 
-eval("\nvar __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports[\"default\"] = registerNotifyOnTextSelectionChange;\nconst GetCurrentTextSelection_1 = __importDefault(__webpack_require__(/*! ./GetCurrentTextSelection */ \"./dist/use_case/GetCurrentTextSelection.js\"));\nfunction registerNotifyOnTextSelectionChange() {\n    document.addEventListener(\"selectionchange\", () => __awaiter(this, void 0, void 0, function* () {\n        var _a;\n        const messageHandlers = (_a = window.webkit) === null || _a === void 0 ? void 0 : _a.messageHandlers;\n        if (!messageHandlers)\n            return;\n        const currentTextSelection = yield (0, GetCurrentTextSelection_1.default)();\n        window.webkit.messageHandlers.notebookTextSelectionChange.postMessage(JSON.stringify(currentTextSelection));\n    }));\n}\n\n\n//# sourceURL=webpack:///./dist/use_case/NotifyTextSelectionChange.js?");
+/**
+ * Creates an XPath segment for a given node.
+ * @param {Node} node - The DOM node.
+ * @returns {string} The XPath segment.
+ */
+const getPathSegment = (node) => {
+    const name = getNodeName(node);
+    const pos = getNodePosition(node);
+    return `${name}[${pos}]`;
+};
 
-/***/ }),
+/**
+ * Generates an XPath expression for a given node relative to a root element.
+ * @param {Node} node - The target DOM node.
+ * @param {Element} root - The root element for the XPath.
+ * @returns {string | undefined} The XPath string, or undefined if the node is not a descendant of the root.
+ */
+const xpathFromNode = (node, root) => {
+    let xpath = "";
+    let elem = node;
+    while (elem !== root) {
+        if (!elem) {
+            console.error("Node is not a descendant of root");
+            return;
+        }
+        xpath = `${getPathSegment(elem)}/${xpath}`;
+        elem = elem.parentNode;
+    }
+    xpath = `/${xpath}`;
+    xpath = xpath.replace(/\/$/, ""); // Remove trailing slash
+    return xpath;
+};
 
-/***/ "./dist/util/RangeAnchor.js":
-/*!**********************************!*\
-  !*** ./dist/util/RangeAnchor.js ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/**
+ * Finds the nth child of a specific node type.
+ * @param {Element} element - The parent element.
+ * @param {string} nodeName - The name of the child node type (e.g., "div", "text()").
+ * @param {number} index - The 0-based index of the child.
+ * @returns {Element | null} The found child element, or null.
+ */
+const nthChildOfType = (element, nodeName, index) => {
+    const name = nodeName.toUpperCase();
+    let matchIndex = -1;
+    for (let i = 0; i < element.children.length; i++) {
+        const child = element.children[i];
+        if (child.nodeName.toUpperCase() === name) {
+            ++matchIndex;
+            if (matchIndex === index) {
+                return child;
+            }
+        }
+    }
+    return null;
+};
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.RangeAnchor = void 0;\nconst TextPosition_1 = __webpack_require__(/*! ./TextPosition */ \"./dist/util/TextPosition.js\");\nconst TextRange_1 = __webpack_require__(/*! ./TextRange */ \"./dist/util/TextRange.js\");\nconst xpath_1 = __webpack_require__(/*! ./xpath */ \"./dist/util/xpath.js\");\nclass RangeAnchor {\n    constructor(root, range) {\n        this.root = root;\n        this.range = range;\n    }\n    static fromRange(root, range) {\n        return new RangeAnchor(root, range);\n    }\n    static fromSelector(root, selector) {\n        if (!(selector === null || selector === void 0 ? void 0 : selector.startContainer) || !(selector === null || selector === void 0 ? void 0 : selector.endContainer)) {\n            console.error(\"No start or end container in selector\");\n            return null;\n        }\n        const startContainer = (0, xpath_1.nodeFromXPath)(selector.startContainer, root);\n        if (!startContainer) {\n            console.error(\"Failed to resolve startContainer XPath\");\n            return null;\n        }\n        const endContainer = (0, xpath_1.nodeFromXPath)(selector.endContainer, root);\n        if (!endContainer) {\n            console.error(\"Failed to resolve endContainer XPath\");\n            return null;\n        }\n        const startPos = TextPosition_1.TextPosition.fromCharOffset(startContainer, selector.startOffset);\n        const endPos = TextPosition_1.TextPosition.fromCharOffset(endContainer, selector.endOffset);\n        if (!startPos || !endPos) {\n            return null;\n        }\n        const range = new TextRange_1.TextRange(startPos, endPos).toRange();\n        return new RangeAnchor(root, range);\n    }\n    toRange() {\n        return this.range;\n    }\n    toSelector() {\n        var _a;\n        const normalizedRange = (_a = TextRange_1.TextRange.fromRange(this.range)) === null || _a === void 0 ? void 0 : _a.toRange();\n        const textRange = normalizedRange && TextRange_1.TextRange.fromRange(normalizedRange);\n        const startContainer = textRange && (0, xpath_1.xpathFromNode)(textRange.start.element, this.root);\n        const endContainer = textRange && (0, xpath_1.xpathFromNode)(textRange.end.element, this.root);\n        if (!startContainer || !endContainer) {\n            return null;\n        }\n        return {\n            startContainer,\n            startOffset: textRange.start.offset,\n            endContainer,\n            endOffset: textRange.end.offset,\n        };\n    }\n}\nexports.RangeAnchor = RangeAnchor;\n\n\n//# sourceURL=webpack:///./dist/util/RangeAnchor.js?");
+/**
+ * Evaluates a simple XPath expression to find a node.
+ * @param {string} xpath - The simple XPath expression.
+ * @param {Element} root - The root element to start the search from.
+ * @returns {Element | null} The found element, or null.
+ */
+const evaluateSimpleXPath = (xpath, root) => {
+    // This regex checks for simple paths like /div[1]/span[2]
+    const isSimpleXPath = xpath.match(/^(\/[A-Za-z0-9-]+(\[[0-9]+])?)+$/) !== null;
+    if (!isSimpleXPath) {
+        console.error("Expression is not a simple XPath");
+        return null;
+    }
 
-/***/ }),
+    const segments = xpath.split("/");
+    let element = root;
+    // Remove leading empty segment. The regex above validates that the XPath
+    // has at least two segments, with the first being empty and the others non-empty.
+    segments.shift();
 
-/***/ "./dist/util/TextPosition.js":
-/*!***********************************!*\
-  !*** ./dist/util/TextPosition.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+    for (const segment of segments) {
+        let elementName;
+        let elementIndex;
+        const separatorPos = segment.indexOf("[");
+        if (separatorPos !== -1) {
+            elementName = segment.slice(0, separatorPos);
+            const indexStr = segment.slice(separatorPos + 1, segment.indexOf("]"));
+            elementIndex = Number.parseInt(indexStr) - 1;
+            if (elementIndex < 0) {
+                return null;
+            }
+        } else {
+            elementName = segment;
+            elementIndex = 0;
+        }
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.TextPosition = void 0;\nconst utils_1 = __webpack_require__(/*! ./utils */ \"./dist/util/utils.js\");\nconst TextRange_1 = __webpack_require__(/*! ./TextRange */ \"./dist/util/TextRange.js\");\nclass TextPosition {\n    constructor(element, offset) {\n        if (offset < 0) {\n            console.error(\"Offset is invalid\");\n        }\n        this.element = element;\n        this.offset = offset;\n    }\n    resolve(options = {}) {\n        try {\n            return (0, utils_1.resolveOffsets)(this.element, this.offset)[0];\n        }\n        catch (err) {\n            if (this.offset === 0 && options.direction !== undefined) {\n                const tw = document.createTreeWalker(this.element.getRootNode(), NodeFilter.SHOW_TEXT);\n                tw.currentNode = this.element;\n                const forwards = options.direction === TextRange_1.ResolveDirection.FORWARDS;\n                const text = forwards\n                    ? tw.nextNode()\n                    : tw.previousNode();\n                if (!text) {\n                    throw err;\n                }\n                return { node: text, offset: forwards ? 0 : text.data.length };\n            }\n            throw err;\n        }\n    }\n    static fromCharOffset(node, offset) {\n        switch (node.nodeType) {\n            case Node.TEXT_NODE:\n                return TextPosition.fromPoint(node, offset);\n            case Node.ELEMENT_NODE:\n                return new TextPosition(node, offset);\n            default:\n                console.error(\"Node is not an element or text node\");\n                return null;\n        }\n    }\n    static fromPoint(node, offset) {\n        switch (node.nodeType) {\n            case Node.TEXT_NODE: {\n                if (offset < 0 || offset > node.data.length) {\n                    console.error(\"Text node offset is out of range\");\n                    return null;\n                }\n                if (!node.parentElement) {\n                    console.error(\"Text node has no parent\");\n                    return null;\n                }\n                const textOffset = (0, utils_1.previousSiblingsTextLength)(node) + offset;\n                return new TextPosition(node.parentElement, textOffset);\n            }\n            case Node.ELEMENT_NODE: {\n                if (offset < 0 || offset > node.childNodes.length) {\n                    console.error(\"Child node offset is out of range\");\n                    return null;\n                }\n                let textOffset = 0;\n                for (let i = 0; i < offset; i++) {\n                    textOffset += (0, utils_1.nodeTextLength)(node.childNodes[i]);\n                }\n                return new TextPosition(node, textOffset);\n            }\n            default:\n                console.error(\"Point is not in an element or text node\");\n                return null;\n        }\n    }\n    relativeTo(parent) {\n        if (!parent.contains(this.element)) {\n            throw new Error(\"Parent is not an ancestor of current element\");\n        }\n        let el = this.element;\n        let offset = this.offset;\n        while (el !== parent) {\n            offset += (0, utils_1.previousSiblingsTextLength)(el);\n            if (el.parentElement) {\n                el = el.parentElement;\n            }\n        }\n        return new TextPosition(el, offset);\n    }\n}\nexports.TextPosition = TextPosition;\n\n\n//# sourceURL=webpack:///./dist/util/TextPosition.js?");
+        const child = nthChildOfType(element, elementName, elementIndex);
+        if (!child) {
+            return null;
+        }
+        element = child;
+    }
+    return element;
+};
 
-/***/ }),
+/**
+ * Finds a node from an XPath expression. Tries a simple evaluation first, then falls back to `document.evaluate`.
+ * @param {string} xpath - The XPath expression.
+ * @param {Element} [root=document.body] - The root element for the XPath evaluation.
+ * @returns {Node | null} The found node, or null.
+ */
+const nodeFromXPath = (xpath, root = document.body) => {
+    try {
+        return evaluateSimpleXPath(xpath, root);
+    } catch (e) {
+        // Fallback to standard XPath evaluation for more complex cases
+        return document.evaluate(`.${xpath}`, root, null /* namespaceResolver */, XPathResult.FIRST_ORDERED_NODE_TYPE, null /* result */).singleNodeValue;
+    }
+};
 
-/***/ "./dist/util/TextPositionAnchor.js":
-/*!*****************************************!*\
-  !*** ./dist/util/TextPositionAnchor.js ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+// --- End: dist/util/xpath.js ---
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.TextPositionAnchor = void 0;\nconst TextRange_1 = __webpack_require__(/*! ./TextRange */ \"./dist/util/TextRange.js\");\nclass TextPositionAnchor {\n    constructor(root, start, end) {\n        this.root = root;\n        this.start = start;\n        this.end = end;\n    }\n    static fromRange(root, range) {\n        var _a;\n        const textRange = (_a = TextRange_1.TextRange.fromRange(range)) === null || _a === void 0 ? void 0 : _a.relativeTo(root);\n        if (!textRange)\n            return null;\n        return new TextPositionAnchor(root, textRange.start.offset, textRange.end.offset);\n    }\n    static fromSelector(root, selector) {\n        return new TextPositionAnchor(root, selector.start, selector.end);\n    }\n    toSelector() {\n        return {\n            start: this.start,\n            end: this.end,\n        };\n    }\n    toRange() {\n        return TextRange_1.TextRange.fromOffsets(this.root, this.start, this.end).toRange();\n    }\n}\nexports.TextPositionAnchor = TextPositionAnchor;\n\n\n//# sourceURL=webpack:///./dist/util/TextPositionAnchor.js?");
 
-/***/ }),
+// --- Start: dist/util/TextRange.js (and ResolveDirection enum) ---
 
-/***/ "./dist/util/TextRange.js":
-/*!********************************!*\
-  !*** ./dist/util/TextRange.js ***!
-  \********************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/**
+ * Enum for text resolution direction.
+ * @enum {number}
+ */
+const ResolveDirection = {
+    FORWARDS: 1,
+    BACKWARDS: 2
+};
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.TextRange = exports.ResolveDirection = void 0;\nconst TextPosition_1 = __webpack_require__(/*! ./TextPosition */ \"./dist/util/TextPosition.js\");\nconst utils_1 = __webpack_require__(/*! ./utils */ \"./dist/util/utils.js\");\nvar ResolveDirection;\n(function (ResolveDirection) {\n    ResolveDirection[ResolveDirection[\"FORWARDS\"] = 1] = \"FORWARDS\";\n    ResolveDirection[ResolveDirection[\"BACKWARDS\"] = 2] = \"BACKWARDS\";\n})(ResolveDirection || (exports.ResolveDirection = ResolveDirection = {}));\nclass TextRange {\n    constructor(start, end) {\n        this.start = start;\n        this.end = end;\n    }\n    toRange() {\n        let start;\n        let end;\n        if (this.start.element === this.end.element &&\n            this.start.offset <= this.end.offset) {\n            [start, end] = (0, utils_1.resolveOffsets)(this.start.element, this.start.offset, this.end.offset);\n        }\n        else {\n            start = this.start.resolve({\n                direction: ResolveDirection.FORWARDS,\n            });\n            end = this.end.resolve({ direction: ResolveDirection.BACKWARDS });\n        }\n        const range = new Range();\n        range.setStart(start.node, start.offset);\n        range.setEnd(end.node, end.offset);\n        return range;\n    }\n    static fromRange(range) {\n        const start = TextPosition_1.TextPosition.fromPoint(range.startContainer, range.startOffset);\n        const end = TextPosition_1.TextPosition.fromPoint(range.endContainer, range.endOffset);\n        if (!start || !end) {\n            return null;\n        }\n        return new TextRange(start, end);\n    }\n    static fromOffsets(root, start, end) {\n        return new TextRange(new TextPosition_1.TextPosition(root, start), new TextPosition_1.TextPosition(root, end));\n    }\n    relativeTo(element) {\n        return new TextRange(this.start.relativeTo(element), this.end.relativeTo(element));\n    }\n}\nexports.TextRange = TextRange;\n\n\n//# sourceURL=webpack:///./dist/util/TextRange.js?");
+/**
+ * Represents a text range defined by start and end TextPositions.
+ */
+class TextRange {
+    /**
+     * @param {TextPosition} start - The starting TextPosition.
+     * @param {TextPosition} end - The ending TextPosition.
+     */
+    constructor(start, end) {
+        this.start = start;
+        this.end = end;
+    }
 
-/***/ }),
+    /**
+     * Converts the TextRange to a DOM Range object.
+     * @returns {Range} A DOM Range object.
+     */
+    toRange() {
+        let start;
+        let end;
 
-/***/ "./dist/util/utils.js":
-/*!****************************!*\
-  !*** ./dist/util/utils.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, exports) => {
+        // Note: TextPosition class is defined below, due to circular dependency.
+        // This method will rely on TextPosition being available at runtime.
+        if (this.start.element === this.end.element &&
+            this.start.offset <= this.end.offset) {
+            // If start and end are in the same element and in order, resolve within that element
+            [start, end] = resolveOffsets(this.start.element, this.start.offset, this.end.offset);
+        } else {
+            // Otherwise, resolve start and end positions independently with direction
+            start = this.start.resolve({
+                direction: ResolveDirection.FORWARDS,
+            });
+            end = this.end.resolve({ direction: ResolveDirection.BACKWARDS });
+        }
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.resolveOffsets = exports.previousSiblingsTextLength = exports.nodeTextLength = void 0;\nconst nodeTextLength = (node) => {\n    var _a, _b;\n    switch (node.nodeType) {\n        case Node.ELEMENT_NODE:\n        case Node.TEXT_NODE:\n            return (_b = (_a = node.textContent) === null || _a === void 0 ? void 0 : _a.length) !== null && _b !== void 0 ? _b : 0;\n        default:\n            return 0;\n    }\n};\nexports.nodeTextLength = nodeTextLength;\nconst previousSiblingsTextLength = (node) => {\n    let sibling = node.previousSibling;\n    let length = 0;\n    while (sibling) {\n        length += (0, exports.nodeTextLength)(sibling);\n        sibling = sibling.previousSibling;\n    }\n    return length;\n};\nexports.previousSiblingsTextLength = previousSiblingsTextLength;\nconst resolveOffsets = (element, ...offsets) => {\n    let nextOffset = offsets.shift();\n    const nodeIter = element.ownerDocument.createNodeIterator(element, NodeFilter.SHOW_TEXT);\n    const results = [];\n    let currentNode = nodeIter.nextNode();\n    let textNode = null;\n    let length = 0;\n    while (nextOffset !== undefined && currentNode) {\n        textNode = currentNode;\n        if (length + textNode.data.length > nextOffset) {\n            results.push({ node: textNode, offset: nextOffset - length });\n            nextOffset = offsets.shift();\n        }\n        else {\n            currentNode = nodeIter.nextNode();\n            length += textNode.data.length;\n        }\n    }\n    while (nextOffset !== undefined && textNode && length === nextOffset) {\n        results.push({ node: textNode, offset: textNode.data.length });\n        nextOffset = offsets.shift();\n    }\n    if (nextOffset !== undefined) {\n        console.error(\"Offset exceeds text length\");\n    }\n    return results;\n};\nexports.resolveOffsets = resolveOffsets;\n\n\n//# sourceURL=webpack:///./dist/util/utils.js?");
+        const range = new Range();
+        range.setStart(start.node, start.offset);
+        range.setEnd(end.node, end.offset);
+        return range;
+    }
 
-/***/ }),
+    /**
+     * Creates a TextRange from a DOM Range object.
+     * @param {Range} range - The DOM Range object.
+     * @returns {TextRange | null} A new TextRange instance, or null if start/end positions cannot be determined.
+     */
+    static fromRange(range) {
+        // Note: TextPosition class is defined below.
+        const start = TextPosition.fromPoint(range.startContainer, range.startOffset);
+        const end = TextPosition.fromPoint(range.endContainer, range.endOffset);
+        if (!start || !end) {
+            return null;
+        }
+        return new TextRange(start, end);
+    }
 
-/***/ "./dist/util/xpath.js":
-/*!****************************!*\
-  !*** ./dist/util/xpath.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, exports) => {
+    /**
+     * Creates a TextRange from character offsets within a root element.
+     * @param {Element} root - The root element.
+     * @param {number} start - The starting character offset.
+     * @param {number} end - The ending character offset.
+     * @returns {TextRange} A new TextRange instance.
+     */
+    static fromOffsets(root, start, end) {
+        // Note: TextPosition class is defined below.
+        return new TextRange(new TextPosition(root, start), new TextPosition(root, end));
+    }
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.nodeFromXPath = exports.xpathFromNode = void 0;\nconst getNodeName = (node) => {\n    const nodeName = node.nodeName.toLowerCase();\n    return nodeName === \"#text\" ? \"text()\" : nodeName;\n};\nfunction getNodePosition(node) {\n    let pos = 0;\n    let tmp = node;\n    while (tmp) {\n        if (tmp.nodeName === node.nodeName) {\n            pos += 1;\n        }\n        tmp = tmp.previousSibling;\n    }\n    return pos;\n}\nconst getPathSegment = (node) => {\n    const name = getNodeName(node);\n    const pos = getNodePosition(node);\n    return `${name}[${pos}]`;\n};\nconst xpathFromNode = (node, root) => {\n    let xpath = \"\";\n    let elem = node;\n    while (elem !== root) {\n        if (!elem) {\n            console.error(\"Node is not a descendant of root\");\n            return;\n        }\n        xpath = `${getPathSegment(elem)}/${xpath}`;\n        elem = elem.parentNode;\n    }\n    xpath = `/${xpath}`;\n    xpath = xpath.replace(/\\/$/, \"\"); // Remove trailing slash\n    return xpath;\n};\nexports.xpathFromNode = xpathFromNode;\nconst nthChildOfType = (element, nodeName, index) => {\n    const name = nodeName.toUpperCase();\n    let matchIndex = -1;\n    for (let i = 0; i < element.children.length; i++) {\n        const child = element.children[i];\n        if (child.nodeName.toUpperCase() === name) {\n            ++matchIndex;\n            if (matchIndex === index) {\n                return child;\n            }\n        }\n    }\n    return null;\n};\nconst evaluateSimpleXPath = (xpath, root) => {\n    const isSimpleXPath = xpath.match(/^(\\/[A-Za-z0-9-]+(\\[[0-9]+])?)+$/) !== null;\n    if (!isSimpleXPath) {\n        console.error(\"Expression is not a simple XPath\");\n        return null;\n    }\n    const segments = xpath.split(\"/\");\n    let element = root;\n    // Remove leading empty segment. The regex above validates that the XPath\n    // has at least two segments, with the first being empty and the others non-empty.\n    segments.shift();\n    for (const segment of segments) {\n        let elementName;\n        let elementIndex;\n        const separatorPos = segment.indexOf(\"[\");\n        if (separatorPos !== -1) {\n            elementName = segment.slice(0, separatorPos);\n            const indexStr = segment.slice(separatorPos + 1, segment.indexOf(\"]\"));\n            elementIndex = Number.parseInt(indexStr) - 1;\n            if (elementIndex < 0) {\n                return null;\n            }\n        }\n        else {\n            elementName = segment;\n            elementIndex = 0;\n        }\n        const child = nthChildOfType(element, elementName, elementIndex);\n        if (!child) {\n            return null;\n        }\n        element = child;\n    }\n    return element;\n};\nconst nodeFromXPath = (xpath, root = document.body) => {\n    try {\n        return evaluateSimpleXPath(xpath, root);\n    }\n    catch (_a) {\n        return document.evaluate(`.${xpath}`, root, null /* namespaceResolver */, XPathResult.FIRST_ORDERED_NODE_TYPE, null /* result */).singleNodeValue;\n    }\n};\nexports.nodeFromXPath = nodeFromXPath;\n\n\n//# sourceURL=webpack:///./dist/util/xpath.js?");
+    /**
+     * Creates a new TextRange with positions relative to a given parent element.
+     * @param {Element} element - The parent element to make positions relative to.
+     * @returns {TextRange} A new TextRange instance with relative positions.
+     * @throws {Error} If the parent is not an ancestor of the current elements.
+     */
+    relativeTo(element) {
+        // Note: TextPosition class is defined below.
+        return new TextRange(this.start.relativeTo(element), this.end.relativeTo(element));
+    }
+}
 
-/***/ })
+// --- End: dist/util/TextRange.js ---
 
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__("./dist/main.js");
-/******/ 	
-/******/ })()
-;
+
+// --- Start: dist/util/TextPosition.js ---
+
+/**
+ * Represents a position within a text flow, defined by an element and an offset.
+ */
+class TextPosition {
+    /**
+     * @param {Element} element - The element containing the text.
+     * @param {number} offset - The character offset within the element's text content.
+     */
+    constructor(element, offset) {
+        if (offset < 0) {
+            console.error("Offset is invalid");
+        }
+        this.element = element;
+        this.offset = offset;
+    }
+
+    /**
+     * Resolves the TextPosition to a specific text node and offset within that node.
+     * @param {object} [options={}] - Options for resolution.
+     * @param {number} [options.direction] - Direction to resolve if offset is 0 (from ResolveDirection enum).
+     * @returns {{node: Text, offset: number}} The resolved text node and offset.
+     * @throws {Error} If the offset cannot be resolved.
+     */
+    resolve(options = {}) {
+        try {
+            return resolveOffsets(this.element, this.offset)[0];
+        } catch (err) {
+            // Special handling for offset 0 with a direction, to find the previous/next text node.
+            if (this.offset === 0 && options.direction !== undefined) {
+                const tw = document.createTreeWalker(this.element.getRootNode(), NodeFilter.SHOW_TEXT);
+                tw.currentNode = this.element;
+                const forwards = options.direction === ResolveDirection.FORWARDS;
+                const text = forwards
+                    ? tw.nextNode()
+                    : tw.previousNode();
+                if (!text) {
+                    throw err; // Re-throw if no text node found in the specified direction
+                }
+                return { node: text, offset: forwards ? 0 : text.data.length };
+            }
+            throw err; // Re-throw other errors
+        }
+    }
+
+    /**
+     * Creates a TextPosition from a character offset within a given node.
+     * This is useful when the node might be a text node or an element node.
+     * @param {Node} node - The node (can be Element or Text).
+     * @param {number} offset - The character offset.
+     * @returns {TextPosition | null} A new TextPosition instance, or null if invalid.
+     */
+    static fromCharOffset(node, offset) {
+        switch (node.nodeType) {
+            case Node.TEXT_NODE:
+                return TextPosition.fromPoint(node, offset);
+            case Node.ELEMENT_NODE:
+                return new TextPosition(node, offset);
+            default:
+                console.error("Node is not an element or text node");
+                return null;
+        }
+    }
+
+    /**
+     * Creates a TextPosition from a point (node and offset within that node).
+     * This method handles both text nodes and element nodes correctly.
+     * @param {Node} node - The node (can be Element or Text).
+     * @param {number} offset - The offset within the node.
+     * @returns {TextPosition | null} A new TextPosition instance, or null if invalid.
+     */
+    static fromPoint(node, offset) {
+        switch (node.nodeType) {
+            case Node.TEXT_NODE: {
+                if (offset < 0 || offset > node.data.length) {
+                    console.error("Text node offset is out of range");
+                    return null;
+                }
+                if (!node.parentElement) {
+                    console.error("Text node has no parent");
+                    return null;
+                }
+                const textOffset = previousSiblingsTextLength(node) + offset;
+                return new TextPosition(node.parentElement, textOffset);
+            }
+            case Node.ELEMENT_NODE: {
+                if (offset < 0 || offset > node.childNodes.length) {
+                    console.error("Child node offset is out of range");
+                    return null;
+                }
+                let textOffset = 0;
+                for (let i = 0; i < offset; i++) {
+                    textOffset += nodeTextLength(node.childNodes[i]);
+                }
+                return new TextPosition(node, textOffset);
+            }
+            default:
+                console.error("Point is not in an element or text node");
+                return null;
+        }
+    }
+
+    /**
+     * Calculates a new TextPosition relative to a given parent element.
+     * @param {Element} parent - The parent element to make the position relative to.
+     * @returns {TextPosition} A new TextPosition instance relative to the parent.
+     * @throws {Error} If the parent is not an ancestor of the current element.
+     */
+    relativeTo(parent) {
+        if (!parent.contains(this.element)) {
+            throw new Error("Parent is not an ancestor of current element");
+        }
+        let el = this.element;
+        let offset = this.offset;
+        while (el !== parent) {
+            offset += previousSiblingsTextLength(el);
+            if (el.parentElement) {
+                el = el.parentElement;
+            } else {
+                // Should not happen if parent.contains(this.element) is true
+                throw new Error("Unexpected: Element has no parent while traversing up to root.");
+            }
+        }
+        return new TextPosition(el, offset);
+    }
+}
+
+// --- End: dist/util/TextPosition.js ---
+
+
+// --- Start: dist/util/RangeAnchor.js ---
+
+/**
+ * Represents a range anchor using XPath and character offsets,
+ * allowing it to be serialized and deserialized.
+ */
+class RangeAnchor {
+    /**
+     * @param {Element} root - The root element relative to which the range is defined.
+     * @param {Range} range - The DOM Range object.
+     */
+    constructor(root, range) {
+        this.root = root;
+        this.range = range;
+    }
+
+    /**
+     * Creates a RangeAnchor from a DOM Range.
+     * @param {Element} root - The root element.
+     * @param {Range} range - The DOM Range.
+     * @returns {RangeAnchor} A new RangeAnchor instance.
+     */
+    static fromRange(root, range) {
+        return new RangeAnchor(root, range);
+    }
+
+    /**
+     * Creates a RangeAnchor from a serialized selector object.
+     * @param {Element} root - The root element.
+     * @param {object} selector - The selector object with startContainer, startOffset, endContainer, endOffset.
+     * @returns {RangeAnchor | null} A new RangeAnchor instance, or null if resolution fails.
+     */
+    static fromSelector(root, selector) {
+        if (!selector?.startContainer || !selector?.endContainer) {
+            console.error("No start or end container in selector");
+            return null;
+        }
+
+        const startContainer = nodeFromXPath(selector.startContainer, root);
+        if (!startContainer) {
+            console.error("Failed to resolve startContainer XPath");
+            return null;
+        }
+
+        const endContainer = nodeFromXPath(selector.endContainer, root);
+        if (!endContainer) {
+            console.error("Failed to resolve endContainer XPath");
+            return null;
+        }
+
+        const startPos = TextPosition.fromCharOffset(startContainer, selector.startOffset);
+        const endPos = TextPosition.fromCharOffset(endContainer, selector.endOffset);
+
+        if (!startPos || !endPos) {
+            return null;
+        }
+
+        const range = new TextRange(startPos, endPos).toRange();
+        return new RangeAnchor(root, range);
+    }
+
+    /**
+     * Returns the underlying DOM Range object.
+     * @returns {Range} The DOM Range.
+     */
+    toRange() {
+        return this.range;
+    }
+
+    /**
+     * Serializes the RangeAnchor to a selector object.
+     * @returns {object | null} The selector object, or null if serialization fails.
+     */
+    toSelector() {
+        const normalizedRange = TextRange.fromRange(this.range)?.toRange();
+        const textRange = normalizedRange && TextRange.fromRange(normalizedRange);
+
+        const startContainer = textRange && xpathFromNode(textRange.start.element, this.root);
+        const endContainer = textRange && xpathFromNode(textRange.end.element, this.root);
+
+        if (!startContainer || !endContainer) {
+            return null;
+        }
+
+        return {
+            startContainer,
+            startOffset: textRange.start.offset,
+            endContainer,
+            endOffset: textRange.end.offset,
+        };
+    }
+}
+
+// --- End: dist/util/RangeAnchor.js ---
+
+
+// --- Start: dist/util/TextPositionAnchor.js ---
+
+/**
+ * Represents a text position anchor using character offsets relative to a root element.
+ * This is a simpler anchor type compared to RangeAnchor, suitable for collapsed selections or single points.
+ */
+class TextPositionAnchor {
+    /**
+     * @param {Element} root - The root element relative to which the offsets are defined.
+     * @param {number} start - The starting character offset.
+     * @param {number} end - The ending character offset.
+     */
+    constructor(root, start, end) {
+        this.root = root;
+        this.start = start;
+        this.end = end;
+    }
+
+    /**
+     * Creates a TextPositionAnchor from a DOM Range.
+     * @param {Element} root - The root element.
+     * @param {Range} range - The DOM Range.
+     * @returns {TextPositionAnchor | null} A new TextPositionAnchor instance, or null if conversion fails.
+     */
+    static fromRange(root, range) {
+        const textRange = TextRange.fromRange(range)?.relativeTo(root);
+        if (!textRange)
+            return null;
+        return new TextPositionAnchor(root, textRange.start.offset, textRange.end.offset);
+    }
+
+    /**
+     * Creates a TextPositionAnchor from a serialized selector object.
+     * @param {Element} root - The root element.
+     * @param {object} selector - The selector object with start and end offsets.
+     * @returns {TextPositionAnchor} A new TextPositionAnchor instance.
+     */
+    static fromSelector(root, selector) {
+        return new TextPositionAnchor(root, selector.start, selector.end);
+    }
+
+    /**
+     * Serializes the TextPositionAnchor to a selector object.
+     * @returns {{start: number, end: number}} The selector object.
+     */
+    toSelector() {
+        return {
+            start: this.start,
+            end: this.end,
+        };
+    }
+
+    /**
+     * Converts the TextPositionAnchor to a DOM Range object.
+     * @returns {Range} A DOM Range object.
+     */
+    toRange() {
+        return TextRange.fromOffsets(this.root, this.start, this.end).toRange();
+    }
+}
+
+// --- End: dist/util/TextPositionAnchor.js ---
+
+
+// --- Start: dist/use_case/GetCurrentTextSelection.js ---
+
+/**
+ * Gets the current text selection information from the DOM.
+ * @returns {object} An object containing selected text, text position selector, and range selector.
+ */
+function getCurrentTextSelection() {
+    const selection = window.getSelection();
+    const range = selection?.getRangeAt(0); // Optional chaining for selection and getRangeAt
+    const parentRef = document.getElementById("parent-container");
+
+    const rangeAnchor = parentRef && range ? RangeAnchor.fromRange(parentRef, range) : null;
+    const textAnchor = parentRef && range ? TextPositionAnchor.fromRange(parentRef, range) : null;
+
+    return {
+        selectedText: selection?.toString(), // Optional chaining for selection
+        textPosition: textAnchor?.toSelector(), // Optional chaining for textAnchor
+        range: rangeAnchor?.toSelector(), // Optional chaining for rangeAnchor
+    };
+}
+
+// --- End: dist/use_case/GetCurrentTextSelection.js ---
+
+
+// --- Start: dist/use_case/ApplyHighlights.js ---
+
+const highlightClassName = "notebook-highlight";
+
+/**
+ * Adds a single highlight to the document.
+ * @param {object} notebookTextSelection - The highlight object containing range and styling.
+ */
+const addHighlight = (notebookTextSelection) => {
+    let parent = document.getElementById("parent-container");
+    if (!parent) return;
+
+    // Resolve the range from the selector
+    let range = RangeAnchor.fromSelector(parent, notebookTextSelection.range)?.toRange();
+    if (!range) return;
+
+    const textNodeSpans = getHighlightRange(range);
+
+    for (const textNode of textNodeSpans) {
+        const parentNode = textNode.parentNode;
+        const highlightElement = createHighlightElement({ textContent: textNode.textContent, notebookTextSelection });
+        if (!highlightElement) return;
+        parentNode.replaceChild(highlightElement, textNode);
+    }
+};
+
+/**
+ * Removes all existing highlights from the document.
+ */
+function clearHighlights() {
+    const elements = document.getElementsByClassName(highlightClassName);
+    
+    
+    const icons = element.querySelectorAll('.highlight-icon');
+    icons.forEach(icon => icon.remove());
+    // Iterate while elements exist, as getElementsByClassName returns a live collection
+    while (elements.length) {
+        const element = elements[0];
+        // Filter for actual text nodes (Node.TEXT_NODE) and replace the highlight element with them
+        const textNodes = Array.from(element.childNodes).filter(node => node.nodeType === Node.TEXT_NODE);
+        element.replaceWith(...textNodes);
+    }
+}
+
+/**
+ * Gets the text nodes within a given range that should be highlighted.
+ * @param {Range} range - The DOM Range object.
+ * @returns {Array<Text>} An array of text nodes to be highlighted.
+ */
+const getHighlightRange = (range) => {
+    const textNodes = wholeTextNodesInRange(range);
+    const whitespace = /^\s*$/; // Regex to test for only whitespace
+
+    return textNodes.filter((node) => {
+        const parentElement = node.parentElement;
+        // Only highlight if:
+        // 1. The parent element has only one child and is a SPAN (suggests it's already a highlight span)
+        // OR
+        // 2. The node's data is not just whitespace.
+        return (((parentElement?.childNodes.length) === 1 && (parentElement?.tagName) === "SPAN") || !whitespace.test(node.data));
+    });
+};
+
+/**
+ * Retrieves all whole text nodes within a given DOM Range.
+ * Splits text nodes at range boundaries if necessary.
+ * @param {Range} range - The DOM Range object.
+ * @returns {Array<Text>} An array of text nodes fully contained or partially covered by the range.
+ */
+const wholeTextNodesInRange = (range) => {
+    if (range.collapsed) return [];
+
+    let root = range.commonAncestorContainer;
+    // If common ancestor is a text node, go up to its parent element
+    if (root && root.nodeType !== Node.ELEMENT_NODE) root = root.parentElement;
+    if (!root) return [];
+
+    const textNodes = [];
+    // Create a NodeIterator to traverse only text nodes within the root
+    const nodeIter = root?.ownerDocument?.createNodeIterator(root, NodeFilter.SHOW_TEXT);
+
+    let node = nodeIter?.nextNode() || null;
+    while (node) {
+        // Skip nodes that are not within the range
+        if (!isNodeInRange(range, node)) {
+            node = nodeIter?.nextNode() || null;
+            continue;
+        }
+
+        const text = node;
+        // If the start of the range is within this text node, split it
+        if (text === range.startContainer && range.startOffset > 0) {
+            text.splitText(range.startOffset);
+            node = nodeIter?.nextNode() || null; // NodeIterator needs to be advanced after split
+            continue;
+        }
+        // If the end of the range is within this text node, split it
+        if (text === range.endContainer && range.endOffset < text.data.length) {
+            text.splitText(range.endOffset);
+        }
+        textNodes.push(text);
+        node = nodeIter?.nextNode() || null;
+    }
+    return textNodes;
+};
+
+/**
+ * Checks if a given node is within the boundaries of a DOM Range.
+ * @param {Range} range - The DOM Range.
+ * @param {Node} node - The node to check.
+ * @returns {boolean} True if the node is within the range, false otherwise.
+ */
+const isNodeInRange = (range, node) => {
+    try {
+        // Compare the start and end points of the node with the range's boundaries
+        const length = node.nodeValue?.length ?? node.childNodes.length;
+        return (range.comparePoint(node, 0) <= 0 && range.comparePoint(node, length) >= 0);
+    } catch (e) {
+        // Catch errors that might occur if comparePoint is called on an invalid node/offset
+        return false;
+    }
+};
+
+/**
+ * Notifies the iOS webkit message handler about a highlight tap.
+ * @param {object} notebookTextSelection - The highlight data associated with the tapped highlight.
+ */
+const notifyiOSOfHighlightTap = (notebookTextSelection) => {
+    const messageHandlers = window.webkit?.messageHandlers;
+    if (!messageHandlers) return;
+    messageHandlers.notebookHighlightTap.postMessage(JSON.stringify(notebookTextSelection));
+};
+
+/**
+ * Creates a highlight HTML span element.
+ * @param {object} params - Parameters for creating the highlight element.
+ * @param {string} params.textContent - The text content for the highlight.
+ * @param {object} params.notebookTextSelection - The selection data for the highlight.
+ * @returns {HTMLSpanElement | null} The created span element, or null if textContent is empty.
+ */
+
+function injectHighlightStyles() {
+  if (document.getElementById("highlight-style")) return; // prevent duplicates
+
+  const style = document.createElement("style");
+  style.id = "highlight-style";
+  style.textContent = `
+    .notebook-highlight {
+      position: relative;
+      padding: 0px;
+      border-top: none;
+      border-right: none;
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--background-color);
+    }
+
+    .with-badge::before {
+      content: "";
+      position: absolute;
+      left: -5px;
+      top: 0px;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      background-image: var(--badge-icon);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 50%;
+      background-color: var(--background-color);  
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+const createHighlightElement = ({ textContent, notebookTextSelection }) => {
+  if (!textContent) return null;
+
+  injectHighlightStyles(); // Make sure styles are added
+
+  const span = document.createElement("span");
+
+  span.classList.add("notebook-highlight", "with-badge");
+
+  // Set dynamic variables 
+  const confusingImageBase64 = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iI0M3MUYyMyIvPgo8cGF0aCBkPSJNOC4yMzE1NyA1LjM0MDc4QzguMjMxNTcgNC45OTY3NSA4LjExNjYgNC43MjA0MyA3Ljg4NjY3IDQuNTExODJDNy42NTY2NyA0LjMwMzI4IDcuMzUzMSA0LjE5OTAxIDYuOTc1OTQgNC4xOTkwMUM2LjczNzE5IDQuMTk5MDEgNi41MjU1MyA0LjI0NzczIDYuMzQwOTQgNC4zNDUxNkM2LjE1NjM2IDQuNDQyNjYgNS45OTcwMiA0LjU4OTQzIDUuODYyOTIgNC43ODU0N0M1Ljc4MzkgNC44OTcxNCA1LjY3ODI3IDQuOTYzMTEgNS41NDYwNSA0Ljk4MzM5QzUuNDEzOSA1LjAwMzczIDUuMjk4MzggNC45NzE0NCA1LjE5OTQ5IDQuODg2NTFDNS4xMjYzNiA0LjgyMjkgNS4wODQ1OSA0Ljc0MzE4IDUuMDc0MTcgNC42NDczNEM1LjA2Mzc2IDQuNTUxNDQgNS4wODYwNSA0LjQ2MDQ3IDUuMTQxMDUgNC4zNzQ0M0M1LjM1MjU4IDQuMDU0NSA1LjYxNDIxIDMuODExMiA1LjkyNTk0IDMuNjQ0NTNDNi4yMzc2MSAzLjQ3Nzg2IDYuNTg3NjEgMy4zOTQ1MyA2Ljk3NTk0IDMuMzk0NTNDNy41OTYxNSAzLjM5NDUzIDguMTAwOTggMy41NzIxNCA4LjQ5MDQyIDMuOTI3MzRDOC44Nzk4IDQuMjgyNTUgOS4wNzQ0OSA0Ljc0NTE2IDkuMDc0NDkgNS4zMTUxNkM5LjA3NDQ5IDUuNjE2OTYgOS4wMDk4NyA1Ljg5MzUyIDguODgwNjMgNi4xNDQ4NEM4Ljc1MTMzIDYuMzk2MjMgOC41MzA5OCA2LjY2NjY4IDguMjE5NTkgNi45NTYyQzcuOTI3OTIgNy4yMjA2NCA3LjcyODkzIDcuNDM1MjYgNy42MjI2MSA3LjYwMDA1QzcuNTE2MjkgNy43NjQ4NCA3LjQ1NDU5IDcuOTUwMDUgNy40Mzc1MSA4LjE1NTY4QzcuNDIwNDIgOC4yNzQyOSA3LjM3MTI5IDguMzczMTEgNy4yOTAxMSA4LjQ1MjE0QzcuMjA4ODYgOC41MzEyMyA3LjExMTA4IDguNTcwNzggNi45OTY3OCA4LjU3MDc4QzYuODgyNDcgOC41NzA3OCA2Ljc4NDczIDguNTMxNjUgNi43MDM1NSA4LjQ1MzM5QzYuNjIyMzcgOC4zNzUxMiA2LjU4MTc4IDguMjc4ODQgNi41ODE3OCA4LjE2NDUzQzYuNTgxNzggNy44ODU3MSA2LjY0NTQ2IDcuNjMwNzggNi43NzI4MiA3LjM5OTc0QzYuOTAwMjUgNy4xNjg3IDcuMTEzNTUgNi45MjAxNiA3LjQxMjcyIDYuNjU0MTJDNy43MzIxNiA2LjM3MzcgNy45NDg0OCA2LjEzOTcxIDguMDYxNjcgNS45NTIxNEM4LjE3NDk0IDUuNzY0NjQgOC4yMzE1NyA1LjU2MDg1IDguMjMxNTcgNS4zNDA3OFpNNi45NzU5NCAxMC45NTg2QzYuODA1NTMgMTAuOTU4NiA2LjY1ODc2IDEwLjg5NyA2LjUzNTYzIDEwLjc3MzlDNi40MTI1MSAxMC42NTA4IDYuMzUwOTQgMTAuNTA0IDYuMzUwOTQgMTAuMzMzNkM2LjM1MDk0IDEwLjE2MzIgNi40MTI1MSAxMC4wMTY0IDYuNTM1NjMgOS44OTMyOEM2LjY1ODc2IDkuNzcwMTYgNi44MDU1MyA5LjcwODU5IDYuOTc1OTQgOS43MDg1OUM3LjE0NjM2IDkuNzA4NTkgNy4yOTMxMyA5Ljc3MDE2IDcuNDE2MjYgOS44OTMyOEM3LjUzOTM4IDEwLjAxNjQgNy42MDA5NCAxMC4xNjMyIDcuNjAwOTQgMTAuMzMzNkM3LjYwMDk0IDEwLjUwNCA3LjUzOTM4IDEwLjY1MDggNy40MTYyNiAxMC43NzM5QzcuMjkzMTMgMTAuODk3IDcuMTQ2MzYgMTAuOTU4NiA2Ljk3NTk0IDEwLjk1ODZaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K";
+  const importantImageBase64 = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzJCN0FCQyIvPgo8bWFzayBpZD0ibWFzazBfMTUzNzlfMzU4MyIgc3R5bGU9Im1hc2stdHlwZTphbHBoYSIgbWFza1VuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeD0iMiIgeT0iMiIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIj4KPHJlY3QgeD0iMiIgeT0iMiIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjRDlEOUQ5Ii8+CjwvbWFzaz4KPGcgbWFzaz0idXJsKCNtYXNrMF8xNTM3OV8zNTgzKSI+CjxwYXRoIGQ9Ik00LjkxNjUgNy4zMjAyVjEwLjY0NTVDNC45MTY1IDEwLjczNCA0Ljg4NjU0IDEwLjgwODMgNC44MjY2MSAxMC44NjgxQzQuNzY2NjggMTAuOTI4IDQuNjkyNDQgMTAuOTU4IDQuNjAzOSAxMC45NThDNC41MTUyOSAxMC45NTggNC40NDEwOSAxMC45MjggNC4zODEzIDEwLjg2ODFDNC4zMjE0MyAxMC44MDgzIDQuMjkxNSAxMC43MzQgNC4yOTE1IDEwLjY0NTVWMy44MzQ2N0M0LjI5MTUgMy43Mjc5NCA0LjMyNzYxIDMuNjM4NDkgNC4zOTk4NCAzLjU2NjM0QzQuNDcxOTkgMy40OTQxMiA0LjU2MTQzIDMuNDU4MDEgNC42NjgxNyAzLjQ1ODAxSDkuOTYyOTZDMTAuMDMxNCAzLjQ1ODAxIDEwLjA5MyAzLjQ3Mzg0IDEwLjE0NzggMy41MDU1MUMxMC4yMDI2IDMuNTM3MTEgMTAuMjQ2MiAzLjU3ODIyIDEwLjI3ODQgMy42Mjg4NEMxMC4zMTA2IDMuNjc5NDcgMTAuMzMwNiAzLjczNTc5IDEwLjMzODQgMy43OTc4QzEwLjM0NjEgMy44NTk3NCAxMC4zMzU3IDMuOTIyOTQgMTAuMzA3MiAzLjk4NzM4TDkuNjg4MTcgNS4zODkxNUwxMC4zMDcyIDYuNzkwODJDMTAuMzM1NyA2Ljg1NTI2IDEwLjM0NjEgNi45MTg0NiAxMC4zMzg0IDYuOTgwNEMxMC4zMzA2IDcuMDQyNDIgMTAuMzEwNiA3LjA5ODc0IDEwLjI3ODQgNy4xNDkzNkMxMC4yNDYyIDcuMTk5OTkgMTAuMjAyNiA3LjI0MTEgMTAuMTQ3OCA3LjI3MjdDMTAuMDkzIDcuMzA0MzYgMTAuMDMxNCA3LjMyMDIgOS45NjI5NiA3LjMyMDJINC45MTY1Wk00LjkxNjUgNi42OTUySDkuNTk2ODJMOS4xNDU2NyA1LjY5MzYzQzkuMTAxMzcgNS41OTg4NCA5LjA3OTIxIDUuNDk3MjggOS4wNzkyMSA1LjM4ODk1QzkuMDc5MjEgNS4yODA2MSA5LjEwMTM3IDUuMTc5MTUgOS4xNDU2NyA1LjA4NDU3TDkuNTk2ODIgNC4wODMwMUg0LjkxNjVWNi42OTUyWiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8L3N2Zz4K";
+  const image =  notebookTextSelection.backgroundColor == '#c71f2233' ? confusingImageBase64 : importantImageBase64
+  span.style.setProperty('--badge-icon', `url(${image})`);
+  span.style.setProperty('--border-color', notebookTextSelection.borderColor);
+  span.style.setProperty('--background-color', notebookTextSelection.backgroundColor);
+
+  span.onclick = () => notifyiOSOfHighlightTap(notebookTextSelection);
+
+  const textNode = document.createTextNode(textContent);
+  span.appendChild(textNode);
+
+  return span;
+};
+
+
+/**
+ * Applies highlights to the document based on an array of notebook text selections.
+ * Clears existing highlights before applying new ones.
+ * @param {Array<object>} highlights - An array of highlight objects, each with a 'range' and styling properties.
+ */
+function applyHighlights(highlights) {
+    clearHighlights();
+    highlights.forEach(addHighlight);
+}
+
+// --- End: dist/use_case/ApplyHighlights.js ---
+
+
+// --- Start: dist/use_case/NotifyTextSelectionChange.js ---
+
+/**
+ * Registers an event listener for text selection changes and notifies iOS webkit message handlers.
+ */
+function registerNotifyOnTextSelectionChange() {
+    document.addEventListener("selectionchange", async () => {
+        const messageHandlers = window.webkit?.messageHandlers;
+        if (!messageHandlers) {
+            return;
+        }
+
+        const currentTextSelection = await getCurrentTextSelection();
+        // Ensure the message handler exists before posting
+        if (messageHandlers.notebookTextSelectionChange) {
+            window.webkit.messageHandlers.notebookTextSelectionChange.postMessage(JSON.stringify(currentTextSelection));
+        } else {
+            console.warn("webkit.messageHandlers.notebookTextSelectionChange is not defined.");
+        }
+    });
+}
+
+// --- End: dist/use_case/NotifyTextSelectionChange.js ---
+
+
+// --- Start: dist/main.js (Global Exposure) ---
+
+// This file is just an interface. No implementation details here!
+window.applyHighlights = applyHighlights;
+window.getCurrentTextSelection = getCurrentTextSelection;
+registerNotifyOnTextSelectionChange();
+
+// --- End: dist/main.js ---
