@@ -32,7 +32,7 @@ struct NotebookNoteView: View {
                 viewModel: .init(
                     text: String(localized: "Your note has been saved", bundle: .horizon),
                     style: .success,
-                    isShowCancelButton: false
+                    isShowCancelButton: true
                 )
             )
             .padding(.top, .huiSpaces.space32)

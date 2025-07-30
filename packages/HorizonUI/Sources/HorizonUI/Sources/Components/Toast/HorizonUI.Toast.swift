@@ -50,7 +50,7 @@ public extension HorizonUI {
         }
 
         private var contentView: some View {
-            HStack(alignment: .top, spacing: .zero) {
+            HStack(alignment: .center, spacing: .zero) {
                 alertIcon
                 VStack(alignment: .leading, spacing: .zero) {
                     textView
@@ -59,7 +59,6 @@ public extension HorizonUI {
                         .padding(.bottom, .huiSpaces.space16)
                 }
                 trailingButtons
-                    .padding(.top, .huiSpaces.space16)
             }
             .frame(minHeight: 64)
         }
