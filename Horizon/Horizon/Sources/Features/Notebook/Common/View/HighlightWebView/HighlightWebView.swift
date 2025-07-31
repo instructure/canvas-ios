@@ -227,6 +227,13 @@ final class HighlightWebView: CoreWebView {
     }
 
     private func openAssistWithSelection(_ action: UIAction) {
+        guard let courseID = courseID,
+              let pageURL = pageURL,
+              let textSelection = currentNotebookTextSelection?.selectedText,
+              let viewController = viewController else {
+            return
+        }
+        router.route(to: "/assistant?textSelection=\(textSelection)&courseId=\(courseID)&pageUrl=\(pageURL)", from: viewController)
     }
 }
 
