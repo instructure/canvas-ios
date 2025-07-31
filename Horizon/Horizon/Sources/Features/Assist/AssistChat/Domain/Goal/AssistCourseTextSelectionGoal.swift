@@ -29,41 +29,26 @@ class AssistCourseTextSelectionGoal: AssistCoursePageGoal {
         guard let textSelection = environment.textSelection.value else {
             return AssistChatMessage.nilResponse
         }
-        let goalOptions: [AssistGoalOption] = [
-            .init(
-                name: String(localized: "Explain this", bundle: .horizon),
-                description: AssistCourseTextSelectionGoal.explainThisPrompt(textSelection: textSelection)
-            )
-        ]
+
         guard let response = response else {
-            return Just(
-                .init(
-                    botResponse: AssistCourseTextSelectionGoal.initialPrompt,
-                    chipOptions: goalOptions.chipOptions
+            return Just<AssistChatMessage?>(.init(userResponse: String(localized: "Explain this", bundle: .horizon)))
+                .setFailureType(to: Error.self)
+                .append(
+                    Deferred { [weak self] in
+                        guard let self = self else {
+                            return AssistChatMessage.nilResponse
+                        }
+                        return self.cedarAnswerPrompt(prompt: AssistCourseTextSelectionGoal.explainThisPrompt(textSelection: textSelection))
+                    }
                 )
+                .eraseToAnyPublisher()
+        }
+        return self.cedarAnswerPrompt(
+            prompt: AssistCourseTextSelectionGoal.askAQuestionPrompt(
+                textSelection: textSelection,
+                response: response
             )
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-        }
-        return choose(
-            from: goalOptions,
-            with: response,
-            using: cedar
-        ).flatMap { [weak self] goalOption in
-            guard let self = self else {
-                return AssistChatMessage.nilResponse
-            }
-            guard let goalOption = goalOption else {
-                return self.cedarAnswerPrompt(
-                    prompt: AssistCourseTextSelectionGoal.askAQuestionPrompt(
-                        textSelection: textSelection,
-                        response: response
-                    )
-                )
-            }
-            return self.cedarAnswerPrompt(prompt: goalOption.description)
-        }
-        .eraseToAnyPublisher()
+        )
     }
 
     override

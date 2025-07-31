@@ -23,7 +23,7 @@ import SwiftUI
 import WebKit
 
 /// This override of WKWebView allows for highlighting of Web content.
-final class HighlightWebView: CoreWebView {
+final class HorizonWebView: CoreWebView {
 
     // MARK: - Private
 
@@ -105,10 +105,16 @@ final class HighlightWebView: CoreWebView {
         let notebookActions = actionDefinitions.map { actionDefinition in
             UIAction(title: actionDefinition.title, handler: onMenuAction)
         }
-        let assistMenuAction = UIAction(image: HorizonUI.icons.ai.uiImage, handler: openAssistWithSelection)
-        let actions = notebookActions + [assistMenuAction]
-        let menu = UIMenu(title: "", options: .displayInline, children: actions)
-        builder.insertChild(menu, atStartOfMenu: .standardEdit)
+        let notebookMenu = UIMenu(title: "", options: .displayInline, children: notebookActions)
+        builder.insertChild(notebookMenu, atStartOfMenu: .standardEdit)
+
+        let assistMenuAction = UIAction(
+            title: String(localized: "Explain this", bundle: .horizon),
+            image: HorizonUI.icons.ai.uiImage,
+            handler: openAssistWithSelection
+        )
+        let assistMenu = UIMenu(title: "", options: .displayInline, children: [assistMenuAction])
+        builder.insertChild(assistMenu, atStartOfMenu: .standardEdit)
     }
 
     override func html(for content: String) -> String {

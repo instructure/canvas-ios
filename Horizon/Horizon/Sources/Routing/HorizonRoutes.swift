@@ -444,7 +444,7 @@ extension HorizonRoutes {
         )
         if let item = userInfo?["item"] as? HModuleItem,
            let type = item.type {
-            viewController.webView = HighlightWebView(
+            viewController.webView = HorizonWebView(
                 courseID: courseID,
                 pageURL: pageURL,
                 moduleType: type,

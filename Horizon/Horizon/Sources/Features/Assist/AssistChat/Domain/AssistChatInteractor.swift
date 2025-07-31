@@ -106,7 +106,12 @@ final class AssistChatInteractorLive: AssistChatInteractor {
                     self?.publish(action: .chat(prompt: nil, history: history))
                     return
                 }
-                let response: AssistChatResponse = .init(assistChatMessage, chatHistory: history)
+                let response: AssistChatResponse = .init(
+                    assistChatMessage,
+                    chatHistory: history,
+                    isLoading: assistChatMessage.role == .User
+                )
+                history = response.chatHistory
                 self?.responsePublisher.send(.success(response))
             }
         )
