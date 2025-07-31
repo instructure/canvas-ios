@@ -23,7 +23,7 @@ import XCTest
 class PointsBasedGradingSchemeTests: GradingSchemeTestCase {
 
     func testScoreConversion() {
-        let testee = PointsBasedGradingScheme(scaleFactor: 5, entries: scoreConversionEntries())
+        let testee = PointsBasedGradingScheme(entries: scoreConversionEntries(), scaleFactor: 5)
 
         var result = testee.convertNormalizedScoreToLetterGrade(0.90)
         XCTAssertEqual(result, "A")
@@ -42,13 +42,13 @@ class PointsBasedGradingSchemeTests: GradingSchemeTestCase {
     }
 
     func testScoreConversionWithInvalidScheme() {
-        let testee = PointsBasedGradingScheme(scaleFactor: 4, entries: invalidConversionEntries())
+        let testee = PointsBasedGradingScheme(entries: invalidConversionEntries(), scaleFactor: 4)
         let result = testee.convertNormalizedScoreToLetterGrade(0.30)
         XCTAssertNil(result)
     }
 
     func testFormattedScorePointBasedOn() {
-        let testee = PointsBasedGradingScheme(scaleFactor: 5, entries: [])
+        let testee = PointsBasedGradingScheme(entries: [], scaleFactor: 5)
 
         var result = testee.formattedScore(from: 80)
         XCTAssertEqual(result, "4")

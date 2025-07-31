@@ -21,16 +21,31 @@ import Foundation
 public protocol GradingScheme {
     var entries: [GradingSchemeEntry] { get }
 
-    func convertNormalizedScoreToLetterGrade(_ normalizedScore: Double) -> String?
+    var formattedEntries: [FormattedGradingSchemeEntry] { get }
+    var maxFormattedValue: String? { get }
+    func formattedEntryValue(_ value: Double) -> String?
+
     func formattedScore(from value: Double) -> String?
+    func convertNormalizedScoreToLetterGrade(_ normalizedScore: Double) -> String?
 }
 
-public extension GradingScheme {
+extension GradingScheme {
 
-    func convertNormalizedScoreToLetterGrade(_ normalizedScore: Double) -> String? {
+    public var formattedEntries: [FormattedGradingSchemeEntry] {
+        entries.map {
+            .init(name: $0.name, value: formattedEntryValue($0.value) ?? "")
+        }
+    }
+
+    public func convertNormalizedScoreToLetterGrade(_ normalizedScore: Double) -> String? {
         // Teachers can add extra points so the "normalized" score can be higher than 1.0. But 10 would be very suspicious.
         assert(abs(normalizedScore) < 10)
 
         return entries.first { normalizedScore >= $0.value }?.name
     }
+}
+
+public struct FormattedGradingSchemeEntry {
+    public let name: String
+    public let value: String
 }
