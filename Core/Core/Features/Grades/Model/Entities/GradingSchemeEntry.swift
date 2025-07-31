@@ -16,21 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
-
-public final class GradingSchemeEntry: NSManagedObject {
-    @NSManaged public var name: String
-    @NSManaged public var value: Double
-    @NSManaged public var course: Course?
-}
-
-extension GradingSchemeEntry: WriteableModel {
-
-    @discardableResult
-    public static func save(_ item: APIGradingSchemeEntry, in context: NSManagedObjectContext) -> GradingSchemeEntry {
-        let gradingSchemeEntry: GradingSchemeEntry = context.insert()
-        gradingSchemeEntry.name = item.name
-        gradingSchemeEntry.value = item.value
-        return gradingSchemeEntry
-    }
+public struct GradingSchemeEntry: Codable {
+    let name: String
+    let value: Double
 }

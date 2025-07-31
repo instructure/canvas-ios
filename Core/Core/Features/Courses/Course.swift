@@ -117,7 +117,7 @@ final public class Course: NSManagedObject, WriteableModel {
         }
 
         model.gradingStandardId = item.grading_standard_id?.value
-        model.scalingFactor = item.scaling_factor ?? 0
+        model.scalingFactor = item.scaling_factor ?? 1
         model.pointsBasedGradingScheme = item.points_based_grading_scheme ?? false
 
         model.hideFinalGrades = item.hide_final_grades ?? false

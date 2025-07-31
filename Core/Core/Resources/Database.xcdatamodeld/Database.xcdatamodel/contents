@@ -212,6 +212,15 @@
         <attribute name="disableInboxSignatureBlockForStudents" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="enableInboxSignatureBlock" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
+    <entity name="CDGradingStandard" representedClassName="CDGradingStandard" syncable="YES">
+        <attribute name="contextId" optional="YES" attributeType="String"/>
+        <attribute name="contextType" optional="YES" attributeType="String"/>
+        <attribute name="gradingScheme" optional="YES" attributeType="Binary"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="pointsBased" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="scalingFactor" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="CDHCommentAttachment" representedClassName="Core.CDHCommentAttachment" syncable="YES">
         <attribute name="displayName" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
@@ -499,7 +508,6 @@
         <relationship name="dashboardCards" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardCard" inverseName="course" inverseEntity="DashboardCard"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment"/>
         <relationship name="gradingPeriods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="course" inverseEntity="GradingPeriod"/>
-        <relationship name="gradingSchemeRaw" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="GradingSchemeEntry" inverseName="course" inverseEntity="GradingSchemeEntry"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="course" inverseEntity="Group"/>
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection"/>
         <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSettings" inverseName="course" inverseEntity="CourseSettings"/>
@@ -780,11 +788,6 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="gradingPeriod" inverseEntity="Assignment"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="gradingPeriods" inverseEntity="Course"/>
-    </entity>
-    <entity name="GradingSchemeEntry" representedClassName="Core.GradingSchemeEntry" syncable="YES">
-        <attribute name="name" attributeType="String"/>
-        <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="gradingSchemeRaw" inverseEntity="Course"/>
     </entity>
     <entity name="Group" representedClassName="Core.Group" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
