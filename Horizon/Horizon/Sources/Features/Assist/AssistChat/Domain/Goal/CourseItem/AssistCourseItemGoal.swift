@@ -24,12 +24,12 @@ import Core
 class AssistCourseItemGoal: AssistGoal {
 
     enum Option: String, CaseIterable {
-        case Summarize = "Summarize"
-        case KeyTakeaways = "Key Takeaways"
-        case TellMeMore = "Tell me more"
-        case FlashCards = "Flash Cards"
-        case Quiz = "Quiz Questions"
-        case Rephrase = "Rephrase Content"
+        case Quiz = "Quiz me on this material"
+        case Summarize = "Summarize this material"
+        case KeyTakeaways = "Give me key takeaways"
+        case TellMeMore = "Tell me more about this topic"
+        case FlashCards = "Generate some study flashcards"
+        case Rephrase = "Rephrase the material"
     }
 
     // MARK: - Properties

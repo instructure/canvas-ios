@@ -142,7 +142,7 @@ class AssistChatInteractorPreview: AssistChatInteractor {
 
     override
     func publish(action: AssistChatAction) {}
-
+    
     override
     var listen: AnyPublisher<State, any Error> {
         Just(

@@ -224,7 +224,8 @@ class HInboxViewModel {
             self.peopleSelectionViewModel.personFilterSubject
         )
         .filter { [weak self] _, announcements, _, _ in
-            self?.inboxMessageInteractor.state.value == .data && announcements != nil
+            let state = self?.inboxMessageInteractor.state.value ?? .loading
+            return (state == .data || state == .empty) && announcements != nil
         }
         .map { [weak self] _, _, filterSubject, _ in
             guard let self = self,
