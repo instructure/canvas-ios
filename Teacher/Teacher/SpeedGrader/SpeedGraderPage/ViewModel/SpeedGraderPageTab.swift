@@ -20,12 +20,5 @@ import Foundation
 
 enum SpeedGraderPageTab: Int, CaseIterable {
     case grades
-    case comments
-
-    var title: String {
-        switch self {
-        case .grades: String(localized: "Grades", bundle: .teacher)
-        case .comments: String(localized: "Comments", bundle: .teacher)
-        }
-    }
+    case details
 }

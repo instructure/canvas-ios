@@ -103,6 +103,9 @@ public class Assignment: NSManagedObject {
      */
     @NSManaged public var submissions: Set<Submission>?
 
+    public var course: Course? {
+        managedObjectContext?.first(where: #keyPath(Course.id), equals: courseID)
+    }
     public var hideQuantitativeData: Bool {
         let course: Course? = managedObjectContext?.first(where: #keyPath(Course.id), equals: courseID)
         return course?.hideQuantitativeData ?? false
@@ -165,6 +168,8 @@ public class Assignment: NSManagedObject {
     }
 
     public var isMasteryPathAssignment: Bool { masteryPathAssignment != nil }
+
+    public var hasRubrics: Bool { rubric?.isNotEmpty ?? false }
 
     @discardableResult
     public static func save(_ item: APIAssignment, in context: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) -> Assignment {

@@ -25,17 +25,20 @@ public enum InboxAssembly {
         let messageInteractor = InboxMessageInteractorLive(env: env,
                                                     tabBarCountUpdater: .init(),
                                                     messageListStateUpdater: .init())
-        let favouriteInteractor = InboxMessageFavouriteInteractorLive()
+        let favouriteInteractor = InboxMessageFavouriteInteractorLive(env: env)
         let inboxSettingsInteractor = InboxSettingsInteractorLive(environment: env)
         let viewModel = InboxViewModel(
             messageInteractor: messageInteractor,
             favouriteInteractor: favouriteInteractor,
             inboxSettingsInteractor: inboxSettingsInteractor,
-            router: env.router
+            env: env
         )
 
         let inboxVC = CoreHostingController(InboxView(model: viewModel))
-        inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
+        // TODO: Remove the condition once horizon-specific logic is no longer needed.
+        if AppEnvironment.shared.app != .horizon {
+            inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
+        }
 
         let nav = CoreNavigationController(rootViewController: inboxVC)
         nav.navigationBar.useGlobalNavStyle()
@@ -45,13 +48,13 @@ public enum InboxAssembly {
     public static func makeInboxViewControllerForParent() -> UIViewController {
         let env = AppEnvironment.shared
         let messageInteractor = InboxMessageInteractorLive(env: env, tabBarCountUpdater: .init(), messageListStateUpdater: .init())
-        let favouriteInteractor = InboxMessageFavouriteInteractorLive()
+        let favouriteInteractor = InboxMessageFavouriteInteractorLive(env: env)
         let inboxSettingsInteractor = InboxSettingsInteractorLive(environment: env)
         let viewModel = InboxViewModel(
             messageInteractor: messageInteractor,
             favouriteInteractor: favouriteInteractor,
             inboxSettingsInteractor: inboxSettingsInteractor,
-            router: env.router
+            env: env
         )
 
         let controller = CoreHostingController(InboxView(model: viewModel))
@@ -68,13 +71,13 @@ public enum InboxAssembly {
                                    messages: [InboxMessageListItem])
     -> InboxView {
         let messageInteractor = InboxMessageInteractorPreview(environment: environment, messages: messages)
-        let favouriteInteractor = InboxMessageFavouriteInteractorLive()
+        let favouriteInteractor = InboxMessageFavouriteInteractorLive(env: environment)
         let inboxSettingsInteractor = InboxSettingsInteractorPreview()
         let viewModel = InboxViewModel(
             messageInteractor: messageInteractor,
             favouriteInteractor: favouriteInteractor,
             inboxSettingsInteractor: inboxSettingsInteractor,
-            router: environment.router
+            env: environment
         )
         return InboxView(model: viewModel)
     }

@@ -55,6 +55,6 @@ public enum SubmissionListAssembly {
         let interactor = SubmissionListInteractorLive(context: context, assignmentID: assignmentID, filters: filter, env: env)
         let viewModel = SubmissionListViewModel(interactor: interactor, filterMode: filterMode, env: env)
         let view = SubmissionListScreen(viewModel: viewModel)
-        return CoreHostingController(view)
+        return CoreHostingController(view, env: env)
     }
 }

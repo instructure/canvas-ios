@@ -80,7 +80,7 @@ struct GradeStatusView: View {
             label: {
                 Text(viewModel.shouldHideSelectedOptionTitle ? "" : viewModel.selectedOption.title)
                     .font(.regular14, lineHeight: .fit)
-                Image.chevronDown
+                Image.dropdownLine
                     .scaledIcon(size: 24)
             }
         )

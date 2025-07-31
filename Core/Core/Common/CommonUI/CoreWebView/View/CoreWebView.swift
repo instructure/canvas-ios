@@ -22,6 +22,7 @@ import UIKit
 
 @IBDesignable
 open class CoreWebView: WKWebView {
+
     private static var BalsamiqRegularCSSFontFace: String = {
         let url = Bundle.core.url(forResource: "font_balsamiq_regular", withExtension: "css")!
         // swiftlint:disable:next force_try
@@ -33,6 +34,13 @@ open class CoreWebView: WKWebView {
         // swiftlint:disable:next force_try
         return try! String(contentsOf: url)
     }()
+
+    private static var FigtreeRegularCSSFontFace: String = {
+        let url = Bundle.core.url(forResource: "font_figtree_regular", withExtension: "css")!
+        // swiftlint:disable:next force_try
+        return try! String(contentsOf: url)
+    }()
+
     public static let processPool = WKProcessPool()
 
     @IBInspectable public var autoresizesHeight: Bool = false
@@ -195,7 +203,7 @@ open class CoreWebView: WKWebView {
         } }
     }
 
-    func html(for content: String) -> String {
+    open func html(for content: String) -> String {
         // If it looks like jQuery is used, include the same version of jQuery as web.
         let jquery = content.contains("$(") || content.contains("$.")
             ? "<script defer src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js\"></script>"
@@ -279,12 +287,17 @@ open class CoreWebView: WKWebView {
                                                  : style.uiFont
         let marginsDisabled = features.contains { $0 is DisableDefaultBodyMargin }
 
-        if AppEnvironment.shared.k5.isK5Enabled {
-            font = "BalsamiqSans-Regular"
-            fontCSS = Self.BalsamiqRegularCSSFontFace
+        if AppEnvironment.shared.app == .horizon {
+            font = "Figtree-Regular"
+            fontCSS = Self.FigtreeRegularCSSFontFace
         } else {
-            font = "Lato-Regular"
-            fontCSS = Self.LatoRegularCSSFontFace
+            if AppEnvironment.shared.k5.isK5Enabled {
+                font = "BalsamiqSans-Regular"
+                fontCSS = Self.BalsamiqRegularCSSFontFace
+            } else {
+                font = "Lato-Regular"
+                fontCSS = Self.LatoRegularCSSFontFace
+            }
         }
 
         return """
@@ -460,7 +473,7 @@ extension CoreWebView: WKNavigationDelegate {
         decisionHandler(.allow)
     }
 
-    public func webView(
+    open func webView(
         _ webView: WKWebView,
         didFinish navigation: WKNavigation!
     ) {

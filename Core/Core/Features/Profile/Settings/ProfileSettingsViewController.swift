@@ -28,7 +28,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     private var showInboxSignatureSettings = false
     private var isInboxSignatureEnabled = false
     private var offlineModeInteractor = OfflineModeAssembly.make()
-    private var inboxSettingsInteractor = InboxSettingsInteractorLive()
+    private lazy var inboxSettingsInteractor = InboxSettingsInteractorLive(environment: env)
     private var subscriptions = Set<AnyCancellable>()
 
     private var landingPage: LandingPage {

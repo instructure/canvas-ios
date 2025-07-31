@@ -39,7 +39,6 @@ struct SpeedGraderPageTabsView: View {
     @Binding private var splitViewHeaderHeight: CGFloat
 
     @StateObject private var viewModel: SpeedGraderPageViewModel
-    @StateObject private var rubricsViewModel: RubricsViewModel
 
     init(
         containerType: ContainerType,
@@ -58,13 +57,6 @@ struct SpeedGraderPageTabsView: View {
         self._splitViewHeaderHeight = splitViewHeaderHeight
 
         self._viewModel = StateObject(wrappedValue: viewModel)
-        _rubricsViewModel = StateObject(
-            wrappedValue: RubricsViewModel(
-                assignment: viewModel.assignment,
-                submission: viewModel.submission,
-                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission)
-            )
-        )
     }
 
     var body: some View {
@@ -72,10 +64,10 @@ struct SpeedGraderPageTabsView: View {
             Group {
                 switch containerType {
                 case .drawer:
-                    tabPicker
+                    tabPicker(shouldOpenDrawerIfNeeded: true)
                         .padding(.bottom, 16)
                 case .splitView:
-                    tabPicker
+                    tabPicker(shouldOpenDrawerIfNeeded: false)
                         .frame(height: splitViewHeaderHeight)
                 }
             }
@@ -95,21 +87,11 @@ struct SpeedGraderPageTabsView: View {
 
             GeometryReader { geometry in
                 HStack(spacing: 0) {
-                    let drawerFileID = Binding<String?>(
-                        get: {
-                            viewModel.selectedFile?.id
-                        },
-                        set: {
-                            viewModel.didSelectFile(fileId: $0)
-                            snapDrawer(to: .min)
-                        }
-                    )
-
-                    gradesTab(bottomInset: bottomInset, geometry: geometry)
+                    gradesTab(geometry: geometry)
                         // `.clipped` and `.contentShape` don't prevent touches outside of the drawer on iOS17
                         // and it would block interaction with the attempts picker and the submission content.
                         .allowsHitTesting(selectedTab == .grades)
-                    commentsTab(bottomInset: bottomInset, fileID: drawerFileID, geometry: geometry)
+                    detailsTab(geometry: geometry)
                 }
                 .frame(width: geometry.size.width, alignment: .leading)
                 .background(Color.backgroundLightest)
@@ -122,14 +104,109 @@ struct SpeedGraderPageTabsView: View {
         }
     }
 
-    private var tabPicker: some View {
-        InstUI.SegmentedPicker(selection: $selectedTab) {
+    @ViewBuilder
+    private func tabPicker(shouldOpenDrawerIfNeeded: Bool) -> some View {
+        let content = {
             ForEach(SpeedGraderPageTab.allCases, id: \.self) { tab in
-                Text(tab.title)
+                Text(tabTitle(tab))
                     .tag(tab)
             }
         }
+        if shouldOpenDrawerIfNeeded {
+            InstUI.SegmentedPicker(
+                selection: $selectedTab,
+                segmentCount: SpeedGraderPageTab.allCases.count,
+                onTapSelectedTab: {
+                    if drawerState.isClosed {
+                        snapDrawer(to: .mid)
+                    }
+                },
+                content: content
+            )
+        } else {
+            InstUI.SegmentedPicker(
+                selection: $selectedTab,
+                content: content
+            )
+        }
     }
+
+    // MARK: - Tab Contents
+
+    @ViewBuilder
+    private func gradesTab(geometry: GeometryProxy) -> some View {
+        let attempt = Binding { viewModel.selectedAttemptNumber } set: {
+            viewModel.didSelectAttempt(attemptNumber: $0)
+            snapDrawer(to: .min)
+        }
+
+        let fileID = Binding { viewModel.selectedFile?.id } set: {
+            viewModel.didSelectFile(fileId: $0)
+            snapDrawer(to: .min)
+        }
+
+        VStack(spacing: 0) {
+            SpeedGraderSubmissionGradesView(
+                assignment: viewModel.assignment,
+                containerHeight: geometry.size.height,
+                attempt: attempt,
+                fileID: fileID,
+                gradeViewModel: viewModel.gradeViewModel,
+                gradeStatusViewModel: viewModel.gradeStatusViewModel,
+                commentListViewModel: viewModel.commentListViewModel,
+                rubricsViewModel: viewModel.rubricsViewModel
+            )
+            .clipped()
+            Spacer().frame(height: bottomInset)
+        }
+        .frame(width: geometry.size.width, height: geometry.size.height)
+        .accessibilityElement(children: .contain)
+        .accessibilityHidden(!isTabOnScreen(.grades))
+        .accessibilityFocused($a11yFocusedTab, equals: .grades)
+    }
+
+    @ViewBuilder
+    private func detailsTab(geometry: GeometryProxy) -> some View {
+        VStack(spacing: 0) {
+            detailsTabContent
+                .clipped()
+            Spacer().frame(height: bottomInset)
+        }
+        .frame(width: geometry.size.width, height: geometry.size.height)
+        .accessibilityElement(children: .contain)
+        .accessibilityHidden(!isTabOnScreen(.details))
+        .accessibilityFocused($a11yFocusedTab, equals: .details)
+    }
+
+    private var detailsTabContent: some View {
+        InstUI.BaseScreen(
+            state: viewModel.isDetailsTabEmpty ? .empty : .data,
+            config: .init(
+                refreshable: false,
+                emptyPandaConfig: .empty(
+                    title: String(localized: "We don’t have further details for this Student and Assignment", bundle: .teacher),
+                    subtitle: nil
+                )
+            )
+        ) { _ in
+            VStack(spacing: 0) {
+                InstUI.TopDivider()
+
+                if viewModel.submissionWordCountViewModel.hasContent {
+                    InstUI.LabelValueCell(
+                        label: Text("Word Count", bundle: .teacher),
+                        value: viewModel.submissionWordCountViewModel.wordCount
+                    )
+                }
+
+                if viewModel.studentNotesViewModel.hasContent {
+                    StudentNotesView(viewModel: viewModel.studentNotesViewModel)
+                }
+            }
+        }
+    }
+
+    // MARK: - Private helpers
 
     private func snapDrawer(to state: DrawerState) {
         withTransaction(DrawerState.transaction) {
@@ -148,61 +225,17 @@ struct SpeedGraderPageTabsView: View {
         }
     }
 
-    // MARK: - Tab Contents
-
-    @ViewBuilder
-    private func gradesTab(
-        bottomInset: CGFloat,
-        geometry: GeometryProxy
-    ) -> some View {
-        let isGradesOnScreen = isTabOnScreen(.grades)
-        VStack(spacing: 0) {
-            SubmissionGrades(
-                assignment: viewModel.assignment,
-                containerHeight: geometry.size.height,
-                submission: viewModel.submission,
-                rubricsViewModel: rubricsViewModel,
-                gradeStatusViewModel: viewModel.gradeStatusViewModel
-            )
-            .clipped()
-            Spacer().frame(height: bottomInset)
-        }
-        .frame(width: geometry.size.width, height: geometry.size.height)
-        .accessibilityElement(children: isGradesOnScreen ? .contain : .ignore)
-        .accessibility(hidden: !isGradesOnScreen)
-        .accessibilityFocused($a11yFocusedTab, equals: .grades)
-    }
-
-    @ViewBuilder
-    private func commentsTab(
-        bottomInset: CGFloat,
-        fileID: Binding<String?>,
-        geometry: GeometryProxy
-    ) -> some View {
-        let drawerAttempt = Binding(
-            get: {
-                viewModel.selectedAttemptNumber
-            }, set: {
-                viewModel.didSelectAttempt(attemptNumber: $0)
-                snapDrawer(to: .min)
-            }
-        )
-        let isCommentsOnScreen = isTabOnScreen(.comments)
-        VStack(spacing: 0) {
-            SubmissionCommentListView(
-                viewModel: viewModel.commentListViewModel,
-                attempt: drawerAttempt,
-                fileID: fileID,
-                a11yFocusedTab: _a11yFocusedTab
-            )
-            .clipped()
-            if drawerState.isClosed {
-                Spacer().frame(height: bottomInset)
+    private func tabTitle(_ tab: SpeedGraderPageTab) -> String {
+        switch tab {
+        case .details:
+            String(localized: "Details", bundle: .teacher)
+        case .grades:
+            if viewModel.assignment.hasRubrics {
+                String(localized: "Grade & Rubric", bundle: .teacher)
+            } else {
+                String(localized: "Grade", bundle: .teacher)
             }
         }
-        .frame(width: geometry.size.width, height: geometry.size.height)
-        .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
-        .accessibility(hidden: !isCommentsOnScreen)
     }
 }
 
