@@ -169,6 +169,8 @@ public class Assignment: NSManagedObject {
 
     public var isMasteryPathAssignment: Bool { masteryPathAssignment != nil }
 
+    public var hasRubrics: Bool { rubric?.isNotEmpty ?? false }
+
     @discardableResult
     public static func save(_ item: APIAssignment, in context: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) -> Assignment {
         let assignment: Assignment = context.first(where: (\Assignment.id).string, equals: item.id.value) ?? context.insert()

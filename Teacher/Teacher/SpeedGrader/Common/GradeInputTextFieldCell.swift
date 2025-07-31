@@ -76,7 +76,7 @@ struct GradeInputTextFieldCell: View {
     @ViewBuilder
     private var textFieldViews: some View {
         HStack(alignment: .center, spacing: 8) {
-            textField
+            numericTextField
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .focused($isFocused)
                 .onChange(of: externalText) {
@@ -97,34 +97,17 @@ struct GradeInputTextFieldCell: View {
         }
     }
 
-    private var textField: some View {
-        TextField(
-            "" as String, // to avoid localizing ""
+    private var numericTextField: some View {
+        InstUI.NumericTextField(
             text: $internalText,
-            prompt: Text(placeholder)
-                .foregroundStyle(.textPlaceholder)
+            placeholder: placeholder,
+            style: .init(
+                textColor: .tintColor,
+                textFont: .semibold16,
+                placeholderFont: .regular16,
+                textAlignment: .right
+            )
         )
-        .font(externalText.isNotEmpty ? .semibold16 : .regular16, lineHeight: .fit)
-        .foregroundStyle(.tint)
-        .multilineTextAlignment(.trailing)
-        .keyboardType(.decimalPad)
-        .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button(String(localized: "Done", bundle: .teacher)) {
-                    isFocused = false
-                }
-                .font(.regular16, lineHeight: .fit)
-            }
-        }
-        .onChange(of: isFocused) {
-            // on begin editing: select text
-            if isFocused && externalText.isNotEmpty {
-                DispatchQueue.main.async {
-                    UIApplication.shared.sendAction(#selector(UIResponder.selectAll(_:)), to: nil, from: nil, for: nil)
-                }
-            }
-        }
     }
 }
 

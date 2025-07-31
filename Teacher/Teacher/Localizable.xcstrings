@@ -11525,6 +11525,9 @@
         }
       }
     },
+    "Comments (%lld)" : {
+
+    },
     "Complete" : {
       "localizations" : {
         "ar" : {
@@ -20524,6 +20527,9 @@
         }
       }
     },
+    "g_pts" : {
+
+    },
     "GPA" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -21036,6 +21042,9 @@
           }
         }
       }
+    },
+    "Grade & Rubric" : {
+
     },
     "Grade post policy" : {
       "localizations" : {
@@ -22066,6 +22075,7 @@
       }
     },
     "Grades" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -31144,6 +31154,9 @@
         }
       }
     },
+    "Note" : {
+
+    },
     "OK" : {
       "localizations" : {
         "ar" : {
@@ -37807,6 +37820,9 @@
         }
       }
     },
+    "Rubric Note" : {
+
+    },
     "Saving days late." : {
 
     },
@@ -42432,6 +42448,7 @@
       }
     },
     "There are no messages yet." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

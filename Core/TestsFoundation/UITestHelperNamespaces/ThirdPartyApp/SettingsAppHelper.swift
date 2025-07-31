@@ -20,7 +20,7 @@ import XCTest
 
 public class SettingsAppHelper: BaseHelper {
     public static let app = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
-    public static var canvasStudentButton: XCUIElement { app.find(label: "Canvas Student", type: .staticText) }
+    public static var canvasStudentButton: XCUIElement { app.find(label: "Canvas", type: .staticText) }
 
     public struct CanvasStudent {
         public static var notificationsButton: XCUIElement { app.find(label: "Notifications", type: .staticText) }
