@@ -20527,6 +20527,9 @@
         }
       }
     },
+    "g_pts" : {
+
+    },
     "GPA" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -31151,6 +31154,9 @@
         }
       }
     },
+    "Note" : {
+
+    },
     "OK" : {
       "localizations" : {
         "ar" : {
@@ -37813,6 +37819,9 @@
           }
         }
       }
+    },
+    "Rubric Note" : {
+
     },
     "Saving days late." : {
 

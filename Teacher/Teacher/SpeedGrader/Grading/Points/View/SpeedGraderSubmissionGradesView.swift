@@ -40,6 +40,7 @@ struct SpeedGraderSubmissionGradesView: View {
     @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
     @ObservedObject var commentListViewModel: SubmissionCommentListViewModel
     @ObservedObject var rubricsViewModel: RubricsViewModel
+    @ObservedObject var redesignedRubricsViewModel: RedesignedRubricsViewModel
 
     private enum FocusedInput: Hashable {
         case gradeRow
@@ -67,8 +68,11 @@ struct SpeedGraderSubmissionGradesView: View {
                     if assignment.rubric?.isEmpty == false {
                         rubricsSection(geometry: geometry)
                     }
+
+                    if ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled {
+                        Spacer().frame(height: 16)
+                    }
                 }
-                .padding(.bottom, 16)
             }
             .scrollDismissesKeyboard(keyboardDismissalMode)
         }
@@ -434,17 +438,25 @@ struct SpeedGraderSubmissionGradesView: View {
 
     // MARK: - Rubrics
 
+    @ViewBuilder
     private func rubricsSection(geometry: GeometryProxy) -> some View {
-        VStack(spacing: 0) {
-            RubricsView(
-                currentScore: rubricsViewModel.totalRubricScore,
-                containerFrameInGlobal: geometry.frame(in: .global),
-                viewModel: rubricsViewModel
-            )
 
-            if rubricsViewModel.commentingOnCriterionID != nil {
-                commentEditor()
+        if ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled {
+
+            VStack(spacing: 0) {
+                RubricsView(
+                    currentScore: rubricsViewModel.totalRubricScore,
+                    containerFrameInGlobal: geometry.frame(in: .global),
+                    viewModel: rubricsViewModel
+                )
+
+                if rubricsViewModel.commentingOnCriterionID != nil {
+                    commentEditor()
+                }
             }
+
+        } else {
+            RedesignedRubricsView(viewModel: redesignedRubricsViewModel)
         }
     }
 
