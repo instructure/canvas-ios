@@ -461,6 +461,7 @@ let router = Router(routes: [
 
     RouteHandler("/profile/settings") { _, _, _ in
         ProfileSettingsViewController.create(onElementaryViewToggleChanged: { () })
+
     },
 
     RouteHandler("/support/problem") { _, _, _ in
