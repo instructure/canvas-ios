@@ -137,6 +137,17 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     }
 }
 
+extension AssistDataEnvironment {
+    func duplicate() -> AssistDataEnvironment {
+        AssistDataEnvironment(
+            courseID: courseID.value,
+            fileID: fileID.value,
+            pageURL: pageURL.value,
+            textSelection: textSelection.value
+        )
+    }
+}
+
 class AssistChatInteractorPreview: AssistChatInteractor {
     var hasAssistChipOptions: Bool = true
 
