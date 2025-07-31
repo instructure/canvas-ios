@@ -2994,7 +2994,7 @@
 			repositoryURL = "https://github.com/pendo-io/pendo-mobile-sdk";
 			requirement = {
 				kind = exactVersion;
-				version = 3.6.1;
+				version = 3.7.5;
 			};
 		};
 		CFAA40212AE2633A002C7AAE /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */ = {
