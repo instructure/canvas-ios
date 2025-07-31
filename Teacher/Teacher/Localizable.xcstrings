@@ -784,7 +784,11 @@
         }
       }
     },
+    "%lf days late." : {
+
+    },
     "%lld days late." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "variations" : {

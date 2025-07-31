@@ -61,9 +61,9 @@ class GradeStatusInteractorPreview: GradeStatusInteractor {
         .none
     }
 
-    func observeGradeStatusChanges(submissionId: String, attempt: Int) -> AnyPublisher<(GradeStatus, daysLate: Int, dueDate: Date?), Never> {
+    func observeGradeStatusChanges(submissionId: String, attempt: Int) -> AnyPublisher<(GradeStatus, daysLate: Double, dueDate: Date?), Never> {
         if let status = previewStatus, let daysLate = previewDaysLate {
-            return Just((status, daysLate, previewDueDate)).eraseToAnyPublisher()
+            return Just((status, Double(daysLate), previewDueDate)).eraseToAnyPublisher()
         } else {
             return Empty().eraseToAnyPublisher()
         }
@@ -72,7 +72,7 @@ class GradeStatusInteractorPreview: GradeStatusInteractor {
     func updateLateDays(
         submissionId: String,
         userId: String,
-        daysLate: Int
+        daysLate: Double
     ) -> AnyPublisher<Void, Error> {
         Just(())
             .delay(for: .seconds(2), scheduler: RunLoop.main)

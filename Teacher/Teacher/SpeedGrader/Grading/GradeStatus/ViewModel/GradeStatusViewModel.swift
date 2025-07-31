@@ -47,7 +47,7 @@ class GradeStatusViewModel: ObservableObject {
     // MARK: - Inputs
     let didSelectGradeStatus = PassthroughSubject<OptionItem, Never>()
     let didChangeAttempt = PassthroughSubject<Int, Never>()
-    let didChangeLateDaysValue = PassthroughSubject<Int, Never>()
+    let didChangeLateDaysValue = PassthroughSubject<String, Never>()
 
     // MARK: - Private
     private let interactor: GradeStatusInteractor
@@ -56,6 +56,18 @@ class GradeStatusViewModel: ObservableObject {
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
     private var databaseObservation: AnyCancellable?
+    private static let daysLateFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 3 // 1 hour is 0,04166667 days
+        return formatter
+    }()
+    private static let daysLateInputParser: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
 
     init(
         userId: String,
@@ -161,9 +173,9 @@ class GradeStatusViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func refreshGradeStatus(on publisher: AnyPublisher<(GradeStatus, daysLate: Int, dueDate: Date?), Never>) {
+    private func refreshGradeStatus(on publisher: AnyPublisher<(GradeStatus, daysLate: Double, dueDate: Date?), Never>) {
         databaseObservation = publisher
-            .map { (status, daysLate, dueDate) -> (OptionItem, daysLate: Int, dueDate: String) in
+            .map { (status, daysLate, dueDate) -> (OptionItem, daysLate: Double, dueDate: String) in
                 (OptionItem.from(status), daysLate, dueDate?.relativeDateTimeString ?? "")
             }
             .receive(on: scheduler)
@@ -171,7 +183,7 @@ class GradeStatusViewModel: ObservableObject {
                 guard let self else { return }
                 selectedOption = option
                 isShowingDaysLateSection = (interactor.gradeStatuses.element(for: option) == .late)
-                self.daysLate = "\(daysLate)"
+                self.daysLate = Self.daysLateFormatter.string(from: NSNumber(value: daysLate)) ?? ""
                 self.dueDate = dueDate.isEmpty ? String(localized: "No Due Date", bundle: .teacher) : dueDate
                 daysLateA11yLabel = {
                     let daysLateText = String(localized: "\(daysLate) days late.", bundle: .teacher)
@@ -182,11 +194,14 @@ class GradeStatusViewModel: ObservableObject {
             }
     }
 
-    private func uploadLateDays(on publisher: PassthroughSubject<Int, Never>) {
+    private func uploadLateDays(on publisher: PassthroughSubject<String, Never>) {
         let submissionId = self.submissionId
         let userId = self.userId
 
         publisher
+            .compactMap { textInput -> Double? in
+                Self.daysLateInputParser.number(from: textInput)?.doubleValue
+            }
             .map { [weak self] newLateDays in
                 self?.isLoading = true
                 return newLateDays

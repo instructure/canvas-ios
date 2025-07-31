@@ -43,12 +43,12 @@ protocol GradeStatusInteractor {
     func observeGradeStatusChanges(
         submissionId: String,
         attempt: Int
-    ) -> AnyPublisher<(GradeStatus, daysLate: Int, dueDate: Date?), Never>
+    ) -> AnyPublisher<(GradeStatus, daysLate: Double, dueDate: Date?), Never>
 
     func updateLateDays(
         submissionId: String,
         userId: String,
-        daysLate: Int
+        daysLate: Double
     ) -> AnyPublisher<Void, Error>
 }
 
@@ -135,7 +135,7 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
     func observeGradeStatusChanges(
         submissionId: String,
         attempt: Int
-    ) -> AnyPublisher<(GradeStatus, daysLate: Int, dueDate: Date?), Never> {
+    ) -> AnyPublisher<(GradeStatus, daysLate: Double, dueDate: Date?), Never> {
         let predicate = NSPredicate.id(submissionId).and(NSPredicate(key: "attempt", equals: attempt))
         let useCase = LocalUseCase<Submission>(scope: Scope(predicate: predicate, order: []))
         let store = ReactiveStore(useCase: useCase)
@@ -152,7 +152,7 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
                     isExcused: submission.excused,
                     isLate: submission.late
                 )
-                let daysLate = Int(ceil(Double(submission.lateSeconds) / (24 * 60 * 60.0)))
+                let daysLate = Double(submission.lateSeconds) / (24 * 60 * 60.0)
                 let dueDate = submission.assignment?.dueAt
                 return (status, daysLate, dueDate)
             }
@@ -168,9 +168,9 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
     func updateLateDays(
         submissionId: String,
         userId: String,
-        daysLate: Int
+        daysLate: Double
     ) -> AnyPublisher<Void, Error> {
-        let lateSeconds = daysLate * 24 * 60 * 60
+        let lateSeconds = Int(daysLate * 24 * 60 * 60)
         let useCase = GradeSubmission(
             courseID: courseId,
             assignmentID: assignmentId,

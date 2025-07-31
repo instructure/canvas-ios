@@ -155,16 +155,34 @@ class GradeStatusViewModelTests: TeacherTestCase {
     func test_didChangeLateDaysValue_triggersUpdateLateDays() {
         let interactorMock = GradeStatusInteractorMock()
         let testee = makeViewModel(interactor: interactorMock)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        let decimalSeparator = formatter.decimalSeparator ?? "."
 
         // WHEN
-        testee.didChangeLateDaysValue.send(5)
+        testee.didChangeLateDaysValue.send("5\(decimalSeparator)51")
 
         // THEN
         waitUntil(shouldFail: true) { interactorMock.updateLateDaysCalled }
         XCTAssertTrue(interactorMock.updateLateDaysCalled)
         XCTAssertEqual(interactorMock.updateLateDaysParams?.submissionId, "sub1")
         XCTAssertEqual(interactorMock.updateLateDaysParams?.userId, "user1")
-        XCTAssertEqual(interactorMock.updateLateDaysParams?.daysLate, 5)
+        XCTAssertEqual(interactorMock.updateLateDaysParams?.daysLate, 5.51)
+    }
+
+    func test_didChangeLateDaysValue_invalidInput_doesNotTriggerUpdate() {
+        let interactorMock = GradeStatusInteractorMock()
+        let testee = makeViewModel(interactor: interactorMock)
+
+        // WHEN - send invalid text input
+        testee.didChangeLateDaysValue.send("invalid")
+        testee.didChangeLateDaysValue.send("")
+        testee.didChangeLateDaysValue.send("abc123")
+
+        // THEN - should not trigger any API calls
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            XCTAssertFalse(interactorMock.updateLateDaysCalled)
+        }
     }
 
     private func makeViewModel(interactor: GradeStatusInteractorMock) -> GradeStatusViewModel {
