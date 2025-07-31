@@ -196,17 +196,12 @@ final class HighlightWebView: CoreWebView {
         guard let label = actionDefinitions.first(where: { action.title == $0.title })?.label,
             let courseID = courseID,
             let pageURL = pageURL,
-            let viewController = self.viewController
-        else {
+            let viewController = self.viewController,
+            let notebookTextSelection = currentNotebookTextSelection else {
             return
         }
 
-        guard let notebookTextSelection = self.currentNotebookTextSelection else {
-            return
-        }
-
-        let notebookHighlight = notebookTextSelection.notebookHighlight
-
+        let notebookHighlight = notebookTextSelection.notebookHighlight(label: label)
         if label == .other,
             let urlEncodedpageURL = pageURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             router.route(
@@ -234,42 +229,70 @@ final class HighlightWebView: CoreWebView {
 }
 
 // MARK: - Extensions
+extension CourseNotebookNote {
+    var notebookTextSelection: NotebookTextSelection? {
+        guard let highlightData = highlightData,
+              let label = labels?.first else {
+            return nil
+        }
+        return NotebookTextSelection(
+            backgroundColor: label.backgroundColorCSS,
+            borderColor: label.borderColorCSS,
+            iconSVG: label.iconSVG,
+            range: highlightData.range.rangeSelector,
+            selectedText: highlightData.selectedText,
+            textPosition: highlightData.textPosition.textPositionSelector
+        )
+    }
 
-extension NotebookTextSelection {
-    var notebookHighlight: NotebookHighlight {
-        NotebookHighlight(
-            selectedText: selectedText,
-            textPosition: NotebookHighlight.TextPosition(
-                start: textPosition.start,
-                end: textPosition.end
-            ),
-            range: NotebookHighlight.Range(
-                startContainer: range.startContainer,
-                startOffset: range.startOffset,
-                endContainer: range.endContainer,
-                endOffset: range.endOffset
-            )
+    var textPositionSelector: NotebookTextSelection.TextPositionSelector? {
+        guard let highlightData = highlightData else {
+            return nil
+        }
+        return .init(start: highlightData.textPosition.start, end: highlightData.textPosition.end)
+    }
+}
+
+extension NotebookHighlight.TextPosition {
+    var textPositionSelector: NotebookTextSelection.TextPositionSelector {
+        .init(start: start, end: end)
+    }
+}
+
+extension NotebookHighlight.Range {
+    var rangeSelector: NotebookTextSelection.RangeSelector {
+        .init(
+            startContainer: startContainer,
+            endContainer: endContainer,
+            startOffset: startOffset,
+            endOffset: endOffset
         )
     }
 }
 
-extension CourseNotebookNote {
-    var notebookTextSelection: NotebookTextSelection? {
-        let label = labels?.first
-        guard let highlightData = highlightData else {
-            return nil
-        }
-        return NotebookTextSelection(
-            backgroundColor: label?.backgroundColorCSS ?? "\(Color.huiColors.surface.attention.hexString)33",
-            borderColor: label?.borderColorCSS ?? Color.huiColors.surface.attention.hexString,
-            range: .init(
-                startContainer: highlightData.range.startContainer,
-                endContainer: highlightData.range.endContainer,
-                startOffset: highlightData.range.startOffset,
-                endOffset: highlightData.range.endOffset
-            ),
-            selectedText: highlightData.selectedText,
-            textPosition: .init(start: highlightData.textPosition.start, end: highlightData.textPosition.end)
+extension NotebookTextSelection.TextPositionSelector {
+    var textPosition: NotebookHighlight.TextPosition {
+        .init(start: start, end: end)
+    }
+}
+
+extension NotebookTextSelection.RangeSelector {
+    var range: NotebookHighlight.Range {
+        .init(
+            startContainer: startContainer,
+            startOffset: startOffset,
+            endContainer: endContainer,
+            endOffset: endOffset
+        )
+    }
+}
+
+extension NotebookTextSelection {
+    func notebookHighlight(label: CourseNoteLabel) -> NotebookHighlight {
+        NotebookHighlight(
+            selectedText: selectedText,
+            textPosition: textPosition.textPosition,
+            range: range.range
         )
     }
 }
