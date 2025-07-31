@@ -53,6 +53,7 @@ public class CourseDetailsViewModel: ObservableObject {
     private let context: Context
     private var attendanceToolID: String?
     private var attendanceToolRequest: APITask?
+    private lazy var customGradeStatuses = env.subscribe(GetCustomGradeStatuses(courseID: context.id))
     private lazy var colors = env.subscribe(GetCustomColors())
     private lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.courseDidUpdate()
@@ -95,6 +96,7 @@ public class CourseDetailsViewModel: ObservableObject {
         headerViewModel.viewDidAppear()
         requestAttendanceTool()
         permissions.refresh()
+        customGradeStatuses.refresh()
         course.refresh()
         colors.refresh()
     }
@@ -260,6 +262,7 @@ extension CourseDetailsViewModel: Refreshable {
     public func refresh() async {
         requestAttendanceTool()
         permissions.refresh(force: true)
+        customGradeStatuses.refresh(force: true)
         colors.refresh(force: true)
         course.refresh(force: true)
         return await withCheckedContinuation { continuation in

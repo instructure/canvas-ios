@@ -122,6 +122,7 @@ public final class Todo: NSManagedObject, WriteableModel {
     public static func save(_ item: APITodo, in context: NSManagedObjectContext) -> Todo {
         let id = item.assignment?.id.value ?? item.quiz?.id.value ?? UUID.string
         let model: Todo = context.first(where: #keyPath(Todo.id), equals: id) ?? context.insert()
+        var customGradeStatedSubmittedCount: Int = 0
 
         if let apiAssignment = item.assignment {
             let assignment: Assignment = context.first(where: (\Assignment.id).string, equals: id) ?? context.insert()
@@ -129,6 +130,17 @@ public final class Todo: NSManagedObject, WriteableModel {
             model.assignment = assignment
             model.name = assignment.name
             model.dueAtSortNilsAtBottom = assignment.dueAt ?? .distantFuture
+
+            /// This is used because of a limitation on Todo fetch API by which
+            /// which `needs_grading_count` doesn't subtract submissions count of
+            /// workflow state `submitted` or `pending_review` and custom grade status.
+            customGradeStatedSubmittedCount = context
+                .submissionsCountOfCustomGradeStatus(
+                    forAssignment: id,
+                    invalidScoreChecked: true,
+                    atState: .submitted, .pending_review, .graded
+                )
+
         } else if let apiQuiz = item.quiz {
             let quiz: Quiz = Quiz.save(apiQuiz, in: context)
             quiz.courseID = item.course_id?.value ?? "unknown"
@@ -147,7 +159,7 @@ public final class Todo: NSManagedObject, WriteableModel {
         model.id = id
         model.ignoreURL = item.ignore
         model.ignorePermanentlyURL = item.ignore_permanently
-        model.needsGradingCount = item.needs_grading_count ?? 0
+        model.needsGradingCount = (item.needs_grading_count ?? 0) - UInt(customGradeStatedSubmittedCount)
         model.type = item.type
         return model
     }
@@ -167,7 +179,17 @@ class GetTodos: CollectionUseCase {
     var request: GetTodosRequest { GetTodosRequest() }
     var todoPredicate: NSPredicate {
         guard let type = type else {
-            return .all
+            return NSCompoundPredicate(
+                notPredicateWithSubpredicate:
+                    NSCompoundPredicate(
+                        type: .and,
+                        subpredicates: [
+                            NSPredicate(key: #keyPath(Todo.typeRaw), equals: TodoType.grading.rawValue),
+                            NSPredicate(format: "%K != nil", #keyPath(Todo.assignment)),
+                            NSPredicate(key: #keyPath(Todo.needsGradingCount), equals: 0)
+                        ]
+                    )
+            )
         }
         return NSPredicate(format: "%K == %@", #keyPath(Todo.typeRaw), type.rawValue)
     }

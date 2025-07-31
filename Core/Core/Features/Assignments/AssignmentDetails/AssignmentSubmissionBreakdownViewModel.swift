@@ -37,6 +37,7 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
 
     public private(set) var color: Color = .accentColor
 
+    private let env: AppEnvironment
     private let assignmentID: String
     private let courseID: String
     private let submissionTypes: [SubmissionType]
@@ -48,6 +49,7 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
         self.courseID = courseID
         self.submissionTypes = submissionTypes
         self.color = color?.asColor ?? .accentColor
+        self.env = env
 
         summary = env.subscribe(GetSubmissionSummary(
             context: .course(courseID),
@@ -79,10 +81,34 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     }
 
     private func update() {
-        graded = summary.first?.graded ?? 0
-        ungraded = summary.first?.ungraded ?? 0
-        unsubmitted = summary.first?.unsubmitted ?? 0
+        let customUnsubmitted = customGradeStatedCount(for: .unsubmitted)
+        let customSubmitted = customGradeStatedCount(
+            noScoreChecked: true,
+            for: .submitted, .pending_review, .graded
+        )
+
+        graded = (summary.first?.graded ?? 0) + customSubmitted + customUnsubmitted
+        ungraded = (summary.first?.ungraded ?? 0) - customSubmitted
+        unsubmitted = (summary.first?.unsubmitted ?? 0) - customUnsubmitted
+
         submissionCount = summary.first?.submissionCount ?? 0
         isReady = true
+    }
+
+    /// This is used because of a limitation on API for **`GetSubmissionSummary`**, by
+    /// which submissions of custom grade status is not being counted for **`graded`**
+    /// when workflow state equals to `unsubmitted` or `submitted`
+    private func customGradeStatedCount(
+        noScoreChecked: Bool = false,
+        for state: SubmissionWorkflowState...
+    ) -> Int {
+        return env
+            .database
+            .viewContext
+            .submissionsCountOfCustomGradeStatus(
+                forAssignment: assignmentID,
+                invalidScoreChecked: noScoreChecked,
+                atStates: state
+            )
     }
 }

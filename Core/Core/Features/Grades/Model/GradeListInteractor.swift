@@ -54,6 +54,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
     private let env: AppEnvironment
 
     // MARK: - Private properties
+    private let customStatusesStore: ReactiveStore<GetCustomGradeStatuses>
     private let colorListStore: ReactiveStore<GetCustomColors>
     private let courseStore: ReactiveStore<GetCourse>
     private let gradingPeriodListStore: ReactiveStore<GetGradingPeriods>
@@ -73,6 +74,11 @@ public final class GradeListInteractorLive: GradeListInteractor {
         self.userID = userID
         self.filterAssignmentsToUserID = filterAssignmentsToUserID ?? (env.app == .parent)
 
+        customStatusesStore = ReactiveStore(
+            useCase: GetCustomGradeStatuses(courseID: courseID),
+            environment: env
+        )
+
         colorListStore = ReactiveStore(
             useCase: GetCustomColors(),
             environment: env
@@ -91,7 +97,12 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
     public func loadBaseData(ignoreCache: Bool) -> AnyPublisher<GradeListGradingPeriodData, Error> {
         let userID = userID
-        return Publishers.Zip3(
+        return Publishers.Zip4(
+            customStatusesStore.getEntities(
+                ignoreCache: ignoreCache
+            )
+            .replaceError(with: [])
+            .setFailureType(to: Error.self),
             colorListStore.getEntities(
                 ignoreCache: ignoreCache
             ),
@@ -100,7 +111,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
             ).compactMap { $0.first },
             fetchGradingPeriods(ignoreCache: ignoreCache)
         )
-        .map { (_, course, gradingPeriods) in
+        .map { (_, _, course, gradingPeriods) in
             let courseEnrollment = course.enrollmentForGrades(userId: userID, includingCompleted: true)
             return GradeListGradingPeriodData(
                 course: course,
