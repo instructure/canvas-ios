@@ -21,8 +21,8 @@ import Foundation
 import SwiftUI
 import UIKit
 
-enum HorizonRoutes {
-    static func routeHandlers() -> [RouteHandler] {
+public enum HorizonRoutes {
+    public static func routeHandlers() -> [RouteHandler] {
         routes.flatMap { $0 }
     }
 

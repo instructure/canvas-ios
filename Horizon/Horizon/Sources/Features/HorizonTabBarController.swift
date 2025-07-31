@@ -20,7 +20,7 @@ import Core
 import HorizonUI
 import SwiftUI
 
-final class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
+public final class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - Properties
 
     private let horizonTabBar = HorizonTabBar()
@@ -28,7 +28,7 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
 
     // MARK: - Life Cycle
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
         setValue(horizonTabBar, forKey: "tabBar")
@@ -127,7 +127,7 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
 }
 
 extension HorizonTabBarController {
-    func tabBarController(
+    public func tabBarController(
         _ tabBarController: UITabBarController,
         shouldSelect viewController: UIViewController
     ) -> Bool {

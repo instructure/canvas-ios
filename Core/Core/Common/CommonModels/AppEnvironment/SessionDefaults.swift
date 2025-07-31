@@ -129,6 +129,17 @@ public struct SessionDefaults: Equatable {
         get { self["collapsedModules"] as? [String: [String]] }
         set { self["collapsedModules"] = newValue }
     }
+    
+    public var appExperience: Experience? {
+        get {
+            if let rawValue = self["appExperience"] as? String {
+                return Experience(rawValue: rawValue)
+            }
+            return nil
+        }
+        set { self["appExperience"] = newValue?.rawValue }
+        
+    }
 
     // MARK: - Calendar Settings
 

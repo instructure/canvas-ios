@@ -279,6 +279,7 @@ public extension UIImage {
     static var share: UIImage { UIImage(named: "share", in: .core, compatibleWith: nil)! }
     static var smartSearchLine: UIImage { UIImage(named: "smartSearchLine", in: .core, compatibleWith: nil)! }
     static var smartSearchSmallLine: UIImage { UIImage(named: "smartSearchSmallLine", in: .core, compatibleWith: nil)! }
+    static var swap_horiz: UIImage { UIImage(named: "swap_horiz", in: .core, compatibleWith: nil)! }
     static var todoTab: UIImage { UIImage(named: "todoTab", in: .core, compatibleWith: nil)! }
     static var todoTabActive: UIImage { UIImage(named: "todoTabActive", in: .core, compatibleWith: nil)! }
     static var unionLine: UIImage { UIImage(named: "unionLine", in: .core, compatibleWith: nil)! }
@@ -487,6 +488,7 @@ public extension Image {
     static var warningBorderlessSolid: Image { Image("warningBorderlessSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
+
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
     static var addDocumentLine: Image { Image("addDocumentLine", bundle: .core) }
@@ -541,6 +543,7 @@ public extension Image {
     static var share: Image { Image("share", bundle: .core) }
     static var smartSearchLine: Image { Image("smartSearchLine", bundle: .core) }
     static var smartSearchSmallLine: Image { Image("smartSearchSmallLine", bundle: .core) }
+    static var swap_horiz: Image { Image("swap_horiz", bundle: .core) }
     static var todoTab: Image { Image("todoTab", bundle: .core) }
     static var todoTabActive: Image { Image("todoTabActive", bundle: .core) }
     static var unionLine: Image { Image("unionLine", bundle: .core) }

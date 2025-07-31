@@ -44,6 +44,9 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         self?.reloadData()
     }
 
+    private var appExperienceInteractor: ExperienceSummaryInteractor?
+    private let loadingIndicatorContainerView = UIView()
+    private let indeterminateLoadingIndicator = CircleProgressView()
     let tableView = UITableView(frame: .zero, style: .grouped)
     private var isPairingWithObserverAllowed = false {
         didSet {
@@ -54,9 +57,13 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     private var channelTypeRows: [Row]?
 
-    public static func create(onElementaryViewToggleChanged: (() -> Void)? = nil) -> ProfileSettingsViewController {
+    public static func create(
+        onElementaryViewToggleChanged: (() -> Void)? = nil,
+        appExperienceInteractor: ExperienceSummaryInteractor? = ExperienceSummaryInteractorLive()
+    ) -> ProfileSettingsViewController {
         let viewController = ProfileSettingsViewController()
         viewController.onElementaryViewToggleChanged = onElementaryViewToggleChanged
+        viewController.appExperienceInteractor = appExperienceInteractor
         return viewController
     }
 
@@ -71,6 +78,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         title = String(localized: "Settings", bundle: .core)
 
         view.backgroundColor = .backgroundLightest
+        setupIndeterminateLoadingIndicator()
         tableView.backgroundColor = .backgroundLightest
         tableView.dataSource = self
         tableView.delegate = self
@@ -112,6 +120,49 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useModalStyle()
         refresh()
+    }
+
+    private func setupIndeterminateLoadingIndicator() {
+        loadingIndicatorContainerView.alpha = 0
+        loadingIndicatorContainerView.backgroundColor = .black.withAlphaComponent(0.25)
+
+        indeterminateLoadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingIndicatorContainerView.addSubview(indeterminateLoadingIndicator)
+
+        NSLayoutConstraint.activate([
+            indeterminateLoadingIndicator.centerXAnchor.constraint(equalTo: loadingIndicatorContainerView.centerXAnchor),
+            indeterminateLoadingIndicator.centerYAnchor.constraint(equalTo: loadingIndicatorContainerView.centerYAnchor),
+            indeterminateLoadingIndicator.widthAnchor.constraint(equalToConstant: 40),
+            indeterminateLoadingIndicator.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+
+    private func animateLoadingIndicator(show: Bool) {
+        weak var weakSelf = self
+
+        if show {
+            guard let window = view.window ?? AppEnvironment.shared.window else {
+                return
+            }
+
+            loadingIndicatorContainerView.frame = window.bounds
+            if loadingIndicatorContainerView.superview != window {
+                window.addSubview(loadingIndicatorContainerView)
+            }
+            window.bringSubviewToFront(loadingIndicatorContainerView)
+
+            UIView.animate(withDuration: 0.3) {
+                weakSelf?.loadingIndicatorContainerView.alpha = 1
+            }
+            indeterminateLoadingIndicator.startAnimating()
+        } else {
+            UIView.animate(withDuration: 0.3) {
+                weakSelf?.loadingIndicatorContainerView.alpha = 0
+            } completion: { _ in
+                weakSelf?.indeterminateLoadingIndicator.stopAnimating()
+                weakSelf?.loadingIndicatorContainerView.removeFromSuperview()
+            }
+        }
     }
 
     @objc func refresh(sender: Any? = nil) {
@@ -212,11 +263,12 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         Section(String(localized: "Preferences", bundle: .core), rows: preferencesRows)
     }
 
-    private var preferencesRows: [Any] {
+    private lazy var preferencesRows: [Any] = {
         var rows = [Any]()
         rows.append(contentsOf: landingPageRow)
         rows.append(contentsOf: interfaceStyleSettings)
         rows.append(contentsOf: k5DashboardSwitch)
+        addCareerExperienceSwitch()
         rows.append(contentsOf: channelTypeRows ?? [])
         rows.append(contentsOf: pairWithObserverButton)
 
@@ -233,7 +285,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         rows.append(contentsOf: aboutRow)
 
         return rows
-    }
+    }()
 
     private var interfaceStyleSettings: [Row] {
         let selectedStyle = env.userDefaults?.interfaceStyle ?? .unspecified
@@ -326,6 +378,36 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         return [row]
     }
 
+    private func addCareerExperienceSwitch() {
+        guard let appExperienceInteractor else { return }
+        weak var weakSelf = self
+
+        let row = Row(
+            String(localized: "Switch to Canvas Career", bundle: .core),
+            hasDisclosure: false,
+            isExperienceSwitch: true,
+            isSupportedOffline: false
+        ) {
+            guard let weakSelf else { return }
+            weakSelf.animateLoadingIndicator(show: true)
+
+            appExperienceInteractor.switchExperience(to: Experience.careerLearner)
+                .sink { _ in
+                    weakSelf.animateLoadingIndicator(show: false)
+                    AppEnvironment.shared.switchExperience(.careerLearner)
+                }
+                .store(in: &weakSelf.subscriptions)
+        }
+
+        appExperienceInteractor.isExperienceSwitchAvailable()
+            .filter { $0 }
+            .sink { _ in
+                guard let weakSelf else { return }
+                weakSelf.preferencesRows.insert(row, at: 2)
+            }
+            .store(in: &subscriptions)
+    }
+
     private func refreshTermsOfService() {
         if AppEnvironment.shared.app == .teacher {
             if isPairingWithObserverAllowed {
@@ -381,6 +463,9 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.detailTextLabel?.text = row.detail
             if row.hasDisclosure {
                 cell.setupInstDisclosureIndicator()
+            } else if row.isExperienceSwitch {
+                cell.accessoryView = UIImageView(image: .swap_horiz)
+                cell.accessoryView?.tintColor = .textDark
             } else {
                 cell.accessoryView = nil
             }
@@ -442,6 +527,7 @@ private struct Row {
     let detail: String?
     let style: UITableViewCell.CellStyle
     let hasDisclosure: Bool
+    let isExperienceSwitch: Bool
     let isSupportedOffline: Bool
     let accessibilityTraits: UIAccessibilityTraits?
     let onSelect: () -> Void
@@ -451,6 +537,7 @@ private struct Row {
         detail: String? = nil,
         style: UITableViewCell.CellStyle = .value1,
         hasDisclosure: Bool = true,
+        isExperienceSwitch: Bool = false,
         isSupportedOffline: Bool,
         accessibilityTraits: UIAccessibilityTraits? = nil,
         onSelect: @escaping () -> Void
@@ -460,6 +547,7 @@ private struct Row {
         self.style = style
         self.isSupportedOffline = isSupportedOffline
         self.hasDisclosure = hasDisclosure
+        self.isExperienceSwitch = isExperienceSwitch
         self.accessibilityTraits = accessibilityTraits
         self.onSelect = onSelect
     }

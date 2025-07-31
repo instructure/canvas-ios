@@ -25,28 +25,70 @@ struct AccountView: View {
     @Environment(\.viewController) private var viewController
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                Text(viewModel.name)
-                    .huiTypography(.h1)
-                    .foregroundStyle(Color.huiColors.text.title)
+        ZStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(viewModel.name)
+                        .huiTypography(.h1)
+                        .foregroundStyle(Color.huiColors.text.title)
 
-                settingsSection
-                    .padding(.top, 40)
-                supportSection
-                    .padding(.top, .huiSpaces.space24)
+                    if viewModel.isExperienceSwitchAvailable {
+                        experienceSection
+                            .padding(.top, .huiSpaces.space40)
+                        settingsSection
+                            .padding(.top, .huiSpaces.space24)
+                    } else {
+                        settingsSection
+                            .padding(.top, .huiSpaces.space40)
+                    }
 
-                logoutRow
-                    .padding(.top, 40)
+                    supportSection
+                        .padding(.top, .huiSpaces.space24)
+
+                    logoutRow
+                        .padding(.top, .huiSpaces.space40)
+                }
+                .padding(.huiSpaces.space24)
             }
-            .padding(.huiSpaces.space24)
+            .toolbar(.hidden)
+            .background(Color.huiColors.surface.pagePrimary)
+
+            if viewModel.isLoading {
+                loaderView
+            }
         }
-        .toolbar(.hidden)
-        .background(Color.huiColors.surface.pagePrimary)
         .confirmationAlert(
             isPresented: $viewModel.isShowingLogoutConfirmationAlert,
             presenting: viewModel.confirmLogoutViewModel
         )
+    }
+
+    private var loaderView: some View {
+        ZStack {
+            Color.huiColors.surface.pageSecondary
+                .opacity(0.6)
+            HorizonUI.Spinner(size: .small, showBackground: true)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .edgesIgnoringSafeArea(.all)
+    }
+
+    private var experienceSection: some View {
+        VStack(alignment: .leading, spacing: .huiSpaces.space12) {
+            Text("Experience")
+                .huiTypography(.h3)
+                .foregroundStyle(Color.huiColors.text.title)
+
+            AccountEntryRowView(
+                title: String(localized: "Switch to Canvas Academic", bundle: .horizon),
+                image: .huiIcons.swapHoriz,
+                isFirstItem: true,
+                isLastItem: true,
+                didTapRow: {
+                    viewModel.switchExperienceDidTap()
+                }
+            )
+        }
     }
 
     private var settingsSection: some View {
@@ -91,7 +133,6 @@ struct AccountView: View {
         .onAppear {
             viewModel.getUserName()
         }
-
     }
 
     private var divider: some View {
@@ -106,15 +147,15 @@ struct AccountView: View {
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
 
-            VStack(spacing: 0) {                AccountEntryRowView(
-                    title: "Give Feedback",
-                    image: .huiIcons.openInNew,
-                    isFirstItem: true,
-                    isLastItem: true,
-                    didTapRow: {
-                        viewModel.giveFeedbackDidTap(viewController: viewController)
-                    }
-                )
+            VStack(spacing: 0) { AccountEntryRowView(
+                title: "Give Feedback",
+                image: .huiIcons.openInNew,
+                isFirstItem: true,
+                isLastItem: true,
+                didTapRow: {
+                    viewModel.giveFeedbackDidTap(viewController: viewController)
+                }
+            )
             }
         }
     }

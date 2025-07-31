@@ -86,6 +86,6 @@ extension CourseNavigationViewController {
         guard indexPath.row < presenter?.tabs.count ?? 0,
             let tab = presenter?.tabs[indexPath.row],
             let htmlURL = tab.htmlURL else { return }
-        router.route(to: htmlURL, from: self)
+        studentRouter.route(to: htmlURL, from: self)
     }
 }

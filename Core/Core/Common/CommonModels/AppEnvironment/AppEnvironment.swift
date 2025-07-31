@@ -18,6 +18,7 @@
 
 import Foundation
 import Combine
+import CombineExt
 import CoreData
 import SwiftUI
 import WidgetKit
@@ -38,6 +39,7 @@ open class AppEnvironment {
     )
 
     public var app: App?
+    public var experience = CurrentValueRelay<Experience>(.academic)
     public var api: API
     public var database: NSPersistentContainer
     public var globalDatabase: NSPersistentContainer = NSPersistentContainer.shared
@@ -123,6 +125,10 @@ open class AppEnvironment {
                                                     modifiedSince: Date(timeIntervalSince1970: 0),
                                                     completionHandler: {})
         }
+    }
+    
+    public func switchExperience(_ experience: Experience) {
+        self.experience.accept(experience)
     }
 
     public func widgetUserDidLogout() {

@@ -22,6 +22,7 @@ import Firebase
 import HorizonUI
 import UIKit
 
+/*
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     var window: UIWindow?
@@ -181,3 +182,4 @@ extension AppDelegate: RemoteLogHandler {
         Firebase.Crashlytics.crashlytics().record(exceptionModel: model)
     }
 }
+*/

@@ -68,6 +68,15 @@ struct SideMenuBottomSection: View {
                 })
                 Divider()
             }
+            
+
+            PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
+                AppEnvironment.shared.switchExperience(.careerLearner)
+            } label: {
+                SideMenuItem(id: "experience", image: .checkbox, title: Text("Switch to Career", bundle: .core))
+            }
+            .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
+
 
             if let root = helpLinks.first, helpLinks.count > 1 {
                 PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
