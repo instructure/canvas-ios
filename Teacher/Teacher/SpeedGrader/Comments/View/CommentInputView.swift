@@ -151,7 +151,10 @@ struct CommentInputView: View {
         let icon = isCurrentlyClosed ? Image.chatLine : Image.chevronDown
         let label = isCurrentlyClosed ? Text("Open comment library", bundle: .teacher) : Text("Close comment library", bundle: .teacher)
         Button(
-            action: commentLibraryAction,
+            action: {
+                commentLibraryAction()
+                isFocused = false
+            },
             label: {
                 icon
                     .scaledIcon()
