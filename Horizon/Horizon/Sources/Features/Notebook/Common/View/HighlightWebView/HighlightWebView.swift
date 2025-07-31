@@ -102,12 +102,11 @@ final class HighlightWebView: CoreWebView {
     override func buildMenu(with builder: any UIMenuBuilder) {
         guard !isOverlapped else { return }
 
-        let actions = actionDefinitions.map { actionDefinition in
-            UIAction(title: actionDefinition.title) { [weak self] action in
-                self?.onMenuAction(action)
-            }
+        let notebookActions = actionDefinitions.map { actionDefinition in
+            UIAction(title: actionDefinition.title, handler: onMenuAction)
         }
-
+        let assistMenuAction = UIAction(image: HorizonUI.icons.ai.uiImage, handler: openAssistWithSelection)
+        let actions = notebookActions + [assistMenuAction]
         let menu = UIMenu(title: "", options: .displayInline, children: actions)
         builder.insertChild(menu, atStartOfMenu: .standardEdit)
     }
@@ -226,6 +225,9 @@ final class HighlightWebView: CoreWebView {
             }
         ).store(in: &subscriptions)
     }
+
+    private func openAssistWithSelection(_ action: UIAction) {
+    }
 }
 
 // MARK: - Extensions
@@ -250,6 +252,13 @@ extension CourseNotebookNote {
             return nil
         }
         return .init(start: highlightData.textPosition.start, end: highlightData.textPosition.end)
+    }
+}
+
+extension Image {
+    @MainActor
+    var uiImage: UIImage? {
+        ImageRenderer(content: self).uiImage
     }
 }
 
