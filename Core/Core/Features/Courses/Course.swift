@@ -63,8 +63,8 @@ final public class Course: NSManagedObject, WriteableModel {
     public var gradingScheme: GradingScheme {
         if pointsBasedGradingScheme {
             PointsBasedGradingScheme(
-                scaleFactor: scalingFactor,
-                entries: gradingSchemeEntries
+                entries: gradingSchemeEntries,
+                scaleFactor: scalingFactor
             )
         } else {
             PercentageBasedGradingScheme(entries: gradingSchemeEntries)
