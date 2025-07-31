@@ -142,8 +142,7 @@ extension AssistDataEnvironment {
         AssistDataEnvironment(
             courseID: courseID.value,
             fileID: fileID.value,
-            pageURL: pageURL.value,
-            textSelection: textSelection.value
+            pageURL: pageURL.value
         )
     }
 }
@@ -153,7 +152,7 @@ class AssistChatInteractorPreview: AssistChatInteractor {
 
     override
     func publish(action: AssistChatAction) {}
-    
+
     override
     var listen: AnyPublisher<State, any Error> {
         Just(

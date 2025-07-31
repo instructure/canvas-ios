@@ -16,20 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CombineExt
+struct AssistSelectCourseTool: AssistTool {
+    var description: String = "When the user has not yet selected a course, the user will be asked to select a course"
 
-struct AssistDataEnvironment {
-    private(set) var courseID = CurrentValueRelay<String?>(nil)
-    private(set) var fileID = CurrentValueRelay<String?>(nil)
-    private(set) var pageURL = CurrentValueRelay<String?>(nil)
+    private let environment: AssistDataEnvironment
 
-    init(
-        courseID: String? = nil,
-        fileID: String? = nil,
-        pageURL: String? = nil
-    ) {
-        self.courseID.accept(courseID)
-        self.fileID.accept(fileID)
-        self.pageURL.accept(pageURL)
+    init(environment: AssistDataEnvironment) {
+        self.environment = environment
+    }
+
+    func isRequested() -> Bool {
+        environment.courseID.value == nil
+    }
+    
+    func execute() -> AnyPublisher<AssistChatMessage?, any Error> {
+        
     }
 }
