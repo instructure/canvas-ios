@@ -344,7 +344,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             updateSubmissionLabels(state: onlineUploadState)
         }
 
-        if submission.workflowState == .unsubmitted {
+        if submission.workflowState == .unsubmitted, submission.customGradeStatusId == nil {
             hideGradeCell()
             submissionRubricButtonSection?.isHidden = false
             return
@@ -449,7 +449,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         fileTypesSection?.isHidden = presenter.fileTypesSectionIsHidden()
         submissionTypesSection?.isHidden = presenter.submissionTypesSectionIsHidden()
         var showGradeSection = assignment.submission?.needsGrading == true ||
-            (assignment.submission?.isGraded == true  && assignment.gradingType != .not_graded ) ||
+            (assignment.submission?.isGraded == true && assignment.gradingType != .not_graded ) ||
             presenter.onlineUploadState != nil
         let gradeText = GradeFormatter.string(from: assignment, style: .short)
         if assignment.hideQuantitativeData, (gradeText ?? "").isEmpty == true {

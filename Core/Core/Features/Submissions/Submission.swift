@@ -433,6 +433,8 @@ extension Submission {
             return needsGrading == false ? gradedState : desc // Maintaining the old logic
         case .onPaper, .noSubmission:
             return isGraded ? gradedState : desc
+        case .usingStatus(.notSubmitted):
+            return isGraded ? gradedState : desc
         default:
             return desc
         }

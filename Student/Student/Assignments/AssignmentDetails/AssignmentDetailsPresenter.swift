@@ -277,6 +277,7 @@ class AssignmentDetailsPresenter {
     }
 
     func refresh() {
+        customGradeStatuses.refresh(force: true)
         courses.refresh(force: true)
         assignments.refresh(force: true)
         quizzes?.refresh(force: true)
@@ -363,7 +364,7 @@ class AssignmentDetailsPresenter {
 
     func gradesSectionIsHidden() -> Bool {
         if let submission = assignment?.submission {
-            return submission.workflowState == .unsubmitted
+            return submission.workflowState == .unsubmitted && submission.customGradeStatusId == nil
         } else {
             return true
         }
@@ -386,6 +387,7 @@ class AssignmentDetailsPresenter {
             assignment?.lockedForUser == true ||
             assignment?.isSubmittable == false ||
             assignment?.submission?.excused == true ||
+            assignment?.submission?.customGradeStatusId != nil ||
             assignment?.isMasteryPathAssignment == true ||
             (assignment?.canSubmit == false && (assignment?.isLTIAssignment != true))
     }
