@@ -66,8 +66,8 @@ final class AssistChatViewModel {
     // MARK: - Init
     init(
         courseID: String? = nil,
-        fileID: String? = nil,
         pageURL: String? = nil,
+        fileID: String? = nil,
         assistChatInteractor: AssistChatInteractor,
         router: Router = AppEnvironment.shared.router,
         scheduler: AnySchedulerOf<DispatchQueue> = .main

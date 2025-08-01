@@ -50,7 +50,7 @@ struct AssistFlashCardsTool: AssistTool {
         state.courseID.value != nil && (
             state.fileID.value != nil ||
             state.pageURL.value != nil ||
-            state.
+            state.textSelection.value != nil
         )
     }
 

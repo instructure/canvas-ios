@@ -313,8 +313,9 @@ enum HorizonRoutes {
                 let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
                 return AssistAssembly.makeAssistChatView(
                     courseID: routingParams?.courseID,
+                    pageURL: routingParams?.pageURL,
                     fileID: routingParams?.fileID,
-                    pageURL: routingParams?.pageURL
+                    textSelection: routingParams?.textSelection
                 )
             },
             RouteHandler("/assistant/flashcards") { url, _, userInfo in
@@ -428,7 +429,7 @@ extension HorizonRoutes {
         )
         if let item = userInfo?["item"] as? HModuleItem,
            let type = item.type {
-            viewController.webView = HighlightWebView(
+            viewController.webView = HorizonWebView(
                 courseID: courseID,
                 pageURL: pageURL,
                 moduleType: type,

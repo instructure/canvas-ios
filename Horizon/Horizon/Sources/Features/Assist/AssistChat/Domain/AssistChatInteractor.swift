@@ -52,13 +52,15 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     // MARK: - Init
     init(
         courseID: String? = nil,
+        pageURL: String? = nil,
         fileID: String? = nil,
-        pageURL: String? = nil
+        textSelection: String? = nil,
     ) {
         self.state = .init(
             courseID: courseID,
             fileID: fileID,
-            pageURL: pageURL
+            pageURL: pageURL,
+            textSelection: textSelection
         )
         self.goals = [
             AssistCourseDocumentGoal(state: state),
@@ -73,12 +75,14 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     /// Publishes a new user action to the interactor
     override
     func publish(action: AssistChatAction) {
+        var userResponse: String?
         var prompt: String?
         var history: [AssistChatMessage] = []
 
         switch action {
         case .chat(let message, let chatHistory):
             prompt = message
+            userResponse = message
             history = chatHistory
         default:
             break
@@ -87,8 +91,8 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         // if the user has said something, we publish it as a message
         // otherwise, we just publish that we're loading
         var response: AssistChatResponse = .init(chatHistory: history, isLoading: true)
-        if let prompt = prompt {
-            let message: AssistChatMessage = .init(userResponse: prompt)
+        if let userResponse = userResponse {
+            let message: AssistChatMessage = .init(userResponse: userResponse)
             response = .init(message, chatHistory: history, isLoading: true)
         }
         responsePublisher.send(.success(response))
@@ -105,7 +109,12 @@ final class AssistChatInteractorLive: AssistChatInteractor {
                     self?.publish(action: .chat(prompt: nil, history: history))
                     return
                 }
-                let response: AssistChatResponse = .init(assistChatMessage, chatHistory: history)
+                let response: AssistChatResponse = .init(
+                    assistChatMessage,
+                    chatHistory: history,
+                    isLoading: assistChatMessage.role == .User
+                )
+                history = response.chatHistory
                 self?.responsePublisher.send(.success(response))
             }
         )
@@ -139,10 +148,11 @@ final class AssistChatInteractorLive: AssistChatInteractor {
 
 extension AssistState {
     func duplicate() -> AssistState {
-        AssistState(
+        .init(
             courseID: courseID.value,
             fileID: fileID.value,
-            pageURL: pageURL.value
+            pageURL: pageURL.value,
+            textSelection: textSelection.value
         )
     }
 }

@@ -30,6 +30,18 @@ struct AssistGoalOption: Codable, Hashable {
     }
 }
 
+extension Collection where Element == AssistGoalOption {
+    var chipOptions: [AssistChipOption] {
+        map { $0.chipOption }
+    }
+}
+
+extension AssistGoalOption {
+    var chipOption: AssistChipOption {
+        .init(chip: name, prompt: description)
+    }
+}
+
 /// The purpose of the AssistGoal is to provide a base class for goals that can be executed within the Assist chat system.
 /// The "Goal"s are used to define specific tasks or objectives that the Assist system can help the user achieve.
 protocol AssistTool {
@@ -41,18 +53,6 @@ protocol AssistTool {
 
     /// Whether or not this goal should be selected in this list of goals
     var isRequested: Bool { get }
-}
-
-extension Collection where Element == AssistGoalOption {
-    var chipOptions: [AssistChipOption] {
-        map { $0.chipOption }
-    }
-}
-
-extension AssistGoalOption {
-    var chipOption: AssistChipOption {
-        .init(chip: name, prompt: description)
-    }
 }
 
 extension AssistTool {

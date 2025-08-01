@@ -50,9 +50,6 @@ class AssistCourseItemGoal: AssistTool {
     var sourceType: AssistChatInteractor.AssetType = .unknown
 
     // MARK: - Private
-    private var chipOptions: [String] {
-        options.map(\.rawValue)
-    }
     private var goalOptions: [AssistGoalOption] {
         options.map { AssistGoalOption(name: $0.rawValue) }
     }
