@@ -94,14 +94,8 @@ class GradeStatusInteractorTests: TeacherTestCase {
 
         var receivedStatuses: [(GradeStatus, Int, Date?)] = []
 
-        let assignmentDueDate = Date(timeIntervalSince1970: 1000000)
         let submissionDueDate = Date(timeIntervalSince1970: 2000000)
 
-        let assignment = Assignment.save(.make(), in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
-        assignment.id = "1"
-        assignment.dueAt = assignmentDueDate
-
-        // WHEN
         testee.observeGradeStatusChanges(submissionId: "sub1", attempt: 1)
             .sink { tuple in
                 receivedStatuses.append(tuple)
@@ -109,47 +103,72 @@ class GradeStatusInteractorTests: TeacherTestCase {
             .store(in: &subscriptions)
 
         let submission = Submission.save(.make(), in: databaseClient)
+
+        // GIVEN
         submission.id = "sub1"
         submission.attempt = 1
-        submission.assignment = assignment
         submission.customGradeStatusId = "custom1"
         submission.latePolicyStatus = nil
         submission.excused = nil
         submission.lateSeconds = 24 * 60 * 60
         submission.dueAt = nil
+
+        // WHEN
         try databaseClient.save()
+
+        // THEN
         waitUntil(5, shouldFail: true) { receivedStatuses.count == 1 }
         XCTAssertEqual(receivedStatuses.last?.0.id, "custom1")
         XCTAssertEqual(receivedStatuses.last?.1, 1)
-        XCTAssertEqual(receivedStatuses.last?.2, assignmentDueDate)
+        XCTAssertEqual(receivedStatuses.last?.2, nil)
 
+        // GIVEN
         submission.dueAt = submissionDueDate
+
+        // WHEN
         try databaseClient.save()
+
+        // THEN
         waitUntil(5, shouldFail: true) { receivedStatuses.count == 2 }
         XCTAssertEqual(receivedStatuses.last?.0.id, "custom1")
         XCTAssertEqual(receivedStatuses.last?.1, 1)
         XCTAssertEqual(receivedStatuses.last?.2, submissionDueDate)
 
+        // GIVEN
         submission.customGradeStatusId = nil
         submission.latePolicyStatus = .late
         submission.dueAt = nil
+
+        // WHEN
         try databaseClient.save()
+
+        // THEN
         waitUntil(5, shouldFail: true) { receivedStatuses.count == 3 }
         XCTAssertEqual(receivedStatuses.last?.0.id, "late")
         XCTAssertEqual(receivedStatuses.last?.1, 1)
-        XCTAssertEqual(receivedStatuses.last?.2, assignmentDueDate)
+        XCTAssertEqual(receivedStatuses.last?.2, nil)
 
+        // GIVEN
         submission.latePolicyStatus = nil
         submission.excused = true
+
+        // WHEN
         try databaseClient.save()
+
+        // THEN
         waitUntil(5, shouldFail: true) { receivedStatuses.count == 4 }
         XCTAssertEqual(receivedStatuses.last?.0.id, "excused")
         XCTAssertEqual(receivedStatuses.last?.1, 1)
-        XCTAssertEqual(receivedStatuses.last?.2, assignmentDueDate)
+        XCTAssertEqual(receivedStatuses.last?.2, nil)
 
+        // GIVEN
         submission.excused = nil
         submission.dueAt = submissionDueDate
+
+        // WHEN
         try databaseClient.save()
+
+        // THEN
         waitUntil(5, shouldFail: true) { receivedStatuses.count == 5 }
         XCTAssertEqual(receivedStatuses.last?.0.id, "none")
         XCTAssertEqual(receivedStatuses.last?.1, 1)

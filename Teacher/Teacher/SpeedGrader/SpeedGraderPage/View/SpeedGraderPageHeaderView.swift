@@ -109,9 +109,7 @@ struct SpeedGraderPageHeaderView: View {
     }
 
     private var dueText: some View {
-        let dueText = submission.dueAt != nil ? submission.dueText
-                                              : assignment.dueText
-        return Text(dueText)
+        Text(submission.dueText)
             .font(.regular14)
             .foregroundStyle(.textDark)
     }
