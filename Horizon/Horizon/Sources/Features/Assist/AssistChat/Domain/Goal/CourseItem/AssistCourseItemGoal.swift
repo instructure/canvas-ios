@@ -66,7 +66,7 @@ class AssistCourseItemGoal: AssistGoal {
         self.environment = environment
         self.cedar = cedar
     }
-    
+
     /// Given a prompt, fetches the page document and makes a request to the cedar endpoint for answering a question
     func cedarAnswerPrompt(prompt: String) -> AnyPublisher<AssistChatMessage?, Error> {
         document
