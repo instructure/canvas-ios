@@ -32,12 +32,15 @@ struct AssistGoalOption: Codable, Hashable {
 
 /// The purpose of the AssistGoal is to provide a base class for goals that can be executed within the Assist chat system.
 /// The "Goal"s are used to define specific tasks or objectives that the Assist system can help the user achieve.
-protocol AssistGoal {
+protocol AssistTool {
+    /// A description of the tool that gets delivered to the AI model for tool selection
+    var description: String { get }
+
     /// After a choice of options is made, we execute
     func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error>
 
     /// Whether or not this goal should be selected in this list of goals
-    func isRequested() -> Bool
+    var isRequested: Bool { get }
 }
 
 extension Collection where Element == AssistGoalOption {
@@ -52,7 +55,7 @@ extension AssistGoalOption {
     }
 }
 
-extension AssistGoal {
+extension AssistTool {
     func choose(
         from options: [AssistGoalOption],
         with userResponse: String,

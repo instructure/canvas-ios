@@ -16,20 +16,3 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CombineExt
-
-struct AssistDataEnvironment {
-    private(set) var courseID = CurrentValueRelay<String?>(nil)
-    private(set) var fileID = CurrentValueRelay<String?>(nil)
-    private(set) var pageURL = CurrentValueRelay<String?>(nil)
-
-    init(
-        courseID: String? = nil,
-        fileID: String? = nil,
-        pageURL: String? = nil
-    ) {
-        self.courseID.accept(courseID)
-        self.fileID.accept(fileID)
-        self.pageURL.accept(pageURL)
-    }
-}

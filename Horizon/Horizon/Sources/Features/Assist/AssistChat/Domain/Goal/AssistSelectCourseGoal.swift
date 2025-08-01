@@ -20,26 +20,28 @@ import Combine
 import Core
 import Foundation
 
-class AssistSelectCourseGoal: AssistGoal {
+class AssistSelectCourseGoal: AssistTool {
     private let cedar: DomainService
-    private let environment: AssistDataEnvironment
+    private let state: AssistState
     private let pine: DomainService
     private let userID: String
 
+    var description: String = ""
+
     init(
-        environment: AssistDataEnvironment,
+        state: AssistState,
         cedar: DomainService = DomainService(.cedar),
         pine: DomainService = DomainService(.pine),
         userID: String = AppEnvironment.shared.currentSession?.userID ?? ""
     ) {
-        self.environment = environment
+        self.state = state
         self.cedar = cedar
         self.pine = pine
         self.userID = userID
     }
 
-    func isRequested() -> Bool {
-        environment.courseID.value == nil
+    var isRequested: Bool {
+        state.courseID.value == nil
     }
 
     func execute(response: String? = nil, history: [AssistChatMessage] = []) -> AnyPublisher<AssistChatMessage?, any Error> {
@@ -68,7 +70,7 @@ class AssistSelectCourseGoal: AssistGoal {
             // When enrolled in only 1 course
             if let courseID = courseOptions.first?.courseID,
                courseOptions.count == 1 {
-                self.environment.courseID.accept(courseID)
+                self.state.courseID.accept(courseID)
                 return Just<AssistChatMessage?>(nil)
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
@@ -102,7 +104,7 @@ class AssistSelectCourseGoal: AssistGoal {
                 .map { goalOption in
                     if  let courseSelected = goalOption?.name,
                         let courseID = courseOptions.first(where: { courseSelected.contains($0.course.name ?? "") == true })?.courseID {
-                        weakSelf.environment.courseID.accept(courseID)
+                        weakSelf.state.courseID.accept(courseID)
                     }
                     return nil
                 }

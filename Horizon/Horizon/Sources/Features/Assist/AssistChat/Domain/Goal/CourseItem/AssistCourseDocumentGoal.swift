@@ -24,7 +24,7 @@ import Foundation
 class AssistCourseDocumentGoal: AssistCourseItemGoal {
     // MARK: - Private Properties
     private var fileID: String? {
-        environment.fileID.value
+        state.fileID.value
     }
     private let initialPrompt = String(
         localized: "Can I answer any questions about this document for you?",
@@ -33,11 +33,11 @@ class AssistCourseDocumentGoal: AssistCourseItemGoal {
 
     // MARK: - Initializer
     init(
-        environment: AssistDataEnvironment,
+        state: AssistState,
         cedar: DomainService = DomainService(.cedar)
     ) {
         super.init(
-            environment: environment,
+            state: state,
             initialPrompt: initialPrompt,
             cedar: cedar
         )
@@ -48,12 +48,10 @@ class AssistCourseDocumentGoal: AssistCourseItemGoal {
     /// If necessary, downloads the file and returns the page context.
     /// If we can't determine the format, we return an empty page context
     override
-    func isRequested() -> Bool { courseID != nil && fileID != nil }
+    var isRequested: Bool { courseID != nil && fileID != nil }
 
     override
     var sourceID: AnyPublisher<String?, Error> {
-        Just(fileID)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        state.sourceID
     }
 }

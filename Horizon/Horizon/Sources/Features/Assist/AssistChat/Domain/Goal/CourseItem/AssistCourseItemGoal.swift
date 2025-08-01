@@ -21,10 +21,11 @@ import Core
 
 /// This is a base class for the course page and course document goals
 /// It's not meant to be instantiated directly, but rather to be subclassed
-class AssistCourseItemGoal: AssistGoal {
+class AssistCourseItemGoal: AssistTool {
+
+    var description: String = ""
 
     enum Option: String, CaseIterable {
-        case Quiz = "Quiz me on this material"
         case Summarize = "Summarize this material"
         case KeyTakeaways = "Give me key takeaways"
         case TellMeMore = "Tell me more about this topic"
@@ -34,7 +35,7 @@ class AssistCourseItemGoal: AssistGoal {
 
     // MARK: - Properties
     var courseID: String? {
-        environment.courseID.value
+        state.courseID.value
     }
 
     private var options: [Option] {
@@ -42,7 +43,7 @@ class AssistCourseItemGoal: AssistGoal {
     }
 
     // MARK: - Dependencies
-    let environment: AssistDataEnvironment
+    let state: AssistState
     let cedar: DomainService
     private let initialPrompt: String
     private let pine: DomainService
@@ -58,7 +59,7 @@ class AssistCourseItemGoal: AssistGoal {
 
     // MARK: - Initializers
     init(
-        environment: AssistDataEnvironment,
+        state: AssistState,
         initialPrompt: String = String(
             localized: "What questions can I answer about your courses for you today?",
             bundle: .horizon
@@ -67,7 +68,7 @@ class AssistCourseItemGoal: AssistGoal {
         pine: DomainService = DomainService(.pine)
     ) {
         self.initialPrompt = initialPrompt
-        self.environment = environment
+        self.state = state
         self.cedar = cedar
         self.pine = pine
     }
@@ -102,8 +103,6 @@ class AssistCourseItemGoal: AssistGoal {
                     return self.flashcards()
                 case .KeyTakeaways:
                     return self.keyTakeaways()
-                case .Quiz:
-                    return self.quiz()
                 case .Rephrase:
                     return self.rephrase()
                 case .Summarize:
@@ -115,27 +114,14 @@ class AssistCourseItemGoal: AssistGoal {
             .eraseToAnyPublisher()
     }
 
-    func isRequested() -> Bool { true }
-
-    // Quiz is not available for a document at the moment
-    // And for a page, there's a separate cedar endpoint for generating the quiz
-    // This method is overridden in the course page goal
-    func quiz() -> AnyPublisher<AssistChatMessage?, Error> {
-        pineAnswerPrompt(
-            forOption: .Quiz,
-            errorResponse: String(localized: "I don't have a quiz for this content.", bundle: .horizon)
-        )
-    }
+    var isRequested: Bool { true }
 
     /// Summarizes the content of the document
     func summarizeContent() -> AnyPublisher<AssistChatMessage?, Error> {
-        pineAnswerPrompt(
-            forOption: .Summarize,
-            errorResponse: String(localized: "I don't have a summary for this content.", bundle: .horizon)
-        )
+        pineAnswerPrompt(prompt: Option.Summarize.prompt)
     }
 
-    var sourceID: AnyPublisher<String?, Error> {
+    var sourceID: AnyPublisher<String?, any Error> {
         return Just(nil)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
@@ -157,13 +143,6 @@ class AssistCourseItemGoal: AssistGoal {
             )
         }
         .eraseToAnyPublisher()
-    }
-
-    private func pineAnswerPrompt(
-        forOption option: Option,
-        errorResponse: String? = nil
-    ) -> AnyPublisher<AssistChatMessage?, Error> {
-        pineAnswerPrompt(prompt: option.prompt)
     }
 
     /// Calls the Cedar endpoint for generating flashcards based on the document content
@@ -192,26 +171,17 @@ class AssistCourseItemGoal: AssistGoal {
 
     /// Returns the key takeaways of the document
     private func keyTakeaways() -> AnyPublisher<AssistChatMessage?, Error> {
-        pineAnswerPrompt(
-            forOption: .KeyTakeaways,
-            errorResponse: String(localized: "No key takeaways found.", bundle: .horizon)
-        )
+        pineAnswerPrompt(prompt: Option.KeyTakeaways.prompt)
     }
 
     /// Rephrases the content of the document
     private func rephrase() -> AnyPublisher<AssistChatMessage?, Error> {
-        pineAnswerPrompt(
-            forOption: .Rephrase,
-            errorResponse: String(localized: "I'm not able to rephrase this content", bundle: .horizon)
-        )
+        pineAnswerPrompt(prompt: Option.Rephrase.prompt)
     }
 
     /// Returns more information about the document
     private func tellMeMore() -> AnyPublisher<AssistChatMessage?, Error> {
-        pineAnswerPrompt(
-            forOption: .TellMeMore,
-            errorResponse: String(localized: "I don't have any additional information for you.", bundle: .horizon)
-        )
+        pineAnswerPrompt(prompt: Option.TellMeMore.prompt)
     }
 }
 
@@ -223,7 +193,6 @@ extension AssistCourseItemGoal.Option {
             .KeyTakeaways: keyTakeaways,
             .TellMeMore: tellMeMore,
             .FlashCards: flashCards,
-            .Quiz: quiz,
             .Rephrase: rephraseContent
         ]
         return prompts[self] ?? ""
@@ -244,11 +213,7 @@ extension AssistCourseItemGoal.Option {
     private var keyTakeaways: String {
         "You are a teaching assistant creating key takeaways for a student. Give me 3 key takeaways based on the included document contents. Ignore any HTML. Return the result in paragraph form. Each key takeaway is a single sentence bulletpoint. You should not refer to the format of the content, but rather the content itself."
     }
-    private var quiz: String {
-        """
-            You are a teaching assistant creating quiz questions based on the provided content. Generate 15 multiple-choice questions with 4 options each, where one option is correct. Each question should be concise and clear, and the correct answer index is zero based. Ignore any HTML. Return the result in JSON format with no additional information. Here is the JSON format to use: [{question: String, options: [String], result: Int}]}]. For instance, if the question is, "What is the capital of France?", the JSON would look like this: [{question: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], result: 0}]. Make sure the JSON is valid.
-        """
-    }
+
     private var rephraseContent: String {
         """
             You are a teaching assistant rephrasing content. Rephrase the provided content in a more concise and clear manner. Ignore any HTML. Return the result in paragraph form.

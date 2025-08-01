@@ -24,17 +24,16 @@ import Foundation
 class AssistCoursePageGoal: AssistCourseItemGoal {
     // MARK: - Private
     private var pageURL: String? {
-        environment.pageURL.value
+        state.pageURL.value
     }
 
     private let initialPrompt = String(localized: "How can I help you with this page?", bundle: .horizon)
 
     // MARK: - Initializers
-    init(environment: AssistDataEnvironment, cedar: DomainService = DomainService(.cedar)) {
+    init(state: AssistState, cedar: DomainService = DomainService(.cedar)) {
         super.init(
-            environment: environment,
-            initialPrompt: initialPrompt,
-            cedar: cedar
+            state: state,
+            initialPrompt: initialPrompt
         )
         sourceType = .wiki_page
     }
@@ -42,48 +41,11 @@ class AssistCoursePageGoal: AssistCourseItemGoal {
     // MARK: - Overrides
 
     override
-    func isRequested() -> Bool { courseID != nil && pageURL != nil }
+    var isRequested: Bool { courseID != nil && pageURL != nil }
 
     override
-    var sourceID: AnyPublisher<String?, Error> {
-        guard let courseID = environment.courseID.value,
-            let pageURL = pageURL else {
-            return Just(nil)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        }
-        return ReactiveStore(useCase: GetPages(context: .course(courseID)))
-            .getEntities()
-            .map { pages in
-                pages.first { $0.url == pageURL }?.id
-            }
-            .eraseToAnyPublisher()
-    }
-
-    /// Generates a quiz from the page contents using the Cedar API.
-    override
-    func quiz() -> AnyPublisher<AssistChatMessage?, Error> {
-        body.flatMap { [weak self] body in
-            guard let self = self,
-                  let body = body else {
-                return Just<AssistChatMessage?>(nil)
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            }
-            return cedar.api()
-                .flatMap { cedarApi in
-                    cedarApi.makeRequest(
-                        CedarGenerateQuizMutation(context: body)
-                    )
-                    .compactMap { (quizOutput, _) in
-                        AssistChatMessage(
-                            quizItems: quizOutput.quizItems
-                        )
-                    }
-                }
-                .eraseToAnyPublisher()
-        }
-        .eraseToAnyPublisher()
+    var sourceID: AnyPublisher<String?, any Error> {
+        state.sourceID
     }
 
     // MARK: - Private Methods
@@ -98,6 +60,28 @@ class AssistCoursePageGoal: AssistCourseItemGoal {
         return ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
             .getEntities()
             .map { $0.first?.body }
+            .eraseToAnyPublisher()
+    }
+}
+
+extension AssistState {
+    var sourceID: AnyPublisher<String?, any Error> {
+        if let fileID = fileID.value {
+            return Just(fileID)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        guard let courseID = courseID.value,
+              let pageURL = pageURL.value else {
+            return Just(nil)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        return ReactiveStore(useCase: GetPages(context: .course(courseID)))
+            .getEntities()
+            .map { pages in
+                pages.first { $0.url == pageURL }?.id
+            }
             .eraseToAnyPublisher()
     }
 }

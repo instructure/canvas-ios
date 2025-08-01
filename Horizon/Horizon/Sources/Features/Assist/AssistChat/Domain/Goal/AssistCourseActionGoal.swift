@@ -20,30 +20,32 @@ import Combine
 import Core
 import Foundation
 
-class AssistCourseActionGoal: AssistGoal {
+class AssistCourseActionGoal: AssistTool {
     // MARK: - Dependencies
-    private let environment: AssistDataEnvironment
+    private let state: AssistState
     private let pine: DomainService
     private var userID: String
 
+    var description: String = ""
+
     // MARK: - Init
     init(
-        environment: AssistDataEnvironment,
+        state: AssistState,
         userID: String = AppEnvironment.shared.currentSession?.userID ?? "",
         pine: DomainService = DomainService(.pine)
     ) {
-        self.environment = environment
+        self.state = state
         self.userID = userID
         self.pine = pine
     }
 
     // MARK: - Inputs
-    func isRequested() -> Bool {
-        environment.courseID.value != nil
+    var isRequested: Bool {
+        state.courseID.value != nil
     }
 
     func execute(response: String?, history: [AssistChatMessage] = []) -> AnyPublisher<AssistChatMessage?, any Error> {
-        guard let courseID = environment.courseID.value else {
+        guard let courseID = state.courseID.value else {
             return Just(nil)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
@@ -63,7 +65,7 @@ class AssistCourseActionGoal: AssistGoal {
         )
         .getEntities()
         .map { [weak self] courses in
-            courses.first { $0.courseID == self?.environment.courseID.value }?.course.name ?? ""
+            courses.first { $0.courseID == self?.state.courseID.value }?.course.name ?? ""
         }
         .eraseToAnyPublisher()
     }

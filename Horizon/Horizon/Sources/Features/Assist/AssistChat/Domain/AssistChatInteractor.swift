@@ -42,12 +42,12 @@ final class AssistChatInteractorLive: AssistChatInteractor {
 
     // MARK: - Private
     private let actionPublisher = CurrentValueRelay<AssistChatAction?>(nil)
-    private var assistDataEnvironment: AssistDataEnvironment = AssistDataEnvironment()
-    private var assistDateEnvironmentOriginal: AssistDataEnvironment = AssistDataEnvironment()
+    private var state: AssistState = .init()
+    private var originalState: AssistState = .init()
     private var goalCancellable: AnyCancellable?
     private let responsePublisher = PassthroughSubject<AssistChatInteractorLive.State, Error>()
     private var subscriptions = Set<AnyCancellable>()
-    private var goals: [any AssistGoal]
+    private var goals: [any AssistTool]
 
     // MARK: - Init
     init(
@@ -55,18 +55,18 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         fileID: String? = nil,
         pageURL: String? = nil
     ) {
-        self.assistDataEnvironment = .init(
+        self.state = .init(
             courseID: courseID,
             fileID: fileID,
             pageURL: pageURL
         )
         self.goals = [
-            AssistCourseDocumentGoal(environment: assistDataEnvironment),
-            AssistCoursePageGoal(environment: assistDataEnvironment),
-            AssistCourseActionGoal(environment: assistDataEnvironment),
-            AssistSelectCourseGoal(environment: assistDataEnvironment)
+            AssistCourseDocumentGoal(state: state),
+            AssistCoursePageGoal(state: state),
+            AssistCourseActionGoal(state: state),
+            AssistSelectCourseGoal(state: state)
         ]
-        self.assistDateEnvironmentOriginal = assistDataEnvironment.duplicate()
+        self.originalState = state.duplicate()
     }
 
     // MARK: - Inputs
@@ -120,7 +120,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     override
     func setInitialState() {
         goalCancellable?.cancel()
-        self.assistDataEnvironment = self.assistDateEnvironmentOriginal.duplicate()
+        self.state = self.originalState.duplicate()
         publish(action: .begin)
     }
 
@@ -130,16 +130,16 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         prompt: String? = nil,
         history: [AssistChatMessage] = []
     ) -> AnyPublisher<AssistChatMessage?, any Error>? {
-        guard let goal = goals.first(where: { $0.isRequested() }) else {
+        guard let goal = goals.first(where: { $0.isRequested }) else {
             return nil
         }
         return goal.execute(response: prompt, history: history)
     }
 }
 
-extension AssistDataEnvironment {
-    func duplicate() -> AssistDataEnvironment {
-        AssistDataEnvironment(
+extension AssistState {
+    func duplicate() -> AssistState {
+        AssistState(
             courseID: courseID.value,
             fileID: fileID.value,
             pageURL: pageURL.value
