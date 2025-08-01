@@ -52,10 +52,6 @@ class AssistCourseItemGoal: AssistGoal {
     private let initialPrompt: String
 
     // MARK: - Private
-    private var chipOptions: [String] {
-        options.map(\.rawValue)
-    }
-
     private var goalOptions: [AssistGoalOption] {
         options.map { AssistGoalOption(name: $0.rawValue) }
     }
@@ -71,6 +67,26 @@ class AssistCourseItemGoal: AssistGoal {
         self.cedar = cedar
     }
 
+    /// Given a prompt, fetches the page document and makes a request to the cedar endpoint for answering a question
+    func cedarAnswerPrompt(prompt: String) -> AnyPublisher<AssistChatMessage?, Error> {
+        document
+            .flatMap { [weak self] document in
+                guard let self = self, let document = document else {
+                    return Just<AssistChatMessage?>(nil)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return self.cedarAnswerPrompt(prompt: prompt, document: document)
+                    .map { response in
+                        AssistChatMessage(
+                            botResponse: response ?? String(localized: "Sorry, I don't have an answer for that right now.", bundle: .horizon)
+                        )
+                    }
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+
     /// Executes the goal based on the response from the user.
     /// Chooses from one of the options or answers the user's question if no option is selected.
     func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
@@ -78,23 +94,21 @@ class AssistCourseItemGoal: AssistGoal {
             return Just(
                 .init(
                     botResponse: initialPrompt,
-                    chipOptions: chipOptions.map { .init(chip: $0) }
+                    chipOptions: goalOptions.chipOptions
                 )
             )
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
         }
         return choose(from: goalOptions, with: response, using: cedar)
-            .flatMap { [weak self] chip in
-                let nilResponse = Just<AssistChatMessage?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
-
+            .flatMap { [weak self] goalOption in
                 guard let self = self else {
-                    return nilResponse
+                    return AssistChatMessage.nilResponse
                 }
 
                 // If a chip wasn't chosen, just try to answer what they said
-                guard let chip = chip,
-                      let option = self.options.first(where: { chip.contains($0.rawValue) }) else {
+                guard let goalOption = goalOption,
+                      let option = Option(rawValue: goalOption.name) else {
                     return self.cedarAnswerPrompt(prompt: response)
                 }
 
@@ -138,25 +152,6 @@ class AssistCourseItemGoal: AssistGoal {
     }
 
     // MARK: - Private Functions
-    /// Given a prompt, fetches the page document and makes a request to the cedar endpoint for answering a question
-    private func cedarAnswerPrompt(prompt: String) -> AnyPublisher<AssistChatMessage?, Error> {
-        document
-            .flatMap { [weak self] document in
-                guard let self = self, let document = document else {
-                    return Just<AssistChatMessage?>(nil)
-                        .setFailureType(to: Error.self)
-                        .eraseToAnyPublisher()
-                }
-                return self.cedarAnswerPrompt(prompt: prompt, document: document)
-                    .map { response in
-                        AssistChatMessage(
-                            botResponse: response ?? String(localized: "Sorry, I don't have an answer for that right now.", bundle: .horizon)
-                        )
-                    }
-                    .eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
-    }
 
     /// Given a prompt and a document, makes a request to the cedar endpoint for answering a question
     /// https://github.com/instructure-internal/cedar/blob/main/docs/index.md#answer-prompt

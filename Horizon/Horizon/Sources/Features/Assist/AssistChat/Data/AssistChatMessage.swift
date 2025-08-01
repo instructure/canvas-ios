@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Foundation
 
 /// A message returned from the interactor
@@ -121,5 +122,11 @@ struct AssistChatMessage {
         let courseID: String?
         let sourceID: String?
         let sourceType: SourceType?
+    }
+}
+
+extension AssistChatMessage {
+    static var nilResponse: AnyPublisher<AssistChatMessage?, any Error> {
+        Just<AssistChatMessage?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }

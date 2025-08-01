@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "\n\nHow can I help with this?" : {
+
+    },
     "-" : {
 
     },
@@ -377,6 +380,9 @@
 
     },
     "Excused" : {
+
+    },
+    "Explain this" : {
 
     },
     "External tool" : {

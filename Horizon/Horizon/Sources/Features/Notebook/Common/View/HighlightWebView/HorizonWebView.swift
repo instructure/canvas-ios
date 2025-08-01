@@ -23,7 +23,7 @@ import SwiftUI
 import WebKit
 
 /// This override of WKWebView allows for highlighting of Web content.
-final class HighlightWebView: CoreWebView {
+final class HorizonWebView: CoreWebView {
 
     // MARK: - Private
 
@@ -102,14 +102,18 @@ final class HighlightWebView: CoreWebView {
     override func buildMenu(with builder: any UIMenuBuilder) {
         guard !isOverlapped else { return }
 
-        let actions = actionDefinitions.map { actionDefinition in
-            UIAction(title: actionDefinition.title) { [weak self] action in
-                self?.onMenuAction(action)
-            }
+        let notebookActions = actionDefinitions.map { actionDefinition in
+            UIAction(title: actionDefinition.title, handler: onMenuAction)
         }
+        let notebookMenu = UIMenu(title: "", options: .displayInline, children: notebookActions)
 
-        let menu = UIMenu(title: "", options: .displayInline, children: actions)
-        builder.insertChild(menu, atStartOfMenu: .standardEdit)
+        let assistMenuAction = UIAction(
+            image: HorizonUI.icons.ai.uiImage,
+            handler: openAssistWithSelection
+        )
+        let assistMenu = UIMenu(title: "", options: .displayInline, children: [assistMenuAction])
+        builder.insertChild(assistMenu, atStartOfMenu: .standardEdit)
+        builder.insertChild(notebookMenu, atStartOfMenu: .standardEdit)
     }
 
     override func html(for content: String) -> String {
@@ -226,6 +230,16 @@ final class HighlightWebView: CoreWebView {
             }
         ).store(in: &subscriptions)
     }
+
+    private func openAssistWithSelection(_ action: UIAction) {
+        guard let courseID = courseID,
+              let pageURL = pageURL,
+              let textSelection = currentNotebookTextSelection?.selectedText,
+              let viewController = viewController else {
+            return
+        }
+        router.route(to: "/assistant?textSelection=\(textSelection)&courseId=\(courseID)&pageUrl=\(pageURL)", from: viewController)
+    }
 }
 
 // MARK: - Extensions
@@ -250,6 +264,13 @@ extension CourseNotebookNote {
             return nil
         }
         return .init(start: highlightData.textPosition.start, end: highlightData.textPosition.end)
+    }
+}
+
+extension Image {
+    @MainActor
+    var uiImage: UIImage? {
+        ImageRenderer(content: self).uiImage
     }
 }
 

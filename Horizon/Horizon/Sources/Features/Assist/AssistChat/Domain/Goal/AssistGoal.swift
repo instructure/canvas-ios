@@ -30,6 +30,18 @@ struct AssistGoalOption: Codable, Hashable {
     }
 }
 
+extension Collection where Element == AssistGoalOption {
+    var chipOptions: [AssistChipOption] {
+        map { $0.chipOption }
+    }
+}
+
+extension AssistGoalOption {
+    var chipOption: AssistChipOption {
+        .init(chip: name, prompt: description)
+    }
+}
+
 /// The purpose of the AssistGoal is to provide a base class for goals that can be executed within the Assist chat system.
 /// The "Goal"s are used to define specific tasks or objectives that the Assist system can help the user achieve.
 protocol AssistGoal {
@@ -38,23 +50,16 @@ protocol AssistGoal {
 
     /// Whether or not this goal should be selected in this list of goals
     func isRequested() -> Bool
-
-    func choose(
-        from options: [AssistGoalOption],
-        with userResponse: String,
-        using cedar: DomainService
-    ) -> AnyPublisher<String?, any Error>
 }
 
 extension AssistGoal {
-
     func choose(
         from options: [AssistGoalOption],
         with userResponse: String,
         using cedar: DomainService
-    ) -> AnyPublisher<String?, any Error> {
+    ) -> AnyPublisher<AssistGoalOption?, any Error> {
         guard let prompt: String = .optionSelection(from: options) else {
-            return Just<String?>(nil)
+            return Just<AssistGoalOption?>(nil)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
@@ -70,7 +75,11 @@ extension AssistGoal {
         }
         .tryMap { (response, _) in
             let result = response.data.conversation.response.replacing(/\"\"/, with: "")
-            return result.isEmpty == true ? nil : result
+            guard let option = options.first(where: { result.contains($0.name) }),
+                  result.isNotEmpty else {
+                return nil
+            }
+            return option
         }
         .eraseToAnyPublisher()
     }

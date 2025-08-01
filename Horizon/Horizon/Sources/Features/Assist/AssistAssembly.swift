@@ -25,7 +25,8 @@ final class AssistAssembly {
     static func makeAssistChatView(
         courseId: String? = nil,
         pageUrl: String? = nil,
-        fileId: String? = nil
+        fileId: String? = nil,
+        textSelection: String? = nil
     ) -> UINavigationController {
         let viewModel = AssistChatViewModel(
             courseId: courseId,
@@ -34,7 +35,8 @@ final class AssistAssembly {
             chatBotInteractor: makeChatBotInteractor(
                 courseId: courseId,
                 pageUrl: pageUrl,
-                fileId: fileId
+                fileId: fileId,
+                textSelection: textSelection
             )
         )
         let view = AssistChatView(viewModel: viewModel)
@@ -47,12 +49,14 @@ final class AssistAssembly {
     static func makeChatBotInteractor(
         courseId: String? = nil,
         pageUrl: String? = nil,
-        fileId: String? = nil
+        fileId: String? = nil,
+        textSelection: String? = nil
     ) -> AssistChatInteractor {
         AssistChatInteractorLive(
             courseID: courseId,
             fileID: fileId,
             pageURL: pageUrl,
+            textSelection: textSelection,
             downloadFileInteractor: courseId.map {
                 DownloadFileInteractorLive(courseID: $0)
             }
