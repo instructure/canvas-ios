@@ -79,23 +79,21 @@ class AssistCourseItemGoal: AssistGoal {
             return Just(
                 .init(
                     botResponse: initialPrompt,
-                    chipOptions: chipOptions.map { .init(chip: $0) }
+                    chipOptions: goalOptions.chipOptions
                 )
             )
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
         }
         return choose(from: goalOptions, with: response, using: cedar)
-            .flatMap { [weak self] chip in
-                let nilResponse = Just<AssistChatMessage?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
-
+            .flatMap { [weak self] goalOption in
                 guard let self = self else {
-                    return nilResponse
+                    return AssistChatMessage.nilResponse
                 }
 
                 // If a chip wasn't chosen, just try to answer what they said
-                guard let chip = chip,
-                      let option = self.options.first(where: { chip.contains($0.rawValue) }) else {
+                guard let goalOption = goalOption,
+                      let option = Option(rawValue: goalOption.name) else {
                     return self.pineAnswerPrompt(prompt: response)
                 }
 

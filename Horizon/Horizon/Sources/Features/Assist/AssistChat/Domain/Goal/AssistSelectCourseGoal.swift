@@ -99,22 +99,16 @@ class AssistSelectCourseGoal: AssistGoal {
             }
 
             return weakSelf.choose(from: courseNames, with: response, using: weakSelf.cedar)
-                .flatMap { courseSelected in
-                    if  let courseSelected = courseSelected,
-                        let courseIDData = courseSelected.data(using: .utf8),
-                        let optionChosen = try? JSONDecoder().decode(AssistGoalOption.self, from: courseIDData),
-                        let courseID = courseOptions.first(where: { optionChosen.name == $0.course.name })?.courseID {
+                .map { goalOption in
+                    if  let courseSelected = goalOption?.name,
+                        let courseID = courseOptions.first(where: { courseSelected.contains($0.course.name ?? "") == true })?.courseID {
                         weakSelf.environment.courseID.accept(courseID)
-                        return Just<AssistChatMessage?>(nil)
-                            .setFailureType(to: Error.self)
-                            .eraseToAnyPublisher()
                     }
-                    return Just(nil)
-                        .setFailureType(to: Error.self)
-                        .eraseToAnyPublisher()
+                    return nil
                 }
                 .eraseToAnyPublisher()
         }
+        .map { _ in nil }
         .eraseToAnyPublisher()
     }
 
