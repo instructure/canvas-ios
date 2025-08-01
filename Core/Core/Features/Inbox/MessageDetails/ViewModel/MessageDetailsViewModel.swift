@@ -53,6 +53,9 @@ class MessageDetailsViewModel: ObservableObject {
     private let env: AppEnvironment
     private let myID: String
     private let allowArchive: Bool
+    private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags> {
+        env.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
+    }
 
     public init(interactor: MessageDetailsInteractor, myID: String, allowArchive: Bool, env: AppEnvironment) {
         self.interactor = interactor
@@ -71,9 +74,10 @@ class MessageDetailsViewModel: ObservableObject {
                self?.replyTapped(message: nil, viewController: viewController)
            }
 
-           addReplyAllAction(sheet) { [weak self] in
+           if !environmentFeatureFlags.isFeatureEnabled(.restrict_student_access) {
+             addReplyAllAction(sheet) { [weak self] in
                self?.replyAllTapped(message: nil, viewController: viewController)
-
+             }
            }
         }
 
@@ -143,11 +147,12 @@ class MessageDetailsViewModel: ObservableObject {
                     self?.replyTapped(message: message, viewController: viewController)
                 }
             }
-
-            addReplyAllAction(sheet) { [weak self] in
+            if !environmentFeatureFlags.isFeatureEnabled(.restrict_student_access) {
+              addReplyAllAction(sheet) { [weak self] in
                 if let message {
-                    self?.replyAllTapped(message: message, viewController: viewController)
+                  self?.replyAllTapped(message: message, viewController: viewController)
                 }
+              }
             }
         }
 

@@ -194,6 +194,26 @@ class MessageDetailsViewModelTests: CoreTestCase {
         XCTAssertTrue(router.presented is CoreHostingController<ComposeMessageView>)
     }
 
+    func test_messageMoreTapped_whenRestrictStudentAccessEnabled_replyAllNotShown() {
+        // Given
+        let response: [String: Bool] = ["restrict_student_access": true]
+        let useCase = GetEnvironmentFeatureFlags(context: Context.currentUser)
+        useCase.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let sourceView = UIViewController()
+
+        // When
+        testee.messageMoreTapped(
+            message: ConversationMessage.make(),
+            viewController: WeakViewController(sourceView)
+        )
+
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let actionTitles = sheet?.actions.map { $0.title } ?? []
+        XCTAssertFalse(actionTitles.contains("Reply All"))
+    }
+
     func test_messageMoreTapped_forward_presentComposeMessageView() {
         // Given
         let sourceView = UIViewController()
