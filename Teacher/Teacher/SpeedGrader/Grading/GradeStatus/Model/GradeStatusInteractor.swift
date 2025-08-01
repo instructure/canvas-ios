@@ -153,7 +153,7 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
                     isLate: submission.late
                 )
                 let daysLate = Int(ceil(Double(submission.lateSeconds) / (24 * 60 * 60.0)))
-                let dueDate = submission.assignment?.dueAt
+                let dueDate = submission.dueAt ?? submission.assignment?.dueAt
                 return (status, daysLate, dueDate)
             }
             .removeDuplicates {

@@ -87,49 +87,73 @@ class GradeStatusInteractorTests: TeacherTestCase {
         XCTAssertEqual(lateByIsLate.id, "late")
     }
 
-    func test_observeGradeStatusChanges_emits() {
+    func test_observeGradeStatusChanges_emits() throws {
         let testee = GradeStatusInteractorLive(courseId: "1", assignmentId: "1", api: api)
         mockGradeStatusesAPI()
         XCTAssertFinish(testee.fetchGradeStatuses())
 
-        let expectation = expectation(description: "observeGradeStatusChanges emits")
         var receivedStatuses: [(GradeStatus, Int, Date?)] = []
+
+        let assignmentDueDate = Date(timeIntervalSince1970: 1000000)
+        let submissionDueDate = Date(timeIntervalSince1970: 2000000)
+
+        let assignment = Assignment.save(.make(), in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        assignment.id = "1"
+        assignment.dueAt = assignmentDueDate
 
         // WHEN
         testee.observeGradeStatusChanges(submissionId: "sub1", attempt: 1)
             .sink { tuple in
                 receivedStatuses.append(tuple)
-                if receivedStatuses.count == 3 {
-                    expectation.fulfill()
-                }
             }
             .store(in: &subscriptions)
 
-        let submission = Submission(context: databaseClient)
+        let submission = Submission.save(.make(), in: databaseClient)
         submission.id = "sub1"
         submission.attempt = 1
+        submission.assignment = assignment
         submission.customGradeStatusId = "custom1"
         submission.latePolicyStatus = nil
         submission.excused = nil
         submission.lateSeconds = 24 * 60 * 60
-        try? databaseClient.save()
+        submission.dueAt = nil
+        try databaseClient.save()
         waitUntil(5, shouldFail: true) { receivedStatuses.count == 1 }
+        XCTAssertEqual(receivedStatuses.last?.0.id, "custom1")
+        XCTAssertEqual(receivedStatuses.last?.1, 1)
+        XCTAssertEqual(receivedStatuses.last?.2, assignmentDueDate)
+
+        submission.dueAt = submissionDueDate
+        try databaseClient.save()
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 2 }
+        XCTAssertEqual(receivedStatuses.last?.0.id, "custom1")
+        XCTAssertEqual(receivedStatuses.last?.1, 1)
+        XCTAssertEqual(receivedStatuses.last?.2, submissionDueDate)
 
         submission.customGradeStatusId = nil
         submission.latePolicyStatus = .late
-        try? databaseClient.save()
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 2 }
+        submission.dueAt = nil
+        try databaseClient.save()
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 3 }
+        XCTAssertEqual(receivedStatuses.last?.0.id, "late")
+        XCTAssertEqual(receivedStatuses.last?.1, 1)
+        XCTAssertEqual(receivedStatuses.last?.2, assignmentDueDate)
 
-        submission.customGradeStatusId = nil
         submission.latePolicyStatus = nil
         submission.excused = true
-        try? databaseClient.save()
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 3 }
+        try databaseClient.save()
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 4 }
+        XCTAssertEqual(receivedStatuses.last?.0.id, "excused")
+        XCTAssertEqual(receivedStatuses.last?.1, 1)
+        XCTAssertEqual(receivedStatuses.last?.2, assignmentDueDate)
 
-        // THEN
-        wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(receivedStatuses.map { $0.0.id }, ["custom1", "late", "excused"])
-        XCTAssertEqual(receivedStatuses.map { $0.1 }, [1, 1, 1])
+        submission.excused = nil
+        submission.dueAt = submissionDueDate
+        try databaseClient.save()
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 5 }
+        XCTAssertEqual(receivedStatuses.last?.0.id, "none")
+        XCTAssertEqual(receivedStatuses.last?.1, 1)
+        XCTAssertEqual(receivedStatuses.last?.2, submissionDueDate)
     }
 
     func test_updateLateDays_triggersGradeSubmissionUseCase() {

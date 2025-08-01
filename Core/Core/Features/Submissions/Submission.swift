@@ -42,6 +42,7 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var body: String?
     @NSManaged public var customGradeStatusId: String?
     @NSManaged public var discussionEntries: Set<DiscussionEntry>?
+    @NSManaged public var dueAt: Date?
     @NSManaged public var enteredGrade: String?
     @NSManaged var enteredScoreRaw: NSNumber?
     @NSManaged var excusedRaw: NSNumber?
@@ -161,6 +162,7 @@ extension Submission: WriteableModel {
         model.attempt = item.attempt ?? 0
         model.body = item.body
         model.customGradeStatusId = item.custom_grade_status_id
+        model.dueAt = item.cached_due_date
         model.enteredGrade = item.entered_grade
         model.enteredScore = item.entered_score
         model.excused = item.excused
@@ -453,6 +455,8 @@ extension Submission: Comparable {
         return lhs.userID < rhs.userID
     }
 }
+
+extension Submission: DueViewable {}
 
 /// This is merely used to properly describe the state of submission in certain contexts.
 /// It is not strictly matching `SubmissionStatus` in all cases. And it is not
