@@ -20,7 +20,6 @@ import Foundation
 
 public struct PointsBasedGradingScheme: GradingScheme {
 
-    /// converts 12.34 -> "12.34", 42.0 -> "42"
     private static let numberFormatter = GradeFormatter.numberFormatter
 
     public let entries: [GradingSchemeEntry]
@@ -31,11 +30,13 @@ public struct PointsBasedGradingScheme: GradingScheme {
         self.scaleFactor = scaleFactor
     }
 
-    public var maxFormattedValue: String? {
+    public var formattedMaxValue: String? {
         Self.numberFormatter.string(from: NSNumber(value: scaleFactor))
     }
 
+    // Expects GradingSchemeEntry values which are in range of [0,1]
     public func formattedEntryValue(_ value: Double) -> String? {
+        // Scaling it up, for example 0.75 to 3 (when max value is 4)
         let scaledValue = value * scaleFactor
         return Self.numberFormatter.string(from: NSNumber(value: scaledValue))
     }

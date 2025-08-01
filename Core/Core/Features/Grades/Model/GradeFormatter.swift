@@ -56,6 +56,7 @@ public class GradeFormatter {
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 2
+        formatter.roundingMode = .halfUp // to match round() function
         return formatter
     }()
 
@@ -65,6 +66,7 @@ public class GradeFormatter {
         formatter.numberStyle = .percent
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 2
+        formatter.roundingMode = .halfUp // to match round() function
         return formatter
     }()
 

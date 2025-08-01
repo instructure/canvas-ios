@@ -22,7 +22,7 @@ public protocol GradingScheme {
     var entries: [GradingSchemeEntry] { get }
 
     var formattedEntries: [FormattedGradingSchemeEntry] { get }
-    var maxFormattedValue: String? { get }
+    var formattedMaxValue: String? { get }
     func formattedEntryValue(_ value: Double) -> String?
 
     func formattedScore(from value: Double) -> String?
@@ -45,7 +45,7 @@ extension GradingScheme {
     }
 }
 
-public struct FormattedGradingSchemeEntry {
+public struct FormattedGradingSchemeEntry: Equatable {
     public let name: String
     public let value: String
 }

@@ -22,22 +22,21 @@ import XCTest
 class GradingSchemeTestCase: CoreTestCase {
 
     func scoreConversionEntries() -> [GradingSchemeEntry] {
-        let entryA: GradingSchemeEntry = databaseClient.insert()
-        entryA.name = "A"
-        entryA.value = 0.9
-        let entryB: GradingSchemeEntry = databaseClient.insert()
-        entryB.name = "B"
-        entryB.value = 0.3
-        let entryF: GradingSchemeEntry = databaseClient.insert()
-        entryF.name = "F"
-        entryF.value = 0
-        return [entryA, entryB, entryF]
+        [
+            makeEntry(name: "A", value: 0.9),
+            makeEntry(name: "B", value: 0.3),
+            makeEntry(name: "F", value: 0)
+        ]
     }
 
     func invalidConversionEntries() -> [GradingSchemeEntry] {
+        [makeEntry(name: "A", value: 90)]
+    }
+
+    func makeEntry(name: String = "", value: Double = 0) -> GradingSchemeEntry {
         let entry: GradingSchemeEntry = databaseClient.insert()
-        entry.name = "A"
-        entry.value = 90
-        return [entry]
+        entry.name = name
+        entry.value = value
+        return entry
     }
 }

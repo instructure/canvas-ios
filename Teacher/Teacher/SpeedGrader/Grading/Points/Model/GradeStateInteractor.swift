@@ -91,7 +91,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
             guard let gradingScheme = assignment.gradingScheme else { return [] }
 
             var items: [OptionItem] = []
-            let maxValue = gradingScheme.maxFormattedValue ?? ""
+            let maxValue = gradingScheme.formattedMaxValue ?? ""
             var upperBound = maxValue
             gradingScheme.formattedEntries.forEach {
                 let lowerBound = $0.value

@@ -20,7 +20,6 @@ import Foundation
 
 public struct PercentageBasedGradingScheme: GradingScheme {
 
-    /// converts 0.1234 -> "12.34%", 0.42 -> "42%"
     private static let percentFormatter = GradeFormatter.percentFormatter
 
     public let entries: [GradingSchemeEntry]
@@ -29,16 +28,20 @@ public struct PercentageBasedGradingScheme: GradingScheme {
         self.entries = entries
     }
 
-    public var maxFormattedValue: String? {
+    public var formattedMaxValue: String? {
         Self.percentFormatter.string(from: NSNumber(value: 1))
     }
 
-    public func formattedEntryValue(_ value: Double) -> String? {
-        Self.percentFormatter.string(from: NSNumber(value: value))
+    // Expects GradingSchemeEntry values which are in range of [0,1]
+    public func formattedEntryValue(_ entryValue: Double) -> String? {
+        // Not scaling them up, because percentFormatter expects the same range. For example it converts 0.42 to "42%"
+        Self.percentFormatter.string(from: NSNumber(value: entryValue))
     }
 
-    public func formattedScore(from value: Double) -> String? {
-        Self.percentFormatter.string(from: NSNumber(value: value))
+    // Expects scores which are in range of [0,100+]
+    public func formattedScore(from score: Double) -> String? {
+        let normalizedScore = score / 100.0
+        return Self.percentFormatter.string(from: NSNumber(value: normalizedScore))
     }
 }
 
