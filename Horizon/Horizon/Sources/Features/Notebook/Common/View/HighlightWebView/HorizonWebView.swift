@@ -106,15 +106,14 @@ final class HorizonWebView: CoreWebView {
             UIAction(title: actionDefinition.title, handler: onMenuAction)
         }
         let notebookMenu = UIMenu(title: "", options: .displayInline, children: notebookActions)
-        builder.insertChild(notebookMenu, atStartOfMenu: .standardEdit)
 
         let assistMenuAction = UIAction(
-            title: String(localized: "Explain this", bundle: .horizon),
             image: HorizonUI.icons.ai.uiImage,
             handler: openAssistWithSelection
         )
         let assistMenu = UIMenu(title: "", options: .displayInline, children: [assistMenuAction])
         builder.insertChild(assistMenu, atStartOfMenu: .standardEdit)
+        builder.insertChild(notebookMenu, atStartOfMenu: .standardEdit)
     }
 
     override func html(for content: String) -> String {

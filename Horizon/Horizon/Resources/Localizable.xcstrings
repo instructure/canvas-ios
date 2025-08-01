@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "\n\nHow can I help with this?" : {
+
+    },
     "-" : {
 
     },
@@ -464,9 +467,6 @@
 
     },
     "hours" : {
-
-    },
-    "How can I help with the text you've selected?" : {
 
     },
     "How can I help you with this page?" : {

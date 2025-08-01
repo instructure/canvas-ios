@@ -29,26 +29,41 @@ class AssistCourseTextSelectionGoal: AssistCoursePageGoal {
         guard let textSelection = environment.textSelection.value else {
             return AssistChatMessage.nilResponse
         }
-
-        guard let response = response else {
-            return Just<AssistChatMessage?>(.init(userResponse: String(localized: "Explain this", bundle: .horizon)))
-                .setFailureType(to: Error.self)
-                .append(
-                    Deferred { [weak self] in
-                        guard let self = self else {
-                            return AssistChatMessage.nilResponse
-                        }
-                        return self.cedarAnswerPrompt(prompt: AssistCourseTextSelectionGoal.explainThisPrompt(textSelection: textSelection))
-                    }
-                )
-                .eraseToAnyPublisher()
-        }
-        return self.cedarAnswerPrompt(
-            prompt: AssistCourseTextSelectionGoal.askAQuestionPrompt(
-                textSelection: textSelection,
-                response: response
+        let goalOptions: [AssistGoalOption] = [
+            .init(
+                name: String(localized: "Explain this", bundle: .horizon),
+                description: AssistCourseTextSelectionGoal.explainThisPrompt(textSelection: textSelection)
             )
-        )
+        ]
+        guard let response = response else {
+            return Just(
+                .init(
+                    botResponse: AssistCourseTextSelectionGoal.initialPrompt(textSelection: textSelection),
+                    chipOptions: goalOptions.chipOptions
+                )
+            )
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        }
+        return choose(
+            from: goalOptions,
+            with: response,
+            using: cedar
+        ).flatMap { [weak self] goalOption in
+            guard let self = self else {
+                return AssistChatMessage.nilResponse
+            }
+            guard let goalOption = goalOption else {
+                return self.cedarAnswerPrompt(
+                    prompt: AssistCourseTextSelectionGoal.askAQuestionPrompt(
+                        textSelection: textSelection,
+                        response: response
+                    )
+                )
+            }
+            return self.cedarAnswerPrompt(prompt: goalOption.description)
+        }
+        .eraseToAnyPublisher()
     }
 
     override
@@ -70,6 +85,8 @@ class AssistCourseTextSelectionGoal: AssistCoursePageGoal {
         "You are a teaching assist helping a student who is reading a course page or document. The student has selected some text, and you need to help them with that selection. They've asked you to answer a question about the text. Here is the text that was selected: \"\(textSelection)\". And here is the question that was asked: \"\(response)\""
     }
 
-    private static let initialPrompt: String = String(localized: "How can I help with the text you've selected?", bundle: .horizon)
+    private static func initialPrompt(textSelection: String) -> String {
+        "\"\(textSelection)\"" + String(localized: "\n\nHow can I help with this?", bundle: .horizon)
+    }
     // swiftlint:enable line_length
 }
