@@ -18,7 +18,7 @@
 
 import CombineExt
 
-struct AssistDataEnvironment {
+class AssistDataEnvironment {
     private(set) var courseID = CurrentValueRelay<String?>(nil)
     private(set) var fileID = CurrentValueRelay<String?>(nil)
     private(set) var pageURL = CurrentValueRelay<String?>(nil)

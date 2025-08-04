@@ -115,10 +115,6 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     func setInitialState() {
         goalCancellable?.cancel()
         self.assistDataEnvironment = self.assistDateEnvironmentOriginal.duplicate()
-        self.goals = AssistChatInteractorLive.initializeGoals(
-            assistDataEnvironment: assistDataEnvironment,
-            downloadFileInteractor: downloadFileInteractor
-        )
         publish(action: .begin)
     }
 
