@@ -40,6 +40,7 @@ struct SpeedGraderSubmissionGradesView: View {
     @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
     @ObservedObject var commentListViewModel: SubmissionCommentListViewModel
     @ObservedObject var rubricsViewModel: RubricsViewModel
+    @ObservedObject var redesignedRubricsViewModel: RedesignedRubricsViewModel
 
     private enum FocusedInput: Hashable {
         case gradeRow
@@ -67,20 +68,22 @@ struct SpeedGraderSubmissionGradesView: View {
                     if assignment.rubric?.isEmpty == false {
                         rubricsSection(geometry: geometry)
                     }
-                }
-                .padding(.bottom, 16)
-            }
-            .toolbar {
-                // This can't be used on the TextField itself, because it would recreate the Done buttons for each TextField :(
-                ToolbarItemGroup(placement: .keyboard) {
-                    Spacer()
-                    Button(String(localized: "Done", bundle: .teacher)) {
-                        focusedInput = nil
+
+                    if ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled {
+                        Spacer().frame(height: 16)
                     }
-                    .font(.regular16, lineHeight: .fit)
                 }
             }
-            .scrollDismissesKeyboard(focusedInput == .comment ? .interactively : .never)
+            .scrollDismissesKeyboard(keyboardDismissalMode)
+        }
+    }
+
+    private var keyboardDismissalMode: ScrollDismissesKeyboardMode {
+        switch focusedInput {
+        case .gradeRow, .points:
+            return .never
+        default:
+            return .interactively
         }
     }
 
@@ -435,17 +438,25 @@ struct SpeedGraderSubmissionGradesView: View {
 
     // MARK: - Rubrics
 
+    @ViewBuilder
     private func rubricsSection(geometry: GeometryProxy) -> some View {
-        VStack(spacing: 0) {
-            RubricsView(
-                currentScore: rubricsViewModel.totalRubricScore,
-                containerFrameInGlobal: geometry.frame(in: .global),
-                viewModel: rubricsViewModel
-            )
 
-            if rubricsViewModel.commentingOnCriterionID != nil {
-                commentEditor()
+        if ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled {
+
+            VStack(spacing: 0) {
+                RubricsView(
+                    currentScore: rubricsViewModel.totalRubricScore,
+                    containerFrameInGlobal: geometry.frame(in: .global),
+                    viewModel: rubricsViewModel
+                )
+
+                if rubricsViewModel.commentingOnCriterionID != nil {
+                    commentEditor()
+                }
             }
+
+        } else {
+            RedesignedRubricsView(viewModel: redesignedRubricsViewModel)
         }
     }
 

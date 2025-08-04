@@ -22,7 +22,7 @@ import UIKit
 class WrongAppLinkView: UIButton {
     @IBOutlet weak var contentView: UIView?
     @IBOutlet weak var logoView: UIImageView?
-    @IBOutlet weak var nameLabel: UILabel?
+    @IBOutlet weak var wordmark: UIImageView!
 
     var color = UIColor.studentLogoColor
     @IBInspectable var appName: String = "student" {
@@ -47,8 +47,17 @@ class WrongAppLinkView: UIButton {
         super.awakeFromNib()
         backgroundColor = .backgroundLightest
         contentView?.isUserInteractionEnabled = false
-        logoView?.tintColor = color
-        nameLabel?.textColor = color
-        nameLabel?.attributedText = NSAttributedString(string: appName.uppercased(), attributes: [.kern: 1.5])
+
+        switch appName {
+        case "parent":
+            logoView?.image = UIImage(resource: .parentLogo)
+            wordmark.image = UIImage(resource: .parentWordmark)
+        case "teacher":
+            logoView?.image = UIImage(resource: .teacherLogo)
+            wordmark?.image = UIImage(resource: .teacherWordmark)
+        default:
+            logoView?.image = UIImage(resource: .studentLogo)
+            wordmark.image = UIImage(resource: .studentWordmark)
+        }
     }
 }
