@@ -20,44 +20,40 @@ import Combine
 import Foundation
 
 public protocol GradingStandardInteractor {
-    var contextId: String { get }
-    var contextType: String { get }
-    var gradingStandardId: String { get }
-
-    func getGradingScheme() -> AnyPublisher<GradingScheme, Error>
+    var gradingScheme: AnyPublisher<GradingScheme?, Never> { get }
 }
 
 public final class GradingStandardInteractorLive: GradingStandardInteractor {
-    public let contextId: String
-    public let contextType: String
-    public let gradingStandardId: String
-    public let env: AppEnvironment
+    private let context: Context
+    private let gradingStandardId: String?
+    private let env: AppEnvironment
 
-    public init(contextId: String, contextType: String, gradingStandardId: String, env: AppEnvironment) {
-        self.contextId = contextId
-        self.contextType = contextType
+    public init(context: Context, gradingStandardId: String? = nil, env: AppEnvironment) {
+        self.context = context
         self.gradingStandardId = gradingStandardId
         self.env = env
     }
 
-    public func getGradingScheme() -> AnyPublisher<any GradingScheme, any Error> {
+    public var gradingScheme: AnyPublisher<GradingScheme?, Never> {
+        guard let gradingStandardId else {
+            return Just(nil)
+                .eraseToAnyPublisher()
+        }
         let gradingStandardStore = ReactiveStore(
-            useCase: GetGradingStandard(gradingStandardId: gradingStandardId, contextId: contextId, contextType: contextType),
+            useCase: GetGradingStandard(id: gradingStandardId, context: context),
             environment: env
         )
         return gradingStandardStore
             .getEntities()
-            .map {
-                guard let gradingStandard = $0.first,
-                      let entries = try? JSONDecoder().decode([GradingSchemeEntry].self, from: gradingStandard.gradingScheme!) else {
-                    fatalError()
-                }
-                if gradingStandard.pointsBased {
-                    return PointsBasedGradingScheme(scaleFactor: gradingStandard.scalingFactor, entries: entries)
+            .compactMap { $0.first }
+            .map { gradingStandard in
+                if gradingStandard.isPointsBased {
+                    return PointsBasedGradingScheme(scaleFactor: gradingStandard.scalingFactor, entries: gradingStandard.gradingSchemeEntries)
                 } else {
-                    return PercentageBasedGradingScheme(entries: entries)
+                    return PercentageBasedGradingScheme(entries: gradingStandard.gradingSchemeEntries)
                 }
             }
+            .ignoreFailure()
             .eraseToAnyPublisher()
     }
 }

@@ -49,23 +49,21 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var syllabusBody: String?
     @NSManaged public var termName: String?
     @NSManaged public var settings: CourseSettings?
-    @NSManaged public var gradingSchemeRaw: NSOrderedSet?
+    @NSManaged public var gradingSchemeRaw: Data?
     @NSManaged public var roles: String?
 
     @NSManaged public var scalingFactor: Double
     @NSManaged public var pointsBasedGradingScheme: Bool
 
     public var gradingSchemeEntries: [GradingSchemeEntry] {
-        get { gradingSchemeRaw?.array as? [GradingSchemeEntry] ?? [] }
-        set { gradingSchemeRaw = NSOrderedSet(array: newValue) }
+        guard let gradingSchemeRaw else { return [] }
+        let entries = try? JSONDecoder().decode([GradingSchemeEntry].self, from: gradingSchemeRaw)
+        return entries ?? []
     }
 
     public var gradingScheme: GradingScheme {
         if pointsBasedGradingScheme {
-            PointsBasedGradingScheme(
-                scaleFactor: scalingFactor,
-                entries: gradingSchemeEntries
-            )
+            PointsBasedGradingScheme(scaleFactor: scalingFactor, entries: gradingSchemeEntries)
         } else {
             PercentageBasedGradingScheme(entries: gradingSchemeEntries)
         }
@@ -171,12 +169,8 @@ final public class Course: NSManagedObject, WriteableModel {
         }
 
         if let gradingScheme = item.grading_scheme {
-            model.gradingSchemeEntries = gradingScheme.compactMap {
-                guard let apiEntry = APIGradingSchemeEntry(courseGradingScheme: $0) else {
-                    return nil
-                }
-                return GradingSchemeEntry.save(apiEntry, in: context)
-            }
+            let gradingSchemeEntries: [GradingSchemeEntry] = gradingScheme.compactMap(GradingSchemeEntry.init)
+            model.gradingSchemeRaw = try? JSONEncoder().encode(gradingSchemeEntries)
         }
 
         model.roles = item.enrollments.roles

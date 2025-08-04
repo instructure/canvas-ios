@@ -42,6 +42,7 @@ class GradeInteractorLive: GradeInteractor {
     private let submission: Submission
     private let rubricGradingInteractor: RubricGradingInteractor
     private let gradeStateInteractor: GradeStateInteractor
+    private let gradingStandardInteractor: GradingStandardInteractor
     private let env: AppEnvironment
 
     // MARK: - Initialization
@@ -51,12 +52,14 @@ class GradeInteractorLive: GradeInteractor {
         submission: Submission,
         rubricGradingInteractor: RubricGradingInteractor,
         gradeStateInteractor: GradeStateInteractor = GradeStateInteractorLive(),
+        gradingStandardInteractor: GradingStandardInteractor,
         env: AppEnvironment
     ) {
         self.assignment = assignment
         self.submission = submission
         self.rubricGradingInteractor = rubricGradingInteractor
         self.gradeStateInteractor = gradeStateInteractor
+        self.gradingStandardInteractor = gradingStandardInteractor
         self.env = env
         self.gradeState = gradeStateSubject
             .dropFirst() // to skip initial empty value
@@ -93,18 +96,20 @@ class GradeInteractorLive: GradeInteractor {
                 .compactMap { $0.first }
         }()
 
-        Publishers.CombineLatest3(
+        Publishers.CombineLatest4(
             submissionPublisher,
             rubricGradingInteractor.isRubricScoreAvailable,
-            rubricGradingInteractor.totalRubricScore
+            rubricGradingInteractor.totalRubricScore,
+            gradingStandardInteractor.gradingScheme
         )
         .sink(
             receiveCompletion: { _ in },
-            receiveValue: { [weak self] updatedSubmission, isRubricScoreAvailable, totalRubricScore in
+            receiveValue: { [weak self] updatedSubmission, isRubricScoreAvailable, totalRubricScore, gradingScheme in
                 guard let self else { return }
                 let newState = gradeStateInteractor.gradeState(
                     submission: updatedSubmission,
                     assignment: assignment,
+                    gradingScheme: gradingScheme,
                     isRubricScoreAvailable: isRubricScoreAvailable,
                     totalRubricScore: totalRubricScore
                 )

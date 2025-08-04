@@ -59,6 +59,7 @@ enum SpeedGraderAssembly {
     }
 
     static func makePageViewModel(
+        context: Context,
         assignment: Assignment,
         submission: Submission,
         contextColor: AnyPublisher<Color, Never>,
@@ -73,10 +74,16 @@ enum SpeedGraderAssembly {
             env: env
         )
 
+        let gradingStandardInteractor = GradingStandardInteractorLive(
+            context: context,
+            gradingStandardId: assignment.gradingStandardId,
+            env: env)
+
         let gradeInteractor = GradeInteractorLive(
             assignment: assignment,
             submission: submission,
             rubricGradingInteractor: rubricGradingInteractor,
+            gradingStandardInteractor: gradingStandardInteractor,
             env: env
         )
 

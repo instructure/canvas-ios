@@ -21,10 +21,12 @@ import Foundation
 public struct APIGradingSchemeEntry: Codable, Equatable {
     public let name: String
     public let value: Double
+    public let calculated_value: Double?
 
-    public init(name: String, value: Double) {
+    public init(name: String, value: Double, calculatedValue: Double? = nil) {
         self.name = name
         self.value = value
+        self.calculated_value = calculatedValue
     }
 
     /**

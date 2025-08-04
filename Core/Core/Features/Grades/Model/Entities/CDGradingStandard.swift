@@ -26,27 +26,30 @@ public final class CDGradingStandard: NSManagedObject {
     @NSManaged public var title: String
     @NSManaged public var contextType: String
     @NSManaged public var contextId: String
-    @NSManaged public var pointsBased: Bool
+    @NSManaged public var isPointsBased: Bool
     @NSManaged public var scalingFactor: Double
-    @NSManaged public var gradingScheme: Data?
+    @NSManaged public var gradingSchemeEntriesRaw: Data?
+
+    public var context: Context {
+        Context(contextType == "Course" ? .course : .account, id: contextId)
+    }
+
+    public var gradingSchemeEntries: [GradingSchemeEntry] {
+        guard let gradingSchemeEntriesRaw else { return [] }
+        return (try? JSONDecoder().decode([GradingSchemeEntry].self, from: gradingSchemeEntriesRaw)) ?? []
+    }
 
     @discardableResult
     public static func save(_ item: APIGradingStandard, in context: NSManagedObjectContext) -> CDGradingStandard {
-
-        let predicate = NSCompoundPredicate(type: .and, subpredicates: [
-            NSPredicate(format: "%K == %@", (\CDGradingStandard.id).string, item.id.value),
-            NSPredicate(format: "%K == %@", (\CDGradingStandard.contextType).string, item.context_type),
-            NSPredicate(format: "%K == %@", (\CDGradingStandard.contextId).string, item.context_id.value)
-        ])
-
-        let model: CDGradingStandard = context.fetch(predicate).first ?? context.insert()
+        let model: CDGradingStandard = context.first(where: (\CDGradingStandard.id).string, equals: item.id.value) ?? context.insert()
         model.id = item.id.value
         model.title = item.title
         model.contextType = item.context_type
         model.contextId = item.context_id.value
-        model.pointsBased = item.points_based
+        model.isPointsBased = item.points_based
         model.scalingFactor = item.scaling_factor
-        model.gradingScheme = try? JSONEncoder().encode(item.grading_scheme)
+        let gradingSchemeEntries = item.grading_scheme.compactMap(GradingSchemeEntry.init)
+        model.gradingSchemeEntriesRaw = try? JSONEncoder().encode(gradingSchemeEntries)
 
         return model
     }

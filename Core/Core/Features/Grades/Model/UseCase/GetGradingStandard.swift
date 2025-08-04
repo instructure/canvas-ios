@@ -22,31 +22,24 @@ import CoreData
 public class GetGradingStandard: APIUseCase {
     public typealias Model = CDGradingStandard
 
-    public private(set) var gradingStandardId: String
-    public private(set) var contextId: String
-    public private(set) var contextType: String
+    public private(set) var id: String
+    public private(set) var context: Context
 
-    public init(gradingStandardId: String, contextId: String, contextType: String) {
-        self.gradingStandardId = gradingStandardId
-        self.contextId = contextId
-        self.contextType = contextType
+    public init(id: String, context: Context) {
+        self.id = id
+        self.context = context
     }
 
     public var cacheKey: String? {
-        return switch contextType {
-        case "Course":
-            "accounts/\(contextId)/gradingStandards/\(gradingStandardId)"
-        default:
-            "courses/\(contextId)/gradingStandards/\(gradingStandardId)"
-        }
+        "\(context.pathComponent)/gradingStandards/\(id)"
     }
 
     public var scope: Scope {
-        return .where(#keyPath(CDGradingStandard.id), equals: gradingStandardId)
+        return .where(#keyPath(CDGradingStandard.id), equals: id)
     }
 
     public var request: GetGradingStandardRequest {
-        return GetGradingStandardRequest(contextId: contextId, contextType: contextType, gradingStandardId: gradingStandardId)
+        return GetGradingStandardRequest(context: context, gradingStandardId: id)
     }
 
     public func write(response: APIGradingStandard?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {

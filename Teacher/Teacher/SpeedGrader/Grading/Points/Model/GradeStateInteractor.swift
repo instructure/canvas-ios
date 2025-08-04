@@ -24,6 +24,7 @@ protocol GradeStateInteractor {
     func gradeState(
         submission: Submission,
         assignment: Assignment,
+        gradingScheme: GradingScheme?,
         isRubricScoreAvailable: Bool, // TODO: remove if not needed for rubrics
         totalRubricScore: Double // TODO: remove if not needed for rubrics
     ) -> GradeState
@@ -34,6 +35,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
     func gradeState(
         submission: Submission,
         assignment: Assignment,
+        gradingScheme: GradingScheme?,
         isRubricScoreAvailable: Bool,
         totalRubricScore: Double
     ) -> GradeState {
@@ -47,7 +49,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
         return GradeState(
             gradingType: gradingType,
             pointsPossibleText: assignment.pointsPossibleText,
-            gradeOptions: Self.gradeOptions(for: gradingType, assignment: assignment),
+            gradeOptions: Self.gradeOptions(for: gradingType, gradingScheme: gradingScheme),
 
             isGraded: isGraded,
             isExcused: isExcused,
@@ -70,7 +72,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
         return GradeState(
             gradingType: gradingType,
             pointsPossibleText: assignment.pointsPossibleText,
-            gradeOptions: gradeOptions(for: gradingType, assignment: assignment),
+            gradeOptions: gradeOptions(for: gradingType, gradingScheme: assignment.gradingScheme),
 
             isGraded: false,
             isExcused: false,
@@ -85,10 +87,10 @@ class GradeStateInteractorLive: GradeStateInteractor {
         )
     }
 
-    private static func gradeOptions(for gradingType: GradingType, assignment: Assignment) -> [OptionItem] {
+    private static func gradeOptions(for gradingType: GradingType, gradingScheme: GradingScheme?) -> [OptionItem] {
         switch gradingType {
         case .gpa_scale, .letter_grade:
-            guard let entries = assignment.gradingScheme?.entries else { return [] }
+            guard let entries = gradingScheme?.entries else { return [] }
 
             // Assumptions:
             // - values are always normalized in [0, 1]

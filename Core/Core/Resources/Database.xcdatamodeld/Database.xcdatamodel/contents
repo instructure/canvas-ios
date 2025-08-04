@@ -52,6 +52,7 @@
         <attribute name="freeFormCriterionCommentsOnRubric" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="gradedIndividually" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="gradingPeriodID" optional="YES" attributeType="String"/>
+        <attribute name="gradingStandardId" optional="YES" attributeType="String"/>
         <attribute name="gradingTypeRaw" attributeType="String"/>
         <attribute name="groupCategoryID" optional="YES" attributeType="String"/>
         <attribute name="hasOverrides" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -212,14 +213,14 @@
         <attribute name="disableInboxSignatureBlockForStudents" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="enableInboxSignatureBlock" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
-    <entity name="CDGradingStandard" representedClassName="CDGradingStandard" syncable="YES">
-        <attribute name="contextId" optional="YES" attributeType="String"/>
-        <attribute name="contextType" optional="YES" attributeType="String"/>
-        <attribute name="gradingScheme" optional="YES" attributeType="Binary"/>
-        <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="pointsBased" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="scalingFactor" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
+    <entity name="CDGradingStandard" representedClassName="Core.CDGradingStandard" syncable="YES">
+        <attribute name="contextId" attributeType="String"/>
+        <attribute name="contextType" attributeType="String"/>
+        <attribute name="gradingSchemeEntriesRaw" optional="YES" attributeType="Binary"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isPointsBased" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="scalingFactor" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String"/>
     </entity>
     <entity name="CDHCommentAttachment" representedClassName="Core.CDHCommentAttachment" syncable="YES">
         <attribute name="displayName" optional="YES" attributeType="String"/>
@@ -488,6 +489,7 @@
         <attribute name="courseCode" optional="YES" attributeType="String"/>
         <attribute name="courseColor" optional="YES" attributeType="String"/>
         <attribute name="defaultViewRaw" optional="YES" attributeType="String"/>
+        <attribute name="gradingSchemeRaw" optional="YES" attributeType="Binary"/>
         <attribute name="gradingStandardId" optional="YES" attributeType="String"/>
         <attribute name="hideFinalGrades" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>

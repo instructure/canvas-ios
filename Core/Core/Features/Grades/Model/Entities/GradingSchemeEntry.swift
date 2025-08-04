@@ -17,6 +17,23 @@
 //
 
 public struct GradingSchemeEntry: Codable {
-    let name: String
-    let value: Double
+    public let name: String
+    public let value: Double
+    public let calculatedValue: Double?
+
+    init?(_ courseGradingScheme: [TypeSafeCodable<String, Double>]) {
+        guard courseGradingScheme.count == 2,
+              let name = courseGradingScheme[0].value1,
+              let value = courseGradingScheme[1].value2
+        else { return nil }
+        self.name = name
+        self.value = value
+        self.calculatedValue = nil
+    }
+
+    init(_ apiGradingScheme: APIGradingSchemeEntry) {
+        self.name = apiGradingScheme.name
+        self.value = apiGradingScheme.value
+        self.calculatedValue = apiGradingScheme.calculated_value
+    }
 }

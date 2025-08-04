@@ -60,17 +60,11 @@ public struct APIGradingStandardResponse: Codable, Equatable {
 public struct GetGradingStandardRequest: APIRequestable {
     public typealias Response = APIGradingStandard
 
-    let contextId: String
-    let contextType: String
+    let context: Context
     let gradingStandardId: String
 
     public var path: String {
-        switch contextType {
-        case "Course":
-            return "courses/\(contextId)/grading_standards/\(gradingStandardId)"
-        default:
-            return "accounts/\(contextId)/grading_standards/\(gradingStandardId)"
-        }
+        "\(context.pathComponent)/grading_standards/\(gradingStandardId)"
     }
 
     public func decode(_ data: Data) throws -> APIGradingStandard {

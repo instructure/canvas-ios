@@ -44,6 +44,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var freeFormCriterionCommentsOnRubric: Bool
     @NSManaged public var gradedIndividually: Bool
     @NSManaged public var gradingPeriod: GradingPeriod?
+    @NSManaged public var gradingStandardId: String?
     @NSManaged public var gradingTypeRaw: String
     @NSManaged public var groupCategoryID: String?
     @NSManaged public var hasSubmittedSubmissions: Bool
@@ -195,6 +196,7 @@ extension Assignment {
         dueAtSortNilsAtBottom = item.due_at ?? Date.distantFuture
         externalToolContentID = item.external_tool_tag_attributes?.content_id?.rawValue
         gradedIndividually = item.grade_group_students_individually ?? true
+        gradingStandardId = item.grading_standard_id?.value
         gradingType = item.grading_type
         groupCategoryID = item.group_category_id?.value
         hasSubmittedSubmissions = item.has_submitted_submissions ?? false
