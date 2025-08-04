@@ -220,8 +220,8 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
                 RemoteLogger
                     .shared
                     .logError(
-                        name: "Popping back File details view: \(fileRoute)",
-                        reason: "Unknown state upon loading file information"
+                        name: "Failed to show File details view. Popping back to previous screen.",
+                        reason: "Unknown state upon loading (\(fileRoute)) file information"
                     )
 
                 // File was deleted, go back.
