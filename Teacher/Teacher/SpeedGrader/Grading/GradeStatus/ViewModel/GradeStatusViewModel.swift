@@ -56,18 +56,6 @@ class GradeStatusViewModel: ObservableObject {
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
     private var databaseObservation: AnyCancellable?
-    private static let daysLateFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 3 // 1 hour is 0,04166667 days
-        return formatter
-    }()
-    private static let daysLateInputParser: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        return formatter
-    }()
 
     init(
         userId: String,
@@ -200,7 +188,7 @@ class GradeStatusViewModel: ObservableObject {
 
         publisher
             .compactMap { textInput -> Double? in
-                Self.daysLateInputParser.number(from: textInput)?.doubleValue
+                textInput.doubleValueByFixingDecimalSeparator
             }
             .map { [weak self] newLateDays in
                 self?.isLoading = true
@@ -257,6 +245,17 @@ class GradeStatusViewModel: ObservableObject {
         .map { (result, oldOption) }
         .eraseToAnyPublisher()
     }
+}
+
+extension GradeStatusViewModel {
+    private static let daysLateFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 3 // 1 hour is 0,04166667 days
+        return formatter
+    }()
 }
 
 private extension OptionItem {
