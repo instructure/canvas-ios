@@ -150,10 +150,8 @@ final class AssistQuizViewModel {
         isLoaderVisible = true
         currentQuizIndex = 0
         chatBotInteractor.publish(
-            action: .chat(
-                prompt: "Create a Quiz",
-                history: chatHistory
-            )
+            prompt: "Create a Quiz",
+            history: chatHistory
         )
     }
 }

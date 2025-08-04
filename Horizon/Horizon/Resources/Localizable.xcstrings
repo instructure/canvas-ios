@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "\n\nHow can I help with this?" : {
-
-    },
     "-" : {
 
     },
@@ -220,9 +217,6 @@
     "Cairo (+02:00/+03:00)" : {
 
     },
-    "Can I answer any questions about this document for you?" : {
-
-    },
     "Canberra (+10:00/+11:00)" : {
 
     },
@@ -379,9 +373,6 @@
     "Excused" : {
 
     },
-    "Explain this" : {
-
-    },
     "External tool" : {
 
     },
@@ -461,9 +452,6 @@
 
     },
     "hours" : {
-
-    },
-    "How can I help you with this page?" : {
 
     },
     "IgniteAI" : {
@@ -879,6 +867,12 @@
     "Sorry, can we try that again? Which course is it you'd like to discuss?" : {
 
     },
+    "Sorry, I can't answer that question right now. Please try again later" : {
+
+    },
+    "Sorry, I can't summarize that content right now. Please try again later" : {
+
+    },
     "Sorry, we were not able to display this page right now." : {
 
     },
@@ -1051,9 +1045,6 @@
 
     },
     "West Central Africa (+01:00)" : {
-
-    },
-    "What questions can I answer about your courses for you today?" : {
 
     },
     "What would you like to discuss about the course %@?" : {

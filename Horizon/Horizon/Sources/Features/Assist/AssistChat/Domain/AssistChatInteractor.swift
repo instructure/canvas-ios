@@ -23,7 +23,7 @@ import Foundation
 
 class AssistChatInteractor {
     var listen: AnyPublisher<State, any Error> { Empty().eraseToAnyPublisher() }
-    func publish(action: AssistChatAction) { }
+    func publish(prompt: String? = nil, history: [AssistChatMessage] = []) { }
     func setInitialState() { }
 
     enum State {
@@ -42,12 +42,13 @@ final class AssistChatInteractorLive: AssistChatInteractor {
 
     // MARK: - Private
     private let actionPublisher = CurrentValueRelay<AssistChatAction?>(nil)
+    private let cedar: DomainService
     private var state: AssistState = .init()
     private var originalState: AssistState = .init()
     private var goalCancellable: AnyCancellable?
     private let responsePublisher = PassthroughSubject<AssistChatInteractorLive.State, Error>()
     private var subscriptions = Set<AnyCancellable>()
-    private var goals: [any AssistTool]
+    private var tools: [any AssistTool]
 
     // MARK: - Init
     init(
@@ -55,6 +56,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         pageURL: String? = nil,
         fileID: String? = nil,
         textSelection: String? = nil,
+        cedar: DomainService = .init(.cedar)
     ) {
         self.state = .init(
             courseID: courseID,
@@ -62,41 +64,46 @@ final class AssistChatInteractorLive: AssistChatInteractor {
             pageURL: pageURL,
             textSelection: textSelection
         )
-        self.goals = [
-            AssistCourseDocumentGoal(state: state),
-            AssistCoursePageGoal(state: state),
-            AssistCourseActionGoal(state: state),
-            AssistSelectCourseGoal(state: state)
+        self.tools = [
+            AssistSummarizeTool(state: state),
+            AssistAnswerPromptTool(prompt: .KeyTakeaways, state: state),
+            AssistAnswerPromptTool(prompt: .RephraseContent, state: state),
+            AssistAnswerPromptTool(prompt: .TellMeMore, state: state),
+            AssistQuizTool(state: state),
+            AssistCourseActionTool(state: state),
+            AssistSelectCourseTool(state: state)
         ]
         self.originalState = state.duplicate()
+        self.cedar = cedar
     }
 
     // MARK: - Inputs
     /// Publishes a new user action to the interactor
     override
-    func publish(action: AssistChatAction) {
-        var userResponse: String?
-        var prompt: String?
-        var history: [AssistChatMessage] = []
-
-        switch action {
-        case .chat(let message, let chatHistory):
-            prompt = message
-            userResponse = message
-            history = chatHistory
-        default:
-            break
-        }
-
+    func publish(prompt: String? = nil, history: [AssistChatMessage] = []) {
+        var history = history
         // if the user has said something, we publish it as a message
         // otherwise, we just publish that we're loading
         var response: AssistChatResponse = .init(chatHistory: history, isLoading: true)
-        if let userResponse = userResponse {
-            let message: AssistChatMessage = .init(userResponse: userResponse)
+        if let prompt = prompt, !prompt.isEmpty {
+            let message: AssistChatMessage = .init(userResponse: prompt)
             response = .init(message, chatHistory: history, isLoading: true)
         }
         responsePublisher.send(.success(response))
         history = response.chatHistory
+
+        let availableTools = tools.filter { $0.isAvailable }
+        if availableTools.count == 1 {
+
+        } else {
+            cedar.api().map { api in
+                api.makeRequest(
+                    CedarAnswerPromptMutation("""
+                        You are a
+                        """)
+                )
+            }
+        }
 
         goalCancellable = executeNextGoal(prompt: prompt, history: history)?.sink(
             receiveCompletion: { [weak self] completion in
@@ -106,7 +113,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
             },
             receiveValue: { [weak self] assistChatMessage in
                 guard let assistChatMessage = assistChatMessage else {
-                    self?.publish(action: .chat(prompt: nil, history: history))
+                    self?.publish(prompt: nil, history: history)
                     return
                 }
                 let response: AssistChatResponse = .init(
@@ -130,7 +137,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     func setInitialState() {
         goalCancellable?.cancel()
         self.state = self.originalState.duplicate()
-        publish(action: .begin)
+        publish()
     }
 
     // MARK: - Private
@@ -139,7 +146,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         prompt: String? = nil,
         history: [AssistChatMessage] = []
     ) -> AnyPublisher<AssistChatMessage?, any Error>? {
-        guard let goal = goals.first(where: { $0.isRequested }) else {
+        guard let goal = tools.first(where: { $0.isAvailable }) else {
             return nil
         }
         return goal.execute(response: prompt, history: history)
@@ -161,7 +168,7 @@ class AssistChatInteractorPreview: AssistChatInteractor {
     var hasAssistChipOptions: Bool = true
 
     override
-    func publish(action: AssistChatAction) {}
+    func publish(prompt: String? = nil, history: [AssistChatMessage] = []) {}
 
     override
     var listen: AnyPublisher<State, any Error> {

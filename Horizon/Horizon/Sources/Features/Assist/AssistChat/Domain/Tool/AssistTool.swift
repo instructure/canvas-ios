@@ -52,7 +52,7 @@ protocol AssistTool {
     func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error>
 
     /// Whether or not this goal should be selected in this list of goals
-    var isRequested: Bool { get }
+    var isAvailable: Bool { get }
 }
 
 extension AssistTool {

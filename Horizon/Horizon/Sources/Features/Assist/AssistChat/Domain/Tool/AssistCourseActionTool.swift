@@ -20,7 +20,7 @@ import Combine
 import Core
 import Foundation
 
-class AssistCourseActionGoal: AssistTool {
+class AssistCourseActionTool: AssistTool {
     // MARK: - Dependencies
     private let state: AssistState
     private let pine: DomainService
@@ -40,7 +40,7 @@ class AssistCourseActionGoal: AssistTool {
     }
 
     // MARK: - Inputs
-    var isRequested: Bool {
+    var isAvailable: Bool {
         state.courseID.value != nil
     }
 
@@ -99,34 +99,6 @@ class AssistCourseActionGoal: AssistTool {
             print("Failed to decode suggestions JSON: \(error)")
             return []
         }
-    }
-}
-
-extension PineQueryMutation.RagResponse {
-    var chatMessageCitations: [AssistChatMessage.Citation] {
-        citations.compactMap { ragCitation in
-            ragCitation.citation(
-                sourceID: ragCitation.sourceId,
-                sourceType: ragCitation.sourceType
-            )
-        }
-    }
-}
-
-extension PineQueryMutation.RagCitation {
-    func citation(
-        sourceID: String,
-        sourceType: String
-    ) -> AssistChatMessage.Citation? {
-        guard let title = metadata["title"] ?? metadata["filename"] else {
-            return nil
-        }
-        return AssistChatMessage.Citation(
-            title: title,
-            courseID: metadata["courseId"],
-            sourceID: sourceID,
-            sourceType: AssistChatInteractor.AssetType(rawValue: sourceType) ?? .unknown
-        )
     }
 }
 

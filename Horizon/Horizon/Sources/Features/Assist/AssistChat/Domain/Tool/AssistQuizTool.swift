@@ -17,19 +17,13 @@
 //
 
 import Combine
+import CombineExt
+import Core
+import Foundation
 
 struct AssistQuizTool: AssistTool {
 
-    // MARK: - Dependencies
-    private let pine: DomainService
-    private let state: AssistState
-
-    // MARK: - Init
-    init(state: AssistState, pine: DomainService = DomainService(.pine)) {
-        self.state = state
-        self.pine = pine
-    }
-
+    // MARK: - Properties
     // swiftlint:disable line_length
     var description: String {
         """
@@ -37,24 +31,109 @@ struct AssistQuizTool: AssistTool {
         """
     }
     // swiftlint:enable line_length
-
-    var isRequested: Bool {
-        state.courseID.value != nil && (state.fileID.value != nil || state.pageURL.value != nil)
+    var isAvailable: Bool {
+        state.courseID.value != nil &&
+            (
+                state.fileID.value != nil ||
+                state.pageURL.value != nil ||
+                state.textSelection.value != nil
+            )
     }
 
+    // MARK: - Dependencies
+    private let cedar: DomainService
+    private let pine: DomainService
+    private let state: AssistState
+
+    // MARK: - Init
+    init(
+        state: AssistState,
+        pine: DomainService = DomainService(.pine),
+        cedar: DomainService = DomainService(.cedar)
+    ) {
+        self.state = state
+        self.pine = pine
+        self.cedar = cedar
+    }
+
+    // MARK: - Inputs
     func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
-        let sourceType: AssistChatInteractor.AssetType = state.fileID.value != nil ? .attachment : .wiki_page
-        guard let courseID = state.courseID.value,
-              let sourceID = state.fileID.value ?? state.pageURL.value else {
-            return Just<AssistChatMessage?>(nil)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
+        guard let courseID = state.courseID.value else {
+            return AssistChatMessage.nilResponse
         }
-        return pine.askARAGQuestion(
-            question: description,
-            courseID: courseID,
-            sourceID: sourceID,
-            sourceType: sourceType.rawValue
-        )
+
+        if let pageURL = state.pageURL.value {
+            return quiz(from: courseID, pageURL: pageURL)
+        }
+
+        if let fileID = state.fileID.value {
+            return quiz(from: courseID, fileID: fileID)
+        }
+
+        if let textSelection = state.textSelection.value {
+            return quiz(using: textSelection)
+        }
+        return AssistChatMessage.nilResponse
+    }
+
+    // MARK: - Private Methods
+    private func quiz(from courseID: String, pageURL: String) -> AnyPublisher<AssistChatMessage?, any Error> {
+        pageURL
+            .pageBody(courseID: courseID)
+            .flatMap { body in
+                quiz(using: body ?? "")
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func quiz(from courseID: String, fileID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
+        pine
+            .askARAGSingleQuestion(
+                question: description,
+                courseID: courseID,
+                sourceID: fileID,
+                sourceType: AssistChatInteractor.AssetType.wiki_page.rawValue
+            )
+            .tryMap { (response: String?) in
+                guard let response = response,
+                      let data = response.data(using: .utf8),
+                      let quizOutput = try? JSONDecoder().decode(CedarGenerateQuizMutation.QuizOutput.self, from: data) else {
+                    return nil
+                }
+                return AssistChatMessage(quizItems: quizOutput.quizItems)
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func quiz(using body: String) -> AnyPublisher<AssistChatMessage?, any Error> {
+        cedar.api()
+            .flatMap { api in
+                api.makeRequest(CedarGenerateQuizMutation(context: body))
+            }
+            .map { (quizOutput: CedarGenerateQuizMutation.QuizOutput?, _) in
+                AssistChatMessage(quizItems: quizOutput?.quizItems ?? [])
+            }
+            .eraseToAnyPublisher()
+    }
+}
+
+private extension String {
+    func pageBody(courseID: String) -> AnyPublisher<String?, any Error> {
+        ReactiveStore(useCase: GetPage(context: .course(courseID), url: self))
+            .getEntities()
+            .map { $0.first?.body }
+            .eraseToAnyPublisher()
+    }
+}
+
+extension CedarGenerateQuizMutation.QuizOutput {
+    var quizItems: [AssistChatMessage.QuizItem] {
+        data.generateQuiz.map {
+            .init(
+                question: $0.question,
+                answers: $0.options,
+                correctAnswerIndex: $0.result
+            )
+        }
     }
 }

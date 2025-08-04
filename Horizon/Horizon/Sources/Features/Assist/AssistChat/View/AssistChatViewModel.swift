@@ -104,7 +104,7 @@ final class AssistChatViewModel {
             )
             .store(in: &subscriptions)
 
-        self.assistChatInteractor.publish(action: .begin)
+        self.assistChatInteractor.publish()
     }
 
     // MARK: - Inputs
@@ -118,7 +118,7 @@ final class AssistChatViewModel {
     func retry() {
         guard let lastMessage = messages.popLast() else { return }
         chatMessages = chatMessages.dropLast()
-        assistChatInteractor.publish(action: .chat(prompt: lastMessage.content, history: chatMessages))
+        assistChatInteractor.publish(prompt: lastMessage.content, history: chatMessages)
         isRetryButtonVisible = false
         shouldOpenKeyboardPublisher.send(false)
     }
@@ -134,12 +134,12 @@ final class AssistChatViewModel {
     }
 
     func send(chipOption: AssistChipOption) {
-        assistChatInteractor.publish(action: .chat(prompt: chipOption.prompt, history: chatMessages))
+        assistChatInteractor.publish(prompt: chipOption.prompt, history: chatMessages)
         isBackButtonVisible = true
     }
 
     func send(message: String) {
-        assistChatInteractor.publish(action: .chat(prompt: message, history: chatMessages))
+        assistChatInteractor.publish(prompt: message, history: chatMessages)
         isBackButtonVisible = true
         self.message = ""
     }

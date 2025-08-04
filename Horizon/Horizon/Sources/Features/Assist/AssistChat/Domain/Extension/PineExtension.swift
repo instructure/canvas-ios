@@ -19,7 +19,6 @@
 import Combine
 
 extension DomainService {
-
     /// For when you want to ask Pine a single question that isn't meant to be part of the overall conversation
     func askARAGSingleQuestion(
         question: String,
@@ -83,5 +82,33 @@ extension DomainService {
             }
         }
         .eraseToAnyPublisher()
+    }
+}
+
+extension PineQueryMutation.RagResponse {
+    var chatMessageCitations: [AssistChatMessage.Citation] {
+        citations.compactMap { ragCitation in
+            ragCitation.citation(
+                sourceID: ragCitation.sourceId,
+                sourceType: ragCitation.sourceType
+            )
+        }
+    }
+}
+
+extension PineQueryMutation.RagCitation {
+    func citation(
+        sourceID: String,
+        sourceType: String
+    ) -> AssistChatMessage.Citation? {
+        guard let title = metadata["title"] ?? metadata["filename"] else {
+            return nil
+        }
+        return AssistChatMessage.Citation(
+            title: title,
+            courseID: metadata["courseId"],
+            sourceID: sourceID,
+            sourceType: AssistChatInteractor.AssetType(rawValue: sourceType) ?? .unknown
+        )
     }
 }

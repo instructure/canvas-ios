@@ -46,11 +46,10 @@ struct AssistFlashCardsTool: AssistTool {
     }
     // swiftlint:enable line_length
 
-    var isRequested: Bool {
+    var isAvailable: Bool {
         state.courseID.value != nil && (
             state.fileID.value != nil ||
-            state.pageURL.value != nil ||
-            state.textSelection.value != nil
+            state.pageURL.value != nil
         )
     }
 

@@ -16,12 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-
-/// ChatBotActions are published to the  AssistChatInteractor. The Interactor reacts to the action and publishes one or more ChatBotResponses.
-enum AssistChatAction {
-    case begin
-
-    /// the user is chatting with the bot
-    case chat(prompt: String?, history: [AssistChatMessage] = [])
+struct AssistExecutor {
+    
 }

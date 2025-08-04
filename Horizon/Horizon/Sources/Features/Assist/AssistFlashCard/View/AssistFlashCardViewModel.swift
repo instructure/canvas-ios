@@ -126,10 +126,8 @@ final class AssistFlashCardViewModel {
             isLoaderVisible = true
             currentPage = 0
             chatBotInteractor.publish(
-                action: .chat(
-                    prompt: "Generate Flash Cards",
-                    history: chatHistory
-                )
+                prompt: "Generate Flash Cards",
+                history: chatHistory
             )
             return
         }

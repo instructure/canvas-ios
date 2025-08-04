@@ -20,7 +20,7 @@ import Combine
 import Core
 import Foundation
 
-class AssistSelectCourseGoal: AssistTool {
+class AssistSelectCourseTool: AssistTool {
     private let cedar: DomainService
     private let state: AssistState
     private let pine: DomainService
@@ -40,7 +40,7 @@ class AssistSelectCourseGoal: AssistTool {
         self.userID = userID
     }
 
-    var isRequested: Bool {
+    var isAvailable: Bool {
         state.courseID.value == nil
     }
 
