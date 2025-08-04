@@ -19,7 +19,7 @@
 import Core
 import UIKit
 
-let studentRouter = Router(routes: [
+let academicRouter = Router(routes: [
     RouteHandler("/accounts/:accountID/terms_of_service") { _, _, _ in
         TermsOfServiceViewController()
     },

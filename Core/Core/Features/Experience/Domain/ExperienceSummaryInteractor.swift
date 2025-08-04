@@ -61,16 +61,13 @@ public final class ExperienceSummaryInteractorLive: ExperienceSummaryInteractor 
     public func isExperienceSwitchAvailable() -> AnyPublisher<Bool, Never> {
         ReactiveStore(useCase: GetExperienceSummaryUseCase())
             .getEntities()
-            .compactMap { $0.first?.availableApps }
-            .map { $0.contains(.academic) && $0.contains(.careerLearner) }
+            .map { $0.first?.availableApps }
+            .map { availableApps in
+                guard let availableApps = availableApps else { return false }
+                return availableApps.contains(.academic) && availableApps.contains(.careerLearner)
+            }
             .replaceError(with: false)
             .eraseToAnyPublisher()
-    }
-
-    public func isExperienceSwitchAvailable() async -> Bool {
-        await isExperienceSwitchAvailable()
-            .values
-            .first(where: { _ in true })!
     }
 
     public func switchExperience(to experience: Experience) -> AnyPublisher<Void, Never> {

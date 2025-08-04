@@ -40,7 +40,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
         env.loginDelegate = self
-        env.router = studentRouter
+        env.router = academicRouter
         env.app = .student
         env.window = window
         return env
@@ -404,7 +404,7 @@ extension StudentAppDelegate {
         switch experience {
         case .academic:
             AppEnvironment.shared.app = .student
-            AppEnvironment.shared.router = studentRouter
+            AppEnvironment.shared.router = academicRouter
             guard let window = window else { return }
 
             let appearance = UINavigationBar.appearance(whenContainedInInstancesOf: [CoreNavigationController.self])
