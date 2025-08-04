@@ -91,3 +91,4 @@ screenlog.0
 
 # Ignore all GoogleService-Info.plist files
 **/GoogleService-Info.plist
+.vscode/launch.json
