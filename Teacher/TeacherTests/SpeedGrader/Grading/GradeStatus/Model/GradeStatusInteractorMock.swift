@@ -62,25 +62,25 @@ final class GradeStatusInteractorMock: GradeStatusInteractor {
     func observeGradeStatusChanges(
         submissionId: String,
         attempt: Int
-    ) -> AnyPublisher<(GradeStatus, daysLate: Int, dueDate: Date?), Never> {
-        observeGradeStatusChangesCalled = true
+    ) -> AnyPublisher<(GradeStatus, daysLate: Double, dueDate: Date?), Never> {
         observeGradeStatusChangesInput = (submissionId, attempt)
+        observeGradeStatusChangesCalled = true
         if let status = gradeStatuses.first {
-            return Just((status, mockDaysLate, mockDueDate)).eraseToAnyPublisher()
+            return Just((status, Double(mockDaysLate), mockDueDate)).eraseToAnyPublisher()
         } else {
             return Empty().eraseToAnyPublisher()
         }
     }
 
     var updateLateDaysCalled = false
-    var updateLateDaysParams: (submissionId: String, userId: String, daysLate: Int)?
+    var updateLateDaysParams: (submissionId: String, userId: String, daysLate: Double)?
     func updateLateDays(
         submissionId: String,
         userId: String,
-        daysLate: Int
+        daysLate: Double
     ) -> AnyPublisher<Void, Error> {
-        updateLateDaysCalled = true
         updateLateDaysParams = (submissionId, userId, daysLate)
+        updateLateDaysCalled = true
         return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }

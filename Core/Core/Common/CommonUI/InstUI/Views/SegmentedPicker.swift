@@ -20,21 +20,72 @@ import SwiftUI
 
 extension InstUI {
 
-    public struct SegmentedPicker<SelectionValue, Content>: View where SelectionValue: Hashable, Content: View {
+    public struct SegmentedPicker<
+        SelectionValue: Hashable & RawRepresentable<Int>,
+        Content: View
+    >: View {
 
         private var selection: Binding<SelectionValue>
+        private let segmentCount: Int
+        private let onTapSelectedTab: (() -> Void)?
         private let content: () -> Content
 
+        @State private var segmentSize: CGSize = .zero
+
+        /// Segmented Picker will not detect touches on selected tab. This is the native behavior.
         public init(
             selection: Binding<SelectionValue>,
             @ViewBuilder content: @escaping () -> Content
         ) {
+            self.init(
+                selection: selection,
+                segmentCount: 0,
+                onTapSelectedTab: nil,
+                content: content
+            )
+        }
+
+        /// Segmented Picker will detect touches on selected tab.
+        /// The drawback is that on iOS 18 native gestures like longpressing the selected tab (which shows the tab being pressed),
+        /// and dragging the selected tab to change value won't work.
+        public init(
+            selection: Binding<SelectionValue>,
+            segmentCount: Int,
+            onTapSelectedTab: (() -> Void)?,
+            @ViewBuilder content: @escaping () -> Content
+        ) {
             self.selection = selection
+            self.segmentCount = segmentCount
+            self.onTapSelectedTab = onTapSelectedTab
             self.content = content
             updateSegmentedControlAppearance()
         }
 
         public var body: some View {
+            if let onTapSelectedTab {
+                ZStack(alignment: .leading) {
+                    picker
+                        .onSizeChange {
+                            segmentSize = CGSize(
+                                width: $0.width / CGFloat(segmentCount),
+                                height: $0.height
+                            )
+                        }
+
+                    let dx = CGFloat(selection.wrappedValue.rawValue) * segmentSize.width
+                    InstUI.TapArea()
+                        .frame(width: segmentSize.width, height: segmentSize.height)
+                        .offset(x: dx)
+                        .onTapGesture {
+                            onTapSelectedTab()
+                        }
+                }
+            } else {
+                picker
+            }
+        }
+
+        private var picker: some View {
             // Simply passing a string will be treated as a localized key
             // and will create an entry in the strings dictionary.
             Picker("" as String,
@@ -71,18 +122,46 @@ extension InstUI {
 
 #if DEBUG
 
+enum Segment: Int, CaseIterable {
+    case one
+    case two
+    case three
+
+    var title: String {
+        switch self {
+        case .one: "One"
+        case .two: "Two"
+        case .three: "Three"
+        }
+    }
+}
+
 #Preview {
-    @Previewable @State var selectedSegment = "one"
+
+    @Previewable @State var selectedSegment: Segment = .one
 
     InstUI.SegmentedPicker(
         selection: $selectedSegment
     ) {
-        Text("One")
-            .tag("one")
-        Text("Two")
-            .tag("two")
-        Text("Three")
-            .tag("three")
+        Text(Segment.one.title)
+            .tag(Segment.one)
+        Text(Segment.two.title)
+            .tag(Segment.two)
+        Text(Segment.three.title)
+            .tag(Segment.three)
+    }
+
+    InstUI.SegmentedPicker(
+        selection: $selectedSegment,
+        segmentCount: Segment.allCases.count,
+        onTapSelectedTab: { print("Did tap currently selected segment") }
+    ) {
+        Text(Segment.one.title)
+            .tag(Segment.one)
+        Text(Segment.two.title)
+            .tag(Segment.two)
+        Text(Segment.three.title)
+            .tag(Segment.three)
     }
 }
 

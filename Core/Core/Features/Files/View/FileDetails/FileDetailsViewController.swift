@@ -53,8 +53,13 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     var pdfAnnotationsMutatedMoveToDocsDirectory = false
     var originURL: URLComponents?
     var canEdit: Bool = true
+
+    private var fileRoute: String {
+        "\(context?.pathComponent ?? "")/files/\(fileID)"
+    }
+
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
-        eventName: "\(context?.pathComponent ?? "")/files/\(fileID)"
+        eventName: fileRoute
     )
     lazy var files = env.subscribe(GetFile(context: context, fileID: fileID)) { [weak self] in
         self?.update()
@@ -185,7 +190,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         files.refresh(force: true)
     }
 
-    func update() {
+    private func update() {
         if offlineFileInteractor?.isOffline == true {
             return handleOfflineFileLoad()
         }
@@ -199,6 +204,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
                         url.queryItems?.append(URLQueryItem(name: "download_frd", value: "1"))
                     }
                     if let urlRaw = url.url {
+                        RemoteLogger.shared.logBreadcrumb(route: "\(fileRoute)/webview")
                         embedWebView(for: urlRaw, isLocalURL: false)
                     } else {
                         showError(error)
@@ -206,12 +212,25 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
                 } else {
                     showError(error)
                 }
-            } else if files.requested, !files.pending, localURL == nil {
+            } else if files.requested,
+                      !files.pending,
+                      !files.isToBeUpdated,
+                      localURL == nil {
+
+                RemoteLogger
+                    .shared
+                    .logError(
+                        name: "Failed to show File details view. Popping back to previous screen.",
+                        reason: "Unknown state upon loading (\(fileRoute)) file information"
+                    )
+
                 // File was deleted, go back.
                 env.router.dismiss(self)
             }
             return
         }
+
+        RemoteLogger.shared.logBreadcrumb(route: fileRoute)
 
         title = file.displayName
         lockLabel.text = file.lockExplanation

@@ -159,17 +159,18 @@ class SpeedGraderTests: E2ETestCase {
         if speedGraderGradeSlider.isVanished {
             XCTAssertTrue(speedGraderDrawerGripper.isVisible)
             speedGraderDrawerGripper.swipeUp()
+            sleep(1)
+            XCTAssertTrue(speedGraderDrawerGripper.isVisible)
+            speedGraderDrawerGripper.swipeUp()
         }
 
-        let speedGraderGradeButton = SpeedGraderHelper.gradeButton.waitUntil(.visible)
         speedGraderGradeSlider.waitUntil(.visible)
-        XCTAssertTrue(speedGraderGradeButton.isVisible)
         XCTAssertTrue(speedGraderGradeSlider.isVisible)
-        XCTAssertEqual(speedGraderGradeSlider.stringValue, "0")
+        XCTAssertEqual(speedGraderGradeSlider.stringValue, "0.00")
 
-        speedGraderGradeSlider.swipeRight()
-        speedGraderGradeSlider.waitUntil(.value(expected: "1"))
-        XCTAssertEqual(speedGraderGradeSlider.stringValue, "1")
+        speedGraderGradeSlider.swipeRight(velocity: .slow)
+        speedGraderGradeSlider.waitUntil(.value(expected: "0.75"))
+        XCTAssertEqual(speedGraderGradeSlider.stringValue, "0.75")
 
         speedGraderDoneButton.hit()
         submissionItem.waitUntil(.vanish)
@@ -219,6 +220,8 @@ class SpeedGraderTests: E2ETestCase {
         editButton.hit()
         let titleField = EditorHelper.titleField.waitUntil(.visible)
         let pointsField = EditorHelper.pointsField.waitUntil(.visible)
+        titleField.waitUntil(.value(expected: assignment.name))
+        pointsField.waitUntil(.value(expected: score))
         XCTAssertTrue(titleField.isVisible)
         XCTAssertEqual(titleField.stringValue, assignment.name)
         XCTAssertTrue(pointsField.isVisible)
@@ -236,6 +239,7 @@ class SpeedGraderTests: E2ETestCase {
         // MARK: Check new score
         doneButton.hit()
         let pointsLabel = DetailsHelper.points.waitUntil(.visible)
+        pointsLabel.waitUntil(.label(expected: "\(newScore) pts"))
         XCTAssertTrue(pointsLabel.isVisible)
         XCTAssertEqual(pointsLabel.label, "\(newScore) pts")
     }

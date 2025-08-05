@@ -20,23 +20,32 @@ import Foundation
 
 public struct PointsBasedGradingScheme: GradingScheme {
 
-    public let scaleFactor: Double
+    private static let numberFormatter = GradeFormatter.numberFormatter
+
     public let entries: [GradingSchemeEntry]
+    private let scaleFactor: Double
+
+    public init(entries: [GradingSchemeEntry], scaleFactor: Double) {
+        self.entries = entries
+        self.scaleFactor = scaleFactor
+    }
+
+    public var formattedMaxValue: String? {
+        Self.numberFormatter.string(from: NSNumber(value: scaleFactor))
+    }
+
+    // Expects GradingSchemeEntry values which are in range of [0,1]
+    public func formattedEntryValue(_ value: Double) -> String? {
+        // Scaling it up, for example 0.75 to 3 (when max value is 4)
+        let scaledValue = value * scaleFactor
+        return Self.numberFormatter.string(from: NSNumber(value: scaledValue))
+    }
 
     public func formattedScore(from value: Double) -> String? {
         let normalizedScore = value / 100.0
         let number = NSNumber(value: normalizedScore * scaleFactor)
-        return Self.pointsFormatter.string(from: number)
+        return Self.numberFormatter.string(from: number)
     }
-
-    private static let pointsFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.multiplier = 1
-        formatter.maximumFractionDigits = 2
-        formatter.roundingMode = .halfEven
-        return formatter
-    }()
 }
 
 // MARK: - Schemes for Previews & Testing
@@ -45,7 +54,7 @@ public struct PointsBasedGradingScheme: GradingScheme {
 
 public extension PointsBasedGradingScheme {
     static var `default`: Self {
-        PointsBasedGradingScheme(scaleFactor: 4, entries: [])
+        PointsBasedGradingScheme(entries: [], scaleFactor: 4)
     }
 }
 

@@ -17,13 +17,13 @@
 //
 
 @testable import Core
-import CoreData
+import TestsFoundation
 import XCTest
 
 class PointsBasedGradingSchemeTests: GradingSchemeTestCase {
 
     func testScoreConversion() {
-        let testee = PointsBasedGradingScheme(scaleFactor: 5, entries: scoreConversionEntries())
+        let testee = PointsBasedGradingScheme(entries: scoreConversionEntries(), scaleFactor: 5)
 
         var result = testee.convertNormalizedScoreToLetterGrade(0.90)
         XCTAssertEqual(result, "A")
@@ -42,13 +42,13 @@ class PointsBasedGradingSchemeTests: GradingSchemeTestCase {
     }
 
     func testScoreConversionWithInvalidScheme() {
-        let testee = PointsBasedGradingScheme(scaleFactor: 4, entries: invalidConversionEntries())
+        let testee = PointsBasedGradingScheme(entries: invalidConversionEntries(), scaleFactor: 4)
         let result = testee.convertNormalizedScoreToLetterGrade(0.30)
         XCTAssertNil(result)
     }
 
-    func testFormattedScorePointBasedOn() {
-        let testee = PointsBasedGradingScheme(scaleFactor: 5, entries: [])
+    func testFormattedScore() {
+        let testee = PointsBasedGradingScheme(entries: [], scaleFactor: 5)
 
         var result = testee.formattedScore(from: 80)
         XCTAssertEqual(result, "4")
@@ -58,5 +58,52 @@ class PointsBasedGradingSchemeTests: GradingSchemeTestCase {
 
         result = testee.formattedScore(from: 33.43)
         XCTAssertEqual(result, "1.67")
+    }
+
+    func test_formattedMaxValue_shouldAlwaysBeScaleFactor() {
+        var testee = PointsBasedGradingScheme(entries: scoreConversionEntries(), scaleFactor: 4)
+        XCTAssertEqual(testee.formattedMaxValue, "4")
+
+        testee = PointsBasedGradingScheme(entries: [], scaleFactor: 4)
+        XCTAssertEqual(testee.formattedMaxValue, "4")
+    }
+
+    func test_formattedEntryValue() {
+        let testee = PointsBasedGradingScheme(entries: [], scaleFactor: 4)
+
+        XCTAssertEqual(testee.formattedEntryValue(1), "4")
+        XCTAssertEqual(testee.formattedEntryValue(0.75), "3")
+        XCTAssertEqual(testee.formattedEntryValue(0.10125), "0.41")
+        XCTAssertEqual(testee.formattedEntryValue(0), "0")
+    }
+
+    func test_formattedEntries() throws {
+        let testee = PointsBasedGradingScheme(
+            entries: [
+                makeEntry(name: "A++", value: 1.23),
+                makeEntry(name: "A+", value: 1),
+                makeEntry(name: "A", value: 0.42),
+                makeEntry(name: "B", value: 0.123456),
+                makeEntry(name: "F", value: 0.01),
+                makeEntry(name: "F-", value: 0.0)
+            ],
+            scaleFactor: 10
+        )
+
+        guard testee.formattedEntries.count == 6 else { throw InvalidCountError() }
+
+        XCTAssertEqual(testee.formattedEntries[0].name, "A++")
+        XCTAssertEqual(testee.formattedEntries[1].name, "A+")
+        XCTAssertEqual(testee.formattedEntries[2].name, "A")
+        XCTAssertEqual(testee.formattedEntries[3].name, "B")
+        XCTAssertEqual(testee.formattedEntries[4].name, "F")
+        XCTAssertEqual(testee.formattedEntries[5].name, "F-")
+
+        XCTAssertEqual(testee.formattedEntries[0].value, "12.3")
+        XCTAssertEqual(testee.formattedEntries[1].value, "10")
+        XCTAssertEqual(testee.formattedEntries[2].value, "4.2")
+        XCTAssertEqual(testee.formattedEntries[3].value, "1.23")
+        XCTAssertEqual(testee.formattedEntries[4].value, "0.1")
+        XCTAssertEqual(testee.formattedEntries[5].value, "0")
     }
 }

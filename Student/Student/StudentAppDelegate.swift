@@ -54,7 +54,9 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private lazy var gradeListWidgetRouter = WidgetRouter.createGradeListRouter()
     private lazy var courseGradeWidgetRouter = WidgetRouter.createCourseGradeRouter()
 
-    private lazy var analyticsTracker: PendoAnalyticsTracker = .init(environment: environment)
+     private lazy var analyticsTracker: PendoAnalyticsTracker = {
+        .init(environment: environment)
+    }()
     private lazy var appExperienceInteractor = ExperienceSummaryInteractorLive(environment: environment)
 
     func application(_: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

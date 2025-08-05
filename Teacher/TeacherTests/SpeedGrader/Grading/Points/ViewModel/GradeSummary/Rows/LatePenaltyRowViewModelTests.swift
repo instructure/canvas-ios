@@ -16,9 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+<<<<<<<< HEAD:Core/CoreTests/Features/Experience/PostSwitchExperienceRequestTests.swift
 @testable import Core
-@testable import Teacher
 import XCTest
+
+class PostSwitchExperienceRequestTests: XCTestCase {
+    func testPath() {
+        let request = PostSwitchExperienceRequest(experience: Experience.academic.category)
+        XCTAssertEqual(request.path, "career/switch_experience")
+    }
+
+    func testMethod() {
+        let request = PostSwitchExperienceRequest(experience: Experience.academic.category)
+        XCTAssertEqual(request.method, .post)
+    }
+
+    func testBody() {
+        let request = PostSwitchExperienceRequest(experience: Experience.academic.rawValue)
+        XCTAssertEqual(request.body?.experience, "academic")
+========
+import XCTest
+@testable import Core
+import TestsFoundation
+@testable import Teacher
 
 class LatePenaltyRowViewModelTests: TeacherTestCase {
 
@@ -38,5 +58,6 @@ class LatePenaltyRowViewModelTests: TeacherTestCase {
         let viewModel = LatePenaltyRowViewModel(penaltyText: "")
 
         XCTAssertEqual(viewModel.penaltyText, "")
+>>>>>>>> master:Teacher/TeacherTests/SpeedGrader/Grading/Points/ViewModel/GradeSummary/Rows/LatePenaltyRowViewModelTests.swift
     }
 }
