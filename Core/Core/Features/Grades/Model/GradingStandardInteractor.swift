@@ -24,27 +24,37 @@ public protocol GradingStandardInteractor {
 }
 
 public final class GradingStandardInteractorLive: GradingStandardInteractor {
-    private let context: Context
+    private let courseId: String
     private let gradingStandardId: String?
     private let env: AppEnvironment
 
-    public init(context: Context, gradingStandardId: String? = nil, env: AppEnvironment) {
-        self.context = context
+    public init(courseId: String, gradingStandardId: String? = nil, env: AppEnvironment? = nil) {
+        self.courseId = courseId
         self.gradingStandardId = gradingStandardId
-        self.env = env
+        self.env = env ?? AppEnvironment.shared
     }
 
     public var gradingScheme: AnyPublisher<GradingScheme?, Never> {
-        guard let gradingStandardId else {
-            return Just(nil)
-                .eraseToAnyPublisher()
+        guard gradingStandardId != nil else {
+            return getCourseGradingScheme()
         }
+        return getGradingScheme()
+    }
 
+    private func getGradingScheme() -> AnyPublisher<GradingScheme?, Never> {
+        Publishers.CombineLatest(
+            getAccountLevelGradingScheme(),
+            getCourseLevelGradingScheme()
+        )
+        .map { $0 ?? $1 }
+        .eraseToAnyPublisher()
+    }
+
+    private func getAccountLevelGradingScheme() -> AnyPublisher<GradingScheme?, Never> {
         let gradingStandardStore = ReactiveStore(
-            useCase: GetGradingStandard(id: gradingStandardId, context: context),
+            useCase: GetGradingStandard(id: gradingStandardId!),
             environment: env
         )
-
         return gradingStandardStore
             .getEntities()
             .compactMap { $0.first }
@@ -60,6 +70,43 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
                     )
                 }
             }
+            .ignoreFailure()
+            .eraseToAnyPublisher()
+    }
+
+    private func getCourseLevelGradingScheme() -> AnyPublisher<GradingScheme?, Never> {
+        let gradingStandardStore = ReactiveStore(
+            useCase: GetGradingStandard(id: gradingStandardId!, courseId: courseId),
+            environment: env
+        )
+        return gradingStandardStore
+            .getEntities()
+            .compactMap { $0.first }
+            .map { gradingStandard in
+                if gradingStandard.isPointsBased {
+                    return PointsBasedGradingScheme(
+                        entries: gradingStandard.gradingSchemeEntries,
+                        scaleFactor: gradingStandard.scalingFactor
+                    )
+                } else {
+                    return PercentageBasedGradingScheme(
+                        entries: gradingStandard.gradingSchemeEntries
+                    )
+                }
+            }
+            .ignoreFailure()
+            .eraseToAnyPublisher()
+    }
+
+    private func getCourseGradingScheme() -> AnyPublisher<GradingScheme?, Never> {
+        let courseStore = ReactiveStore(
+            useCase: GetCourse(courseID: courseId, include: [.grading_scheme]),
+            environment: env
+        )
+        return courseStore
+            .getEntities()
+            .compactMap(\.first)
+            .map(\.gradingScheme)
             .ignoreFailure()
             .eraseToAnyPublisher()
     }

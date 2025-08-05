@@ -44,7 +44,7 @@ public final class CDGradingStandard: NSManagedObject {
         model.contextId = item.context_id.value
         model.isPointsBased = item.points_based
         model.scalingFactor = item.scaling_factor
-    
+
         let gradingSchemeEntries = item.grading_scheme.compactMap(GradingSchemeEntry.init)
         model.gradingSchemeEntriesRaw = gradingSchemeEntries.rawData
 

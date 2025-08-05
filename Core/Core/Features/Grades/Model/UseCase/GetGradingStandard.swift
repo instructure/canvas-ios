@@ -25,13 +25,17 @@ public class GetGradingStandard: APIUseCase {
     public private(set) var id: String
     public private(set) var context: Context
 
-    public init(id: String, context: Context) {
+    public init(id: String, courseId: String? = nil) {
         self.id = id
-        self.context = context
+        if let courseId {
+            self.context = .course(courseId)
+        } else {
+            self.context = .account("self")
+        }
     }
 
     public var cacheKey: String? {
-        "\(context.pathComponent)/gradingStandards/\(id)"
+        return "\(context.pathComponent)/gradingStandards/\(id)"
     }
 
     public var scope: Scope {
