@@ -55,7 +55,7 @@ class LoginStartViewController: UIViewController {
         didSet {
             lastLoginButton.isHidden = lastLoginAccount == nil
             guard let lastLoginAccount = lastLoginAccount else { return }
-            var buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
+            let buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
             lastLoginButton.setTitle(buttonTitle, for: .normal)
             alternateFindSchoolButton()
         }

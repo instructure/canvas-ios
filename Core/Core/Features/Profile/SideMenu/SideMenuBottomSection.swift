@@ -68,7 +68,6 @@ struct SideMenuBottomSection: View {
                 })
                 Divider()
             }
-            
             if let root = helpLinks.first, helpLinks.count > 1 {
                 PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
                     showHelpMenu()

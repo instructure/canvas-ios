@@ -126,7 +126,7 @@ open class AppEnvironment {
                                                     completionHandler: {})
         }
     }
-    
+
     public func switchExperience(_ experience: Experience) {
         self.experience.accept(experience)
     }

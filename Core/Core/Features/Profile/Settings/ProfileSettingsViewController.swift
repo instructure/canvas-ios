@@ -202,7 +202,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 preferencesSection.rows.insert(row, at: 2)
             }
             var sections: [Section] = [preferencesSection]
-            
+
             if showInboxSignatureSettings {
                 sections.append(inboxSignatureSettingsSection)
             }

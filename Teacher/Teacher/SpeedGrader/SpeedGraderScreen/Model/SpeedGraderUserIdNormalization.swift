@@ -16,21 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Common/Data/IncompleteModule.swift
-struct IncompleteModule {
-    let moduleId: String
-    let moduleItemId: String
-
-    init?(
-        moduleId: String?,
-        moduleItemId: String?
-    ) {
-        guard let moduleId, let moduleItemId else {
-            return nil
-        }
-        self.moduleId = moduleId
-        self.moduleItemId = moduleItemId
-========
 enum SpeedGraderUserIdNormalization {
 
     /// Helper function to help normalize user ids coming from webview urls
@@ -40,6 +25,5 @@ enum SpeedGraderUserIdNormalization {
         }
 
         return SpeedGraderAllUsersUserId
->>>>>>>> master:Teacher/Teacher/SpeedGrader/SpeedGraderScreen/Model/SpeedGraderUserIdNormalization.swift
     }
 }
