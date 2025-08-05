@@ -26,6 +26,7 @@ struct SkillSpaceView: View {
         HEmbeddedWebPageContainerView(viewModel: viewModel)
             .toolbar(.hidden)
             .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
+            .background(Color.huiColors.surface.pagePrimary)
     }
 
     private var navigationBar: some View {
