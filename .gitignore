@@ -91,4 +91,6 @@ screenlog.0
 
 # Ignore all GoogleService-Info.plist files
 **/GoogleService-Info.plist
+
+# VSCode SweetPad
 .vscode/launch.json
