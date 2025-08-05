@@ -20,21 +20,29 @@ import Foundation
 
 public struct PercentageBasedGradingScheme: GradingScheme {
 
+    private static let percentFormatter = GradeFormatter.percentFormatter
+
     public let entries: [GradingSchemeEntry]
 
-    public func formattedScore(from value: Double) -> String? {
-        Self.percentFormatter.string(from: NSNumber(value: value))
+    public init(entries: [GradingSchemeEntry]) {
+        self.entries = entries
     }
 
-    private static let percentFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        formatter.decimalSeparator = "."
-        formatter.multiplier = 1
-        formatter.maximumFractionDigits = 3
-        formatter.roundingMode = .down
-        return formatter
-    }()
+    public var formattedMaxValue: String? {
+        Self.percentFormatter.string(from: NSNumber(value: 1))
+    }
+
+    // Expects GradingSchemeEntry values which are in range of [0,1]
+    public func formattedEntryValue(_ entryValue: Double) -> String? {
+        // Not scaling them up, because percentFormatter expects the same range. For example it converts 0.42 to "42%"
+        Self.percentFormatter.string(from: NSNumber(value: entryValue))
+    }
+
+    // Expects scores which are in range of [0,100+]
+    public func formattedScore(from score: Double) -> String? {
+        let normalizedScore = score / 100.0
+        return Self.percentFormatter.string(from: NSNumber(value: normalizedScore))
+    }
 }
 
 // MARK: - Schemes for Previews & Testing

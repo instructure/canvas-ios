@@ -111,18 +111,20 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         XCTAssertEqual(gradeInteractorMock.lastGrade, "87.5")
     }
 
-    func test_setPercentGrade_callsSaveGradeWithRoundedPercent() {
-        viewModel.setPercentGrade(87.3)
+    func test_setPercentGrade_callsSaveGradeWithPercentageSign() {
+        viewModel.setPercentGrade(87.0)
 
         XCTAssertTrue(gradeInteractorMock.saveGradeCalled)
         XCTAssertNil(gradeInteractorMock.lastExcused)
         XCTAssertEqual(gradeInteractorMock.lastGrade, "87.0%")
     }
 
-    func test_setPercentGrade_roundsCorrectly() {
-        viewModel.setPercentGrade(87.7)
+    func test_setPercentGrade_callsSaveGradeWithoutRounding() {
+        viewModel.setPercentGrade(87.345678)
 
-        XCTAssertEqual(gradeInteractorMock.lastGrade, "88.0%")
+        XCTAssertTrue(gradeInteractorMock.saveGradeCalled)
+        XCTAssertNil(gradeInteractorMock.lastExcused)
+        XCTAssertEqual(gradeInteractorMock.lastGrade, "87.345678%")
     }
 
     // MARK: - Saving State Tests

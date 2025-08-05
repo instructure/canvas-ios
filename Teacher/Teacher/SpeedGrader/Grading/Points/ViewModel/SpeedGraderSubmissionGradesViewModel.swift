@@ -129,7 +129,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     }
 
     func setPercentGrade(_ percent: Double) {
-        let percentValue = "\(round(percent))%"
+        let percentValue = "\(percent)%"
         saveGrade(grade: percentValue)
     }
 
