@@ -27,6 +27,8 @@ class MessageDetailsViewModel: ObservableObject {
     @Published public private(set) var conversations: [Conversation] = []
     @Published public private(set) var starred: Bool = false
     @Published public private(set) var isReplyButtonVisible: Bool = false
+    @Published public private(set) var isStudentAccessRestricted: Bool = false
+
     public let snackBarViewModel = SnackBarViewModel()
 
     public let title = String(localized: "Message Details", bundle: .core)
@@ -53,18 +55,18 @@ class MessageDetailsViewModel: ObservableObject {
     private let env: AppEnvironment
     private let myID: String
     private let allowArchive: Bool
-    private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags> {
-        env.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
-    }
+    private let studentAccessInteractor: StudentAccessInteractor
 
-    public init(interactor: MessageDetailsInteractor, myID: String, allowArchive: Bool, env: AppEnvironment) {
+    public init(interactor: MessageDetailsInteractor, studentAccessInteractor: StudentAccessInteractor, myID: String, allowArchive: Bool, env: AppEnvironment) {
         self.interactor = interactor
         self.myID = myID
         self.allowArchive = allowArchive
         self.env = env
+        self.studentAccessInteractor = studentAccessInteractor
 
         setupOutputBindings()
         setupInputBindings()
+        bindStudentAccessRestriction()
     }
 
     public func conversationMoreTapped(viewController: WeakViewController) {
@@ -74,7 +76,7 @@ class MessageDetailsViewModel: ObservableObject {
                self?.replyTapped(message: nil, viewController: viewController)
            }
 
-           if !environmentFeatureFlags.isFeatureEnabled(.restrict_student_access) {
+           if !isStudentAccessRestricted {
              addReplyAllAction(sheet) { [weak self] in
                self?.replyAllTapped(message: nil, viewController: viewController)
              }
@@ -147,7 +149,7 @@ class MessageDetailsViewModel: ObservableObject {
                     self?.replyTapped(message: message, viewController: viewController)
                 }
             }
-            if !environmentFeatureFlags.isFeatureEnabled(.restrict_student_access) {
+            if !isStudentAccessRestricted {
               addReplyAllAction(sheet) { [weak self] in
                 if let message {
                   self?.replyAllTapped(message: message, viewController: viewController)
@@ -318,6 +320,16 @@ class MessageDetailsViewModel: ObservableObject {
                     self?.env.router.dismiss(viewController)
                 }
                 self?.refreshDidTrigger.send({ })
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func bindStudentAccessRestriction() {
+        studentAccessInteractor
+            .isRestricted()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isRestricted in
+                self?.isStudentAccessRestricted = isRestricted
             }
             .store(in: &subscriptions)
     }

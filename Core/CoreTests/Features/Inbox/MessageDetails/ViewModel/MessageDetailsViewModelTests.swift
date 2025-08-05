@@ -22,12 +22,20 @@ import XCTest
 
 class MessageDetailsViewModelTests: CoreTestCase {
     private var mockInteractor: MessageDetailsInteractorMock!
+    private var mockStudentAccessInteractor: MockStudentAccessInteractor!
     var testee: MessageDetailsViewModel!
 
     override func setUp() {
         super.setUp()
         mockInteractor = MessageDetailsInteractorMock()
-        testee = MessageDetailsViewModel(interactor: mockInteractor, myID: "1", allowArchive: true, env: environment)
+        mockStudentAccessInteractor = MockStudentAccessInteractor(restricted: false)
+        testee = MessageDetailsViewModel(
+            interactor: mockInteractor,
+            studentAccessInteractor: mockStudentAccessInteractor,
+            myID: "1",
+            allowArchive: true,
+            env: environment
+        )
     }
 
     func testInteractorStateMappedToViewModel() {
@@ -196,9 +204,23 @@ class MessageDetailsViewModelTests: CoreTestCase {
 
     func test_messageMoreTapped_whenRestrictStudentAccessEnabled_replyAllNotShown() {
         // Given
-        let response: [String: Bool] = ["restrict_student_access": true]
-        let useCase = GetEnvironmentFeatureFlags(context: Context.currentUser)
-        useCase.write(response: response, urlResponse: nil, to: databaseClient)
+        mockInteractor = MessageDetailsInteractorMock()
+        mockStudentAccessInteractor = MockStudentAccessInteractor(restricted: true)
+        testee = MessageDetailsViewModel(
+            interactor: mockInteractor,
+            studentAccessInteractor: mockStudentAccessInteractor,
+            myID: "1",
+            allowArchive: true,
+            env: environment
+        )
+
+        let expectation = self.expectation(description: "Wait for restriction to be applied")
+        // Delay 0.1s to allow Combine pipeline to propagate
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1)
 
         let sourceView = UIViewController()
 
@@ -416,5 +438,17 @@ private class MessageDetailsInteractorMock: MessageDetailsInteractor {
     func passConversationEvent(with cannotReply: Bool) {
         conversation.send(([
             Conversation.make(from: .make( message_count: 1, messages: [ .make() ], cannot_reply: cannotReply))]))
+    }
+}
+
+private class MockStudentAccessInteractor: StudentAccessInteractor {
+    private let restricted: Bool
+
+    init(restricted: Bool) {
+        self.restricted = restricted
+    }
+
+    func isRestricted() -> AnyPublisher<Bool, Never> {
+        Just(restricted).eraseToAnyPublisher()
     }
 }
