@@ -41,7 +41,6 @@ class AssistChatInteractor {
 final class AssistChatInteractorLive: AssistChatInteractor {
 
     // MARK: - Private
-    private let actionPublisher = CurrentValueRelay<AssistChatAction?>(nil)
     private let cedar: DomainService
     private var state: AssistState = .init()
     private var originalState: AssistState = .init()
@@ -96,16 +95,10 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         if availableTools.count == 1 {
 
         } else {
-            cedar.api().map { api in
-                api.makeRequest(
-                    CedarAnswerPromptMutation("""
-                        You are a
-                        """)
-                )
-            }
+
         }
 
-        goalCancellable = executeNextGoal(prompt: prompt, history: history)?.sink(
+        goalCancellable = executeNextTool(prompt: prompt, history: history)?.sink(
             receiveCompletion: { [weak self] completion in
                 if case let .failure(error) = completion {
                     self?.responsePublisher.send(.failure(error))
@@ -142,14 +135,12 @@ final class AssistChatInteractorLive: AssistChatInteractor {
 
     // MARK: - Private
 
-    private func executeNextGoal(
+    private func executeNextTool(
         prompt: String? = nil,
         history: [AssistChatMessage] = []
     ) -> AnyPublisher<AssistChatMessage?, any Error>? {
-        guard let goal = tools.first(where: { $0.isAvailable }) else {
-            return nil
-        }
-        return goal.execute(response: prompt, history: history)
+        tools.first(where: { $0.isAvailable })?
+            .execute(response: prompt, history: history)
     }
 }
 
