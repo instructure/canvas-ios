@@ -289,6 +289,7 @@ extension LoginWebViewController: WKNavigationDelegate {
                     clientID: mobileVerify.client_id,
                     clientSecret: mobileVerify.client_secret
                 )
+
                 if let completion = self.loginCompletion {
                     completion(session)
                 } else {
