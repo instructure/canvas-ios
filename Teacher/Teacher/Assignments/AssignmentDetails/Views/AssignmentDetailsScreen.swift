@@ -19,7 +19,7 @@
 import Core
 import SwiftUI
 
-public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
+public struct AssignmentDetailsScreen: View, ScreenViewTrackable {
     let assignmentID: String
     let courseID: String
 
@@ -146,7 +146,7 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
 
 // MARK: - Sub Views
 
-private extension TeacherAssignmentDetailsScreen {
+private extension AssignmentDetailsScreen {
 
     func HeaderView(assignment: Assignment) -> some View {
         Section {
@@ -299,7 +299,7 @@ private extension TeacherAssignmentDetailsScreen {
 
 // MARK: - Bar Items
 
-extension TeacherAssignmentDetailsScreen {
+extension AssignmentDetailsScreen {
 
     /**
      This method returns a static edit button that checks permissions when tapped. Returning an empty array here doesn't work
@@ -347,7 +347,10 @@ extension TeacherAssignmentDetailsScreen {
     }
 }
 
-extension Assignment {
+// MARK: - Helpers
+
+private extension Assignment {
+
     var openLtiButtonTitle: String {
         if isQuizLTI {
             String(localized: "Open the Quiz", bundle: .core)

@@ -20,7 +20,7 @@
 		0856FD022DCB09F5009067CF /* SubmissionListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FD012DCB09F3009067CF /* SubmissionListSection.swift */; };
 		089AAC902DCC01370022F341 /* SubmissionListItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AAC8F2DCC01340022F341 /* SubmissionListItemTests.swift */; };
 		089AAC942DCC02200022F341 /* MockSubmissionListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AAC932DCC021F0022F341 /* MockSubmissionListInteractor.swift */; };
-		089AACBA2DD5F7FB0022F341 /* TeacherAssignmentDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AACB92DD5F7F80022F341 /* TeacherAssignmentDetailsScreen.swift */; };
+		089AACBA2DD5F7FB0022F341 /* AssignmentDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AACB92DD5F7F80022F341 /* AssignmentDetailsScreen.swift */; };
 		089AACBE2DD5FAAE0022F341 /* TeacherDateSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AACBD2DD5FAAA0022F341 /* TeacherDateSection.swift */; };
 		089AACC02DD5FAF20022F341 /* TeacherSubmissionBreakdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AACBF2DD5FAEC0022F341 /* TeacherSubmissionBreakdownView.swift */; };
 		08BFD0B92E24611D0086DD69 /* SubmissionsSortComparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFD0B82E24611B0086DD69 /* SubmissionsSortComparator.swift */; };
@@ -333,7 +333,7 @@
 		0856FD012DCB09F3009067CF /* SubmissionListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListSection.swift; sourceTree = "<group>"; };
 		089AAC8F2DCC01340022F341 /* SubmissionListItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListItemTests.swift; sourceTree = "<group>"; };
 		089AAC932DCC021F0022F341 /* MockSubmissionListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSubmissionListInteractor.swift; sourceTree = "<group>"; };
-		089AACB92DD5F7F80022F341 /* TeacherAssignmentDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherAssignmentDetailsScreen.swift; sourceTree = "<group>"; };
+		089AACB92DD5F7F80022F341 /* AssignmentDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsScreen.swift; sourceTree = "<group>"; };
 		089AACBD2DD5FAAA0022F341 /* TeacherDateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherDateSection.swift; sourceTree = "<group>"; };
 		089AACBF2DD5FAEC0022F341 /* TeacherSubmissionBreakdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSubmissionBreakdownView.swift; sourceTree = "<group>"; };
 		08BFD0B82E24611B0086DD69 /* SubmissionsSortComparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsSortComparator.swift; sourceTree = "<group>"; };
@@ -703,7 +703,7 @@
 			children = (
 				089AACBF2DD5FAEC0022F341 /* TeacherSubmissionBreakdownView.swift */,
 				089AACBD2DD5FAAA0022F341 /* TeacherDateSection.swift */,
-				089AACB92DD5F7F80022F341 /* TeacherAssignmentDetailsScreen.swift */,
+				089AACB92DD5F7F80022F341 /* AssignmentDetailsScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2328,7 +2328,7 @@
 				08FF9ED42E37D79E005D8C36 /* RubricNoteCommentBubbleView.swift in Sources */,
 				5B4324A22E1EBEC400561B77 /* GetCustomGradebookColumnEntriesRequest.swift in Sources */,
 				CF13E557299D1A1100F57F69 /* QuizSubmissionListItem.swift in Sources */,
-				089AACBA2DD5F7FB0022F341 /* TeacherAssignmentDetailsScreen.swift in Sources */,
+				089AACBA2DD5F7FB0022F341 /* AssignmentDetailsScreen.swift in Sources */,
 				08FF9ECA2E37D371005D8C36 /* RedesignedRubricRatingViewModel.swift in Sources */,
 				CFF4AAA72DFAD2D400B0351F /* GradeStatusView.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
