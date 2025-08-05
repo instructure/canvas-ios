@@ -130,7 +130,7 @@ extension DomainService {
         case cedar
         case pine
         case redwood
-
+        case journey
         var service: String {
             rawValue
         }

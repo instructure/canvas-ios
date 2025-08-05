@@ -41,7 +41,7 @@ class DashboardViewModel {
     private let router: Router
 
     // MARK: - Private variables
-
+    let journey = DomainService(.journey)
     private var getDashboardCoursesCancellable: AnyCancellable?
     private var refreshCompletedModuleItemCancellable: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
@@ -88,7 +88,18 @@ class DashboardViewModel {
     // MARK: - Inputs
 
     func notebookDidTap(viewController: WeakViewController) {
-        router.route(to: "/notebook", from: viewController)
+        journey
+            .api()
+            .sink { com in
+                print(com)
+            } receiveValue: { api in
+                api.makeRequest(GetHProgramsRequest()) { q, w, e in
+                    print(q)
+                    print(w)
+                    print(e)
+                }
+            }
+            .store(in: &subscriptions)
     }
 
     func notificationsDidTap(viewController: WeakViewController) {
