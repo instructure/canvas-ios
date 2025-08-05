@@ -96,7 +96,7 @@ final class AssistChatViewModel {
                     guard let self else { return }
                     switch result {
                     case .success(let message):
-                        onMessage(message)
+                        self.onMessage(message)
                     case .failure:
                         self.onFailure()
                     }
@@ -159,7 +159,7 @@ final class AssistChatViewModel {
 
     /// handle the response from the interactor
     private func onMessage(_ response: AssistChatResponse) {
-        guard let viewController else { return }
+        guard let viewController = viewController else { return }
         weak var weakSelf = self
         self.chatMessages = response.chatHistory
         var newMessages: [AssistChatMessageViewModel] = []
@@ -173,8 +173,12 @@ final class AssistChatViewModel {
             return message.viewModel(
                 response: response,
                 onFeedbackChange: onFeedbackChange,
-                onTapChipOption: onTapChipOption,
-                onTapCitation: onTapCitation
+                onTapChipOption: { chipOption in
+                    weakSelf?.send(chipOption: chipOption)
+                },
+                onTapCitation: {
+                    weakSelf?.onTapCitation(citation: $0)
+                }
             )
         }
 
@@ -226,10 +230,6 @@ final class AssistChatViewModel {
         guard let isGood = isGood else { return }
         let responseType = isGood ? "good" : "bad"
         Analytics.shared.logEvent("learning-assist-chat\(responseType)-response")
-    }
-
-    private func onTapChipOption(_ quickResponse: AssistChipOption) {
-        send(chipOption: quickResponse)
     }
 
     private func onTapCitation(citation: AssistChatMessage.Citation) {
