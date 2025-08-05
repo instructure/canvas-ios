@@ -133,10 +133,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                     .flatMap { _ in unownedSelf.getAndSetBrandTheme() }
                     .eraseToAnyPublisher()
             }
-//            .flatMap { _ in
-//                Fail<Void, Error>(error: NSError.instructureError("Testing error"))
-//                    .eraseToAnyPublisher()
-//            }
             .flatMap { _ in unownedSelf.getAppExperienceSummary() }
             .mapError { unownedSelf.mapSetupError(error: $0, session: session) }
             .sink(
