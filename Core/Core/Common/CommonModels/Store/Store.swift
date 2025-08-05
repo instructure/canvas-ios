@@ -316,24 +316,24 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
             }
         } else {
             isToBeUpdated = true
-            useCase.fetch(environment: env, force: force) { response, urlResponse, err in
-                performUIUpdate { [weak self] in
-                    guard let self else { return }
+            useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in
+                performUIUpdate {
+                    if let self {
+                        self.willChange()
+                        self.error = error
+                        self.pending = false
 
-                    willChange()
-                    error = err
-                    pending = false
+                        if let urlResponse {
+                            self.next = self.useCase.getNext(from: urlResponse)
+                        }
 
-                    if let urlResponse {
-                        self.next = self.useCase.getNext(from: urlResponse)
+                        if error != nil, !self.isToBeUpdated {
+                            self.isToBeUpdated = false
+                        }
+
+                        self.notify()
+                        self.publishState()
                     }
-
-                    if err != nil, !isToBeUpdated {
-                        isToBeUpdated = false
-                    }
-
-                    notify()
-                    publishState()
                     callback?(response)
                 }
             }
