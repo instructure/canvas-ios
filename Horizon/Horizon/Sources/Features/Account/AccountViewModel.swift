@@ -106,6 +106,9 @@ final class AccountViewModel {
         appExperienceInteractor.switchExperience(to: Experience.academic)
             .sink { _ in
                 AppEnvironment.shared.switchExperience(.academic)
+                let canavsInterfaceStyle = AppEnvironment.shared.userDefaults?.canavsInterfaceStyle ?? .light
+                AppEnvironment.shared.window?.updateInterfaceStyle(canavsInterfaceStyle)
+                AppEnvironment.shared.userDefaults?.interfaceStyle = canavsInterfaceStyle
             }
             .store(in: &subscriptions)
     }

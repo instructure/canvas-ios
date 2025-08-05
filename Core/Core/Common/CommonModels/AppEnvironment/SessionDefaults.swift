@@ -67,6 +67,18 @@ public struct SessionDefaults: Equatable {
         }
     }
 
+    // We are using it to preserve the canvas style. It is used when switching between the Academic and Canvas apps.
+    public var canavsInterfaceStyle: UIUserInterfaceStyle? {
+        get {
+            guard let styleInt = self["canavsInterfaceStyle"] else { return nil }
+            return UIUserInterfaceStyle(rawValue: styleInt as? Int ?? -1)
+        }
+        set {
+            guard let newValue = newValue else { return self["canavsInterfaceStyle"] = nil}
+            self["canavsInterfaceStyle"] = newValue.rawValue
+        }
+    }
+
     public var isMissingItemsSectionOpenOnK5Schedule: Bool? {
         get { return self["isMissingItemsSectionOpenOnK5Schedule"] as? Bool }
         set { self["isMissingItemsSectionOpenOnK5Schedule"] = newValue }

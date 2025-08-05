@@ -307,9 +307,9 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                     identifierGroup: "Settings.appearanceOptions",
                     allOptions: allCases.map { OptionItem(id: $0.optionItemId, title: $0.settingsTitle) },
                     initialOptionId: selectedStyle.optionItemId,
-                    didSelectOption: {
-                        guard let selectedCase = allCases.element(for: $0) else { return }
-
+                    didSelectOption: { [weak self] in
+                        guard let selectedCase = allCases.element(for: $0), let self else { return }
+                        self.env.userDefaults?.canavsInterfaceStyle = selectedCase
                         self.env.window?.updateInterfaceStyle(selectedCase)
                         self.env.userDefaults?.interfaceStyle = selectedCase
                     }
@@ -399,11 +399,14 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         ) {
             guard let weakSelf else { return }
             weakSelf.animateLoadingIndicator(show: true)
-
+            let currentStyle = weakSelf.env.userDefaults?.interfaceStyle
+            weakSelf.env.userDefaults?.canavsInterfaceStyle = currentStyle
             appExperienceInteractor.switchExperience(to: Experience.careerLearner)
                 .sink { _ in
                     weakSelf.animateLoadingIndicator(show: false)
                     AppEnvironment.shared.switchExperience(.careerLearner)
+                    weakSelf.env.window?.updateInterfaceStyle(.light)
+                    weakSelf.env.userDefaults?.interfaceStyle = .light
                 }
                 .store(in: &weakSelf.subscriptions)
         }
