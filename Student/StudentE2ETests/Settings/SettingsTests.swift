@@ -222,7 +222,7 @@ class SettingsTests: E2ETestCase {
 
         let appLabel = AboutHelper.appLabel.waitUntil(.visible)
         XCTAssertTrue(appLabel.isVisible)
-        XCTAssertEqual(appLabel.label, "Canvas Student")
+        XCTAssertEqual(appLabel.label, "Canvas")
 
         let domainLabel = AboutHelper.domainLabel.waitUntil(.visible)
         XCTAssertTrue(domainLabel.isVisible)

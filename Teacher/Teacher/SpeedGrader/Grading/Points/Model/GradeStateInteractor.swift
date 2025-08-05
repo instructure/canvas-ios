@@ -90,22 +90,19 @@ class GradeStateInteractorLive: GradeStateInteractor {
     private static func gradeOptions(for gradingType: GradingType, gradingScheme: GradingScheme?) -> [OptionItem] {
         switch gradingType {
         case .gpa_scale, .letter_grade:
-            guard let entries = gradingScheme?.entries else { return [] }
+            guard let gradingScheme else { return [] }
 
-            // Assumptions:
-            // - values are always normalized in [0, 1]
-            // - values have 2 decimal digits at most (they can be converted to integer percents precisely)
             var items: [OptionItem] = []
-            let maxValue = String(localized: "\(100)%", bundle: .teacher)
+            let maxValue = gradingScheme.formattedMaxValue ?? ""
             var upperBound = maxValue
-            entries.forEach {
-                let lowerBound = String(localized: "\(Int($0.value * 100))%", bundle: .core)
+            gradingScheme.formattedEntries.forEach {
+                let lowerBound = $0.value
 
                 let subtitle: String
                 if upperBound == maxValue {
-                    subtitle = String(localized: "\(maxValue) to \(lowerBound)", bundle: .teacher, comment: "'100% to 94%', or '400 to 230 pts'")
+                    subtitle = String(localized: "\(maxValue) to \(lowerBound)", bundle: .teacher, comment: "'100% to 94%', or '400 to 230'")
                 } else {
-                    subtitle = String(localized: "< \(upperBound) to \(lowerBound)", bundle: .teacher, comment: "'< 94% to 84%', or '< 230 to 160 pts'")
+                    subtitle = String(localized: "< \(upperBound) to \(lowerBound)", bundle: .teacher, comment: "'< 94% to 84%', or '< 230 to 160'")
                 }
 
                 let a11yLabel = [String.accessibiltyLetterGrade($0.name), subtitle].joined(separator: ",")

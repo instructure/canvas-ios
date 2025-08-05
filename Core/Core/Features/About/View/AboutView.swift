@@ -45,6 +45,9 @@ public struct AboutView: View {
                     Color.borderMedium.frame(height: 1 / scale)
                 }
                 Image("instructure", bundle: .core)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 128)
                     .padding(.vertical, 36)
                     .accessibilityHidden(true)
             }
