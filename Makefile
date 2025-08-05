@@ -11,8 +11,8 @@ provision-ci: ## CI environment setup
 sync: ## xproj file generation
 	@echo 🟡 Running xcodegen
 	@cd Core; xcodegen
-	@cd Student; xcodegen
 	@cd Horizon; xcodegen
+	@cd Student; xcodegen
 
 sync-ci: ## CI specific xproj file generation
 	@echo 🟡 Running xcodegen
