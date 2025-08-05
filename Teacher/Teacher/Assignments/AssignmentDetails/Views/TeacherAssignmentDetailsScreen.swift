@@ -346,3 +346,13 @@ extension TeacherAssignmentDetailsScreen {
         return items
     }
 }
+
+extension Assignment {
+    var openLtiButtonTitle: String {
+        if isQuizLTI {
+            String(localized: "Open the Quiz", bundle: .core)
+        } else {
+            String(localized: "Launch External Tool", bundle: .core)
+        }
+    }
+}
