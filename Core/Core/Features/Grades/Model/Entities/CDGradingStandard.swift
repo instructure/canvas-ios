@@ -30,13 +30,9 @@ public final class CDGradingStandard: NSManagedObject {
     @NSManaged public var scalingFactor: Double
     @NSManaged public var gradingSchemeEntriesRaw: Data?
 
-    public var context: Context {
-        Context(contextType == "Course" ? .course : .account, id: contextId)
-    }
-
     public var gradingSchemeEntries: [GradingSchemeEntry] {
         guard let gradingSchemeEntriesRaw else { return [] }
-        return (try? JSONDecoder().decode([GradingSchemeEntry].self, from: gradingSchemeEntriesRaw)) ?? []
+        return gradingSchemeEntriesRaw.decode(to: [GradingSchemeEntry].self) ?? []
     }
 
     @discardableResult
@@ -48,9 +44,22 @@ public final class CDGradingStandard: NSManagedObject {
         model.contextId = item.context_id.value
         model.isPointsBased = item.points_based
         model.scalingFactor = item.scaling_factor
+    
         let gradingSchemeEntries = item.grading_scheme.compactMap(GradingSchemeEntry.init)
-        model.gradingSchemeEntriesRaw = try? JSONEncoder().encode(gradingSchemeEntries)
+        model.gradingSchemeEntriesRaw = gradingSchemeEntries.rawData
 
         return model
+    }
+}
+
+extension Data {
+    func decode<T: Decodable>(to type: T.Type) -> T? {
+        try? JSONDecoder().decode(T.self, from: self)
+    }
+}
+
+extension Array where Element: Encodable {
+    var rawData: Data? {
+        try? JSONEncoder().encode(self)
     }
 }

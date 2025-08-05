@@ -39,10 +39,12 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
             return Just(nil)
                 .eraseToAnyPublisher()
         }
+
         let gradingStandardStore = ReactiveStore(
             useCase: GetGradingStandard(id: gradingStandardId, context: context),
             environment: env
         )
+
         return gradingStandardStore
             .getEntities()
             .compactMap { $0.first }
