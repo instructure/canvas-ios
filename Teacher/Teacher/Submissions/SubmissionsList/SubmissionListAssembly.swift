@@ -27,7 +27,7 @@ public enum SubmissionListAssembly {
         assignmentID: String,
         filter: [GetSubmissions.Filter]
     ) -> UIViewController {
-        
+
         let filterMode = SubmissionFilterMode.allCases.first(where: { $0.filters == filter }) ?? .all
         let interactor = SubmissionListInteractorLive(context: context, assignmentID: assignmentID, filters: filter, env: env)
         let viewModel = SubmissionListViewModel(interactor: interactor, filterMode: filterMode, env: env)
