@@ -80,12 +80,12 @@ class PointsBasedGradingSchemeTests: GradingSchemeTestCase {
     func test_formattedEntries() throws {
         let testee = PointsBasedGradingScheme(
             entries: [
-                makeEntry(name: "A++", value: 1.23),
-                makeEntry(name: "A+", value: 1),
-                makeEntry(name: "A", value: 0.42),
-                makeEntry(name: "B", value: 0.123456),
-                makeEntry(name: "F", value: 0.01),
-                makeEntry(name: "F-", value: 0.0)
+                .init(name: "A++", value: 1.23),
+                .init(name: "A+", value: 1),
+                .init(name: "A", value: 0.42),
+                .init(name: "B", value: 0.123456),
+                .init(name: "F", value: 0.01),
+                .init(name: "F-", value: 0.0)
             ],
             scaleFactor: 10
         )

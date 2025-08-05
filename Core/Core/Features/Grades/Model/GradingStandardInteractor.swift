@@ -64,3 +64,12 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
             .eraseToAnyPublisher()
     }
 }
+
+// Mock
+
+public final class GradingStandardInteractorMock: GradingStandardInteractor {
+    public var gradingScheme: AnyPublisher<GradingScheme?, Never> {
+        Just(nil)
+            .eraseToAnyPublisher()
+    }
+}

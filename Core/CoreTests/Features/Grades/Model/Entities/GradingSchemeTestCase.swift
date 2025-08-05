@@ -23,20 +23,13 @@ class GradingSchemeTestCase: CoreTestCase {
 
     func scoreConversionEntries() -> [GradingSchemeEntry] {
         [
-            makeEntry(name: "A", value: 0.9),
-            makeEntry(name: "B", value: 0.3),
-            makeEntry(name: "F", value: 0)
+            .init(name: "A", value: 0.9),
+            .init(name: "B", value: 0.3),
+            .init(name: "F", value: 0)
         ]
     }
 
     func invalidConversionEntries() -> [GradingSchemeEntry] {
-        [makeEntry(name: "A", value: 90)]
-    }
-
-    func makeEntry(name: String = "", value: Double = 0) -> GradingSchemeEntry {
-        let entry: GradingSchemeEntry = databaseClient.insert()
-        entry.name = name
-        entry.value = value
-        return entry
+        [.init(name: "A", value: 90)]
     }
 }

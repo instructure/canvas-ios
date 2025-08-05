@@ -35,6 +35,7 @@ class GradeInteractorLiveTests: TeacherTestCase {
     private var submission: Submission!
     private var rubricGradingInteractor: RubricGradingInteractorMock!
     private var gradeStateInteractor: GradeStateInteractorMock!
+    private var gradingStandardInteractor: GradingStandardInteractorMock!
 
     override func setUp() {
         super.setUp()
@@ -133,27 +134,8 @@ class GradeInteractorLiveTests: TeacherTestCase {
             submission: submission,
             rubricGradingInteractor: rubricGradingInteractor,
             gradeStateInteractor: gradeStateInteractor,
+            gradingStandardInteractor: gradingStandardInteractor,
             env: environment
         )
-    }
-}
-
-// MARK: - Mock Classes
-
-private class GradeStateInteractorMock: GradeStateInteractor {
-
-    private(set) var gradeStateCallsCount = 0
-    private(set) var gradeStateInput: (submission: Submission, assignment: Assignment, isRubricScoreAvailable: Bool, totalRubricScore: Double)?
-    var gradeStateOutput: GradeState?
-
-    func gradeState(
-        submission: Submission,
-        assignment: Assignment,
-        isRubricScoreAvailable: Bool,
-        totalRubricScore: Double
-    ) -> GradeState {
-        gradeStateInput = (submission, assignment, isRubricScoreAvailable, totalRubricScore)
-        gradeStateCallsCount += 1
-        return gradeStateOutput ?? .empty
     }
 }

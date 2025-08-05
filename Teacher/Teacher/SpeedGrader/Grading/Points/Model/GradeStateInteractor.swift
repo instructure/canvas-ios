@@ -129,3 +129,24 @@ class GradeStateInteractorLive: GradeStateInteractor {
         }
     }
 }
+
+// MARK: - Mock
+
+public final class GradeStateInteractorMock: GradeStateInteractor {
+
+    private(set) var gradeStateCallsCount = 0
+    private(set) var gradeStateInput: (submission: Submission, assignment: Assignment, isRubricScoreAvailable: Bool, totalRubricScore: Double)?
+    var gradeStateOutput: GradeState?
+
+    func gradeState(
+        submission: Submission,
+        assignment: Assignment,
+        gradingScheme: GradingScheme?,
+        isRubricScoreAvailable: Bool,
+        totalRubricScore: Double
+    ) -> GradeState {
+        gradeStateInput = (submission, assignment, isRubricScoreAvailable, totalRubricScore)
+        gradeStateCallsCount += 1
+        return gradeStateOutput ?? .empty
+    }
+}
