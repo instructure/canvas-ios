@@ -99,7 +99,7 @@ class AssistCourseActionGoal: AssistGoal {
         )
         .getEntities()
         .map { [weak self] courses in
-            courses.first { $0.courseID == self?.environment.courseID.value }?.course.name ?? ""
+            courses.first { $0.courseID == self?.environment.courseID.value }?.name ?? ""
         }
         .eraseToAnyPublisher()
     }

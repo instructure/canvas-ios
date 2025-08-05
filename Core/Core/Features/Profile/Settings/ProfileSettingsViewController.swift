@@ -385,6 +385,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     private func addCareerExperienceSwitch() async -> Row? {
         guard
+            AppEnvironment.shared.app == .student,
             let appExperienceInteractor,
             await appExperienceInteractor.isExperienceSwitchAvailableAsync() == true else {
             return nil

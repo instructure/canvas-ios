@@ -79,7 +79,7 @@ class AnnouncementsInteractorLive: AnnouncementsInteractor {
             discussionTopics.map { discussionTopic in
                 discussionTopic.announcement(
                     author: discussionTopic.author?.displayName ?? "",
-                    courseName: courses.first { $0.courseID == discussionTopic.courseID }?.course.name
+                    courseName: courses.first { $0.courseID == discussionTopic.courseID }?.name
                 )
             }
         }

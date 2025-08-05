@@ -77,9 +77,16 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
         XCTAssertFalse(isCellExists(title: "Switch to Canvas Career", section: 0))
 
         mockInteractor.isSwitchAvailableMock = true
+        environment.app = .student
         load()
         drainMainQueue()
         XCTAssertTrue(isCellExists(title: "Switch to Canvas Career", section: 0))
+
+        mockInteractor.isSwitchAvailableMock = true
+        environment.app = .teacher
+        load()
+        drainMainQueue()
+        XCTAssertFalse(isCellExists(title: "Switch to Canvas Career", section: 0))
     }
 
     func testExperienceSwitchCellConfiguration() {
