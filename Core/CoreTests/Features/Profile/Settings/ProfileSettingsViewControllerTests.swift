@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
+import Combine
 @testable import Core
+import XCTest
 
 class ProfileSettingsViewControllerTests: CoreTestCase {
     var vc: ProfileSettingsViewController!
@@ -25,7 +26,7 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        vc = ProfileSettingsViewController.create()
+        vc = ProfileSettingsViewController.create(appExperienceInteractor: MockExperienceSummaryInteractor())
     }
 
     func load() {
@@ -41,10 +42,12 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
 
         AppEnvironment.shared.app = .teacher
         vc.refresh(sender: self)
+        drainMainQueue()
         XCTAssertFalse(isCellExists(title: "Pair with Observer", section: 0))
 
         AppEnvironment.shared.app = .student
         vc.refresh(sender: self)
+        drainMainQueue()
         XCTAssertTrue(isCellExists(title: "Pair with Observer", section: 0))
     }
 
@@ -54,11 +57,70 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
 
         AppEnvironment.shared.app = .teacher
         vc.refresh(sender: self)
+        drainMainQueue()
         XCTAssertFalse(isCellExists(title: "Subscribe to Calendar Feed", section: 0))
 
         AppEnvironment.shared.app = .student
         vc.refresh(sender: self)
+        drainMainQueue()
         XCTAssertTrue(isCellExists(title: "Subscribe to Calendar Feed", section: 0))
+    }
+
+    func testExperienceSwitchRowVisibility() {
+        let mockInteractor = MockExperienceSummaryInteractor()
+        vc = ProfileSettingsViewController.create(appExperienceInteractor: mockInteractor)
+        api.mock(GetAccountTermsOfServiceRequest(), value: .make(self_registration_type: .all))
+
+        mockInteractor.isSwitchAvailableMock = false
+        load()
+        drainMainQueue()
+        XCTAssertFalse(isCellExists(title: "Switch to Canvas Career", section: 0))
+
+        mockInteractor.isSwitchAvailableMock = true
+        load()
+        drainMainQueue()
+        XCTAssertTrue(isCellExists(title: "Switch to Canvas Career", section: 0))
+    }
+
+    func testExperienceSwitchCellConfiguration() {
+        let mockInteractor = MockExperienceSummaryInteractor()
+        vc = ProfileSettingsViewController.create(appExperienceInteractor: mockInteractor)
+        api.mock(GetAccountTermsOfServiceRequest(), value: .make(self_registration_type: .all))
+
+        mockInteractor.isSwitchAvailableMock = true
+        load()
+        drainMainQueue()
+
+        guard let cell = findCell(title: "Switch to Canvas Career", section: 0) else {
+            XCTFail("Experience switch cell not found")
+            return
+        }
+
+        XCTAssertNotNil(cell.accessoryView)
+        XCTAssertTrue(cell.accessoryView is UIImageView)
+        if let imageView = cell.accessoryView as? UIImageView {
+            XCTAssertEqual(imageView.image, .swap_horiz)
+        }
+    }
+
+    func testExperienceSwitchAction() {
+        let mockInteractor = MockExperienceSummaryInteractor()
+        vc = ProfileSettingsViewController.create(appExperienceInteractor: mockInteractor)
+        api.mock(GetAccountTermsOfServiceRequest(), value: .make(self_registration_type: .all))
+
+        mockInteractor.isSwitchAvailableMock = true
+        load()
+        drainMainQueue()
+
+        guard let indexPath = findCellIndexPath(title: "Switch to Canvas Career", section: 0) else {
+            XCTFail("Experience switch cell not found")
+            return
+        }
+
+        vc.tableView(vc.tableView, didSelectRowAt: indexPath)
+
+        XCTAssertTrue(mockInteractor.switchExperienceCalled)
+        XCTAssertEqual(mockInteractor.switchExperienceParam, .careerLearner)
     }
 
     func testRender() {
@@ -71,6 +133,7 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
         api.mock(GetAccountTermsOfServiceRequest(), value: .make(self_registration_type: .all))
 
         load()
+        drainMainQueue()
 
         var cell = vc.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? RightDetailTableViewCell
         XCTAssertEqual(cell?.textLabel?.text, "Landing Page")
@@ -127,7 +190,7 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
     private func isCellExists(title: String, section: Int) -> Bool {
         let cellCount = vc.tableView.numberOfRows(inSection: section)
 
-        for rowIndex in 0..<cellCount {
+        for rowIndex in 0 ..< cellCount {
             let indexPath = IndexPath(row: rowIndex, section: section)
             guard let cell = vc.tableView.cellForRow(at: indexPath) as? RightDetailTableViewCell else {
                 continue
@@ -140,14 +203,85 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
 
         return false
     }
+
+    private func findCell(title: String, section: Int) -> RightDetailTableViewCell? {
+        let cellCount = vc.tableView.numberOfRows(inSection: section)
+
+        for rowIndex in 0 ..< cellCount {
+            let indexPath = IndexPath(row: rowIndex, section: section)
+            guard let cell = vc.tableView.cellForRow(at: indexPath) as? RightDetailTableViewCell else {
+                continue
+            }
+
+            if cell.textLabel?.text == title {
+                return cell
+            }
+        }
+
+        return nil
+    }
+
+    private func findCellIndexPath(title: String, section: Int) -> IndexPath? {
+        let cellCount = vc.tableView.numberOfRows(inSection: section)
+
+        for rowIndex in 0 ..< cellCount {
+            let indexPath = IndexPath(row: rowIndex, section: section)
+            guard let cell = vc.tableView.cellForRow(at: indexPath) as? RightDetailTableViewCell else {
+                continue
+            }
+
+            if cell.textLabel?.text == title {
+                return indexPath
+            }
+        }
+
+        return nil
+    }
+}
+
+private class MockExperienceSummaryInteractor: ExperienceSummaryInteractor {
+    var isSwitchAvailableMock = false
+    var switchExperienceCalled = false
+    var switchExperienceParam: Experience?
+    var getExperienceSummaryResult: Experience = .academic
+
+    private let switchExperienceSubject = PassthroughSubject<Void, Never>()
+    private let getExperienceSummarySubject = PassthroughSubject<Experience, Error>()
+
+    func getExperienceSummary() -> AnyPublisher<Experience, Error> {
+        return getExperienceSummarySubject
+            .prepend(getExperienceSummaryResult)
+            .eraseToAnyPublisher()
+    }
+
+    func isExperienceSwitchAvailable() -> AnyPublisher<Bool, Never> {
+        return Empty<Bool, Never>()
+            .eraseToAnyPublisher()
+    }
+
+    func isExperienceSwitchAvailableAsync() async -> Bool {
+        return isSwitchAvailableMock
+    }
+
+    func switchExperience(to experience: Experience) -> AnyPublisher<Void, Never> {
+        switchExperienceCalled = true
+        switchExperienceParam = experience
+        return switchExperienceSubject.eraseToAnyPublisher()
+    }
+
+    func triggerSwitchCompletion() {
+        switchExperienceSubject.send(())
+    }
+
+    func triggerGetExperienceSummary() {
+        getExperienceSummarySubject.send(getExperienceSummaryResult)
+    }
 }
 
 extension ProfileSettingsViewControllerTests: LoginDelegate {
-    func userDidLogin(session: LoginSession) {
-    }
+    func userDidLogin(session _: LoginSession) {}
 
-    func userDidLogout(session: LoginSession) {
-    }
+    func userDidLogout(session _: LoginSession) {}
 
     func openExternalURL(_ url: URL) {
         externalURLOpened = url

@@ -24,6 +24,9 @@ public protocol ExperienceSummaryInteractor {
     func getExperienceSummary() -> AnyPublisher<Experience, Error>
     func isExperienceSwitchAvailable() -> AnyPublisher<Bool, Never>
     func switchExperience(to experience: Experience) -> AnyPublisher<Void, Never>
+        
+    // Async/await version
+    func isExperienceSwitchAvailableAsync() async -> Bool
 }
 
 public final class ExperienceSummaryInteractorLive: ExperienceSummaryInteractor {
@@ -76,5 +79,17 @@ public final class ExperienceSummaryInteractorLive: ExperienceSummaryInteractor 
         return Just(())
             .delay(for: .seconds(1), scheduler: scheduler)
             .eraseToAnyPublisher()
+    }
+    
+    public func isExperienceSwitchAvailableAsync() async -> Bool {
+        await withCheckedContinuation { continuation in
+            var cancellable: AnyCancellable?
+            
+            cancellable = isExperienceSwitchAvailable()
+                .sink { value in
+                    continuation.resume(returning: value)
+                    cancellable?.cancel()
+                }
+        }
     }
 }

@@ -173,57 +173,63 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     }
 
     func reloadData() {
-        var channelTypes: [CommunicationChannelType: [CommunicationChannel]] = [:]
-        for channel in channels {
-            channelTypes[channel.type] = channelTypes[channel.type] ?? []
-            channelTypes[channel.type]?.append(channel)
-        }
-
-        channelTypeRows = channelTypes.values.map({ channels -> Row in
-            Row(channels[0].type.name, isSupportedOffline: false) { [weak self] in
-                guard let self = self else { return }
-                if channels.count == 1, let channel = channels.first {
-                    let vc = NotificationCategoriesViewController.create(
-                        title: channel.type.name,
-                        channelID: channel.id,
-                        type: channel.type
-                    )
-                    self.env.router.show(vc, from: self)
-                } else {
-                    let vc = NotificationChannelsViewController.create(type: channels[0].type)
-                    self.env.router.show(vc, from: self)
-                }
+        Task {
+            var channelTypes: [CommunicationChannelType: [CommunicationChannel]] = [:]
+            for channel in channels {
+                channelTypes[channel.type] = channelTypes[channel.type] ?? []
+                channelTypes[channel.type]?.append(channel)
             }
-        }).sorted(by: { $0.title < $1.title })
 
-        var sections: [Section] = [preferencesSection]
-
-        if showInboxSignatureSettings {
-            sections.append(inboxSignatureSettingsSection)
-        }
-
-        if OfflineModeAssembly.make().isFeatureFlagEnabled(), env.app == .student {
-            sections.append(offlineSettingSection)
-        }
-
-        sections.append(
-            Section(String(localized: "Legal", bundle: .core), rows: [
-                Row(String(localized: "Privacy Policy", bundle: .core), isSupportedOffline: false, accessibilityTraits: .link) { [weak self] in
+            channelTypeRows = channelTypes.values.map({ channels -> Row in
+                Row(channels[0].type.name, isSupportedOffline: false) { [weak self] in
                     guard let self = self else { return }
-                    self.env.router.route(to: "https://www.instructure.com/canvas/privacy/", from: self)
-                },
-                Row(String(localized: "Terms of Use", bundle: .core), isSupportedOffline: false) { [weak self] in
-                    guard let self = self else { return }
-                    self.env.router.route(to: "/accounts/self/terms_of_service", from: self)
+                    if channels.count == 1, let channel = channels.first {
+                        let vc = NotificationCategoriesViewController.create(
+                            title: channel.type.name,
+                            channelID: channel.id,
+                            type: channel.type
+                        )
+                        self.env.router.show(vc, from: self)
+                    } else {
+                        let vc = NotificationChannelsViewController.create(type: channels[0].type)
+                        self.env.router.show(vc, from: self)
+                    }
                 }
-            ])
-        )
-        self.sections = sections
+            }).sorted(by: { $0.title < $1.title })
 
-        if !channels.pending && !profile.pending && termsOfServiceRequest == nil {
-            tableView.refreshControl?.endRefreshing()
+            var preferencesSection = preferencesSection
+            if let row = await addCareerExperienceSwitch() {
+                preferencesSection.rows.insert(row, at: 2)
+            }
+            var sections: [Section] = [preferencesSection]
+            
+            if showInboxSignatureSettings {
+                sections.append(inboxSignatureSettingsSection)
+            }
+
+            if OfflineModeAssembly.make().isFeatureFlagEnabled(), env.app == .student {
+                sections.append(offlineSettingSection)
+            }
+
+            sections.append(
+                Section(String(localized: "Legal", bundle: .core), rows: [
+                    Row(String(localized: "Privacy Policy", bundle: .core), isSupportedOffline: false, accessibilityTraits: .link) { [weak self] in
+                        guard let self = self else { return }
+                        self.env.router.route(to: "https://www.instructure.com/canvas/privacy/", from: self)
+                    },
+                    Row(String(localized: "Terms of Use", bundle: .core), isSupportedOffline: false) { [weak self] in
+                        guard let self = self else { return }
+                        self.env.router.route(to: "/accounts/self/terms_of_service", from: self)
+                    }
+                ])
+            )
+            self.sections = sections
+
+            if !channels.pending && !profile.pending && termsOfServiceRequest == nil {
+                tableView.refreshControl?.endRefreshing()
+            }
+            tableView.reloadData()
         }
-        tableView.reloadData()
     }
 
     private var offlineSettingSection: Section {
@@ -263,12 +269,11 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         Section(String(localized: "Preferences", bundle: .core), rows: preferencesRows)
     }
 
-    private lazy var preferencesRows: [Any] = {
+    private var preferencesRows: [Any] {
         var rows = [Any]()
         rows.append(contentsOf: landingPageRow)
         rows.append(contentsOf: interfaceStyleSettings)
         rows.append(contentsOf: k5DashboardSwitch)
-        addCareerExperienceSwitch()
         rows.append(contentsOf: channelTypeRows ?? [])
         rows.append(contentsOf: pairWithObserverButton)
 
@@ -285,7 +290,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         rows.append(contentsOf: aboutRow)
 
         return rows
-    }()
+    }
 
     private var interfaceStyleSettings: [Row] {
         let selectedStyle = env.userDefaults?.interfaceStyle ?? .unspecified
@@ -378,8 +383,12 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         return [row]
     }
 
-    private func addCareerExperienceSwitch() {
-        guard let appExperienceInteractor else { return }
+    private func addCareerExperienceSwitch() async -> Row? {
+        guard
+            let appExperienceInteractor,
+            await appExperienceInteractor.isExperienceSwitchAvailableAsync() == true else {
+            return nil
+        }
         weak var weakSelf = self
 
         let row = Row(
@@ -398,14 +407,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 }
                 .store(in: &weakSelf.subscriptions)
         }
-
-        appExperienceInteractor.isExperienceSwitchAvailable()
-            .filter { $0 }
-            .sink { _ in
-                guard let weakSelf else { return }
-                weakSelf.preferencesRows.insert(row, at: 2)
-            }
-            .store(in: &subscriptions)
+        return row
     }
 
     private func refreshTermsOfService() {
@@ -514,7 +516,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
 
 private struct Section {
     let title: String
-    let rows: [Any]
+    var rows: [Any]
 
     init(_ title: String, rows: [Any]) {
         self.title = title
