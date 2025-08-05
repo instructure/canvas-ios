@@ -47,6 +47,30 @@ extension String {
         return "\(listText), \(countText)"
     }
 
+    // MARK: - Points: "5 pts" / "5 points"
+
+    /// Localized string for number of points, abbreviated to "pts". Example: "5 pts"
+    public static func format(pts points: Double) -> String {
+        let format = String(localized: "g_pts", bundle: .core)
+        return String.localizedStringWithFormat(format, points)
+    }
+
+    /// Localized string for number of points, abbreviated to "pts". Example: "5 pts"
+    public static func format(pts points: Double?) -> String? {
+        points.map { String.format(pts: $0) }
+    }
+
+    /// Localized string for number of points, not abbreviated, primarily for accessibility usage. Example: "5 points"
+    public static func format(points: Double) -> String {
+        let format = String(localized: "g_points", bundle: .core)
+        return String.localizedStringWithFormat(format, points)
+    }
+
+    /// Localized string for number of points, not abbreviated, primarily for accessibility usage. Example: "5 points"
+    public static func format(points: Double?) -> String? {
+        points.map { String.format(points: $0) }
+    }
+
     // MARK: - "Error: Invalid start time"
 
     /// Localized string to be used for error messages intended for accessibility usage. Adds some context for VoiceOver users that this is an error.

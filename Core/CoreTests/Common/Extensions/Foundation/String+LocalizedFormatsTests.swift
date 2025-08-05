@@ -42,6 +42,28 @@ class StringLocalizedFormatsTests: XCTestCase {
         XCTAssertEqual(String.format(accessibilityListCount: 0), "List, 0 items")
     }
 
+    func test_format_pts() {
+        XCTAssertEqual(String.format(pts: 1), "1 pt")
+        XCTAssertEqual(String.format(pts: 5), "5 pts")
+        XCTAssertEqual(String.format(pts: 0), "0 pts")
+        XCTAssertEqual(String.format(pts: 12.345678), "12.3457 pts")
+
+        let optionalValue: Double? = 5
+        XCTAssertEqual(String.format(pts: optionalValue), "5 pts")
+        XCTAssertEqual(String.format(pts: nil), nil)
+    }
+
+    func test_format_points() {
+        XCTAssertEqual(String.format(points: 1), "1 point")
+        XCTAssertEqual(String.format(points: 5), "5 points")
+        XCTAssertEqual(String.format(points: 0), "0 points")
+        XCTAssertEqual(String.format(points: 12.345678), "12.3457 points")
+
+        let optionalValue: Double? = 5
+        XCTAssertEqual(String.format(points: optionalValue), "5 points")
+        XCTAssertEqual(String.format(points: nil), nil)
+    }
+
     func test_format_accessibilityErrorMessage() {
         XCTAssertEqual(String.format(accessibilityErrorMessage: "Some error description"), "Error: Some error description")
         XCTAssertEqual(String.format(accessibilityErrorMessage: ""), "Error: ")
