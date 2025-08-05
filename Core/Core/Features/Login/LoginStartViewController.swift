@@ -45,8 +45,7 @@ class LoginStartViewController: UIViewController {
     private var offlineModeInteractor: OfflineModeInteractor?
 
     let env = AppEnvironment.shared
-    // TODO: Check weak var situation
-    var loginDelegate: LoginDelegate?
+    weak var loginDelegate: LoginDelegate?
     var mdmObservation: NSKeyValueObservation?
     var method = AuthenticationMethod.normalLogin
     var sessions: [LoginSession] = []
@@ -57,9 +56,6 @@ class LoginStartViewController: UIViewController {
             lastLoginButton.isHidden = lastLoginAccount == nil
             guard let lastLoginAccount = lastLoginAccount else { return }
             var buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
-            if AppEnvironment.shared.app == .horizon {
-                buttonTitle = buttonTitle.replaceHostWithCanvasForCareer()
-            }
             lastLoginButton.setTitle(buttonTitle, for: .normal)
             alternateFindSchoolButton()
         }
@@ -391,16 +387,7 @@ class LoginStartViewController: UIViewController {
                 // don't dismiss loading here
                 // it will eventually be dismissed once userDidLogin api calls are finished
                 Analytics.shared.logEvent("qr_code_login_success")
-
-                if AppEnvironment.shared.app == .horizon {
-                    loading?.dismiss(animated: true) { [weak self] in
-                        guard let self = self else { return }
-                        self.loginDelegate?.userDidLogin(session: session)
-                        self.env.router.route(to: "/splash", from: self)
-                    }
-                } else {
-                    self?.loginDelegate?.userDidLogin(session: session)
-                }
+                self?.loginDelegate?.userDidLogin(session: session)
             }
         }
     }

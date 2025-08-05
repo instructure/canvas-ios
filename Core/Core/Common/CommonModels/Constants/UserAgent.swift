@@ -30,8 +30,6 @@ public enum UserAgent: CustomStringConvertible {
             return "iosTeacher"
         case Bundle.parentBundleID:
             return "iosParent"
-//        case Bundle.horizonBundleID:
-//            return "iosCareer"
         default:
             return "iCanvas"
         }

@@ -144,10 +144,8 @@ class LoginFindSchoolViewController: UIViewController {
         host = host.lowercased()
 
         // For manual oauth logins we trust the developer and don't modify the host.
-        if method != .manualOAuthLogin, !host.contains("."), env.app != .horizon {
+        if method != .manualOAuthLogin, !host.contains(".") {
             host = "\(host).instructure.com"
-        } else if env.app == .horizon {
-            host = replaceRootDomain(urlString: host, newRootDomain: "instructure.com") ?? ""
         }
 
         searchField.resignFirstResponder()

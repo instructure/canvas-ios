@@ -67,7 +67,7 @@ public struct SessionDefaults: Equatable {
         }
     }
 
-    // We are using it to preserve the canvas style. It is used when switching between the Academic and Career experience.
+    // We are using it to preserve Student Academic interface style. It is used when switching between the Academic and Career experience.
     public var academicInterfaceStyle: UIUserInterfaceStyle? {
         get {
             guard let styleInt = self["academicInterfaceStyle"] else { return nil }
@@ -141,7 +141,7 @@ public struct SessionDefaults: Equatable {
         get { self["collapsedModules"] as? [String: [String]] }
         set { self["collapsedModules"] = newValue }
     }
-    
+
     public var appExperience: Experience? {
         get {
             if let rawValue = self["appExperience"] as? String {
@@ -150,7 +150,6 @@ public struct SessionDefaults: Equatable {
             return nil
         }
         set { self["appExperience"] = newValue?.rawValue }
-        
     }
 
     // MARK: - Calendar Settings

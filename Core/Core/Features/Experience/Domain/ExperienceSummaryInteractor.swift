@@ -23,10 +23,8 @@ import Foundation
 public protocol ExperienceSummaryInteractor {
     func getExperienceSummary() -> AnyPublisher<Experience, Error>
     func isExperienceSwitchAvailable() -> AnyPublisher<Bool, Never>
-    func switchExperience(to experience: Experience) -> AnyPublisher<Void, Never>
-   
-    // Async/await version
     func isExperienceSwitchAvailableAsync() async -> Bool
+    func switchExperience(to experience: Experience) -> AnyPublisher<Void, Never>
 }
 
 public final class ExperienceSummaryInteractorLive: ExperienceSummaryInteractor {
@@ -73,23 +71,23 @@ public final class ExperienceSummaryInteractorLive: ExperienceSummaryInteractor 
             .eraseToAnyPublisher()
     }
 
-    public func switchExperience(to experience: Experience) -> AnyPublisher<Void, Never> {
-        environment.userDefaults?.appExperience = experience
-
-        return Just(())
-            .delay(for: .seconds(1), scheduler: scheduler)
-            .eraseToAnyPublisher()
-    }
-    
     public func isExperienceSwitchAvailableAsync() async -> Bool {
         await withCheckedContinuation { continuation in
             var cancellable: AnyCancellable?
-            
+
             cancellable = isExperienceSwitchAvailable()
                 .sink { value in
                     continuation.resume(returning: value)
                     cancellable?.cancel()
                 }
         }
+    }
+
+    public func switchExperience(to experience: Experience) -> AnyPublisher<Void, Never> {
+        environment.userDefaults?.appExperience = experience
+
+        return Just(())
+            .delay(for: .seconds(1), scheduler: scheduler)
+            .eraseToAnyPublisher()
     }
 }
