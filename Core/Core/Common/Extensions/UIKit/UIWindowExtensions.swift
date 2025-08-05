@@ -26,4 +26,9 @@ extension UIWindow {
             self.overrideUserInterfaceStyle = style
         }, completion: nil)
     }
+    
+    public func updateInterfaceStyleWithoutTransition(_ style: UIUserInterfaceStyle?) {
+        let style = style ?? .light
+        self.overrideUserInterfaceStyle = style
+    }
 }
