@@ -25,22 +25,31 @@ final class StringSetValueTransformer: ValueTransformer {
     // Transforms a Set<String> to NSData
     override func transformedValue(_ value: Any?) -> Any? {
         guard let stringSet = value as? Set<String> else { return nil }
-        return try? NSKeyedArchiver.archivedData(withRootObject: Array(stringSet) as NSArray, requiringSecureCoding: true)
+        let array = Array(stringSet)
+
+        let archiver = NSKeyedArchiver(requiringSecureCoding: true)
+        archiver.encode(array, forKey: NSKeyedArchiveRootObjectKey)
+        return archiver.encodedData
     }
 
     // Transforms NSData back to Set<String>
     override func reverseTransformedValue(_ value: Any?) -> Any? {
         guard let data = value as? Data else { return nil }
-        do {
-            let array = try NSKeyedUnarchiver.unarchivedObject(ofClass: NSArray.self, from: data)
-            return Set(array as? [String] ?? [])
-        } catch {
-            print("Error unarchiving data: \(error)")
+
+        // swiftlint:disable:next force_try
+        let unarchiver = try! NSKeyedUnarchiver(forReadingFrom: data)
+        unarchiver.decodingFailurePolicy = .setErrorAndReturn
+
+        let allowedClasses = [NSArray.self, NSString.self]
+        allowedClasses.forEach { unarchiver.setClass($0, forClassName: NSStringFromClass($0)) }
+
+        guard let array = unarchiver.decodeObject(of: [NSArray.self, NSString.self], forKey: NSKeyedArchiveRootObjectKey) as? [String] else {
             return Set<String>()
         }
+
+        return Set(array)
     }
 
-    /// Registers the transformer.
     public static func register() {
         let transformer = StringSetValueTransformer()
         ValueTransformer.setValueTransformer(transformer, forName: name)
