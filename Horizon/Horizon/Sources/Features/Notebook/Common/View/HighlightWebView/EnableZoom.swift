@@ -17,9 +17,7 @@
 //
 
 import Core
-import XCTest
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/Notebook/Common/View/HighlightWebView/EnableZoom.swift
 private class EnableZoom: CoreWebViewFeature {
     private let script: String =
     """
@@ -37,30 +35,5 @@ private class EnableZoom: CoreWebViewFeature {
 extension CoreWebViewFeature {
     static var enableZoom: CoreWebViewFeature {
         EnableZoom()
-========
-class CoreSwitchTests: XCTestCase {
-    private var switchToggledByUser = false
-
-    override func setUp() {
-        super.setUp()
-        switchToggledByUser = false
-    }
-
-    func test_sendsNoValueChangedAction_whenStateUpdatedProgramatically() {
-        let testee = CoreSwitch()
-        testee.addTarget(self, action: #selector(didToggleSwitch), for: .valueChanged)
-
-        // WHEN
-        testee.isOn = true
-        testee.isOn = false
-
-        // THEN
-        XCTAssertEqual(switchToggledByUser, false)
-    }
-
-    @objc
-    private func didToggleSwitch() {
-        switchToggledByUser = true
->>>>>>>> master:Core/CoreTests/Common/CommonUI/UIViews/CoreSwitchTests.swift
     }
 }

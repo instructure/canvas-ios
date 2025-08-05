@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Common/Data/IncompleteModule.swift
 struct IncompleteModule {
     let moduleId: String
     let moduleItemId: String
@@ -30,16 +29,5 @@ struct IncompleteModule {
         }
         self.moduleId = moduleId
         self.moduleItemId = moduleItemId
-========
-enum SpeedGraderUserIdNormalization {
-
-    /// Helper function to help normalize user ids coming from webview urls
-    static func normalizeUserId(_ userId: String?) -> String {
-        if let userId, userId.containsOnlyNumbers {
-            return userId
-        }
-
-        return SpeedGraderAllUsersUserId
->>>>>>>> master:Teacher/Teacher/SpeedGrader/SpeedGraderScreen/Model/SpeedGraderUserIdNormalization.swift
     }
 }
