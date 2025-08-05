@@ -47,7 +47,7 @@ class GradeStatusViewModel: ObservableObject {
     // MARK: - Inputs
     let didSelectGradeStatus = PassthroughSubject<OptionItem, Never>()
     let didChangeAttempt = PassthroughSubject<Int, Never>()
-    let didChangeLateDaysValue = PassthroughSubject<Int, Never>()
+    let didChangeLateDaysValue = PassthroughSubject<String, Never>()
 
     // MARK: - Private
     private let interactor: GradeStatusInteractor
@@ -161,9 +161,9 @@ class GradeStatusViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func refreshGradeStatus(on publisher: AnyPublisher<(GradeStatus, daysLate: Int, dueDate: Date?), Never>) {
+    private func refreshGradeStatus(on publisher: AnyPublisher<(GradeStatus, daysLate: Double, dueDate: Date?), Never>) {
         databaseObservation = publisher
-            .map { (status, daysLate, dueDate) -> (OptionItem, daysLate: Int, dueDate: String) in
+            .map { (status, daysLate, dueDate) -> (OptionItem, daysLate: Double, dueDate: String) in
                 (OptionItem.from(status), daysLate, dueDate?.relativeDateTimeString ?? "")
             }
             .receive(on: scheduler)
@@ -171,8 +171,9 @@ class GradeStatusViewModel: ObservableObject {
                 guard let self else { return }
                 selectedOption = option
                 isShowingDaysLateSection = (interactor.gradeStatuses.element(for: option) == .late)
-                self.daysLate = "\(daysLate)"
-                self.dueDate = dueDate.isEmpty ? String(localized: "No Due Date", bundle: .teacher) : dueDate
+                self.daysLate = Self.daysLateFormatter.string(from: NSNumber(value: daysLate)) ?? ""
+                self.dueDate = dueDate.isEmpty ? String(localized: "No Due Date", bundle: .teacher)
+                                               : String(localized: "Due \(dueDate)", bundle: .teacher)
                 daysLateA11yLabel = {
                     let daysLateText = String(localized: "\(daysLate) days late.", bundle: .teacher)
                     let dueDateText = dueDate.isEmpty ? String(localized: "No due date was set.", bundle: .teacher)
@@ -182,11 +183,14 @@ class GradeStatusViewModel: ObservableObject {
             }
     }
 
-    private func uploadLateDays(on publisher: PassthroughSubject<Int, Never>) {
+    private func uploadLateDays(on publisher: PassthroughSubject<String, Never>) {
         let submissionId = self.submissionId
         let userId = self.userId
 
         publisher
+            .compactMap { textInput -> Double? in
+                textInput.doubleValueByFixingDecimalSeparator
+            }
             .map { [weak self] newLateDays in
                 self?.isLoading = true
                 return newLateDays
@@ -242,6 +246,17 @@ class GradeStatusViewModel: ObservableObject {
         .map { (result, oldOption) }
         .eraseToAnyPublisher()
     }
+}
+
+extension GradeStatusViewModel {
+    private static let daysLateFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 3 // 1 hour is 0,04166667 days
+        return formatter
+    }()
 }
 
 private extension OptionItem {
