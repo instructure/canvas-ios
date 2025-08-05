@@ -92,13 +92,13 @@ class AssistSelectCourseGoal: AssistGoal {
             }
 
             let courseNames = courseOptions.compactMap {
-                $0.course.name.map { AssistGoalOption(name: $0) }
+                $0.name.map { AssistGoalOption(name: $0) }
             }
 
             return weakSelf.choose(from: courseNames, with: response, using: weakSelf.cedar)
                 .map { courseSelected in
                     if  let courseSelected = courseSelected,
-                        let courseID = courseOptions.first(where: { courseSelected.contains($0.course.name ?? "") == true })?.courseID {
+                        let courseID = courseOptions.first(where: { courseSelected.contains($0.name ?? "") == true })?.courseID {
                         weakSelf.environment.courseID.accept(courseID)
                     }
                     return nil
@@ -120,7 +120,7 @@ class AssistSelectCourseGoal: AssistGoal {
                     botResponse: prompt,
                     chipOptions: courses
                         .prefix(5)
-                        .compactMap { $0.course.name }
+                        .compactMap { $0.name }
                         .map { .init(chip: $0, prompt: $0) }
                 )
             )

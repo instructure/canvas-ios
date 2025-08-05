@@ -72,14 +72,14 @@ struct HCourse: Identifiable {
 
     init(from entity: CDHCourse, modules: [HModule]?) {
         self.id = entity.courseID
-        self.name = entity.course.name ?? ""
+        self.name = entity.name ?? ""
         self.institutionName = entity.institutionName ?? ""
         self.state = entity.state
         self.enrollmentID = entity.enrollmentID
         self.enrollments = [] // TODO: Find where to set
         self.modules = modules ?? []
         self.progress = entity.completionPercentage
-        self.overviewDescription = entity.course.syllabusBody ?? ""
+        self.overviewDescription = entity.overviewDescription ?? ""
 
         if entity.nextModuleID != nil, entity.nextModuleItemID != name {
             self.learningObjectCardModel = LearningObjectCard(

@@ -227,6 +227,7 @@
         <attribute name="courseID" attributeType="String"/>
         <attribute name="enrollmentID" attributeType="String"/>
         <attribute name="institutionName" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="nextModuleID" optional="YES" attributeType="String"/>
         <attribute name="nextModuleItemDueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="nextModuleItemEstimatedTime" optional="YES" attributeType="String"/>
@@ -236,8 +237,8 @@
         <attribute name="nextModuleItemType" optional="YES" attributeType="String"/>
         <attribute name="nextModuleItemURL" optional="YES" attributeType="String"/>
         <attribute name="nextModuleName" optional="YES" attributeType="String"/>
+        <attribute name="overviewDescription" optional="YES" attributeType="String"/>
         <attribute name="state" attributeType="String"/>
-        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="courseProgress" inverseEntity="Course"/>
     </entity>
     <entity name="CDHLearnCourse" representedClassName="Core.CDHLearnCourse" syncable="YES">
         <attribute name="enrollmentId" attributeType="String"/>
@@ -499,7 +500,7 @@
         <attribute name="syllabusBody" optional="YES" attributeType="String"/>
         <attribute name="termName" optional="YES" attributeType="String"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="course" inverseEntity="ContextColor"/>
-        <relationship name="courseProgress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHCourse" inverseName="course" inverseEntity="CDHCourse"/>
+        <relationship name="courseProgress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHCourse"/>
         <relationship name="dashboardCards" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardCard" inverseName="course" inverseEntity="DashboardCard"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment"/>
         <relationship name="gradingPeriods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="course" inverseEntity="GradingPeriod"/>

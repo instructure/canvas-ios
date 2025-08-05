@@ -24,7 +24,7 @@ public protocol ExperienceSummaryInteractor {
     func getExperienceSummary() -> AnyPublisher<Experience, Error>
     func isExperienceSwitchAvailable() -> AnyPublisher<Bool, Never>
     func switchExperience(to experience: Experience) -> AnyPublisher<Void, Never>
-        
+   
     // Async/await version
     func isExperienceSwitchAvailableAsync() async -> Bool
 }
