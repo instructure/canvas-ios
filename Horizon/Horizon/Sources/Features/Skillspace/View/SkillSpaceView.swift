@@ -32,8 +32,9 @@ struct SkillSpaceView: View {
         HStack(spacing: .zero) {
             InstitutionLogo()
             Spacer()
-                .padding(.horizontal, .huiSpaces.space24)
-                .padding(.bottom, .huiSpaces.space4)
         }
+        .padding(.horizontal, .huiSpaces.space24)
+        .padding(.top, .huiSpaces.space10)
+        .padding(.bottom, .huiSpaces.space4)
     }
 }
