@@ -27,6 +27,8 @@ include:
 projectReferences:
   Core:
     path: ../Core/Core.xcodeproj
+  Horizon:
+    path: ../Horizon/Horizon.xcodeproj
 packages:
   Pendo:
     url: https://github.com/pendo-io/pendo-mobile-sdk
