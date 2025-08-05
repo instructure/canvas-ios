@@ -49,6 +49,7 @@ class GradeInteractorLiveTests: TeacherTestCase {
 
         rubricGradingInteractor = .init()
         gradeStateInteractor = .init()
+        gradingStandardInteractor = .init()
     }
 
     override func tearDown() {

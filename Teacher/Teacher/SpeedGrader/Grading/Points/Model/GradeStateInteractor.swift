@@ -35,7 +35,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
     func gradeState(
         submission: Submission,
         assignment: Assignment,
-        gradingScheme: GradingScheme?,
+        gradingScheme: GradingScheme? = nil,
         isRubricScoreAvailable: Bool,
         totalRubricScore: Double
     ) -> GradeState {
@@ -45,6 +45,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
         let hasLatePenaltyPoints = (submission.pointsDeducted ?? 0) > 0
         let isExcused = (submission.excused == true)
         let score = submission.enteredScore ?? submission.score ?? 0
+        let gradingScheme = gradingScheme != nil ? gradingScheme : assignment.gradingScheme
 
         return GradeState(
             gradingType: gradingType,
@@ -87,7 +88,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
         )
     }
 
-    private static func gradeOptions(for gradingType: GradingType, gradingScheme: GradingScheme?) -> [OptionItem] {
+    private static func gradeOptions(for gradingType: GradingType, gradingScheme: GradingScheme? = nil) -> [OptionItem] {
         switch gradingType {
         case .gpa_scale, .letter_grade:
             guard let gradingScheme else { return [] }
