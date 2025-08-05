@@ -51,17 +51,20 @@ final class AccountViewModel {
 
     init(
         getUserInteractor: GetUserInteractor,
-        sessionInteractor: SessionInteractor,
         appExperienceInteractor: ExperienceSummaryInteractor = ExperienceSummaryInteractorLive(),
-        router: Router = AppEnvironment.shared.router
+        environment: AppEnvironment = AppEnvironment.shared
     ) {
-        self.router = router
+        self.router = environment.router
         self.getUserInteractor = getUserInteractor
         self.appExperienceInteractor = appExperienceInteractor
 
         confirmLogoutViewModel.userConfirmation()
             .sink {
-                sessionInteractor.logout()
+                guard let currentSession = environment.currentSession,
+                   let loginDelegate = environment.loginDelegate else {
+                    return
+                }
+                loginDelegate.userDidLogout(session: currentSession)
             }
             .store(in: &subscriptions)
 

@@ -17,14 +17,13 @@
 //
 
 import Core
+import UIKit
 
 final class AccountAssembly {
     static func makeView() -> AccountView {
         AccountView(
             viewModel: AccountViewModel(
-                getUserInteractor: GetUserInteractorLive(),
-                sessionInteractor: SessionInteractor(),
-                router: AppEnvironment.shared.router
+                getUserInteractor: GetUserInteractorLive()
             )
         )
     }
@@ -33,9 +32,7 @@ final class AccountAssembly {
     static func makePreview() -> AccountView {
         let getUserInteractorPreview = GetUserInteractorPreview()
         let viewModel = AccountViewModel(
-            getUserInteractor: getUserInteractorPreview,
-            sessionInteractor: SessionInteractor(),
-            router: AppEnvironment.shared.router
+            getUserInteractor: getUserInteractorPreview
         )
         return AccountView(viewModel: viewModel)
     }

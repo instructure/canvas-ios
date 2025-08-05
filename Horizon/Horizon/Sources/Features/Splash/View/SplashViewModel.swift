@@ -67,23 +67,25 @@ final class SplashViewModel: ObservableObject {
     }
 
     private func showErrorAlert(error: Error) -> AnyPublisher<UserProfile, Error> {
-        if error is LoginError {
-            // replace window with login
-            router.setRootViewController(
-                isLoginTransition: false,
-                viewController: LoginNavigationController.create(
-                    loginDelegate: interactor,
-                    app: .horizon
+        if let loginDelegate = environment.loginDelegate {
+            if error is LoginError {
+                // replace window with login
+                router.setRootViewController(
+                    isLoginTransition: false,
+                    viewController: LoginNavigationController.create(
+                        loginDelegate: loginDelegate,
+                        app: .horizon
+                    )
                 )
-            )
-        } else {
-            router.setRootViewController(
-                isLoginTransition: false,
-                viewController: LoginNavigationController.create(
-                    loginDelegate: interactor,
-                    app: .horizon
+            } else {
+                router.setRootViewController(
+                    isLoginTransition: false,
+                    viewController: LoginNavigationController.create(
+                        loginDelegate: loginDelegate,
+                        app: .horizon
+                    )
                 )
-            )
+            }
         }
         return Empty().setFailureType(to: Error.self).eraseToAnyPublisher()
     }
