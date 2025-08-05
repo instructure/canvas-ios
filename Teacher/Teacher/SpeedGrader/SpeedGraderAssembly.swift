@@ -77,7 +77,8 @@ enum SpeedGraderAssembly {
         let gradingStandardInteractor = GradingStandardInteractorLive(
             context: context,
             gradingStandardId: assignment.gradingStandardId,
-            env: env)
+            env: env
+        )
 
         let gradeInteractor = GradeInteractorLive(
             assignment: assignment,

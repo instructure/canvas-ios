@@ -50,9 +50,14 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
             .compactMap { $0.first }
             .map { gradingStandard in
                 if gradingStandard.isPointsBased {
-                    return PointsBasedGradingScheme(scaleFactor: gradingStandard.scalingFactor, entries: gradingStandard.gradingSchemeEntries)
+                    return PointsBasedGradingScheme(
+                        entries: gradingStandard.gradingSchemeEntries,
+                        scaleFactor: gradingStandard.scalingFactor
+                    )
                 } else {
-                    return PercentageBasedGradingScheme(entries: gradingStandard.gradingSchemeEntries)
+                    return PercentageBasedGradingScheme(
+                        entries: gradingStandard.gradingSchemeEntries
+                    )
                 }
             }
             .ignoreFailure()
