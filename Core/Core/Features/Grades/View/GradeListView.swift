@@ -322,7 +322,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     ) -> some View {
         LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
             ForEach(assignmentSections, id: \.id) { section in
-                let itemCountLabel = String.localizedNumberOfItems(section.assignments.count)
+                let itemCountLabel = String.format(numberOfItems: section.assignments.count)
                 AssignmentSection {
                     VStack(spacing: 0) {
                         listSectionView(title: section.title)

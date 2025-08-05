@@ -20,30 +20,34 @@ import XCTest
 
 class StringLocalizedFormatsTests: XCTestCase {
 
-    func testLocalizedNumberOfItems() {
-        XCTAssertEqual(String.localizedNumberOfItems(1), "1 item")
-        XCTAssertEqual(String.localizedNumberOfItems(5), "5 items")
-        XCTAssertEqual(String.localizedNumberOfItems(0), "0 items")
+    func test_format_attemptNumber() {
+        XCTAssertEqual(String.format(attemptNumber: 1), "Attempt 1")
+        XCTAssertEqual(String.format(attemptNumber: 5), "Attempt 5")
+        XCTAssertEqual(String.format(attemptNumber: 0), "Attempt 0")
     }
 
-    func testLocalizedAccessibilityListCount() {
-        XCTAssertEqual(String.localizedAccessibilityListCount(1), "List, 1 item")
-        XCTAssertEqual(String.localizedAccessibilityListCount(5), "List, 5 items")
+    func test_format_numberOfItems() {
+        XCTAssertEqual(String.format(numberOfItems: 1), "1 item")
+        XCTAssertEqual(String.format(numberOfItems: 5), "5 items")
+        XCTAssertEqual(String.format(numberOfItems: 0), "0 items")
+
+        let optionalValue: Int? = 5
+        XCTAssertEqual(String.format(numberOfItems: optionalValue), "5 items")
+        XCTAssertEqual(String.format(numberOfItems: nil), nil)
     }
 
-    func testLocalizedAccessibilityErrorMessage() {
-        XCTAssertEqual(String.localizedAccessibilityErrorMessage("Some error description"), "Error: Some error description")
-        XCTAssertEqual(String.localizedAccessibilityErrorMessage(""), "Error: ")
-
-        var optionalString: String? = "Some error description"
-        XCTAssertEqual(String.localizedAccessibilityErrorMessage(optionalString), "Error: Some error description")
-
-        optionalString = nil
-        XCTAssertEqual(String.localizedAccessibilityErrorMessage(optionalString), nil)
+    func test_format_accessibilityListCount() {
+        XCTAssertEqual(String.format(accessibilityListCount: 1), "List, 1 item")
+        XCTAssertEqual(String.format(accessibilityListCount: 5), "List, 5 items")
+        XCTAssertEqual(String.format(accessibilityListCount: 0), "List, 0 items")
     }
 
-    func testLocalizedAttemptNumber() {
-        XCTAssertEqual(String.localizedAttemptNumber(1), "Attempt 1")
-        XCTAssertEqual(String.localizedAttemptNumber(5), "Attempt 5")
+    func test_format_accessibilityErrorMessage() {
+        XCTAssertEqual(String.format(accessibilityErrorMessage: "Some error description"), "Error: Some error description")
+        XCTAssertEqual(String.format(accessibilityErrorMessage: ""), "Error: ")
+
+        let optionalValue: String? = "Some error description"
+        XCTAssertEqual(String.format(accessibilityErrorMessage: optionalValue), "Error: Some error description")
+        XCTAssertEqual(String.format(accessibilityErrorMessage: nil), nil)
     }
 }

@@ -73,14 +73,13 @@ extension InstUI {
         }
 
         private var headerAccessibilityLabel: String {
-            guard let itemCount else { return title }
-            return [title, String.localizedNumberOfItems(itemCount)]
+            [title, String.format(numberOfItems: itemCount)]
                 .joined(separator: ", ")
         }
 
         private var listLevelAccessibilityLabel: String? {
             guard let itemCount else { return nil }
-            return String.localizedAccessibilityListCount(itemCount)
+            return String.format(accessibilityListCount: itemCount)
         }
     }
 }

@@ -197,7 +197,7 @@ public struct SubmitAssignmentExtensionView: View {
 
     private var filesSection: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(String.localizedNumberOfItems(viewModel.previews.count))
+            Text(String.format(numberOfItems: viewModel.previews.count))
                 .font(.regular12)
                 .foregroundColor(.textDark)
             ScrollView(.horizontal, showsIndicators: false) {

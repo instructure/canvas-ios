@@ -83,7 +83,7 @@ extension SubmissionViewable {
     public var submissionAttemptNumberText: String? {
         guard let attempt = submission?.attempt else { return nil }
 
-        return String.localizedAttemptNumber(attempt)
+        return String.format(attemptNumber: attempt)
     }
 
     public var hasLatePenalty: Bool {
