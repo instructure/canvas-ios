@@ -80,6 +80,7 @@ class SyllabusTests: E2ETestCase {
         let summaryTab = Helper.summaryTab.waitUntil(.visible)
         let syllabusBodyLabel = Helper.syllabusBody.waitUntil(.visible)
 
+        // MARK: Pull to refresh to avoid issue with edit button hiding
         Helper.syllabusBody.pullToRefresh()
 
         let editButton = Helper.editButton.waitUntil(.visible)
