@@ -193,6 +193,10 @@ final class CourseDetailsViewModel {
                 overviewDescription.isEmpty ? 0 : 1
             }
         }
+        self.scoresViewModel = ScoresAssembly.makeViewModel(
+            courseID: course.id,
+            enrollmentID: course.enrollmentID
+        )
         isLoaderVisible = false
     }
 }
