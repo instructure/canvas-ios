@@ -105,8 +105,7 @@ final class ScoresInteractorLive: ScoresInteractor {
 
     private func scoreGradeString(enrollment: HScoresCourseEnrollment) -> String? {
         var scoreString: String?
-        let score = 36.52341
-        if let formattedScore = GradeFormatter.horizonNumberFormatter.string(
+        if let score = enrollment.score, let formattedScore = GradeFormatter.horizonNumberFormatter.string(
                from: GradeFormatter.truncate(score)
            ) {
             scoreString = "\(formattedScore)%"
