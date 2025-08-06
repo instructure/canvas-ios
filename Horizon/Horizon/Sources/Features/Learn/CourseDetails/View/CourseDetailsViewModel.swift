@@ -30,6 +30,7 @@ final class CourseDetailsViewModel {
     private(set) var selectedCoure: DropdownMenuItem?
     private(set) var isLoaderVisible: Bool = false
     private(set) var overviewDescription = ""
+    private(set) var scoresViewModel: ScoresViewModel?
 
     // MARK: - Inputs
 
@@ -69,6 +70,7 @@ final class CourseDetailsViewModel {
         self.course = course ?? .init()
         self.isLoaderVisible = true
         self.selectedTab = selectedTab
+        self.scoresViewModel = ScoresAssembly.makeViewModel(courseID: courseID, enrollmentID: enrollmentID)
         fetchData()
         observeCourseSelection()
         observeHeaderVisiablity()

@@ -133,7 +133,7 @@ struct CourseDetailsView: View {
             ForEach(Array(tabs.enumerated()), id: \.offset) { index, tab in
                 ScrollView(.vertical, showsIndicators: false) {
                     topView
-                    CotentView(selectedTab: tab, viewModel: viewModel)
+                    ContentView(selectedTab: tab, viewModel: viewModel)
                 }
                 .tag(index)
                 .refreshable {
@@ -157,7 +157,7 @@ struct CourseDetailsView: View {
     }
 }
 
-private struct CotentView: View {
+private struct ContentView: View {
     @Environment(\.viewController) private var viewController
     let selectedTab: CourseDetailsTabs
     let viewModel: CourseDetailsViewModel
@@ -171,8 +171,10 @@ private struct CotentView: View {
         case .overview:
             overview(htmlString: viewModel.overviewDescription)
         case .scores:
-            ScoresAssembly.makeView(courseID: viewModel.course.id, enrollmentID: viewModel.course.enrollmentID)
-                .padding(.horizontal, .huiSpaces.space24)
+            if let scoresViewModel = viewModel.scoresViewModel {
+                ScoresView(viewModel: scoresViewModel)
+                    .padding(.horizontal, .huiSpaces.space24)
+            }
         case .notebook:
             NotebookAssembly.makeView(courseID: viewModel.course.id)
                 .padding(.bottom, .huiSpaces.space24)
