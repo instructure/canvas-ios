@@ -98,7 +98,7 @@ class AssistSelectCourseGoal: AssistGoal {
             return weakSelf.choose(from: courseNames, with: response, using: weakSelf.cedar)
                 .map { goalOption in
                     if  let courseSelected = goalOption?.name,
-                        let courseID = courseOptions.first(where: { courseSelected.contains($0.course.name ?? "") == true })?.courseID {
+                        let courseID = courseOptions.first(where: { courseSelected.contains($0.name ?? "") == true })?.courseID {
                         weakSelf.environment.courseID.accept(courseID)
                     }
                     return nil
