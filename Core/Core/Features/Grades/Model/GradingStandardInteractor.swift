@@ -35,10 +35,11 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
     }
 
     public var gradingScheme: AnyPublisher<GradingScheme?, Never> {
-        guard gradingStandardId != nil else {
-            return getCourseGradingScheme()
+        if gradingStandardId != nil {
+            getGradingScheme()
+        } else {
+            getCourseGradingScheme()
         }
-        return getGradingScheme()
     }
 
     private func getGradingScheme() -> AnyPublisher<GradingScheme?, Never> {
@@ -51,10 +52,15 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
     }
 
     private func getAccountLevelGradingScheme() -> AnyPublisher<GradingScheme?, Never> {
+        guard let gradingStandardId else {
+            return Just(nil).eraseToAnyPublisher()
+        }
+
         let gradingStandardStore = ReactiveStore(
-            useCase: GetGradingStandard(id: gradingStandardId!),
+            useCase: GetGradingStandard(id: gradingStandardId),
             environment: env
         )
+
         return gradingStandardStore
             .getEntities()
             .compactMap { $0.first }
@@ -75,10 +81,15 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
     }
 
     private func getCourseLevelGradingScheme() -> AnyPublisher<GradingScheme?, Never> {
+        guard let gradingStandardId else {
+            return Just(nil).eraseToAnyPublisher()
+        }
+
         let gradingStandardStore = ReactiveStore(
-            useCase: GetGradingStandard(id: gradingStandardId!, courseId: courseId),
+            useCase: GetGradingStandard(id: gradingStandardId, courseId: courseId),
             environment: env
         )
+
         return gradingStandardStore
             .getEntities()
             .compactMap { $0.first }
@@ -100,9 +111,10 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
 
     private func getCourseGradingScheme() -> AnyPublisher<GradingScheme?, Never> {
         let courseStore = ReactiveStore(
-            useCase: GetCourse(courseID: courseId, include: [.grading_scheme]),
+            useCase: GetCourseWithGradingScheme(courseId: courseId),
             environment: env
         )
+
         return courseStore
             .getEntities()
             .compactMap(\.first)

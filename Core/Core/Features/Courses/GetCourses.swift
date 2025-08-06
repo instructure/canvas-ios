@@ -260,3 +260,15 @@ struct UpdateCourse: APIUseCase {
         course?.defaultView = response.default_view
     }
 }
+
+struct GetCourseWithGradingScheme: APIUseCase {
+    typealias Model = Course
+
+    public let request: GetCourseRequest
+    public let cacheKey: String?
+
+    init(courseId: String) {
+        self.request = GetCourseRequest(courseID: courseId, include: [.grading_scheme])
+        self.cacheKey = nil
+    }
+}
