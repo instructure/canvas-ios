@@ -105,6 +105,7 @@ struct CourseDetailsView: View {
                 size: .medium,
                 numberPosition: .outside
             )
+            .id(viewModel.course.progress)
         }
         .padding([.horizontal, .bottom], .huiSpaces.space24)
     }
