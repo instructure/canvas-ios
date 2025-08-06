@@ -24,24 +24,30 @@ extension String {
 
     /// Localized string for attempt number. Example: "Attempt 5"
     public static func format(attemptNumber attempt: Int) -> String {
-        String.localizedStringWithFormat(String(localized: "Attempt %d", bundle: .core), attempt)
+        localizedStringWithFormat(
+            String(localized: "Attempt %d", bundle: .core),
+            attempt
+        )
     }
 
     // MARK: - Items: "5 items" / "List, 5 items"
 
     /// Localized string for number of items. Example: "5 items"
     public static func format(numberOfItems count: Int) -> String {
-        String.localizedStringWithFormat(String(localized: "d_items", bundle: .core), count)
+        localizedStringWithFormat(
+            String(localized: "d_items", bundle: .core),
+            count
+        )
     }
     /// Localized string for number of items. Example: "5 items"
     public static func format(numberOfItems count: Int?) -> String? {
-        count.map(String.format(numberOfItems:))
+        count.map(format(numberOfItems:))
     }
 
     /// Localized string to be used as `accessibilityLabel` for lists without a section header. Example: "List, 5 items"
     public static func format(accessibilityListCount count: Int) -> String {
         let listText = String(localized: "List", bundle: .core)
-        let countText = String.format(numberOfItems: count)
+        let countText = format(numberOfItems: count)
         // It's okay to not translate the comma, because VoiceOver (with captions enabled) uses commas for separation,
         // even when language & region both are set to a language which doesn't (like Danish)
         return "\(listText), \(countText)"
@@ -51,24 +57,28 @@ extension String {
 
     /// Localized string for number of points, abbreviated to "pts". Example: "5 pts"
     public static func format(pts points: Double) -> String {
-        let format = String(localized: "g_pts", bundle: .core)
-        return String.localizedStringWithFormat(format, points)
+        localizedStringWithFormat(
+            String(localized: "g_pts", bundle: .core),
+            points
+        )
     }
 
     /// Localized string for number of points, abbreviated to "pts". Example: "5 pts"
     public static func format(pts points: Double?) -> String? {
-        points.map { String.format(pts: $0) }
+        points.map(format(pts:))
     }
 
     /// Localized string for number of points, not abbreviated, primarily for accessibility usage. Example: "5 points"
     public static func format(points: Double) -> String {
-        let format = String(localized: "g_points", bundle: .core)
-        return String.localizedStringWithFormat(format, points)
+        localizedStringWithFormat(
+            String(localized: "g_points", bundle: .core),
+            points
+        )
     }
 
     /// Localized string for number of points, not abbreviated, primarily for accessibility usage. Example: "5 points"
     public static func format(points: Double?) -> String? {
-        points.map { String.format(points: $0) }
+        points.map(format(points:))
     }
 
     // MARK: - "Error: Invalid start time"
@@ -77,15 +87,17 @@ extension String {
     /// The `errorMessage` itself is expected to be localized already.
     /// Example: "Error: Invalid start time"
     public static func format(accessibilityErrorMessage errorMessage: String) -> String {
-        let format = String(localized: "Error: %@", bundle: .core, comment: "Example: 'Error: Invalid start time'")
-        return String.localizedStringWithFormat(format, errorMessage)
+        localizedStringWithFormat(
+            String(localized: "Error: %@", bundle: .core, comment: "Example: 'Error: Invalid start time'"),
+            errorMessage
+        )
     }
 
     /// Localized string to be used for error messages intended for accessibility usage. Adds some context for VoiceOver users that this is an error.
     /// The `errorMessage` itself is expected to be localized already.
     /// Example: "Error: Invalid start time"
     public static func format(accessibilityErrorMessage errorMessage: String?) -> String? {
-        errorMessage.map { String.format(accessibilityErrorMessage: $0) }
+        errorMessage.map(format(accessibilityErrorMessage:))
     }
 
     // MARK: - accessibilityLetterGrade
