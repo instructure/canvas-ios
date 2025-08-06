@@ -28,6 +28,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         static let sampleGradeState = GradeState(
             gradingType: .points,
             pointsPossibleText: "100 pts",
+            pointsPossibleAccessibilityText: "100 points",
             gradeOptions: [],
             isGraded: true,
             isExcused: false,

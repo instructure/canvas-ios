@@ -27,6 +27,7 @@ struct GradeState: Equatable {
 
     let gradingType: GradingType
     let pointsPossibleText: String
+    let pointsPossibleAccessibilityText: String
     let gradeOptions: [OptionItem]
 
     // MARK: - Status
@@ -58,6 +59,7 @@ extension GradeState {
     static let empty = GradeState(
         gradingType: .not_graded,
         pointsPossibleText: "",
+        pointsPossibleAccessibilityText: "",
         gradeOptions: [],
         isGraded: false,
         isExcused: false,
@@ -78,6 +80,7 @@ extension GradeState {
     static func make(
         gradingType: GradingType = .not_graded,
         pointsPossibleText: String = "",
+        pointsPossibleAccessibilityText: String = "",
         gradeOptions: [OptionItem] = [],
         isGraded: Bool = false,
         isExcused: Bool = false,
@@ -93,6 +96,7 @@ extension GradeState {
         .init(
             gradingType: gradingType,
             pointsPossibleText: pointsPossibleText,
+            pointsPossibleAccessibilityText: pointsPossibleAccessibilityText,
             gradeOptions: gradeOptions,
             isGraded: isGraded,
             isExcused: isExcused,

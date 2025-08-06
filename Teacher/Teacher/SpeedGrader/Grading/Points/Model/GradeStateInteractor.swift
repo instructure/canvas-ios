@@ -47,6 +47,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
         return GradeState(
             gradingType: gradingType,
             pointsPossibleText: assignment.pointsPossibleText,
+            pointsPossibleAccessibilityText: assignment.pointsPossibleCompleteText,
             gradeOptions: Self.gradeOptions(for: gradingType, assignment: assignment),
 
             isGraded: isGraded,
@@ -70,6 +71,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
         return GradeState(
             gradingType: gradingType,
             pointsPossibleText: assignment.pointsPossibleText,
+            pointsPossibleAccessibilityText: assignment.pointsPossibleCompleteText,
             gradeOptions: gradeOptions(for: gradingType, assignment: assignment),
 
             isGraded: false,
