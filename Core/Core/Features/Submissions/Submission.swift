@@ -34,6 +34,16 @@ public final class SubmissionList: NSManagedObject {
     }
 }
 
+public struct FetchedGroup {
+    public let id: String
+    public let name: String
+
+    public init(id: String, name: String) {
+        self.id = id
+        self.name = name
+    }
+}
+
 final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var assignment: Assignment?
     @NSManaged public var assignmentID: String
@@ -77,6 +87,9 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var mediaComment: MediaComment?
     @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
     @NSManaged public var user: User?
+
+    public var fetchedGroup: FetchedGroup?
+    public var displayGroupName: String? { groupName ?? fetchedGroup?.name }
 
     public var rubricAssessments: RubricAssessments? {
         if let assessments = rubricAssesmentRaw, assessments.count > 0 {

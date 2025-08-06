@@ -94,29 +94,37 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
         submissionsSubject.eraseToAnyPublisher()
     }
 
-    var groupsInAssignment: AnyPublisher<[UsersGroup], Never> {
+    var groupsInAssignment: AnyPublisher<[GroupMemberships], Never> {
         assignment
-            .flatMap { assignment in
-                guard let categoryID = assignment?.groupCategoryID else {
-                    return Just([UsersGroup]()).eraseToAnyPublisher()
+            .flatMap { [weak self] assignment in
+                guard let self, let categoryID = assignment?.groupCategoryID else {
+                    return Just([GroupMemberships]()).eraseToAnyPublisher()
                 }
 
                 return ReactiveStore(
                     useCase: GetGroupsInCategory(categoryID),
                     environment: self.env
                 )
-                .getEntities()
+                .getEntities(ignoreCache: true)
                 .flatMap({ groups in
                     Publishers
                         .Sequence(sequence: groups)
-                        .flatMap { group in
-                            self.env
+                        .flatMap { [weak self] group in
+                            guard let self else {
+                                return Just(GroupMemberships(group: group))
+                                    .eraseToAnyPublisher()
+                            }
+
+                            return self
+                                .env
                                 .api
                                 .makeRequest(GetGroupUsersRequest(groupID: group.id))
                                 .map { (users: [APIUser], _) in
-                                    return UsersGroup(group: group, users: users)
+                                    let userIDs = users.map { $0.id.value }
+                                    return GroupMemberships(group: group, userIDs: userIDs)
                                 }
-                                .replaceError(with: UsersGroup(group: group, users: []))
+                                .replaceError(with: GroupMemberships(group: group))
+                                .eraseToAnyPublisher()
                         }
                         .collect()
                 })
@@ -156,7 +164,12 @@ private extension [Submission] {
     }
 }
 
-public struct UsersGroup {
+public struct GroupMemberships {
     let group: Group
-    let users: [APIUser]
+    let userIDs: [String]
+
+    init(group: Group, userIDs: [String] = []) {
+        self.group = group
+        self.userIDs = userIDs
+    }
 }
