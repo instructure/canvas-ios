@@ -29837,7 +29837,6 @@
       }
     },
     "Loading" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

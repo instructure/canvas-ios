@@ -158,8 +158,10 @@ struct SpeedGraderSubmissionGradesView: View {
         case .pointsDisplayOnly:
             gradeInputDisplayOnlyView(
                 title: title,
-                textValue: gradeState.originalScoreWithoutMetric ?? GradeFormatter.BlankPlaceholder.oneDash.stringValue,
-                suffix: gradeState.isExcused ? nil : "/ \(gradeState.pointsPossibleText)"
+                text: gradeState.originalScoreWithoutMetric ?? GradeFormatter.BlankPlaceholder.oneDash.stringValue,
+                a11yText: gradeState.originalScoreWithoutMetric ?? String(localized: "None", bundle: .teacher),
+                suffix: gradeState.isExcused ? nil : "/ \(gradeState.pointsPossibleText)",
+                a11ySuffix: gradeState.isExcused ? nil : String(localized: "out of \(gradeState.pointsPossibleAccessibilityText)", bundle: .teacher, comment: "Example: 'out of 10 points'")
             )
         case .gradePicker:
             SpeedGraderPickerCell(
@@ -178,10 +180,12 @@ struct SpeedGraderSubmissionGradesView: View {
         case .statusDisplayOnly:
             gradeInputDisplayOnlyView(
                 title: title,
-                textValue: gradeState.isExcused
+                text: gradeState.isExcused
                     ? String(localized: "Excused", bundle: .teacher)
                     : String(localized: "Not Graded", bundle: .teacher),
-                suffix: nil
+                a11yText: nil,
+                suffix: nil,
+                a11ySuffix: nil
             )
         case nil:
             SwiftUI.EmptyView()
@@ -213,28 +217,33 @@ struct SpeedGraderSubmissionGradesView: View {
     @ViewBuilder
     private func gradeInputDisplayOnlyView(
         title: String,
-        textValue: String,
-        suffix: String?
+        text: String,
+        a11yText: String?,
+        suffix: String?,
+        a11ySuffix: String?
     ) -> some View {
         HStack(alignment: .center, spacing: 8) {
             Text(title)
                 .textStyle(.cellLabel)
 
             HStack(alignment: .center, spacing: 8) {
-                Text(textValue)
+                Text(text)
                     .font(.regular16, lineHeight: .fit)
                     .foregroundStyle(.textDark)
                     .frame(maxWidth: .infinity, alignment: .trailing)
+                    .accessibilityLabel(a11yText ?? text)
 
                 if let suffix {
                     Text(suffix)
                         .font(.regular16, lineHeight: .fit)
                         .foregroundStyle(.textDark)
+                        .accessibilityLabel(a11ySuffix ?? suffix)
                 }
             }
-            .swapWithSpinner(onLoading: gradeViewModel.isSavingGrade, alignment: .trailing)
+            .swapWithSpinner(onSaving: gradeViewModel.isSavingGrade, alignment: .trailing)
         }
         .paddingStyle(set: .standardCell)
+        .accessibilityElement(children: .combine)
     }
 
     @ViewBuilder
