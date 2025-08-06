@@ -25,8 +25,10 @@ struct GradeInputTextFieldCell: View {
 
     private let title: String
     private let subtitle: String?
+    private let customAccessibilityLabel: String?
     private let placeholder: String
     private let suffix: String?
+    private let customAccessibilitySuffix: String?
 
     @Binding private var externalText: String
     @State private var internalText: String
@@ -37,15 +39,19 @@ struct GradeInputTextFieldCell: View {
     init(
         title: String,
         subtitle: String?,
+        customAccessibilityLabel: String? = nil,
         placeholder: String,
         suffix: String?,
+        customAccessibilitySuffix: String? = nil,
         text: Binding<String>,
         isSaving: CurrentValueSubject<Bool, Never>
     ) {
         self.title = title
         self.subtitle = subtitle
+        self.customAccessibilityLabel = customAccessibilityLabel
         self.placeholder = placeholder
         self.suffix = suffix
+        self.customAccessibilitySuffix = customAccessibilitySuffix
         self._externalText = text
         self.internalText = text.wrappedValue
         self.isSaving = isSaving
@@ -61,6 +67,7 @@ struct GradeInputTextFieldCell: View {
                 Text(subtitle)
                     .font(.regular16, lineHeight: .fit)
                     .foregroundStyle(.textDark)
+                    .accessibility(hidden: true)
             }
 
             textFieldViews
@@ -88,11 +95,14 @@ struct GradeInputTextFieldCell: View {
                         externalText = internalText
                     }
                 }
+                .accessibilityLabel(accessibilityLabel)
+                .accessibilityValue(accessibilityValue)
 
             if let suffix {
                 Text(suffix)
                     .font(.regular16, lineHeight: .fit)
                     .foregroundStyle(.textDark)
+                    .accessibility(hidden: true)
             }
         }
     }
@@ -109,6 +119,19 @@ struct GradeInputTextFieldCell: View {
             )
         )
     }
+
+    private var accessibilityLabel: String {
+        customAccessibilityLabel
+            ?? [title, subtitle].accessibilityJoined()
+    }
+
+    private var accessibilityValue: String {
+        [
+            "", // adding pause before `value`
+            internalText.nilIfEmpty ?? placeholder,
+            customAccessibilitySuffix ?? suffix
+        ].accessibilityJoined()
+    }
 }
 
 extension GradeInputTextFieldCell {
@@ -121,14 +144,19 @@ extension GradeInputTextFieldCell {
     init(
         title: String,
         inputType: InputType,
-        pointsPossible: String,
+        pointsPossibleText: String,
+        pointsPossibleAccessibilityText: String,
         isExcused: Bool,
         text: Binding<String>,
         isSaving: CurrentValueSubject<Bool, Never>
     ) {
         let subtitle: String? = switch inputType {
         case .points: nil
-        case .percentage: "(\(pointsPossible))"
+        case .percentage: "(\(pointsPossibleText))"
+        }
+        let a11ySubtitle: String? = switch inputType {
+        case .points: nil
+        case .percentage: String(localized: "\(pointsPossibleAccessibilityText) maximum", bundle: .teacher, comment: "Example: '10 points maximum'")
         }
 
         let placeholder = switch inputType {
@@ -137,11 +165,17 @@ extension GradeInputTextFieldCell {
         }
 
         let suffix: String?
+        let a11ySuffix: String?
         if isExcused {
             suffix = nil
+            a11ySuffix = nil
         } else {
             suffix = switch inputType {
-            case .points: "/ \(pointsPossible)"
+            case .points: "/ \(pointsPossibleText)"
+            case .percentage: "%"
+            }
+            a11ySuffix = switch inputType {
+            case .points: String(localized: "out of \(pointsPossibleAccessibilityText)", bundle: .teacher, comment: "Example: 'out of 10 points'")
             case .percentage: "%"
             }
         }
@@ -149,8 +183,10 @@ extension GradeInputTextFieldCell {
         self.init(
             title: title,
             subtitle: subtitle,
+            customAccessibilityLabel: [title, a11ySubtitle].accessibilityJoined(),
             placeholder: placeholder,
             suffix: suffix,
+            customAccessibilitySuffix: a11ySuffix,
             text: text,
             isSaving: isSaving
         )
@@ -185,7 +221,8 @@ extension GradeInputTextFieldCell {
         GradeInputTextFieldCell(
             title: "Score",
             inputType: .points,
-            pointsPossible: "42 pts",
+            pointsPossibleText: "42 pts",
+            pointsPossibleAccessibilityText: "42 points",
             isExcused: false,
             text: $textNumber,
             isSaving: .init(false)
@@ -193,7 +230,8 @@ extension GradeInputTextFieldCell {
         GradeInputTextFieldCell(
             title: "Grade",
             inputType: .percentage,
-            pointsPossible: "42 pts",
+            pointsPossibleText: "42 pts",
+            pointsPossibleAccessibilityText: "42 points",
             isExcused: false,
             text: $textNumber,
             isSaving: .init(false)
@@ -201,7 +239,8 @@ extension GradeInputTextFieldCell {
         GradeInputTextFieldCell(
             title: "Grade",
             inputType: .percentage,
-            pointsPossible: "42 pts",
+            pointsPossibleText: "42 pts",
+            pointsPossibleAccessibilityText: "42 points",
             isExcused: false,
             text: $textNumber,
             isSaving: .init(true)

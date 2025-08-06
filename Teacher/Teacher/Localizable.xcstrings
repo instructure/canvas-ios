@@ -4,6 +4,9 @@
     "\"%@\" is not a valid grade." : {
 
     },
+    "%@ maximum" : {
+      "comment" : "Example: '10 points maximum'"
+    },
     "%@ to %@" : {
       "comment" : "'100% to 94%', or '400 to 230'",
       "localizations" : {
@@ -36494,6 +36497,9 @@
           }
         }
       }
+    },
+    "out of %@" : {
+      "comment" : "Example: 'out of 10 points'"
     },
     "out_of_g_pts" : {
       "localizations" : {

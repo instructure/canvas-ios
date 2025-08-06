@@ -199,7 +199,8 @@ struct SpeedGraderSubmissionGradesView: View {
         GradeInputTextFieldCell(
             title: title,
             inputType: inputType,
-            pointsPossible: gradeState.pointsPossibleText,
+            pointsPossibleText: gradeState.pointsPossibleText,
+            pointsPossibleAccessibilityText: gradeState.pointsPossibleAccessibilityText,
             isExcused: gradeState.isExcused,
             text: Binding(
                 get: { textValue },
