@@ -48,13 +48,15 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         courseID: String? = nil,
         fileID: String? = nil,
         pageURL: String? = nil,
+        textSelection: String? = nil,
         downloadFileInteractor: DownloadFileInteractor? = nil
     ) {
         self.downloadFileInteractor = downloadFileInteractor
         self.assistDataEnvironment = .init(
             courseID: courseID,
             fileID: fileID,
-            pageURL: pageURL
+            pageURL: pageURL,
+            textSelection: textSelection
         )
         self.goals = AssistChatInteractorLive.initializeGoals(
             assistDataEnvironment: assistDataEnvironment,
@@ -66,14 +68,17 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     // MARK: - Inputs
     /// Publishes a new user action to the interactor
     func publish(action: AssistChatAction) {
+        var userResponse: String?
         var prompt: String?
         var history: [AssistChatMessage] = []
 
         switch action {
         case .chat(let message, let chatHistory):
             prompt = message
+            userResponse = message
             history = chatHistory
         case .chip(let option, let chatHistory):
+            userResponse = option.chip
             prompt = option.prompt
             history = chatHistory
         default:
@@ -83,8 +88,8 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         // if the user has said something, we publish it as a message
         // otherwise, we just publish that we're loading
         var response: AssistChatResponse = .init(chatHistory: history, isLoading: true)
-        if let prompt = prompt {
-            let message: AssistChatMessage = .init(userResponse: prompt)
+        if let userResponse = userResponse {
+            let message: AssistChatMessage = .init(userResponse: userResponse)
             response = .init(message, chatHistory: history, isLoading: true)
         }
         responsePublisher.send(.success(response))
@@ -101,7 +106,12 @@ final class AssistChatInteractorLive: AssistChatInteractor {
                     self?.publish(action: .chat(prompt: nil, history: history))
                     return
                 }
-                let response: AssistChatResponse = .init(assistChatMessage, chatHistory: history)
+                let response: AssistChatResponse = .init(
+                    assistChatMessage,
+                    chatHistory: history,
+                    isLoading: assistChatMessage.role == .User
+                )
+                history = response.chatHistory
                 self?.responsePublisher.send(.success(response))
             }
         )
@@ -115,10 +125,6 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     func setInitialState() {
         goalCancellable?.cancel()
         self.assistDataEnvironment = self.assistDateEnvironmentOriginal.duplicate()
-        self.goals = AssistChatInteractorLive.initializeGoals(
-            assistDataEnvironment: assistDataEnvironment,
-            downloadFileInteractor: downloadFileInteractor
-        )
         publish(action: .begin)
     }
 
@@ -128,7 +134,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         downloadFileInteractor: DownloadFileInteractor?
     ) -> [any AssistGoal] {
         // order matters
-        var goals = [any AssistGoal]()
+        var goals: [any AssistGoal] = [AssistCourseTextSelectionGoal(environment: assistDataEnvironment)]
         if let downloadFileInteractor = downloadFileInteractor {
             goals.append(
                 AssistCourseDocumentGoal(
@@ -158,6 +164,17 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     }
 }
 
+extension AssistDataEnvironment {
+    func duplicate() -> AssistDataEnvironment {
+        AssistDataEnvironment(
+            courseID: courseID.value,
+            fileID: fileID.value,
+            pageURL: pageURL.value,
+            textSelection: textSelection.value
+        )
+    }
+}
+
 struct AssistChatInteractorPreview: AssistChatInteractor {
     var hasAssistChipOptions: Bool = true
 
@@ -165,16 +182,10 @@ struct AssistChatInteractorPreview: AssistChatInteractor {
     var listen: AnyPublisher<AssistChatInteractorLive.State, any Error> = Just(
         .success(
             AssistChatResponse(
-                AssistChatMessage(
-                    quizItems: [
-                        .init(
-                            question: "What is the capital of France?",
-                            answers: ["Paris", "London", "Berlin", "Madrid"],
-                            correctAnswerIndex: 0
-                        )
-                    ]
-                ),
-                chatHistory: []
+                .init(botResponse: "Hello from the bot!"),
+                chatHistory: [
+                    .init(userResponse: "Hello from the human.")
+                ]
             )
         )
     )

@@ -318,10 +318,12 @@ public enum HorizonRoutes {
                 let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
                 let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
                 let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
+                let textSelection = queryItems.first { $0.name == "textSelection" }?.value
                 return AssistAssembly.makeAssistChatView(
                     courseId: courseId,
                     pageUrl: pageUrl,
-                    fileId: fileId
+                    fileId: fileId,
+                    textSelection: textSelection
                 )
             },
             RouteHandler("/assistant/flashcards") { url, _, userInfo in
@@ -444,7 +446,7 @@ extension HorizonRoutes {
         )
         if let item = userInfo?["item"] as? HModuleItem,
            let type = item.type {
-            viewController.webView = HighlightWebView(
+            viewController.webView = HorizonWebView(
                 courseID: courseID,
                 pageURL: pageURL,
                 moduleType: type,

@@ -25,6 +25,16 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
 
     private let horizonTabBar = HorizonTabBar()
     private let router = AppEnvironment.shared.router
+    private var learnTabCourseID: String? {
+        var courseID: String?
+        if let selectedViewController = viewControllers?[selectedIndex],
+           let selectedNavigationController = selectedViewController as? UINavigationController,
+           let learnHostingController = selectedNavigationController.viewControllers.last as? CoreHostingController<LearnView>,
+           let courseDetailsViewModel = learnHostingController.rootView.content.viewModel.courseDetailsViewModel {
+           courseID = courseDetailsViewModel.course.id
+        }
+        return courseID
+    }
 
     // MARK: - Life Cycle
 
@@ -53,7 +63,7 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
     // MARK: - Functions
 
     private func presentChatBot() {
-        let vc = AssistAssembly.makeAssistChatView()
+        let vc = AssistAssembly.makeAssistChatView(courseId: learnTabCourseID)
         vc.modalPresentationStyle = .pageSheet
         router.show(vc, from: self, options: .modal(isDismissable: false))
     }

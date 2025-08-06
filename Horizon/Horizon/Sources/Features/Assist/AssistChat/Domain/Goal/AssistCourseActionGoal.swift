@@ -21,6 +21,9 @@ import Core
 import Foundation
 
 class AssistCourseActionGoal: AssistGoal {
+    // MARK: - Properties
+    private var suggestedResponses: [AssistChipOption]?
+
     // MARK: - Dependencies
     private let environment: AssistDataEnvironment
     private let pine: DomainService
@@ -105,18 +108,28 @@ class AssistCourseActionGoal: AssistGoal {
     }
 
     private func initialPrompt(history: [AssistChatMessage], courseID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        askARAGQuestion(question: .generateSuggestionsPrompt, courseID: courseID)
+        if suggestedResponses != nil {
+            return courseName.map { [weak self] courseName in
+                AssistChatMessage(
+                    botResponse: courseName.map { .initialPrompt(with: $0) } ?? .initialPrompt(),
+                    chipOptions: self?.suggestedResponses ?? []
+                )
+            }
+            .eraseToAnyPublisher()
+        }
+
+        return askARAGQuestion(question: .generateSuggestionsPrompt, courseID: courseID)
             .flatMap { [weak self] suggestionsJSON in
                 guard let self = self else {
                     return Just<AssistChatMessage?>(nil)
                         .setFailureType(to: Error.self)
                         .eraseToAnyPublisher()
                 }
-                let chipOptions = suggestionsJSON.map { self.parseChipOptions(from: $0) } ?? []
+                self.suggestedResponses = suggestionsJSON.map { self.parseChipOptions(from: $0) }
                 return courseName.map { courseName in
                     AssistChatMessage(
                         botResponse: courseName.map { .initialPrompt(with: $0) } ?? .initialPrompt(),
-                        chipOptions: chipOptions
+                        chipOptions: self.suggestedResponses ?? []
                     )
                 }
                 .eraseToAnyPublisher()

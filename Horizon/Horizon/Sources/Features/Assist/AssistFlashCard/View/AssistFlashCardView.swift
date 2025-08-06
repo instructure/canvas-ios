@@ -45,54 +45,47 @@ extension AssistFlashCardView {
     }
 
     private var content: some View {
-        VStack {
+        VStack(spacing: .zero) {
             headerView
-                .padding(.horizontal, .huiSpaces.space24)
-            if let errorMessage = viewModel.errorMessage {
-                Text(errorMessage)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                    .huiTypography(.p1)
-                    .foregroundStyle(Color.huiColors.text.surfaceColored)
-            } else {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack(spacing: HorizonUI.spaces.space16) {
-                        flashCardsView
+            VStack(spacing: .zero) {
+                if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                        .huiTypography(.p1)
+                        .foregroundStyle(Color.huiColors.text.surfaceColored)
+                } else {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        LazyHStack(spacing: HorizonUI.spaces.space16) {
+                            flashCardsView
+                        }
+                        .scrollTargetLayout()
                     }
-                    .scrollTargetLayout()
+                    .scrollTargetBehavior(.viewAligned)
+                    .contentMargins(.horizontal, HorizonUI.spaces.space32, for: .scrollContent)
+                    .scrollPosition(id: $viewModel.currentCardIndex)
                 }
-                .scrollTargetBehavior(.viewAligned)
-                .contentMargins(.horizontal, HorizonUI.spaces.space32, for: .scrollContent)
-                .scrollPosition(id: $viewModel.currentCardIndex)
             }
-        }
-        .animation(.smooth, value: viewModel.currentCardIndex)
-        .padding(.top, .huiSpaces.space16)
-        .safeAreaInset(edge: .bottom, spacing: .zero) {
-            VStack(spacing: .huiSpaces.space24) {
-                AssistFlashCardStepIndicatorView(viewModel: viewModel)
-                HorizonUI.PrimaryButton(
-                    String(localized: "Regenerate Flashcards", bundle: .horizon),
-                    type: .white) {
-                        viewModel.regenerate()
-                    }
+            .animation(.smooth, value: viewModel.currentCardIndex)
+            .padding(.top, .huiSpaces.space16)
+            .safeAreaInset(edge: .bottom, spacing: .zero) {
+                VStack(spacing: .huiSpaces.space24) {
+                    AssistFlashCardStepIndicatorView(viewModel: viewModel)
+                    HorizonUI.PrimaryButton(
+                        String(localized: "Regenerate Flashcards", bundle: .horizon),
+                        type: .white) {
+                            viewModel.regenerate()
+                        }
+                }
+                .padding([.bottom, .top], .huiSpaces.space16)
             }
-            .padding([.bottom, .top], .huiSpaces.space16)
+            .opacity(viewModel.isLoaderVisible ? 0 : 1)
+            .animation(.smooth, value: viewModel.isLoaderVisible)
         }
-        .opacity(viewModel.isLoaderVisible ? 0 : 1)
-        .animation(.smooth, value: viewModel.isLoaderVisible)
     }
 
     private var headerView: some View {
-        HStack {
-            HorizonUI.IconButton(Image.huiIcons.arrowBack, type: .white, isSmall: true) {
-                viewModel.pop(controller: viewController)
-            }
-            Spacer()
-            AssistTitle()
-            Spacer()
-            HorizonUI.IconButton(Image.huiIcons.close, type: .white, isSmall: true) {
-                viewModel.dismiss(controller: viewController)
-            }
+        AssistTitle(onBack: { viewModel.pop(controller: viewController) }) {
+            viewModel.dismiss(controller: viewController)
         }
     }
 

@@ -31,22 +31,9 @@ public struct NotebookHighlight: Codable, Equatable {
         self.range = range
     }
 
-    enum CodingKeys: String, CodingKey {
-        case selectedText, textPosition, range
-    }
-
     public struct TextPosition: Codable, Equatable {
         public let start: Int
         public let end: Int
-
-        public init(start: Int, end: Int) {
-            self.start = start
-            self.end = end
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case start, end
-        }
     }
 
     public struct Range: Codable, Equatable {
@@ -54,21 +41,5 @@ public struct NotebookHighlight: Codable, Equatable {
         public let startOffset: Int
         public let endContainer: String
         public let endOffset: Int
-
-        public init(
-            startContainer: String,
-            startOffset: Int,
-            endContainer: String,
-            endOffset: Int
-        ) {
-            self.startContainer = startContainer
-            self.startOffset = startOffset
-            self.endContainer = endContainer
-            self.endOffset = endOffset
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case startContainer, startOffset, endContainer, endOffset
-        }
     }
 }

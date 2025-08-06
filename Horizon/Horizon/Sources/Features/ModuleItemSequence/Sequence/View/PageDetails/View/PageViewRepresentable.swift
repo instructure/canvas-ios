@@ -46,7 +46,7 @@ struct PageViewRepresentable: UIViewControllerRepresentable {
             app: .student,
             env: .shared
         )
-        viewController.webView = HighlightWebView(
+        viewController.webView = HorizonWebView(
             courseID: self.context.id,
             pageURL: pageURL,
             moduleType: .page(pageURL),

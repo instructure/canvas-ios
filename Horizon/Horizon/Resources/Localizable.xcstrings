@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "\n\nHow can I help with this?" : {
+
+    },
     "-" : {
 
     },
@@ -118,6 +121,9 @@
     "Arizona (-07:00)" : {
 
     },
+    "Ask a question" : {
+
+    },
     "Assignment due dates" : {
 
     },
@@ -131,9 +137,6 @@
 
     },
     "Assignment Successfully Submitted!" : {
-
-    },
-    "Assist" : {
 
     },
     "Astana (+05:00/+05:00)" : {
@@ -364,9 +367,6 @@
     "Enable iOS Notifications" : {
 
     },
-    "Enter a Prompt" : {
-
-    },
     "Error" : {
 
     },
@@ -476,6 +476,9 @@
 
     },
     "I'm not able to rephrase this content" : {
+
+    },
+    "IgniteAI" : {
 
     },
     "Important" : {
@@ -1006,9 +1009,6 @@
 
     },
     "Total: %@" : {
-
-    },
-    "Try Again" : {
 
     },
     "Ulaanbaatar (+08:00/+08:00)" : {
