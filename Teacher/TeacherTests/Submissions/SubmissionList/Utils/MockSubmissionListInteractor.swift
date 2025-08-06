@@ -39,6 +39,10 @@ final class MockSubmissionListInteractor: SubmissionListInteractor {
         courseSubject.eraseToAnyPublisher()
     }
 
+    var groupsInAssignment: AnyPublisher<[GroupMemberships], Never> {
+        Just([]).eraseToAnyPublisher()
+    }
+
     var context: Context
     var assignmentID: String
 

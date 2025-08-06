@@ -62,9 +62,7 @@ class SubmissionListViewModel: ObservableObject {
             var curatedList: [Submission] = list
 
             if groupsMemberships.isNotEmpty {
-                
                 curatedList.forEach { submission in
-
                     if submission.groupID == nil,
                        let memberships = groupsMemberships.first(where: { $0.userIDs.contains(submission.userID) }) {
                         submission.fetchedGroup = FetchedGroup(
