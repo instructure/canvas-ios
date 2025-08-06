@@ -92,6 +92,7 @@ struct FileDetailsViewRepresentable: UIViewControllerRepresentable {
                 let height = scrollView.contentSize.height
                 if height > maxHeight {
                     maxHeight = height
+                    scrollView.isScrollEnabled = isScrollEnabled
                     maxScrollView = scrollView
                 }
             }
