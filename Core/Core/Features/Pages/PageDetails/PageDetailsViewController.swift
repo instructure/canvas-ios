@@ -30,7 +30,6 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
     var context = Context.currentUser
     var env: AppEnvironment = .shared
     var pageURL = ""
-    var canToggleTheme = true
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -66,7 +65,6 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
         pageURL: String,
         app: App,
         env: AppEnvironment,
-        canToggleTheme: Bool = true,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) -> PageDetailsViewController {
         let controller = loadFromStoryboard(bundle: .core)
@@ -74,7 +72,6 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
         controller.pageURL = pageURL
         controller.app = app
         controller.env = env
-        controller.canToggleTheme = canToggleTheme
         controller.offlineModeInteractor = offlineModeInteractor
 
         return controller
@@ -85,9 +82,7 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
         view.backgroundColor = .backgroundLightest
         setupTitleViewInNavbar(title: String(localized: "Page Details", bundle: .core))
         webViewContainer.addSubview(webView)
-        if canToggleTheme {
-            webView.pinWithThemeSwitchButton(inside: webViewContainer)
-        }
+        webView.pinWithThemeSwitchButton(inside: webViewContainer)
         webView.linkDelegate = self
         if context.contextType == .course {
             webView.addScript("window.ENV={COURSE:{id:\(CoreWebView.jsString(context.id))}}")

@@ -442,8 +442,7 @@ extension HorizonRoutes {
             context: context,
             pageURL: pageURL,
             app: .student,
-            env: .shared,
-            canToggleTheme: false
+            env: .shared
         )
         if let item = userInfo?["item"] as? HModuleItem,
            let type = item.type {

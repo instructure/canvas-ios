@@ -44,8 +44,7 @@ struct PageViewRepresentable: UIViewControllerRepresentable {
             context: self.context,
             pageURL: pageURL,
             app: .student,
-            env: .shared,
-            canToggleTheme: false
+            env: .shared
         )
         viewController.webView = HorizonWebView(
             courseID: self.context.id,
