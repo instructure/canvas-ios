@@ -180,6 +180,7 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
 
         let assignment = data.assignment
         let submission = data.submissions[index]
+        let gradingScheme = data.gradingScheme
 
         return SpeedGraderPageView(
             userIndexInSubmissionList: index,
@@ -187,6 +188,7 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
                 context: interactor.context,
                 assignment: assignment,
                 submission: submission,
+                gradingScheme: gradingScheme,
                 contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
                 gradeStatusInteractor: interactor.gradeStatusInteractor,
                 submissionWordCountInteractor: interactor.submissionWordCountInteractor,

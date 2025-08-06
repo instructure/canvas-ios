@@ -62,6 +62,7 @@ enum SpeedGraderAssembly {
         context: Context,
         assignment: Assignment,
         submission: Submission,
+        gradingScheme: GradingScheme?,
         contextColor: AnyPublisher<Color, Never>,
         gradeStatusInteractor: GradeStatusInteractor,
         submissionWordCountInteractor: SubmissionWordCountInteractor,
@@ -83,6 +84,7 @@ enum SpeedGraderAssembly {
         let gradeInteractor = GradeInteractorLive(
             assignment: assignment,
             submission: submission,
+            gradingScheme: gradingScheme,
             rubricGradingInteractor: rubricGradingInteractor,
             gradingStandardInteractor: gradingStandardInteractor,
             env: env
@@ -96,6 +98,7 @@ enum SpeedGraderAssembly {
             gradeViewModel: .init(
                 assignment: assignment,
                 submission: submission,
+                gradingScheme: gradingScheme,
                 gradeInteractor: gradeInteractor
             ),
             gradeStatusViewModel: .init(

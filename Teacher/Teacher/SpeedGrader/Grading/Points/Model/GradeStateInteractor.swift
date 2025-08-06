@@ -66,13 +66,13 @@ class GradeStateInteractorLive: GradeStateInteractor {
     }
 
     /// Returns a placeholder GradeState which sets only the properties available from `assignment`.
-    static func gradeState(usingOnly assignment: Assignment) -> GradeState {
+    static func gradeState(usingOnly assignment: Assignment, gradingScheme: GradingScheme? = nil) -> GradeState {
         let gradingType = assignment.gradingType
 
         return GradeState(
             gradingType: gradingType,
             pointsPossibleText: assignment.pointsPossibleText,
-            gradeOptions: gradeOptions(for: gradingType, gradingScheme: assignment.gradingScheme),
+            gradeOptions: gradeOptions(for: gradingType, gradingScheme: gradingScheme),
 
             isGraded: false,
             isExcused: false,

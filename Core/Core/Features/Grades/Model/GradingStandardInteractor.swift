@@ -63,8 +63,10 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
 
         return gradingStandardStore
             .getEntities()
-            .compactMap { $0.first }
-            .map { gradingStandard in
+            .map {
+                guard let gradingStandard = $0.first else {
+                    return nil
+                }
                 if gradingStandard.isPointsBased {
                     return PointsBasedGradingScheme(
                         entries: gradingStandard.gradingSchemeEntries,
@@ -76,7 +78,7 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
                     )
                 }
             }
-            .ignoreFailure()
+            .replaceError(with: nil)
             .eraseToAnyPublisher()
     }
 
@@ -92,8 +94,10 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
 
         return gradingStandardStore
             .getEntities()
-            .compactMap { $0.first }
-            .map { gradingStandard in
+            .map {
+                guard let gradingStandard = $0.first else {
+                    return nil
+                }
                 if gradingStandard.isPointsBased {
                     return PointsBasedGradingScheme(
                         entries: gradingStandard.gradingSchemeEntries,
@@ -105,7 +109,7 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
                     )
                 }
             }
-            .ignoreFailure()
+            .replaceError(with: nil)
             .eraseToAnyPublisher()
     }
 

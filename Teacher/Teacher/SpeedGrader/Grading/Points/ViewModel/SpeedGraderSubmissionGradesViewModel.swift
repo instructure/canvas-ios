@@ -69,6 +69,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     init(
         assignment: Assignment,
         submission: Submission,
+        gradingScheme: GradingScheme? = nil,
         gradeInteractor: GradeInteractor,
         mainScheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
@@ -82,7 +83,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
         // In that case we display a relevant empty panda.
         self.state = assignment.moderatedGrading ? .empty : .data
 
-        self.gradeState = GradeStateInteractorLive.gradeState(usingOnly: assignment)
+        self.gradeState = GradeStateInteractorLive.gradeState(usingOnly: assignment, gradingScheme: gradingScheme)
 
         self.shouldShowPointsInput = [.gpa_scale, .letter_grade].contains(assignment.gradingType)
 

@@ -40,6 +40,7 @@ class GradeInteractorLive: GradeInteractor {
     private var cancellables = Set<AnyCancellable>()
     private let assignment: Assignment
     private let submission: Submission
+    private let gradingScheme: GradingScheme?
     private let rubricGradingInteractor: RubricGradingInteractor
     private let gradeStateInteractor: GradeStateInteractor
     private let gradingStandardInteractor: GradingStandardInteractor
@@ -50,6 +51,7 @@ class GradeInteractorLive: GradeInteractor {
     init(
         assignment: Assignment,
         submission: Submission,
+        gradingScheme: GradingScheme? = nil,
         rubricGradingInteractor: RubricGradingInteractor,
         gradeStateInteractor: GradeStateInteractor = GradeStateInteractorLive(),
         gradingStandardInteractor: GradingStandardInteractor,
@@ -57,6 +59,7 @@ class GradeInteractorLive: GradeInteractor {
     ) {
         self.assignment = assignment
         self.submission = submission
+        self.gradingScheme = gradingScheme
         self.rubricGradingInteractor = rubricGradingInteractor
         self.gradeStateInteractor = gradeStateInteractor
         self.gradingStandardInteractor = gradingStandardInteractor
@@ -96,16 +99,17 @@ class GradeInteractorLive: GradeInteractor {
                 .compactMap { $0.first }
         }()
 
-        Publishers.CombineLatest4(
+        Publishers.CombineLatest3(
             submissionPublisher,
             rubricGradingInteractor.isRubricScoreAvailable,
-            rubricGradingInteractor.totalRubricScore,
-            gradingStandardInteractor.gradingScheme
+            rubricGradingInteractor.totalRubricScore
         )
         .sink(
             receiveCompletion: { _ in },
-            receiveValue: { [weak self] updatedSubmission, isRubricScoreAvailable, totalRubricScore, gradingScheme in
-                guard let self else { return }
+            receiveValue: { [weak self] updatedSubmission, isRubricScoreAvailable, totalRubricScore in
+                guard let self else {
+                    return
+                }
                 let newState = gradeStateInteractor.gradeState(
                     submission: updatedSubmission,
                     assignment: assignment,
