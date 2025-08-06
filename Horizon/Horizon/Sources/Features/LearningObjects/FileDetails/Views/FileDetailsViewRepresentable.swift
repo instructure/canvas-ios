@@ -83,14 +83,24 @@ struct FileDetailsViewRepresentable: UIViewControllerRepresentable {
     }
 
     private func findScrollView(in view: UIView) -> UIScrollView? {
-        if let scrollView = view as? UIScrollView {
-            return scrollView
-        }
-        for subview in view.subviews {
-            if let scrollView = findScrollView(in: subview) {
-                return scrollView
+        var maxScrollView: UIScrollView?
+        var maxHeight: CGFloat = 0
+        // We need to traverse all the scrollViews because files like PDFs may contain more than one,
+        // and we want to get the one with the maximum height.
+        func traverse(_ view: UIView) {
+            if let scrollView = view as? UIScrollView {
+                let height = scrollView.contentSize.height
+                if height > maxHeight {
+                    maxHeight = height
+                    maxScrollView = scrollView
+                }
+            }
+
+            for subview in view.subviews {
+                traverse(subview)
             }
         }
-        return nil
+        traverse(view)
+        return maxScrollView
     }
 }
