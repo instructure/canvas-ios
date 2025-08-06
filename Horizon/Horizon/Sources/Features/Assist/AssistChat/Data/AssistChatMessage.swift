@@ -124,9 +124,3 @@ extension AssistChatMessage {
         Just<AssistChatMessage?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
-
-extension AssistChatMessage {
-    static var nilResponse: AnyPublisher<AssistChatMessage?, any Error> {
-        Just<AssistChatMessage?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
-    }
-}
