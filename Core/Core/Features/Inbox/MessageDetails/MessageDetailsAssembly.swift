@@ -45,7 +45,7 @@ public enum MessageDetailsAssembly {
                                    messages: [ConversationMessage])
     -> MessageDetailsView {
         let interactor = MessageDetailsInteractorPreview(env: env, subject: subject, messages: messages)
-        let studentAccessInteractor = StudentAccessInteractorLive(env: env)
+        let studentAccessInteractor = StudentAccessInteractorPreview(env: env)
 
         let viewModel = MessageDetailsViewModel(
             interactor: interactor,

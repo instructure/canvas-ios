@@ -19,7 +19,7 @@
 import Combine
 
 protocol StudentAccessInteractor: AnyObject {
-  func isRestricted() -> AnyPublisher<Bool, Never>
+    func isRestricted() -> AnyPublisher<Bool, Never>
 }
 
 final class StudentAccessInteractorLive: StudentAccessInteractor {
@@ -37,9 +37,23 @@ final class StudentAccessInteractorLive: StudentAccessInteractor {
     // MARK: - Output
     public func isRestricted() -> AnyPublisher<Bool, Never> {
         featureFlagsStore
-            .getEntities(keepObservingDatabaseChanges: true)
+            .getEntities()
             .map { $0.isFeatureEnabled(.restrict_student_access) }
             .replaceError(with: false)
             .eraseToAnyPublisher()
     }
 }
+
+#if DEBUG
+
+class StudentAccessInteractorPreview: StudentAccessInteractor {
+    // MARK: - Init
+    public init(env: AppEnvironment) { }
+
+    // MARK: - Output
+    public func isRestricted() -> AnyPublisher<Bool, Never> {
+        Just(false).eraseToAnyPublisher()
+    }
+}
+
+#endif

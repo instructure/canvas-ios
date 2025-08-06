@@ -52,17 +52,17 @@ class MessageDetailsViewModel: ObservableObject {
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: MessageDetailsInteractor
+    private let studentAccessInteractor: StudentAccessInteractor
     private let env: AppEnvironment
     private let myID: String
     private let allowArchive: Bool
-    private let studentAccessInteractor: StudentAccessInteractor
 
     public init(interactor: MessageDetailsInteractor, studentAccessInteractor: StudentAccessInteractor, myID: String, allowArchive: Bool, env: AppEnvironment) {
         self.interactor = interactor
+        self.studentAccessInteractor = studentAccessInteractor
         self.myID = myID
         self.allowArchive = allowArchive
         self.env = env
-        self.studentAccessInteractor = studentAccessInteractor
 
         setupOutputBindings()
         setupInputBindings()
@@ -71,16 +71,16 @@ class MessageDetailsViewModel: ObservableObject {
 
     public func conversationMoreTapped(viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
-       if isReplyButtonVisible {
-           addReplyAction(sheet) { [weak self] in
-               self?.replyTapped(message: nil, viewController: viewController)
-           }
+        if isReplyButtonVisible {
+            addReplyAction(sheet) { [weak self] in
+                self?.replyTapped(message: nil, viewController: viewController)
+            }
 
-           if !isStudentAccessRestricted {
-             addReplyAllAction(sheet) { [weak self] in
-               self?.replyAllTapped(message: nil, viewController: viewController)
-             }
-           }
+            if !isStudentAccessRestricted {
+                addReplyAllAction(sheet) { [weak self] in
+                    self?.replyAllTapped(message: nil, viewController: viewController)
+                }
+            }
         }
 
         sheet.addAction(
@@ -150,11 +150,11 @@ class MessageDetailsViewModel: ObservableObject {
                 }
             }
             if !isStudentAccessRestricted {
-              addReplyAllAction(sheet) { [weak self] in
-                if let message {
-                  self?.replyAllTapped(message: message, viewController: viewController)
+                addReplyAllAction(sheet) { [weak self] in
+                    if let message {
+                        self?.replyAllTapped(message: message, viewController: viewController)
+                    }
                 }
-              }
             }
         }
 
@@ -234,7 +234,7 @@ class MessageDetailsViewModel: ObservableObject {
 
     private func setupOutputBindings() {
         interactor.state
-                .assign(to: &$state)
+            .assign(to: &$state)
         interactor.subject
             .assign(to: &$subject)
 

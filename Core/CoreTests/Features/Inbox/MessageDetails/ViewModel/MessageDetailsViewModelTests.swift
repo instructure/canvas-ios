@@ -18,17 +18,18 @@
 
 import Combine
 @testable import Core
+import TestsFoundation
 import XCTest
 
 class MessageDetailsViewModelTests: CoreTestCase {
     private var mockInteractor: MessageDetailsInteractorMock!
-    private var mockStudentAccessInteractor: MockStudentAccessInteractor!
+    private var mockStudentAccessInteractor: StudentAccessInteractorMock!
     var testee: MessageDetailsViewModel!
 
     override func setUp() {
         super.setUp()
         mockInteractor = MessageDetailsInteractorMock()
-        mockStudentAccessInteractor = MockStudentAccessInteractor(restricted: false)
+        mockStudentAccessInteractor = StudentAccessInteractorMock(restricted: false)
         testee = MessageDetailsViewModel(
             interactor: mockInteractor,
             studentAccessInteractor: mockStudentAccessInteractor,
@@ -205,7 +206,7 @@ class MessageDetailsViewModelTests: CoreTestCase {
     func test_messageMoreTapped_whenRestrictStudentAccessEnabled_replyAllNotShown() {
         // Given
         mockInteractor = MessageDetailsInteractorMock()
-        mockStudentAccessInteractor = MockStudentAccessInteractor(restricted: true)
+        mockStudentAccessInteractor = StudentAccessInteractorMock(restricted: true)
         testee = MessageDetailsViewModel(
             interactor: mockInteractor,
             studentAccessInteractor: mockStudentAccessInteractor,
@@ -214,13 +215,9 @@ class MessageDetailsViewModelTests: CoreTestCase {
             env: environment
         )
 
-        let expectation = self.expectation(description: "Wait for restriction to be applied")
-        // Delay 0.1s to allow Combine pipeline to propagate
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            expectation.fulfill()
+        waitUntil {
+            testee.isStudentAccessRestricted == true
         }
-
-        waitForExpectations(timeout: 1)
 
         let sourceView = UIViewController()
 
@@ -234,6 +231,36 @@ class MessageDetailsViewModelTests: CoreTestCase {
         let sheet = router.presented as? BottomSheetPickerViewController
         let actionTitles = sheet?.actions.map { $0.title } ?? []
         XCTAssertFalse(actionTitles.contains("Reply All"))
+    }
+
+    func test_messageMoreTapped_whenRestrictStudentAccessDisabled_replyAllShown() {
+        // Given
+        mockInteractor = MessageDetailsInteractorMock()
+        mockStudentAccessInteractor = StudentAccessInteractorMock(restricted: false)
+        testee = MessageDetailsViewModel(
+            interactor: mockInteractor,
+            studentAccessInteractor: mockStudentAccessInteractor,
+            myID: "1",
+            allowArchive: true,
+            env: environment
+        )
+
+        waitUntil {
+            testee.isStudentAccessRestricted == false
+        }
+
+        let sourceView = UIViewController()
+
+        // When
+        testee.messageMoreTapped(
+            message: ConversationMessage.make(),
+            viewController: WeakViewController(sourceView)
+        )
+
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let actionTitles = sheet?.actions.map { $0.title } ?? []
+        XCTAssertTrue(actionTitles.contains("Reply All"))
     }
 
     func test_messageMoreTapped_forward_presentComposeMessageView() {
@@ -441,7 +468,7 @@ private class MessageDetailsInteractorMock: MessageDetailsInteractor {
     }
 }
 
-private class MockStudentAccessInteractor: StudentAccessInteractor {
+private class StudentAccessInteractorMock: StudentAccessInteractor {
     private let restricted: Bool
 
     init(restricted: Bool) {
