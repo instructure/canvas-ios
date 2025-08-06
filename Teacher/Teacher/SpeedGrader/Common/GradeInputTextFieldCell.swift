@@ -72,6 +72,11 @@ struct GradeInputTextFieldCell: View {
 
             textFieldViews
                 .swapWithSpinner(onLoading: isSaving, alignment: .trailing)
+                .accessibilityLabel(
+                    isSaving.value
+                        ? [accessibilityLabel, String(localized: "Saving", bundle: .teacher)].accessibilityJoined()
+                        : nil
+                )
         }
         .paddingStyle(set: .standardCell)
         .contentShape(Rectangle())
