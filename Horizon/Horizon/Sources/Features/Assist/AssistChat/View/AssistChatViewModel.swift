@@ -315,9 +315,9 @@ private extension AssistChatMessage {
 private extension AssistChatInteractor.AssetType {
     var assetType: GetModuleItemSequenceRequest.AssetType? {
         switch self {
-        case .attachment:
+        case .File:
             return .file
-        case .wiki_page:
+        case .Page:
             return .page
         default:
             return nil

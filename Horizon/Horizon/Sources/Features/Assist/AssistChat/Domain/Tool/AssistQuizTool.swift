@@ -25,14 +25,15 @@ struct AssistQuizTool: AssistTool {
 
     // MARK: - Properties
     // swiftlint:disable line_length
-    var description: String {
+    let prompt =
         """
             You are a teaching assistant creating quiz questions based on the provided content. Generate 15 multiple-choice questions with 4 options each, where one option is correct. Each question should be concise and clear, and the correct answer index is zero based. Ignore any HTML. Return the result in JSON format with no additional information. Here is the JSON format to use: [{question: String, options: [String], result: Int}]}]. For instance, if the question is, "What is the capital of France?", the JSON would look like this: [{question: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], result: 0}]. Make sure the JSON is valid.
         """
-    }
     // swiftlint:enable line_length
 
-    var name: String { "Quiz me on this material" }
+    let name = String(localized: "Quiz me on this material", bundle: .horizon)
+
+    let description = "Generate quiz questions based on the provided content."
 
     var isAvailable: Bool {
         state.courseID.value != nil &&
@@ -95,7 +96,7 @@ struct AssistQuizTool: AssistTool {
                 question: description,
                 courseID: courseID,
                 sourceID: fileID,
-                sourceType: AssistChatInteractor.AssetType.wiki_page.rawValue
+                sourceType: .File
             )
             .tryMap { (response: String?) in
                 guard let response = response,

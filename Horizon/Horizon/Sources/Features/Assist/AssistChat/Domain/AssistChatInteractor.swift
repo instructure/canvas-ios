@@ -32,9 +32,9 @@ class AssistChatInteractor {
     }
 
     enum AssetType: String, Codable {
-        case attachment
-        case unknown
-        case wiki_page
+        case File
+        case Unknown
+        case Page
     }
 }
 
@@ -65,9 +65,9 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         )
         self.tools = [
             AssistSummarizeTool(state: state),
-            AssistAnswerPromptTool(prompt: .KeyTakeaways, name: "Give me key takeaways", state: state),
-            AssistAnswerPromptTool(prompt: .RephraseContent, name: "Rephrase this material", state: state),
-            AssistAnswerPromptTool(prompt: .TellMeMore, name: "Tell me more about this topic", state: state),
+            AssistAnswerPromptTool(promptType: .KeyTakeaways, state: state),
+            AssistAnswerPromptTool(promptType: .RephraseContent, state: state),
+            AssistAnswerPromptTool(promptType: .TellMeMore, state: state),
             AssistQuizTool(state: state),
             AssistFlashCardsTool(state: state),
             AssistCourseActionTool(state: state),

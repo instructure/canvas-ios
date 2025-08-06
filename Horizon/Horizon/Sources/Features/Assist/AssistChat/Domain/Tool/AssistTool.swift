@@ -33,4 +33,7 @@ protocol AssistTool {
 
     /// Whether or not this goal should be selected in this list of goals
     var isAvailable: Bool { get }
+
+    /// The prompt that will be used to initiate the tool's execution.
+    var prompt: String { get }
 }

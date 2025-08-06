@@ -26,9 +26,11 @@ class AssistSelectCourseTool: AssistTool {
     private let pine: DomainService
     private let userID: String
 
-    var description: String = ""
+    let description = ""
 
-    var name: String { "Course Selection" }
+    let name = String(localized: "Course Selection", bundle: .horizon)
+
+    let prompt = ""
 
     init(
         state: AssistState,

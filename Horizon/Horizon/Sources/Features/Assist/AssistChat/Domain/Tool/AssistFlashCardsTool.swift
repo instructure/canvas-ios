@@ -31,8 +31,10 @@ struct AssistFlashCardsTool: AssistTool {
         self.pine = pine
     }
 
+    let description: String = "Generate flash cards for the provided content."
+
     // swiftlint:disable line_length
-    var description: String {
+    let prompt: String =
         """
             We are generating flash cards. generate exactly 20 questions and answers based on the provided content for the front and back of flashcards, respectively. If the content contains only an iframe dont try to generate an answer. Flashcards are best suited for definitions and terminology, key concepts and theories, language learning, historical events and dates, and other content that might benefit from active recall and repetition. Prioritize this type of content within the flashcards.
                         Return the flashcards as a valid JSON array in the following format:
@@ -44,10 +46,10 @@ struct AssistFlashCardsTool: AssistTool {
                         ]
             without any further description or text. Please keep the questions and answers concise (under 35 words). Each question and answer will be shown on a flashcard, so no need to repeat the question in the answer. Make sure the JSON is valid.
         """
-    }
+
     // swiftlint:enable line_length
 
-    var name: String { "Flash Cards" }
+    let name = String(localized: "Flash Cards", bundle: .horizon)
 
     var isAvailable: Bool {
         state.courseID.value != nil && (
@@ -66,7 +68,7 @@ struct AssistFlashCardsTool: AssistTool {
             return generateFlashCards(
                 courseID: courseID,
                 sourceID: sourceID,
-                sourceType: .attachment
+                sourceType: .File
             )
         }
         if let pageURL = state.pageURL.value {
@@ -74,7 +76,7 @@ struct AssistFlashCardsTool: AssistTool {
                 .getEntities()
                 .map { $0.first?.id }
                 .flatMap { pageID in
-                    self.generateFlashCards(courseID: courseID, sourceID: pageID, sourceType: .wiki_page)
+                    self.generateFlashCards(courseID: courseID, sourceID: pageID, sourceType: .Page)
                 }
                 .eraseToAnyPublisher()
         }
@@ -90,7 +92,7 @@ struct AssistFlashCardsTool: AssistTool {
             question: description,
             courseID: courseID,
             sourceID: sourceID,
-            sourceType: sourceType.rawValue
+            sourceType: sourceType.learningObjectFilterType
         )
     }
 }

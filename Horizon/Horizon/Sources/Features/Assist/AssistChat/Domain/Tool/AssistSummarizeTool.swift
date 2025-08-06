@@ -23,12 +23,10 @@ import Foundation
 
 struct AssistSummarizeTool: AssistTool {
 
-    var name: String { "Summarize this material" }
+    var name: String { String(localized: "Summarize this material", bundle: .horizon) }
 
     // MARK: - Properties
-    var description: String {
-        "Summarize the contents of this material for me."
-    }
+    var description: String { "Summarize this page or file contents" }
 
     var isAvailable: Bool {
         state.courseID.value != nil &&
@@ -37,6 +35,10 @@ struct AssistSummarizeTool: AssistTool {
                 state.pageURL.value != nil ||
                 state.textSelection.value != nil
             )
+    }
+
+    var prompt: String {
+        "Summarize this page or file contents"
     }
     private let unableToSummarize = String(localized: "Sorry, I can't summarize that content right now. Please try again later", bundle: .horizon)
 
@@ -82,13 +84,13 @@ struct AssistSummarizeTool: AssistTool {
             .getEntities()
             .map { $0.first?.id }
             .flatMap { pageID in
-                self.summarize(from: courseID, sourceID: pageID, sourceType: .wiki_page)
+                self.summarize(from: courseID, sourceID: pageID, sourceType: .Page)
             }
             .eraseToAnyPublisher()
     }
 
     private func summarize(from courseID: String, fileID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        summarize(from: courseID, sourceID: fileID, sourceType: .attachment)
+        summarize(from: courseID, sourceID: fileID, sourceType: .File)
     }
 
     private func summarize(from courseID: String, sourceID: String?, sourceType: AssistChatInteractor.AssetType) -> AnyPublisher<AssistChatMessage?, any Error> {
@@ -96,7 +98,7 @@ struct AssistSummarizeTool: AssistTool {
             question: description,
             courseID: courseID,
             sourceID: sourceID,
-            sourceType: sourceType.rawValue
+            sourceType: sourceType.learningObjectFilterType
         )
     }
 

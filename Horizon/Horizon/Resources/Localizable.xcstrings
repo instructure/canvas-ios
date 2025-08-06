@@ -292,6 +292,9 @@
     "Copenhagen (+01:00/+02:00)" : {
 
     },
+    "Course Selection" : {
+
+    },
     "Create message" : {
 
     },
@@ -391,6 +394,9 @@
     "Filter by person" : {
 
     },
+    "Flash Cards" : {
+
+    },
     "Fortaleza (-03:00/-03:00)" : {
 
     },
@@ -410,6 +416,9 @@
 
     },
     "Get a notification anytime you receive a course announcement or a new message." : {
+
+    },
+    "Give me key takeaways" : {
 
     },
     "Greenland (-02:00/-01:00)" : {
@@ -759,6 +768,9 @@
     "Quito (-05:00/-05:00)" : {
 
     },
+    "Quiz me on this material" : {
+
+    },
     "Rangoon (+06:30/+06:30)" : {
 
     },
@@ -769,6 +781,9 @@
 
     },
     "Regenerate Flashcards" : {
+
+    },
+    "Rephrase this material" : {
 
     },
     "Reply" : {
@@ -909,6 +924,9 @@
     "Submitted" : {
 
     },
+    "Summarize this material" : {
+
+    },
     "Support" : {
 
     },
@@ -934,6 +952,9 @@
 
     },
     "Tehran (+03:30/+03:30)" : {
+
+    },
+    "Tell me more about this topic" : {
 
     },
     "Text" : {

@@ -351,9 +351,9 @@ private extension ModuleItemType {
     var interactorAssetType: AssistChatInteractor.AssetType? {
         switch self {
         case .file:
-            return .attachment
+            return .File
         case .page:
-            return .wiki_page
+            return .Page
         default:
             return nil
         }

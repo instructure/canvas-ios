@@ -24,7 +24,7 @@ extension DomainService {
         question: String,
         courseID: String,
         sourceID: String? = nil,
-        sourceType: String? = nil
+        sourceType: PineQueryMutation.LearningObjectFilterType? = nil
     ) -> AnyPublisher<String?, any Error> {
         askARAGQuestion(
             messages: [.init(text: question, role: .User)],
@@ -40,7 +40,7 @@ extension DomainService {
         messages: [DomainServiceConversationMessage],
         courseID: String,
         sourceID: String? = nil,
-        sourceType: String? = nil
+        sourceType: PineQueryMutation.LearningObjectFilterType? = nil
     ) -> AnyPublisher<PineQueryMutation.RagResponse?, any Error> {
         api().flatMap { pineAPI in
             pineAPI.makeRequest(
@@ -52,7 +52,7 @@ extension DomainService {
                 )
             )
             .compactMap { (ragData, _) in
-                ragData.data.query
+                ragData.data.courseQuery
             }
             .eraseToAnyPublisher()
         }
@@ -64,7 +64,7 @@ extension DomainService {
         history: [AssistChatMessage] = [],
         courseID: String,
         sourceID: String? = nil,
-        sourceType: String? = nil
+        sourceType: PineQueryMutation.LearningObjectFilterType? = nil
     ) -> AnyPublisher<AssistChatMessage?, any Error> {
         let newHistory = [AssistChatMessage(userResponse: question)] + history
         return askARAGQuestion(
@@ -108,7 +108,7 @@ extension PineQueryMutation.RagCitation {
             title: title,
             courseID: metadata["courseId"],
             sourceID: sourceID,
-            sourceType: AssistChatInteractor.AssetType(rawValue: sourceType) ?? .unknown
+            sourceType: AssistChatInteractor.AssetType(rawValue: sourceType)
         )
     }
 }

@@ -24,9 +24,9 @@ import Foundation
 struct AssistAnswerPromptTool: AssistTool {
 
     // MARK: - Properties
-    let description: String
+    var description: String { promptType.description }
 
-    let name: String
+    var name: String { promptType.name }
 
     var isAvailable: Bool {
         state.courseID.value != nil &&
@@ -36,23 +36,25 @@ struct AssistAnswerPromptTool: AssistTool {
                 state.textSelection.value != nil
             )
     }
+
+    var prompt: String { promptType.prompt }
+
     private let unableToAnswer = String(localized: "Sorry, I can't answer that question right now. Please try again later", bundle: .horizon)
 
     // MARK: - Dependencies
     private let cedar: DomainService
     private let pine: DomainService
+    private let promptType: PromptType
     private let state: AssistState
 
     // MARK: - Init
     init(
-        prompt: Prompt,
-        name: String,
+        promptType: PromptType,
         state: AssistState,
         pine: DomainService = DomainService(.pine),
         cedar: DomainService = DomainService(.cedar)
     ) {
-        self.description = prompt.rawValue
-        self.name = name
+        self.promptType = promptType
         self.state = state
         self.pine = pine
         self.cedar = cedar
@@ -84,13 +86,13 @@ struct AssistAnswerPromptTool: AssistTool {
             .getEntities()
             .map { $0.first?.id }
             .flatMap { pageID in
-                self.answer(from: courseID, sourceID: pageID, sourceType: .wiki_page)
+                self.answer(from: courseID, sourceID: pageID, sourceType: .Page)
             }
             .eraseToAnyPublisher()
     }
 
     private func answer(from courseID: String, fileID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        answer(from: courseID, sourceID: fileID, sourceType: .attachment)
+        answer(from: courseID, sourceID: fileID, sourceType: .File)
     }
 
     private func answer(from courseID: String, sourceID: String?, sourceType: AssistChatInteractor.AssetType) -> AnyPublisher<AssistChatMessage?, any Error> {
@@ -98,7 +100,7 @@ struct AssistAnswerPromptTool: AssistTool {
             question: description,
             courseID: courseID,
             sourceID: sourceID,
-            sourceType: sourceType.rawValue
+            sourceType: sourceType.learningObjectFilterType
         )
     }
 
@@ -116,16 +118,37 @@ struct AssistAnswerPromptTool: AssistTool {
     }
 
     // swiftlint:disable line_length
-    enum Prompt: String {
-        case KeyTakeaways =
-            "You are a teaching assistant creating key takeaways for a student. Give me 3 key takeaways based on the included document contents. Ignore any HTML. Return the result in paragraph form. Each key takeaway is a single sentence bulletpoint. You should not refer to the format of the content, but rather the content itself."
-
-        case RephraseContent =
-            "You are a teaching assistant rephrasing content. Rephrase the provided content in a more concise and clear manner. Ignore any HTML. Return the result in paragraph form."
-
-        case TellMeMore =
-            "You are a teaching assistant providing more information about the content. Give me more details based on the included document contents. Ignore any HTML. Return the result in paragraph form."
+    enum PromptType: String {
+        case KeyTakeaways
+        case RephraseContent
+        case TellMeMore
     }
     // swiftlint:enable line_length
+}
 
+private extension AssistAnswerPromptTool.PromptType {
+    var name: String {
+        [
+            .KeyTakeaways: String(localized: "Give me key takeaways", bundle: .horizon),
+            .RephraseContent: String(localized: "Rephrase this material", bundle: .horizon),
+            .TellMeMore: String(localized: "Tell me more about this topic", bundle: .horizon)
+        ][self] ?? ""
+    }
+    var description: String {
+        [
+            .KeyTakeaways: String(localized: "Give me key takeaways", bundle: .horizon),
+            .RephraseContent: String(localized: "Rephrase this material", bundle: .horizon),
+            .TellMeMore: String(localized: "Tell me more about this topic", bundle: .horizon)
+        ][self] ?? ""
+    }
+    var prompt: String {
+        [
+            .KeyTakeaways:
+            "You are a teaching assistant creating key takeaways for a student. Give me a bulleted list of 3 key takeaways based on the included document contents. Ignore any HTML. Return the result as a bulleted list. Each key takeaway is a single sentence bulletpoint. You should not refer to the format of the content, but rather the content itself.",
+            .RephraseContent:
+            "You are a teaching assistant rephrasing content. Rephrase the provided content in a more concise and clear manner. Ignore any HTML. Return the result in paragraph form.",
+            .TellMeMore:
+            "You are a teaching assistant providing more information about the content. Give me more details based on the included document contents. Ignore any HTML. Return the result in paragraph form."
+        ][self] ?? ""
+    }
 }

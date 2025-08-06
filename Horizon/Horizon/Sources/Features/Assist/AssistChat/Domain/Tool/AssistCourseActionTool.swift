@@ -30,7 +30,9 @@ class AssistCourseActionTool: AssistTool {
 
     var description: String = ""
 
-    var name: String { "Ask a question" }
+    let name = String(localized: "Ask a question", bundle: .horizon)
+
+    let prompt = "Ask a question about the course content"
 
     // MARK: - Init
     init(
