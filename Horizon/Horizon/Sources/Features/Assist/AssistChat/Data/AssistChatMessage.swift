@@ -44,7 +44,7 @@ struct AssistChatMessage {
     let citations: [Citation]
 
     init(
-        botResponse: String,
+        botResponse: String? = nil,
         chipOptions: [AssistChipOption] = [],
         citations: [Citation] = []
     ) {

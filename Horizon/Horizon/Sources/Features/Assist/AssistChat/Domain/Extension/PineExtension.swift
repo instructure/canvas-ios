@@ -52,7 +52,7 @@ extension DomainService {
                 )
             )
             .compactMap { (ragData, _) in
-                ragData.data.courseQuery
+                ragData.data.query
             }
             .eraseToAnyPublisher()
         }

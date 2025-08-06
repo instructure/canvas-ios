@@ -23,9 +23,11 @@ import Foundation
 
 struct AssistSummarizeTool: AssistTool {
 
+    var name: String { "Summarize this material" }
+
     // MARK: - Properties
     var description: String {
-        "You are a teaching assistant summarizing content. Give me a summary based on the included document contents. Ignore any HTML. Return the result in paragraph form."
+        "Summarize the contents of this material for me."
     }
 
     var isAvailable: Bool {
@@ -76,14 +78,20 @@ struct AssistSummarizeTool: AssistTool {
 
     // MARK: - Private Methods
     private func summarize(from courseID: String, pageURL: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        summarize(from: courseID, sourceID: pageURL, sourceType: .wiki_page)
+        ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
+            .getEntities()
+            .map { $0.first?.id }
+            .flatMap { pageID in
+                self.summarize(from: courseID, sourceID: pageID, sourceType: .wiki_page)
+            }
+            .eraseToAnyPublisher()
     }
 
     private func summarize(from courseID: String, fileID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
         summarize(from: courseID, sourceID: fileID, sourceType: .attachment)
     }
 
-    private func summarize(from courseID: String, sourceID: String, sourceType: AssistChatInteractor.AssetType) -> AnyPublisher<AssistChatMessage?, any Error> {
+    private func summarize(from courseID: String, sourceID: String?, sourceType: AssistChatInteractor.AssetType) -> AnyPublisher<AssistChatMessage?, any Error> {
         pine.askARAGQuestion(
             question: description,
             courseID: courseID,

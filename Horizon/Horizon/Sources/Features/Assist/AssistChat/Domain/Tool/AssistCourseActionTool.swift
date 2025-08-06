@@ -21,12 +21,16 @@ import Core
 import Foundation
 
 class AssistCourseActionTool: AssistTool {
+    private var suggestions: [AssistChipOption]?
+
     // MARK: - Dependencies
     private let state: AssistState
     private let pine: DomainService
     private var userID: String
 
     var description: String = ""
+
+    var name: String { "Ask a question" }
 
     // MARK: - Init
     init(
@@ -53,9 +57,11 @@ class AssistCourseActionTool: AssistTool {
         guard let response = response, response.isNotEmpty else {
             return initialPrompt(history: history, courseID: courseID)
         }
-        return Just(nil)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        return pine.askARAGQuestion(
+            question: response,
+            history: history,
+            courseID: courseID
+        )
     }
 
     // MARK: - Private Methods
@@ -71,18 +77,27 @@ class AssistCourseActionTool: AssistTool {
     }
 
     private func initialPrompt(history: [AssistChatMessage], courseID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        pine.askARAGSingleQuestion(question: .generateSuggestionsPrompt, courseID: courseID)
+        if let suggestions {
+            return courseName.map { courseName in
+                AssistChatMessage(
+                    botResponse: courseName.map { .initialPrompt(with: $0) } ?? .initialPrompt(),
+                    chipOptions: suggestions
+                )
+            }
+            .eraseToAnyPublisher()
+        }
+        return pine.askARAGSingleQuestion(question: .generateSuggestionsPrompt, courseID: courseID)
             .flatMap { [weak self] suggestionsJSON in
                 guard let self = self else {
                     return Just<AssistChatMessage?>(nil)
                         .setFailureType(to: Error.self)
                         .eraseToAnyPublisher()
                 }
-                let chipOptions = suggestionsJSON.map { self.parseChipOptions(from: $0) } ?? []
+                self.suggestions = suggestionsJSON.map { self.parseChipOptions(from: $0) } ?? []
                 return courseName.map { courseName in
                     AssistChatMessage(
                         botResponse: courseName.map { .initialPrompt(with: $0) } ?? .initialPrompt(),
-                        chipOptions: chipOptions
+                        chipOptions: self.suggestions ?? []
                     )
                 }
                 .eraseToAnyPublisher()

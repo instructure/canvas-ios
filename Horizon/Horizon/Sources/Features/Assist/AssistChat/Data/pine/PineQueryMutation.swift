@@ -42,15 +42,19 @@ struct PineQueryMutation: APIGraphQLRequestable {
         self.variables = Variables(
             input: RagQueryInput(
                 messages: messages,
-                courseId: courseID
+                metadata: [
+                    "courseId": courseID,
+                    "sourceId": sourceID,
+                    "sourceType": sourceType
+                ].compactMapValues { $0 }
             )
         )
     }
 
     public static let operationName: String = "CourseQuery"
     public static var query: String = """
-        mutation \(operationName)($input: CourseRagQueryInput!) {
-            courseQuery(input: $input) {
+        mutation \(operationName)($input: RagQueryInput!) {
+            query(input: $input) {
                 response
                 citations {
                     sourceType
@@ -69,7 +73,8 @@ struct PineQueryMutation: APIGraphQLRequestable {
 
     struct RagQueryInput: Codable, Equatable {
         let messages: [DomainServiceConversationMessage]
-        let courseId: String
+        let metadata: [String: String]
+        let source = "canvas"
     }
 
     struct RagData: Codable {
@@ -77,7 +82,7 @@ struct PineQueryMutation: APIGraphQLRequestable {
     }
 
     struct RagQuery: Codable {
-        let courseQuery: RagResponse
+        let query: RagResponse
     }
 
     struct RagResponse: Codable {

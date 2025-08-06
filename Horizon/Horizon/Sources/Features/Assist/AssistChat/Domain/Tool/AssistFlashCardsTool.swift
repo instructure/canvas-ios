@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Core
 
 struct AssistFlashCardsTool: AssistTool {
 
@@ -33,7 +34,7 @@ struct AssistFlashCardsTool: AssistTool {
     // swiftlint:disable line_length
     var description: String {
         """
-            generate exactly 20 questions and answers based on the provided content for the front and back of flashcards, respectively. If the content contains only an iframe dont try to generate an answer. Flashcards are best suited for definitions and terminology, key concepts and theories, language learning, historical events and dates, and other content that might benefit from active recall and repetition. Prioritize this type of content within the flashcards.
+            We are generating flash cards. generate exactly 20 questions and answers based on the provided content for the front and back of flashcards, respectively. If the content contains only an iframe dont try to generate an answer. Flashcards are best suited for definitions and terminology, key concepts and theories, language learning, historical events and dates, and other content that might benefit from active recall and repetition. Prioritize this type of content within the flashcards.
                         Return the flashcards as a valid JSON array in the following format:
                         [
                           {
@@ -46,6 +47,8 @@ struct AssistFlashCardsTool: AssistTool {
     }
     // swiftlint:enable line_length
 
+    var name: String { "Flash Cards" }
+
     var isAvailable: Bool {
         state.courseID.value != nil && (
             state.fileID.value != nil ||
@@ -54,14 +57,36 @@ struct AssistFlashCardsTool: AssistTool {
     }
 
     func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
-        let sourceType: AssistChatInteractor.AssetType = state.fileID.value != nil ? .attachment : .wiki_page
-        guard let courseID = state.courseID.value,
-              let sourceID = state.fileID.value ?? state.pageURL.value else {
+        guard let courseID = state.courseID.value else {
             return Just<AssistChatMessage?>(nil)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
-        return pine.askARAGQuestion(
+        if let sourceID = state.fileID.value {
+            return generateFlashCards(
+                courseID: courseID,
+                sourceID: sourceID,
+                sourceType: .attachment
+            )
+        }
+        if let pageURL = state.pageURL.value {
+            return ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
+                .getEntities()
+                .map { $0.first?.id }
+                .flatMap { pageID in
+                    self.generateFlashCards(courseID: courseID, sourceID: pageID, sourceType: .wiki_page)
+                }
+                .eraseToAnyPublisher()
+        }
+        return AssistChatMessage.nilResponse
+    }
+
+    private func generateFlashCards(
+        courseID: String,
+        sourceID: String?,
+        sourceType: AssistChatInteractor.AssetType
+    ) -> AnyPublisher<AssistChatMessage?, any Error> {
+        pine.askARAGQuestion(
             question: description,
             courseID: courseID,
             sourceID: sourceID,

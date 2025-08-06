@@ -26,6 +26,8 @@ struct AssistAnswerPromptTool: AssistTool {
     // MARK: - Properties
     let description: String
 
+    let name: String
+
     var isAvailable: Bool {
         state.courseID.value != nil &&
             (
@@ -44,11 +46,13 @@ struct AssistAnswerPromptTool: AssistTool {
     // MARK: - Init
     init(
         prompt: Prompt,
+        name: String,
         state: AssistState,
         pine: DomainService = DomainService(.pine),
         cedar: DomainService = DomainService(.cedar)
     ) {
         self.description = prompt.rawValue
+        self.name = name
         self.state = state
         self.pine = pine
         self.cedar = cedar
@@ -76,14 +80,20 @@ struct AssistAnswerPromptTool: AssistTool {
 
     // MARK: - Private Methods
     private func answer(from courseID: String, pageURL: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        answer(from: courseID, sourceID: pageURL, sourceType: .wiki_page)
+        ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
+            .getEntities()
+            .map { $0.first?.id }
+            .flatMap { pageID in
+                self.answer(from: courseID, sourceID: pageID, sourceType: .wiki_page)
+            }
+            .eraseToAnyPublisher()
     }
 
     private func answer(from courseID: String, fileID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
         answer(from: courseID, sourceID: fileID, sourceType: .attachment)
     }
 
-    private func answer(from courseID: String, sourceID: String, sourceType: AssistChatInteractor.AssetType) -> AnyPublisher<AssistChatMessage?, any Error> {
+    private func answer(from courseID: String, sourceID: String?, sourceType: AssistChatInteractor.AssetType) -> AnyPublisher<AssistChatMessage?, any Error> {
         pine.askARAGQuestion(
             question: description,
             courseID: courseID,

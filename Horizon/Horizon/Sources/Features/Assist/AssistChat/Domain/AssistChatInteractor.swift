@@ -65,10 +65,11 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         )
         self.tools = [
             AssistSummarizeTool(state: state),
-            AssistAnswerPromptTool(prompt: .KeyTakeaways, state: state),
-            AssistAnswerPromptTool(prompt: .RephraseContent, state: state),
-            AssistAnswerPromptTool(prompt: .TellMeMore, state: state),
+            AssistAnswerPromptTool(prompt: .KeyTakeaways, name: "Give me key takeaways", state: state),
+            AssistAnswerPromptTool(prompt: .RephraseContent, name: "Rephrase this material", state: state),
+            AssistAnswerPromptTool(prompt: .TellMeMore, name: "Tell me more about this topic", state: state),
             AssistQuizTool(state: state),
+            AssistFlashCardsTool(state: state),
             AssistCourseActionTool(state: state),
             AssistSelectCourseTool(state: state)
         ]
@@ -92,32 +93,69 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         history = response.chatHistory
 
         let availableTools = tools.filter { $0.isAvailable }
-        if availableTools.count == 1 {
-
-        } else {
-
+        let toolOptions: [DomainService.ChooseOption] = availableTools.map {
+            .init(name: $0.name, description: $0.description)
         }
 
-        goalCancellable = executeNextTool(prompt: prompt, history: history)?.sink(
-            receiveCompletion: { [weak self] completion in
-                if case let .failure(error) = completion {
-                    self?.responsePublisher.send(.failure(error))
+        // TODO: Make sure we can cancel a request
+        // TODO: If it didn't select a tool
+        // TODO: If the prompt is empty
+        var toolExecution: AnyPublisher<AssistChatResponse?, any Error>?
+        if let firstTool = availableTools.first,
+           availableTools.count == 1 {
+            toolExecution = execute(tool: firstTool, prompt: prompt ?? "", history: history)
+        } else if toolOptions.isNotEmpty, prompt?.isEmpty == false {
+            toolExecution = cedar
+                .choose(from: toolOptions, with: prompt ?? "")
+                .flatMap { [weak self] choice in
+                    guard let self, let choice, let firstTool = tools.first(where: { $0.name == choice.name }) else {
+                        return Just<AssistChatResponse?>(nil)
+                            .setFailureType(to: Error.self)
+                            .eraseToAnyPublisher()
+                    }
+                    return self.execute(tool: firstTool, prompt: prompt ?? "", history: history)
                 }
-            },
-            receiveValue: { [weak self] assistChatMessage in
+                .eraseToAnyPublisher()
+        } else if toolOptions.isNotEmpty {
+            toolExecution = Just<AssistChatResponse?>(
+                    .init(
+                        .init(chipOptions: toolOptions.map { .init(chip: $0.name) }),
+                    )
+                )
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+
+        toolExecution?.sink(
+            receiveCompletion: { _ in },
+            receiveValue: { [weak self] assistChatResponse in
+                if let assistChatResponse {
+                    self?.responsePublisher.send(.success(assistChatResponse))
+                } else {
+                    self?.publish(history: history)
+                }
+            }
+        )
+        .store(in: &subscriptions)
+    }
+
+    private func execute(
+        tool: AssistTool,
+        prompt: String,
+        history: [AssistChatMessage]
+    ) -> AnyPublisher<AssistChatResponse?, any Error> {
+        tool.execute(response: prompt, history: history)
+            .map { assistChatMessage in
                 guard let assistChatMessage = assistChatMessage else {
-                    self?.publish(prompt: nil, history: history)
-                    return
+                    return nil
                 }
-                let response: AssistChatResponse = .init(
+                return .init(
                     assistChatMessage,
                     chatHistory: history,
                     isLoading: assistChatMessage.role == .User
                 )
-                history = response.chatHistory
-                self?.responsePublisher.send(.success(response))
             }
-        )
+            .eraseToAnyPublisher()
     }
 
     /// Subscribe to the responses from the interactor

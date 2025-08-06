@@ -31,6 +31,9 @@ struct AssistQuizTool: AssistTool {
         """
     }
     // swiftlint:enable line_length
+
+    var name: String { "Quiz me on this material" }
+
     var isAvailable: Bool {
         state.courseID.value != nil &&
             (

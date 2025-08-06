@@ -28,6 +28,8 @@ class AssistSelectCourseTool: AssistTool {
 
     var description: String = ""
 
+    var name: String { "Course Selection" }
+
     init(
         state: AssistState,
         cedar: DomainService = DomainService(.cedar),
@@ -97,10 +99,10 @@ class AssistSelectCourseTool: AssistTool {
             }
 
             let courseNames = courseOptions.compactMap {
-                $0.course.name.map { AssistGoalOption(name: $0) }
+                $0.course.name.map { DomainService.ChooseOption(name: $0, description: $0) }
             }
 
-            return weakSelf.choose(from: courseNames, with: response, using: weakSelf.cedar)
+            return weakSelf.cedar.choose(from: courseNames, with: response)
                 .map { goalOption in
                     if  let courseSelected = goalOption?.name,
                         let courseID = courseOptions.first(where: { courseSelected.contains($0.course.name ?? "") == true })?.courseID {
