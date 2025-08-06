@@ -37,7 +37,7 @@ final class SessionInteractor: NSObject {
     }
 
     func getUserID() -> AnyPublisher<String, Error> {
-        guard let currentSession = LoginSession.mostRecent else {
+        guard let currentSession = environment.currentSession else {
             return Fail(error: LoginError.loggedOut).eraseToAnyPublisher()
         }
         return Just(currentSession.userID)
@@ -46,51 +46,60 @@ final class SessionInteractor: NSObject {
     }
 
     func getUserID() -> String? {
-        LoginSession.mostRecent?.userID
+        environment.currentSession?.userID
     }
 
-    func refreshCurrentUserDetails() -> AnyPublisher<UserProfile, Error> {
-        guard let currentSession = LoginSession.mostRecent else {
-            return Fail(error: LoginError.loggedOut).eraseToAnyPublisher()
+    func logout() {
+        guard
+            let currentSession = environment.currentSession,
+            let loginDelegate = environment.loginDelegate else {
+            return
         }
-
-        return updateLoginSession(session: currentSession)
+        loginDelegate.userDidLogout(session: currentSession)
     }
 
-    private func updateLoginSession(session: LoginSession) -> AnyPublisher<UserProfile, Error> {
-        LoginSession.add(session)
-        environment.userDidLogin(session: session)
+    /*
+     func refreshCurrentUserDetails() -> AnyPublisher<UserProfile, Error> {
+         guard let currentSession = LoginSession.mostRecent else {
+             return Fail(error: LoginError.loggedOut).eraseToAnyPublisher()
+         }
 
-        unowned let unownedSelf = self
+         return updateLoginSession(session: currentSession)
+     }
 
-        return ReactiveStore(useCase: GetUserProfile())
-            .getEntities(ignoreCache: true)
-            .compactMap { $0.first }
-            .flatMap { userProfile in
-                CoreWebView.keepCookieAlive(for: unownedSelf.environment)
-                PushNotificationsInteractor.shared.userDidLogin(api: unownedSelf.environment.api)
+     private func updateLoginSession(session: LoginSession) -> AnyPublisher<UserProfile, Error> {
+         LoginSession.add(session)
+         environment.userDidLogin(session: session)
 
-                return ReactiveStore(
-                    useCase: GetEnvironmentFeatureFlags(context: Context.currentUser)
-                )
-                .getEntities(ignoreCache: true)
-                .map { _ in userProfile }
-            }
-            .mapError { error in
-                let err = error as NSError
-                if err.domain == NSError.Constants.domain,
-                   err.code == HttpError.unauthorized {
-                    unownedSelf.loginDelegate?.userDidLogout(session: session)
-                    return LoginError.unauthorized
-                } else if let apiError = error as? APIError, case .unauthorized = apiError {
-                    unownedSelf.environment.loginDelegate?.userDidLogout(session: session)
-                    return LoginError.unauthorized
-                } else {
-                    return error
-                }
-            }
-            .eraseToAnyPublisher()
-    }
+         unowned let unownedSelf = self
 
-    private func initializeTracking() {}
+         return ReactiveStore(useCase: GetUserProfile())
+             .getEntities(ignoreCache: true)
+             .compactMap { $0.first }
+             .flatMap { userProfile in
+                 CoreWebView.keepCookieAlive(for: unownedSelf.environment)
+                 PushNotificationsInteractor.shared.userDidLogin(api: unownedSelf.environment.api)
+
+                 return ReactiveStore(
+                     useCase: GetEnvironmentFeatureFlags(context: Context.currentUser)
+                 )
+                 .getEntities(ignoreCache: true)
+                 .map { _ in userProfile }
+             }
+             .mapError { error in
+                 let err = error as NSError
+                 if err.domain == NSError.Constants.domain,
+                    err.code == HttpError.unauthorized {
+                     unownedSelf.loginDelegate?.userDidLogout(session: session)
+                     return LoginError.unauthorized
+                 } else if let apiError = error as? APIError, case .unauthorized = apiError {
+                     unownedSelf.environment.loginDelegate?.userDidLogout(session: session)
+                     return LoginError.unauthorized
+                 } else {
+                     return error
+                 }
+             }
+             .eraseToAnyPublisher()
+     }
+      */
 }

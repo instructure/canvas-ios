@@ -16,18 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import Foundation
-import UIKit
+/*
+ import Core
+ import Foundation
+ import UIKit
 
-final class SplashAssembly {
-    static func makeViewController() -> UIViewController {
-        //        let interactor = AppDelegate.sessionInteractor
-        let viewModel = SplashViewModel(
-            interactor: SessionInteractor(),
-            router: AppEnvironment.shared.router
-        )
-        let view = SplashView(viewModel: viewModel)
-        return CoreHostingController(view)
-    }
-}
+ final class SplashAssembly {
+     static func makeViewController() -> UIViewController {
+         //        let interactor = AppDelegate.sessionInteractor
+         let viewModel = SplashViewModel(
+             interactor: SessionInteractor(),
+             router: AppEnvironment.shared.router
+         )
+         let view = SplashView(viewModel: viewModel)
+         return CoreHostingController(view)
+     }
+ }
+ */

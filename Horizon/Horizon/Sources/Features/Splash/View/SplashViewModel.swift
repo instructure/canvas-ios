@@ -16,11 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+/*
 import Combine
 import Core
 import Foundation
 import HorizonUI
 import UIKit
+
 
 final class SplashViewModel: ObservableObject {
     // MARK: - Input
@@ -120,3 +122,4 @@ final class SplashViewModel: ObservableObject {
             .eraseToAnyPublisher()
     }
 }
+*/

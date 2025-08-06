@@ -28,7 +28,7 @@ public enum HorizonRoutes {
 
     private static let routes = [
         accountRoutes,
-        splashRoutes,
+//        splashRoutes,
         moduleRoutes,
         pageRoutes,
         courseRoutes,
@@ -53,13 +53,15 @@ public enum HorizonRoutes {
         ]
     }
 
-    private static var splashRoutes: [RouteHandler] {
-        [
-            RouteHandler("/splash") { _, _, _ in
-                SplashAssembly.makeViewController()
-            }
-        ]
-    }
+    /*
+     private static var splashRoutes: [RouteHandler] {
+         [
+             RouteHandler("/splash") { _, _, _ in
+                 SplashAssembly.makeViewController()
+             }
+         ]
+     }
+     */
 
     private static var moduleRoutes: [RouteHandler] {
         [
@@ -103,9 +105,9 @@ public enum HorizonRoutes {
             // For displaying a single module item in a modal
             RouteHandler("/courses/:courseID/modules/items/:assetID/:assetType") { _, params, _, _ in
                 if let courseID = params["courseID"],
-                      let assetID = params["assetID"],
-                      let assetType = params["assetType"],
-                      let assetTypeEnum = GetModuleItemSequenceRequest.AssetType(rawValue: assetType) {
+                   let assetID = params["assetID"],
+                   let assetType = params["assetType"],
+                   let assetTypeEnum = GetModuleItemSequenceRequest.AssetType(rawValue: assetType) {
                     PageDetailsAssembly.makeView(
                         courseID: courseID,
                         assetID: assetID,
@@ -260,7 +262,7 @@ public enum HorizonRoutes {
 
                 if let courseID = courseID,
                    let pageURL = pageURL,
-                    let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() {
+                   let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() {
                     let router: Router = AppEnvironment.shared.router
                     router.show(
                         NotebookAssembly.makeViewController(courseID: courseID, pageURL: pageURL),
@@ -322,7 +324,7 @@ public enum HorizonRoutes {
                     fileId: fileId
                 )
             },
-            RouteHandler("/assistant/flashcards") {url, _, userInfo in
+            RouteHandler("/assistant/flashcards") { url, _, userInfo in
                 let flashCards = userInfo?["flashCards"] as? [AssistFlashCardModel] ?? []
                 let queryItems = url.queryItems ?? []
                 let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
