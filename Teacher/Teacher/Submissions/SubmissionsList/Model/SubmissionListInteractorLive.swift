@@ -94,6 +94,38 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
         submissionsSubject.eraseToAnyPublisher()
     }
 
+    var groupsInAssignment: AnyPublisher<[UsersGroup], Never> {
+        assignment
+            .flatMap { assignment in
+                guard let categoryID = assignment?.groupCategoryID else {
+                    return Just([UsersGroup]()).eraseToAnyPublisher()
+                }
+
+                return ReactiveStore(
+                    useCase: GetGroupsInCategory(categoryID),
+                    environment: self.env
+                )
+                .getEntities()
+                .flatMap({ groups in
+                    Publishers
+                        .Sequence(sequence: groups)
+                        .flatMap { group in
+                            self.env
+                                .api
+                                .makeRequest(GetGroupUsersRequest(groupID: group.id))
+                                .map { (users: [APIUser], _) in
+                                    return UsersGroup(group: group, users: users)
+                                }
+                                .replaceError(with: UsersGroup(group: group, users: []))
+                        }
+                        .collect()
+                })
+                .replaceError(with: [])
+                .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+
     func refresh() -> AnyPublisher<Void, Never> {
         return Publishers.Last(
             upstream:
@@ -122,4 +154,9 @@ private extension [Submission] {
         }
         return filteredSubmissions
     }
+}
+
+public struct UsersGroup {
+    let group: Group
+    let users: [APIUser]
 }
