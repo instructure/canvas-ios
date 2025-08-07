@@ -60,7 +60,10 @@ public struct AssignmentGroupView: View {
                 .animation(.smooth, value: isExpanded)
         }
         .accessibilityAddTraits(.isHeader)
-        .accessibilityLabel(Text(verbatim: "\(viewModel.name), \(String.localizedNumberOfItems(viewModel.assignments.count))"))
+        .accessibilityLabel([
+            viewModel.name,
+            String.format(numberOfItems: viewModel.assignments.count)
+        ].joined(separator: ", "))
         .accessibilityHint(
             isExpanded
                 ? String(localized: "Expanded", bundle: .core)

@@ -17,6 +17,7 @@
 //
 
 @testable import Core
+import TestsFoundation
 import XCTest
 
 class PercentageBasedGradingSchemeTests: GradingSchemeTestCase {
@@ -47,19 +48,66 @@ class PercentageBasedGradingSchemeTests: GradingSchemeTestCase {
         XCTAssertNil(result)
     }
 
-    func testFormattedScorePointBasedOff() {
+    func testFormattedScore() {
         let testee = PercentageBasedGradingScheme.default
 
         var result = testee.formattedScore(from: 80)
         XCTAssertEqual(result, "80%")
 
         result = testee.formattedScore(from: 45.766777)
-        XCTAssertEqual(result, "45.766%")
+        XCTAssertEqual(result, "45.77%")
+
+        result = testee.formattedScore(from: 12.345)
+        XCTAssertEqual(result, "12.35%")
 
         result = testee.formattedScore(from: 33.43)
         XCTAssertEqual(result, "33.43%")
 
         result = testee.formattedScore(from: 87.40)
         XCTAssertEqual(result, "87.4%")
+    }
+
+    func test_formattedMaxValue_shouldAlwaysBe100Percent() {
+        var testee = PercentageBasedGradingScheme(entries: scoreConversionEntries())
+        XCTAssertEqual(testee.formattedMaxValue, "100%")
+
+        testee = PercentageBasedGradingScheme(entries: [])
+        XCTAssertEqual(testee.formattedMaxValue, "100%")
+    }
+
+    func test_formattedEntryValue() {
+        let testee = PercentageBasedGradingScheme(entries: [])
+
+        XCTAssertEqual(testee.formattedEntryValue(1), "100%")
+        XCTAssertEqual(testee.formattedEntryValue(0.42), "42%")
+        XCTAssertEqual(testee.formattedEntryValue(0.123456), "12.35%")
+        XCTAssertEqual(testee.formattedEntryValue(0), "0%")
+    }
+
+    func test_formattedEntries() throws {
+        let testee = PercentageBasedGradingScheme(entries: [
+            makeEntry(name: "A++", value: 1.23),
+            makeEntry(name: "A+", value: 1),
+            makeEntry(name: "A", value: 0.42),
+            makeEntry(name: "B", value: 0.123456),
+            makeEntry(name: "F", value: 0.01),
+            makeEntry(name: "F-", value: 0.0)
+        ])
+
+        guard testee.formattedEntries.count == 6 else { throw InvalidCountError() }
+
+        XCTAssertEqual(testee.formattedEntries[0].name, "A++")
+        XCTAssertEqual(testee.formattedEntries[1].name, "A+")
+        XCTAssertEqual(testee.formattedEntries[2].name, "A")
+        XCTAssertEqual(testee.formattedEntries[3].name, "B")
+        XCTAssertEqual(testee.formattedEntries[4].name, "F")
+        XCTAssertEqual(testee.formattedEntries[5].name, "F-")
+
+        XCTAssertEqual(testee.formattedEntries[0].value, "123%")
+        XCTAssertEqual(testee.formattedEntries[1].value, "100%")
+        XCTAssertEqual(testee.formattedEntries[2].value, "42%")
+        XCTAssertEqual(testee.formattedEntries[3].value, "12.35%")
+        XCTAssertEqual(testee.formattedEntries[4].value, "1%")
+        XCTAssertEqual(testee.formattedEntries[5].value, "0%")
     }
 }

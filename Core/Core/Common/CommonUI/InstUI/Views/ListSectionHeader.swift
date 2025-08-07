@@ -52,7 +52,10 @@ extension InstUI {
                         Text(title)
                             .textStyle(.sectionHeader)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .accessibilityLabel(title + ", " + String.localizedAccessibilityListCount(itemCount))
+                            .accessibilityLabel([
+                                title,
+                                String.format(accessibilityListCount: itemCount)
+                            ].joined(separator: ", "))
                             .accessibilityAddTraits([.isHeader])
 
                         if let buttonLabel {

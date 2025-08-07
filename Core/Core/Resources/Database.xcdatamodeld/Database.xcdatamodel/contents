@@ -1171,6 +1171,7 @@
         <attribute name="body" optional="YES" attributeType="String"/>
         <attribute name="customGradeStatusId" optional="YES" attributeType="String"/>
         <attribute name="customGradeStatusName" optional="YES" attributeType="String"/>
+        <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="enteredGrade" optional="YES" attributeType="String"/>
         <attribute name="enteredScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="excusedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>

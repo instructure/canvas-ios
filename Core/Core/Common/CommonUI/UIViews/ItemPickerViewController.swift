@@ -88,7 +88,7 @@ public class ItemPickerViewController: UIViewController {
         tableView.tintColor = Brand.shared.primary
 
         tableView.isAccessibilityElement = true
-        tableView.accessibilityLabel = String.localizedAccessibilityListCount(sections[0].items.count)
+        tableView.accessibilityLabel = String.format(accessibilityListCount: sections[0].items.count)
     }
 }
 

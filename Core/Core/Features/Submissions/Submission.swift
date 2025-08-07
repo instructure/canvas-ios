@@ -43,6 +43,7 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var customGradeStatusId: String?
     @NSManaged public var customGradeStatusName: String?
     @NSManaged public var discussionEntries: Set<DiscussionEntry>?
+    @NSManaged public var dueAt: Date?
     @NSManaged public var enteredGrade: String?
     @NSManaged var enteredScoreRaw: NSNumber?
     @NSManaged var excusedRaw: NSNumber?
@@ -170,6 +171,7 @@ extension Submission: WriteableModel {
             model.customGradeStatusName = customStatus?.name
         }
 
+        model.dueAt = item.cached_due_date
         model.enteredGrade = item.entered_grade
         model.enteredScore = item.entered_score
         model.excused = item.excused
@@ -332,7 +334,7 @@ extension Submission {
 
         switch typeWithQuizLTIMapping {
         case .basic_lti_launch, .external_tool, .online_quiz:
-            return String.localizedAttemptNumber(attempt)
+            return String.format(attemptNumber: attempt)
         case .discussion_topic:
             return discussionEntriesOrdered.first?.message?.htmlToPlainText(lineBreaks: " ")
         case .media_recording:
@@ -486,6 +488,8 @@ extension Submission: Comparable {
         return lhs.userID < rhs.userID
     }
 }
+
+extension Submission: DueViewable {}
 
 /// This is merely used to properly describe the state of submission in certain contexts.
 /// It is not strictly matching `SubmissionStatus` in all cases. And it is not
