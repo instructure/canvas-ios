@@ -173,7 +173,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     }
 
     func reloadData() {
-        Task {
+        Task { @MainActor in
             var channelTypes: [CommunicationChannelType: [CommunicationChannel]] = [:]
             for channel in channels {
                 channelTypes[channel.type] = channelTypes[channel.type] ?? []
