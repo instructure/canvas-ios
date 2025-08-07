@@ -121,15 +121,15 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
         ReactiveStore(useCase: GetUserProfile())
             .getEntities(ignoreCache: true)
-            .compactMap { $0.first }
-            .flatMap { userProfile in
-
-                unownedSelf.setupUserEnvironment()
+            .tryCatch { unownedSelf.catchViewAsStudentLoginError(error: $0, session: session) }
+            .flatMap { list in
+                let userProfile = list.first
+                return unownedSelf.setupUserEnvironment()
                     .flatMap { _ in unownedSelf.getFeatureFlags() }
                     .map { unownedSelf.initializeTracking(environmentFeatureFlags: $0) }
                     .map { _ in unownedSelf.requestNotificationAuthorizationForUITests() }
                     .map { _ in unownedSelf.setK5StudentViewIfNeeded(userProfile: userProfile) }
-                    .flatMap { _ in unownedSelf.showLanguageAlertIfNeeded(locale: userProfile.locale) }
+                    .flatMap { _ in unownedSelf.showLanguageAlertIfNeeded(locale: userProfile?.locale ?? session.locale) }
                     .flatMap { _ in unownedSelf.getAndSetBrandTheme() }
                     .eraseToAnyPublisher()
             }
@@ -307,7 +307,7 @@ extension StudentAppDelegate {
         }
     }
 
-    private func setK5StudentViewIfNeeded(userProfile: UserProfile) {
+    private func setK5StudentViewIfNeeded(userProfile: UserProfile?) {
         environment.userDefaults?.isK5StudentView = shouldSetK5StudentView
         let isK5StudentView = environment.userDefaults?.isK5StudentView ?? false
         if isK5StudentView {
@@ -315,6 +315,17 @@ extension StudentAppDelegate {
             environment.userDefaults?.isElementaryViewEnabled = true
         }
         environment.k5.userDidLogin(profile: userProfile, isK5StudentView: isK5StudentView)
+    }
+
+    private func catchViewAsStudentLoginError(error: Error, session: LoginSession) -> AnyPublisher<[UserProfile], Error> {
+        let err = error as NSError
+        if err.domain == NSError.Constants.domain,
+           err.code == HttpError.forbidden, session.isFakeStudent {
+            return Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
+        } else {
+            return Fail(error: error)
+                .eraseToAnyPublisher()
+        }
     }
 
     private func mapSetupError(error: Error, session: LoginSession) -> Error {

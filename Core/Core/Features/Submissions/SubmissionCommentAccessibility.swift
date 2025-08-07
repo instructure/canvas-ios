@@ -21,7 +21,7 @@ import Foundation
 extension SubmissionComment {
     public var accessibilityLabelForHeader: String {
         if let attempt {
-            let attemptString = String.localizedAttemptNumber(attempt)
+            let attemptString = String.format(attemptNumber: attempt)
             let submissionInfo = String.localizedStringWithFormat(
                 String(localized: "Submitted by %1$@, on %2$@", bundle: .core, comment: "Submitted by John Doe, on 1948.12.02. at 11:42"),
                 authorName,
@@ -54,7 +54,7 @@ extension SubmissionComment {
 
     public func accessibilityLabelForAttempt(submission: Submission) -> String {
         [
-            String.localizedAttemptNumber(submission.attempt),
+            String.format(attemptNumber: submission.attempt),
             submission.attemptAccessibilityDescription
         ].joined(separator: ", ")
     }
@@ -69,7 +69,7 @@ extension SubmissionComment {
 
     public func accessibilityLabelForAttemptAttachment(_ file: File, submission: Submission) -> String {
         [
-            String.localizedAttemptNumber(submission.attempt),
+            String.format(attemptNumber: submission.attempt),
             submission.attemptAccessibilityDescription,
             file.displayName,
             file.size.humanReadableFileSize

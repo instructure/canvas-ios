@@ -100,7 +100,7 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
             }
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(String.localizedAccessibilityListCount(viewModel.listCount))
+        .accessibilityLabel(String.format(accessibilityListCount: viewModel.listCount))
     }
 
     private func recipientRow(_ recipient: Recipient) -> some View {
