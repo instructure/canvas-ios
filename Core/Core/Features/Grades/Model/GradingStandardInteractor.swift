@@ -36,22 +36,19 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
 
     public var gradingScheme: AnyPublisher<GradingScheme?, Never> {
         if gradingStandardId != nil {
-            getGradingScheme()
+            gradingSchemeFromGradingStandard
         } else {
-            getCourseGradingScheme()
+            courseIncludedGradingScheme
         }
     }
 
-    private func getGradingScheme() -> AnyPublisher<GradingScheme?, Never> {
-        Publishers.CombineLatest(
-            getAccountLevelGradingScheme(),
-            getCourseLevelGradingScheme()
-        )
-        .map { $0 ?? $1 }
-        .eraseToAnyPublisher()
+    private var gradingSchemeFromGradingStandard: AnyPublisher<GradingScheme?, Never> {
+        Publishers.CombineLatest(accountLevelGradingScheme, courseLevelGradingScheme)
+            .map { $0 ?? $1 }
+            .eraseToAnyPublisher()
     }
 
-    private func getAccountLevelGradingScheme() -> AnyPublisher<GradingScheme?, Never> {
+    private var accountLevelGradingScheme: AnyPublisher<GradingScheme?, Never> {
         guard let gradingStandardId else {
             return Just(nil).eraseToAnyPublisher()
         }
@@ -63,8 +60,9 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
 
         return gradingStandardStore
             .getEntities()
+            .map(\.first)
             .map {
-                guard let gradingStandard = $0.first else {
+                guard let gradingStandard = $0 else {
                     return nil
                 }
                 if gradingStandard.isPointsBased {
@@ -82,7 +80,7 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
             .eraseToAnyPublisher()
     }
 
-    private func getCourseLevelGradingScheme() -> AnyPublisher<GradingScheme?, Never> {
+    private var courseLevelGradingScheme: AnyPublisher<GradingScheme?, Never> {
         guard let gradingStandardId else {
             return Just(nil).eraseToAnyPublisher()
         }
@@ -94,8 +92,9 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
 
         return gradingStandardStore
             .getEntities()
+            .map(\.first)
             .map {
-                guard let gradingStandard = $0.first else {
+                guard let gradingStandard = $0 else {
                     return nil
                 }
                 if gradingStandard.isPointsBased {
@@ -113,7 +112,7 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
             .eraseToAnyPublisher()
     }
 
-    private func getCourseGradingScheme() -> AnyPublisher<GradingScheme?, Never> {
+    private var courseIncludedGradingScheme: AnyPublisher<GradingScheme?, Never> {
         let courseStore = ReactiveStore(
             useCase: GetCourseWithGradingScheme(courseId: courseId),
             environment: env
@@ -121,8 +120,8 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
 
         return courseStore
             .getEntities()
-            .compactMap(\.first)
-            .map(\.gradingScheme)
+            .map(\.first)
+            .map(\.?.gradingScheme)
             .ignoreFailure()
             .eraseToAnyPublisher()
     }

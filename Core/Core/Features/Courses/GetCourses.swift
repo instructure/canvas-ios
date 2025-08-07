@@ -267,8 +267,24 @@ struct GetCourseWithGradingScheme: APIUseCase {
     public let request: GetCourseRequest
     public let cacheKey: String?
 
+    private let courseId: String
+
     init(courseId: String) {
         self.request = GetCourseRequest(courseID: courseId, include: [.grading_scheme])
-        self.cacheKey = nil
+        self.cacheKey = "get-course-\(courseId)"
+        self.courseId = courseId
+    }
+
+    func write(response: APICourse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard
+            let response = response,
+            let course: Course = client.first(where: #keyPath(Course.id), equals: courseId),
+            let gradingScheme = response.grading_scheme?.compactMap(GradingSchemeEntry.init)
+        else { return }
+
+        // If we already have the course then we only update its grading scheme
+        if course.gradingSchemeEntries != gradingScheme {
+            course.gradingSchemeRaw = gradingScheme.rawData
+        }
     }
 }
