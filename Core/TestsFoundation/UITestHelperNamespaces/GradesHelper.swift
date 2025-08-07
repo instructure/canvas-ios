@@ -27,12 +27,12 @@ public class GradesHelper: BaseHelper {
     public static var emptyView: XCUIElement { app.find(id: "GradeList.emptyView") }
 
     public static func upcomingAssignmentsSectionTitle(numberOfItems: Int) -> XCUIElement {
-        let itemCountLabel = String.localizedNumberOfItems(numberOfItems)
+        let itemCountLabel = String.format(numberOfItems: numberOfItems)
         return app.find(label: "Upcoming Assignments, \(itemCountLabel)", type: .staticText)
     }
 
     public static func labelOfAssignmentGroup(_ assignmentGroup: DSAssignmentGroup, numberOfItems: Int) -> XCUIElement {
-        let itemCountLabel = String.localizedNumberOfItems(numberOfItems)
+        let itemCountLabel = String.format(numberOfItems: numberOfItems)
         return app.find(label: "\(assignmentGroup.name), \(itemCountLabel)", type: .staticText)
     }
 
