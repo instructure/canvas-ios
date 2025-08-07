@@ -24,6 +24,7 @@ import SwiftUI
 struct HInboxView: View {
 
     @Environment(\.viewController) private var viewController
+    @Environment(\.scenePhase) private var scenePhase
     @Bindable var viewModel: HInboxViewModel
     let coordinateSpaceName: String = "scroll"
 
@@ -63,6 +64,9 @@ struct HInboxView: View {
         .navigationBarHidden(true)
         .onTapGesture {
             ScrollOffsetReader.dismissKeyboard()
+        }
+        .onAppear {
+            viewModel.refresh {}
         }
     }
 
