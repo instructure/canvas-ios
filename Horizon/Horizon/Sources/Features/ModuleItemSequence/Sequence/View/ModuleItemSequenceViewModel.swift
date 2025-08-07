@@ -70,8 +70,6 @@ final class ModuleItemSequenceViewModel {
     private var subscriptions = Set<AnyCancellable>()
     private var sequence: HModuleItemSequence?
     private var course: HCourse?
-    // Need to save the completion state for the module items without observation
-    private var courseWithoutObservation: HCourse?
     var hasUnreadComments: Bool = false
 
     // MARK: - Dependencies
@@ -83,6 +81,8 @@ final class ModuleItemSequenceViewModel {
     private let assetID: String
     private let courseID: String
     private let isNotebookDisabled: Bool
+    // Need to save the completion state for the module items without observation
+    private var nonObservationCourse: HCourse?
 
     // MARK: - Init
 
@@ -95,6 +95,7 @@ final class ModuleItemSequenceViewModel {
         moduleItemStateInteractor: ModuleItemStateInteractor,
         router: Router,
         assetType: AssetType,
+        selectedCourse: HCourse? = nil,
         assetID: String,
         courseID: String,
         isNotebookDisabled: Bool = false
@@ -106,16 +107,16 @@ final class ModuleItemSequenceViewModel {
         self.assetID = assetID
         self.courseID = courseID
         self.isNotebookDisabled = isNotebookDisabled
+        self.nonObservationCourse = selectedCourse
+
+        fetchModuleItemSequence(assetId: assetID)
+
         moduleItemInteractor.getCourse()
             .sink { [weak self] course in
                 self?.courseName = course.name
                 self?.course = course
-                if self?.courseWithoutObservation == nil {
-                    self?.courseWithoutObservation = course
-                }
             }
             .store(in: &subscriptions)
-        fetchModuleItemSequence(assetId: assetID)
 
         didLoadAssignment = { [weak self] model in
             if model?.moduleItem.isQuizLTI == false {
@@ -293,11 +294,10 @@ final class ModuleItemSequenceViewModel {
             return
         }
         guard moduleItem.completionRequirementType == .must_view,
-             isModuleItemCompleted(moduleId: moduleID, itemId: itemID) == false,
+              isModuleItemCompleted(moduleId: moduleID, itemId: itemID) == false,
               moduleItem.lockedForUser == false else {
             return
         }
-        courseWithoutObservation = course
         moduleItemInteractor
             .markAsViewed(moduleID: moduleID, itemID: itemID)
             .sink()
@@ -305,7 +305,7 @@ final class ModuleItemSequenceViewModel {
     }
 
     private func isModuleItemCompleted(moduleId: String, itemId: String) -> Bool {
-        guard let selectedModule = courseWithoutObservation?.modules.first(where: { $0.id == moduleId }) else {
+        guard let selectedModule = nonObservationCourse?.modules.first(where: { $0.id == moduleId }) else {
             return true
         }
         let item = selectedModule.items.first(where: { $0.id == itemId })

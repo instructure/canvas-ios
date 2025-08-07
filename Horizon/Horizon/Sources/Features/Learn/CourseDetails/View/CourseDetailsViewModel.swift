@@ -111,7 +111,7 @@ final class CourseDetailsViewModel {
     }
 
     func moduleItemDidTap(url: URL, from: WeakViewController) {
-        router.route(to: url, from: from)
+        router.route(to: url, userInfo: ["course": course], from: from)
     }
 
     // MARK: - Private Functions
