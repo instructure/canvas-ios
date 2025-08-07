@@ -20,39 +20,87 @@ import Foundation
 
 extension String {
 
-    /// Localized string to be used when we need number of items. Example: "5 items"
-    public static func localizedNumberOfItems(_ count: Int) -> String {
-        String.localizedStringWithFormat(String(localized: "d_items", bundle: .core), count)
+    // MARK: - "Attempt 5"
+
+    /// Localized string for attempt number. Example: "Attempt 5"
+    public static func format(attemptNumber attempt: Int) -> String {
+        localizedStringWithFormat(
+            String(localized: "Attempt %d", bundle: .core),
+            attempt
+        )
+    }
+
+    // MARK: - Items: "5 items" / "List, 5 items"
+
+    /// Localized string for number of items. Example: "5 items"
+    public static func format(numberOfItems count: Int) -> String {
+        localizedStringWithFormat(
+            String(localized: "d_items", bundle: .core),
+            count
+        )
+    }
+    /// Localized string for number of items. Example: "5 items"
+    public static func format(numberOfItems count: Int?) -> String? {
+        count.map(format(numberOfItems:))
     }
 
     /// Localized string to be used as `accessibilityLabel` for lists without a section header. Example: "List, 5 items"
-    public static func localizedAccessibilityListCount(_ count: Int) -> String {
+    public static func format(accessibilityListCount count: Int) -> String {
         let listText = String(localized: "List", bundle: .core)
-        let countText = String.localizedNumberOfItems(count)
+        let countText = format(numberOfItems: count)
         // It's okay to not translate the comma, because VoiceOver (with captions enabled) uses commas for separation,
         // even when language & region both are set to a language which doesn't (like Danish)
         return "\(listText), \(countText)"
     }
 
+    // MARK: - Points: "5 pts" / "5 points"
+
+    /// Localized string for number of points, abbreviated to "pts". Example: "5 pts"
+    public static func format(pts points: Double) -> String {
+        localizedStringWithFormat(
+            String(localized: "g_pts", bundle: .core),
+            points
+        )
+    }
+
+    /// Localized string for number of points, abbreviated to "pts". Example: "5 pts"
+    public static func format(pts points: Double?) -> String? {
+        points.map(format(pts:))
+    }
+
+    /// Localized string for number of points, not abbreviated, primarily for accessibility usage. Example: "5 points"
+    public static func format(points: Double) -> String {
+        localizedStringWithFormat(
+            String(localized: "g_points", bundle: .core),
+            points
+        )
+    }
+
+    /// Localized string for number of points, not abbreviated, primarily for accessibility usage. Example: "5 points"
+    public static func format(points: Double?) -> String? {
+        points.map(format(points:))
+    }
+
+    // MARK: - "Error: Invalid start time"
+
     /// Localized string to be used for error messages intended for accessibility usage. Adds some context for VoiceOver users that this is an error.
     /// The `errorMessage` itself is expected to be localized already.
     /// Example: "Error: Invalid start time"
-    public static func localizedAccessibilityErrorMessage(_ errorMessage: String) -> String {
-        let format = String(localized: "Error: %@", bundle: .core, comment: "Example: 'Error: Invalid start time'")
-        return String.localizedStringWithFormat(format, errorMessage)
+    public static func format(accessibilityErrorMessage errorMessage: String) -> String {
+        localizedStringWithFormat(
+            String(localized: "Error: %@", bundle: .core, comment: "Example: 'Error: Invalid start time'"),
+            errorMessage
+        )
     }
 
     /// Localized string to be used for error messages intended for accessibility usage. Adds some context for VoiceOver users that this is an error.
     /// The `errorMessage` itself is expected to be localized already.
     /// Example: "Error: Invalid start time"
-    public static func localizedAccessibilityErrorMessage(_ errorMessage: String?) -> String? {
-        errorMessage.map { String.localizedAccessibilityErrorMessage($0) }
+    public static func format(accessibilityErrorMessage errorMessage: String?) -> String? {
+        errorMessage.map(format(accessibilityErrorMessage:))
     }
 
-    /// Localized string to be used when we need attempt number. Example: "Attempt 5"
-    public static func localizedAttemptNumber(_ attempt: Int) -> String {
-        String.localizedStringWithFormat(String(localized: "Attempt %d", bundle: .core), attempt)
-    }
+    // MARK: - accessibilityLetterGrade
 
     /// Modifed letter grade to be used with VoiceOver.
     ///
@@ -60,7 +108,7 @@ extension String {
     /// - Grades like "B-" are read out as "B", with the "-" ommited. This method converts "-" to "minus".
     ///   Grades like "B+" are read out as "B plus" by default.
     /// - The letter "A" in grades like "A+" or "A-" is read out without emphasis. This method makes it read like a standalone letter.
-    public static func accessibiltyLetterGrade(_ grade: String?) -> String? {
+    public static func format(accessibilityLetterGrade grade: String?) -> String? {
         guard let grade else { return nil }
 
         if grade.hasSuffix("-") {

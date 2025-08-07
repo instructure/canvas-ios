@@ -75,7 +75,10 @@ struct SubmissionListScreen: View {
                     }
                 } header: {
                     SectionHeaderView(title: section.kind.title, isCollapsed: $section.isCollapsed)
-                        .accessibilityLabel(section.accessibilityLabel)
+                        .accessibilityLabel([
+                            section.kind.title,
+                            String.format(numberOfItems: section.items.count)
+                        ].joined(separator: ", "))
                         .accessibilityHint(
                             section.isCollapsed
                                 ? String(localized: "Collapsed", bundle: .teacher)
@@ -237,11 +240,5 @@ private extension SubmissionListScreen {
                 .buttonStyle(.plain)
             }
         }
-    }
-}
-
-private extension SubmissionListSection {
-    var accessibilityLabel: Text {
-        Text(kind.title + ", " + String.localizedNumberOfItems(items.count))
     }
 }

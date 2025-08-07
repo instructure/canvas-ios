@@ -141,8 +141,7 @@ class RedesignedRubricCriterionViewModel: ObservableObject, Identifiable {
     }
 
     var pointsPossibleText: String {
-        let format = String(localized: "g_pts", bundle: .core)
-        return String.localizedStringWithFormat(format, criterion.points)
+        String.format(pts: criterion.points)
     }
 }
 
