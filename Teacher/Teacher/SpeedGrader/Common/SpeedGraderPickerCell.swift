@@ -80,6 +80,7 @@ struct SpeedGraderPickerCell: View {
                     .font(.regular14, lineHeight: .fit)
                 Image.dropdownLine
                     .scaledIcon(size: 24)
+                    .accessibilityHidden(true)
             }
         )
         .animation(.none, value: viewModel.selectedOption?.title)
