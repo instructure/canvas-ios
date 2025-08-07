@@ -48,6 +48,12 @@ extension NSManagedObjectContext {
         return (try? count(for: request)) ?? 0
     }
 
+    public func count<T: NSManagedObject>(of type: T.Type, predicate: NSPredicate) -> Int {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: T.self))
+        request.predicate = predicate
+        return (try? count(for: request)) ?? 0
+    }
+
     public func refresh() {
         refreshAllObjects()
     }

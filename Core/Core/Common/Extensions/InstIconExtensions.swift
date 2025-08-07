@@ -96,6 +96,8 @@ public extension UIImage {
     static var eyeSolid: UIImage { UIImage(named: "eyeSolid", in: .core, compatibleWith: nil)! }
     static var filterLine: UIImage { UIImage(named: "filterLine", in: .core, compatibleWith: nil)! }
     static var filterSolid: UIImage { UIImage(named: "filterSolid", in: .core, compatibleWith: nil)! }
+    static var flagLine: UIImage { UIImage(named: "flagLine", in: .core, compatibleWith: nil)! }
+    static var flagSolid: UIImage { UIImage(named: "flagSolid", in: .core, compatibleWith: nil)! }
     static var folderLine: UIImage { UIImage(named: "folderLine", in: .core, compatibleWith: nil)! }
     static var folderSolid: UIImage { UIImage(named: "folderSolid", in: .core, compatibleWith: nil)! }
     static var forwardLine: UIImage { UIImage(named: "forwardLine", in: .core, compatibleWith: nil)! }
@@ -360,6 +362,8 @@ public extension Image {
     static var eyeSolid: Image { Image("eyeSolid", bundle: .core) }
     static var filterLine: Image { Image("filterLine", bundle: .core) }
     static var filterSolid: Image { Image("filterSolid", bundle: .core) }
+    static var flagLine: Image { Image("flagLine", bundle: .core) }
+    static var flagSolid: Image { Image("flagSolid", bundle: .core) }
     static var folderLine: Image { Image("folderLine", bundle: .core) }
     static var folderSolid: Image { Image("folderSolid", bundle: .core) }
     static var forwardLine: Image { Image("forwardLine", bundle: .core) }

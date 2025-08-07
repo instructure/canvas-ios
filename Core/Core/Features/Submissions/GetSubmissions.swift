@@ -366,12 +366,21 @@ public class GetSubmissions: CollectionUseCase {
         }
 
         public var predicate: NSPredicate {
+            let notExcused = NSPredicate(format: "%K == nil OR %K != true", #keyPath(Submission.excusedRaw), #keyPath(Submission.excusedRaw))
+            let notCustomGradeStated = NSPredicate(
+                format: "%K == nil", #keyPath(Submission.customGradeStatusId)
+            )
+
             switch self {
             case .late:
                 return NSPredicate(key: #keyPath(Submission.late), equals: true)
             case .notSubmitted:
                 return NSCompoundPredicate(type: .or, subpredicates: [
-                    NSPredicate(key: #keyPath(Submission.workflowStateRaw), equals: SubmissionWorkflowState.unsubmitted.rawValue),
+                    NSCompoundPredicate(type: .and, subpredicates: [
+                        NSPredicate(key: #keyPath(Submission.workflowStateRaw), equals: SubmissionWorkflowState.unsubmitted.rawValue),
+                        notExcused,
+                        notCustomGradeStated
+                    ]),
                     NSCompoundPredicate(type: .and, subpredicates: [
                         NSPredicate(key: #keyPath(Submission.workflowStateRaw), equals: SubmissionWorkflowState.graded.rawValue),
                         NSPredicate(key: #keyPath(Submission.submittedAt), equals: nil),
@@ -379,7 +388,6 @@ public class GetSubmissions: CollectionUseCase {
                     ])
                 ])
             case .needsGrading:
-                let notExcused = NSPredicate(format: "%K == nil OR %K != true", #keyPath(Submission.excusedRaw), #keyPath(Submission.excusedRaw))
                 let hasValidSubmissionType = NSPredicate(format: "%K != nil", #keyPath(Submission.typeRaw))
                 let isPendingReview = NSPredicate(format: "%K == 'pending_review'", #keyPath(Submission.workflowStateRaw))
                 let isGradedOrSubmitted = NSPredicate(format: "%K IN { 'graded', 'submitted' }", #keyPath(Submission.workflowStateRaw))
@@ -388,11 +396,13 @@ public class GetSubmissions: CollectionUseCase {
                 let isGradeOutDated = isGradedOrSubmitted.and(hasNoScore.or(isLatestAttemptNotGraded))
 
                 return notExcused
+                    .and(notCustomGradeStated)
                     .and(hasValidSubmissionType)
                     .and(isPendingReview.or(isGradeOutDated))
             case .graded:
-                return NSPredicate(format: "%K == true OR (%K != nil AND %K == 'graded')",
+                return NSPredicate(format: "%K == true OR %K != nil OR (%K != nil AND %K == 'graded')",
                     #keyPath(Submission.excusedRaw),
+                    #keyPath(Submission.customGradeStatusId),
                     #keyPath(Submission.scoreRaw),
                     #keyPath(Submission.workflowStateRaw)
                 )
