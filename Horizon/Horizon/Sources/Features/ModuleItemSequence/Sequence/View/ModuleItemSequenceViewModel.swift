@@ -70,6 +70,8 @@ final class ModuleItemSequenceViewModel {
     private var subscriptions = Set<AnyCancellable>()
     private var sequence: HModuleItemSequence?
     private var course: HCourse?
+    // Need to save the completion state for the module items without observation
+    private var courseWithoutObservation: HCourse?
     var hasUnreadComments: Bool = false
 
     // MARK: - Dependencies
@@ -104,15 +106,16 @@ final class ModuleItemSequenceViewModel {
         self.assetID = assetID
         self.courseID = courseID
         self.isNotebookDisabled = isNotebookDisabled
-
-        fetchModuleItemSequence(assetId: assetID)
-
         moduleItemInteractor.getCourse()
             .sink { [weak self] course in
                 self?.courseName = course.name
                 self?.course = course
+                if self?.courseWithoutObservation == nil {
+                    self?.courseWithoutObservation = course
+                }
             }
             .store(in: &subscriptions)
+        fetchModuleItemSequence(assetId: assetID)
 
         didLoadAssignment = { [weak self] model in
             if model?.moduleItem.isQuizLTI == false {
@@ -260,9 +263,7 @@ final class ModuleItemSequenceViewModel {
             moduleID: moduleID,
             itemID: itemID
         )
-        if state?.isModuleItem == true {
-            markAsViewed()
-        }
+        markAsViewed()
         isAssignmentOptionsButtonVisible = state?.isAssignment ?? false
         /// In some cases, the module sequence API returns an empty response for assignment type only.
         if state?.isExternalURL == true, item == nil {
@@ -291,21 +292,24 @@ final class ModuleItemSequenceViewModel {
         guard let moduleID, let itemID, let moduleItem else {
             return
         }
-
-        NotificationCenter.default.post(name: .moduleItemViewDidLoad, object: nil, userInfo: [
-            "moduleID": moduleID,
-            "itemID": itemID
-        ])
-
         guard moduleItem.completionRequirementType == .must_view,
-              moduleItem.isCompleted == false,
+             isModuleItemCompleted(moduleId: moduleID, itemId: itemID) == false,
               moduleItem.lockedForUser == false else {
             return
         }
+        courseWithoutObservation = course
         moduleItemInteractor
             .markAsViewed(moduleID: moduleID, itemID: itemID)
             .sink()
             .store(in: &subscriptions)
+    }
+
+    private func isModuleItemCompleted(moduleId: String, itemId: String) -> Bool {
+        guard let selectedModule = courseWithoutObservation?.modules.first(where: { $0.id == moduleId }) else {
+            return true
+        }
+        let item = selectedModule.items.first(where: { $0.id == itemId })
+        return item?.isCompleted ?? true
     }
 
     func retry() {

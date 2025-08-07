@@ -55,6 +55,7 @@ struct PageDetailsAssembly {
             context: context,
             pageURL: pageURL,
             itemID: itemID,
+            isMarkedAsDoneButtonVisible: isMarkedAsDoneButtonVisible,
             markAsDoneViewModel: .init(
                 moduleID: moduleID,
                 itemID: itemID,
