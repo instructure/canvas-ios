@@ -82,7 +82,7 @@ final class ModuleItemSequenceViewModel {
     private let courseID: String
     private let isNotebookDisabled: Bool
     // Need to save the completion state for the module items without observation
-    private var nonObservationCourse: HCourse?
+    private var unobservedCourse: HCourse?
 
     // MARK: - Init
 
@@ -107,7 +107,7 @@ final class ModuleItemSequenceViewModel {
         self.assetID = assetID
         self.courseID = courseID
         self.isNotebookDisabled = isNotebookDisabled
-        self.nonObservationCourse = selectedCourse
+        self.unobservedCourse = selectedCourse
 
         fetchModuleItemSequence(assetId: assetID)
 
@@ -305,7 +305,7 @@ final class ModuleItemSequenceViewModel {
     }
 
     private func isModuleItemCompleted(moduleId: String, itemId: String) -> Bool {
-        guard let selectedModule = nonObservationCourse?.modules.first(where: { $0.id == moduleId }) else {
+        guard let selectedModule = unobservedCourse?.modules.first(where: { $0.id == moduleId }) else {
             return true
         }
         let item = selectedModule.items.first(where: { $0.id == itemId })
