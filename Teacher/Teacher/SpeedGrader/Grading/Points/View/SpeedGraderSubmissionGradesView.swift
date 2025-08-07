@@ -172,7 +172,7 @@ struct SpeedGraderSubmissionGradesView: View {
                 isSaving: gradeViewModel.isSavingGrade
             )
             .accessibilityLabel(
-                [title, String.accessibiltyLetterGrade(gradeState.originalGrade)]
+                [title, String.format(accessibilityLetterGrade: gradeState.originalGrade)]
                     .joined(separator: ",")
             )
         case .statusDisplayOnly:
@@ -396,11 +396,10 @@ struct SpeedGraderSubmissionGradesView: View {
             Text("Comments (\(commentCount))", bundle: .teacher)
                 .foregroundStyle(.textDarkest)
                 .font(.semibold16)
-                .accessibilityLabel(
-                    [String(localized: "Comments", bundle: .core),
-                     String.localizedNumberOfItems(commentCount)
-                    ].joined(separator: ", ")
-                )
+                .accessibilityLabel([
+                    String(localized: "Comments", bundle: .core),
+                    String.format(numberOfItems: commentCount)
+                ].joined(separator: ", "))
                 .accessibilityAddTraits(.isHeader)
         }
         let content = SubmissionCommentListView(

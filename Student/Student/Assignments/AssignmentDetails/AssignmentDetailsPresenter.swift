@@ -223,7 +223,7 @@ class AssignmentDetailsPresenter {
             guard isActive else { return [] }
             return validSubmissions.map { submission in
                 let date = submission.submittedAt?.dateTimeString ?? ""
-                let attemptNumber = String.localizedAttemptNumber(submission.attempt)
+                let attemptNumber = String.format(attemptNumber: submission.attempt)
                 return UIAction(title: date, subtitle: attemptNumber) { [weak self] _ in
                     self?.selectedSubmission = submission
                     let a11yFocusTarget = self?.view?.accessibilityFocusAfterAttemptSelection
@@ -238,7 +238,7 @@ class AssignmentDetailsPresenter {
     }
 
     private func updateAttemptInfo(submission: Submission) {
-        let attemptNumber = String.localizedAttemptNumber(submission.attempt)
+        let attemptNumber = String.format(attemptNumber: submission.attempt)
         view?.updateAttemptInfo(attemptNumber: attemptNumber)
     }
 

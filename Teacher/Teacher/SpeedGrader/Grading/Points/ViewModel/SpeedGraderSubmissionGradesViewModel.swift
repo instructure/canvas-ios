@@ -129,7 +129,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     }
 
     func setPercentGrade(_ percent: Double) {
-        let percentValue = "\(round(percent))%"
+        let percentValue = "\(percent)%"
         saveGrade(grade: percentValue)
     }
 
@@ -267,24 +267,5 @@ private extension GradeState {
         case .not_graded:
             .statusDisplayOnly
         }
-    }
-}
-
-private extension String {
-    private static let numberFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.locale = Locale.current
-        return formatter
-    }()
-
-    /// API expects US formatted numbers, which use "." as decimal separator, but users may use a different separator.
-    /// For example keyboard provides a localized separator.
-    var doubleValueByFixingDecimalSeparator: Double? {
-        if let value = Double(self) {
-            return value
-        }
-
-        return Self.numberFormatter.number(from: self)?.doubleValue
     }
 }

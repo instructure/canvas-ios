@@ -29,19 +29,13 @@ public protocol GradeViewable {
 
 extension GradeViewable {
     public var pointsPossibleText: String {
-        guard let points = pointsPossible else {
-            return String(localized: "Not Graded", bundle: .core)
-        }
-        let format = String(localized: "g_pts", bundle: .core)
-        return String.localizedStringWithFormat(format, points)
+        String.format(pts: pointsPossible)
+            ?? String(localized: "Not Graded", bundle: .core)
     }
 
     public var pointsPossibleCompleteText: String {
-        guard let points = pointsPossible else {
-            return String(localized: "Not Graded", bundle: .core)
-        }
-        let format = String(localized: "g_points", bundle: .core)
-        return String.localizedStringWithFormat(format, points)
+        String.format(points: pointsPossible)
+            ?? String(localized: "Not Graded", bundle: .core)
     }
 
     public var pointsText: String? {

@@ -92,7 +92,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         mockGradeStatusesAPI()
         XCTAssertFinish(testee.fetchGradeStatuses())
 
-        var receivedStatuses: [(GradeStatus, Int, Date?)] = []
+        var receivedStatuses: [(status: GradeStatus, daysLate: Double, dueDate: Date?)] = []
 
         let submissionDueDate = Date(timeIntervalSince1970: 2000000)
 
@@ -104,13 +104,13 @@ class GradeStatusInteractorTests: TeacherTestCase {
 
         let submission = Submission.save(.make(), in: databaseClient)
 
-        // GIVEN
+        // GIVEN - initial state (custom state)
         submission.id = "sub1"
         submission.attempt = 1
         submission.customGradeStatusId = "custom1"
         submission.latePolicyStatus = nil
         submission.excused = nil
-        submission.lateSeconds = 24 * 60 * 60
+        submission.lateSeconds = seconds(forHours: 24) // 1 day
         submission.dueAt = nil
 
         // WHEN
@@ -118,11 +118,11 @@ class GradeStatusInteractorTests: TeacherTestCase {
 
         // THEN
         waitUntil(5, shouldFail: true) { receivedStatuses.count == 1 }
-        XCTAssertEqual(receivedStatuses.last?.0.id, "custom1")
-        XCTAssertEqual(receivedStatuses.last?.1, 1)
-        XCTAssertEqual(receivedStatuses.last?.2, nil)
+        XCTAssertEqual(receivedStatuses.last?.status.id, "custom1")
+        XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
+        XCTAssertEqual(receivedStatuses.last?.dueDate, nil)
 
-        // GIVEN
+        // GIVEN - dueDate
         submission.dueAt = submissionDueDate
 
         // WHEN
@@ -130,11 +130,11 @@ class GradeStatusInteractorTests: TeacherTestCase {
 
         // THEN
         waitUntil(5, shouldFail: true) { receivedStatuses.count == 2 }
-        XCTAssertEqual(receivedStatuses.last?.0.id, "custom1")
-        XCTAssertEqual(receivedStatuses.last?.1, 1)
-        XCTAssertEqual(receivedStatuses.last?.2, submissionDueDate)
+        XCTAssertEqual(receivedStatuses.last?.status.id, "custom1")
+        XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
+        XCTAssertEqual(receivedStatuses.last?.dueDate, submissionDueDate)
 
-        // GIVEN
+        // GIVEN - late policy status
         submission.customGradeStatusId = nil
         submission.latePolicyStatus = .late
         submission.dueAt = nil
@@ -144,11 +144,11 @@ class GradeStatusInteractorTests: TeacherTestCase {
 
         // THEN
         waitUntil(5, shouldFail: true) { receivedStatuses.count == 3 }
-        XCTAssertEqual(receivedStatuses.last?.0.id, "late")
-        XCTAssertEqual(receivedStatuses.last?.1, 1)
-        XCTAssertEqual(receivedStatuses.last?.2, nil)
+        XCTAssertEqual(receivedStatuses.last?.status.id, "late")
+        XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
+        XCTAssertEqual(receivedStatuses.last?.dueDate, nil)
 
-        // GIVEN
+        // GIVEN - excused
         submission.latePolicyStatus = nil
         submission.excused = true
 
@@ -157,11 +157,11 @@ class GradeStatusInteractorTests: TeacherTestCase {
 
         // THEN
         waitUntil(5, shouldFail: true) { receivedStatuses.count == 4 }
-        XCTAssertEqual(receivedStatuses.last?.0.id, "excused")
-        XCTAssertEqual(receivedStatuses.last?.1, 1)
-        XCTAssertEqual(receivedStatuses.last?.2, nil)
+        XCTAssertEqual(receivedStatuses.last?.status.id, "excused")
+        XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
+        XCTAssertEqual(receivedStatuses.last?.dueDate, nil)
 
-        // GIVEN
+        // GIVEN - reset status
         submission.excused = nil
         submission.dueAt = submissionDueDate
 
@@ -170,40 +170,46 @@ class GradeStatusInteractorTests: TeacherTestCase {
 
         // THEN
         waitUntil(5, shouldFail: true) { receivedStatuses.count == 5 }
-        XCTAssertEqual(receivedStatuses.last?.0.id, "none")
-        XCTAssertEqual(receivedStatuses.last?.1, 1)
-        XCTAssertEqual(receivedStatuses.last?.2, submissionDueDate)
+        XCTAssertEqual(receivedStatuses.last?.status.id, "none")
+        XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
+        XCTAssertEqual(receivedStatuses.last?.dueDate, submissionDueDate)
+
+        // GIVEN - days late
+        submission.lateSeconds = seconds(forHours: 36) // 1.5 days
+        submission.excused = nil
+        submission.dueAt = nil
+
+        // WHEN
+        try databaseClient.save()
+
+        // THEN
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 6 }
+        XCTAssertEqual(receivedStatuses[5].daysLate, 1.5, accuracy: 0.001)
+
+        // GIVEN - another days late
+        submission.lateSeconds = seconds(forHours: 18) // 0.75 days
+        submission.excused = nil
+        submission.dueAt = nil
+
+        // WHEN
+        try databaseClient.save()
+
+        // THEN
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 7 }
+        XCTAssertEqual(receivedStatuses[6].daysLate, 0.75, accuracy: 0.001)
     }
 
     func test_updateLateDays_triggersGradeSubmissionUseCase() {
         let testee = GradeStatusInteractorLive(courseId: "1", assignmentId: "2", api: api)
-        let request = GradeSubmission(courseID: "1", assignmentID: "2", userID: "4", lateSeconds: 172800)
+        let request = GradeSubmission(courseID: "1", assignmentID: "2", userID: "4", lateSeconds: 216000) // 2.5 days * 24 * 60 * 60
         let submission = APISubmission.make(id: "sub1")
         api.mock(request, value: submission)
 
         // WHEN
-        let publisher = testee.updateLateDays(submissionId: "sub1", userId: "4", daysLate: 2)
+        let publisher = testee.updateLateDays(submissionId: "sub1", userId: "4", daysLate: 2.5)
 
         // THEN
         XCTAssertFinish(publisher)
-    }
-
-    private func mockGradeStatusesAPI() {
-        let request = GetGradeStatusesRequest(courseID: "1")
-        let response = GetGradeStatusesResponse(
-            data: .init(
-                course: .init(
-                    customGradeStatusesConnection: .init(
-                        nodes: [
-                            .init(name: "Custom1", id: "custom1"),
-                            .init(name: "Custom2", id: "custom2")
-                        ]
-                    ),
-                    gradeStatuses: ["excused", "late", "none"]
-                )
-            )
-        )
-        api.mock(request, value: response)
     }
 
     func test_fetchGradeStatuses_sortingOrder() {
@@ -237,5 +243,27 @@ class GradeStatusInteractorTests: TeacherTestCase {
         XCTAssertEqual(testee.gradeStatuses[2].id, "excused")
         XCTAssertEqual(testee.gradeStatuses[3].id, "zcustom")
         XCTAssertEqual(testee.gradeStatuses[4].id, "acustom")
+    }
+
+    private func seconds(forHours hours: Int) -> Int {
+        hours * 60 * 60
+    }
+
+    private func mockGradeStatusesAPI() {
+        let request = GetGradeStatusesRequest(courseID: "1")
+        let response = GetGradeStatusesResponse(
+            data: .init(
+                course: .init(
+                    customGradeStatusesConnection: .init(
+                        nodes: [
+                            .init(name: "Custom1", id: "custom1"),
+                            .init(name: "Custom2", id: "custom2")
+                        ]
+                    ),
+                    gradeStatuses: ["excused", "late", "none"]
+                )
+            )
+        )
+        api.mock(request, value: response)
     }
 }

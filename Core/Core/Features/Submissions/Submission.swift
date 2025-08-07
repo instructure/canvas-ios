@@ -325,7 +325,7 @@ extension Submission {
 
         switch typeWithQuizLTIMapping {
         case .basic_lti_launch, .external_tool, .online_quiz:
-            return String.localizedAttemptNumber(attempt)
+            return String.format(attemptNumber: attempt)
         case .discussion_topic:
             return discussionEntriesOrdered.first?.message?.htmlToPlainText(lineBreaks: " ")
         case .media_recording:

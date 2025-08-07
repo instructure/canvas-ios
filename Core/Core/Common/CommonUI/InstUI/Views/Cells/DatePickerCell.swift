@@ -205,7 +205,7 @@ extension InstUI {
             )
             .labelsHidden() // This is needed to avoid the empty label filling up all the space
             .accessibilityLabel(customAccessibilityLabel ?? label)
-            .accessibilityValue(String.localizedAccessibilityErrorMessage(errorMessage) ?? "") // Actual value is contained already
+            .accessibilityValue(String.format(accessibilityErrorMessage: errorMessage) ?? "") // Actual value is contained already
             .accessibilityRefocusingOnPopoverDismissal()
             .identifier(identifierGroup, accessibilityId)
         }

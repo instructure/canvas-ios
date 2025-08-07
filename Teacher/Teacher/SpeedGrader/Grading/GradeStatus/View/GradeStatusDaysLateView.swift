@@ -31,7 +31,7 @@ struct GradeStatusDaysLateView: View {
                 Text("Days late", bundle: .teacher)
                     .font(.semibold16)
                     .foregroundColor(.textDarkest)
-                Text("Due \(viewModel.dueDate)", bundle: .teacher)
+                Text(viewModel.dueDate)
                     .font(.regular14)
                     .foregroundColor(.textDark)
             }
@@ -78,7 +78,7 @@ struct GradeStatusDaysLateView: View {
         )
         alert.addTextField { textField in
             textField.placeholder = String(localized: "Days late", bundle: .teacher)
-            textField.keyboardType = .numberPad
+            textField.keyboardType = .decimalPad
             textField.text = viewModel.daysLate
         }
         alert.addAction(UIAlertAction(
@@ -90,8 +90,8 @@ struct GradeStatusDaysLateView: View {
             title: String(localized: "OK", bundle: .teacher),
             style: .default
         ) { _ in
-            if let text = alert.textFields?.first?.text, let value = Int(text) {
-                viewModel.didChangeLateDaysValue.send(value)
+            if let text = alert.textFields?.first?.text {
+                viewModel.didChangeLateDaysValue.send(text)
             }
             isA11yFocused = true
         })
