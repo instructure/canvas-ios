@@ -76,7 +76,7 @@ final class ScoresInteractorLive: ScoresInteractor {
         ReactiveStore(
             useCase: GetHScoresCourseUseCase(courseID: courseID)
         )
-        .getEntities(ignoreCache: ignoreCache)
+        .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
         .compactMap { $0.first }
         .map { HScoresCourse(from: $0) }
         .eraseToAnyPublisher()

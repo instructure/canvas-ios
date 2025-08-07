@@ -171,8 +171,10 @@ private struct CotentView: View {
         case .overview:
             overview(htmlString: viewModel.overviewDescription)
         case .scores:
-            ScoresAssembly.makeView(courseID: viewModel.course.id, enrollmentID: viewModel.course.enrollmentID)
-                .padding(.horizontal, .huiSpaces.space24)
+            if let scoresViewModel = viewModel.scoresViewModel {
+                ScoresView(viewModel: scoresViewModel)
+                    .padding(.horizontal, .huiSpaces.space24)
+            }
         case .notebook:
             NotebookAssembly.makeView(courseID: viewModel.course.id)
                 .padding(.bottom, .huiSpaces.space24)
