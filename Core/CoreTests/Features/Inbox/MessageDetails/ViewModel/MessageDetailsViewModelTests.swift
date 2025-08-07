@@ -235,21 +235,11 @@ class MessageDetailsViewModelTests: CoreTestCase {
 
     func test_messageMoreTapped_whenRestrictStudentAccessDisabled_replyAllShown() {
         // Given
-        mockInteractor = MessageDetailsInteractorMock()
-        mockStudentAccessInteractor = StudentAccessInteractorMock(restricted: false)
-        testee = MessageDetailsViewModel(
-            interactor: mockInteractor,
-            studentAccessInteractor: mockStudentAccessInteractor,
-            myID: "1",
-            allowArchive: true,
-            env: environment
-        )
+        let sourceView = UIViewController()
 
         waitUntil {
             testee.isStudentAccessRestricted == false
         }
-
-        let sourceView = UIViewController()
 
         // When
         testee.messageMoreTapped(
