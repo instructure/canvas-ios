@@ -285,20 +285,16 @@ struct SpeedGraderSubmissionGradesView: View {
     var slider: some View {
         let score = gradeViewModel.sliderValue
         let possible = assignment.pointsPossible ?? 0
+        let isPercent = assignment.gradingType == .percent
         let tooltipText =
             sliderCleared ? Text("No Grade", bundle: .teacher) :
             sliderExcused ? Text("Excused", bundle: .teacher) :
-            assignment.gradingType == .percent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
+            isPercent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
             Text(gradeSliderViewModel.formatScore(score, maxPoints: possible))
-        let maxScore = assignment.gradingType == .percent ? 100 : possible
+        let maxScore = isPercent ? 100 : possible
 
-        HStack(spacing: 8) {
-            Text(0)
-                .foregroundStyle(.tint)
-                .frame(width: 30, height: 30)
-                .onTapGesture {
-                    updateGrade(0)
-                }
+        HStack(spacing: 16) {
+            sliderButton(score: 0, isPercent: isPercent)
             ZStack {
                 // disables page swipe around the slider
                 Rectangle()
@@ -314,15 +310,26 @@ struct SpeedGraderSubmissionGradesView: View {
                             onEditingChanged: sliderChangedState,
                             viewModel: gradeSliderViewModel)
             }
-            Text(maxScore)
-                .foregroundStyle(.tint)
-                .frame(width: 30, height: 30)
-                .onTapGesture {
-                    updateGrade(possible)
-                }
+            sliderButton(score: maxScore, isPercent: isPercent)
         }
-        .font(.medium14).foregroundColor(.textDarkest)
-        .padding(.horizontal, 16).padding(.vertical, 14)
+        .paddingStyle(set: .standardCell)
+    }
+
+    private func sliderButton(score: Double, isPercent: Bool) -> some View {
+        Button(
+            action: { updateGrade(score) },
+            label: {
+                Text(score)
+                    .foregroundStyle(.tint)
+                    .font(.semibold14)
+                    .frame(height: 30)
+                    .accessibilityLabel(
+                        isPercent
+                            ? GradeFormatter.percentFormatter.string(from: NSNumber(value: score)) ?? "\(score)%"
+                            : String.format(points: score)
+                    )
+            }
+        )
     }
 
     func updateGrade(excused: Bool? = nil, noMark: Bool? = false, _ grade: Double? = nil) {
