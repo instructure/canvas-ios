@@ -75,18 +75,11 @@ enum SpeedGraderAssembly {
             env: env
         )
 
-        let gradingStandardInteractor = GradingStandardInteractorLive(
-            courseId: assignment.courseID,
-            gradingStandardId: assignment.gradingStandardId,
-            env: env
-        )
-
         let gradeInteractor = GradeInteractorLive(
             assignment: assignment,
             submission: submission,
             gradingScheme: gradingScheme,
             rubricGradingInteractor: rubricGradingInteractor,
-            gradingStandardInteractor: gradingStandardInteractor,
             env: env
         )
 

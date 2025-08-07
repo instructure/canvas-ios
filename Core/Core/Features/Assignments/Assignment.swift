@@ -112,6 +112,7 @@ public class Assignment: NSManagedObject {
         return course?.hideQuantitativeData ?? false
     }
 
+    // TODO: Should be deleted because assignments grading scheme may differ from the course one
     public var gradingScheme: GradingScheme? {
         guard let course: Course = managedObjectContext?.first(where: #keyPath(Course.id),
                                                                equals: courseID)

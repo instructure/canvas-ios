@@ -114,9 +114,6 @@ final public class Course: NSManagedObject, WriteableModel {
         }
 
         model.gradingStandardId = item.grading_standard_id?.value
-        model.scalingFactor = item.scaling_factor ?? 1
-        model.pointsBasedGradingScheme = item.points_based_grading_scheme ?? false
-
         model.hideFinalGrades = item.hide_final_grades ?? false
         model.isCourseDeleted = item.workflow_state == .deleted
         model.isPastEnrollment = (
@@ -167,6 +164,13 @@ final public class Course: NSManagedObject, WriteableModel {
             model.settings = settings
         }
 
+        // include[]=grading_scheme
+        if let scalingFactor = item.scaling_factor {
+            model.scalingFactor = scalingFactor // CoreData defaults to 1
+        }
+        if let pointsBasedGradingScheme = item.points_based_grading_scheme {
+            model.pointsBasedGradingScheme = pointsBasedGradingScheme // CoreData defaults to false
+        }
         if let gradingScheme = item.grading_scheme {
             let gradingSchemeEntries: [GradingSchemeEntry] = gradingScheme.compactMap(GradingSchemeEntry.init)
             model.gradingSchemeRaw = gradingSchemeEntries.rawData

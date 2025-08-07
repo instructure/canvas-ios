@@ -96,9 +96,8 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                     loadSubmissions(anonymizeStudents: assignment.anonymizeStudents),
                     gradeStatusInteractor.fetchGradeStatuses(),
                     gradingStandardInteractor.gradingScheme
-                        .setFailureType(to: Error.self)
                 )
-                .map { (assignment, $1, $3) }
+                .map { (assignment, $0.1, $0.3) }
                 .eraseToAnyPublisher()
             }
             .receive(on: mainScheduler)

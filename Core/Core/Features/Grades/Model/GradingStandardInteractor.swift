@@ -20,7 +20,7 @@ import Combine
 import Foundation
 
 public protocol GradingStandardInteractor {
-    var gradingScheme: AnyPublisher<GradingScheme?, Never> { get }
+    var gradingScheme: AnyPublisher<GradingScheme?, Error> { get }
 }
 
 public final class GradingStandardInteractorLive: GradingStandardInteractor {
@@ -34,11 +34,13 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
         self.env = env ?? AppEnvironment.shared
     }
 
-    public var gradingScheme: AnyPublisher<GradingScheme?, Never> {
+    public var gradingScheme: AnyPublisher<GradingScheme?, Error> {
         if gradingStandardId != nil {
             gradingSchemeFromGradingStandard
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
         } else {
-            courseIncludedGradingScheme
+            courseDefaultGradingScheme
         }
     }
 
@@ -112,9 +114,9 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
             .eraseToAnyPublisher()
     }
 
-    private var courseIncludedGradingScheme: AnyPublisher<GradingScheme?, Never> {
+    private var courseDefaultGradingScheme: AnyPublisher<GradingScheme?, Error> {
         let courseStore = ReactiveStore(
-            useCase: GetCourseWithGradingScheme(courseId: courseId),
+            useCase: GetCourseWithGradingSchemeOnly(courseId: courseId),
             environment: env
         )
 
@@ -122,7 +124,6 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
             .getEntities()
             .map(\.first)
             .map(\.?.gradingScheme)
-            .ignoreFailure()
             .eraseToAnyPublisher()
     }
 }
@@ -130,8 +131,9 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
 // Mock
 
 public final class GradingStandardInteractorMock: GradingStandardInteractor {
-    public var gradingScheme: AnyPublisher<GradingScheme?, Never> {
+    public var gradingScheme: AnyPublisher<GradingScheme?, Error> {
         Just(nil)
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 }

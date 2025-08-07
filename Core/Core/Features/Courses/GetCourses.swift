@@ -261,30 +261,34 @@ struct UpdateCourse: APIUseCase {
     }
 }
 
-struct GetCourseWithGradingScheme: APIUseCase {
+struct GetCourseWithGradingSchemeOnly: APIUseCase {
     typealias Model = Course
 
     public let request: GetCourseRequest
     public let cacheKey: String?
+    public let scope: Scope
 
     private let courseId: String
 
     init(courseId: String) {
         self.request = GetCourseRequest(courseID: courseId, include: [.grading_scheme])
-        self.cacheKey = "get-course-\(courseId)"
+        self.cacheKey = "get-course-with-grading-scheme-only-\(courseId)"
+        self.scope = .where(#keyPath(Course.id), equals: courseId)
         self.courseId = courseId
     }
 
     func write(response: APICourse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard
-            let response = response,
-            let course: Course = client.first(where: #keyPath(Course.id), equals: courseId),
+            let response,
             let gradingScheme = response.grading_scheme?.compactMap(GradingSchemeEntry.init)
         else { return }
 
-        // If we already have the course then we only update its grading scheme
-        if course.gradingSchemeEntries != gradingScheme {
-            course.gradingSchemeRaw = gradingScheme.rawData
+        if let course: Course = client.first(where: #keyPath(Course.id), equals: courseId) {
+            if course.gradingSchemeEntries != gradingScheme {
+                course.gradingSchemeRaw = gradingScheme.rawData
+            }
+        } else {
+            Model.save(response, in: client)
         }
     }
 }

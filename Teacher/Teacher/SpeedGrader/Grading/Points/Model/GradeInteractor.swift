@@ -43,7 +43,6 @@ class GradeInteractorLive: GradeInteractor {
     private let gradingScheme: GradingScheme?
     private let rubricGradingInteractor: RubricGradingInteractor
     private let gradeStateInteractor: GradeStateInteractor
-    private let gradingStandardInteractor: GradingStandardInteractor
     private let env: AppEnvironment
 
     // MARK: - Initialization
@@ -54,7 +53,6 @@ class GradeInteractorLive: GradeInteractor {
         gradingScheme: GradingScheme? = nil,
         rubricGradingInteractor: RubricGradingInteractor,
         gradeStateInteractor: GradeStateInteractor = GradeStateInteractorLive(),
-        gradingStandardInteractor: GradingStandardInteractor,
         env: AppEnvironment
     ) {
         self.assignment = assignment
@@ -62,7 +60,6 @@ class GradeInteractorLive: GradeInteractor {
         self.gradingScheme = gradingScheme
         self.rubricGradingInteractor = rubricGradingInteractor
         self.gradeStateInteractor = gradeStateInteractor
-        self.gradingStandardInteractor = gradingStandardInteractor
         self.env = env
         self.gradeState = gradeStateSubject
             .dropFirst() // to skip initial empty value
