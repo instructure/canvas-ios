@@ -54,21 +54,18 @@ class SubmissionListViewModel: ObservableObject {
 
         Publishers.CombineLatest3(
             interactor.submissions.receive(on: scheduler),
-            interactor.groupsInAssignment.receive(on: scheduler),
+            interactor.assigneeGroups.receive(on: scheduler),
             $searchText.throttle(for: 1, scheduler: scheduler, latest: true)
         )
-        .map({ [weak self] (list, groupsMemberships, searchText) in
+        .map({ [weak self] (list, groups, searchText) in
             let searchTerm = searchText.lowercased()
             var curatedList: [Submission] = list
 
-            if groupsMemberships.isNotEmpty {
+            if groups.isNotEmpty {
                 curatedList.forEach { submission in
                     if submission.groupID == nil,
-                       let memberships = groupsMemberships.first(where: { $0.userIDs.contains(submission.userID) }) {
-                        submission.fetchedGroup = FetchedGroup(
-                            id: memberships.group.id,
-                            name: memberships.group.displayName
-                        )
+                       let foundGroup = groups.first(where: { $0.containsUser(submission.userID) }) {
+                        submission.fetchedGroup = foundGroup.asSubmissionFetchedGroup
                     }
                 }
             }

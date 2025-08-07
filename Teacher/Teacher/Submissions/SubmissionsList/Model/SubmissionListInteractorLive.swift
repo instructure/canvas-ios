@@ -94,11 +94,11 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
         submissionsSubject.eraseToAnyPublisher()
     }
 
-    var groupsInAssignment: AnyPublisher<[GroupMemberships], Never> {
+    var assigneeGroups: AnyPublisher<[AssigneeGroup], Never> {
         assignment
             .flatMap { [weak self] assignment in
                 guard let self, let categoryID = assignment?.groupCategoryID else {
-                    return Just([GroupMemberships]()).eraseToAnyPublisher()
+                    return Just([AssigneeGroup]()).eraseToAnyPublisher()
                 }
 
                 return ReactiveStore(
@@ -111,7 +111,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
                         .Sequence(sequence: groups)
                         .flatMap { [weak self] group in
                             guard let self else {
-                                return Just(GroupMemberships(group: group))
+                                return Just(AssigneeGroup(group: group))
                                     .eraseToAnyPublisher()
                             }
 
@@ -121,9 +121,9 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
                                 .makeRequest(GetGroupUsersRequest(groupID: group.id))
                                 .map { (users: [APIUser], _) in
                                     let userIDs = users.map { $0.id.value }
-                                    return GroupMemberships(group: group, userIDs: userIDs)
+                                    return AssigneeGroup(group: group, memberIDs: userIDs)
                                 }
-                                .replaceError(with: GroupMemberships(group: group))
+                                .replaceError(with: AssigneeGroup(group: group))
                                 .eraseToAnyPublisher()
                         }
                         .collect()
@@ -161,15 +161,5 @@ private extension [Submission] {
             }
         }
         return filteredSubmissions
-    }
-}
-
-public struct GroupMemberships {
-    let group: Group
-    let userIDs: [String]
-
-    init(group: Group, userIDs: [String] = []) {
-        self.group = group
-        self.userIDs = userIDs
     }
 }
