@@ -4098,6 +4098,7 @@
       }
     },
     "All submissions" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -21016,6 +21017,7 @@
       }
     },
     "Filter" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -21272,6 +21274,7 @@
       }
     },
     "Filter (%d)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -23069,6 +23072,7 @@
 
     },
     "Grade post policy" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -27774,6 +27778,7 @@
       }
     },
     "Group %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -29573,6 +29578,9 @@
       }
     },
     "Late Penalty" : {
+
+    },
+    "Launch External Tool" : {
 
     },
     "Letter grade" : {
@@ -36238,6 +36246,9 @@
         }
       }
     },
+    "Open the Quiz" : {
+
+    },
     "Others" : {
       "localizations" : {
         "ar" : {
@@ -40337,6 +40348,7 @@
       }
     },
     "Reset" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -41626,6 +41638,7 @@
 
     },
     "Scored above..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -41882,6 +41895,7 @@
       }
     },
     "Scored below..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
