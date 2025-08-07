@@ -24,7 +24,6 @@ import SwiftUI
 struct HInboxView: View {
 
     @Environment(\.viewController) private var viewController
-    @Environment(\.scenePhase) private var scenePhase
     @Bindable var viewModel: HInboxViewModel
     let coordinateSpaceName: String = "scroll"
 
