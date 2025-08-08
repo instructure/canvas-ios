@@ -16,21 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
+@testable import Core
+import XCTest
 
-public final class GradingSchemeEntry: NSManagedObject {
-    @NSManaged public var name: String
-    @NSManaged public var value: Double
-    @NSManaged public var course: Course?
-}
+class GradingSchemeTestCase: CoreTestCase {
 
-extension GradingSchemeEntry: WriteableModel {
+    func scoreConversionEntries() -> [GradingSchemeEntry] {
+        [
+            .init(name: "A", value: 0.9),
+            .init(name: "B", value: 0.3),
+            .init(name: "F", value: 0)
+        ]
+    }
 
-    @discardableResult
-    public static func save(_ item: APIGradingSchemeEntry, in context: NSManagedObjectContext) -> GradingSchemeEntry {
-        let gradingSchemeEntry: GradingSchemeEntry = context.insert()
-        gradingSchemeEntry.name = item.name
-        gradingSchemeEntry.value = item.value
-        return gradingSchemeEntry
+    func invalidConversionEntries() -> [GradingSchemeEntry] {
+        [.init(name: "A", value: 90)]
     }
 }

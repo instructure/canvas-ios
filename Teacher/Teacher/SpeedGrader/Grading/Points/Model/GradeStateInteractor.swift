@@ -24,6 +24,7 @@ protocol GradeStateInteractor {
     func gradeState(
         submission: Submission,
         assignment: Assignment,
+        gradingScheme: GradingScheme?,
         isRubricScoreAvailable: Bool, // TODO: remove if not needed for rubrics
         totalRubricScore: Double // TODO: remove if not needed for rubrics
     ) -> GradeState
@@ -34,6 +35,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
     func gradeState(
         submission: Submission,
         assignment: Assignment,
+        gradingScheme: GradingScheme? = nil,
         isRubricScoreAvailable: Bool,
         totalRubricScore: Double
     ) -> GradeState {
@@ -47,7 +49,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
         return GradeState(
             gradingType: gradingType,
             pointsPossibleText: assignment.pointsPossibleText,
-            gradeOptions: Self.gradeOptions(for: gradingType, assignment: assignment),
+            gradeOptions: Self.gradeOptions(for: gradingType, gradingScheme: gradingScheme),
 
             isGraded: isGraded,
             isExcused: isExcused,
@@ -64,13 +66,13 @@ class GradeStateInteractorLive: GradeStateInteractor {
     }
 
     /// Returns a placeholder GradeState which sets only the properties available from `assignment`.
-    static func gradeState(usingOnly assignment: Assignment) -> GradeState {
+    static func gradeState(usingOnly assignment: Assignment, gradingScheme: GradingScheme? = nil) -> GradeState {
         let gradingType = assignment.gradingType
 
         return GradeState(
             gradingType: gradingType,
             pointsPossibleText: assignment.pointsPossibleText,
-            gradeOptions: gradeOptions(for: gradingType, assignment: assignment),
+            gradeOptions: gradeOptions(for: gradingType, gradingScheme: gradingScheme),
 
             isGraded: false,
             isExcused: false,
@@ -85,10 +87,10 @@ class GradeStateInteractorLive: GradeStateInteractor {
         )
     }
 
-    private static func gradeOptions(for gradingType: GradingType, assignment: Assignment) -> [OptionItem] {
+    private static func gradeOptions(for gradingType: GradingType, gradingScheme: GradingScheme? = nil) -> [OptionItem] {
         switch gradingType {
         case .gpa_scale, .letter_grade:
-            guard let gradingScheme = assignment.gradingScheme else { return [] }
+            guard let gradingScheme else { return [] }
 
             var items: [OptionItem] = []
             let maxValue = gradingScheme.formattedMaxValue ?? ""
