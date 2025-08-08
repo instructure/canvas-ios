@@ -79,6 +79,10 @@ struct GradeInputTextFieldCell: View {
         .onTapGesture {
             isFocused = true
         }
+        .onChange(of: externalText) {
+            // This onChange didn't trigger sometimes when it was called on `numericTextField`.
+            internalText = externalText
+        }
     }
 
     @ViewBuilder
@@ -87,9 +91,6 @@ struct GradeInputTextFieldCell: View {
             numericTextField
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .focused($isFocused)
-                .onChange(of: externalText) {
-                    internalText = externalText
-                }
                 .onChange(of: isFocused) {
                     // on end editing: send current text
                     if !isFocused {
