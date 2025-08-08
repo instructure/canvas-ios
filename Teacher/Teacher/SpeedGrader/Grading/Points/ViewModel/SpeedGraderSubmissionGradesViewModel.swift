@@ -235,18 +235,26 @@ extension GradeState {
 
     var finalGradeRowModel: FinalGradeRowViewModel {
         let suffix: FinalGradeRowViewModel.SuffixType
-
         switch gradingType {
         case .percent:
             suffix = .percentage
         case .pass_fail, .letter_grade, .gpa_scale, .not_graded:
             suffix = .none
         case .points:
-            suffix = .maxGradeWithUnit(pointsPossibleText)
+            suffix = .maxGradeWithUnit(pointsPossibleText, pointsPossibleAccessibilityText)
+        }
+
+        let a11yGradeText: String?
+        switch gradingType {
+        case .points, .percent, .pass_fail, .not_graded:
+            a11yGradeText = finalGradeWithoutMetric
+        case .letter_grade, .gpa_scale:
+            a11yGradeText = String.format(accessibilityLetterGrade: finalGradeWithoutMetric)
         }
 
         return FinalGradeRowViewModel(
-            currentGradeText: finalGradeWithoutMetric,
+            gradeText: finalGradeWithoutMetric,
+            a11yGradeText: a11yGradeText,
             suffixType: suffix,
             isGradedButNotPosted: isGradedButNotPosted
         )
