@@ -27317,7 +27317,7 @@
       }
     },
     "Calendar" : {
-      "comment" : "Calendar page title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -39869,7 +39869,7 @@
       }
     },
     "Dashboard" : {
-      "comment" : "dashboard page title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -62933,7 +62933,7 @@
       }
     },
     "Homeroom" : {
-      "comment" : "Homeroom tab title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -64763,7 +64763,7 @@
       }
     },
     "Inbox" : {
-      "comment" : "Inbox tab title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -86284,7 +86284,7 @@
       }
     },
     "Notifications" : {
-      "comment" : "Notifications tab title",
+      "comment" : "Notifications tab title\nTab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -130441,7 +130441,7 @@
       }
     },
     "To Do" : {
-      "comment" : "Title of the Todo screen",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
