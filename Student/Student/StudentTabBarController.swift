@@ -91,7 +91,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
             dashboard.interactivePopGestureRecognizer?.isEnabled = false
             result = dashboard
 
-            tabBarTitle = String(localized: "Homeroom", bundle: .student, comment: "Homeroom tab title")
+            tabBarTitle = String(localized: "Homeroom", bundle: .student, comment: "Tab title, max character count is 14")
             tabBarImage =  .homeroomTab
             tabBarImageSelected = .homeroomTabActive
         } else {
@@ -99,7 +99,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
                                                                          showOnlyTeacherEnrollment: false))
             result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
 
-            tabBarTitle = String(localized: "Dashboard", bundle: .student, comment: "dashboard page title")
+            tabBarTitle = String(localized: "Dashboard", bundle: .student, comment: "Tab title, max character count is 14")
             tabBarImage = .dashboardTab
             tabBarImageSelected = .dashboardTabActive
         }
@@ -127,7 +127,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
             CoreNavigationController(rootViewController: EmptyViewController())
         ]
         split.view.tintColor = Brand.shared.primary
-        split.tabBarItem.title = String(localized: "Calendar", bundle: .student, comment: "Calendar page title")
+        split.tabBarItem.title = String(localized: "Calendar", bundle: .student, comment: "Tab title, max character count is 14")
         split.tabBarItem.image = .calendarTab
         split.tabBarItem.selectedImage = .calendarTabActive
         split.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
@@ -143,7 +143,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
             CoreNavigationController(rootViewController: todoController),
             CoreNavigationController(rootViewController: EmptyViewController())
         ]
-        todo.tabBarItem.title = String(localized: "To Do", bundle: .student, comment: "Title of the Todo screen")
+        todo.tabBarItem.title = String(localized: "To Do", bundle: .student, comment: "Tab title, max character count is 14")
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
         todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
@@ -160,7 +160,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
             CoreNavigationController(rootViewController: ActivityStreamViewController.create()),
             CoreNavigationController(rootViewController: EmptyViewController())
         ]
-        split.tabBarItem.title = String(localized: "Notifications", bundle: .student, comment: "Notifications tab title")
+        split.tabBarItem.title = String(localized: "Notifications", bundle: .student, comment: "Tab title, max character count is 14")
         split.tabBarItem.image = .alertsTab
         split.tabBarItem.selectedImage = .alertsTabActive
         split.tabBarItem.accessibilityIdentifier = "TabBar.notificationsTab"
@@ -179,7 +179,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         empty.navigationBar.useGlobalNavStyle()
 
         inboxSplit.viewControllers = [inboxController, empty]
-        let title = String(localized: "Inbox", bundle: .student, comment: "Inbox tab title")
+        let title = String(localized: "Inbox", bundle: .student, comment: "Tab title, max character count is 14")
         inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
         inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
         inboxSplit.tabBarItem.makeUnavailableInOfflineMode()
