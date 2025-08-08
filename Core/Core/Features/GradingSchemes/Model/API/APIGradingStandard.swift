@@ -28,28 +28,6 @@ public struct APIGradingStandard: Codable, Equatable {
     let grading_scheme: [APIGradingSchemeEntry]
 }
 
-// https://developerdocs.instructure.com/services/canvas/resources/grading_standards#method.grading_standards_api.context_show
-public struct GetGradingStandardRequest: APIRequestable {
-    public typealias Response = APIGradingStandard
-
-    let context: Context
-    let gradingStandardId: String
-
-    public var path: String {
-        "\(context.pathComponent)/grading_standards/\(gradingStandardId)"
-    }
-
-    public func decode(_ data: Data) throws -> APIGradingStandard {
-        let decoder = APIJSONDecoder()
-        let response = try decoder.decode(APIGradingStandard.self, from: data)
-        return response
-    }
-
-    public func encode(response: APIGradingStandard) throws -> Data {
-        try APIJSONEncoder().encode(response)
-    }
-}
-
 #if DEBUG
 
 extension APIGradingStandard {

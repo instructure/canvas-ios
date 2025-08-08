@@ -18,8 +18,24 @@
 
 import Foundation
 
-extension Data {
-    public func jsonDecode<T: Decodable>(to type: T.Type) -> T? {
-        try? JSONDecoder().decode(T.self, from: self)
+// https://developerdocs.instructure.com/services/canvas/resources/grading_standards#method.grading_standards_api.context_show
+public struct GetGradingStandardRequest: APIRequestable {
+    public typealias Response = APIGradingStandard
+
+    let context: Context
+    let gradingStandardId: String
+
+    public var path: String {
+        "\(context.pathComponent)/grading_standards/\(gradingStandardId)"
+    }
+
+    public func decode(_ data: Data) throws -> APIGradingStandard {
+        let decoder = APIJSONDecoder()
+        let response = try decoder.decode(APIGradingStandard.self, from: data)
+        return response
+    }
+
+    public func encode(response: APIGradingStandard) throws -> Data {
+        try APIJSONEncoder().encode(response)
     }
 }
