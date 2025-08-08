@@ -328,7 +328,7 @@ struct SpeedGraderSubmissionGradesView: View {
                     .frame(height: 30)
                     .accessibilityLabel(
                         isPercent
-                            ? GradeFormatter.percentFormatter.string(from: NSNumber(value: score)) ?? "\(score)%"
+                            ? GradeFormatter.percentFormatter.string(from: NSNumber(value: score/100)) ?? "\(score)%"
                             : String.format(points: score)
                     )
             }
