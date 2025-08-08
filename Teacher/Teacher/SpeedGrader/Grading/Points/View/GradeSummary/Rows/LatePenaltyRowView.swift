@@ -33,6 +33,7 @@ struct LatePenaltyRowView: View {
                 .paddingStyle(.trailing, .cellAccessoryPadding)
                 .frame(maxWidth: .infinity, alignment: .leading)
             Text(viewModel.penaltyText)
+                .accessibilityLabel(viewModel.a11yPenaltyText)
         }
         .font(.regular16, lineHeight: .fit)
         .foregroundColor(.textDanger)
@@ -46,7 +47,7 @@ struct LatePenaltyRowView: View {
 
 #Preview {
     VStack(spacing: 0) {
-        LatePenaltyRowView(viewModel: .init(penaltyText: "-5 pts"))
+        LatePenaltyRowView(viewModel: .init(penaltyText: "-5 pts", a11yPenaltyText: nil))
     }
     .frame(maxHeight: .infinity)
     .background(.backgroundDarkest)

@@ -83,7 +83,7 @@ struct GradeSummaryView: View {
 
         GradeSummaryView(
             pointsRow: .init(currentPoints: "15", maxPointsWithUnit: "30 pts"),
-            latePenaltyRow: .init(penaltyText: "-2 pts"),
+            latePenaltyRow: .init(penaltyText: "-2 pts", a11yPenaltyText: nil),
             finalGradeRow: .init(gradeText: "43", a11yGradeText: nil, suffixType: .percentage, isGradedButNotPosted: false)
         )
     }

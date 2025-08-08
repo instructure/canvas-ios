@@ -53,6 +53,7 @@ struct GradeState: Equatable {
 
     /// Formatted text showing points deducted for late submissions.
     let pointsDeductedText: String
+    let pointsDeductedAccessibilityText: String
 }
 
 extension GradeState {
@@ -70,7 +71,8 @@ extension GradeState {
         originalScoreWithoutMetric: nil,
         originalGradeWithoutMetric: nil,
         finalGradeWithoutMetric: nil,
-        pointsDeductedText: ""
+        pointsDeductedText: "",
+        pointsDeductedAccessibilityText: ""
     )
 }
 
@@ -91,7 +93,8 @@ extension GradeState {
         originalScoreWithoutMetric: String? = nil,
         originalGradeWithoutMetric: String? = nil,
         finalGradeWithoutMetric: String? = nil,
-        pointsDeductedText: String = ""
+        pointsDeductedText: String = "",
+        pointsDeductedAccessibilityText: String = ""
     ) -> GradeState {
         .init(
             gradingType: gradingType,
@@ -107,7 +110,8 @@ extension GradeState {
             originalScoreWithoutMetric: originalScoreWithoutMetric,
             originalGradeWithoutMetric: originalGradeWithoutMetric,
             finalGradeWithoutMetric: finalGradeWithoutMetric,
-            pointsDeductedText: pointsDeductedText
+            pointsDeductedText: pointsDeductedText,
+            pointsDeductedAccessibilityText: pointsDeductedAccessibilityText
         )
     }
 }

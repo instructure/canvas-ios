@@ -226,11 +226,12 @@ extension GradeState {
     }
 
     var latePenaltyRowModel: LatePenaltyRowViewModel? {
-        if hasLateDeduction {
-            return LatePenaltyRowViewModel(penaltyText: pointsDeductedText)
-        } else {
-            return nil
-        }
+        guard hasLateDeduction else { return nil }
+
+        return LatePenaltyRowViewModel(
+            penaltyText: pointsDeductedText,
+            a11yPenaltyText: pointsDeductedAccessibilityText
+        )
     }
 
     var finalGradeRowModel: FinalGradeRowViewModel {
