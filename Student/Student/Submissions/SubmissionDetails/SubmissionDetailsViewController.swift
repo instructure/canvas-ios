@@ -123,14 +123,14 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
 
         let isActive = submissions.count > 1 && !assignment.isExternalToolAssignment
 
-        let currentAttemptNumber = String.localizedAttemptNumber(currentSubmission.attempt)
+        let currentAttemptNumber = String.format(attemptNumber: currentSubmission.attempt)
 
         let items: [UIAction] = {
             guard isActive else { return [] }
 
             return submissions.map { submission in
                 let date = submission.submittedAt?.dateTimeString ?? ""
-                let attemptNumber = String.localizedAttemptNumber(submission.attempt)
+                let attemptNumber = String.format(attemptNumber: submission.attempt)
                 let isSelected = submission.attempt == currentSubmission.attempt
                 let action = UIAction(title: date, subtitle: attemptNumber, state: isSelected ? .on : .off) { [weak self] _ in
                     self?.presenter?.select(attempt: submission.attempt)

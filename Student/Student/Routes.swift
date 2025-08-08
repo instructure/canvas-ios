@@ -19,7 +19,7 @@
 import Core
 import UIKit
 
-let router = Router(routes: [
+let academicRouter = Router(routes: [
     RouteHandler("/accounts/:accountID/terms_of_service") { _, _, _ in
         TermsOfServiceViewController()
     },
@@ -460,7 +460,7 @@ let router = Router(routes: [
     },
 
     RouteHandler("/profile/settings") { _, _, _ in
-        ProfileSettingsViewController.create(onElementaryViewToggleChanged: { () })
+        ProfileSettingsViewController.create(onElementaryViewToggleChanged: { () }, appExperienceInteractor: ExperienceSummaryInteractorLive())
     },
 
     RouteHandler("/support/problem") { _, _, _ in

@@ -6915,7 +6915,7 @@
       }
     },
     "Calendar" : {
-      "comment" : "Calendar page title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -12042,6 +12042,7 @@
       }
     },
     "Courses" : {
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -22552,9 +22553,6 @@
         }
       }
     },
-    "g_pts" : {
-
-    },
     "GPA" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -28548,7 +28546,7 @@
       }
     },
     "Inbox" : {
-      "comment" : "Inbox tab title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -41625,6 +41623,9 @@
         }
       }
     },
+    "Score" : {
+
+    },
     "Scored above..." : {
       "localizations" : {
         "ar" : {
@@ -49315,6 +49316,7 @@
       }
     },
     "To Do" : {
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

@@ -41,7 +41,9 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var attempt: Int
     @NSManaged public var body: String?
     @NSManaged public var customGradeStatusId: String?
+    @NSManaged public var customGradeStatusName: String?
     @NSManaged public var discussionEntries: Set<DiscussionEntry>?
+    @NSManaged public var dueAt: Date?
     @NSManaged public var enteredGrade: String?
     @NSManaged var enteredScoreRaw: NSNumber?
     @NSManaged var excusedRaw: NSNumber?
@@ -77,6 +79,10 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var mediaComment: MediaComment?
     @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
     @NSManaged public var user: User?
+
+    /// Transient property to use for group resolving in Teacher's submission list
+    public var fetchedGroup: FetchedGroup?
+    public var displayGroupName: String? { groupName ?? fetchedGroup?.name }
 
     public var rubricAssessments: RubricAssessments? {
         if let assessments = rubricAssesmentRaw, assessments.count > 0 {
@@ -141,6 +147,19 @@ final public class Submission: NSManagedObject, Identifiable {
     }
 }
 
+extension Submission {
+
+    public struct FetchedGroup {
+        public let id: String
+        public let name: String
+
+        public init(id: String, name: String) {
+            self.id = id
+            self.name = name
+        }
+    }
+}
+
 extension Submission: WriteableModel {
     public typealias JSON = APISubmission
 
@@ -161,6 +180,15 @@ extension Submission: WriteableModel {
         model.attempt = item.attempt ?? 0
         model.body = item.body
         model.customGradeStatusId = item.custom_grade_status_id
+
+        if let customStatusId = item.custom_grade_status_id {
+            let customStatus: CDCustomGradeStatus? = client.first(
+                where: #keyPath(CDCustomGradeStatus.id), equals: customStatusId
+            )
+            model.customGradeStatusName = customStatus?.name
+        }
+
+        model.dueAt = item.cached_due_date
         model.enteredGrade = item.entered_grade
         model.enteredScore = item.entered_score
         model.excused = item.excused
@@ -323,7 +351,7 @@ extension Submission {
 
         switch typeWithQuizLTIMapping {
         case .basic_lti_launch, .external_tool, .online_quiz:
-            return String.localizedAttemptNumber(attempt)
+            return String.format(attemptNumber: attempt)
         case .discussion_topic:
             return discussionEntriesOrdered.first?.message?.htmlToPlainText(lineBreaks: " ")
         case .media_recording:
@@ -385,6 +413,7 @@ extension Submission {
     /// See canvas-lms submission.rb `def needs_grading?`
     public var needsGrading: Bool {
         return excused != true &&
+            customGradeStatusId == nil &&
             (type != nil && (workflowState == .pending_review ||
                                 ([.graded, .submitted].contains(workflowState) &&
                                     (score == nil || !gradeMatchesCurrentSubmission))
@@ -392,7 +421,9 @@ extension Submission {
     }
 
     public var isGraded: Bool {
-        return excused == true || (score != nil && workflowState == .graded)
+        return excused == true
+            || customGradeStatusId != nil
+            || (score != nil && workflowState == .graded)
     }
 
     /// Returns the appropriate display properties for submission, with consideration for
@@ -418,9 +449,11 @@ extension Submission {
         // Graded check
         switch desc {
         case .usingStatus(.submitted):
-            return needsGrading == false ? .graded : desc // Maintaining the old logic
+            return needsGrading == false ? gradedState : desc // Maintaining the old logic
         case .onPaper, .noSubmission:
-            return isGraded ? .graded : desc
+            return isGraded ? gradedState : desc
+        case .usingStatus(.notSubmitted):
+            return isGraded ? gradedState : desc
         default:
             return desc
         }
@@ -434,8 +467,27 @@ extension Submission {
     }
 
     public var statusIncludingGradedState: SubmissionStatus {
-        if isGraded { return excused == true ? .excused : .graded }
+        if isGraded {
+            if excused == true { return .excused }
+            if customGradeStatusId != nil { return customGradedStatus }
+            return .graded
+        }
         return status
+    }
+
+    private var gradedState: SubmissionStateDisplayProperties {
+        if customGradeStatusId != nil,
+           let name = customGradeStatusName {
+            return .usingStatus(.custom(name))
+        }
+        return .graded
+    }
+
+    private var customGradedStatus: SubmissionStatus {
+        if let name = customGradeStatusName {
+            return .custom(name)
+        }
+        return .graded
     }
 }
 
@@ -453,6 +505,8 @@ extension Submission: Comparable {
         return lhs.userID < rhs.userID
     }
 }
+
+extension Submission: DueViewable {}
 
 /// This is merely used to properly describe the state of submission in certain contexts.
 /// It is not strictly matching `SubmissionStatus` in all cases. And it is not
@@ -500,13 +554,14 @@ public enum SubmissionStateDisplayProperties: Equatable {
     }
 }
 
-public enum SubmissionStatus {
+public enum SubmissionStatus: Hashable {
     case late
     case missing
     case submitted
     case notSubmitted
     case graded
     case excused
+    case custom(String)
 
     public var text: String {
         switch self {
@@ -520,6 +575,8 @@ public enum SubmissionStatus {
             return String(localized: "Not Submitted", bundle: .core)
         case .excused:
             return String(localized: "Excused", bundle: .core)
+        case .custom(let name):
+            return name
         case .graded:
             return String(localized: "Graded", bundle: .core)
         }
@@ -537,6 +594,8 @@ public enum SubmissionStatus {
             return .textDark
         case .excused:
             return .textWarning
+        case .custom:
+            return .textInfo
         case .graded:
             return .textSuccess
         }
@@ -552,7 +611,14 @@ public enum SubmissionStatus {
             return .noSolid
         case .excused, .graded:
             return .completeSolid
+        case .custom:
+            return .flagLine
         }
+    }
+
+    public var isCustom: Bool {
+        if case .custom = self { return true }
+        return false
     }
 }
 

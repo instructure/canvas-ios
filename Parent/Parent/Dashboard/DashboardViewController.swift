@@ -196,7 +196,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         let courses = currentStudentID.flatMap {
             CourseListViewController.create(studentID: $0)
         } ?? AdminViewController.create()
-        courses.tabBarItem.title = String(localized: "Courses", bundle: .parent, comment: "Courses Tab")
+        courses.tabBarItem.title = String(localized: "Courses", bundle: .parent, comment: "Tab title, max character count is 14")
         courses.tabBarItem.image = .coursesTab
         courses.tabBarItem.selectedImage = .coursesTabActive
         courses.tabBarItem.accessibilityIdentifier = "TabBar.coursesTab"
@@ -208,7 +208,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         let calendar = currentStudentID.flatMap {
             PlannerViewController.create(studentID: $0, selectedDate: selectedDate)
         } ?? AdminViewController.create()
-        calendar.tabBarItem.title = String(localized: "Calendar", bundle: .parent, comment: "Calendar Tab")
+        calendar.tabBarItem.title = String(localized: "Calendar", bundle: .parent, comment: "Tab title, max character count is 14")
         calendar.tabBarItem.image = .calendarTab
         calendar.tabBarItem.selectedImage = .calendarTabActive
         calendar.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
@@ -216,7 +216,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         let alerts = currentStudentID.flatMap {
             ObserverAlertListViewController.create(studentID: $0)
         } ?? AdminViewController.create()
-        alerts.tabBarItem.title = String(localized: "Alerts", bundle: .parent, comment: "Alerts Tab")
+        alerts.tabBarItem.title = String(localized: "Alerts", bundle: .parent, comment: "Tab title, max character count is 14")
         alerts.tabBarItem.image = .alertsTab
         alerts.tabBarItem.selectedImage = .alertsTabActive
         alerts.tabBarItem.accessibilityIdentifier = "TabBar.alertsTab"

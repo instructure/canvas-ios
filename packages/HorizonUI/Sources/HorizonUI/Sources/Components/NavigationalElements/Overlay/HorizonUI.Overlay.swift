@@ -87,8 +87,6 @@ public extension HorizonUI {
                 Spacer()
                 if let icon = button.icon {
                     icon
-                        .resizable()
-                        .frame(width: 24, height: 24)
                 }
             }
             .padding(.horizontal, .huiSpaces.space16)

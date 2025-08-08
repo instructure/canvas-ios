@@ -30,7 +30,7 @@ public extension HorizonUI.Overlay {
             VStack {
                 Button("Present File Sheet") {
                     buttons = viewModel.fileUploadButtons
-                    title = "Upload File"
+                    title = "Upload file"
                     isPresented.toggle()
                 }
 
@@ -66,7 +66,7 @@ public extension HorizonUI.Overlay {
 
         var toolsButtons: [ButtonAttribute] {
             [
-                .init(title: "Attempt History", icon: Image.huiIcons.history) { print("Attempt History") },
+                .init(title: "Attempt history", icon: Image.huiIcons.history) { print("Attempt History") },
                 .init(title: "Comments", icon: Image.huiIcons.chat) { print("Comments") }
             ]
         }

@@ -105,7 +105,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
                     subtitle = String(localized: "< \(upperBound) to \(lowerBound)", bundle: .teacher, comment: "'< 94% to 84%', or '< 230 to 160'")
                 }
 
-                let a11yLabel = [String.accessibiltyLetterGrade($0.name), subtitle].joined(separator: ",")
+                let a11yLabel = [String.format(accessibilityLetterGrade: $0.name), subtitle].joined(separator: ",")
 
                 items.append(
                     OptionItem(

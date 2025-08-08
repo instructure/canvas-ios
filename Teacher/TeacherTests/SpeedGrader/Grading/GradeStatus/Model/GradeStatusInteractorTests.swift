@@ -87,53 +87,116 @@ class GradeStatusInteractorTests: TeacherTestCase {
         XCTAssertEqual(lateByIsLate.id, "late")
     }
 
-    func test_observeGradeStatusChanges_emits() {
+    func test_observeGradeStatusChanges_emits() throws {
         let testee = GradeStatusInteractorLive(courseId: "1", assignmentId: "1", api: api)
         mockGradeStatusesAPI()
         XCTAssertFinish(testee.fetchGradeStatuses())
 
-        let expectation = expectation(description: "observeGradeStatusChanges emits")
-        var receivedStatuses: [(GradeStatus, Double, Date?)] = []
+        var receivedStatuses: [(status: GradeStatus, daysLate: Double, dueDate: Date?)] = []
 
-        // WHEN
+        let submissionDueDate = Date(timeIntervalSince1970: 2000000)
+
         testee.observeGradeStatusChanges(submissionId: "sub1", attempt: 1)
             .sink { tuple in
                 receivedStatuses.append(tuple)
-                if receivedStatuses.count == 3 {
-                    expectation.fulfill()
-                }
             }
             .store(in: &subscriptions)
 
-        let submission = Submission(context: databaseClient)
+        let submission = Submission.save(.make(), in: databaseClient)
+
+        // GIVEN - initial state (custom state)
         submission.id = "sub1"
         submission.attempt = 1
         submission.customGradeStatusId = "custom1"
         submission.latePolicyStatus = nil
         submission.excused = nil
-        submission.lateSeconds = 24 * 60 * 60 + 12 * 60 * 60 // 1.5 days (36 hours)
-        try? databaseClient.save()
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 1 }
+        submission.lateSeconds = seconds(forHours: 24) // 1 day
+        submission.dueAt = nil
 
-        submission.customGradeStatusId = nil
-        submission.latePolicyStatus = .late
-        submission.lateSeconds = 30 * 60 * 60 // 1.25 days (30 hours)
-        try? databaseClient.save()
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 2 }
-
-        submission.customGradeStatusId = nil
-        submission.latePolicyStatus = nil
-        submission.excused = true
-        submission.lateSeconds = 18 * 60 * 60 // 0.75 days (18 hours)
-        try? databaseClient.save()
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 3 }
+        // WHEN
+        try databaseClient.save()
 
         // THEN
-        wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(receivedStatuses.map { $0.0.id }, ["custom1", "late", "excused"])
-        XCTAssertEqual(receivedStatuses[0].1, 1.5, accuracy: 0.001)
-        XCTAssertEqual(receivedStatuses[1].1, 1.25, accuracy: 0.001)
-        XCTAssertEqual(receivedStatuses[2].1, 0.75, accuracy: 0.001)
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 1 }
+        XCTAssertEqual(receivedStatuses.last?.status.id, "custom1")
+        XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
+        XCTAssertEqual(receivedStatuses.last?.dueDate, nil)
+
+        // GIVEN - dueDate
+        submission.dueAt = submissionDueDate
+
+        // WHEN
+        try databaseClient.save()
+
+        // THEN
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 2 }
+        XCTAssertEqual(receivedStatuses.last?.status.id, "custom1")
+        XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
+        XCTAssertEqual(receivedStatuses.last?.dueDate, submissionDueDate)
+
+        // GIVEN - late policy status
+        submission.customGradeStatusId = nil
+        submission.latePolicyStatus = .late
+        submission.dueAt = nil
+
+        // WHEN
+        try databaseClient.save()
+
+        // THEN
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 3 }
+        XCTAssertEqual(receivedStatuses.last?.status.id, "late")
+        XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
+        XCTAssertEqual(receivedStatuses.last?.dueDate, nil)
+
+        // GIVEN - excused
+        submission.latePolicyStatus = nil
+        submission.excused = true
+
+        // WHEN
+        try databaseClient.save()
+
+        // THEN
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 4 }
+        XCTAssertEqual(receivedStatuses.last?.status.id, "excused")
+        XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
+        XCTAssertEqual(receivedStatuses.last?.dueDate, nil)
+
+        // GIVEN - reset status
+        submission.excused = nil
+        submission.dueAt = submissionDueDate
+
+        // WHEN
+        try databaseClient.save()
+
+        // THEN
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 5 }
+        XCTAssertEqual(receivedStatuses.last?.status.id, "none")
+        XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
+        XCTAssertEqual(receivedStatuses.last?.dueDate, submissionDueDate)
+
+        // GIVEN - days late
+        submission.lateSeconds = seconds(forHours: 36) // 1.5 days
+        submission.excused = nil
+        submission.dueAt = nil
+
+        // WHEN
+        try databaseClient.save()
+
+        // THEN
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 6 }
+        XCTAssertEqual(receivedStatuses[5].daysLate, 1.5, accuracy: 0.001)
+
+        // GIVEN - another days late
+        submission.lateSeconds = seconds(forHours: 18) // 0.75 days
+        submission.excused = nil
+        submission.dueAt = nil
+
+        // WHEN
+        try databaseClient.save()
+
+        // THEN
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 7 }
+        XCTAssertEqual(receivedStatuses[6].daysLate, 0.75, accuracy: 0.001)
     }
 
     func test_updateLateDays_triggersGradeSubmissionUseCase() {
@@ -180,6 +243,10 @@ class GradeStatusInteractorTests: TeacherTestCase {
         XCTAssertEqual(testee.gradeStatuses[2].id, "excused")
         XCTAssertEqual(testee.gradeStatuses[3].id, "zcustom")
         XCTAssertEqual(testee.gradeStatuses[4].id, "acustom")
+    }
+
+    private func seconds(forHours hours: Int) -> Int {
+        hours * 60 * 60
     }
 
     private func mockGradeStatusesAPI() {

@@ -159,6 +159,78 @@ final class SubmissionListViewModelTests: TeacherTestCase {
         XCTAssertEqual(viewModel.sections[safeIndex: 1]?.kind, .unsubmitted)
     }
 
+    func testSubmissionsGroupResolving() throws {
+        // Given
+        let mocks = TestConstants.createSubmissions(
+            in: databaseClient,
+            count: 3,
+            customizer: { (submission, index, client) in
+                submission.assignment?.groupCategoryID = "Test-Group-Set-ID"
+                submission.assignment?.gradedIndividually = false
+
+                switch index {
+                case 0:
+                    submission.userID = "u0"
+                    submission.user = User.save(.make(id: "u0", name: "John"), in: client)
+                    submission.workflowState = .unsubmitted
+                    submission.score = nil
+                    submission.submittedAt = nil
+                case 1:
+                    submission.userID = "u1"
+                    submission.user = User.save(.make(id: "u1", name: "Jane"), in: client)
+                    submission.workflowState = .submitted
+                    submission.groupID = "g1"
+                    submission.groupName = "Test Group 11"
+                    submission.score = nil
+                    submission.submittedAt = Date()
+                default:
+                    submission.userID = "u2"
+                    submission.user = User.save(.make(id: "u2", name: "Smith"), in: client)
+                    submission.workflowState = .graded
+                    submission.score = 0.5
+                    submission.groupID = "g2"
+                    submission.groupName = "Test Group 22"
+                    submission.submittedAt = Date()
+                }
+            }
+        )
+
+        let groups = [
+            AssigneeGroup(id: "g0", name: "Test Group 00", memberIDs: ["u0"]),
+            AssigneeGroup(id: "g1", name: "Test G 11", memberIDs: ["u1"]),
+            AssigneeGroup(id: "g2", name: "Test G 22", memberIDs: ["u2"])
+        ]
+
+        // When
+        interactor.assignmentSubject.send(mocks.first?.assignment)
+        interactor.assigneeGroupsSubject.send(groups)
+        interactor.submissionsSubject.send(mocks)
+
+        // Then
+        XCTAssertEqual(viewModel.state, .data)
+        XCTAssertEqual(viewModel.sections.count, 3)
+
+        let section1 = try XCTUnwrap(viewModel.sections[safeIndex: 0])
+        let section2 = try XCTUnwrap(viewModel.sections[safeIndex: 1])
+        let section3 = try XCTUnwrap(viewModel.sections[safeIndex: 2])
+
+        XCTAssertEqual(section1.kind, .submitted)
+        XCTAssertEqual(section2.kind, .unsubmitted)
+        XCTAssertEqual(section3.kind, .graded)
+
+        XCTAssertEqual(section1.items.count, 1)
+        XCTAssertEqual(section2.items.count, 1)
+        XCTAssertEqual(section3.items.count, 1)
+
+        let item1 = try XCTUnwrap(section1.items.first)
+        let item2 = try XCTUnwrap(section2.items.first)
+        let item3 = try XCTUnwrap(section3.items.first)
+
+        XCTAssertEqual(item1.userNameModel.name, "Test Group 11")
+        XCTAssertEqual(item2.userNameModel.name, "Test Group 00")
+        XCTAssertEqual(item3.userNameModel.name, "Test Group 22")
+    }
+
     func testSearchTextFiltering() {
         // Given
         let mocks = TestConstants.createSubmissions(

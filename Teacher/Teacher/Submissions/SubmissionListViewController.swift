@@ -261,7 +261,7 @@ class SubmissionListCell: UITableViewCell {
                 avatarView.icon = .userLine
                 nameLabel.text = String(localized: "Student \(row)", bundle: .teacher)
             }
-        } else if let name = submission?.groupName {
+        } else if let name = submission?.displayGroupName {
             avatarView.name = name
             avatarView.url = nil
             nameLabel.text = name

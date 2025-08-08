@@ -308,8 +308,10 @@ public class GradeFormatter {
     ) -> String {
         guard assignment?.gradingType != .not_graded else { return "" }
 
-        guard let assignment = assignment, let submission = submission,
-            submission.workflowState != .unsubmitted, !submission.needsGrading
+        guard let assignment = assignment,
+              let submission = submission,
+              (submission.workflowState != .unsubmitted || submission.customGradeStatusId != nil),
+              !submission.needsGrading
         else { return blankPlaceholder.stringValue }
 
         guard submission.excused != true else { return String(localized: "Excused", bundle: .core) }

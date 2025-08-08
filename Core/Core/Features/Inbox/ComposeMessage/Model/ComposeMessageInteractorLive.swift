@@ -62,6 +62,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
         setupAttachmentListBinding()
     }
 
+    @discardableResult
     public func addFile(url: URL) -> File? {
         do {
             let file = try uploadManager.add(url: url, batchID: batchId)
