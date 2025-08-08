@@ -20,8 +20,8 @@ import XCTest
 
 public class LoginHelper: BaseHelper {
     public struct Start {
-        public static var canvasLogo: XCUIElement { app.find(id: "instructureLine") }
-        public static var canvasLabel: XCUIElement { app.find(id: "wordmark") }
+        public static var canvasLogo: XCUIElement { app.find(id: "LoginStart.logoView") }
+        public static var canvasLabel: XCUIElement { app.find(id: "LoginStart.wordmark") }
         public static var lastLoginButton: XCUIElement { app.find(id: "LoginStart.lastLoginButton") }
         public static var findSchoolButton: XCUIElement { app.find(id: "LoginStart.findSchoolButton") }
         public static var qrCodeButton: XCUIElement { app.find(id: "LoginStart.qrCodeButton") }

@@ -4,6 +4,9 @@
     "\"%@\" is not a valid grade." : {
 
     },
+    "%@ days late." : {
+
+    },
     "%@ to %@" : {
       "comment" : "'100% to 94%', or '400 to 230'",
       "localizations" : {
@@ -783,9 +786,6 @@
           }
         }
       }
-    },
-    "%lf days late." : {
-
     },
     "%lld days late." : {
       "extractionState" : "stale",

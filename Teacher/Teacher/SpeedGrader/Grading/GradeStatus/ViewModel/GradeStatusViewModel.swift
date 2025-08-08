@@ -171,11 +171,12 @@ class GradeStatusViewModel: ObservableObject {
                 guard let self else { return }
                 selectedOption = option
                 isShowingDaysLateSection = (interactor.gradeStatuses.element(for: option) == .late)
-                self.daysLate = Self.daysLateFormatter.string(from: NSNumber(value: daysLate)) ?? ""
+                let daysLateFormatted = Self.daysLateFormatter.string(from: NSNumber(value: daysLate)) ?? ""
+                self.daysLate = daysLateFormatted
                 self.dueDate = dueDate.isEmpty ? String(localized: "No Due Date", bundle: .teacher)
                                                : String(localized: "Due \(dueDate)", bundle: .teacher)
                 daysLateA11yLabel = {
-                    let daysLateText = String(localized: "\(daysLate) days late.", bundle: .teacher)
+                    let daysLateText = String(localized: "\(daysLateFormatted) days late.", bundle: .teacher)
                     let dueDateText = dueDate.isEmpty ? String(localized: "No due date was set.", bundle: .teacher)
                                                       : String(localized: "Due date was on \(dueDate).", bundle: .teacher)
                     return "\(daysLateText) \(dueDateText)"
