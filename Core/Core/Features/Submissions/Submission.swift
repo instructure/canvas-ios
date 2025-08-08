@@ -80,6 +80,10 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
     @NSManaged public var user: User?
 
+    /// Transient property to use for group resolving in Teacher's submission list
+    public var fetchedGroup: FetchedGroup?
+    public var displayGroupName: String? { groupName ?? fetchedGroup?.name }
+
     public var rubricAssessments: RubricAssessments? {
         if let assessments = rubricAssesmentRaw, assessments.count > 0 {
             var map = RubricAssessments()
@@ -140,6 +144,19 @@ final public class Submission: NSManagedObject, Identifiable {
 
     public var discussionEntriesOrdered: [DiscussionEntry] {
         return discussionEntries?.sorted(by: { $0.id < $1.id }) ?? []
+    }
+}
+
+extension Submission {
+
+    public struct FetchedGroup {
+        public let id: String
+        public let name: String
+
+        public init(id: String, name: String) {
+            self.id = id
+            self.name = name
+        }
     }
 }
 
