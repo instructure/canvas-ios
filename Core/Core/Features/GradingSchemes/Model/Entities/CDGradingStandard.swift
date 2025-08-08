@@ -32,7 +32,7 @@ public final class CDGradingStandard: NSManagedObject {
 
     public var gradingSchemeEntries: [GradingSchemeEntry] {
         guard let gradingSchemeEntriesRaw else { return [] }
-        return gradingSchemeEntriesRaw.decode(to: [GradingSchemeEntry].self) ?? []
+        return gradingSchemeEntriesRaw.jsonDecode(to: [GradingSchemeEntry].self) ?? []
     }
 
     @discardableResult
@@ -46,20 +46,8 @@ public final class CDGradingStandard: NSManagedObject {
         model.scalingFactor = item.scaling_factor
 
         let gradingSchemeEntries = item.grading_scheme.compactMap(GradingSchemeEntry.init)
-        model.gradingSchemeEntriesRaw = gradingSchemeEntries.rawData
+        model.gradingSchemeEntriesRaw = gradingSchemeEntries.jsonData
 
         return model
-    }
-}
-
-extension Data {
-    func decode<T: Decodable>(to type: T.Type) -> T? {
-        try? JSONDecoder().decode(T.self, from: self)
-    }
-}
-
-extension Array where Element: Encodable {
-    var rawData: Data? {
-        try? JSONEncoder().encode(self)
     }
 }

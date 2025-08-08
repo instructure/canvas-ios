@@ -57,7 +57,7 @@ final public class Course: NSManagedObject, WriteableModel {
 
     public var gradingSchemeEntries: [GradingSchemeEntry] {
         guard let gradingSchemeRaw else { return [] }
-        return gradingSchemeRaw.decode(to: [GradingSchemeEntry].self) ?? []
+        return gradingSchemeRaw.jsonDecode(to: [GradingSchemeEntry].self) ?? []
     }
 
     public var gradingScheme: GradingScheme {
@@ -173,7 +173,7 @@ final public class Course: NSManagedObject, WriteableModel {
         }
         if let gradingScheme = item.grading_scheme {
             let gradingSchemeEntries: [GradingSchemeEntry] = gradingScheme.compactMap(GradingSchemeEntry.init)
-            model.gradingSchemeRaw = gradingSchemeEntries.rawData
+            model.gradingSchemeRaw = gradingSchemeEntries.jsonData
         }
 
         model.roles = item.enrollments.roles

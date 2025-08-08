@@ -28,34 +28,6 @@ public struct APIGradingStandard: Codable, Equatable {
     let grading_scheme: [APIGradingSchemeEntry]
 }
 
-#if DEBUG
-extension APIGradingStandard {
-    public static func make(
-        id: ID = "1",
-        title: String = "Grading Standard",
-        context_type: String = "Course",
-        context_id: ID = "1",
-        points_based: Bool = true,
-        scaling_factor: Double = 1.0,
-        grading_scheme: [APIGradingSchemeEntry] = [.make()]
-    ) -> APIGradingStandard {
-        return APIGradingStandard(
-            id: id,
-            title: title,
-            context_type: context_type,
-            context_id: context_id,
-            points_based: points_based,
-            scaling_factor: scaling_factor,
-            grading_scheme: grading_scheme
-        )
-    }
-}
-#endif
-
-public struct APIGradingStandardResponse: Codable, Equatable {
-    let grading_standards: [APIGradingStandard]
-}
-
 // https://developerdocs.instructure.com/services/canvas/resources/grading_standards#method.grading_standards_api.context_show
 public struct GetGradingStandardRequest: APIRequestable {
     public typealias Response = APIGradingStandard
@@ -77,3 +49,29 @@ public struct GetGradingStandardRequest: APIRequestable {
         try APIJSONEncoder().encode(response)
     }
 }
+
+#if DEBUG
+
+extension APIGradingStandard {
+    public static func make(
+        id: ID = "",
+        title: String = "",
+        context_type: String = "",
+        context_id: ID = "",
+        points_based: Bool = true,
+        scaling_factor: Double = 1.0,
+        grading_scheme: [APIGradingSchemeEntry] = [.make()]
+    ) -> APIGradingStandard {
+        return APIGradingStandard(
+            id: id,
+            title: title,
+            context_type: context_type,
+            context_id: context_id,
+            points_based: points_based,
+            scaling_factor: scaling_factor,
+            grading_scheme: grading_scheme
+        )
+    }
+}
+
+#endif

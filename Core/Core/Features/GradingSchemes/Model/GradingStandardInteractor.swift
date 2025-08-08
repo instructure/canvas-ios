@@ -127,13 +127,3 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
             .eraseToAnyPublisher()
     }
 }
-
-// Mock
-
-public final class GradingStandardInteractorMock: GradingStandardInteractor {
-    public var gradingScheme: AnyPublisher<GradingScheme?, Error> {
-        Just(nil)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-}

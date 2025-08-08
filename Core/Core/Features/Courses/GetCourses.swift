@@ -282,13 +282,15 @@ struct GetCourseWithGradingSchemeOnly: APIUseCase {
     func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard
             let response,
-            let gradingScheme = response.grading_scheme?.compactMap(GradingSchemeEntry.init)
+            let gradingScheme = response.grading_scheme?.compactMap(GradingSchemeEntry.init),
+            let pointsBasedGradingScheme = response.points_based_grading_scheme,
+            let scalingFactor = response.scaling_factor
         else { return }
 
         if let course: Model = client.first(where: #keyPath(Model.id), equals: courseId) {
-            if course.gradingSchemeEntries != gradingScheme {
-                course.gradingSchemeRaw = gradingScheme.rawData
-            }
+            course.gradingSchemeRaw = gradingScheme.jsonData
+            course.pointsBasedGradingScheme = pointsBasedGradingScheme
+            course.scalingFactor = scalingFactor
         } else {
             Model.save(response, in: client)
         }
