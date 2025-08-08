@@ -294,7 +294,7 @@ final class ModuleItemSequenceViewModel {
             return
         }
         guard moduleItem.completionRequirementType == .must_view,
-              isModuleItemCompleted(moduleId: moduleID, itemId: itemID) == false,
+              getModuleItem(moduleId: moduleID, itemId: itemID)?.isCompleted == false,
               moduleItem.lockedForUser == false else {
             return
         }
@@ -304,12 +304,11 @@ final class ModuleItemSequenceViewModel {
             .store(in: &subscriptions)
     }
 
-    private func isModuleItemCompleted(moduleId: String, itemId: String) -> Bool {
+    private func getModuleItem(moduleId: String, itemId: String) -> HModuleItem? {
         guard let selectedModule = unobservedCourse?.modules.first(where: { $0.id == moduleId }) else {
-            return true
+            return nil
         }
-        let item = selectedModule.items.first(where: { $0.id == itemId })
-        return item?.isCompleted ?? true
+        return selectedModule.items.first(where: { $0.id == itemId })
     }
 
     func retry() {
@@ -345,6 +344,11 @@ final class ModuleItemSequenceViewModel {
 
     private func refershModuleItem() {
         guard let next = sequence?.next else { return }
+        // Check if the next module item isn't must_view. If it is, call the API to unlock it.
+        guard let moduleItem = getModuleItem(moduleId: next.moduleID, itemId: next.id),
+              moduleItem.completionRequirementType != .must_view else {
+            return
+        }
         moduleItemInteractor.fetchModuleItems(
             assetType: assetType,
             assetID: next.id,
