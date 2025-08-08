@@ -64,7 +64,7 @@ public final class ExperienceSummaryInteractorLive: ExperienceSummaryInteractor 
             .getEntities()
             .map { $0.first?.availableApps }
             .map { availableApps in
-                guard let availableApps = availableApps else { return false }
+                guard let availableApps else { return false }
                 return availableApps.contains(.academic) && availableApps.contains(.careerLearner)
             }
             .replaceError(with: false)

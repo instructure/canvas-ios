@@ -16,18 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
 import Foundation
 
-public struct GetExperienceSummaryUseCase: APIUseCase {
-    public typealias Model = CDExperienceSummary
-    public let cacheKey: String? = "experience-summary"
-    public let request = GetExperienceSummaryRequest()
+public enum Experience: String, Codable, Equatable {
+    case academic
+    case careerLearner = "career_learner"
+    case careerLearningProvider = "career_learning_provider"
 
-    public func write(response: APIExperienceSummary?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response else { return }
-        CDExperienceSummary.save(response, in: client)
+    public var category: String {
+        switch self {
+        case .academic:
+            return "academic"
+        case .careerLearner, .careerLearningProvider:
+            return "career"
+        }
     }
-
-    public init() {}
 }

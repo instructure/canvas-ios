@@ -20,18 +20,3 @@ public struct APIExperienceSummary: Codable, Equatable {
     let current_app: Experience
     let available_apps: [Experience]
 }
-
-public enum Experience: String, Codable, Equatable {
-    case academic
-    case careerLearner = "career_learner"
-    case careerLearningProvider = "career_learning_provider"
-
-    public var category: String {
-        switch self {
-        case .academic:
-            return "academic"
-        case .careerLearner, .careerLearningProvider:
-            return "career"
-        }
-    }
-}

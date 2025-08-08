@@ -36,8 +36,9 @@ final class StringSetValueTransformer: ValueTransformer {
     override func reverseTransformedValue(_ value: Any?) -> Any? {
         guard let data = value as? Data else { return nil }
 
-        // swiftlint:disable:next force_try
-        let unarchiver = try! NSKeyedUnarchiver(forReadingFrom: data)
+        guard let unarchiver = try? NSKeyedUnarchiver(forReadingFrom: data) else {
+            return nil
+        }
         unarchiver.decodingFailurePolicy = .setErrorAndReturn
 
         let allowedClasses = [NSArray.self, NSString.self]
