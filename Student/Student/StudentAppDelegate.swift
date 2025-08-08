@@ -147,7 +147,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                 receiveValue: { experience in
                     unownedSelf.refreshNotificationTab()
                     Analytics.shared.logSession(session)
-                    unownedSelf.setTabBarControllerFor(experience: experience, isStartup: true)
+                    unownedSelf.setTabBarControllerFor(experience: experience, isStartup: true, session: session)
                 }
             )
             .store(in: &subscriptions)
@@ -382,6 +382,32 @@ extension StudentAppDelegate {
         }
     }
 
+    private func showIncorrectAppExperienceAlert(session: LoginSession?) {
+        let alert = UIAlertController(
+            title: String(
+                localized: "Oops, something went wrong",
+                bundle: .student
+            ),
+            message: String(
+                localized: "It looks like your account isn't set up as a learner role. If you believe this is a mistake, contact your admin or support team.",
+                bundle: .student
+            ),
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: String(localized: "Logout", bundle: .core),
+                style: .cancel
+            ) { [weak self] _ in
+                if let session {
+                    self?.userDidLogout(session: session)
+                }
+            }
+        )
+
+        environment.topViewController?.present(alert, animated: true)
+    }
+
     private func showLanguageAlertIfNeeded(locale: String?) -> AnyPublisher<Void, Error> {
         LocalizationManager.localizeForApp(
             UIApplication.shared,
@@ -408,12 +434,12 @@ extension StudentAppDelegate {
         AppEnvironment.shared.experience
             .dropFirst()
             .sink { [weak self] in
-                self?.setTabBarControllerFor(experience: $0, isStartup: false)
+                self?.setTabBarControllerFor(experience: $0, isStartup: false, session: nil)
             }
             .store(in: &subscriptions)
     }
 
-    private func setTabBarControllerFor(experience: Experience, isStartup: Bool) {
+    private func setTabBarControllerFor(experience: Experience, isStartup: Bool, session: LoginSession?) {
         switch experience {
         case .academic:
             AppEnvironment.shared.app = .student
@@ -451,7 +477,7 @@ extension StudentAppDelegate {
                 }
             })
         case .careerLearningProvider:
-            break
+            showIncorrectAppExperienceAlert(session: session)
         }
     }
 }

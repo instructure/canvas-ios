@@ -66585,6 +66585,9 @@
         }
       }
     },
+    "It looks like your account isn't set up as a learner role. If you believe this is a mistake, contact your admin or support team." : {
+
+    },
     "It’s empty, what are you still doing here." : {
       "comment" : "It’s empty, what are you still doing here.",
       "extractionState" : "manual",
