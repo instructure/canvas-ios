@@ -129,13 +129,15 @@ class MessageDetailsViewModel: ObservableObject {
             }
         }
 
-        sheet.addAction(
-            image: .trashLine,
-            title: String(localized: "Delete Conversation", bundle: .core),
-            accessibilityIdentifier: "MessageDetails.delete"
-        ) { [weak self] in
-            if let conversationId = self?.conversations.first?.id {
-                self?.deleteConversationDidTap.send((conversationId, viewController))
+        if !isStudentAccessRestricted {
+            sheet.addAction(
+                image: .trashLine,
+                title: String(localized: "Delete Conversation", bundle: .core),
+                accessibilityIdentifier: "MessageDetails.delete"
+            ) { [weak self] in
+                if let conversationId = self?.conversations.first?.id {
+                    self?.deleteConversationDidTap.send((conversationId, viewController))
+                }
             }
         }
         env.router.show(sheet, from: viewController, options: .modal())
@@ -165,14 +167,15 @@ class MessageDetailsViewModel: ObservableObject {
         ) { [weak self] in
             self?.forwardTapped(message: message, viewController: viewController)
         }
-
-        sheet.addAction(
-            image: .trashLine,
-            title: String(localized: "Delete Message", bundle: .core),
-            accessibilityIdentifier: "MessageDetails.delete"
-        ) { [weak self] in
-            if let conversationId = self?.conversations.first?.id, let messageId = message?.id {
-                self?.deleteConversationMessageDidTap.send((conversationId: conversationId, messageId: messageId, viewController: viewController))
+        if !isStudentAccessRestricted {
+            sheet.addAction(
+                image: .trashLine,
+                title: String(localized: "Delete Message", bundle: .core),
+                accessibilityIdentifier: "MessageDetails.delete"
+            ) { [weak self] in
+                if let conversationId = self?.conversations.first?.id, let messageId = message?.id {
+                    self?.deleteConversationMessageDidTap.send((conversationId: conversationId, messageId: messageId, viewController: viewController))
+                }
             }
         }
         env.router.show(sheet, from: viewController, options: .modal())

@@ -203,7 +203,7 @@ class MessageDetailsViewModelTests: CoreTestCase {
         XCTAssertTrue(router.presented is CoreHostingController<ComposeMessageView>)
     }
 
-    func test_messageMoreTapped_whenRestrictStudentAccessEnabled_replyAllNotShown() {
+    func test_messageMoreTapped_whenRestrictStudentAccessEnabled_replyAllAndDeleteNotShown() {
         // Given
         mockInteractor = MessageDetailsInteractorMock()
         mockStudentAccessInteractor = StudentAccessInteractorMock(restricted: true)
@@ -231,9 +231,10 @@ class MessageDetailsViewModelTests: CoreTestCase {
         let sheet = router.presented as? BottomSheetPickerViewController
         let actionTitles = sheet?.actions.map { $0.title } ?? []
         XCTAssertFalse(actionTitles.contains("Reply All"))
+        XCTAssertFalse(actionTitles.contains("Delete Message"))
     }
 
-    func test_messageMoreTapped_whenRestrictStudentAccessDisabled_replyAllShown() {
+    func test_messageMoreTapped_whenRestrictStudentAccessDisabled_replyAllAndDeleteShown() {
         // Given
         let sourceView = UIViewController()
 
@@ -251,6 +252,7 @@ class MessageDetailsViewModelTests: CoreTestCase {
         let sheet = router.presented as? BottomSheetPickerViewController
         let actionTitles = sheet?.actions.map { $0.title } ?? []
         XCTAssertTrue(actionTitles.contains("Reply All"))
+        XCTAssertTrue(actionTitles.contains("Delete Message"))
     }
 
     func test_messageMoreTapped_forward_presentComposeMessageView() {
