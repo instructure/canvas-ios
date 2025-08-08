@@ -17170,6 +17170,9 @@
         }
       }
     },
+    "Edit rubric note" : {
+
+    },
     "Enter days late" : {
       "localizations" : {
         "ar" : {
@@ -43434,6 +43437,9 @@
           }
         }
       }
+    },
+    "Send rubric note" : {
+
     },
     "Similarity Score" : {
       "localizations" : {

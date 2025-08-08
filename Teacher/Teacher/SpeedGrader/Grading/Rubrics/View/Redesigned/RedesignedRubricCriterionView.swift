@@ -57,6 +57,12 @@ struct RedesignedRubricCriterionView: View {
                 }
             )
             .buttonStyle(.plain)
+            .accessibilityAddTraits(.isHeader)
+            .accessibilityHint(
+                isExpanded
+                    ? String(localized: "Expanded", bundle: .teacher)
+                    : String(localized: "Collapsed", bundle: .teacher)
+            )
 
             if isExpanded {
 
