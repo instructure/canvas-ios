@@ -39,7 +39,8 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             originalScoreWithoutMetric: "85",
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: "85",
-            pointsDeductedText: "0 pts"
+            pointsDeductedText: "0 pts",
+            pointsDeductedAccessibilityText: "0 points"
         )
     }
     private var gradeInteractorMock: GradeInteractorMock!
@@ -299,23 +300,26 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         let state = GradeState.make(
             gradingType: .points,
             pointsPossibleText: "100 pts",
+            pointsPossibleAccessibilityText: "42 points",
             hasLateDeduction: false,
             score: 85,
             originalScoreWithoutMetric: "85",
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: "85",
-            pointsDeductedText: "0 pts"
+            pointsDeductedText: "0 pts",
         )
 
         let result = state.finalGradeRowModel
-        XCTAssertEqual(result.currentGradeText, "85")
+        XCTAssertEqual(result.gradeText, "85")
         XCTAssertEqual(result.suffixText, "   / 100 pts")
+        XCTAssertEqual(result.a11ySuffixText, "out of 42 points")
     }
 
     func test_finalGradeRowModel_returnsCorrectSuffixForPercentGrading() {
         let state = GradeState.make(
             gradingType: .percent,
             pointsPossibleText: "100 pts",
+            pointsPossibleAccessibilityText: "42 points",
             hasLateDeduction: false,
             score: 85,
             originalScoreWithoutMetric: "85",
@@ -325,8 +329,9 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         )
 
         let result = state.finalGradeRowModel
-        XCTAssertEqual(result.currentGradeText, "85")
+        XCTAssertEqual(result.gradeText, "85")
         XCTAssertEqual(result.suffixText, "   %")
+        XCTAssertEqual(result.a11ySuffixText, "%")
     }
 
     func test_finalGradeRowModel_returnsCorrectSuffixForLetterGrading() {
@@ -342,7 +347,8 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         )
 
         let result = state.finalGradeRowModel
-        XCTAssertEqual(result.currentGradeText, "B+")
+        XCTAssertEqual(result.gradeText, "B+")
+        XCTAssertEqual(result.a11yGradeText, "'B' +")
         XCTAssertEqual(result.suffixText, "")
     }
 
@@ -359,8 +365,9 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         )
 
         let result = state.finalGradeRowModel
-        XCTAssertEqual(result.currentGradeText, "Complete")
+        XCTAssertEqual(result.gradeText, "Complete")
         XCTAssertEqual(result.suffixText, "")
+        XCTAssertEqual(result.a11ySuffixText, nil)
     }
 
     func test_finalGradeRowModel_handlesNilFinalGradeWithoutMetric() {
@@ -376,7 +383,8 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         )
 
         let result = state.finalGradeRowModel
-        XCTAssertEqual(result.currentGradeText, "-")
+        XCTAssertEqual(result.gradeText, "-")
+        XCTAssertEqual(result.a11yGradeText, "None")
         XCTAssertEqual(result.suffixText, "   / 100 pts")
     }
 }
