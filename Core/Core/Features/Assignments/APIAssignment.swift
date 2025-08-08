@@ -35,6 +35,7 @@ public struct APIAssignment: Codable, Equatable {
     let due_at: Date?
     let external_tool_tag_attributes: APIExternalToolTagAttributes?
     let grade_group_students_individually: Bool?
+    let grading_standard_id: ID?
     let grading_type: GradingType
     let group_category_id: ID?
     let has_submitted_submissions: Bool?
@@ -123,6 +124,7 @@ extension APIAssignment {
         due_at: Date? = nil,
         external_tool_tag_attributes: APIExternalToolTagAttributes? = nil,
         grade_group_students_individually: Bool? = nil,
+        grading_standard_id: ID? = nil,
         grading_type: GradingType = .points,
         group_category_id: String? = nil,
         has_submitted_submissions: Bool? = false,
@@ -180,6 +182,7 @@ extension APIAssignment {
             due_at: due_at,
             external_tool_tag_attributes: external_tool_tag_attributes,
             grade_group_students_individually: grade_group_students_individually,
+            grading_standard_id: grading_standard_id,
             grading_type: grading_type,
             group_category_id: ID(group_category_id),
             has_submitted_submissions: has_submitted_submissions,

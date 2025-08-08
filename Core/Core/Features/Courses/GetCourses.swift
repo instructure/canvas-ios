@@ -260,3 +260,39 @@ struct UpdateCourse: APIUseCase {
         course?.defaultView = response.default_view
     }
 }
+
+struct GetCourseWithGradingSchemeOnly: APIUseCase {
+    typealias Model = Course
+    typealias Request = GetCourseRequest
+    typealias Response = APICourse
+
+    public let request: Request
+    public let cacheKey: String?
+    public let scope: Scope
+
+    private let courseId: String
+
+    init(courseId: String) {
+        self.request = Request(courseID: courseId, include: [.grading_scheme])
+        self.cacheKey = "get-course-with-grading-scheme-only-\(courseId)"
+        self.scope = .where(#keyPath(Model.id), equals: courseId)
+        self.courseId = courseId
+    }
+
+    func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard
+            let response,
+            let gradingScheme = response.grading_scheme?.compactMap(GradingSchemeEntry.init),
+            let pointsBasedGradingScheme = response.points_based_grading_scheme,
+            let scalingFactor = response.scaling_factor
+        else { return }
+
+        if let course: Model = client.first(where: #keyPath(Model.id), equals: courseId) {
+            course.gradingSchemeRaw = gradingScheme.jsonData
+            course.pointsBasedGradingScheme = pointsBasedGradingScheme
+            course.scalingFactor = scalingFactor
+        } else {
+            Model.save(response, in: client)
+        }
+    }
+}

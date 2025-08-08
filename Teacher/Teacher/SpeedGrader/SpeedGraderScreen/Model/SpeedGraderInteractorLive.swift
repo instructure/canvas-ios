@@ -85,14 +85,19 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         assignmentLoad
             .flatMap { [weak self] assignment in
                 guard let self else {
-                    return Publishers.noInstanceFailure(output: (Assignment, [Submission]).self)
+                    return Publishers.noInstanceFailure(output: (Assignment, [Submission], GradingScheme?).self)
                 }
-                return Publishers.CombineLatest3(
+                let gradingStandardInteractor = GradingStandardInteractorLive(
+                    courseId: assignment.courseID,
+                    gradingStandardId: assignment.gradingStandardId
+                )
+                return Publishers.CombineLatest4(
                     loadEnrollments(),
                     loadSubmissions(anonymizeStudents: assignment.anonymizeStudents),
-                    gradeStatusInteractor.fetchGradeStatuses()
+                    gradeStatusInteractor.fetchGradeStatuses(),
+                    gradingStandardInteractor.gradingScheme
                 )
-                .map { (assignment, $0.1) }
+                .map { (assignment, $0.1, $0.3) }
                 .eraseToAnyPublisher()
             }
             .receive(on: mainScheduler)
@@ -100,7 +105,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                 if case .failure(let error) = completion {
                     self?.state.send(.error(.unexpectedError(error)))
                 }
-            } receiveValue: { [weak self] (assignment: Assignment, fetchedSubmissions: [Submission]) in
+            } receiveValue: { [weak self] (assignment: Assignment, fetchedSubmissions: [Submission], gradingScheme: GradingScheme?) in
                 guard let self else { return }
 
                 let submissions = fetchedSubmissions
@@ -123,7 +128,8 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                 data = SpeedGraderData(
                     assignment: assignment,
                     submissions: submissions,
-                    focusedSubmissionIndex: focusedSubmissionIndex
+                    focusedSubmissionIndex: focusedSubmissionIndex,
+                    gradingScheme: gradingScheme
                 )
                 state.send(.data)
             }

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,27 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+import Combine
 @testable import Core
-import XCTest
 
-class GradingSchemeTestCase: CoreTestCase {
-
-    func scoreConversionEntries() -> [GradingSchemeEntry] {
-        [
-            makeEntry(name: "A", value: 0.9),
-            makeEntry(name: "B", value: 0.3),
-            makeEntry(name: "F", value: 0)
-        ]
-    }
-
-    func invalidConversionEntries() -> [GradingSchemeEntry] {
-        [makeEntry(name: "A", value: 90)]
-    }
-
-    func makeEntry(name: String = "", value: Double = 0) -> GradingSchemeEntry {
-        let entry: GradingSchemeEntry = databaseClient.insert()
-        entry.name = name
-        entry.value = value
-        return entry
+public final class GradingStandardInteractorMock: GradingStandardInteractor {
+    public var gradingScheme: AnyPublisher<GradingScheme?, Error> {
+        Just(nil)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }

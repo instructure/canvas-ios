@@ -53,6 +53,16 @@ struct SpeedGraderData {
 
     /// Index for the selected student
     let focusedSubmissionIndex: Int
+
+    /// Grading Scheme to be used
+    let gradingScheme: GradingScheme?
+
+    init(assignment: Assignment, submissions: [Submission], focusedSubmissionIndex: Int, gradingScheme: GradingScheme? = nil) {
+        self.assignment = assignment
+        self.submissions = submissions
+        self.focusedSubmissionIndex = focusedSubmissionIndex
+        self.gradingScheme = gradingScheme
+    }
 }
 
 enum SpeedGraderInteractorState: Equatable {

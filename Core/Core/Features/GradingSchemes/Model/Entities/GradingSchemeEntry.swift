@@ -16,26 +16,30 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-
-public struct APIGradingSchemeEntry: Codable, Equatable {
+public struct GradingSchemeEntry: Codable, Equatable {
     public let name: String
     public let value: Double
+    public let calculatedValue: Double?
 
-    public init(name: String, value: Double) {
+    init(name: String, value: Double, calculatedValue: Double? = nil) {
         self.name = name
         self.value = value
+        self.calculatedValue = calculatedValue
     }
 
-    /**
-     This initializer is used when constructing grading scheme from a Course API response
-     which has a different format compared to the grading scheme API.
-     */
-    public init?(courseGradingScheme: [TypeSafeCodable<String, Double>]) {
+    init?(_ courseGradingScheme: [TypeSafeCodable<String, Double>]) {
         guard courseGradingScheme.count == 2,
               let name = courseGradingScheme[0].value1,
               let value = courseGradingScheme[1].value2
         else { return nil }
-        self.init(name: name, value: value)
+        self.name = name
+        self.value = value
+        self.calculatedValue = nil
+    }
+
+    init(_ apiGradingScheme: APIGradingSchemeEntry) {
+        self.name = apiGradingScheme.name
+        self.value = apiGradingScheme.value
+        self.calculatedValue = apiGradingScheme.calculated_value
     }
 }
