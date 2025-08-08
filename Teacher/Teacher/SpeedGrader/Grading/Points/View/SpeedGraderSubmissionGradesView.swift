@@ -291,6 +291,8 @@ struct SpeedGraderSubmissionGradesView: View {
             sliderExcused ? Text("Excused", bundle: .teacher) :
             isPercent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
             Text(gradeSliderViewModel.formatScore(score, maxPoints: possible))
+        let a11yValue = (sliderCleared || sliderExcused || isPercent) ? tooltipText : Text(String.format(points: score))
+
         let maxScore = isPercent ? 100 : possible
 
         HStack(spacing: 16) {
@@ -305,6 +307,7 @@ struct SpeedGraderSubmissionGradesView: View {
                             maxValue: assignment.pointsPossible ?? 0,
                             showTooltip: showTooltip,
                             tooltipText: tooltipText,
+                            a11yValue: a11yValue,
                             score: score,
                             possible: possible,
                             onEditingChanged: sliderChangedState,
