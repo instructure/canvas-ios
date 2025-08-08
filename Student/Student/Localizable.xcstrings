@@ -66585,6 +66585,9 @@
         }
       }
     },
+    "It looks like your account isn't set up as a learner role. If you believe this is a mistake, contact your admin or support team." : {
+
+    },
     "It’s empty, what are you still doing here." : {
       "comment" : "It’s empty, what are you still doing here.",
       "extractionState" : "manual",
@@ -88614,6 +88617,9 @@
           }
         }
       }
+    },
+    "Oops, something went wrong" : {
+
     },
     "Oops!" : {
       "comment" : "Error message title\n   Error title\n   Masquerade error title",
@@ -126785,6 +126791,9 @@
           }
         }
       }
+    },
+    "There was an error while logging you in. You can try again, or come back a bit later." : {
+
     },
     "There's nothing to be notified of yet." : {
       "localizations" : {

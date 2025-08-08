@@ -45,7 +45,10 @@ extension HorizonUI {
 
         // Computed height of the container for all options
         private var displayedOptionsHeight: CGFloat {
-            focused ? min(displayedOptionHeight * CGFloat(options.count) + .huiSpaces.space4, 300) : 0
+            // The `-4` offset is applied as a manual adjustment to compensate for extra spacing,
+            focused
+            ? min(displayedOptionHeight * CGFloat(options.count) + .huiSpaces.space4, 300) - 4
+            : 0
         }
 
         // The computed height of the error text
@@ -124,7 +127,6 @@ extension HorizonUI {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Color.huiColors.surface.pageSecondary)
-                .padding(.vertical, .huiSpaces.space4)
             }
             .background(Color.huiColors.surface.pageSecondary)
             .frame(height: displayedOptionsHeight)
@@ -140,7 +142,7 @@ extension HorizonUI {
                 .minimumScaleFactor(0.5)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, .huiSpaces.space12)
-                .padding(.vertical, .huiSpaces.space8)
+                .padding(.vertical, .huiSpaces.space12)
                 .background {
                     GeometryReader { geometry in
                         HStack {}
@@ -151,7 +153,11 @@ extension HorizonUI {
                             }
                     }
                 }
-                .background(Color.huiColors.surface.pageSecondary)
+                .background(text == selection
+                            ? Color.huiColors.surface.institution
+                            : Color.huiColors.surface.pageSecondary
+                )
+
                 .huiTypography(.p1)
                 .onTapGesture {
                     focused = false
@@ -213,6 +219,7 @@ extension HorizonUI {
                         .onChange(of: text, onTextChange)
                         .onChange(of: selection) { _, newValue in text = newValue }
                         .onChange(of: focused) { _, newValue in searchFocuse = newValue }
+                        .frame(height: 44)
                 } else {
                     Text(selection.isEmpty ? placeholder ?? "" : selection)
                         .huiTypography(.p1)
@@ -221,6 +228,7 @@ extension HorizonUI {
                         .padding(HorizonUI.spaces.space12)
                         .padding(.trailing, .huiSpaces.space24)
                         .overlay(textOverlay(isOuter: false))
+                        .frame(height: 44)
                 }
                 Image.huiIcons.chevronRight
                     .padding(.horizontal, .huiSpaces.space12)

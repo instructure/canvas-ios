@@ -1,0 +1,1133 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "\n\nHow can I help with this?" : {
+
+    },
+    "-" : {
+
+    },
+    "'s score is now available" : {
+
+    },
+    "'s score weight was changed  " : {
+
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%lld Attempts Allowed" : {
+      "comment" : "The number of attempts allowed for this assignment.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Attempt Allowed"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld Attempts Allowed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Abu Dhabi (+04:00/+04:00)" : {
+
+    },
+    "Accept" : {
+
+    },
+    "Account" : {
+
+    },
+    "Add a Note" : {
+
+    },
+    "Add a Note (Optional)" : {
+
+    },
+    "Add comment" : {
+
+    },
+    "Add your text entry" : {
+
+    },
+    "Adelaide (+09:30/+10:30)" : {
+
+    },
+    "Advanced" : {
+
+    },
+    "Alaska (-09:00/-08:00)" : {
+
+    },
+    "All messages" : {
+
+    },
+    "Almaty (+05:00/+05:00)" : {
+
+    },
+    "American Samoa (-11:00)" : {
+
+    },
+    "Amsterdam (+01:00/+02:00)" : {
+
+    },
+    "An error has occurred" : {
+
+    },
+    "An error occurred while marking as done." : {
+
+    },
+    "Announcement" : {
+
+    },
+    "Announcement from" : {
+
+    },
+    "Announcement in %@" : {
+
+    },
+    "Announcements" : {
+
+    },
+    "Announcements and Messages" : {
+
+    },
+    "Answer" : {
+
+    },
+    "Are you sure you want to log out?" : {
+
+    },
+    "Are you sure you want to proceed?" : {
+
+    },
+    "Arizona (-07:00)" : {
+
+    },
+    "Ask a question" : {
+
+    },
+    "Assignment due dates" : {
+
+    },
+    "Assignment Group Weights" : {
+
+    },
+    "Assignment Name" : {
+
+    },
+    "Assignment Scored" : {
+
+    },
+    "Assignment Successfully Submitted!" : {
+
+    },
+    "Astana (+05:00/+05:00)" : {
+
+    },
+    "Asuncion (-04:00/-03:00)" : {
+
+    },
+    "Athens (+02:00/+03:00)" : {
+
+    },
+    "Atlantic Time (Canada) (-04:00/-03:00)" : {
+
+    },
+    "Attach file" : {
+
+    },
+    "Attempt" : {
+
+    },
+    "Attempt history" : {
+
+    },
+    "Attempts" : {
+
+    },
+    "Attempts Allowed" : {
+      "comment" : "The number of attempts allowed for this assignment."
+    },
+    "Auckland (+12:00/+13:00)" : {
+
+    },
+    "Azores (-01:00/+00:00)" : {
+
+    },
+    "Baghdad (+03:00/+03:00)" : {
+
+    },
+    "Baku (+04:00/+04:00)" : {
+
+    },
+    "Bangkok (+07:00/+07:00)" : {
+
+    },
+    "Beijing (+08:00)" : {
+
+    },
+    "Belgrade (+01:00/+02:00)" : {
+
+    },
+    "Berlin (+01:00/+02:00)" : {
+
+    },
+    "Bern (+01:00/+02:00)" : {
+
+    },
+    "Bogota (-05:00/-05:00)" : {
+
+    },
+    "Brasilia (-03:00/-03:00)" : {
+
+    },
+    "Bratislava (+01:00/+02:00)" : {
+
+    },
+    "Brisbane (+10:00)" : {
+
+    },
+    "Brussels (+01:00/+02:00)" : {
+
+    },
+    "Bucharest (+02:00/+03:00)" : {
+
+    },
+    "Budapest (+01:00/+02:00)" : {
+
+    },
+    "Buenos Aires (-03:00/-03:00)" : {
+
+    },
+    "Cairo (+02:00/+03:00)" : {
+
+    },
+    "Can I answer any questions about this document for you?" : {
+
+    },
+    "Canberra (+10:00/+11:00)" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Cape Verde Is. (-01:00/-01:00)" : {
+
+    },
+    "Caracas (-04:00/-04:00)" : {
+
+    },
+    "Casablanca (+01:00/+00:00)" : {
+
+    },
+    "Central America (-06:00)" : {
+
+    },
+    "Central Time (US & Canada) (-06:00/-05:00)" : {
+
+    },
+    "Chatham Is. (+12:45/+13:45)" : {
+
+    },
+    "Check Answer" : {
+
+    },
+    "Chennai (+05:30)" : {
+
+    },
+    "Chihuahua (-06:00)" : {
+
+    },
+    "Chongqing (+08:00)" : {
+
+    },
+    "Choose and complete one of the required items." : {
+
+    },
+    "Choose file" : {
+
+    },
+    "Choose photo or video" : {
+
+    },
+    "Comments" : {
+
+    },
+    "Complete all of the items." : {
+
+    },
+    "Complete all of the required items." : {
+
+    },
+    "Completed" : {
+
+    },
+    "Confirm submission" : {
+
+    },
+    "Confirmation" : {
+
+    },
+    "Confusing" : {
+
+    },
+    "Congrats! You've completed your course." : {
+
+    },
+    "Conversation" : {
+
+    },
+    "Copenhagen (+01:00/+02:00)" : {
+
+    },
+    "Create a Quiz" : {
+
+    },
+    "Create message" : {
+
+    },
+    "Cuiaba (-04:00/-04:00)" : {
+
+    },
+    "Darwin (+09:30)" : {
+
+    },
+    "Delete draft" : {
+
+    },
+    "Dhaka (+06:00/+06:00)" : {
+
+    },
+    "Display Name" : {
+
+    },
+    "Display Name can only be changed by your institution." : {
+
+    },
+    "Done" : {
+
+    },
+    "Download File" : {
+
+    },
+    "Dublin (+01:00/+00:00)" : {
+
+    },
+    "Due" : {
+
+    },
+    "Due Date" : {
+
+    },
+    "Due Date Changed" : {
+
+    },
+    "Due date: %@" : {
+
+    },
+    "E-mail" : {
+
+    },
+    "Eastern Time (US & Canada) (-05:00/-04:00)" : {
+
+    },
+    "Edinburgh (+00:00/+01:00)" : {
+
+    },
+    "Eirunepe (-05:00/-05:00)" : {
+
+    },
+    "Ekaterinburg (+05:00/+05:00)" : {
+
+    },
+    "Email" : {
+
+    },
+    "Email can only be changed by your institution" : {
+
+    },
+    "Enable iOS Notifications" : {
+
+    },
+    "Error" : {
+
+    },
+    "Error fetching response." : {
+
+    },
+    "Error loading comments." : {
+
+    },
+    "Error loading scores." : {
+
+    },
+    "Excused" : {
+
+    },
+    "Experience" : {
+
+    },
+    "Explain this" : {
+
+    },
+    "External tool" : {
+
+    },
+    "Feedback: " : {
+
+    },
+    "Fiji (+12:00/+12:00)" : {
+
+    },
+    "File upload" : {
+
+    },
+    "Filter" : {
+
+    },
+    "Filter by person" : {
+
+    },
+    "Fortaleza (-03:00/-03:00)" : {
+
+    },
+    "Full Name" : {
+
+    },
+    "Full Name can only be changed by your institution." : {
+
+    },
+    "Generate Flash Cards" : {
+
+    },
+    "Georgetown (-04:00/-04:00)" : {
+
+    },
+    "Get a notification anytime an assignment is scored or the score is changed, and anytime the score weight is changed." : {
+
+    },
+    "Get a notification anytime an assignment’s due date is added or changed." : {
+
+    },
+    "Get a notification anytime you receive a course announcement or a new message." : {
+
+    },
+    "Greenland (-02:00/-01:00)" : {
+
+    },
+    "Guadalajara (-06:00)" : {
+
+    },
+    "Guam (+10:00)" : {
+
+    },
+    "Hanoi (+07:00/+07:00)" : {
+
+    },
+    "Harare (+02:00)" : {
+
+    },
+    "Hawaii (-10:00)" : {
+
+    },
+    "Hello! Which course would you like to discuss today?" : {
+
+    },
+    "Helsinki (+02:00/+03:00)" : {
+
+    },
+    "Highlight" : {
+
+    },
+    "Hobart (+10:00/+11:00)" : {
+
+    },
+    "Home" : {
+
+    },
+    "Hong Kong (+08:00)" : {
+
+    },
+    "hours" : {
+
+    },
+    "How can I help you with this page?" : {
+
+    },
+    "I don't have a summary for this content." : {
+
+    },
+    "I don't have any additional information for you." : {
+
+    },
+    "I'm not able to rephrase this content" : {
+
+    },
+    "IgniteAI" : {
+
+    },
+    "Important" : {
+
+    },
+    "In progress" : {
+
+    },
+    "Indiana (East) (-05:00/-04:00)" : {
+
+    },
+    "Instructions" : {
+
+    },
+    "International Date Line West (-12:00)" : {
+
+    },
+    "Irkutsk (+08:00/+08:00)" : {
+
+    },
+    "is due on " : {
+
+    },
+    "Islamabad (+05:00)" : {
+
+    },
+    "Istanbul (+03:00/+03:00)" : {
+
+    },
+    "It doesn't look like you have any courses available. Enroll in a course to get started." : {
+
+    },
+    "Jakarta (+07:00)" : {
+
+    },
+    "Jerusalem (+02:00/+03:00)" : {
+
+    },
+    "Kabul (+04:30/+04:30)" : {
+
+    },
+    "Kaliningrad (+02:00)" : {
+
+    },
+    "Kamchatka (+12:00/+12:00)" : {
+
+    },
+    "Karachi (+05:00)" : {
+
+    },
+    "Kathmandu (+05:45/+05:45)" : {
+
+    },
+    "Kolkata (+05:30)" : {
+
+    },
+    "Krasnoyarsk (+07:00/+07:00)" : {
+
+    },
+    "Kuala Lumpur (+08:00/+08:00)" : {
+
+    },
+    "Kuwait (+03:00/+03:00)" : {
+
+    },
+    "Kyiv (+02:00/+03:00)" : {
+
+    },
+    "La Paz (-04:00/-04:00)" : {
+
+    },
+    "Label" : {
+
+    },
+    "Late" : {
+
+    },
+    "Learn" : {
+
+    },
+    "Lima (-05:00/-05:00)" : {
+
+    },
+    "Lisbon (+00:00/+01:00)" : {
+
+    },
+    "Ljubljana (+01:00/+02:00)" : {
+
+    },
+    "Locked Content" : {
+
+    },
+    "Logout" : {
+
+    },
+    "London (+00:00/+01:00)" : {
+
+    },
+    "Madrid (+01:00/+02:00)" : {
+
+    },
+    "Magadan (+11:00/+11:00)" : {
+
+    },
+    "Manaus (-04:00/-04:00)" : {
+
+    },
+    "Mark as done" : {
+
+    },
+    "Marshall Is. (+12:00/+12:00)" : {
+
+    },
+    "Mazatlan (-07:00)" : {
+
+    },
+    "Melbourne (+10:00/+11:00)" : {
+
+    },
+    "Message" : {
+
+    },
+    "Mexico City (-06:00)" : {
+
+    },
+    "Mid-Atlantic (-02:00/-02:00)" : {
+
+    },
+    "Midway Island (-11:00)" : {
+
+    },
+    "mins" : {
+
+    },
+    "Minsk (+03:00/+03:00)" : {
+
+    },
+    "Missing" : {
+
+    },
+    "Monrovia (+00:00)" : {
+
+    },
+    "Monterrey (-06:00)" : {
+
+    },
+    "Montevideo (-03:00/-03:00)" : {
+
+    },
+    "Moscow (+03:00)" : {
+
+    },
+    "Mountain Time (US & Canada) (-07:00/-06:00)" : {
+
+    },
+    "Mumbai (+05:30)" : {
+
+    },
+    "Muscat (+04:00/+04:00)" : {
+
+    },
+    "My progress" : {
+
+    },
+    "My Progress" : {
+
+    },
+    "N/A" : {
+
+    },
+    "Nairobi (+03:00)" : {
+
+    },
+    "Name is required" : {
+
+    },
+    "Name: %@" : {
+
+    },
+    "New attempt" : {
+
+    },
+    "New Caledonia (+11:00/+11:00)" : {
+
+    },
+    "New Delhi (+05:30)" : {
+
+    },
+    "Newfoundland (-03:30/-02:30)" : {
+
+    },
+    "No" : {
+
+    },
+    "No key takeaways found." : {
+
+    },
+    "No notification activity yet." : {
+
+    },
+    "Norfolk Island (+11:00/+12:00)" : {
+
+    },
+    "Noronha (-02:00/-02:00)" : {
+
+    },
+    "Not started" : {
+
+    },
+    "Not submitted" : {
+
+    },
+    "Notebook" : {
+
+    },
+    "Notes" : {
+
+    },
+    "Notifications" : {
+
+    },
+    "Novosibirsk (+07:00/+07:00)" : {
+
+    },
+    "Nuku'alofa (+13:00/+13:00)" : {
+
+    },
+    "Ok" : {
+
+    },
+    "Once deleted, this draft cannot be recovered." : {
+
+    },
+    "Once you submit this attempt, you won’t be able to make any changes." : {
+
+    },
+    "Open in a New Tab" : {
+
+    },
+    "Optional" : {
+
+    },
+    "Osaka (+09:00)" : {
+
+    },
+    "Overdue" : {
+
+    },
+    "Overview" : {
+
+    },
+    "Pacific Time (US & Canada) (-08:00/-07:00)" : {
+
+    },
+    "page_of_pages" : {
+      "comment" : "Showing the user the page index they're on compared to the total number of pages",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d of %d"
+          }
+        }
+      }
+    },
+    "Paris (+01:00/+02:00)" : {
+
+    },
+    "Perth (+08:00)" : {
+
+    },
+    "Philippines (+08:00)" : {
+
+    },
+    "Points Possible" : {
+
+    },
+    "Port Moresby (+10:00/+10:00)" : {
+
+    },
+    "Post" : {
+
+    },
+    "Prague (+01:00/+02:00)" : {
+
+    },
+    "Pretoria (+02:00)" : {
+
+    },
+    "Profile" : {
+
+    },
+    "Puerto Rico (-04:00)" : {
+
+    },
+    "Push notification" : {
+
+    },
+    "Push notifications are currently disabled. To turn on, you will need to enable in iOS Settings." : {
+
+    },
+    "Question" : {
+
+    },
+    "Quito (-05:00/-05:00)" : {
+
+    },
+    "Rangoon (+06:30/+06:30)" : {
+
+    },
+    "Recipients" : {
+
+    },
+    "Regenerate" : {
+
+    },
+    "Regenerate Flashcards" : {
+
+    },
+    "Reply" : {
+
+    },
+    "Result: %@" : {
+
+    },
+    "Resume learning" : {
+
+    },
+    "Retry" : {
+
+    },
+    "Riga (+02:00/+03:00)" : {
+
+    },
+    "Riyadh (+03:00/+03:00)" : {
+
+    },
+    "Rome (+01:00/+02:00)" : {
+
+    },
+    "Samara (+04:00/+04:00)" : {
+
+    },
+    "Samoa (+13:00/+13:00)" : {
+
+    },
+    "Santiago (-04:00/-03:00)" : {
+
+    },
+    "Sapporo (+09:00)" : {
+
+    },
+    "Sarajevo (+01:00/+02:00)" : {
+
+    },
+    "Saskatchewan (-06:00)" : {
+
+    },
+    "Save" : {
+
+    },
+    "Save Changes" : {
+
+    },
+    "Saved at " : {
+
+    },
+    "Score" : {
+
+    },
+    "Scores" : {
+
+    },
+    "Scoring Weight Changed" : {
+
+    },
+    "Select a course" : {
+
+    },
+    "Select a submission type" : {
+
+    },
+    "Send" : {
+
+    },
+    "Sent" : {
+
+    },
+    "Seoul (+09:00)" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Singapore (+08:00/+08:00)" : {
+
+    },
+    "Skillspace" : {
+
+    },
+    "Skopje (+01:00/+02:00)" : {
+
+    },
+    "Sofia (+02:00/+03:00)" : {
+
+    },
+    "Solomon Is. (+11:00/+11:00)" : {
+
+    },
+    "Something went wrong" : {
+
+    },
+    "Sorry, can we try that again? Which course is it you'd like to discuss?" : {
+
+    },
+    "Sorry, I don't have an answer for that right now." : {
+
+    },
+    "Sorry, we were not able to display this page right now." : {
+
+    },
+    "Sorry, we were unable to find this item." : {
+
+    },
+    "Sort by" : {
+
+    },
+    "Srednekolymsk (+11:00/+11:00)" : {
+
+    },
+    "Sri Jayawardenepura (+05:30/+05:30)" : {
+
+    },
+    "St. Petersburg (+03:00)" : {
+
+    },
+    "Start quiz" : {
+
+    },
+    "Status: " : {
+
+    },
+    "Stockholm (+01:00/+02:00)" : {
+
+    },
+    "Submit assignment" : {
+
+    },
+    "Submit attempt" : {
+
+    },
+    "Submitted" : {
+
+    },
+    "Support" : {
+
+    },
+    "Switch to Canvas Academic" : {
+
+    },
+    "Sydney (+10:00/+11:00)" : {
+
+    },
+    "Taipei (+08:00)" : {
+
+    },
+    "Take photo or video" : {
+
+    },
+    "Tallinn (+02:00/+03:00)" : {
+
+    },
+    "Tap to flip" : {
+
+    },
+    "Tashkent (+05:00/+05:00)" : {
+
+    },
+    "Tbilisi (+04:00/+04:00)" : {
+
+    },
+    "Tehran (+03:30/+03:30)" : {
+
+    },
+    "Text" : {
+
+    },
+    "Thank you for your feedback!" : {
+
+    },
+    "There are no scored activities in this course." : {
+
+    },
+    "There was an error. please try again." : {
+
+    },
+    "This assignment allows multiple attempts. Once you've made a submission, you can view it here." : {
+
+    },
+    "This content is locked and cannot be accessed at this time." : {
+
+    },
+    "This is where all your notes, taken directly within your learning objects, are stored and organized. It's your personal hub for keeping track of key insights, important excerpts, and reflections as you learn. Dive in to review or expand on your notes anytime!" : {
+
+    },
+    "This prompt was not received. Try again" : {
+
+    },
+    "Tijuana (-08:00/-07:00)" : {
+
+    },
+    "Time Zone" : {
+
+    },
+    "Title/subject" : {
+
+    },
+    "Tokelau Is. (+13:00/+13:00)" : {
+
+    },
+    "Tokyo (+09:00)" : {
+
+    },
+    "Tools" : {
+
+    },
+    "Total Weight: %@" : {
+
+    },
+    "Total: %@" : {
+
+    },
+    "Ulaanbaatar (+08:00/+08:00)" : {
+
+    },
+    "Unknown Course" : {
+
+    },
+    "Unknown date" : {
+
+    },
+    "Unlimited" : {
+
+    },
+    "Unread" : {
+
+    },
+    "Unsupported Item" : {
+
+    },
+    "Upload file" : {
+
+    },
+    "Urumqi (+06:00/+06:00)" : {
+
+    },
+    "UTC (+00:00)" : {
+
+    },
+    "Vienna (+01:00/+02:00)" : {
+
+    },
+    "View submission" : {
+
+    },
+    "View your progress and scores on the Learn page." : {
+
+    },
+    "VIEWING ATTEMPT" : {
+
+    },
+    "Vilnius (+02:00/+03:00)" : {
+
+    },
+    "Vladivostok (+10:00/+10:00)" : {
+
+    },
+    "Volgograd (+03:00)" : {
+
+    },
+    "Warsaw (+01:00/+02:00)" : {
+
+    },
+    "We received your submission. You will be notified once it's been reviewed." : {
+
+    },
+    "Weight: %@" : {
+
+    },
+    "Wellington (+12:00/+13:00)" : {
+
+    },
+    "West Central Africa (+01:00)" : {
+
+    },
+    "What would you like to discuss about the course %@?" : {
+
+    },
+    "What would you like to discuss today?" : {
+
+    },
+    "Yakutsk (+09:00/+09:00)" : {
+
+    },
+    "Yerevan (+04:00/+04:00)" : {
+
+    },
+    "Yes" : {
+
+    },
+    "You" : {
+
+    },
+    "You are submitting a text-based attempt. Any uploaded files will be deleted upon submission. Once you submit this attempt, you won’t be able to make any changes." : {
+
+    },
+    "You are submitting an uploaded file. Any content in the text field will be deleted upon submission. Once you submit this attempt, you won’t be able to make any changes." : {
+
+    },
+    "You aren’t currently enrolled in a course." : {
+
+    },
+    "You have been invited to join" : {
+
+    },
+    "Your draft was deleted." : {
+
+    },
+    "Your note has been saved" : {
+
+    },
+    "Your submission" : {
+
+    },
+    "Your text submission" : {
+
+    },
+    "Your uploaded submission" : {
+
+    },
+    "Zagreb (+01:00/+02:00)" : {
+
+    },
+    "Zurich (+01:00/+02:00)" : {
+
+    }
+  },
+  "version" : "1.0"
+}

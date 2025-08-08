@@ -286,6 +286,7 @@ class InstIconExtensionTests: XCTestCase {
         XCTAssertEqual(UIImage.share, UIImage(named: "share", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.smartSearchLine, UIImage(named: "smartSearchLine", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.smartSearchSmallLine, UIImage(named: "smartSearchSmallLine", in: .core, compatibleWith: nil))
+        XCTAssertEqual(UIImage.swap_horiz, UIImage(named: "swap_horiz", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.todoTab, UIImage(named: "todoTab", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.todoTabActive, UIImage(named: "todoTabActive", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.unionLine, UIImage(named: "unionLine", in: .core, compatibleWith: nil))

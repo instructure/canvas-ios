@@ -19,7 +19,7 @@
 import XCTest
 @testable import Student
 @testable import Core
-@testable import TestsFoundation
+import TestsFoundation
 
 class ActivityStreamViewControllerTests: StudentTestCase {
     lazy var controller = ActivityStreamViewController.create()

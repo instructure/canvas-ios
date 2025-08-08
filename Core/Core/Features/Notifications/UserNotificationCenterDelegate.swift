@@ -18,6 +18,8 @@
 
 import UserNotifications
 
+// This is currently not in use for Student, Teacher, Parent apps but could be utilized in the future.
+// TODO: Revisit UserNotificationCenterDelegate improvement
 class UserNotificationCenterDelegate: NSObject, UNUserNotificationCenterDelegate {
     private let environment: AppEnvironment
 

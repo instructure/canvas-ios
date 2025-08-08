@@ -318,6 +318,7 @@ public extension HorizonUI {
         public let segment = Image(.segment)
         public let selectCheckBox = Image(.selectCheckBox)
         public let send = Image(.send)
+        public let sendFilled = Image(.sendFilled)
         public let settingsAccessibility = Image(.settingsAccessibility)
         public let settingsApplications = Image(.settingsApplications)
         public let shoppingCartCheckout = Image(.shoppingCartCheckout)
