@@ -22,9 +22,17 @@ import Foundation
 
 @Observable
 final class CourseDetailsViewModel {
+    typealias ScoresViewModelBuilder = ((String, String) -> ScoresViewModel)
+
     // MARK: - Outputs
 
-    private(set) var course: HCourse
+    private(set) var course: HCourse {
+        didSet {
+            if oldValue.id != course.id && course.id.isNotEmpty {
+                scoresViewModel = scoresViewModelBuilder(course.id, course.enrollmentID)
+            }
+        }
+    }
     private(set) var isShowHeader = true
     private(set) var courses: [DropdownMenuItem] = []
     private(set) var selectedCoure: DropdownMenuItem?
@@ -50,6 +58,7 @@ final class CourseDetailsViewModel {
     private let learnCoursesInteractor: GetLearnCoursesInteractor
     private let selectedTab: CourseDetailsTabs?
     private var pullToRefreshCancellable: AnyCancellable?
+    private let scoresViewModelBuilder: ScoresViewModelBuilder
 
     // MARK: - Init
 
@@ -61,7 +70,8 @@ final class CourseDetailsViewModel {
         courseID: String,
         enrollmentID: String,
         course: HCourse?,
-        selectedTab: CourseDetailsTabs? = nil
+        selectedTab: CourseDetailsTabs? = nil,
+        scoresViewModelBuilder: @escaping ScoresViewModelBuilder
     ) {
         self.router = router
         self.getCoursesInteractor = getCoursesInteractor
@@ -70,7 +80,7 @@ final class CourseDetailsViewModel {
         self.course = course ?? .init()
         self.isLoaderVisible = true
         self.selectedTab = selectedTab
-        self.scoresViewModel = ScoresAssembly.makeViewModel(courseID: courseID, enrollmentID: enrollmentID)
+        self.scoresViewModelBuilder = scoresViewModelBuilder
         fetchData()
         observeCourseSelection()
         observeHeaderVisiablity()
@@ -193,10 +203,6 @@ final class CourseDetailsViewModel {
                 overviewDescription.isEmpty ? 0 : 1
             }
         }
-        self.scoresViewModel = ScoresAssembly.makeViewModel(
-            courseID: course.id,
-            enrollmentID: course.enrollmentID
-        )
         isLoaderVisible = false
     }
 }
