@@ -30,7 +30,7 @@ public struct PostSwitchExperienceRequest: APIRequestable {
 
     public var body: Body?
 
-    init(experience: String) {
+    public init(experience: String) {
         self.body = Body(experience: experience)
     }
 }

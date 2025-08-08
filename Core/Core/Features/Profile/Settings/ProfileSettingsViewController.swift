@@ -387,7 +387,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         guard
             AppEnvironment.shared.app == .student,
             let appExperienceInteractor,
-            await appExperienceInteractor.isExperienceSwitchAvailableAsync() == true else {
+            await appExperienceInteractor.isExperienceSwitchAvailableAsync() else {
             return nil
         }
         weak var weakSelf = self

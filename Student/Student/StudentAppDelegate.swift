@@ -54,7 +54,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private lazy var gradeListWidgetRouter = WidgetRouter.createGradeListRouter()
     private lazy var courseGradeWidgetRouter = WidgetRouter.createCourseGradeRouter()
 
-     private lazy var analyticsTracker: PendoAnalyticsTracker = {
+    private lazy var analyticsTracker: PendoAnalyticsTracker = {
         .init(environment: environment)
     }()
     private lazy var appExperienceInteractor = ExperienceSummaryInteractorLive(environment: environment)
@@ -272,9 +272,7 @@ extension StudentAppDelegate {
         CoreWebView.keepCookieAlive(for: environment)
         PushNotificationsInteractor.shared.userDidLogin(api: environment.api)
 
-        return Just(())
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        return Publishers.typedJust()
     }
 
     private func getFeatureFlags() -> AnyPublisher<[FeatureFlag], Error> {
@@ -353,8 +351,14 @@ extension StudentAppDelegate {
             )
         } else {
             let alert = UIAlertController(
-                title: "Oops, something went wrong",
-                message: "There was an error while logging you in. You can try again, or come back a bit later.",
+                title: String(
+                    localized: "Oops, something went wrong",
+                    bundle: .student
+                ),
+                message: String(
+                    localized: "There was an error while logging you in. You can try again, or come back a bit later.",
+                    bundle: .student
+                ),
                 preferredStyle: .alert
             )
             alert.addAction(
@@ -400,7 +404,7 @@ extension StudentAppDelegate {
         .eraseToAnyPublisher()
     }
 
-    func listenForExperienceChanges() {
+    private func listenForExperienceChanges() {
         AppEnvironment.shared.experience
             .dropFirst()
             .sink { [weak self] in
@@ -409,7 +413,7 @@ extension StudentAppDelegate {
             .store(in: &subscriptions)
     }
 
-    func setTabBarControllerFor(experience: Experience, isStartup: Bool) {
+    private func setTabBarControllerFor(experience: Experience, isStartup: Bool) {
         switch experience {
         case .academic:
             AppEnvironment.shared.app = .student
