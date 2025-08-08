@@ -47,6 +47,8 @@ extension InstUI {
         private let hasDecimal: Bool
         private let style: Style
 
+        @AccessibilityFocusState private var isA11yFocused: Bool
+
         public init(
             text: Binding<String>,
             placeholder: String,
@@ -89,6 +91,7 @@ extension InstUI {
                 style: .done
             ) {
                 textField.resignFirstResponder()
+                isA11yFocused = true
             }
 
             // Toolbar
@@ -140,6 +143,7 @@ extension InstUI {
 
             public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
                 textField.resignFirstResponder()
+                parent.isA11yFocused = true
                 return true
             }
         }

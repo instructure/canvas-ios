@@ -21,8 +21,9 @@ import Core
 struct PointsRowViewModel: Equatable {
     let currentPoints: String
     let maxPointsWithUnit: String
+    let a11yMaxPointsWithUnit: String
 
-    init(currentPoints: String?, maxPointsWithUnit: String?) {
+    init(currentPoints: String?, maxPointsWithUnit: String?, a11yMaxPointsWithUnit: String?) {
         self.currentPoints = currentPoints ?? GradeFormatter.BlankPlaceholder.oneDash.stringValue
         self.maxPointsWithUnit = {
             if let maxPointsWithUnit {
@@ -31,5 +32,6 @@ struct PointsRowViewModel: Equatable {
                 return ""
             }
         }()
+        self.a11yMaxPointsWithUnit = a11yMaxPointsWithUnit ?? ""
     }
 }

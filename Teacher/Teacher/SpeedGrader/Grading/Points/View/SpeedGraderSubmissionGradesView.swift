@@ -158,8 +158,10 @@ struct SpeedGraderSubmissionGradesView: View {
         case .pointsDisplayOnly:
             gradeInputDisplayOnlyView(
                 title: title,
-                textValue: gradeState.originalScoreWithoutMetric ?? GradeFormatter.BlankPlaceholder.oneDash.stringValue,
-                suffix: gradeState.isExcused ? nil : "/ \(gradeState.pointsPossibleText)"
+                text: gradeState.originalScoreWithoutMetric ?? GradeFormatter.BlankPlaceholder.oneDash.stringValue,
+                a11yText: gradeState.originalScoreWithoutMetric ?? String(localized: "None", bundle: .teacher),
+                suffix: gradeState.isExcused ? nil : "/ \(gradeState.pointsPossibleText)",
+                a11ySuffix: gradeState.isExcused ? nil : String(localized: "out of \(gradeState.pointsPossibleAccessibilityText)", bundle: .teacher, comment: "Example: 'out of 10 points'")
             )
         case .gradePicker:
             SpeedGraderPickerCell(
@@ -178,10 +180,12 @@ struct SpeedGraderSubmissionGradesView: View {
         case .statusDisplayOnly:
             gradeInputDisplayOnlyView(
                 title: title,
-                textValue: gradeState.isExcused
+                text: gradeState.isExcused
                     ? String(localized: "Excused", bundle: .teacher)
                     : String(localized: "Not Graded", bundle: .teacher),
-                suffix: nil
+                a11yText: nil,
+                suffix: nil,
+                a11ySuffix: nil
             )
         case nil:
             SwiftUI.EmptyView()
@@ -199,7 +203,8 @@ struct SpeedGraderSubmissionGradesView: View {
         GradeInputTextFieldCell(
             title: title,
             inputType: inputType,
-            pointsPossible: gradeState.pointsPossibleText,
+            pointsPossibleText: gradeState.pointsPossibleText,
+            pointsPossibleAccessibilityText: gradeState.pointsPossibleAccessibilityText,
             isExcused: gradeState.isExcused,
             text: Binding(
                 get: { textValue },
@@ -212,28 +217,33 @@ struct SpeedGraderSubmissionGradesView: View {
     @ViewBuilder
     private func gradeInputDisplayOnlyView(
         title: String,
-        textValue: String,
-        suffix: String?
+        text: String,
+        a11yText: String?,
+        suffix: String?,
+        a11ySuffix: String?
     ) -> some View {
         HStack(alignment: .center, spacing: 8) {
             Text(title)
                 .textStyle(.cellLabel)
 
             HStack(alignment: .center, spacing: 8) {
-                Text(textValue)
+                Text(text)
                     .font(.regular16, lineHeight: .fit)
                     .foregroundStyle(.textDark)
                     .frame(maxWidth: .infinity, alignment: .trailing)
+                    .accessibilityLabel(a11yText ?? text)
 
                 if let suffix {
                     Text(suffix)
                         .font(.regular16, lineHeight: .fit)
                         .foregroundStyle(.textDark)
+                        .accessibilityLabel(a11ySuffix ?? suffix)
                 }
             }
-            .swapWithSpinner(onLoading: gradeViewModel.isSavingGrade, alignment: .trailing)
+            .swapWithSpinner(onSaving: gradeViewModel.isSavingGrade, alignment: .trailing)
         }
         .paddingStyle(set: .standardCell)
+        .accessibilityElement(children: .combine)
     }
 
     @ViewBuilder
@@ -275,20 +285,18 @@ struct SpeedGraderSubmissionGradesView: View {
     var slider: some View {
         let score = gradeViewModel.sliderValue
         let possible = assignment.pointsPossible ?? 0
+        let isPercent = assignment.gradingType == .percent
         let tooltipText =
             sliderCleared ? Text("No Grade", bundle: .teacher) :
             sliderExcused ? Text("Excused", bundle: .teacher) :
-            assignment.gradingType == .percent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
+            isPercent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
             Text(gradeSliderViewModel.formatScore(score, maxPoints: possible))
-        let maxScore = assignment.gradingType == .percent ? 100 : possible
+        let a11yValue = (sliderCleared || sliderExcused || isPercent) ? tooltipText : Text(String.format(points: score))
 
-        HStack(spacing: 8) {
-            Text(0)
-                .foregroundStyle(.tint)
-                .frame(width: 30, height: 30)
-                .onTapGesture {
-                    updateGrade(0)
-                }
+        let maxScore = isPercent ? 100 : possible
+
+        HStack(spacing: 16) {
+            sliderButton(score: 0, isPercent: isPercent)
             ZStack {
                 // disables page swipe around the slider
                 Rectangle()
@@ -299,20 +307,32 @@ struct SpeedGraderSubmissionGradesView: View {
                             maxValue: assignment.pointsPossible ?? 0,
                             showTooltip: showTooltip,
                             tooltipText: tooltipText,
+                            a11yValue: a11yValue,
                             score: score,
                             possible: possible,
                             onEditingChanged: sliderChangedState,
                             viewModel: gradeSliderViewModel)
             }
-            Text(maxScore)
-                .foregroundStyle(.tint)
-                .frame(width: 30, height: 30)
-                .onTapGesture {
-                    updateGrade(possible)
-                }
+            sliderButton(score: maxScore, isPercent: isPercent)
         }
-        .font(.medium14).foregroundColor(.textDarkest)
-        .padding(.horizontal, 16).padding(.vertical, 14)
+        .paddingStyle(set: .standardCell)
+    }
+
+    private func sliderButton(score: Double, isPercent: Bool) -> some View {
+        Button(
+            action: { updateGrade(score) },
+            label: {
+                Text(score)
+                    .foregroundStyle(.tint)
+                    .font(.semibold14)
+                    .frame(height: 30)
+                    .accessibilityLabel(
+                        isPercent
+                            ? GradeFormatter.percentFormatter.string(from: NSNumber(value: score/100)) ?? "\(score)%"
+                            : String.format(points: score)
+                    )
+            }
+        )
     }
 
     func updateGrade(excused: Bool? = nil, noMark: Bool? = false, _ grade: Double? = nil) {

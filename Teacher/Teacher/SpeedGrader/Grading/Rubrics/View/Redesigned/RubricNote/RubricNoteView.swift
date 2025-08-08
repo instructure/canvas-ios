@@ -32,6 +32,7 @@ struct RubricNoteView: View {
             Text("Rubric Note")
                 .font(.semibold14)
                 .foregroundStyle(Color.textDark)
+                .accessibilityHidden(true)
 
             if let comment, comment.isNotEmpty, !isEditFieldShown {
                 RubricNoteCommentBubbleView(comment: comment) {

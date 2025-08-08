@@ -4,6 +4,9 @@
     "\"%@\" is not a valid grade." : {
 
     },
+    "%@ maximum" : {
+      "comment" : "Example: '10 points maximum'"
+    },
     "%@ to %@" : {
       "comment" : "'100% to 94%', or '400 to 230'",
       "localizations" : {
@@ -529,6 +532,7 @@
       }
     },
     "%g pts" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -783,9 +787,6 @@
           }
         }
       }
-    },
-    "%lf days late." : {
-
     },
     "%lld days late." : {
       "extractionState" : "stale",
@@ -16141,7 +16142,11 @@
         }
       }
     },
+    "Due date was on %@" : {
+
+    },
     "Due date was on %@." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -17164,6 +17169,9 @@
           }
         }
       }
+    },
+    "Edit rubric note" : {
+
     },
     "Enter days late" : {
       "localizations" : {
@@ -29834,7 +29842,6 @@
       }
     },
     "Loading" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -32650,7 +32657,11 @@
         }
       }
     },
+    "No due date was set" : {
+
+    },
     "No due date was set." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -36494,6 +36505,9 @@
           }
         }
       }
+    },
+    "out of %@" : {
+      "comment" : "Example: 'out of 10 points'"
     },
     "out_of_g_pts" : {
       "localizations" : {
@@ -41111,6 +41125,9 @@
     "Rubric Note" : {
 
     },
+    "Saving" : {
+
+    },
     "Saving days late." : {
       "localizations" : {
         "ar" : {
@@ -43420,6 +43437,9 @@
           }
         }
       }
+    },
+    "Send rubric note" : {
+
     },
     "Similarity Score" : {
       "localizations" : {

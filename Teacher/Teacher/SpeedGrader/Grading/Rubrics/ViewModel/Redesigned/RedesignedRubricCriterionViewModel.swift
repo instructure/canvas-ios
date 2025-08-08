@@ -140,8 +140,14 @@ class RedesignedRubricCriterionViewModel: ObservableObject, Identifiable {
         interactor.selectRating(criterionId: criterion.id, points: newPoints, ratingId: APIRubricAssessment.customRatingId)
     }
 
+    // MARK: - Rubric Score input
+
     var pointsPossibleText: String {
         String.format(pts: criterion.points)
+    }
+
+    var pointsPossibleAccessibilityText: String {
+        String.format(points: criterion.points)
     }
 }
 

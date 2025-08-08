@@ -20,8 +20,10 @@ import Core
 
 struct LatePenaltyRowViewModel: Equatable {
     let penaltyText: String
+    let a11yPenaltyText: String
 
-    init(penaltyText: String?) {
+    init(penaltyText: String?, a11yPenaltyText: String?) {
         self.penaltyText = penaltyText ?? GradeFormatter.BlankPlaceholder.oneDash.stringValue
+        self.a11yPenaltyText = a11yPenaltyText ?? String(localized: "None", bundle: .teacher)
     }
 }

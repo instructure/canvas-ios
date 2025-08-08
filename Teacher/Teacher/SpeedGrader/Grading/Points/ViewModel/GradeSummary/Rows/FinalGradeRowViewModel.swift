@@ -20,26 +20,32 @@ import Core
 import SwiftUI
 
 struct FinalGradeRowViewModel: Equatable {
-    let currentGradeText: String
+    let gradeText: String
+    let a11yGradeText: String
     let suffixText: String
+    let a11ySuffixText: String?
     let shouldShowNotPostedIcon: Bool
 
     enum SuffixType {
         case none
-        case maxGradeWithUnit(String)
+        case maxGradeWithUnit(String, String)
         case percentage
     }
 
-    init(currentGradeText: String?, suffixType: SuffixType, isGradedButNotPosted: Bool) {
-        self.currentGradeText = currentGradeText ?? GradeFormatter.BlankPlaceholder.oneDash.stringValue
+    init(gradeText: String?, a11yGradeText: String?, suffixType: SuffixType, isGradedButNotPosted: Bool) {
+        self.gradeText = gradeText ?? GradeFormatter.BlankPlaceholder.oneDash.stringValue
+        self.a11yGradeText = a11yGradeText ?? String(localized: "None", bundle: .teacher)
 
         switch suffixType {
         case .none:
             self.suffixText = ""
-        case .maxGradeWithUnit(let value):
-            self.suffixText = "   / \(value)"
+            self.a11ySuffixText = nil
+        case .maxGradeWithUnit(let suffix, let a11ySuffix):
+            self.suffixText = "   / \(suffix)"
+            self.a11ySuffixText = String(localized: "out of \(a11ySuffix)", bundle: .teacher, comment: "Example: 'out of 10 points'")
         case .percentage:
             self.suffixText = "   %"
+            self.a11ySuffixText = "%"
         }
 
         self.shouldShowNotPostedIcon = isGradedButNotPosted

@@ -27,6 +27,7 @@ struct GradeState: Equatable {
 
     let gradingType: GradingType
     let pointsPossibleText: String
+    let pointsPossibleAccessibilityText: String
     let gradeOptions: [OptionItem]
 
     // MARK: - Status
@@ -52,12 +53,14 @@ struct GradeState: Equatable {
 
     /// Formatted text showing points deducted for late submissions.
     let pointsDeductedText: String
+    let pointsDeductedAccessibilityText: String
 }
 
 extension GradeState {
     static let empty = GradeState(
         gradingType: .not_graded,
         pointsPossibleText: "",
+        pointsPossibleAccessibilityText: "",
         gradeOptions: [],
         isGraded: false,
         isExcused: false,
@@ -68,7 +71,8 @@ extension GradeState {
         originalScoreWithoutMetric: nil,
         originalGradeWithoutMetric: nil,
         finalGradeWithoutMetric: nil,
-        pointsDeductedText: ""
+        pointsDeductedText: "",
+        pointsDeductedAccessibilityText: ""
     )
 }
 
@@ -78,6 +82,7 @@ extension GradeState {
     static func make(
         gradingType: GradingType = .not_graded,
         pointsPossibleText: String = "",
+        pointsPossibleAccessibilityText: String = "",
         gradeOptions: [OptionItem] = [],
         isGraded: Bool = false,
         isExcused: Bool = false,
@@ -88,11 +93,13 @@ extension GradeState {
         originalScoreWithoutMetric: String? = nil,
         originalGradeWithoutMetric: String? = nil,
         finalGradeWithoutMetric: String? = nil,
-        pointsDeductedText: String = ""
+        pointsDeductedText: String = "",
+        pointsDeductedAccessibilityText: String = ""
     ) -> GradeState {
         .init(
             gradingType: gradingType,
             pointsPossibleText: pointsPossibleText,
+            pointsPossibleAccessibilityText: pointsPossibleAccessibilityText,
             gradeOptions: gradeOptions,
             isGraded: isGraded,
             isExcused: isExcused,
@@ -103,7 +110,8 @@ extension GradeState {
             originalScoreWithoutMetric: originalScoreWithoutMetric,
             originalGradeWithoutMetric: originalGradeWithoutMetric,
             finalGradeWithoutMetric: finalGradeWithoutMetric,
-            pointsDeductedText: pointsDeductedText
+            pointsDeductedText: pointsDeductedText,
+            pointsDeductedAccessibilityText: pointsDeductedAccessibilityText
         )
     }
 }
