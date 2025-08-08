@@ -93,13 +93,13 @@ public class GetDashboardGroups: CollectionUseCase {
     }
 }
 
-class GetGroupsInCategory: CollectionUseCase {
-    typealias Model = Group
-    let cacheKey: String?
-    let request: GetGroupsInCategoryRequest
-    let scope: Scope
+public class GetGroupsInCategory: CollectionUseCase {
+    public typealias Model = Group
+    public let cacheKey: String?
+    public let request: GetGroupsInCategoryRequest
+    public let scope: Scope
 
-    init(_ groupCategoryID: String?) {
+    public init(_ groupCategoryID: String?) {
         let groupCategoryID = groupCategoryID ?? ""
         cacheKey = "group_categories/\(groupCategoryID)/groups"
         request = GetGroupsInCategoryRequest(groupCategoryID: groupCategoryID)
@@ -109,13 +109,13 @@ class GetGroupsInCategory: CollectionUseCase {
         )
     }
 
-    func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APIGroup]?, URLResponse?, Error?) -> Void) {
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APIGroup]?, URLResponse?, Error?) -> Void) {
         // Skip making a request for empty groupCategoryID so this can be an empty list
         guard !request.groupCategoryID.isEmpty else { return completionHandler(nil, nil, nil) }
         environment.api.makeRequest(request, callback: completionHandler)
     }
 
-    func write(response: [APIGroup]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public func write(response: [APIGroup]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         response?.forEach { item in
             Group.save(item, in: client)
         }

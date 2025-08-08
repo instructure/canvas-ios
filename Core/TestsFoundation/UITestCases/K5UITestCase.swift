@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2021-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,11 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 @testable import Core
+import XCTest
 
 open class K5UITestCase: CoreUITestCase {
-    override open var experimentalFeatures: [ExperimentalFeature] { return [ExperimentalFeature.K5Dashboard]}
+    override open var experimentalFeatures: [ExperimentalFeature] { return [ExperimentalFeature.K5Dashboard] }
 
     open func resetAppStateForK5() {
         app.terminate()
@@ -28,7 +28,7 @@ open class K5UITestCase: CoreUITestCase {
         sleep(5)
     }
 
-    open override var user: UITestUser? {
+    override open var user: UITestUser? {
         .readStudentK5
     }
 

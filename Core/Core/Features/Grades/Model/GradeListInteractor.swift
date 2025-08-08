@@ -133,7 +133,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 context: .course(courseID),
                 userID: userID,
                 gradingPeriodID: gradingPeriodID,
-                types: ["StudentEnrollment"],
+                types: ["StudentEnrollment", "StudentViewEnrollment"],
                 states: [.active, .completed]
             ),
             environment: env

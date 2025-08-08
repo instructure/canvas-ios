@@ -136,12 +136,16 @@ public struct GetFavoriteGroupsRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/groups.html#method.groups.users
-struct GetGroupUsersRequest: APIRequestable {
-    typealias Response = [APIUser]
+public struct GetGroupUsersRequest: APIRequestable {
+    public typealias Response = [APIUser]
 
     let groupID: String
 
-    var path: String {
+    public init(groupID: String) {
+        self.groupID = groupID
+    }
+
+    public var path: String {
         let context = Context(.group, id: groupID)
         return "\(context.pathComponent)/users"
     }
@@ -165,10 +169,10 @@ public struct GetGroupRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/group_categories.html#method.group_categories.groups
-struct GetGroupsInCategoryRequest: APIRequestable {
-    typealias Response = [APIGroup]
+public struct GetGroupsInCategoryRequest: APIRequestable {
+    public typealias Response = [APIGroup]
 
     let groupCategoryID: String
 
-    var path: String { "group_categories/\(groupCategoryID)/groups" }
+    public var path: String { "group_categories/\(groupCategoryID)/groups" }
 }

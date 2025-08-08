@@ -157,4 +157,21 @@
             <point key="canvasLocation" x="-111.2" y="132.68365817091455"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="AJv-l9-h0p">
+            <size key="intrinsicContentSize" width="142" height="24"/>
+        </designable>
+        <designable name="OIC-Dy-yeC">
+            <size key="intrinsicContentSize" width="17" height="21"/>
+        </designable>
+        <designable name="Wu5-SA-4Ne">
+            <size key="intrinsicContentSize" width="173" height="52"/>
+        </designable>
+        <designable name="cWU-AM-HMh">
+            <size key="intrinsicContentSize" width="177" height="24"/>
+        </designable>
+        <designable name="dyr-GQ-FtL">
+            <size key="intrinsicContentSize" width="46.5" height="21"/>
+        </designable>
+    </designables>
 </document>

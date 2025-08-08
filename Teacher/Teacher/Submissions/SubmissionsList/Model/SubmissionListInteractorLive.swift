@@ -106,6 +106,46 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
         submissionsSubject.eraseToAnyPublisher()
     }
 
+    var assigneeGroups: AnyPublisher<[AssigneeGroup], Never> {
+        assignment
+            .flatMap { [weak self] assignment in
+                guard let self, let categoryID = assignment?.groupCategoryID else {
+                    return Just([AssigneeGroup]()).eraseToAnyPublisher()
+                }
+
+                return ReactiveStore(
+                    useCase: GetGroupsInCategory(categoryID),
+                    environment: self.env
+                )
+                .getEntities(ignoreCache: true)
+                .flatMap({ groups in
+                    Publishers
+                        .Sequence(sequence: groups)
+                        .flatMap { [weak self] group in
+                            guard let self else {
+                                return Just(AssigneeGroup(group: group))
+                                    .eraseToAnyPublisher()
+                            }
+
+                            return self
+                                .env
+                                .api
+                                .makeRequest(GetGroupUsersRequest(groupID: group.id))
+                                .map { (users: [APIUser], _) in
+                                    let userIDs = users.map { $0.id.value }
+                                    return AssigneeGroup(group: group, memberIDs: userIDs)
+                                }
+                                .replaceError(with: AssigneeGroup(group: group))
+                                .eraseToAnyPublisher()
+                        }
+                        .collect()
+                })
+                .replaceError(with: [])
+                .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+
     func refresh() -> AnyPublisher<Void, Never> {
         return Publishers.Last(
             upstream:

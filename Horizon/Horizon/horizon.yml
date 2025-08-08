@@ -1,0 +1,36 @@
+---
+targets:
+  Horizon:
+    type: framework
+    platform: iOS
+    transitivelyLinkDependencies: false
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: false
+      SWIFT_EMIT_LOC_STRINGS: true
+      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.horizon
+      TARGETED_DEVICE_FAMILY: 1,2
+    sources:
+      - path: ./
+        excludes:
+          - ".swiftlint.yml"
+          - "horizon.yml"
+    dependencies:
+      # Local
+      - target: Core/Core
+      - package: HorizonUI
+
+      # Remote
+      - package: PSPDFKit
+      - package: Pendo
+      - package: FirebaseCrashlytics
+      - package: FirebaseRemoteConfig
+      - package: FirebaseRemoteConfigSwift
+    preBuildScripts:
+      - path: ../../scripts/xcode-build-phases/swiftLint.sh
+        name: SwiftLint
+        basedOnDependencyAnalysis: false
+schemes:
+  Horizon:
+    build:
+      targets:
+        Horizon: all
