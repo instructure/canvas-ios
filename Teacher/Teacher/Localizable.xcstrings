@@ -787,9 +787,6 @@
         }
       }
     },
-    "%lf days late." : {
-
-    },
     "%lld days late." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -16144,7 +16141,11 @@
         }
       }
     },
+    "Due date was on %@" : {
+
+    },
     "Due date was on %@." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -32652,7 +32653,11 @@
         }
       }
     },
+    "No due date was set" : {
+
+    },
     "No due date was set." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
