@@ -37,7 +37,7 @@ extension APIGradingStandard {
         context_id: ID = "1",
         points_based: Bool = true,
         scaling_factor: Double = 1.0,
-        grading_scheme: [APIGradingSchemeEntry] = [.init(name: "Grading Scheme Entry", value: 1.0)]
+        grading_scheme: [APIGradingSchemeEntry] = [.make()]
     ) -> APIGradingStandard {
         return APIGradingStandard(
             id: id,

@@ -21,6 +21,8 @@ import CoreData
 
 public class GetGradingStandard: APIUseCase {
     public typealias Model = CDGradingStandard
+    public typealias Request = GetGradingStandardRequest
+    public typealias Response = APIGradingStandard
 
     public private(set) var id: String
     public private(set) var context: Context
@@ -39,16 +41,16 @@ public class GetGradingStandard: APIUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(CDGradingStandard.id), equals: id)
+        return .where(#keyPath(Model.id), equals: id)
     }
 
-    public var request: GetGradingStandardRequest {
-        return GetGradingStandardRequest(context: context, gradingStandardId: id)
+    public var request: Request {
+        return .init(context: context, gradingStandardId: id)
     }
 
-    public func write(response: APIGradingStandard?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         if let response {
-            CDGradingStandard.save(response, in: client)
+            Model.save(response, in: client)
         }
     }
 }

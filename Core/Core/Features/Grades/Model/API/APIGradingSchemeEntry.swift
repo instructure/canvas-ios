@@ -41,3 +41,13 @@ public struct APIGradingSchemeEntry: Codable, Equatable {
         self.init(name: name, value: value)
     }
 }
+
+#if DEBUG
+
+extension APIGradingSchemeEntry {
+    public static func make() -> APIGradingSchemeEntry {
+        .init(name: "Grading Scheme Entry", value: 1.0)
+    }
+}
+
+#endif
