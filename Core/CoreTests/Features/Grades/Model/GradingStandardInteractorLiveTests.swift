@@ -24,20 +24,12 @@ import XCTest
 class GradingStandardInteractorLiveTests: CoreTestCase {
     let courseLevelApiGradingSchemeEntry: APIGradingSchemeEntry = .init(name: "Course Scheme", value: 1)
     let accountLevelApiGradingSchemeEntry: APIGradingSchemeEntry = .init(name: "Account Scheme", value: 2)
-    let courseDefaultGradingSchemeRaw: [[TypeSafeCodable<String, Double>]] = [[
-        .init(value1: "A", value2: 0.983),
-        .init(value1: "A-", value2: 0.882),
-        .init(value1: "B+", value2: 0.8712),
-        .init(value1: "B", value2: 0.8549),
-        .init(value1: "B-", value2: 0.8099),
-        .init(value1: "C+", value2: 0.775),
-        .init(value1: "C", value2: 0.74),
-        .init(value1: "C-", value2: 0.703),
-        .init(value1: "D+", value2: 0.67),
-        .init(value1: "D", value2: 0.64),
-        .init(value1: "D-", value2: 0.61),
-        .init(value1: "F", value2: 0)
-    ]]
+    let courseDefaultGradingSchemeRaw: [[TypeSafeCodable<String, Double>]] = [
+        [
+            .init(value1: "A", value2: nil),
+            .init(value1: nil, value2: 0.882)
+        ]
+    ]
 
     func mockGradingStandard(
         gradingStandardId: String,

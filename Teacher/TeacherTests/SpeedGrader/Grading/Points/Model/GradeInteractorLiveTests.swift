@@ -33,9 +33,9 @@ class GradeInteractorLiveTests: TeacherTestCase {
 
     private var assignment: Assignment!
     private var submission: Submission!
+    private var gradingScheme: GradingScheme!
     private var rubricGradingInteractor: RubricGradingInteractorMock!
     private var gradeStateInteractor: GradeStateInteractorMock!
-    private var gradingStandardInteractor: GradingStandardInteractorMock!
 
     override func setUp() {
         super.setUp()
@@ -47,9 +47,10 @@ class GradeInteractorLiveTests: TeacherTestCase {
         submission = Submission.make(in: databaseClient)
         submission.userID = testData.userId
 
+        gradingScheme = PercentageBasedGradingScheme.default
+
         rubricGradingInteractor = .init()
         gradeStateInteractor = .init()
-        gradingStandardInteractor = .init()
     }
 
     override func tearDown() {
@@ -133,9 +134,9 @@ class GradeInteractorLiveTests: TeacherTestCase {
         GradeInteractorLive(
             assignment: assignment,
             submission: submission,
+            gradingScheme: gradingScheme,
             rubricGradingInteractor: rubricGradingInteractor,
             gradeStateInteractor: gradeStateInteractor,
-            gradingStandardInteractor: gradingStandardInteractor,
             env: environment
         )
     }
