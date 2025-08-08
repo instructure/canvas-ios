@@ -81,6 +81,8 @@ final class ModuleItemSequenceViewModel {
     private let assetID: String
     private let courseID: String
     private let isNotebookDisabled: Bool
+    // Need to save the completion state for the module items without observation
+    private var unobservedCourse: HCourse?
 
     // MARK: - Init
 
@@ -93,6 +95,7 @@ final class ModuleItemSequenceViewModel {
         moduleItemStateInteractor: ModuleItemStateInteractor,
         router: Router,
         assetType: AssetType,
+        selectedCourse: HCourse? = nil,
         assetID: String,
         courseID: String,
         isNotebookDisabled: Bool = false
@@ -104,6 +107,7 @@ final class ModuleItemSequenceViewModel {
         self.assetID = assetID
         self.courseID = courseID
         self.isNotebookDisabled = isNotebookDisabled
+        self.unobservedCourse = selectedCourse
 
         fetchModuleItemSequence(assetId: assetID)
 
@@ -260,9 +264,7 @@ final class ModuleItemSequenceViewModel {
             moduleID: moduleID,
             itemID: itemID
         )
-        if state?.isModuleItem == true {
-            markAsViewed()
-        }
+        markAsViewed()
         isAssignmentOptionsButtonVisible = state?.isAssignment ?? false
         /// In some cases, the module sequence API returns an empty response for assignment type only.
         if state?.isExternalURL == true, item == nil {
@@ -291,14 +293,8 @@ final class ModuleItemSequenceViewModel {
         guard let moduleID, let itemID, let moduleItem else {
             return
         }
-
-        NotificationCenter.default.post(name: .moduleItemViewDidLoad, object: nil, userInfo: [
-            "moduleID": moduleID,
-            "itemID": itemID
-        ])
-
         guard moduleItem.completionRequirementType == .must_view,
-              moduleItem.isCompleted == false,
+              getModuleItem(moduleId: moduleID, itemId: itemID)?.isCompleted == false,
               moduleItem.lockedForUser == false else {
             return
         }
@@ -306,6 +302,13 @@ final class ModuleItemSequenceViewModel {
             .markAsViewed(moduleID: moduleID, itemID: itemID)
             .sink()
             .store(in: &subscriptions)
+    }
+
+    private func getModuleItem(moduleId: String, itemId: String) -> HModuleItem? {
+        guard let selectedModule = unobservedCourse?.modules.first(where: { $0.id == moduleId }) else {
+            return nil
+        }
+        return selectedModule.items.first(where: { $0.id == itemId })
     }
 
     func retry() {
@@ -341,6 +344,11 @@ final class ModuleItemSequenceViewModel {
 
     private func refershModuleItem() {
         guard let next = sequence?.next else { return }
+        // Check if the next module item isn't must_view. If it is, call the API to unlock it.
+        guard let moduleItem = getModuleItem(moduleId: next.moduleID, itemId: next.id),
+              moduleItem.completionRequirementType != .must_view else {
+            return
+        }
         moduleItemInteractor.fetchModuleItems(
             assetType: assetType,
             assetID: next.id,

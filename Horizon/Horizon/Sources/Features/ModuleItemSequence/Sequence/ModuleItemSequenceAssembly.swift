@@ -27,7 +27,8 @@ enum ModuleItemSequenceAssembly {
         courseID: String,
         assetType: GetModuleItemSequenceRequest.AssetType,
         assetID: String,
-        url: URLComponents
+        url: URLComponents,
+        selectedCourse: HCourse? = nil,
     ) -> UIViewController {
         let getCoursesInteractor = GetCoursesInteractorLive()
         let isNotebookDisabled = url.queryItems?.first(where: { $0.name == "notebook_disabled" })?.value?.boolValue ?? false
@@ -46,6 +47,7 @@ enum ModuleItemSequenceAssembly {
             moduleItemStateInteractor: stateInteractor,
             router: environment.router,
             assetType: assetType,
+            selectedCourse: selectedCourse,
             assetID: assetID,
             courseID: courseID,
             isNotebookDisabled: isNotebookDisabled

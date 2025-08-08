@@ -44,9 +44,6 @@ final class PageDetailsViewModel {
     var isHeaderVisible: Bool {
         router != nil
     }
-    var isMarkedAsDoneButtonVisible: Bool {
-        markAsDoneViewModel != nil
-    }
     var loaderOpacity: Double {
         (itemID == nil || pageURL == nil) &&
             fileID == nil &&
@@ -73,6 +70,7 @@ final class PageDetailsViewModel {
     let markAsDoneViewModel: MarkAsDoneViewModel?
     let moduleItemSequenceInteractor: ModuleItemSequenceInteractor?
     var pageURL: String?
+    let isMarkedAsDoneButtonVisible: Bool
     private var router: Router?
 
     // MARK: - Init
@@ -81,6 +79,7 @@ final class PageDetailsViewModel {
         assetID: String,
         assetType: GetModuleItemSequenceRequest.AssetType,
         moduleItemSequenceInteractor: ModuleItemSequenceInteractor,
+        isMarkedAsDoneButtonVisible: Bool = false,
         router: Router = AppEnvironment.shared.router
     ) {
         self.context = .init(.course, id: courseID)
@@ -88,6 +87,7 @@ final class PageDetailsViewModel {
         self.markAsDoneViewModel = nil
         self.moduleItemSequenceInteractor = moduleItemSequenceInteractor
         self.router = router
+        self.isMarkedAsDoneButtonVisible = isMarkedAsDoneButtonVisible
 
         moduleItemSequenceInteractor.fetchModuleItems(
             assetType: assetType,
@@ -124,7 +124,8 @@ final class PageDetailsViewModel {
         context: Core.Context,
         pageURL: String,
         itemID: String,
-        markAsDoneViewModel: MarkAsDoneViewModel
+        isMarkedAsDoneButtonVisible: Bool,
+        markAsDoneViewModel: MarkAsDoneViewModel,
     ) {
         self.context = context
         self.pageURL = pageURL
@@ -134,6 +135,7 @@ final class PageDetailsViewModel {
         self.router = nil
         self.courseID = nil
         self.fileID = nil
+        self.isMarkedAsDoneButtonVisible = isMarkedAsDoneButtonVisible
 
         markAsDoneViewModel.onError = { [weak self] errorMessage in
             self?.errorMessage = errorMessage

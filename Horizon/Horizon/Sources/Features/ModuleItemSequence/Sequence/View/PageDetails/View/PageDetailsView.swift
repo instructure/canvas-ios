@@ -99,7 +99,7 @@ struct PageDetailsView: View {
                     pageURL: pageURL,
                     itemID: itemID
                 )
-                if let model = viewModel.markAsDoneViewModel {
+                if let model = viewModel.markAsDoneViewModel, viewModel.isMarkedAsDoneButtonVisible {
                     MarkAsDoneButton(
                         isCompleted: model.isCompleted,
                         isLoading: model.isLoading
