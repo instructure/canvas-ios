@@ -33,13 +33,17 @@ struct RubricNoteCommentBubbleView: View {
                 .padding(8)
                 .background(Color.backgroundLight)
                 .cornerRadius(16)
+                .accessibilityLabel(Text("Rubric Note", bundle: .teacher))
+                .accessibilityValue(comment)
             Button(action: onEdit) {
                 Image
                     .editLine
                     .scaledIcon(size: 24)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 12)
+                    .accessibilityHidden(true)
             }
+            .accessibilityLabel(Text("Edit rubric note", bundle: .teacher))
         }
     }
 }

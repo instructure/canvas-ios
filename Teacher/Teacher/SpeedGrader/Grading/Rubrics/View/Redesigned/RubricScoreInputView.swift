@@ -38,9 +38,10 @@ struct RubricScoreInputView: View {
         )
 
         GradeInputTextFieldCell(
-            title: "Score",
+            title: String(localized: "Score", bundle: .teacher),
             inputType: .points,
-            pointsPossible: viewModel.pointsPossibleText,
+            pointsPossibleText: viewModel.pointsPossibleText,
+            pointsPossibleAccessibilityText: viewModel.pointsPossibleAccessibilityText,
             isExcused: false,
             text: textBinding,
             isSaving: viewModel.isSaving

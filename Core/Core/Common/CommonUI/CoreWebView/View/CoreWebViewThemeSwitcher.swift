@@ -84,6 +84,10 @@ final class CoreWebViewThemeSwitcherLive: CoreWebViewThemeSwitcher {
     ) {
         guard let host else { return }
 
+        // Force the WebView to use light mode
+        if AppEnvironment.shared.app == .horizon {
+            didTapThemeSwitcherButton()
+        }
         let button = CoreWebViewThemeSwitcherButton { [weak self] in
             self?.didTapThemeSwitcherButton()
         }

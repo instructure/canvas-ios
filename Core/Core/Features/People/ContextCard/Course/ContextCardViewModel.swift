@@ -22,6 +22,7 @@ import SwiftUI
 public class ContextCardViewModel: ObservableObject {
     @Published public var pending = true
     public lazy var user = env.subscribe(GetCourseSingleUser(context: context, userID: userID)) { [weak self] in self?.updateLoadingState() }
+    public lazy var customStatuses = env.subscribe(GetCustomGradeStatuses(courseID: courseID)) { [weak self] in self?.updateLoadingState() }
     public lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in self?.updateLoadingState() }
     public lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in self?.updateLoadingState() }
     public lazy var sections = env.subscribe(GetCourseSections(courseID: courseID)) { [weak self] in self?.updateLoadingState() }
@@ -75,6 +76,7 @@ public class ContextCardViewModel: ObservableObject {
             self?.userAPICallResponsePending = false
             self?.updateLoadingState()
         }
+        customStatuses.refresh()
         course.refresh()
         colors.refresh()
         sections.refresh()

@@ -69,6 +69,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     init(
         assignment: Assignment,
         submission: Submission,
+        gradingScheme: GradingScheme? = nil,
         gradeInteractor: GradeInteractor,
         mainScheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
@@ -82,7 +83,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
         // In that case we display a relevant empty panda.
         self.state = assignment.moderatedGrading ? .empty : .data
 
-        self.gradeState = GradeStateInteractorLive.gradeState(usingOnly: assignment)
+        self.gradeState = GradeStateInteractorLive.gradeState(usingOnly: assignment, gradingScheme: gradingScheme)
 
         self.shouldShowPointsInput = [.gpa_scale, .letter_grade].contains(assignment.gradingType)
 
@@ -221,32 +222,42 @@ extension GradeState {
         }
         return PointsRowViewModel(
             currentPoints: originalScoreWithoutMetric,
-            maxPointsWithUnit: pointsPossibleText
+            maxPointsWithUnit: pointsPossibleText,
+            a11yMaxPointsWithUnit: String(localized: "out of \(pointsPossibleAccessibilityText)", bundle: .teacher, comment: "Example: 'out of 10 points'"),
         )
     }
 
     var latePenaltyRowModel: LatePenaltyRowViewModel? {
-        if hasLateDeduction {
-            return LatePenaltyRowViewModel(penaltyText: pointsDeductedText)
-        } else {
-            return nil
-        }
+        guard hasLateDeduction else { return nil }
+
+        return LatePenaltyRowViewModel(
+            penaltyText: pointsDeductedText,
+            a11yPenaltyText: pointsDeductedAccessibilityText
+        )
     }
 
     var finalGradeRowModel: FinalGradeRowViewModel {
         let suffix: FinalGradeRowViewModel.SuffixType
-
         switch gradingType {
         case .percent:
             suffix = .percentage
         case .pass_fail, .letter_grade, .gpa_scale, .not_graded:
             suffix = .none
         case .points:
-            suffix = .maxGradeWithUnit(pointsPossibleText)
+            suffix = .maxGradeWithUnit(pointsPossibleText, pointsPossibleAccessibilityText)
+        }
+
+        let a11yGradeText: String?
+        switch gradingType {
+        case .points, .percent, .pass_fail, .not_graded:
+            a11yGradeText = finalGradeWithoutMetric
+        case .letter_grade, .gpa_scale:
+            a11yGradeText = String.format(accessibilityLetterGrade: finalGradeWithoutMetric)
         }
 
         return FinalGradeRowViewModel(
-            currentGradeText: finalGradeWithoutMetric,
+            gradeText: finalGradeWithoutMetric,
+            a11yGradeText: a11yGradeText,
             suffixType: suffix,
             isGradedButNotPosted: isGradedButNotPosted
         )

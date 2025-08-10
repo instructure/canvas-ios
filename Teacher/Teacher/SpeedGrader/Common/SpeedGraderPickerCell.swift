@@ -58,7 +58,7 @@ struct SpeedGraderPickerCell: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             picker
-                .swapWithSpinner(onLoading: isSaving, alignment: .trailing)
+                .swapWithSpinner(onSaving: isSaving, alignment: .trailing)
         }
         .paddingStyle(set: .standardCell)
         .background(Color.backgroundLightest)
@@ -80,6 +80,7 @@ struct SpeedGraderPickerCell: View {
                     .font(.regular14, lineHeight: .fit)
                 Image.dropdownLine
                     .scaledIcon(size: 24)
+                    .accessibilityHidden(true)
             }
         )
         .animation(.none, value: viewModel.selectedOption?.title)

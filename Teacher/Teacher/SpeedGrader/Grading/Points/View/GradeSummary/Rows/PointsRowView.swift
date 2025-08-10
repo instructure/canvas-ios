@@ -34,6 +34,7 @@ struct PointsRowView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             Text(viewModel.currentPoints)
             Text(viewModel.maxPointsWithUnit)
+                .accessibilityLabel(viewModel.a11yMaxPointsWithUnit)
         }
         .font(.regular16, lineHeight: .fit)
         .foregroundColor(.textDark)
@@ -47,9 +48,9 @@ struct PointsRowView: View {
 
 #Preview {
     VStack(spacing: 0) {
-        PointsRowView(viewModel: .init(currentPoints: nil, maxPointsWithUnit: "30 pts"))
-        PointsRowView(viewModel: .init(currentPoints: "15", maxPointsWithUnit: "30 pts"))
-        PointsRowView(viewModel: .init(currentPoints: "15", maxPointsWithUnit: nil))
+        PointsRowView(viewModel: .init(currentPoints: nil, maxPointsWithUnit: "30 pts", a11yMaxPointsWithUnit: nil))
+        PointsRowView(viewModel: .init(currentPoints: "15", maxPointsWithUnit: "30 pts", a11yMaxPointsWithUnit: nil))
+        PointsRowView(viewModel: .init(currentPoints: "15", maxPointsWithUnit: nil, a11yMaxPointsWithUnit: nil))
     }
     .frame(maxHeight: .infinity)
     .background(.backgroundDarkest)

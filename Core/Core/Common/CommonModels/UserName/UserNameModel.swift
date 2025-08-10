@@ -74,8 +74,8 @@ public struct UserNameModel: Equatable, Hashable {
             )
         } else if isGroup {
             self.init(
-                name: submission.groupName,
-                initials: submission.groupName.flatMap(User.initials),
+                name: submission.displayGroupName,
+                initials: submission.displayGroupName.flatMap(User.initials),
                 avatarUrl: nil, // submissions has no group avatarUrl
                 isGroup: true
             )
@@ -87,7 +87,7 @@ public struct UserNameModel: Equatable, Hashable {
     public init(submission: Submission, assignment: Assignment?, displayIndex: Int? = nil) {
         let isAnonymous = assignment?.anonymizeStudents ?? false
         let isGradedIndividually = assignment?.gradedIndividually ?? true
-        let isGroup = !isGradedIndividually && submission.groupID != nil
+        let isGroup = !isGradedIndividually && (submission.groupID != nil || submission.fetchedGroup != nil)
 
         self.init(submission: submission, isAnonymous: isAnonymous, isGroup: isGroup, displayIndex: displayIndex)
     }

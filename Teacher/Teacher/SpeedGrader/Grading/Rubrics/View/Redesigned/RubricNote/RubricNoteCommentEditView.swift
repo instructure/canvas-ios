@@ -45,11 +45,15 @@ struct RubricNoteCommentEditView: View {
             .padding(.leading, 13)
             .padding(.trailing, 30 * uiScale)
             .padding(.vertical, 8)
+            .accessibilityLabel(Text("Rubric Note", bundle: .teacher))
+            .accessibilitySortPriority(2)
             .overlay(alignment: .bottomTrailing) {
                 Button(action: submitText) {
                     Image
                         .circleArrowUpSolid
                         .scaledIcon(size: 24)
+                        .accessibilityLabel(Text("Send rubric note", bundle: .teacher))
+                        .accessibilitySortPriority(1)
                 }
                 .padding(.trailing, 4)
                 .padding(.bottom, 4)
@@ -59,6 +63,7 @@ struct RubricNoteCommentEditView: View {
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(Color.borderMedium, lineWidth: 0.5)
                     .frame(minHeight: 32)
+                    .accessibilityHidden(true)
             }
             .onSubmit(submitText)
             .focused($isFocused)
@@ -66,6 +71,7 @@ struct RubricNoteCommentEditView: View {
                 guard comment.isNotEmpty else { return }
                 isFocused = true
             }
+            .accessibilityElement(children: .contain)
     }
 
     private func submitText() {

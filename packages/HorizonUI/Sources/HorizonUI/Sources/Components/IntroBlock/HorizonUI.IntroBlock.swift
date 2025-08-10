@@ -76,8 +76,8 @@ public extension HorizonUI {
                 }
                 moduleInfoView
                 if let attemptCount {
-                    let text = String(localized: "Attempts Allowed")
-                    Text("\(attemptCount) \(text)")
+                    let attemptsAllowed = String(localized: "Attempts Allowed").lowercased()
+                    Text("\(attemptCount) \(attemptsAllowed)")
                         .huiTypography(.p2)
                         .foregroundStyle(foregroundColor)
                 }

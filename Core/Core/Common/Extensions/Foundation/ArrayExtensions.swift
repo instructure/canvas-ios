@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 public extension Array {
 
     /**
@@ -56,5 +58,11 @@ public extension Array where Element: Equatable {
             copy.append(element)
         }
         return copy
+    }
+}
+
+public extension Array where Element: Encodable {
+    var jsonData: Data? {
+        try? JSONEncoder().encode(self)
     }
 }

@@ -44,6 +44,9 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         self?.reloadData()
     }
 
+    private var appExperienceInteractor: ExperienceSummaryInteractor?
+    private let loadingIndicatorContainerView = UIView()
+    private let indeterminateLoadingIndicator = CircleProgressView()
     let tableView = UITableView(frame: .zero, style: .grouped)
     private var isPairingWithObserverAllowed = false {
         didSet {
@@ -54,9 +57,13 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     private var channelTypeRows: [Row]?
 
-    public static func create(onElementaryViewToggleChanged: (() -> Void)? = nil) -> ProfileSettingsViewController {
+    public static func create(
+        onElementaryViewToggleChanged: (() -> Void)? = nil,
+        appExperienceInteractor: ExperienceSummaryInteractor? = ExperienceSummaryInteractorLive()
+    ) -> ProfileSettingsViewController {
         let viewController = ProfileSettingsViewController()
         viewController.onElementaryViewToggleChanged = onElementaryViewToggleChanged
+        viewController.appExperienceInteractor = appExperienceInteractor
         return viewController
     }
 
@@ -71,6 +78,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         title = String(localized: "Settings", bundle: .core)
 
         view.backgroundColor = .backgroundLightest
+        setupIndeterminateLoadingIndicator()
         tableView.backgroundColor = .backgroundLightest
         tableView.dataSource = self
         tableView.delegate = self
@@ -114,6 +122,49 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         refresh()
     }
 
+    private func setupIndeterminateLoadingIndicator() {
+        loadingIndicatorContainerView.alpha = 0
+        loadingIndicatorContainerView.backgroundColor = .black.withAlphaComponent(0.25)
+
+        indeterminateLoadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingIndicatorContainerView.addSubview(indeterminateLoadingIndicator)
+
+        NSLayoutConstraint.activate([
+            indeterminateLoadingIndicator.centerXAnchor.constraint(equalTo: loadingIndicatorContainerView.centerXAnchor),
+            indeterminateLoadingIndicator.centerYAnchor.constraint(equalTo: loadingIndicatorContainerView.centerYAnchor),
+            indeterminateLoadingIndicator.widthAnchor.constraint(equalToConstant: 40),
+            indeterminateLoadingIndicator.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+
+    private func animateLoadingIndicator(show: Bool) {
+        weak var weakSelf = self
+
+        if show {
+            guard let window = view.window ?? AppEnvironment.shared.window else {
+                return
+            }
+
+            loadingIndicatorContainerView.frame = window.bounds
+            if loadingIndicatorContainerView.superview != window {
+                window.addSubview(loadingIndicatorContainerView)
+            }
+            window.bringSubviewToFront(loadingIndicatorContainerView)
+
+            UIView.animate(withDuration: 0.3) {
+                weakSelf?.loadingIndicatorContainerView.alpha = 1
+            }
+            indeterminateLoadingIndicator.startAnimating()
+        } else {
+            UIView.animate(withDuration: 0.3) {
+                weakSelf?.loadingIndicatorContainerView.alpha = 0
+            } completion: { _ in
+                weakSelf?.indeterminateLoadingIndicator.stopAnimating()
+                weakSelf?.loadingIndicatorContainerView.removeFromSuperview()
+            }
+        }
+    }
+
     @objc func refresh(sender: Any? = nil) {
         let force = sender != nil
         channels.exhaust(while: { _ in true })
@@ -122,57 +173,63 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     }
 
     func reloadData() {
-        var channelTypes: [CommunicationChannelType: [CommunicationChannel]] = [:]
-        for channel in channels {
-            channelTypes[channel.type] = channelTypes[channel.type] ?? []
-            channelTypes[channel.type]?.append(channel)
-        }
-
-        channelTypeRows = channelTypes.values.map({ channels -> Row in
-            Row(channels[0].type.name, isSupportedOffline: false) { [weak self] in
-                guard let self = self else { return }
-                if channels.count == 1, let channel = channels.first {
-                    let vc = NotificationCategoriesViewController.create(
-                        title: channel.type.name,
-                        channelID: channel.id,
-                        type: channel.type
-                    )
-                    self.env.router.show(vc, from: self)
-                } else {
-                    let vc = NotificationChannelsViewController.create(type: channels[0].type)
-                    self.env.router.show(vc, from: self)
-                }
+        Task { @MainActor in
+            var channelTypes: [CommunicationChannelType: [CommunicationChannel]] = [:]
+            for channel in channels {
+                channelTypes[channel.type] = channelTypes[channel.type] ?? []
+                channelTypes[channel.type]?.append(channel)
             }
-        }).sorted(by: { $0.title < $1.title })
 
-        var sections: [Section] = [preferencesSection]
-
-        if showInboxSignatureSettings {
-            sections.append(inboxSignatureSettingsSection)
-        }
-
-        if OfflineModeAssembly.make().isFeatureFlagEnabled(), env.app == .student {
-            sections.append(offlineSettingSection)
-        }
-
-        sections.append(
-            Section(String(localized: "Legal", bundle: .core), rows: [
-                Row(String(localized: "Privacy Policy", bundle: .core), isSupportedOffline: false, accessibilityTraits: .link) { [weak self] in
+            channelTypeRows = channelTypes.values.map({ channels -> Row in
+                Row(channels[0].type.name, isSupportedOffline: false) { [weak self] in
                     guard let self = self else { return }
-                    self.env.router.route(to: "https://www.instructure.com/canvas/privacy/", from: self)
-                },
-                Row(String(localized: "Terms of Use", bundle: .core), isSupportedOffline: false) { [weak self] in
-                    guard let self = self else { return }
-                    self.env.router.route(to: "/accounts/self/terms_of_service", from: self)
+                    if channels.count == 1, let channel = channels.first {
+                        let vc = NotificationCategoriesViewController.create(
+                            title: channel.type.name,
+                            channelID: channel.id,
+                            type: channel.type
+                        )
+                        self.env.router.show(vc, from: self)
+                    } else {
+                        let vc = NotificationChannelsViewController.create(type: channels[0].type)
+                        self.env.router.show(vc, from: self)
+                    }
                 }
-            ])
-        )
-        self.sections = sections
+            }).sorted(by: { $0.title < $1.title })
 
-        if !channels.pending && !profile.pending && termsOfServiceRequest == nil {
-            tableView.refreshControl?.endRefreshing()
+            var preferencesSection = preferencesSection
+            if let row = await addCareerExperienceSwitch() {
+                preferencesSection.rows.insert(row, at: 2)
+            }
+            var sections: [Section] = [preferencesSection]
+
+            if showInboxSignatureSettings {
+                sections.append(inboxSignatureSettingsSection)
+            }
+
+            if OfflineModeAssembly.make().isFeatureFlagEnabled(), env.app == .student {
+                sections.append(offlineSettingSection)
+            }
+
+            sections.append(
+                Section(String(localized: "Legal", bundle: .core), rows: [
+                    Row(String(localized: "Privacy Policy", bundle: .core), isSupportedOffline: false, accessibilityTraits: .link) { [weak self] in
+                        guard let self = self else { return }
+                        self.env.router.route(to: "https://www.instructure.com/canvas/privacy/", from: self)
+                    },
+                    Row(String(localized: "Terms of Use", bundle: .core), isSupportedOffline: false) { [weak self] in
+                        guard let self = self else { return }
+                        self.env.router.route(to: "/accounts/self/terms_of_service", from: self)
+                    }
+                ])
+            )
+            self.sections = sections
+
+            if !channels.pending && !profile.pending && termsOfServiceRequest == nil {
+                tableView.refreshControl?.endRefreshing()
+            }
+            tableView.reloadData()
         }
-        tableView.reloadData()
     }
 
     private var offlineSettingSection: Section {
@@ -250,9 +307,9 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                     identifierGroup: "Settings.appearanceOptions",
                     allOptions: allCases.map { OptionItem(id: $0.optionItemId, title: $0.settingsTitle) },
                     initialOptionId: selectedStyle.optionItemId,
-                    didSelectOption: {
-                        guard let selectedCase = allCases.element(for: $0) else { return }
-
+                    didSelectOption: { [weak self] in
+                        guard let selectedCase = allCases.element(for: $0), let self else { return }
+                        self.env.userDefaults?.academicInterfaceStyle = selectedCase
                         self.env.window?.updateInterfaceStyle(selectedCase)
                         self.env.userDefaults?.interfaceStyle = selectedCase
                     }
@@ -326,6 +383,37 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         return [row]
     }
 
+    private func addCareerExperienceSwitch() async -> Row? {
+        guard
+            AppEnvironment.shared.app == .student,
+            let appExperienceInteractor,
+            await appExperienceInteractor.isExperienceSwitchAvailableAsync() else {
+            return nil
+        }
+        weak var weakSelf = self
+
+        let row = Row(
+            String(localized: "Switch to Canvas Career", bundle: .core),
+            hasDisclosure: false,
+            isExperienceSwitch: true,
+            isSupportedOffline: false
+        ) {
+            guard let weakSelf else { return }
+            weakSelf.animateLoadingIndicator(show: true)
+            let currentStyle = weakSelf.env.userDefaults?.interfaceStyle
+            weakSelf.env.userDefaults?.academicInterfaceStyle = currentStyle
+            appExperienceInteractor.switchExperience(to: Experience.careerLearner)
+                .sink { _ in
+                    weakSelf.animateLoadingIndicator(show: false)
+                    AppEnvironment.shared.switchExperience(.careerLearner)
+                    weakSelf.env.window?.updateInterfaceStyleWithoutTransition(.light)
+                    weakSelf.env.userDefaults?.interfaceStyle = .light
+                }
+                .store(in: &weakSelf.subscriptions)
+        }
+        return row
+    }
+
     private func refreshTermsOfService() {
         if AppEnvironment.shared.app == .teacher {
             if isPairingWithObserverAllowed {
@@ -381,6 +469,9 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.detailTextLabel?.text = row.detail
             if row.hasDisclosure {
                 cell.setupInstDisclosureIndicator()
+            } else if row.isExperienceSwitch {
+                cell.accessoryView = UIImageView(image: .swap_horiz)
+                cell.accessoryView?.tintColor = .textDark
             } else {
                 cell.accessoryView = nil
             }
@@ -429,7 +520,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
 
 private struct Section {
     let title: String
-    let rows: [Any]
+    var rows: [Any]
 
     init(_ title: String, rows: [Any]) {
         self.title = title
@@ -442,6 +533,7 @@ private struct Row {
     let detail: String?
     let style: UITableViewCell.CellStyle
     let hasDisclosure: Bool
+    let isExperienceSwitch: Bool
     let isSupportedOffline: Bool
     let accessibilityTraits: UIAccessibilityTraits?
     let onSelect: () -> Void
@@ -451,6 +543,7 @@ private struct Row {
         detail: String? = nil,
         style: UITableViewCell.CellStyle = .value1,
         hasDisclosure: Bool = true,
+        isExperienceSwitch: Bool = false,
         isSupportedOffline: Bool,
         accessibilityTraits: UIAccessibilityTraits? = nil,
         onSelect: @escaping () -> Void
@@ -460,6 +553,7 @@ private struct Row {
         self.style = style
         self.isSupportedOffline = isSupportedOffline
         self.hasDisclosure = hasDisclosure
+        self.isExperienceSwitch = isExperienceSwitch
         self.accessibilityTraits = accessibilityTraits
         self.onSelect = onSelect
     }

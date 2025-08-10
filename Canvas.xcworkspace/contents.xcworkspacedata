@@ -5,7 +5,7 @@
       location = "group:Core/Core.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Student/Student.xcodeproj">
+      location = "group:Horizon/Horizon.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Parent/Parent.xcodeproj">
@@ -13,6 +13,16 @@
    <FileRef
       location = "group:Teacher/Teacher.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Student/Student.xcodeproj">
+   </FileRef>
+   <Group
+      location = "group:packages"
+      name = "packages">
+      <FileRef
+         location = "group:HorizonUI">
+      </FileRef>
+   </Group>
    <Group
       location = "container:TestPlans"
       name = "TestPlans">

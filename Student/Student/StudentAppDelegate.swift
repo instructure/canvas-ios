@@ -20,10 +20,17 @@ import AVKit
 import Combine
 import Core
 import Firebase
+import Horizon
+import HorizonUI
 import PSPDFKit
 import UIKit
 import UserNotifications
 import WidgetKit
+
+enum LoginError: Error {
+    case loggedOut
+    case unauthorized
+}
 
 @UIApplicationMain
 class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
@@ -33,11 +40,12 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
         env.loginDelegate = self
-        env.router = router
+        env.router = academicRouter
         env.app = .student
         env.window = window
         return env
     }()
+
     private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
@@ -49,8 +57,11 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private lazy var analyticsTracker: PendoAnalyticsTracker = {
         .init(environment: environment)
     }()
+    private lazy var appExperienceInteractor = ExperienceSummaryInteractorLive(environment: environment)
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        CDExperienceSummary.registerTransformers()
+        HorizonUI.registerCustomFonts()
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
         BackgroundProcessingAssembly.register(scheduler: CoreTaskSchedulerLive(taskScheduler: .shared))
         BackgroundProcessingAssembly.register(taskID: OfflineSyncBackgroundTaskRequest.ID) {
@@ -61,7 +72,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         CacheManager.resetAppIfNecessary()
 
         #if DEBUG
-            UITestHelpers.setup(self)
+        UITestHelpers.setup(self)
         #endif
 
         DocViewerViewController.setup(.studentPSPDFKitLicense)
@@ -71,6 +82,8 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
         Appearance.update()
+
+        listenForExperienceChanges()
 
         if launchOptions?[.sourceApplication] as? String == Bundle.teacherBundleID,
            let url = launchOptions?[.url] as? URL,
@@ -104,73 +117,40 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             setupFileSubmissionAssemblyForBackgroundUploads(completion: nil)
         }
 
-        GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in performUIUpdate {
-            PageViewEventController.instance.userDidChange()
+        unowned let unownedSelf = self
 
-            if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
-                self.userDidLogout(session: session)
-                LoginViewModel().showLoginView(on: self.window!, loginDelegate: self, app: .student)
-                return
+        ReactiveStore(useCase: GetUserProfile())
+            .getEntities(ignoreCache: true)
+            .tryCatch { unownedSelf.catchViewAsStudentLoginError(error: $0, session: session) }
+            .flatMap { list in
+                let userProfile = list.first
+                return unownedSelf.setupUserEnvironment()
+                    .flatMap { _ in unownedSelf.getFeatureFlags() }
+                    .map { unownedSelf.initializeTracking(environmentFeatureFlags: $0) }
+                    .map { _ in unownedSelf.requestNotificationAuthorizationForUITests() }
+                    .map { _ in unownedSelf.setK5StudentViewIfNeeded(userProfile: userProfile) }
+                    .flatMap { _ in unownedSelf.showLanguageAlertIfNeeded(locale: userProfile?.locale ?? session.locale) }
+                    .flatMap { _ in unownedSelf.getAndSetBrandTheme() }
+                    .eraseToAnyPublisher()
             }
-
-            self.environment.userDefaults?.isK5StudentView = self.shouldSetK5StudentView
-            self.environmentFeatureFlags = self.environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
-            self.environmentFeatureFlags?.refresh(force: true) { _ in
-                defer { self.environmentFeatureFlags = nil }
-                guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
-                self.initializeTracking(environmentFeatureFlags: envFlags.all)
-            }
-
-            self.updateInterfaceStyle(for: self.window)
-            CoreWebView.keepCookieAlive(for: self.environment)
-            PushNotificationsInteractor.shared.userDidLogin(api: self.environment.api)
-
-            // NotificationManager.registerForRemoteNotifications is not called in UITests,
-            // so we need to requestAuthorization in order to be able to test notification related logic like
-            // AssignmentReminders
-            if ProcessInfo.isUITest {
-                UNUserNotificationCenter.current()
-                    .requestAuthorization(options: [.alert], completionHandler: { _, _ in })
-            }
-
-            let isK5StudentView = self.environment.userDefaults?.isK5StudentView ?? false
-            if isK5StudentView {
-                ExperimentalFeature.K5Dashboard.isEnabled = true
-                self.environment.userDefaults?.isElementaryViewEnabled = true
-            }
-            self.environment.k5.userDidLogin(profile: apiProfile, isK5StudentView: isK5StudentView)
-            Analytics.shared.logSession(session)
-
-            self.refreshNotificationTab()
-            LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile?.locale ?? session.locale) {
-                ReactiveStore(useCase: GetBrandVariables())
-                    .getEntities()
-                    .receive(on: RunLoop.main)
-                    .replaceError(with: [])
-                    .sink { [weak self] brandVars in
-                        brandVars.first?.applyBrandTheme()
-                        self?.setTabBarController()
+            .flatMap { _ in unownedSelf.getAppExperienceSummary() }
+            .mapError { unownedSelf.mapSetupError(error: $0, session: session) }
+            .sink(
+                receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        break
+                    case let .failure(error):
+                        unownedSelf.showErrorAlert(error: error, session: session)
                     }
-                    .store(in: &self.subscriptions)
-            }
-        }}
-    }
-
-    func setTabBarController() {
-        let appearance = UINavigationBar.appearance(whenContainedInInstancesOf: [CoreNavigationController.self])
-        appearance.barTintColor = nil
-        appearance.tintColor = nil
-        appearance.titleTextAttributes = nil
-
-        guard let window = self.window else { return }
-        let controller = StudentTabBarController()
-        controller.view.layoutIfNeeded()
-        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
-            window.rootViewController = controller
-        }, completion: { _ in
-            self.environment.startupDidComplete()
-            UIApplication.shared.registerForPushNotifications()
-        })
+                },
+                receiveValue: { experience in
+                    unownedSelf.refreshNotificationTab()
+                    Analytics.shared.logSession(session)
+                    unownedSelf.setTabBarControllerFor(experience: experience, isStartup: true, session: session)
+                }
+            )
+            .store(in: &subscriptions)
     }
 
     func application(_: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -191,13 +171,13 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         return openURL(url)
     }
 
-    func applicationDidBecomeActive(_ application: UIApplication) {
+    func applicationDidBecomeActive(_: UIApplication) {
         AppStoreReview.handleLaunch()
         CoreWebView.keepCookieAlive(for: environment)
         updateInterfaceStyle(for: window)
     }
 
-    func applicationDidEnterBackground(_ application: UIApplication) {
+    func applicationDidEnterBackground(_: UIApplication) {
         Logger.shared.log()
         CoreWebView.stopCookieKeepAlive()
         BackgroundVideoPlayer.shared.background()
@@ -210,11 +190,11 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         }
     }
 
-    func applicationWillEnterForeground(_ application: UIApplication) {
+    func applicationWillEnterForeground(_: UIApplication) {
         BackgroundVideoPlayer.shared.reconnect()
     }
 
-    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+    func application(_: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
         Logger.shared.log()
 
         if identifier == FileSubmissionAssembly.ShareExtensionSessionID {
@@ -231,7 +211,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     }
 
     // If the application is launched from the background, we pass the completion from the `handleEventsForBackgroundURLSession` function.
-    // If the application is launched normally, we don't need to pass system completion, the url session will tear down when it's finished. 
+    // If the application is launched normally, we don't need to pass system completion, the url session will tear down when it's finished.
     private func setupFileSubmissionAssemblyForBackgroundUploads(completion: (() -> Void)?) {
         let backgroundAssembly = FileSubmissionAssembly.makeShareExtensionAssembly()
         backgroundAssembly.connectToBackgroundURLSession {
@@ -266,7 +246,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         WidgetCenter.shared.getCurrentConfigurations { result in
             guard result.isSuccess, let widgetInfo = result.value else { return }
 
-            let widgetKinds = widgetInfo.map({ $0.kind })
+            let widgetKinds = widgetInfo.map { $0.kind }
 
             if widgetKinds.contains("TodoWidget") {
                 Analytics.shared.logEvent(TodoWidgetEventNames.active.rawValue)
@@ -283,30 +263,252 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     }
 }
 
+// MARK: - Setup User Environment
+
+extension StudentAppDelegate {
+    private func setupUserEnvironment() -> AnyPublisher<Void, Error> {
+        PageViewEventController.instance.userDidChange()
+        updateInterfaceStyle(for: window)
+        CoreWebView.keepCookieAlive(for: environment)
+        PushNotificationsInteractor.shared.userDidLogin(api: environment.api)
+
+        return Publishers.typedJust()
+    }
+
+    private func getFeatureFlags() -> AnyPublisher<[FeatureFlag], Error> {
+        ReactiveStore(
+            useCase: GetEnvironmentFeatureFlags(context: Context.currentUser)
+        )
+        .getEntities(ignoreCache: true)
+        .eraseToAnyPublisher()
+    }
+
+    private func getAndSetBrandTheme() -> AnyPublisher<Void, Error> {
+        ReactiveStore(useCase: GetBrandVariables())
+            .getEntities(ignoreCache: true)
+            .compactMap { $0.first }
+            .map { $0.applyBrandTheme() }
+            .eraseToAnyPublisher()
+    }
+
+    private func getAppExperienceSummary() -> AnyPublisher<Experience, Error> {
+        appExperienceInteractor.getExperienceSummary()
+    }
+
+    private func requestNotificationAuthorizationForUITests() {
+        // NotificationManager.registerForRemoteNotifications is not called in UITests,
+        // so we need to requestAuthorization in order to be able to test notification related logic like
+        // AssignmentReminders
+        if ProcessInfo.isUITest {
+            UNUserNotificationCenter.current()
+                .requestAuthorization(options: [.alert], completionHandler: { _, _ in })
+        }
+    }
+
+    private func setK5StudentViewIfNeeded(userProfile: UserProfile?) {
+        environment.userDefaults?.isK5StudentView = shouldSetK5StudentView
+        let isK5StudentView = environment.userDefaults?.isK5StudentView ?? false
+        if isK5StudentView {
+            ExperimentalFeature.K5Dashboard.isEnabled = true
+            environment.userDefaults?.isElementaryViewEnabled = true
+        }
+        environment.k5.userDidLogin(profile: userProfile, isK5StudentView: isK5StudentView)
+    }
+
+    private func catchViewAsStudentLoginError(error: Error, session: LoginSession) -> AnyPublisher<[UserProfile], Error> {
+        let err = error as NSError
+        if err.domain == NSError.Constants.domain,
+           err.code == HttpError.forbidden, session.isFakeStudent {
+            return Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
+        } else {
+            return Fail(error: error)
+                .eraseToAnyPublisher()
+        }
+    }
+
+    private func mapSetupError(error: Error, session: LoginSession) -> Error {
+        let err = error as NSError
+        if err.domain == NSError.Constants.domain,
+           err.code == HttpError.unauthorized, !session.isFakeStudent {
+            userDidLogout(session: session)
+            return LoginError.unauthorized
+        } else if let apiError = error as? APIError, case .unauthorized = apiError {
+            userDidLogout(session: session)
+            return LoginError.unauthorized
+        } else {
+            return error
+        }
+    }
+
+    private func showErrorAlert(error: Error, session: LoginSession) {
+        if error is LoginError {
+            environment.router.setRootViewController(
+                isLoginTransition: false,
+                viewController: LoginNavigationController.create(
+                    loginDelegate: self,
+                    app: .student
+                )
+            )
+        } else {
+            let alert = UIAlertController(
+                title: String(
+                    localized: "Oops, something went wrong",
+                    bundle: .student
+                ),
+                message: String(
+                    localized: "There was an error while logging you in. You can try again, or come back a bit later.",
+                    bundle: .student
+                ),
+                preferredStyle: .alert
+            )
+            alert.addAction(
+                UIAlertAction(
+                    title: String(localized: "Logout", bundle: .core),
+                    style: .cancel
+                ) { [weak self] _ in
+                    self?.userDidLogout(session: session)
+                }
+            )
+            alert.addAction(
+                UIAlertAction(
+                    title: String(localized: "Retry", bundle: .core),
+                    style: .default
+                ) { [weak self] _ in
+                    self?.setup(session: session)
+                }
+            )
+
+            environment.topViewController?.present(alert, animated: true)
+        }
+    }
+
+    private func showIncorrectAppExperienceAlert(session: LoginSession?) {
+        let alert = UIAlertController(
+            title: String(
+                localized: "Oops, something went wrong",
+                bundle: .student
+            ),
+            message: String(
+                localized: "It looks like your account isn't set up as a learner role. If you believe this is a mistake, contact your admin or support team.",
+                bundle: .student
+            ),
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: String(localized: "Logout", bundle: .core),
+                style: .cancel
+            ) { [weak self] _ in
+                if let session {
+                    self?.userDidLogout(session: session)
+                }
+            }
+        )
+
+        environment.topViewController?.present(alert, animated: true)
+    }
+
+    private func showLanguageAlertIfNeeded(locale: String?) -> AnyPublisher<Void, Error> {
+        LocalizationManager.localizeForApp(
+            UIApplication.shared,
+            locale: locale
+        )
+        .flatMap { [weak self] languageAlert -> AnyPublisher<Void, Error> in
+            if let languageAlert, let rootVC = self?.environment.window?.rootViewController {
+                if let presented = rootVC.presentedViewController { // QR login alert
+                    self?.environment.router.dismiss(presented) {
+                        self?.environment.router.show(languageAlert, from: rootVC, options: .modal())
+                    }
+                } else {
+                    self?.environment.router.show(languageAlert, from: rootVC, options: .modal())
+                }
+                return Empty().setFailureType(to: Error.self).eraseToAnyPublisher()
+            } else {
+                return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+
+    private func listenForExperienceChanges() {
+        AppEnvironment.shared.experience
+            .dropFirst()
+            .sink { [weak self] in
+                self?.setTabBarControllerFor(experience: $0, isStartup: false, session: nil)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func setTabBarControllerFor(experience: Experience, isStartup: Bool, session: LoginSession?) {
+        switch experience {
+        case .academic:
+            AppEnvironment.shared.app = .student
+            AppEnvironment.shared.router = academicRouter
+            guard let window = window else { return }
+
+            let appearance = UINavigationBar.appearance(whenContainedInInstancesOf: [CoreNavigationController.self])
+            appearance.barTintColor = nil
+            appearance.tintColor = nil
+            appearance.titleTextAttributes = nil
+
+            let controller = StudentTabBarController()
+            controller.view.layoutIfNeeded()
+            UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                window.rootViewController = controller
+            }, completion: { [weak self] _ in
+                if isStartup {
+                    self?.environment.startupDidComplete()
+                    UIApplication.shared.registerForPushNotifications()
+                }
+            })
+        case .careerLearner:
+            AppEnvironment.shared.app = .horizon
+            AppEnvironment.shared.router = Router(routes: HorizonRoutes.routeHandlers())
+            HorizonUI.setInstitutionColor(Brand.shared.primary)
+            guard let window = window else { return }
+            let controller = HorizonTabBarController()
+            controller.view.layoutIfNeeded()
+            UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                window.rootViewController = controller
+            }, completion: { [weak self] _ in
+                if isStartup {
+                    self?.environment.startupDidComplete()
+                    UIApplication.shared.registerForPushNotifications()
+                }
+            })
+        case .careerLearningProvider:
+            showIncorrectAppExperienceAlert(session: session)
+        }
+    }
+}
+
 // MARK: - Push notifications
 
 extension StudentAppDelegate: UNUserNotificationCenterDelegate {
     func application(
-        _ application: UIApplication,
+        _: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
         PushNotificationsInteractor.shared.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
     }
 
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    func application(_: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         environment.reportError(error)
     }
 
     func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        willPresent notification: UNNotification,
+        _: UNUserNotificationCenter,
+        willPresent _: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
+        guard environment.app != .horizon else {
+            return
+        }
         completionHandler([.banner, .sound])
     }
 
     func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
+        _: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
@@ -372,7 +574,6 @@ extension StudentAppDelegate {
 // MARK: - Crashlytics
 
 extension StudentAppDelegate {
-
     @objc func setupFirebase() {
         guard !testing else {
             setupDebugCrashLogging()
@@ -399,7 +600,6 @@ extension StudentAppDelegate {
 }
 
 extension StudentAppDelegate: RemoteLogHandler {
-
     func handleBreadcrumb(_ name: String) {
         Firebase.Crashlytics.crashlytics().log(name)
     }
@@ -415,7 +615,6 @@ extension StudentAppDelegate: RemoteLogHandler {
 extension StudentAppDelegate {
     func setupPageViewLogging() {
         class BackgroundAppHelper: AppBackgroundHelperProtocol {
-
             let queue = DispatchQueue(label: "com.instructure.icanvas.app-background-helper", attributes: .concurrent)
             var tasks: [String: UIBackgroundTaskIdentifier] = [:]
 
@@ -425,7 +624,8 @@ extension StudentAppDelegate {
                         withName: taskName,
                         expirationHandler: { [weak self] in
                             self?.endBackgroundTask(taskName: taskName)
-                    })
+                        }
+                    )
                 }
             }
 
@@ -554,7 +754,7 @@ extension StudentAppDelegate: LoginDelegate {
         if wasCurrent { changeUser() }
     }
 
-    func actAsFakeStudent(withID fakeStudentID: String) {}
+    func actAsFakeStudent(withID _: String) {}
 
     private func deleteAssignmentRemindersAsync(userId: String) {
         var reminderDeleteSubscription: AnyCancellable?
@@ -568,8 +768,9 @@ extension StudentAppDelegate: LoginDelegate {
 }
 
 // MARK: - Handle siri notifications
+
 extension StudentAppDelegate {
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+    func application(_: UIApplication, continue userActivity: NSUserActivity, restorationHandler _: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url, app: .student) {
             window?.rootViewController = LoadingViewController.create()
             login.fetch(environment: environment) { [weak self] session, error in
@@ -589,12 +790,13 @@ extension StudentAppDelegate {
 }
 
 // MARK: - Tabs
+
 extension StudentAppDelegate {
     func refreshNotificationTab() {
         if let tabs = window?.rootViewController as? UITabBarController,
-            tabs.viewControllers?.count ?? 0 > 3,
-            let nav = tabs.viewControllers?[3] as? UINavigationController,
-            let activities = nav.viewControllers.first as? ActivityStreamViewController {
+           tabs.viewControllers?.count ?? 0 > 3,
+           let nav = tabs.viewControllers?[3] as? UINavigationController,
+           let activities = nav.viewControllers.first as? ActivityStreamViewController {
             activities.refreshData(force: true)
         }
     }

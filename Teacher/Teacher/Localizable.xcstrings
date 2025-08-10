@@ -4,8 +4,8 @@
     "\"%@\" is not a valid grade." : {
 
     },
-    "%@ days late." : {
-
+    "%@ maximum" : {
+      "comment" : "Example: '10 points maximum'"
     },
     "%@ to %@" : {
       "comment" : "'100% to 94%', or '400 to 230'",
@@ -532,6 +532,7 @@
       }
     },
     "%g pts" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -6915,7 +6916,7 @@
       }
     },
     "Calendar" : {
-      "comment" : "Calendar page title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -12042,6 +12043,7 @@
       }
     },
     "Courses" : {
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -16140,7 +16142,11 @@
         }
       }
     },
+    "Due date was on %@" : {
+
+    },
     "Due date was on %@." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -17163,6 +17169,9 @@
           }
         }
       }
+    },
+    "Edit rubric note" : {
+
     },
     "Enter days late" : {
       "localizations" : {
@@ -22551,9 +22560,6 @@
           }
         }
       }
-    },
-    "g_pts" : {
-
     },
     "GPA" : {
       "extractionState" : "stale",
@@ -28548,7 +28554,7 @@
       }
     },
     "Inbox" : {
-      "comment" : "Inbox tab title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -29836,7 +29842,6 @@
       }
     },
     "Loading" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -32652,7 +32657,11 @@
         }
       }
     },
+    "No due date was set" : {
+
+    },
     "No due date was set." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -36496,6 +36505,9 @@
           }
         }
       }
+    },
+    "out of %@" : {
+      "comment" : "Example: 'out of 10 points'"
     },
     "out_of_g_pts" : {
       "localizations" : {
@@ -41113,6 +41125,9 @@
     "Rubric Note" : {
 
     },
+    "Saving" : {
+
+    },
     "Saving days late." : {
       "localizations" : {
         "ar" : {
@@ -41624,6 +41639,9 @@
           }
         }
       }
+    },
+    "Score" : {
+
     },
     "Scored above..." : {
       "localizations" : {
@@ -43419,6 +43437,9 @@
           }
         }
       }
+    },
+    "Send rubric note" : {
+
     },
     "Similarity Score" : {
       "localizations" : {
@@ -49315,6 +49336,7 @@
       }
     },
     "To Do" : {
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

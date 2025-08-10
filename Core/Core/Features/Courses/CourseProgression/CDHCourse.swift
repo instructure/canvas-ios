@@ -25,10 +25,11 @@ public final class CDHCourse: NSManagedObject, WriteableModel {
     // MARK: - Properties
 
     @NSManaged public var courseID: String
+    @NSManaged public var name: String?
+    @NSManaged public var overviewDescription: String?
     @NSManaged public var completionPercentage: Double
     @NSManaged public var state: String
     @NSManaged public var enrollmentID: String
-    @NSManaged public var course: Course
     @NSManaged public var institutionName: String?
     @NSManaged public var incompleteModulesRaw: NSOrderedSet?
     @NSManaged public var nextModuleItemID: String?
@@ -98,8 +99,9 @@ public final class CDHCourse: NSManagedObject, WriteableModel {
         let model: CDHCourse =
             context.first(where: #keyPath(CDHCourse.courseID), equals: courseId) ?? context.insert()
 
-        model.course = course
         model.courseID = courseId
+        model.name = enrollmentModel.course.name
+        model.overviewDescription = enrollmentModel.course.syllabusBody
         model.institutionName = institutionName
         model.state = enrollmentModel.state
         model.enrollmentID = enrollmentModel.id

@@ -50,7 +50,7 @@ public final class SingleSelectionViewModel: ObservableObject {
             self.listLevelAccessibilityLabel = nil
         } else {
             // if there is no title -> add list count to first focused option
-            self.listLevelAccessibilityLabel = String.localizedAccessibilityListCount(optionCount)
+            self.listLevelAccessibilityLabel = String.format(accessibilityListCount: optionCount)
         }
 
         selectedOptionSubject

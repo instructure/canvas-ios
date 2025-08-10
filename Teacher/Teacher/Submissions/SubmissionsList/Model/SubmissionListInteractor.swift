@@ -25,10 +25,39 @@ public protocol SubmissionListInteractor {
     var submissions: AnyPublisher<[Submission], Never> { get }
     var assignment: AnyPublisher<Assignment?, Never> { get }
     var course: AnyPublisher<Course?, Never> { get }
+    var assigneeGroups: AnyPublisher<[AssigneeGroup], Never> { get }
 
     var context: Context { get }
     var assignmentID: String { get }
 
     func refresh() -> AnyPublisher<Void, Never>
     func applyFilters(_ filters: [GetSubmissions.Filter])
+}
+
+public struct AssigneeGroup: Equatable {
+    let id: String
+    let name: String
+    let memberIDs: [String]
+
+    public init(group: Group, memberIDs: [String] = []) {
+        self.id = group.id
+        self.name = group.name
+        self.memberIDs = memberIDs
+    }
+
+    #if DEBUG
+    public init(id: String, name: String, memberIDs: [String] = []) {
+        self.id = id
+        self.name = name
+        self.memberIDs = memberIDs
+    }
+    #endif
+
+    public func containsUser(_ userID: String) -> Bool {
+        memberIDs.contains(userID)
+    }
+
+    public var asSubmissionFetchedGroup: Submission.FetchedGroup {
+        return .init(id: id, name: name)
+    }
 }

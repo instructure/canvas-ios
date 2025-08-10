@@ -26,6 +26,7 @@ final class MockSubmissionListInteractor: SubmissionListInteractor {
     var submissionsSubject = PassthroughSubject<[Submission], Never>()
     var assignmentSubject = PassthroughSubject<Assignment?, Never>()
     var courseSubject = PassthroughSubject<Course?, Never>()
+    var assigneeGroupsSubject = CurrentValueSubject<[AssigneeGroup], Never>([])
 
     var submissions: AnyPublisher<[Submission], Never> {
         submissionsSubject.eraseToAnyPublisher()
@@ -37,6 +38,10 @@ final class MockSubmissionListInteractor: SubmissionListInteractor {
 
     var course: AnyPublisher<Course?, Never> {
         courseSubject.eraseToAnyPublisher()
+    }
+
+    var assigneeGroups: AnyPublisher<[AssigneeGroup], Never> {
+        assigneeGroupsSubject.eraseToAnyPublisher()
     }
 
     var context: Context

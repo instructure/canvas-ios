@@ -52,6 +52,7 @@
         <attribute name="freeFormCriterionCommentsOnRubric" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="gradedIndividually" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="gradingPeriodID" optional="YES" attributeType="String"/>
+        <attribute name="gradingStandardId" optional="YES" attributeType="String"/>
         <attribute name="gradingTypeRaw" attributeType="String"/>
         <attribute name="groupCategoryID" optional="YES" attributeType="String"/>
         <attribute name="hasOverrides" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -207,10 +208,28 @@
         <attribute name="courseId" attributeType="String"/>
         <attribute name="userId" attributeType="String"/>
     </entity>
+    <entity name="CDCustomGradeStatus" representedClassName="Core.CDCustomGradeStatus" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+    </entity>
     <entity name="CDEnvironmentSettings" representedClassName="Core.CDEnvironmentSettings" syncable="YES">
         <attribute name="calendarContextsLimitRaw" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="disableInboxSignatureBlockForStudents" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="enableInboxSignatureBlock" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDExperienceSummary" representedClassName="Core.CDExperienceSummary" syncable="YES">
+        <attribute name="availableAppsRaw" attributeType="Transformable" valueTransformerName="StringSetValueTransformer"/>
+        <attribute name="currentAppRaw" attributeType="String" valueTransformerName="StringSetValueTransformer"/>
+    </entity>
+    <entity name="CDGradingStandard" representedClassName="Core.CDGradingStandard" syncable="YES">
+        <attribute name="contextId" attributeType="String"/>
+        <attribute name="contextType" attributeType="String"/>
+        <attribute name="gradingSchemeEntriesRaw" optional="YES" attributeType="Binary"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isPointsBased" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="scalingFactor" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String"/>
     </entity>
     <entity name="CDHCommentAttachment" representedClassName="Core.CDHCommentAttachment" syncable="YES">
         <attribute name="displayName" optional="YES" attributeType="String"/>
@@ -223,6 +242,7 @@
         <attribute name="courseID" attributeType="String"/>
         <attribute name="enrollmentID" attributeType="String"/>
         <attribute name="institutionName" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="nextModuleID" optional="YES" attributeType="String"/>
         <attribute name="nextModuleItemDueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="nextModuleItemEstimatedTime" optional="YES" attributeType="String"/>
@@ -232,8 +252,8 @@
         <attribute name="nextModuleItemType" optional="YES" attributeType="String"/>
         <attribute name="nextModuleItemURL" optional="YES" attributeType="String"/>
         <attribute name="nextModuleName" optional="YES" attributeType="String"/>
+        <attribute name="overviewDescription" optional="YES" attributeType="String"/>
         <attribute name="state" attributeType="String"/>
-        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="courseProgress" inverseEntity="Course"/>
     </entity>
     <entity name="CDHLearnCourse" representedClassName="Core.CDHLearnCourse" syncable="YES">
         <attribute name="enrollmentId" attributeType="String"/>
@@ -479,6 +499,7 @@
         <attribute name="courseCode" optional="YES" attributeType="String"/>
         <attribute name="courseColor" optional="YES" attributeType="String"/>
         <attribute name="defaultViewRaw" optional="YES" attributeType="String"/>
+        <attribute name="gradingSchemeRaw" optional="YES" attributeType="Binary"/>
         <attribute name="gradingStandardId" optional="YES" attributeType="String"/>
         <attribute name="hideFinalGrades" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
@@ -491,15 +512,13 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="pointsBasedGradingScheme" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="roles" optional="YES" attributeType="String"/>
-        <attribute name="scalingFactor" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="scalingFactor" attributeType="Double" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="syllabusBody" optional="YES" attributeType="String"/>
         <attribute name="termName" optional="YES" attributeType="String"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="course" inverseEntity="ContextColor"/>
-        <relationship name="courseProgress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHCourse" inverseName="course" inverseEntity="CDHCourse"/>
         <relationship name="dashboardCards" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardCard" inverseName="course" inverseEntity="DashboardCard"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment"/>
         <relationship name="gradingPeriods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="course" inverseEntity="GradingPeriod"/>
-        <relationship name="gradingSchemeRaw" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="GradingSchemeEntry" inverseName="course" inverseEntity="GradingSchemeEntry"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="course" inverseEntity="Group"/>
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection"/>
         <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSettings" inverseName="course" inverseEntity="CourseSettings"/>
@@ -780,11 +799,6 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="gradingPeriod" inverseEntity="Assignment"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="gradingPeriods" inverseEntity="Course"/>
-    </entity>
-    <entity name="GradingSchemeEntry" representedClassName="Core.GradingSchemeEntry" syncable="YES">
-        <attribute name="name" attributeType="String"/>
-        <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="gradingSchemeRaw" inverseEntity="Course"/>
     </entity>
     <entity name="Group" representedClassName="Core.Group" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
@@ -1165,6 +1179,8 @@
         <attribute name="attempt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="body" optional="YES" attributeType="String"/>
         <attribute name="customGradeStatusId" optional="YES" attributeType="String"/>
+        <attribute name="customGradeStatusName" optional="YES" attributeType="String"/>
+        <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="enteredGrade" optional="YES" attributeType="String"/>
         <attribute name="enteredScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="excusedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>

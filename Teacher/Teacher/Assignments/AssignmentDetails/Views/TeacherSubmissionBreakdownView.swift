@@ -162,7 +162,7 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
                                 color: color
                             )
                         )
-                        .accessibilityValue(String.localizedNumberOfItems(count))
+                        .accessibilityValue(String.format(numberOfItems: count))
                         .modifier(Counter(count: Double(count)))
                         .padding(.horizontal, 10).padding(.top, 4)
                         .animation(Animation.easeOut(duration: 0.5).delay(0.2), value: count)

@@ -65,26 +65,26 @@ struct GradeSummaryView: View {
 #Preview {
     VStack(spacing: 16) {
         GradeSummaryView(
-            finalGradeRow: .init(currentGradeText: "85", suffixType: .percentage, isGradedButNotPosted: false)
+            finalGradeRow: .init(gradeText: "85", a11yGradeText: nil, suffixType: .percentage, isGradedButNotPosted: false)
         )
 
         GradeSummaryView(
-            finalGradeRow: .init(currentGradeText: "15", suffixType: .maxGradeWithUnit("30 pts"), isGradedButNotPosted: false)
+            finalGradeRow: .init(gradeText: "15", a11yGradeText: nil, suffixType: .maxGradeWithUnit("30 pts", ""), isGradedButNotPosted: false)
         )
 
         GradeSummaryView(
-            finalGradeRow: .init(currentGradeText: "A-", suffixType: .none, isGradedButNotPosted: false)
+            finalGradeRow: .init(gradeText: "A-", a11yGradeText: nil, suffixType: .none, isGradedButNotPosted: false)
         )
 
         GradeSummaryView(
-            pointsRow: .init(currentPoints: "15", maxPointsWithUnit: "30 pts"),
-            finalGradeRow: .init(currentGradeText: "43", suffixType: .percentage, isGradedButNotPosted: false)
+            pointsRow: .init(currentPoints: "15", maxPointsWithUnit: "30 pts", a11yMaxPointsWithUnit: nil),
+            finalGradeRow: .init(gradeText: "43", a11yGradeText: nil, suffixType: .percentage, isGradedButNotPosted: false)
         )
 
         GradeSummaryView(
-            pointsRow: .init(currentPoints: "15", maxPointsWithUnit: "30 pts"),
-            latePenaltyRow: .init(penaltyText: "-2 pts"),
-            finalGradeRow: .init(currentGradeText: "43", suffixType: .percentage, isGradedButNotPosted: false)
+            pointsRow: .init(currentPoints: "15", maxPointsWithUnit: "30 pts", a11yMaxPointsWithUnit: nil),
+            latePenaltyRow: .init(penaltyText: "-2 pts", a11yPenaltyText: nil),
+            finalGradeRow: .init(gradeText: "43", a11yGradeText: nil, suffixType: .percentage, isGradedButNotPosted: false)
         )
     }
     .padding()

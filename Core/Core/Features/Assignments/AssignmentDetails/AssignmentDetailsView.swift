@@ -23,8 +23,10 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
     let assignmentID: String
     let courseID: String
 
+    @ObservedObject var customStatuses: Store<GetCustomGradeStatuses>
     @ObservedObject var assignment: Store<GetAssignment>
     @ObservedObject var course: Store<GetCourse>
+
     @State private var isTeacherEnrollment: Bool = false
     @State private var isLocked: Bool = true
 
@@ -37,6 +39,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
         self.assignmentID = assignmentID
         self.courseID = courseID
 
+        customStatuses = env.subscribe(GetCustomGradeStatuses(courseID: courseID))
         assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID))
         course = env.subscribe(GetCourse(courseID: courseID))
 
@@ -246,6 +249,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
     }
 
     private func refreshCourses() {
+        customStatuses.refresh()
         course.refresh { _ in
             isTeacherEnrollment = course.first?.enrollments?.contains(where: { ($0.isTeacher  || $0.isTA) && $0.state == .active }) == true
         }

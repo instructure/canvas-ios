@@ -151,6 +151,7 @@
 		8B48919E2AC6F64C0015BAB2 /* ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48919D2AC6F64C0015BAB2 /* ToDoTests.swift */; };
 		8B4891A62ACAC46A0015BAB2 /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4891A52ACAC46A0015BAB2 /* InboxTests.swift */; };
 		8B4891A92ACACB240015BAB2 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4891A82ACACB240015BAB2 /* PeopleTests.swift */; };
+		8B6555F92E4641A300DD2591 /* GradeStateInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6555F82E4641A300DD2591 /* GradeStateInteractorMock.swift */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
 		B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; };
 		B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */; };
@@ -475,6 +476,7 @@
 		8B48919D2AC6F64C0015BAB2 /* ToDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTests.swift; sourceTree = "<group>"; };
 		8B4891A52ACAC46A0015BAB2 /* InboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
 		8B4891A82ACACB240015BAB2 /* PeopleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
+		8B6555F82E4641A300DD2591 /* GradeStateInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStateInteractorMock.swift; sourceTree = "<group>"; };
 		B15CA25D221DDB820014FB02 /* TeacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15CA261221DDB820014FB02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1766,6 +1768,7 @@
 				CF835A962E21555300F33C1D /* GradeInteractorLiveTests.swift */,
 				CFB5ED642E27D46C000009DF /* GradeInteractorMock.swift */,
 				CF835A9A2E24F8BD00F33C1D /* GradeStateInteractorTests.swift */,
+				8B6555F82E4641A300DD2591 /* GradeStateInteractorMock.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2473,6 +2476,7 @@
 				CF64BDC42E27D834005929E6 /* RubricGradingInteractorMock.swift in Sources */,
 				CF0F18902DC0DAB50054D21A /* SpeedGraderUserIdNormalizationTests.swift in Sources */,
 				5B989DF72E2C4BA700945292 /* SubmissionWordCountViewModelTests.swift in Sources */,
+				8B6555F92E4641A300DD2591 /* GradeStateInteractorMock.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,
 				089AAC902DCC01370022F341 /* SubmissionListItemTests.swift in Sources */,
 				B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */,
@@ -2994,7 +2998,7 @@
 			repositoryURL = "https://github.com/pendo-io/pendo-mobile-sdk";
 			requirement = {
 				kind = exactVersion;
-				version = 3.6.1;
+				version = 3.7.5;
 			};
 		};
 		CFAA40212AE2633A002C7AAE /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */ = {

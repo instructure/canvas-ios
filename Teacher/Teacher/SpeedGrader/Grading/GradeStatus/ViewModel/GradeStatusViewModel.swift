@@ -167,19 +167,24 @@ class GradeStatusViewModel: ObservableObject {
                 (OptionItem.from(status), daysLate, dueDate?.relativeDateTimeString ?? "")
             }
             .receive(on: scheduler)
-            .sink { [weak self] (option, daysLate, dueDate) in
+            .sink { [weak self] (option, daysLateValue, dueDate) in
                 guard let self else { return }
                 selectedOption = option
                 isShowingDaysLateSection = (interactor.gradeStatuses.element(for: option) == .late)
-                let daysLateFormatted = Self.daysLateFormatter.string(from: NSNumber(value: daysLate)) ?? ""
-                self.daysLate = daysLateFormatted
+                self.daysLate = Self.daysLateFormatter.string(from: NSNumber(value: daysLateValue)) ?? ""
                 self.dueDate = dueDate.isEmpty ? String(localized: "No Due Date", bundle: .teacher)
                                                : String(localized: "Due \(dueDate)", bundle: .teacher)
                 daysLateA11yLabel = {
-                    let daysLateText = String(localized: "\(daysLateFormatted) days late.", bundle: .teacher)
-                    let dueDateText = dueDate.isEmpty ? String(localized: "No due date was set.", bundle: .teacher)
-                                                      : String(localized: "Due date was on \(dueDate).", bundle: .teacher)
-                    return "\(daysLateText) \(dueDateText)"
+                    let daysLateLabelText = String(localized: "Days late", bundle: .teacher)
+                    let daysLateValueText = self.daysLate
+                    let dueDateText = dueDate.isEmpty
+                        ? String(localized: "No due date was set", bundle: .teacher)
+                        : String(localized: "Due date was on \(dueDate)", bundle: .teacher)
+                    return [
+                        daysLateLabelText,
+                        daysLateValueText,
+                        dueDateText
+                    ].accessibilityJoined()
                 }()
             }
     }

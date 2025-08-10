@@ -25,56 +25,66 @@ class FinalGradeRowViewModelTests: TeacherTestCase {
 
     func test_init_withNoneSuffixType() {
         let viewModel = FinalGradeRowViewModel(
-            currentGradeText: "A",
+            gradeText: "A",
+            a11yGradeText: "a11y",
             suffixType: .none,
             isGradedButNotPosted: false
         )
 
-        XCTAssertEqual(viewModel.currentGradeText, "A")
+        XCTAssertEqual(viewModel.gradeText, "A")
+        XCTAssertEqual(viewModel.a11yGradeText, "a11y")
         XCTAssertEqual(viewModel.suffixText, "")
     }
 
     func test_init_withMaxGradeWithUnitSuffixType() {
         let viewModel = FinalGradeRowViewModel(
-            currentGradeText: "85",
-            suffixType: .maxGradeWithUnit("100 pts"),
+            gradeText: "85",
+            a11yGradeText: "a11y",
+            suffixType: .maxGradeWithUnit("100 pts", ""),
             isGradedButNotPosted: false
         )
 
-        XCTAssertEqual(viewModel.currentGradeText, "85")
+        XCTAssertEqual(viewModel.gradeText, "85")
+        XCTAssertEqual(viewModel.a11yGradeText, "a11y")
         XCTAssertEqual(viewModel.suffixText, "   / 100 pts")
     }
 
     func test_init_withPercentageSuffixType() {
         let viewModel = FinalGradeRowViewModel(
-            currentGradeText: "92",
+            gradeText: "92",
+            a11yGradeText: "a11y",
             suffixType: .percentage,
             isGradedButNotPosted: false
         )
 
-        XCTAssertEqual(viewModel.currentGradeText, "92")
+        XCTAssertEqual(viewModel.gradeText, "92")
+        XCTAssertEqual(viewModel.a11yGradeText, "a11y")
         XCTAssertEqual(viewModel.suffixText, "   %")
     }
 
-    func test_init_withNilCurrentGradeText() {
+    func test_init_withNilGradeText() {
         let viewModel = FinalGradeRowViewModel(
-            currentGradeText: nil,
+            gradeText: nil,
+            a11yGradeText: nil,
             suffixType: .none,
             isGradedButNotPosted: false
         )
 
-        XCTAssertEqual(viewModel.currentGradeText, GradeFormatter.BlankPlaceholder.oneDash.stringValue)
+        XCTAssertEqual(viewModel.gradeText, GradeFormatter.BlankPlaceholder.oneDash.stringValue)
+        XCTAssertEqual(viewModel.a11yGradeText, "None")
         XCTAssertEqual(viewModel.suffixText, "")
     }
 
     func test_init_whenIsGradedButNotPostedIsTrue() {
         let viewModel = FinalGradeRowViewModel(
-            currentGradeText: "85",
-            suffixType: .maxGradeWithUnit("100 pts"),
+            gradeText: "85",
+            a11yGradeText: "a11y",
+            suffixType: .maxGradeWithUnit("100 pts", ""),
             isGradedButNotPosted: true
         )
 
-        XCTAssertEqual(viewModel.currentGradeText, "85")
+        XCTAssertEqual(viewModel.gradeText, "85")
+        XCTAssertEqual(viewModel.a11yGradeText, "a11y")
         XCTAssertEqual(viewModel.suffixText, "   / 100 pts")
         XCTAssertEqual(viewModel.shouldShowNotPostedIcon, true)
     }

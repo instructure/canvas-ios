@@ -33,6 +33,7 @@ class GradeInteractorLiveTests: TeacherTestCase {
 
     private var assignment: Assignment!
     private var submission: Submission!
+    private var gradingScheme: GradingScheme!
     private var rubricGradingInteractor: RubricGradingInteractorMock!
     private var gradeStateInteractor: GradeStateInteractorMock!
 
@@ -45,6 +46,8 @@ class GradeInteractorLiveTests: TeacherTestCase {
 
         submission = Submission.make(in: databaseClient)
         submission.userID = testData.userId
+
+        gradingScheme = PercentageBasedGradingScheme.default
 
         rubricGradingInteractor = .init()
         gradeStateInteractor = .init()
@@ -131,29 +134,10 @@ class GradeInteractorLiveTests: TeacherTestCase {
         GradeInteractorLive(
             assignment: assignment,
             submission: submission,
+            gradingScheme: gradingScheme,
             rubricGradingInteractor: rubricGradingInteractor,
             gradeStateInteractor: gradeStateInteractor,
             env: environment
         )
-    }
-}
-
-// MARK: - Mock Classes
-
-private class GradeStateInteractorMock: GradeStateInteractor {
-
-    private(set) var gradeStateCallsCount = 0
-    private(set) var gradeStateInput: (submission: Submission, assignment: Assignment, isRubricScoreAvailable: Bool, totalRubricScore: Double)?
-    var gradeStateOutput: GradeState?
-
-    func gradeState(
-        submission: Submission,
-        assignment: Assignment,
-        isRubricScoreAvailable: Bool,
-        totalRubricScore: Double
-    ) -> GradeState {
-        gradeStateInput = (submission, assignment, isRubricScoreAvailable, totalRubricScore)
-        gradeStateCallsCount += 1
-        return gradeStateOutput ?? .empty
     }
 }

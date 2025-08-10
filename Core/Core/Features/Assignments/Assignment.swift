@@ -44,6 +44,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var freeFormCriterionCommentsOnRubric: Bool
     @NSManaged public var gradedIndividually: Bool
     @NSManaged public var gradingPeriod: GradingPeriod?
+    @NSManaged public var gradingStandardId: String?
     @NSManaged public var gradingTypeRaw: String
     @NSManaged public var groupCategoryID: String?
     @NSManaged public var hasSubmittedSubmissions: Bool
@@ -111,6 +112,7 @@ public class Assignment: NSManagedObject {
         return course?.hideQuantitativeData ?? false
     }
 
+    // TODO: Should be deleted because assignments grading scheme may differ from the course one
     public var gradingScheme: GradingScheme? {
         guard let course: Course = managedObjectContext?.first(where: #keyPath(Course.id),
                                                                equals: courseID)
@@ -195,6 +197,7 @@ extension Assignment {
         dueAtSortNilsAtBottom = item.due_at ?? Date.distantFuture
         externalToolContentID = item.external_tool_tag_attributes?.content_id?.rawValue
         gradedIndividually = item.grade_group_students_individually ?? true
+        gradingStandardId = item.grading_standard_id?.value
         gradingType = item.grading_type
         groupCategoryID = item.group_category_id?.value
         hasSubmittedSubmissions = item.has_submitted_submissions ?? false
@@ -209,7 +212,18 @@ extension Assignment {
         lockExplanation = item.lock_explanation
         moderatedGrading = item.moderated_grading == true
         name = item.name
-        needsGradingCount = item.needs_grading_count ?? 0
+
+        /// This is used because of a limitation on Assignments fetch APIs by which
+        /// which `needsGradingCount` doesn't subtract submissions count of
+        /// workflow state `submitted` and custom grade status.
+        let customGradeStatedSubmittedCount = client
+            .submissionsCountOfCustomGradeStatus(
+                forAssignment: item.id.value,
+                invalidScoreChecked: true,
+                atState: .submitted, .pending_review, .graded
+            )
+
+        needsGradingCount = (item.needs_grading_count ?? 0) - customGradeStatedSubmittedCount
         onlyVisibleToOverrides = item.only_visible_to_overrides ?? false
         pointsPossible = item.points_possible
         position = item.position ?? Int.max
@@ -489,5 +503,66 @@ public enum GradingType: String, Codable, CaseIterable {
         case .not_graded:
             return String(localized: "Not Graded", bundle: .core)
         }
+    }
+}
+
+// MARK: - Helpers
+
+extension NSManagedObjectContext {
+
+    func submissionsCountOfCustomGradeStatus(
+        forAssignment assignmentID: String,
+        invalidScoreChecked: Bool = false,
+        atState state: SubmissionWorkflowState...
+    ) -> Int {
+        submissionsCountOfCustomGradeStatus(
+            forAssignment: assignmentID,
+            invalidScoreChecked: invalidScoreChecked,
+            atStates: state
+        )
+    }
+
+    func submissionsCountOfCustomGradeStatus(
+        forAssignment assignmentID: String,
+        invalidScoreChecked: Bool = false,
+        atStates states: [SubmissionWorkflowState]
+    ) -> Int {
+
+        let notExcused = NSPredicate(
+            format: "%K == nil OR %K != true",
+            #keyPath(Submission.excusedRaw),
+            #keyPath(Submission.excusedRaw)
+        )
+
+        let hasCustomStatus =  NSPredicate(
+            format: "%K != nil",
+            #keyPath(Submission.customGradeStatusId)
+        )
+
+        let stateIncluded =  NSPredicate(
+            format: "%K IN %@",
+            #keyPath(Submission.workflowStateRaw),
+            states.map({ $0.rawValue })
+        )
+        var subpredicates = [
+            NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID),
+            notExcused,
+            hasCustomStatus,
+            stateIncluded
+        ]
+
+        if invalidScoreChecked {
+            subpredicates.append(
+                NSCompoundPredicate(type: .or, subpredicates: [
+                    NSPredicate(key: #keyPath(Submission.scoreRaw), equals: nil),
+                    NSPredicate(key: #keyPath(Submission.gradeMatchesCurrentSubmission), equals: false)
+                ])
+            )
+        }
+
+        return count(
+            of: Submission.self,
+            predicate: NSCompoundPredicate(type: .and, subpredicates: subpredicates)
+        )
     }
 }
