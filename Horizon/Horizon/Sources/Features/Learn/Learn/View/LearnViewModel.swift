@@ -90,7 +90,7 @@ final class LearnViewModel {
 
    private func getPrograms() {
         var counter = 0
-        let mocks = ProgramCardModel.mocks2
+        let mocks = ProgramCardModel.mocks
 
         programs = mocks.map { program in
             var updatedProgram = program

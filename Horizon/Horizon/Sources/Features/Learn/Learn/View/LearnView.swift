@@ -43,7 +43,7 @@ struct LearnView: View {
                 ListProgramCards(
                     viewModel: viewModel.listProgramCardsViewModel,
                     programs: viewModel.programs,
-                    isLeaner: true,
+                    isLinear: true,
                     isLoading: viewModel.isLoadingEnrollButton) { program in
                         viewModel.navigateToProgramDetails(programID: program.id)
                     } onTapEnroll: { program in

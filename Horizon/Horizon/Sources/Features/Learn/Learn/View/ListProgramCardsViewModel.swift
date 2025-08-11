@@ -22,26 +22,29 @@ import Observation
 final class ListProgramCardsViewModel {
     private(set) var points: [ListProgramCards.ProgramCardPoint] = []
 
-    var sortedPoints: [ListProgramCards.ProgramCardPoint] {
+    // MARK: - Computed Properties
+
+    private var sortedPoints: [ListProgramCards.ProgramCardPoint] {
         points.sorted { $0.point.y < $1.point.y }
     }
 
-    func append(point: ListProgramCards.ProgramCardPoint) {
-        points.append(point)
+    var firstPoint: ListProgramCards.ProgramCardPoint? {
+        sortedPoints.first
     }
 
-    var firstPoint: ListProgramCards.ProgramCardPoint? { sortedPoints.first }
-
-    var lastPoint: ListProgramCards.ProgramCardPoint? { sortedPoints.last }
+    var lastPoint: ListProgramCards.ProgramCardPoint? {
+        sortedPoints.last
+    }
 
     var lastCompletedPoint: ListProgramCards.ProgramCardPoint? {
-        guard let lastCompletedIndex = sortedPoints.lastIndex(where: { $0.isCompleted }) else { return nil }
-
+        guard let lastCompletedIndex = sortedPoints.lastIndex(where: \.isCompleted) else { return nil }
         let nextIndex = lastCompletedIndex + 1
-        if nextIndex < sortedPoints.count {
-            return sortedPoints[safe: nextIndex]
-        } else {
-            return sortedPoints[safe: lastCompletedIndex]
-        }
+        return sortedPoints[safe: min(nextIndex, sortedPoints.count - 1)]
+    }
+
+    // MARK: - Public Methods
+    
+    func append(_ point: ListProgramCards.ProgramCardPoint) {
+        points.append(point)
     }
 }

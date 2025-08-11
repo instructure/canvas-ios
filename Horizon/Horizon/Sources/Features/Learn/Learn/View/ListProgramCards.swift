@@ -25,7 +25,7 @@ struct ListProgramCards: View {
     private let viewModel: ListProgramCardsViewModel
     private let programs: [ProgramCardModel]
     private let isLoading: Bool
-    private let isLeaner: Bool
+    private let isLinear: Bool
     private let onTapSelect: (ProgramCardModel) -> Void
     private let onTapEnroll: (ProgramCardModel) -> Void
 
@@ -40,14 +40,14 @@ struct ListProgramCards: View {
     init(
         viewModel: ListProgramCardsViewModel,
         programs: [ProgramCardModel],
-        isLeaner: Bool,
+        isLinear: Bool,
         isLoading: Bool,
         onTapSelect: @escaping (ProgramCardModel) -> Void,
         onTapEnroll: @escaping (ProgramCardModel) -> Void
     ) {
         self.viewModel = viewModel
         self.programs = programs
-        self.isLeaner = isLeaner
+        self.isLinear = isLinear
         self.isLoading = isLoading
         self.onTapSelect = onTapSelect
         self.onTapEnroll = onTapEnroll
@@ -55,7 +55,7 @@ struct ListProgramCards: View {
 
     var body: some View {
         ZStack(alignment: .leading) {
-            if isLeaner {
+            if isLinear {
                 drawLine(
                     from: viewModel.firstPoint?.point,
                     to: viewModel.lastPoint?.point,
@@ -88,16 +88,17 @@ struct ListProgramCards: View {
 
     private func contentView(program: ProgramCardModel) -> some View {
         HStack(spacing: .huiSpaces.space8) {
-            if isLeaner {
+            if isLinear {
                 indexView(program: program)
             }
             programCrard(program: program)
         }
         .readingFrame(coordinateSpace: .named(coordinateSpaceID)) { frame in
-            if programs.count != viewModel.points.count {
-                let point = CGPoint(x: frame.minX + indexCicleSize / 2, y: frame.midY)
-                viewModel.append(point: .init(point: point, isCompleted: program.status.isCompleted))
-            }
+            guard isLinear, programs.count != viewModel.points.count else { return }
+            let pointX = frame.minX + indexCicleSize / 2
+            let pointY = frame.midY
+            let point = CGPoint(x: pointX, y: pointY)
+            viewModel.append(.init(point: point, isCompleted: program.status.isCompleted))
         }
     }
     private func programCrard(program: ProgramCardModel) -> some View {
