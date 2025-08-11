@@ -87,11 +87,13 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
             for: .submitted, .pending_review, .graded
         )
 
-        graded = (summary.first?.graded ?? 0) + customSubmitted + customUnsubmitted
-        ungraded = (summary.first?.ungraded ?? 0) - customSubmitted
-        unsubmitted = (summary.first?.unsubmitted ?? 0) - customUnsubmitted
+        let summaryValues = self.summary.first
 
-        submissionCount = summary.first?.submissionCount ?? 0
+        graded = (summaryValues?.graded ?? 0) + customSubmitted + customUnsubmitted
+        ungraded = max((summaryValues?.ungraded ?? 0) - customSubmitted, 0)
+        unsubmitted = max((summaryValues?.unsubmitted ?? 0) - customUnsubmitted, 0)
+
+        submissionCount = summaryValues?.submissionCount ?? 0
         isReady = true
     }
 

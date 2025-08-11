@@ -223,7 +223,7 @@ extension Assignment {
                 atState: .submitted, .pending_review, .graded
             )
 
-        needsGradingCount = (item.needs_grading_count ?? 0) - customGradeStatedSubmittedCount
+        needsGradingCount = max((item.needs_grading_count ?? 0) - customGradeStatedSubmittedCount, 0)
         onlyVisibleToOverrides = item.only_visible_to_overrides ?? false
         pointsPossible = item.points_possible
         position = item.position ?? Int.max
