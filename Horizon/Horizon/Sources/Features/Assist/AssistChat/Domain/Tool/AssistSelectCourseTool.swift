@@ -23,7 +23,6 @@ import Foundation
 class AssistSelectCourseTool: AssistTool {
     private let cedar: DomainService
     private let state: AssistState
-    private let pine: DomainService
     private let userID: String
 
     let description = ""
@@ -32,15 +31,15 @@ class AssistSelectCourseTool: AssistTool {
 
     let prompt = ""
 
+    let isAvailableAsChip = true
+
     init(
         state: AssistState,
-        cedar: DomainService = DomainService(.cedar),
-        pine: DomainService = DomainService(.pine),
+        cedar: DomainService = DomainService(.journey),
         userID: String = AppEnvironment.shared.currentSession?.userID ?? ""
     ) {
         self.state = state
         self.cedar = cedar
-        self.pine = pine
         self.userID = userID
     }
 

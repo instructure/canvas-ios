@@ -43,6 +43,8 @@ struct AssistQuizTool: AssistTool {
                 state.textSelection.value != nil
             )
     }
+    
+    let isAvailableAsChip = true
 
     // MARK: - Dependencies
     private let cedar: DomainService

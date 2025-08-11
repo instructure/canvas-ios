@@ -42,6 +42,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
 
     // MARK: - Private
     private let cedar: DomainService
+    private let defaultTool: AssistTool
     private var state: AssistState = .init()
     private var originalState: AssistState = .init()
     private var goalCancellable: AnyCancellable?
@@ -63,11 +64,14 @@ final class AssistChatInteractorLive: AssistChatInteractor {
             pageURL: pageURL,
             textSelection: textSelection
         )
+        let defaultTool = AssistAnswerPromptTool(state: state)
+        self.defaultTool = defaultTool
         self.tools = [
             AssistSummarizeTool(state: state),
-            AssistAnswerPromptTool(promptType: .KeyTakeaways, state: state),
-            AssistAnswerPromptTool(promptType: .RephraseContent, state: state),
-            AssistAnswerPromptTool(promptType: .TellMeMore, state: state),
+            AssistAnswerPromptTool(state: state, promptType: .KeyTakeaways),
+            AssistAnswerPromptTool(state: state, promptType: .RephraseContent),
+            AssistAnswerPromptTool(state: state, promptType: .TellMeMore),
+            defaultTool,
             AssistQuizTool(state: state),
             AssistFlashCardsTool(state: state),
             AssistCourseActionTool(state: state),
@@ -93,33 +97,36 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         history = response.chatHistory
 
         let availableTools = tools.filter { $0.isAvailable }
-        let toolOptions: [DomainService.ChooseOption] = availableTools.map {
-            .init(name: $0.name, description: $0.description)
-        }
+        let chooseOptions: [DomainService.ChooseOption] = availableTools
+            .filter { $0.isAvailableAsChip }
+            .map { .init(name: $0.name, description: $0.description) }
 
         // TODO: Make sure we can cancel a request
-        // TODO: If it didn't select a tool
         // TODO: If the prompt is empty
         var toolExecution: AnyPublisher<AssistChatResponse?, any Error>?
         if let firstTool = availableTools.first,
            availableTools.count == 1 {
             toolExecution = execute(tool: firstTool, prompt: prompt ?? "", history: history)
-        } else if toolOptions.isNotEmpty, prompt?.isEmpty == false {
+        } else if chooseOptions.isNotEmpty, prompt?.isEmpty == false {
             toolExecution = cedar
-                .choose(from: toolOptions, with: prompt ?? "")
+                .choose(from: chooseOptions, with: prompt ?? "")
                 .flatMap { [weak self] choice in
-                    guard let self, let choice, let firstTool = tools.first(where: { $0.name == choice.name }) else {
+                    guard let self else {
                         return Just<AssistChatResponse?>(nil)
                             .setFailureType(to: Error.self)
                             .eraseToAnyPublisher()
                     }
+                    guard let choice, let firstTool = tools.first(where: { $0.name == choice.name }) else {
+                        return self.execute(tool: defaultTool, prompt: prompt ?? "", history: history)
+                    }
                     return self.execute(tool: firstTool, prompt: prompt ?? "", history: history)
                 }
                 .eraseToAnyPublisher()
-        } else if toolOptions.isNotEmpty {
+        } else if chooseOptions.isNotEmpty {
+            let chipOptions = chooseOptions.map { AssistChipOption(chip: $0.name) }
             toolExecution = Just<AssistChatResponse?>(
                     .init(
-                        .init(chipOptions: toolOptions.map { .init(chip: $0.name) }),
+                        .init(chipOptions: chipOptions)
                     )
                 )
                 .setFailureType(to: Error.self)

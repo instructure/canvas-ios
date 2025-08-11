@@ -33,6 +33,8 @@ struct AssistFlashCardsTool: AssistTool {
 
     let description: String = "Generate flash cards for the provided content."
 
+    let isAvailableAsChip = true
+
     // swiftlint:disable line_length
     let prompt: String =
         """

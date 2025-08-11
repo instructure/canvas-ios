@@ -30,6 +30,8 @@ class AssistCourseActionTool: AssistTool {
 
     var description: String = ""
 
+    let isAvailableAsChip = false
+
     let name = String(localized: "Ask a question", bundle: .horizon)
 
     let prompt = "Ask a question about the course content"

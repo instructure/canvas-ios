@@ -26,7 +26,7 @@ struct AssistSummarizeTool: AssistTool {
     var name: String { String(localized: "Summarize this material", bundle: .horizon) }
 
     // MARK: - Properties
-    var description: String { "Summarize this page or file contents" }
+    var description: String { "Summarize this page" }
 
     var isAvailable: Bool {
         state.courseID.value != nil &&
@@ -37,9 +37,10 @@ struct AssistSummarizeTool: AssistTool {
             )
     }
 
-    var prompt: String {
-        "Summarize this page or file contents"
-    }
+    let isAvailableAsChip = true
+
+    let prompt = "Summarize this page"
+
     private let unableToSummarize = String(localized: "Sorry, I can't summarize that content right now. Please try again later", bundle: .horizon)
 
     // MARK: - Dependencies
@@ -64,16 +65,16 @@ struct AssistSummarizeTool: AssistTool {
             return AssistChatMessage.nilResponse
         }
 
+        if let textSelection = state.textSelection.value {
+            return summarize(using: textSelection)
+        }
+
         if let pageURL = state.pageURL.value {
             return summarize(from: courseID, pageURL: pageURL)
         }
 
         if let fileID = state.fileID.value {
             return summarize(from: courseID, fileID: fileID)
-        }
-
-        if let textSelection = state.textSelection.value {
-            return summarize(using: textSelection)
         }
         return AssistChatMessage.nilResponse
     }

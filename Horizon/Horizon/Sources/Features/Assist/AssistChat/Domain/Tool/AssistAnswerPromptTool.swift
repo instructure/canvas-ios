@@ -24,9 +24,9 @@ import Foundation
 struct AssistAnswerPromptTool: AssistTool {
 
     // MARK: - Properties
-    var description: String { promptType.description }
+    var description: String { promptType?.description ?? "The user is asking a question about some text. This should be selected only if no other options match" }
 
-    var name: String { promptType.name }
+    var name: String { promptType?.name ?? "Answer a question" }
 
     var isAvailable: Bool {
         state.courseID.value != nil &&
@@ -37,20 +37,24 @@ struct AssistAnswerPromptTool: AssistTool {
             )
     }
 
-    var prompt: String { promptType.prompt }
+    var isAvailableAsChip: Bool {
+        promptType != nil
+    }
+
+    var prompt: String { promptType?.prompt ?? "The user is asking a question about this document. Answer the question in 3 - 5 sentences." }
 
     private let unableToAnswer = String(localized: "Sorry, I can't answer that question right now. Please try again later", bundle: .horizon)
 
     // MARK: - Dependencies
     private let cedar: DomainService
     private let pine: DomainService
-    private let promptType: PromptType
+    private let promptType: PromptType?
     private let state: AssistState
 
     // MARK: - Init
     init(
-        promptType: PromptType,
         state: AssistState,
+        promptType: PromptType? = nil,
         pine: DomainService = DomainService(.pine),
         cedar: DomainService = DomainService(.cedar)
     ) {
@@ -62,52 +66,73 @@ struct AssistAnswerPromptTool: AssistTool {
 
     // MARK: - Inputs
     func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
-        guard let courseID = state.courseID.value else {
+        guard let courseID = state.courseID.value,
+              let question = promptType != nil ? description : response else {
             return AssistChatMessage.nilResponse
         }
 
         if let pageURL = state.pageURL.value {
-            return answer(from: courseID, pageURL: pageURL)
+            return answer(question: question, from: courseID, pageURL: pageURL)
         }
 
         if let fileID = state.fileID.value {
-            return answer(from: courseID, fileID: fileID)
+            return answer(question: question, from: courseID, fileID: fileID)
         }
 
         if let textSelection = state.textSelection.value {
-            return answer(using: textSelection)
+            return answer(question: question, using: textSelection)
         }
+
         return AssistChatMessage.nilResponse
     }
 
     // MARK: - Private Methods
-    private func answer(from courseID: String, pageURL: String) -> AnyPublisher<AssistChatMessage?, any Error> {
+    private func answer(
+        question: String,
+        from courseID: String,
+        pageURL: String
+    ) -> AnyPublisher<AssistChatMessage?, any Error> {
         ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
             .getEntities()
             .map { $0.first?.id }
             .flatMap { pageID in
-                self.answer(from: courseID, sourceID: pageID, sourceType: .Page)
+                self.answer(
+                    question: question,
+                    from: courseID,
+                    sourceID: pageID,
+                    sourceType: .Page
+                )
             }
             .eraseToAnyPublisher()
     }
 
-    private func answer(from courseID: String, fileID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        answer(from: courseID, sourceID: fileID, sourceType: .File)
+    private func answer(
+        question: String,
+        from courseID: String,
+        fileID: String
+    ) -> AnyPublisher<AssistChatMessage?, any Error> {
+        answer(question: question, from: courseID, sourceID: fileID, sourceType: .File)
     }
 
-    private func answer(from courseID: String, sourceID: String?, sourceType: AssistChatInteractor.AssetType) -> AnyPublisher<AssistChatMessage?, any Error> {
+    private func answer(
+        question: String,
+        from courseID: String,
+        sourceID: String?,
+        sourceType: AssistChatInteractor.AssetType
+    ) -> AnyPublisher<AssistChatMessage?, any Error> {
         pine.askARAGQuestion(
-            question: description,
+            question: question,
             courseID: courseID,
             sourceID: sourceID,
             sourceType: sourceType.learningObjectFilterType
         )
     }
 
-    private func answer(using body: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        cedar.api()
+    private func answer(question: String, using body: String) -> AnyPublisher<AssistChatMessage?, any Error> {
+        let prompt = "The user is asking a question about some text. Answer the question in 3 - 5 sentences. Here's the question: \"\(question)\". Here's the text: \"\(body)\"."
+        return cedar.api()
             .flatMap { api in
-                api.makeRequest(CedarAnswerPromptMutation(prompt: body))
+                api.makeRequest(CedarAnswerPromptMutation(prompt: prompt))
             }
             .map { (response, _) in
                 AssistChatMessage(
@@ -117,13 +142,11 @@ struct AssistAnswerPromptTool: AssistTool {
             .eraseToAnyPublisher()
     }
 
-    // swiftlint:disable line_length
     enum PromptType: String {
         case KeyTakeaways
         case RephraseContent
         case TellMeMore
     }
-    // swiftlint:enable line_length
 }
 
 private extension AssistAnswerPromptTool.PromptType {
