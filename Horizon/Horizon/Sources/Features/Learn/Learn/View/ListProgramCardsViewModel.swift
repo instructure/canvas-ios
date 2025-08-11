@@ -43,7 +43,7 @@ final class ListProgramCardsViewModel {
     }
 
     // MARK: - Public Methods
-    
+
     func append(_ point: ListProgramCards.ProgramCardPoint) {
         points.append(point)
     }
