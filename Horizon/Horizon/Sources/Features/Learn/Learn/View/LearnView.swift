@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import SwiftUI
 import HorizonUI
 
@@ -24,36 +23,97 @@ struct LearnView: View {
     @Bindable var viewModel: LearnViewModel
 
     var body: some View {
-        VStack {
-            if let courseDetailsViewModel = viewModel.courseDetailsViewModel {
-                LearnAssembly.makeCourseDetailsView(viewModel: courseDetailsViewModel, isBackButtonVisible: false)
-            } else if viewModel.courseDetailsViewModel == nil, !viewModel.isLoaderVisible {
-               ScrollView {
-                    Text("You aren’t currently enrolled in a course.", bundle: .horizon)
-                        .padding(.huiSpaces.space24)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                        .foregroundStyle(Color.huiColors.text.body)
-                        .huiTypography(.h3)
-                        .padding(.top, .huiSpaces.space32)
-                }
-               .refreshable {
-                   await viewModel.refreshCourses()
-               }
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: .zero) {
+                Text(verbatim: "Program Name Here")
+                    .foregroundStyle(Color.huiColors.text.title)
+                    .huiTypography(.h3)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
+                    .padding(.bottom, .huiSpaces.space24)
+                progressBar
+                    .padding(.bottom, .huiSpaces.space8)
+                Text(verbatim: "Learner provider-generated program description At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditis praesentium voluptatum deleniti")
+                    .foregroundStyle(Color.huiColors.text.body)
+                    .huiTypography(.p1)
+                    .padding(.bottom, .huiSpaces.space16)
+                pills
+                    .padding(.bottom, .huiSpaces.space32)
+
+                ListProgramCards(
+                    viewModel: viewModel.listProgramCardsViewModel,
+                    programs: viewModel.programs,
+                    isLeaner: true,
+                    isLoading: viewModel.isLoadingEnrollButton) { program in
+                        viewModel.navigateToProgramDetails(programID: program.id)
+                    } onTapEnroll: { program in
+                        viewModel.enrollInProgram(programID: program.id)
+                    }
             }
+            .padding([.horizontal, .bottom], .huiSpaces.space24)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toolbar(.hidden)
-        .background(Color.huiColors.surface.pagePrimary)
-        .alert(isPresented: $viewModel.isAlertPresented) {
-            Alert(title: Text("Something went wrong", bundle: .horizon), message: Text(viewModel.errorMessage))
-        }
-        .overlay {
-            if viewModel.isLoaderVisible {
-                HorizonUI.Spinner(size: .small, showBackground: true)
+        .safeAreaInset(edge: .top, spacing: .zero) {
+            HStack {
+                InstitutionLogo()
+                Spacer()
             }
+            .padding(.horizontal, .huiSpaces.space24)
+            .padding(.top, .huiSpaces.space10)
+            .padding(.bottom, .huiSpaces.space4)
+            .background(Color.huiColors.surface.pagePrimary)
         }
-        .onFirstAppear {
-            viewModel.fetchCourses()
+        .background(Color.huiColors.surface.pagePrimary)
+    }
+
+    private var progressBar: some View {
+        VStack(spacing: .huiSpaces.space8) {
+            Text(verbatim: "Not started")
+                .foregroundStyle(Color.huiColors.text.title)
+                .huiTypography(.p2)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            HorizonUI.ProgressBar(
+                progress: 0,
+                size: .small,
+                numberPosition: .hidden,
+                backgroundColor: Color.huiColors.surface.pageSecondary
+            )
         }
     }
+
+    private var pills: some View {
+        HorizonUI.HFlow {
+            defaultPill(title: "Program format")
+            defaultPill(title: "6 hours 20 minutes")
+            HorizonUI.Pill(
+                title: "20/10/2025 - 20/10/2027",
+                style: .solid(
+                    .init(
+                        backgroundColor: Color.huiColors.surface.pageSecondary,
+                        textColor: Color.huiColors.text.title,
+                        iconColor: Color.huiColors.icon.default
+                    )
+                ),
+                isSmall: true,
+                icon: .huiIcons.calendarToday
+            )
+        }
+    }
+
+    private func defaultPill(title: String) -> some View {
+        HorizonUI.Pill(
+            title: title,
+            style: .solid(
+                .init(
+                    backgroundColor: Color.huiColors.surface.pageSecondary,
+                    textColor: Color.huiColors.text.title
+                )
+            ),
+            isSmall: true
+        )
+    }
+}
+
+#Preview {
+    LearnView(viewModel: .init(interactor: GetLearnCoursesInteractorLive()))
 }

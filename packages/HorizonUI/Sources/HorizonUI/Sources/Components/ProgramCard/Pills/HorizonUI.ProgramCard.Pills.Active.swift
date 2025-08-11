@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,33 +18,29 @@
 
 import SwiftUI
 
-public extension HorizonUI.ProgressBar {
-    enum Size: Equatable {
-        case small
-        case medium
+extension HorizonUI.ProgramCard.Pills {
+    struct Active: View {
+        let isEnrolled: Bool
+        let isRequired: Bool
+        let estimatedTime: String?
+        let dueDate: String?
 
-        var height: CGFloat {
-            switch self {
-            case .small:
-                return 8
-            case .medium:
-                return 28
-            }
-        }
-
-        var backgroundColor: Color {
-            switch self {
-            case .small:
-                return .huiColors.surface.pageTertiary
-            case .medium:
-                return .clear
-            }
+        var body: some View {
+            HorizonUI.ProgramCard.Pills.Inprogress(
+                isEnrolled: isEnrolled,
+                isRequired: isRequired,
+                estimatedTime: estimatedTime,
+                dueDate: dueDate
+            )
         }
     }
+}
 
-    enum NumberPosition {
-        case inside
-        case outside
-        case hidden
-    }
+#Preview {
+    HorizonUI.ProgramCard.Pills.Active(
+        isEnrolled: true,
+        isRequired: true,
+        estimatedTime: "10 hours",
+        dueDate: "10-10-2020"
+    )
 }

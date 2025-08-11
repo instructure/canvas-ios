@@ -18,14 +18,18 @@
 
 import Combine
 import Observation
+import Foundation
 
 @Observable
 final class LearnViewModel {
     // MARK: - Outputs
 
     private(set) var isLoaderVisible: Bool = false
+    private(set) var isLoadingEnrollButton = false
     private(set) var errorMessage = ""
     private(set) var courseDetailsViewModel: CourseDetailsViewModel?
+    private(set) var programs: [ProgramCardModel] = []
+    let listProgramCardsViewModel = ListProgramCardsViewModel()
 
     // MARK: - Input / Outputs
 
@@ -43,6 +47,7 @@ final class LearnViewModel {
 
     init(interactor: GetLearnCoursesInteractor) {
         self.interactor = interactor
+        getPrograms()
     }
 
     func fetchCourses(
@@ -80,6 +85,36 @@ final class LearnViewModel {
             fetchCourses(ignoreCache: true, isShowLoader: false) {
                 continuation.resume()
             }
+        }
+    }
+
+   private func getPrograms() {
+        var counter = 0
+        let mocks = ProgramCardModel.mocks2
+
+        programs = mocks.map { program in
+            var updatedProgram = program
+            if program.isRequired {
+                counter += 1
+                updatedProgram.index = counter
+            } else {
+                updatedProgram.index = 0
+            }
+            return updatedProgram
+        }
+    }
+
+    // MARK: - Output Functions
+
+    func navigateToProgramDetails(programID: String) {
+
+    }
+
+    func enrollInProgram(programID: String) {
+        isLoadingEnrollButton = true
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.isLoadingEnrollButton = false
         }
     }
 }
