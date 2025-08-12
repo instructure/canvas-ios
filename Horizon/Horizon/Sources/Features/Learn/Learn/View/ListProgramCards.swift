@@ -22,7 +22,7 @@ import HorizonUI
 struct ListProgramCards: View {
     // MARK: - Dependencies
 
-    private let viewModel: ListProgramCardsViewModel
+    private let viewModel = ListProgramCardsViewModel()
     private let programs: [ProgramCardModel]
     private let isLoading: Bool
     private let isLinear: Bool
@@ -38,14 +38,12 @@ struct ListProgramCards: View {
     // MARK: - Init
 
     init(
-        viewModel: ListProgramCardsViewModel,
         programs: [ProgramCardModel],
         isLinear: Bool,
         isLoading: Bool,
         onTapSelect: @escaping (ProgramCardModel) -> Void,
         onTapEnroll: @escaping (ProgramCardModel) -> Void
     ) {
-        self.viewModel = viewModel
         self.programs = programs
         self.isLinear = isLinear
         self.isLoading = isLoading

@@ -41,7 +41,6 @@ struct LearnView: View {
                     .padding(.bottom, .huiSpaces.space32)
 
                 ListProgramCards(
-                    viewModel: viewModel.listProgramCardsViewModel,
                     programs: viewModel.programs,
                     isLinear: true,
                     isLoading: viewModel.isLoadingEnrollButton) { program in

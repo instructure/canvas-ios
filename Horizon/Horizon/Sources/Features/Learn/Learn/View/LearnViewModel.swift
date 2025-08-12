@@ -29,7 +29,6 @@ final class LearnViewModel {
     private(set) var errorMessage = ""
     private(set) var courseDetailsViewModel: CourseDetailsViewModel?
     private(set) var programs: [ProgramCardModel] = []
-    let listProgramCardsViewModel = ListProgramCardsViewModel()
 
     // MARK: - Input / Outputs
 
