@@ -83,6 +83,7 @@ final class ModuleItemSequenceViewModel {
     private let isNotebookDisabled: Bool
     // Need to save the completion state for the module items without observation
     private var unobservedCourse: HCourse?
+    private var firstModuleItem: HModuleItem?
 
     // MARK: - Init
 
@@ -95,7 +96,7 @@ final class ModuleItemSequenceViewModel {
         moduleItemStateInteractor: ModuleItemStateInteractor,
         router: Router,
         assetType: AssetType,
-        selectedCourse: HCourse? = nil,
+        firstModuleItem: HModuleItem? = nil,
         assetID: String,
         courseID: String,
         isNotebookDisabled: Bool = false
@@ -107,14 +108,17 @@ final class ModuleItemSequenceViewModel {
         self.assetID = assetID
         self.courseID = courseID
         self.isNotebookDisabled = isNotebookDisabled
-        self.unobservedCourse = selectedCourse
+        self.firstModuleItem = firstModuleItem
 
         fetchModuleItemSequence(assetId: assetID)
 
-        moduleItemInteractor.getCourse()
+        moduleItemInteractor.getCourse(ignoreCache: false)
             .sink { [weak self] course in
                 self?.courseName = course.name
                 self?.course = course
+                if self?.unobservedCourse == nil {
+                    self?.unobservedCourse = course
+                }
             }
             .store(in: &subscriptions)
 
@@ -294,14 +298,25 @@ final class ModuleItemSequenceViewModel {
             return
         }
         guard moduleItem.completionRequirementType == .must_view,
-              getModuleItem(moduleId: moduleID, itemId: itemID)?.isCompleted == false,
+              isModuleItemCompleted(moduleId: moduleID, itemId: itemID) == false,
               moduleItem.lockedForUser == false else {
             return
         }
+        unobservedCourse = course
         moduleItemInteractor
             .markAsViewed(moduleID: moduleID, itemID: itemID)
             .sink()
             .store(in: &subscriptions)
+    }
+
+    private func isModuleItemCompleted(moduleId: String, itemId: String) -> Bool? {
+        if itemID == firstModuleItem?.id {
+            let isCompleted = firstModuleItem?.isCompleted
+            firstModuleItem = nil
+            return isCompleted
+        } else {
+            return getModuleItem(moduleId: moduleId, itemId: itemId)?.isCompleted
+        }
     }
 
     private func getModuleItem(moduleId: String, itemId: String) -> HModuleItem? {
@@ -343,20 +358,31 @@ final class ModuleItemSequenceViewModel {
     }
 
     private func refershModuleItem() {
-        guard let next = sequence?.next else { return }
-        // Check if the next module item isn't must_view. If it is, call the API to unlock it.
-        guard let moduleItem = getModuleItem(moduleId: next.moduleID, itemId: next.id),
-              moduleItem.completionRequirementType != .must_view else {
+        guard let next = sequence?.next,
+              let moduleItem = getModuleItem(moduleId: next.moduleID, itemId: next.id) else {
             return
         }
-        moduleItemInteractor.fetchModuleItems(
-            assetType: assetType,
-            assetID: next.id,
-            moduleID: next.moduleID,
-            itemID: next.id,
-            ignoreCache: true
-        )
-        .sink()
-        .store(in: &subscriptions)
+
+        // If the next module item is `must_view` and locked, fetch the course to unlock it.
+        if moduleItem.completionRequirementType == .must_view {
+            guard moduleItem.isLocked else { return }
+
+            moduleItemInteractor.getCourse(ignoreCache: true)
+                .sink { [weak self] course in
+                    self?.course = course
+                }
+                .store(in: &subscriptions)
+        } else {
+            // Otherwise, fetch module items normally.
+            moduleItemInteractor.fetchModuleItems(
+                assetType: assetType,
+                assetID: next.id,
+                moduleID: next.moduleID,
+                itemID: next.id,
+                ignoreCache: true
+            )
+            .sink()
+            .store(in: &subscriptions)
+        }
     }
 }
