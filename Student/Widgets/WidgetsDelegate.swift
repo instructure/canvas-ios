@@ -23,7 +23,9 @@ class WidgetsDelegate: EnvironmentKey {
     public private(set) static var defaultValue = WidgetsDelegate()
 
     private init() {
-        FirebaseApp.configure()
+        if FirebaseOptions.defaultOptions()?.apiKey != nil {
+            FirebaseApp.configure()
+        }
     }
 }
 
