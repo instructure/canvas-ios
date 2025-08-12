@@ -285,7 +285,7 @@ private extension AssistChipOption {
 private extension AssistChatMessage {
     func isFinalMessage(in history: [AssistChatMessage]) -> Bool {
         guard let lastMessage = history.last else { return false }
-        return self.id == lastMessage.id && self.role == .Assistant
+        return self.id == lastMessage.id && lastMessage.text?.isNotEmpty == true && self.role == .Assistant
     }
 
     func isSolicitingFeedback(with response: AssistChatResponse) -> Bool {

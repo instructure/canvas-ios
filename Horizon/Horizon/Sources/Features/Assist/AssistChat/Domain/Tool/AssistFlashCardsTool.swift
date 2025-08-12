@@ -22,13 +22,19 @@ import Core
 struct AssistFlashCardsTool: AssistTool {
 
     // MARK: - Dependencies
-    private let pine: DomainService
+    private let cedar: DomainService
+    private let downloadFileInteractor: DownloadFileInteractor
     private let state: AssistState
 
     // MARK: - Init
-    init(state: AssistState, pine: DomainService = DomainService(.pine)) {
+    init(
+        state: AssistState,
+        downloadFileInteractor: DownloadFileInteractor,
+        cedar: DomainService = DomainService(.cedar)
+    ) {
         self.state = state
-        self.pine = pine
+        self.downloadFileInteractor = downloadFileInteractor
+        self.cedar = cedar
     }
 
     let description: String = "Generate flash cards for the provided content."
@@ -66,19 +72,35 @@ struct AssistFlashCardsTool: AssistTool {
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
-        if let sourceID = state.fileID.value {
-            return generateFlashCards(
+        if let fileID = state.fileID.value {
+            return document(
+                downloadFileInteractor: downloadFileInteractor,
                 courseID: courseID,
-                sourceID: sourceID,
-                sourceType: .File
+                fileID: fileID
             )
+            .compactMap { $0 }
+            .flatMap {
+                generateFlashCards(
+                    courseID: courseID,
+                    base64Source: $0.0,
+                    format: $0.1
+                )
+            }
+            .eraseToAnyPublisher()
         }
         if let pageURL = state.pageURL.value {
             return ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
                 .getEntities()
-                .map { $0.first?.id }
-                .flatMap { pageID in
-                    self.generateFlashCards(courseID: courseID, sourceID: pageID, sourceType: .Page)
+                .flatMap {
+                    guard let data =  $0.first?.body.data(using: .utf8) else {
+                        return Just<AssistChatMessage?>(nil)
+                            .setFailureType(to: Error.self)
+                            .eraseToAnyPublisher()
+                    }
+                    return generateFlashCards(
+                        courseID: courseID,
+                        base64Source: data.base64EncodedString()
+                    )
                 }
                 .eraseToAnyPublisher()
         }
@@ -87,14 +109,26 @@ struct AssistFlashCardsTool: AssistTool {
 
     private func generateFlashCards(
         courseID: String,
-        sourceID: String?,
-        sourceType: AssistChatInteractor.AssetType
+        base64Source: String,
+        format: AssistChatDocumentType = .txt
     ) -> AnyPublisher<AssistChatMessage?, any Error> {
-        pine.askARAGQuestion(
-            question: description,
-            courseID: courseID,
-            sourceID: sourceID,
-            sourceType: sourceType.learningObjectFilterType
-        )
+        cedar.api()
+            .flatMap { api in
+                api.makeRequest(
+                    CedarAnswerPromptMutation(
+                        prompt: prompt,
+                        document: CedarAnswerPromptMutation.DocumentInput(
+                            format: format,
+                            base64Source: base64Source
+                        )
+                    )
+                )
+            }
+            .map { (response: CedarAnswerPromptMutationResponse?, _) in
+                AssistChatMessage(
+                    flashCards: AssistChatFlashCard.build(from: response?.data.answerPrompt ?? "") ?? []
+                )
+            }
+            .eraseToAnyPublisher()
     }
 }

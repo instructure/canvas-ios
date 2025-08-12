@@ -39,3 +39,32 @@ protocol AssistTool {
     /// The prompt that will be used to initiate the tool's execution.
     var prompt: String { get }
 }
+
+extension AssistTool {
+    func document(
+        downloadFileInteractor: DownloadFileInteractor,
+        courseID: String,
+        fileID: String
+    ) -> AnyPublisher<(String, AssistChatDocumentType)?, any Error> {
+        ReactiveStore(useCase: GetFile(context: .course(courseID), fileID: fileID))
+            .getEntities()
+            .map { files in files.first }
+            .flatMap { (file: File?) in
+                guard let file = file,
+                      let format = AssistChatDocumentType.from(mimeType: file.contentType) else {
+                    return Just<(String, AssistChatDocumentType)?>(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
+                }
+                return downloadFileInteractor
+                    .download(fileID: fileID, courseID: courseID)
+                    .map { try? Data(contentsOf: $0) }
+                    .map { data in
+                        guard let data else {
+                            return nil
+                        }
+                        return (data.base64EncodedString(), format)
+                    }
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+}

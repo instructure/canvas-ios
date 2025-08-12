@@ -47,7 +47,7 @@ struct AssistAnswerPromptTool: AssistTool {
 
     // MARK: - Dependencies
     private let cedar: DomainService
-    private let pine: DomainService
+    private let downloadFileInteractor: DownloadFileInteractor
     private let promptType: PromptType?
     private let state: AssistState
 
@@ -55,12 +55,12 @@ struct AssistAnswerPromptTool: AssistTool {
     init(
         state: AssistState,
         promptType: PromptType? = nil,
-        pine: DomainService = DomainService(.pine),
+        downloadFileInteractor: DownloadFileInteractor,
         cedar: DomainService = DomainService(.cedar)
     ) {
-        self.promptType = promptType
         self.state = state
-        self.pine = pine
+        self.promptType = promptType
+        self.downloadFileInteractor = downloadFileInteractor
         self.cedar = cedar
     }
 
@@ -94,14 +94,9 @@ struct AssistAnswerPromptTool: AssistTool {
     ) -> AnyPublisher<AssistChatMessage?, any Error> {
         ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
             .getEntities()
-            .map { $0.first?.id }
-            .flatMap { pageID in
-                self.answer(
-                    question: question,
-                    from: courseID,
-                    sourceID: pageID,
-                    sourceType: .Page
-                )
+            .compactMap { $0.first?.body }
+            .flatMap { body in
+                self.answer(question: question, using: body)
             }
             .eraseToAnyPublisher()
     }
@@ -111,28 +106,37 @@ struct AssistAnswerPromptTool: AssistTool {
         from courseID: String,
         fileID: String
     ) -> AnyPublisher<AssistChatMessage?, any Error> {
-        answer(question: question, from: courseID, sourceID: fileID, sourceType: .File)
-    }
-
-    private func answer(
-        question: String,
-        from courseID: String,
-        sourceID: String?,
-        sourceType: AssistChatInteractor.AssetType
-    ) -> AnyPublisher<AssistChatMessage?, any Error> {
-        pine.askARAGQuestion(
-            question: question,
+        document(
+            downloadFileInteractor: downloadFileInteractor,
             courseID: courseID,
-            sourceID: sourceID,
-            sourceType: sourceType.learningObjectFilterType
+            fileID: fileID
         )
+        .compactMap { $0 }
+        .flatMap {
+            answer(question: question, base64Source: $0.0, format: $0.1)
+        }
+        .eraseToAnyPublisher()
     }
 
-    private func answer(question: String, using body: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        let prompt = "The user is asking a question about some text. Answer the question in 3 - 5 sentences. Here's the question: \"\(question)\". Here's the text: \"\(body)\"."
+    private func answer(question: String, using: String, format: AssistChatDocumentType = .txt) -> AnyPublisher<AssistChatMessage?, any Error> {
+        guard let data = using.data(using: .utf8) else {
+            return Just<AssistChatMessage?>(nil)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        return answer(question: question, base64Source: data.base64EncodedString(), format: format)
+    }
+
+    private func answer(question: String, base64Source: String, format: AssistChatDocumentType) -> AnyPublisher<AssistChatMessage?, any Error> {
+        let prompt = "The user is asking a question about some text. Answer the question in 3 - 5 sentences. Here's the question: \"\(question)\""
         return cedar.api()
             .flatMap { api in
-                api.makeRequest(CedarAnswerPromptMutation(prompt: prompt))
+                api.makeRequest(
+                    CedarAnswerPromptMutation(
+                        prompt: prompt,
+                        document: .init(format: format, base64Source: base64Source)
+                    )
+                )
             }
             .map { (response, _) in
                 AssistChatMessage(

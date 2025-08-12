@@ -45,17 +45,17 @@ struct AssistSummarizeTool: AssistTool {
 
     // MARK: - Dependencies
     private let cedar: DomainService
-    private let pine: DomainService
+    private let downloadFileInteractor: DownloadFileInteractor
     private let state: AssistState
 
     // MARK: - Init
     init(
         state: AssistState,
-        pine: DomainService = DomainService(.pine),
-        cedar: DomainService = DomainService(.cedar)
+        downloadFileInteractor: DownloadFileInteractor,
+        cedar: DomainService = DomainService(.cedar),
     ) {
         self.state = state
-        self.pine = pine
+        self.downloadFileInteractor = downloadFileInteractor
         self.cedar = cedar
     }
 
@@ -80,27 +80,45 @@ struct AssistSummarizeTool: AssistTool {
     }
 
     // MARK: - Private Methods
+    private func answerPrompt(base64Source: String, format: AssistChatDocumentType) -> AnyPublisher<AssistChatMessage?, any Error> {
+        cedar.api()
+            .flatMap { api in
+                api.makeRequest(
+                    CedarAnswerPromptMutation(
+                        prompt: prompt,
+                        document: .init(format: format, base64Source: base64Source)
+                    )
+                )
+            }
+            .map { response, _ in
+                AssistChatMessage(
+                    botResponse: response.data.answerPrompt
+                )
+            }
+            .eraseToAnyPublisher()
+    }
+
     private func summarize(from courseID: String, pageURL: String) -> AnyPublisher<AssistChatMessage?, any Error> {
         ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
             .getEntities()
-            .map { $0.first?.id }
-            .flatMap { pageID in
-                self.summarize(from: courseID, sourceID: pageID, sourceType: .Page)
+            .map { $0.first?.body }
+            .flatMap { body in
+                self.summarize(using: body ?? "")
             }
             .eraseToAnyPublisher()
     }
 
     private func summarize(from courseID: String, fileID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        summarize(from: courseID, sourceID: fileID, sourceType: .File)
-    }
-
-    private func summarize(from courseID: String, sourceID: String?, sourceType: AssistChatInteractor.AssetType) -> AnyPublisher<AssistChatMessage?, any Error> {
-        pine.askARAGQuestion(
-            question: description,
+        document(
+            downloadFileInteractor: downloadFileInteractor,
             courseID: courseID,
-            sourceID: sourceID,
-            sourceType: sourceType.learningObjectFilterType
+            fileID: fileID
         )
+        .compactMap { $0 }
+        .flatMap {
+            answerPrompt(base64Source: $0.0, format: $0.1)
+        }
+        .eraseToAnyPublisher()
     }
 
     private func summarize(using body: String) -> AnyPublisher<AssistChatMessage?, any Error> {

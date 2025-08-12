@@ -35,7 +35,7 @@ class AssistSelectCourseTool: AssistTool {
 
     init(
         state: AssistState,
-        cedar: DomainService = DomainService(.journey),
+        cedar: DomainService = DomainService(.cedar),
         userID: String = AppEnvironment.shared.currentSession?.userID ?? ""
     ) {
         self.state = state
@@ -100,13 +100,13 @@ class AssistSelectCourseTool: AssistTool {
             }
 
             let courseNames = courseOptions.compactMap {
-                $0.course.name.map { DomainService.ChooseOption(name: $0, description: $0) }
+                $0.name.map { DomainService.ChooseOption(name: $0, description: $0) }
             }
 
             return weakSelf.cedar.choose(from: courseNames, with: response)
                 .map { goalOption in
                     if  let courseSelected = goalOption?.name,
-                        let courseID = courseOptions.first(where: { courseSelected.contains($0.course.name ?? "") == true })?.courseID {
+                        let courseID = courseOptions.first(where: { courseSelected.contains($0.name ?? "") == true })?.courseID {
                         weakSelf.state.courseID.accept(courseID)
                     }
                     return nil
@@ -128,7 +128,7 @@ class AssistSelectCourseTool: AssistTool {
                     botResponse: prompt,
                     chipOptions: courses
                         .prefix(5)
-                        .compactMap { $0.course.name }
+                        .compactMap { $0.name }
                         .map { .init(chip: $0, prompt: $0) }
                 )
             )

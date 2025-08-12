@@ -78,7 +78,7 @@ struct AssistChatMessageView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, .huiSpaces.space8)
-            } else {
+            } else if message.content.isNotEmpty {
                 Text(message.content)
                     .frame(maxWidth: message.maxWidth, alignment: .leading)
                     .huiTypography(.p1)

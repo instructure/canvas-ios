@@ -56,6 +56,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         pageURL: String? = nil,
         fileID: String? = nil,
         textSelection: String? = nil,
+        downloadFileInteractor: DownloadFileInteractor = DownloadFileInteractorLive(),
         cedar: DomainService = .init(.cedar)
     ) {
         self.state = .init(
@@ -64,16 +65,16 @@ final class AssistChatInteractorLive: AssistChatInteractor {
             pageURL: pageURL,
             textSelection: textSelection
         )
-        let defaultTool = AssistAnswerPromptTool(state: state)
+        let defaultTool = AssistAnswerPromptTool(state: state, downloadFileInteractor: downloadFileInteractor)
         self.defaultTool = defaultTool
         self.tools = [
-            AssistSummarizeTool(state: state),
-            AssistAnswerPromptTool(state: state, promptType: .KeyTakeaways),
-            AssistAnswerPromptTool(state: state, promptType: .RephraseContent),
-            AssistAnswerPromptTool(state: state, promptType: .TellMeMore),
+            AssistSummarizeTool(state: state, downloadFileInteractor: downloadFileInteractor),
+            AssistAnswerPromptTool(state: state, promptType: .KeyTakeaways, downloadFileInteractor: downloadFileInteractor),
+            AssistAnswerPromptTool(state: state, promptType: .RephraseContent, downloadFileInteractor: downloadFileInteractor),
+            AssistAnswerPromptTool(state: state, promptType: .TellMeMore, downloadFileInteractor: downloadFileInteractor),
             defaultTool,
             AssistQuizTool(state: state),
-            AssistFlashCardsTool(state: state),
+            AssistFlashCardsTool(state: state, downloadFileInteractor: downloadFileInteractor),
             AssistCourseActionTool(state: state),
             AssistSelectCourseTool(state: state)
         ]

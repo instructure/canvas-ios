@@ -16,13 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/Assist/AssistChat/Domain/AssistExecutor.swift
-struct AssistExecutor {
-    
-========
 import Foundation
 
 public extension HorizonUI {
     struct Controls {}
->>>>>>>> master:packages/HorizonUI/Sources/HorizonUI/Sources/Components/Controls/HorizonUI.Controls.swift
 }

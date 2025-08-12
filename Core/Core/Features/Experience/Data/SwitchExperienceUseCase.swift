@@ -16,32 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import CoreData
+import Foundation
 
-<<<<<<<< HEAD:packages/HorizonUI/Sources/HorizonUI/Sources/Components/ProgressBar/HorizonUI.ProgressBar.Size.swift
-public extension HorizonUI.ProgressBar {
-    enum Size: Equatable {
-        case small
-        case medium
-
-        var height: CGFloat {
-            switch self {
-            case .small:
-                return 8
-            case .medium:
-                return 28
-            }
-        }
-
-        var backgroundColor: Color {
-            switch self {
-            case .small:
-                return .huiColors.primitives.white10.opacity(0.3)
-            case .medium:
-                return .clear
-            }
-        }
-========
 public struct SwitchExperienceUseCase: APIUseCase {
     public typealias Model = CDExperienceSummary
     public let cacheKey: String?
@@ -59,12 +36,5 @@ public struct SwitchExperienceUseCase: APIUseCase {
     ) {
         guard let response else { return }
         CDExperienceSummary.update(experience: response.experience, in: client)
->>>>>>>> master:Core/Core/Features/Experience/Data/SwitchExperienceUseCase.swift
-    }
-
-    enum NumberPosition {
-        case inside
-        case outside
-        case hidden
     }
 }

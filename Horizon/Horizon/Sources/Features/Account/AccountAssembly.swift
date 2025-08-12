@@ -19,19 +19,6 @@
 import Core
 import UIKit
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/Notebook/Common/View/HighlightWebView/EnableZoom.swift
-private class EnableZoom: CoreWebViewFeature {
-    private let script: String =
-    """
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-    """
-
-    override func apply(on webView: CoreWebView) {
-        webView.addScript(script)
-========
 final class AccountAssembly {
     static func makeView() -> AccountView {
         AccountView(
@@ -39,14 +26,8 @@ final class AccountAssembly {
                 getUserInteractor: GetUserInteractorLive()
             )
         )
->>>>>>>> master:Horizon/Horizon/Sources/Features/Account/AccountAssembly.swift
     }
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/Notebook/Common/View/HighlightWebView/EnableZoom.swift
-extension CoreWebViewFeature {
-    static var enableZoom: CoreWebViewFeature {
-        EnableZoom()
-========
     #if DEBUG
     static func makePreview() -> AccountView {
         let getUserInteractorPreview = GetUserInteractorPreview()
@@ -54,7 +35,6 @@ extension CoreWebViewFeature {
             getUserInteractor: getUserInteractorPreview
         )
         return AccountView(viewModel: viewModel)
->>>>>>>> master:Horizon/Horizon/Sources/Features/Account/AccountAssembly.swift
     }
     #endif
 }

@@ -75,7 +75,7 @@ class AssistCourseActionTool: AssistTool {
         )
         .getEntities()
         .map { [weak self] courses in
-            courses.first { $0.courseID == self?.state.courseID.value }?.course.name ?? ""
+            courses.first { $0.courseID == self?.state.courseID.value }?.name ?? ""
         }
         .eraseToAnyPublisher()
     }
