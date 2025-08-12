@@ -363,7 +363,7 @@ final class ModuleItemSequenceViewModel {
             return
         }
 
-        // If the next module item is `must_view` and locked, fetch the course to unlock it.
+        /// If the next module item is `must_view` and locked, fetch the course to unlock it.
         if moduleItem.completionRequirementType == .must_view {
             guard moduleItem.isLocked else { return }
 
@@ -373,7 +373,7 @@ final class ModuleItemSequenceViewModel {
                 }
                 .store(in: &subscriptions)
         } else {
-            // Otherwise, fetch module items normally.
+            /// Otherwise, fetch module items normally.
             moduleItemInteractor.fetchModuleItems(
                 assetType: assetType,
                 assetID: next.id,
