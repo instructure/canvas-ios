@@ -24,7 +24,7 @@ targets:
       - package: FirebaseRemoteConfig
       - package: FirebaseRemoteConfigSwift
     postBuildScripts:
-      - script: "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\""
+      - path: ../../scripts/xcode-build-phases/uploadDSYMs.sh
         name: Upload dSYMs to Firebase
         basedOnDependencyAnalysis: false
         inputFiles:
