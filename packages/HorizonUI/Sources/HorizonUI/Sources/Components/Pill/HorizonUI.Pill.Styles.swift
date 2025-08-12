@@ -25,7 +25,7 @@ public extension HorizonUI.Pill.Style {
         let textColor: Color
         let iconColor: Color
 
-        public init(borderColor: Color, textColor: Color, iconColor: Color) {
+        public init(borderColor: Color, textColor: Color, iconColor: Color = .clear) {
             self.borderColor = borderColor
             self.textColor = textColor
             self.iconColor = iconColor
@@ -58,9 +58,21 @@ public extension HorizonUI.Pill.Style {
 
     struct Solid: Sendable {
         let backgroundColor: Color
-        let borderColor: Color = .clear
+        let borderColor: Color
         let textColor: Color
         let iconColor: Color
+
+       public init(
+            backgroundColor: Color,
+            borderColor: Color = .clear,
+            textColor: Color,
+            iconColor: Color = .clear
+        ) {
+            self.backgroundColor = backgroundColor
+            self.textColor = textColor
+            self.iconColor = iconColor
+            self.borderColor = borderColor
+        }
 
         public static let `default` = Solid(
             backgroundColor: .huiColors.surface.inversePrimary,

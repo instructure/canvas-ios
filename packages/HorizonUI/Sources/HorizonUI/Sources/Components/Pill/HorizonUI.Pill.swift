@@ -82,7 +82,7 @@ public extension HorizonUI {
         private let isSmall: Bool
         private let isUppercased: Bool
         private let icon: Image?
-        private let cornerRadius: CornerRadius = .level4
+        private let cornerRadius: CornerRadius
         private let horizontalPadding: CGFloat
         private let verticalPadding: CGFloat
         private let minHeight: CGFloat
@@ -92,12 +92,14 @@ public extension HorizonUI {
             style: Pill.Style = .outline(Style.Outline.default),
             isSmall: Bool = false,
             isUppercased: Bool = false,
+            cornerRadius: CornerRadius = .level4,
             icon: Image? = nil
         ) {
             self.title = title
             self.style = style
             self.isSmall = isSmall
             self.isUppercased = isUppercased
+            self.cornerRadius = cornerRadius
             self.icon = icon
 
             if case .inline = style {

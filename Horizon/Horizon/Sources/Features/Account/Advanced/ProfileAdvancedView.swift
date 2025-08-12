@@ -38,7 +38,7 @@ struct ProfileAdvancedView: View {
                     options: viewModel.timeZones,
                     disabled: viewModel.isSelectDisabled
                 )
-                SavingButton(
+                HorizonUI.LoadingButton(
                     title: String(localized: "Save Changes", bundle: .horizon),
                     isLoading: $viewModel.isLoading,
                     isDisabled: $viewModel.isSaveDisabled,

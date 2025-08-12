@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,33 +18,24 @@
 
 import SwiftUI
 
-public extension HorizonUI.ProgressBar {
-    enum Size: Equatable {
-        case small
-        case medium
-
-        var height: CGFloat {
-            switch self {
-            case .small:
-                return 8
-            case .medium:
-                return 28
-            }
-        }
-
-        var backgroundColor: Color {
-            switch self {
-            case .small:
-                return .huiColors.surface.pageTertiary
-            case .medium:
-                return .clear
-            }
+extension HorizonUI.ProgramCard.Pills {
+    struct Completed: View {
+        var body: some View {
+            HorizonUI.Pill(
+                title: String(localized: "Completed"),
+                style: .solid(
+                    .init(
+                        backgroundColor: Color.huiColors.primitives.honey12,
+                        textColor: Color.huiColors.primitives.honey90
+                    )
+                ),
+                isSmall: true,
+                cornerRadius: .level1
+            )
         }
     }
+}
 
-    enum NumberPosition {
-        case inside
-        case outside
-        case hidden
-    }
+#Preview {
+    HorizonUI.ProgramCard.Pills.Completed()
 }
