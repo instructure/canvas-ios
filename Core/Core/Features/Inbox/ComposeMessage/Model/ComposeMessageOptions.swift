@@ -236,6 +236,9 @@ extension ComposeMessageOptions {
                     )
                 }
             }
+        } else if let author = conversation.audience.first {
+            // according to the API docs: audience list is ordered by participation level (author is the first one)
+            recipients = [Recipient(conversationParticipant: author)]
         } else {
             recipients = conversation.audience.map { Recipient(conversationParticipant: $0) }
         }
