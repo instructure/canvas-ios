@@ -118,6 +118,7 @@ public extension HorizonUI.Colors {
 
         // MARK: - Honey
 
+        public let honey12 = Color(hexString: "#F5E9CA")
         public let honey30 = Color(hexString: "#C08A00")
         public let honey35 = Color(hexString: "#B07E00")
         public let honey40 = Color(hexString: "#A57600")
