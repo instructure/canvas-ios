@@ -373,7 +373,7 @@ final class ModuleItemSequenceViewModel {
                 }
                 .store(in: &subscriptions)
         } else {
-            /// Otherwise, fetch module items normally.
+            // Otherwise, fetch module items normally.
             moduleItemInteractor.fetchModuleItems(
                 assetType: assetType,
                 assetID: next.id,
