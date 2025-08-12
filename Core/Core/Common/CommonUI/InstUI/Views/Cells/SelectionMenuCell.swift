@@ -122,7 +122,6 @@ extension InstUI.SelectionMenuCell {
 
 #if DEBUG
 
-@available(iOS 17.0, *)
 #Preview {
     @Previewable @State var selection: String?
 

@@ -17,21 +17,6 @@
 //
 
 @testable import Core
-<<<<<<<< HEAD:Core/CoreTests/Features/CourseSync/CourseSyncSettings/Model/CourseSyncFrequencyTests.swift
-import TestsFoundation
-import XCTest
-
-class CourseSyncFrequencyTests: XCTestCase {
-
-    func testSyncFrequencyNames() {
-        XCTAssertEqual(CourseSyncFrequency.daily.stringValue, "Daily")
-        XCTAssertEqual(CourseSyncFrequency.weekly.stringValue, "Weekly")
-    }
-
-    func testSyncFrequencyOptionItemId() throws {
-        XCTAssertEqual(CourseSyncFrequency.daily.optionItemId, "daily")
-        XCTAssertEqual(CourseSyncFrequency.weekly.optionItemId, "weekly")
-========
 import XCTest
 
 class GradingSchemeTestCase: CoreTestCase {
@@ -46,6 +31,5 @@ class GradingSchemeTestCase: CoreTestCase {
 
     func invalidConversionEntries() -> [GradingSchemeEntry] {
         [.init(name: "A", value: 90)]
->>>>>>>> master:Core/CoreTests/Features/GradingSchemes/Model/Entities/GradingSchemeTestCase.swift
     }
 }

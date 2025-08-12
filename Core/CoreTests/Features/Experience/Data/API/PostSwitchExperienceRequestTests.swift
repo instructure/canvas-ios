@@ -19,25 +19,6 @@
 @testable import Core
 import XCTest
 
-<<<<<<<< HEAD:Core/CoreTests/Features/Courses/SmartSearch/Model/CourseSmartSearchViewAttributesTests.swift
-class CourseSmartSearchViewAttributesTests: CoreTestCase {
-    func test_default_properties() {
-        let testee = CourseSmartSearchViewAttributes.default
-
-        XCTAssertEqual(testee.context, .currentUser)
-        XCTAssertNil(testee.accentColor)
-    }
-
-    func test_custom_properties() {
-        let testee = CourseSmartSearchViewAttributes(
-            context: .course("1"),
-            color: .red
-        )
-
-        XCTAssertEqual(testee.context, .course("1"))
-        XCTAssertEqual(testee.accentColor, .red)
-        XCTAssertEqual(testee.searchPrompt, String(localized: "Search in this course", bundle: .core))
-========
 class PostSwitchExperienceRequestTests: XCTestCase {
     func testPath() {
         let request = PostSwitchExperienceRequest(experience: Experience.academic.category)
@@ -52,6 +33,5 @@ class PostSwitchExperienceRequestTests: XCTestCase {
     func testBody() {
         let request = PostSwitchExperienceRequest(experience: Experience.academic.rawValue)
         XCTAssertEqual(request.body?.experience, "academic")
->>>>>>>> master:Core/CoreTests/Features/Experience/Data/API/PostSwitchExperienceRequestTests.swift
     }
 }
