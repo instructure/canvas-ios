@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import TestsFoundation
 import Combine
 @testable import Core
 import CoreData
@@ -26,6 +27,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
     private var mockInteractor: ComposeMessageInteractorMock!
     private var recipientInteractorMock: RecipientInteractorMock!
     private var inboxSettingsInteractor: InboxSettingsInteractorMock!
+    private var studentAccessInteractor: StudentAccessInteractorMock!
     var testee: ComposeMessageViewModel!
     private var subscriptions = Set<AnyCancellable>()
 
@@ -34,6 +36,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         recipientInteractorMock = RecipientInteractorMock()
         mockInteractor = ComposeMessageInteractorMock()
         inboxSettingsInteractor = InboxSettingsInteractorMock()
+        studentAccessInteractor = StudentAccessInteractorMock()
         testee = makeViewModel(options: .init(fromType: .new))
     }
 
@@ -101,6 +104,74 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(mockInteractor.isCreateConversationCalled, false)
         testee.didTapSend.accept(WeakViewController(sourceView))
         XCTAssertEqual(mockInteractor.isCreateConversationCalled, true)
+    }
+
+    func testBulkMessageIsTrueWhenRestrictedAndTeacherApp() {
+        // Given
+        AppEnvironment.shared.app = .teacher
+        studentAccessInteractor.setRestricted(true)
+        testee.selectedContext = RecipientContext(course: Course.make())
+
+        waitUntil {
+            testee.isStudentAccessRestricted == true
+        }
+
+        // When
+        testee.didTapSend.accept(WeakViewController())
+
+        // Then
+        XCTAssertEqual(mockInteractor.parameters?.bulkMessage, true, "bulkMessage should be true when restricted is true and app is teacher")
+    }
+
+    func testBulkMessageIsFalseWhenRestrictedIsFalseAndTeacherApp() {
+        // Given
+        AppEnvironment.shared.app = .teacher
+        studentAccessInteractor.setRestricted(false)
+        testee.selectedContext = RecipientContext(course: Course.make())
+
+        waitUntil {
+            testee.isStudentAccessRestricted == false
+        }
+
+        // When
+        testee.didTapSend.accept(WeakViewController())
+
+        // Then
+        XCTAssertEqual(mockInteractor.parameters?.bulkMessage, false, "bulkMessage should be false when restricted is false even if app is teacher")
+    }
+
+    func testBulkMessageIsFalseWhenRestrictedIsTrueAndAppIsNotTeacher() {
+        // Given
+        AppEnvironment.shared.app = .student // Example of a non-teacher app environment
+        studentAccessInteractor.setRestricted(true)
+        testee.selectedContext = RecipientContext(course: Course.make())
+
+        waitUntil {
+            testee.isStudentAccessRestricted == true
+        }
+
+        // When
+        testee.didTapSend.accept(WeakViewController())
+
+        // Then
+        XCTAssertEqual(mockInteractor.parameters?.bulkMessage, false, "bulkMessage should be false when restricted is true but app is not teacher")
+    }
+
+    func testBulkMessageIsFalseWhenRestrictedIsFalseAndAppIsNotTeacher() {
+        // Given
+        AppEnvironment.shared.app = .student // Example of a non-teacher app environment
+        studentAccessInteractor.setRestricted(false)
+        testee.selectedContext = RecipientContext(course: Course.make())
+
+        waitUntil {
+            testee.isStudentAccessRestricted == false
+        }
+
+        // When
+        testee.didTapSend.accept(WeakViewController())
+
+        // Then
+        XCTAssertEqual(mockInteractor.parameters?.bulkMessage, false, "bulkMessage should be false when restricted is false and app is not teacher")
     }
 
     func testSuccessfulReplySend() {
@@ -600,6 +671,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
             inboxSettingsInteractor: inboxSettingsInteractor,
+            studentAccessInteractor: studentAccessInteractor,
             env: environment
         )
     }
@@ -701,5 +773,22 @@ private class InboxSettingsInteractorMock: InboxSettingsInteractor {
 
     func updateInboxSettings(inboxSettings: Core.CDInboxSettings) -> AnyPublisher<Void, any Error> {
         return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+}
+
+private class StudentAccessInteractorMock: StudentAccessInteractor {
+    private let isStudentAccessRestricted: CurrentValueSubject<Bool, Never>
+
+    init(restricted: Bool = false) {
+        self.isStudentAccessRestricted = CurrentValueSubject(restricted)
+    }
+
+    func isRestricted() -> AnyPublisher<Bool, Never> {
+        isStudentAccessRestricted.eraseToAnyPublisher()
+    }
+
+    // Test helper
+    func setRestricted(_ value: Bool) {
+        isStudentAccessRestricted.send(value)
     }
 }

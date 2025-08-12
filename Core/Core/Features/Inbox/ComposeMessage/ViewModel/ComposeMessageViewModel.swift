@@ -36,6 +36,7 @@ final class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var isMessageDisabled: Bool = false
     @Published public private(set) var isIndividualDisabled: Bool = false
     @Published public private(set) var isSendIndividualToggleDisabled: Bool = false
+    @Published public private(set) var isStudentAccessRestricted: Bool = false
     @Published public var isShowingErrorDialog = false
     @Published private(set) var searchedRecipients: [Recipient] = []
     @Published public private(set) var expandedIncludedMessageIds = [String]()
@@ -97,6 +98,7 @@ final class ComposeMessageViewModel: ObservableObject {
     private let interactor: ComposeMessageInteractor
     private let recipientInteractor: RecipientInteractor
     private let settingsInteractor: InboxSettingsInteractor
+    private let studentAccessInteractor: StudentAccessInteractor
     private let avPermissionViewModel: AVPermissionViewModel
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var messageType: ComposeMessageOptions.MessageType
@@ -114,6 +116,7 @@ final class ComposeMessageViewModel: ObservableObject {
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         recipientInteractor: RecipientInteractor,
         inboxSettingsInteractor: InboxSettingsInteractor,
+        studentAccessInteractor: StudentAccessInteractor,
         env: AppEnvironment
     ) {
         self.interactor = interactor
@@ -121,6 +124,7 @@ final class ComposeMessageViewModel: ObservableObject {
         self.messageType = options.messageType
         self.recipientInteractor = recipientInteractor
         self.settingsInteractor = inboxSettingsInteractor
+        self.studentAccessInteractor = studentAccessInteractor
         self.avPermissionViewModel = .init()
         self.env = env
         setIncludedMessages(messageType: options.messageType)
@@ -129,6 +133,7 @@ final class ComposeMessageViewModel: ObservableObject {
         setupOutputBindings()
         setupInputBindings()
         bindSearchRecipients()
+        bindStudentAccessRestriction()
     }
 
     private func getRecipients() {
@@ -442,7 +447,8 @@ final class ComposeMessageViewModel: ObservableObject {
         /// 1. Sending a message to a group or individuals.
         /// 2. Setting it to true if you are sending a message to more than 100 recipients.
         let isExceedsRecipientsLimit = recipientIDs.count > maxRecipientCount
-        let bulkMessage = isExceedsRecipientsLimit ? true : sendIndividual
+        let bulkMessage = isExceedsRecipientsLimit || isStudentAccessRestricted || sendIndividual
+
         return MessageParameters(
             subject: subject,
             body: body,
@@ -542,6 +548,15 @@ final class ComposeMessageViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
+    private func bindStudentAccessRestriction() {
+        studentAccessInteractor
+            .isRestricted()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isRestricted in
+                self?.isStudentAccessRestricted = isRestricted && self?.env.app == .teacher
+            }
+            .store(in: &subscriptions)
+    }
     private func didSendMessage(viewController: WeakViewController) {
         viewController.findSnackBarViewModel()?.showSnack(InboxMessageScope.sent.localizedName)
         env.router.dismiss(viewController)
