@@ -6,14 +6,11 @@ targets:
     transitivelyLinkDependencies: true
     settings:
       APPLICATION_EXTENSION_API_ONLY: true
-      ENABLE_TESTABILITY: true
       SWIFT_EMIT_LOC_STRINGS: true
       PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas.widgets
       INFOPLIST_FILE: Widgets/Resources/Info.plist
       CODE_SIGN_ENTITLEMENTS: Widgets/Resources/Widgets.entitlements
       TARGETED_DEVICE_FAMILY: 1,2
-      DEBUG_INFORMATION_FORMAT: "dwarf-with-dsym"
-      ENABLE_DEBUG_DYLIB: false
     sources:
       - path: ./
         excludes:
