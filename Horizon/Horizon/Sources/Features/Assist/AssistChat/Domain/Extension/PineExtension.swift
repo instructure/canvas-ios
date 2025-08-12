@@ -108,7 +108,7 @@ extension PineQueryMutation.RagCitation {
             title: title,
             courseID: metadata["courseId"],
             sourceID: sourceID,
-            sourceType: AssistChatInteractor.AssetType(rawValue: sourceType)
+            sourceType: AssistChatInteractor.CitationType(rawValue: sourceType)
         )
     }
 }

@@ -36,6 +36,12 @@ class AssistChatInteractor {
         case Unknown
         case Page
     }
+
+    enum CitationType: String, Codable {
+        case wiki_page
+        case attachment
+        case unknown
+    }
 }
 
 final class AssistChatInteractorLive: AssistChatInteractor {

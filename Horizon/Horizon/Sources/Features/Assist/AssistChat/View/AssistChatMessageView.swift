@@ -131,9 +131,9 @@ struct AssistChatMessageView: View {
                 AssistChipOption(chip: "Quick Response 4")
             ],
             citations: [
-                .init(title: "Citation 1", courseID: "", sourceID: "", sourceType: .File),
-                .init(title: "Citation 2", courseID: "", sourceID: "", sourceType: .Page),
-                .init(title: "Citation 3", courseID: "", sourceID: "", sourceType: .Unknown)
+                .init(title: "Citation 1", courseID: "", sourceID: "", sourceType: .wiki_page),
+                .init(title: "Citation 2", courseID: "", sourceID: "", sourceType: .attachment),
+                .init(title: "Citation 3", courseID: "", sourceID: "", sourceType: .unknown)
             ],
             onFeedbackChange: { _ in }
         ))

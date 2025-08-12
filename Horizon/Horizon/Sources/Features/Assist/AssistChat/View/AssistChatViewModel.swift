@@ -312,12 +312,12 @@ private extension AssistChatMessage {
     }
 }
 
-private extension AssistChatInteractor.AssetType {
+private extension AssistChatInteractor.CitationType {
     var assetType: GetModuleItemSequenceRequest.AssetType? {
         switch self {
-        case .File:
+        case .attachment:
             return .file
-        case .Page:
+        case .wiki_page:
             return .page
         default:
             return nil

@@ -115,7 +115,7 @@ struct AssistChatMessage {
         let title: String
         let courseID: String?
         let sourceID: String?
-        let sourceType: AssistChatInteractor.AssetType?
+        let sourceType: AssistChatInteractor.CitationType?
     }
 }
 
