@@ -23,51 +23,53 @@ import SwiftUI
 /// When the elevated tab bar is displayed we hide the logo so the tab bar can take the logo's place and there won't be
 /// an extra line in the nav bar below the elevated tab bar just to display the logo.
 struct DashboardNavigationBar: ViewModifier {
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    @State private var isElevatedTabBar = false
+	@Environment(\.horizontalSizeClass) var horizontalSizeClass
+	@State private var isElevatedTabBar = false
 
-    func body(content: Content) -> some View {
-        if #available(iOS 18.0, *) {
-            content
-                .toolbarBackgroundVisibility(.visible, for: .navigationBar)
-                .toolbarBackground(Color(uiColor: Brand.shared.navBackground), for: .navigationBar)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        navBarLogo
-                    }
-                }
-                .onChange(of: horizontalSizeClass, initial: true) { _, newValue in
-                    updateNavBarLogoVisibility(horizontalSizeClass: newValue)
-                }
-        } else {
-            content
-                .navigationBarGlobal()
-        }
-    }
+	func body(content: Content) -> some View {
+		if #available(iOS 26.0, *) {
+			content
+		} else if #available(iOS 18.0, *) {
+			content
+				.toolbarBackgroundVisibility(.visible, for: .navigationBar)
+				.toolbarBackground(Color(uiColor: Brand.shared.navBackground), for: .navigationBar)
+				.toolbar {
+					ToolbarItem(placement: .principal) {
+						navBarLogo
+					}
+				}
+				.onChange(of: horizontalSizeClass, initial: true) { _, newValue in
+					updateNavBarLogoVisibility(horizontalSizeClass: newValue)
+				}
+		} else {
+			content
+				.navigationBarGlobal()
+		}
+	}
 
-    private func updateNavBarLogoVisibility(horizontalSizeClass: UserInterfaceSizeClass?) {
-        // We can't use `self.horizontalSizeClass` here because it's still holding the old value
-        isElevatedTabBar = horizontalSizeClass == .regular
-    }
+	private func updateNavBarLogoVisibility(horizontalSizeClass: UserInterfaceSizeClass?) {
+		// We can't use `self.horizontalSizeClass` here because it's still holding the old value
+		isElevatedTabBar = horizontalSizeClass == .regular
+	}
 
-    @ViewBuilder
-    private var navBarLogo: some View {
-        if !isElevatedTabBar, let headerImage = Brand.shared.headerImage {
-            ZStack {
-                Color(Brand.shared.headerImageBackground)
-                Image(uiImage: headerImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            }
-            .frame(width: 44, height: 44)
-            .accessibilityHidden(true)
-        }
-    }
+	@ViewBuilder
+	private var navBarLogo: some View {
+		if !isElevatedTabBar, let headerImage = Brand.shared.headerImage {
+			ZStack {
+				Color(Brand.shared.headerImageBackground)
+				Image(uiImage: headerImage)
+					.resizable()
+					.aspectRatio(contentMode: .fit)
+			}
+			.frame(width: 44, height: 44)
+			.accessibilityHidden(true)
+		}
+	}
 }
 
 extension View {
 
-    func navigationBarDashboard() -> some View {
-        modifier(DashboardNavigationBar())
-    }
+	func navigationBarDashboard() -> some View {
+		modifier(DashboardNavigationBar())
+	}
 }

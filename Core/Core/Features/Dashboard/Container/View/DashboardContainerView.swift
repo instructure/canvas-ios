@@ -77,7 +77,15 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarDashboard()
-        .navigationBarItems(leading: profileMenuButton, trailing: rightNavBarButtons)
+		.toolbar {
+			ToolbarItem(placement: .topBarLeading) {
+				if #available(iOS 26.0, *) { iOS26profileMenuButton } else { profileMenuButton }
+			}
+
+			ToolbarItem(placement: .topBarTrailing) {
+				rightNavBarButtons
+			}
+		}
         .onAppear {
             refresh(force: false) {
                 let env = AppEnvironment.shared
@@ -126,7 +134,6 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     }
 
     // MARK: - Nav Bar Buttons
-
     private var profileMenuButton: some View {
         Button {
             env.router.route(to: "/profile", from: controller, options: .modal())
@@ -139,13 +146,58 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
     }
 
+	private var iOS26profileMenuButton: some View {
+		Button {
+			env.router.route(to: "/profile", from: controller, options: .modal())
+		} label: {
+			Image.hamburgerSolid
+		}
+		.identifier("Dashboard.profileButton")
+		.accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
+	}
+
     @ViewBuilder
     private var rightNavBarButtons: some View {
         if courseCardListViewModel.shouldShowSettingsButton {
             if offlineModeViewModel.isOfflineFeatureEnabled, env.app == .student {
-                optionsKebabButton
+				SwiftUI.Group {
+					if #available(iOS 26.0, *) {
+						iOS26optionsKebabButton
+					} else {
+						optionsKebabButton
+					}
+				}
+				.accessibilityLabel(Text("Dashboard Options", bundle: .core))
+				.confirmationDialog("", isPresented: $isShowingKebabDialog) {
+					Button {
+						if offlineModeViewModel.isOffline {
+							UIAlertController.showItemNotAvailableInOfflineAlert()
+						} else {
+							env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
+						}
+					} label: {
+						Text("Manage Offline Content", bundle: .core)
+					}
+					Button {
+						guard controller.value.presentedViewController == nil else {
+							controller.value.presentedViewController?.dismiss(animated: true)
+							return
+						}
+						viewModel.settingsButtonTapped.send()
+					} label: {
+						Text("Dashboard Settings", bundle: .core)
+					}
+				}
             } else {
-                dashboardSettingsButton
+				SwiftUI.Group {
+					if #available(iOS 26.0, *) {
+						iOS26dashboardSettingsButton
+					} else {
+						dashboardSettingsButton
+					}
+				}
+				.accessibilityLabel(Text("Dashboard settings", bundle: .core))
+				.accessibilityIdentifier("Dashboard.settingsButton")
             }
         }
     }
@@ -165,28 +217,22 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 .foregroundColor(Color(Brand.shared.navTextColor))
         }
         .frame(width: 44, height: 44).padding(.trailing, -6)
-        .accessibilityLabel(Text("Dashboard Options", bundle: .core))
-        .confirmationDialog("", isPresented: $isShowingKebabDialog) {
-            Button {
-                if offlineModeViewModel.isOffline {
-                    UIAlertController.showItemNotAvailableInOfflineAlert()
-                } else {
-                    env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
-                }
-            } label: {
-                Text("Manage Offline Content", bundle: .core)
-            }
-            Button {
-                guard controller.value.presentedViewController == nil else {
-                    controller.value.presentedViewController?.dismiss(animated: true)
-                    return
-                }
-                viewModel.settingsButtonTapped.send()
-            } label: {
-                Text("Dashboard Settings", bundle: .core)
-            }
-        }
     }
+
+	@ViewBuilder
+	private var iOS26optionsKebabButton: some View {
+		Button {
+			// Dismiss dashboard settings popover
+			guard controller.value.presentedViewController == nil else {
+				controller.value.presentedViewController?.dismiss(animated: true)
+				return
+			}
+
+			isShowingKebabDialog.toggle()
+		} label: {
+			Image.moreSolid
+		}
+	}
 
     @ViewBuilder
     private var dashboardSettingsButton: some View {
@@ -202,9 +248,22 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 .foregroundColor(Color(Brand.shared.navTextColor))
         }
         .frame(width: 44, height: 44).padding(.trailing, -6)
-        .accessibilityLabel(Text("Dashboard settings", bundle: .core))
-        .accessibilityIdentifier("Dashboard.settingsButton")
     }
+
+	@available(iOS 26.0, *)
+	@ViewBuilder
+	private var iOS26dashboardSettingsButton: some View {
+		Button {
+			guard controller.value.presentedViewController == nil else {
+				controller.value.presentedViewController?.dismiss(animated: true)
+				return
+			}
+
+			viewModel.settingsButtonTapped.send()
+		} label: {
+			Image.settingsSolid
+		}
+	}
 
     // MARK: Nav Bar Buttons -
 
