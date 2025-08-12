@@ -26,7 +26,7 @@ extension HorizonUI.ProgramCard.Pills {
         let dueDate: String?
 
         var body: some View {
-            HorizonUI.ProgramCard.Pills.Inprogress(
+            HorizonUI.ProgramCard.Pills.InProgress(
                 isEnrolled: isEnrolled,
                 isRequired: isRequired,
                 estimatedTime: estimatedTime,

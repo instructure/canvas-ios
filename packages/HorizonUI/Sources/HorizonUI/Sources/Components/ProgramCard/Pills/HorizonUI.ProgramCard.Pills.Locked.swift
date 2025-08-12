@@ -34,6 +34,7 @@ extension HorizonUI.ProgramCard.Pills {
                         )
                     ),
                     isSmall: true,
+                    cornerRadius: .level1,
                     icon: .huiIcons.lock
                 )
 
@@ -46,6 +47,7 @@ extension HorizonUI.ProgramCard.Pills {
                         )
                     ),
                     isSmall: true,
+                    cornerRadius: .level1
                 )
 
                 if let estimatedTime {
@@ -58,6 +60,7 @@ extension HorizonUI.ProgramCard.Pills {
                             )
                         ),
                         isSmall: true,
+                        cornerRadius: .level1
                     )
                 }
             }

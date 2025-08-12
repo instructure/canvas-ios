@@ -36,7 +36,7 @@ extension HorizonUI.ProgramCard {
                     dueDate: dueDate
                 )
             case .inProgress:
-                HorizonUI.ProgramCard.Pills.Inprogress(
+                HorizonUI.ProgramCard.Pills.InProgress(
                     isRequired: isRequired,
                     estimatedTime: estimatedTime,
                     dueDate: dueDate

@@ -29,7 +29,8 @@ extension HorizonUI.ProgramCard.Pills {
                         textColor: Color.huiColors.primitives.honey90
                     )
                 ),
-                isSmall: true
+                isSmall: true,
+                cornerRadius: .level1
             )
         }
     }

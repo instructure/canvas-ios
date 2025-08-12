@@ -19,7 +19,7 @@
 import SwiftUI
 
 extension HorizonUI.ProgramCard.Pills {
-    struct Inprogress: View {
+    struct InProgress: View {
         let isEnrolled: Bool
         let isRequired: Bool
         let estimatedTime: String?
@@ -50,6 +50,7 @@ extension HorizonUI.ProgramCard.Pills {
                             )
                         ),
                         isSmall: true,
+                        cornerRadius: .level1,
                         icon: .huiIcons.checkCircleFull
                     )
                 }
@@ -73,6 +74,7 @@ extension HorizonUI.ProgramCard.Pills {
                             )
                         ),
                         isSmall: true,
+                        cornerRadius: .level1,
                         icon: .huiIcons.calendarToday
                     )
                 }
@@ -88,7 +90,8 @@ extension HorizonUI.ProgramCard.Pills {
                         textColor: Color.huiColors.text.title
                     )
                 ),
-                isSmall: true
+                isSmall: true,
+                cornerRadius: .level1,
             )
         }
     }
@@ -96,7 +99,7 @@ extension HorizonUI.ProgramCard.Pills {
 
 #Preview {
     HorizonUI.ProgramCard.Pills
-        .Inprogress(
+        .InProgress(
             isEnrolled: true,
             isRequired: true,
             estimatedTime: "10 hours",
