@@ -35,7 +35,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructureLine" translatesAutoresizingMaskIntoConstraints="NO" id="YBX-Gr-kI6">
                                         <rect key="frame" x="164.66666666666666" y="21.666666666666629" width="64" height="64"/>
-                                        <accessibility key="accessibilityConfiguration">
+                                        <accessibility key="accessibilityConfiguration" identifier="LoginStart.logoView">
                                             <accessibilityTraits key="traits" notEnabled="YES"/>
                                         </accessibility>
                                         <constraints>
@@ -46,7 +46,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wordmark" translatesAutoresizingMaskIntoConstraints="NO" id="shp-bR-v4y">
                                         <rect key="frame" x="107.66666666666669" y="103.66666666666663" width="178" height="41"/>
                                         <color key="tintColor" red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <accessibility key="accessibilityConfiguration">
+                                        <accessibility key="accessibilityConfiguration" identifier="LoginStart.wordmark">
                                             <accessibilityTraits key="traits" notEnabled="YES"/>
                                         </accessibility>
                                         <userDefinedRuntimeAttributes>

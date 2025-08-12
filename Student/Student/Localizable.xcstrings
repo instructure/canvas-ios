@@ -42225,7 +42225,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detalls"
+            "value" : "Informació"
           }
         },
         "cy" : {
@@ -42369,7 +42369,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ngā taipitopito"
+            "value" : "Nga korero taipitopito"
           }
         },
         "ms" : {
@@ -42447,7 +42447,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chi Tiết"
+            "value" : "Các Thông Tin Chi Tiết"
           }
         },
         "zh" : {
