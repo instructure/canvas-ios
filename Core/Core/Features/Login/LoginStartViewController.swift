@@ -31,7 +31,6 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var whatsNewContainer: UIView!
     @IBOutlet weak var whatsNewLabel: UILabel!
     @IBOutlet weak var whatsNewLink: UIButton!
-    @IBOutlet weak var wordmarkLabel: UILabel!
     @IBOutlet weak var useQRCodeButton: UIButton!
     @IBOutlet weak var useQRCodeDivider: UIView!
 
@@ -46,8 +45,7 @@ class LoginStartViewController: UIViewController {
     private var offlineModeInteractor: OfflineModeInteractor?
 
     let env = AppEnvironment.shared
-    // TODO: Check weak var situation
-    var loginDelegate: LoginDelegate?
+    weak var loginDelegate: LoginDelegate?
     var mdmObservation: NSKeyValueObservation?
     var method = AuthenticationMethod.normalLogin
     var sessions: [LoginSession] = []
@@ -57,10 +55,7 @@ class LoginStartViewController: UIViewController {
         didSet {
             lastLoginButton.isHidden = lastLoginAccount == nil
             guard let lastLoginAccount = lastLoginAccount else { return }
-            var buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
-            if AppEnvironment.shared.app == .horizon {
-                buttonTitle = buttonTitle.replaceHostWithCanvasForCareer()
-            }
+            let buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
             lastLoginButton.setTitle(buttonTitle, for: .normal)
             alternateFindSchoolButton()
         }
@@ -88,9 +83,7 @@ class LoginStartViewController: UIViewController {
             findSchoolButton.setTitle(findSchoolButtonTitle, for: .normal)
         }
         authenticationMethodLabel.isHidden = true
-        logoView.tintColor = .currentLogoColor()
-        wordmark.tintColor = .textDarkest
-        animatableLogo.tintColor = logoView.tintColor
+        animatableLogo.tintColor = .currentLogoColor()
         previousLoginsView.isHidden = true
         self.lastLoginAccount = nil
         previousLoginsLabel.text = String(localized: "Previous Logins", bundle: .core)
@@ -98,15 +91,22 @@ class LoginStartViewController: UIViewController {
         whatsNewLink.setTitle(String(localized: "See what's new.", bundle: .core), for: .normal)
         useQRCodeButton.setTitle(String(localized: "QR Login", bundle: .core), for: .normal)
         whatsNewContainer.isHidden = loginDelegate?.whatsNewURL == nil
-        wordmarkLabel.attributedText = NSAttributedString.init(string: (
-            Bundle.main.isParentApp ? "PARENT"
-            : Bundle.main.isTeacherApp ? "TEACHER"
-            : Bundle.main.isStudentApp ? "STUDENT"
-            : Bundle.main.isHorizonApp ? "HORIZON"
-            : ""
-        ), attributes: [.kern: 2])
-        wordmarkLabel.textColor = .textDarkest
-        logoView.superview?.accessibilityLabel = "Canvas " + (wordmarkLabel.text ?? "")
+
+        switch self.app {
+        case .parent:
+            logoView.image = UIImage(resource: .parentLogo)
+            wordmark.image = UIImage(resource: .parentWordmark)
+            logoView.superview?.accessibilityLabel = "Canvas Parent"
+        case .teacher:
+            logoView.image = UIImage(resource: .teacherLogo)
+            wordmark.image = UIImage(resource: .teacherWordmark)
+            logoView.superview?.accessibilityLabel = "Canvas Teacher"
+        default:
+            logoView.image = UIImage(resource: .studentLogo)
+            wordmark.image = UIImage(resource: .studentWordmark)
+            logoView.superview?.accessibilityLabel = "Canvas"
+        }
+
         let loginText = String(localized: "Log In", bundle: .core)
         if MDMManager.shared.host != nil {
             findSchoolButton.isHidden = true
@@ -387,16 +387,7 @@ class LoginStartViewController: UIViewController {
                 // don't dismiss loading here
                 // it will eventually be dismissed once userDidLogin api calls are finished
                 Analytics.shared.logEvent("qr_code_login_success")
-
-                if AppEnvironment.shared.app == .horizon {
-                    loading?.dismiss(animated: true) { [weak self] in
-                        guard let self = self else { return }
-                        self.loginDelegate?.userDidLogin(session: session)
-                        self.env.router.route(to: "/splash", from: self)
-                    }
-                } else {
-                    self?.loginDelegate?.userDidLogin(session: session)
-                }
+                self?.loginDelegate?.userDidLogin(session: session)
             }
         }
     }

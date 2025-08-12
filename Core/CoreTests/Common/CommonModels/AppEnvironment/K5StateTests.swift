@@ -41,16 +41,16 @@ class K5StateTests: CoreTestCase {
         testee.userDidLogin(profile: nil)
         XCTAssertFalse(testee.isK5Account)
 
-        testee.userDidLogin(profile: APIProfile.make(k5_user: nil))
+        testee.userDidLogin(profile: UserProfile.save(APIProfile.make(k5_user: nil), in: databaseClient))
         XCTAssertFalse(testee.isK5Account)
 
-        testee.userDidLogin(profile: APIProfile.make(k5_user: false))
+        testee.userDidLogin(profile: UserProfile.save(APIProfile.make(k5_user: false), in: databaseClient))
         XCTAssertFalse(testee.isK5Account)
 
-        testee.userDidLogin(profile: APIProfile.make(k5_user: true))
+        testee.userDidLogin(profile: UserProfile.save(APIProfile.make(k5_user: true), in: databaseClient))
         XCTAssertTrue(testee.isK5Account)
 
-        testee.userDidLogin(profile: APIProfile.make(k5_user: false), isK5StudentView: true)
+        testee.userDidLogin(profile: UserProfile.save(APIProfile.make(k5_user: false), in: databaseClient), isK5StudentView: true)
         XCTAssertTrue(testee.isK5Account)
     }
 

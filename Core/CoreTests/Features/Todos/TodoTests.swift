@@ -43,7 +43,10 @@ class TodoTests: CoreTestCase {
 
     func testScope() {
         let usecase = GetTodos()
-        XCTAssertEqual(usecase.scope.predicate, .all)
+        let allPredicate = NSPredicate(
+            format: "NOT (typeRaw == 'grading' AND assignment != nil AND needsGradingCount == 0)"
+        )
+        XCTAssertEqual(usecase.scope.predicate, allPredicate)
         let gradingTodoType: TodoType = .grading
         let gradingUsecase = GetTodos(gradingTodoType)
         XCTAssertEqual(gradingUsecase.scope.predicate, NSPredicate(format: "%K == %@", #keyPath(Todo.typeRaw), gradingTodoType.rawValue))

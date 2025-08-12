@@ -40,6 +40,7 @@ class GradeInteractorLive: GradeInteractor {
     private var cancellables = Set<AnyCancellable>()
     private let assignment: Assignment
     private let submission: Submission
+    private let gradingScheme: GradingScheme?
     private let rubricGradingInteractor: RubricGradingInteractor
     private let gradeStateInteractor: GradeStateInteractor
     private let env: AppEnvironment
@@ -49,16 +50,20 @@ class GradeInteractorLive: GradeInteractor {
     init(
         assignment: Assignment,
         submission: Submission,
+        gradingScheme: GradingScheme? = nil,
         rubricGradingInteractor: RubricGradingInteractor,
         gradeStateInteractor: GradeStateInteractor = GradeStateInteractorLive(),
         env: AppEnvironment
     ) {
         self.assignment = assignment
         self.submission = submission
+        self.gradingScheme = gradingScheme
         self.rubricGradingInteractor = rubricGradingInteractor
         self.gradeStateInteractor = gradeStateInteractor
         self.env = env
-        self.gradeState = gradeStateSubject.eraseToAnyPublisher()
+        self.gradeState = gradeStateSubject
+            .dropFirst() // to skip initial empty value
+            .eraseToAnyPublisher()
 
         observeChanges(of: submission.objectID)
     }
@@ -66,12 +71,7 @@ class GradeInteractorLive: GradeInteractor {
     // MARK: - Public Methods
 
     func saveGrade(excused: Bool? = nil, grade: String? = nil) -> AnyPublisher<Void, Error> {
-        let currentState = gradeStateSubject.value
-        if currentState.isExcused, grade == String(localized: "Excused", bundle: .teacher) {
-            return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
-        }
-
-        return GradeSubmission(
+        GradeSubmission(
             courseID: assignment.courseID,
             assignmentID: assignment.id,
             userID: submission.userID,
@@ -104,10 +104,13 @@ class GradeInteractorLive: GradeInteractor {
         .sink(
             receiveCompletion: { _ in },
             receiveValue: { [weak self] updatedSubmission, isRubricScoreAvailable, totalRubricScore in
-                guard let self else { return }
+                guard let self else {
+                    return
+                }
                 let newState = gradeStateInteractor.gradeState(
                     submission: updatedSubmission,
                     assignment: assignment,
+                    gradingScheme: gradingScheme,
                     isRubricScoreAvailable: isRubricScoreAvailable,
                     totalRubricScore: totalRubricScore
                 )

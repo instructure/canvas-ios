@@ -16,11 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+/*
 import Combine
 import Core
 import Foundation
 import HorizonUI
 import UIKit
+
 
 final class SplashViewModel: ObservableObject {
     // MARK: - Input
@@ -67,23 +69,25 @@ final class SplashViewModel: ObservableObject {
     }
 
     private func showErrorAlert(error: Error) -> AnyPublisher<UserProfile, Error> {
-        if error is LoginError {
-            // replace window with login
-            router.setRootViewController(
-                isLoginTransition: false,
-                viewController: LoginNavigationController.create(
-                    loginDelegate: interactor,
-                    app: .horizon
+        if let loginDelegate = environment.loginDelegate {
+            if error is LoginError {
+                // replace window with login
+                router.setRootViewController(
+                    isLoginTransition: false,
+                    viewController: LoginNavigationController.create(
+                        loginDelegate: loginDelegate,
+                        app: .horizon
+                    )
                 )
-            )
-        } else {
-            router.setRootViewController(
-                isLoginTransition: false,
-                viewController: LoginNavigationController.create(
-                    loginDelegate: interactor,
-                    app: .horizon
+            } else {
+                router.setRootViewController(
+                    isLoginTransition: false,
+                    viewController: LoginNavigationController.create(
+                        loginDelegate: loginDelegate,
+                        app: .horizon
+                    )
                 )
-            )
+            }
         }
         return Empty().setFailureType(to: Error.self).eraseToAnyPublisher()
     }
@@ -118,3 +122,4 @@ final class SplashViewModel: ObservableObject {
             .eraseToAnyPublisher()
     }
 }
+*/

@@ -22,42 +22,98 @@ import Core
 /// This model encapsulates all grade-related information including status flags,
 /// formatted text for display, and the numerical score value.
 struct GradeState: Equatable {
-    static let empty = GradeState(
-        hasLateDeduction: false,
-        isGraded: false,
-        isExcused: false,
-        isGradedButNotPosted: false,
-        originalGradeText: "",
-        pointsDeductedText: "",
-        gradeAlertText: "",
-        score: 0,
-        pointsPossibleText: "",
-        gradingType: .points,
-        originalScoreWithoutMetric: nil,
-        finalGradeWithoutMetric: nil
-    )
 
-    let hasLateDeduction: Bool
+    // MARK: - Assignment level
+
+    let gradingType: GradingType
+    let pointsPossibleText: String
+    let pointsPossibleAccessibilityText: String
+    let gradeOptions: [OptionItem]
+
+    // MARK: - Status
+
     let isGraded: Bool
     let isExcused: Bool
     let isGradedButNotPosted: Bool
+    let hasLateDeduction: Bool
 
-    /// Late deduction is applied to this resulting in the final grade.
-    let originalGradeText: String
-
-    /// Formatted text showing points deducted for late submissions.
-    let pointsDeductedText: String
-
-    /// Text to display in grade alert during manual score entry.
-    let gradeAlertText: String
+    // MARK: - Scores & Grades
 
     /// The numerical score value for the submission.
     /// Uses entered score if available, otherwise falls back to calculated score.
     let score: Double
 
-    let pointsPossibleText: String
-    let gradingType: GradingType
+    let originalGrade: String?
 
     let originalScoreWithoutMetric: String?
+
+    let originalGradeWithoutMetric: String?
+
     let finalGradeWithoutMetric: String?
+
+    /// Formatted text showing points deducted for late submissions.
+    let pointsDeductedText: String
+    let pointsDeductedAccessibilityText: String
 }
+
+extension GradeState {
+    static let empty = GradeState(
+        gradingType: .not_graded,
+        pointsPossibleText: "",
+        pointsPossibleAccessibilityText: "",
+        gradeOptions: [],
+        isGraded: false,
+        isExcused: false,
+        isGradedButNotPosted: false,
+        hasLateDeduction: false,
+        score: 0,
+        originalGrade: nil,
+        originalScoreWithoutMetric: nil,
+        originalGradeWithoutMetric: nil,
+        finalGradeWithoutMetric: nil,
+        pointsDeductedText: "",
+        pointsDeductedAccessibilityText: ""
+    )
+}
+
+#if DEBUG
+
+extension GradeState {
+    static func make(
+        gradingType: GradingType = .not_graded,
+        pointsPossibleText: String = "",
+        pointsPossibleAccessibilityText: String = "",
+        gradeOptions: [OptionItem] = [],
+        isGraded: Bool = false,
+        isExcused: Bool = false,
+        isGradedButNotPosted: Bool = false,
+        hasLateDeduction: Bool = false,
+        score: Double = 0,
+        originalGrade: String? = nil,
+        originalScoreWithoutMetric: String? = nil,
+        originalGradeWithoutMetric: String? = nil,
+        finalGradeWithoutMetric: String? = nil,
+        pointsDeductedText: String = "",
+        pointsDeductedAccessibilityText: String = ""
+    ) -> GradeState {
+        .init(
+            gradingType: gradingType,
+            pointsPossibleText: pointsPossibleText,
+            pointsPossibleAccessibilityText: pointsPossibleAccessibilityText,
+            gradeOptions: gradeOptions,
+            isGraded: isGraded,
+            isExcused: isExcused,
+            isGradedButNotPosted: isGradedButNotPosted,
+            hasLateDeduction: hasLateDeduction,
+            score: score,
+            originalGrade: originalGrade,
+            originalScoreWithoutMetric: originalScoreWithoutMetric,
+            originalGradeWithoutMetric: originalGradeWithoutMetric,
+            finalGradeWithoutMetric: finalGradeWithoutMetric,
+            pointsDeductedText: pointsDeductedText,
+            pointsDeductedAccessibilityText: pointsDeductedAccessibilityText
+        )
+    }
+}
+
+#endif

@@ -84,6 +84,23 @@ extension String {
         return (self as NSString).boolValue
     }
 
+    private static let localizedDecimalFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.locale = Locale.current
+        return formatter
+    }()
+
+    /// API expects US formatted numbers, which use "." as decimal separator, but users may use a different separator.
+    /// For example keyboard provides a localized separator.
+    public var doubleValueByFixingDecimalSeparator: Double? {
+        if let value = Double(self) {
+            return value
+        }
+
+        return Self.localizedDecimalFormatter.number(from: self)?.doubleValue
+    }
+
     public var nilIfEmpty: String? {
         self.isEmpty ? nil : self
     }
@@ -148,6 +165,10 @@ public extension Array<String?> {
     func joined(separator: String = "") -> String {
         compactMap { $0 }.joined(separator: separator)
     }
+
+    func accessibilityJoined() -> String {
+        compactMap { $0 }.joined(separator: ", ")
+    }
 }
 
 extension ReferenceWritableKeyPath {
@@ -163,4 +184,14 @@ extension String? {
         }
         return self.isEmpty
     }
+}
+
+extension String {
+    public var doubleValue: Double? {
+        StringFormatUtils.numberFormatter.number(from: self)?.doubleValue
+    }
+}
+
+private enum StringFormatUtils {
+    static let numberFormatter = NumberFormatter()
 }

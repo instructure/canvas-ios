@@ -76,7 +76,7 @@ final class ScoresInteractorLive: ScoresInteractor {
         ReactiveStore(
             useCase: GetHScoresCourseUseCase(courseID: courseID)
         )
-        .getEntities(ignoreCache: ignoreCache)
+        .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
         .compactMap { $0.first }
         .map { HScoresCourse(from: $0) }
         .eraseToAnyPublisher()
@@ -105,8 +105,7 @@ final class ScoresInteractorLive: ScoresInteractor {
 
     private func scoreGradeString(enrollment: HScoresCourseEnrollment) -> String? {
         var scoreString: String?
-        let score = 36.52341
-        if let formattedScore = GradeFormatter.horizonNumberFormatter.string(
+        if let score = enrollment.score, let formattedScore = GradeFormatter.horizonNumberFormatter.string(
                from: GradeFormatter.truncate(score)
            ) {
             scoreString = "\(formattedScore)%"

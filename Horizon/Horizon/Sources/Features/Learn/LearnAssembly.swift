@@ -31,35 +31,36 @@ struct LearnAssembly {
         shoudHideTabBar: Bool = false,
         selectedTab: CourseDetailsTabs? = nil
     ) -> UIViewController {
-        let appEnvironment = AppEnvironment.shared
-        let viewModel = CourseDetailsViewModel(
-            router: appEnvironment.router,
-            getCoursesInteractor: makeGetCoursesInteractor(),
-            learnCoursesInteractor: GetLearnCoursesInteractorLive(),
-            courseID: courseID,
-            enrollmentID: enrollmentID,
-            course: course,
-            selectedTab: selectedTab
-        )
-        return CoreHostingController(
-            makeCourseDetailsView(viewModel: viewModel, shoudHideTabBar: shoudHideTabBar)
+        CoreHostingController(
+            makeCourseDetailsView(
+                viewModel: makeViewModel(
+                    courseID: courseID,
+                    enrollmentID: enrollmentID,
+                    course: course,
+                    selectedTab: selectedTab
+                ),
+                shoudHideTabBar: shoudHideTabBar
+            )
         )
     }
 
     static func makeViewModel(
         courseID: String,
         enrollmentID: String,
-        course: HCourse? = nil
+        course: HCourse? = nil,
+        selectedTab: CourseDetailsTabs? = nil
     ) -> CourseDetailsViewModel {
-        let appEnvironment = AppEnvironment.shared
-        return .init(
-            router: appEnvironment.router,
+        .init(
+            router: AppEnvironment.shared.router,
             getCoursesInteractor: makeGetCoursesInteractor(),
             learnCoursesInteractor: GetLearnCoursesInteractorLive(),
             courseID: courseID,
             enrollmentID: enrollmentID,
-            course: course
-        )
+            course: course,
+            selectedTab: selectedTab
+        ) { newCourseID, newEnrollmentID in
+            ScoresAssembly.makeViewModel(courseID: newCourseID, enrollmentID: newEnrollmentID)
+        }
     }
 
     static func makeCourseDetailsView(

@@ -79,8 +79,8 @@ public struct APICourse: Codable, Equatable {
 
     /// Example format: [["A",0.94],["A-",0.9],["B+",0.87] ... ["D",0.64],["D-",0.61],["F",0.0]]
     let grading_scheme: [[TypeSafeCodable<String, Double>]]? // include[]=grading_scheme
-    let scaling_factor: Double?
-    let points_based_grading_scheme: Bool?
+    let scaling_factor: Double? // include[]=grading_scheme
+    let points_based_grading_scheme: Bool? // include[]=grading_scheme
 
     public var context: Context { Context(.course, id: id.rawValue) }
 

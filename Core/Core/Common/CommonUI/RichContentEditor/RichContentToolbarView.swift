@@ -65,6 +65,9 @@ public class RichContentToolbarView: UIView {
 
     public override func awakeFromNib() {
         super.awakeFromNib()
+        if AppEnvironment.shared.app == .horizon {
+            overrideUserInterfaceStyle = .light
+        }
         translatesAutoresizingMaskIntoConstraints = false
 
         backgroundColor = .backgroundLightest

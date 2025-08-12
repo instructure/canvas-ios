@@ -75,7 +75,7 @@ extension Array where Element == CourseSyncEntry {
         for (courseIndex, course) in enumerated() {
             var courseItem = course.makeViewModelItem()
             if courseIndex == 0 {
-                courseItem.accessibilityLabelPrefix = String.localizedAccessibilityListCount(count)
+                courseItem.accessibilityLabelPrefix = String.format(accessibilityListCount: count)
             }
             courseItem.selectionDidToggle = {
                 let selectionState: OfflineListCellView.SelectionState = course.selectionState == .selected || course.selectionState == .partiallySelected ? .deselected : .selected
@@ -101,7 +101,7 @@ extension Array where Element == CourseSyncEntry {
                 }
                 var tabItem = tab.makeViewModelItem()
                 if tabIndex == 0 {
-                    tabItem.accessibilityLabelPrefix = String.localizedAccessibilityListCount(course.tabs.count)
+                    tabItem.accessibilityLabelPrefix = String.format(accessibilityListCount: course.tabs.count)
                 }
                 tabItem.selectionDidToggle = {
                     let selectionState: OfflineListCellView.SelectionState = tab.selectionState == .selected || tab.selectionState == .partiallySelected ? .deselected : .selected
@@ -128,7 +128,7 @@ extension Array where Element == CourseSyncEntry {
 
                     var fileItem = file.makeViewModelItem()
                     if fileIndex == 0 {
-                        fileItem.accessibilityLabelPrefix = String.localizedAccessibilityListCount(course.files.count)
+                        fileItem.accessibilityLabelPrefix = String.format(accessibilityListCount: course.files.count)
                     }
                     fileItem.selectionDidToggle = {
                         interactor?.setSelected(selection: .file(course.id, file.id), selectionState: file.selectionState == .selected ? .deselected : .selected)

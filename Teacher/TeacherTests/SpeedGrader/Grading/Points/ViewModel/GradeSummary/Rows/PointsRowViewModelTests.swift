@@ -26,40 +26,48 @@ class PointsRowViewModelTests: TeacherTestCase {
     func test_init_withValidPoints() {
         let viewModel = PointsRowViewModel(
             currentPoints: "85",
-            maxPointsWithUnit: "100 pts"
+            maxPointsWithUnit: "100 pts",
+            a11yMaxPointsWithUnit: "a11y"
         )
 
         XCTAssertEqual(viewModel.currentPoints, "85")
         XCTAssertEqual(viewModel.maxPointsWithUnit, "   / 100 pts")
+        XCTAssertEqual(viewModel.a11yMaxPointsWithUnit, "a11y")
     }
 
     func test_init_withNilCurrentPoints() {
         let viewModel = PointsRowViewModel(
             currentPoints: nil,
-            maxPointsWithUnit: "100 pts"
+            maxPointsWithUnit: "100 pts",
+            a11yMaxPointsWithUnit: "a11y"
         )
 
         XCTAssertEqual(viewModel.currentPoints, GradeFormatter.BlankPlaceholder.oneDash.stringValue)
         XCTAssertEqual(viewModel.maxPointsWithUnit, "   / 100 pts")
+        XCTAssertEqual(viewModel.a11yMaxPointsWithUnit, "a11y")
     }
 
     func test_init_withNilMaxPointsWithUnit() {
         let viewModel = PointsRowViewModel(
             currentPoints: "85",
-            maxPointsWithUnit: nil
+            maxPointsWithUnit: nil,
+            a11yMaxPointsWithUnit: nil
         )
 
         XCTAssertEqual(viewModel.currentPoints, "85")
         XCTAssertEqual(viewModel.maxPointsWithUnit, "")
+        XCTAssertEqual(viewModel.a11yMaxPointsWithUnit, "")
     }
 
     func test_init_withBothNil() {
         let viewModel = PointsRowViewModel(
             currentPoints: nil,
-            maxPointsWithUnit: nil
+            maxPointsWithUnit: nil,
+            a11yMaxPointsWithUnit: nil
         )
 
         XCTAssertEqual(viewModel.currentPoints, GradeFormatter.BlankPlaceholder.oneDash.stringValue)
         XCTAssertEqual(viewModel.maxPointsWithUnit, "")
+        XCTAssertEqual(viewModel.a11yMaxPointsWithUnit, "")
     }
 }

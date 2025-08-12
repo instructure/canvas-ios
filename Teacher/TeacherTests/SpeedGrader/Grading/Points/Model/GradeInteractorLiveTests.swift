@@ -24,104 +24,89 @@ import TestsFoundation
 
 class GradeInteractorLiveTests: TeacherTestCase {
 
+    private static let testData = (
+        courseId: "some courseId",
+        assignmentId: "some assignmentId",
+        userId: "some userId"
+    )
+    private lazy var testData = Self.testData
+
+    private var assignment: Assignment!
+    private var submission: Submission!
+    private var gradingScheme: GradingScheme!
+    private var rubricGradingInteractor: RubricGradingInteractorMock!
+    private var gradeStateInteractor: GradeStateInteractorMock!
+
+    override func setUp() {
+        super.setUp()
+
+        assignment = Assignment.make(in: databaseClient)
+        assignment.id = testData.assignmentId
+        assignment.courseID = testData.courseId
+
+        submission = Submission.make(in: databaseClient)
+        submission.userID = testData.userId
+
+        gradingScheme = PercentageBasedGradingScheme.default
+
+        rubricGradingInteractor = .init()
+        gradeStateInteractor = .init()
+    }
+
+    override func tearDown() {
+        assignment = nil
+        submission = nil
+        rubricGradingInteractor = nil
+        gradeStateInteractor = nil
+        super.tearDown()
+    }
+
     // MARK: - Grade State Publishing Tests
 
-    func test_gradeState_publishesInitialStateAndUpdatesWhenCoreDataChanges() {
-        let assignment = Assignment.make(from: .make(points_possible: 100), in: databaseClient)
-        let submission = Submission.make(from: .make(grade: nil), in: databaseClient)
-        let rubricInteractor = RubricGradingInteractorMock()
-        let gradeStateInteractor = GradeStateInteractorMock()
+    func test_gradeState_publishesInitialStateAndUpdatesWhenCoreDataChanges() throws {
+        let initialGradeState = GradeState.make(score: 10)
+        let updatedGradeState = GradeState.make(score: 20)
 
-        rubricInteractor.isRubricScoreAvailable.value = false
-        rubricInteractor.totalRubricScore.value = 0
-        let initialGradeState = GradeState(
-            hasLateDeduction: false,
-            isGraded: false,
-            isExcused: false,
-            isGradedButNotPosted: false,
-            originalGradeText: "",
-            pointsDeductedText: "0 pts",
-            gradeAlertText: "",
-            score: 0,
-            pointsPossibleText: "",
-            gradingType: .points,
-            originalScoreWithoutMetric: nil,
-            finalGradeWithoutMetric: nil
-        )
-        gradeStateInteractor.gradeStateToReturn = initialGradeState
+        rubricGradingInteractor.isRubricScoreAvailable.value = true
+        rubricGradingInteractor.totalRubricScore.value = 100
+        gradeStateInteractor.gradeStateOutput = initialGradeState
 
         // WHEN
-        let interactor = GradeInteractorLive(
-            assignment: assignment,
-            submission: submission,
-            rubricGradingInteractor: rubricInteractor,
-            gradeStateInteractor: gradeStateInteractor,
-            env: environment
-        )
+        let testee = makeInteractor()
 
         // THEN
-        waitUntil(shouldFail: true) {
-            gradeStateInteractor.gradeStateCalled
-        }
-        XCTAssertFirstValue(interactor.gradeState) { gradeState in
+        XCTAssertFirstValue(testee.gradeState) { gradeState in
             XCTAssertEqual(gradeState, initialGradeState)
         }
-        XCTAssertEqual(gradeStateInteractor.lastIsRubricScoreAvailable, false)
-        XCTAssertEqual(gradeStateInteractor.lastTotalRubricScore, 0)
+        XCTAssertEqual(gradeStateInteractor.gradeStateCallsCount, 1)
+        var gradeStateInput = try XCTUnwrap(gradeStateInteractor.gradeStateInput)
+        XCTAssert(gradeStateInput == (submission, assignment, true, 100))
 
         // WHEN
-        rubricInteractor.isRubricScoreAvailable.value = true
-        rubricInteractor.totalRubricScore.value = 85.5
-        let updatedGradeState = GradeState(
-            hasLateDeduction: false,
-            isGraded: true,
-            isExcused: false,
-            isGradedButNotPosted: false,
-            originalGradeText: "90/100",
-            pointsDeductedText: "0 pts",
-            gradeAlertText: "90",
-            score: 90,
-            pointsPossibleText: "100 pts",
-            gradingType: .points,
-            originalScoreWithoutMetric: "90",
-            finalGradeWithoutMetric: "90"
-        )
-        gradeStateInteractor.gradeStateToReturn = updatedGradeState
-        gradeStateInteractor.gradeStateCalled = false
+        rubricGradingInteractor.isRubricScoreAvailable.value = false
+        rubricGradingInteractor.totalRubricScore.value = 200
+        gradeStateInteractor.gradeStateOutput = updatedGradeState
 
         submission.grade = "90"
-        submission.score = 90
         try! databaseClient.save()
 
         // THEN
-        waitUntil(shouldFail: true) {
-            gradeStateInteractor.gradeStateCalled
-        }
-        XCTAssertFirstValue(interactor.gradeState) { gradeState in
+        XCTAssertFirstValue(testee.gradeState) { gradeState in
             XCTAssertEqual(gradeState, updatedGradeState)
         }
-        XCTAssertEqual(gradeStateInteractor.lastIsRubricScoreAvailable, true)
-        XCTAssertEqual(gradeStateInteractor.lastTotalRubricScore, 85.5)
+        XCTAssertEqual(gradeStateInteractor.gradeStateCallsCount, 4) // initial + rubric + rubric + submission
+        gradeStateInput = try XCTUnwrap(gradeStateInteractor.gradeStateInput)
+        XCTAssert(gradeStateInput == (submission, assignment, false, 200))
     }
 
     // MARK: - Save Grade API Tests
 
     func test_saveGrade_passesCorrectParametersToAPI() {
-        let assignment = Assignment.make(from: .make(
-            course_id: "course1",
-            id: "assignment1"
-        ), in: databaseClient)
-        let submission = Submission.make(from: .make(
-            assignment_id: "assignment1",
-            user_id: "user1"
-        ), in: databaseClient)
-        let rubricInteractor = RubricGradingInteractorMock()
-
         let apiExpectation = expectation(description: "API called with correct parameters")
         let request = PutSubmissionGradeRequest(
-            courseID: "course1",
-            assignmentID: "assignment1",
-            userID: "user1",
+            courseID: testData.courseId,
+            assignmentID: testData.assignmentId,
+            userID: testData.userId,
             body: nil // only the path and url parameters are used for mock lookup so
                       // we need to validate the actual body when we respond to the mock call
         )
@@ -136,42 +121,23 @@ class GradeInteractorLiveTests: TeacherTestCase {
             return (nil, nil, nil)
         }
 
-        let interactor = GradeInteractorLive(
-            assignment: assignment,
-            submission: submission,
-            rubricGradingInteractor: rubricInteractor,
-            env: environment
-        )
+        let testee = makeInteractor()
 
         // WHEN
-        XCTAssertFinish(interactor.saveGrade(excused: true, grade: "95"))
+        XCTAssertFinish(testee.saveGrade(excused: true, grade: "95"))
 
         // THEN
         waitForExpectations(timeout: 1)
     }
-}
 
-// MARK: - Mock Classes
-
-private class GradeStateInteractorMock: GradeStateInteractor {
-    var gradeStateCalled = false
-    var gradeStateToReturn = GradeState.empty
-    var lastSubmission: Submission?
-    var lastAssignment: Assignment?
-    var lastIsRubricScoreAvailable: Bool?
-    var lastTotalRubricScore: Double?
-
-    func gradeState(
-        submission: Submission,
-        assignment: Assignment,
-        isRubricScoreAvailable: Bool,
-        totalRubricScore: Double
-    ) -> GradeState {
-        gradeStateCalled = true
-        lastSubmission = submission
-        lastAssignment = assignment
-        lastIsRubricScoreAvailable = isRubricScoreAvailable
-        lastTotalRubricScore = totalRubricScore
-        return gradeStateToReturn
+    private func makeInteractor() -> GradeInteractorLive {
+        GradeInteractorLive(
+            assignment: assignment,
+            submission: submission,
+            gradingScheme: gradingScheme,
+            rubricGradingInteractor: rubricGradingInteractor,
+            gradeStateInteractor: gradeStateInteractor,
+            env: environment
+        )
     }
 }

@@ -52,6 +52,7 @@ class SpeedGraderPageViewModel: ObservableObject {
     let submissionWordCountViewModel: SubmissionWordCountViewModel
     let studentNotesViewModel: StudentNotesViewModel
     let rubricsViewModel: RubricsViewModel
+    let redesignedRubricsViewModel: RedesignedRubricsViewModel
     let gradeViewModel: SpeedGraderSubmissionGradesViewModel
 
     // MARK: - Inputs
@@ -69,6 +70,7 @@ class SpeedGraderPageViewModel: ObservableObject {
         gradeStatusViewModel: GradeStatusViewModel,
         commentListViewModel: SubmissionCommentListViewModel,
         rubricsViewModel: RubricsViewModel,
+        redesignedRubricsViewModel: RedesignedRubricsViewModel,
         submissionWordCountViewModel: SubmissionWordCountViewModel,
         studentNotesViewModel: StudentNotesViewModel
     ) {
@@ -81,6 +83,7 @@ class SpeedGraderPageViewModel: ObservableObject {
         self.gradeStatusViewModel = gradeStatusViewModel
         self.commentListViewModel = commentListViewModel
         self.rubricsViewModel = rubricsViewModel
+        self.redesignedRubricsViewModel = redesignedRubricsViewModel
         self.submissionWordCountViewModel = submissionWordCountViewModel
         self.studentNotesViewModel = studentNotesViewModel
 
@@ -109,7 +112,7 @@ class SpeedGraderPageViewModel: ObservableObject {
         )
         selectedAttempt = attempts.first { $0.attempt == attemptNumber } ?? submission
         selectedAttemptNumber = attemptNumber
-        selectedAttemptTitle = String.localizedAttemptNumber(attemptNumber)
+        selectedAttemptTitle = String.format(attemptNumber: attemptNumber)
 
         let hasFiles = selectedAttempt.type == .online_upload && selectedAttempt.attachments?.isNotEmpty ?? false
         hasMultipleFiles = hasFiles && selectedAttempt.attachments?.count ?? 0 > 1
@@ -171,7 +174,7 @@ class SpeedGraderPageViewModel: ObservableObject {
 
     private func updateAttemptPickerOptions() {
         attemptPickerOptions = attempts.map { attempt in
-            let title = String.localizedAttemptNumber(attempt.attempt)
+            let title = String.format(attemptNumber: attempt.attempt)
             let subtitle = attempt.submittedAt?.dateTimeString
             let accessibilityLabel = subtitle.map {
                 let format = String(localized: "%1$@, submitted on %2$@", bundle: .teacher, comment: "Attempt 30, submitted on 2025. Feb 6. at 18:21")

@@ -27,11 +27,14 @@ final class AccountViewModel {
 
     private(set) var name: String = ""
     var isShowingLogoutConfirmationAlert = false
+    var isExperienceSwitchAvailable = false
+    var isLoading = false
 
     // MARK: - Dependencies
 
     private let router: Router
     private let getUserInteractor: GetUserInteractor
+    private let appExperienceInteractor: ExperienceSummaryInteractor
 
     // MARK: - Private properties
 
@@ -47,17 +50,24 @@ final class AccountViewModel {
     // MARK: - Init
 
     init(
+        router: Router = AppEnvironment.shared.router,
         getUserInteractor: GetUserInteractor,
-        sessionInteractor: SessionInteractor,
-        router: Router = AppEnvironment.shared.router
+        appExperienceInteractor: ExperienceSummaryInteractor = ExperienceSummaryInteractorLive(),
+        sessionInteractor: SessionInteractor = SessionInteractor(),
     ) {
         self.router = router
         self.getUserInteractor = getUserInteractor
+        self.appExperienceInteractor = appExperienceInteractor
 
         confirmLogoutViewModel.userConfirmation()
             .sink {
                 sessionInteractor.logout()
             }
+            .store(in: &subscriptions)
+
+        appExperienceInteractor
+            .isExperienceSwitchAvailable()
+            .assign(to: \.isExperienceSwitchAvailable, on: self, ownership: .weak)
             .store(in: &subscriptions)
     }
 
@@ -88,6 +98,19 @@ final class AccountViewModel {
         if let url = URL(string: "/account/advanced") {
             router.route(to: url, from: viewController)
         }
+    }
+
+    func switchExperienceDidTap() {
+        isLoading = true
+
+        appExperienceInteractor.switchExperience(to: Experience.academic)
+            .sink { _ in
+                AppEnvironment.shared.switchExperience(.academic)
+                let academicInterfaceStyle = AppEnvironment.shared.userDefaults?.academicInterfaceStyle ?? .light
+                AppEnvironment.shared.window?.updateInterfaceStyleWithoutTransition(academicInterfaceStyle)
+                AppEnvironment.shared.userDefaults?.interfaceStyle = academicInterfaceStyle
+            }
+            .store(in: &subscriptions)
     }
 
     func betaCommunityDidTap() {}

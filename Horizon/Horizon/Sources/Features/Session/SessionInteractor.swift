@@ -26,16 +26,18 @@ enum LoginError: Error {
     case unauthorized
 }
 
-final class SessionInteractor: NSObject, LoginDelegate {
+final class SessionInteractor: NSObject {
     private let environment: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
+    private let loginDelegate: LoginDelegate?
 
-    init(environment: AppEnvironment = .shared) {
+    init(loginDelegate: LoginDelegate? = nil, environment: AppEnvironment = .shared) {
         self.environment = environment
+        self.loginDelegate = loginDelegate
     }
 
     func getUserID() -> AnyPublisher<String, Error> {
-        guard let currentSession = LoginSession.mostRecent else {
+        guard let currentSession = environment.currentSession else {
             return Fail(error: LoginError.loggedOut).eraseToAnyPublisher()
         }
         return Just(currentSession.userID)
@@ -44,102 +46,60 @@ final class SessionInteractor: NSObject, LoginDelegate {
     }
 
     func getUserID() -> String? {
-        LoginSession.mostRecent?.userID
-    }
-
-    func refreshCurrentUserDetails() -> AnyPublisher<UserProfile, Error> {
-        guard let currentSession = LoginSession.mostRecent else {
-            return Fail(error: LoginError.loggedOut).eraseToAnyPublisher()
-        }
-
-        return updateLoginSession(session: currentSession)
-    }
-
-    private func updateLoginSession(session: LoginSession) -> AnyPublisher<UserProfile, Error> {
-        LoginSession.add(session)
-        environment.userDidLogin(session: session)
-
-        unowned let unownedSelf = self
-
-        return ReactiveStore(useCase: GetUserProfile())
-            .getEntities(ignoreCache: true)
-            .compactMap { $0.first }
-            .flatMap { userProfile in
-                CoreWebView.keepCookieAlive(for: unownedSelf.environment)
-                PushNotificationsInteractor.shared.userDidLogin(api: unownedSelf.environment.api)
-
-                return ReactiveStore(
-                    useCase: GetEnvironmentFeatureFlags(context: Context.currentUser)
-                )
-                .getEntities(ignoreCache: true)
-                .map { _ in userProfile }
-            }
-            .mapError { error in
-                let err = error as NSError
-                if err.domain == NSError.Constants.domain,
-                   err.code == HttpError.unauthorized {
-                    unownedSelf.userDidLogout(session: session)
-                    return LoginError.unauthorized
-                } else if let apiError = error as? APIError, case .unauthorized = apiError {
-                    unownedSelf.userDidLogout(session: session)
-                    return LoginError.unauthorized
-                } else {
-                    return error
-                }
-            }
-            .eraseToAnyPublisher()
-    }
-
-    private func initializeTracking() {}
-}
-
-extension SessionInteractor {
-    func changeUser() {
-        guard let window = environment.window, !(window.rootViewController is LoginNavigationController) else { return }
-        LoginViewModel().showLoginView(on: window, loginDelegate: self, app: .horizon)
-    }
-
-    func stopActing() {
-        if let session = environment.currentSession {
-            stopActing(as: session)
-        }
+        environment.currentSession?.userID
     }
 
     func logout() {
-        if let session = environment.currentSession {
-            userDidLogout(session: session)
+        guard
+            let currentSession = environment.currentSession,
+            let loginDelegate = environment.loginDelegate else {
+            return
         }
+        loginDelegate.userDidLogout(session: currentSession)
     }
 
-    func openExternalURL(_ url: URL) {
-        openExternalURLinSafari(url)
-    }
+    /*
+     func refreshCurrentUserDetails() -> AnyPublisher<UserProfile, Error> {
+         guard let currentSession = LoginSession.mostRecent else {
+             return Fail(error: LoginError.loggedOut).eraseToAnyPublisher()
+         }
 
-    func openExternalURLinSafari(_ url: URL) {
-        UIApplication.shared.open(url)
-    }
+         return updateLoginSession(session: currentSession)
+     }
 
-    func userDidLogin(session: LoginSession) {
-        LoginSession.add(session)
-    }
+     private func updateLoginSession(session: LoginSession) -> AnyPublisher<UserProfile, Error> {
+         LoginSession.add(session)
+         environment.userDidLogin(session: session)
 
-    func userDidStopActing(as session: LoginSession) {
-        LoginSession.remove(session)
-        guard environment.currentSession == session else { return }
-        PageViewEventController.instance.userDidChange()
-        PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
-        // TODO: Revisit when implementing notifications
-        //        UIApplication.shared.applicationIconBadgeNumber = 0
-        environment.userDidLogout(session: session)
-        CoreWebView.stopCookieKeepAlive()
-    }
+         unowned let unownedSelf = self
 
-    func userDidLogout(session: LoginSession) {
-        let wasCurrent = environment.currentSession == session
-        API(session).makeRequest(DeleteLoginOAuthRequest(), refreshToken: false) { _, _, _ in }
-        userDidStopActing(as: session)
-        if wasCurrent { changeUser() }
-    }
+         return ReactiveStore(useCase: GetUserProfile())
+             .getEntities(ignoreCache: true)
+             .compactMap { $0.first }
+             .flatMap { userProfile in
+                 CoreWebView.keepCookieAlive(for: unownedSelf.environment)
+                 PushNotificationsInteractor.shared.userDidLogin(api: unownedSelf.environment.api)
 
-    func actAsFakeStudent(withID _: String) {}
+                 return ReactiveStore(
+                     useCase: GetEnvironmentFeatureFlags(context: Context.currentUser)
+                 )
+                 .getEntities(ignoreCache: true)
+                 .map { _ in userProfile }
+             }
+             .mapError { error in
+                 let err = error as NSError
+                 if err.domain == NSError.Constants.domain,
+                    err.code == HttpError.unauthorized {
+                     unownedSelf.loginDelegate?.userDidLogout(session: session)
+                     return LoginError.unauthorized
+                 } else if let apiError = error as? APIError, case .unauthorized = apiError {
+                     unownedSelf.environment.loginDelegate?.userDidLogout(session: session)
+                     return LoginError.unauthorized
+                 } else {
+                     return error
+                 }
+             }
+             .eraseToAnyPublisher()
+     }
+      */
 }

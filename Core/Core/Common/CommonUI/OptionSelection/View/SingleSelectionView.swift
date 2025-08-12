@@ -65,6 +65,28 @@ public struct SingleSelectionView: View {
         )
     }
 
+    /// This init allows for separated did select notifications.
+    /// This is useful if we want to avoid `selectedOption` to publish when it gets a value from outside.
+    /// When a value is selected `selectOption` won't publish, only `didSelectOption` will.
+    public init(
+        title: String?,
+        identifierGroup: String? = nil,
+        allOptions: [OptionItem],
+        selectOption: CurrentValueSubject<OptionItem?, Never>,
+        didSelectOption: PassthroughSubject<OptionItem?, Never>,
+        style: Style = .radioButton
+    ) {
+        self.identifierGroup = identifierGroup
+        self.style = style
+
+        self._viewModel = StateObject(wrappedValue: .init(
+            title: title,
+            allOptions: allOptions,
+            selectedOption: selectOption,
+            didSelectOption: didSelectOption
+        ))
+    }
+
     public var body: some View {
         LazyVStack(spacing: 0) {
             Section {
@@ -105,9 +127,13 @@ public struct SingleSelectionView: View {
 
     private var selectionBinding: Binding<OptionItem?> {
         Binding {
-            viewModel.selectedOption.value
-        } set: { selectedValue in
-            viewModel.selectedOption.send(selectedValue)
+            viewModel.selectedOption
+        } set: {
+            if let didSelectOption = viewModel.didSelectOption {
+                didSelectOption.send($0)
+            } else {
+                viewModel.selectedOptionSubject.send($0)
+            }
         }
     }
 }

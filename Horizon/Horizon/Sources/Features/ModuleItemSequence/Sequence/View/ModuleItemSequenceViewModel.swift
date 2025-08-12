@@ -81,6 +81,9 @@ final class ModuleItemSequenceViewModel {
     private let assetID: String
     private let courseID: String
     private let isNotebookDisabled: Bool
+    // Need to save the completion state for the module items without observation
+    private var unobservedCourse: HCourse?
+    private var firstModuleItem: HModuleItem?
 
     // MARK: - Init
 
@@ -93,6 +96,7 @@ final class ModuleItemSequenceViewModel {
         moduleItemStateInteractor: ModuleItemStateInteractor,
         router: Router,
         assetType: AssetType,
+        firstModuleItem: HModuleItem? = nil,
         assetID: String,
         courseID: String,
         isNotebookDisabled: Bool = false
@@ -104,13 +108,17 @@ final class ModuleItemSequenceViewModel {
         self.assetID = assetID
         self.courseID = courseID
         self.isNotebookDisabled = isNotebookDisabled
+        self.firstModuleItem = firstModuleItem
 
         fetchModuleItemSequence(assetId: assetID)
 
-        moduleItemInteractor.getCourse()
+        moduleItemInteractor.getCourse(ignoreCache: false)
             .sink { [weak self] course in
                 self?.courseName = course.name
                 self?.course = course
+                if self?.unobservedCourse == nil {
+                    self?.unobservedCourse = course
+                }
             }
             .store(in: &subscriptions)
 
@@ -203,24 +211,30 @@ final class ModuleItemSequenceViewModel {
     }
 
     private func navigateToTutor(viewController: WeakViewController) {
-        guard let courseID = moduleItem?.courseID else {
+        guard let courseId = moduleItem?.courseID else {
             return
         }
 
-        var pageURL: String?
-        var fileID: String?
-        if case let .page(url) = moduleItem?.type {
-            pageURL = url
-        }
-        if case let .file(file) = moduleItem?.type {
-            fileID = file
-        }
-        let params = AssistAssembly.RoutingParams(
-            courseID: courseID,
-            fileID: fileID,
-            pageURL: pageURL
-        ).queryString
+        var fileId: String?
+        var pageUrl: String?
 
+        switch moduleItem?.type {
+        case .file(let id):
+                fileId = id
+        case .page(let url):
+                pageUrl = url
+        default:
+            break
+        }
+
+        let params = [
+            "courseId": courseId,
+            "pageUrl": pageUrl,
+            "fileId": fileId
+        ].map { key, value in
+            guard let value = value else { return nil }
+            return "\(key)=\(value)"
+        }.compactMap { $0 }.joined(separator: "&")
         router.route(to: "/assistant?\(params)", from: viewController, options: .modal())
     }
 
@@ -254,9 +268,7 @@ final class ModuleItemSequenceViewModel {
             moduleID: moduleID,
             itemID: itemID
         )
-        if state?.isModuleItem == true {
-            markAsViewed()
-        }
+        markAsViewed()
         isAssignmentOptionsButtonVisible = state?.isAssignment ?? false
         /// In some cases, the module sequence API returns an empty response for assignment type only.
         if state?.isExternalURL == true, item == nil {
@@ -285,21 +297,33 @@ final class ModuleItemSequenceViewModel {
         guard let moduleID, let itemID, let moduleItem else {
             return
         }
-
-        NotificationCenter.default.post(name: .moduleItemViewDidLoad, object: nil, userInfo: [
-            "moduleID": moduleID,
-            "itemID": itemID
-        ])
-
         guard moduleItem.completionRequirementType == .must_view,
-              moduleItem.isCompleted == false,
+              isModuleItemCompleted(moduleId: moduleID, itemId: itemID) == false,
               moduleItem.lockedForUser == false else {
             return
         }
+        unobservedCourse = course
         moduleItemInteractor
             .markAsViewed(moduleID: moduleID, itemID: itemID)
             .sink()
             .store(in: &subscriptions)
+    }
+
+    private func isModuleItemCompleted(moduleId: String, itemId: String) -> Bool? {
+        if itemID == firstModuleItem?.id {
+            let isCompleted = firstModuleItem?.isCompleted
+            firstModuleItem = nil
+            return isCompleted
+        } else {
+            return getModuleItem(moduleId: moduleId, itemId: itemId)?.isCompleted
+        }
+    }
+
+    private func getModuleItem(moduleId: String, itemId: String) -> HModuleItem? {
+        guard let selectedModule = unobservedCourse?.modules.first(where: { $0.id == moduleId }) else {
+            return nil
+        }
+        return selectedModule.items.first(where: { $0.id == itemId })
     }
 
     func retry() {
@@ -334,28 +358,31 @@ final class ModuleItemSequenceViewModel {
     }
 
     private func refershModuleItem() {
-        guard let next = sequence?.next else { return }
-        moduleItemInteractor.fetchModuleItems(
-            assetType: assetType,
-            assetID: next.id,
-            moduleID: next.moduleID,
-            itemID: next.id,
-            ignoreCache: true
-        )
-        .sink()
-        .store(in: &subscriptions)
-    }
-}
+        guard let next = sequence?.next,
+              let moduleItem = getModuleItem(moduleId: next.moduleID, itemId: next.id) else {
+            return
+        }
 
-private extension ModuleItemType {
-    var interactorAssetType: AssistChatInteractor.AssetType? {
-        switch self {
-        case .file:
-            return .File
-        case .page:
-            return .Page
-        default:
-            return nil
+        /// If the next module item is `must_view` and locked, fetch the course to unlock it.
+        if moduleItem.completionRequirementType == .must_view {
+            guard moduleItem.isLocked else { return }
+
+            moduleItemInteractor.getCourse(ignoreCache: true)
+                .sink { [weak self] course in
+                    self?.course = course
+                }
+                .store(in: &subscriptions)
+        } else {
+            // Otherwise, fetch module items normally.
+            moduleItemInteractor.fetchModuleItems(
+                assetType: assetType,
+                assetID: next.id,
+                moduleID: next.moduleID,
+                itemID: next.id,
+                ignoreCache: true
+            )
+            .sink()
+            .store(in: &subscriptions)
         }
     }
 }

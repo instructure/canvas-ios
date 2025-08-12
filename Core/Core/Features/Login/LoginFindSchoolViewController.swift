@@ -144,10 +144,8 @@ class LoginFindSchoolViewController: UIViewController {
         host = host.lowercased()
 
         // For manual oauth logins we trust the developer and don't modify the host.
-        if method != .manualOAuthLogin, !host.contains("."), env.app != .horizon {
+        if method != .manualOAuthLogin, !host.contains(".") {
             host = "\(host).instructure.com"
-        } else if env.app == .horizon {
-            host = replaceRootDomain(urlString: host, newRootDomain: "instructure.com") ?? ""
         }
 
         searchField.resignFirstResponder()
@@ -157,36 +155,6 @@ class LoginFindSchoolViewController: UIViewController {
             env.lastLoginAccount = APIAccountResult(name: "", domain: host, authentication_provider: nil)
         }
         showLoginForHost(host)
-    }
-
-    func replaceRootDomain(urlString: String, newRootDomain: String) -> String? {
-        var cleanedUrlString = urlString
-        if let regex = try? Regex("^(https?://)?") {
-            cleanedUrlString = urlString.replacing(regex, with: "")
-        }
-        let urlWithScheme = "https://\(cleanedUrlString)"
-
-        guard let url = URL(string: urlWithScheme) else {
-            return nil
-        }
-
-        // Try to extract host, fallback to raw string if needed
-        let host = url.host ?? cleanedUrlString
-        let parts = host.components(separatedBy: ".")
-
-        let subdomain: String
-        if parts.count >= 3 {
-            // Full domain with subdomain (subdomain.domain.com
-            subdomain = parts.dropLast(2).joined(separator: ".")
-        } else if parts.count == 1 {
-            // Only a subdomain was typed (subdomain)
-            subdomain = parts[0]
-        } else {
-            subdomain = parts.dropLast().joined(separator: ".")
-        }
-
-        let newHost = "\(subdomain).\(newRootDomain)"
-        return newHost
     }
 
     private func toggleNextButtonVisibility() {

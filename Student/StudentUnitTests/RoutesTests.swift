@@ -22,6 +22,7 @@ import XCTest
 import TestsFoundation
 
 class RoutesTests: XCTestCase {
+    private let router = academicRouter
     lazy var login = TestLogin()
     class TestLogin: LoginDelegate {
         func userDidLogin(session: LoginSession) {}

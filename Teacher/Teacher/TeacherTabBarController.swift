@@ -72,7 +72,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
         let cardView = CoreHostingController(DashboardContainerView(shouldShowGroupList: false,
                                                                showOnlyTeacherEnrollment: true))
         let dashboard = DashboardContainerViewController(rootViewController: cardView) { CoreSplitViewController() }
-        dashboard.tabBarItem.title = String(localized: "Courses", bundle: .teacher)
+        dashboard.tabBarItem.title = String(localized: "Courses", bundle: .teacher, comment: "Tab title, max character count is 14")
         dashboard.tabBarItem.image = .coursesTab
         dashboard.tabBarItem.selectedImage = .coursesTabActive
         dashboard.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
@@ -86,7 +86,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
             CoreNavigationController(rootViewController: EmptyViewController())
         ]
         split.view.tintColor = Brand.shared.primary
-        split.tabBarItem.title = String(localized: "Calendar", bundle: .teacher, comment: "Calendar page title")
+        split.tabBarItem.title = String(localized: "Calendar", bundle: .teacher, comment: "Tab title, max character count is 14")
         split.tabBarItem.image = .calendarTab
         split.tabBarItem.selectedImage = .calendarTabActive
         split.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
@@ -97,7 +97,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
 
     func toDoTab() -> UIViewController {
         let todo = CoreNavigationController(rootViewController: TodoListViewController.create())
-        todo.tabBarItem.title = String(localized: "To Do", bundle: .teacher)
+        todo.tabBarItem.title = String(localized: "To Do", bundle: .teacher, comment: "Tab title, max character count is 14")
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
         todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
@@ -116,7 +116,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
         empty.navigationBar.useGlobalNavStyle()
 
         inboxSplit.viewControllers = [inboxController, empty]
-        let title = String(localized: "Inbox", bundle: .teacher, comment: "Inbox tab title")
+        let title = String(localized: "Inbox", bundle: .teacher, comment: "Tab title, max character count is 14")
         inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
         inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
         inboxSplit.extendedLayoutIncludesOpaqueBars = true

@@ -21,40 +21,80 @@ import CombineSchedulers
 import Core
 import CoreData
 
+enum GradeInputType {
+    case pointsTextField
+    case percentageTextField
+    case pointsDisplayOnly // for Complete/Incomplete
+    case gradePicker // for GPA & Lettergrade
+    case statusDisplayOnly // for Not Graded
+}
+
 class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     // MARK: - Outputs
 
+    let state: InstUI.ScreenState
+
+    // Grading inputs
+    @Published private(set) var gradeState: GradeState
+    @Published private(set) var gradeInputType: GradeInputType?
+    let isSavingGrade = CurrentValueSubject<Bool, Never>(false)
+    let shouldShowPointsInput: Bool
+    let shouldShowSlider: Bool
+    let shouldShowSelector: Bool
     @Published var sliderValue: Double = 0
-    @Published var isShowingErrorAlert = false
-    @Published var isNoGradeButtonDisabled = false
-    @Published private(set) var state = GradeState.empty
-    @Published private(set) var shouldShowGradeSummary = false
+    @Published var isNoGradeButtonDisabled: Bool = false
+    let selectGradeOption = CurrentValueSubject<OptionItem?, Never>(nil)
+    let didSelectGradeOption = PassthroughSubject<OptionItem?, Never>()
+
+    // Grade summary
+    @Published private(set) var shouldShowGradeSummary: Bool = false
     @Published private(set) var pointsRowModel: PointsRowViewModel?
     @Published private(set) var latePenaltyRowModel: LatePenaltyRowViewModel?
     @Published private(set) var finalGradeRowModel: FinalGradeRowViewModel?
-    @Published private(set) var isSaving = false
-    @Published private(set) var errorAlertViewModel = ErrorAlertViewModel(
-        title: String(localized: "Error", bundle: .teacher),
-        message: "",
-        buttonTitle: String(localized: "OK", bundle: .teacher)
-    )
+
+    // Error alert
+    @Published var isShowingErrorAlert: Bool = false
+    private(set) var errorAlertViewModel: ErrorAlertViewModel = .init()
 
     // MARK: - Private Properties
 
+    private let assignment: Assignment
     private let gradeInteractor: GradeInteractor
     private var cancellables = Set<AnyCancellable>()
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
 
+    // MARK: - Init
+
     init(
         assignment: Assignment,
         submission: Submission,
+        gradingScheme: GradingScheme? = nil,
         gradeInteractor: GradeInteractor,
         mainScheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
+        self.assignment = assignment
         self.gradeInteractor = gradeInteractor
         self.mainScheduler = mainScheduler
 
+        // On mobile we don't support Moderated Grading at the moment.
+        // - It's multiple graders grading and then a moderator giving final grade.
+        // - Course level feature, needs to be enabled before setting this on an assignment.
+        // In that case we display a relevant empty panda.
+        self.state = assignment.moderatedGrading ? .empty : .data
+
+        self.gradeState = GradeStateInteractorLive.gradeState(usingOnly: assignment, gradingScheme: gradingScheme)
+
+        self.shouldShowPointsInput = [.gpa_scale, .letter_grade].contains(assignment.gradingType)
+
+        self.shouldShowSlider = !assignment.useRubricForGrading
+            && [.points, .percent, .gpa_scale, .letter_grade].contains(assignment.gradingType)
+
+        self.shouldShowSelector = [.pass_fail].contains(assignment.gradingType)
+
+        updateGradeState(gradeState)
+
+        updateGradeOnGradePickerSelection()
         observeGradeStateChanges()
     }
 
@@ -68,8 +108,21 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
         saveGrade(excused: true)
     }
 
-    func setGrade(_ grade: String) {
-        saveGrade(grade: grade)
+    func setGradeFromTextField(_ text: String, inputType: GradeInputTextFieldCell.InputType) {
+        if text.isEmpty {
+            removeGrade()
+            return
+        }
+
+        guard let value = text.doubleValueByFixingDecimalSeparator else {
+            showInvalidGradeError(grade: text)
+            return
+        }
+
+        switch inputType {
+        case .points: setPointsGrade(value)
+        case .percentage: setPercentGrade(value)
+        }
     }
 
     func setPointsGrade(_ points: Double) {
@@ -77,39 +130,65 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     }
 
     func setPercentGrade(_ percent: Double) {
-        let percentValue = "\(round(percent))%"
+        let percentValue = "\(percent)%"
         saveGrade(grade: percentValue)
     }
 
-    func setPassFailGrade(complete: Bool) {
-        saveGrade(grade: complete ? "complete" : "incomplete")
+    func setGradeOption(_ item: OptionItem) {
+        saveGrade(grade: item.id)
     }
 
     // MARK: - Private Methods
 
     private func observeGradeStateChanges() {
         gradeInteractor.gradeState
-            .sink { [weak self] newState in
-                guard let self else { return }
-                state = newState
-                sliderValue = newState.score
-                isNoGradeButtonDisabled = (!newState.isGraded && !newState.isExcused)
-                shouldShowGradeSummary = (!newState.isExcused && newState.gradingType != .not_graded)
-                pointsRowModel = newState.pointsRowModel
-                latePenaltyRowModel = newState.latePenaltyRowModel
-                finalGradeRowModel = newState.finalGradeRowModel
+            .removeDuplicates()
+            .sink { [weak self] in
+                self?.updateGradeState($0)
             }
             .store(in: &cancellables)
     }
 
+    private func updateGradeOnGradePickerSelection() {
+        didSelectGradeOption
+            // Not removing duplicates, because it would swallow reselecting the last selected option
+            // if it was deselected in the meantime from elsewhere.
+            .sink { [weak self] in
+                if let gradeOption = $0 {
+                    self?.setGradeOption(gradeOption)
+                } else {
+                    self?.removeGrade()
+                }
+            }
+            .store(in: &cancellables)
+    }
+
+    private func updateGradeState(_ gradeState: GradeState ) {
+        self.gradeState = gradeState
+
+        gradeInputType = gradeState.gradeInputType
+        sliderValue = gradeState.score
+        isNoGradeButtonDisabled = (!gradeState.isGraded && !gradeState.isExcused)
+
+        if gradeState.gradeOptions.isNotEmpty {
+            let selectedOption = gradeState.gradeOptions.option(with: gradeState.originalGrade)
+            selectGradeOption.send(selectedOption)
+        }
+
+        shouldShowGradeSummary = (!gradeState.isExcused && gradeState.gradingType != .not_graded)
+        pointsRowModel = gradeState.pointsRowModel
+        latePenaltyRowModel = gradeState.latePenaltyRowModel
+        finalGradeRowModel = gradeState.finalGradeRowModel
+    }
+
     private func saveGrade(excused: Bool? = nil, grade: String? = nil) {
-        isSaving = true
+        isSavingGrade.send(true)
 
         gradeInteractor.saveGrade(excused: excused, grade: grade)
             .receive(on: mainScheduler)
             .sink(
                 receiveCompletion: { [weak self] completion in
-                    self?.isSaving = false
+                    self?.isSavingGrade.send(false)
                     if case .failure(let error) = completion {
                         self?.showError(error)
                     }
@@ -120,10 +199,14 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     }
 
     private func showError(_ error: Error) {
-        errorAlertViewModel = ErrorAlertViewModel(
-            title: errorAlertViewModel.title,
-            message: error.localizedDescription,
-            buttonTitle: errorAlertViewModel.buttonTitle
+        errorAlertViewModel = .init(message: error.localizedDescription)
+        isShowingErrorAlert = true
+    }
+
+    private func showInvalidGradeError(grade: String) {
+        errorAlertViewModel = .init(
+            title: String(localized: "Invalid Grade", bundle: .teacher),
+            message: String(localized: "\"\(grade)\" is not a valid grade.", bundle: .teacher)
         )
         isShowingErrorAlert = true
     }
@@ -139,33 +222,61 @@ extension GradeState {
         }
         return PointsRowViewModel(
             currentPoints: originalScoreWithoutMetric,
-            maxPointsWithUnit: pointsPossibleText
+            maxPointsWithUnit: pointsPossibleText,
+            a11yMaxPointsWithUnit: String(localized: "out of \(pointsPossibleAccessibilityText)", bundle: .teacher, comment: "Example: 'out of 10 points'"),
         )
     }
 
     var latePenaltyRowModel: LatePenaltyRowViewModel? {
-        if hasLateDeduction {
-            return LatePenaltyRowViewModel(penaltyText: pointsDeductedText)
-        } else {
-            return nil
-        }
+        guard hasLateDeduction else { return nil }
+
+        return LatePenaltyRowViewModel(
+            penaltyText: pointsDeductedText,
+            a11yPenaltyText: pointsDeductedAccessibilityText
+        )
     }
 
     var finalGradeRowModel: FinalGradeRowViewModel {
         let suffix: FinalGradeRowViewModel.SuffixType
-
         switch gradingType {
         case .percent:
             suffix = .percentage
         case .pass_fail, .letter_grade, .gpa_scale, .not_graded:
             suffix = .none
         case .points:
-            suffix = .maxGradeWithUnit(pointsPossibleText)
+            suffix = .maxGradeWithUnit(pointsPossibleText, pointsPossibleAccessibilityText)
+        }
+
+        let a11yGradeText: String?
+        switch gradingType {
+        case .points, .percent, .pass_fail, .not_graded:
+            a11yGradeText = finalGradeWithoutMetric
+        case .letter_grade, .gpa_scale:
+            a11yGradeText = String.format(accessibilityLetterGrade: finalGradeWithoutMetric)
         }
 
         return FinalGradeRowViewModel(
-            currentGradeText: finalGradeWithoutMetric,
-            suffixType: suffix
+            gradeText: finalGradeWithoutMetric,
+            a11yGradeText: a11yGradeText,
+            suffixType: suffix,
+            isGradedButNotPosted: isGradedButNotPosted
         )
+    }
+}
+
+private extension GradeState {
+    var gradeInputType: GradeInputType {
+        switch gradingType {
+        case .percent:
+            .percentageTextField
+        case .points:
+            .pointsTextField
+        case .pass_fail:
+            .pointsDisplayOnly
+        case .gpa_scale, .letter_grade:
+            .gradePicker
+        case .not_graded:
+            .statusDisplayOnly
+        }
     }
 }

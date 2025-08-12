@@ -42,6 +42,7 @@ struct CommentInputView: View {
     private let commentLibraryButtonType: CommentLibraryButtonType
     private let isAttachmentButtonEnabled: Bool
     private let contextColor: Color
+    private let hasDividerAbove: Bool
 
     private let commentLibraryAction: () -> Void
     private let addAttachmentAction: (AttachmentType) -> Void
@@ -55,6 +56,7 @@ struct CommentInputView: View {
         commentLibraryButtonType: CommentLibraryButtonType,
         isAttachmentButtonEnabled: Bool,
         contextColor: Color,
+        hasDividerAbove: Bool = true,
         commentLibraryAction: @escaping () -> Void,
         addAttachmentAction: @escaping (AttachmentType) -> Void,
         sendAction: @escaping () -> Void
@@ -63,6 +65,7 @@ struct CommentInputView: View {
         self.commentLibraryButtonType = commentLibraryButtonType
         self.isAttachmentButtonEnabled = isAttachmentButtonEnabled
         self.contextColor = contextColor
+        self.hasDividerAbove = hasDividerAbove
         self.commentLibraryAction = commentLibraryAction
         self.addAttachmentAction = addAttachmentAction
         self.sendAction = sendAction
@@ -70,7 +73,10 @@ struct CommentInputView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            InstUI.Divider()
+            if hasDividerAbove {
+                InstUI.Divider()
+            }
+
             content
                 .paddingStyle(.horizontal, .standard)
                 .padding(.vertical, 8)
@@ -145,7 +151,10 @@ struct CommentInputView: View {
         let icon = isCurrentlyClosed ? Image.chatLine : Image.chevronDown
         let label = isCurrentlyClosed ? Text("Open comment library", bundle: .teacher) : Text("Close comment library", bundle: .teacher)
         Button(
-            action: commentLibraryAction,
+            action: {
+                commentLibraryAction()
+                isFocused = false
+            },
             label: {
                 icon
                     .scaledIcon()

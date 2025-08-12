@@ -132,7 +132,7 @@ struct NotebookView: View {
                 }
             }
         }
-        .hidden(viewModel.notes.isEmpty)
+        .hidden(viewModel.isLoaderVisible)
     }
 
     @ViewBuilder
@@ -149,7 +149,7 @@ struct NotebookView: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .hidden(viewModel.notes.isEmpty)
+        .hidden(viewModel.isLoaderVisible)
     }
 
     private var emptyCard: some View {

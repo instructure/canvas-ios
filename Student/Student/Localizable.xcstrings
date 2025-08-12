@@ -27317,7 +27317,7 @@
       }
     },
     "Calendar" : {
-      "comment" : "Calendar page title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -39869,7 +39869,7 @@
       }
     },
     "Dashboard" : {
-      "comment" : "dashboard page title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -42225,7 +42225,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detalls"
+            "value" : "Informació"
           }
         },
         "cy" : {
@@ -42369,7 +42369,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ngā taipitopito"
+            "value" : "Nga korero taipitopito"
           }
         },
         "ms" : {
@@ -42447,7 +42447,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chi Tiết"
+            "value" : "Các Thông Tin Chi Tiết"
           }
         },
         "zh" : {
@@ -59259,7 +59259,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "التقدير"
+            "value" : "الدرجة"
           }
         },
         "ca" : {
@@ -60272,7 +60272,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lớp: %@"
+            "value" : "Điểm: %@"
           }
         },
         "zh" : {
@@ -60290,13 +60290,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "成績：%@"
+            "value" : "評分：%@"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "成績：%@"
+            "value" : "評分：%@"
           }
         }
       }
@@ -62933,7 +62933,7 @@
       }
     },
     "Homeroom" : {
-      "comment" : "Homeroom tab title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -64763,7 +64763,7 @@
       }
     },
     "Inbox" : {
-      "comment" : "Inbox tab title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -66584,6 +66584,9 @@
           }
         }
       }
+    },
+    "It looks like your account isn't set up as a learner role. If you believe this is a mistake, contact your admin or support team." : {
+
     },
     "It’s empty, what are you still doing here." : {
       "comment" : "It’s empty, what are you still doing here.",
@@ -81103,19 +81106,19 @@
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No due date"
+            "value" : "No Due Date"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No due date"
+            "value" : "No Due Date"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No due date"
+            "value" : "No Due Date"
           }
         },
         "es" : {
@@ -81127,7 +81130,7 @@
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No hay fecha de entrega"
+            "value" : "Sin fecha de entrega"
           }
         },
         "fi" : {
@@ -81139,13 +81142,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pas de date limite de rendu"
+            "value" : "Pas de date limite"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucune date d'échéance"
+            "value" : "Aucune date d’échéance"
           }
         },
         "ga" : {
@@ -81187,13 +81190,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "期日なし"
+            "value" : "締切日なし"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kaore he ra tika"
+            "value" : "Kaore He Rā Tika"
           }
         },
         "ms" : {
@@ -81229,7 +81232,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sem data de limite"
+            "value" : "Sem data de vencimento"
           }
         },
         "pt-BR" : {
@@ -81247,7 +81250,7 @@
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ni roka."
+            "value" : "Ni roka"
           }
         },
         "sv" : {
@@ -86284,7 +86287,7 @@
       }
     },
     "Notifications" : {
-      "comment" : "Notifications tab title",
+      "comment" : "Notifications tab title\nTab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -88614,6 +88617,9 @@
           }
         }
       }
+    },
+    "Oops, something went wrong" : {
+
     },
     "Oops!" : {
       "comment" : "Error message title\n   Error title\n   Masquerade error title",
@@ -126786,6 +126792,9 @@
         }
       }
     },
+    "There was an error while logging you in. You can try again, or come back a bit later." : {
+
+    },
     "There's nothing to be notified of yet." : {
       "localizations" : {
         "ar" : {
@@ -130441,7 +130450,7 @@
       }
     },
     "To Do" : {
-      "comment" : "Title of the Todo screen",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -132805,7 +132814,260 @@
       }
     },
     "Type here..." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اكتب هنا..."
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escriviu aquí…"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teipiwch yma..."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skriv her ..."
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skriv her ..."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hier tippen ..."
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type here..."
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type here..."
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type here..."
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type here..."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type here..."
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type here..."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escriba aquí..."
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escribe aquí..."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirjoita tähän..."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapez quelque chose ici..."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saisissez le texte ici…"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clóscríobh anseo..."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यहां टाइप करें..."
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tape la..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik di sini..."
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrifaðu hér..."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserisci qui..."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ここに入力する..."
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patohia ki konei..."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taip di sini..."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skriv her …"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skriv her …"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typ hier..."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wpisz tutaj..."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digite aqui..."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digite aqui..."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите текст здесь..."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vtipkajte tukaj ..."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skriv här …"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skriv här …"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "พิมพ์ที่นี่..."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập vào đây..."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在此处键入..."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在此处键入..."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在此輸入..."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在此輸入..."
+          }
+        }
+      }
     },
     "Uh-oh! No Internet Connection" : {
       "comment" : "Notification over status bar that displays when not connected to the internet.",

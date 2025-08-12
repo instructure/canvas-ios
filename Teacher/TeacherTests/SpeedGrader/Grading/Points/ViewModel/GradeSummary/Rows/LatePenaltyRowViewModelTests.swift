@@ -16,27 +16,31 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
-@testable import Teacher
 import XCTest
+@testable import Core
+import TestsFoundation
+@testable import Teacher
 
 class LatePenaltyRowViewModelTests: TeacherTestCase {
 
     func test_init_withValidPenaltyText() {
-        let viewModel = LatePenaltyRowViewModel(penaltyText: "-5 pts")
+        let viewModel = LatePenaltyRowViewModel(penaltyText: "-5 pts", a11yPenaltyText: "a11y")
 
         XCTAssertEqual(viewModel.penaltyText, "-5 pts")
+        XCTAssertEqual(viewModel.a11yPenaltyText, "a11y")
     }
 
     func test_init_withNilPenaltyText() {
-        let viewModel = LatePenaltyRowViewModel(penaltyText: nil)
+        let viewModel = LatePenaltyRowViewModel(penaltyText: nil, a11yPenaltyText: nil)
 
         XCTAssertEqual(viewModel.penaltyText, GradeFormatter.BlankPlaceholder.oneDash.stringValue)
+        XCTAssertEqual(viewModel.a11yPenaltyText, "None")
     }
 
     func test_init_withEmptyPenaltyText() {
-        let viewModel = LatePenaltyRowViewModel(penaltyText: "")
+        let viewModel = LatePenaltyRowViewModel(penaltyText: "", a11yPenaltyText: "")
 
         XCTAssertEqual(viewModel.penaltyText, "")
+        XCTAssertEqual(viewModel.a11yPenaltyText, "")
     }
 }

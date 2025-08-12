@@ -25,6 +25,7 @@ public struct APISubmission: Codable, Equatable {
     let attachments: [APIFile]?
     let attempt: Int?
     let body: String?
+    let cached_due_date: Date?
     let custom_grade_status_id: String?
     let discussion_entries: [APIDiscussionEntry]?
     let entered_grade: String?
@@ -147,6 +148,7 @@ extension APISubmission {
         attachments: [APIFile]? = nil,
         attempt: Int? = nil,
         body: String? = nil,
+        cached_due_date: Date? = nil,
         custom_grade_status_id: String? = nil,
         discussion_entries: [APIDiscussionEntry]? = nil,
         entered_grade: String? = nil,
@@ -185,6 +187,7 @@ extension APISubmission {
             attachments: attachments,
             attempt: attempt,
             body: body,
+            cached_due_date: cached_due_date,
             custom_grade_status_id: custom_grade_status_id,
             discussion_entries: discussion_entries,
             entered_grade: entered_grade,

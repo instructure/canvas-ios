@@ -23,19 +23,19 @@ import Core
 final class AssistAssembly {
 
     static func makeAssistChatView(
-        courseID: String? = nil,
-        pageURL: String? = nil,
-        fileID: String? = nil,
+        courseId: String? = nil,
+        pageUrl: String? = nil,
+        fileId: String? = nil,
         textSelection: String? = nil
     ) -> UINavigationController {
         let viewModel = AssistChatViewModel(
-            courseID: courseID,
-            pageURL: pageURL,
-            fileID: fileID,
-            assistChatInteractor: makeChatBotInteractor(
-                courseID: courseID,
-                pageURL: pageURL,
-                fileID: fileID,
+            courseId: courseId,
+            pageUrl: pageUrl,
+            fileId: fileId,
+            chatBotInteractor: makeChatBotInteractor(
+                courseId: courseId,
+                pageUrl: pageUrl,
+                fileId: fileId,
                 textSelection: textSelection
             )
         )
@@ -47,45 +47,48 @@ final class AssistAssembly {
     }
 
     static func makeChatBotInteractor(
-        courseID: String? = nil,
-        pageURL: String? = nil,
-        fileID: String? = nil,
+        courseId: String? = nil,
+        pageUrl: String? = nil,
+        fileId: String? = nil,
         textSelection: String? = nil
     ) -> AssistChatInteractor {
         AssistChatInteractorLive(
-            courseID: courseID,
-            pageURL: pageURL,
-            fileID: fileID,
-            textSelection: textSelection
+            courseID: courseId,
+            fileID: fileId,
+            pageURL: pageUrl,
+            textSelection: textSelection,
+            downloadFileInteractor: courseId.map {
+                DownloadFileInteractorLive(courseID: $0)
+            }
         )
     }
 
     static func makeAIQuizView(
-        courseID: String? = nil,
-        fileID: String? = nil,
-        pageURL: String? = nil,
+        courseId: String? = nil,
+        fileId: String? = nil,
+        pageUrl: String? = nil,
         quizzes: [AssistQuizModel] = []
     ) -> AssistQuizView {
         let chatBotInteractor = makeChatBotInteractor(
-            courseID: courseID,
-            pageURL: pageURL,
-            fileID: fileID
+            courseId: courseId,
+            pageUrl: pageUrl,
+            fileId: fileId
         )
         let viewModel = AssistQuizViewModel(chatBotInteractor: chatBotInteractor, quizzes: quizzes)
         return AssistQuizView(viewModel: viewModel)
     }
 
     static func makeAIFlashCardView(
-        courseID: String? = nil,
-        fileID: String? = nil,
-        pageURL: String? = nil,
+        courseId: String? = nil,
+        fileId: String? = nil,
+        pageUrl: String? = nil,
         flashCards: [AssistFlashCardModel]
     ) -> AssistFlashCardView {
         let router = AppEnvironment.shared.router
         let chatBotInteractor = makeChatBotInteractor(
-            courseID: courseID,
-            pageURL: pageURL,
-            fileID: fileID
+            courseId: courseId,
+            pageUrl: pageUrl,
+            fileId: fileId
         )
         let viewModel = AssistFlashCardViewModel(
             flashCards: flashCards,
@@ -93,50 +96,5 @@ final class AssistAssembly {
             chatBotInteractor: chatBotInteractor
         )
         return AssistFlashCardView(viewModel: viewModel)
-    }
-
-    struct RoutingParams {
-        let courseID: String?
-        let fileID: String?
-        let pageURL: String?
-        let textSelection: String?
-
-        private static let courseIDKey = "courseID"
-        private static let fileIDKey = "fileID"
-        private static let pageURLKey = "pageURL"
-        private static let textSelectionKey = "textSelection"
-
-        init(
-            courseID: String? = nil,
-            fileID: String? = nil,
-            pageURL: String? = nil,
-            textSelection: String? = nil
-        ) {
-            self.courseID = courseID
-            self.fileID = fileID
-            self.pageURL = pageURL
-            self.textSelection = textSelection
-        }
-
-        init(from queryItems: [URLQueryItem]) {
-            self.courseID = queryItems.first(where: { $0.name == RoutingParams.courseIDKey })?.value
-            self.fileID = queryItems.first(where: { $0.name == RoutingParams.fileIDKey })?.value
-            self.pageURL = queryItems.first(where: { $0.name == RoutingParams.pageURLKey })?.value
-            self.textSelection = queryItems.first(where: { $0.name == RoutingParams.textSelectionKey })?.value
-        }
-
-        var queryString: String {
-            [
-                RoutingParams.courseIDKey: courseID,
-                RoutingParams.fileIDKey: fileID,
-                RoutingParams.pageURLKey: pageURL,
-                RoutingParams.textSelectionKey: textSelection
-            ].map { (key, value) in
-                guard let value = value else { return nil }
-                return "\(key)=\(value)"
-            }
-            .compactMap { $0 }
-            .joined(separator: "&")
-        }
     }
 }

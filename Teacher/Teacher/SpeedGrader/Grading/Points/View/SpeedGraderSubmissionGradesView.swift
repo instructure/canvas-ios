@@ -23,102 +23,250 @@ struct SpeedGraderSubmissionGradesView: View {
     let assignment: Assignment
     let containerHeight: CGFloat
 
+    let attempt: Binding<Int>
+    let fileID: Binding<String?>
+
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
+    // slider
+    @State private var gradeSliderViewModel = GradeSliderViewModel()
     @State var showTooltip = false
     @State var sliderCleared = false
     @State var sliderExcused = false
     @State var sliderTimer: Timer?
-    @State private var gradeSliderViewModel = GradeSliderViewModel()
 
-    @ObservedObject var rubricsViewModel: RubricsViewModel
-    @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
     @ObservedObject var gradeViewModel: SpeedGraderSubmissionGradesViewModel
+    @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
+    @ObservedObject var commentListViewModel: SubmissionCommentListViewModel
+    @ObservedObject var rubricsViewModel: RubricsViewModel
+    @ObservedObject var redesignedRubricsViewModel: RedesignedRubricsViewModel
+
+    private enum FocusedInput: Hashable {
+        case gradeRow
+        case points
+        case comment
+        case rubric(Int)
+    }
+    @FocusState private var focusedInput: FocusedInput?
 
     var body: some View {
-        if assignment.moderatedGrading {
-            GeometryReader { geometry in
-                ScrollView {
-                    EmptyPanda(.Unsupported, message: Text("Moderated Grading Unsupported", bundle: .teacher))
-                        .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
+        ScrollViewReader { scrollViewProxy in
+            InstUI.BaseScreen(
+                state: gradeViewModel.state,
+                config: .init(
+                    refreshable: false,
+                    emptyPandaConfig: .init(
+                        scene: SpacePanda(), // TODO: use `.Unsupported`
+                        title: String(localized: "Moderated Grading Unsupported", bundle: .teacher)
+                    )
+                )
+            ) { geometry in
+                VStack(spacing: 0) {
+                    gradingSection()
+                    commentsSection(scrollViewProxy: scrollViewProxy)
+                    if assignment.rubric?.isEmpty == false {
+                        rubricsSection(geometry: geometry)
+                    }
+
+                    if ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled {
+                        Spacer().frame(height: 16)
+                    }
                 }
             }
-        } else {
-            GeometryReader { geometry in ScrollView {
-                VStack(spacing: 0) {
-                    HStack(spacing: 0) {
-                        Text("Grade", bundle: .teacher)
-                            .accessibilityAddTraits(.isHeader)
-                        Spacer()
-                        if gradeViewModel.isSaving {
-                            ProgressView()
-                                .progressViewStyle(.indeterminateCircle(size: 24))
-                        } else if assignment.gradingType == .not_graded {
-                            Text("Not Graded", bundle: .teacher)
-                        } else {
-                            Button(action: promptNewGrade, label: {
-                                if gradeViewModel.state.isExcused {
-                                    Text("Excused", bundle: .teacher)
-                                } else if gradeViewModel.state.isGraded {
-                                    Text(gradeViewModel.state.originalGradeText)
-                                } else {
-                                    Image.addSolid.foregroundStyle(.tint)
-                                }
-                            })
-                            .accessibility(hint: Text("Prompts for an updated grade", bundle: .teacher))
-                            .identifier("SpeedGrader.gradeButton")
-                        }
-                        if gradeViewModel.state.isGradedButNotPosted {
-                            Image.offLine.foregroundColor(.textDanger)
-                                .padding(.leading, 12)
-                        }
-                    }
-                    .font(.heavy24)
-                    .foregroundColor(.textDarkest)
-                    .padding(.horizontal, 16).padding(.vertical, 12)
+            .scrollDismissesKeyboard(keyboardDismissalMode)
+        }
+    }
 
-                    if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
-                        slider
-                    }
+    private var keyboardDismissalMode: ScrollDismissesKeyboardMode {
+        switch focusedInput {
+        case .gradeRow, .points:
+            return .never
+        default:
+            return .interactively
+        }
+    }
 
-                    noGradeAndExcuseButtons
+    private func gradingSection() -> some View {
+        VStack(spacing: 0) {
+            gradingInputViews()
 
-                    GradeStatusView(viewModel: gradeStatusViewModel)
-
-                    if gradeViewModel.shouldShowGradeSummary {
-                        GradeSummaryView(
-                            pointsRow: gradeViewModel.pointsRowModel,
-                            latePenaltyRow: gradeViewModel.latePenaltyRowModel,
-                            finalGradeRow: gradeViewModel.finalGradeRowModel
-                        )
-                        .paddingStyle(.horizontal, .standard)
-                    }
-
-                    if assignment.rubric?.isEmpty == false {
-                        RubricsView(
-                            currentScore: rubricsViewModel.totalRubricScore,
-                            containerFrameInGlobal: geometry.frame(in: .global),
-                            viewModel: rubricsViewModel
-                        )
-                    }
-                }.padding(.bottom, 16)
-            } }
-            .animation(.smooth, value: gradeStatusViewModel.isShowingDaysLateSection)
-            .errorAlert(
-                isPresented: $gradeViewModel.isShowingErrorAlert,
-                presenting: gradeViewModel.errorAlertViewModel
-            )
-
-            if rubricsViewModel.commentingOnCriterionID != nil {
-                commentEditor()
+            if gradeViewModel.shouldShowGradeSummary {
+                GradeSummaryView(
+                    pointsRow: gradeViewModel.pointsRowModel,
+                    latePenaltyRow: gradeViewModel.latePenaltyRowModel,
+                    finalGradeRow: gradeViewModel.finalGradeRowModel
+                )
+                .paddingStyle(.horizontal, .standard)
             }
+        }
+    }
+
+    // MARK: - Grading Inputs
+
+    private func gradingInputViews() -> some View {
+        VStack(spacing: 0) {
+            gradeRow
+                .focused($focusedInput, equals: .gradeRow)
+
+            if gradeViewModel.shouldShowPointsInput {
+                gradeInputTextField(
+                    title: String(localized: "Points", bundle: .core),
+                    inputType: .points,
+                    textValue: gradeViewModel.gradeState.originalScoreWithoutMetric ?? ""
+                )
+                .focused($focusedInput, equals: .points)
+            }
+
+            if gradeViewModel.shouldShowSlider {
+                slider
+            }
+
+            if gradeViewModel.shouldShowSelector {
+                gradeInputSelector()
+            }
+
+            noGradeAndExcuseButtons
+
+            GradeStatusView(viewModel: gradeStatusViewModel)
+        }
+        .animation(.smooth, value: gradeStatusViewModel.isShowingDaysLateSection)
+        .errorAlert(
+            isPresented: $gradeViewModel.isShowingErrorAlert,
+            presenting: gradeViewModel.errorAlertViewModel
+        )
+    }
+
+    @ViewBuilder
+    private var gradeRow: some View {
+        let title = String(localized: "Grade", bundle: .teacher)
+        let gradeState = gradeViewModel.gradeState
+
+        switch gradeViewModel.gradeInputType {
+        case .pointsTextField:
+            gradeInputTextField(
+                title: title,
+                inputType: .points,
+                textValue: gradeState.originalGradeWithoutMetric ?? ""
+            )
+        case .percentageTextField:
+            gradeInputTextField(
+                title: title,
+                inputType: .percentage,
+                textValue: gradeState.originalGradeWithoutMetric ?? ""
+            )
+        case .pointsDisplayOnly:
+            gradeInputDisplayOnlyView(
+                title: title,
+                text: gradeState.originalScoreWithoutMetric ?? GradeFormatter.BlankPlaceholder.oneDash.stringValue,
+                a11yText: gradeState.originalScoreWithoutMetric ?? String(localized: "None", bundle: .teacher),
+                suffix: gradeState.isExcused ? nil : "/ \(gradeState.pointsPossibleText)",
+                a11ySuffix: gradeState.isExcused ? nil : String(localized: "out of \(gradeState.pointsPossibleAccessibilityText)", bundle: .teacher, comment: "Example: 'out of 10 points'")
+            )
+        case .gradePicker:
+            SpeedGraderPickerCell(
+                title: title,
+                placeholder: String(localized: "Select Grade", bundle: .teacher),
+                identifierGroup: "SpeedGrader.GradeInputPickerItem",
+                allOptions: gradeState.gradeOptions,
+                selectOption: gradeViewModel.selectGradeOption,
+                didSelectOption: gradeViewModel.didSelectGradeOption,
+                isSaving: gradeViewModel.isSavingGrade
+            )
+            .accessibilityLabel(
+                [title, String.format(accessibilityLetterGrade: gradeState.originalGrade)]
+                    .joined(separator: ",")
+            )
+        case .statusDisplayOnly:
+            gradeInputDisplayOnlyView(
+                title: title,
+                text: gradeState.isExcused
+                    ? String(localized: "Excused", bundle: .teacher)
+                    : String(localized: "Not Graded", bundle: .teacher),
+                a11yText: nil,
+                suffix: nil,
+                a11ySuffix: nil
+            )
+        case nil:
+            SwiftUI.EmptyView()
+        }
+    }
+
+    @ViewBuilder
+    private func gradeInputTextField(
+        title: String,
+        inputType: GradeInputTextFieldCell.InputType,
+        textValue: String
+    ) -> some View {
+        let gradeState = gradeViewModel.gradeState
+
+        GradeInputTextFieldCell(
+            title: title,
+            inputType: inputType,
+            pointsPossibleText: gradeState.pointsPossibleText,
+            pointsPossibleAccessibilityText: gradeState.pointsPossibleAccessibilityText,
+            isExcused: gradeState.isExcused,
+            text: Binding(
+                get: { textValue },
+                set: { gradeViewModel.setGradeFromTextField($0, inputType: inputType) }
+            ),
+            isSaving: gradeViewModel.isSavingGrade
+        )
+    }
+
+    @ViewBuilder
+    private func gradeInputDisplayOnlyView(
+        title: String,
+        text: String,
+        a11yText: String?,
+        suffix: String?,
+        a11ySuffix: String?
+    ) -> some View {
+        HStack(alignment: .center, spacing: 8) {
+            Text(title)
+                .textStyle(.cellLabel)
+
+            HStack(alignment: .center, spacing: 8) {
+                Text(text)
+                    .font(.regular16, lineHeight: .fit)
+                    .foregroundStyle(.textDark)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .accessibilityLabel(a11yText ?? text)
+
+                if let suffix {
+                    Text(suffix)
+                        .font(.regular16, lineHeight: .fit)
+                        .foregroundStyle(.textDark)
+                        .accessibilityLabel(a11ySuffix ?? suffix)
+                }
+            }
+            .swapWithSpinner(onSaving: gradeViewModel.isSavingGrade, alignment: .trailing)
+        }
+        .paddingStyle(set: .standardCell)
+        .accessibilityElement(children: .combine)
+    }
+
+    @ViewBuilder
+    private func gradeInputSelector() -> some View {
+        VStack(spacing: 0) {
+            InstUI.Divider()
+            SingleSelectionView(
+                title: nil,
+                identifierGroup: "SpeedGrader.GradeInputSelectorItem",
+                allOptions: gradeViewModel.gradeState.gradeOptions,
+                selectOption: gradeViewModel.selectGradeOption,
+                didSelectOption: gradeViewModel.didSelectGradeOption
+            )
+            .paddingStyle(.bottom, .standard)
         }
     }
 
     private var noGradeAndExcuseButtons: some View {
         HStack(spacing: 16) {
-            SpeedGraderButton(title: String(localized: "No Grade", bundle: .teacher)) {
+            let noGradeTitle = gradeViewModel.gradeState.gradingType == .not_graded
+                ? String(localized: "Reset Status", bundle: .teacher)
+                : String(localized: "No Grade", bundle: .teacher)
+            SpeedGraderButton(title: noGradeTitle) {
                 gradeViewModel.removeGrade()
             }
             .disabled(gradeViewModel.isNoGradeButtonDisabled)
@@ -126,22 +274,9 @@ struct SpeedGraderSubmissionGradesView: View {
             SpeedGraderButton(title: String(localized: "Excuse Student", bundle: .teacher)) {
                 gradeViewModel.excuseStudent()
             }
-            .disabled(gradeViewModel.state.isExcused)
+            .disabled(gradeViewModel.gradeState.isExcused)
         }
         .paddingStyle(.horizontal, .standard)
-    }
-
-    private func commentEditor() -> some View {
-        OldCommentEditorView(
-            text: $rubricsViewModel.criterionComment,
-            shouldShowCommentLibrary: false,
-            showCommentLibrary: .constant(false),
-            action: rubricsViewModel.saveComment,
-            containerHeight: containerHeight,
-            contextColor: Color(Brand.shared.primary)
-        )
-        .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
-        .background(Color.backgroundLight)
     }
 
     // MARK: Slider
@@ -150,19 +285,18 @@ struct SpeedGraderSubmissionGradesView: View {
     var slider: some View {
         let score = gradeViewModel.sliderValue
         let possible = assignment.pointsPossible ?? 0
+        let isPercent = assignment.gradingType == .percent
         let tooltipText =
             sliderCleared ? Text("No Grade", bundle: .teacher) :
             sliderExcused ? Text("Excused", bundle: .teacher) :
-            assignment.gradingType == .percent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
+            isPercent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
             Text(gradeSliderViewModel.formatScore(score, maxPoints: possible))
-        let maxScore = assignment.gradingType == .percent ? 100 : possible
+        let a11yValue = (sliderCleared || sliderExcused || isPercent) ? tooltipText : Text(String.format(points: score))
 
-        HStack(spacing: 8) {
-            Text(0)
-                .frame(width: 30, height: 30)
-                .onTapGesture {
-                    updateGrade(0)
-                }
+        let maxScore = isPercent ? 100 : possible
+
+        HStack(spacing: 16) {
+            sliderButton(score: 0, isPercent: isPercent)
             ZStack {
                 // disables page swipe around the slider
                 Rectangle()
@@ -173,19 +307,32 @@ struct SpeedGraderSubmissionGradesView: View {
                             maxValue: assignment.pointsPossible ?? 0,
                             showTooltip: showTooltip,
                             tooltipText: tooltipText,
+                            a11yValue: a11yValue,
                             score: score,
                             possible: possible,
                             onEditingChanged: sliderChangedState,
                             viewModel: gradeSliderViewModel)
             }
-            Text(maxScore)
-                .frame(width: 30, height: 30)
-                .onTapGesture {
-                    updateGrade(maxScore)
-                }
+            sliderButton(score: maxScore, isPercent: isPercent)
         }
-        .font(.medium14).foregroundColor(.textDarkest)
-        .padding(.horizontal, 16).padding(.vertical, 14)
+        .paddingStyle(set: .standardCell)
+    }
+
+    private func sliderButton(score: Double, isPercent: Bool) -> some View {
+        Button(
+            action: { updateGrade(score) },
+            label: {
+                Text(score)
+                    .foregroundStyle(.tint)
+                    .font(.semibold14)
+                    .frame(height: 30)
+                    .accessibilityLabel(
+                        isPercent
+                            ? GradeFormatter.percentFormatter.string(from: NSNumber(value: score/100)) ?? "\(score)%"
+                            : String.format(points: score)
+                    )
+            }
+        )
     }
 
     func updateGrade(excused: Bool? = nil, noMark: Bool? = false, _ grade: Double? = nil) {
@@ -211,7 +358,7 @@ struct SpeedGraderSubmissionGradesView: View {
             } else if assignment.gradingType == .percent {
                 let percentValue = round(value / max(assignment.pointsPossible ?? 0, 0.01) * 100)
                 gradeViewModel.setPercentGrade(percentValue)
-            } else if assignment.gradingType == .points {
+            } else { // slider uses points in all other cases where visible (points, gpa, letterGrade)
                 gradeViewModel.setPointsGrade(value)
             }
         }
@@ -240,62 +387,114 @@ struct SpeedGraderSubmissionGradesView: View {
         }
     }
 
-    // MARK: Prompt for an updated grade
+    // MARK: - Comments
 
-    func promptNewGrade() {
-        var message: String?
-        switch assignment.gradingType {
-        case .gpa_scale:
-            message = String(localized: "GPA", bundle: .teacher)
-        case .letter_grade:
-            message = String(localized: "Letter grade", bundle: .teacher)
-        case .not_graded, .pass_fail:
-            message = nil
-        case .percent:
-            message = String(localized: "Percent (%)", bundle: .teacher)
-        case .points:
-            message = assignment.outOfText
+    private func commentsSection(scrollViewProxy: ScrollViewProxy) -> some View {
+        comments
+            .id("comments")
+            .focused($focusedInput, equals: .comment)
+            .onChange(of: focusedInput) {
+                if focusedInput == .comment {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        withAnimation {
+                            scrollViewProxy.scrollTo("comments", anchor: .bottom)
+                        }
+                    }
+                }
+            }
+    }
+
+    @ViewBuilder
+    private var comments: some View {
+        let commentCount = commentListViewModel.commentCount
+        let header = HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
+            Image.discussionLine
+                .scaledIcon()
+                .foregroundStyle(.tint)
+                .accessibilityHidden(true)
+
+            Text("Comments (\(commentCount))", bundle: .teacher)
+                .foregroundStyle(.textDarkest)
+                .font(.semibold16)
+                .accessibilityLabel([
+                    String(localized: "Comments", bundle: .core),
+                    String.format(numberOfItems: commentCount)
+                ].joined(separator: ", "))
+                .accessibilityAddTraits(.isHeader)
         }
+        let content = SubmissionCommentListView(
+            viewModel: commentListViewModel,
+            attempt: attempt,
+            fileID: fileID
+        )
 
-        let prompt = UIAlertController(title: String(localized: "Customize Grade", bundle: .teacher), message: message, preferredStyle: .alert)
-        if assignment.gradingType == .pass_fail {
-            prompt.addAction(AlertAction(String(localized: "Complete", bundle: .teacher)) { _ in
-                gradeViewModel.setPassFailGrade(complete: true)
-            })
-            prompt.addAction(AlertAction(String(localized: "Incomplete", bundle: .teacher)) { _ in
-                gradeViewModel.setPassFailGrade(complete: false)
-            })
-        } else {
-            prompt.addTextField { field in
-                field.placeholder = ""
-                field.returnKeyType = .done
-                field.text = gradeViewModel.state.gradeAlertText
-                field.addTarget(prompt, action: #selector(UIAlertController.performOKAlertAction), for: .editingDidEndOnExit)
-                field.accessibilityLabel = String(localized: "Grade", bundle: .teacher)
+        VStack(spacing: 0) {
+            InstUI.Divider()
+
+            if assignment.hasRubrics {
+                DisclosureGroup {
+                    content
+                } label: {
+                    header
+                }
+                .disclosureGroupStyle(InstUI.SectionDisclosureStyle(headerConfig: .init(
+                    paddingSet: .iconCell,
+                    accessoryIconSize: 24,
+                    hasDividerBelowHeader: true
+                )))
+            } else {
+                header
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .paddingStyle(set: .iconCell)
+
+                InstUI.Divider()
+
+                content
             }
         }
-        if assignment.gradingType != .pass_fail {
-            prompt.addAction(AlertAction(String(localized: "OK", bundle: .teacher)) { _ in
-                var grade = prompt.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-                if assignment.gradingType == .percent, !grade.isEmpty, !grade.hasSuffix("%") {
-                    grade = "\(grade)%"
+        .padding(.top, 16)
+    }
+
+    // MARK: - Rubrics
+
+    @ViewBuilder
+    private func rubricsSection(geometry: GeometryProxy) -> some View {
+
+        if ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled {
+
+            VStack(spacing: 0) {
+                RubricsView(
+                    currentScore: rubricsViewModel.totalRubricScore,
+                    containerFrameInGlobal: geometry.frame(in: .global),
+                    viewModel: rubricsViewModel
+                )
+
+                if rubricsViewModel.commentingOnCriterionID != nil {
+                    commentEditor()
                 }
-                gradeViewModel.setGrade(grade)
-            })
-        }
-        prompt.addAction(AlertAction(String(localized: "Cancel", bundle: .teacher), style: .cancel))
-        env.router.show(prompt, from: controller, options: .modal())
-    }
+            }
 
-    // MARK: Save
-}
-
-extension UIAlertController {
-
-    @objc public func performOKAlertAction() {
-        if let ok = actions.first(where: { $0.title == String(localized: "OK", bundle: .teacher) }) as? AlertAction {
-            ok.handler?(ok)
-            dismiss(animated: true)
+        } else {
+            RedesignedRubricsView(viewModel: redesignedRubricsViewModel)
         }
     }
+
+    private func commentEditor() -> some View {
+        OldCommentEditorView(
+            text: $rubricsViewModel.criterionComment,
+            shouldShowCommentLibrary: false,
+            showCommentLibrary: .constant(false),
+            action: rubricsViewModel.saveComment,
+            containerHeight: containerHeight,
+            contextColor: Color(Brand.shared.primary)
+        )
+        .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+        .background(Color.backgroundLight)
+    }
 }
+
+#if DEBUG
+#Preview {
+    SpeedGraderAssembly.makeSpeedGraderViewControllerPreview(state: .data)
+}
+#endif

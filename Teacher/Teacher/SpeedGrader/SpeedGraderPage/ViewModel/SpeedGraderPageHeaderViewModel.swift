@@ -32,7 +32,7 @@ class SpeedGraderPageHeaderViewModel: ObservableObject {
         submission: Submission
     ) {
         userNameModel = .init(submission: submission, assignment: assignment)
-        let isGroupSubmission = !assignment.gradedIndividually && submission.groupID != nil
+        let isGroupSubmission = !assignment.gradedIndividually && (submission.groupID != nil || submission.fetchedGroup != nil)
         routeToSubmitter = isGroupSubmission ? nil : "/courses/\(assignment.courseID)/users/\(submission.userID)"
         submissionStatus = submission.statusIncludingGradedState
         observeSubmissionStatusInDatabase(submission)

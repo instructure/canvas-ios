@@ -49,23 +49,20 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var syllabusBody: String?
     @NSManaged public var termName: String?
     @NSManaged public var settings: CourseSettings?
-    @NSManaged public var gradingSchemeRaw: NSOrderedSet?
+    @NSManaged public var gradingSchemeRaw: Data?
     @NSManaged public var roles: String?
 
     @NSManaged public var scalingFactor: Double
     @NSManaged public var pointsBasedGradingScheme: Bool
 
     public var gradingSchemeEntries: [GradingSchemeEntry] {
-        get { gradingSchemeRaw?.array as? [GradingSchemeEntry] ?? [] }
-        set { gradingSchemeRaw = NSOrderedSet(array: newValue) }
+        guard let gradingSchemeRaw else { return [] }
+        return gradingSchemeRaw.jsonDecode(to: [GradingSchemeEntry].self) ?? []
     }
 
     public var gradingScheme: GradingScheme {
         if pointsBasedGradingScheme {
-            PointsBasedGradingScheme(
-                scaleFactor: scalingFactor,
-                entries: gradingSchemeEntries
-            )
+            PointsBasedGradingScheme(entries: gradingSchemeEntries, scaleFactor: scalingFactor)
         } else {
             PercentageBasedGradingScheme(entries: gradingSchemeEntries)
         }
@@ -117,9 +114,6 @@ final public class Course: NSManagedObject, WriteableModel {
         }
 
         model.gradingStandardId = item.grading_standard_id?.value
-        model.scalingFactor = item.scaling_factor ?? 0
-        model.pointsBasedGradingScheme = item.points_based_grading_scheme ?? false
-
         model.hideFinalGrades = item.hide_final_grades ?? false
         model.isCourseDeleted = item.workflow_state == .deleted
         model.isPastEnrollment = (
@@ -170,13 +164,16 @@ final public class Course: NSManagedObject, WriteableModel {
             model.settings = settings
         }
 
+        // include[]=grading_scheme
+        if let scalingFactor = item.scaling_factor {
+            model.scalingFactor = scalingFactor // CoreData defaults to 1
+        }
+        if let pointsBasedGradingScheme = item.points_based_grading_scheme {
+            model.pointsBasedGradingScheme = pointsBasedGradingScheme // CoreData defaults to false
+        }
         if let gradingScheme = item.grading_scheme {
-            model.gradingSchemeEntries = gradingScheme.compactMap {
-                guard let apiEntry = APIGradingSchemeEntry(courseGradingScheme: $0) else {
-                    return nil
-                }
-                return GradingSchemeEntry.save(apiEntry, in: context)
-            }
+            let gradingSchemeEntries: [GradingSchemeEntry] = gradingScheme.compactMap(GradingSchemeEntry.init)
+            model.gradingSchemeRaw = gradingSchemeEntries.jsonData
         }
 
         model.roles = item.enrollments.roles

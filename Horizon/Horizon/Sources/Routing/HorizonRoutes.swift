@@ -21,14 +21,14 @@ import Foundation
 import SwiftUI
 import UIKit
 
-enum HorizonRoutes {
-    static func routeHandlers() -> [RouteHandler] {
+public enum HorizonRoutes {
+    public static func routeHandlers() -> [RouteHandler] {
         routes.flatMap { $0 }
     }
 
     private static let routes = [
         accountRoutes,
-        splashRoutes,
+//        splashRoutes,
         moduleRoutes,
         pageRoutes,
         courseRoutes,
@@ -53,13 +53,15 @@ enum HorizonRoutes {
         ]
     }
 
-    private static var splashRoutes: [RouteHandler] {
-        [
-            RouteHandler("/splash") { _, _, _ in
-                SplashAssembly.makeViewController()
-            }
-        ]
-    }
+    /*
+     private static var splashRoutes: [RouteHandler] {
+         [
+             RouteHandler("/splash") { _, _, _ in
+                 SplashAssembly.makeViewController()
+             }
+         ]
+     }
+     */
 
     private static var moduleRoutes: [RouteHandler] {
         [
@@ -73,9 +75,11 @@ enum HorizonRoutes {
                     url: url
                 )
             },
-            RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _, env in
+            RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, userInfo, env in
+
                 guard let courseID = params["courseID"],
                       let itemID = params["itemID"] else { return nil }
+                let course = userInfo?["moduleItem"] as? HModuleItem
 
                 var assetType: GetModuleItemSequenceRequest.AssetType?
                 if let assetTypeRaw = url.queryItems?.first(where: { $0.name == "asset_type" })?.value {
@@ -87,7 +91,8 @@ enum HorizonRoutes {
                     courseID: courseID,
                     assetType: assetType ?? .moduleItem,
                     assetID: itemID,
-                    url: url
+                    url: url,
+                    firstModuleItem: course
                 )
             },
             RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _, env in
@@ -103,9 +108,9 @@ enum HorizonRoutes {
             // For displaying a single module item in a modal
             RouteHandler("/courses/:courseID/modules/items/:assetID/:assetType") { _, params, _, _ in
                 if let courseID = params["courseID"],
-                      let assetID = params["assetID"],
-                      let assetType = params["assetType"],
-                      let assetTypeEnum = GetModuleItemSequenceRequest.AssetType(rawValue: assetType) {
+                   let assetID = params["assetID"],
+                   let assetType = params["assetType"],
+                   let assetTypeEnum = GetModuleItemSequenceRequest.AssetType(rawValue: assetType) {
                     PageDetailsAssembly.makeView(
                         courseID: courseID,
                         assetID: assetID,
@@ -260,7 +265,7 @@ enum HorizonRoutes {
 
                 if let courseID = courseID,
                    let pageURL = pageURL,
-                    let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() {
+                   let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() {
                     let router: Router = AppEnvironment.shared.router
                     router.show(
                         NotebookAssembly.makeViewController(courseID: courseID, pageURL: pageURL),
@@ -310,33 +315,48 @@ enum HorizonRoutes {
     private static var aiRoutes: [RouteHandler] {
         [
             RouteHandler("/assistant") { url, _, _ in
-                let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
+
+                let queryItems = url.queryItems ?? []
+
+                let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
+                let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
+                let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
+                let textSelection = queryItems.first { $0.name == "textSelection" }?.value
                 return AssistAssembly.makeAssistChatView(
-                    courseID: routingParams?.courseID,
-                    pageURL: routingParams?.pageURL,
-                    fileID: routingParams?.fileID,
-                    textSelection: routingParams?.textSelection
+                    courseId: courseId,
+                    pageUrl: pageUrl,
+                    fileId: fileId,
+                    textSelection: textSelection
                 )
             },
             RouteHandler("/assistant/flashcards") { url, _, userInfo in
                 let flashCards = userInfo?["flashCards"] as? [AssistFlashCardModel] ?? []
-                let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
+                let queryItems = url.queryItems ?? []
+                let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
+                let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
+                let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
                 return CoreHostingController(
                     AssistAssembly.makeAIFlashCardView(
-                        courseID: routingParams?.courseID,
-                        fileID: routingParams?.fileID,
-                        pageURL: routingParams?.pageURL,
+                        courseId: courseId,
+                        fileId: fileId,
+                        pageUrl: pageUrl,
                         flashCards: flashCards
                     )
                 )
             },
             RouteHandler("/assistant/quiz") { url, _, userInfo in
+                let queryItems = url.queryItems ?? []
+
+                let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
+                let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
+                let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
+
                 let quizzes = userInfo?["quizzes"] as? [AssistQuizModel]
-                let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
+
                 let quizView = AssistAssembly.makeAIQuizView(
-                    courseID: routingParams?.courseID,
-                    fileID: routingParams?.fileID,
-                    pageURL: routingParams?.pageURL,
+                    courseId: courseId,
+                    fileId: fileId,
+                    pageUrl: pageUrl,
                     quizzes: quizzes ?? []
                 )
 

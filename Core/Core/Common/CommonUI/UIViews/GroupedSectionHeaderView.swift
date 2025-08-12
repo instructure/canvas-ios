@@ -50,7 +50,7 @@ public class GroupedSectionHeaderView: UITableViewHeaderFooterView {
     /// Use this method instead of setting `titleLabel.text` directly
     public func update(title: String, itemCount: Int) {
         titleLabel.text = title
-        let countText = String.localizedNumberOfItems(itemCount)
+        let countText = String.format(numberOfItems: itemCount)
         accessibilityLabel = "\(title), \(countText)"
     }
 }

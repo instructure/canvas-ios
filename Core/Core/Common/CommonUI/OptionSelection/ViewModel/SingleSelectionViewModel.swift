@@ -18,27 +18,31 @@
 
 import Combine
 
-final class SingleSelectionViewModel: ObservableObject {
+public final class SingleSelectionViewModel: ObservableObject {
 
-    let title: String?
+    public let title: String?
 
-    let allOptions: [OptionItem]
-    let selectedOption: CurrentValueSubject<OptionItem?, Never>
+    public let allOptions: [OptionItem]
+    @Published public private(set) var selectedOption: OptionItem?
+    public let selectedOptionSubject: CurrentValueSubject<OptionItem?, Never>
+    public let didSelectOption: PassthroughSubject<OptionItem?, Never>?
 
-    let optionCount: Int
-    let listLevelAccessibilityLabel: String?
+    public let optionCount: Int
+    public let listLevelAccessibilityLabel: String?
 
     private var subscriptions = Set<AnyCancellable>()
 
-    init(
+    public init(
         title: String?,
         allOptions: [OptionItem],
-        selectedOption: CurrentValueSubject<OptionItem?, Never>
+        selectedOption selectedOptionSubject: CurrentValueSubject<OptionItem?, Never>,
+        didSelectOption: PassthroughSubject<OptionItem?, Never>? = nil
     ) {
         self.title = title
 
         self.allOptions = allOptions
-        self.selectedOption = selectedOption
+        self.selectedOptionSubject = selectedOptionSubject
+        self.didSelectOption = didSelectOption
 
         self.optionCount = allOptions.count
         if title != nil {
@@ -46,18 +50,20 @@ final class SingleSelectionViewModel: ObservableObject {
             self.listLevelAccessibilityLabel = nil
         } else {
             // if there is no title -> add list count to first focused option
-            self.listLevelAccessibilityLabel = String.localizedAccessibilityListCount(optionCount)
+            self.listLevelAccessibilityLabel = String.format(accessibilityListCount: optionCount)
         }
 
-        selectedOption
+        selectedOptionSubject
             .removeDuplicates()
-            .sink { [weak self] _ in
-                self?.objectWillChange.send()
-            }
+            .assign(to: \.selectedOption, on: self, ownership: .weak)
+            .store(in: &subscriptions)
+
+        didSelectOption?
+            .assign(to: \.selectedOption, on: self, ownership: .weak)
             .store(in: &subscriptions)
     }
 
-    func dividerStyle(for item: OptionItem) -> InstUI.Divider.Style {
+    public func dividerStyle(for item: OptionItem) -> InstUI.Divider.Style {
         item.id == allOptions.last?.id ? .full : .padded
     }
 }

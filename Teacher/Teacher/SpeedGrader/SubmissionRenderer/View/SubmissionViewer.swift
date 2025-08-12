@@ -139,7 +139,7 @@ struct SubmissionViewer: View {
                     Text("This assignment only allows on-paper submissions.", bundle: .teacher)
                 } else if assignment.submissionTypes.contains(.none) {
                     Text("This assignment does not allow submissions.", bundle: .teacher)
-                } else if submission.groupID != nil {
+                } else if (submission.groupID != nil || submission.fetchedGroup != nil) {
                     Text("This group does not have a submission for this assignment.", bundle: .teacher)
                 } else {
                     Text("This student does not have a submission for this assignment.", bundle: .teacher)

@@ -22,14 +22,23 @@ import Foundation
 
 @Observable
 final class CourseDetailsViewModel {
+    typealias ScoresViewModelBuilder = ((String, String) -> ScoresViewModel)
+
     // MARK: - Outputs
 
-    private(set) var course: HCourse
+    private(set) var course: HCourse {
+        didSet {
+            if oldValue.id != course.id && course.id.isNotEmpty {
+                scoresViewModel = scoresViewModelBuilder(course.id, course.enrollmentID)
+            }
+        }
+    }
     private(set) var isShowHeader = true
     private(set) var courses: [DropdownMenuItem] = []
     private(set) var selectedCoure: DropdownMenuItem?
     private(set) var isLoaderVisible: Bool = false
     private(set) var overviewDescription = ""
+    private(set) var scoresViewModel: ScoresViewModel?
 
     // MARK: - Inputs
 
@@ -49,6 +58,7 @@ final class CourseDetailsViewModel {
     private let learnCoursesInteractor: GetLearnCoursesInteractor
     private let selectedTab: CourseDetailsTabs?
     private var pullToRefreshCancellable: AnyCancellable?
+    private let scoresViewModelBuilder: ScoresViewModelBuilder
 
     // MARK: - Init
 
@@ -60,7 +70,8 @@ final class CourseDetailsViewModel {
         courseID: String,
         enrollmentID: String,
         course: HCourse?,
-        selectedTab: CourseDetailsTabs? = nil
+        selectedTab: CourseDetailsTabs? = nil,
+        scoresViewModelBuilder: @escaping ScoresViewModelBuilder
     ) {
         self.router = router
         self.getCoursesInteractor = getCoursesInteractor
@@ -69,6 +80,7 @@ final class CourseDetailsViewModel {
         self.course = course ?? .init()
         self.isLoaderVisible = true
         self.selectedTab = selectedTab
+        self.scoresViewModelBuilder = scoresViewModelBuilder
         fetchData()
         observeCourseSelection()
         observeHeaderVisiablity()
@@ -108,8 +120,10 @@ final class CourseDetailsViewModel {
         router.dismiss(viewController)
     }
 
-    func moduleItemDidTap(url: URL, from: WeakViewController) {
-        router.route(to: url, from: from)
+    func moduleItemDidTap(item: HModuleItem, from: WeakViewController) {
+        if let url = item.htmlURL {
+            router.route(to: url, userInfo: ["moduleItem": item], from: from)
+        }
     }
 
     // MARK: - Private Functions

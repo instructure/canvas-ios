@@ -35,13 +35,22 @@ struct FinalGradeRowView: View {
                 .paddingStyle(.trailing, .cellAccessoryPadding)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-            Text(viewModel.currentGradeText)
+            Text(viewModel.gradeText)
                 .font(.bold16, lineHeight: .fit)
                 .foregroundColor(.textDarkest)
+                .accessibilityLabel(viewModel.a11yGradeText)
 
             Text(viewModel.suffixText)
                 .font(.regular16, lineHeight: .fit)
                 .foregroundColor(.textDark)
+                .accessibilityLabel(viewModel.a11ySuffixText)
+
+            if viewModel.shouldShowNotPostedIcon {
+                Image.offLine
+                    .foregroundColor(.textDanger)
+                    .paddingStyle(.leading, .cellAccessoryPadding)
+                    .accessibilityLabel(String(localized: "Hidden", bundle: .core))
+            }
         }
         .paddingStyle(set: .standardCell)
         .background(.backgroundLightest)
@@ -54,28 +63,52 @@ struct FinalGradeRowView: View {
 #Preview {
     VStack(spacing: 0) {
         FinalGradeRowView(viewModel: .init(
-            currentGradeText: nil,
-            suffixType: .maxGradeWithUnit("30 pts")
+            gradeText: nil,
+            a11yGradeText: nil,
+            suffixType: .maxGradeWithUnit("30 pts", ""),
+            isGradedButNotPosted: false
         ))
         FinalGradeRowView(viewModel: .init(
-            currentGradeText: "15",
-            suffixType: .maxGradeWithUnit("30 pts")
+            gradeText: "15",
+            a11yGradeText: nil,
+            suffixType: .maxGradeWithUnit("30 pts", ""),
+            isGradedButNotPosted: false
         ))
         FinalGradeRowView(viewModel: .init(
-            currentGradeText: nil,
-            suffixType: .percentage
+            gradeText: "15",
+            a11yGradeText: nil,
+            suffixType: .maxGradeWithUnit("30 pts", ""),
+            isGradedButNotPosted: true
         ))
         FinalGradeRowView(viewModel: .init(
-            currentGradeText: "50",
-            suffixType: .percentage
+            gradeText: nil,
+            a11yGradeText: nil,
+            suffixType: .percentage,
+            isGradedButNotPosted: false
         ))
         FinalGradeRowView(viewModel: .init(
-            currentGradeText: "Complete",
-            suffixType: .none
+            gradeText: "50",
+            a11yGradeText: nil,
+            suffixType: .percentage,
+            isGradedButNotPosted: false
         ))
         FinalGradeRowView(viewModel: .init(
-            currentGradeText: "A-",
-            suffixType: .none
+            gradeText: "Complete",
+            a11yGradeText: nil,
+            suffixType: .none,
+            isGradedButNotPosted: false
+        ))
+        FinalGradeRowView(viewModel: .init(
+            gradeText: "A-",
+            a11yGradeText: nil,
+            suffixType: .none,
+            isGradedButNotPosted: false
+        ))
+        FinalGradeRowView(viewModel: .init(
+            gradeText: "A-",
+            a11yGradeText: nil,
+            suffixType: .none,
+            isGradedButNotPosted: true
         ))
     }
     .frame(maxHeight: .infinity)

@@ -52,16 +52,28 @@ class SubmissionListViewModel: ObservableObject {
         interactor.assignment.assign(to: &$assignment)
         interactor.course.assign(to: &$course)
 
-        Publishers.CombineLatest(
+        Publishers.CombineLatest3(
             interactor.submissions.receive(on: scheduler),
+            interactor.assigneeGroups.receive(on: scheduler),
             $searchText.throttle(for: 1, scheduler: scheduler, latest: true)
         )
-        .map({ [weak self] (list, searchText) in
+        .map({ [weak self] (list, groups, searchText) in
             let searchTerm = searchText.lowercased()
             var curatedList: [Submission] = list
+
+            if groups.isNotEmpty {
+                curatedList.forEach { submission in
+                    if submission.groupID == nil,
+                       let foundGroup = groups.first(where: { $0.containsUser(submission.userID) }) {
+                        submission.fetchedGroup = foundGroup.asSubmissionFetchedGroup
+                    }
+                }
+            }
+
             if searchTerm.isNotEmpty {
                 curatedList = curatedList.filter { $0.user?.nameContains(searchTerm) ?? false }
             }
+
             return curatedList.toSectionedItems(assignment: self?.assignment)
         })
         .assign(to: &$sections)

@@ -33,6 +33,7 @@ class SubmissionCommentListViewModel: ObservableObject {
 
     // comment currently entered in comment input view
     let comment: CurrentValueSubject<String, Never>
+    var commentCount: Int { allComments.count }
 
     // MARK: - Private variables
 

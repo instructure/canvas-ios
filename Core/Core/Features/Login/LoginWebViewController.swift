@@ -44,14 +44,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
 
     var mobileVerifyModel: APIVerifyClient?
     var mdmLogin: MDMLogin?
-
-    /// Passed as a string parameter e.g.: institution.instructure.com
     var host = ""
-    /// Returns host in URL format e.g.: institution.instructure.com
-    var hostURL: URL?
-    /// Returns host with https prefix in URL format e.g.: https://institution.instructure.com
-    var hostURLWithHttpsPrefix: URL?
-
     var authenticationProvider: String?
     var method = AuthenticationMethod.normalLogin
     var pairingCode: String?
@@ -60,11 +53,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
     var loginCompletion: ((LoginSession) -> Void)?
     lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration()
-        if AppEnvironment.shared.app != .horizon {
-            // Horizon has web views that rely on the authentication server cookies
-            // to reauthenticate the user.
-            configuration.websiteDataStore = .nonPersistent()
-        }
+        configuration.websiteDataStore = .nonPersistent()
         return WKWebView(frame: UIScreen.main.bounds, configuration: configuration)
     }()
 
@@ -92,8 +81,6 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         controller.title = host
         controller.authenticationProvider = authenticationProvider
         controller.host = host
-        controller.hostURL = URL(string: host)
-        controller.hostURLWithHttpsPrefix = URL(string: "https://" + host)
         controller.mdmLogin = mdmLogin
         controller.loginDelegate = loginDelegate
         controller.method = method
@@ -275,7 +262,7 @@ extension LoginWebViewController: WKNavigationDelegate {
             return decisionHandler(.allow)
         }
 
-        if components.scheme == "about", components.path == "blank" {
+        if components.scheme == "about" && components.path == "blank" {
             return decisionHandler(.cancel)
         }
 
@@ -302,11 +289,9 @@ extension LoginWebViewController: WKNavigationDelegate {
                     clientID: mobileVerify.client_id,
                     clientSecret: mobileVerify.client_secret
                 )
+
                 if let completion = self.loginCompletion {
                     completion(session)
-                } else if AppEnvironment.shared.app == .horizon {
-                    self.loginDelegate?.userDidLogin(session: session)
-                    self.env.router.route(to: "/splash", from: self)
                 } else {
                     self.env.router.show(LoadingViewController.create(), from: self)
                     self.loginDelegate?.userDidLogin(session: session)

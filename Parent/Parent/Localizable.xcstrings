@@ -2050,7 +2050,7 @@
       }
     },
     "Alerts" : {
-      "comment" : "Alerts Tab",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3587,7 +3587,7 @@
       }
     },
     "Calendar" : {
-      "comment" : "Calendar Tab",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -6149,7 +6149,7 @@
       }
     },
     "Courses" : {
-      "comment" : "Courses Tab",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -15428,19 +15428,19 @@
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No due date"
+            "value" : "No Due Date"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No due date"
+            "value" : "No Due Date"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No due date"
+            "value" : "No Due Date"
           }
         },
         "es" : {
@@ -15452,7 +15452,7 @@
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No hay fecha de entrega"
+            "value" : "Sin fecha de entrega"
           }
         },
         "fi" : {
@@ -15464,13 +15464,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pas de date limite de rendu"
+            "value" : "Pas de date limite"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucune date d'échéance"
+            "value" : "Aucune date d’échéance"
           }
         },
         "ga" : {
@@ -15512,13 +15512,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "期日なし"
+            "value" : "締切日なし"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kaore he ra tika"
+            "value" : "Kaore He Rā Tika"
           }
         },
         "ms" : {
@@ -15554,7 +15554,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sem data de limite"
+            "value" : "Sem data de vencimento"
           }
         },
         "pt-BR" : {
@@ -15572,7 +15572,7 @@
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ni roka."
+            "value" : "Ni roka"
           }
         },
         "sv" : {

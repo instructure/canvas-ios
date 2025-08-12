@@ -64,6 +64,10 @@ class AssignmentDetailsPresenter {
         self?.selectLatestSubmissionIfNecessary()
         self?.update()
     }
+
+    lazy var customGradeStatuses = env.subscribe(GetCustomGradeStatuses(courseID: courseID)) { [weak self] in
+        self?.update()
+    }
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
     }
@@ -223,7 +227,7 @@ class AssignmentDetailsPresenter {
             guard isActive else { return [] }
             return validSubmissions.map { submission in
                 let date = submission.submittedAt?.dateTimeString ?? ""
-                let attemptNumber = String.localizedAttemptNumber(submission.attempt)
+                let attemptNumber = String.format(attemptNumber: submission.attempt)
                 return UIAction(title: date, subtitle: attemptNumber) { [weak self] _ in
                     self?.selectedSubmission = submission
                     let a11yFocusTarget = self?.view?.accessibilityFocusAfterAttemptSelection
@@ -238,7 +242,7 @@ class AssignmentDetailsPresenter {
     }
 
     private func updateAttemptInfo(submission: Submission) {
-        let attemptNumber = String.localizedAttemptNumber(submission.attempt)
+        let attemptNumber = String.format(attemptNumber: submission.attempt)
         view?.updateAttemptInfo(attemptNumber: attemptNumber)
     }
 
@@ -254,6 +258,7 @@ class AssignmentDetailsPresenter {
     }
 
     func viewIsReady() {
+        customGradeStatuses.refresh()
         colors.refresh()
         courses.refresh(force: true)
         assignments.refresh(force: true)
@@ -272,6 +277,7 @@ class AssignmentDetailsPresenter {
     }
 
     func refresh() {
+        customGradeStatuses.refresh(force: true)
         courses.refresh(force: true)
         assignments.refresh(force: true)
         quizzes?.refresh(force: true)
@@ -358,7 +364,7 @@ class AssignmentDetailsPresenter {
 
     func gradesSectionIsHidden() -> Bool {
         if let submission = assignment?.submission {
-            return submission.workflowState == .unsubmitted
+            return submission.workflowState == .unsubmitted && submission.customGradeStatusId == nil
         } else {
             return true
         }
@@ -381,6 +387,7 @@ class AssignmentDetailsPresenter {
             assignment?.lockedForUser == true ||
             assignment?.isSubmittable == false ||
             assignment?.submission?.excused == true ||
+            assignment?.submission?.customGradeStatusId != nil ||
             assignment?.isMasteryPathAssignment == true ||
             (assignment?.canSubmit == false && (assignment?.isLTIAssignment != true))
     }

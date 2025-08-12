@@ -64,6 +64,9 @@ struct HInboxView: View {
         .onTapGesture {
             ScrollOffsetReader.dismissKeyboard()
         }
+        .onAppear {
+            viewModel.refresh {}
+        }
     }
 
     private var messageArea: some View {

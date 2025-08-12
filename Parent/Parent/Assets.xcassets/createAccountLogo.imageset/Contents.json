@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Parent L.svg",
+      "filename" : "parent-light.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "Parent D.svg",
+      "filename" : "parent-dark.svg",
       "idiom" : "universal"
     }
   ],

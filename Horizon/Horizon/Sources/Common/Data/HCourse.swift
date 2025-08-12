@@ -28,6 +28,7 @@ struct HCourse: Identifiable {
     struct LearningObjectCard {
         let moduleTitle: String
         let learningObjectName: String
+        let learningObjectID: String
         let type: LearningObjectType?
         let dueDate: String?
         let url: URL?
@@ -72,19 +73,20 @@ struct HCourse: Identifiable {
 
     init(from entity: CDHCourse, modules: [HModule]?) {
         self.id = entity.courseID
-        self.name = entity.course.name ?? ""
+        self.name = entity.name ?? ""
         self.institutionName = entity.institutionName ?? ""
         self.state = entity.state
         self.enrollmentID = entity.enrollmentID
         self.enrollments = [] // TODO: Find where to set
         self.modules = modules ?? []
         self.progress = entity.completionPercentage
-        self.overviewDescription = entity.course.syllabusBody ?? ""
+        self.overviewDescription = entity.overviewDescription ?? ""
 
         if entity.nextModuleID != nil, entity.nextModuleItemID != name {
             self.learningObjectCardModel = LearningObjectCard(
                 moduleTitle: entity.nextModuleName ?? "",
                 learningObjectName: entity.nextModuleItemName ?? "",
+                learningObjectID: entity.nextModuleItemID ?? "",
                 type: LearningObjectType(rawValue: entity.nextModuleItemType ?? ""),
                 dueDate: entity.nextModuleItemDueDate?.relativeShortDateOnlyString,
                 url: URL(string: entity.nextModuleItemURL ?? ""),

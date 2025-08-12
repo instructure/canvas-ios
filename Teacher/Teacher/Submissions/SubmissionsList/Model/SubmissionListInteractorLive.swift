@@ -28,6 +28,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     private var subscriptions = Set<AnyCancellable>()
     private var submissionsSubscription: AnyCancellable?
 
+    private var customStatusesStore: ReactiveStore<GetCustomGradeStatuses>
     private var courseStore: ReactiveStore<GetCourse>
     private var assignmentStore: ReactiveStore<GetAssignment>
     private var submissionsStore: ReactiveStore<GetSubmissions>?
@@ -40,6 +41,11 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
         self.assignmentID = assignmentID
         self.filtersSubject = CurrentValueSubject<[GetSubmissions.Filter], Never>(filters)
         self.env = env
+
+        customStatusesStore = ReactiveStore(
+            useCase: GetCustomGradeStatuses(courseID: context.id),
+            environment: env
+        )
 
         courseStore = ReactiveStore(
             useCase: GetCourse(courseID: context.id),
@@ -55,6 +61,12 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .sink { [weak self] filters in
                 self?.setupSubmissionsStore(filters)
             }
+            .store(in: &subscriptions)
+
+        /// Light loading for custom statuses
+        customStatusesStore
+            .getEntities()
+            .sink()
             .store(in: &subscriptions)
     }
 
@@ -94,10 +106,51 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
         submissionsSubject.eraseToAnyPublisher()
     }
 
+    var assigneeGroups: AnyPublisher<[AssigneeGroup], Never> {
+        assignment
+            .flatMap { [weak self] assignment in
+                guard let self, let categoryID = assignment?.groupCategoryID else {
+                    return Just([AssigneeGroup]()).eraseToAnyPublisher()
+                }
+
+                return ReactiveStore(
+                    useCase: GetGroupsInCategory(categoryID),
+                    environment: self.env
+                )
+                .getEntities(ignoreCache: true)
+                .flatMap({ groups in
+                    Publishers
+                        .Sequence(sequence: groups)
+                        .flatMap { [weak self] group in
+                            guard let self else {
+                                return Just(AssigneeGroup(group: group))
+                                    .eraseToAnyPublisher()
+                            }
+
+                            return self
+                                .env
+                                .api
+                                .makeRequest(GetGroupUsersRequest(groupID: group.id))
+                                .map { (users: [APIUser], _) in
+                                    let userIDs = users.map { $0.id.value }
+                                    return AssigneeGroup(group: group, memberIDs: userIDs)
+                                }
+                                .replaceError(with: AssigneeGroup(group: group))
+                                .eraseToAnyPublisher()
+                        }
+                        .collect()
+                })
+                .replaceError(with: [])
+                .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+
     func refresh() -> AnyPublisher<Void, Never> {
         return Publishers.Last(
             upstream:
-                Publishers.Merge3(
+                Publishers.Merge4(
+                    customStatusesStore.forceRefresh(),
                     courseStore.forceRefresh(),
                     assignmentStore.forceRefresh(),
                     submissionsStore?.forceRefresh() ?? Empty<Void, Never>().eraseToAnyPublisher()

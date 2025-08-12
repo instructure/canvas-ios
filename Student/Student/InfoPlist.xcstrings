@@ -8,259 +8,259 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estudiant del Canvas"
+            "value" : "Canvas"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Myfyriwr Canvas"
+            "value" : "Canvas"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-studerende"
+            "value" : "Canvas"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-elev"
+            "value" : "Canvas"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-Studierende*r"
+            "value" : "Canvas"
           }
         },
         "en" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Canvas"
           }
         },
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "en-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas student"
+            "value" : "Canvas"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas student"
+            "value" : "Canvas"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas student"
+            "value" : "Canvas"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estudiante de Canvas"
+            "value" : "Canvas"
           }
         },
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estudiante de Canvas"
+            "value" : "Canvas"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-opiskelija"
+            "value" : "Canvas"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Élève Canvas"
+            "value" : "Canvas"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Étudiant Canvas"
+            "value" : "Canvas"
           }
         },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Léinn Canvas"
+            "value" : "Canvas"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas nemandi"
+            "value" : "Canvas"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Studente Canvas"
+            "value" : "Canvas"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas 受講者"
+            "value" : "Canvas"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Ākonga"
+            "value" : "Canvas"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-student"
+            "value" : "Canvas"
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-elev"
+            "value" : "Canvas"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uczestnik Canvas"
+            "value" : "Canvas"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aluno Canvas"
+            "value" : "Canvas"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Студент Canvas"
+            "value" : "Canvas"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Študent v sistemu Canvas"
+            "value" : "Canvas"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-student"
+            "value" : "Canvas"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-elev"
+            "value" : "Canvas"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sinh Viên Canvas"
+            "value" : "Canvas"
           }
         },
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas 学生"
+            "value" : "Canvas"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas 学生"
+            "value" : "Canvas"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         }
       }
@@ -284,259 +284,259 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estudiant del Canvas"
+            "value" : "Canvas"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Myfyriwr Canvas"
+            "value" : "Canvas"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-studerende"
+            "value" : "Canvas"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-elev"
+            "value" : "Canvas"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-Studierende*r"
+            "value" : "Canvas"
           }
         },
         "en" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Canvas"
           }
         },
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "en-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas student"
+            "value" : "Canvas"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas student"
+            "value" : "Canvas"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas student"
+            "value" : "Canvas"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estudiante de Canvas"
+            "value" : "Canvas"
           }
         },
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estudiante de Canvas"
+            "value" : "Canvas"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-opiskelija"
+            "value" : "Canvas"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Élève Canvas"
+            "value" : "Canvas"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Étudiant Canvas"
+            "value" : "Canvas"
           }
         },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Léinn Canvas"
+            "value" : "Canvas"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas nemandi"
+            "value" : "Canvas"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Studente Canvas"
+            "value" : "Canvas"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas 受講者"
+            "value" : "Canvas"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Ākonga"
+            "value" : "Canvas"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-student"
+            "value" : "Canvas"
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-elev"
+            "value" : "Canvas"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uczestnik Canvas"
+            "value" : "Canvas"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aluno Canvas"
+            "value" : "Canvas"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Студент Canvas"
+            "value" : "Canvas"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Študent v sistemu Canvas"
+            "value" : "Canvas"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-student"
+            "value" : "Canvas"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas-elev"
+            "value" : "Canvas"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sinh Viên Canvas"
+            "value" : "Canvas"
           }
         },
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas 学生"
+            "value" : "Canvas"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas 学生"
+            "value" : "Canvas"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Student"
+            "value" : "Canvas"
           }
         }
       }
