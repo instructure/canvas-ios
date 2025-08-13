@@ -57,7 +57,7 @@ class AssistFlashCardsTool: AssistTool {
 
     // swiftlint:enable line_length
 
-    let name = String(localized: "Flash Cards", bundle: .horizon)
+    let name = String(localized: "Generate flashcards", bundle: .horizon)
 
     var isAvailable: Bool {
         if state.courseID.value == nil {

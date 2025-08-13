@@ -23,10 +23,32 @@ import Foundation
 
 struct AssistSummarizeTool: AssistTool {
 
-    var name: String { String(localized: "Summarize this material", bundle: .horizon) }
+    var name: String {
+        if state.textSelection.value != nil {
+            return "Summarize this selection"
+        }
+        if state.pageURL.value != nil {
+            return "Summarize this page"
+        }
+        if state.fileID.value != nil {
+            return "Summarize this file"
+        }
+        return "Summarize this"
+    }
 
     // MARK: - Properties
-    var description: String { "Summarize this page" }
+    var description: String {
+        if state.textSelection.value != nil {
+            return "Summarize the text that the user has selected"
+        }
+        if state.pageURL.value != nil {
+            return "Summarize this page"
+        }
+        if state.fileID.value != nil {
+            return "Summarize this file"
+        }
+        return "Summarize this text"
+    }
 
     var isAvailable: Bool {
         state.courseID.value != nil &&

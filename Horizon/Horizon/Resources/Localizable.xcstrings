@@ -400,9 +400,6 @@
     "Filter by person" : {
 
     },
-    "Flash Cards" : {
-
-    },
     "Fortaleza (-03:00/-03:00)" : {
 
     },
@@ -413,6 +410,9 @@
 
     },
     "Generate Flash Cards" : {
+
+    },
+    "Generate flashcards" : {
 
     },
     "Georgetown (-04:00/-04:00)" : {
@@ -931,9 +931,6 @@
 
     },
     "Submitted" : {
-
-    },
-    "Summarize this material" : {
 
     },
     "Support" : {
