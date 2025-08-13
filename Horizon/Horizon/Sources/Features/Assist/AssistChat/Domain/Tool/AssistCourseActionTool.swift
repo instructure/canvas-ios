@@ -20,33 +20,40 @@ import Combine
 import Core
 import Foundation
 
-class AssistCourseActionGoal: AssistGoal {
-    // MARK: - Properties
-    private var suggestedResponses: [AssistChipOption]?
+class AssistCourseActionTool: AssistTool {
+    private var suggestions: [AssistChipOption]?
 
     // MARK: - Dependencies
-    private let environment: AssistDataEnvironment
+    private let state: AssistState
     private let pine: DomainService
     private var userID: String
 
+    var description: String = ""
+
+    let isAvailableAsChip = false
+
+    let name = String(localized: "Ask a question", bundle: .horizon)
+
+    let prompt = "Ask a question about the course content"
+
     // MARK: - Init
     init(
-        environment: AssistDataEnvironment,
+        state: AssistState,
         userID: String = AppEnvironment.shared.currentSession?.userID ?? "",
         pine: DomainService = DomainService(.pine)
     ) {
-        self.environment = environment
+        self.state = state
         self.userID = userID
         self.pine = pine
     }
 
     // MARK: - Inputs
-    func isRequested() -> Bool {
-        environment.courseID.value != nil
+    var isAvailable: Bool {
+        state.courseID.value != nil
     }
 
     func execute(response: String?, history: [AssistChatMessage] = []) -> AnyPublisher<AssistChatMessage?, any Error> {
-        guard let courseID = environment.courseID.value else {
+        guard let courseID = state.courseID.value else {
             return Just(nil)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
@@ -54,82 +61,47 @@ class AssistCourseActionGoal: AssistGoal {
         guard let response = response, response.isNotEmpty else {
             return initialPrompt(history: history, courseID: courseID)
         }
-        return askARAGQuestion(history: history, courseID: courseID)
+        return pine.askARAGQuestion(
+            question: response,
+            history: history,
+            courseID: courseID
+        )
     }
 
     // MARK: - Private Methods
-    private func askARAGQuestion(question: String, courseID: String) -> AnyPublisher<String?, any Error> {
-        askARAGQuestion(
-            messages: [.init(text: question, role: .User)],
-            courseID: courseID
-        )
-        .map { $0?.response }
-        .eraseToAnyPublisher()
-    }
-
-    private func askARAGQuestion(messages: [DomainServiceConversationMessage], courseID: String) -> AnyPublisher<PineQueryMutation.RagResponse?, any Error> {
-        pine.api().flatMap { pineAPI in
-            pineAPI.makeRequest(
-                PineQueryMutation(
-                    messages: messages,
-                    courseID: courseID
-                )
-            )
-            .compactMap { (ragData, _) in
-                ragData.data.query
-            }
-            .eraseToAnyPublisher()
-        }
-        .eraseToAnyPublisher()
-    }
-
-    private func askARAGQuestion(history: [AssistChatMessage], courseID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        askARAGQuestion(messages: history.domainServiceConversationMessages, courseID: courseID)
-        .map {
-            $0.map {
-                AssistChatMessage(
-                    botResponse: $0.response,
-                    citations: $0.citations(self.environment)
-                )
-            }
-        }
-        .eraseToAnyPublisher()
-    }
-
     private var courseName: AnyPublisher<String?, any Error> {
         ReactiveStore(
             useCase: GetHCoursesProgressionUseCase(userId: userID)
         )
         .getEntities()
         .map { [weak self] courses in
-            courses.first { $0.courseID == self?.environment.courseID.value }?.name ?? ""
+            courses.first { $0.courseID == self?.state.courseID.value }?.name ?? ""
         }
         .eraseToAnyPublisher()
     }
 
     private func initialPrompt(history: [AssistChatMessage], courseID: String) -> AnyPublisher<AssistChatMessage?, any Error> {
-        if suggestedResponses != nil {
-            return courseName.map { [weak self] courseName in
+        if let suggestions {
+            return courseName.map { courseName in
                 AssistChatMessage(
                     botResponse: courseName.map { .initialPrompt(with: $0) } ?? .initialPrompt(),
-                    chipOptions: self?.suggestedResponses ?? []
+                    chipOptions: suggestions
                 )
             }
             .eraseToAnyPublisher()
         }
-
-        return askARAGQuestion(question: .generateSuggestionsPrompt, courseID: courseID)
+        return pine.askARAGSingleQuestion(question: .generateSuggestionsPrompt, courseID: courseID)
             .flatMap { [weak self] suggestionsJSON in
                 guard let self = self else {
                     return Just<AssistChatMessage?>(nil)
                         .setFailureType(to: Error.self)
                         .eraseToAnyPublisher()
                 }
-                self.suggestedResponses = suggestionsJSON.map { self.parseChipOptions(from: $0) }
+                self.suggestions = suggestionsJSON.map { self.parseChipOptions(from: $0) } ?? []
                 return courseName.map { courseName in
                     AssistChatMessage(
                         botResponse: courseName.map { .initialPrompt(with: $0) } ?? .initialPrompt(),
-                        chipOptions: self.suggestedResponses ?? []
+                        chipOptions: self.suggestions ?? []
                     )
                 }
                 .eraseToAnyPublisher()
@@ -146,36 +118,6 @@ class AssistCourseActionGoal: AssistGoal {
             print("Failed to decode suggestions JSON: \(error)")
             return []
         }
-    }
-}
-
-private extension PineQueryMutation.RagResponse {
-    func citations(_ environment: AssistDataEnvironment) -> [AssistChatMessage.Citation] {
-        citations.compactMap { ragCitation in
-            ragCitation.citation(
-                environment,
-                sourceID: ragCitation.sourceId,
-                sourceType: ragCitation.sourceType
-            )
-        }
-    }
-}
-
-private extension PineQueryMutation.RagCitation {
-    func citation(
-        _ environment: AssistDataEnvironment,
-        sourceID: String,
-        sourceType: String
-    ) -> AssistChatMessage.Citation? {
-        guard let title = metadata["title"] ?? metadata["filename"] else {
-            return nil
-        }
-        return AssistChatMessage.Citation(
-            title: title,
-            courseID: metadata["courseId"],
-            sourceID: sourceID,
-            sourceType: AssistChatMessage.SourceType.init(rawValue: sourceType) ?? .unknown
-        )
     }
 }
 
