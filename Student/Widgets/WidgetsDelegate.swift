@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,19 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Firebase
 import SwiftUI
-import WidgetKit
 
-@main
-struct Widgets: WidgetBundle {
+class WidgetsDelegate: EnvironmentKey {
+    public private(set) static var defaultValue = WidgetsDelegate()
 
-    @Environment(\.widgetsDelegate) private var delegate
-
-    @WidgetBundleBuilder
-    var body: some Widget {
-        TodoWidget()
-        GradeListWidget()
-        CourseTotalGradeWidget()
-        AnnouncementsWidget()
+    private init() {
+        if FirebaseOptions.defaultOptions()?.apiKey != nil {
+            FirebaseApp.configure()
+        }
     }
+}
+
+extension EnvironmentValues {
+    var widgetsDelegate: WidgetsDelegate { self[WidgetsDelegate.self] }
 }
