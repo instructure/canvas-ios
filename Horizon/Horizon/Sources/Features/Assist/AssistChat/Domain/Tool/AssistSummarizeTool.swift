@@ -30,16 +30,24 @@ struct AssistSummarizeTool: AssistTool {
 
     var isAvailable: Bool {
         state.courseID.value != nil &&
-            (
-                state.fileID.value != nil ||
-                state.pageURL.value != nil ||
-                state.textSelection.value != nil
-            )
+        (
+            state.fileID.value != nil ||
+            state.pageURL.value != nil ||
+            state.textSelection.value != nil
+        )
     }
 
     let isAvailableAsChip = true
 
-    let prompt = "Summarize this page"
+    var prompt: String {
+        if state.fileID.value != nil {
+            return "Summarize this file"
+        }
+        if state.pageURL.value != nil {
+            return "Summarize this page"
+        }
+        return "Summarize this text that the user has selected"
+    }
 
     private let unableToSummarize = String(localized: "Sorry, I can't summarize that content right now. Please try again later", bundle: .horizon)
 

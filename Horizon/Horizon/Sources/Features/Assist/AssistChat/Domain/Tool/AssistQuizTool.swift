@@ -17,18 +17,16 @@
 //
 
 import Combine
-import CombineExt
 import Core
 import Foundation
 
-struct AssistQuizTool: AssistTool {
+class AssistQuizTool: AssistTool {
 
     // MARK: - Properties
     // swiftlint:disable line_length
-    let prompt =
-        """
-            You are a teaching assistant creating quiz questions based on the provided content. Generate 15 multiple-choice questions with 4 options each, where one option is correct. Each question should be concise and clear, and the correct answer index is zero based. Ignore any HTML. Return the result in JSON format with no additional information. Here is the JSON format to use: [{question: String, options: [String], result: Int}]}]. For instance, if the question is, "What is the capital of France?", the JSON would look like this: [{question: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], result: 0}]. Make sure the JSON is valid.
-        """
+    let prompt = """
+        You are a teaching assistant creating quiz questions based on the provided content. Generate 15 multiple-choice questions with 4 options each, where one option is correct. Each question should be concise and clear, and the correct answer index is zero based. Ignore any HTML. Return the result in JSON format with no additional information. Here is the JSON format to use: [{question: String, options: [String], result: Int}]}]. For instance, if the question is, "What is the capital of France?", the JSON would look like this: [{question: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], result: 0}]. Make sure the JSON is valid.
+    """
     // swiftlint:enable line_length
 
     let name = String(localized: "Quiz me on this material", bundle: .horizon)
@@ -43,7 +41,7 @@ struct AssistQuizTool: AssistTool {
                 state.textSelection.value != nil
             )
     }
-    
+
     let isAvailableAsChip = true
 
     // MARK: - Dependencies
@@ -86,8 +84,13 @@ struct AssistQuizTool: AssistTool {
     private func quiz(from courseID: String, pageURL: String) -> AnyPublisher<AssistChatMessage?, any Error> {
         pageURL
             .pageBody(courseID: courseID)
-            .flatMap { body in
-                quiz(using: body ?? "")
+            .flatMap { [weak self] body in
+                guard let self else {
+                    return Just<AssistChatMessage?>(nil)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return self.quiz(using: body ?? "")
             }
             .eraseToAnyPublisher()
     }

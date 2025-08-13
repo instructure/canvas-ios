@@ -19,7 +19,7 @@
 import Combine
 import Core
 
-struct AssistFlashCardsTool: AssistTool {
+class AssistFlashCardsTool: AssistTool {
 
     // MARK: - Dependencies
     private let cedar: DomainService
@@ -60,10 +60,10 @@ struct AssistFlashCardsTool: AssistTool {
     let name = String(localized: "Flash Cards", bundle: .horizon)
 
     var isAvailable: Bool {
-        state.courseID.value != nil && (
-            state.fileID.value != nil ||
-            state.pageURL.value != nil
-        )
+        if state.courseID.value == nil {
+            return false
+        }
+        return state.fileID.value != nil || state.pageURL.value != nil
     }
 
     func execute(response: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistChatMessage?, any Error> {
@@ -79,8 +79,13 @@ struct AssistFlashCardsTool: AssistTool {
                 fileID: fileID
             )
             .compactMap { $0 }
-            .flatMap {
-                generateFlashCards(
+            .flatMap { [weak self] in
+                guard let self else {
+                    return Just<AssistChatMessage?>(nil)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return self.generateFlashCards(
                     courseID: courseID,
                     base64Source: $0.0,
                     format: $0.1
@@ -91,8 +96,9 @@ struct AssistFlashCardsTool: AssistTool {
         if let pageURL = state.pageURL.value {
             return ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageURL))
                 .getEntities()
-                .flatMap {
-                    guard let data =  $0.first?.body.data(using: .utf8) else {
+                .flatMap { [weak self] in
+                    guard let self,
+                          let data = $0.first?.body.data(using: .utf8) else {
                         return Just<AssistChatMessage?>(nil)
                             .setFailureType(to: Error.self)
                             .eraseToAnyPublisher()
@@ -113,10 +119,10 @@ struct AssistFlashCardsTool: AssistTool {
         format: AssistChatDocumentType = .txt
     ) -> AnyPublisher<AssistChatMessage?, any Error> {
         cedar.api()
-            .flatMap { api in
+            .flatMap { [weak self] api in
                 api.makeRequest(
                     CedarAnswerPromptMutation(
-                        prompt: prompt,
+                        prompt: self?.prompt ?? "",
                         document: CedarAnswerPromptMutation.DocumentInput(
                             format: format,
                             base64Source: base64Source

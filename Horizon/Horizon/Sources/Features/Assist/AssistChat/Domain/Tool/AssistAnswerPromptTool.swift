@@ -17,11 +17,10 @@
 //
 
 import Combine
-import CombineExt
 import Core
 import Foundation
 
-struct AssistAnswerPromptTool: AssistTool {
+class AssistAnswerPromptTool: AssistTool {
 
     // MARK: - Properties
     var description: String { promptType?.description ?? "The user is asking a question about some text. This should be selected only if no other options match" }
@@ -112,8 +111,13 @@ struct AssistAnswerPromptTool: AssistTool {
             fileID: fileID
         )
         .compactMap { $0 }
-        .flatMap {
-            answer(question: question, base64Source: $0.0, format: $0.1)
+        .flatMap { [weak self] in
+            guard let self else {
+                return Just<AssistChatMessage?>(nil)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            return self.answer(question: question, base64Source: $0.0, format: $0.1)
         }
         .eraseToAnyPublisher()
     }
@@ -171,10 +175,12 @@ private extension AssistAnswerPromptTool.PromptType {
     var prompt: String {
         [
             .KeyTakeaways:
+            // swiftlint:disable:next line_length
             "You are a teaching assistant creating key takeaways for a student. Give me a bulleted list of 3 key takeaways based on the included document contents. Ignore any HTML. Return the result as a bulleted list. Each key takeaway is a single sentence bulletpoint. You should not refer to the format of the content, but rather the content itself.",
             .RephraseContent:
             "You are a teaching assistant rephrasing content. Rephrase the provided content in a more concise and clear manner. Ignore any HTML. Return the result in paragraph form.",
             .TellMeMore:
+            // swiftlint:disable:next line_length
             "You are a teaching assistant providing more information about the content. Give me more details based on the included document contents. Ignore any HTML. Return the result in paragraph form."
         ][self] ?? ""
     }

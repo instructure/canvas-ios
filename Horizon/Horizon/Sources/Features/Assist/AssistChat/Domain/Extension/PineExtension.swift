@@ -73,13 +73,12 @@ extension DomainService {
             sourceID: sourceID,
             sourceType: sourceType
         )
-        .map {
-            $0.map {
-                AssistChatMessage(
-                    botResponse: $0.response,
-                    citations: $0.chatMessageCitations
-                )
-            }
+        .map { response in
+            guard let response else { return nil }
+            return AssistChatMessage(
+                botResponse: response.response,
+                citations: response.chatMessageCitations
+            )
         }
         .eraseToAnyPublisher()
     }
