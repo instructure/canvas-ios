@@ -279,6 +279,37 @@
         <attribute name="startOffset" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="userID" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="CDHProgram" representedClassName=".CDHProgram" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="programDescription" optional="YES" attributeType="String"/>
+        <attribute name="variant" attributeType="String"/>
+        <relationship name="porgresses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHProgramProgress" inverseName="progress" inverseEntity="CDHProgramProgress"/>
+        <relationship name="requirements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHProgramRequirement" inverseName="relationship" inverseEntity="CDHProgramRequirement"/>
+    </entity>
+    <entity name="CDHProgramDependency" representedClassName=".CDHProgramDependency" syncable="YES">
+        <attribute name="canvasCourseId" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHProgramRequirement" inverseName="dependency" inverseEntity="CDHProgramRequirement"/>
+    </entity>
+    <entity name="CDHProgramDependent" representedClassName=".CDHProgramDependent" syncable="YES">
+        <attribute name="canvasCourseId" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHProgramRequirement" inverseName="dependent" inverseEntity="CDHProgramRequirement"/>
+    </entity>
+    <entity name="CDHProgramProgress" representedClassName=".CDHProgramProgress" syncable="YES">
+        <attribute name="completionPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="courseEnrollmentStatus" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <relationship name="progress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHProgram" inverseName="porgresses" inverseEntity="CDHProgram"/>
+    </entity>
+    <entity name="CDHProgramRequirement" representedClassName=".CDHProgramRequirement" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isCompletionRequired" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="dependency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHProgramDependency" inverseName="relationship" inverseEntity="CDHProgramDependency"/>
+        <relationship name="dependent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHProgramDependent" inverseName="relationship" inverseEntity="CDHProgramDependent"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHProgram" inverseName="requirements" inverseEntity="CDHProgram"/>
+    </entity>
     <entity name="CDHScoresAssignment" representedClassName="Core.CDHScoresAssignment" syncable="YES">
         <attribute name="commentsCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

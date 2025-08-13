@@ -19,14 +19,14 @@
 import Foundation
 
 public struct GetHProgramsResponse: Codable {
-    let data: Programs?
+   public let data: Programs?
 
-    struct Programs: Codable {
-        let enrolledPrograms: [EnrolledProgram]?
+    public struct Programs: Codable {
+        public let enrolledPrograms: [EnrolledProgram]?
     }
 
-    struct EnrolledProgram: Codable {
-        let id, name: String?
+    public  struct EnrolledProgram: Codable {
+       public let id, name: String?
         let publicName: String?
         let customerID: String?
         let description: String?
@@ -34,48 +34,48 @@ public struct GetHProgramsResponse: Codable {
         let startDate, endDate: String?
         let variant: String?
         let progresses: [Progress]?
-        let requirements: [RequirementElement]?
-        let enrollments: [Enrollment]?
+        public var requirements: [Requirement]?
+        public let enrollments: [Enrollment]?
 
         enum CodingKeys: String, CodingKey {
             case id, name, publicName
             case customerID = "customerId"
             case description, owner, startDate, endDate, variant, progresses, requirements, enrollments
         }
+    }
 
-        struct Enrollment: Codable {
-            let id, enrollee: String?
+    public struct Enrollment: Codable {
+        let id, enrollee: String?
+    }
+
+    public  struct Progress: Codable {
+        let id: String?
+        let completionPercentage: Double?
+        let courseEnrollmentStatus: String?
+        let requirement: ProgressRequirement?
+    }
+
+    public struct ProgressRequirement: Codable {
+        let id: String?
+        let dependent: Dependen?
+    }
+
+    public struct Dependen: Codable {
+        public let id, canvasCourseID: String?
+        public let canvasURL: String?
+
+        enum CodingKeys: String, CodingKey {
+            case id
+            case canvasCourseID = "canvasCourseId"
+            case canvasURL = "canvasUrl"
         }
+    }
 
-        struct Progress: Codable {
-            let id: String?
-            let completionPercentage: Double?
-            let courseEnrollmentStatus: String?
-            let requirement: ProgressRequirement?
-        }
-
-        struct ProgressRequirement: Codable {
-            let id: String?
-            let dependent: Dependen?
-        }
-
-        struct Dependen: Codable {
-            let id, canvasCourseID: String?
-            let canvasURL: String?
-
-            enum CodingKeys: String, CodingKey {
-                case id
-                case canvasCourseID = "canvasCourseId"
-                case canvasURL = "canvasUrl"
-            }
-        }
-
-        struct RequirementElement: Codable {
-            let id: String?
-            let isCompletionRequired: Bool?
-            let courseEnrollment: String?
-            let dependency: Dependen?
-            let dependent: Dependen
-        }
+    public struct Requirement: Codable {
+        let id: String?
+        let isCompletionRequired: Bool?
+        let courseEnrollment: String?
+        public let dependency: Dependen?
+        public let dependent: Dependen?
     }
 }

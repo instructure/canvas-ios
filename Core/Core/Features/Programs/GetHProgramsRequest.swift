@@ -23,14 +23,17 @@ public struct GetHProgramsRequest: APIGraphQLRequestable {
     public typealias Variables = Input
     public let variables: Input = .init()
     public struct Input: Codable, Equatable { }
-
     public var path: String { "/graphql" }
-//    public var shouldAppednAPI: Bool = false
-//    public var shouldAddNoVerifierQuery: Bool = false
+    public var shouldAddNoVerifierQuery: Bool = false
+
+   public var headers: [String: String?] = [
+        HttpHeader.accept: "application/json"
+   ]
     public init() {}
 
+    public static let operationName: String = "EnrolledPrograms"
     public static let query = """
-        query EnrolledPrograms {
+        query \(operationName) {
           enrolledPrograms {
             id
             name

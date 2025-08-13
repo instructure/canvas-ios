@@ -88,23 +88,49 @@ class DashboardViewModel {
     // MARK: - Inputs
 
     func notebookDidTap(viewController: WeakViewController) {
-        journey
-            .api()
-            .sink { com in
+        router.route(to: "/notebook", from: viewController)
+    }
+    
+    func notificationsDidTap(viewController: WeakViewController) {
+        //CDHProgramRequirement
+        //CDHProgramRequirementDependency
+//        journey
+//            .api()
+//            .sink { com in
+//                print(com)
+//            } receiveValue: { api in
+//                api.makeRequest(GetHProgramsRequest()) { response, w, e in
+//                    if let res  = response {
+//                       let programs = Demo().normalizePrograms(programs: res)
+//                        programs.forEach {
+//                            print($0.name)
+//                            $0.requirements?.forEach { i in
+//                                print(i.dependent)
+//                                print(i.dependent?.canvasCourseID)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+
+        ReactiveStore(useCase: GetHProgramsUseCase())
+            .getEntities(ignoreCache: true)
+            .sink(receiveCompletion: { com in
                 print(com)
-            } receiveValue: { api in
-                api.makeRequest(GetHProgramsRequest()) { q, w, e in
-                    print(q)
-                    print(w)
-                    print(e)
-                }
-            }
+            }, receiveValue: { values in
+                let programs = values.map { Program(from: $0) }
+                let resutl = Demo().normalizePrograms(programs: programs)
+                print(self.title)
+                print(resutl.first?.name)
+                print(resutl.last?.name)
+                print(resutl.count)
+            })
             .store(in: &subscriptions)
     }
 
-    func notificationsDidTap(viewController: WeakViewController) {
-        router.show(NotificationAssembly.makeView(), from: viewController)
-    }
+//    func notificationsDidTap(viewController: WeakViewController) {
+//        router.show(NotificationAssembly.makeView(), from: viewController)
+//    }
 
     func mailDidTap(viewController: WeakViewController) {
         router.route(to: "/conversations", from: viewController)
@@ -165,5 +191,53 @@ class DashboardViewModel {
         default:
             return String(localized: "Not started", bundle: .horizon)
         }
+    }
+}
+
+class Demo {
+    func normalizePrograms(programs: [Program]) -> [Program] {
+        let enrolledPrograms = programs.map { program in
+            var normalizedProgram = program
+            normalizedProgram.requirements = sortRequirementsByDependency(requirements: program.requirements)
+            return normalizedProgram
+        }
+        return enrolledPrograms
+    }
+
+    func sortRequirementsByDependency(requirements: [ProgramRequirement]) -> [ProgramRequirement] {
+        // Handle empty or nil requirements
+        guard !requirements.isEmpty else { return [] }
+
+        var dependencyMap: [String: ProgramRequirement] = [:]
+        var startRequirement: ProgramRequirement?
+
+        // Build dependency map and find start requirement
+        for requirement in requirements {
+            if requirement.dependency == nil {
+                startRequirement = requirement
+            }
+
+            dependencyMap[requirement.dependent?.id ?? ""] = requirement
+        }
+
+        // If no start requirement found, return original requirements
+        guard let start = startRequirement else { return requirements }
+        var sortedRequirements: [ProgramRequirement] = [start]
+        var currentReq = start
+        // Follow the dependency chain
+        while let dependent = currentReq.dependent {
+            let nextDepId = dependent.id
+
+            // Find the next requirement that depends on the current one
+            guard let nextReq = requirements.first(where: { req in
+                req.dependency?.id == nextDepId
+            }) else {
+                break
+            }
+
+            sortedRequirements.append(nextReq)
+            currentReq = nextReq
+        }
+        return sortedRequirements
     }
 }
