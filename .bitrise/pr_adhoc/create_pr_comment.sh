@@ -63,15 +63,15 @@ done
 PR_COMMENT="<h3>Builds</h3>"
 
 if [[ -z "$COLUMNS" ]]; then
-    PR_COMMENT+="<p><em>No apps were built for this pull request.</em></p>"
-    PR_COMMENT+="<p>To trigger app builds, include a line starting with <code>builds:</code> followed by app names (Student, Teacher, Parent, or All) in your commit message.</p>"
+    PR_COMMENT+="<p>No apps were built for this pull request.</p>"
+    PR_COMMENT+="<p><em>To trigger app builds, include a line starting with <code>builds:</code> followed by app names (Student, Teacher, Parent, or All) in your commit message.</em></p>"
 else
     PR_COMMENT+="<table>"
     PR_COMMENT+="<tr>${COLUMNS}</tr>"
     PR_COMMENT+="</table>"
 fi
 
-PR_COMMENT+="<p><strong>Built from:</strong> ${COMMIT_MESSAGE_FIRST_LINE} (<a href=\"${GITHUB_REPO_URL}/commit/${COMMIT_HASH}\">${COMMIT_HASH}</a>)</p>"
+PR_COMMENT+="<p><strong>Commit:</strong> ${COMMIT_MESSAGE_FIRST_LINE} (<a href=\"${GITHUB_REPO_URL}/commit/${COMMIT_HASH}\">${COMMIT_HASH}</a>)</p>"
 
 printf "\nGenerated HTML snippet:\n${PR_COMMENT}"
 envman add --key PR_BUILDS_COMMENT --value "${PR_COMMENT}"
