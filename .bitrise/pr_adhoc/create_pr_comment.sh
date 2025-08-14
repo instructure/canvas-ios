@@ -35,6 +35,11 @@ declare -a APP_NAMES=(
     "Parent"
 )
 
+# Get commit information
+COMMIT_HASH=$(git rev-parse --short HEAD)
+COMMIT_MESSAGE_FIRST_LINE=$(git log -1 --pretty=format:"%s")
+GITHUB_REPO_URL="https://github.com/instructure/canvas-ios"
+
 COLUMNS=""
 
 for APP_NAME in "${APP_NAMES[@]}"; do
@@ -57,6 +62,7 @@ PR_COMMENT="<h3>Builds</h3>"
 PR_COMMENT+="<table>"
 PR_COMMENT+="<tr>${COLUMNS}</tr>"
 PR_COMMENT+="</table>"
+PR_COMMENT+="<p><strong>Built from:</strong> <a href=\"${GITHUB_REPO_URL}/commit/${COMMIT_HASH}\">${COMMIT_MESSAGE_FIRST_LINE} (${COMMIT_HASH})</a></p>"
 
 printf "\nGenerated HTML snippet:\n${PR_COMMENT}"
 envman add --key PR_BUILDS_COMMENT --value "${PR_COMMENT}"
