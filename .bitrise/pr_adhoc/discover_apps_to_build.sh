@@ -31,7 +31,6 @@ set -o pipefail
 # - $REQUIRE_PARENT=true
 # - $REQUIRE_TEACHER=true
 # - $REQUIRE_STUDENT=true
-# - $REQUIRE_HORIZON=true
 
 if [[ ! -z $BITRISE_PULL_REQUEST ]]; then
     envman add --key PR_NUMBER --value $BITRISE_PULL_REQUEST
@@ -51,13 +50,8 @@ if [[ $BITRISE_GIT_MESSAGE == *"Parent"* ]]; then
     envman add --key REQUIRE_PARENT --value "true"
 fi
 
-if [[ $BITRISE_GIT_MESSAGE == *"Horizon"* ]]; then
-    envman add --key REQUIRE_HORIZON --value "true"
-fi
-
 if [[ $BITRISE_GIT_MESSAGE == *"affects: All"* ]]; then
     envman add --key REQUIRE_PARENT --value "true" &&
     envman add --key REQUIRE_TEACHER --value "true" &&
-    envman add --key REQUIRE_STUDENT --value "true" &&
-    envman add --key REQUIRE_HORIZON --value "true"
+    envman add --key REQUIRE_STUDENT --value "true"
 fi

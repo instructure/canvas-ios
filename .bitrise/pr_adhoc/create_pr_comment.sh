@@ -33,7 +33,6 @@ declare -a APP_NAMES=(
     "Student"
     "Teacher"
     "Parent"
-    "Horizon"
 )
 
 COLUMNS=""
