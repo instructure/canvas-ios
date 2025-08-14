@@ -18,11 +18,11 @@
 
 import Combine
 
-protocol StudentAccessInteractor: AnyObject {
+public protocol StudentAccessInteractor: AnyObject {
     func isRestricted() -> AnyPublisher<Bool, Never>
 }
 
-final class StudentAccessInteractorLive: StudentAccessInteractor {
+final public class StudentAccessInteractorLive: StudentAccessInteractor {
     // MARK: - Private Properties
     private let featureFlagsStore: ReactiveStore<GetEnvironmentFeatureFlags>
 

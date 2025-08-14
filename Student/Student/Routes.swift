@@ -501,7 +501,8 @@ private func fileList(url: URLComponents, params: [String: String], userInfo: [S
     return FileListViewController.create(
         env: environment,
         context: Context(path: url.path) ?? .currentUser,
-        path: params["subFolder"]
+        path: params["subFolder"],
+        studentAccessInteractor: StudentAccessInteractorLive(env: environment)
     )
 }
 
