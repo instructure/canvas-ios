@@ -85,7 +85,6 @@ workflows:
         - personal_access_token: $GITHUB_API_TOKEN
         - update_comment_tag: bitrise_adhoc_builds
         is_always_run: false
-triggers:
-  pull_request:
-    workflows:
-    - pr_adhoc_builds
+    triggers:
+      pull_request:
+      - target_branch: "*"
