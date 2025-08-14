@@ -34,7 +34,7 @@ workflows:
     - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
     - script@1:
-        title: Install XcodeGen
+        title: XcodeGen
         inputs:
         - content: |-
             #!/usr/bin/env bash
@@ -45,17 +45,6 @@ workflows:
 
             cd $BITRISE_SOURCE_DIR
             make provision-ci
-    - script@1:
-        title: Run make sync
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -ex
-            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
-            set -o pipefail
-
-            cd $BITRISE_SOURCE_DIR
             make sync-ci
     - restore-spm-cache@2: {}
     summary: 'This step contains all the necessary steps to prepare the Xcode workspace
