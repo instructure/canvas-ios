@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import Combine
 
 public class FileListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyImageView: UIImageView!
@@ -75,13 +76,23 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     }
 
     private var offlineFileInteractor: OfflineFileInteractor?
+    private var studentAccessInteractor: StudentAccessInteractor?
+    private var subscriptions = Set<AnyCancellable>()
+    private var isRestricted = false
 
-    public static func create(env: AppEnvironment, context: Context, path: String? = nil, offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileListViewController {
+    public static func create(
+        env: AppEnvironment,
+        context: Context,
+        path: String? = nil,
+        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive(),
+        studentAccessInteractor: StudentAccessInteractor? = nil
+    ) -> FileListViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.env = env
         controller.path = path ?? ""
         controller.offlineFileInteractor = offlineFileInteractor
+        controller.studentAccessInteractor = studentAccessInteractor
         return controller
     }
 
@@ -115,6 +126,14 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
             self.tableView.contentOffset.y = self.searchBar.frame.height
         }
+
+        studentAccessInteractor?
+            .isRestricted()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isRestricted in
+                self?.isRestricted = isRestricted
+            }
+            .store(in: &subscriptions)
 
         colors.refresh()
         course?.refresh()
@@ -323,13 +342,15 @@ extension FileListViewController: FilePickerDelegate {
         ) { [weak self] in
             self?.addFolder()
         }
-        sheet.addAction(
-            image: .addDocumentLine,
-            title: String(localized: "Add File", bundle: .core),
-            accessibilityIdentifier: "FileList.addFileButton"
-        ) { [weak self] in
-            guard let self = self else { return }
-            self.filePicker.pick(from: self)
+        if !isRestricted {
+            sheet.addAction(
+                image: .addDocumentLine,
+                title: String(localized: "Add File", bundle: .core),
+                accessibilityIdentifier: "FileList.addFileButton"
+            ) { [weak self] in
+                guard let self = self else { return }
+                self.filePicker.pick(from: self)
+            }
         }
         env.router.show(sheet, from: self, options: .modal())
     }
