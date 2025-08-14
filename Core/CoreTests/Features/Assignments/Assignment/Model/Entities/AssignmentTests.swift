@@ -95,7 +95,7 @@ class AssignmentTests: CoreTestCase {
     func testUpdateFromAPIItemWithAPIScoreStatistics() {
         let client = databaseClient
         let a = Assignment.make(from: .make(name: "a", score_statistics: nil))
-        let api = APIAssignment.make(name: "api_a", score_statistics: APIAssignmentScoreStatistics(mean: 5.0, min: 1.0, max: 10.0))
+        let api = APIAssignment.make(name: "api_a", score_statistics: .init(mean: 5.0, min: 1.0, max: 10.0))
 
         XCTAssertNil(a.scoreStatistics)
 
@@ -122,7 +122,7 @@ class AssignmentTests: CoreTestCase {
     func testUpdateFromAPIItemWithAPIScoreStatisticsButDoNotUpdateStatistics() {
         let client = databaseClient
         let a = Assignment.make(from: .make(name: "a", score_statistics: nil))
-        let api = APIAssignment.make(name: "api_a", score_statistics: APIAssignmentScoreStatistics(mean: 5.0, min: 1.0, max: 10.0))
+        let api = APIAssignment.make(name: "api_a", score_statistics: .init(mean: 5.0, min: 1.0, max: 10.0))
 
         XCTAssertNil(a.scoreStatistics)
 
@@ -133,7 +133,7 @@ class AssignmentTests: CoreTestCase {
 
     func testUpdateFromAPIItemWithExistingScoreStatistics() {
         let client = databaseClient
-        let a = Assignment.make(from: .make(name: "a", score_statistics: APIAssignmentScoreStatistics(mean: 5.0, min: 2.0, max: 10.0)))
+        let a = Assignment.make(from: .make(name: "a", score_statistics: .init(mean: 5.0, min: 2.0, max: 10.0)))
         let api = APIAssignment.make(name: "api_a", score_statistics: nil)
         XCTAssertNil(api.score_statistics)
 

@@ -18,7 +18,7 @@
 
 import Foundation
 import CoreData
-import SwiftUI
+import UIKit
 
 public class Assignment: NSManagedObject {
     @NSManaged public var allDates: Set<AssignmentDate>
@@ -70,7 +70,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var quizID: String?
     @NSManaged public var rubricPointsPossibleRaw: NSNumber?
     @NSManaged public var rubricRaw: NSOrderedSet?
-    @NSManaged public var scoreStatistics: ScoreStatistics?
+    @NSManaged public var scoreStatistics: AssignmentScoreStatistics?
     @NSManaged public var submissionTypesRaw: String
     @NSManaged public var syllabus: Syllabus?
     @NSManaged public var todo: Todo?
@@ -179,10 +179,8 @@ public class Assignment: NSManagedObject {
         assignment.update(fromApiModel: item, in: context, updateSubmission: updateSubmission, updateScoreStatistics: updateScoreStatistics)
         return assignment
     }
-}
 
-extension Assignment {
-    func update(fromApiModel item: APIAssignment, in client: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) {
+    public func update(fromApiModel item: APIAssignment, in client: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) {
         allowedAttempts = item.allowed_attempts ?? 0
         allowedExtensions = item.allowed_extensions ?? []
         annotatableAttachmentID = item.annotatable_attachment_id
@@ -259,7 +257,7 @@ extension Assignment {
         rubricPointsPossible = item.rubric_settings?.points_possible
 
         if let assignmentGroupID = item.assignment_group_id?.value,
-            let assignmentGroup: AssignmentGroup = client.first(where: #keyPath(AssignmentGroup.id), equals: assignmentGroupID) {
+           let assignmentGroup: AssignmentGroup = client.first(where: #keyPath(AssignmentGroup.id), equals: assignmentGroupID) {
             self.assignmentGroup = assignmentGroup
         } else {
             assignmentGroup = nil
@@ -296,6 +294,13 @@ extension Assignment {
         if let items = item.overrides {
             overrides = Set(items.map { AssignmentOverride.save($0, in: client) })
         }
+    }
+}
+
+extension Assignment {
+
+    public enum LockStatus: String {
+        case unlocked, before, after
     }
 
     public var canMakeSubmissions: Bool {
@@ -398,111 +403,6 @@ extension Assignment: DueViewable, GradeViewable, SubmissionViewable {
             return discussionTopic.map { DiscussionHTML.string(for: $0) } ?? fallback
         }
         return details ?? fallback
-    }
-}
-
-public enum LockStatus: String {
-    case unlocked, before, after
-}
-
-public final class AssignmentDate: NSManagedObject {
-    @NSManaged public var id: String
-    @NSManaged public var base: Bool
-    @NSManaged public var title: String?
-    @NSManaged public var dueAt: Date?
-    @NSManaged public var unlockAt: Date?
-    @NSManaged public var lockAt: Date?
-
-    @discardableResult
-    public static func save(_ item: APIAssignmentDate, assignmentID: String, in context: NSManagedObjectContext) -> AssignmentDate {
-        let id = item.id?.value ?? "base-\(assignmentID)"
-        let model: AssignmentDate = context.first(where: #keyPath(AssignmentDate.id), equals: id) ?? context.insert()
-        model.id = id
-        model.base = item.base == true
-        model.title = item.title
-        model.dueAt = item.due_at
-        model.unlockAt = item.unlock_at
-        model.lockAt = item.lock_at
-        return model
-    }
-
-    @discardableResult
-    public static func save(_ item: APIAssignmentDate, quizID: String, in context: NSManagedObjectContext) -> AssignmentDate {
-        let id = item.id?.value ?? "base-quiz-\(quizID)"
-        let model: AssignmentDate = context.first(where: #keyPath(AssignmentDate.id), equals: id) ?? context.insert()
-        model.id = id
-        model.base = item.base == true
-        model.title = item.title
-        model.dueAt = item.due_at
-        model.unlockAt = item.unlock_at
-        model.lockAt = item.lock_at
-        return model
-    }
-}
-
-public final class AssignmentOverride: NSManagedObject, WriteableModel {
-    @NSManaged public var assignmentID: String
-    @NSManaged public var courseSectionID: String?
-    @NSManaged public var dueAt: Date?
-    @NSManaged public var id: String
-    @NSManaged public var groupID: String?
-    @NSManaged public var lockAt: Date?
-    @NSManaged var studentIDsRaw: String?
-    @NSManaged public var title: String
-    @NSManaged public var unlockAt: Date?
-
-    public var studentIDs: [String]? {
-        get { studentIDsRaw?.components(separatedBy: ",") }
-        set { studentIDsRaw = newValue?.joined(separator: ",") }
-    }
-
-    @discardableResult
-    public static func save(_ item: APIAssignmentOverride, in context: NSManagedObjectContext) -> AssignmentOverride {
-        let model: AssignmentOverride = context.first(where: #keyPath(AssignmentOverride.id), equals: item.id.value) ?? context.insert()
-        model.assignmentID = item.assignment_id.value
-        model.courseSectionID = item.course_section_id?.value
-        model.dueAt = item.due_at
-        model.groupID = item.group_id?.value
-        model.id = item.id.value
-        model.lockAt = item.lock_at
-        model.studentIDs = item.student_ids?.map { $0.value }
-        model.title = item.title
-        model.unlockAt = item.unlock_at
-        return model
-    }
-}
-
-public final class ScoreStatistics: NSManagedObject {
-    @NSManaged internal(set) public var mean: Double
-    @NSManaged internal(set) public var min: Double
-    @NSManaged internal(set) public var max: Double
-    @NSManaged internal(set) public var assignment: Assignment
-
-    public func update(fromApiModel item: APIAssignmentScoreStatistics, in client: NSManagedObjectContext) {
-        mean = item.mean
-        min = item.min
-        max = item.max
-    }
-}
-
-public enum GradingType: String, Codable, CaseIterable {
-    case percent, pass_fail, points, letter_grade, gpa_scale, not_graded
-
-    var string: String {
-        switch self {
-        case .percent:
-            return String(localized: "Percentage", bundle: .core)
-        case .pass_fail:
-            return String(localized: "Complete/Incomplete", bundle: .core)
-        case .points:
-            return String(localized: "Points", bundle: .core)
-        case .letter_grade:
-            return String(localized: "Letter Grade", bundle: .core)
-        case .gpa_scale:
-            return String(localized: "GPA Scale", bundle: .core)
-        case .not_graded:
-            return String(localized: "Not Graded", bundle: .core)
-        }
     }
 }
 

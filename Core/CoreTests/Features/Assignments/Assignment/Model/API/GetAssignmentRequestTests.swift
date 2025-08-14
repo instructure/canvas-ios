@@ -19,7 +19,8 @@
 import XCTest
 @testable import Core
 
-class APIAssignmentRequestableTests: XCTestCase {
+class GetAssignmentRequestTests: XCTestCase {
+
     func testGetAssignmentRequest() {
         let request = GetAssignmentRequest(courseID: "1", assignmentID: "2", include: [])
         XCTAssertEqual(request.path, "courses/1/assignments/2")
@@ -44,35 +45,5 @@ class APIAssignmentRequestableTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "submission"),
             URLQueryItem(name: "include[]", value: "can_submit")
         ])
-    }
-
-    func testGetAssignmentsRequest() {
-        var request = GetAssignmentsRequest(courseID: "1")
-        XCTAssertEqual(request.path, "courses/1/assignments")
-        XCTAssertEqual(request.queryItems, [URLQueryItem(name: "order_by", value: "position")])
-
-        request = GetAssignmentsRequest(courseID: "1", orderBy: .name, perPage: 100)
-        XCTAssertEqual(request.queryItems, [URLQueryItem(name: "order_by", value: "name"), URLQueryItem(name: "per_page", value: "100")])
-    }
-
-    func testCreateAssignmentRequest() {
-        let assignment = APIAssignmentParameters(
-            assignment_overrides: nil,
-            description: nil,
-            due_at: Date(),
-            grading_type: .percent,
-            lock_at: nil,
-            name: nil,
-            only_visible_to_overrides: nil,
-            points_possible: 10,
-            published: nil,
-            unlock_at: nil
-        )
-        let expectedBody = PostAssignmentRequest.Body(assignment: assignment)
-        let request = PostAssignmentRequest(courseID: "1", body: expectedBody)
-
-        XCTAssertEqual(request.path, "courses/1/assignments")
-        XCTAssertEqual(request.method, .post)
-        XCTAssertEqual(request.body, expectedBody)
     }
 }
