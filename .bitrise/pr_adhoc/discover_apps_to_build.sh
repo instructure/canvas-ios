@@ -51,22 +51,25 @@ fi
 
 echo "Found builds line: $BUILDS_LINE"
 
-if [[ $BUILDS_LINE == *"Student"* ]]; then
+# Convert to lowercase for case-insensitive matching
+BUILDS_LINE_LOWER=$(echo "$BUILDS_LINE" | tr '[:upper:]' '[:lower:]')
+
+if [[ $BUILDS_LINE_LOWER == *"student"* ]]; then
     envman add --key REQUIRE_STUDENT --value "true"
     echo "✓ Student app marked as required."
 fi
 
-if [[ $BUILDS_LINE == *"Teacher"* ]]; then
+if [[ $BUILDS_LINE_LOWER == *"teacher"* ]]; then
     envman add --key REQUIRE_TEACHER --value "true"
     echo "✓ Teacher app marked as required."
 fi
 
-if [[ $BUILDS_LINE == *"Parent"* ]]; then
+if [[ $BUILDS_LINE_LOWER == *"parent"* ]]; then
     envman add --key REQUIRE_PARENT --value "true"
     echo "✓ Parent app marked as required."
 fi
 
-if [[ $BUILDS_LINE == *"All"* ]]; then
+if [[ $BUILDS_LINE_LOWER == *"all"* ]]; then
     envman add --key REQUIRE_PARENT --value "true" &&
     envman add --key REQUIRE_TEACHER --value "true" &&
     envman add --key REQUIRE_STUDENT --value "true"
