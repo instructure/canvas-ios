@@ -38,11 +38,14 @@ public enum ComposeMessageAssembly {
         )
         let recipientInteractor = RecipientInteractorLive()
         let settingsInteractor = InboxSettingsInteractorLive(environment: env)
+        let studentAccessInteractor = StudentAccessInteractorLive(env: env)
+
         let viewModel = ComposeMessageViewModel(
             options: options,
             interactor: interactor,
             recipientInteractor: recipientInteractor,
             inboxSettingsInteractor: settingsInteractor,
+            studentAccessInteractor: studentAccessInteractor,
             env: env
         )
 
@@ -69,6 +72,7 @@ public enum ComposeMessageAssembly {
             interactor: interactor,
             recipientInteractor: RecipientInteractorLive(),
             inboxSettingsInteractor: InboxSettingsInteractorPreview(),
+            studentAccessInteractor: StudentAccessInteractorPreview(env: env),
             env: env
         )
         return ComposeMessageView(model: viewModel)
