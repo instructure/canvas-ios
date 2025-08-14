@@ -36,7 +36,7 @@ final class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var isMessageDisabled: Bool = false
     @Published public private(set) var isIndividualDisabled: Bool = false
     @Published public private(set) var isSendIndividualToggleDisabled: Bool = false
-    @Published public private(set) var isStudentAccessRestricted: Bool = false
+    @Published public private(set) var isBulkMessagingEnforcedBasedOnStudentAccessRestriction: Bool = false
     @Published public var isShowingErrorDialog = false
     @Published private(set) var searchedRecipients: [Recipient] = []
     @Published public private(set) var expandedIncludedMessageIds = [String]()
@@ -447,7 +447,7 @@ final class ComposeMessageViewModel: ObservableObject {
         /// 1. Sending a message to a group or individuals.
         /// 2. Setting it to true if you are sending a message to more than 100 recipients.
         let isExceedsRecipientsLimit = recipientIDs.count > maxRecipientCount
-        let bulkMessage = isExceedsRecipientsLimit || isStudentAccessRestricted || sendIndividual
+        let bulkMessage = isExceedsRecipientsLimit || isBulkMessagingEnforcedBasedOnStudentAccessRestriction || sendIndividual
 
         return MessageParameters(
             subject: subject,
@@ -553,7 +553,9 @@ final class ComposeMessageViewModel: ObservableObject {
             .isRestricted()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isRestricted in
-                self?.isStudentAccessRestricted = isRestricted && self?.env.app == .teacher
+                // Enforcing bulk messaging only for Teacher app, because we want to NOT enforce it for Student/Parent apps at the moment.
+                // We assume restricted Students won't even be able to message other Students.
+                self?.isBulkMessagingEnforcedBasedOnStudentAccessRestriction = isRestricted && self?.env.app == .teacher
             }
             .store(in: &subscriptions)
     }

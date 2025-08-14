@@ -113,7 +113,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.selectedContext = RecipientContext(course: Course.make())
 
         waitUntil {
-            testee.isStudentAccessRestricted == true
+            testee.isBulkMessagingEnforcedBasedOnStudentAccessRestriction == true
         }
 
         // When
@@ -130,7 +130,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.selectedContext = RecipientContext(course: Course.make())
 
         waitUntil {
-            testee.isStudentAccessRestricted == false
+            testee.isBulkMessagingEnforcedBasedOnStudentAccessRestriction == false
         }
 
         // When
@@ -147,7 +147,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.selectedContext = RecipientContext(course: Course.make())
 
         waitUntil {
-            testee.isStudentAccessRestricted == true
+            testee.isBulkMessagingEnforcedBasedOnStudentAccessRestriction == true
         }
 
         // When
@@ -164,7 +164,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.selectedContext = RecipientContext(course: Course.make())
 
         waitUntil {
-            testee.isStudentAccessRestricted == false
+            testee.isBulkMessagingEnforcedBasedOnStudentAccessRestriction == false
         }
 
         // When
@@ -777,18 +777,18 @@ private class InboxSettingsInteractorMock: InboxSettingsInteractor {
 }
 
 private class StudentAccessInteractorMock: StudentAccessInteractor {
-    private let isStudentAccessRestricted: CurrentValueSubject<Bool, Never>
+    private let isBulkMessagingEnforcedBasedOnStudentAccessRestriction: CurrentValueSubject<Bool, Never>
 
     init(restricted: Bool = false) {
-        self.isStudentAccessRestricted = CurrentValueSubject(restricted)
+        self.isBulkMessagingEnforcedBasedOnStudentAccessRestriction = CurrentValueSubject(restricted)
     }
 
     func isRestricted() -> AnyPublisher<Bool, Never> {
-        isStudentAccessRestricted.eraseToAnyPublisher()
+        isBulkMessagingEnforcedBasedOnStudentAccessRestriction.eraseToAnyPublisher()
     }
 
-    // Test helper
+    // Optional: allow changing value in test
     func setRestricted(_ value: Bool) {
-        isStudentAccessRestricted.send(value)
+        isBulkMessagingEnforcedBasedOnStudentAccessRestriction.send(value)
     }
 }

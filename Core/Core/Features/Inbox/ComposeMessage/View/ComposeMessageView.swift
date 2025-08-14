@@ -232,7 +232,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 separator
             }
             subjectView
-            if !model.isIndividualDisabled && !model.isStudentAccessRestricted {
+            if !model.isIndividualDisabled && !model.isBulkMessagingEnforcedBasedOnStudentAccessRestriction {
                 separator
                 individualView
             }
