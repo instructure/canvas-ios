@@ -35,10 +35,12 @@ declare -a APP_NAMES=(
     "Parent"
 )
 
-# Get commit information
-COMMIT_HASH=$(git rev-parse --short HEAD)
-COMMIT_MESSAGE_FIRST_LINE=$(git log -1 --pretty=format:"%s")
+# Get commit information from Bitrise built-in variables
 GITHUB_REPO_URL="https://github.com/instructure/canvas-ios"
+
+# Use Bitrise's built-in variables that point to the actual source commit
+COMMIT_HASH=$(echo "${GIT_CLONE_COMMIT_HASH:-$(git rev-parse HEAD)}" | cut -c1-7)
+COMMIT_MESSAGE_FIRST_LINE="${GIT_CLONE_COMMIT_MESSAGE_SUBJECT:-$(git log -1 --pretty=format:'%s')}"
 
 COLUMNS=""
 
@@ -59,10 +61,17 @@ for APP_NAME in "${APP_NAMES[@]}"; do
 done
 
 PR_COMMENT="<h3>Builds</h3>"
-PR_COMMENT+="<table>"
-PR_COMMENT+="<tr>${COLUMNS}</tr>"
-PR_COMMENT+="</table>"
-PR_COMMENT+="<p><strong>Built from:</strong> <a href=\"${GITHUB_REPO_URL}/commit/${COMMIT_HASH}\">${COMMIT_MESSAGE_FIRST_LINE} (${COMMIT_HASH})</a></p>"
+
+if [[ -z "$COLUMNS" ]]; then
+    PR_COMMENT+="<p><em>No apps were built for this pull request.</em></p>"
+    PR_COMMENT+="<p>To trigger app builds, include a line starting with <code>builds:</code> followed by app names (Student, Teacher, Parent, or All) in your commit message.</p>"
+else
+    PR_COMMENT+="<table>"
+    PR_COMMENT+="<tr>${COLUMNS}</tr>"
+    PR_COMMENT+="</table>"
+fi
+
+PR_COMMENT+="<p><strong>Built from:</strong> ${COMMIT_MESSAGE_FIRST_LINE} (<a href=\"${GITHUB_REPO_URL}/commit/${COMMIT_HASH}\">${COMMIT_HASH}</a>)</p>"
 
 printf "\nGenerated HTML snippet:\n${PR_COMMENT}"
 envman add --key PR_BUILDS_COMMENT --value "${PR_COMMENT}"
