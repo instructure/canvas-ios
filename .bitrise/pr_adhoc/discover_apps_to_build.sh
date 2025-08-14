@@ -24,8 +24,11 @@ set -o pipefail
 # debug log
 # set -x
 
-# This script inspects the pull request's description and if it contains an app's name
-# it sets the appropriate environment variable.
+# This script inspects the pull request's commit message for a line starting with "builds:"
+# and sets environment variables for the apps mentioned in that line.
+# If no "builds:" line is found, no apps will be marked for building.
+#
+# Expected format: "builds: Student, Teacher, Parent" or "builds: All"
 #
 # Outputs if conditions are met for each app:
 # - $REQUIRE_PARENT=true
@@ -38,20 +41,34 @@ else
     envman add --key PR_NUMBER --value "NOT_PR"
 fi
 
-if [[ $BITRISE_GIT_MESSAGE == *"Student"* ]]; then
+BUILDS_LINE=$(echo "$BITRISE_GIT_MESSAGE" | grep -i "^builds:" || true)
+
+if [[ -z "$BUILDS_LINE" ]]; then
+    echo "No 'builds:' line found in pull request message. No apps will be built."
+    echo "To build apps, include a line starting with 'builds:' followed by app names (Student, Teacher, Parent, or All)."
+    exit 0
+fi
+
+echo "Found builds line: $BUILDS_LINE"
+
+if [[ $BUILDS_LINE == *"Student"* ]]; then
     envman add --key REQUIRE_STUDENT --value "true"
+    echo "✓ Student app marked as required."
 fi
 
-if [[ $BITRISE_GIT_MESSAGE == *"Teacher"* ]]; then
+if [[ $BUILDS_LINE == *"Teacher"* ]]; then
     envman add --key REQUIRE_TEACHER --value "true"
+    echo "✓ Teacher app marked as required."
 fi
 
-if [[ $BITRISE_GIT_MESSAGE == *"Parent"* ]]; then
+if [[ $BUILDS_LINE == *"Parent"* ]]; then
     envman add --key REQUIRE_PARENT --value "true"
+    echo "✓ Parent app marked as required."
 fi
 
-if [[ $BITRISE_GIT_MESSAGE == *"affects: All"* ]]; then
+if [[ $BUILDS_LINE == *"All"* ]]; then
     envman add --key REQUIRE_PARENT --value "true" &&
     envman add --key REQUIRE_TEACHER --value "true" &&
     envman add --key REQUIRE_STUDENT --value "true"
+    echo "✓ All apps marked as required (Student, Teacher, Parent)."
 fi
