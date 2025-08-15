@@ -86,7 +86,7 @@ extension TodoContentView where ActionView == NoActionView {
     init(logoRoute: URL? = nil, content: @escaping () -> Content) {
         self.logoRoute = logoRoute
         self.content = content
-        self.actionView = { ActionView() }
+        self.actionView = { NoActionView() }
     }
 }
 
