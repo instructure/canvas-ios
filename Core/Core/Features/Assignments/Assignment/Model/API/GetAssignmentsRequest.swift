@@ -25,12 +25,14 @@ public struct GetAssignmentsRequest: APIRequestable {
     }
 
     public enum Include: String {
-        case overrides
+        case all_dates
+        case checkpoints
         case discussion_topic
         case observed_users
-        case submission
-        case all_dates
+        case overrides
         case score_statistics
+        case sub_assignment_submissions
+        case submission
     }
 
     public typealias Response = [APIAssignment]
@@ -60,7 +62,7 @@ public struct GetAssignmentsRequest: APIRequestable {
 
     public var path: String {
         let context = Context(.course, id: courseID)
-        if let assignmentGroupID = assignmentGroupID {
+        if let assignmentGroupID {
             return "\(context.pathComponent)/assignment_groups/\(assignmentGroupID)/assignments"
         }
         return "\(context.pathComponent)/assignments"
