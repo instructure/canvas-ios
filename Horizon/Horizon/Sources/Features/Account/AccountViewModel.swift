@@ -53,7 +53,7 @@ final class AccountViewModel {
         router: Router = AppEnvironment.shared.router,
         getUserInteractor: GetUserInteractor,
         appExperienceInteractor: ExperienceSummaryInteractor = ExperienceSummaryInteractorLive(),
-        sessionInteractor: SessionInteractor = SessionInteractor(),
+        sessionInteractor: SessionInteractor = SessionInteractor()
     ) {
         self.router = router
         self.getUserInteractor = getUserInteractor
