@@ -5,8 +5,6 @@ include:
 workflows:
   pr_adhoc_builds:
     status_report_name: ad-hoc builds
-    after_run:
-    - _common_save_spm_cache
     before_run:
     - _common_prepare_workspace
     steps:
