@@ -76,7 +76,7 @@ public struct LoginSession: Codable, Hashable {
         clientID: String? = nil,
         clientSecret: String? = nil,
         canvasRegion: String? = nil,
-        isFakeStudent: Bool = false,
+        isFakeStudent: Bool = false
     ) {
         self.accessToken = accessToken
         // remove trailing slash

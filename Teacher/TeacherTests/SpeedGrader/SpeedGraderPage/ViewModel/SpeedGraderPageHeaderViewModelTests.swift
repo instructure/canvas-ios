@@ -31,7 +31,7 @@ class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
 
         let testee = SpeedGraderPageHeaderViewModel(
             assignment: assignment,
-            submission: submission,
+            submission: submission
         )
 
         XCTAssertTrue(testee.userNameModel.isGroup)
@@ -45,7 +45,7 @@ class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
 
         var testee = SpeedGraderPageHeaderViewModel(
             assignment: assignment,
-            submission: submission,
+            submission: submission
         )
         XCTAssertEqual(testee.userNameModel.name, "Student")
 
@@ -53,7 +53,7 @@ class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
 
         testee = SpeedGraderPageHeaderViewModel(
             assignment: assignment,
-            submission: submission,
+            submission: submission
         )
 
         XCTAssertEqual(testee.userNameModel.name, "TestGroup Name")
@@ -69,7 +69,7 @@ class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
 
         let testee = SpeedGraderPageHeaderViewModel(
             assignment: assignment,
-            submission: submission,
+            submission: submission
         )
 
         XCTAssertNil(testee.routeToSubmitter)
@@ -85,7 +85,7 @@ class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
 
         let testee = SpeedGraderPageHeaderViewModel(
             assignment: assignment,
-            submission: submission,
+            submission: submission
         )
 
         XCTAssertEqual(testee.routeToSubmitter, "/courses/testCourseID/users/testUserID")

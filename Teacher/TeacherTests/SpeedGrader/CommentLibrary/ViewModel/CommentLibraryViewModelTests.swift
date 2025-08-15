@@ -40,7 +40,7 @@ class CommentLibraryViewModelTests: TeacherTestCase {
                 )
             )
         )
-        api.mock(APICommentLibraryRequest(userId: "1"), value: response)
+        api.mock(GetCommentLibraryRequest(userId: "1"), value: response)
 
         // When
         let testee = CommentLibraryViewModel(comment: .init(""))
@@ -79,7 +79,7 @@ class CommentLibraryViewModelTests: TeacherTestCase {
                 )
             )
         )
-        api.mock(APICommentLibraryRequest(userId: "1", cursor: "next_cursor"), value: pageResponse)
+        api.mock(GetCommentLibraryRequest(userId: "1", cursor: "next_cursor"), value: pageResponse)
 
         // When
         let exp2 = expectation(description: "page loaded")

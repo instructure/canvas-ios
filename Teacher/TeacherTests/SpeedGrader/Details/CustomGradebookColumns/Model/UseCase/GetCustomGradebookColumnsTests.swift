@@ -36,7 +36,7 @@ class GetCustomGradebookColumnsTests: TeacherTestCase {
         super.setUp()
 
         testee = .init(
-            courseId: testData.courseId,
+            courseId: testData.courseId
         )
     }
 
