@@ -19,107 +19,6 @@
 import XCTest
 @testable import Core
 
-class GetRecentlyGradedSubmissionsTests: CoreTestCase {
-    func testRequestUsesUserID() {
-        let useCase = GetRecentlyGradedSubmissions(userID: "1")
-        XCTAssertEqual(useCase.request.userID, "1")
-    }
-
-    func testItCreatesSubmissionsWithAssignments() {
-        let apiSubmission = APISubmission.make(
-            assignment: APIAssignment.make(id: "2", submission: nil),
-            assignment_id: "2",
-            id: "1"
-        )
-
-        let useCase = GetRecentlyGradedSubmissions(userID: "1")
-        useCase.write(response: [apiSubmission], urlResponse: nil, to: databaseClient)
-
-        let submissions: [Submission] = databaseClient.fetch()
-        XCTAssertEqual(submissions.count, 1)
-        XCTAssertEqual(submissions[0].id, "1")
-        XCTAssertEqual(submissions[0].assignmentID, "2")
-
-        let assignments: [Assignment] = databaseClient.fetch()
-        XCTAssertEqual(assignments.count, 1)
-        XCTAssertEqual(assignments[0].id, "2")
-        XCTAssertEqual(assignments[0].submission, submissions[0])
-    }
-
-    func testCache() {
-        let useCase = GetRecentlyGradedSubmissions(userID: "self")
-        XCTAssertEqual(useCase.cacheKey, "recently-graded-submissions")
-    }
-}
-
-class CreateSubmissionTests: CoreTestCase {
-    func testItCreatesAssignmentSubmission() {
-        //  given
-        let submissionType = SubmissionType.online_url
-        let context = Context(.course, id: "1")
-        let url = URL(string: "http://www.instructure.com")!
-        let template: APISubmission = APISubmission.make(
-            assignment_id: "1",
-            excused: true,
-            grade: "A-",
-            late: true,
-            late_policy_status: .late,
-            missing: true,
-            points_deducted: 10,
-            score: 97,
-            workflow_state: .submitted
-        )
-
-        //  when
-        let createSubmission = CreateSubmission(context: context, assignmentID: "1", userID: "1", submissionType: submissionType, url: url)
-        createSubmission.write(response: template, urlResponse: nil, to: databaseClient)
-
-        //  then
-        let subs: [Submission] = databaseClient.fetch(scope: createSubmission.scope)
-        let submission = subs.first
-        XCTAssertNotNil(submission)
-        XCTAssertEqual(submission?.grade, "A-")
-        XCTAssertEqual(submission?.late, true)
-        XCTAssertEqual(submission?.excused, true)
-        XCTAssertEqual(submission?.missing, true)
-        XCTAssertEqual(submission?.workflowState, .submitted)
-        XCTAssertEqual(submission?.latePolicyStatus, .late)
-        XCTAssertEqual(submission?.pointsDeducted, 10)
-    }
-
-    func testItPostsModuleCompletedRequirement() {
-        let context = Context(.course, id: "1")
-        let request = CreateSubmissionRequest(context: context, assignmentID: "2", body: .init(submission: .init(group_comment: nil, submission_type: .online_text_entry)))
-        api.mock(request, value: nil)
-        let expectation = XCTestExpectation(description: "notification")
-        let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { notification in
-            XCTAssertEqual(notification.userInfo?["requirement"] as? ModuleItemCompletionRequirement, .submit)
-            XCTAssertEqual(notification.userInfo?["moduleItem"] as? ModuleItemType, .assignment("2"))
-            XCTAssertEqual(notification.userInfo?["courseID"] as? String, "1")
-            expectation.fulfill()
-        }
-        let useCase = CreateSubmission(context: context, assignmentID: "2", userID: "3", submissionType: .online_text_entry)
-        useCase.makeRequest(environment: environment) { _, _, _ in }
-        wait(for: [expectation], timeout: 0.5)
-        NotificationCenter.default.removeObserver(token)
-    }
-
-    func testItDoesNotPostModuleCompletedRequirementIfError() {
-        let context = Context(.course, id: "1")
-        let request = CreateSubmissionRequest(context: context, assignmentID: "2", body: .init(submission: .init(group_comment: nil, submission_type: .online_text_entry)))
-        api.mock(request, error: NSError.instructureError("oops"))
-        let expectation = XCTestExpectation(description: "notification")
-        expectation.isInverted = true
-        let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { _ in
-            expectation.fulfill()
-        }
-        let useCase = CreateSubmission(context: context, assignmentID: "2", userID: "3", submissionType: .online_text_entry)
-        useCase.makeRequest(environment: environment) { _, _, _ in }
-        wait(for: [expectation], timeout: 0.2)
-        NotificationCenter.default.removeObserver(token)
-    }
-}
-
 class GetSubmissionsTests: CoreTestCase {
     func testItCreatesSubmission() {
         let context = Context(.course, id: "1")
@@ -331,7 +230,7 @@ class GetSubmissionsTests: CoreTestCase {
 
     func testGroupSubmissionWithIndividualGradesOrder() {
         let date = Date()
-        let group = APISubmissionGroup(id: nil, name: "Group 1")
+        let group = APISubmission.Group(id: nil, name: "Group 1")
         Submission.save([
             APISubmission.make(group: group, id: "1", submission_history: [], submitted_at: date, user: .make(id: "B2", sortable_name: "B"), user_id: "B2"),
             APISubmission.make(group: group, id: "2", submission_history: [], submitted_at: date, user: .make(id: "B1", sortable_name: "B"), user_id: "B1"),

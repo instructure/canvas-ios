@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct APICommentLibraryRequest: APIGraphQLPagedRequestable {
+public struct GetCommentLibraryRequest: APIGraphQLPagedRequestable {
     public typealias Response = APICommentLibraryResponse
 
     public static let operationName = "CommentLibraryQuery"
@@ -58,12 +58,12 @@ public struct APICommentLibraryRequest: APIGraphQLPagedRequestable {
         )
     }
 
-    public func nextPageRequest(from response: APICommentLibraryResponse) -> APICommentLibraryRequest? {
+    public func nextPageRequest(from response: APICommentLibraryResponse) -> GetCommentLibraryRequest? {
         guard let pageInfo = response.data.user.commentBankItems.pageInfo,
               pageInfo.hasNextPage
         else { return nil }
 
-        return APICommentLibraryRequest(
+        return GetCommentLibraryRequest(
             query: variables.query,
             userId: variables.userId,
             pageSize: variables.pageSize,

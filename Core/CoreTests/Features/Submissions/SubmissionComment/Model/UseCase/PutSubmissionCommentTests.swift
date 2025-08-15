@@ -76,7 +76,7 @@ class PutSubmissionCommentTests: CoreTestCase {
                     id: "comment-123",
                     author_id: "author-123",
                     author_name: "Test Author",
-                    author: APISubmissionCommentAuthor.make(display_name: "Test Author"),
+                    author: .make(display_name: "Test Author"),
                     comment: "Test comment",
                     created_at: Date()
                 )

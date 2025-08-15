@@ -20,7 +20,7 @@ import Foundation
 import XCTest
 @testable import Core
 
-class APICommentLibraryTests: CoreTestCase {
+class GetCommentLibraryRequestTests: CoreTestCase {
 
     func testRequest() {
         let operationName = "CommentLibraryQuery"
@@ -44,7 +44,7 @@ class APICommentLibraryTests: CoreTestCase {
             }
             """
 
-        let request = APICommentLibraryRequest(userId: "1")
+        let request = GetCommentLibraryRequest(userId: "1")
 
         XCTAssertEqual(request.body?.query, query)
         XCTAssertEqual(request.variables.userId, "1")
@@ -54,7 +54,7 @@ class APICommentLibraryTests: CoreTestCase {
 
     func testResponse() {
         let mockedResponse = makeResponse(pageInfo: nil)
-        let request = APICommentLibraryRequest(userId: "1")
+        let request = GetCommentLibraryRequest(userId: "1")
 
         api.mock(request, value: mockedResponse)
         api.makeRequest(request) { response, _, _  in
@@ -72,7 +72,7 @@ class APICommentLibraryTests: CoreTestCase {
         )
 
         let nextRequest = try XCTUnwrap(
-            APICommentLibraryRequest(userId: "1").nextPageRequest(from: response)
+            GetCommentLibraryRequest(userId: "1").nextPageRequest(from: response)
         )
 
         XCTAssertEqual(nextRequest.variables.cursor, "next_cursor")
@@ -83,13 +83,13 @@ class APICommentLibraryTests: CoreTestCase {
         var response = makeResponse(
             pageInfo: APIPageInfo(endCursor: "next_cursor", hasNextPage: false)
         )
-        var nextRequest = APICommentLibraryRequest(userId: "1")
+        var nextRequest = GetCommentLibraryRequest(userId: "1")
             .nextPageRequest(from: response)
         XCTAssertNil(nextRequest)
 
         // Case 2
         response = makeResponse(pageInfo: nil)
-        nextRequest = APICommentLibraryRequest(userId: "1")
+        nextRequest = GetCommentLibraryRequest(userId: "1")
             .nextPageRequest(from: response)
         XCTAssertNil(nextRequest)
     }
