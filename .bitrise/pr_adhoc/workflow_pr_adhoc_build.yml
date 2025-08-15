@@ -2,24 +2,9 @@
 format_version: '13'
 workflows:
   pr_adhoc_build:
-    summary: This workflow stamps the app icon and creates a QR code installable ad-hoc build used for pull request testing.
-    description: "This step expects the following environment variables: \n$INST_XCODE_SCHEME (e.g., Student)\n\nThe output will be a file with the name ${INST_XCODE_SCHEME}_qr_url that will contain the image url of the QR code pointing to the created application. The file is needed because we can't export environment variables in case the workflow is run via the Bitrise Run step."
+    summary: This workflow stamps the app icon and builds an ad-hoc build used for pull request testing.
+    description: "This step expects the following environment variable: \n$INST_XCODE_SCHEME (e.g., Student)\n\nThe output will be an IPA file ready for deployment."
     steps:
-    - script@1:
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
-            set -o pipefail
-            # debug log
-            set -x
-
-            # Clear deploy directory to avoid conflicts with previous builds
-            rm -f "$BITRISE_DEPLOY_DIR"/*.ipa
-            echo "Cleared deploy directory of any existing IPA files"
-        title: Clear Deploy Directory
     - set-xcode-build-number@2:
         inputs:
         - scheme: $INST_XCODE_SCHEME
@@ -34,12 +19,3 @@ workflows:
         - automatic_code_signing: api-key
         - icloud_container_environment: Production
         - scheme: $INST_XCODE_SCHEME
-    - deploy-to-bitrise-io@2:
-        inputs:
-        - notify_user_groups: none
-    - create-install-page-qr-code@1: {}
-    - script-runner@0:
-        inputs:
-        - file_path: ./.bitrise/pr_adhoc/write_qr_url_to_file.sh
-        - working_dir: $BITRISE_SOURCE_DIR/.bitrise/pr_adhoc
-        title: Write QR URL To File

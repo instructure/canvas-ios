@@ -69,11 +69,63 @@ workflows:
         - workflow_id: pr_adhoc_build
         run_if: '{{enveq "REQUIRE_PARENT" "true"}}'
         title: Build Parent
+    - deploy-to-bitrise-io@2:
+        inputs:
+        - notify_user_groups: none
     - script-runner@0:
         inputs:
-        - file_path: ./.bitrise/pr_adhoc/create_pr_comment.sh
+        - file_path: ./.bitrise/pr_adhoc/parse_install_page_url_map.sh
+        title: Parse Install Page URL Map
+    - create-install-page-qr-code@1:
+        inputs:
+        - public_install_page_url: $DEPLOYED_Student_URL
+        run_if: '{{getenv "DEPLOYED_Student_URL" | ne ""}}'
+        title: Generate Student QR Code
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            if [[ -n "${BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL:-}" ]]; then
+                envman add --key Student_QR_CODE_URL --value "$BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL"
+                echo "Stored Student QR code URL: $BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL"
+            fi
+        title: Store Student QR URL
+        run_if: '{{getenv "DEPLOYED_Student_URL" | ne ""}}'
+    - create-install-page-qr-code@1:
+        inputs:
+        - public_install_page_url: $DEPLOYED_Teacher_URL
+        run_if: '{{getenv "DEPLOYED_Teacher_URL" | ne ""}}'
+        title: Generate Teacher QR Code
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            if [[ -n "${BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL:-}" ]]; then
+                envman add --key Teacher_QR_CODE_URL --value "$BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL"
+                echo "Stored Teacher QR code URL: $BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL"
+            fi
+        title: Store Teacher QR URL
+        run_if: '{{getenv "DEPLOYED_Teacher_URL" | ne ""}}'
+    - create-install-page-qr-code@1:
+        inputs:
+        - public_install_page_url: $DEPLOYED_Parent_URL
+        run_if: '{{getenv "DEPLOYED_Parent_URL" | ne ""}}'
+        title: Generate Parent QR Code
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            if [[ -n "${BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL:-}" ]]; then
+                envman add --key Parent_QR_CODE_URL --value "$BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL"
+                echo "Stored Parent QR code URL: $BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL"
+            fi
+        title: Store Parent QR URL
+        run_if: '{{getenv "DEPLOYED_Parent_URL" | ne ""}}'
+    - script-runner@0:
+        inputs:
+        - file_path: ./.bitrise/pr_adhoc/create_pr_comment_from_qr_codes.sh
         - working_dir: $BITRISE_SOURCE_DIR/.bitrise/pr_adhoc
-        title: Create PR Comment
+        title: Create PR Comment From QR Codes
     - comment-on-github-pull-request@0:
         inputs:
         - body: $PR_BUILDS_COMMENT
