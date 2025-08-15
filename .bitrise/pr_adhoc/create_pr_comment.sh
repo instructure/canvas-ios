@@ -80,5 +80,5 @@ fi
 
 PR_COMMENT+="<p><strong>Commit:</strong> ${COMMIT_MESSAGE_FIRST_LINE} (<a href=\"${GITHUB_REPO_URL}/commit/${COMMIT_HASH}\">${COMMIT_HASH}</a>)</p>"
 
-printf "\nGenerated HTML snippet:\n${PR_COMMENT}"
+echo -e "\nGenerated HTML snippet:\n${PR_COMMENT}"
 envman add --key PR_BUILDS_COMMENT --value "${PR_COMMENT}"
