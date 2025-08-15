@@ -37,9 +37,9 @@ IFS='|' read -ra INSTALL_MAPPINGS <<< "$BITRISE_PUBLIC_INSTALL_PAGE_URL_MAP"
 
 for mapping in "${INSTALL_MAPPINGS[@]}"; do
     if [[ "$mapping" == *"=>"* ]]; then
-        IFS='=>' read -ra parts <<< "$mapping"
-        file_path="${parts[0]}"
-        install_url="${parts[1]}"
+        # Split on '=>' using parameter expansion
+        file_path="${mapping%%=>*}"
+        install_url="${mapping#*=>}"
         
         # Extract app name from file path (e.g., "/path/to/Student.ipa" -> "Student")
         filename=$(basename "$file_path")
