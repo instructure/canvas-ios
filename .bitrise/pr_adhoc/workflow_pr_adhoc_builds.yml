@@ -14,16 +14,7 @@ workflows:
         title: Discover Which Apps To Build
     - script@1:
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
-            set -o pipefail
-            # debug log
-            set -x
-
-            envman add --key INST_XCODE_SCHEME --value Student
+        - content: envman add --key INST_XCODE_SCHEME --value Student
         title: Setup Student Variables
     - bitrise-run@0:
         inputs:
@@ -33,16 +24,7 @@ workflows:
         title: Build Student
     - script@1:
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
-            set -o pipefail
-            # debug log
-            set -x
-
-            envman add --key INST_XCODE_SCHEME --value Teacher
+        - content: envman add --key INST_XCODE_SCHEME --value Teacher
         title: Setup Teacher Variables
     - bitrise-run@0:
         inputs:
@@ -52,16 +34,7 @@ workflows:
         title: Build Teacher
     - script@1:
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
-            set -o pipefail
-            # debug log
-            set -x
-
-            envman add --key INST_XCODE_SCHEME --value Parent
+        - content: envman add --key INST_XCODE_SCHEME --value Parent
         title: Setup Parent Variables
     - bitrise-run@0:
         inputs:

@@ -25,12 +25,6 @@ workflows:
     - git-clone:
         inputs:
         - reset_repository: 'Yes'
-    - script:
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            sudo systemsetup -settimezone America/Denver
-        title: Update timezone to MST
     - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
     - script@1:

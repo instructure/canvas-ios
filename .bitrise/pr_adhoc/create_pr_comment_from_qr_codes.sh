@@ -53,9 +53,9 @@ for app_name in "Student" "Teacher" "Parent"; do
     # Only process apps that have QR codes (which means they were built, deployed, and QR generated)
     if [[ -n "${!qr_url_var:-}" ]]; then
         case $app_name in
-            "Student") LOGO="<img src=\"https://raw.githubusercontent.com/instructure/canvas-ios/refs/heads/master/Student/Student/Assets.xcassets/student-logomark.imageset/student%20light.svg\" width=\"16\" height=\"16\" />" ;;
-            "Teacher") LOGO="<img src=\"https://raw.githubusercontent.com/instructure/canvas-ios/refs/heads/master/Teacher/Teacher/Assets.xcassets/teacher-logomark.imageset/teacher%20light.svg\" width=\"16\" height=\"16\" />" ;;
-            "Parent") LOGO="<img src=\"https://raw.githubusercontent.com/instructure/canvas-ios/refs/heads/master/Parent/Parent/Assets.xcassets/parent-logomark.imageset/parent%20light.svg\" width=\"16\" height=\"16\" />" ;;
+            "Student") LOGO="<img src=\"https://raw.githubusercontent.com/instructure/canvas-ios/refs/heads/master/Student/Student/Assets.xcassets/student-logomark.imageset/student%20light.svg\" width=\"12\" height=\"12\" />" ;;
+            "Teacher") LOGO="<img src=\"https://raw.githubusercontent.com/instructure/canvas-ios/refs/heads/master/Teacher/Teacher/Assets.xcassets/teacher-logomark.imageset/teacher%20light.svg\" width=\"12\" height=\"12\" />" ;;
+            "Parent") LOGO="<img src=\"https://raw.githubusercontent.com/instructure/canvas-ios/refs/heads/master/Parent/Parent/Assets.xcassets/parent-logomark.imageset/parent%20light.svg\" width=\"12\" height=\"12\" />" ;;
             *) LOGO="" ;;
         esac
         
