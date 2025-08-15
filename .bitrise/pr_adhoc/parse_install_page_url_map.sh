@@ -24,6 +24,11 @@ set -o pipefail
 # debug log
 set -x
 
+# This script parses the BITRISE_PUBLIC_INSTALL_PAGE_URL_MAP environment variable
+# (which contains deployment mappings like "Student.ipa=>https://install.url|Teacher.ipa=>https://install.url")
+# and creates individual DEPLOYED_*_URL environment variables for each deployed app.
+# These variables are later used by the QR code generation and PR comment creation steps.
+
 # Parse BITRISE_PUBLIC_INSTALL_PAGE_URL_MAP and set environment variables for each app
 if [[ -z "$BITRISE_PUBLIC_INSTALL_PAGE_URL_MAP" ]]; then
     echo "BITRISE_PUBLIC_INSTALL_PAGE_URL_MAP is empty - no IPAs were deployed"
