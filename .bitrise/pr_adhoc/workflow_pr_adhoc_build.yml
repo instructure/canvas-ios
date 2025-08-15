@@ -3,7 +3,7 @@ format_version: '13'
 workflows:
   pr_adhoc_build:
     summary: This workflow stamps the app icon and creates a QR code installable ad-hoc build used for pull request testing.
-    description: "This step expects the following environment variables: \n$INST_XCODE_SCHEME (e.g., Student)\n$INST_XCODE_APPICON_PATH (e.g., Student/Student/Assets.xcassets/AppIcon.appiconset)\n\nThe output will be a file with the name ${INST_XCODE_SCHEME}_qr_url that will contain the image url of the QR code pointing to the created application. The file is needed because we can't export environment variables in case the workflow is run via the Bitrise Run step."
+    description: "This step expects the following environment variables: \n$INST_XCODE_SCHEME (e.g., Student)\n\nThe output will be a file with the name ${INST_XCODE_SCHEME}_qr_url that will contain the image url of the QR code pointing to the created application. The file is needed because we can't export environment variables in case the workflow is run via the Bitrise Run step."
     steps:
     - script@1:
         inputs:
@@ -27,7 +27,7 @@ workflows:
         inputs:
         - stamp_version: PR
         - stamp_build_number: $PR_NUMBER
-        - stamp_path_to_icons: $INST_XCODE_APPICON_PATH
+        - stamp_path_to_icons: ${INST_XCODE_SCHEME}/${INST_XCODE_SCHEME}/Assets.xcassets/AppIcon.appiconset
     - xcode-archive@5:
         inputs:
         - distribution_method: ad-hoc

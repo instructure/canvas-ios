@@ -47,11 +47,18 @@ COLUMNS=""
 for APP_NAME in "${APP_NAMES[@]}"; do
     FILE_NAME="${APP_NAME}_qr_url"
 
+    case $APP_NAME in
+        "Student") LOGO="<img src=\"https://raw.githubusercontent.com/instructure/canvas-ios/refs/heads/master/Student/Student/Assets.xcassets/AppIcon.appiconset/student%209.png\" width=\"16\" height=\"16\" />" ;;
+        "Teacher") LOGO="<img src=\"https://raw.githubusercontent.com/instructure/canvas-ios/refs/heads/master/Teacher/Teacher/Assets.xcassets/AppIcon.appiconset/teacher%209.png\" width=\"16\" height=\"16\" />" ;;
+        "Parent") LOGO="<img src=\"https://raw.githubusercontent.com/instructure/canvas-ios/refs/heads/master/Parent/Parent/Assets.xcassets/AppIcon.appiconset/parent%209.png\" width=\"16\" height=\"16\" />" ;;
+        *) LOGO="" ;;
+    esac
+
     if [[ -f "${FILE_NAME}" ]]; then
         QR_URL=$(<"${FILE_NAME}")
         echo "${APP_NAME}'s QR url is ${QR_URL}."
         COLUMNS+="<td valign=\"top\"><details open>"
-        COLUMNS+="<summary>${APP_NAME}</summary>"
+        COLUMNS+="<summary>${LOGO} ${APP_NAME}</summary>"
         COLUMNS+="<img src=\"${QR_URL}\" />"
         COLUMNS+="</details></td>"
     else
@@ -64,7 +71,7 @@ PR_COMMENT="<h3>Builds</h3>"
 
 if [[ -z "$COLUMNS" ]]; then
     PR_COMMENT+="<p>No apps were built for this pull request.</p>"
-    PR_COMMENT+="<p><em>To trigger app builds, include a line starting with <code>builds:</code> followed by app names (Student, Teacher, Parent, or All) in your commit message.</em></p>"
+    PR_COMMENT+="<p><em>To trigger app builds, include a line starting with <code>builds:</code> followed by app names (Student, Teacher, Parent, or All) in your pull request's message.</em></p>"
 else
     PR_COMMENT+="<table>"
     PR_COMMENT+="<tr>${COLUMNS}</tr>"

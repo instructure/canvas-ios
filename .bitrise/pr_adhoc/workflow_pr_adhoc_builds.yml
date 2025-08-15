@@ -26,7 +26,6 @@ workflows:
             set -x
 
             envman add --key INST_XCODE_SCHEME --value Student
-            envman add --key INST_XCODE_APPICON_PATH --value Student/Student/Assets.xcassets/AppIcon.appiconset
         title: Setup Student Variables
     - bitrise-run@0:
         inputs:
@@ -46,7 +45,6 @@ workflows:
             set -x
 
             envman add --key INST_XCODE_SCHEME --value Teacher
-            envman add --key INST_XCODE_APPICON_PATH --value Teacher/Teacher/Assets.xcassets/AppIcon.appiconset
         title: Setup Teacher Variables
     - bitrise-run@0:
         inputs:
@@ -66,7 +64,6 @@ workflows:
             set -x
 
             envman add --key INST_XCODE_SCHEME --value Parent
-            envman add --key INST_XCODE_APPICON_PATH --value Parent/Parent/Assets.xcassets/AppIcon.appiconset
         title: Setup Parent Variables
     - bitrise-run@0:
         inputs:
