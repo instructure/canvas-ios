@@ -22,33 +22,28 @@ import Foundation
 struct ProgramCardModel: Identifiable {
     let id = UUID().uuidString
     let courseName: String
-    let isEnrolled: Bool
     let isSelfEnrolled: Bool
     let isRequired: Bool
-    let isLocked: Bool
     let estimatedTime: String?
     let dueDate: String?
     let status: HorizonUI.ProgramCard.Status
+    var enrollerID: String?
     var index = 0
 
     static var mocks: [Self] = [
 
         ProgramCardModel(
             courseName: "Completed iOS Architecture",
-            isEnrolled: true,
             isSelfEnrolled: false,
             isRequired: true,
-            isLocked: true,
             estimatedTime: "4h",
             dueDate: "Jul 30",
             status: .completed
         ),
         ProgramCardModel(
             courseName: "Introduction to SwiftUI",
-            isEnrolled: false,
             isSelfEnrolled: true,
             isRequired: true,
-            isLocked: false,
             estimatedTime: "3h",
             dueDate: "Aug 12",
             status: .completed
@@ -56,10 +51,8 @@ struct ProgramCardModel: Identifiable {
 
         ProgramCardModel(
             courseName: "Optional Deep Dive into Combine",
-            isEnrolled: true,
             isSelfEnrolled: true,
             isRequired: true,
-            isLocked: false,
             estimatedTime: "1.5 hours",
             dueDate: "20/10/2025 - 20/10/2026",
             status: .inProgress(completionPercent: 0.4)
@@ -67,20 +60,16 @@ struct ProgramCardModel: Identifiable {
 
         ProgramCardModel(
             courseName: "Course Name Dolor Sit Amet",
-            isEnrolled: true,
             isSelfEnrolled: true,
             isRequired: true,
-            isLocked: false,
             estimatedTime: "1.5h",
             dueDate: "Aug 20",
             status: .locked
         ),
         ProgramCardModel(
             courseName: "Course Name Dolor Sit Amet",
-            isEnrolled: false,
             isSelfEnrolled: true,
             isRequired: true,
-            isLocked: false,
             estimatedTime: "1.5h",
             dueDate: "Aug 20",
             status: .locked
@@ -88,79 +77,77 @@ struct ProgramCardModel: Identifiable {
 
         ProgramCardModel(
             courseName: "Course Name Dolor Sit Amet",
-            isEnrolled: false,
             isSelfEnrolled: true,
             isRequired: true,
-            isLocked: false,
             estimatedTime: "1.5h",
             dueDate: "Aug 20",
             status: .locked
         )
     ]
 
-    static var mocks2: [Self] = [
-        ProgramCardModel(
-            courseName: "Completed iOS Architecture",
-            isEnrolled: true,
-            isSelfEnrolled: true,
-            isRequired: true,
-            isLocked: true,
-            estimatedTime: "4h",
-            dueDate: "Jul 30",
-            status: .active
-        ),
-        ProgramCardModel(
-            courseName: "Introduction to SwiftUI",
-            isEnrolled: false,
-            isSelfEnrolled: true,
-            isRequired: true,
-            isLocked: false,
-            estimatedTime: "3h",
-            dueDate: "Aug 12",
-            status: .active
-        ),
-
-        ProgramCardModel(
-            courseName: "Optional Deep Dive into Combine",
-            isEnrolled: false,
-            isSelfEnrolled: true,
-            isRequired: true,
-            isLocked: false,
-            estimatedTime: "1.5h",
-            dueDate: "Aug 20",
-            status: .active
-        ),
-
-        ProgramCardModel(
-            courseName: "Course Name Dolor Sit Amet",
-            isEnrolled: true,
-            isSelfEnrolled: false,
-            isRequired: false,
-            isLocked: false,
-            estimatedTime: "1.5h",
-            dueDate: "Aug 20",
-            status: .active
-        ),
-        ProgramCardModel(
-            courseName: "Course Name Dolor Sit Amet",
-            isEnrolled: true,
-            isSelfEnrolled: false,
-            isRequired: false,
-            isLocked: false,
-            estimatedTime: "1.5h",
-            dueDate: "Aug 20",
-            status: .active
-        ),
-
-        ProgramCardModel(
-            courseName: "Course Name Dolor Sit Amet",
-            isEnrolled: false,
-            isSelfEnrolled: true,
-            isRequired: true,
-            isLocked: false,
-            estimatedTime: "1.5h",
-            dueDate: "Aug 20",
-            status: .locked
-        )
-    ]
+//    static var mocks2: [Self] = [
+//        ProgramCardModel(
+//            courseName: "Completed iOS Architecture",
+//            isEnrolled: true,
+//            isSelfEnrolled: true,
+//            isRequired: true,
+//            isLocked: true,
+//            estimatedTime: "4h",
+//            dueDate: "Jul 30",
+//            status: .active
+//        ),
+//        ProgramCardModel(
+//            courseName: "Introduction to SwiftUI",
+//            isEnrolled: false,
+//            isSelfEnrolled: true,
+//            isRequired: true,
+//            isLocked: false,
+//            estimatedTime: "3h",
+//            dueDate: "Aug 12",
+//            status: .active
+//        ),
+//
+//        ProgramCardModel(
+//            courseName: "Optional Deep Dive into Combine",
+//            isEnrolled: false,
+//            isSelfEnrolled: true,
+//            isRequired: true,
+//            isLocked: false,
+//            estimatedTime: "1.5h",
+//            dueDate: "Aug 20",
+//            status: .active
+//        ),
+//
+//        ProgramCardModel(
+//            courseName: "Course Name Dolor Sit Amet",
+//            isEnrolled: true,
+//            isSelfEnrolled: false,
+//            isRequired: false,
+//            isLocked: false,
+//            estimatedTime: "1.5h",
+//            dueDate: "Aug 20",
+//            status: .active
+//        ),
+//        ProgramCardModel(
+//            courseName: "Course Name Dolor Sit Amet",
+//            isEnrolled: true,
+//            isSelfEnrolled: false,
+//            isRequired: false,
+//            isLocked: false,
+//            estimatedTime: "1.5h",
+//            dueDate: "Aug 20",
+//            status: .active
+//        ),
+//
+//        ProgramCardModel(
+//            courseName: "Course Name Dolor Sit Amet",
+//            isEnrolled: false,
+//            isSelfEnrolled: true,
+//            isRequired: true,
+//            isLocked: false,
+//            estimatedTime: "1.5h",
+//            dueDate: "Aug 20",
+//            status: .locked
+//        )
+//    ]
 }

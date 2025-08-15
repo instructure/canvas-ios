@@ -20,18 +20,23 @@ import CoreData
 
 final public class CDHProgramDependency: NSManagedObject {
     @NSManaged public var id: String?
+    @NSManaged public var requirementId: String
     @NSManaged public var canvasCourseId: String?
 
     @discardableResult
     static func save(
         _ item: GetHProgramsResponse.Dependen,
+        requirementId: String,
         in context: NSManagedObjectContext
     ) -> CDHProgramDependency {
-        let dbEntity: CDHProgramDependency = context.first(
-            where: #keyPath(CDHProgramDependency.id),
-            equals: item.id
-        ) ?? context.insert()
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "%K == %@", #keyPath(CDHProgramDependency.id), item.id ?? ""),
+            NSPredicate(format: "%K == %@", #keyPath(CDHProgramDependency.requirementId), requirementId)
+        ])
+
+        let dbEntity: CDHProgramDependency = context.fetch(predicate).first ?? context.insert()
         dbEntity.id = item.id
+        dbEntity.requirementId = requirementId
         dbEntity.canvasCourseId = item.canvasCourseID
         return dbEntity
     }

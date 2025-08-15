@@ -26,12 +26,13 @@ public struct GetHProgramsResponse: Codable {
     }
 
     public  struct EnrolledProgram: Codable {
-       public let id, name: String?
+        public let id, name: String?
+        public let courseCompletionCount: Int?
         let publicName: String?
         let customerID: String?
         let description: String?
         let owner: String?
-        let startDate, endDate: String?
+        let startDate, endDate: Date?
         let variant: String?
         let progresses: [Progress]?
         public var requirements: [Requirement]?
@@ -40,7 +41,39 @@ public struct GetHProgramsResponse: Codable {
         enum CodingKeys: String, CodingKey {
             case id, name, publicName
             case customerID = "customerId"
-            case description, owner, startDate, endDate, variant, progresses, requirements, enrollments
+            case description, owner, startDate, endDate, variant, progresses, requirements, enrollments, courseCompletionCount
+        }
+        
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            id = try container.decodeIfPresent(String.self, forKey: .id)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            courseCompletionCount = try container.decodeIfPresent(Int.self, forKey: .courseCompletionCount)
+            publicName = try container.decodeIfPresent(String.self, forKey: .publicName)
+            customerID = try container.decodeIfPresent(String.self, forKey: .customerID)
+            description = try container.decodeIfPresent(String.self, forKey: .description)
+            owner = try container.decodeIfPresent(String.self, forKey: .owner)
+            variant = try container.decodeIfPresent(String.self, forKey: .variant)
+            progresses = try container.decodeIfPresent([Progress].self, forKey: .progresses)
+            requirements = try container.decodeIfPresent([Requirement].self, forKey: .requirements)
+            enrollments = try container.decodeIfPresent([Enrollment].self, forKey: .enrollments)
+
+            // Flexible date decoding (with fractional seconds support)
+            let isoFormatter = ISO8601DateFormatter()
+            isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+
+            if let startString = try container.decodeIfPresent(String.self, forKey: .startDate) {
+                startDate = isoFormatter.date(from: startString)
+            } else {
+                startDate = nil
+            }
+
+            if let endString = try container.decodeIfPresent(String.self, forKey: .endDate) {
+                endDate = isoFormatter.date(from: endString)
+            } else {
+                endDate = nil
+            }
         }
     }
 

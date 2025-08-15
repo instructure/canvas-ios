@@ -71,7 +71,7 @@ struct ListProgramCards: View {
             VStack(spacing: .huiSpaces.space16) {
                 ForEach(programs) { program in
                     Button {
-                        if program.isEnrolled {
+                        if program.status.isEnrolled {
                             onTapSelect(program)
                         }
                     } label: {
@@ -102,10 +102,8 @@ struct ListProgramCards: View {
     private func programCrard(program: ProgramCardModel) -> some View {
         HorizonUI.ProgramCard(
             courseName: program.courseName,
-            isEnrolled: program.isEnrolled,
             isSelfEnrolled: program.isSelfEnrolled,
             isRequired: program.isRequired,
-            isLocked: program.isLocked,
             isLoading: .constant(selectCourse?.id == program.id ? isLoading : false),
             estimatedTime: program.estimatedTime,
             dueDate: program.dueDate,

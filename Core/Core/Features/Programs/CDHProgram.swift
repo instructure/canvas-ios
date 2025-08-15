@@ -25,8 +25,11 @@ final public class CDHProgram: NSManagedObject {
     @NSManaged public var variant: String
     @NSManaged public var porgresses: Set<CDHProgramProgress>
     @NSManaged public var requirements: Set<CDHProgramRequirement>
+    @NSManaged public var courseCompletionCount: NSNumber?
+    @NSManaged public var startDate: Date?
+    @NSManaged public var endDate: Date?
 
-    @discardableResult
+  @discardableResult
    public static func save(
         _ item: GetHProgramsResponse.EnrolledProgram,
         in context: NSManagedObjectContext
@@ -40,7 +43,9 @@ final public class CDHProgram: NSManagedObject {
         dbEntity.name = item.name ?? ""
         dbEntity.programDescription = item.description
         dbEntity.variant = item.variant ?? ""
-
+        dbEntity.courseCompletionCount = item.courseCompletionCount as NSNumber?
+        dbEntity.startDate = item.startDate
+        dbEntity.endDate = item.endDate
         if let progresses = item.progresses {
             let progressesEntities: [CDHProgramProgress] = progresses.map { apiItem in
                 return CDHProgramProgress.save(apiItem, in: context)

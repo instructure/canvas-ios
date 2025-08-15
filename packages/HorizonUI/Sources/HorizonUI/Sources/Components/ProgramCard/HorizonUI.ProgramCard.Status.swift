@@ -72,5 +72,23 @@ public extension HorizonUI.ProgramCard {
                 return false
             }
         }
+
+        var isLocked: Bool {
+            switch self {
+            case .locked:
+                return true
+            default:
+                return false
+            }
+        }
+
+       public var isEnrolled: Bool {
+            switch self {
+            case .inProgress, .active, .completed:
+                return true
+            default:
+                return false
+            }
+        }
     }
 }

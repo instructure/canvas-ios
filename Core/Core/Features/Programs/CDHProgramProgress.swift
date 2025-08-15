@@ -22,6 +22,7 @@ final public class CDHProgramProgress: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var completionPercentage: Double
     @NSManaged public var courseEnrollmentStatus: String
+    @NSManaged public var canvasCourseId: String
 
     @discardableResult
     static func save(
@@ -36,6 +37,7 @@ final public class CDHProgramProgress: NSManagedObject {
         dbEntity.id = item.id ?? ""
         dbEntity.completionPercentage = item.completionPercentage ?? 0
         dbEntity.courseEnrollmentStatus = item.courseEnrollmentStatus ?? ""
+        dbEntity.canvasCourseId = item.requirement?.dependent?.canvasCourseID ?? ""
         return dbEntity
     }
 }

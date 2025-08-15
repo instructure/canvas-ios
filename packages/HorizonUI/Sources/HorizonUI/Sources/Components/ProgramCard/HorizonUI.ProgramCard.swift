@@ -23,10 +23,8 @@ public extension HorizonUI {
         // MARK: - Dependencies
 
         private let courseName: String
-        private let isEnrolled: Bool
         private let isSelfEnrolled: Bool
         private let isRequired: Bool
-        private let isLocked: Bool
         @Binding private var isLoading: Bool
         private let estimatedTime: String?
         private let dueDate: String?
@@ -41,10 +39,8 @@ public extension HorizonUI {
 
         public init(
             courseName: String,
-            isEnrolled: Bool,
             isSelfEnrolled: Bool,
             isRequired: Bool,
-            isLocked: Bool,
             isLoading: Binding<Bool>,
             estimatedTime: String?,
             dueDate: String?,
@@ -52,10 +48,8 @@ public extension HorizonUI {
             onTapEnroll: @escaping () -> Void
         ) {
             self.courseName = courseName
-            self.isEnrolled = isEnrolled
             self.isSelfEnrolled = isSelfEnrolled
             self.isRequired = isRequired
-            self.isLocked = isLocked
             _isLoading = isLoading
             self.estimatedTime = estimatedTime
             self.dueDate = dueDate
@@ -123,7 +117,7 @@ public extension HorizonUI {
 
         private var statusPills: some View {
             HorizonUI.ProgramCard.Pills(
-                isEnrolled: isEnrolled && isSelfEnrolled,
+                isEnrolled: status.isEnrolled && isSelfEnrolled,
                 isRequired: isRequired,
                 status: status,
                 estimatedTime: estimatedTime,
@@ -133,7 +127,7 @@ public extension HorizonUI {
 
         @ViewBuilder
         private var enrollButton: some View {
-            if !isEnrolled, isSelfEnrolled {
+            if !status.isEnrolled, isSelfEnrolled {
                 HStack {
                     Spacer()
                     HorizonUI.LoadingButton(
@@ -155,10 +149,8 @@ public extension HorizonUI {
         VStack {
             HorizonUI.ProgramCard(
                 courseName: "Course Name Dolor Sit Amet",
-                isEnrolled: false,
                 isSelfEnrolled: true,
                 isRequired: true,
-                isLocked: false,
                 isLoading: $isLoading,
                 estimatedTime: "10 Hours",
                 dueDate: "10-10-2020",
@@ -167,10 +159,8 @@ public extension HorizonUI {
 
             HorizonUI.ProgramCard(
                 courseName: "Course Name Dolor Sit Amet",
-                isEnrolled: false,
                 isSelfEnrolled: false,
                 isRequired: true,
-                isLocked: false,
                 isLoading: $isLoading,
                 estimatedTime: "10 Hours",
                 dueDate: "10-10-2020",
@@ -179,21 +169,8 @@ public extension HorizonUI {
 
             HorizonUI.ProgramCard(
                 courseName: "Course Name Dolor Sit Amet",
-                isEnrolled: false,
                 isSelfEnrolled: false,
                 isRequired: false,
-                isLocked: false,
-                isLoading: $isLoading,
-                estimatedTime: "10 Hours",
-                dueDate: "10-10-2020",
-                status: .active
-            ) { isLoading.toggle() }
-            HorizonUI.ProgramCard(
-                courseName: "Course Name Dolor Sit Amet",
-                isEnrolled: true,
-                isSelfEnrolled: true,
-                isRequired: true,
-                isLocked: false,
                 isLoading: $isLoading,
                 estimatedTime: "10 Hours",
                 dueDate: "10-10-2020",
@@ -202,10 +179,18 @@ public extension HorizonUI {
 
             HorizonUI.ProgramCard(
                 courseName: "Course Name Dolor Sit Amet",
-                isEnrolled: true,
                 isSelfEnrolled: true,
                 isRequired: true,
-                isLocked: false,
+                isLoading: $isLoading,
+                estimatedTime: "10 Hours",
+                dueDate: "10-10-2020",
+                status: .active
+            ) { isLoading.toggle() }
+
+            HorizonUI.ProgramCard(
+                courseName: "Course Name Dolor Sit Amet",
+                isSelfEnrolled: true,
+                isRequired: true,
                 isLoading: $isLoading,
                 estimatedTime: "10 Hours",
                 dueDate: "10-10-2020",
@@ -214,10 +199,8 @@ public extension HorizonUI {
 
             HorizonUI.ProgramCard(
                 courseName: "Course Name Dolor Sit Amet",
-                isEnrolled: true,
                 isSelfEnrolled: true,
                 isRequired: true,
-                isLocked: false,
                 isLoading: $isLoading,
                 estimatedTime: "10 Hours",
                 dueDate: "10-10-2020",
@@ -226,10 +209,8 @@ public extension HorizonUI {
 
             HorizonUI.ProgramCard(
                 courseName: "Course Name Dolor Sit Amet",
-                isEnrolled: true,
                 isSelfEnrolled: true,
                 isRequired: true,
-                isLocked: false,
                 isLoading: $isLoading,
                 estimatedTime: "10 Hours",
                 dueDate: "10-10-2020",

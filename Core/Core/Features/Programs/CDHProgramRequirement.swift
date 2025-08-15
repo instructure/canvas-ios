@@ -21,6 +21,7 @@ import CoreData
 final public class CDHProgramRequirement: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var isCompletionRequired: Bool
+    @NSManaged public var courseEnrollment: String
     @NSManaged public var dependency: CDHProgramDependency?
     @NSManaged public var dependent: CDHProgramDependent?
 
@@ -36,18 +37,18 @@ final public class CDHProgramRequirement: NSManagedObject {
 
         dbEntity.id = item.id ?? ""
         dbEntity.isCompletionRequired = item.isCompletionRequired ?? false
+        dbEntity.courseEnrollment = item.courseEnrollment ?? ""
         if let dependency = item.dependency {
-            dbEntity.dependency = CDHProgramDependency.save(dependency, in: context)
+            dbEntity.dependency = CDHProgramDependency.save(dependency, requirementId: item.id ?? "", in: context)
         } else {
             dbEntity.dependency = nil
         }
 
         if let dependent = item.dependent {
-            dbEntity.dependent = CDHProgramDependent.save(dependent, in: context)
+            dbEntity.dependent = CDHProgramDependent.save(dependent, requirementId: item.id ?? "", in: context)
         } else {
             dbEntity.dependent = nil
         }
         return dbEntity
     }
 }
-
