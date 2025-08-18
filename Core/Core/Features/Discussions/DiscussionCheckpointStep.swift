@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,11 +18,22 @@
 
 import Foundation
 
-public enum LatePolicyStatus: String, Codable {
-    case late, missing, none, extended
+public enum DiscussionCheckpointStep {
+    case replyToTopic
+    case requiredReplies(Int)
 
-    public init?(rawValue: String?) {
-        guard let rawValue else { return nil }
-        self.init(rawValue: rawValue)
+    init?(tag: String, requiredReplyCount: Int?) {
+        switch tag {
+        case "reply_to_topic":
+            self = .replyToTopic
+        case "reply_to_entry":
+            if let requiredReplyCount {
+                self = .requiredReplies(requiredReplyCount)
+            } else {
+                return nil
+            }
+        default:
+            return nil
+        }
     }
 }
