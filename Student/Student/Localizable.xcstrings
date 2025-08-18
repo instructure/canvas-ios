@@ -62249,7 +62249,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vous avez des questions à propos de votre tâche?\nEnvoyez un message à votre instructeur."
+            "value" : "Vous avez des questions à propos de votre tâche?\nEnvoyez un message à votre enseignant(e)."
           }
         },
         "ga" : {
@@ -73790,7 +73790,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Envoyer un message à l’instructeur"
+            "value" : "Envoyer un message à l’enseignant(e)"
           }
         },
         "ga" : {
@@ -118521,7 +118521,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Instructeur-assistant"
+            "value" : "Enseignant(e)-assistant"
           }
         },
         "ga" : {
@@ -120872,7 +120872,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Instructeurs-assistants"
+            "value" : "Enseignants-assistants"
           }
         },
         "ga" : {
