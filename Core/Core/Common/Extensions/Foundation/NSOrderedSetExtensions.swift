@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,11 +18,18 @@
 
 import Foundation
 
-public enum LatePolicyStatus: String, Codable {
-    case late, missing, none, extended
+extension NSOrderedSet {
 
-    public init?(rawValue: String?) {
-        guard let rawValue else { return nil }
-        self.init(rawValue: rawValue)
+    public convenience init(_ array: [Any]) {
+        self.init(array: array)
+    }
+
+    public convenience init?(_ array: [Any]?) {
+        guard let array else { return nil }
+        self.init(array: array)
+    }
+
+    public func typedArray<T>() -> [T]? {
+        array as? [T]
     }
 }
