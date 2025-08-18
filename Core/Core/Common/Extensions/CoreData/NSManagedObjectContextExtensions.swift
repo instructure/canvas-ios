@@ -33,6 +33,10 @@ extension NSManagedObjectContext {
         return all(where: key, equals: value).first
     }
 
+    public func first<T, Value>(where keyPath: ReferenceWritableKeyPath<T, Value>, equals value: CVarArg?) -> T? {
+        return all(where: keyPath, equals: value).first
+    }
+
     public func first<T>(scope: Scope) -> T? {
         fetch(scope: scope).first
     }
@@ -42,9 +46,20 @@ extension NSManagedObjectContext {
         return fetch(predicate)
     }
 
+    public func all<T, Value>(where keyPath: ReferenceWritableKeyPath<T, Value>, equals value: CVarArg?) -> [T] {
+        let predicate = NSPredicate(keyPath, equals: value)
+        return fetch(predicate)
+    }
+
     public func count<T>(_ type: T.Type, where key: String, equals value: CVarArg?) -> Int {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: T.self))
         request.predicate = NSPredicate(key: key, equals: value)
+        return (try? count(for: request)) ?? 0
+    }
+
+    public func count<T, Value>(_ type: T.Type, where keyPath: ReferenceWritableKeyPath<T, Value>, equals value: CVarArg?) -> Int {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: T.self))
+        request.predicate = NSPredicate(keyPath, equals: value)
         return (try? count(for: request)) ?? 0
     }
 

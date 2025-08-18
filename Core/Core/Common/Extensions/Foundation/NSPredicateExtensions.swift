@@ -28,11 +28,18 @@ extension NSPredicate {
     }
 
     public convenience init(key: String, equals value: CVarArg?) {
-        if let value = value {
+        if let value {
             self.init(format: "%K == %@", argumentArray: [key, value])
         } else {
             self.init(format: "%K == nil", key)
         }
+    }
+
+    /// The stricter `KeyPath` type of `ReferenceWritableKeyPath` is needed, otherwise nonconforming `KeyPath`s would cause runtime crash.
+    /// - Note: If the compiler doesn't allow this to be used in tests for example,
+    /// that's probably because the property has private _write_ access level.
+    public convenience init<Root, Value>(_ keyPath: ReferenceWritableKeyPath<Root, Value>, equals value: CVarArg?) {
+        self.init(key: keyPath.string, equals: value)
     }
 
     /**
