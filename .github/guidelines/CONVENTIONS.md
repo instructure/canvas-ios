@@ -11,7 +11,7 @@ A commit in the pull request's branch must have the following when creating a ne
 Example:
 
 ```
-Added new feature module.
+Add new feature module.
 
 refs: MBL-10000
 builds: Student, Teacher
@@ -38,12 +38,14 @@ test plan:
 - The added script will output all the names of the presidents of the United States
 ```
 
-In rare cases, you can skip commit linting entirely. Don't do this.
+In rare cases, you can skip commit linting entirely. Don't do this. The `builds` field is still used in this case to create ad-hoc builds for the pull request.
 
 Example:
 
 ```
 This is my commit title
+
+builds: Student, Teacher
 
 [ignore-commit-lint]
 ```
