@@ -37,15 +37,17 @@ COMMIT_MESSAGE_FIRST_LINE="${GIT_CLONE_COMMIT_MESSAGE_SUBJECT:-$(git log -1 --pr
 COMMIT_MESSAGE_ESCAPED=$(echo "$COMMIT_MESSAGE_FIRST_LINE" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g; s/'"'"'/\&#39;/g')
 
 # Get current timestamp in Budapest timezone (CET/CEST with automatic DST handling)
-BUILD_TIMESTAMP=$(TZ='Europe/Budapest' date +"%Y-%m-%d %H:%M:%S %Z")
+BUILD_TIMESTAMP=$(TZ='Europe/Budapest' date +"%b %d %H:%M %Z")
+# Get current timestamp in Mountain Time zone with US format
+MT_TIMESTAMP=$(TZ='America/Denver' date +"%m/%d %I:%M %p %Z")
 
-COMMIT_LINE="<p><strong>Commit:</strong> ${COMMIT_MESSAGE_ESCAPED} (<a href=\"${GITHUB_REPO_URL}/commit/${COMMIT_HASH}\">${COMMIT_HASH}</a>)</p>"
-BUILD_LINE="<p><strong>Build Number:</strong> ${BITRISE_BUILD_NUMBER:-Unknown}</p>"
-DATE_LINE="<p><strong>Built At:</strong> ${BUILD_TIMESTAMP}</p>"
+COMMIT_LINE="<strong>Commit:</strong> ${COMMIT_MESSAGE_ESCAPED} (<a href=\"${GITHUB_REPO_URL}/commit/${COMMIT_HASH}\">${COMMIT_HASH}</a>)"
+BUILD_LINE="<strong>Build Number:</strong> ${BITRISE_BUILD_NUMBER:-Unknown}"
+DATE_LINE="<strong>Built At:</strong> ${BUILD_TIMESTAMP} (${MT_TIMESTAMP})"
 
 # Check if any apps have QR codes (which means they were built, deployed, and have valid QR codes)
 if [[ -z "${Student_QR_CODE_URL:-}${Teacher_QR_CODE_URL:-}${Parent_QR_CODE_URL:-}" ]]; then
-    envman add --key PR_BUILDS_COMMENT --value "<h3>Builds</h3><p>No apps were built for this pull request.</p><p><em>To trigger app builds, include a line starting with <code>builds:</code> followed by app names (Student, Teacher, Parent, or All) in your pull request's message.</em></p>${COMMIT_LINE}${DATE_LINE}"
+    envman add --key PR_BUILDS_COMMENT --value "<h3>Builds</h3><p>No apps were built for this pull request.</p><p><em>To trigger app builds, include a line starting with <code>builds:</code> followed by app names (Student, Teacher, Parent, or All) in your pull request's message.</em></p><p>${COMMIT_LINE}<br/>${DATE_LINE}</p>"
     exit 0
 fi
 
@@ -81,7 +83,7 @@ for app_name in "Student" "Teacher" "Parent"; do
 done
 
 PR_COMMENT="<h3>Builds</h3>"
-PR_COMMENT+="${COMMIT_LINE}${BUILD_LINE}${DATE_LINE}"
+PR_COMMENT+="<p>${COMMIT_LINE}<br/>${BUILD_LINE}<br/>${DATE_LINE}</p>"
 PR_COMMENT+="<table>"
 PR_COMMENT+="<tr>${COLUMNS}</tr>"
 PR_COMMENT+="</table>"
