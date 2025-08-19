@@ -369,7 +369,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         courseColor _: UIColor?
     ) -> some View {
         Button {
-            viewModel.didSelectAssignment.accept((viewController, assignment))
+            viewModel.didSelectAssignment.accept((viewController, assignment.id))
         } label: {
             GradeRowView(
                 assignment: assignment,
