@@ -139,7 +139,8 @@ const whitelist = [
   'x',
   'filter',
   'search',
-  'speed-grader'
+  'speed-grader',
+  'flag'
 ]
 
 const getImages = (path) => fs.readdirSync(path, { withFileTypes: true }).flatMap(dir => {

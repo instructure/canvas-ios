@@ -23,6 +23,7 @@ struct GradeSlider: View {
     var maxValue: Double
     var showTooltip: Bool
     var tooltipText: Text
+    var a11yValue: Text
     var score: Double
     var possible: Double
     var onEditingChanged: (Bool) -> Void = { _ in }
@@ -40,9 +41,9 @@ struct GradeSlider: View {
                             onEditingChanged(false)
                         }
                 )
-                .accessibility(label: Text("Grade Slider", bundle: .teacher))
-                .accessibility(value: tooltipText)
                 .overlay(tooltip, alignment: .bottom)
+                .accessibilityLabel(Text("Grade Slider", bundle: .teacher))
+                .accessibilityValue(a11yValue)
         }
     }
 

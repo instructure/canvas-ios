@@ -165,6 +165,10 @@ public extension Array<String?> {
     func joined(separator: String = "") -> String {
         compactMap { $0 }.joined(separator: separator)
     }
+
+    func accessibilityJoined() -> String {
+        compactMap { $0 }.joined(separator: ", ")
+    }
 }
 
 extension ReferenceWritableKeyPath {

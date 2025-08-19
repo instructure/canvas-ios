@@ -76,10 +76,18 @@ public class GradeFormatter {
     public var placeholder = "-"
     public var hideScores: Bool = false
 
+    // MARK: - Grade/Score for Assignment/Submission, includes metrics
+
+    /// Creates a formatted accessibility grade string (including metrics)
+    /// for the `assignment`'s first `submission` matching `userID` if it exists, or `assignment.submission` otherwise.
+    /// This variant does not enforce `short` style for Letter Grade.
     public static func a11yString(from assignment: Assignment, userID: String? = nil, style: Style = .medium) -> String? {
         a11yString(from: string(from: assignment, userID: userID, style: style))
     }
 
+    /// Creates a formatted grade string (including metrics)
+    /// for the `assignment`'s first `submission` matching `userID` if it exists, or `assignment.submission` otherwise.
+    /// This variant does not enforce `short` style for Letter Grade.
     public static func string(from assignment: Assignment, userID: String? = nil, style: Style = .medium) -> String? {
         let formatter = GradeFormatter()
         formatter.pointsPossible = assignment.pointsPossible ?? 0
@@ -93,10 +101,8 @@ public class GradeFormatter {
         return formatter.string(from: assignment.submission)
     }
 
-    public static func a11yString(from assignment: Assignment, submission: Submission, style: Style = .medium) -> String? {
-        a11yString(from: string(from: assignment, submission: submission, style: style))
-    }
-
+    /// Creates a formatted grade string for the given `submission`.
+    /// This variant enforces `short` style for Letter Grade (but not for GPA, for some reason...)
     public static func string(from assignment: Assignment, submission: Submission, style: Style = .medium) -> String? {
         let formatter = GradeFormatter()
         formatter.pointsPossible = assignment.pointsPossible ?? 0
@@ -109,6 +115,7 @@ public class GradeFormatter {
         return formatter.string(from: submission)
     }
 
+    /// The actual `a11yString` logic
     private static func a11yString(from formattedGrade: String?) -> String? {
         guard var formattedGrade = formattedGrade else { return nil }
 
@@ -118,11 +125,13 @@ public class GradeFormatter {
         return formattedGrade
     }
 
-    public func a11yString(from submission: Submission?) -> String? {
+    /// Convenience, used only for testing
+    internal func a11yString(from submission: Submission?) -> String? {
         GradeFormatter.a11yString(from: string(from: submission))
     }
 
-    public func string(from submission: Submission?) -> String? {
+    /// The actual `string` logic
+    internal func string(from submission: Submission?) -> String? {
         let isExcused = submission?.excused == true
         guard let submission = submission, let score = submission.score, !isExcused else {
             let excused = String(localized: "Excused", bundle: .core)
@@ -194,6 +203,8 @@ public class GradeFormatter {
         }
     }
 
+    // MARK: - Medium format
+
     private func format(_ number: Double) -> String? {
         if hideScores {
             return nil
@@ -216,10 +227,14 @@ public class GradeFormatter {
         return "\(score) / \(pointsPossible)"
     }
 
+    // MARK: - Truncation
+
     public static func truncate(_ value: Double, factor: Double = 100) -> NSNumber {
         let rounded = round(value * factor) / factor
         return NSNumber(value: rounded)
     }
+
+    // MARK: - Grade/Score without metric
 
     /// Returns the original score (before late penalties) as a plain string without metric suffixes.
     /// Returns "Excused" when submission is excused.
@@ -300,6 +315,8 @@ public class GradeFormatter {
         }
     }
 
+    // MARK: - Teacher app - Submission List
+
     // For teachers & graders in submission list
     public static func shortString(
         for assignment: Assignment?,
@@ -308,8 +325,10 @@ public class GradeFormatter {
     ) -> String {
         guard assignment?.gradingType != .not_graded else { return "" }
 
-        guard let assignment = assignment, let submission = submission,
-            submission.workflowState != .unsubmitted, !submission.needsGrading
+        guard let assignment = assignment,
+              let submission = submission,
+              (submission.workflowState != .unsubmitted || submission.customGradeStatusId != nil),
+              !submission.needsGrading
         else { return blankPlaceholder.stringValue }
 
         guard submission.excused != true else { return String(localized: "Excused", bundle: .core) }
@@ -317,7 +336,7 @@ public class GradeFormatter {
         return gradeString(for: assignment, submission: submission) ?? blankPlaceholder.stringValue
     }
 
-    public static func gradeString(for assignment: Assignment, submission: Submission, final: Bool = true) -> String? {
+    private static func gradeString(for assignment: Assignment, submission: Submission, final: Bool = true) -> String? {
         let grade = final ? submission.grade : submission.enteredGrade
         let score = final ? submission.score : submission.enteredScore
 

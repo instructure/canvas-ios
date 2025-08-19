@@ -51,6 +51,7 @@ public struct WrappingHStack<Model, V>: View where Model: Hashable, V: View {
     private func generateContent(in geometry: GeometryProxy) -> some View {
         var width = CGFloat.zero
         var height = CGFloat.zero
+        var previousHight = CGFloat.zero
 
         return ZStack(alignment: .topLeading) {
             ForEach(self.models, id: \.self) { models in
@@ -60,7 +61,7 @@ public struct WrappingHStack<Model, V>: View where Model: Hashable, V: View {
                     .alignmentGuide(.leading, computeValue: { dimension in
                         if (abs(width - dimension.width) > geometry.size.width) {
                             width = 0
-                            height -= dimension.height
+                            height -= previousHight
                         }
                         let result = width
                         if models == self.models.last! {
@@ -68,6 +69,7 @@ public struct WrappingHStack<Model, V>: View where Model: Hashable, V: View {
                         } else {
                             width -= dimension.width
                         }
+                        previousHight = dimension.height
                         return result
                     })
                     .alignmentGuide(.top, computeValue: { _ in

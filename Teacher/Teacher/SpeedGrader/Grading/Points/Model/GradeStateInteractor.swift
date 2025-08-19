@@ -24,6 +24,7 @@ protocol GradeStateInteractor {
     func gradeState(
         submission: Submission,
         assignment: Assignment,
+        gradingScheme: GradingScheme?,
         isRubricScoreAvailable: Bool, // TODO: remove if not needed for rubrics
         totalRubricScore: Double // TODO: remove if not needed for rubrics
     ) -> GradeState
@@ -34,6 +35,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
     func gradeState(
         submission: Submission,
         assignment: Assignment,
+        gradingScheme: GradingScheme? = nil,
         isRubricScoreAvailable: Bool,
         totalRubricScore: Double
     ) -> GradeState {
@@ -43,11 +45,13 @@ class GradeStateInteractorLive: GradeStateInteractor {
         let hasLatePenaltyPoints = (submission.pointsDeducted ?? 0) > 0
         let isExcused = (submission.excused == true)
         let score = submission.enteredScore ?? submission.score ?? 0
+        let pointsDeducted = -(submission.pointsDeducted ?? 0)
 
         return GradeState(
             gradingType: gradingType,
             pointsPossibleText: assignment.pointsPossibleText,
-            gradeOptions: Self.gradeOptions(for: gradingType, assignment: assignment),
+            pointsPossibleAccessibilityText: assignment.pointsPossibleCompleteText,
+            gradeOptions: Self.gradeOptions(for: gradingType, gradingScheme: gradingScheme),
 
             isGraded: isGraded,
             isExcused: isExcused,
@@ -59,18 +63,20 @@ class GradeStateInteractorLive: GradeStateInteractor {
             originalScoreWithoutMetric: GradeFormatter.originalScoreWithoutMetric(for: submission),
             originalGradeWithoutMetric: GradeFormatter.originalGradeWithoutMetric(for: submission, gradingType: gradingType),
             finalGradeWithoutMetric: GradeFormatter.finalGradeWithoutMetric(for: submission, gradingType: gradingType),
-            pointsDeductedText: String(localized: "\(-(submission.pointsDeducted ?? 0), specifier: "%g") pts", bundle: .core)
+            pointsDeductedText: String.format(pts: pointsDeducted),
+            pointsDeductedAccessibilityText: String.format(points: pointsDeducted)
         )
     }
 
     /// Returns a placeholder GradeState which sets only the properties available from `assignment`.
-    static func gradeState(usingOnly assignment: Assignment) -> GradeState {
+    static func gradeState(usingOnly assignment: Assignment, gradingScheme: GradingScheme? = nil) -> GradeState {
         let gradingType = assignment.gradingType
 
         return GradeState(
             gradingType: gradingType,
             pointsPossibleText: assignment.pointsPossibleText,
-            gradeOptions: gradeOptions(for: gradingType, assignment: assignment),
+            pointsPossibleAccessibilityText: assignment.pointsPossibleCompleteText,
+            gradeOptions: gradeOptions(for: gradingType, gradingScheme: gradingScheme),
 
             isGraded: false,
             isExcused: false,
@@ -81,14 +87,15 @@ class GradeStateInteractorLive: GradeStateInteractor {
             originalScoreWithoutMetric: nil,
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: nil,
-            pointsDeductedText: ""
+            pointsDeductedText: "",
+            pointsDeductedAccessibilityText: ""
         )
     }
 
-    private static func gradeOptions(for gradingType: GradingType, assignment: Assignment) -> [OptionItem] {
+    private static func gradeOptions(for gradingType: GradingType, gradingScheme: GradingScheme? = nil) -> [OptionItem] {
         switch gradingType {
         case .gpa_scale, .letter_grade:
-            guard let gradingScheme = assignment.gradingScheme else { return [] }
+            guard let gradingScheme else { return [] }
 
             var items: [OptionItem] = []
             let maxValue = gradingScheme.formattedMaxValue ?? ""
@@ -103,7 +110,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
                     subtitle = String(localized: "< \(upperBound) to \(lowerBound)", bundle: .teacher, comment: "'< 94% to 84%', or '< 230 to 160'")
                 }
 
-                let a11yLabel = [String.accessibiltyLetterGrade($0.name), subtitle].joined(separator: ",")
+                let a11yLabel = [String.format(accessibilityLetterGrade: $0.name), subtitle].accessibilityJoined()
 
                 items.append(
                     OptionItem(

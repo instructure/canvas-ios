@@ -11,18 +11,19 @@ provision-ci: ## CI environment setup
 sync: ## xproj file generation
 	@echo 🟡 Running xcodegen
 	@cd Core; xcodegen
+	@cd Horizon; xcodegen
 	@cd Student; xcodegen
-##	@cd Horizon; xcodegen
 
 sync-ci: ## CI specific xproj file generation
 	@echo 🟡 Running xcodegen
 	@cd Core; xcodegen
+	@cd Horizon; xcodegen
 	@cd Student; xcodegen --spec "project-ci.yml"
-##	@cd Horizon; xcodegen --spec "project-ci.yml"
 
 generate-placeholder-plist-files:
 	@$(MAKE) generate-placeholder-plist-file PLIST_PATH=./Student/Student/GoogleService-Info.plist
 	@$(MAKE) generate-placeholder-plist-file PLIST_PATH=./Student/SubmitAssignment/GoogleService-Info.plist
+	@$(MAKE) generate-placeholder-plist-file PLIST_PATH=./Student/Widgets/GoogleService-Info.plist
 	@$(MAKE) generate-placeholder-plist-file PLIST_PATH=./Teacher/Teacher/GoogleService-Info.plist
 	@$(MAKE) generate-placeholder-plist-file PLIST_PATH=./Parent/Parent/GoogleService-Info.plist
 

@@ -69,6 +69,6 @@ class RouterDebugViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let route = routes[indexPath.row]
-        router.route(to: route.path, from: self, options: route.options)
+        academicRouter.route(to: route.path, from: self, options: route.options)
     }
 }

@@ -43,6 +43,13 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
         eventName: "\(context.pathComponent)/users"
     )
 
+    lazy var customStatuses: Store<GetCustomGradeStatuses>? = {
+        guard case .course = context.contextType else { return nil }
+        return env.subscribe(GetCustomGradeStatuses(courseID: context.id)) { [weak self] in
+            self?.updateNavBar()
+        }
+    }()
+
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
     }
@@ -84,6 +91,7 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
         tableView.registerHeaderFooterView(FilterHeaderView.self, fromNib: false)
         tableView.separatorColor = .borderMedium
         colors.refresh()
+        customStatuses?.refresh()
         if context.contextType == .course {
             course.refresh()
         } else {

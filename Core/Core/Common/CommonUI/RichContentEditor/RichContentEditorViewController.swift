@@ -112,7 +112,7 @@ public class RichContentEditorViewController: UIViewController {
 
             @media (prefers-color-scheme: dark) {
                 :root {
-                    \(colorsCss(for: .dark))
+                    \(colorsCss(for: env.app == .horizon ? .light : .dark))
                     \(fontCss())
                 }
             }

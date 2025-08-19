@@ -1,0 +1,108 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2024-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Combine
+import HorizonUI
+import SwiftUI
+
+struct AssistFeedbackView: View {
+    private var onChange: AssistChatMessageViewModel.OnFeedbackChange
+    @State private var selected: Bool?
+    @State private var thumbsOpacity: Double = 1.0
+    @State private var thanksOpacity: Double = 0.0
+    @State private var viewHeight: CGFloat = 0 // Dynamically measured height
+
+    init(onChange: @escaping AssistChatMessageViewModel.OnFeedbackChange) {
+        self.onChange = onChange
+    }
+
+    private var thumbsUpOpacity: Double {
+        selected == true ? 1 : 0
+    }
+    private var thumbsDownOpacity: Double {
+        selected == false ? 1 : 0
+    }
+
+    var body: some View {
+        ZStack(alignment: .leading) {
+            HStack(spacing: HorizonUI.spaces.space8) {
+                thumbUpIcon
+                thumbDownIcon
+            }
+            .opacity(thumbsOpacity)
+            .animation(.easeInOut(duration: 0.2), value: thumbsOpacity)
+            .padding(.top, .huiSpaces.space8)
+
+            Text(String(localized: "Thank you for your feedback!", bundle: .horizon))
+                .huiTypography(.p1)
+                .foregroundColor(HorizonUI.colors.text.surfaceColored)
+                .opacity(thanksOpacity)
+                .animation(.easeInOut(duration: 0.2), value: thanksOpacity)
+        }
+        .background(
+            GeometryReader { proxy in
+                Color.clear
+                    .onAppear {
+                        viewHeight = proxy.size.height
+                    }
+            }
+        )
+        .frame(height: viewHeight)
+        .animation(.easeInOut(duration: 0.2), value: viewHeight)
+    }
+
+    private var thumbUpIcon: some View {
+        ZStack {
+            HorizonUI.icons.thumbUp
+                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
+                .onTapGesture { onTap(true) }
+
+            HorizonUI.icons.thumbUp
+                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
+                .onTapGesture { onTap(true) }
+                .opacity(thumbsUpOpacity)
+                .animation(.easeInOut(duration: 0.2), value: thumbsUpOpacity)
+        }
+    }
+
+    private var thumbDownIcon: some View {
+        ZStack {
+            HorizonUI.icons.thumbDown
+                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
+                .onTapGesture { onTap(false) }
+
+            HorizonUI.icons.thumbDown
+                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
+                .onTapGesture { onTap(false) }
+                .opacity(thumbsUpOpacity)
+                .animation(.easeInOut(duration: 0.2), value: thumbsUpOpacity)
+        }
+    }
+
+    private func onTap(_ value: Bool) {
+        thumbsOpacity = 0.0
+        thanksOpacity = 1.0
+        selected = selected == value ? nil : value
+        onChange(selected)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            thanksOpacity = 0.0
+            viewHeight = 0
+        }
+    }
+}

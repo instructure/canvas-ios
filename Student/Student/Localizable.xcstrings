@@ -27317,7 +27317,7 @@
       }
     },
     "Calendar" : {
-      "comment" : "Calendar page title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -39869,7 +39869,7 @@
       }
     },
     "Dashboard" : {
-      "comment" : "dashboard page title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -42225,7 +42225,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detalls"
+            "value" : "Informació"
           }
         },
         "cy" : {
@@ -42369,7 +42369,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ngā taipitopito"
+            "value" : "Nga korero taipitopito"
           }
         },
         "ms" : {
@@ -42447,7 +42447,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chi Tiết"
+            "value" : "Các Thông Tin Chi Tiết"
           }
         },
         "zh" : {
@@ -62249,7 +62249,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vous avez des questions à propos de votre tâche?\nEnvoyez un message à votre instructeur."
+            "value" : "Vous avez des questions à propos de votre tâche?\nEnvoyez un message à votre enseignant(e)."
           }
         },
         "ga" : {
@@ -62933,7 +62933,7 @@
       }
     },
     "Homeroom" : {
-      "comment" : "Homeroom tab title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -64763,7 +64763,7 @@
       }
     },
     "Inbox" : {
-      "comment" : "Inbox tab title",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -66584,6 +66584,9 @@
           }
         }
       }
+    },
+    "It looks like your account isn't set up as a learner role. If you believe this is a mistake, contact your admin or support team." : {
+
     },
     "It’s empty, what are you still doing here." : {
       "comment" : "It’s empty, what are you still doing here.",
@@ -73787,7 +73790,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Envoyer un message à l’instructeur"
+            "value" : "Envoyer un message à l’enseignant(e)"
           }
         },
         "ga" : {
@@ -86284,7 +86287,7 @@
       }
     },
     "Notifications" : {
-      "comment" : "Notifications tab title",
+      "comment" : "Notifications tab title\nTab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -88614,6 +88617,9 @@
           }
         }
       }
+    },
+    "Oops, something went wrong" : {
+
     },
     "Oops!" : {
       "comment" : "Error message title\n   Error title\n   Masquerade error title",
@@ -118515,7 +118521,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Instructeur-assistant"
+            "value" : "Enseignant(e)-assistant"
           }
         },
         "ga" : {
@@ -120866,7 +120872,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Instructeurs-assistants"
+            "value" : "Enseignants-assistants"
           }
         },
         "ga" : {
@@ -126786,6 +126792,9 @@
         }
       }
     },
+    "There was an error while logging you in. You can try again, or come back a bit later." : {
+
+    },
     "There's nothing to be notified of yet." : {
       "localizations" : {
         "ar" : {
@@ -130441,7 +130450,7 @@
       }
     },
     "To Do" : {
-      "comment" : "Title of the Todo screen",
+      "comment" : "Tab title, max character count is 14",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

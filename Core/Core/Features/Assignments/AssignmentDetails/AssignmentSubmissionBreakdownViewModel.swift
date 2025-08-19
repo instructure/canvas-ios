@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProtocol {
@@ -37,29 +38,54 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
 
     public private(set) var color: Color = .accentColor
 
+    private let env: AppEnvironment
     private let assignmentID: String
     private let courseID: String
     private let submissionTypes: [SubmissionType]
-    private var summary: Store<GetSubmissionSummary>
+    private var summaryStore: ReactiveStore<GetSubmissionSummary>
+    private let submissionsStore: ReactiveStore<GetSubmissions>
+    private var summary: SubmissionSummary?
     private var submissionsPath: String { "/courses/\(courseID)/assignments/\(assignmentID)/submissions" }
+
+    private var submissionsObservation: AnyCancellable?
 
     public init(courseID: String, assignmentID: String, submissionTypes: [SubmissionType], color: UIColor? = nil, env: AppEnvironment) {
         self.assignmentID = assignmentID
         self.courseID = courseID
         self.submissionTypes = submissionTypes
         self.color = color?.asColor ?? .accentColor
+        self.env = env
 
-        summary = env.subscribe(GetSubmissionSummary(
-            context: .course(courseID),
-            assignmentID: assignmentID
-        ))
+        summaryStore = ReactiveStore(
+            useCase: GetSubmissionSummary(
+                context: .course(courseID),
+                assignmentID: assignmentID
+            ),
+            environment: env)
+        submissionsStore = ReactiveStore(
+            useCase: GetSubmissions(context: .course(courseID), assignmentID: assignmentID, filter: []),
+            environment: env
+        )
     }
 
     public func viewDidAppear() {
-        summary.eventHandler = { [weak self] in
-            self?.update()
-        }
-        summary.refresh(force: true)
+        let summaryPublisher = summaryStore
+            .getEntities(ignoreCache: true)
+            .map(\.first)
+            .ignoreFailure()
+        let submissionsPublisher = submissionsStore
+            .getEntities(
+                ignoreCache: true,
+                loadAllPages: true,
+                keepObservingDatabaseChanges: true,
+            )
+            .ignoreFailure()
+
+        submissionsObservation = Publishers.CombineLatest(summaryPublisher, submissionsPublisher)
+            .sink { [weak self] summary, _ in
+                self?.summary = summary
+                self?.update()
+            }
     }
 
     public func routeToAll(router: Router, viewController: WeakViewController) {
@@ -79,10 +105,36 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     }
 
     private func update() {
-        graded = summary.first?.graded ?? 0
-        ungraded = summary.first?.ungraded ?? 0
-        unsubmitted = summary.first?.unsubmitted ?? 0
-        submissionCount = summary.first?.submissionCount ?? 0
+        let customUnsubmitted = customGradeStatedCount(for: .unsubmitted)
+        let customSubmitted = customGradeStatedCount(
+            noScoreChecked: true,
+            for: .submitted, .pending_review, .graded
+        )
+
+        let summaryValues = summary
+
+        graded = (summaryValues?.graded ?? 0) + customSubmitted + customUnsubmitted
+        ungraded = max((summaryValues?.ungraded ?? 0) - customSubmitted, 0)
+        unsubmitted = max((summaryValues?.unsubmitted ?? 0) - customUnsubmitted, 0)
+
+        submissionCount = summaryValues?.submissionCount ?? 0
         isReady = true
+    }
+
+    /// This is used because of a limitation on API for **`GetSubmissionSummary`**, by
+    /// which submissions of custom grade status is not being counted for **`graded`**
+    /// when workflow state equals to `unsubmitted` or `submitted`
+    private func customGradeStatedCount(
+        noScoreChecked: Bool = false,
+        for state: SubmissionWorkflowState...
+    ) -> Int {
+        return env
+            .database
+            .viewContext
+            .submissionsCountOfCustomGradeStatus(
+                forAssignment: assignmentID,
+                invalidScoreChecked: noScoreChecked,
+                atStates: state
+            )
     }
 }

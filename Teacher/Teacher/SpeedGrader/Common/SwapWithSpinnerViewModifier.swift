@@ -22,19 +22,43 @@ import Foundation
 import SwiftUI
 
 extension View {
-    func swapWithSpinner(onLoading isLoadingSubject: CurrentValueSubject<Bool, Never>, alignment: Alignment) -> some View {
-        modifier(SwapWithSpinnerViewModifier(isLoadingSubject: isLoadingSubject, alignment: alignment))
+    func swapWithSpinner(
+        onSaving isLoadingSubject: CurrentValueSubject<Bool, Never>,
+        alignment: Alignment
+    ) -> some View {
+        modifier(SwapWithSpinnerViewModifier(
+            isLoadingSubject: isLoadingSubject,
+            accessibilityValue: String(localized: "Saving", bundle: .teacher),
+            alignment: alignment
+        ))
+    }
+
+    func swapWithSpinner(
+        onLoading isLoadingSubject: CurrentValueSubject<Bool, Never>,
+        alignment: Alignment
+    ) -> some View {
+        modifier(SwapWithSpinnerViewModifier(
+            isLoadingSubject: isLoadingSubject,
+            accessibilityValue: String(localized: "Loading", bundle: .teacher),
+            alignment: alignment
+        ))
     }
 }
 
 private struct SwapWithSpinnerViewModifier: ViewModifier {
     private let isLoadingSubject: CurrentValueSubject<Bool, Never>
+    private let accessibilityValue: String
     private let alignment: Alignment
 
     @State private var isLoading: Bool = false
 
-    init(isLoadingSubject: CurrentValueSubject<Bool, Never>, alignment: Alignment) {
+    init(
+        isLoadingSubject: CurrentValueSubject<Bool, Never>,
+        accessibilityValue: String,
+        alignment: Alignment
+    ) {
         self.isLoadingSubject = isLoadingSubject
+        self.accessibilityValue = ["", accessibilityValue].accessibilityJoined()
         self.alignment = alignment
     }
 
@@ -45,6 +69,7 @@ private struct SwapWithSpinnerViewModifier: ViewModifier {
             ProgressView()
                 .tint(nil)
                 .opacity(isLoading ? 1 : 0)
+                .accessibilityValue(optional: isLoading ? accessibilityValue : nil)
             content
                 .opacity(isLoading ? 0 : 1)
         }

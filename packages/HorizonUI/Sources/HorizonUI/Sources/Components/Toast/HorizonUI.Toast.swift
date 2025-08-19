@@ -38,28 +38,25 @@ public extension HorizonUI {
         }
 
         public var body: some View {
-            ZStack {
-                RoundedRectangle(cornerRadius: cornerRadius.attributes.radius)
-                    .fill(Color.huiColors.surface.pageSecondary)
-                    .stroke(viewModel.style.color, lineWidth: HorizonUI.Borders.level2.rawValue)
-
-                contentView
-            }
-            .fixedSize(horizontal: false, vertical: true)
-            .padding(.horizontal, .huiSpaces.space24)
+            contentView
+                .background {
+                    RoundedRectangle(cornerRadius: cornerRadius.attributes.radius)
+                        .fill(Color.huiColors.surface.pageSecondary)
+                        .stroke(viewModel.style.color, lineWidth: HorizonUI.Borders.level2.rawValue)
+                }
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.horizontal, .huiSpaces.space24)
         }
 
         private var contentView: some View {
-            HStack(alignment: .top, spacing: .zero) {
+            HStack(alignment: .center, spacing: .zero) {
                 alertIcon
                 VStack(alignment: .leading, spacing: .zero) {
                     textView
                         .padding(.huiSpaces.space16)
                     groupButtons
-                        .padding(.bottom, .huiSpaces.space16)
                 }
                 trailingButtons
-                    .padding(.top, .huiSpaces.space16)
             }
             .frame(minHeight: 64)
         }
@@ -79,7 +76,7 @@ public extension HorizonUI {
             Text(viewModel.text)
                 .foregroundStyle(Color.huiColors.text.body)
                 .huiTypography(.p1)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(alignment: .leading)
         }
 
         private var trailingButtons: some View {
@@ -114,6 +111,7 @@ public extension HorizonUI {
                         confirmButton.action()
                     }
                 }
+                .padding(.bottom, .huiSpaces.space16)
             }
         }
     }

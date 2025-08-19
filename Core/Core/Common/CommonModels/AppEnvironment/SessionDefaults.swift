@@ -67,6 +67,18 @@ public struct SessionDefaults: Equatable {
         }
     }
 
+    // We are using it to preserve Student Academic interface style. It is used when switching between the Academic and Career experience.
+    public var academicInterfaceStyle: UIUserInterfaceStyle? {
+        get {
+            guard let styleInt = self["academicInterfaceStyle"] else { return nil }
+            return UIUserInterfaceStyle(rawValue: styleInt as? Int ?? -1)
+        }
+        set {
+            guard let newValue = newValue else { return self["academicInterfaceStyle"] = nil}
+            self["academicInterfaceStyle"] = newValue.rawValue
+        }
+    }
+
     public var isMissingItemsSectionOpenOnK5Schedule: Bool? {
         get { return self["isMissingItemsSectionOpenOnK5Schedule"] as? Bool }
         set { self["isMissingItemsSectionOpenOnK5Schedule"] = newValue }
@@ -128,6 +140,16 @@ public struct SessionDefaults: Equatable {
     public var collapsedModules: [String: [String]]? {
         get { self["collapsedModules"] as? [String: [String]] }
         set { self["collapsedModules"] = newValue }
+    }
+
+    public var appExperience: Experience? {
+        get {
+            if let rawValue = self["appExperience"] as? String {
+                return Experience(rawValue: rawValue)
+            }
+            return nil
+        }
+        set { self["appExperience"] = newValue?.rawValue }
     }
 
     // MARK: - Calendar Settings

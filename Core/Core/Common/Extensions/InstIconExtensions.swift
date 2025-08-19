@@ -96,6 +96,8 @@ public extension UIImage {
     static var eyeSolid: UIImage { UIImage(named: "eyeSolid", in: .core, compatibleWith: nil)! }
     static var filterLine: UIImage { UIImage(named: "filterLine", in: .core, compatibleWith: nil)! }
     static var filterSolid: UIImage { UIImage(named: "filterSolid", in: .core, compatibleWith: nil)! }
+    static var flagLine: UIImage { UIImage(named: "flagLine", in: .core, compatibleWith: nil)! }
+    static var flagSolid: UIImage { UIImage(named: "flagSolid", in: .core, compatibleWith: nil)! }
     static var folderLine: UIImage { UIImage(named: "folderLine", in: .core, compatibleWith: nil)! }
     static var folderSolid: UIImage { UIImage(named: "folderSolid", in: .core, compatibleWith: nil)! }
     static var forwardLine: UIImage { UIImage(named: "forwardLine", in: .core, compatibleWith: nil)! }
@@ -280,6 +282,7 @@ public extension UIImage {
     static var share: UIImage { UIImage(named: "share", in: .core, compatibleWith: nil)! }
     static var smartSearchLine: UIImage { UIImage(named: "smartSearchLine", in: .core, compatibleWith: nil)! }
     static var smartSearchSmallLine: UIImage { UIImage(named: "smartSearchSmallLine", in: .core, compatibleWith: nil)! }
+    static var swap_horiz: UIImage { UIImage(named: "swap_horiz", in: .core, compatibleWith: nil)! }
     static var todoTab: UIImage { UIImage(named: "todoTab", in: .core, compatibleWith: nil)! }
     static var todoTabActive: UIImage { UIImage(named: "todoTabActive", in: .core, compatibleWith: nil)! }
     static var unionLine: UIImage { UIImage(named: "unionLine", in: .core, compatibleWith: nil)! }
@@ -360,6 +363,8 @@ public extension Image {
     static var eyeSolid: Image { Image("eyeSolid", bundle: .core) }
     static var filterLine: Image { Image("filterLine", bundle: .core) }
     static var filterSolid: Image { Image("filterSolid", bundle: .core) }
+    static var flagLine: Image { Image("flagLine", bundle: .core) }
+    static var flagSolid: Image { Image("flagSolid", bundle: .core) }
     static var folderLine: Image { Image("folderLine", bundle: .core) }
     static var folderSolid: Image { Image("folderSolid", bundle: .core) }
     static var forwardLine: Image { Image("forwardLine", bundle: .core) }
@@ -544,6 +549,7 @@ public extension Image {
     static var share: Image { Image("share", bundle: .core) }
     static var smartSearchLine: Image { Image("smartSearchLine", bundle: .core) }
     static var smartSearchSmallLine: Image { Image("smartSearchSmallLine", bundle: .core) }
+    static var swap_horiz: Image { Image("swap_horiz", bundle: .core) }
     static var todoTab: Image { Image("todoTab", bundle: .core) }
     static var todoTabActive: Image { Image("todoTabActive", bundle: .core) }
     static var unionLine: Image { Image("unionLine", bundle: .core) }

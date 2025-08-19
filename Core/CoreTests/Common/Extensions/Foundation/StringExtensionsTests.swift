@@ -114,6 +114,20 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(texts.joined(separator: "."), "")
     }
 
+    func testAccessibilityJoined() {
+        var texts: [String?] = ["one", nil, "three"]
+        XCTAssertEqual(texts.accessibilityJoined(), "one, three")
+
+        texts = ["1", "", "3"]
+        XCTAssertEqual(texts.accessibilityJoined(), "1, , 3")
+
+        texts = ["3"]
+        XCTAssertEqual(texts.accessibilityJoined(), "3")
+
+        texts = []
+        XCTAssertEqual(texts.accessibilityJoined(), "")
+    }
+
     func testIsNilOrEmpty() {
         XCTAssertEqual((nil as String?).isNilOrEmpty, true)
         XCTAssertEqual(("" as String?).isNilOrEmpty, true)
