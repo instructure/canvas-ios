@@ -48,11 +48,13 @@ public final class GradeListViewModel: ObservableObject {
     @Published private(set) var state: ViewState = .initialLoading
     @Published public var isWhatIfScoreModeOn = false
     @Published public var isWhatIfScoreFlagEnabled = false
-    public var courseID: String { interactor.courseID }
+    var courseID: String { interactor.courseID }
+    var isParentApp: Bool { gradeFilterInteractor.isParentApp }
 
     // MARK: - Input
     let pullToRefreshDidTrigger = PassthroughRelay<RefreshCompletion?>()
     let didSelectAssignment = PassthroughRelay<(WeakViewController, assignmentId: String)>()
+    let didSelectGradingPeriod = PassthroughRelay<String?>()
     let confirmRevertAlertViewModel = ConfirmationAlertViewModel(
         title: String(localized: "Revert to Official Score?", bundle: .core),
         message: String(localized: "This will revert all your what-if scores in this course to the official score.", bundle: .core),
@@ -64,11 +66,7 @@ public final class GradeListViewModel: ObservableObject {
     // MARK: - Input / Output
     @Published var baseOnGradedAssignment = true
     @Published var isShowingRevertDialog = false
-    let didSelectGradingPeriod = PassthroughRelay<String?>()
     let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.dueDate)
-    var isParentApp: Bool {
-        gradeFilterInteractor.isParentApp
-    }
 
     // MARK: - Private properties
     private var subscriptions = Set<AnyCancellable>()
