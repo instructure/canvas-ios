@@ -92,9 +92,8 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     // MARK: - Private
     private var state: AssistState = .init()
     private var originalState: AssistState = .init()
-    private var toolCancellable: AnyCancellable?
+    private var cancellable: AnyCancellable?
     private let responsePublisher = PassthroughSubject<AssistChatInteractorLive.State, Error>()
-    private var subscriptions = Set<AnyCancellable>()
     private let journey: DomainService
 
     // MARK: - Init
@@ -120,7 +119,8 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     override
     func publish(prompt: String? = nil, history: [AssistChatMessage] = []) {
         weak var weakSelf = self
-        publishLearnersResponseAndAmmendHistory(prompt: prompt, history: history)
+        cancellable?.cancel()
+        cancellable = publishLearnersResponseAndAmmendHistory(prompt: prompt, history: history)
             .delay(for: .milliseconds(1), scheduler: DispatchQueue.main)
             .flatMap { ammendedHistory in
                 guard let weakSelf = weakSelf else {
@@ -141,7 +141,6 @@ final class AssistChatInteractorLive: AssistChatInteractor {
                     weakSelf?.responsePublisher.send(assistChatResponse)
                 }
             )
-            .store(in: &subscriptions)
     }
 
     private func makeRequest(api: API, prompt: String?, history: [AssistChatMessage]) -> AnyPublisher<AssistRequest.AssistResponse?, Error> {
@@ -185,7 +184,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
 
     override
     func setInitialState() {
-        toolCancellable?.cancel()
+        cancellable?.cancel()
         self.state = self.originalState.duplicate()
         publish()
     }
