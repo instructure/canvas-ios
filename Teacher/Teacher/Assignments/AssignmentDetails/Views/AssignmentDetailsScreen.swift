@@ -19,7 +19,7 @@
 import Core
 import SwiftUI
 
-public struct AssignmentDetailsScreen: View, ScreenViewTrackable {
+public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
     let assignmentID: String
     let courseID: String
 
@@ -146,7 +146,7 @@ public struct AssignmentDetailsScreen: View, ScreenViewTrackable {
 
 // MARK: - Sub Views
 
-private extension AssignmentDetailsScreen {
+private extension TeacherAssignmentDetailsScreen {
 
     func HeaderView(assignment: Assignment) -> some View {
         Section {
@@ -299,7 +299,7 @@ private extension AssignmentDetailsScreen {
 
 // MARK: - Bar Items
 
-extension AssignmentDetailsScreen {
+extension TeacherAssignmentDetailsScreen {
 
     /**
      This method returns a static edit button that checks permissions when tapped. Returning an empty array here doesn't work
