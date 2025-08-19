@@ -19,8 +19,7 @@
 import SwiftUI
 
 public struct GradeRowView: View {
-    public let assignment: Assignment
-    public let userID: String?
+    public let gradeRowEntry: GradeRowEntry
     public let isWhatIfScoreModeOn: Bool
     public let editScoreButtonDidTap: () -> Void
 
@@ -42,11 +41,11 @@ public struct GradeRowView: View {
             .padding(.vertical, 12)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityIdentifier("GradeListCell.\(assignment.id)")
+        .accessibilityIdentifier("GradeListCell.\(gradeRowEntry.id)")
     }
 
     private var assignmentIcon: some View {
-        Image(uiImage: assignment.icon)
+        Image(uiImage: gradeRowEntry.assignmentIcon)
             .padding(.top, 12)
             .padding(.leading, 22)
             .padding(.trailing, 18)
@@ -54,46 +53,30 @@ public struct GradeRowView: View {
 
     private var assignmentDetailsView: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(assignment.name)
+            Text(gradeRowEntry.assignmentName)
                 .font(.medium16)
                 .foregroundStyle(Color.textDarkest)
                 .multilineTextAlignment(.leading)
-            Text(assignment.dueText)
+            Text(gradeRowEntry.dueText)
                 .font(.regular14)
                 .foregroundStyle(Color.textDark)
                 .multilineTextAlignment(.leading)
 
-            let submission = assignment.submissions?.first { $0.userID == userID }
-            let displayProperties = submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
-
             HStack(spacing: 2) {
-                Image(uiImage: displayProperties.icon)
+                gradeRowEntry.statusIcon
                     .size(uiScale.iconScale * 18)
-                    .foregroundColor(Color(displayProperties.color))
-
-                Text(displayProperties.text)
-                    .foregroundStyle(Color(displayProperties.color))
+                Text(gradeRowEntry.statusText)
                     .font(.regular14)
             }
+            .foregroundStyle(gradeRowEntry.statusColor)
         }
     }
 
     private var gradeText: some View {
-        Text(GradeFormatter.string(
-            from: assignment,
-            userID: userID,
-            style: .medium
-        ) ?? "")
+        Text(gradeRowEntry.gradeText)
             .font(.regular16)
             .foregroundStyle(Color.textDarkest)
-            .accessibilityLabel(Text(
-                GradeFormatter.a11yString(
-                    from: assignment,
-                    userID: userID,
-                    style: .medium
-                )
-                .flatMap { String(localized: "Grade", bundle: .core) + ", " + $0 } ?? ""
-            ))
+            .accessibilityLabel(Text(gradeRowEntry.gradeAccessibilityLabel))
     }
 
     private var editButton: some View {
@@ -113,14 +96,14 @@ public struct GradeRowView: View {
 
 struct GradeRowViewPreview: PreviewProvider {
     static var previews: some View {
+        let assignment = Assignment.save(
+            .make(name: "Radiation Processes - ASTR 25400"),
+            in: PreviewEnvironment().globalDatabase.viewContext,
+            updateSubmission: false,
+            updateScoreStatistics: false
+        )
         GradeRowView(
-            assignment: .save(
-                .make(name: "Radiation Processes - ASTR 25400"),
-                in: PreviewEnvironment().globalDatabase.viewContext,
-                updateSubmission: false,
-                updateScoreStatistics: false
-            ),
-            userID: "",
+            gradeRowEntry: GradeRowEntry(assignment: assignment, userID: ""),
             isWhatIfScoreModeOn: true,
             editScoreButtonDidTap: {}
         )

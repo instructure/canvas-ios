@@ -289,9 +289,9 @@ private let gradeListData = GradeListData(
     courseName: "",
     courseColor: nil,
     assignmentSections: [
-        GradeListData.AssignmentSections(id: "1", title: "First group", assignments: [.make()]),
-        GradeListData.AssignmentSections(id: "2", title: "Second group", assignments: [.make()]),
-        GradeListData.AssignmentSections(id: "3", title: "Third group", assignments: [.make()])
+        GradeListData.AssignmentSections(id: "1", title: "First group", assignmentViewModels: [.make()]),
+        GradeListData.AssignmentSections(id: "2", title: "Second group", assignmentViewModels: [.make()]),
+        GradeListData.AssignmentSections(id: "3", title: "Third group", assignmentViewModels: [.make()])
     ],
     isGradingPeriodHidden: false,
     gradingPeriods: [.make()],

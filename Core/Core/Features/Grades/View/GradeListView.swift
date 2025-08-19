@@ -322,7 +322,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     ) -> some View {
         LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
             ForEach(assignmentSections, id: \.id) { section in
-                let itemCountLabel = String.format(numberOfItems: section.assignments.count)
+                let itemCountLabel = String.format(numberOfItems: section.assignmentViewModels.count)
                 AssignmentSection {
                     VStack(spacing: 0) {
                         listSectionView(title: section.title)
@@ -331,20 +331,20 @@ public struct GradeListView: View, ScreenViewTrackable {
                     }
                     .accessibilityLabel(Text(verbatim: "\(section.title), \(itemCountLabel)"))
                 } content: {
-                    ForEach(section.assignments, id: \.id) { assignment in
+                    ForEach(section.assignmentViewModels, id: \.id) { entry in
                         VStack(alignment: .leading, spacing: 0) {
                             listRowView(
-                                assignment: assignment,
+                                entry: entry,
                                 userID: userID,
                                 courseColor: courseColor
                             )
 
-                            if assignment.id != section.assignments.last?.id {
+                            if entry.id != section.assignmentViewModels.last?.id {
                                 InstUI.Divider()
                                     .paddingStyle(.horizontal, .standard)
                                     .accessibilityHidden(true)
                             }
-                        }.id(assignment.id)
+                        }.id(entry.id)
                     }
                 }
             }
@@ -364,21 +364,20 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func listRowView(
-        assignment: Assignment,
+        entry: GradeRowEntry,
         userID: String,
         courseColor _: UIColor?
     ) -> some View {
         Button {
-            viewModel.didSelectAssignment.accept((viewController, assignment.id))
+            viewModel.didSelectAssignment.accept((viewController, entry.id))
         } label: {
             GradeRowView(
-                assignment: assignment,
-                userID: userID,
+                gradeRowEntry: entry,
                 isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn
             ) {
                 isScoreEditorPresented.toggle()
             }
-            .onSwipe(trailing: revertWhatIfScoreSwipeButton(id: assignment.id))
+            .onSwipe(trailing: revertWhatIfScoreSwipeButton(id: entry.id))
             .contentShape(Rectangle())
         }
         .background(Color.backgroundLightest)
