@@ -211,31 +211,28 @@ final class ModuleItemSequenceViewModel {
     }
 
     private func navigateToTutor(viewController: WeakViewController) {
-        guard let courseId = moduleItem?.courseID else {
+        guard let courseID = moduleItem?.courseID else {
             return
         }
 
-        var fileId: String?
-        var pageUrl: String?
+        var fileID: String?
+        var pageURL: String?
 
         switch moduleItem?.type {
         case .file(let id):
-                fileId = id
+                fileID = id
         case .page(let url):
-                pageUrl = url
+                pageURL = url
         default:
             break
         }
 
-        let params = [
-            "courseId": courseId,
-            "pageUrl": pageUrl,
-            "fileId": fileId
-        ].map { key, value in
-            guard let value = value else { return nil }
-            return "\(key)=\(value)"
-        }.compactMap { $0 }.joined(separator: "&")
-        router.route(to: "/assistant?\(params)", from: viewController, options: .modal())
+        let routingParams: AssistAssembly.RoutingParams = .init(
+            courseID: courseID,
+            fileID: fileID,
+            pageURL: pageURL
+        )
+        router.route(to: "/assistant?\(routingParams.queryString)", from: viewController, options: .modal())
     }
 
     private func updateModuleItemDetails() {

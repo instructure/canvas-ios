@@ -20,7 +20,7 @@ import Combine
 import Foundation
 
 /// A message returned from the interactor
-struct AssistChatMessage {
+struct AssistChatMessage: Codable {
 
     let id: UUID
 
@@ -44,32 +44,20 @@ struct AssistChatMessage {
     let citations: [Citation]
 
     init(
-        botResponse: String,
-        chipOptions: [AssistChipOption] = [],
-        citations: [Citation] = []
+        botResponse: String? = nil,
+        chipOptions: [AssistChipOption]? = nil,
+        flashCards: [AssistChatFlashCard]? = nil,
+        quizItems: [QuizItem]? = nil,
+        citations: [Citation]? = nil
     ) {
         self.init(
             role: .Assistant,
             prompt: botResponse,
             text: botResponse,
-            chipOptions: chipOptions,
-            citations: citations
-        )
-    }
-
-    /// The user has asked for FlashCards
-    init(flashCards: [AssistChatFlashCard]) {
-        self.init(
-            role: .Assistant,
-            flashCards: flashCards
-        )
-    }
-
-    /// The user has asked for a quiz
-    init(quizItems: [QuizItem]) {
-        self.init(
-            role: .Assistant,
-            quizItems: quizItems
+            chipOptions: chipOptions ?? [],
+            flashCards: flashCards ?? [],
+            quizItems: quizItems ?? [],
+            citations: citations ?? []
         )
     }
 
@@ -87,7 +75,7 @@ struct AssistChatMessage {
         text: String? = nil,
         chipOptions: [AssistChipOption] = [],
         flashCards: [AssistChatFlashCard] = [],
-        quizItems: [QuizItem]? = nil,
+        quizItems: [QuizItem] = [],
         citations: [Citation] = []
     ) {
         self.id = UUID()
@@ -105,12 +93,6 @@ struct AssistChatMessage {
         case User
     }
 
-    enum SourceType: String, Codable {
-        case attachment
-        case unknown
-        case wiki_page
-    }
-
     struct QuizItem: Codable, Equatable {
         let question: String
         let answers: [String]
@@ -121,7 +103,7 @@ struct AssistChatMessage {
         let title: String
         let courseID: String?
         let sourceID: String?
-        let sourceType: SourceType?
+        let sourceType: AssistChatInteractor.CitationType?
     }
 }
 

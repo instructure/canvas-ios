@@ -16,31 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/// A response from the interactor
-struct AssistChatResponse: Codable {
-    // MARK: - Properties
-    let history: [AssistChatMessage]
-    let error: String?
-    let isLoading: Bool
+import CombineExt
 
-    // MARK: - Init
-    init(
-        _ message: AssistChatMessage? = nil,
-        history: [AssistChatMessage] = [],
-        isLoading: Bool = false,
-        isFreeTextAvailable: Bool = true
-    ) {
-        self.history = history + (message.map { [$0] } ?? [])
-        self.isLoading = isLoading
-        self.error = nil
-    }
+struct AssistState: Codable, Equatable {
+    var courseID: String?
+    var fileID: String?
+    var pageID: String?
+    var textSelection: String?
 
     init(
-        error: String,
-        history: [AssistChatMessage] = []
+        courseID: String? = nil,
+        fileID: String? = nil,
+        pageID: String? = nil,
+        textSelection: String? = nil
     ) {
-        self.history = history
-        self.isLoading = false
-        self.error = error
+        self.courseID = courseID
+        self.fileID = fileID
+        self.pageID = pageID
+        self.textSelection = textSelection
     }
 }

@@ -39,7 +39,11 @@ final class DomainService {
     // MARK: - Private
 
     private var audience: String {
-        baseURL.contains("horizon.cd.instructure.com") == true ? horizonCDURL : productionURL
+        // TODO: This must be fixed
+        if option == .journey {
+            return "localhost:3000"
+        }
+        return baseURL.contains("horizon.cd.instructure.com") == true ? horizonCDURL : productionURL
     }
 
     private var horizonCDURL: String {
@@ -73,7 +77,7 @@ final class DomainService {
         horizonApi
             .makeRequest(
                 JWTTokenRequest(
-                    service: option.service
+                    domainServiceOption: option
                 )
             )
             .tryMap { [weak self] response, urlResponse in
@@ -82,7 +86,8 @@ final class DomainService {
             }
             .compactMap { [weak self] jwt in
                 guard let self else { return nil }
-                guard let url = URL(string: "https://\(self.audience)") else {
+                let requestProtocol = option == .journey ? "http" : "https"
+                guard let url = URL(string: "\(requestProtocol)://\(self.audience)") else {
                     fatalError("Unable to get the base URL for the domain service")
                 }
                 return API(
@@ -128,11 +133,18 @@ extension DomainService {
 extension DomainService {
     enum Option: String {
         case cedar
+        case journey
         case pine
         case redwood
 
         var service: String {
             rawValue
+        }
+
+        var workflows: [Option] {
+            self == .journey ?
+            [self, .pine] :
+            [self]
         }
     }
 }
@@ -140,10 +152,14 @@ extension DomainService {
 extension DomainService {
     private struct JWTTokenRequest: APIRequestable {
         typealias Response = Result
-        let service: String
+
+        let domainServiceOption: DomainService.Option
 
         var path: String {
-            "/api/v1/jwts?canvas_audience=false&workflows[]=\(service)"
+            let workflowQueryParams = domainServiceOption.workflows.map {
+                "workflows[]=\($0.rawValue)"
+            }.joined(separator: "&")
+            return "/api/v1/jwts?canvas_audience=false&\(workflowQueryParams)"
         }
 
         var method: APIMethod { .post }
