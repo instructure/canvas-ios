@@ -21,6 +21,9 @@ import SwiftUI
 public struct GradeRowView: View {
     public let gradeRowEntry: GradeRowEntry
     public let isWhatIfScoreModeOn: Bool
+    public let fontRegular14: Font
+    public let fontRegular16: Font
+    public let fontMedium16: Font
     public let editScoreButtonDidTap: () -> Void
 
     @ScaledMetric private var uiScale: CGFloat = 1
@@ -54,11 +57,11 @@ public struct GradeRowView: View {
     private var assignmentDetailsView: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(gradeRowEntry.assignmentName)
-                .font(.medium16)
+                .font(fontMedium16)
                 .foregroundStyle(Color.textDarkest)
                 .multilineTextAlignment(.leading)
             Text(gradeRowEntry.dueText)
-                .font(.regular14)
+                .font(fontRegular14)
                 .foregroundStyle(Color.textDark)
                 .multilineTextAlignment(.leading)
 
@@ -66,7 +69,7 @@ public struct GradeRowView: View {
                 gradeRowEntry.statusIcon
                     .size(uiScale.iconScale * 18)
                 Text(gradeRowEntry.statusText)
-                    .font(.regular14)
+                    .font(fontRegular14)
             }
             .foregroundStyle(gradeRowEntry.statusColor)
         }
@@ -74,7 +77,7 @@ public struct GradeRowView: View {
 
     private var gradeText: some View {
         Text(gradeRowEntry.gradeText)
-            .font(.regular16)
+            .font(fontRegular16)
             .foregroundStyle(Color.textDarkest)
             .accessibilityLabel(Text(gradeRowEntry.gradeAccessibilityLabel))
     }
@@ -105,6 +108,9 @@ struct GradeRowViewPreview: PreviewProvider {
         GradeRowView(
             gradeRowEntry: GradeRowEntry(assignment: assignment, userID: ""),
             isWhatIfScoreModeOn: true,
+            fontRegular14: .regular14,
+            fontRegular16: .regular16,
+            fontMedium16: .medium16,
             editScoreButtonDidTap: {}
         )
     }

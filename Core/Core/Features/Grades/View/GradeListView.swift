@@ -39,6 +39,10 @@ public struct GradeListView: View, ScreenViewTrackable {
     @State private var scrollOffset: CGFloat?
     @State private var collapsableHeaderHeight: CGFloat = 0
 
+    @State private var fontRegular14 = Font.regular14
+    @State private var fontRegular16 = Font.regular16
+    @State private var fontMedium16 = Font.medium16
+
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     private var toggleViewIsVisible: Bool {
@@ -373,7 +377,10 @@ public struct GradeListView: View, ScreenViewTrackable {
         } label: {
             GradeRowView(
                 gradeRowEntry: entry,
-                isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn
+                isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn,
+                fontRegular14: fontRegular14,
+                fontRegular16: fontRegular14,
+                fontMedium16: fontRegular14,
             ) {
                 isScoreEditorPresented.toggle()
             }
