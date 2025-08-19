@@ -383,4 +383,80 @@ class SubmissionTests: CoreTestCase {
 
         XCTAssertEqual(onPaperGradedSubmission.stateDisplayProperties, .graded)
     }
+
+    // MARK: - Checkpoints
+
+    func test_saveHasSubAssignmentSubmissions() {
+        // default should be false
+        var item = APISubmission.make(has_sub_assignment_submissions: nil)
+        var testee = saveModel(item)
+        XCTAssertEqual(testee.hasSubAssignmentSubmissions, false)
+
+        item = APISubmission.make(has_sub_assignment_submissions: true)
+        testee = saveModel(item)
+        XCTAssertEqual(testee.hasSubAssignmentSubmissions, true)
+
+        // nil should not clear value
+        item = APISubmission.make(has_sub_assignment_submissions: nil)
+        testee = saveModel(item)
+        XCTAssertEqual(testee.hasSubAssignmentSubmissions, true)
+
+        item = APISubmission.make(has_sub_assignment_submissions: false)
+        testee = saveModel(item)
+        XCTAssertEqual(testee.hasSubAssignmentSubmissions, false)
+    }
+
+    func test_saveSubAssignmentSubmissions_whenNilOrEmpty() {
+        var item = APISubmission.make(sub_assignment_submissions: nil)
+        var testee = saveModel(item)
+        XCTAssertEqual(testee.subAssignmentSubmissions.isEmpty, true)
+
+        item = APISubmission.make(sub_assignment_submissions: [])
+        testee = saveModel(item)
+        XCTAssertEqual(testee.subAssignmentSubmissions.isEmpty, true)
+
+        // set some value
+        item = APISubmission.make(sub_assignment_submissions: [.make()])
+        testee = saveModel(item)
+        XCTAssertEqual(testee.subAssignmentSubmissions.isEmpty, false)
+
+        // nil should not clear values
+        item = APISubmission.make(sub_assignment_submissions: nil)
+        testee = saveModel(item)
+        XCTAssertEqual(testee.subAssignmentSubmissions.isEmpty, false)
+
+        // [] should clear values
+        item = APISubmission.make(sub_assignment_submissions: [])
+        testee = saveModel(item)
+        XCTAssertEqual(testee.subAssignmentSubmissions.isEmpty, true)
+    }
+
+    func test_saveSubAssignmentSubmissions_whenNotEmpty() {
+        let item = APISubmission.make(
+            id: "42",
+            sub_assignment_submissions: [
+                .make(sub_assignment_tag: "tag1"),
+                .make(sub_assignment_tag: "tag2")
+            ]
+        )
+        let testee = saveModel(item)
+
+        let sortedSubSubmissions = testee.subAssignmentSubmissions.sorted(by: \.subAssignmentTag)
+        XCTAssertEqual(sortedSubSubmissions.count, 2)
+        XCTAssertEqual(sortedSubSubmissions.first?.subAssignmentTag, "tag1")
+        XCTAssertEqual(sortedSubSubmissions.last?.subAssignmentTag, "tag2")
+
+        let fetchedSubSubmissions: [CDSubAssignmentSubmission] = databaseClient
+            .all(where: \.submissionId, equals: "42")
+            .sorted(by: \.subAssignmentTag)
+        XCTAssertEqual(fetchedSubSubmissions.count, 2)
+        XCTAssertEqual(fetchedSubSubmissions.first?.subAssignmentTag, "tag1")
+        XCTAssertEqual(fetchedSubSubmissions.last?.subAssignmentTag, "tag2")
+    }
+
+    // MARK: - Private Helpers
+
+    private func saveModel(_ item: APISubmission) -> Submission {
+        Submission.save(item, in: databaseClient)
+    }
 }
