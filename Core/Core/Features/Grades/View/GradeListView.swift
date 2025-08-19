@@ -42,6 +42,8 @@ public struct GradeListView: View, ScreenViewTrackable {
     @State private var fontRegular14 = Font.regular14
     @State private var fontRegular16 = Font.regular16
     @State private var fontMedium16 = Font.medium16
+    @State private var fontSemiBold14 = Font.semibold14
+    @State private var fontSemiBold22 = Font.semibold22
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
@@ -276,7 +278,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         let text = isShowGradeAssignment ? gradedAssignmentsText : totalText
         Text(viewModel.totalGradeText == nil ? restrictedText : text)
             .foregroundStyle(Color.textDark)
-            .font(.regular14)
+            .font(fontRegular14)
             .accessibilityHidden(true)
             .animation(.smooth, value: isShowGradeAssignment)
             .lineLimit(1)
@@ -286,7 +288,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     private func totalGradeText(_ totalGrade: String) -> some View {
         Text(totalGrade)
             .foregroundStyle(Color.textDarkest)
-            .font(.semibold22)
+            .font(fontSemiBold22)
             .multilineTextAlignment(.center)
             .accessibilityLabel(Text("Total grade is \(totalGrade)", bundle: .core))
             .accessibilityIdentifier("CourseTotalGrade")
@@ -298,7 +300,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             InstUI.Toggle(isOn: $viewModel.baseOnGradedAssignment) {
                 Text("Based on graded assignments", bundle: .core)
                     .foregroundStyle(Color.textDarkest)
-                    .font(.regular16)
+                    .font(fontRegular16)
                     .multilineTextAlignment(.leading)
             }
             .frame(minHeight: 51)
@@ -310,7 +312,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 InstUI.Toggle(isOn: $viewModel.isWhatIfScoreModeOn) {
                     Text("Show What-if Score", bundle: .core)
                         .foregroundStyle(Color.textDarkest)
-                        .font(.regular16)
+                        .font(fontRegular16)
                         .multilineTextAlignment(.leading)
                 }
                 .frame(minHeight: 51)
@@ -361,7 +363,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     private func listSectionView(title: String?) -> some View {
         Text(title ?? "")
             .foregroundStyle(Color.textDark)
-            .font(.semibold14)
+            .font(fontSemiBold14)
             .frame(maxWidth: .infinity, minHeight: 40, alignment: .leading)
     }
 
@@ -378,8 +380,8 @@ public struct GradeListView: View, ScreenViewTrackable {
                 gradeRowEntry: entry,
                 isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn,
                 fontRegular14: fontRegular14,
-                fontRegular16: fontRegular14,
-                fontMedium16: fontRegular14,
+                fontRegular16: fontRegular16,
+                fontMedium16: fontMedium16,
             ) {
                 isScoreEditorPresented.toggle()
             }
