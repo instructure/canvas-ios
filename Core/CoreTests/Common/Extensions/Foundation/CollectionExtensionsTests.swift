@@ -38,4 +38,9 @@ class CollectionExtensionsTests: XCTestCase {
         XCTAssertTrue(nonEmptySet.isNotEmpty)
         XCTAssertTrue(nonEmptyDictionary.isNotEmpty)
     }
+
+    func testNilIfEmpty() {
+        XCTAssertNil([].nilIfEmpty)
+        XCTAssertEqual([1, 2, 3].nilIfEmpty, [1, 2, 3])
+    }
 }

@@ -20,15 +20,17 @@ import Foundation
 import CoreData
 
 public final class AssignmentOverride: NSManagedObject, WriteableModel {
-    @NSManaged public var assignmentID: String
-    @NSManaged public var courseSectionID: String?
-    @NSManaged public var dueAt: Date?
     @NSManaged public var id: String
-    @NSManaged public var groupID: String?
-    @NSManaged public var lockAt: Date?
-    @NSManaged var studentIDsRaw: String?
+    @NSManaged public var assignmentID: String
     @NSManaged public var title: String
+
+    @NSManaged public var courseSectionID: String?
+    @NSManaged public var groupID: String?
+    @NSManaged var studentIDsRaw: String?
+
+    @NSManaged public var dueAt: Date?
     @NSManaged public var unlockAt: Date?
+    @NSManaged public var lockAt: Date?
 
     public var studentIDs: [String]? {
         get { studentIDsRaw?.components(separatedBy: ",") }
@@ -38,15 +40,19 @@ public final class AssignmentOverride: NSManagedObject, WriteableModel {
     @discardableResult
     public static func save(_ item: APIAssignmentOverride, in context: NSManagedObjectContext) -> AssignmentOverride {
         let model: AssignmentOverride = context.first(where: #keyPath(AssignmentOverride.id), equals: item.id.value) ?? context.insert()
-        model.assignmentID = item.assignment_id.value
-        model.courseSectionID = item.course_section_id?.value
-        model.dueAt = item.due_at
-        model.groupID = item.group_id?.value
+
         model.id = item.id.value
-        model.lockAt = item.lock_at
-        model.studentIDs = item.student_ids?.map { $0.value }
+        model.assignmentID = item.assignment_id.value
         model.title = item.title
+
+        model.courseSectionID = item.course_section_id?.value
+        model.groupID = item.group_id?.value
+        model.studentIDs = item.student_ids?.map { $0.value }
+
+        model.dueAt = item.due_at
         model.unlockAt = item.unlock_at
+        model.lockAt = item.lock_at
+
         return model
     }
 }

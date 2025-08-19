@@ -35,8 +35,6 @@ public extension Array {
         }
         return self[index]
     }
-
-    var nilIfEmpty: Self? { isEmpty ? nil : self }
 }
 
 public extension Array where Element: Equatable {

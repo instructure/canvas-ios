@@ -173,15 +173,15 @@ public struct AssignmentOverridesEditor: View {
         for override in from where override.studentIDs?.isEmpty != true {
             if let title = override.title, !override.isEveryone {
                 overrides.append(APIAssignmentOverride(
-                    assignment_id: ID(assignmentID),
-                    course_section_id: ID(override.sectionID),
-                    due_at: override.dueAt,
-                    group_id: ID(override.groupID),
                     id: ID(override.id),
-                    lock_at: override.lockAt,
-                    student_ids: override.studentIDs?.map { ID($0) },
+                    assignment_id: ID(assignmentID),
                     title: title,
-                    unlock_at: override.unlockAt
+                    course_section_id: ID(override.sectionID),
+                    group_id: ID(override.groupID),
+                    student_ids: override.studentIDs?.map { ID($0) },
+                    due_at: override.dueAt,
+                    unlock_at: override.unlockAt,
+                    lock_at: override.lockAt
                 ))
             } else {
                 dueAt = override.dueAt
