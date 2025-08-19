@@ -326,14 +326,13 @@ public struct GradeListView: View, ScreenViewTrackable {
     ) -> some View {
         LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
             ForEach(assignmentSections, id: \.id) { section in
-                let itemCountLabel = String.format(numberOfItems: section.assignmentViewModels.count)
                 AssignmentSection {
                     VStack(spacing: 0) {
                         listSectionView(title: section.title)
                             .frame(height: 40)
                             .paddingStyle(.horizontal, .standard)
                     }
-                    .accessibilityLabel(Text(verbatim: "\(section.title), \(itemCountLabel)"))
+                    .accessibilityLabel(section.accessibilityLabel)
                 } content: {
                     ForEach(section.assignmentViewModels, id: \.id) { entry in
                         VStack(alignment: .leading, spacing: 0) {
