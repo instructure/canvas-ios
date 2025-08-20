@@ -31,7 +31,7 @@ extension CDHNotebookNote {
         model.userID = userID
         model.content = item.userText
         model.courseID = item.courseId
-        model.date = item.createdAt
+        model.date = item.updatedAt
         if let end = item.highlightData?.textPosition.end {
             model.end = NSNumber(value: end)
         }
