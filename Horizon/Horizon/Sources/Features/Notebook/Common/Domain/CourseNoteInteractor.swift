@@ -50,13 +50,11 @@ enum NotebookError: Error {
 final class CourseNoteInteractorLive: CourseNoteInteractor {
 
     // MARK: - Type Definitions
-
     typealias CursorFilter = (cursor: Cursor?, filter: CourseNoteLabel?)
     typealias ObjectFilter = (courseID: String?, pageURL: String?)
     typealias FilteringNotes = (all: [CourseNotebookNote], filtered: [CourseNotebookNote])
 
     // MARK: - Private Properties
-
     private var cursor: Cursor? {
         cursorFilter.value?.cursor
     }
@@ -69,6 +67,14 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
     private var objectFilters: CurrentValueRelay<ObjectFilter> = CurrentValueRelay((nil, nil))
     private let refreshSubject = CurrentValueRelay<Date?>(nil)
     private var lastRefresh: Date?
+
+    // MARK: - Dependencies
+    private let pageSize: Int
+
+    // MARK: - Init
+    init(pageSize: Int = 10) {
+        self.pageSize = pageSize
+    }
 
     // MARK: - Public
 
@@ -224,8 +230,6 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
     }
 
     private func filteredToPage(_ notes: [CourseNotebookNote]) -> FilteringNotes {
-        let pageSize = 10
-
         guard let cursor = cursor else {
             return (notes, filtered: Array(notes.prefix(pageSize)))
         }
