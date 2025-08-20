@@ -234,13 +234,19 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
             return (notes, filtered: Array(notes.prefix(pageSize)))
         }
 
-        let filtered = Array(
-            notes.filter { note in
+        let filteredNotes = notes
+            .filter { note in
                 cursor.isBefore ?
                     note.date < cursor.cursor :
                     note.date > cursor.cursor
-            }.prefix(pageSize)
+            }
+
+        let filtered = Array(
+            cursor.isBefore ?
+                filteredNotes.prefix(pageSize) :
+                filteredNotes.suffix(pageSize)
         )
+
         return (notes, filtered)
     }
 }
