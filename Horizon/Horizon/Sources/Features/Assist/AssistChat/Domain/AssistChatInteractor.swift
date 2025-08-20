@@ -78,6 +78,7 @@ struct AssistRequest: APIRequestable {
     // TODO: Relocate Quiz Item, Flash Card, etc.
     struct AssistResponse: Codable {
         let state: AssistState?
+        let statusCode: Int?
         let response: String?
         let chips: [AssistChipOption]?
         let flashCards: [AssistChatFlashCard]?
@@ -156,6 +157,18 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     }
 
     private func updateState(assistResponse: AssistRequest.AssistResponse?) -> AssistRequest.AssistResponse? {
+        if assistResponse?.statusCode == 401 && assistResponse?.error == nil {
+            return AssistRequest.AssistResponse(
+                state: state,
+                statusCode: assistResponse?.statusCode,
+                response: assistResponse?.response,
+                chips: assistResponse?.chips,
+                flashCards: assistResponse?.flashCards,
+                quizItems: assistResponse?.quizItems,
+                citations: assistResponse?.citations,
+                error: "Please log in to continue."
+            )
+        }
         state = assistResponse?.state ?? state
         return assistResponse
     }
