@@ -19,7 +19,7 @@
 import XCTest
 @testable import Core
 
-class GetAssignmentGroupRequestTests: XCTestCase {
+class GetAssignmentGroupsRequestTests: XCTestCase {
     var req: GetAssignmentGroupsRequest!
     let courseID = "1"
 
@@ -51,10 +51,5 @@ class GetAssignmentGroupRequestTests: XCTestCase {
             URLQueryItem(name: "grading_period_id", value: "1")
         ]
         XCTAssertEqual(req.queryItems, expected)
-    }
-
-    func testModel() {
-        let model = APIAssignmentGroup.make()
-        XCTAssertNotNil(model)
     }
 }

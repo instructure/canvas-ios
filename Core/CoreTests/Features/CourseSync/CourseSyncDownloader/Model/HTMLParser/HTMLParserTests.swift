@@ -167,30 +167,14 @@ class HTMLParserTests: CoreTestCase {
     func testParseExtensionFunctionParseAttachment() {
         let htmlParser = HTMLParserMock()
         let discussionEntries = [
-            DiscussionEntry.make(from:
-                                    APIDiscussionEntry(
-                                        id: "1",
-                                        user_id: nil,
-                                        editor_id: nil,
-                                        parent_id: nil,
-                                        created_at: nil,
-                                        updated_at: nil,
-                                        rating_sum: nil,
-                                        replies: nil,
-                                        attachment: APIFile.make(id: "1", url: URL(string: "https://adamdomonkos.instructure.com/files/1")!), deleted: nil)
-                                ),
-            DiscussionEntry.make(from:
-                                    APIDiscussionEntry(
-                                        id: "2",
-                                        user_id: nil,
-                                        editor_id: nil,
-                                        parent_id: nil,
-                                        created_at: nil,
-                                        updated_at: nil,
-                                        rating_sum: nil,
-                                        replies: nil,
-                                        attachment: APIFile.make(id: "2", url: URL(string: "https://adamdomonkos.instructure.com/files/2")!), deleted: nil)
-                                )
+            DiscussionEntry.make(from: .make(
+                id: "1",
+                attachment: APIFile.make(id: "1", url: URL(string: "https://adamdomonkos.instructure.com/files/1")!)
+            )),
+            DiscussionEntry.make(from: .make(
+                id: "2",
+                attachment: APIFile.make(id: "2", url: URL(string: "https://adamdomonkos.instructure.com/files/2")!)
+            ))
         ]
         Just(discussionEntries)
             .setFailureType(to: Error.self)
@@ -206,45 +190,12 @@ class HTMLParserTests: CoreTestCase {
     func testParseExtensionFunctionParseAttachmentForSet() {
         let htmlParser = HTMLParserMock()
         let discussionTopics = [
-            DiscussionTopic.make(from:
-                                    APIDiscussionTopic(
-                                        allow_rating: false,
-                                        anonymous_state: nil,
-                                        assignment: nil,
-                                        assignment_id: nil,
-                                        attachments: [
-                                            APIFile.make(id: "1", url: URL(string: "https://adamdomonkos.instructure.com/files/1")!),
-                                            APIFile.make(id: "2", url: URL(string: "https://adamdomonkos.instructure.com/files/2")!)
-                                        ],
-                                        author: nil,
-                                        can_unpublish: nil,
-                                        created_at: nil,
-                                        context_code: nil,
-                                        delayed_post_at: nil,
-                                        discussion_subentry_count: 0,
-                                        discussion_type: nil,
-                                        group_category_id: nil,
-                                        group_topic_children: nil,
-                                        html_url: nil,
-                                        id: "1",
-                                        is_section_specific: false,
-                                        last_reply_at: nil,
-                                        locked_for_user: false,
-                                        lock_at: nil,
-                                        only_graders_can_rate: nil,
-                                        permissions: nil,
-                                        pinned: nil,
-                                        position: nil,
-                                        posted_at: nil,
-                                        published: true,
-                                        require_initial_post: nil,
-                                        sections: nil,
-                                        sort_by_rating: false,
-                                        subscribed: nil,
-                                        subscription_hold: nil,
-                                        unread_count: nil
-                                    )
-                                )
+            DiscussionTopic.make(from: .make(
+                attachments: [
+                    APIFile.make(id: "1", url: URL(string: "https://adamdomonkos.instructure.com/files/1")!),
+                    APIFile.make(id: "2", url: URL(string: "https://adamdomonkos.instructure.com/files/2")!)
+                ]
+            ))
         ]
         Just(discussionTopics)
             .setFailureType(to: Error.self)

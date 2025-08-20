@@ -31,7 +31,14 @@ public struct GetSubmissionRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        return [ .array("include", [ "submission_comments", "submission_history", "user", "rubric_assessment", "group"]) ]
+        return [.array("include", [
+                "submission_comments",
+                "submission_history",
+                "user",
+                "rubric_assessment",
+                "group",
+                "sub_assignment_submissions"
+            ])]
     }
 
     public init(context: Context, assignmentID: String, userID: String) {

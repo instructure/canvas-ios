@@ -79,6 +79,13 @@ public class Assignment: NSManagedObject {
     @NSManaged public var useRubricForGrading: Bool
     @NSManaged public var hideInGradeBook: Bool
 
+    // Checkpoints
+    @NSManaged public var hasSubAssignments: Bool
+    @NSManaged private var checkpointsRaw: NSOrderedSet
+    public var checkpoints: [CDAssignmentCheckpoint] {
+        get { checkpointsRaw.typedArray() ?? [] } set { checkpointsRaw = .init(newValue) }
+    }
+
     /**
      Use this property (vs. submissions) when you want the most recent submission
      commonly for a student (i.e. Student app, all submissions returned are for 1 particular student)
@@ -293,6 +300,21 @@ public class Assignment: NSManagedObject {
 
         if let items = item.overrides {
             overrides = Set(items.map { AssignmentOverride.save($0, in: client) })
+        }
+
+        updateCheckpoints(from: item, in: client)
+    }
+
+    private func updateCheckpoints(from item: APIAssignment, in moContext: NSManagedObjectContext) {
+        if let hasSubAssignments = item.has_sub_assignments {
+            self.hasSubAssignments = hasSubAssignments
+            // else CoreData can default to `false`
+        }
+
+        if let checkpoints = item.checkpoints {
+            self.checkpoints = checkpoints.map {
+                CDAssignmentCheckpoint.save($0, assignmentId: item.id.value, in: moContext)
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,24 +18,22 @@
 
 import Foundation
 
-extension Sequence {
-    /// Gives a new sequence with `separator` placed between every element
-    public func interleave(separator: Element) -> [Element] {
-        var result = [Element]()
-        result.reserveCapacity(underestimatedCount * 2)
-        for element in self {
-            if !result.isEmpty {
-                result.append(separator)
-            }
-            result.append(element)
-        }
-        return result
-    }
+public enum DiscussionCheckpointStep {
+    case replyToTopic
+    case requiredReplies(Int)
 
-    public func sorted<T: Comparable>(
-        by keyPath: KeyPath<Element, T>,
-        order: SortOrder = .forward
-    ) -> [Element] {
-        sorted(using: KeyPathComparator(keyPath, order: order))
+    init?(tag: String, requiredReplyCount: Int?) {
+        switch tag {
+        case "reply_to_topic":
+            self = .replyToTopic
+        case "reply_to_entry":
+            if let requiredReplyCount {
+                self = .requiredReplies(requiredReplyCount)
+            } else {
+                return nil
+            }
+        default:
+            return nil
+        }
     }
 }

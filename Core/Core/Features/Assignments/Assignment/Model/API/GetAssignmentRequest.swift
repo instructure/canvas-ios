@@ -23,11 +23,13 @@ public struct GetAssignmentRequest: APIRequestable {
     public typealias Response = APIAssignment
 
     public enum Include: String, CaseIterable {
-        case submission
+        case can_submit
+        case checkpoints
+        case observed_users
         case overrides
         case score_statistics
-        case can_submit
-        case observed_users
+        case sub_assignment_submissions
+        case submission
     }
 
     let courseID: String
