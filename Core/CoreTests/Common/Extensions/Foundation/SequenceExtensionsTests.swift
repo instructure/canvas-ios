@@ -30,7 +30,7 @@ class SequenceExtensionsTests: XCTestCase {
     }
 
     func test_sortedByKeyPath() {
-        let array: [Context] = [.account("3"),.user("1"),.course("2")]
+        let array: [Context] = [.account("3"), .user("1"), .course("2")]
 
         XCTAssertEqual(
             array.sorted(by: \.id).map(\.canvasContextID),
