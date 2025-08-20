@@ -111,7 +111,12 @@ public final class ModuleItemSequenceViewController: UIViewController {
         guard let url = url.url else { return nil }
         if let current = sequence?.current {
             return ModuleItemDetailsViewController.create(env: env, courseID: courseID, moduleID: current.moduleID, itemID: current.id)
-        } else if assetType != .moduleItem, let match = env.router.match(url.appendingOrigin("module_item_details")) {
+        } else if
+            assetType != .moduleItem,
+            let match = env.router.match(
+                url.appendingOrigin("module_item_details"),
+                userInfo: env.courseShardIDOverrideInfo
+            ) {
             return match
         } else {
             let external = ExternalURLViewController.create(

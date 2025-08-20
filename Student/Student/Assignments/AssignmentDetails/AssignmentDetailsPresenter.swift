@@ -149,7 +149,7 @@ class AssignmentDetailsPresenter {
         self.fragment = fragment
         self.submissionButtonPresenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: assignmentID)
         if let session = env.currentSession {
-            self.userID = session.userID.localID
+            self.userID = session.userID.asGlobalID(of: env.root)
         }
         subscribeToSuccessfulSubmissionNotification(assignmentID: assignmentID)
     }
@@ -178,7 +178,7 @@ class AssignmentDetailsPresenter {
         guard quizzes?.pending != true else { return }
         let baseURL = fragmentHash.flatMap { URL(string: $0, relativeTo: assignment.htmlURL) } ?? assignment.htmlURL
         if let submission = assignment.submission {
-            userID = submission.userID
+            userID = submission.userID.asGlobalID(of: env.root)
         }
         if assignments.requested && !assignments.pending && fileCleanupPending {
             fileCleanupPending = false

@@ -301,7 +301,12 @@ extension ModuleListViewController: UITableViewDelegate {
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
-        env.router.route(to: htmlURL, from: self, options: .detail)
+        env.router.route(
+            to: htmlURL,
+            userInfo: env.courseShardIDOverrideInfo,
+            from: self,
+            options: .detail
+        )
     }
 
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

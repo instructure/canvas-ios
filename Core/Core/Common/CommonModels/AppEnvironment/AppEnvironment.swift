@@ -70,6 +70,7 @@ open class AppEnvironment {
 
     open var root: AppEnvironment { self }
     public var isRoot: Bool { root === self }
+    public var shardID: String? { currentSession?.accessToken?.shardID }
 
     /**
      - parameters:

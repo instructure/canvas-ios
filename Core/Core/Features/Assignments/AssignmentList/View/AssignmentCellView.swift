@@ -34,7 +34,12 @@ public struct AssignmentCellView: View {
     public var body: some View {
         Button(action: {
             if let url = viewModel.route {
-                env.router.route(to: url, from: controller, options: .detail)
+                env.router.route(
+                    to: url,
+                    userInfo: env.courseShardIDOverrideInfo,
+                    from: controller,
+                    options: .detail
+                )
             }
         }, label: {
             HStack(spacing: 13) {

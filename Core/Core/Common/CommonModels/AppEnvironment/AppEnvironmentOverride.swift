@@ -25,10 +25,12 @@ public final class AppEnvironmentOverride: AppEnvironment {
 
     let base: AppEnvironment
     let baseURL: URL
+    private(set) var _shardID: String?
 
-    fileprivate init(base: AppEnvironment, baseURL: URL) {
+    fileprivate init(base: AppEnvironment, baseURL: URL, shardID: String?) {
         self.base = base
         self.baseURL = baseURL
+        self._shardID = shardID
         super.init()
     }
 
@@ -37,6 +39,11 @@ public final class AppEnvironmentOverride: AppEnvironment {
     }()
 
     public override var root: AppEnvironment { base }
+    public override var shardID: String? { _shardID }
+
+    public func resetShardID(_ shardID: String) {
+        self._shardID = shardID
+    }
 
     public override var app: AppEnvironment.App? {
         get { base.app }
@@ -105,12 +112,20 @@ public final class AppEnvironmentOverride: AppEnvironment {
 
 extension AppEnvironment {
 
+    var courseShardIDOverrideInfo: [String: Any]? {
+        guard let shardID = (self as? AppEnvironmentOverride)?._shardID else { return nil }
+        return [ "courseShardIDOverride": shardID ]
+    }
+
     /// This method returns an `AppEnvironmentOverride` using the given `url`s host if it
     /// doesn't match the one on `AppEnvironment.shared`.
     static func resolved(for url: URLComponents) -> AppEnvironment {
         if let host = url.host, host != shared.api.baseURL.host(),
            let baseURL = url.with(scheme: shared.api.baseURL.scheme).url?.apiBaseURL {
-            return AppEnvironmentOverride(base: shared, baseURL: baseURL)
+
+            let params = Route("/courses/:courseID/:tabName").match(url)
+            let shardID = params?["courseID"]?.shardID
+            return AppEnvironmentOverride(base: shared, baseURL: baseURL, shardID: shardID)
         }
 
         return .shared
@@ -124,6 +139,14 @@ extension AppEnvironment {
             let components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)
         else { return .shared }
         return resolved(for: components)
+    }
+
+    func courseShardIDOverriden(with info: [String: Any]?) -> Self {
+        if let shardID = info?["courseShardIDOverride"] as? String,
+           let override = self as? AppEnvironmentOverride {
+            override.resetShardID(shardID)
+        }
+        return self
     }
 }
 

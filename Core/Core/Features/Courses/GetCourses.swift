@@ -35,9 +35,9 @@ public class GetCourse: APIUseCase {
         let modifiedCase = self
 
         if env.isRoot == false {
-            // Should always be used in root-form ID when this
+            // Should always be used in global-form ID when this
             // use case is used in inner course details pages
-            modifiedCase.courseID = courseID.asRootID
+            modifiedCase.courseID = courseID.asGlobalID(of: env)
             modifiedCase.isRootCalling = true
         }
 
