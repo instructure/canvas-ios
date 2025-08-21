@@ -203,7 +203,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         }
         .frame(width: 44, height: 44).padding(.trailing, -6)
         .accessibilityLabel(Text("Dashboard settings", bundle: .core))
-//        .accessibilityIdentifier("Dashboard.settingsButton")
+        .accessibilityIdentifier("Dashboard.settingsButton")
     }
 
     // MARK: Nav Bar Buttons -
