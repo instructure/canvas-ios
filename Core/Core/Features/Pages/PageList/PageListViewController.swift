@@ -47,10 +47,10 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
     lazy var group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var frontPage = env.subscribe(GetFrontPage(context: context)) { [weak self] in
+    lazy var frontPage = env.subscribe(GetFrontPage(context: context.local)) { [weak self] in
         self?.update()
     }
-    lazy var pages = env.subscribe(GetPages(context: context)) { [weak self] in
+    lazy var pages = env.subscribe(GetPages(context: context.local)) { [weak self] in
         self?.update()
     }
 
