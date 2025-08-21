@@ -27,7 +27,7 @@ class RubricGradingInteractorMock: RubricGradingInteractor {
     let totalRubricScore = CurrentValueSubject<Double, Never>(0)
     let isRubricScoreAvailable = CurrentValueSubject<Bool, Never>(false)
 
-    private let assessmentsSubject = CurrentValueSubject<APIRubricAssessmentMap, Never>([:])
+    let assessmentsSubject = CurrentValueSubject<APIRubricAssessmentMap, Never>([:])
 
     init() {
         self.assessments = assessmentsSubject.eraseToAnyPublisher()
