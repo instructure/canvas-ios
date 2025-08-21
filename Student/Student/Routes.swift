@@ -527,6 +527,7 @@ private func fileDetails(url: URLComponents, params: [String: String], userInfo 
             fileID: fileID.localID,
             originURL: url,
             assignmentID: assignmentID?.localID,
+            studentAccessInteractor: StudentAccessInteractorLive(env: environment),
             environment: environment
         )
 }
