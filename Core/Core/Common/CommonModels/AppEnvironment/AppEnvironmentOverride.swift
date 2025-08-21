@@ -25,12 +25,12 @@ public final class AppEnvironmentOverride: AppEnvironment {
 
     let base: AppEnvironment
     let baseURL: URL
-    private(set) var _shardID: String?
+    private(set) var _courseShardID: String?
 
     fileprivate init(base: AppEnvironment, baseURL: URL, shardID: String?) {
         self.base = base
         self.baseURL = baseURL
-        self._shardID = shardID
+        self._courseShardID = shardID
         super.init()
     }
 
@@ -39,10 +39,10 @@ public final class AppEnvironmentOverride: AppEnvironment {
     }()
 
     public override var root: AppEnvironment { base }
-    public override var shardID: String? { _shardID }
+    public override var courseShardID: String? { _courseShardID ?? sessionShardID }
 
-    public func resetShardID(_ shardID: String) {
-        self._shardID = shardID
+    fileprivate func resetCourseShardIDOverride(_ shardID: String) {
+        self._courseShardID = shardID
     }
 
     public override var app: AppEnvironment.App? {
@@ -91,7 +91,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
 
             return LoginSession(
                 accessToken: cSession.accessToken,
-                baseURL: baseURL, // This important to authenticate requests
+                baseURL: baseURL, // This is important to authenticate requests
                 expiresAt: cSession.expiresAt,
                 lastUsedAt: cSession.lastUsedAt,
                 locale: cSession.locale,
@@ -111,10 +111,12 @@ public final class AppEnvironmentOverride: AppEnvironment {
 }
 
 extension AppEnvironment {
+    private static let courseShardIdOverrideUserInfoKey: String = "courseShardIdOverride"
 
-    var courseShardIDOverrideInfo: [String: Any]? {
-        guard let shardID = (self as? AppEnvironmentOverride)?._shardID else { return nil }
-        return [ "courseShardIDOverride": shardID ]
+    var courseShardIDUserInfo: [String: Any]? {
+        guard let shardID = (self as? AppEnvironmentOverride)?._courseShardID
+        else { return nil }
+        return [ Self.courseShardIdOverrideUserInfoKey: shardID ]
     }
 
     /// This method returns an `AppEnvironmentOverride` using the given `url`s host if it
@@ -141,10 +143,11 @@ extension AppEnvironment {
         return resolved(for: components)
     }
 
-    func courseShardIDOverriden(with info: [String: Any]?) -> Self {
-        if let shardID = info?["courseShardIDOverride"] as? String,
-           let override = self as? AppEnvironmentOverride {
-            override.resetShardID(shardID)
+    /// This only works for overridden environments
+    func courseShardIdOverridden(with info: [String: Any]?) -> Self {
+        if let shardID = info?[Self.courseShardIdOverrideUserInfoKey] as? String,
+           let envOverride = self as? AppEnvironmentOverride {
+            envOverride.resetCourseShardIDOverride(shardID)
         }
         return self
     }

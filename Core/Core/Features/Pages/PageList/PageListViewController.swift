@@ -128,7 +128,7 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
             if splitViewController?.isCollapsed == false, !isInSplitViewDetail {
                 env.router.route(
                     to: url,
-                    userInfo: env.courseShardIDOverrideInfo,
+                    userInfo: env.courseShardIDUserInfo,
                     from: self,
                     options: .detail
                 )
@@ -139,7 +139,7 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
     @objc func createPage() {
         env.router.route(
             to: "\(context.pathComponent)/pages/new",
-            userInfo: env.courseShardIDOverrideInfo,
+            userInfo: env.courseShardIDUserInfo,
             from: self,
             options: .modal(isDismissable: false, embedInNav: true)
         )
@@ -203,7 +203,7 @@ extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
         guard let url = page?.htmlURL else { return }
         env.router.route(
             to: url,
-            userInfo: env.courseShardIDOverrideInfo,
+            userInfo: env.courseShardIDUserInfo,
             from: self,
             options: .detail
         )

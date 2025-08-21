@@ -147,16 +147,12 @@ public extension String {
         return formatter
     }()
 
-    /// Get a copy of this ID where `shardID` of the original login session being
-    /// inserted as prefix to it.
+    /// Get a copy of this ID where the passed `shardID` being inserted as
+    /// prefix to it.
     /// For example, ID of **`239`** transformed to **`217540000000000239`**
-    /// with **`21754`** as being `shardID` extracted from the original access token.
-    var asGlobalID: String {
-        return asGlobalID(of: .shared)
-    }
-
-    func asGlobalID(of env: AppEnvironment) -> String {
-        guard let shardID = env.shardID else { return self }
+    /// with **`21754`** as being the `shardID`.
+    func asGlobalID(of shardID: String?) -> String {
+        guard let shardID else { return self }
         if hasShardID { return self }
         return ID.expandTildeID("\(shardID)~\(self)")
     }

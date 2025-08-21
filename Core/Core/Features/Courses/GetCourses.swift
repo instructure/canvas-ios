@@ -37,7 +37,7 @@ public class GetCourse: APIUseCase {
         if env.isRoot == false {
             // Should always be used in global-form ID when this
             // use case is used in inner course details pages
-            modifiedCase.courseID = courseID.asGlobalID(of: env)
+            modifiedCase.courseID = courseID.asGlobalID(of: env.courseShardID)
             modifiedCase.isRootCalling = true
         }
 

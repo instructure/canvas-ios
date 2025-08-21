@@ -115,7 +115,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
             assetType != .moduleItem,
             let match = env.router.match(
                 url.appendingOrigin("module_item_details"),
-                userInfo: env.courseShardIDOverrideInfo
+                userInfo: env.courseShardIDUserInfo
             ) {
             return match
         } else {

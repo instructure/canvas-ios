@@ -200,7 +200,7 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
 extension PageDetailsViewController: CoreWebViewLinkDelegate {
 
     public func handleLink(_ url: URL) -> Bool {
-        env.router.route(to: url, userInfo: env.courseShardIDOverrideInfo, from: self)
+        env.router.route(to: url, userInfo: env.courseShardIDUserInfo, from: self)
         return true
     }
 

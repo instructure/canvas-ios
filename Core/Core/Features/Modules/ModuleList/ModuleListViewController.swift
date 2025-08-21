@@ -303,7 +303,7 @@ extension ModuleListViewController: UITableViewDelegate {
         }
         env.router.route(
             to: htmlURL,
-            userInfo: env.courseShardIDOverrideInfo,
+            userInfo: env.courseShardIDUserInfo,
             from: self,
             options: .detail
         )
