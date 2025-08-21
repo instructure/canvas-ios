@@ -23,24 +23,29 @@ import PSPDFKitUI
 import QuickLook
 @testable import Core
 import TestsFoundation
+import Combine
 
 class FileDetailsViewControllerTests: CoreTestCase {
     let file = APIFile.make()
     var context = Context(.course, id: "2")
-    lazy var controller = FileDetailsViewController
-        .create(
-            context: context,
-            fileID: "1",
-            assignmentID: "3",
-            environment: environment
-        )
+    var controller: FileDetailsViewController!
     var navigation: UINavigationController!
     var saveWasCalled = false
     var didSaveExpectation: XCTestExpectation!
     var observer: NSObjectProtocol?
+    private var studentAccessInteractor: StudentAccessInteractorMock!
 
     override func setUp() {
         super.setUp()
+        studentAccessInteractor = StudentAccessInteractorMock()
+        controller = FileDetailsViewController
+            .create(
+                context: context,
+                fileID: "1",
+                assignmentID: "3",
+                studentAccessInteractor: studentAccessInteractor,
+                environment: environment
+            )
         navigation = UINavigationController(rootViewController: controller)
         api.mock(controller.files, value: file)
         api.mockDownload(file.url!.rawValue)
@@ -295,6 +300,19 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssert(router.presented is UIActivityViewController)
     }
 
+    func test_shareButtonHidden_whenRestricted() {
+        controller.view.layoutIfNeeded()
+
+        XCTAssertFalse(controller.shareButton.isHidden) // visible by default
+        studentAccessInteractor.setRestricted(true)
+
+        let expectation = expectation(description: "Restriction applied")
+        DispatchQueue.main.async { expectation.fulfill() }
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertTrue(controller.shareButton.isHidden)  // hidden after restriction
+    }
+
     func testLocked() {
         let file = APIFile.make(locked_for_user: true, lock_explanation: "Locked, yo.")
         api.mock(controller.files, value: file)
@@ -330,5 +348,22 @@ extension FileDetailsViewControllerTests: PSPDFKit.PDFDocumentDelegate {
 
     func pdfDocument(_ document: Document, saveDidFailWithError error: Error) {
         saveWasCalled = true // although it may have failed, it was called
+    }
+}
+
+private class StudentAccessInteractorMock: StudentAccessInteractor {
+    private let isStudentAccessRestricted: CurrentValueSubject<Bool, Never>
+
+    init(isRestricted: Bool = false) {
+        isStudentAccessRestricted = CurrentValueSubject(isRestricted)
+    }
+
+    func isRestricted() -> AnyPublisher<Bool, Never> {
+        isStudentAccessRestricted.eraseToAnyPublisher()
+    }
+
+    // Optional: allow changing value in test
+    func setRestricted(_ value: Bool) {
+        isStudentAccessRestricted.send(value)
     }
 }

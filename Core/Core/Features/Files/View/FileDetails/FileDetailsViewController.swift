@@ -66,6 +66,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     }
     public var offlineFileSource: OfflineFileSource?
     private var accessReportInteractor: FileAccessReportInteractor?
+    private var studentAccessInteractor: StudentAccessInteractor?
     private var subscriptions = Set<AnyCancellable>()
     private var offlineFileInteractor: OfflineFileInteractor?
     private var imageLoader: ImageLoader?
@@ -80,6 +81,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         assignmentID: String? = nil,
         canEdit: Bool = true,
         offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive(),
+        studentAccessInteractor: StudentAccessInteractor? = nil,
         environment: AppEnvironment
     ) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
@@ -89,6 +91,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         controller.originURL = originURL
         controller.env = environment
         controller.offlineFileInteractor = offlineFileInteractor
+        controller.studentAccessInteractor = studentAccessInteractor
         controller.canEdit = canEdit && controller.env.app == .teacher
 
         if let context {
@@ -170,6 +173,14 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         accessReportInteractor?
             .reportFileAccess()
             .sink()
+            .store(in: &subscriptions)
+
+        studentAccessInteractor?
+            .isRestricted()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isRestricted in
+                self?.shareButton.isHidden = isRestricted
+            }
             .store(in: &subscriptions)
     }
 
