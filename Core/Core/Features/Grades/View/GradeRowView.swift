@@ -95,6 +95,13 @@ public struct GradeRowView: View {
     }
 }
 
+extension GradeRowView: Equatable {
+
+    public static func == (lhs: GradeRowView, rhs: GradeRowView) -> Bool {
+        lhs.gradeRowEntry == rhs.gradeRowEntry && lhs.isWhatIfScoreModeOn == rhs.isWhatIfScoreModeOn
+    }
+}
+
 #if DEBUG
 
 struct GradeRowViewPreview: PreviewProvider {

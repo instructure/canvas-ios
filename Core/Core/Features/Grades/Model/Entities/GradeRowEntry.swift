@@ -20,7 +20,6 @@ import Combine
 import SwiftUI
 
 public struct GradeRowEntry: Equatable {
-    public let assignment: Assignment
     public let userID: String?
 
     public let id: String
@@ -35,7 +34,6 @@ public struct GradeRowEntry: Equatable {
 
     public init(assignment: Assignment, userID: String?) {
         self.id = assignment.id
-        self.assignment = assignment
         self.userID = userID
         self.assignmentName = assignment.name
         self.assignmentIcon = assignment.icon

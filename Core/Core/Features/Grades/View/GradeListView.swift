@@ -89,7 +89,10 @@ public struct GradeListView: View, ScreenViewTrackable {
         .animation(.smooth, value: isScoreEditorPresented)
         .safeAreaInset(edge: .top, spacing: 0) {
             switch viewModel.state {
-            case .data, .empty: nonCollapsableGradeDetails
+            case .data, .empty: GradeListHeaderView(
+                viewModel: viewModel,
+                toggleViewIsVisible: toggleViewIsVisible
+            )
             default: SwiftUI.EmptyView()
             }
         }
@@ -103,7 +106,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 viewModel.isShowingRevertDialog = true
             }
             ToolbarItem(placement: .primaryAction) {
-                filterButton
+                GradeListFilterButton(viewModel: viewModel)
             }
         }
         .navigationBarStyle(.color(nil))
@@ -111,24 +114,6 @@ public struct GradeListView: View, ScreenViewTrackable {
             isPresented: $viewModel.isShowingRevertDialog,
             presenting: viewModel.confirmRevertAlertViewModel
         )
-    }
-
-    private var filterButton: some View {
-        Button {
-            viewModel.navigateToFilter(viewController: viewController)
-        } label: {
-            Image.filterLine
-                .size(24)
-                .padding(5)
-                .foregroundStyle(viewModel.isParentApp
-                                 ? Color(Brand.shared.primary)
-                                 : .textLightest)
-
-        }
-        .hidden(viewModel.state == .initialLoading)
-        .accessibilityLabel(Text("Filter", bundle: .core))
-        .accessibilityHint(Text("Filter grades options", bundle: .core))
-        .accessibilityIdentifier("GradeList.filterButton")
     }
 
     @ViewBuilder
@@ -179,55 +164,6 @@ public struct GradeListView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private var gradeDetailsView: some View {
-        HStack {
-            totalLabelText
-                .frame(maxWidth: .infinity, alignment: .leading)
-            if let totalGrade = viewModel.totalGradeText {
-                Text(totalGrade)
-                    .foregroundStyle(Color.textDarkest)
-                    .font(.semibold22)
-                    .multilineTextAlignment(.center)
-                    .accessibilityLabel(Text("Total grade is \(totalGrade)", bundle: .core))
-                    .accessibilityIdentifier("CourseTotalGrade")
-            } else {
-                Image(uiImage: .lockLine)
-                    .size(16)
-                    .accessibilityHidden(true)
-                    .accessibilityIdentifier("lockIcon")
-            }
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, verticalSizeClass == .regular ? 20 : 5)
-        .background(
-            Color.backgroundLightest
-                .cornerRadius(6)
-        )
-        .shadow(color: Color.textDark.opacity(0.2), radius: 5, x: 0, y: 0)
-    }
-
-    @ViewBuilder
-    private var nonCollapsableGradeDetails: some View {
-        VStack(spacing: 0) {
-            HStack(alignment: .center) {
-                gradeDetailsView
-                if viewModel.isParentApp {
-                    filterButton
-                        .paddingStyle(.leading, .standard)
-                }
-            }
-            .padding([.horizontal, .top], 16)
-            .padding(.bottom, 10)
-            .background(Color.backgroundLight)
-            .overlay(alignment: .bottom) {
-                if !toggleViewIsVisible {
-                    InstUI.Divider()
-                }
-            }
-        }
-    }
-
-    @ViewBuilder
     private var collapsableToggles: some View {
         VStack(spacing: 0) {
             if viewModel.totalGradeText != nil {
@@ -264,24 +200,6 @@ public struct GradeListView: View, ScreenViewTrackable {
         .listSectionSeparatorTint(Color.clear)
         .listRowBackground(Color.clear)
         .containerRelativeFrame([.horizontal, .vertical])
-    }
-
-    @ViewBuilder
-    private var totalLabelText: some View {
-        let isShowGradeAssignment = !toggleViewIsVisible &&
-        viewModel.baseOnGradedAssignment &&
-        viewModel.totalGradeText != nil
-
-        let totalText = String(localized: "Total", bundle: .core)
-        let restrictedText = String(localized: "Total grades are restricted", bundle: .core)
-        let gradedAssignmentsText = String(localized: "Based on graded assignments", bundle: .core)
-        let text = isShowGradeAssignment ? gradedAssignmentsText : totalText
-        Text(viewModel.totalGradeText == nil ? restrictedText : text)
-            .foregroundStyle(Color.textDark)
-            .font(fontRegular14)
-            .accessibilityHidden(true)
-            .animation(.smooth, value: isShowGradeAssignment)
-            .lineLimit(1)
     }
 
     @ViewBuilder
@@ -328,14 +246,10 @@ public struct GradeListView: View, ScreenViewTrackable {
     ) -> some View {
         LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
             ForEach(assignmentSections, id: \.id) { section in
-                AssignmentSection {
-                    VStack(spacing: 0) {
-                        listSectionView(title: section.title)
-                            .frame(height: 40)
-                            .paddingStyle(.horizontal, .standard)
-                    }
-                    .accessibilityLabel(section.accessibilityLabel)
-                } content: {
+                AssignmentSection(
+                    title: section.title,
+                    titleA11yLabel: section.accessibilityLabel
+                ) {
                     ForEach(section.assignmentViewModels, id: \.id) { entry in
                         VStack(alignment: .leading, spacing: 0) {
                             listRowView(
@@ -357,14 +271,6 @@ public struct GradeListView: View, ScreenViewTrackable {
 
         Color.backgroundLightest
             .frame(height: 30)
-    }
-
-    @ViewBuilder
-    private func listSectionView(title: String?) -> some View {
-        Text(title ?? "")
-            .foregroundStyle(Color.textDark)
-            .font(fontSemiBold14)
-            .frame(maxWidth: .infinity, minHeight: 40, alignment: .leading)
     }
 
     @ViewBuilder
@@ -418,11 +324,15 @@ public struct GradeListView: View, ScreenViewTrackable {
     }
 
     private func revertWhatIfScoreSwipeButton(id: String) -> [SwipeModel] {
+        guard viewModel.isWhatIfScoreModeOn else {
+            return []
+        }
+
         let slot = SwipeModel(id: id,
                               image: { Image(uiImage: .replyLine)},
                               action: { viewModel.isShowingRevertDialog = true },
                               style: .init(background: Color.backgroundDark))
-        return viewModel.isWhatIfScoreModeOn ? [slot] : []
+        return [slot]
     }
 }
 
