@@ -22,7 +22,7 @@ sources:
       - ".swiftlint.yml"
 include:
   - Teacher/Teacher.yml
-  - TeacherFiles/teacher-files.yml
+#  - TeacherFiles/teacher-files.yml
   - TeacherE2ETests/teacher-e2e-tests.yml
   - TeacherTests/teacher-tests.yml
 projectReferences:
