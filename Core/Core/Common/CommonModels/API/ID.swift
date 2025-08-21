@@ -156,4 +156,9 @@ public extension String {
         if hasShardID { return self }
         return ID.expandTildeID("\(shardID)~\(self)")
     }
+
+    func asPrefixedCourseID(in env: AppEnvironment) -> String {
+        if env.isRoot { return localID } // No prefix for root environment
+        return asGlobalID(of: env.courseShardID)
+    }
 }

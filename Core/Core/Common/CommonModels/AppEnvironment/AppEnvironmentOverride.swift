@@ -113,7 +113,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
 extension AppEnvironment {
     private static let courseShardIdOverrideUserInfoKey: String = "courseShardIdOverride"
 
-    var courseShardIDUserInfo: [String: Any]? {
+    public var courseShardIDUserInfo: [String: Any]? {
         guard let shardID = (self as? AppEnvironmentOverride)?._courseShardID
         else { return nil }
         return [ Self.courseShardIdOverrideUserInfoKey: shardID ]
