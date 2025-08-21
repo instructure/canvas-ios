@@ -28,24 +28,30 @@ struct PineQueryMutation: APIGraphQLRequestable {
     var headers: [String: String?] {
         [
             "x-apollo-operation-name": "\(Self.operationName)",
+            "x-feature-slug": "canvas-career-ios",
             HttpHeader.accept: "application/json"
         ]
     }
 
-    public init(messages: [DomainServiceConversationMessage], courseID: String) {
+    public init(
+        messages: [DomainServiceConversationMessage],
+        courseID: String,
+        sourceID: String? = nil,
+        sourceType: LearningObjectFilterType? = nil
+    ) {
         self.variables = Variables(
-            input: RagQueryInput(
+            input: CourseRagQueryInput(
                 messages: messages,
-                source: "canvas",
-                metadata: ["courseId": courseID]
+                courseId: courseID,
+                learningObjectFilters: LearningObjectFilter(id: sourceID, type: sourceType).map { [$0] }
             )
         )
     }
 
-    public static let operationName: String = "ChatPrompt"
+    public static let operationName: String = "CourseRAGQuery"
     public static var query: String = """
-        mutation \(operationName)($input: RagQueryInput!) {
-            query(input: $input) {
+        mutation \(operationName)($input: CourseRagQueryInput!) {
+            courseQuery(input: $input) {
                 response
                 citations {
                     sourceType
@@ -58,14 +64,30 @@ struct PineQueryMutation: APIGraphQLRequestable {
 
     typealias Response = RagData
 
-    struct Variables: Codable, Equatable {
-        let input: RagQueryInput
+    enum LearningObjectFilterType: String, Codable, Equatable {
+        case File
+        case Page
     }
 
-    struct RagQueryInput: Codable, Equatable {
+    struct Variables: Codable, Equatable {
+        let input: CourseRagQueryInput
+    }
+
+    struct LearningObjectFilter: Codable, Equatable {
+        let id: String
+        let type: LearningObjectFilterType
+
+        init?(id: String?, type: LearningObjectFilterType?) {
+            guard let id = id, let type = type else { return nil }
+            self.id = id
+            self.type = type
+        }
+    }
+
+    struct CourseRagQueryInput: Codable, Equatable {
         let messages: [DomainServiceConversationMessage]
-        let source: String
-        let metadata: [String: String]
+        let courseId: String
+        let learningObjectFilters: [LearningObjectFilter]?
     }
 
     struct RagData: Codable {
@@ -73,7 +95,7 @@ struct PineQueryMutation: APIGraphQLRequestable {
     }
 
     struct RagQuery: Codable {
-        let query: RagResponse
+        let courseQuery: RagResponse
     }
 
     struct RagResponse: Codable {
@@ -85,5 +107,11 @@ struct PineQueryMutation: APIGraphQLRequestable {
         let sourceType: String
         let sourceId: String
         let metadata: [String: String]
+    }
+}
+
+extension AssistChatInteractor.AssetType {
+    var learningObjectFilterType: PineQueryMutation.LearningObjectFilterType? {
+        PineQueryMutation.LearningObjectFilterType(rawValue: self.rawValue)
     }
 }
