@@ -1,15 +1,15 @@
 ---
 targets:
-  Teacher:
+  Parent:
     type: application
     platform: iOS
     transitivelyLinkDependencies: false
     settings:
       APPLICATION_EXTENSION_API_ONLY: false
       SWIFT_EMIT_LOC_STRINGS: true
-      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.ios.teacher
-      INFOPLIST_FILE: Teacher/Info.plist
-      CODE_SIGN_ENTITLEMENTS: Teacher/Teacher.entitlements
+      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.ios.parentapp
+      INFOPLIST_FILE: Parent/Info.plist
+      CODE_SIGN_ENTITLEMENTS: Parent/Parent.entitlements
       TARGETED_DEVICE_FAMILY: 1,2
     sources:
       - path: ./
@@ -40,17 +40,17 @@ targets:
           - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist
           - $(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)
 schemes:
-  Teacher:
+  Parent:
     build:
       targets:
-        Teacher: all
+        Parent: all
     test:
       language: en
       region: US
       targets:
         - Core/CoreTests
-        - TeacherUnitTests
+        - ParentUnitTests
         - name: Core/CoreTester
           skipped: true
       gatherCoverageData: true
-      coverageTargets: [Core/Core, Teacher]
+      coverageTargets: [Core/Core, Parent]

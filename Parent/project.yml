@@ -1,9 +1,9 @@
 ---
-name: Teacher
+name: Parent
 attributes: { LastUpgradeCheck: "1600" }
 options:
   groupSortPosition: top
-  bundleIdPrefix: com.instructure.ios.teacher
+  bundleIdPrefix: com.instructure.parentapp
   deploymentTarget:
     iOS: 17.0
   createIntermediateGroups: true
@@ -21,9 +21,9 @@ sources:
     excludes:
       - ".swiftlint.yml"
 include:
-  - Teacher/Teacher.yml
-  - TeacherE2ETests/teacher-e2e-tests.yml
-  - TeacherTests/teacher-tests.yml
+  - Parent/parent.yml
+  - ParentE2ETests/parent-e2e-tests.yml
+  - ParentUnitTests/parent-unit-tests.yml
 projectReferences:
   Core:
     path: ../Core/Core.xcodeproj

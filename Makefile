@@ -14,6 +14,7 @@ sync: ## xproj file generation
 	@cd Horizon; xcodegen
 	@cd Student; xcodegen
 	@cd Teacher; xcodegen
+	@cd Parent; xcodegen
 
 sync-ci: ## CI specific xproj file generation
 	@echo 🟡 Running xcodegen
