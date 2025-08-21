@@ -21,7 +21,7 @@ sync-ci: ## CI specific xproj file generation
 	@cd Core; xcodegen
 	@cd Horizon; xcodegen
 	@cd Student; xcodegen --spec "project-ci.yml"
-	@cd Teacher; xcodegen --spec "project-ci.yml"
+	@cd Teacher; xcodegen
 	@cd Parent; xcodegen --spec "project-ci.yml"
 
 generate-placeholder-plist-files:
