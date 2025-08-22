@@ -39,12 +39,6 @@ public struct GradeListView: View, ScreenViewTrackable {
     @State private var scrollOffset: CGFloat?
     @State private var collapsableHeaderHeight: CGFloat = 0
 
-    @State private var fontRegular14 = Font.regular14
-    @State private var fontRegular16 = Font.regular16
-    @State private var fontMedium16 = Font.medium16
-    @State private var fontSemiBold14 = Font.semibold14
-    @State private var fontSemiBold22 = Font.semibold22
-
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     private var toggleViewIsVisible: Bool {
@@ -206,7 +200,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     private func totalGradeText(_ totalGrade: String) -> some View {
         Text(totalGrade)
             .foregroundStyle(Color.textDarkest)
-            .font(fontSemiBold22)
+            .font(.semibold22)
             .multilineTextAlignment(.center)
             .accessibilityLabel(Text("Total grade is \(totalGrade)", bundle: .core))
             .accessibilityIdentifier("CourseTotalGrade")
@@ -218,7 +212,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             InstUI.Toggle(isOn: $viewModel.baseOnGradedAssignment) {
                 Text("Based on graded assignments", bundle: .core)
                     .foregroundStyle(Color.textDarkest)
-                    .font(fontRegular16)
+                    .font(.regular16)
                     .multilineTextAlignment(.leading)
             }
             .frame(minHeight: 51)
@@ -230,7 +224,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 InstUI.Toggle(isOn: $viewModel.isWhatIfScoreModeOn) {
                     Text("Show What-if Score", bundle: .core)
                         .foregroundStyle(Color.textDarkest)
-                        .font(fontRegular16)
+                        .font(.regular16)
                         .multilineTextAlignment(.leading)
                 }
                 .frame(minHeight: 51)
@@ -284,10 +278,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         } label: {
             GradeRowView(
                 gradeRowEntry: entry,
-                isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn,
-                fontRegular14: fontRegular14,
-                fontRegular16: fontRegular16,
-                fontMedium16: fontMedium16,
+                isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn
             ) {
                 isScoreEditorPresented.toggle()
             }
