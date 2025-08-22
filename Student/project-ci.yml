@@ -8,6 +8,7 @@ options:
     iOS: 17.0
   createIntermediateGroups: true
 settings:
+  CODE_SIGN_STYLE: Automatic
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
   ENABLE_USER_SCRIPT_SANDBOXING: true
