@@ -115,7 +115,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         VStack(spacing: 0) {
             switch viewModel.state {
             case .data, .empty:
-                collapsableToggles
+                GradeListTogglesView(viewModel: viewModel)
                     .bindTopPosition(id: "collapsableHeader", coordinateSpace: .global, to: $scrollOffset)
                     .readingFrame { frame in
                         if collapsableHeaderHeight != frame.height {
@@ -158,19 +158,6 @@ public struct GradeListView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private var collapsableToggles: some View {
-        VStack(spacing: 0) {
-            if viewModel.totalGradeText != nil {
-                togglesView
-                    .frame(minHeight: 51)
-                    .padding(.horizontal, 16)
-            }
-            InstUI.Divider()
-        }
-        .background(Color.backgroundLight)
-    }
-
-    @ViewBuilder
     private var emptyView: some View {
         InteractivePanda(
             scene: SpacePanda(),
@@ -204,32 +191,6 @@ public struct GradeListView: View, ScreenViewTrackable {
             .multilineTextAlignment(.center)
             .accessibilityLabel(Text("Total grade is \(totalGrade)", bundle: .core))
             .accessibilityIdentifier("CourseTotalGrade")
-    }
-
-    @ViewBuilder
-    private var togglesView: some View {
-        VStack(spacing: 0) {
-            InstUI.Toggle(isOn: $viewModel.baseOnGradedAssignment) {
-                Text("Based on graded assignments", bundle: .core)
-                    .foregroundStyle(Color.textDarkest)
-                    .font(.regular16)
-                    .multilineTextAlignment(.leading)
-            }
-            .frame(minHeight: 51)
-            .accessibilityIdentifier("BasedOnGradedToggle")
-
-            if viewModel.isWhatIfScoreFlagEnabled {
-                Divider()
-
-                InstUI.Toggle(isOn: $viewModel.isWhatIfScoreModeOn) {
-                    Text("Show What-if Score", bundle: .core)
-                        .foregroundStyle(Color.textDarkest)
-                        .font(.regular16)
-                        .multilineTextAlignment(.leading)
-                }
-                .frame(minHeight: 51)
-            }
-        }
     }
 
     @ViewBuilder
