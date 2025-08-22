@@ -222,6 +222,9 @@ extension ComposeMessageOptions {
             fieldContents.selectedContext = .init(name: conversation.contextName ?? "", context: context)
         }
 
+        // Fallback to the most recent message
+        let message = message ?? conversation.messages.first
+
         var recipients = [Recipient]()
         if let author = message?.authorID, let participantIDs = message?.participantIDs {
             recipients = conversation.audience.filter { $0.id == author }.map { Recipient(conversationParticipant: $0) }
@@ -236,9 +239,6 @@ extension ComposeMessageOptions {
                     )
                 }
             }
-        } else if let author = conversation.audience.first {
-            // according to the API docs: audience list is ordered by participation level (author is the first one)
-            recipients = [Recipient(conversationParticipant: author)]
         } else {
             recipients = conversation.audience.map { Recipient(conversationParticipant: $0) }
         }
