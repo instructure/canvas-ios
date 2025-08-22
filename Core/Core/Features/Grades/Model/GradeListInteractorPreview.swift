@@ -54,7 +54,7 @@ final class GradeListInteractorPreview: GradeListInteractor {
                     .init(
                         id: UUID.string,
                         title: "Overdue Assignments",
-                        assignmentViewModels: (1...5).map {
+                        assignments: (1...5).map {
                             let assignment = Assignment.save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
                             return .init(assignment: assignment, userID: "userID")
                         }
@@ -62,7 +62,7 @@ final class GradeListInteractorPreview: GradeListInteractor {
                     .init(
                         id: UUID.string,
                         title: "Upcoming Assignments",
-                        assignmentViewModels: (6...8).map {
+                        assignments: (6...8).map {
                             let assignment = Assignment.save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
                             return .init(assignment: assignment, userID: "userID")
                         }
@@ -70,7 +70,7 @@ final class GradeListInteractorPreview: GradeListInteractor {
                     .init(
                         id: UUID.string,
                         title: "Past Assignments",
-                        assignmentViewModels: (9...10).map {
+                        assignments: (9...10).map {
                             let assignment = Assignment.save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
                             return .init(assignment: assignment, userID: "userID")
                         }

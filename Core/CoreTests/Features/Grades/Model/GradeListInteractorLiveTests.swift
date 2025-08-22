@@ -201,11 +201,11 @@ class GradeListInteractorLiveTests: CoreTestCase {
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.assignmentSections.count, 3)
                     XCTAssertEqual(data.assignmentSections[0].title, "Overdue Assignments")
-                    XCTAssertEqual(data.assignmentSections[0].assignmentViewModels[0].id, "3")
+                    XCTAssertEqual(data.assignmentSections[0].assignments[0].id, "3")
                     XCTAssertEqual(data.assignmentSections[1].title, "Upcoming Assignments")
-                    XCTAssertEqual(data.assignmentSections[1].assignmentViewModels[0].id, "2")
+                    XCTAssertEqual(data.assignmentSections[1].assignments[0].id, "2")
                     XCTAssertEqual(data.assignmentSections[2].title, "Past Assignments")
-                    XCTAssertEqual(data.assignmentSections[2].assignmentViewModels[0].id, "1")
+                    XCTAssertEqual(data.assignmentSections[2].assignments[0].id, "1")
 
                     expectation.fulfill()
                 }
@@ -238,11 +238,11 @@ class GradeListInteractorLiveTests: CoreTestCase {
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.assignmentSections.count, 3)
                     XCTAssertEqual(data.assignmentSections[0].title, "Group A")
-                    XCTAssertEqual(data.assignmentSections[0].assignmentViewModels.count, 1)
+                    XCTAssertEqual(data.assignmentSections[0].assignments.count, 1)
                     XCTAssertEqual(data.assignmentSections[1].title, "Group B")
-                    XCTAssertEqual(data.assignmentSections[1].assignmentViewModels.count, 1)
+                    XCTAssertEqual(data.assignmentSections[1].assignments.count, 1)
                     XCTAssertEqual(data.assignmentSections[2].title, "Group C")
-                    XCTAssertEqual(data.assignmentSections[2].assignmentViewModels.count, 2)
+                    XCTAssertEqual(data.assignmentSections[2].assignments.count, 2)
                     expectation.fulfill()
                 }
         drainMainQueue()

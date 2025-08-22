@@ -205,15 +205,15 @@ public struct GradeListView: View, ScreenViewTrackable {
                     title: section.title,
                     titleA11yLabel: section.accessibilityLabel
                 ) {
-                    ForEach(section.assignmentViewModels, id: \.id) { entry in
+                    ForEach(section.assignments, id: \.id) { entry in
                         VStack(alignment: .leading, spacing: 0) {
                             listRowView(
-                                entry: entry,
+                                assignment: entry,
                                 userID: userID,
                                 courseColor: courseColor
                             )
 
-                            if entry.id != section.assignmentViewModels.last?.id {
+                            if entry.id != section.assignments.last?.id {
                                 InstUI.Divider()
                                     .paddingStyle(.horizontal, .standard)
                                     .accessibilityHidden(true)
@@ -230,20 +230,20 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func listRowView(
-        entry: GradeRowEntry,
+        assignment: GradeListAssignment,
         userID: String,
         courseColor _: UIColor?
     ) -> some View {
         Button {
-            viewModel.didSelectAssignment.accept((viewController, entry.id))
+            viewModel.didSelectAssignment.accept((viewController, assignment.id))
         } label: {
             GradeRowView(
-                gradeRowEntry: entry,
+                assignment: assignment,
                 isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn
             ) {
                 isScoreEditorPresented.toggle()
             }
-            .onSwipe(trailing: revertWhatIfScoreSwipeButton(id: entry.id))
+            .onSwipe(trailing: revertWhatIfScoreSwipeButton(id: assignment.id))
             .contentShape(Rectangle())
         }
         .background(Color.backgroundLightest)

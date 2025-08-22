@@ -19,7 +19,7 @@
 import Combine
 import SwiftUI
 
-public struct GradeRowEntry: Equatable {
+public struct GradeListAssignment: Equatable {
     public let userID: String?
 
     public let id: String

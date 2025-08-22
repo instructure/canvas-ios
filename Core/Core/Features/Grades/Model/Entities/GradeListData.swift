@@ -34,17 +34,17 @@ public struct GradeListData: Identifiable, Equatable {
         var id: String
         let title: String
         let accessibilityLabel: String
-        var assignmentViewModels: [GradeRowEntry]
+        var assignments: [GradeListAssignment]
 
         init(
             id: String,
             title: String,
-            assignmentViewModels: [GradeRowEntry]
+            assignments: [GradeListAssignment]
         ) {
             self.id = id
             self.title = title
-            self.assignmentViewModels = assignmentViewModels
-            self.accessibilityLabel = "\(title), \(String.format(numberOfItems: assignmentViewModels.count))"
+            self.assignments = assignments
+            self.accessibilityLabel = "\(title), \(String.format(numberOfItems: assignments.count))"
         }
     }
 }

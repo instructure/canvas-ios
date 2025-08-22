@@ -262,15 +262,15 @@ public final class GradeListInteractorLive: GradeListInteractor {
             if let index = assignmentSections.firstIndex(where: { section in
                 section.id == assignment.assignmentGroupID ?? ""
             }) {
-                let entry = GradeRowEntry(assignment: assignment, userID: userID)
-                assignmentSections[index].assignmentViewModels.append(entry)
+                let entry = GradeListAssignment(assignment: assignment, userID: userID)
+                assignmentSections[index].assignments.append(entry)
             } else {
-                let entry = GradeRowEntry(assignment: assignment, userID: userID)
+                let entry = GradeListAssignment(assignment: assignment, userID: userID)
                 assignmentSections.append(
                     GradeListData.AssignmentSections(
                         id: assignment.assignmentGroupID ?? UUID.string,
                         title: assignment.assignmentGroupSectionName ?? "",
-                        assignmentViewModels: [entry]
+                        assignments: [entry]
                     )
                 )
             }
@@ -289,51 +289,51 @@ public final class GradeListInteractorLive: GradeListInteractor {
         var overdueAssignments = GradeListData.AssignmentSections(
             id: "overdueAssignments",
             title: String(localized: "Overdue Assignments", bundle: .core),
-            assignmentViewModels: []
+            assignments: []
         )
         var upcomingAssignments = GradeListData.AssignmentSections(
             id: "upcomingAssignments",
             title: String(localized: "Upcoming Assignments", bundle: .core),
-            assignmentViewModels: []
+            assignments: []
         )
         var pastAssignments = GradeListData.AssignmentSections(
             id: "pastAssignments",
             title: String(localized: "Past Assignments", bundle: .core),
-            assignmentViewModels: []
+            assignments: []
         )
 
         let now = Clock.now
 
         orderedAssignments.forEach { assignment in
-            let entry = GradeRowEntry(assignment: assignment, userID: userID)
+            let entry = GradeListAssignment(assignment: assignment, userID: userID)
             if let dueAt = assignment.dueAtSortNilsAtBottom {
                 if let lockAt = assignment.lockAt {
                     if lockAt >= now, dueAt <= now {
-                        overdueAssignments.assignmentViewModels.append(entry)
+                        overdueAssignments.assignments.append(entry)
                     } else if lockAt > now, dueAt > now {
-                        upcomingAssignments.assignmentViewModels.append(entry)
+                        upcomingAssignments.assignments.append(entry)
                     } else {
-                        pastAssignments.assignmentViewModels.append(entry)
+                        pastAssignments.assignments.append(entry)
                     }
                 } else if dueAt <= now {
-                    overdueAssignments.assignmentViewModels.append(entry)
+                    overdueAssignments.assignments.append(entry)
                 } else if dueAt > now {
-                    upcomingAssignments.assignmentViewModels.append(entry)
+                    upcomingAssignments.assignments.append(entry)
                 }
             } else {
-                upcomingAssignments.assignmentViewModels.append(entry)
+                upcomingAssignments.assignments.append(entry)
             }
         }
 
-        if !overdueAssignments.assignmentViewModels.isEmpty {
+        if !overdueAssignments.assignments.isEmpty {
             assignmentSections.append(overdueAssignments)
         }
 
-        if !upcomingAssignments.assignmentViewModels.isEmpty {
+        if !upcomingAssignments.assignments.isEmpty {
             assignmentSections.append(upcomingAssignments)
         }
 
-        if !pastAssignments.assignmentViewModels.isEmpty {
+        if !pastAssignments.assignments.isEmpty {
             assignmentSections.append(pastAssignments)
         }
         return assignmentSections

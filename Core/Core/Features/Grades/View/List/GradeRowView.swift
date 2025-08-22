@@ -19,7 +19,7 @@
 import SwiftUI
 
 public struct GradeRowView: View {
-    public let gradeRowEntry: GradeRowEntry
+    public let assignment: GradeListAssignment
     public let isWhatIfScoreModeOn: Bool
     public let editScoreButtonDidTap: () -> Void
 
@@ -41,11 +41,11 @@ public struct GradeRowView: View {
             .padding(.vertical, 12)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityIdentifier("GradeListCell.\(gradeRowEntry.id)")
+        .accessibilityIdentifier("GradeListCell.\(assignment.id)")
     }
 
     private var assignmentIcon: some View {
-        Image(uiImage: gradeRowEntry.assignmentIcon)
+        Image(uiImage: assignment.assignmentIcon)
             .padding(.top, 12)
             .padding(.leading, 22)
             .padding(.trailing, 18)
@@ -53,30 +53,30 @@ public struct GradeRowView: View {
 
     private var assignmentDetailsView: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(gradeRowEntry.assignmentName)
+            Text(assignment.assignmentName)
                 .font(.medium16)
                 .foregroundStyle(Color.textDarkest)
                 .multilineTextAlignment(.leading)
-            Text(gradeRowEntry.dueText)
+            Text(assignment.dueText)
                 .font(.regular14)
                 .foregroundStyle(Color.textDark)
                 .multilineTextAlignment(.leading)
 
             HStack(spacing: 2) {
-                gradeRowEntry.statusIcon
+                assignment.statusIcon
                     .size(uiScale.iconScale * 18)
-                Text(gradeRowEntry.statusText)
+                Text(assignment.statusText)
                     .font(.regular14)
             }
-            .foregroundStyle(gradeRowEntry.statusColor)
+            .foregroundStyle(assignment.statusColor)
         }
     }
 
     private var gradeText: some View {
-        Text(gradeRowEntry.gradeText)
+        Text(assignment.gradeText)
             .font(.regular16)
             .foregroundStyle(Color.textDarkest)
-            .accessibilityLabel(Text(gradeRowEntry.gradeAccessibilityLabel))
+            .accessibilityLabel(Text(assignment.gradeAccessibilityLabel))
     }
 
     private var editButton: some View {
@@ -95,7 +95,7 @@ public struct GradeRowView: View {
 extension GradeRowView: Equatable {
 
     public static func == (lhs: GradeRowView, rhs: GradeRowView) -> Bool {
-        lhs.gradeRowEntry == rhs.gradeRowEntry && lhs.isWhatIfScoreModeOn == rhs.isWhatIfScoreModeOn
+        lhs.assignment == rhs.assignment && lhs.isWhatIfScoreModeOn == rhs.isWhatIfScoreModeOn
     }
 }
 
@@ -110,7 +110,7 @@ struct GradeRowViewPreview: PreviewProvider {
             updateScoreStatistics: false
         )
         GradeRowView(
-            gradeRowEntry: GradeRowEntry(assignment: assignment, userID: ""),
+            assignment: GradeListAssignment(assignment: assignment, userID: ""),
             isWhatIfScoreModeOn: true,
             editScoreButtonDidTap: {}
         )
