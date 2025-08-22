@@ -228,8 +228,9 @@ class ComposeMessageViewModelTests: CoreTestCase {
         )
         XCTAssertEqual(testee.subject, "Test subject")
         XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
-        XCTAssertEqual(testee.recipients.first?.ids.first, message2.authorID)
-        XCTAssertEqual(testee.includedMessages, [message1, message2, message3])
+        XCTAssertEqual(testee.recipients.flatMap(\.ids).count, 1)
+        XCTAssertEqual(testee.recipients.first?.ids.first, message3.authorID)
+        XCTAssertEqual(testee.includedMessages, [message1])
     }
 
     func testReplyAllMessageValues() {
