@@ -79,7 +79,7 @@ public enum HorizonRoutes {
 
                 guard let courseID = params["courseID"],
                       let itemID = params["itemID"] else { return nil }
-                let course = userInfo?["course"] as? HCourse
+                let course = userInfo?["moduleItem"] as? HModuleItem
 
                 var assetType: GetModuleItemSequenceRequest.AssetType?
                 if let assetTypeRaw = url.queryItems?.first(where: { $0.name == "asset_type" })?.value {
@@ -92,7 +92,7 @@ public enum HorizonRoutes {
                     assetType: assetType ?? .moduleItem,
                     assetID: itemID,
                     url: url,
-                    selectedCourse: course
+                    firstModuleItem: course
                 )
             },
             RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _, env in

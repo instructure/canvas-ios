@@ -41,7 +41,7 @@ struct SubmissionViewer: View {
     var body: some View {
         switch submission.type {
         case .basic_lti_launch, .external_tool:
-            WebSession(url: submission.previewUrl) { url in
+            WebSession(url: submission.previewUrl ?? submission.url) { url in
                 WebView(url: url,
                         features: [
                             .userAgent(UserAgent.safariLTI.description),

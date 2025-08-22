@@ -186,8 +186,8 @@ private struct ContentView: View {
     private func modulesView(modules: [HModule]) -> some View {
         VStack(spacing: .huiSpaces.space8) {
             ForEach(modules) { module in
-                ExpandingModuleView(module: module, isExpanded: true) { url in
-                    viewModel.moduleItemDidTap(url: url, from: viewController)
+                ExpandingModuleView(module: module, isExpanded: true) { item in
+                    viewModel.moduleItemDidTap(item: item, from: viewController)
                 }
                 .frame(minHeight: 44)
                 .background(Color.huiColors.surface.cardPrimary)

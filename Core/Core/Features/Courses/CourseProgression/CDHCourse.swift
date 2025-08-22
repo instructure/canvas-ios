@@ -135,7 +135,7 @@ public final class CDHCourse: NSManagedObject, WriteableModel {
             let node = enrollmentModel.course.modulesConnection?.edges?.first?.node
             if let firstItem = node?.moduleItems?.first {
                 model.nextModuleID = node?.id
-                model.nextModuleItemID = firstItem.content?.id
+                model.nextModuleItemID = firstItem.id
                 model.nextModuleItemEstimatedTime = firstItem.estimatedDuration
                 model.nextModuleItemType = firstItem.content?.__typename
                 model.nextModuleItemDueDate = firstItem.content?.dueAt
