@@ -350,3 +350,16 @@ extension TeacherAssignmentDetailsScreen {
         return items
     }
 }
+
+// MARK: - Helpers
+
+private extension Assignment {
+
+    var openLtiButtonTitle: String {
+        if isQuizLTI {
+            String(localized: "Open the Quiz", bundle: .core)
+        } else {
+            String(localized: "Launch External Tool", bundle: .core)
+        }
+    }
+}
