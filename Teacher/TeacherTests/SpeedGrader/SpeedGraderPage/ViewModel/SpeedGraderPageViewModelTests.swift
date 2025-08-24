@@ -163,12 +163,6 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
                 interactor: SubmissionCommentsInteractorMock(),
                 env: environment
             ),
-            rubricsViewModel: .init(
-                assignment: assignment,
-                submission: submission,
-                interactor: RubricGradingInteractorMock(),
-                router: environment.router
-            ),
             redesignedRubricsViewModel: .init(
                 assignment: assignment,
                 submission: submission,

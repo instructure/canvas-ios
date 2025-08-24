@@ -39,8 +39,7 @@ struct SpeedGraderSubmissionGradesView: View {
     @ObservedObject var gradeViewModel: SpeedGraderSubmissionGradesViewModel
     @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
     @ObservedObject var commentListViewModel: SubmissionCommentListViewModel
-    @ObservedObject var rubricsViewModel: RubricsViewModel
-    @ObservedObject var redesignedRubricsViewModel: RedesignedRubricsViewModel
+    @ObservedObject var rubricsViewModel: RedesignedRubricsViewModel
 
     private enum FocusedInput: Hashable {
         case gradeRow
@@ -67,10 +66,6 @@ struct SpeedGraderSubmissionGradesView: View {
                     commentsSection(scrollViewProxy: scrollViewProxy)
                     if assignment.rubric?.isEmpty == false {
                         rubricsSection(geometry: geometry)
-                    }
-
-                    if ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled {
-                        Spacer().frame(height: 16)
                     }
                 }
             }
@@ -459,37 +454,7 @@ struct SpeedGraderSubmissionGradesView: View {
 
     @ViewBuilder
     private func rubricsSection(geometry: GeometryProxy) -> some View {
-
-        if ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled {
-
-            VStack(spacing: 0) {
-                RubricsView(
-                    currentScore: rubricsViewModel.totalRubricScore,
-                    containerFrameInGlobal: geometry.frame(in: .global),
-                    viewModel: rubricsViewModel
-                )
-
-                if rubricsViewModel.commentingOnCriterionID != nil {
-                    commentEditor()
-                }
-            }
-
-        } else {
-            RedesignedRubricsView(viewModel: redesignedRubricsViewModel)
-        }
-    }
-
-    private func commentEditor() -> some View {
-        OldCommentEditorView(
-            text: $rubricsViewModel.criterionComment,
-            shouldShowCommentLibrary: false,
-            showCommentLibrary: .constant(false),
-            action: rubricsViewModel.saveComment,
-            containerHeight: containerHeight,
-            contextColor: Color(Brand.shared.primary)
-        )
-        .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
-        .background(Color.backgroundLight)
+        RedesignedRubricsView(viewModel: rubricsViewModel)
     }
 }
 

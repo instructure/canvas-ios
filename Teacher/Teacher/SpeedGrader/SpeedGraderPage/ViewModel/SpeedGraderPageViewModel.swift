@@ -51,7 +51,6 @@ class SpeedGraderPageViewModel: ObservableObject {
     let gradeStatusViewModel: GradeStatusViewModel
     let submissionWordCountViewModel: SubmissionWordCountViewModel
     let studentNotesViewModel: StudentNotesViewModel
-    let rubricsViewModel: RubricsViewModel
     let redesignedRubricsViewModel: RedesignedRubricsViewModel
     let gradeViewModel: SpeedGraderSubmissionGradesViewModel
 
@@ -69,7 +68,6 @@ class SpeedGraderPageViewModel: ObservableObject {
         gradeViewModel: SpeedGraderSubmissionGradesViewModel,
         gradeStatusViewModel: GradeStatusViewModel,
         commentListViewModel: SubmissionCommentListViewModel,
-        rubricsViewModel: RubricsViewModel,
         redesignedRubricsViewModel: RedesignedRubricsViewModel,
         submissionWordCountViewModel: SubmissionWordCountViewModel,
         studentNotesViewModel: StudentNotesViewModel
@@ -82,7 +80,6 @@ class SpeedGraderPageViewModel: ObservableObject {
         self.gradeViewModel = gradeViewModel
         self.gradeStatusViewModel = gradeStatusViewModel
         self.commentListViewModel = commentListViewModel
-        self.rubricsViewModel = rubricsViewModel
         self.redesignedRubricsViewModel = redesignedRubricsViewModel
         self.submissionWordCountViewModel = submissionWordCountViewModel
         self.studentNotesViewModel = studentNotesViewModel

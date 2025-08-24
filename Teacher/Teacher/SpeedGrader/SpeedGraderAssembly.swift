@@ -107,12 +107,6 @@ enum SpeedGraderAssembly {
                 contextColor: contextColor,
                 env: env
             ),
-            rubricsViewModel: .init(
-                assignment: assignment,
-                submission: submission,
-                interactor: rubricGradingInteractor,
-                router: env.router
-            ),
             redesignedRubricsViewModel: .init(
                 assignment: assignment,
                 submission: submission,
