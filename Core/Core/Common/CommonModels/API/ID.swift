@@ -157,7 +157,10 @@ public extension String {
         return ID.expandTildeID("\(shardID)~\(self)")
     }
 
-    func asPrefixedCourseID(in env: AppEnvironment) -> String {
+    /// Get a copy of course ID in global format (with shardID as prefix), only
+    /// when the passed environment is an overriden copy of the root one.
+    /// For root environment, the local copy (stripped of shardID) is being returned.
+    func asNonRootPrefixedCourseID(in env: AppEnvironment) -> String {
         if env.isRoot { return localID } // No prefix for root environment
         return asGlobalID(of: env.courseShardID)
     }

@@ -173,7 +173,7 @@ class SubmissionButtonPresenter: NSObject {
     }
 
     private func presentStudentAnnotation(assignment: Assignment, view: UIViewController) {
-        let courseID = assignment.courseID.asPrefixedCourseID(in: env)
+        let courseID = assignment.courseID.asNonRootPrefixedCourseID(in: env)
         let courseScope = Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(Course.id), courseID), order: [])
 
         guard
