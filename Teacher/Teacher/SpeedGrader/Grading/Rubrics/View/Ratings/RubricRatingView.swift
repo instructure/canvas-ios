@@ -19,8 +19,8 @@
 import SwiftUI
 import Core
 
-struct RedesignedRubricRatingView: View {
-    @ObservedObject var viewModel: RedesignedRubricRatingViewModel
+struct RubricRatingView: View {
+    @ObservedObject var viewModel: RubricRatingViewModel
 
     var body: some View {
         let value = Text(viewModel.value)

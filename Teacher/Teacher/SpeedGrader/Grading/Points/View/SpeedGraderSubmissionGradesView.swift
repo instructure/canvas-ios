@@ -39,7 +39,7 @@ struct SpeedGraderSubmissionGradesView: View {
     @ObservedObject var gradeViewModel: SpeedGraderSubmissionGradesViewModel
     @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
     @ObservedObject var commentListViewModel: SubmissionCommentListViewModel
-    @ObservedObject var rubricsViewModel: RedesignedRubricsViewModel
+    @ObservedObject var rubricsViewModel: RubricsViewModel
 
     private enum FocusedInput: Hashable {
         case gradeRow
@@ -454,7 +454,7 @@ struct SpeedGraderSubmissionGradesView: View {
 
     @ViewBuilder
     private func rubricsSection(geometry: GeometryProxy) -> some View {
-        RedesignedRubricsView(viewModel: rubricsViewModel)
+        RubricsView(viewModel: rubricsViewModel)
     }
 }
 

@@ -19,8 +19,8 @@
 import Core
 import SwiftUI
 
-struct RedesignedRubricsView: View {
-    @ObservedObject var viewModel: RedesignedRubricsViewModel
+struct RubricsView: View {
+    @ObservedObject var viewModel: RubricsViewModel
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -38,7 +38,7 @@ struct RedesignedRubricsView: View {
 
             VStack(spacing: 16) {
                 ForEach(viewModel.criterionViewModels) { viewModel in
-                    RedesignedRubricCriterionView(
+                    RubricCriterionView(
                         viewModel: viewModel
                     )
                 }
@@ -156,7 +156,7 @@ struct RedesignedRubricsView: View {
     let submission = Submission(context: env.database.viewContext)
 
     let model = {
-        let rubrics = RedesignedRubricsViewModel(
+        let rubrics = RubricsViewModel(
             assignment: assignment,
             submission: submission,
             interactor: RubricGradingInteractorPreview(),
@@ -178,7 +178,7 @@ struct RedesignedRubricsView: View {
             )
         )
     ) { _ in
-        RedesignedRubricsView(viewModel: model)
+        RubricsView(viewModel: model)
             .padding(.bottom, 16)
     }
     .environment(\.appEnvironment, env)

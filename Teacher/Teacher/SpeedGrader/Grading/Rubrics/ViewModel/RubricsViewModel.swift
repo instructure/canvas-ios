@@ -20,14 +20,14 @@ import Core
 import Combine
 import SwiftUI
 
-class RedesignedRubricsViewModel: ObservableObject {
+class RubricsViewModel: ObservableObject {
 
     // MARK: - Outputs
 
     @Published private(set) var isSaving = false
     @Published private(set) var submission: Submission
 
-    private(set) var criterionViewModels: [RedesignedRubricCriterionViewModel] = []
+    private(set) var criterionViewModels: [RubricCriterionViewModel] = []
     let interactor: RubricGradingInteractor
 
     var controller = WeakViewController()
@@ -50,7 +50,7 @@ class RedesignedRubricsViewModel: ObservableObject {
         self.router = router
 
         criterionViewModels = (assignment.rubric ?? []).map { criterion in
-            return RedesignedRubricCriterionViewModel(
+            return RubricCriterionViewModel(
                 criterion: criterion,
                 isFreeFormCommentsEnabled: assignment.freeFormCriterionCommentsOnRubric,
                 hideRubricPoints: assignment.hideRubricPoints,

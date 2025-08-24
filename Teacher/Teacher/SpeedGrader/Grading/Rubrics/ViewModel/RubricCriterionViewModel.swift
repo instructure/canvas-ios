@@ -20,7 +20,7 @@ import Combine
 import Core
 import SwiftUI
 
-class RedesignedRubricCriterionViewModel: ObservableObject, Identifiable {
+class RubricCriterionViewModel: ObservableObject, Identifiable {
 
     // MARK: - Published
 
@@ -34,7 +34,7 @@ class RedesignedRubricCriterionViewModel: ObservableObject, Identifiable {
     let criterion: CDRubricCriterion
     let isFreeFormCommentsEnabled: Bool
     let hideRubricPoints: Bool
-    let ratingViewModels: [RedesignedRubricRatingViewModel]
+    let ratingViewModels: [RubricRatingViewModel]
 
     var shouldShowRubricNotUsedForScoringMessage: Bool {
         criterion.ignoreForScoring
@@ -77,12 +77,12 @@ class RedesignedRubricCriterionViewModel: ObservableObject, Identifiable {
 
         if criterion.criterionUseRange {
 
-            var ratingModels = [RedesignedRubricRatingViewModel]()
+            var ratingModels = [RubricRatingViewModel]()
             var lowerPoints: Double = 0
 
             for rating in ratings {
                 ratingModels.append(
-                    RedesignedRubricRatingViewModel(
+                    RubricRatingViewModel(
                         rating: rating,
                         ratingPointsLowerBound: lowerPoints,
                         criterionId: criterion.id,
@@ -98,7 +98,7 @@ class RedesignedRubricCriterionViewModel: ObservableObject, Identifiable {
 
             ratingViewModels = ratings
                 .map {
-                    RedesignedRubricRatingViewModel(
+                    RubricRatingViewModel(
                         rating: $0,
                         criterionId: criterion.id,
                         interactor: interactor

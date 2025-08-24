@@ -19,13 +19,13 @@
 import Core
 import SwiftUI
 
-struct RedesignedRubricCriterionView: View {
+struct RubricCriterionView: View {
     @Environment(\.viewController) var controller
-    @ObservedObject var viewModel: RedesignedRubricCriterionViewModel
+    @ObservedObject var viewModel: RubricCriterionViewModel
 
     @State private var isExpanded: Bool
 
-    init(viewModel: RedesignedRubricCriterionViewModel) {
+    init(viewModel: RubricCriterionViewModel) {
         self.viewModel = viewModel
 
         let expanded = viewModel.hideRubricPoints && viewModel.userRatingId == nil
@@ -162,7 +162,7 @@ struct RedesignedRubricCriterionView: View {
 
     let model = {
 
-        let model = RedesignedRubricsViewModel(
+        let model = RubricsViewModel(
             assignment: assignment,
             submission: submission,
             interactor: interactor,
@@ -180,7 +180,7 @@ struct RedesignedRubricCriterionView: View {
     }()
 
     VStack {
-        RedesignedRubricCriterionView(
+        RubricCriterionView(
             viewModel: model
         )
     }

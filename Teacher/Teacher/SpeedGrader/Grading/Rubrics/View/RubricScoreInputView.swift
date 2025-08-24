@@ -21,9 +21,9 @@ import Core
 
 struct RubricScoreInputView: View {
 
-    @ObservedObject var viewModel: RedesignedRubricCriterionViewModel
+    @ObservedObject var viewModel: RubricCriterionViewModel
 
-    init(viewModel: RedesignedRubricCriterionViewModel) {
+    init(viewModel: RubricCriterionViewModel) {
         self.viewModel = viewModel
     }
 
