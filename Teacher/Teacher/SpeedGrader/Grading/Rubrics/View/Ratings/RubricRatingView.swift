@@ -17,25 +17,17 @@
 //
 
 import SwiftUI
+import Core
 
 struct RubricRatingView: View {
     @ObservedObject var viewModel: RubricRatingViewModel
-    let leading: (ViewDimensions) -> CGFloat
-    let top: (ViewDimensions) -> CGFloat
-    let containerFrameInGlobal: CGRect
 
     var body: some View {
         let value = Text(viewModel.value)
-        RubricCircle(
-            isOn: $viewModel.isSelected,
-            tooltip: viewModel.tooltip,
-            containerFrame: containerFrameInGlobal
-        ) {
+        RubricSquare(isOn: $viewModel.isSelected) {
             value
         }
         .accessibility(value: value)
         .accessibility(label: Text(viewModel.accessibilityLabel))
-        .alignmentGuide(.leading, computeValue: leading)
-        .alignmentGuide(.top, computeValue: top)
     }
 }

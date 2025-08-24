@@ -113,12 +113,6 @@ enum SpeedGraderAssembly {
                 interactor: rubricGradingInteractor,
                 router: env.router
             ),
-            redesignedRubricsViewModel: .init(
-                assignment: assignment,
-                submission: submission,
-                interactor: rubricGradingInteractor,
-                router: env.router
-            ),
             submissionWordCountViewModel: .init(
                 userId: submission.userID,
                 attempt: submission.attempt,

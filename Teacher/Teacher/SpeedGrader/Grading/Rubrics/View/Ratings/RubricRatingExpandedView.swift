@@ -20,7 +20,7 @@ import SwiftUI
 import Core
 
 struct RubricRatingExpandedView: View {
-    @ObservedObject var viewModel: RedesignedRubricRatingViewModel
+    @ObservedObject var viewModel: RubricRatingViewModel
 
     var body: some View {
 
@@ -74,7 +74,7 @@ struct RubricRatingExpandedView: View {
     let env = PreviewEnvironment()
     let context = env.database.viewContext
     let model = {
-        let model = RedesignedRubricRatingViewModel(
+        let model = RubricRatingViewModel(
             rating: CDRubricRating(context: context).with { rat in
                 rat.points = 3
                 rat.shortDescription = "Excellent"

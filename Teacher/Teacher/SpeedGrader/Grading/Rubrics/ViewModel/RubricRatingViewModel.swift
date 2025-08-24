@@ -19,7 +19,7 @@
 import Combine
 import Core
 
-class RedesignedRubricRatingViewModel: ObservableObject, Identifiable {
+class RubricRatingViewModel: ObservableObject, Identifiable {
 
     // MARK: - Outputs
 

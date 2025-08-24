@@ -22,7 +22,7 @@ import Core
 struct RubricTextRatingsListView: View {
 
     @Binding var isExpanded: Bool
-    @ObservedObject var viewModel: RedesignedRubricCriterionViewModel
+    @ObservedObject var viewModel: RubricCriterionViewModel
 
     @State private var selection: String?
 
