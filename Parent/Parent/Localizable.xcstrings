@@ -2919,7 +2919,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Détails de la tâche"
+            "value" : "Détails du travail"
           }
         },
         "ga" : {
@@ -3175,7 +3175,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rappel de la tâche"
+            "value" : "Rappel du travail"
           }
         },
         "ga" : {
@@ -18545,7 +18545,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "En ce qui concerne : %@, tâche — %@"
+            "value" : "En ce qui concerne : %@, travail — %@"
           }
         },
         "ga" : {
@@ -20337,7 +20337,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Envoi et rubrique"
+            "value" : "Envoi et grille de notation"
           }
         },
         "ga" : {
