@@ -60,6 +60,10 @@ public final class AppEnvironmentOverride: AppEnvironment {
         set {}
     }
 
+    public override var k5: K5State {
+        base.k5
+    }
+
     public override var database: NSPersistentContainer {
         get { base.database }
         set {}
