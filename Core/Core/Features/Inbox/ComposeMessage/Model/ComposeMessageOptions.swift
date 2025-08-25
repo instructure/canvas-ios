@@ -222,6 +222,9 @@ extension ComposeMessageOptions {
             fieldContents.selectedContext = .init(name: conversation.contextName ?? "", context: context)
         }
 
+        // Fallback to the most recent message
+        let message = message ?? conversation.messages.first
+
         var recipients = [Recipient]()
         if let author = message?.authorID, let participantIDs = message?.participantIDs {
             recipients = conversation.audience.filter { $0.id == author }.map { Recipient(conversationParticipant: $0) }
