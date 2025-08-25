@@ -39,15 +39,14 @@ final class DomainService {
     // MARK: - Private
 
     private var audience: String {
-        // TODO: This must be fixed
-        if option == .journey {
-            return "localhost:3000"
-        }
         return baseURL.contains("horizon.cd.instructure.com") == true ? horizonCDURL : productionURL
     }
 
     private var horizonCDURL: String {
-        "\(option)-api-dev.domain-svcs.nonprod.inseng.io"
+        if( option == .journey) {
+            return "journey-server-dev.journey.nonprod.inseng.io"
+        }
+        return "\(option)-api-dev.domain-svcs.nonprod.inseng.io"
     }
 
     private var productionURL: String {
@@ -86,8 +85,7 @@ final class DomainService {
             }
             .compactMap { [weak self] jwt in
                 guard let self else { return nil }
-                let requestProtocol = option == .journey ? "http" : "https"
-                guard let url = URL(string: "\(requestProtocol)://\(self.audience)") else {
+                guard let url = URL(string: "https://\(self.audience)") else {
                     fatalError("Unable to get the base URL for the domain service")
                 }
                 return API(
