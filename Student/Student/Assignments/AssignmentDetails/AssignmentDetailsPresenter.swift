@@ -149,7 +149,7 @@ class AssignmentDetailsPresenter {
         self.fragment = fragment
         self.submissionButtonPresenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: assignmentID)
         if let session = env.currentSession {
-            self.userID = session.userID.localID
+            self.userID = session.userID.asGlobalID(of: env.sessionShardID)
         }
         subscribeToSuccessfulSubmissionNotification(assignmentID: assignmentID)
     }
@@ -178,7 +178,7 @@ class AssignmentDetailsPresenter {
         guard quizzes?.pending != true else { return }
         let baseURL = fragmentHash.flatMap { URL(string: $0, relativeTo: assignment.htmlURL) } ?? assignment.htmlURL
         if let submission = assignment.submission {
-            userID = submission.userID
+            userID = submission.userID.asGlobalID(of: env.sessionShardID)
         }
         if assignments.requested && !assignments.pending && fileCleanupPending {
             fileCleanupPending = false
@@ -314,7 +314,7 @@ class AssignmentDetailsPresenter {
             route += "?selectedAttempt=\(selectedSubmission.attempt)"
         }
 
-        env.router.route(to: route, from: view)
+        env.router.route(to: route, userInfo: env.courseShardIDUserInfo, from: view)
     }
 
     func route(to url: URL, from view: UIViewController) -> Bool {
@@ -326,7 +326,7 @@ class AssignmentDetailsPresenter {
                 URLQueryItem(name: "skipModuleItemSequence", value: "true")
             )
         }
-        env.router.route(to: dest, from: view)
+        env.router.route(to: dest, userInfo: env.courseShardIDUserInfo, from: view)
         return true
     }
 

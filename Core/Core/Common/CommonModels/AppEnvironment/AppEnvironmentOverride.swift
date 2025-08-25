@@ -25,10 +25,12 @@ public final class AppEnvironmentOverride: AppEnvironment {
 
     let base: AppEnvironment
     let baseURL: URL
+    private(set) var _courseShardID: String?
 
-    fileprivate init(base: AppEnvironment, baseURL: URL) {
+    fileprivate init(base: AppEnvironment, baseURL: URL, shardID: String?) {
         self.base = base
         self.baseURL = baseURL
+        self._courseShardID = shardID
         super.init()
     }
 
@@ -37,6 +39,11 @@ public final class AppEnvironmentOverride: AppEnvironment {
     }()
 
     public override var root: AppEnvironment { base }
+    public override var courseShardID: String? { _courseShardID ?? sessionShardID }
+
+    fileprivate func resetCourseShardIDOverride(_ shardID: String) {
+        self._courseShardID = shardID
+    }
 
     public override var app: AppEnvironment.App? {
         get { base.app }
@@ -84,7 +91,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
 
             return LoginSession(
                 accessToken: cSession.accessToken,
-                baseURL: baseURL, // This important to authenticate requests
+                baseURL: baseURL, // This is important to authenticate requests
                 expiresAt: cSession.expiresAt,
                 lastUsedAt: cSession.lastUsedAt,
                 locale: cSession.locale,
@@ -104,13 +111,23 @@ public final class AppEnvironmentOverride: AppEnvironment {
 }
 
 extension AppEnvironment {
+    private static let courseShardIdOverrideUserInfoKey: String = "courseShardIdOverride"
+
+    public var courseShardIDUserInfo: [String: Any]? {
+        guard let shardID = (self as? AppEnvironmentOverride)?._courseShardID
+        else { return nil }
+        return [ Self.courseShardIdOverrideUserInfoKey: shardID ]
+    }
 
     /// This method returns an `AppEnvironmentOverride` using the given `url`s host if it
     /// doesn't match the one on `AppEnvironment.shared`.
     static func resolved(for url: URLComponents) -> AppEnvironment {
         if let host = url.host, host != shared.api.baseURL.host(),
            let baseURL = url.with(scheme: shared.api.baseURL.scheme).url?.apiBaseURL {
-            return AppEnvironmentOverride(base: shared, baseURL: baseURL)
+
+            let params = Route("/courses/:courseID/:tabName").match(url)
+            let shardID = params?["courseID"]?.shardID
+            return AppEnvironmentOverride(base: shared, baseURL: baseURL, shardID: shardID)
         }
 
         return .shared
@@ -124,6 +141,15 @@ extension AppEnvironment {
             let components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)
         else { return .shared }
         return resolved(for: components)
+    }
+
+    /// This only works for overridden environments
+    func courseShardIdOverridden(with info: [String: Any]?) -> Self {
+        if let shardID = info?[Self.courseShardIdOverrideUserInfoKey] as? String,
+           let envOverride = self as? AppEnvironmentOverride {
+            envOverride.resetCourseShardIDOverride(shardID)
+        }
+        return self
     }
 }
 

@@ -49,7 +49,7 @@ public class GetSubmissionComments: APIUseCase {
                 #keyPath(SubmissionComment.assignmentID),
                 assignmentID,
                 #keyPath(SubmissionComment.userID),
-                userID
+                userID.localID
             ),
             order: [NSSortDescriptor(key: #keyPath(SubmissionComment.createdAt), ascending: isAscendingOrder)]
         )

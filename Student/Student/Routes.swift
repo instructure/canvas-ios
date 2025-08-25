@@ -345,9 +345,9 @@ let academicRouter = Router(routes: [
     // No native support, fall back to web
     // "/courses/:courseID/outcomes": { url, _ in },
 
-    RouteHandler("/:context/:contextID/pages") { url, _, _ in
+    RouteHandler("/:context/:contextID/pages") { url, _, _, env in
         guard let context = Context(path: url.path) else { return nil }
-        return PageListViewController.create(context: context, app: .student)
+        return PageListViewController.create(context: context, app: .student, env: env)
     },
 
     RouteHandler("/:context/:contextID/wiki") { url, _, _ in
@@ -381,18 +381,21 @@ let academicRouter = Router(routes: [
         return QuizListViewController.create(courseID: ID.expandTildeID(courseID), env: env)
     },
 
-    RouteHandler("/courses/:courseID/quizzes/:quizID") { url, params, _ in
+    RouteHandler("/courses/:courseID/quizzes/:quizID") { url, params, _, env in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+
         if !url.originIsModuleItemDetails {
             return ModuleItemSequenceViewController.create(
-                env: .shared,
+                env: env,
                 courseID: courseID,
                 assetType: .quiz,
                 assetID: quizID,
                 url: url
             )
         }
-        return StudentQuizDetailsViewController.create(courseID: courseID, quizID: quizID)
+
+        return StudentQuizDetailsViewController
+            .create(courseID: courseID, quizID: quizID, env: env)
     },
 
     // No native support, fall back to web

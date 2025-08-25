@@ -71,6 +71,9 @@ open class AppEnvironment {
     open var root: AppEnvironment { self }
     public var isRoot: Bool { root === self }
 
+    public var sessionShardID: String? { currentSession?.accessToken?.shardID }
+    public var courseShardID: String? { sessionShardID }
+
     /**
      - parameters:
         - isSilent: If this parameter is true then the method won't trigger a widget refresh

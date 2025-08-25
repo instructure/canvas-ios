@@ -147,18 +147,21 @@ public extension String {
         return formatter
     }()
 
-    /// Get a copy of this ID where `shardID` of the original login session being
-    /// inserted as prefix to it.
+    /// Get a copy of this ID where the passed `shardID` being inserted as
+    /// prefix to it.
     /// For example, ID of **`239`** transformed to **`217540000000000239`**
-    /// with **`21754`** as being `shardID` extracted from the original access token.
-    var asRootID: String {
-        let env = AppEnvironment.shared
-
-        guard let shardID = env.currentSession?.accessToken?.shardID
-        else { return self }
-
+    /// with **`21754`** as being the `shardID`.
+    func asGlobalID(of shardID: String?) -> String {
+        guard let shardID else { return self }
         if hasShardID { return self }
-
         return ID.expandTildeID("\(shardID)~\(self)")
+    }
+
+    /// Get a copy of course ID in global format (with shardID as prefix), only
+    /// when the passed environment is an overriden copy of the root one.
+    /// For root environment, the local copy (stripped of shardID) is being returned.
+    func asNonRootPrefixedCourseID(in env: AppEnvironment) -> String {
+        if env.isRoot { return localID }
+        return asGlobalID(of: env.courseShardID)
     }
 }
