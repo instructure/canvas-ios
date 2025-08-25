@@ -107,7 +107,7 @@ extension AssistQuizView {
 
     private var submitQuizButton: some View {
         HorizonUI.PrimaryButton(
-            String(localized: "Check Answer", bundle: .horizon),
+            String(localized: "Check answer", bundle: .horizon),
             type: .white,
             fillsWidth: true
         ) {
