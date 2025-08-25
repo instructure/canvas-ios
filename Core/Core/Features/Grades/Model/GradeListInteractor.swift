@@ -262,13 +262,15 @@ public final class GradeListInteractorLive: GradeListInteractor {
             if let index = assignmentSections.firstIndex(where: { section in
                 section.id == assignment.assignmentGroupID ?? ""
             }) {
-                assignmentSections[index].assignments.append(assignment)
+                let entry = GradeListAssignment(assignment: assignment, userID: userID)
+                assignmentSections[index].assignments.append(entry)
             } else {
+                let entry = GradeListAssignment(assignment: assignment, userID: userID)
                 assignmentSections.append(
                     GradeListData.AssignmentSections(
                         id: assignment.assignmentGroupID ?? UUID.string,
                         title: assignment.assignmentGroupSectionName ?? "",
-                        assignments: [assignment]
+                        assignments: [entry]
                     )
                 )
             }
@@ -303,22 +305,23 @@ public final class GradeListInteractorLive: GradeListInteractor {
         let now = Clock.now
 
         orderedAssignments.forEach { assignment in
+            let entry = GradeListAssignment(assignment: assignment, userID: userID)
             if let dueAt = assignment.dueAtSortNilsAtBottom {
                 if let lockAt = assignment.lockAt {
                     if lockAt >= now, dueAt <= now {
-                        overdueAssignments.assignments.append(assignment)
+                        overdueAssignments.assignments.append(entry)
                     } else if lockAt > now, dueAt > now {
-                        upcomingAssignments.assignments.append(assignment)
+                        upcomingAssignments.assignments.append(entry)
                     } else {
-                        pastAssignments.assignments.append(assignment)
+                        pastAssignments.assignments.append(entry)
                     }
                 } else if dueAt <= now {
-                    overdueAssignments.assignments.append(assignment)
+                    overdueAssignments.assignments.append(entry)
                 } else if dueAt > now {
-                    upcomingAssignments.assignments.append(assignment)
+                    upcomingAssignments.assignments.append(entry)
                 }
             } else {
-                upcomingAssignments.assignments.append(assignment)
+                upcomingAssignments.assignments.append(entry)
             }
         }
 
