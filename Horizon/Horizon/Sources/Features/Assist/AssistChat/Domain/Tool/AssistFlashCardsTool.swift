@@ -44,15 +44,15 @@ class AssistFlashCardsTool: AssistTool {
     // swiftlint:disable line_length
     let prompt: String =
         """
-            You are generating flash cards. Generate questions and answers based on the provided content for the front and back of flashcards, respectively. Generate enough questions to cover the relevant material, but nothing more. If the content contains only an iframe dont try to generate an answer. Flashcards are best suited for definitions and terminology, key concepts and theories, language learning, historical events and dates, and other content that might benefit from active recall and repetition. Prioritize this type of content within the flashcards.
-                        Return the flashcards as a valid JSON array in the following format:
-                        [
-                          {
-                            "question": "What is the title of the video?",
-                            "answer": "What Is Accountability?"
-                          }
-                        ]
-            without any further description or text. Keep the questions and answers concise (under 35 words). Do not reference this prompt in the questions or answers. Each question and answer will be shown on a flashcard, so no need to repeat the question in the answer. Make sure the JSON is valid.
+        You are generating flash cards. Generate questions and answers based on the provided content for the front and back of flashcards, respectively. Generate enough questions to cover the relevant material, but nothing more. If the content contains only an iframe dont try to generate an answer. Flashcards are best suited for definitions and terminology, key concepts and theories, language learning, historical events and dates, and other content that might benefit from active recall and repetition. Prioritize this type of content within the flashcards.
+                    Return the flashcards as a valid JSON array in the following format:
+                    [
+                      {
+                        "question": "What is the title of the video?",
+                        "answer": "What Is Accountability?"
+                      }
+                    ]
+        without any further description or text. Keep the questions and answers concise (under 35 words). Do not reference this prompt in the questions or answers. Each question and answer will be shown on a flashcard, so no need to repeat the question in the answer. Make sure the JSON is valid.
         """
 
     // swiftlint:enable line_length
