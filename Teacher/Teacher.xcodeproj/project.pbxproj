@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -152,6 +152,7 @@
 		8B4891A62ACAC46A0015BAB2 /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4891A52ACAC46A0015BAB2 /* InboxTests.swift */; };
 		8B4891A92ACACB240015BAB2 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4891A82ACACB240015BAB2 /* PeopleTests.swift */; };
 		8B6555F92E4641A300DD2591 /* GradeStateInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6555F82E4641A300DD2591 /* GradeStateInteractorMock.swift */; };
+		8B670A4F2E5464AF009E77CF /* RubricGradingInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B670A4E2E5464AF009E77CF /* RubricGradingInteractorTests.swift */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
 		B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; };
 		B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */; };
@@ -477,6 +478,7 @@
 		8B4891A52ACAC46A0015BAB2 /* InboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
 		8B4891A82ACACB240015BAB2 /* PeopleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
 		8B6555F82E4641A300DD2591 /* GradeStateInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStateInteractorMock.swift; sourceTree = "<group>"; };
+		8B670A4E2E5464AF009E77CF /* RubricGradingInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricGradingInteractorTests.swift; sourceTree = "<group>"; };
 		B15CA25D221DDB820014FB02 /* TeacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15CA261221DDB820014FB02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -584,6 +586,10 @@
 		EB12071E2601F2C50038E875 /* GradeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSlider.swift; sourceTree = "<group>"; };
 		EBAF32F527AACFC9000ACD32 /* CommentLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLibraryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8B670A532E54D1BC009E77CF /* ViewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModel; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
@@ -1722,6 +1728,7 @@
 			isa = PBXGroup;
 			children = (
 				CF64BDC12E27D834005929E6 /* RubricGradingInteractorMock.swift */,
+				8B670A4E2E5464AF009E77CF /* RubricGradingInteractorTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1729,6 +1736,7 @@
 		CF64BDC32E27D834005929E6 /* Rubrics */ = {
 			isa = PBXGroup;
 			children = (
+				8B670A532E54D1BC009E77CF /* ViewModel */,
 				CF64BDC22E27D834005929E6 /* Model */,
 			);
 			path = Rubrics;
@@ -2048,6 +2056,9 @@
 			);
 			dependencies = (
 				B15CA263221DDB820014FB02 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8B670A532E54D1BC009E77CF /* ViewModel */,
 			);
 			name = TeacherTests;
 			packageProductDependencies = (
@@ -2451,6 +2462,7 @@
 				CFB5ED652E27D46C000009DF /* GradeInteractorMock.swift in Sources */,
 				CF64BDD42E28FF64005929E6 /* LatePenaltyRowViewModelTests.swift in Sources */,
 				CF64BDD52E28FF64005929E6 /* PointsRowViewModelTests.swift in Sources */,
+				8B670A4F2E5464AF009E77CF /* RubricGradingInteractorTests.swift in Sources */,
 				CF64BDD62E28FF64005929E6 /* FinalGradeRowViewModelTests.swift in Sources */,
 				CFFEADC32E029A4300277F69 /* GradeStatusViewModelTests.swift in Sources */,
 				5B989DED2E2B03B600945292 /* GetCustomGradebookColumnsTests.swift in Sources */,
