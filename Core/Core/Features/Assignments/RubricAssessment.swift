@@ -19,6 +19,8 @@
 import Foundation
 import CoreData
 
+public typealias RubricAssessments = [String: RubricAssessment]
+
 public final class RubricAssessment: NSManagedObject {
     public typealias JSON = APIRubricRating
 

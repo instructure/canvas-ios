@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24F74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24G84" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -87,7 +87,7 @@
         <relationship name="masteryPathAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPathAssignment" inverseName="model" inverseEntity="MasteryPathAssignment"/>
         <relationship name="overrides" toMany="YES" deletionRule="Cascade" destinationEntity="AssignmentOverride" inverseName="assignment" inverseEntity="AssignmentOverride"/>
         <relationship name="rubricRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDRubricCriterion" inverseName="assignment" inverseEntity="CDRubricCriterion"/>
-        <relationship name="scoreStatistics" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ScoreStatistics" inverseName="assignment" inverseEntity="ScoreStatistics"/>
+        <relationship name="scoreStatistics" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="AssignmentScoreStatistics" inverseName="assignment" inverseEntity="AssignmentScoreStatistics"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission"/>
         <relationship name="syllabus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Syllabus" inverseName="assignments" inverseEntity="Syllabus"/>
         <relationship name="todo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Todo" inverseName="assignment" inverseEntity="Todo"/>
@@ -121,6 +121,12 @@
         <attribute name="title" attributeType="String"/>
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="overrides" inverseEntity="Assignment"/>
+    </entity>
+    <entity name="AssignmentScoreStatistics" representedClassName="Core.AssignmentScoreStatistics" syncable="YES">
+        <attribute name="max" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="mean" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="min" attributeType="Double" usesScalarValueType="YES"/>
+        <relationship name="assignment" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="scoreStatistics" inverseEntity="Assignment"/>
     </entity>
     <entity name="CalendarEvent" representedClassName="Core.CalendarEvent" syncable="YES">
         <attribute name="contextName" optional="YES" attributeType="String"/>
@@ -1158,12 +1164,6 @@
         <attribute name="ratingID" attributeType="String"/>
         <attribute name="submissionID" attributeType="String" defaultValueString="0"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="rubricAssesmentRaw" inverseEntity="Submission"/>
-    </entity>
-    <entity name="ScoreStatistics" representedClassName="Core.ScoreStatistics" syncable="YES">
-        <attribute name="max" attributeType="Double" usesScalarValueType="YES"/>
-        <attribute name="mean" attributeType="Double" usesScalarValueType="YES"/>
-        <attribute name="min" attributeType="Double" usesScalarValueType="YES"/>
-        <relationship name="assignment" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="scoreStatistics" inverseEntity="Assignment"/>
     </entity>
     <entity name="SearchRecipient" representedClassName="Core.SearchRecipient" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>

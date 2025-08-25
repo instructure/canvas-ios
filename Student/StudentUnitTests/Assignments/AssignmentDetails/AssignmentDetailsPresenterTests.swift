@@ -335,7 +335,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         Assignment.make(from: .make(
             locked_for_user: true,
             lock_explanation: "this is locked",
-            score_statistics: APIAssignmentScoreStatistics(mean: 2.0, min: 1.0, max: 3.0),
+            score_statistics: .init(mean: 2.0, min: 1.0, max: 3.0),
             submission: APISubmission.make(workflow_state: .graded),
             unlock_at: Date().addYears(-1)
         ))
@@ -343,7 +343,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     }
 
     func testStatisticsSectionNotHidden() {
-        Assignment.make(from: .make(score_statistics: APIAssignmentScoreStatistics(mean: 2.0, min: 1.0, max: 3.0), submission: APISubmission.make(workflow_state: .graded)))
+        Assignment.make(from: .make(score_statistics: .init(mean: 2.0, min: 1.0, max: 3.0), submission: APISubmission.make(workflow_state: .graded)))
         XCTAssertFalse( presenter.statisticsIsHidden() )
     }
 
@@ -353,7 +353,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     }
 
     func testStatisticsSectionHiddenWhenInvalidScoreStatistics() {
-        Assignment.make(from: .make(score_statistics: APIAssignmentScoreStatistics(mean: 2.0, min: 2.1, max: 3.0), submission: APISubmission.make(workflow_state: .graded)))
+        Assignment.make(from: .make(score_statistics: .init(mean: 2.0, min: 2.1, max: 3.0), submission: APISubmission.make(workflow_state: .graded)))
         XCTAssertTrue( presenter.statisticsIsHidden() )
     }
 
@@ -449,7 +449,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         XCTAssertTrue(presenter.submitAssignmentButtonIsHidden())
     }
 
-    func setupIsHiddenTest(lockStatus: LockStatus, lockedForUser: Bool = true) {
+    func setupIsHiddenTest(lockStatus: Assignment.LockStatus, lockedForUser: Bool = true) {
         switch lockStatus {
         case .unlocked:
             Assignment.make(from: .make(allowed_extensions: ["png"], locked_for_user: lockedForUser, submission_types: [ .online_upload ]))

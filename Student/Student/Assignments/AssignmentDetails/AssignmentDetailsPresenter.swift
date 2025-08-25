@@ -54,7 +54,7 @@ class AssignmentDetailsPresenter {
         self?.updateArc()
     }
 
-    private let includes: [GetAssignmentRequest.GetAssignmentInclude] = [.submission, .score_statistics]
+    private let includes: [GetAssignmentRequest.Include] = [.submission, .score_statistics]
 
     lazy var assignments = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: includes)) { [weak self] in
         self?.update()

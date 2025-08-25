@@ -293,7 +293,7 @@ extension CDHNotebookNote {
                 startContainer: startContainer,
                 startOffset: Int(truncating: startOffset),
                 endContainer: endContainer,
-                endOffset: Int(truncating: endOffset),
+                endOffset: Int(truncating: endOffset)
             )
         )
     }

@@ -176,7 +176,7 @@ struct SubmissionViewer: View {
         ),
         submission: .save(
             .make(submission_type: .online_quiz),
-            in: environment.database.viewContext,
+            in: environment.database.viewContext
         ),
         fileID: nil,
         studentAnnotationViewModel: .init(submission: .save(.make(), in: environment.database.viewContext)),
