@@ -71,7 +71,10 @@ extension AssistFlashCardView {
                 VStack(spacing: .huiSpaces.space24) {
                     AssistFlashCardStepIndicatorView(viewModel: viewModel)
                     HorizonUI.PrimaryButton(
-                        String(localized: "Regenerate flashcards", bundle: .horizon),
+                        String(
+                            localized: "Regenerate flashcards",
+                            bundle: .horizon
+                        ),
                         type: .white) {
                             viewModel.regenerate()
                         }
