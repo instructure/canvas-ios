@@ -150,13 +150,8 @@ final class AssistQuizViewModel {
         isLoaderVisible = true
         currentQuizIndex = 0
         chatBotInteractor.publish(
-            action: .chip(
-                option: AssistChipOption(
-                    chip: String(localized: "Create a Quiz", bundle: .horizon),
-                    prompt: "Create a Quiz"
-                ),
-                history: chatHistory
-            )
+            prompt: "Create a Quiz",
+            history: chatHistory
         )
     }
 }

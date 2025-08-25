@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "\n\nHow can I help with this?" : {
-
-    },
     "-" : {
 
     },
@@ -220,9 +217,6 @@
     "Cairo (+02:00/+03:00)" : {
 
     },
-    "Can I answer any questions about this document for you?" : {
-
-    },
     "Canberra (+10:00/+11:00)" : {
 
     },
@@ -298,7 +292,7 @@
     "Copenhagen (+01:00/+02:00)" : {
 
     },
-    "Create a Quiz" : {
+    "Course Selection" : {
 
     },
     "Create message" : {
@@ -385,9 +379,6 @@
     "Experience" : {
 
     },
-    "Explain this" : {
-
-    },
     "External tool" : {
 
     },
@@ -415,7 +406,7 @@
     "Full Name can only be changed by your institution." : {
 
     },
-    "Generate Flash Cards" : {
+    "Generate flashcards" : {
 
     },
     "Georgetown (-04:00/-04:00)" : {
@@ -428,6 +419,9 @@
 
     },
     "Get a notification anytime you receive a course announcement or a new message." : {
+
+    },
+    "Give me key takeaways" : {
 
     },
     "Greenland (-02:00/-01:00)" : {
@@ -469,16 +463,7 @@
     "hours" : {
 
     },
-    "How can I help you with this page?" : {
-
-    },
-    "I don't have a summary for this content." : {
-
-    },
-    "I don't have any additional information for you." : {
-
-    },
-    "I'm not able to rephrase this content" : {
+    "How can I help with this today?" : {
 
     },
     "IgniteAI" : {
@@ -676,9 +661,6 @@
     "No" : {
 
     },
-    "No key takeaways found." : {
-
-    },
     "No notification activity yet." : {
 
     },
@@ -789,6 +771,9 @@
     "Quito (-05:00/-05:00)" : {
 
     },
+    "Quiz me on this material" : {
+
+    },
     "Rangoon (+06:30/+06:30)" : {
 
     },
@@ -799,6 +784,9 @@
 
     },
     "Regenerate Flashcards" : {
+
+    },
+    "Rephrase this material" : {
 
     },
     "Reply" : {
@@ -897,7 +885,10 @@
     "Sorry, can we try that again? Which course is it you'd like to discuss?" : {
 
     },
-    "Sorry, I don't have an answer for that right now." : {
+    "Sorry, I can't answer that question right now. Please try again later" : {
+
+    },
+    "Sorry, I can't summarize that content right now. Please try again later" : {
 
     },
     "Sorry, we were not able to display this page right now." : {
@@ -964,6 +955,9 @@
 
     },
     "Tehran (+03:30/+03:30)" : {
+
+    },
+    "Tell me more about this topic" : {
 
     },
     "Text" : {
