@@ -78,7 +78,7 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
                 ignoreCache: true,
                 loadAllPages: true,
                 keepObservingDatabaseChanges: true,
-            )
+            ) 
             .ignoreFailure()
 
         submissionsObservation = Publishers.CombineLatest(summaryPublisher, submissionsPublisher)
