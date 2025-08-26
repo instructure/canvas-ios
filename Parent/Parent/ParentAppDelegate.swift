@@ -113,19 +113,52 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             ColorScheme.clear()
         }
         Analytics.shared.logSession(session)
-        getPreferences { userProfile in performUIUpdate {
-            LocalizationManager.localizeForApp(UIApplication.shared, locale: userProfile.locale) {
-                ReactiveStore(useCase: GetBrandVariables())
-                    .getEntities()
-                    .receive(on: RunLoop.main)
-                    .replaceError(with: [])
-                    .sink { [weak self] brandVars in
-                        brandVars.first?.applyBrandTheme()
+
+        Self.getPreferences(env: environment)
+            .flatMap { user in Self.checkLocalizationChange(locale: user.locale) }
+            .flatMap { Self.fetchBrandVariables() }
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    switch completion {
+                    case .finished:
                         self?.showRootView()
+                    case .failure:
+                        UIAlertController.showLoginErrorAlert(
+                            cancelAction: { [weak self] in
+                                self?.userDidLogout(session: session)
+                            },
+                            retryAction: { [weak self] in
+                                self?.setup(session: session)
+                            }
+                        )
                     }
-                    .store(in: &self.subscriptions)
+                },
+                receiveValue: {}
+            )
+            .store(in: &subscriptions)
+    }
+
+    static func fetchBrandVariables() -> AnyPublisher<Void, Never> {
+        ReactiveStore(useCase: GetBrandVariables())
+            .getEntities()
+            .replaceError(with: [])
+            .map { brandVars in
+                brandVars.first?.applyBrandTheme()
+                return ()
             }
-        }}
+            .eraseToAnyPublisher()
+    }
+
+    static func checkLocalizationChange(locale: String?) -> AnyPublisher<Void, Never> {
+        Future { promise in
+            LocalizationManager.localizeForApp(
+                UIApplication.shared,
+                locale: locale
+            ) {
+                promise(.success(()))
+            }
+        }
+        .eraseToAnyPublisher()
     }
 
     func showRootView() {
@@ -139,13 +172,16 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         })
     }
 
-    func getPreferences(_ completion: @escaping (APIUser) -> Void) {
+    static func getPreferences(env: AppEnvironment) -> AnyPublisher<APIUser, Error> {
         let request = GetUserRequest(userID: "self")
-        environment.api.makeRequest(request) { [weak self] response, _, _ in
-            guard let response = response else { return }
-            self?.environment.userDefaults?.limitWebAccess = response.permissions?.limit_parent_app_web_access
-            completion(response)
-        }
+        return env.api.makeRequest(request)
+            .receive(on: RunLoop.main)
+            .map { [weak env] (user, _) in
+                env?.userDefaults?.limitWebAccess = user.permissions?.limit_parent_app_web_access
+                return user
+            }
+            .eraseToAnyPublisher()
+
     }
 
     // similar methods exist in all other app delegates
