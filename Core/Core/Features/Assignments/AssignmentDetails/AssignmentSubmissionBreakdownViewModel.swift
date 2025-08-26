@@ -77,7 +77,7 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
             .getEntities(
                 ignoreCache: true,
                 loadAllPages: true,
-                keepObservingDatabaseChanges: true,
+                keepObservingDatabaseChanges: true
             )
             .ignoreFailure()
 
