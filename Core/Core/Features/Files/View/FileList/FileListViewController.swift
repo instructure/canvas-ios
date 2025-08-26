@@ -18,6 +18,7 @@
 
 import UIKit
 import Combine
+import CombineSchedulers
 
 public class FileListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyImageView: UIImageView!
@@ -79,13 +80,15 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     private var studentAccessInteractor: StudentAccessInteractor?
     private var subscriptions = Set<AnyCancellable>()
     private var isRestricted = false
+    private var scheduler: AnySchedulerOf<DispatchQueue>!
 
     public static func create(
         env: AppEnvironment,
         context: Context,
         path: String? = nil,
         offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive(),
-        studentAccessInteractor: StudentAccessInteractor? = nil
+        studentAccessInteractor: StudentAccessInteractor? = nil,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) -> FileListViewController {
         let controller = loadFromStoryboard()
         controller.context = context
@@ -93,6 +96,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         controller.path = path ?? ""
         controller.offlineFileInteractor = offlineFileInteractor
         controller.studentAccessInteractor = studentAccessInteractor
+        controller.scheduler = scheduler
         return controller
     }
 
@@ -103,7 +107,6 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
 
         addButton.accessibilityIdentifier = "FileList.addButton"
         addButton.accessibilityLabel = String(localized: "Add Item", bundle: .core)
-
         editButton.accessibilityIdentifier = "FileList.editButton"
 
         emptyImageView.image = UIImage(named: Panda.FilePicker.name, in: .core, compatibleWith: nil)
@@ -129,10 +132,8 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
 
         studentAccessInteractor?
             .isRestricted()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] isRestricted in
-                self?.isRestricted = isRestricted
-            }
+            .receive(on: scheduler)
+            .assign(to: \.isRestricted, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
         colors.refresh()
