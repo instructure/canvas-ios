@@ -82,14 +82,18 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         environment.userDidLogin(session: session)
 
         let getProfile = GetUserProfileRequest(userID: "self")
-        environment.api.makeRequest(getProfile) { apiProfile, urlResponse, error in performUIUpdate {
+        environment.api.makeRequest(getProfile) { apiProfile, _, error in performUIUpdate {
             PageViewEventController.instance.userDidChange()
 
-            guard let apiProfile = apiProfile, error == nil else {
-                if urlResponse?.isUnauthorized == true {
-                    self.userDidLogout(session: session)
-                    LoginViewModel().showLoginView(on: self.window!, loginDelegate: self, app: .teacher)
-                }
+            guard let apiProfile, error == nil else {
+                UIAlertController.showLoginErrorAlert(
+                    cancelAction: { [weak self] in
+                        self?.userDidLogout(session: session)
+                    },
+                    retryAction: { [weak self] in
+                        self?.setup(session: session)
+                    }
+                )
                 return
             }
 
