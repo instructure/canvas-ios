@@ -144,6 +144,7 @@ class SubmissionListViewModel: ObservableObject {
 
         env.router.route(
             to: composeURL,
+            userInfo: env.courseShardIDUserInfo,
             from: controller.value,
             options: .modal(embedInNav: true)
         )
@@ -169,6 +170,7 @@ class SubmissionListViewModel: ObservableObject {
         let query = filterMode == .all ? "" : "?filter=\(filterMode.filters.map { $0.rawValue }.joined(separator: ","))"
         env.router.route(
             to: assignmentRoute + "/submissions/\(submission.originalUserID)\(query)",
+            userInfo: env.courseShardIDUserInfo,
             from: controller.value,
             options: .modal(.fullScreen, isDismissable: false, embedInNav: true)
         )
