@@ -35,23 +35,21 @@ class PlannableTests: CoreTestCase {
     }
 
     func testSaveAPIPlannable() {
-        let apiPlannable = APIPlannable(
+        let apiPlannable = APIPlannable.make(
             course_id: ID(TestConstants.courseId),
             group_id: ID(TestConstants.groupId),
             user_id: ID(TestConstants.userId),
             context_type: "Course",
-            planner_override: nil,
             plannable_id: ID(TestConstants.plannableId),
             plannable_type: PlannableType.assignment.rawValue,
-            html_url: APIURL(rawValue: TestConstants.htmlUrl),
+            html_url: TestConstants.htmlUrl,
             context_name: TestConstants.contextName,
-            plannable: .init(
+            plannable: .make(
+                title: TestConstants.plannableTitle,
                 details: TestConstants.plannableDetails,
-                points_possible: TestConstants.pointsPossible,
-                title: TestConstants.plannableTitle
+                points_possible: TestConstants.pointsPossible
             ),
-            plannable_date: TestConstants.plannableDate,
-            submissions: nil
+            plannable_date: TestConstants.plannableDate
         )
 
         let plannable = Plannable.save(apiPlannable, userID: "another userId", in: databaseClient)

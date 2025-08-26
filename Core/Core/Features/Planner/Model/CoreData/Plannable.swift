@@ -54,7 +54,7 @@ public final class Plannable: NSManagedObject {
     }
 
     @discardableResult
-    public static func save(_ item: PlannableItem, userID: String?, in client: NSManagedObjectContext) -> Plannable {
+    public static func save(_ item: APIPlannableItem, userID: String?, in client: NSManagedObjectContext) -> Plannable {
         let model: Plannable = client.first(where: #keyPath(Plannable.id), equals: item.plannableID) ?? client.insert()
         model.id = item.plannableID
         model.plannableType = item.plannableType
@@ -63,7 +63,7 @@ public final class Plannable: NSManagedObject {
         model.title = item.plannableTitle
         model.date = item.date
         model.pointsPossible = item.pointsPossible
-        model.details = item.details
+        model.details = item.detailsText
         model.context = item.context
         model.userID = userID
         return model
