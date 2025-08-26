@@ -30,6 +30,7 @@ public protocol APIPlannableItem {
     var pointsPossible: Double? { get }
     var detailsText: String? { get }
     var isHidden: Bool { get }
+    var discussionCheckpointStep: DiscussionCheckpointStep? { get }
 }
 
 extension APIPlannable: APIPlannableItem {
@@ -42,6 +43,9 @@ extension APIPlannable: APIPlannableItem {
     public var detailsText: String? { self.plannable?.details }
     public var contextName: String? { context_name }
     public var isHidden: Bool { false }
+    public var discussionCheckpointStep: DiscussionCheckpointStep? {
+        .init(tag: plannable?.sub_assignment_tag, requiredReplyCount: details?.reply_to_entry_required_count)
+    }
 
     public var context: Context? {
         if let context = contextFromContextType() {
@@ -87,6 +91,7 @@ extension APICalendarEvent: APIPlannableItem {
     public var pointsPossible: Double? { assignment?.points_possible }
     public var detailsText: String? { description }
     public var isHidden: Bool { hidden == true }
+    public var discussionCheckpointStep: DiscussionCheckpointStep? { nil }
 }
 
 extension APIPlannerNote: APIPlannableItem {
@@ -104,6 +109,7 @@ extension APIPlannerNote: APIPlannableItem {
     public var pointsPossible: Double? { nil }
     public var detailsText: String? { details }
     public var isHidden: Bool { false }
+    public var discussionCheckpointStep: DiscussionCheckpointStep? { nil }
 }
 
 public class GetPlannables: UseCase {

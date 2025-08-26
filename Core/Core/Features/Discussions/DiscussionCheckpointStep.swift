@@ -22,7 +22,7 @@ public enum DiscussionCheckpointStep {
     case replyToTopic
     case requiredReplies(Int)
 
-    init?(tag: String, requiredReplyCount: Int?) {
+    public init?(tag: String?, requiredReplyCount: Int?) {
         switch tag {
         case "reply_to_topic":
             self = .replyToTopic
@@ -35,5 +35,73 @@ public enum DiscussionCheckpointStep {
         default:
             return nil
         }
+    }
+}
+
+// MARK: - CoreData support
+
+private extension DiscussionCheckpointStep {
+    var tag: String {
+        switch self {
+        case .replyToTopic: "reply_to_topic"
+        case .requiredReplies: "reply_to_entry"
+        }
+    }
+
+    var requiredReplyCount: Int? {
+        switch self {
+        case .replyToTopic: nil
+        case .requiredReplies(let count): count
+        }
+    }
+}
+
+final class DiscussionCheckpointStepWrapper: NSObject, NSSecureCoding {
+    private enum Key {
+        static let tag = "tag"
+        static let requiredReplyCount = "requiredReplyCount"
+    }
+
+    static var supportsSecureCoding: Bool { true }
+
+    let value: DiscussionCheckpointStep
+
+    init(value: DiscussionCheckpointStep) {
+        self.value = value
+    }
+
+    init?(value: DiscussionCheckpointStep?) {
+        guard let value else { return nil }
+        self.value = value
+    }
+
+    required init?(coder: NSCoder) {
+        guard let tag = coder.decodeObject(of: NSString.self, forKey: Key.tag) as? String else {
+            return nil
+        }
+
+        // optional parameters
+        let requiredReplyCount = coder.decodeObject(of: NSNumber.self, forKey: Key.requiredReplyCount)?.intValue
+
+        guard let value = DiscussionCheckpointStep(tag: tag, requiredReplyCount: requiredReplyCount) else {
+            return nil
+        }
+
+        self.value = value
+    }
+
+    func encode(with coder: NSCoder) {
+        coder.encode(value.tag, forKey: Key.tag)
+        coder.encode(value.requiredReplyCount, forKey: Key.requiredReplyCount)
+    }
+}
+
+final class DiscussionCheckpointStepTransformer: NSSecureUnarchiveFromDataTransformer {
+    static let name = NSValueTransformerName(rawValue: String(describing: DiscussionCheckpointStepTransformer.self))
+    override static var allowedTopLevelClasses: [AnyClass] { [DiscussionCheckpointStepWrapper.self] }
+
+    static func register() {
+        let transformer = DiscussionCheckpointStepTransformer()
+        ValueTransformer.setValueTransformer(transformer, forName: name)
     }
 }

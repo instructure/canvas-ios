@@ -37,6 +37,10 @@ public final class Plannable: NSManagedObject {
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var userID: String?
     @NSManaged public var details: String?
+    @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
+    public var discussionCheckpointStep: DiscussionCheckpointStep? {
+        get { return discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(value: newValue) }
+    }
 
     public var pointsPossible: Double? {
         get { return pointsPossibleRaw?.doubleValue }
@@ -66,6 +70,7 @@ public final class Plannable: NSManagedObject {
         model.details = item.detailsText
         model.context = item.context
         model.userID = userID
+        model.discussionCheckpointStep = item.discussionCheckpointStep
         return model
     }
 
