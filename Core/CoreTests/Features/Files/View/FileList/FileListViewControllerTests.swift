@@ -20,13 +20,16 @@ import XCTest
 @testable import Core
 @testable import TestsFoundation
 import Combine
+import CombineSchedulers
 
 class FileListViewControllerTests: CoreTestCase {
     var controller: FileListViewController!
     private var studentAccessInteractor: StudentAccessInteractorMock!
+    private var testScheduler: TestSchedulerOf<DispatchQueue>!
 
     override func setUp() {
         super.setUp()
+        testScheduler = DispatchQueue.test
         controller = FileListViewController
             .create(env: environment, context: .currentUser, path: "Folder A")
         studentAccessInteractor = StudentAccessInteractorMock()
@@ -276,6 +279,8 @@ class FileListViewControllerTests: CoreTestCase {
     }
 
     func test_addFileButtonVisible_whenNotRestricted() {
+        studentAccessInteractor.setRestricted(false)
+
         controller = FileListViewController.create(
             env: environment,
             context: .currentUser,
@@ -301,20 +306,15 @@ class FileListViewControllerTests: CoreTestCase {
             env: environment,
             context: .currentUser,
             path: "Folder A",
-            studentAccessInteractor: studentAccessInteractor
+            studentAccessInteractor: studentAccessInteractor,
+            scheduler: testScheduler.eraseToAnyScheduler()
         )
 
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
-        let expectation = expectation(description: "Restriction applied")
-
-        // Give time for Combine publisher to deliver on main queue
-        DispatchQueue.main.async {
-            expectation.fulfill()
-        }
-
-        wait(for: [expectation], timeout: 1.0)
+        // Move virtual time forward by 100ms
+        testScheduler.advance(by: .seconds(0.1))
 
         _ = controller.addButton.target?.perform(controller.addButton.action)
         let sheet = router.presented as? BottomSheetPickerViewController
