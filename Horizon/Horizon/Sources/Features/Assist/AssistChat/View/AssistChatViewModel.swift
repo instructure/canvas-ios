@@ -53,31 +53,31 @@ final class AssistChatViewModel {
 
     // MARK: - Private
 
-    private var chatMessages: [AssistChatMessage] = []
-    private var dispatchWorkItem: DispatchWorkItem?
     private var canSendMessage: Bool = true
-    private var subscriptions = Set<AnyCancellable>()
-    private let courseId: String?
-    private let pageUrl: String?
-    private let fileId: String?
-    weak var viewController: WeakViewController?
+    private var chatMessages: [AssistChatMessage] = []
+    private let courseID: String?
+    private var dispatchWorkItem: DispatchWorkItem?
+    private let fileID: String?
     private var hasAssistChipOptions: Bool = false
+    private let pageURL: String?
+    private var subscriptions = Set<AnyCancellable>()
+    weak var viewController: WeakViewController?
 
     // MARK: - Init
     init(
-        courseId: String? = nil,
-        pageUrl: String? = nil,
-        fileId: String? = nil,
-        chatBotInteractor: AssistChatInteractor,
+        courseID: String? = nil,
+        pageURL: String? = nil,
+        fileID: String? = nil,
+        assistChatInteractor: AssistChatInteractor,
         router: Router = AppEnvironment.shared.router,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
-        self.courseId = courseId
-        self.pageUrl = pageUrl
-        self.fileId = fileId
+        self.courseID = courseID
+        self.fileID = fileID
+        self.pageURL = pageURL
         self.router = router
         self.scheduler = scheduler
-        self.assistChatInteractor = chatBotInteractor
+        self.assistChatInteractor = assistChatInteractor
 
         self.assistChatInteractor
             .listen
@@ -104,7 +104,7 @@ final class AssistChatViewModel {
             )
             .store(in: &subscriptions)
 
-        self.assistChatInteractor.publish(action: .begin)
+        self.assistChatInteractor.publish()
     }
 
     // MARK: - Inputs
@@ -118,7 +118,7 @@ final class AssistChatViewModel {
     func retry() {
         guard let lastMessage = messages.popLast() else { return }
         chatMessages = chatMessages.dropLast()
-        assistChatInteractor.publish(action: .chat(prompt: lastMessage.content, history: chatMessages))
+        assistChatInteractor.publish(prompt: lastMessage.content, history: chatMessages)
         isRetryButtonVisible = false
         shouldOpenKeyboardPublisher.send(false)
     }
@@ -134,12 +134,12 @@ final class AssistChatViewModel {
     }
 
     func send(chipOption: AssistChipOption) {
-        assistChatInteractor.publish(action: .chip(option: chipOption, history: chatMessages))
+        assistChatInteractor.publish(prompt: chipOption.prompt, history: chatMessages)
         isBackButtonVisible = true
     }
 
     func send(message: String) {
-        assistChatInteractor.publish(action: .chat(prompt: message, history: chatMessages))
+        assistChatInteractor.publish(prompt: message, history: chatMessages)
         isBackButtonVisible = true
         self.message = ""
     }
@@ -190,10 +190,11 @@ final class AssistChatViewModel {
             messages.append(.init(isLoading: true))
         }
 
-        let params = ["courseId": courseId, "pageUrl": pageUrl, "fileId": fileId].map { (key, value) in
-            guard let value = value else { return nil }
-            return "\(key)=\(value)"
-        }.compactMap { $0 }.joined(separator: "&")
+        let params = AssistAssembly.RoutingParams(
+            courseID: courseID,
+            fileID: fileID,
+            pageURL: pageURL
+        ).queryString
 
         if let flashCards = response.chatHistory.last?.flashCards?.flashCardModels, flashCards.count > 0 {
             router.route(
@@ -284,7 +285,7 @@ private extension AssistChipOption {
 private extension AssistChatMessage {
     func isFinalMessage(in history: [AssistChatMessage]) -> Bool {
         guard let lastMessage = history.last else { return false }
-        return self.id == lastMessage.id && self.role == .Assistant
+        return self.id == lastMessage.id && lastMessage.text?.isNotEmpty == true && self.role == .Assistant
     }
 
     func isSolicitingFeedback(with response: AssistChatResponse) -> Bool {
@@ -311,7 +312,7 @@ private extension AssistChatMessage {
     }
 }
 
-private extension AssistChatMessage.SourceType {
+private extension AssistChatInteractor.CitationType {
     var assetType: GetModuleItemSequenceRequest.AssetType? {
         switch self {
         case .attachment:
