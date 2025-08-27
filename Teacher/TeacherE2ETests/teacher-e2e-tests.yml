@@ -5,7 +5,7 @@ targets:
     platform: iOS
     settings:
       ENABLE_TESTABILITY: true
-      TEST_TARGET_NAME: Student
+      TEST_TARGET_NAME: Teacher
     sources:
       - path: ./
         excludes:
