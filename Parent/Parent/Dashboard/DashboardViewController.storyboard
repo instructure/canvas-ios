@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -59,6 +59,24 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tQz-mz-EdB">
                                 <rect key="frame" x="0.0" y="125" width="375" height="542"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nr2-zd-oUq" userLabel="Loading View">
+                                <rect key="frame" x="0.0" y="10" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGE-cp-i5l" customClass="CircleProgressView" customModule="Core">
+                                        <rect key="frame" x="167.5" y="313.5" width="40" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="J92-Jw-XbY"/>
+                                            <constraint firstAttribute="height" constant="40" id="o7I-yO-tKP"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="XGE-cp-i5l" firstAttribute="centerY" secondItem="Nr2-zd-oUq" secondAttribute="centerY" id="S9D-J3-k4C"/>
+                                    <constraint firstItem="XGE-cp-i5l" firstAttribute="centerX" secondItem="Nr2-zd-oUq" secondAttribute="centerX" id="fic-W1-Oi8"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vFv-WE-Vix"/>
                         <color key="backgroundColor" red="0.99607843137254903" green="0.99607843137254903" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -69,16 +87,21 @@
                             <constraint firstItem="vFv-WE-Vix" firstAttribute="top" secondItem="BbJ-cb-Nm6" secondAttribute="top" placeholder="YES" id="JUx-F9-0HP"/>
                             <constraint firstItem="tQz-mz-EdB" firstAttribute="leading" secondItem="utC-55-lT3" secondAttribute="leading" id="Kr8-8g-rQP"/>
                             <constraint firstAttribute="trailing" secondItem="tQz-mz-EdB" secondAttribute="trailing" id="Lb8-TL-5Ef"/>
+                            <constraint firstItem="Nr2-zd-oUq" firstAttribute="width" secondItem="utC-55-lT3" secondAttribute="width" id="MEs-pf-AUg"/>
+                            <constraint firstItem="Nr2-zd-oUq" firstAttribute="centerY" secondItem="utC-55-lT3" secondAttribute="centerYWithinMargins" id="NGw-GZ-oUx"/>
+                            <constraint firstItem="Nr2-zd-oUq" firstAttribute="centerX" secondItem="utC-55-lT3" secondAttribute="centerXWithinMargins" id="OQh-rX-bmu"/>
                             <constraint firstItem="BbJ-cb-Nm6" firstAttribute="leading" secondItem="utC-55-lT3" secondAttribute="leading" id="Vif-hB-uL6"/>
                             <constraint firstItem="vFv-WE-Vix" firstAttribute="trailing" secondItem="Etp-Sy-mwK" secondAttribute="trailing" id="WUU-TJ-CHY"/>
                             <constraint firstItem="Nzw-SO-Fz0" firstAttribute="leading" secondItem="vFv-WE-Vix" secondAttribute="leading" id="ehd-Hb-R8N"/>
                             <constraint firstAttribute="trailing" secondItem="BbJ-cb-Nm6" secondAttribute="trailing" id="jYE-xU-4ey"/>
                             <constraint firstItem="vFv-WE-Vix" firstAttribute="trailing" secondItem="Nzw-SO-Fz0" secondAttribute="trailing" id="pAa-sJ-Oed"/>
+                            <constraint firstItem="Nr2-zd-oUq" firstAttribute="height" secondItem="utC-55-lT3" secondAttribute="height" id="ulD-wv-GBA"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="loadingView" destination="Nr2-zd-oUq" id="YhF-9E-QaW"/>
                         <outlet property="studentListStack" destination="Yx8-SV-dT3" id="Ren-MI-u9J"/>
                         <outlet property="studentListView" destination="BbJ-cb-Nm6" id="N6d-6J-qh9"/>
                         <outlet property="tabsContainer" destination="tQz-mz-EdB" id="0iS-v5-eUy"/>
@@ -89,4 +112,9 @@
             <point key="canvasLocation" x="181.59999999999999" y="48.125937031484263"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

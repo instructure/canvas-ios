@@ -41,7 +41,7 @@ class CustomGradebookColumnsInteractorTests: TeacherTestCase {
         content0B: "content 0B",
         content1B: "content 1B",
         content1C: "content 1C",
-        content2C: "content 2C",
+        content2C: "content 2C"
     )
     private lazy var testData = Self.testData
 
