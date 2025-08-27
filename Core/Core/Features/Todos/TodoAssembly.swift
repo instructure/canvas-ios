@@ -24,8 +24,6 @@ public struct TodoAssembly {
         let todoVC = CoreHostingController(TodoListScreen(viewModel: model))
         todoVC.navigationBarStyle = .global
         todoVC.navigationItem.titleView = Brand.shared.headerImageView()
-        return CoreNavigationController(
-            rootViewController: todoVC
-        )
+        return todoVC
     }
 }

@@ -21,7 +21,7 @@ import SwiftUI
 public struct TodoItem: Identifiable, Equatable {
     let plannableID: String
     let type: PlannableType
-    let date: Date
+    public let date: Date
 
     let title: String
     let subtitle: String?
@@ -76,7 +76,7 @@ public struct TodoItem: Identifiable, Equatable {
 
     // MARK: Preview & Testing
 
-    static func make(
+    public static func make(
         plannableID: String = "1",
         type: PlannableType = .assignment,
         date: Date = Clock.now,

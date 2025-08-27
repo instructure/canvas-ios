@@ -36,5 +36,11 @@ public struct TodoListScreen: View {
                 }
             }
         }
+        .padding(.horizontal, 16)
     }
+}
+
+#Preview {
+    let viewModel = TodoListViewModel(interactor: TodoInteractorMock())
+    TodoListScreen(viewModel: viewModel)
 }

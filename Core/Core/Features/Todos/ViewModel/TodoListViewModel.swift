@@ -17,42 +17,28 @@
 //
 
 import Foundation
+import Combine
 
 public class TodoListViewModel: ObservableObject {
 
     @Published var items: [TodoItem] = []
 
     private let env: AppEnvironment
-    private var todoStore: Store<GetPlannables>?
-    private var coursesStore: Store<GetAllCourses>?
+    private let interactor: TodoInteractor
+    private var subscriptions = Set<AnyCancellable>()
 
-    init(env: AppEnvironment = .shared) {
+    init(env: AppEnvironment = .shared, interactor: TodoInteractor? = nil) {
         self.env = env
-        self.coursesStore = env.subscribe(GetAllCourses()) { [weak self] in
-            self?.fetchTodos()
-        }
-        self.coursesStore?.refresh()
+        self.interactor = interactor ?? TodoInteractorLive(env: env, startDate: .now.startOfDay(), endDate: .now.addDays(28))
+        getItems()
     }
 
-    private func fetchTodos() {
-        guard let coursesStore, !coursesStore.pending else { return }
-        var contextCodes: [String] = coursesStore.map(\.canvasContextID)
-        if let userContextId = Context(.user, id: env.currentSession?.userID)?.canvasContextID {
-            contextCodes.append(userContextId)
-        }
-
-        let start: Date = .now.startOfDay()
-        let end: Date = start.addDays(28)
-        let todoUseCase = GetPlannables(startDate: start, endDate: end, contextCodes: contextCodes)
-        self.todoStore = env.subscribe(todoUseCase) { [weak self] in
-            self?.handleFetchFinished()
-        }
-        self.todoStore?.refresh()
-    }
-
-    private func handleFetchFinished() {
-        guard let todoStore, !todoStore.pending else { return }
-        self.items = todoStore.compactMap(TodoItem.init)
+    private func getItems() {
+        interactor.todosPublisher
+            .sink(receiveValue: { [weak self] items in
+                self?.items = items
+            })
+            .store(in: &subscriptions)
     }
 
     func didTapItem(_ item: TodoItem, _ viewController: WeakViewController) {
