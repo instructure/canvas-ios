@@ -23,7 +23,6 @@ targets:
       - package: FirebaseRemoteConfig
       - package: FirebaseRemoteConfigSwift
       - target: Core/Core
-#      - target: Horizon/Horizon
     preBuildScripts:
       - path: ../../scripts/xcode-build-phases/swiftLint.sh
         name: SwiftLint
