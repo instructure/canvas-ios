@@ -87,7 +87,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
             return
         }
 
-        let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases)
+        let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.Include.allCases)
         useCase.fetch(environment: env, force: true) { _, _, fetchError in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -290,7 +290,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
                     return
                 }
                 if result != nil {
-                    GetAssignment(courseID: self.courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases)
+                    GetAssignment(courseID: self.courseID, assignmentID: assignmentID, include: GetAssignmentRequest.Include.allCases)
                         .fetch(environment: self.env, force: true)
                     self.dismiss(router: router, viewController: viewController.value)
                 }

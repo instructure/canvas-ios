@@ -45,8 +45,8 @@ class ManageStudentsTests: E2ETestCase {
 
         // MARK: Check students
         manageStudentsButton.hit()
-        let student1cell = ManageStudentsHelper.studentCell(student: student1)!.waitUntil(.visible)
-        let student2cell = ManageStudentsHelper.studentCell(student: student2)!.waitUntil(.visible)
+        let student1cell = ManageStudentsHelper.studentCell(student: student1).waitUntil(.visible)
+        let student2cell = ManageStudentsHelper.studentCell(student: student2).waitUntil(.visible)
         XCTAssertTrue(student1cell.isVisible)
         XCTAssertTrue(student2cell.isVisible)
 

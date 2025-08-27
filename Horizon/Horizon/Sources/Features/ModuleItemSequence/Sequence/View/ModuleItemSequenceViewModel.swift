@@ -226,6 +226,14 @@ final class ModuleItemSequenceViewModel {
         default:
             break
         }
+        if case let .file(file) = moduleItem?.type {
+            fileID = file
+        }
+        let params = AssistAssembly.RoutingParams(
+            courseID: courseID,
+            fileID: fileID,
+            pageURL: pageURL
+        ).queryString
 
         let routingParams: AssistAssembly.RoutingParams = .init(
             courseID: courseID,

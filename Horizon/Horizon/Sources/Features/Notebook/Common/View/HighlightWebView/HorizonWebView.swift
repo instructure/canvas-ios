@@ -63,7 +63,7 @@ final class HorizonWebView: CoreWebView {
         moduleType: ModuleItemType,
         viewController: WeakViewController,
         router: Router = AppEnvironment.shared.router,
-        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive()
+        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive(pageSize: 10000)
     ) {
         self.courseID = courseID
         self.pageURL = pageURL
