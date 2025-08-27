@@ -55,6 +55,12 @@ public struct APIDiscussionTopic: Codable, Equatable {
     public let subscription_hold: String?
     public var title: String?
     public let unread_count: Int?
+
+    // Checkpoints
+    public let is_checkpointed: Bool?
+    public let reply_to_entry_required_count: Int?
+    public let has_sub_assignments: Bool? // Populated only via `discussion_topics` endpoint
+    public let checkpoints: [APIAssignmentCheckpoint]? // Populated only via `discussion_topics` endpoint
 }
 
 public struct APIDiscussionTopicChild: Codable, Equatable {
@@ -138,7 +144,11 @@ extension APIDiscussionTopic {
         subscribed: Bool? = true,
         subscription_hold: String? = nil,
         title: String? = "my discussion topic",
-        unread_count: Int? = 0
+        unread_count: Int? = 0,
+        is_checkpointed: Bool? = nil,
+        reply_to_entry_required_count: Int? = nil,
+        has_sub_assignments: Bool? = nil,
+        checkpoints: [APIAssignmentCheckpoint]? = nil
     ) -> APIDiscussionTopic {
         return APIDiscussionTopic(
             allow_rating: allow_rating,
@@ -175,7 +185,11 @@ extension APIDiscussionTopic {
             subscribed: subscribed,
             subscription_hold: subscription_hold,
             title: title,
-            unread_count: unread_count
+            unread_count: unread_count,
+            is_checkpointed: is_checkpointed,
+            reply_to_entry_required_count: reply_to_entry_required_count,
+            has_sub_assignments: has_sub_assignments,
+            checkpoints: checkpoints
         )
     }
 }

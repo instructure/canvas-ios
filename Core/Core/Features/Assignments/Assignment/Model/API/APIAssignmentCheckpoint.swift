@@ -18,47 +18,39 @@
 
 import Foundation
 
-// https://canvas.instructure.com/doc/api/assignments.html#AssignmentOverride
-public struct APIAssignmentOverride: Codable, Equatable {
-    let id: ID
-    let assignment_id: ID
-    let title: String
-
-    // Targets
-    let course_section_id: ID?
-    let group_id: ID?
-    let student_ids: [ID]?
-
-    // Dates
+public struct APIAssignmentCheckpoint: Codable, Equatable {
+    let tag: String
+    let name: String
+    let points_possible: Double?
     let due_at: Date?
     let unlock_at: Date?
     let lock_at: Date?
+    let only_visible_to_overrides: Bool?
+    let overrides: [APIAssignmentOverride]? // populated only when requested by Teacher
 }
 
 #if DEBUG
 
-extension APIAssignmentOverride {
+extension APIAssignmentCheckpoint {
     public static func make(
-        id: String = "",
-        assignment_id: String = "",
-        title: String = "",
-        course_section_id: String? = nil,
-        group_id: String? = nil,
-        student_ids: [String]? = nil,
+        tag: String = "",
+        name: String = "",
+        points_possible: Double? = nil,
         due_at: Date? = nil,
         unlock_at: Date? = nil,
-        lock_at: Date? = nil
-    ) -> APIAssignmentOverride {
-        APIAssignmentOverride(
-            id: ID(id),
-            assignment_id: ID(assignment_id),
-            title: title,
-            course_section_id: ID(course_section_id),
-            group_id: ID(group_id),
-            student_ids: student_ids?.map { ID($0) },
+        lock_at: Date? = nil,
+        only_visible_to_overrides: Bool? = nil,
+        overrides: [APIAssignmentOverride]? = nil
+    ) -> APIAssignmentCheckpoint {
+        return APIAssignmentCheckpoint(
+            tag: tag,
+            name: name,
+            points_possible: points_possible,
             due_at: due_at,
             unlock_at: unlock_at,
-            lock_at: lock_at
+            lock_at: lock_at,
+            only_visible_to_overrides: only_visible_to_overrides,
+            overrides: overrides
         )
     }
 }

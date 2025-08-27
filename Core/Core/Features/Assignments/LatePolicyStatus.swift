@@ -20,4 +20,9 @@ import Foundation
 
 public enum LatePolicyStatus: String, Codable {
     case late, missing, none, extended
+
+    public init?(rawValue: String?) {
+        guard let rawValue else { return nil }
+        self.init(rawValue: rawValue)
+    }
 }

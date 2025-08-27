@@ -16,31 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
+import Foundation
 
-class CollectionExtensionsTests: XCTestCase {
-    func testEmpty() {
-        let emptyArray: [Int] = []
-        let emptySet: Set<Int> = []
-        let emptyDictionary: [Int: Int] = [:]
+extension NSOrderedSet {
 
-        XCTAssertFalse(emptyArray.isNotEmpty)
-        XCTAssertFalse(emptySet.isNotEmpty)
-        XCTAssertFalse(emptyDictionary.isNotEmpty)
+    public convenience init(_ array: [Any]) {
+        self.init(array: array)
     }
 
-    func testNotEmpty() {
-        let nonEmptyArray: [Int] = [1]
-        let nonEmptySet: Set<Int> = [1]
-        let nonEmptyDictionary: [Int: Int] = [1: 1]
-
-        XCTAssertTrue(nonEmptyArray.isNotEmpty)
-        XCTAssertTrue(nonEmptySet.isNotEmpty)
-        XCTAssertTrue(nonEmptyDictionary.isNotEmpty)
+    public convenience init?(_ array: [Any]?) {
+        guard let array else { return nil }
+        self.init(array: array)
     }
 
-    func testNilIfEmpty() {
-        XCTAssertNil([].nilIfEmpty)
-        XCTAssertEqual([1, 2, 3].nilIfEmpty, [1, 2, 3])
+    public func typedArray<T>() -> [T]? {
+        array as? [T]
     }
 }
