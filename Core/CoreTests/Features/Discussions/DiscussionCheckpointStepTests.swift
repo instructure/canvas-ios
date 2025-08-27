@@ -43,6 +43,16 @@ class DiscussionCheckpointStepTests: XCTestCase {
         XCTAssertEqual(testee, nil)
     }
 
+    func test_text() {
+        var testee: DiscussionCheckpointStep
+
+        testee = .replyToTopic
+        XCTAssertEqual(testee.text, "Reply to topic")
+
+        testee = .requiredReplies(42)
+        XCTAssertEqual(testee.text, "Additional replies (42)")
+    }
+
     func test_coding_whenCaseIsReplyToTopic() throws {
         let testee = DiscussionCheckpointStepWrapper(value: .replyToTopic)
         let encodedData = try NSKeyedArchiver.archivedData(withRootObject: testee, requiringSecureCoding: true)
