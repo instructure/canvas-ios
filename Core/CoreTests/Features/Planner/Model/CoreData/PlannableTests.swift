@@ -123,6 +123,13 @@ class PlannableTests: CoreTestCase {
         p = Plannable.make(from: .make(plannable_type: "discussion_topic"))
         XCTAssertEqual(p.icon(), UIImage.discussionLine)
 
+        p = Plannable.make(from: .make(plannable_type: "sub_assignment"))
+        XCTAssertEqual(p.icon(), UIImage.assignmentLine)
+
+        p = Plannable.make(from: .make(plannable_type: "sub_assignment"))
+        p.discussionCheckpointStep = .replyToTopic
+        XCTAssertEqual(p.icon(), UIImage.discussionLine)
+
         p = Plannable.make(from: .make(plannable_type: "wiki_page"))
         XCTAssertEqual(p.icon(), UIImage.documentLine)
 

@@ -21,6 +21,7 @@ import UIKit
 
 public enum PlannableType: String, Codable {
     case announcement, assignment, discussion_topic, quiz, wiki_page, planner_note, calendar_event, assessment_request
+    case sub_assignment
     case other
 }
 
@@ -93,25 +94,27 @@ public final class Plannable: NSManagedObject {
 
 extension Plannable {
     public func icon() -> UIImage? {
-        switch(self.plannableType) {
+        switch plannableType {
         case .assignment:
-            return UIImage.assignmentLine
+            .assignmentLine
         case .quiz:
-            return UIImage.quizLine
+            .quizLine
         case .discussion_topic:
-            return UIImage.discussionLine
+            .discussionLine
+        case .sub_assignment:
+            discussionCheckpointStep != nil ? .discussionLine : .assignmentLine
         case .announcement:
-            return UIImage.announcementLine
+            .announcementLine
         case .wiki_page:
-            return UIImage.documentLine
+            .documentLine
         case .planner_note:
-            return UIImage.noteLine
+            .noteLine
         case .calendar_event:
-            return UIImage.calendarMonthLine
+            .calendarMonthLine
         case .assessment_request:
-            return UIImage.peerReviewLine
+            .peerReviewLine
         case .other:
-            return UIImage.warningLine
+            .warningLine
         }
     }
 
