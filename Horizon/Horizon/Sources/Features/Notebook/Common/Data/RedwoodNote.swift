@@ -21,15 +21,15 @@ import Foundation
 public class RedwoodNote: NewRedwoodNote {
     public static func == (lhs: RedwoodNote, rhs: RedwoodNote) -> Bool {
         lhs.id == rhs.id &&
-        lhs.createdAt == rhs.createdAt &&
+        lhs.updatedAt == rhs.updatedAt &&
         (lhs as NewRedwoodNote) == (rhs as NewRedwoodNote)
     }
 
     public let id: String
-    public let createdAt: Date
+    public let updatedAt: Date
 
     enum CodingKeys: String, CodingKey {
-        case id, courseId, objectId, objectType, userText, reaction, createdAt, highlightData
+        case id, courseId, objectId, objectType, userText, reaction, updatedAt, highlightData
     }
 
     // Custom DateFormatter to handle the date format
@@ -45,12 +45,12 @@ public class RedwoodNote: NewRedwoodNote {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         id = try container.decode(String.self, forKey: .id)
-        let dateString = try container.decode(String.self, forKey: .createdAt)
+        let dateString = try container.decode(String.self, forKey: .updatedAt)
         if let date = RedwoodNote.dateFormatter.date(from: dateString) {
-            createdAt = date
+            updatedAt = date
         } else {
             throw DecodingError.dataCorruptedError(
-                forKey: .createdAt, in: container,
+                forKey: .updatedAt, in: container,
                 debugDescription: "Date string does not match format expected by formatter.")
         }
 
@@ -63,7 +63,7 @@ public class RedwoodNote: NewRedwoodNote {
 
         try container.encode(id, forKey: .id)
 
-        let dateString = RedwoodNote.dateFormatter.string(from: createdAt)
-        try container.encode(dateString, forKey: .createdAt)
+        let dateString = RedwoodNote.dateFormatter.string(from: updatedAt)
+        try container.encode(dateString, forKey: .updatedAt)
     }
 }
