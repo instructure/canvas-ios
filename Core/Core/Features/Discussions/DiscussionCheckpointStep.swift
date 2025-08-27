@@ -18,7 +18,7 @@
 
 import Foundation
 
-public enum DiscussionCheckpointStep {
+public enum DiscussionCheckpointStep: Equatable {
     case replyToTopic
     case requiredReplies(Int)
 

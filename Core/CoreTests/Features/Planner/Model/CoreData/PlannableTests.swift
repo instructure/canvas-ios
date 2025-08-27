@@ -47,9 +47,11 @@ class PlannableTests: CoreTestCase {
             plannable: .make(
                 title: TestConstants.plannableTitle,
                 details: TestConstants.plannableDetails,
-                points_possible: TestConstants.pointsPossible
+                points_possible: TestConstants.pointsPossible,
+                sub_assignment_tag: "reply_to_entry"
             ),
-            plannable_date: TestConstants.plannableDate
+            plannable_date: TestConstants.plannableDate,
+            details: .make(reply_to_entry_required_count: 42)
         )
 
         let plannable = Plannable.save(apiPlannable, userID: "another userId", in: databaseClient)
@@ -64,6 +66,7 @@ class PlannableTests: CoreTestCase {
         XCTAssertEqual(plannable.details, TestConstants.plannableDetails)
         XCTAssertEqual(plannable.context?.courseId, TestConstants.courseId)
         XCTAssertEqual(plannable.userID, "another userId")
+        XCTAssertEqual(plannable.discussionCheckpointStep, .requiredReplies(42))
     }
 
     func testSaveAPIPlannerNote() {
