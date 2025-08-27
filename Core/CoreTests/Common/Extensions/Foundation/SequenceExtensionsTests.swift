@@ -18,6 +18,7 @@
 
 import TestsFoundation
 import XCTest
+import Core
 
 class SequenceExtensionsTests: XCTestCase {
     func testInterleaveEmpty() {
@@ -26,5 +27,19 @@ class SequenceExtensionsTests: XCTestCase {
 
     func testInterleaveNonEmpty() {
         XCTAssertEqual("abcde".interleave(separator: ","), Array("a,b,c,d,e"))
+    }
+
+    func test_sortedByKeyPath() {
+        let array: [Context] = [.account("3"), .user("1"), .course("2")]
+
+        XCTAssertEqual(
+            array.sorted(by: \.id).map(\.canvasContextID),
+            ["user_1", "course_2", "account_3"]
+        )
+
+        XCTAssertEqual(
+            array.sorted(by: \.canvasContextID).map(\.canvasContextID),
+            ["account_3", "course_2", "user_1"]
+        )
     }
 }

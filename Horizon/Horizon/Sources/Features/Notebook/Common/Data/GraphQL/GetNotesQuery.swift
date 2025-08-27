@@ -96,7 +96,7 @@ class GetNotesQuery: APIGraphQLRequestable {
                         objectType
                         userText
                         reaction
-                        createdAt
+                        updatedAt
                         highlightData
                     }
                 }
