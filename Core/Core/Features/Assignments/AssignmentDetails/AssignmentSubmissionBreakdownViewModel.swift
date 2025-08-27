@@ -91,7 +91,6 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     public func routeToAll(router: Router, viewController: WeakViewController) {
         router.route(
             to: submissionsPath,
-            userInfo: env.courseShardIDUserInfo,
             from: viewController
         )
     }
@@ -99,7 +98,6 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     public func routeToGraded(router: Router, viewController: WeakViewController) {
         router.route(
             to: "\(submissionsPath)?filter=graded",
-            userInfo: env.courseShardIDUserInfo,
             from: viewController
         )
     }
@@ -107,7 +105,6 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     public func routeToUngraded(router: Router, viewController: WeakViewController) {
         router.route(
             to: "\(submissionsPath)?filter=needs_grading",
-            userInfo: env.courseShardIDUserInfo,
             from: viewController
         )
     }
@@ -115,7 +112,6 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     public func routeToUnsubmitted(router: Router, viewController: WeakViewController) {
         router.route(
             to: "\(submissionsPath)?filter=not_submitted",
-            userInfo: env.courseShardIDUserInfo,
             from: viewController
         )
     }

@@ -298,10 +298,10 @@ let router = Router(routes: [
         return ModuleListViewController.create(env: env, courseID: courseID, moduleID: moduleID)
     },
 
-    RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
+            env: env,
             courseID: courseID,
             assetType: .moduleItem,
             assetID: itemID,
@@ -309,10 +309,10 @@ let router = Router(routes: [
         )
     },
 
-    RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
+            env: env,
             courseID: courseID,
             assetType: .moduleItem,
             assetID: itemID,
@@ -320,10 +320,10 @@ let router = Router(routes: [
         )
     },
 
-    RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
+            env: env,
             courseID: courseID,
             assetType: .moduleItem,
             assetID: itemID,
