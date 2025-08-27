@@ -357,9 +357,9 @@ private extension Assignment {
 
     var openLtiButtonTitle: String {
         if isQuizLTI {
-            String(localized: "Open the Quiz", bundle: .core)
+            String(localized: "Open the Quiz", bundle: .teacher)
         } else {
-            String(localized: "Launch External Tool", bundle: .core)
+            String(localized: "Launch External Tool", bundle: .teacher)
         }
     }
 }
