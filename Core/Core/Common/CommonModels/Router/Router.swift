@@ -128,8 +128,10 @@ open class Router {
     open func match(_ url: URLComponents, userInfo: [String: Any]? = nil) -> UIViewController? {
         let url = cleanURL(url)
         let env = AppEnvironment
-            .resolved(for: url)
-            .courseShardIdOverridden(with: userInfo)
+            .resolved(
+                for: url,
+                courseShardID: courseTabUrlInteractor?.courseShardID(for: url)
+            )
 
         for route in handlers {
             if let params = route.match(url) {
@@ -171,8 +173,10 @@ open class Router {
         let url = cleanURL(url)
         let isExternalUrl = isExternalWebsiteURL(url)
         let env = AppEnvironment
-            .resolved(for: url)
-            .courseShardIdOverridden(with: userInfo)
+            .resolved(
+                for: url,
+                courseShardID: courseTabUrlInteractor?.courseShardID(for: url)
+            )
 
         if isExternalUrl, !url.originIsNotification, let url = url.url {
             RemoteLogger.shared.logBreadcrumb(route: "/external_url")

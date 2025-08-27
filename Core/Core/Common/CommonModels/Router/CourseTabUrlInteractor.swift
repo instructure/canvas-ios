@@ -239,6 +239,36 @@ public final class CourseTabUrlInteractor {
             return $0.key.isEquivalent(to: context)
         })?.value
     }
+
+    public func courseShardID(for url: URLComponents) -> String? {
+        let context = Context(path: url.path)
+
+        if let context,
+           context.contextType == .course,
+           let shardID = context.id.shardID {
+            return shardID
+        }
+
+        if let urlHost = url.host,
+           let shardID = baseURLHostOverridesPerCourse
+            .first(where: { $0.key.id.hasShardID && $0.value == urlHost })?
+            .key
+            .id
+            .shardID {
+            return shardID
+        }
+
+        if let context,
+           let shardID = baseURLHostOverridesPerCourse
+            .keys
+            .first(where: { $0.id.hasShardID && $0.isEquivalent(to: context) })?
+            .id
+            .shardID {
+            return shardID
+        }
+
+        return nil
+    }
 }
 
 // MARK: - CourseTabFormat

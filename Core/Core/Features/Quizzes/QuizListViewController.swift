@@ -136,7 +136,7 @@ extension QuizListViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let htmlURL = quizzes[indexPath]?.htmlURL else { return }
-        env.router.route(to: htmlURL, userInfo: env.courseShardIDUserInfo, from: self, options: .detail)
+        env.router.route(to: htmlURL, from: self, options: .detail)
     }
 }
 
