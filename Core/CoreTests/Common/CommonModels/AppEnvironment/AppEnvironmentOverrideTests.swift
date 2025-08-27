@@ -23,7 +23,7 @@ class AppEnvironmentOverrideTests: CoreTestCase {
 
     func testOverridesSessionBaseURL() {
         let urlComponents = URLComponents(string: "https://override.url")!
-        let testee = AppEnvironment.resolved(for: urlComponents, courseShardID: nil)
+        let testee = AppEnvironment.resolved(for: urlComponents, courseShardID: "23452")
 
         XCTAssertEqual(testee.app, environment.app)
         XCTAssertTrue(testee.router === environment.router)
@@ -32,6 +32,7 @@ class AppEnvironmentOverrideTests: CoreTestCase {
         XCTAssertEqual(testee.userDefaults, environment.userDefaults)
         XCTAssertTrue(testee.loginDelegate === environment.loginDelegate)
         XCTAssertEqual(testee.window, environment.window)
+        XCTAssertEqual(testee.courseShardID, "23452")
 
         XCTAssertEqual(testee.api.baseURL, urlComponents.url)
         XCTAssertEqual(testee.currentSession?.baseURL, urlComponents.url)
