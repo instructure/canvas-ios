@@ -78,7 +78,7 @@ class StudentNotesViewModelTests: TeacherTestCase {
     // MARK: - Private helpers
 
     private func makeViewModel(
-        userId: String = testData.userId,
+        userId: String = testData.userId
     ) -> StudentNotesViewModel {
         .init(
             userId: userId,

@@ -532,7 +532,7 @@ open class CoreUITestCase: XCTestCase {
 
     @discardableResult
     open func mock(assignment: APIAssignment) -> APIAssignment {
-        func mock(include: [GetAssignmentRequest.GetAssignmentInclude], allDates: Bool? = nil) {
+        func mock(include: [GetAssignmentRequest.Include], allDates: Bool? = nil) {
             mockData(GetAssignmentRequest(
                 courseID: assignment.course_id.value,
                 assignmentID: assignment.id.value,

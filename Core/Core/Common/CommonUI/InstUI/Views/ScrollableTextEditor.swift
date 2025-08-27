@@ -45,7 +45,7 @@ extension InstUI {
             font: UIFont.Name,
             lineHeight: Typography.LineHeight = .fit,
             textColor: UIColor = .textDarkest,
-            lineLimit: CGFloat? = nil,
+            lineLimit: CGFloat? = nil
         ) {
             self._text = text
             self.placeholder = placeholder

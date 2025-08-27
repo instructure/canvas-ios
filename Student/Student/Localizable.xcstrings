@@ -110,7 +110,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "« %@ » est maintenant prêt à envoyer les tâches attribuées"
+            "value" : "« %@ » est maintenant prêt à envoyer les travaux attribués"
           }
         },
         "ga" : {
@@ -17754,7 +17754,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajouter des notifications de rappel de date d’échéance concernant cette tâche sur cet appareil."
+            "value" : "Ajouter des notifications de rappel de date d’échéance concernant ce travail sur cet appareil."
           }
         },
         "ga" : {
@@ -22729,7 +22729,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tâche"
+            "value" : "Travail"
           }
         },
         "ga" : {
@@ -22985,7 +22985,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Détails de la tâche"
+            "value" : "Détails du travail"
           }
         },
         "ga" : {
@@ -23241,7 +23241,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tâche verrouillée"
+            "value" : "Travail verrouillé"
           }
         },
         "ga" : {
@@ -23505,7 +23505,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tâches"
+            "value" : "Travaux"
           }
         },
         "ga" : {
@@ -62249,7 +62249,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vous avez des questions à propos de votre tâche?\nEnvoyez un message à votre enseignant(e)."
+            "value" : "Vous avez des questions à propos de votre travail?\nEnvoyez un message à votre enseignant(e)."
           }
         },
         "ga" : {
@@ -98177,7 +98177,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Re-soumettre le tâche"
+            "value" : "Re-soumettre le travail"
           }
         },
         "ga" : {
@@ -103135,7 +103135,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Envoyer la tâche de nouveau"
+            "value" : "Envoyer le travail de nouveau"
           }
         },
         "ga" : {
@@ -104160,7 +104160,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rubrique"
+            "value" : "Grille de notation"
           }
         },
         "ga" : {
@@ -109404,7 +109404,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Désolé, impossible de trouver la tâche. Cette tâche semble avoir été supprimée."
+            "value" : "Désolé, impossible de trouver le travail. Ce travail semble avoir été supprimé."
           }
         },
         "ga" : {
@@ -113062,7 +113062,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Envoi et rubrique"
+            "value" : "Envoi et grille de notation"
           }
         },
         "ga" : {
@@ -115384,7 +115384,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Envoyer la tâche"
+            "value" : "Envoyer le travail"
           }
         },
         "ga" : {
@@ -124548,7 +124548,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il n'y a aucun fichier pour cette tâche."
+            "value" : "Il n'y a aucun fichier pour ce travail."
           }
         },
         "ga" : {
@@ -125067,7 +125067,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il n'y a aucune rubrique pour cette tâche."
+            "value" : "Il n'y a aucune grille de notation pour ce travail."
           }
         },
         "ga" : {
@@ -126792,9 +126792,6 @@
         }
       }
     },
-    "There was an error while logging you in. You can try again, or come back a bit later." : {
-
-    },
     "There's nothing to be notified of yet." : {
       "localizations" : {
         "ar" : {
@@ -127423,7 +127420,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cette tâche ne semble pas être un outil externe valide ou est mal configurée."
+            "value" : "Ce travail ne semble pas être un outil externe valide ou est mal configuré."
           }
         },
         "ga" : {
@@ -127687,7 +127684,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cette tâche ne possède aucun détail."
+            "value" : "Ce travail ne possède aucun détail."
           }
         },
         "ga" : {
@@ -127944,7 +127941,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cette tâche est dû dans %@"
+            "value" : "Ce travail est dû dans %@"
           }
         },
         "ga" : {
@@ -128200,7 +128197,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cette tâche est verrouillée jusqu’au %@"
+            "value" : "Ce travail est verrouillé jusqu’au %@"
           }
         },
         "ga" : {
@@ -128456,7 +128453,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cette tâche était verrouillée %@"
+            "value" : "Ce travail était verrouillé %@"
           }
         },
         "ga" : {
@@ -130038,7 +130035,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "C'est un moment opportun pour effectuer des tâches facultatives."
+            "value" : "C'est un moment opportun pour effectuer des travaux facultatifs."
           }
         },
         "ga" : {
@@ -137911,7 +137908,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le téléversement à la tâche « %@ » a échoué"
+            "value" : "Le téléversement au travail « %@ » a échoué"
           }
         },
         "ga" : {
@@ -147603,7 +147600,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La configuration de votre école ne permet pas le type d’envoi sélectionné pour cette tâche"
+            "value" : "La configuration de votre école ne permet pas le type d’envoi sélectionné pour ce travail"
           }
         },
         "ga" : {
