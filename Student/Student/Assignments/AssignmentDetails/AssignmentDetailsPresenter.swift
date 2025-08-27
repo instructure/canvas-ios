@@ -314,7 +314,7 @@ class AssignmentDetailsPresenter {
             route += "?selectedAttempt=\(selectedSubmission.attempt)"
         }
 
-        env.router.route(to: route, userInfo: env.courseShardIDUserInfo, from: view)
+        env.router.route(to: route, from: view)
     }
 
     func route(to url: URL, from view: UIViewController) -> Bool {
@@ -326,7 +326,7 @@ class AssignmentDetailsPresenter {
                 URLQueryItem(name: "skipModuleItemSequence", value: "true")
             )
         }
-        env.router.route(to: dest, userInfo: env.courseShardIDUserInfo, from: view)
+        env.router.route(to: dest, from: view)
         return true
     }
 

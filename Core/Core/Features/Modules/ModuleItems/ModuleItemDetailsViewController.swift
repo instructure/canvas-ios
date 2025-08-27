@@ -154,7 +154,7 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
         default:
             guard let url = item.url else { return nil }
             let preparedURL = url.appendingOrigin("module_item_details")
-            let itemViewController = env.router.match(preparedURL, userInfo: env.courseShardIDUserInfo)
+            let itemViewController = env.router.match(preparedURL)
 
             if let itemViewController, let routeTemplate = env.router.template(for: preparedURL) {
                 RemoteLogger.shared.logBreadcrumb(route: routeTemplate, viewController: itemViewController)

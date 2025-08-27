@@ -36,7 +36,6 @@ public struct AssignmentCellView: View {
             if let url = viewModel.route {
                 env.router.route(
                     to: url,
-                    userInfo: env.courseShardIDUserInfo,
                     from: controller,
                     options: .detail
                 )

@@ -113,10 +113,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
             return ModuleItemDetailsViewController.create(env: env, courseID: courseID, moduleID: current.moduleID, itemID: current.id)
         } else if
             assetType != .moduleItem,
-            let match = env.router.match(
-                url.appendingOrigin("module_item_details"),
-                userInfo: env.courseShardIDUserInfo
-            ) {
+            let match = env.router.match(url.appendingOrigin("module_item_details")) {
             return match
         } else {
             let external = ExternalURLViewController.create(
