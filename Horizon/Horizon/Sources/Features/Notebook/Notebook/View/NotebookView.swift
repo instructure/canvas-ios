@@ -24,16 +24,37 @@ struct NotebookView: View {
 
     @Bindable var viewModel: NotebookViewModel
     @Environment(\.viewController) private var viewController
+    @State private var currentPage: Int = 0
 
     var body: some View {
         VStack {
             if viewModel.isNavigationBarVisible {
-                ScrollView(showsIndicators: false) { content }
+                ScrollViewReader { proxy in
+                    ScrollView(showsIndicators: false) {
+                        content
+                            .id("topScrollView")
+                    }
+                    .onChange(of: currentPage) { _, _ in
+                        withAnimation {
+                            proxy.scrollTo("topScrollView", anchor: .top)
+                        }
+                    }
                     .refreshable {
                         await viewModel.refresh()
                     }
+                }
             } else {
-                ScrollView(showsIndicators: false) { content }
+                ScrollViewReader { proxy in
+                    ScrollView(showsIndicators: false) {
+                        content
+                            .id("topScrollView")
+                    }
+                    .onChange(of: currentPage) { _, _ in
+                        withAnimation {
+                            proxy.scrollTo("topScrollView", anchor: .top)
+                        }
+                    }
+                }
             }
         }
         .background(HorizonUI.colors.surface.pagePrimary)
@@ -94,6 +115,7 @@ struct NotebookView: View {
                     isSmall: true
                 ) {
                     viewModel.previousPage()
+                    currentPage -= 1
                 }
                 .disabled(viewModel.isPreviousDisabled)
                 HorizonUI.IconButton(
@@ -102,6 +124,7 @@ struct NotebookView: View {
                     isSmall: true
                 ) {
                     viewModel.nextPage()
+                    currentPage += 1
                 }
                 .disabled(viewModel.isNextDisabled)
             }

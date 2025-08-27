@@ -223,7 +223,7 @@ extension GradeState {
         return PointsRowViewModel(
             currentPoints: originalScoreWithoutMetric,
             maxPointsWithUnit: pointsPossibleText,
-            a11yMaxPointsWithUnit: String(localized: "out of \(pointsPossibleAccessibilityText)", bundle: .teacher, comment: "Example: 'out of 10 points'"),
+            a11yMaxPointsWithUnit: String(localized: "out of \(pointsPossibleAccessibilityText)", bundle: .teacher, comment: "Example: 'out of 10 points'")
         )
     }
 

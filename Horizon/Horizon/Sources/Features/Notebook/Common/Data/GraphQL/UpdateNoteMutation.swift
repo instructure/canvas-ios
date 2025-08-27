@@ -58,7 +58,7 @@ class RedwoodUpdateNoteMutation: APIGraphQLRequestable {
             objectType
             userText
             reaction
-            createdAt
+            updatedAt
             highlightData
         }
     }
