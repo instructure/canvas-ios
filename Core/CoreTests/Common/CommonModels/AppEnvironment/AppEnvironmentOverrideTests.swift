@@ -23,7 +23,7 @@ class AppEnvironmentOverrideTests: CoreTestCase {
 
     func testOverridesSessionBaseURL() {
         let urlComponents = URLComponents(string: "https://override.url")!
-        let testee = AppEnvironment.resolved(for: urlComponents)
+        let testee = AppEnvironment.resolved(for: urlComponents, courseShardID: nil)
 
         XCTAssertEqual(testee.app, environment.app)
         XCTAssertTrue(testee.router === environment.router)
