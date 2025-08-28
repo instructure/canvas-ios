@@ -31,4 +31,11 @@ extension Sequence {
         }
         return result
     }
+
+    public func sorted<T: Comparable>(
+        by keyPath: KeyPath<Element, T>,
+        order: SortOrder = .forward
+    ) -> [Element] {
+        sorted(using: KeyPathComparator(keyPath, order: order))
+    }
 }

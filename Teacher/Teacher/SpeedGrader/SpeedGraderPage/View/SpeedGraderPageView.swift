@@ -40,7 +40,7 @@ struct SpeedGraderPageView: View {
 
     // MARK: - Tab & Drawer properties
 
-    @State private var drawerState: DrawerState = .min
+    @State private var drawerState: DrawerState = .mid
     @State private var selectedTab: SpeedGraderPageTab = .grades
     @AccessibilityFocusState private var a11yFocusedTab: SpeedGraderPageTab?
 

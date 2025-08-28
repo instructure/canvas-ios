@@ -82,7 +82,7 @@ struct LearnAssembly {
     static func makeCourseDetailsView(
         viewModel: CourseDetailsViewModel,
         isBackButtonVisible: Bool = true,
-        shoudHideTabBar: Bool = false,
+        shoudHideTabBar: Bool = false
     ) -> CourseDetailsView {
         let environment = AppEnvironment.shared
         let showTabBarAndNavigationBar: (Bool) -> Void = { isVisible in
