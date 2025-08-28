@@ -392,7 +392,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         let assignment = APIAssignment.make(
             course_id: ID(courseID),
             id: ID(assignmentID),
-            score_statistics: APIAssignmentScoreStatistics.make(mean: 5.0, min: 1.0, max: 10.0),
+            score_statistics: .init(mean: 5.0, min: 1.0, max: 10.0),
             submission: .make(
                 grade: "10",
                 score: 10,

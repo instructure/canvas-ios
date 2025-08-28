@@ -27,7 +27,9 @@ struct LearnView: View {
         ScrollView(showsIndicators: false) {
             if !viewModel.isLoaderVisible {
                 content
+                    .padding([.horizontal, .bottom], .huiSpaces.space24)
             }
+
         }
         .toolbar(.hidden)
         .safeAreaInset(edge: .top, spacing: .zero) { LearnTopBar() }
@@ -36,6 +38,10 @@ struct LearnView: View {
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)
+                    .padding(.horizontal, .huiSpaces.space24)
+                    .padding(.top, .huiSpaces.space10)
+                    .padding(.bottom, .huiSpaces.space4)
+                    .background(Color.huiColors.surface.pagePrimary)
             }
         }
         .refreshable {
@@ -100,6 +106,38 @@ private extension LearnView {
         } onTapEnroll: { course in
             viewModel.enrollInProgram(course: course )
         }
+    }
+
+    private var pills: some View {
+        HorizonUI.HFlow {
+            defaultPill(title: "Program format")
+            defaultPill(title: "6 hours 20 minutes")
+            HorizonUI.Pill(
+                title: "20/10/2025 - 20/10/2027",
+                style: .solid(
+                    .init(
+                        backgroundColor: Color.huiColors.surface.pageSecondary,
+                        textColor: Color.huiColors.text.title,
+                        iconColor: Color.huiColors.icon.default
+                    )
+                ),
+                isSmall: true,
+                icon: .huiIcons.calendarToday
+            )
+        }
+    }
+
+    private func defaultPill(title: String) -> some View {
+        HorizonUI.Pill(
+            title: title,
+            style: .solid(
+                .init(
+                    backgroundColor: Color.huiColors.surface.pageSecondary,
+                    textColor: Color.huiColors.text.title
+                )
+            ),
+            isSmall: true
+        )
     }
 }
 

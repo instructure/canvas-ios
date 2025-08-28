@@ -107,7 +107,7 @@ class GetModuleTests: CoreTestCase {
                 courseID: courseID,
                 moduleID: moduleID
             ),
-            value: apiModule,
+            value: apiModule
         )
 
         let expectation = XCTestExpectation(description: "API request completed")

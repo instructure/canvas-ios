@@ -23,13 +23,17 @@ import HorizonUI
 struct ExpandingModuleView: View {
     // MARK: - Dependencies
 
-    let module: HModule
-    let routeToURL: (URL) -> Void
+    private let module: HModule
+    private let routeToItemSequence: (HModuleItem) -> Void
     @State private(set) var isExpanded = false
 
-    init(module: HModule, isExpanded: Bool = false, routeToURL: @escaping (URL) -> Void) {
+    init(
+        module: HModule,
+        isExpanded: Bool = false,
+        routeToItemSequence: @escaping (HModuleItem) -> Void
+    ) {
         self.module = module
-        self.routeToURL = routeToURL
+        self.routeToItemSequence = routeToItemSequence
         self._isExpanded = State(initialValue: isExpanded)
     }
 
@@ -66,9 +70,7 @@ struct ExpandingModuleView: View {
     }
 
     private func handleItemTap(_ item: HModuleItem) {
-        if let url = item.htmlURL {
-            routeToURL(url)
-        }
+        routeToItemSequence(item)
     }
 }
 
@@ -80,7 +82,7 @@ struct ExpandingModuleView: View {
             courseID: "2",
             items: [.init(id: "14", title: "Sub title 2", htmlURL: nil)]
         ),
-        routeToURL: { _ in }
+        routeToItemSequence: { _ in }
     )
 }
 
@@ -93,6 +95,6 @@ struct ExpandingModuleView: View {
             items: [.init(id: "14", title: "Sub title 2", htmlURL: nil)]
         ),
         isExpanded: true,
-        routeToURL: { _ in }
+        routeToItemSequence: { _ in }
     )
 }

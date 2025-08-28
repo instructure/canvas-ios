@@ -41,7 +41,7 @@ class DashboardViewModel {
     private let router: Router
 
     // MARK: - Private variables
-    let journey = DomainService(.journey)
+
     private var getDashboardCoursesCancellable: AnyCancellable?
     private var refreshCompletedModuleItemCancellable: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
@@ -90,43 +90,29 @@ class DashboardViewModel {
     func notebookDidTap(viewController: WeakViewController) {
         router.route(to: "/notebook", from: viewController)
     }
-    
+
     func notificationsDidTap(viewController: WeakViewController) {
-
-
-        ProgramInteractorLive().getPrograms()
-            .sink { com in
-                print(com)
-            } receiveValue: { values in
-//                let programs = values.map { Program(from: $0) }
-print("================================")
-                values.forEach {
-                    print($0.name, "====", $0.completionPercent)
-
-                    let courses = $0.courses
-                    courses.forEach { course in
-                        print(course.id, "== ", course.status, "== ", course.completionPercent)
-                    }
-//                    let progress = $0.progresses
-//
-//                    for (requirement, progress) in zip($0.requirements, $0.progresses) {
-//                        print(requirement.dependent?.canvasCourseId, "== ", progress.courseEnrollmentStatus, "== ", progress.completionPercentage)
-//                    }
-                }
-            }
-            .store(in: &subscriptions)
+        router.show(NotificationAssembly.makeView(), from: viewController)
     }
-
-//    func notificationsDidTap(viewController: WeakViewController) {
-//        router.show(NotificationAssembly.makeView(), from: viewController)
-//    }
 
     func mailDidTap(viewController: WeakViewController) {
         router.route(to: "/conversations", from: viewController)
     }
 
-    func navigateToItemSequence(url: URL, viewController: WeakViewController) {
-        router.route(to: url, from: viewController)
+    func navigateToItemSequence(
+        url: URL,
+        learningObject: HCourse.LearningObjectCard,
+        viewController: WeakViewController
+    ) {
+        let moduleItem = HModuleItem(
+            id: learningObject.learningObjectID,
+            title: learningObject.learningObjectName,
+            htmlURL: learningObject.url,
+            /// `isCompleted` is set to `false` because this is the next module item
+            /// the learner must complete. If it were `true`, it would no longer appear here.
+            isCompleted: false
+        )
+        router.route(to: url, userInfo: ["moduleItem": moduleItem], from: viewController)
     }
 
     func navigateToCourseDetails(

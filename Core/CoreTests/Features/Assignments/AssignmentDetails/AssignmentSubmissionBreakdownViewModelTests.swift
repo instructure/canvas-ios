@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import Core
+import TestsFoundation
 
 class AssignmentSubmissionBreakdownViewModelTests: CoreTestCase {
     func testProperties() {
@@ -26,6 +27,8 @@ class AssignmentSubmissionBreakdownViewModelTests: CoreTestCase {
         api.mock(useCase, value: submissionSummary)
         let testee = AssignmentSubmissionBreakdownViewModel(courseID: "1", assignmentID: "2", submissionTypes: [], env: environment)
         testee.viewDidAppear()
+
+        waitUntil { testee.isReady }
 
         XCTAssertEqual(testee.graded, 1)
         XCTAssertEqual(testee.ungraded, 2)

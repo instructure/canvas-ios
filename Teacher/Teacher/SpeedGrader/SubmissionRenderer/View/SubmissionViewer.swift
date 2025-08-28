@@ -41,7 +41,7 @@ struct SubmissionViewer: View {
     var body: some View {
         switch submission.type {
         case .basic_lti_launch, .external_tool:
-            WebSession(url: submission.previewUrl) { url in
+            WebSession(url: submission.previewUrl ?? submission.url) { url in
                 WebView(url: url,
                         features: [
                             .userAgent(UserAgent.safariLTI.description),
@@ -176,7 +176,7 @@ struct SubmissionViewer: View {
         ),
         submission: .save(
             .make(submission_type: .online_quiz),
-            in: environment.database.viewContext,
+            in: environment.database.viewContext
         ),
         fileID: nil,
         studentAnnotationViewModel: .init(submission: .save(.make(), in: environment.database.viewContext)),

@@ -120,8 +120,10 @@ final class CourseDetailsViewModel {
         router.dismiss(viewController)
     }
 
-    func moduleItemDidTap(url: URL, from: WeakViewController) {
-        router.route(to: url, userInfo: ["course": course], from: from)
+    func moduleItemDidTap(item: HModuleItem, from: WeakViewController) {
+        if let url = item.htmlURL {
+            router.route(to: url, userInfo: ["moduleItem": item], from: from)
+        }
     }
 
     // MARK: - Private Functions

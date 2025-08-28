@@ -9,5 +9,6 @@
   "Student/SubmitAssignment/InfoPlist.xcstrings",
   "Student/SubmitAssignment/Localizable.xcstrings",
   "Student/Widgets/Resources/InfoPlist.xcstrings",
-  "Student/Widgets/Resources/Localizable.xcstrings"
+  "Student/Widgets/Resources/Localizable.xcstrings",
+  "Horizon/Horizon/Resources/Localizable.xcstrings"
 ]

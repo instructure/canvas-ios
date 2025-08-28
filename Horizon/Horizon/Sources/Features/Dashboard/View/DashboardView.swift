@@ -143,7 +143,11 @@ struct DashboardView: View {
 
             Button {
                 if let url = model.url {
-                    viewModel.navigateToItemSequence(url: url, viewController: viewController)
+                    viewModel.navigateToItemSequence(
+                        url: url,
+                        learningObject: model,
+                        viewController: viewController
+                    )
                 }
             } label: {
                 HorizonUI.LearningObjectCard(

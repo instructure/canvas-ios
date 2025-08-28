@@ -63,7 +63,7 @@ final class HorizonWebView: CoreWebView {
         moduleType: ModuleItemType,
         viewController: WeakViewController,
         router: Router = AppEnvironment.shared.router,
-        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive()
+        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive(pageSize: 10000)
     ) {
         self.courseID = courseID
         self.pageURL = pageURL
@@ -238,7 +238,13 @@ final class HorizonWebView: CoreWebView {
               let viewController = viewController else {
             return
         }
-        router.route(to: "/assistant?textSelection=\(textSelection)&courseId=\(courseID)&pageUrl=\(pageURL)", from: viewController)
+        let assistRoutingParams = AssistAssembly.RoutingParams(
+            courseID: courseID,
+            pageURL: pageURL,
+            textSelection: textSelection
+        )
+        let queryString = assistRoutingParams.queryString
+        router.route(to: "/assistant?\(queryString)", from: viewController)
     }
 }
 
