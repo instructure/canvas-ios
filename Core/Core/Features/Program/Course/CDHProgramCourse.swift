@@ -46,7 +46,9 @@ public final class CDHProgramCourse: NSManagedObject {
         dbEntity.courseName = apiEntity?.name ?? ""
         dbEntity.completionPercentage = apiEntity?.usersConnection?.nodes?.first?.courseProgression?.requirements?.completionPercentage ?? 0
 
-        let moduleItems = apiEntity?.modulesConnection?.edges?.first?.node?.moduleItems ?? []
+        let moduleItems = (apiEntity?.modulesConnection?.edges ?? [])
+            .compactMap { $0.node }
+            .flatMap { $0.moduleItems }
         let moduleItemsEntites: [CDHProgramCourseModuleItem] = moduleItems.map { moduleItem in
             CDHProgramCourseModuleItem.save(
                 moduleItem,

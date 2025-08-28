@@ -29,7 +29,6 @@ struct LearnView: View {
                 content
                     .padding([.horizontal, .bottom], .huiSpaces.space24)
             }
-
         }
         .toolbar(.hidden)
         .safeAreaInset(edge: .top, spacing: .zero) { LearnTopBar() }
@@ -83,7 +82,6 @@ struct LearnView: View {
             programCards
                 .id(viewModel.currentProgram?.id)
         }
-        .padding([.horizontal, .bottom], .huiSpaces.space24)
     }
 }
 

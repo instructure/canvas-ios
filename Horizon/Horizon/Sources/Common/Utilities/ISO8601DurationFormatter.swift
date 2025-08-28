@@ -65,9 +65,9 @@ final class ISO8601DurationFormatter {
     func sum(durations: [String]) -> String {
         var totalMinutes = 0
 
-        for d in durations {
-            let (h, m) = parse(duration: d)
-            totalMinutes += h * 60 + m
+        for duration in durations {
+            let (hours, minutes) = parse(duration: duration)
+            totalMinutes += hours * 60 + minutes
         }
 
         let hours = totalMinutes / 60

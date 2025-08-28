@@ -120,7 +120,7 @@ final class LearnViewModel {
                 self?.handleError(error)
             } receiveValue: { [weak self] programs in
                 guard let self else { return }
-                self.currentProgram = programs.first(where: { $0.id == self.currentProgram?.id })
+                handleProgramsLoaded(programs)
                 let message = String(localized: "You’ve been enrolled in Course", bundle: .horizon)
                 self.showToast("\(message) \(course.name)")
             }

@@ -65,10 +65,7 @@ final class ProgramInteractorLive: ProgramInteractor {
         return ReactiveStore(useCase: EnrollProgramCourseUseCase(progressId: progressID))
             .getEntities()
             .flatMap { _ in
-                unownedSeldf.getPrograms(ignoreCache: true)
-            }
-            .flatMap { programs in
-                unownedSeldf.programCourseInteractor.getCourses(programs: programs, ignoreCache: false)
+                unownedSeldf.getProgramsWithCourses(ignoreCache: true)
             }
             .eraseToAnyPublisher()
     }
