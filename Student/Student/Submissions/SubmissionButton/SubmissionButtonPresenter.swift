@@ -173,6 +173,10 @@ class SubmissionButtonPresenter: NSObject {
     }
 
     private func presentStudentAnnotation(assignment: Assignment, view: UIViewController) {
+        // This is necessary to use the same format of course ID across all setups
+        // (cross-shard, and single-account). Unlike single-account setup, UseCases fetching
+        // courses in cross-shard setup, like `GetCourse`, receives `APICourse` objects
+        // with course ID of global format, and save them to database in this format as well.
         let courseID = assignment.courseID.asNonRootPrefixedCourseID(in: env)
         let courseScope = Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(Course.id), courseID), order: [])
 
