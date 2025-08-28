@@ -249,6 +249,8 @@ public final class CourseTabUrlInteractor {
 
         if let urlHost = url.host,
            let shardID = baseURLHostOverridesPerCourse
+            // It's possible to have multiple contexts with the same `value`,
+            // we are interested in that with `shardID` part included in their `ID`
             .first(where: { $0.key.id.hasShardID && $0.value == urlHost })?
             .key
             .id
