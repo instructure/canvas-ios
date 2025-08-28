@@ -27,16 +27,22 @@ public struct TodoListScreen: View {
     }
 
     public var body: some View {
+        contentView
+            .background(.backgroundLightest)
+    }
+
+    @ViewBuilder
+    private var contentView: some View {
         if viewModel.hasError {
             errorView
         } else if viewModel.items.isEmpty {
             emptyView
         } else {
-            contentView
+            dataView
         }
     }
 
-    private var contentView: some View {
+    private var dataView: some View {
         RefreshableScrollView(showsIndicators: false) {
             ForEach(viewModel.items, id: \.id) { item in
                 TodoListItemView(item: item)
