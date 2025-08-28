@@ -17,20 +17,13 @@
 //
 
 import Combine
+import CombineSchedulers
 import UIKit
 
 public class PlannerViewController: VisibilityObservedViewController {
     lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
     lazy var addButton = UIBarButtonItem(image: .addSolid)
     lazy var todayButton = UIBarButtonItem(image: .calendarTodayLine, style: .plain, target: self, action: #selector(selectToday))
-    private lazy var addMenu = UIMenu(options: .displayInline, children: [
-        UIAction(title: String(localized: "Add To Do", bundle: .core), image: .noteLine) { [weak self] _ in
-            self?.addToDo()
-        },
-        UIAction(title: String(localized: "Add Event", bundle: .core), image: .calendarMonthLine) { [weak self] _ in
-            self?.addEvent()
-        }
-    ])
 
     lazy var calendar = CalendarViewController.create(delegate: self, selectedDate: selectedDate)
     let listPageController = PagesViewController()
@@ -50,14 +43,24 @@ public class PlannerViewController: VisibilityObservedViewController {
         .makeFilterInteractor(observedUserId: studentID, forCreating: true)
 
     lazy var offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
+    private var studentAccessInteractor: StudentAccessInteractor?
+    private var isRestricted = false
     private var subscriptions = Set<AnyCancellable>()
+    private var scheduler: AnySchedulerOf<DispatchQueue>!
 
     private var currentlyDisplayedToday: Date?
 
-    public static func create(studentID: String? = nil, selectedDate: Date = Clock.now) -> PlannerViewController {
+    public static func create(
+        studentID: String? = nil,
+        selectedDate: Date = Clock.now,
+        studentAccessInteractor: StudentAccessInteractor? = nil,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) -> PlannerViewController {
         let controller = PlannerViewController()
         controller.studentID = studentID
         controller.selectedDate = selectedDate
+        controller.studentAccessInteractor = studentAccessInteractor
+        controller.scheduler = scheduler
         return controller
     }
 
@@ -131,12 +134,17 @@ public class PlannerViewController: VisibilityObservedViewController {
             }
             .store(in: &subscriptions)
 
-        offlineModeInteractor
-            .observeIsOfflineMode()
-            .sink { [weak self] isOffline in
-                self?.updateAddButton(isOffline)
-            }
-            .store(in: &subscriptions)
+        guard let interactor = studentAccessInteractor else { return }
+        Publishers.CombineLatest(
+            interactor.isRestricted(),
+            offlineModeInteractor.observeIsOfflineMode()
+        )
+        .receive(on: scheduler)
+        .sink { [weak self] isRestricted, isOffline in
+            self?.isRestricted = isRestricted
+            self?.updateAddButton(isOffline)
+        }
+        .store(in: &subscriptions)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -148,9 +156,27 @@ public class PlannerViewController: VisibilityObservedViewController {
         env.router.route(to: "/profile", from: self, options: .modal())
     }
 
+    private func makeAddMenu() -> UIMenu {
+        var actions: [UIAction] = [
+            UIAction(title: String(localized: "Add To Do", bundle: .core), image: .noteLine) { [weak self] _ in
+                self?.addToDo()
+            }
+        ]
+
+        if !isRestricted {
+            actions.append(
+                UIAction(title: String(localized: "Add Event", bundle: .core), image: .calendarMonthLine) { [weak self] _ in
+                    self?.addEvent()
+                }
+            )
+        }
+
+        return UIMenu(options: .displayInline, children: actions)
+    }
+
     private func updateAddButton(_ isOffline: Bool = false) {
         addButton.tintColor = isOffline ? .disabledGray : nil
-        addButton.menu = isOffline ? nil : addMenu
+        addButton.menu = isOffline ? nil : makeAddMenu()
         addButton.action = isOffline ? #selector(showOfflineAlert) : nil
     }
 
