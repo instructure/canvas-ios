@@ -60,12 +60,12 @@ struct SpeedGraderSubmissionGradesView: View {
                         title: String(localized: "Moderated Grading Unsupported", bundle: .teacher)
                     )
                 )
-            ) { geometry in
+            ) { _ in
                 VStack(spacing: 0) {
                     gradingSection()
                     commentsSection(scrollViewProxy: scrollViewProxy)
                     if assignment.rubric?.isEmpty == false {
-                        rubricsSection(geometry: geometry)
+                        rubricsSection()
                     }
                 }
             }
@@ -453,7 +453,7 @@ struct SpeedGraderSubmissionGradesView: View {
     // MARK: - Rubrics
 
     @ViewBuilder
-    private func rubricsSection(geometry: GeometryProxy) -> some View {
+    private func rubricsSection() -> some View {
         RubricsView(viewModel: rubricsViewModel)
     }
 }

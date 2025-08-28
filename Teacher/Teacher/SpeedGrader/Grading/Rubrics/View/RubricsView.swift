@@ -184,11 +184,4 @@ struct RubricsView: View {
     .environment(\.appEnvironment, env)
 }
 
-extension NSObject {
-    func with(_ block: (Self) -> Void) -> Self {
-        block(self)
-        return self
-    }
-}
-
 #endif
