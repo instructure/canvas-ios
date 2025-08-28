@@ -89,19 +89,31 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     }
 
     public func routeToAll(router: Router, viewController: WeakViewController) {
-        router.route(to: submissionsPath, from: viewController)
+        router.route(
+            to: submissionsPath,
+            from: viewController
+        )
     }
 
     public func routeToGraded(router: Router, viewController: WeakViewController) {
-        router.route(to: "\(submissionsPath)?filter=graded", from: viewController)
+        router.route(
+            to: "\(submissionsPath)?filter=graded",
+            from: viewController
+        )
     }
 
     public func routeToUngraded(router: Router, viewController: WeakViewController) {
-        router.route(to: "\(submissionsPath)?filter=needs_grading", from: viewController)
+        router.route(
+            to: "\(submissionsPath)?filter=needs_grading",
+            from: viewController
+        )
     }
 
     public func routeToUnsubmitted(router: Router, viewController: WeakViewController) {
-        router.route(to: "\(submissionsPath)?filter=not_submitted", from: viewController)
+        router.route(
+            to: "\(submissionsPath)?filter=not_submitted",
+            from: viewController
+        )
     }
 
     private func update() {

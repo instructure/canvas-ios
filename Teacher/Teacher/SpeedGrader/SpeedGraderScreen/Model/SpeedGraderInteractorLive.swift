@@ -89,7 +89,8 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                 }
                 let gradingStandardInteractor = GradingStandardInteractorLive(
                     courseId: assignment.courseID,
-                    gradingStandardId: assignment.gradingStandardId
+                    gradingStandardId: assignment.gradingStandardId,
+                    env: env
                 )
                 return Publishers.CombineLatest4(
                     loadEnrollments(),
