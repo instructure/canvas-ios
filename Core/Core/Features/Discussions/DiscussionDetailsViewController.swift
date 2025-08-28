@@ -292,7 +292,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
             if topic.first?.groupTopicChildren == nil, submissionsSection.isHidden {
                 let viewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: [.discussion_topic], env: env)
-                let controller = CoreHostingController(SubmissionBreakdown(viewModel: viewModel), env: env)
+                let controller = CoreHostingController(SubmissionBreakdownView(viewModel: viewModel), env: env)
                 controller.view.backgroundColor = nil
                 embed(controller, in: submissionsSection)
                 submissionsSection.isHidden = false
