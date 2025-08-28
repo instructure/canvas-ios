@@ -25,11 +25,11 @@ import CombineSchedulers
 class FileListViewControllerTests: CoreTestCase {
     var controller: FileListViewController!
     private var studentAccessInteractor: StudentAccessInteractorMock!
-    private var testScheduler: TestSchedulerOf<DispatchQueue>!
+    private var testScheduler: AnySchedulerOf<DispatchQueue>!
 
     override func setUp() {
         super.setUp()
-        testScheduler = DispatchQueue.test
+        testScheduler = DispatchQueue.immediate.eraseToAnyScheduler()
         controller = FileListViewController
             .create(env: environment, context: .currentUser, path: "Folder A")
         studentAccessInteractor = StudentAccessInteractorMock()
@@ -307,14 +307,11 @@ class FileListViewControllerTests: CoreTestCase {
             context: .currentUser,
             path: "Folder A",
             studentAccessInteractor: studentAccessInteractor,
-            scheduler: testScheduler.eraseToAnyScheduler()
+            scheduler: testScheduler
         )
 
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-
-        // Move virtual time forward by 100ms
-        testScheduler.advance(by: .seconds(0.1))
 
         _ = controller.addButton.target?.perform(controller.addButton.action)
         let sheet = router.presented as? BottomSheetPickerViewController

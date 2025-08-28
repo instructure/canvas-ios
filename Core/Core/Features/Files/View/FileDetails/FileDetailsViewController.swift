@@ -18,6 +18,7 @@
 
 import AVKit
 import Combine
+import CombineSchedulers
 import PSPDFKit
 import PSPDFKitUI
 import QuickLook
@@ -69,6 +70,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     private var studentAccessInteractor: StudentAccessInteractor?
     private var subscriptions = Set<AnyCancellable>()
     private var offlineFileInteractor: OfflineFileInteractor?
+    private var scheduler: AnySchedulerOf<DispatchQueue>!
     private var imageLoader: ImageLoader?
     private var isFileLocalURLAvailable: Bool { localURL != nil }
     private var isPresentingOfflineModeAlert = false
@@ -82,7 +84,8 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         canEdit: Bool = true,
         offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive(),
         studentAccessInteractor: StudentAccessInteractor? = nil,
-        environment: AppEnvironment
+        environment: AppEnvironment,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
@@ -93,6 +96,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         controller.offlineFileInteractor = offlineFileInteractor
         controller.studentAccessInteractor = studentAccessInteractor
         controller.canEdit = canEdit && controller.env.app == .teacher
+        controller.scheduler = scheduler
 
         if let context {
             controller.accessReportInteractor = FileAccessReportInteractor(context: context,
@@ -177,7 +181,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
 
         studentAccessInteractor?
             .isRestricted()
-            .receive(on: DispatchQueue.main)
+            .receive(on: scheduler)
             .sink { [weak self] isRestricted in
                 self?.shareButton.isHidden = isRestricted
             }
