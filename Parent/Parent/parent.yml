@@ -1,0 +1,56 @@
+---
+targets:
+  Parent:
+    type: application
+    platform: iOS
+    transitivelyLinkDependencies: false
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: false
+      SWIFT_EMIT_LOC_STRINGS: true
+      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.ios.parentapp
+      INFOPLIST_FILE: Parent/Info.plist
+      CODE_SIGN_ENTITLEMENTS: Parent/Parent.entitlements
+      TARGETED_DEVICE_FAMILY: 1,2
+    sources:
+      - path: ./
+        excludes:
+          - ".swiftlint.yml"
+      - path: ../Settings.bundle
+    dependencies:
+      - package: PSPDFKit
+      - package: Pendo
+      - package: FirebaseCrashlytics
+      - package: FirebaseRemoteConfig
+      - package: FirebaseRemoteConfigSwift
+      - target: Core/Core
+    preBuildScripts:
+      - path: ../../scripts/xcode-build-phases/swiftLint.sh
+        name: SwiftLint
+        basedOnDependencyAnalysis: false
+        inputFiles:
+          - $(SRCROOT)/.swiftlint.yml
+    postBuildScripts:
+      - path: ../../scripts/xcode-build-phases/uploadDSYMs.sh
+        name: Upload dSYMs to Firebase
+        basedOnDependencyAnalysis: false
+        inputFiles:
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist
+          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist
+          - $(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)
+schemes:
+  Parent:
+    build:
+      targets:
+        Parent: all
+    test:
+      language: en
+      region: US
+      targets:
+        - Core/CoreTests
+        - ParentUnitTests
+        - name: Core/CoreTester
+          skipped: true
+      gatherCoverageData: true
+      coverageTargets: [Core/Core, Parent, Core/TestsFoundation]
