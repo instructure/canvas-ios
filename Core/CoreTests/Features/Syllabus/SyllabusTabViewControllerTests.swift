@@ -22,7 +22,7 @@ import XCTest
 @testable import TestsFoundation
 
 class SyllabusTabViewControllerTests: CoreTestCase {
-    lazy var controller = SyllabusTabViewController.create(context: .course("1"), courseID: "1")
+    lazy var controller = SyllabusTabViewController.create(context: .course("1"), courseID: "1", env: environment)
 
     func testLayout() {
         api.mock(controller.colors, value: APICustomColors(custom_colors: [
