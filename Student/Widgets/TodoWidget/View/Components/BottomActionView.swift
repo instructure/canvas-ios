@@ -64,7 +64,7 @@ struct IntentActionView<Intent: AppIntent>: BottomActionView {
 
 struct NoActionView: BottomActionView {
     var isVisible: Bool { false }
-    var body: some View {}
+    var body: some View { SwiftUI.EmptyView() }
 }
 
 // MARK: Label View

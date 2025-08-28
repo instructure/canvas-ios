@@ -22,6 +22,7 @@ import Combine
 
 protocol DownloadFileInteractor {
     func download(fileID: String) -> AnyPublisher<URL, Error>
+    func download(fileID: String, courseID: String?) -> AnyPublisher<URL, Error>
     func download(file: File) -> AnyPublisher<URL, Error>
     func download(remoteURL: URL, fileName: String) -> AnyPublisher<URL, Error>
 }
@@ -43,7 +44,11 @@ final class DownloadFileInteractorLive: DownloadFileInteractor {
     }
 
     func download(fileID: String) -> AnyPublisher<URL, Error> {
-        guard let courseID = courseID else {
+        download(fileID: fileID, courseID: nil)
+    }
+
+    func download(fileID: String, courseID: String?) -> AnyPublisher<URL, Error> {
+        guard let courseID = courseID ?? self.courseID else {
             return Empty(completeImmediately: true)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()

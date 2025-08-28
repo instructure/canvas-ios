@@ -23,6 +23,7 @@ sync-ci: ## CI specific xproj file generation
 generate-placeholder-plist-files:
 	@$(MAKE) generate-placeholder-plist-file PLIST_PATH=./Student/Student/GoogleService-Info.plist
 	@$(MAKE) generate-placeholder-plist-file PLIST_PATH=./Student/SubmitAssignment/GoogleService-Info.plist
+	@$(MAKE) generate-placeholder-plist-file PLIST_PATH=./Student/Widgets/GoogleService-Info.plist
 	@$(MAKE) generate-placeholder-plist-file PLIST_PATH=./Teacher/Teacher/GoogleService-Info.plist
 	@$(MAKE) generate-placeholder-plist-file PLIST_PATH=./Parent/Parent/GoogleService-Info.plist
 

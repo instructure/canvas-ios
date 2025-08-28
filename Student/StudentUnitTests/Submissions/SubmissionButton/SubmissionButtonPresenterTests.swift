@@ -142,7 +142,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
     func testSubmitTypeLTI() {
         let a = Assignment.make(from: .make(
             discussion_topic: .make(html_url: URL(string: "/discussion")),
-            external_tool_tag_attributes: .make(content_id: "1")
+            external_tool_tag_attributes: .init(content_id: "1")
         ))
         presenter.submitType(.external_tool, for: a, button: UIView())
         XCTAssertNil(router.presented)

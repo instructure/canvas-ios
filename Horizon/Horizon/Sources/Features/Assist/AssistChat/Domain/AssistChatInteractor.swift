@@ -21,152 +21,203 @@ import CombineExt
 import Core
 import Foundation
 
-protocol AssistChatInteractor {
-    var listen: AnyPublisher<AssistChatInteractorLive.State, any Error> { get }
-    func publish(action: AssistChatAction)
-    func setInitialState()
-}
+class AssistChatInteractor {
+    var listen: AnyPublisher<State, any Error> { Empty().eraseToAnyPublisher() }
+    func publish(prompt: String? = nil, history: [AssistChatMessage] = []) { }
+    func setInitialState() { }
 
-final class AssistChatInteractorLive: AssistChatInteractor {
     enum State {
         case success(AssistChatResponse)
         case failure(Error)
     }
 
+    enum AssetType: String, Codable {
+        case File
+        case Unknown
+        case Page
+    }
+
+    enum CitationType: String, Codable {
+        case wiki_page
+        case attachment
+        case unknown
+    }
+}
+
+final class AssistChatInteractorLive: AssistChatInteractor {
+
     // MARK: - Private
-    private let actionPublisher = CurrentValueRelay<AssistChatAction?>(nil)
-    private var assistDataEnvironment: AssistDataEnvironment = AssistDataEnvironment()
-    private var assistDateEnvironmentOriginal: AssistDataEnvironment = AssistDataEnvironment()
-    private var goalCancellable: AnyCancellable?
-    private let downloadFileInteractor: DownloadFileInteractor?
+    private let cedar: DomainService
+    private let defaultTool: AssistTool
+    private var state: AssistState = .init()
+    private var originalState: AssistState = .init()
+    private var toolCancellable: AnyCancellable?
     private let responsePublisher = PassthroughSubject<AssistChatInteractorLive.State, Error>()
     private var subscriptions = Set<AnyCancellable>()
-    private var goals: [any AssistGoal]
+    private var tools: [any AssistTool]
 
     // MARK: - Init
     init(
         courseID: String? = nil,
-        fileID: String? = nil,
         pageURL: String? = nil,
+        fileID: String? = nil,
         textSelection: String? = nil,
-        downloadFileInteractor: DownloadFileInteractor? = nil
+        downloadFileInteractor: DownloadFileInteractor = DownloadFileInteractorLive(),
+        cedar: DomainService = .init(.cedar)
     ) {
-        self.downloadFileInteractor = downloadFileInteractor
-        self.assistDataEnvironment = .init(
+        self.state = .init(
             courseID: courseID,
             fileID: fileID,
             pageURL: pageURL,
             textSelection: textSelection
         )
-        self.goals = AssistChatInteractorLive.initializeGoals(
-            assistDataEnvironment: assistDataEnvironment,
-            downloadFileInteractor: downloadFileInteractor
-        )
-        self.assistDateEnvironmentOriginal = assistDataEnvironment.duplicate()
+        let defaultTool = AssistAnswerPromptTool(state: state, downloadFileInteractor: downloadFileInteractor)
+        self.defaultTool = defaultTool
+        self.tools = [
+            AssistSummarizeTool(state: state, downloadFileInteractor: downloadFileInteractor),
+            AssistAnswerPromptTool(state: state, promptType: .KeyTakeaways, downloadFileInteractor: downloadFileInteractor),
+            AssistAnswerPromptTool(state: state, promptType: .RephraseContent, downloadFileInteractor: downloadFileInteractor),
+            AssistAnswerPromptTool(state: state, promptType: .TellMeMore, downloadFileInteractor: downloadFileInteractor),
+            defaultTool,
+            AssistQuizTool(state: state),
+            AssistFlashCardsTool(state: state, downloadFileInteractor: downloadFileInteractor),
+            AssistCourseActionTool(state: state),
+            AssistSelectCourseTool(state: state)
+        ]
+        self.originalState = state.duplicate()
+        self.cedar = cedar
     }
 
     // MARK: - Inputs
     /// Publishes a new user action to the interactor
-    func publish(action: AssistChatAction) {
-        var userResponse: String?
-        var prompt: String?
-        var history: [AssistChatMessage] = []
+    override
+    func publish(prompt: String? = nil, history: [AssistChatMessage] = []) {
+        let ammendedHistory = publishLearnersResponseAndAmmendHistory(prompt: prompt, history: history)
 
-        switch action {
-        case .chat(let message, let chatHistory):
-            prompt = message
-            userResponse = message
-            history = chatHistory
-        case .chip(let option, let chatHistory):
-            userResponse = option.chip
-            prompt = option.prompt
-            history = chatHistory
-        default:
-            break
-        }
-
-        // if the user has said something, we publish it as a message
-        // otherwise, we just publish that we're loading
-        var response: AssistChatResponse = .init(chatHistory: history, isLoading: true)
-        if let userResponse = userResponse {
-            let message: AssistChatMessage = .init(userResponse: userResponse)
-            response = .init(message, chatHistory: history, isLoading: true)
-        }
-        responsePublisher.send(.success(response))
-        history = response.chatHistory
-
-        goalCancellable = executeNextGoal(prompt: prompt, history: history)?.sink(
-            receiveCompletion: { [weak self] completion in
-                if case let .failure(error) = completion {
-                    self?.responsePublisher.send(.failure(error))
+        toolCancellable = chooseTool(prompt: prompt, history: ammendedHistory)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] assistChatResponse in
+                    if let assistChatResponse {
+                        self?.responsePublisher.send(.success(assistChatResponse))
+                    } else {
+                        self?.publish(history: ammendedHistory)
+                    }
                 }
-            },
-            receiveValue: { [weak self] assistChatMessage in
+            )
+    }
+
+    // MARK: - Private Methods
+    private func aiToolSelection(
+        prompt: String,
+        history: [AssistChatMessage],
+        chooseOptions: [DomainService.ChooseOption]
+    ) -> AnyPublisher<AssistChatResponse?, any Error> {
+        cedar
+            .choose(from: chooseOptions, with: prompt)
+            .flatMap { [weak self] choice in
+                guard let self else {
+                    return Just<AssistChatResponse?>(nil)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                guard let choice, let firstTool = tools.first(where: { $0.name == choice.name }) else {
+                    return self.execute(tool: defaultTool, prompt: prompt, history: history)
+                }
+                return self.execute(tool: firstTool, prompt: prompt, history: history)
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func chooseTool(prompt: String?, history: [AssistChatMessage] = []) -> AnyPublisher<AssistChatResponse?, any Error> {
+        let availableTools = tools.filter { $0.isAvailable }
+        let chooseOptions: [DomainService.ChooseOption] = availableTools
+            .filter { $0.isAvailableAsChip }
+            .map { .init(name: $0.name, description: $0.description) }
+        let chipOptions = chooseOptions.map { AssistChipOption(chip: $0.name) }
+
+        // We've only got one tool to choose from, so execute it immediately
+        if let firstTool = availableTools.first,
+           availableTools.count == 1 {
+            return execute(tool: firstTool, prompt: prompt ?? "", history: history)
+        }
+
+        // We have multiple tools and a response from the learner, so let the AI pick the tool
+        else if let prompt, chooseOptions.isNotEmpty, prompt.isNotEmpty {
+            return aiToolSelection(prompt: prompt, history: history, chooseOptions: chooseOptions)
+        }
+
+        // We have multiple tools, but the learner hasn't responded yet, so ask them to choose
+        return Just<AssistChatResponse?>(
+            .init(
+                .init(botResponse: String(localized: "How can I help with this today?"), chipOptions: chipOptions)
+            )
+        )
+        .setFailureType(to: Error.self)
+        .eraseToAnyPublisher()
+    }
+
+    private func execute(
+        tool: AssistTool,
+        prompt: String,
+        history: [AssistChatMessage]
+    ) -> AnyPublisher<AssistChatResponse?, any Error> {
+        tool.execute(response: prompt, history: history)
+            .map { assistChatMessage in
                 guard let assistChatMessage = assistChatMessage else {
-                    self?.publish(action: .chat(prompt: nil, history: history))
-                    return
+                    return nil
                 }
-                let response: AssistChatResponse = .init(
+                return .init(
                     assistChatMessage,
                     chatHistory: history,
                     isLoading: assistChatMessage.role == .User
                 )
-                history = response.chatHistory
-                self?.responsePublisher.send(.success(response))
             }
+            .eraseToAnyPublisher()
+    }
+
+    private func publishLearnersResponseAndAmmendHistory(prompt: String?, history: [AssistChatMessage]) -> [AssistChatMessage] {
+        guard let prompt, !prompt.isEmpty else {
+            return history
+        }
+
+        let response: AssistChatResponse = .init(
+            .init(userResponse: prompt),
+            chatHistory: history,
+            isLoading: true
         )
+        responsePublisher.send(.success(response))
+
+        return response.chatHistory
     }
 
     /// Subscribe to the responses from the interactor
+    override
     var listen: AnyPublisher<AssistChatInteractorLive.State, Error> {
         responsePublisher.eraseToAnyPublisher()
     }
 
+    override
     func setInitialState() {
-        goalCancellable?.cancel()
-        self.assistDataEnvironment = self.assistDateEnvironmentOriginal.duplicate()
-        publish(action: .begin)
-    }
-
-    // MARK: - Static
-    private static func initializeGoals(
-        assistDataEnvironment: AssistDataEnvironment,
-        downloadFileInteractor: DownloadFileInteractor?
-    ) -> [any AssistGoal] {
-        // order matters
-        var goals: [any AssistGoal] = [AssistCourseTextSelectionGoal(environment: assistDataEnvironment)]
-        if let downloadFileInteractor = downloadFileInteractor {
-            goals.append(
-                AssistCourseDocumentGoal(
-                    environment: assistDataEnvironment,
-                    downloadFileInteractor: downloadFileInteractor
-                )
-            )
-        }
-        goals += [
-            AssistCoursePageGoal(environment: assistDataEnvironment),
-            AssistCourseActionGoal(environment: assistDataEnvironment),
-            AssistSelectCourseGoal(environment: assistDataEnvironment)
-        ]
-        return goals
+        toolCancellable?.cancel()
+        self.state = self.originalState.duplicate()
+        publish()
     }
 
     // MARK: - Private
 
-    private func executeNextGoal(
+    private func executeNextTool(
         prompt: String? = nil,
         history: [AssistChatMessage] = []
     ) -> AnyPublisher<AssistChatMessage?, any Error>? {
-        guard let goal = goals.first(where: { $0.isRequested() }) else {
-            return nil
-        }
-        return goal.execute(response: prompt, history: history)
+        tools.first(where: { $0.isAvailable })?
+            .execute(response: prompt, history: history)
     }
 }
 
-extension AssistDataEnvironment {
-    func duplicate() -> AssistDataEnvironment {
-        AssistDataEnvironment(
+extension AssistState {
+    func duplicate() -> AssistState {
+        .init(
             courseID: courseID.value,
             fileID: fileID.value,
             pageURL: pageURL.value,
@@ -175,22 +226,34 @@ extension AssistDataEnvironment {
     }
 }
 
-struct AssistChatInteractorPreview: AssistChatInteractor {
+class AssistChatInteractorPreview: AssistChatInteractor {
     var hasAssistChipOptions: Bool = true
 
-    func publish(action: AssistChatAction) {}
-    var listen: AnyPublisher<AssistChatInteractorLive.State, any Error> = Just(
-        .success(
-            AssistChatResponse(
-                .init(botResponse: "Hello from the bot!"),
-                chatHistory: [
-                    .init(userResponse: "Hello from the human.")
-                ]
+    override
+    func publish(prompt: String? = nil, history: [AssistChatMessage] = []) {}
+
+    override
+    var listen: AnyPublisher<State, any Error> {
+        Just(
+            .success(
+                AssistChatResponse(
+                    AssistChatMessage(
+                        quizItems: [
+                            .init(
+                                question: "What is the capital of France?",
+                                answers: ["Paris", "London", "Berlin", "Madrid"],
+                                correctAnswerIndex: 0
+                            )
+                        ]
+                    ),
+                    chatHistory: []
+                )
             )
         )
-    )
-    .setFailureType(to: Error.self)
-    .eraseToAnyPublisher()
+        .setFailureType(to: Error.self)
+        .eraseToAnyPublisher()
+    }
 
+    override
     func setInitialState() {}
 }

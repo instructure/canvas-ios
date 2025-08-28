@@ -30,8 +30,7 @@ extension NSPersistentContainer {
     -> NSPersistentContainer {
         let modelFileURL = Bundle.core.url(forResource: "Database", withExtension: "momd")!
         let model = NSManagedObjectModel(contentsOf: modelFileURL)!
-        FileUploadTargetTransformer.register()
-        UIColorTransformer.register()
+        registerCoreTransformers()
         let container = NSPersistentContainer(name: "Database", managedObjectModel: model)
 
         let url = URL.Directories.databaseURL(appGroup: appGroup, session: session)
@@ -47,6 +46,12 @@ extension NSPersistentContainer {
             container.setUp()
         }
         return container
+    }
+
+    public static func registerCoreTransformers() {
+        FileUploadTargetTransformer.register()
+        UIColorTransformer.register()
+        DiscussionCheckpointStepTransformer.register()
     }
 
     // MARK: - Public Instance Methods

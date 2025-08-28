@@ -33,4 +33,21 @@ extension NSNumber {
         guard let value = value else { return nil }
         self.init(value: value)
     }
+
+    // MARK: - Shorter versions
+
+    public convenience init?(_ value: Bool?) {
+        guard let value else { return nil }
+        self.init(value: value)
+    }
+
+    public convenience init?(_ value: Double?) {
+        guard let value else { return nil }
+        self.init(value: value)
+    }
+
+    public convenience init?(_ value: Int?) {
+        guard let value else { return nil }
+        self.init(value: value)
+    }
 }

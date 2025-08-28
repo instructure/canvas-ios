@@ -6,7 +6,6 @@ targets:
     transitivelyLinkDependencies: true
     settings:
       APPLICATION_EXTENSION_API_ONLY: true
-      ENABLE_TESTABILITY: true
       SWIFT_EMIT_LOC_STRINGS: true
       PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas.widgets
       INFOPLIST_FILE: Widgets/Resources/Info.plist
@@ -18,6 +17,20 @@ targets:
           - ".swiftlint.yml"
     dependencies:
       - target: Core/Core
+      - package: FirebaseCrashlytics
+      - package: FirebaseRemoteConfig
+      - package: FirebaseRemoteConfigSwift
+    postBuildScripts:
+      - path: ../../scripts/xcode-build-phases/uploadDSYMs.sh
+        name: Upload dSYMs to Firebase
+        basedOnDependencyAnalysis: false
+        inputFiles:
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}.debug.dylib
+          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist
+          - $(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)
 schemes:
   Widgets - Announcements:
     build:

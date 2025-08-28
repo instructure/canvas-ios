@@ -22,9 +22,7 @@ struct DocViewerAnnotationSaveStateView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ObservedObject private var viewModel: DocViewerAnnotationToolbarViewModel
 
-    init(
-        viewModel: DocViewerAnnotationToolbarViewModel,
-    ) {
+    init(viewModel: DocViewerAnnotationToolbarViewModel) {
         self.viewModel = viewModel
     }
 

@@ -21,6 +21,7 @@ import UIKit
 
 public enum PlannableType: String, Codable {
     case announcement, assignment, discussion_topic, quiz, wiki_page, planner_note, calendar_event, assessment_request
+    case sub_assignment
     case other
 }
 
@@ -37,6 +38,10 @@ public final class Plannable: NSManagedObject {
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var userID: String?
     @NSManaged public var details: String?
+    @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
+    public var discussionCheckpointStep: DiscussionCheckpointStep? {
+        get { return discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(value: newValue) }
+    }
 
     public var pointsPossible: Double? {
         get { return pointsPossibleRaw?.doubleValue }
@@ -54,7 +59,7 @@ public final class Plannable: NSManagedObject {
     }
 
     @discardableResult
-    public static func save(_ item: PlannableItem, userID: String?, in client: NSManagedObjectContext) -> Plannable {
+    public static func save(_ item: APIPlannableItem, userID: String?, in client: NSManagedObjectContext) -> Plannable {
         let model: Plannable = client.first(where: #keyPath(Plannable.id), equals: item.plannableID) ?? client.insert()
         model.id = item.plannableID
         model.plannableType = item.plannableType
@@ -63,9 +68,10 @@ public final class Plannable: NSManagedObject {
         model.title = item.plannableTitle
         model.date = item.date
         model.pointsPossible = item.pointsPossible
-        model.details = item.details
+        model.details = item.detailsText
         model.context = item.context
         model.userID = userID
+        model.discussionCheckpointStep = item.discussionCheckpointStep
         return model
     }
 
@@ -88,25 +94,27 @@ public final class Plannable: NSManagedObject {
 
 extension Plannable {
     public func icon() -> UIImage? {
-        switch(self.plannableType) {
+        switch plannableType {
         case .assignment:
-            return UIImage.assignmentLine
+            .assignmentLine
         case .quiz:
-            return UIImage.quizLine
+            .quizLine
         case .discussion_topic:
-            return UIImage.discussionLine
+            .discussionLine
+        case .sub_assignment:
+            discussionCheckpointStep != nil ? .discussionLine : .assignmentLine
         case .announcement:
-            return UIImage.announcementLine
+            .announcementLine
         case .wiki_page:
-            return UIImage.documentLine
+            .documentLine
         case .planner_note:
-            return UIImage.noteLine
+            .noteLine
         case .calendar_event:
-            return UIImage.calendarMonthLine
+            .calendarMonthLine
         case .assessment_request:
-            return UIImage.peerReviewLine
+            .peerReviewLine
         case .other:
-            return UIImage.warningLine
+            .warningLine
         }
     }
 

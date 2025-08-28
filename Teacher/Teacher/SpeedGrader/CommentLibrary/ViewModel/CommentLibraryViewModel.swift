@@ -83,7 +83,7 @@ extension CommentLibraryViewModel: Refreshable {
         state = .loading
 
         let userId = env.currentSession?.userID ?? ""
-        let requestable = APICommentLibraryRequest(query: comment.value, userId: userId)
+        let requestable = GetCommentLibraryRequest(query: comment.value, userId: userId)
 
         do {
             let response = try await env.api.makeRequest(requestable)
@@ -99,7 +99,7 @@ extension CommentLibraryViewModel: Refreshable {
         guard let endCursor else { return }
 
         let userId = env.currentSession?.userID ?? ""
-        let requestable = APICommentLibraryRequest(
+        let requestable = GetCommentLibraryRequest(
             query: comment.value,
             userId: userId,
             cursor: endCursor

@@ -306,7 +306,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
             originalScoreWithoutMetric: "85",
             originalGradeWithoutMetric: nil,
             finalGradeWithoutMetric: "85",
-            pointsDeductedText: "0 pts",
+            pointsDeductedText: "0 pts"
         )
 
         let result = state.finalGradeRowModel

@@ -46,7 +46,7 @@ extension CourseNotebookNote {
         let note = edge.node
 
         self.id = note.id
-        self.date = note.createdAt
+        self.date = note.updatedAt
         self.courseId = note.courseId
         self.objectId = note.objectId
         self.hasNext = false
@@ -87,7 +87,7 @@ extension CourseNotebookNote {
 extension CourseNotebookNote {
     init(from note: RedwoodNote) {
         self.id = note.id
-        self.date = note.createdAt
+        self.date = note.updatedAt
         self.courseId = note.courseId
         self.objectId = note.objectId
 

@@ -138,4 +138,10 @@ class URLComponentsExtensionsTests: XCTestCase {
         let externalURL = URLComponents.parse("https://example.com/courses")
         XCTAssertTrue(externalURL.isExternalWebsite(of: .shared))
     }
+
+    func test_underscore_notEncodedWithUrlSafeCharacters() {
+        let stringWithUnderscore = "/courses/2054/external_tools/"
+        let encoded = stringWithUnderscore.addingPercentEncoding(withAllowedCharacters: .urlSafe)
+        XCTAssertEqual(encoded, stringWithUnderscore)
+    }
 }

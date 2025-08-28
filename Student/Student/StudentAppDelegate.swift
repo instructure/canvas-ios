@@ -350,35 +350,14 @@ extension StudentAppDelegate {
                 )
             )
         } else {
-            let alert = UIAlertController(
-                title: String(
-                    localized: "Oops, something went wrong",
-                    bundle: .student
-                ),
-                message: String(
-                    localized: "There was an error while logging you in. You can try again, or come back a bit later.",
-                    bundle: .student
-                ),
-                preferredStyle: .alert
-            )
-            alert.addAction(
-                UIAlertAction(
-                    title: String(localized: "Logout", bundle: .core),
-                    style: .cancel
-                ) { [weak self] _ in
+            UIAlertController.showLoginErrorAlert(
+                cancelAction: { [weak self] in
                     self?.userDidLogout(session: session)
-                }
-            )
-            alert.addAction(
-                UIAlertAction(
-                    title: String(localized: "Retry", bundle: .core),
-                    style: .default
-                ) { [weak self] _ in
+                },
+                retryAction: { [weak self] in
                     self?.setup(session: session)
                 }
             )
-
-            environment.topViewController?.present(alert, animated: true)
         }
     }
 

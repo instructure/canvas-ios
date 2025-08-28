@@ -26,7 +26,7 @@ class SubmissionFilterPickerViewControllerTests: TeacherTestCase {
             context: .course("1"),
             outOfText: "Out of 10",
             filter: [ .section([ "1" ]), .late ],
-            env: environment,
+            env: environment
         ) { [weak self] value in
             self?.filter = value
         }

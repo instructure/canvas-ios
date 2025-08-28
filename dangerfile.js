@@ -49,6 +49,7 @@ function commitMessage () {
   }
   handleReleaseNotes(message)
   handleAffects(message)
+  handleBuilds(message)
 
   handleJira(message)
 }
@@ -113,6 +114,35 @@ function handleAffects (message) {
 
   const description = apps.join(', ')
   markdown(`#### Affected Apps: ${description}`)
+}
+
+function handleBuilds (message) {
+  const builds = execAll(/builds:(.+)/gi, message)
+  if (builds.length === 0) {
+    fail('Please add which apps should be built for testing this PR. Example: `builds: Student, Teacher` or `builds: All`')
+    return
+  }
+
+  const latestBuilds = builds[builds.length - 1];
+  let buildTypes = latestBuilds[1];
+
+  if (!buildTypes) {
+    fail('Did you forget to add build names after `builds:`?')
+    return
+  }
+
+  buildTypes = buildTypes.split(',').map(build => build.trim()).map(build =>
+    build[0].toUpperCase() + build.slice(1).toLowerCase()
+  )
+  const valid = ['Student', 'Teacher', 'Parent', 'All']
+  const invalid = buildTypes.filter(build => !valid.includes(build))
+  if (invalid.length > 0) {
+    fail(`You have included an invalid build. Valid values are: ${valid.join(', ')}`)
+    return
+  }
+
+  const description = buildTypes.join(', ')
+  markdown(`#### Builds: ${description}`)
 }
 
 function handleJira(message) {
