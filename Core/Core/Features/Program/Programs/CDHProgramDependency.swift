@@ -18,26 +18,26 @@
 
 import CoreData
 
-final public class CDHProgramDependent: NSManagedObject {
-    @NSManaged public var id: String
+final public class CDHProgramDependency: NSManagedObject {
+    @NSManaged public var id: String?
     @NSManaged public var requirementId: String
-    @NSManaged public var canvasCourseId: String
+    @NSManaged public var canvasCourseId: String?
 
     @discardableResult
     static func save(
-        _ item: GetHProgramsResponse.Dependen,
+        _ apiEntity: GetHProgramsResponse.Dependen,
         requirementId: String,
         in context: NSManagedObjectContext
-    ) -> CDHProgramDependent {
+    ) -> CDHProgramDependency {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(format: "%K == %@", #keyPath(CDHProgramDependent.id), item.id ?? ""),
-            NSPredicate(format: "%K == %@", #keyPath(CDHProgramDependent.requirementId), requirementId)
+            NSPredicate(format: "%K == %@", #keyPath(CDHProgramDependency.id), apiEntity.id ?? ""),
+            NSPredicate(format: "%K == %@", #keyPath(CDHProgramDependency.requirementId), requirementId)
         ])
 
-        let dbEntity: CDHProgramDependent = context.fetch(predicate).first ?? context.insert()
-        dbEntity.id = item.id ?? ""
+        let dbEntity: CDHProgramDependency = context.fetch(predicate).first ?? context.insert()
+        dbEntity.id = apiEntity.id
         dbEntity.requirementId = requirementId
-        dbEntity.canvasCourseId = item.canvasCourseID ?? ""
+        dbEntity.canvasCourseId = apiEntity.canvasCourseID
         return dbEntity
     }
 }

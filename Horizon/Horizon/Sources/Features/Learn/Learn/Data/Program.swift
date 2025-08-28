@@ -21,23 +21,98 @@ import Foundation
 struct Program {
     let id: String
     let name: String
-    let isLinear: Bool
+    let variant: String
     let description: String?
-    var completionPercent: Double
     let date: String?
     let courseCompletionCount: Int?
-    let courses: [ProgramCourse]
+    var courses: [ProgramCourse]
+
+    var estimatedTime: String? {
+        let times = courses.filter(\.isRequired).flatMap(\.moduleItemsestimatedTime)
+        let formatter = ISO8601DurationFormatter()
+        return times.isEmpty ? nil : formatter.sum(durations: times)
+    }
+
+    var isLinear: Bool {
+        variant == ProgramVariant.linear.rawValue && !isOptionalProgram
+    }
+
+    var isOptionalProgram: Bool {
+        courses.allSatisfy { !$0.isRequired }
+    }
+
+    var completionPercent: Double {
+        if isLinear {
+            let requiredCourses = courses.filter(\.isRequired)
+            let sum = requiredCourses.reduce(0) { $0 + $1.completionPercent }
+            return sum / (Double(requiredCourses.count))
+        } else {
+            let courseLimit = min(courseCompletionCount ?? courses.count, courses.count)
+            let requiredCourses = courses.filter(\.isRequired)
+            let coursesForProgress = requiredCourses
+                .sorted { $0.completionPercent > $1.completionPercent }
+                .prefix(courseLimit)
+                .map { $0 }
+            let sum = coursesForProgress.reduce(0) { $0 + $1.completionPercent }
+            return courseLimit > 0 ? sum / Double(courseLimit) : 0
+        }
+    }
+
+    var hasPills: Bool {
+        estimatedTime != nil || date != nil
+    }
 }
 
-struct ProgramCourse {
+struct ProgramCourse: Identifiable {
     let id: String
-    let name: String
+    var name: String = ""
     let isSelfEnrolled: Bool
     let isRequired: Bool
-    let estimatedTime: String?
-    let dueDate: String?
     let status: String
-    let completionPercent: Double
-    var enrollerID: String?
+    let progressID: String
+    var completionPercent: Double
+    var enrollemtID: String?
+    var moduleItemsestimatedTime: [String] = []
     var index = 0
+
+    var estimatedTime: String? {
+        let formatter = ISO8601DurationFormatter()
+        return moduleItemsestimatedTime.isEmpty ? nil : formatter.sum(durations: moduleItemsestimatedTime)
+    }
+
+    var isCompleted: Bool {
+        completionPercent == 1
+    }
+
+    var isEnrolled: Bool {
+        courseStatus == .enrolled
+    }
+
+    var courseStatus: ProgramCourse.Status {
+        Status(rawValue: status) ?? .enrolled
+    }
+}
+
+extension ProgramCourse {
+    enum Status: String {
+        case locked = "BLOCKED"
+        case notEnrolled = "NOT_ENROLLED"
+        case enrolled = "ENROLLED"
+    }
+}
+
+extension Array where Element == ProgramCourse {
+    func applyIndex() -> [ProgramCourse] {
+        var counter = 0
+        return self.map { course in
+            var updatedCourse = course
+            if course.isRequired {
+                counter += 1
+                updatedCourse.index = counter
+            } else {
+                updatedCourse.index = 0
+            }
+            return updatedCourse
+        }
+    }
 }

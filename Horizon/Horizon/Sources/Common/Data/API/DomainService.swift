@@ -138,7 +138,7 @@ extension DomainService {
 
         func productionURL(region: Region, baseURL: String) -> String {
             switch self {
-            case .journey: "journey-server-poc.journey.nonprod.inseng.io"
+            case .journey: "journey-server-prod.us-east-1.temp.prod.inseng.io"
             default: "\(self.rawValue)-api-production.\(region.rawValue).temp.prod.inseng.io"
             }
         }

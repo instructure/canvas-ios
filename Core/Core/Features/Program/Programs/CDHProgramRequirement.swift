@@ -24,28 +24,38 @@ final public class CDHProgramRequirement: NSManagedObject {
     @NSManaged public var courseEnrollment: String
     @NSManaged public var dependency: CDHProgramDependency?
     @NSManaged public var dependent: CDHProgramDependent?
+    @NSManaged public var position: NSNumber
 
     @discardableResult
     static func save(
-        _ item: GetHProgramsResponse.Requirement,
+        _ apiEntity: GetHProgramsResponse.Requirement,
         in context: NSManagedObjectContext
     ) -> CDHProgramRequirement {
         let dbEntity: CDHProgramRequirement = context.first(
             where: #keyPath(CDHProgramRequirement.id),
-            equals: item.id
+            equals: apiEntity.id
         ) ?? context.insert()
 
-        dbEntity.id = item.id ?? ""
-        dbEntity.isCompletionRequired = item.isCompletionRequired ?? false
-        dbEntity.courseEnrollment = item.courseEnrollment ?? ""
-        if let dependency = item.dependency {
-            dbEntity.dependency = CDHProgramDependency.save(dependency, requirementId: item.id ?? "", in: context)
+        dbEntity.id = apiEntity.id ?? ""
+        dbEntity.isCompletionRequired = apiEntity.isCompletionRequired ?? false
+        dbEntity.courseEnrollment = apiEntity.courseEnrollment ?? ""
+        dbEntity.position = (apiEntity.position ?? 0) as NSNumber
+        if let dependency = apiEntity.dependency {
+            dbEntity.dependency = CDHProgramDependency.save(
+                dependency,
+                requirementId: apiEntity.id ?? "",
+                in: context
+            )
         } else {
             dbEntity.dependency = nil
         }
 
-        if let dependent = item.dependent {
-            dbEntity.dependent = CDHProgramDependent.save(dependent, requirementId: item.id ?? "", in: context)
+        if let dependent = apiEntity.dependent {
+            dbEntity.dependent = CDHProgramDependent.save(
+                dependent,
+                requirementId: apiEntity.id ?? "",
+                in: context
+            )
         } else {
             dbEntity.dependent = nil
         }

@@ -20,31 +20,35 @@ import SwiftUI
 
 public extension HorizonUI {
     struct ProgramCard: View {
-        // MARK: - Dependencies
-
+        // MARK: - Content
         private let courseName: String
         private let isSelfEnrolled: Bool
         private let isRequired: Bool
-        @Binding private var isLoading: Bool
         private let estimatedTime: String?
-        private let dueDate: String?
-        private let status: ProgramCard.Status
+        private let courseStatus: String
+        private let completionPercent: Double
+
+        // MARK: - State
+        @Binding private var isLoading: Bool
+
+        // MARK: - Actions
         private let onTapEnroll: () -> Void
 
-        // MARK: - Private Propertites
-
+        // MARK: - UI
         private let cornerRadius: CornerRadius = .level3
+        private var status: Status {
+            .init(completionPercent: completionPercent, status: courseStatus)
+        }
 
         // MARK: - Init
-
         public init(
             courseName: String,
             isSelfEnrolled: Bool,
             isRequired: Bool,
             isLoading: Binding<Bool>,
             estimatedTime: String?,
-            dueDate: String?,
-            status: ProgramCard.Status,
+            courseStatus: String,
+            completionPercent: Double,
             onTapEnroll: @escaping () -> Void
         ) {
             self.courseName = courseName
@@ -52,38 +56,28 @@ public extension HorizonUI {
             self.isRequired = isRequired
             _isLoading = isLoading
             self.estimatedTime = estimatedTime
-            self.dueDate = dueDate
-            self.status = status
+            self.courseStatus = courseStatus
+            self.completionPercent = completionPercent
             self.onTapEnroll = onTapEnroll
         }
 
+        // MARK: - Body
         public var body: some View {
             VStack(alignment: .leading, spacing: .huiSpaces.space16) {
-                titleText
-                if case let .inProgress(completionPercent) = status {
-                    progressBar(value: completionPercent)
-                }
-                statusPills
-                if status.isActive {
+                titleView
+                pillsView
+                if status == .notEnrolled {
                     enrollButton
                 }
             }
             .padding(.huiSpaces.space16)
-            .background {
-                if isRequired {
-                    RoundedRectangle(cornerRadius: cornerRadius.attributes.radius)
-                        .stroke(status.borderColor, lineWidth: 1)
-                } else {
-                    RoundedRectangle(cornerRadius: cornerRadius.attributes.radius)
-                        .stroke(Color.huiColors.lineAndBorders.containerStroke, style: StrokeStyle(lineWidth: 1, dash: [6, 4]))
-                }
-            }
-            .background(Color.huiColors.surface.cardPrimary.cornerRadius(cornerRadius.attributes.radius))
+            .background(cardBackground)
         }
 
-        private var titleText: some View {
+        // MARK: - Components
+        private var titleView: some View {
             HStack(alignment: .top, spacing: .huiSpaces.space4) {
-                if status.isCompleted {
+                if status == .completed {
                     Image.huiIcons.checkCircleFull
                         .foregroundStyle(status.borderColor)
                 }
@@ -96,48 +90,48 @@ public extension HorizonUI {
             }
         }
 
-        private func progressBar(value: Double) -> some View {
-            VStack(alignment: .leading, spacing: .huiSpaces.space8) {
-                HStack(spacing: .huiSpaces.space2) {
-                    let percentageRound = round(value * 100.0)
-                    Group {
-                        Text(percentageRound, format: .number) + Text("%")
-                    }
-                    Text("complete")
-                }
-                .huiTypography(.p2)
-                .foregroundStyle(Color.huiColors.surface.institution)
-                HorizonUI.ProgressBar(
-                    progress: value,
-                    size: .small,
-                    numberPosition: .hidden
-                )
-            }
-        }
-
-        private var statusPills: some View {
+        private var pillsView: some View {
             HorizonUI.ProgramCard.Pills(
                 isEnrolled: status.isEnrolled && isSelfEnrolled,
                 isRequired: isRequired,
                 status: status,
-                estimatedTime: estimatedTime,
-                dueDate: dueDate
+                estimatedTime: estimatedTime
             )
         }
 
         @ViewBuilder
         private var enrollButton: some View {
-            if !status.isEnrolled, isSelfEnrolled {
-                HStack {
-                    Spacer()
-                    HorizonUI.LoadingButton(
-                        title: String(localized: "Enroll"),
-                        type: .institution,
-                        fillsWidth: false,
-                        isLoading: $isLoading) {
-                            onTapEnroll()
-                        }
-                }
+            HStack {
+                Spacer()
+                HorizonUI.LoadingButton(
+                    title: String(localized: "Enroll"),
+                    type: .institution,
+                    fillsWidth: false,
+                    isLoading: $isLoading,
+                    onSave: onTapEnroll
+                )
+            }
+        }
+
+        private var cardBackground: some View {
+            ZStack {
+                RoundedRectangle(cornerRadius: cornerRadius.attributes.radius)
+                    .fill(Color.huiColors.surface.cardPrimary)
+                borderView
+            }
+        }
+
+        @ViewBuilder
+        private var borderView: some View {
+            if isRequired || status == .completed {
+                RoundedRectangle(cornerRadius: cornerRadius.attributes.radius)
+                    .stroke(status.borderColor, lineWidth: 1)
+            } else {
+                RoundedRectangle(cornerRadius: cornerRadius.attributes.radius)
+                    .stroke(
+                        Color.huiColors.lineAndBorders.containerStroke,
+                        style: StrokeStyle(lineWidth: 1, dash: [6, 4])
+                    )
             }
         }
     }
@@ -145,78 +139,14 @@ public extension HorizonUI {
 
 #Preview {
     @Previewable @State var isLoading: Bool = false
-    ScrollView {
-        VStack {
-            HorizonUI.ProgramCard(
-                courseName: "Course Name Dolor Sit Amet",
-                isSelfEnrolled: true,
-                isRequired: true,
-                isLoading: $isLoading,
-                estimatedTime: "10 Hours",
-                dueDate: "10-10-2020",
-                status: .active
-            ) { isLoading.toggle() }
+    HorizonUI.ProgramCard(
+        courseName: "Course Name Dolor Sit Amet",
+        isSelfEnrolled: true,
+        isRequired: true,
+        isLoading: $isLoading,
+        estimatedTime: "10 Hours",
+        courseStatus: "ENROLLED",
+        completionPercent: 0.3
 
-            HorizonUI.ProgramCard(
-                courseName: "Course Name Dolor Sit Amet",
-                isSelfEnrolled: false,
-                isRequired: true,
-                isLoading: $isLoading,
-                estimatedTime: "10 Hours",
-                dueDate: "10-10-2020",
-                status: .active
-            ) { isLoading.toggle() }
-
-            HorizonUI.ProgramCard(
-                courseName: "Course Name Dolor Sit Amet",
-                isSelfEnrolled: false,
-                isRequired: false,
-                isLoading: $isLoading,
-                estimatedTime: "10 Hours",
-                dueDate: "10-10-2020",
-                status: .active
-            ) { isLoading.toggle() }
-
-            HorizonUI.ProgramCard(
-                courseName: "Course Name Dolor Sit Amet",
-                isSelfEnrolled: true,
-                isRequired: true,
-                isLoading: $isLoading,
-                estimatedTime: "10 Hours",
-                dueDate: "10-10-2020",
-                status: .active
-            ) { isLoading.toggle() }
-
-            HorizonUI.ProgramCard(
-                courseName: "Course Name Dolor Sit Amet",
-                isSelfEnrolled: true,
-                isRequired: true,
-                isLoading: $isLoading,
-                estimatedTime: "10 Hours",
-                dueDate: "10-10-2020",
-                status: .inProgress(completionPercent: 0.5)
-            ) { isLoading.toggle() }
-
-            HorizonUI.ProgramCard(
-                courseName: "Course Name Dolor Sit Amet",
-                isSelfEnrolled: true,
-                isRequired: true,
-                isLoading: $isLoading,
-                estimatedTime: "10 Hours",
-                dueDate: "10-10-2020",
-                status: .locked
-            ) { isLoading.toggle() }
-
-            HorizonUI.ProgramCard(
-                courseName: "Course Name Dolor Sit Amet",
-                isSelfEnrolled: true,
-                isRequired: true,
-                isLoading: $isLoading,
-                estimatedTime: "10 Hours",
-                dueDate: "10-10-2020",
-                status: .completed
-            ) { isLoading.toggle() }
-        }
-        .padding()
-    }
+    ) { isLoading.toggle() }
 }

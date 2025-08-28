@@ -31,22 +31,22 @@ final public class CDHProgram: NSManagedObject {
 
   @discardableResult
    public static func save(
-        _ item: GetHProgramsResponse.EnrolledProgram,
+        _ apiEntity: GetHProgramsResponse.EnrolledProgram,
         in context: NSManagedObjectContext
     ) -> CDHProgram {
         let dbEntity: CDHProgram = context.first(
             where: #keyPath(CDHProgram.id),
-            equals: item.id
+            equals: apiEntity.id
         ) ?? context.insert()
 
-        dbEntity.id = item.id ?? ""
-        dbEntity.name = item.name ?? ""
-        dbEntity.programDescription = item.description
-        dbEntity.variant = item.variant ?? ""
-        dbEntity.courseCompletionCount = item.courseCompletionCount as NSNumber?
-        dbEntity.startDate = item.startDate
-        dbEntity.endDate = item.endDate
-        if let progresses = item.progresses {
+        dbEntity.id = apiEntity.id ?? ""
+        dbEntity.name = apiEntity.name ?? ""
+        dbEntity.programDescription = apiEntity.description
+        dbEntity.variant = apiEntity.variant ?? ""
+        dbEntity.courseCompletionCount = apiEntity.courseCompletionCount as NSNumber?
+        dbEntity.startDate = apiEntity.startDate
+        dbEntity.endDate = apiEntity.endDate
+        if let progresses = apiEntity.progresses {
             let progressesEntities: [CDHProgramProgress] = progresses.map { apiItem in
                 return CDHProgramProgress.save(apiItem, in: context)
             }
@@ -55,7 +55,7 @@ final public class CDHProgram: NSManagedObject {
             dbEntity.porgresses = []
         }
 
-        if let requirements = item.requirements {
+        if let requirements = apiEntity.requirements {
             let requirementsEntities: [CDHProgramRequirement] = requirements.map { apiItem in
                 return CDHProgramRequirement.save(apiItem, in: context)
             }

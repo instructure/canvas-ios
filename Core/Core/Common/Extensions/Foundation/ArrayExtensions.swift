@@ -66,3 +66,11 @@ public extension Array where Element: Encodable {
         try? JSONEncoder().encode(self)
     }
 }
+
+public extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        stride(from: 0, to: self.count, by: size).map {
+            Array(self[$0..<Swift.min($0 + size, self.count)])
+        }
+    }
+}

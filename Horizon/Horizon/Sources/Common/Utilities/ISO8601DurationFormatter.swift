@@ -29,10 +29,16 @@ final class ISO8601DurationFormatter {
     ///   - `"0 mins"` if no valid duration is found.
     ///
     func duration(from duration: String) -> String? {
+        let (hours, minutes) = parse(duration: duration)
+        return format(hours: hours, minutes: minutes)
+    }
+
+    /// Parses ISO8601 duration and returns (hours, minutes)
+    private func parse(duration: String) -> (Int, Int) {
         let regex = try? NSRegularExpression(pattern: #"PT(?:(\d+)H)?(?:(\d+)M)?"#)
 
         guard let match = regex?.firstMatch(in: duration, range: NSRange(duration.startIndex..., in: duration)) else {
-            return nil
+            return (0, 0)
         }
 
         let extractValue: (Int) -> Int = { index in
@@ -42,13 +48,31 @@ final class ISO8601DurationFormatter {
 
         let hours = extractValue(1)
         let minutes = extractValue(2)
+        return (hours, minutes)
+    }
 
+    /// Formats hours/minutes into localized string
+    private func format(hours: Int, minutes: Int) -> String {
         switch (hours, minutes) {
         case (0, 0): return "0 \(Duration.mins.name)"
         case (_, 0): return "\(hours) \(Duration.hours.name)"
         case (0, _): return "\(minutes) \(Duration.mins.name)"
         default: return "\(hours) \(Duration.hours.name) \(minutes) \(Duration.mins.name)"
         }
+    }
+
+    /// Sum multiple ISO8601 durations like ["PT34M", "PT2M", "PT1H30M"]
+    func sum(durations: [String]) -> String {
+        var totalMinutes = 0
+
+        for d in durations {
+            let (h, m) = parse(duration: d)
+            totalMinutes += h * 60 + m
+        }
+
+        let hours = totalMinutes / 60
+        let minutes = totalMinutes % 60
+        return format(hours: hours, minutes: minutes)
     }
 
     enum Duration {

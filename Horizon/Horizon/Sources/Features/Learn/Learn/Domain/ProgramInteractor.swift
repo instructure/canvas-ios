@@ -22,134 +22,106 @@ import Combine
 import HorizonUI
 
 protocol ProgramInteractor {
-    //    func getPrograms(programs: [Program]) -> [Program]
+    func getPrograms(ignoreCache: Bool) -> AnyPublisher<[Program], Error>
+    func getProgramsWithCourses(ignoreCache: Bool) -> AnyPublisher<[Program], Error>
+    func enrollInProgram(progressID: String) -> AnyPublisher<[Program], Error>
 }
 
 final class ProgramInteractorLive: ProgramInteractor {
-    private var subscriptions = Set<AnyCancellable>()
+    // MARK: - Dependencies
 
-    func getPrograms() -> AnyPublisher<[Program], Error> {
+    private let programCourseInteractor: ProgramCourseInteractor
+
+    // MARK: - Init
+
+    init(programCourseInteractor: ProgramCourseInteractor) {
+        self.programCourseInteractor = programCourseInteractor
+    }
+
+    func getPrograms(ignoreCache: Bool) -> AnyPublisher<[Program], Error> {
         ReactiveStore(useCase: GetHProgramsUseCase())
-            .getEntities(ignoreCache: true)
-            .map { response in
-                let programs = response.map { ProgramDTO(from: $0) }
-                let sortedPrograms = self.normalizePrograms(programs: programs)
-                return sortedPrograms.map { self.map(program: $0) }
+            .getEntities(ignoreCache: ignoreCache)
+            .map { [weak self] response in
+                return response.compactMap { self?.map($0) }
             }
             .eraseToAnyPublisher()
     }
 
-    private func normalizePrograms(programs: [ProgramDTO]) -> [ProgramDTO] {
-        programs.map { program in
-            var copy = program
-            copy.requirements = sortRequirementsByDependency(requirements: program.requirements)
-            return copy
-        }
-    }
-
-    private func sortRequirementsByDependency(requirements: [ProgramRequirementDTO]) -> [ProgramRequirementDTO] {
-        guard let start = requirements.first(where: { $0.dependency == nil }) else {
-            return requirements
-        }
-
-        var sorted: [ProgramRequirementDTO] = [start]
-        var current = start
-
-        while let nextId = current.dependent?.id,
-              let next = requirements.first(where: { $0.dependency?.id == nextId }) {
-            sorted.append(next)
-            current = next
-        }
-        return sorted
-    }
-
-    private func map(program: ProgramDTO) -> Program {
-        let requirements = program.requirements
-        let progresses = program.progresses
-        var sortedProgresses: [ProgramProgressDTO] = []
-        var courses: [ProgramCourse] = []
-        requirements.forEach { requirement in
-            if let progess = progresses.first(where: { $0.canvasCourseId == requirement.dependent?.canvasCourseId }) {
-                sortedProgresses.append(progess)
+    func getProgramsWithCourses(ignoreCache: Bool) -> AnyPublisher<[Program], Error> {
+        getPrograms(ignoreCache: ignoreCache)
+            .flatMap { [weak self] programs in
+                guard let self else {
+                    return Just<[Program]>([])
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return self.programCourseInteractor.getCourses(programs: programs, ignoreCache: ignoreCache)
             }
+            .eraseToAnyPublisher()
+    }
+
+    func enrollInProgram(progressID: String) -> AnyPublisher<[Program], Error> {
+        unowned let unownedSeldf = self
+        return ReactiveStore(useCase: EnrollProgramCourseUseCase(progressId: progressID))
+            .getEntities()
+            .flatMap { _ in
+                unownedSeldf.getPrograms(ignoreCache: true)
+            }
+            .flatMap { programs in
+                unownedSeldf.programCourseInteractor.getCourses(programs: programs, ignoreCache: false)
+            }
+            .eraseToAnyPublisher()
+    }
+
+    // MARK: - Mapping
+
+    private func map(_ program: CDHProgram) -> Program {
+        let progresses = program.porgresses
+        let requirements = program.requirements.sorted { $0.position.intValue < $1.position.intValue }
+
+        let courses: [ProgramCourse] = requirements.compactMap { requirement in
+            guard let progress = progresses.first(where: { $0.canvasCourseId == requirement.dependent?.canvasCourseId }) else {
+                return nil
+            }
+            return mapCourse(progress: progress, requirement: requirement)
         }
 
-        zip(requirements, sortedProgresses).forEach { requirement, progress in
-            let course = mapCourse(progress: progress, requirement: requirement)
-            courses.append(course)
-        }
-        let startDate = program.startDate?.formatted(format: "MM/dd/YYYY")
-        let endDate = program.endDate?.formatted(format: "MM/dd/YYYY")
-        let date = if let startDate, let endDate { "\(endDate)-\(endDate)" } else { nil }
-        var program = Program(
+        let dateRange = formatDateRange(start: program.startDate, end: program.endDate)
+
+        return Program(
             id: program.id,
             name: program.name,
-            isLinear: program.variant == ProgramVariant.linear.rawValue,
+            variant: program.variant,
             description: program.programDescription,
-            completionPercent: 0,
-            date: date,
-            courseCompletionCount: program.courseCompletionCount,
+            date: dateRange,
+            courseCompletionCount: Int(truncating: program.courseCompletionCount ?? 0),
             courses: courses
         )
-
-        program.completionPercent = getProgramProgression(program: program)
-        return program
     }
 
-    private func mapCourse(
-        progress: ProgramProgressDTO,
-        requirement: ProgramRequirementDTO
-    ) -> ProgramCourse {
+    private func mapCourse(progress: CDHProgramProgress, requirement: CDHProgramRequirement) -> ProgramCourse {
         ProgramCourse(
             id: requirement.dependent?.canvasCourseId ?? "",
             name: requirement.dependent?.canvasCourseId ?? "",
             isSelfEnrolled: requirement.courseEnrollment == CourseEnrollmentStatus.selfEnrollment.rawValue,
             isRequired: requirement.isCompletionRequired,
-            estimatedTime: "TODO",
-            dueDate: "TODO",
             status: progress.courseEnrollmentStatus,
+            progressID: progress.id,
             completionPercent: progress.completionPercentage
         )
     }
 
-    private func getProgramProgression(program: Program) -> Double {
-        guard program.courses.isNotEmpty else {
-            return 0
+    private func formatDateRange(start: Date?, end: Date?) -> String? {
+        guard let start = start?.formatted(format: "MM/dd/YYYY"),
+              let end = end?.formatted(format: "MM/dd/YYYY") else {
+            return nil
         }
-
-        var coursesForProgress: [ProgramCourse] = []
-        let countOfCourses = program.courses.count
-        if program.isLinear {
-            coursesForProgress = program.courses.filter { $0.isRequired }
-        } else {
-            var courseCompletionCountValue = program.courseCompletionCount ?? countOfCourses
-            
-            if courseCompletionCountValue > countOfCourses {
-                courseCompletionCountValue = countOfCourses
-            }
-            coursesForProgress = Array(
-                program.courses
-                    .sorted { ($0.completionPercent) > ($1.completionPercent) } // Descending
-                    .prefix(courseCompletionCountValue)
-            )
-        }
-
-        guard coursesForProgress.isNotEmpty else {
-            print(program.name ,"====isNotEmpty =====")
-            return 0
-        }
-
-        let totalProgress = coursesForProgress.reduce(0) { accumulator, course in
-            accumulator + (course.completionPercent)
-        }
-
-        let completionPercentage = totalProgress / (Double(countOfCourses) * 100)
-        return completionPercentage
+        return "\(start)-\(end)"
     }
 }
 
 enum CourseEnrollmentStatus: String {
-    case selfEnrollment = "self-enrollmen"
+    case selfEnrollment = "self-enrollment"
     case autoEnrolled = "ENROLLED"
 }
 

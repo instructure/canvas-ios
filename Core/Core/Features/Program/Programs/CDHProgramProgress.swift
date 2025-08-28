@@ -26,18 +26,18 @@ final public class CDHProgramProgress: NSManagedObject {
 
     @discardableResult
     static func save(
-        _ item: GetHProgramsResponse.Progress,
+        _ apiEntity: GetHProgramsResponse.Progress,
         in context: NSManagedObjectContext
     ) -> CDHProgramProgress {
         let dbEntity: CDHProgramProgress = context.first(
             where: #keyPath(CDHProgramProgress.id),
-            equals: item.id
+            equals: apiEntity.id
         ) ?? context.insert()
 
-        dbEntity.id = item.id ?? ""
-        dbEntity.completionPercentage = item.completionPercentage ?? 0
-        dbEntity.courseEnrollmentStatus = item.courseEnrollmentStatus ?? ""
-        dbEntity.canvasCourseId = item.requirement?.dependent?.canvasCourseID ?? ""
+        dbEntity.id = apiEntity.id ?? ""
+        dbEntity.completionPercentage = apiEntity.completionPercentage ?? 0
+        dbEntity.courseEnrollmentStatus = apiEntity.courseEnrollmentStatus ?? ""
+        dbEntity.canvasCourseId = apiEntity.requirement?.dependent?.canvasCourseID ?? ""
         return dbEntity
     }
 }

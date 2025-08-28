@@ -19,13 +19,13 @@
 import Foundation
 
 public struct GetHProgramsResponse: Codable {
-   public let data: Programs?
+    public let data: Programs?
 
     public struct Programs: Codable {
-        public let enrolledPrograms: [EnrolledProgram]?
+        public var enrolledPrograms: [EnrolledProgram]?
     }
 
-    public  struct EnrolledProgram: Codable {
+    public struct EnrolledProgram: Codable {
         public let id, name: String?
         public let courseCompletionCount: Int?
         let publicName: String?
@@ -43,7 +43,7 @@ public struct GetHProgramsResponse: Codable {
             case customerID = "customerId"
             case description, owner, startDate, endDate, variant, progresses, requirements, enrollments, courseCompletionCount
         }
-        
+
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -59,7 +59,6 @@ public struct GetHProgramsResponse: Codable {
             requirements = try container.decodeIfPresent([Requirement].self, forKey: .requirements)
             enrollments = try container.decodeIfPresent([Enrollment].self, forKey: .enrollments)
 
-            // Flexible date decoding (with fractional seconds support)
             let isoFormatter = ISO8601DateFormatter()
             isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
 
@@ -108,6 +107,7 @@ public struct GetHProgramsResponse: Codable {
         let id: String?
         let isCompletionRequired: Bool?
         let courseEnrollment: String?
+        public var position: Int?
         public let dependency: Dependen?
         public let dependent: Dependen?
     }

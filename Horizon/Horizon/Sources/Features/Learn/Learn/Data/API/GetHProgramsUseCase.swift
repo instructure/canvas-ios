@@ -22,16 +22,14 @@ import Core
 
 final public class GetHProgramsUseCase: APIUseCase {
 
-    private let  journey = DomainService(.journey)
+    private let journey = DomainService(.journey)
     public typealias Model = CDHProgram
     private var subscriptions = Set<AnyCancellable>()
     public var request: GetHProgramsRequest {
         return GetHProgramsRequest()
     }
 
-    public var cacheKey: String? {
-        return "get-programs"
-    }
+    public var cacheKey: String? { "get-programs" }
 
     public func write(
         response: GetHProgramsResponse?,
@@ -39,7 +37,8 @@ final public class GetHProgramsUseCase: APIUseCase {
         to client: NSManagedObjectContext
     ) {
         let programs = response?.data?.enrolledPrograms ?? []
-        programs.forEach { program in
+        let sortedPrograms = normalizePrograms(programs)
+        sortedPrograms.forEach { program in
             CDHProgram.save(program, in: client)
         }
     }
@@ -50,13 +49,38 @@ final public class GetHProgramsUseCase: APIUseCase {
     ) {
         journey
             .api()
-            .sink(
-                receiveCompletion: { _ in },
-                receiveValue: { [weak self] api in
-                    guard let self = self else { return }
-                    api.makeRequest(self.request, callback: completionHandler)
-                }
-            )
+            .sinkFailureOrValue(receiveFailure: { error in
+                completionHandler(nil, nil, error)
+            }, receiveValue: { [weak self] api in
+                guard let self = self else { return }
+                api.makeRequest(self.request, callback: completionHandler)
+            })
             .store(in: &subscriptions)
+    }
+
+    private func normalizePrograms(_ programs: [GetHProgramsResponse.EnrolledProgram]) -> [GetHProgramsResponse.EnrolledProgram] {
+        programs.map { program in
+            var copy = program
+            copy.requirements = sortRequirementsByDependency(copy.requirements ?? [])
+            return copy
+        }
+    }
+
+    private func sortRequirementsByDependency(_ requirements: [GetHProgramsResponse.Requirement]) -> [GetHProgramsResponse.Requirement] {
+        guard let start = requirements.first(where: { $0.dependency == nil }) else {
+            return requirements
+        }
+        var position = 1
+        var sorted: [GetHProgramsResponse.Requirement] = [start]
+        var current = start
+
+        while let nextId = current.dependent?.id,
+              var next = requirements.first(where: { $0.dependency?.id == nextId }) {
+            next.position = position
+            position += 1
+            sorted.append(next)
+            current = next
+        }
+        return sorted
     }
 }

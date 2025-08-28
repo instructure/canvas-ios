@@ -23,20 +23,21 @@ public extension HorizonUI.ProgramCard {
         case active
         case locked
         case completed
-        case inProgress(completionPercent: Double)
+        case notEnrolled
+        case inProgress
 
-        public init(completionPercent: Double = 0, status: String) {
+         init(completionPercent: Double = 0, status: String) {
             switch status {
             case "BLOCKED":
                 self = .locked
             case "NOT_ENROLLED":
-                self = .active
-            case "ENROLLED" where completionPercent == 100:
+                self = .notEnrolled
+            case "ENROLLED" where completionPercent == 1:
                 self = .completed
             case "ENROLLED" where completionPercent == 0:
                 self = .active
             default:
-                self = .inProgress(completionPercent: completionPercent)
+                self = .inProgress
             }
         }
 
@@ -47,7 +48,7 @@ public extension HorizonUI.ProgramCard {
             }
         }
 
-        public var borderColor: Color {
+         var borderColor: Color {
             switch self {
             case .locked: Color.huiColors.lineAndBorders.lineStroke
             case .completed: Color.huiColors.primitives.honey30
@@ -55,34 +56,7 @@ public extension HorizonUI.ProgramCard {
             }
         }
 
-        public var isCompleted: Bool {
-            switch self {
-            case .completed:
-                return true
-            default:
-                return false
-            }
-        }
-
-        public var isActive: Bool {
-            switch self {
-            case .active:
-                return true
-            default:
-                return false
-            }
-        }
-
-        var isLocked: Bool {
-            switch self {
-            case .locked:
-                return true
-            default:
-                return false
-            }
-        }
-
-       public var isEnrolled: Bool {
+        var isEnrolled: Bool {
             switch self {
             case .inProgress, .active, .completed:
                 return true

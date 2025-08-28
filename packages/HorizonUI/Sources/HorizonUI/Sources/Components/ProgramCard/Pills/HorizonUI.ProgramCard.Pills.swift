@@ -24,22 +24,19 @@ extension HorizonUI.ProgramCard {
          let isRequired: Bool
          let status: HorizonUI.ProgramCard.Status
          let estimatedTime: String?
-         let dueDate: String?
 
         var body: some View {
             switch status {
-            case .active:
+            case .active, .notEnrolled:
                 HorizonUI.ProgramCard.Pills.Active(
                     isEnrolled: isEnrolled,
                     isRequired: isRequired,
-                    estimatedTime: estimatedTime,
-                    dueDate: dueDate
+                    estimatedTime: estimatedTime
                 )
             case .inProgress:
                 HorizonUI.ProgramCard.Pills.InProgress(
                     isRequired: isRequired,
-                    estimatedTime: estimatedTime,
-                    dueDate: dueDate
+                    estimatedTime: estimatedTime
                 )
 
             case .locked:
@@ -60,16 +57,14 @@ extension HorizonUI.ProgramCard {
             isEnrolled: true,
             isRequired: true,
             status: .active,
-            estimatedTime: "10 hours",
-            dueDate: "10-10-2025",
+            estimatedTime: "10 hours"
         )
 
         HorizonUI.ProgramCard.Pills(
             isEnrolled: false,
             isRequired: false,
-            status: .inProgress(completionPercent: 0.3),
-            estimatedTime: "10 hours",
-            dueDate: "10-10-2025",
+            status: .inProgress,
+            estimatedTime: "10 hours"
         )
 
         HorizonUI.ProgramCard.Pills(
@@ -77,15 +72,13 @@ extension HorizonUI.ProgramCard {
             isRequired: false,
             status: .locked,
             estimatedTime: "10 hours",
-            dueDate: "10-10-2025",
         )
 
         HorizonUI.ProgramCard.Pills(
             isEnrolled: false,
             isRequired: false,
             status: .completed,
-            estimatedTime: "10 hours",
-            dueDate: "10-10-2025",
+            estimatedTime: "10 hours"
         )
     }
 }
