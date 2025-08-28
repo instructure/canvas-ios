@@ -98,9 +98,10 @@ struct LearnAssembly {
     }
 
     static func makeLearnView() -> UIViewController {
-        let viewModel = LearnViewModel(
-            interactor: GetLearnCoursesInteractorLive()
-        )
+        let programCourseInteractor = ProgramCourseInteractorLive()
+        let interactor = ProgramInteractorLive(programCourseInteractor: programCourseInteractor)
+        let router = AppEnvironment.shared.router
+        let viewModel = LearnViewModel(interactor: interactor, router: router)
         let view = LearnView(viewModel: viewModel)
         return CoreHostingController(view)
     }

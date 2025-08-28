@@ -39,15 +39,9 @@ final class DomainService {
     // MARK: - Private
 
     private var audience: String {
-        baseURL.contains("horizon.cd.instructure.com") == true ? horizonCDURL : productionURL
-    }
-
-    private var horizonCDURL: String {
-        "\(option)-api-dev.domain-svcs.nonprod.inseng.io"
-    }
-
-    private var productionURL: String {
-        "\(option)-api-production.\(region.rawValue).temp.prod.inseng.io"
+        baseURL.contains("horizon.cd.instructure.com") == true
+        ? option.horizonCDURL
+        : option.productionURL(region: region, baseURL: baseURL)
     }
 
     // MARK: - Init
@@ -130,9 +124,23 @@ extension DomainService {
         case cedar
         case pine
         case redwood
-
+        case journey
         var service: String {
             rawValue
+        }
+
+        var horizonCDURL: String {
+            switch self {
+            case .journey: "journey-server-dev.journey.nonprod.inseng.io"
+            default: "\(rawValue)-api-dev.domain-svcs.nonprod.inseng.io"
+            }
+        }
+
+        func productionURL(region: Region, baseURL: String) -> String {
+            switch self {
+            case .journey: "journey-server-prod.us-east-1.temp.prod.inseng.io"
+            default: "\(self.rawValue)-api-production.\(region.rawValue).temp.prod.inseng.io"
+            }
         }
     }
 }

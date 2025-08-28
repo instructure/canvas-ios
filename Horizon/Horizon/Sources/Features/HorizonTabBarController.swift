@@ -30,8 +30,8 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
         if let selectedViewController = viewControllers?[selectedIndex],
            let selectedNavigationController = selectedViewController as? UINavigationController,
            let learnHostingController = selectedNavigationController.viewControllers.last as? CoreHostingController<LearnView>,
-           let courseDetailsViewModel = learnHostingController.rootView.content.viewModel.courseDetailsViewModel {
-           courseID = courseDetailsViewModel.course.id
+           let course = learnHostingController.rootView.content.viewModel.currentProgram?.courses.first {
+           courseID = course.id
         }
         return courseID
     }

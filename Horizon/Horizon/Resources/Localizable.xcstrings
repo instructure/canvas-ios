@@ -10,6 +10,9 @@
     "'s score weight was changed  " : {
 
     },
+    "%" : {
+
+    },
     "%@ %@" : {
       "localizations" : {
         "en" : {
@@ -263,6 +266,9 @@
 
     },
     "Comments" : {
+
+    },
+    "complete" : {
 
     },
     "Complete all of the items." : {
@@ -1099,6 +1105,9 @@
 
     },
     "You have been invited to join" : {
+
+    },
+    "You’ve been enrolled in Course" : {
 
     },
     "Your draft was deleted." : {

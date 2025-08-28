@@ -23,14 +23,46 @@ extension HorizonUI.ProgramCard.Pills {
         let isEnrolled: Bool
         let isRequired: Bool
         let estimatedTime: String?
-        let dueDate: String?
 
         var body: some View {
-            HorizonUI.ProgramCard.Pills.InProgress(
-                isEnrolled: isEnrolled,
-                isRequired: isRequired,
-                estimatedTime: estimatedTime,
-                dueDate: dueDate
+            HorizonUI.HFlow {
+                if isEnrolled {
+                    HorizonUI.Pill(
+                        title: String(localized: "Enrolled"),
+                        style: .solid(
+                            .init(
+                                backgroundColor: Color.huiColors.primitives.green12,
+                                textColor: Color.huiColors.primitives.green82,
+                                iconColor: Color.huiColors.primitives.green82
+                            )
+                        ),
+                        isSmall: true,
+                        cornerRadius: .level1,
+                        icon: .huiIcons.checkCircleFull
+                    )
+                }
+                defaultPill(title: isRequired
+                            ? String(localized: "Required")
+                            : String(localized: "Optional")
+                )
+
+                if let estimatedTime {
+                    defaultPill(title: estimatedTime)
+                }
+            }
+        }
+
+        private func defaultPill(title: String) -> some View {
+            HorizonUI.Pill(
+                title: title,
+                style: .solid(
+                    .init(
+                        backgroundColor: Color.huiColors.primitives.grey11,
+                        textColor: Color.huiColors.text.title
+                    )
+                ),
+                isSmall: true,
+                cornerRadius: .level1,
             )
         }
     }
@@ -40,7 +72,6 @@ extension HorizonUI.ProgramCard.Pills {
     HorizonUI.ProgramCard.Pills.Active(
         isEnrolled: true,
         isRequired: true,
-        estimatedTime: "10 hours",
-        dueDate: "10-10-2020"
+        estimatedTime: "10 hours"
     )
 }

@@ -62,7 +62,7 @@ struct ProgramCardModel: Identifiable {
             isLocked: false,
             estimatedTime: "1.5 hours",
             dueDate: "20/10/2025 - 20/10/2026",
-            status: .inProgress(completionPercent: 0.4)
+            status: .inProgress
         ),
 
         ProgramCardModel(

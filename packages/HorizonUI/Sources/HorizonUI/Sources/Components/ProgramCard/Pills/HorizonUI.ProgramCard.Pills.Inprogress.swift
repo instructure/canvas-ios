@@ -23,37 +23,20 @@ extension HorizonUI.ProgramCard.Pills {
         let isEnrolled: Bool
         let isRequired: Bool
         let estimatedTime: String?
-        let dueDate: String?
 
         init(
             isEnrolled: Bool = false,
             isRequired: Bool,
-            estimatedTime: String?,
-            dueDate: String?
+            estimatedTime: String?
         ) {
             self.isEnrolled = isEnrolled
             self.isRequired = isRequired
             self.estimatedTime = estimatedTime
-            self.dueDate = dueDate
         }
 
         var body: some View {
             HorizonUI.HFlow {
-                if isEnrolled {
-                    HorizonUI.Pill(
-                        title: String(localized: "Enrolled"),
-                        style: .solid(
-                            .init(
-                                backgroundColor: Color.huiColors.primitives.green12,
-                                textColor: Color.huiColors.primitives.green82,
-                                iconColor: Color.huiColors.primitives.green82
-                            )
-                        ),
-                        isSmall: true,
-                        cornerRadius: .level1,
-                        icon: .huiIcons.checkCircleFull
-                    )
-                }
+                defaultPill(title: String(localized: "In progress"))
                 defaultPill(title: isRequired
                             ? String(localized: "Required")
                             : String(localized: "Optional")
@@ -61,22 +44,6 @@ extension HorizonUI.ProgramCard.Pills {
 
                 if let estimatedTime {
                     defaultPill(title: estimatedTime)
-                }
-
-                if let dueDate {
-                    HorizonUI.Pill(
-                        title: dueDate,
-                        style: .solid(
-                            .init(
-                                backgroundColor: Color.huiColors.primitives.grey11,
-                                textColor: Color.huiColors.text.title,
-                                iconColor: Color.huiColors.icon.default
-                            )
-                        ),
-                        isSmall: true,
-                        cornerRadius: .level1,
-                        icon: .huiIcons.calendarToday
-                    )
                 }
             }
         }
@@ -102,7 +69,6 @@ extension HorizonUI.ProgramCard.Pills {
         .InProgress(
             isEnrolled: true,
             isRequired: true,
-            estimatedTime: "10 hours",
-            dueDate: "10-10-2020"
+            estimatedTime: "10 hours"
         )
 }
