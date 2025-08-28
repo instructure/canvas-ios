@@ -22,6 +22,7 @@ import Combine
 public class TodoListViewModel: ObservableObject {
 
     @Published var items: [TodoItem] = []
+    @Published var hasError: Bool = false
 
     private let env: AppEnvironment
     private let interactor: TodoInteractor
@@ -30,21 +31,31 @@ public class TodoListViewModel: ObservableObject {
     init(env: AppEnvironment = .shared, interactor: TodoInteractor? = nil) {
         self.env = env
         self.interactor = interactor ?? TodoInteractorLive(env: env, startDate: .now.startOfDay(), endDate: .now.addDays(28))
-        getItems()
-    }
-
-    private func getItems() {
-        interactor.todosPublisher
-            .sink(receiveValue: { [weak self] items in
-                self?.items = items
-            })
-            .store(in: &subscriptions)
+        refresh()
     }
 
     func didTapItem(_ item: TodoItem, _ viewController: WeakViewController) {
         if let url = item.htmlURL {
             let to = url.appendingQueryItems(URLQueryItem(name: "origin", value: "todo"))
             env.router.route(to: to, from: viewController, options: .detail)
+        }
+    }
+
+    public func refresh(completion: (() -> Void)? = nil) {
+        interactor.todosPublisher
+            .catch { [weak self] _ in
+                self?.hasError = true
+                let empty: [TodoItem] = []
+                return Just(empty).eraseToAnyPublisher()
+            }
+            .sink { [weak self] items in
+                self?.hasError = false
+                self?.items = items
+            }
+            .store(in: &subscriptions)
+
+        if let completion {
+            completion()
         }
     }
 }

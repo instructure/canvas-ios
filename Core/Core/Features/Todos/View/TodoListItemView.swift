@@ -22,39 +22,41 @@ struct TodoListItemView: View {
     let item: TodoItem
 
     var body: some View {
-        HStack(spacing: 16) {
+        HStack(alignment: .top, spacing: 16) {
             item.icon
-                .font(.title3)
-                .foregroundColor(.gray)
-                .frame(width: 25, alignment: .center)
+                .font(.regular14)
+                .foregroundStyle(item.color)
+                .frame(width: 25)
 
-            VStack(alignment: .leading, spacing: 4) {
-                Text(item.contextName)
-                    .font(.regular14)
-                    .foregroundColor(item.color)
+            HStack(alignment: .center) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(item.contextName)
+                        .font(.regular14)
+                        .foregroundStyle(item.color)
 
-                Text(item.title)
-                    .font(.regular16)
-                    .foregroundStyle(.textDarkest)
-                    .lineLimit(2)
+                    Text(item.title)
+                        .font(.regular16)
+                        .foregroundStyle(.textDarkest)
+                        .lineLimit(2)
 
-                if let subtitle = item.subtitle {
-                    Text(subtitle)
+                    if let subtitle = item.subtitle {
+                        Text(subtitle)
+                            .font(.regular14)
+                            .foregroundStyle(.textDark)
+                    }
+
+                    Text(item.date.dateTimeStringShort)
                         .font(.regular14)
                         .foregroundStyle(.textDark)
                 }
 
-                Text(item.date.dateTimeString)
+                Spacer()
+
+                Image(systemName: "chevron.right")
                     .font(.regular14)
-                    .foregroundStyle(.textDark)
+                    .foregroundStyle(.textDarkest)
             }
-
-            Spacer()
-
-            Image(systemName: "chevron.right")
-                .font(.regular14)
-                .foregroundStyle(.textDarkest)
         }
-        .padding(.vertical, 10)
+        .padding(.vertical, 8)
     }
 }

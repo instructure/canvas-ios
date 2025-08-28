@@ -27,7 +27,17 @@ public struct TodoListScreen: View {
     }
 
     public var body: some View {
-        VStack {
+        if viewModel.hasError {
+            errorView
+        } else if viewModel.items.isEmpty {
+            emptyView
+        } else {
+            contentView
+        }
+    }
+
+    private var contentView: some View {
+        RefreshableScrollView(showsIndicators: false) {
             ForEach(viewModel.items, id: \.id) { item in
                 TodoListItemView(item: item)
                     .onTapGesture { viewModel.didTapItem(item, viewController) }
@@ -35,8 +45,35 @@ public struct TodoListScreen: View {
                     InstUI.Divider()
                 }
             }
+        } refreshAction: { completion in
+            viewModel.refresh(completion: completion)
         }
         .padding(.horizontal, 16)
+        .padding(.vertical, 8)
+    }
+
+    private var emptyView: some View {
+        VStack(spacing: 10) {
+            Image("PandaSleeping", bundle: .core)
+            Text("Well Done!")
+                .foregroundStyle(.textDarkest)
+                .font(.bold20)
+            Text("Your to do list is empty. Time to recharge.")
+                .foregroundStyle(.textDarkest)
+                .font(.regular16)
+        }
+    }
+
+    private var errorView: some View {
+        VStack(spacing: 10) {
+            Image("PandaNoResults", bundle: .core)
+            Text("Something Went Wrong!")
+                .foregroundStyle(.textDarkest)
+                .font(.bold20)
+            Text("Pull to refresh to try again.")
+                .foregroundStyle(.textDarkest)
+                .font(.regular16)
+        }
     }
 }
 

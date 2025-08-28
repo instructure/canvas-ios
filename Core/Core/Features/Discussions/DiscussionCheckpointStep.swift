@@ -38,6 +38,17 @@ public enum DiscussionCheckpointStep: Equatable {
     }
 }
 
+// MARK: - ViewModel
+
+extension DiscussionCheckpointStep {
+    public var text: String {
+        switch self {
+        case .replyToTopic: String(localized: "Reply to topic", bundle: .core)
+        case .requiredReplies(let count): String(localized: "Additional replies (\(count))", bundle: .core)
+        }
+    }
+}
+
 // MARK: - CoreData support
 
 private extension DiscussionCheckpointStep {

@@ -19,19 +19,19 @@
 import SwiftUI
 
 public struct TodoItem: Identifiable, Equatable {
-    let plannableID: String
-    let type: PlannableType
+    public let plannableID: String
+    public let type: PlannableType
     public let date: Date
 
-    let title: String
-    let subtitle: String?
-    let contextName: String
-    let htmlURL: URL?
+    public let title: String
+    public let subtitle: String?
+    public let contextName: String
+    public let htmlURL: URL?
 
-    let color: Color
-    let icon: Image?
+    public let color: Color
+    public let icon: Image?
 
-    init?(_ plannable: Plannable) {
+    public init?(_ plannable: Plannable) {
         guard let date = plannable.date else { return nil }
 
         self.plannableID = plannable.id
@@ -39,7 +39,7 @@ public struct TodoItem: Identifiable, Equatable {
         self.date = date
 
         self.title = plannable.title ?? ""
-        self.subtitle = nil
+        self.subtitle = plannable.discussionCheckpointStep?.text
         self.contextName = plannable.contextNameUserFacing ?? ""
         self.htmlURL = plannable.htmlURL
 
@@ -47,7 +47,7 @@ public struct TodoItem: Identifiable, Equatable {
         self.icon = plannable.icon().flatMap({ Image(uiImage: $0) })
     }
 
-    init(
+    public init(
         plannableID: String,
         type: PlannableType,
         date: Date,
