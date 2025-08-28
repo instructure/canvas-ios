@@ -53,7 +53,7 @@ open class AppEnvironment {
         }
     }
     public var lastLoginAccount: APIAccountResult?
-    public let k5 = K5State()
+    public private(set) var k5 = K5State()
     public weak var loginDelegate: LoginDelegate?
     public var userDidLogin: (() -> Void)?
 

@@ -224,6 +224,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         lockedIconImageView.image = UIImage(named: Panda.Locked.name, in: .core, compatibleWith: nil)
 
         // Routing from description
+        webView.resetEnvironment(env)
         webView.linkDelegate = self
         webView.autoresizesHeight = true
         webView.heightAnchor.constraint(equalToConstant: 0).isActive = true

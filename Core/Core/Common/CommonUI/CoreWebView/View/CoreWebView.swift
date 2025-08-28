@@ -68,6 +68,9 @@ open class CoreWebView: WKWebView {
     private var fullScreenVideoSupport: FullScreenVideoSupport?
     private var contentHeight: CGFloat = .nan
 
+    private var env: AppEnvironment = .shared
+    private var subscriptions = Set<AnyCancellable>()
+
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
@@ -197,7 +200,7 @@ open class CoreWebView: WKWebView {
     func loadFrame(src: String) {
         let url = URL(string: src)
         let request = GetWebSessionRequest(to: url)
-        AppEnvironment.shared.api.makeRequest(request) { [weak self] response, _, _ in performUIUpdate {
+        env.api.makeRequest(request) { [weak self] response, _, _ in performUIUpdate {
             guard let response = response else { return }
             self?.load(URLRequest(url: response.session_url))
         } }
@@ -287,11 +290,11 @@ open class CoreWebView: WKWebView {
                                                  : style.uiFont
         let marginsDisabled = features.contains { $0 is DisableDefaultBodyMargin }
 
-        if AppEnvironment.shared.app == .horizon {
+        if env.app == .horizon {
             font = "Figtree-Regular"
             fontCSS = Self.FigtreeRegularCSSFontFace
         } else {
-            if AppEnvironment.shared.k5.isK5Enabled {
+            if env.k5.isK5Enabled {
                 font = "BalsamiqSans-Regular"
                 fontCSS = Self.BalsamiqRegularCSSFontFace
             } else {
@@ -400,6 +403,46 @@ open class CoreWebView: WKWebView {
         guard contentHeight.isFinite else { return }
         sizeDelegate?.coreWebView(self, didChangeContentHeight: contentHeight)
     }
+
+    public func resetEnvironment(_ env: AppEnvironment) {
+        self.env = env
+        self.resetCookiesForEnvironmentOverride(env)
+    }
+
+    private func resetCookiesForEnvironmentOverride(_ env: AppEnvironment) {
+        guard env.isRoot == false else { return }
+
+        guard
+            let rootDomain = AppEnvironment.shared.api.baseURL.host(),
+            let newDomain = env.api.baseURL.host()
+        else { return }
+
+        configuration
+            .websiteDataStore
+            .httpCookieStore
+            .getAllCookies()
+            .receive(on: DispatchQueue.main)
+            .compactMap({ cookies in
+
+                var newCookies: [HTTPCookie] = []
+
+                for cookie in cookies where cookie.domain == rootDomain {
+                    var props = cookie.properties ?? [:]
+                    props[.domain] = newDomain
+                    if let newCookie = HTTPCookie(properties: props) {
+                        newCookies.append(newCookie)
+                    }
+                }
+
+                return newCookies.nilIfEmpty
+            })
+            .flatMap({ [weak self] newCookies in
+                guard let self else { return Empty<Void, Never>().eraseToAnyPublisher() }
+                return configuration.websiteDataStore.httpCookieStore.setCookies(newCookies)
+            })
+            .sink()
+            .store(in: &subscriptions)
+    }
 }
 
 // MARK: - WKNavigationDelegate
@@ -416,16 +459,14 @@ extension CoreWebView: WKNavigationDelegate {
             return
         }
 
-        let env = AppEnvironment.shared
-
         if let from = linkDelegate?.routeLinksFrom, let vc = from.presentedViewController,
            let baseUrl = env.currentSession?.baseURL.absoluteString,
            let requestUrl = action.request.url?.absoluteString,
            let webViewUrl = webView.url?.absoluteString,
            requestUrl.contains(baseUrl), !webViewUrl.contains(baseUrl),
            let url = action.request.url?.path {
-            vc.dismiss(animated: true) {
-                env.router.route(to: url, from: from)
+            vc.dismiss(animated: true) { [weak env] in
+                (env ?? .shared).router.route(to: url, from: from)
             }
             return decisionHandler(.cancel)
         }
@@ -527,7 +568,7 @@ extension CoreWebView: WKUIDelegate {
         alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
             completionHandler(true)
         })
-        AppEnvironment.shared.router.show(alert, from: from, options: .modal())
+        env.router.show(alert, from: from, options: .modal())
     }
 
     public func webView(
@@ -544,7 +585,7 @@ extension CoreWebView: WKUIDelegate {
         alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
             completionHandler(true)
         })
-        AppEnvironment.shared.router.show(alert, from: from, options: .modal())
+        env.router.show(alert, from: from, options: .modal())
     }
 
     public func webView(
@@ -563,7 +604,7 @@ extension CoreWebView: WKUIDelegate {
         alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
             completionHandler(alert.textFields?[0].text)
         })
-        AppEnvironment.shared.router.show(alert, from: from, options: .modal())
+        env.router.show(alert, from: from, options: .modal())
     }
 
     public func webView(
@@ -574,7 +615,7 @@ extension CoreWebView: WKUIDelegate {
     ) -> WKWebView? {
         guard let from = linkDelegate?.routeLinksFrom else { return nil }
 
-        let router = AppEnvironment.shared.router
+        let router = env.router
 
         if let targetURL = navigationAction.request.url,
            router.isRegisteredRoute(targetURL) {
@@ -606,7 +647,7 @@ extension CoreWebView: WKUIDelegate {
 
     public func webViewDidClose(_ webView: WKWebView) {
         guard let controller = linkDelegate?.routeLinksFrom else { return }
-        AppEnvironment.shared.router.dismiss(controller)
+        env.router.dismiss(controller)
     }
 }
 
