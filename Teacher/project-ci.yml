@@ -21,7 +21,7 @@ sources:
 include:
   - Teacher/Teacher.yml
   - TeacherE2ETests/teacher-e2e-tests.yml
-  - TeacherTests/teacher-tests.yml
+  - TeacherUnitTests/teacher-unit-tests.yml
 projectReferences:
   Core:
     path: ../Core/Core.xcodeproj
