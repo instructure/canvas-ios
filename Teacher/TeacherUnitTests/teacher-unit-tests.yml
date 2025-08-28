@@ -1,0 +1,16 @@
+---
+targets:
+  TeacherUnitTests:
+    type: bundle.unit-test
+    platform: iOS
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: false
+      ENABLE_TESTABILITY: true
+      TEST_HOST: $(BUILT_PRODUCTS_DIR)/Teacher.app/Teacher
+    sources:
+      - path: ./
+        excludes:
+          - ".swiftlint.yml"
+    dependencies:
+      - target: Teacher
+      - target: Core/TestsFoundation
