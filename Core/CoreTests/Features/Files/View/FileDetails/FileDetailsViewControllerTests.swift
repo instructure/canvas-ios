@@ -24,6 +24,7 @@ import QuickLook
 @testable import Core
 import TestsFoundation
 import Combine
+import CombineSchedulers
 
 class FileDetailsViewControllerTests: CoreTestCase {
     let file = APIFile.make()
@@ -34,9 +35,11 @@ class FileDetailsViewControllerTests: CoreTestCase {
     var didSaveExpectation: XCTestExpectation!
     var observer: NSObjectProtocol?
     private var studentAccessInteractor: StudentAccessInteractorMock!
+    private var testScheduler: AnySchedulerOf<DispatchQueue>!
 
     override func setUp() {
         super.setUp()
+        testScheduler = DispatchQueue.immediate.eraseToAnyScheduler()
         studentAccessInteractor = StudentAccessInteractorMock()
         controller = FileDetailsViewController
             .create(
@@ -44,7 +47,8 @@ class FileDetailsViewControllerTests: CoreTestCase {
                 fileID: "1",
                 assignmentID: "3",
                 studentAccessInteractor: studentAccessInteractor,
-                environment: environment
+                environment: environment,
+                scheduler: testScheduler
             )
         navigation = UINavigationController(rootViewController: controller)
         api.mock(controller.files, value: file)
@@ -304,12 +308,9 @@ class FileDetailsViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
 
         XCTAssertFalse(controller.shareButton.isHidden) // visible by default
+
         studentAccessInteractor.setRestricted(true)
 
-        let expectation = expectation(description: "Restriction applied")
-        DispatchQueue.main.async { expectation.fulfill() }
-
-        wait(for: [expectation], timeout: 1.0)
         XCTAssertTrue(controller.shareButton.isHidden)  // hidden after restriction
     }
 
