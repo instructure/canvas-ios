@@ -4,9 +4,7 @@ include:
   - path: .bitrise/pr_adhoc/workflow_pr_adhoc_build.yml
 workflows:
   pr_adhoc_builds:
-    status_report_name: Ad-Hoc Builds
-    after_run:
-    - _common_save_spm_cache
+    status_report_name: ad-hoc builds
     before_run:
     - _common_prepare_workspace
     steps:
@@ -16,17 +14,7 @@ workflows:
         title: Discover Which Apps To Build
     - script@1:
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
-            set -o pipefail
-            # debug log
-            set -x
-
-            envman add --key INST_XCODE_SCHEME --value Student
-            envman add --key INST_XCODE_APPICON_PATH --value Student/Student/Assets.xcassets/AppIcon.appiconset
+        - content: envman add --key INST_XCODE_SCHEME --value Student
         title: Setup Student Variables
     - bitrise-run@0:
         inputs:
@@ -36,17 +24,7 @@ workflows:
         title: Build Student
     - script@1:
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
-            set -o pipefail
-            # debug log
-            set -x
-
-            envman add --key INST_XCODE_SCHEME --value Teacher
-            envman add --key INST_XCODE_APPICON_PATH --value Teacher/Teacher/Assets.xcassets/AppIcon.appiconset
+        - content: envman add --key INST_XCODE_SCHEME --value Teacher
         title: Setup Teacher Variables
     - bitrise-run@0:
         inputs:
@@ -56,17 +34,7 @@ workflows:
         title: Build Teacher
     - script@1:
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
-            set -o pipefail
-            # debug log
-            set -x
-
-            envman add --key INST_XCODE_SCHEME --value Parent
-            envman add --key INST_XCODE_APPICON_PATH --value Parent/Parent/Assets.xcassets/AppIcon.appiconset
+        - content: envman add --key INST_XCODE_SCHEME --value Parent
         title: Setup Parent Variables
     - bitrise-run@0:
         inputs:
@@ -74,38 +42,69 @@ workflows:
         - workflow_id: pr_adhoc_build
         run_if: '{{enveq "REQUIRE_PARENT" "true"}}'
         title: Build Parent
+    - deploy-to-bitrise-io@2:
+        inputs:
+        - notify_user_groups: none
+    - script-runner@0:
+        inputs:
+        - file_path: ./.bitrise/pr_adhoc/parse_install_page_url_map.sh
+        title: Parse Install Page URL Map
+    - create-install-page-qr-code@1:
+        inputs:
+        - public_install_page_url: $DEPLOYED_Student_URL
+        run_if: '{{getenv "DEPLOYED_Student_URL" | ne ""}}'
+        title: Generate Student QR Code
     - script@1:
         inputs:
         - content: |-
             #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
-            set -o pipefail
-            # debug log
-            set -x
-
-            envman add --key INST_XCODE_SCHEME --value Horizon
-            envman add --key INST_XCODE_APPICON_PATH --value Horizon/Horizon/Resources/Assets.xcassets/AppIcon.appiconset
-        title: Setup Horizon Variables
-    - bitrise-run@0:
+            if [[ -n "${BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL:-}" ]]; then
+                envman add --key Student_QR_CODE_URL --value "$BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL"
+                echo "Stored Student QR code URL: $BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL"
+            fi
+        title: Store Student QR URL
+        run_if: '{{getenv "DEPLOYED_Student_URL" | ne ""}}'
+    - create-install-page-qr-code@1:
         inputs:
-        - bitrise_config_path: ./.bitrise/bitrise.yml
-        - workflow_id: pr_adhoc_build
-        run_if: '{{enveq "REQUIRE_HORIZON" "true"}}'
-        title: Build Horizon
+        - public_install_page_url: $DEPLOYED_Teacher_URL
+        run_if: '{{getenv "DEPLOYED_Teacher_URL" | ne ""}}'
+        title: Generate Teacher QR Code
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            if [[ -n "${BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL:-}" ]]; then
+                envman add --key Teacher_QR_CODE_URL --value "$BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL"
+                echo "Stored Teacher QR code URL: $BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL"
+            fi
+        title: Store Teacher QR URL
+        run_if: '{{getenv "DEPLOYED_Teacher_URL" | ne ""}}'
+    - create-install-page-qr-code@1:
+        inputs:
+        - public_install_page_url: $DEPLOYED_Parent_URL
+        run_if: '{{getenv "DEPLOYED_Parent_URL" | ne ""}}'
+        title: Generate Parent QR Code
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            if [[ -n "${BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL:-}" ]]; then
+                envman add --key Parent_QR_CODE_URL --value "$BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL"
+                echo "Stored Parent QR code URL: $BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL"
+            fi
+        title: Store Parent QR URL
+        run_if: '{{getenv "DEPLOYED_Parent_URL" | ne ""}}'
     - script-runner@0:
         inputs:
-        - file_path: ./.bitrise/pr_adhoc/create_pr_comment.sh
+        - file_path: ./.bitrise/pr_adhoc/create_pr_comment_from_qr_codes.sh
         - working_dir: $BITRISE_SOURCE_DIR/.bitrise/pr_adhoc
-        title: Create PR Comment
+        title: Create PR Comment From QR Codes
     - comment-on-github-pull-request@0:
         inputs:
         - body: $PR_BUILDS_COMMENT
         - personal_access_token: $GITHUB_API_TOKEN
         - update_comment_tag: bitrise_adhoc_builds
         is_always_run: false
-trigger_map:
-- pull_request_target_branch: '*'
-  type: pull_request
-  workflow: pr_adhoc_builds
+    triggers:
+      pull_request:
+      - target_branch: "*"

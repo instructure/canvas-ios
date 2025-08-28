@@ -61,7 +61,7 @@ class AddStudentTests: E2ETestCase {
         addButton.hit()
 
         // MARK: Check if student was added
-        let studentCell = ManageStudentsHelper.studentCell(student: student)!.waitUntil(.visible)
+        let studentCell = ManageStudentsHelper.studentCell(student: student).waitUntil(.visible)
         let nameLabelOfStudentCell = ManageStudentsHelper.nameLabelOfStudentCell(student: student).waitUntil(.visible)
         XCTAssertTrue(studentCell.isVisible)
         XCTAssertTrue(nameLabelOfStudentCell.isVisible)

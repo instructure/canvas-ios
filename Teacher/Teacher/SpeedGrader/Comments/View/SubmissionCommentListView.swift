@@ -38,7 +38,7 @@ struct SubmissionCommentListView: View {
     init(
         viewModel: SubmissionCommentListViewModel,
         attempt: Binding<Int>,
-        fileID: Binding<String?>,
+        fileID: Binding<String?>
     ) {
         self.viewModel = viewModel
         self._attempt = attempt

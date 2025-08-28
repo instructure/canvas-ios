@@ -99,8 +99,20 @@ class DashboardViewModel {
         router.route(to: "/conversations", from: viewController)
     }
 
-    func navigateToItemSequence(url: URL, viewController: WeakViewController) {
-        router.route(to: url, from: viewController)
+    func navigateToItemSequence(
+        url: URL,
+        learningObject: HCourse.LearningObjectCard,
+        viewController: WeakViewController
+    ) {
+        let moduleItem = HModuleItem(
+            id: learningObject.learningObjectID,
+            title: learningObject.learningObjectName,
+            htmlURL: learningObject.url,
+            /// `isCompleted` is set to `false` because this is the next module item
+            /// the learner must complete. If it were `true`, it would no longer appear here.
+            isCompleted: false
+        )
+        router.route(to: url, userInfo: ["moduleItem": moduleItem], from: viewController)
     }
 
     func navigateToCourseDetails(

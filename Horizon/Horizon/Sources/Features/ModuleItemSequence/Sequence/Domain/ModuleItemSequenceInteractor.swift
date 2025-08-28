@@ -39,7 +39,7 @@ protocol ModuleItemSequenceInteractor {
         itemID: String
     ) -> AnyPublisher<[HModuleItem], Error>
 
-    func getCourse() -> AnyPublisher<HCourse, Never>
+    func getCourse(ignoreCache: Bool) -> AnyPublisher<HCourse, Never>
 }
 
 final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
@@ -153,9 +153,9 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
             .eraseToAnyPublisher()
     }
 
-    func getCourse() -> AnyPublisher<HCourse, Never> {
+    func getCourse(ignoreCache: Bool) -> AnyPublisher<HCourse, Never> {
         getCoursesInteractor
-            .getCourseWithModules(id: courseID, ignoreCache: false)
+            .getCourseWithModules(id: courseID, ignoreCache: ignoreCache)
             .compactMap { $0 }
             .eraseToAnyPublisher()
     }

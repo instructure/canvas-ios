@@ -19,7 +19,7 @@
 import CoreData
 import Combine
 
-public protocol PlannableItem {
+public protocol APIPlannableItem {
     var plannableID: String { get }
     var plannableType: PlannableType { get }
     var htmlURL: URL? { get }
@@ -28,20 +28,24 @@ public protocol PlannableItem {
     var plannableTitle: String? { get }
     var date: Date? { get }
     var pointsPossible: Double? { get }
-    var details: String? { get }
+    var detailsText: String? { get }
     var isHidden: Bool { get }
+    var discussionCheckpointStep: DiscussionCheckpointStep? { get }
 }
 
-extension APIPlannable: PlannableItem {
+extension APIPlannable: APIPlannableItem {
     public var plannableID: String { plannable_id.value }
     public var plannableType: PlannableType { PlannableType(rawValue: plannable_type) ?? .other }
     public var htmlURL: URL? { html_url?.rawValue }
     public var plannableTitle: String? { self.plannable?.title }
     public var date: Date? { plannable_date }
     public var pointsPossible: Double? { self.plannable?.points_possible }
-    public var details: String? { self.plannable?.details }
+    public var detailsText: String? { self.plannable?.details }
     public var contextName: String? { context_name }
     public var isHidden: Bool { false }
+    public var discussionCheckpointStep: DiscussionCheckpointStep? {
+        .init(tag: plannable?.sub_assignment_tag, requiredReplyCount: details?.reply_to_entry_required_count)
+    }
 
     public var context: Context? {
         if let context = contextFromContextType() {
@@ -73,7 +77,7 @@ extension APIPlannable: PlannableItem {
     }
 }
 
-extension APICalendarEvent: PlannableItem {
+extension APICalendarEvent: APIPlannableItem {
     public var plannableID: String { id.value }
     public var plannableType: PlannableType {
         if case .assignment = type { return .assignment }
@@ -85,11 +89,12 @@ extension APICalendarEvent: PlannableItem {
     public var contextName: String? { nil }
     public var date: Date? { start_at }
     public var pointsPossible: Double? { assignment?.points_possible }
-    public var details: String? { description }
+    public var detailsText: String? { description }
     public var isHidden: Bool { hidden == true }
+    public var discussionCheckpointStep: DiscussionCheckpointStep? { nil }
 }
 
-extension APIPlannerNote: PlannableItem {
+extension APIPlannerNote: APIPlannableItem {
     public var plannableID: String { id }
     public var plannableType: PlannableType { .planner_note }
     public var htmlURL: URL? { nil }
@@ -102,7 +107,9 @@ extension APIPlannerNote: PlannableItem {
     public var plannableTitle: String? { title }
     public var date: Date? { todo_date }
     public var pointsPossible: Double? { nil }
+    public var detailsText: String? { details }
     public var isHidden: Bool { false }
+    public var discussionCheckpointStep: DiscussionCheckpointStep? { nil }
 }
 
 public class GetPlannables: UseCase {
@@ -198,7 +205,7 @@ public class GetPlannables: UseCase {
     }
 
     public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        var items: [PlannableItem] = response?.plannables ?? []
+        var items: [APIPlannableItem] = response?.plannables ?? []
         items.append(contentsOf: response?.calendarEvents ?? [])
         items.append(contentsOf: response?.plannerNotes ?? [])
 

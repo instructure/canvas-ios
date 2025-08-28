@@ -22,6 +22,8 @@ import WidgetKit
 @main
 struct Widgets: WidgetBundle {
 
+    @Environment(\.widgetsDelegate) private var delegate
+
     @WidgetBundleBuilder
     var body: some Widget {
         TodoWidget()

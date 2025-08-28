@@ -54,7 +54,7 @@ public struct GetHCoursesProgressionRequest: APIGraphQLRequestable {
                                       id
                                       name
                                       moduleItems {
-                                        id
+                                        id: _id
                                         estimatedDuration
                                         url
                                        content {

@@ -125,7 +125,7 @@ final class PageDetailsViewModel {
         pageURL: String,
         itemID: String,
         isMarkedAsDoneButtonVisible: Bool,
-        markAsDoneViewModel: MarkAsDoneViewModel,
+        markAsDoneViewModel: MarkAsDoneViewModel
     ) {
         self.context = context
         self.pageURL = pageURL

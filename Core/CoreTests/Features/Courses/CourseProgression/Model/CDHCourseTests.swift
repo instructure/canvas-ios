@@ -169,7 +169,7 @@ class CDHCourseTests: CoreTestCase {
         let course = CDHCourse.save(mockEnrollment, in: databaseClient)
         XCTAssertEqual(course.completionPercentage, 0.0)
         XCTAssertEqual(course.nextModuleID, "module_3")
-        XCTAssertEqual(course.nextModuleItemID, "content_3")
+        XCTAssertEqual(course.nextModuleItemID, "item_3")
         XCTAssertEqual(course.nextModuleItemEstimatedTime, "60m")
         XCTAssertEqual(course.nextModuleItemType, "Assignment")
         XCTAssertEqual(course.nextModuleItemDueDate, dueDate)

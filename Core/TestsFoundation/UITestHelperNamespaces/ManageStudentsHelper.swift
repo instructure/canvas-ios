@@ -41,16 +41,15 @@ public class ManageStudentsHelper: BaseHelper {
 
     public static var addStudentButton: XCUIElement { app.find(label: "addSolid", type: .button) }
 
-    public static func studentCell(student: DSUser) -> XCUIElement? {
-        let studentCells = app.findAll(idStartingWith: "StudentListCell", type: .cell)
-        for studentCell in studentCells where studentCell.find(label: student.name).isVisible {
-            return studentCell
-        }
-        return nil
+    public static func studentCell(student: DSUser) -> XCUIElement {
+        app.descendants(matching: .cell)
+            .matching(idStartingWith: "StudentListCell")
+            .containing(.staticText, identifier: student.name)
+            .firstMatch
     }
 
     public static func nameLabelOfStudentCell(student: DSUser) -> XCUIElement {
-        let cell = studentCell(student: student)!
+        let cell = studentCell(student: student)
         return cell.find(label: student.name, type: .staticText)
     }
 }

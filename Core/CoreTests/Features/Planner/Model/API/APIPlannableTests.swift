@@ -78,7 +78,7 @@ class APIPlannableTests: XCTestCase {
         var p = APIPlannable.make(
             context_type: nil,
             plannable_type: "planner_note",
-            plannable: .init(course_id: "42")
+            plannable: .make(course_id: "42")
         )
         XCTAssertEqual(p.context?.contextType, .course)
         XCTAssertEqual(p.context?.id, "42")
@@ -86,7 +86,7 @@ class APIPlannableTests: XCTestCase {
         p = APIPlannable.make(
             context_type: nil,
             plannable_type: "planner_note",
-            plannable: .init(user_id: "42")
+            plannable: .make(user_id: "42")
         )
         XCTAssertEqual(p.context?.contextType, .user)
         XCTAssertEqual(p.context?.id, "42")
@@ -95,7 +95,7 @@ class APIPlannableTests: XCTestCase {
         p = APIPlannable.make(
             context_type: nil,
             plannable_type: "planner_note",
-            plannable: .init(course_id: "7", user_id: "42")
+            plannable: .make(course_id: "7", user_id: "42")
         )
         XCTAssertEqual(p.context?.contextType, .course)
         XCTAssertEqual(p.context?.id, "7")
@@ -105,7 +105,7 @@ class APIPlannableTests: XCTestCase {
             group_id: "7",
             context_type: "Group",
             plannable_type: "planner_note",
-            plannable: .init(course_id: "42")
+            plannable: .make(course_id: "42")
         )
         XCTAssertEqual(p.context?.contextType, .group)
         XCTAssertEqual(p.context?.id, "7")

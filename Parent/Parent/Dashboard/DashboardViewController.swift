@@ -26,6 +26,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     @IBOutlet weak var studentListView: UIView!
     lazy var studentListHiddenHeight = studentListView.heightAnchor.constraint(equalToConstant: 0)
     @IBOutlet weak var tabsContainer: UIView!
+    @IBOutlet weak var loadingView: UIView!
     let tabsController = UITabBarController()
 
     var badgeCount: UInt = 0 {
@@ -65,6 +66,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
+        loadingView.backgroundColor = .backgroundLightest
 
         embedHeaderView()
         studentListHiddenHeight.isActive = true
@@ -129,6 +131,12 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
             $0.id == env.userDefaults?.parentCurrentStudentID
         } ?? students.first
         updateStudentList()
+
+        if !loadingView.isHidden {
+            UIView.animate(withDuration: 0.2) { [weak loadingView] in
+                loadingView?.isHidden = true
+            }
+        }
 
         let isAdmin = (
             permissions.first?.becomeUser == true ||

@@ -39,22 +39,22 @@ class GetPlannablesTests: CoreTestCase {
     func testScope() {
         let first = Plannable.make(from: .make(
             plannable_id: "1",
-            plannable: APIPlannable.plannable(details: "", title: "a"),
+            plannable: .make(title: "a"),
             plannable_date: start
         ))
         let second = Plannable.make(from: .make(
             plannable_id: "2",
-            plannable: APIPlannable.plannable(details: "", title: "b"),
+            plannable: .make(title: "b"),
             plannable_date: start
         ))
         let third = Plannable.make(from: .make(
             plannable_id: "3",
-            plannable: APIPlannable.plannable(details: "", title: "c"),
+            plannable: .make(title: "c"),
             plannable_date: start.addMinutes(1)
         ))
         let other = Plannable.make(from: .make(
             plannable_id: "4",
-            plannable: APIPlannable.plannable(details: "", title: "d"),
+            plannable: .make(title: "d"),
             plannable_date: end.addDays(1)
         ))
         XCTAssertTrue([first, second, third].allSatisfy(useCase.scope.predicate.evaluate(with:)))

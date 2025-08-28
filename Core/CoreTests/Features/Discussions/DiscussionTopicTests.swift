@@ -45,4 +45,120 @@ class DiscussionTopicTests: CoreTestCase {
         let topics: [DiscussionTopic] =  databaseClient.fetch()
         XCTAssertEqual(topics.first!.position, 99)
     }
+
+    // MARK: - Checkpoints
+
+    func test_updateIsCheckpointed() {
+        // default should be false
+        var item = APIDiscussionTopic.make(is_checkpointed: nil)
+        var testee = saveModel(item)
+        XCTAssertEqual(testee.isCheckpointed, false)
+
+        item = APIDiscussionTopic.make(is_checkpointed: true)
+        testee = saveModel(item)
+        XCTAssertEqual(testee.isCheckpointed, true)
+
+        // nil should not clear value
+        item = APIDiscussionTopic.make(is_checkpointed: nil)
+        testee = saveModel(item)
+        XCTAssertEqual(testee.isCheckpointed, true)
+
+        item = APIDiscussionTopic.make(is_checkpointed: false)
+        testee = saveModel(item)
+        XCTAssertEqual(testee.isCheckpointed, false)
+    }
+
+    func test_updateRequiredReplyCount() {
+        // default should be nil
+        var item = APIDiscussionTopic.make(reply_to_entry_required_count: nil)
+        var testee = saveModel(item)
+        XCTAssertEqual(testee.requiredReplyCount, nil)
+
+        item = APIDiscussionTopic.make(reply_to_entry_required_count: 42)
+        testee = saveModel(item)
+        XCTAssertEqual(testee.requiredReplyCount, 42)
+
+        // nil should not clear value
+        item = APIDiscussionTopic.make(reply_to_entry_required_count: nil)
+        testee = saveModel(item)
+        XCTAssertEqual(testee.requiredReplyCount, 42)
+
+        item = APIDiscussionTopic.make(reply_to_entry_required_count: 0)
+        testee = saveModel(item)
+        XCTAssertEqual(testee.requiredReplyCount, 0)
+    }
+
+    func test_updateHasSubAssignments() {
+        // default should be false
+        var item = APIDiscussionTopic.make(has_sub_assignments: nil)
+        var testee = saveModel(item)
+        XCTAssertEqual(testee.hasSubAssignments, false)
+
+        item = APIDiscussionTopic.make(has_sub_assignments: true)
+        testee = saveModel(item)
+        XCTAssertEqual(testee.hasSubAssignments, true)
+
+        // nil should not clear value
+        item = APIDiscussionTopic.make(has_sub_assignments: nil)
+        testee = saveModel(item)
+        XCTAssertEqual(testee.hasSubAssignments, true)
+
+        item = APIDiscussionTopic.make(has_sub_assignments: false)
+        testee = saveModel(item)
+        XCTAssertEqual(testee.hasSubAssignments, false)
+    }
+
+    func test_updateCheckpoints_whenNilOrEmpty() {
+        var item = APIDiscussionTopic.make(checkpoints: nil)
+        var testee = saveModel(item)
+        XCTAssertEqual(testee.checkpoints.isEmpty, true)
+
+        item = APIDiscussionTopic.make(checkpoints: [])
+        testee = saveModel(item)
+        XCTAssertEqual(testee.checkpoints.isEmpty, true)
+
+        // set some value
+        item = APIDiscussionTopic.make(checkpoints: [.make()])
+        testee = saveModel(item)
+        XCTAssertEqual(testee.checkpoints.isEmpty, false)
+
+        // nil should not clear values
+        item = APIDiscussionTopic.make(checkpoints: nil)
+        testee = saveModel(item)
+        XCTAssertEqual(testee.checkpoints.isEmpty, false)
+
+        // [] should clear values
+        item = APIDiscussionTopic.make(checkpoints: [])
+        testee = saveModel(item)
+        XCTAssertEqual(testee.checkpoints.isEmpty, true)
+    }
+
+    func test_updateCheckpoints_whenNotEmpty() {
+        let item = APIDiscussionTopic.make(
+            id: "42",
+            checkpoints: [
+                .make(tag: "tag1"),
+                .make(tag: "tag2")
+            ]
+        )
+        let testee = saveModel(item)
+
+        let sortedCheckpoints = testee.checkpoints.sorted(by: \.tag)
+        XCTAssertEqual(sortedCheckpoints.count, 2)
+        XCTAssertEqual(sortedCheckpoints.first?.tag, "tag1")
+        XCTAssertEqual(sortedCheckpoints.last?.tag, "tag2")
+
+        let fetchedCheckpoints: [CDAssignmentCheckpoint] = databaseClient
+            .all(where: \.assignmentId, equals: "42")
+            .sorted(by: \.tag)
+        XCTAssertEqual(fetchedCheckpoints.count, 2)
+        XCTAssertEqual(fetchedCheckpoints.first?.tag, "tag1")
+        XCTAssertEqual(fetchedCheckpoints.last?.tag, "tag2")
+    }
+
+    // MARK: - Private Helpers
+
+    private func saveModel(_ item: APIDiscussionTopic) -> DiscussionTopic {
+        DiscussionTopic.save(item, in: databaseClient)
+    }
 }

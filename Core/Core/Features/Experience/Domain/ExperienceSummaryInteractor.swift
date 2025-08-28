@@ -56,6 +56,10 @@ public final class ExperienceSummaryInteractorLive: ExperienceSummaryInteractor 
                 unownedSelf.environment.userDefaults?.appExperience = $0
                 return $0
             }
+            .catch { _ in // If there's an error we default to academic to let the login flow fallthrough, but we don't store this value.
+                Just(.academic).eraseToAnyPublisher()
+            }
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 

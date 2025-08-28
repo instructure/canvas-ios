@@ -33,7 +33,7 @@ final class DomainService {
 
     private let baseURL: String
     private let horizonApi: API
-    private let option: Option
+    let option: Option
     private let region: Region
 
     // MARK: - Private

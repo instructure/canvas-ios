@@ -103,7 +103,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tâche"
+            "value" : "Travail"
           }
         },
         "ga" : {
@@ -360,7 +360,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tâches"
+            "value" : "Travaux"
           }
         },
         "ga" : {

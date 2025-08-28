@@ -55,13 +55,13 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         let date = Clock.now
         ContextColor.make()
         let assignment = APIPlannable.make(
-            plannable: .init(points_possible: 1, title: "assignment a"),
+            plannable: .make(title: "assignment a", points_possible: 1),
             plannable_date: date
         )
         let note = APIPlannable.make(
             course_id: nil, context_type: nil,
             plannable_id: "2", plannable_type: "planner_note",
-            plannable: .init(details: "deets", title: "note"),
+            plannable: .make(title: "note", details: "deets"),
             plannable_date: date.addMinutes(60)
         )
         api.mock(getPlannablesRequest(from: start, to: end), value: [ assignment, note ])
@@ -140,7 +140,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         let note = APIPlannable.make(
             plannable_id: "2",
             plannable_type: "planner_note",
-            plannable: APIPlannable.plannable(details: "hello world", title: "to do title"),
+            plannable: .make(title: "to do title", details: "hello world"),
             plannable_date: date
         )
         api.mock(getPlannablesRequest(from: start, to: end), value: [note])

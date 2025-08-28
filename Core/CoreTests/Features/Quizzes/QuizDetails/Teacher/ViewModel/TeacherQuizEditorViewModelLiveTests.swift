@@ -47,7 +47,7 @@ class QuizEditorViewModelTests: CoreTestCase {
             unpublishable: true
         )
         api.mock(GetQuizRequest(courseID: courseID, quizID: quizID), value: apiQuiz)
-        api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases), value: .make())
+        api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.Include.allCases), value: .make())
         api.mock(GetAssignmentGroups(courseID: courseID), value: [.make()])
 
         let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID, env: environment)
@@ -80,7 +80,7 @@ class QuizEditorViewModelTests: CoreTestCase {
 
     func testFetchAssignmentError() {
         api.mock(GetQuizRequest(courseID: courseID, quizID: quizID), value: .make(assignment_id: ID(assignmentID), id: ID(quizID)))
-        api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases), value: nil, error: NSError.internalError())
+        api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.Include.allCases), value: nil, error: NSError.internalError())
         let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID, env: environment)
         drainMainQueue()
         XCTAssertEqual(testee.state, .error("Internal Error"))
@@ -183,7 +183,7 @@ class QuizEditorViewModelTests: CoreTestCase {
 
     func testSaveAssignment() {
         mockData()
-        let expectedBody = PutAssignmentRequest.Body(assignment: APIAssignmentParameters(
+        let expectedBody = PutAssignmentRequest.Body.make(
             assignment_overrides: [],
             description: "New Description",
             due_at: nil,
@@ -194,7 +194,7 @@ class QuizEditorViewModelTests: CoreTestCase {
             points_possible: 10,
             published: true,
             unlock_at: nil
-        ))
+        )
         let apiExpectation = expectation(description: "Assignment Updated")
 
         let testee = TeacherQuizEditorViewModelLive(courseID: courseID, quizID: quizID, env: environment)
@@ -309,7 +309,7 @@ class QuizEditorViewModelTests: CoreTestCase {
             title: "test quiz"
         )
         api.mock(GetQuizRequest(courseID: courseID, quizID: quizID), value: apiQuiz)
-        api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases), value: .make())
+        api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.Include.allCases), value: .make())
         api.mock(GetAssignmentGroups(courseID: courseID), value: [.make()])
     }
 }

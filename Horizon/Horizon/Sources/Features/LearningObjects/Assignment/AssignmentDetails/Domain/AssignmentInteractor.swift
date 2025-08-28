@@ -74,7 +74,7 @@ final class AssignmentInteractorLive: AssignmentInteractor {
     }
 
     func getAssignmentDetails(ignoreCache: Bool) -> AnyPublisher<HAssignment, Error> {
-        let includes: [GetAssignmentRequest.GetAssignmentInclude] = [.submission, .score_statistics]
+        let includes: [GetAssignmentRequest.Include] = [.submission, .score_statistics]
         return ReactiveStore(
             useCase: GetAssignment(
                 courseID: courseID,

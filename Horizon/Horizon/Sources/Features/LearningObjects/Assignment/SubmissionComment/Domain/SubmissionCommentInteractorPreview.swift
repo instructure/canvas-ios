@@ -51,7 +51,7 @@ final class SubmissionCommentInteractorPreview: SubmissionCommentInteractor {
                 isCurrentUsersComment: false,
                 hasNextPage: false,
                 hasPreviousPage: true,
-                startCursor: "NDI",
+                startCursor: "NDI"
             )
         ]
         )

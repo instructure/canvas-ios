@@ -26,8 +26,7 @@ public func resetSingleSharedTestDatabase() -> NSPersistentContainer {
     let bundle = Bundle.core
     let modelURL = bundle.url(forResource: "Database", withExtension: "momd")!
     let model = NSManagedObjectModel(contentsOf: modelURL)!
-    FileUploadTargetTransformer.register()
-    UIColorTransformer.register()
+    NSPersistentContainer.registerCoreTransformers()
     let container = TestDatabase(name: "Database", managedObjectModel: model)
     let description = NSPersistentStoreDescription()
     description.type = NSInMemoryStoreType
