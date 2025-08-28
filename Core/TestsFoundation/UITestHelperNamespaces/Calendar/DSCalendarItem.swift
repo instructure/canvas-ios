@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,11 +18,18 @@
 
 import Foundation
 
-public struct DSPlannerNote: Codable {
-    public let id: String
-    public let title: String
-    public let details: String?
-    public let todo_date: Date
-    public let user_id: String?
-    public let course_id: String?
+public protocol DSCalendarItem {
+    var id: String { get }
+    var title: String { get }
+    var details: String? { get }
+    var date: Date { get }
+}
+
+extension DSCalendarEvent: DSCalendarItem {
+    public var details: String? { description }
+    public var date: Date { start_at }
+}
+
+extension DSPlannerNote: DSCalendarItem {
+    public var date: Date { todo_date }
 }

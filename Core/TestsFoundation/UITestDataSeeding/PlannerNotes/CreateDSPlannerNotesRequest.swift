@@ -36,18 +36,26 @@ public struct CreateDSPlannerNotesRequest: APIRequestable {
 extension CreateDSPlannerNotesRequest {
     public struct Body: Encodable {
         let title: String
-        let details: String
-        let type: String
+        let details: String?
         let todo_date: Date
         let context_code: String
-        let user_id: String
+        let course_id: String?
+        let user_id: String?
+        let linked_object_type: String = "planner_note"
 
-        public init(title: String, details: String, type: String, todoDate: Date, contextCode: String, userId: String) {
+        public init(
+            title: String,
+            details: String?,
+            todoDate: Date,
+            contextCode: String,
+            courseId: String?,
+            userId: String?
+        ) {
             self.title = title
             self.details = details
-            self.type = type
             self.todo_date = todoDate
             self.context_code = contextCode
+            self.course_id = courseId
             self.user_id = userId
         }
     }
