@@ -77,7 +77,11 @@ public struct TodoListScreen: View {
     }
 }
 
+#if DEBUG
+
 #Preview {
     let viewModel = TodoListViewModel(interactor: TodoInteractorPreview())
     TodoListScreen(viewModel: viewModel)
 }
+
+#endif
