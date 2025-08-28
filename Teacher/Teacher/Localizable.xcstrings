@@ -87,6 +87,12 @@
             "value" : "\"%@\" no es una nota correcta."
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "”%@” ei ole kelvollinen arvosana"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -345,6 +351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ hasta %2$@"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ - %2$@"
           }
         },
         "fr" : {
@@ -2367,6 +2379,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "< %1$@ a %2$@"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "< %1$@ asti %2$@"
           }
         },
         "fr" : {
@@ -12352,6 +12370,12 @@
             "value" : "Comentarios (%lld)"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kommentit (%lld)"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14649,6 +14673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Detalles"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisätiedot"
           }
         },
         "fr" : {
@@ -24393,6 +24423,12 @@
             "value" : "Nota y rúbrica"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arvosana ja rubriikki"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29860,6 +29896,12 @@
             "value" : "Oculto"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Piilotettu"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30879,6 +30921,12 @@
             "value" : "Nota no válida"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Virheellinen arvosana"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31639,6 +31687,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sanción por entrega con retraso"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rangaistus myöhästymisestä"
           }
         },
         "fr" : {
@@ -42914,6 +42968,12 @@
             "value" : "Restablecer estado"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Palauta tila "
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45221,6 +45281,12 @@
             "value" : "Seleccionar nota"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valitse arvioija"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47521,6 +47587,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notas del estudiante"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opiskelijan muistiinpanot"
           }
         },
         "fr" : {
@@ -55465,6 +55537,12 @@
             "value" : "No tenemos más información sobre este estudiante y actividad"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meillä ei ole lisätietoja tästä opiskelijasta ja tehtävästä."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55713,6 +55791,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recuento de palabras"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sanamäärä"
           }
         },
         "fr" : {
@@ -55965,6 +56049,12 @@
             "value" : "Escribe el porcentaje aquí"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirjoita prosenttiosuus tähän"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -56213,6 +56303,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Escribe la puntuación aquí"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirjoita pistemäärä tähän"
           }
         },
         "fr" : {
