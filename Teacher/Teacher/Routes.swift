@@ -532,9 +532,13 @@ private func fileEditor(url: URLComponents, params: [String: String], userInfo: 
     return CoreHostingController(FileEditorView(context: Context(path: url.path), fileID: fileID))
 }
 
-private func syllabus(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+private func syllabus(url: URLComponents, params: [String: String], userInfo: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard let courseID = params["courseID"] else { return nil }
-    return SyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
+    return SyllabusTabViewController.create(
+        context: Context(path: url.path),
+        courseID: ID.expandTildeID(courseID),
+        env: env
+    )
 }
 
 private func courseDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

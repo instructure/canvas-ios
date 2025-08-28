@@ -163,6 +163,7 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         viewMoreButton.layer.borderColor = UIColor.borderMedium.cgColor
         viewMoreButton.layer.borderWidth = 1 / UIScreen.main.scale
 
+        webView.resetEnvironment(env)
         webViewContainer.addSubview(webView)
         webView.autoresizesHeight = true
         webView.backgroundColor = .backgroundLightest

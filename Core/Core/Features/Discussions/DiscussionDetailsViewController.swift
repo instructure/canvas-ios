@@ -149,6 +149,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.pinWithThemeSwitchButton(inside: webViewPlaceholder)
         webView.heightAnchor.constraint(equalToConstant: 100).isActive = true
 
+        webView.resetEnvironment(env)
         webView.autoresizesHeight = true // will update the height constraint
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.alwaysBounceVertical = false

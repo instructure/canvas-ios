@@ -94,6 +94,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         webView.autoresizesHeight = true
         webView.heightAnchor.constraint(equalToConstant: 0).isActive = true
         webView.linkDelegate = self
+        webView.resetEnvironment(env)
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         scrollView.refreshControl = refreshControl
