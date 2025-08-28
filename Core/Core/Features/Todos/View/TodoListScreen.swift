@@ -78,6 +78,6 @@ public struct TodoListScreen: View {
 }
 
 #Preview {
-    let viewModel = TodoListViewModel(interactor: TodoInteractorMock())
+    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview())
     TodoListScreen(viewModel: viewModel)
 }

@@ -34,13 +34,6 @@ public class TodoListViewModel: ObservableObject {
         refresh()
     }
 
-    func didTapItem(_ item: TodoItem, _ viewController: WeakViewController) {
-        if let url = item.htmlURL {
-            let to = url.appendingQueryItems(URLQueryItem(name: "origin", value: "todo"))
-            env.router.route(to: to, from: viewController, options: .detail)
-        }
-    }
-
     public func refresh(completion: (() -> Void)? = nil) {
         interactor.todosPublisher
             .catch { [weak self] _ in
@@ -56,6 +49,13 @@ public class TodoListViewModel: ObservableObject {
 
         if let completion {
             completion()
+        }
+    }
+
+    func didTapItem(_ item: TodoItem, _ viewController: WeakViewController) {
+        if let url = item.htmlURL {
+            let to = url.appendingQueryItems(URLQueryItem(name: "origin", value: "todo"))
+            env.router.route(to: to, from: viewController, options: .detail)
         }
     }
 }

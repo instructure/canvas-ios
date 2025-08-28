@@ -58,22 +58,11 @@ public final class TodoInteractorLive: TodoInteractor {
 
 #if DEBUG
 
-public final class TodoInteractorMock: TodoInteractor {
+public final class TodoInteractorPreview: TodoInteractor {
     public let todosPublisher: AnyPublisher<[TodoItem], Error>
 
     public init(todos: [TodoItem] = []) {
-        let todos: [TodoItem] = todos.isEmpty ? [
-            .make(plannableID: "1"),
-            .make(plannableID: "2"),
-            .make(plannableID: "3"),
-            .make(plannableID: "4"),
-            .make(plannableID: "5"),
-            .make(plannableID: "6"),
-            .make(plannableID: "7"),
-            .make(plannableID: "8"),
-            .make(plannableID: "9"),
-            .make(plannableID: "10")
-        ] : todos
+        let todos: [TodoItem] = todos.isEmpty ? [.make(plannableID: "1"), .make(plannableID: "2")] : todos
         self.todosPublisher = Just(todos).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
