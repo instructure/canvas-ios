@@ -24,7 +24,7 @@ public protocol ColorDelegate: AnyObject {
 }
 
 public class SyllabusSummaryViewController: UITableViewController {
-    let env = AppEnvironment.shared
+    private(set) var env = AppEnvironment.shared
     var courseID: String!
     var context: Context { Context(.course, id: courseID) }
     public weak var colorDelegate: ColorDelegate?
@@ -74,10 +74,11 @@ public class SyllabusSummaryViewController: UITableViewController {
         }
     }()
 
-    public static func create(courseID: String, colorDelegate: ColorDelegate? = nil) -> SyllabusSummaryViewController {
+    public static func create(courseID: String, colorDelegate: ColorDelegate? = nil, env: AppEnvironment) -> SyllabusSummaryViewController {
         let viewController = SyllabusSummaryViewController(nibName: nil, bundle: nil)
         viewController.courseID = courseID
         viewController.colorDelegate = colorDelegate
+        viewController.env = env
         return viewController
     }
 

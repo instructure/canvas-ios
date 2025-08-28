@@ -126,6 +126,7 @@ public struct WebView: UIViewRepresentable {
     public func makeUIView(context: Self.Context) -> UIView {
         let webViewContainer = UIView()
         let webView = CoreWebView(features: features, configuration: configuration)
+        webView.resetEnvironment(env)
         webViewContainer.addSubview(webView)
         if canToggleTheme {
             webView.pinWithThemeSwitchButton(inside: webViewContainer)

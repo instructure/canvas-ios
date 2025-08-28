@@ -63,13 +63,13 @@ let router = Router(routes: [
         return DashboardViewController.create()
     },
 
-    RouteHandler("/courses/:courseID/assignments/:assignmentID") { _, params, _ in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID") { _, params, _, env in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         guard let studentID = currentStudentID else { return nil }
         if assignmentID == "syllabus" {
-            return SyllabusViewController.create(courseID: courseID)
+            return SyllabusViewController.create(courseID: courseID, env: env)
         }
-        return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID, env: .shared)
+        return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID, env: env)
     },
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { _, params, _ in
@@ -102,10 +102,10 @@ let router = Router(routes: [
         return CalendarEventDetailsViewController.create(studentID: studentID, eventID: eventID)
     },
 
-    RouteHandler("/courses/:courseID/discussion_topics/:topicID") { _, params, _ in
+    RouteHandler("/courses/:courseID/discussion_topics/:topicID") { _, params, _, env in
         guard let courseID = params["courseID"], let topicID = params["topicID"] else { return nil }
         guard let studentID = currentStudentID else { return nil }
-        return DiscussionDetailsViewController.create(studentID: studentID, courseID: courseID, topicID: topicID)
+        return DiscussionDetailsViewController.create(studentID: studentID, courseID: courseID, topicID: topicID, env: env)
     },
 
     RouteHandler("/profile") { _, _, _ in

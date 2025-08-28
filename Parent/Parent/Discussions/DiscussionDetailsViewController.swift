@@ -27,7 +27,7 @@ class DiscussionDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     let refreshControl = CircleRefreshControl()
 
     var courseID = ""
-    let env = AppEnvironment.shared
+    private(set) var env = AppEnvironment.shared
     var topicID = ""
     var studentID = ""
 
@@ -38,11 +38,12 @@ class DiscussionDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         self?.update()
     }
 
-    static func create(studentID: String, courseID: String, topicID: String) -> DiscussionDetailsViewController {
+    static func create(studentID: String, courseID: String, topicID: String, env: AppEnvironment) -> DiscussionDetailsViewController {
         let controller = loadFromStoryboard()
         controller.courseID = courseID
         controller.studentID = studentID
         controller.topicID = topicID
+        controller.env = env
         return controller
     }
 
@@ -54,6 +55,7 @@ class DiscussionDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         webView.autoresizesHeight = true
         webView.heightAnchor.constraint(equalToConstant: 0).isActive = true
         webView.linkDelegate = self
+        webView.resetEnvironment(env)
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         scrollView.refreshControl = refreshControl

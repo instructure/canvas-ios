@@ -23,7 +23,7 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
     public let titleSubtitleView = TitleSubtitleView.create()
     public var courseID: String = ""
     public var color: UIColor?
-    public let env = AppEnvironment.shared
+    public private(set) var env = AppEnvironment.shared
     private var context: Context?
 
     open lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
@@ -31,8 +31,8 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
     )
     lazy public var viewControllers: [UIViewController] = [ syllabus, summary ]
 
-    lazy var summary = SyllabusSummaryViewController.create(courseID: courseID)
-    lazy var syllabus = SyllabusViewController.create(courseID: courseID)
+    lazy var summary = SyllabusSummaryViewController.create(courseID: courseID, env: env)
+    lazy var syllabus = SyllabusViewController.create(courseID: courseID, env: env)
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
@@ -64,10 +64,11 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
         return vc
     }()
 
-    public static func create(context: Context?, courseID: String) -> SyllabusTabViewController {
+    public static func create(context: Context?, courseID: String, env: AppEnvironment) -> SyllabusTabViewController {
         let controller = SyllabusTabViewController(nibName: nil, bundle: nil)
         controller.courseID = courseID
         controller.context = context
+        controller.env = env
         return controller
     }
 
