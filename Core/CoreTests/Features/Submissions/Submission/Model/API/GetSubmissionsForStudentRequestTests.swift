@@ -22,20 +22,26 @@ import XCTest
 
 class GetSubmissionsForStudentRequestTests: CoreTestCase {
 
-    func testGetSubmissionsForStudentRequest() {
-        let request = GetSubmissionsForStudentRequest(context: .course("1"), studentID: "123")
-        XCTAssertEqual(request.path, "courses/1/students/submissions")
-        XCTAssertEqual(request.query, [
+    func test_path() {
+        let testee = GetSubmissionsForStudentRequest(context: .course("1"), studentID: "123")
+
+        XCTAssertEqual(testee.path, "courses/1/students/submissions")
+    }
+
+    func test_query() {
+        let testee = GetSubmissionsForStudentRequest(context: .course("1"), studentID: "123")
+        XCTAssertEqual(testee.query, [
             .perPage(100),
             .array("student_ids", ["123"]),
             .include([
+                "assignment",
+                "group",
                 "rubric_assessment",
+                "sub_assignment_submissions",
                 "submission_comments",
                 "submission_history",
                 "total_scores",
-                "user",
-                "group",
-                "assignment"
+                "user"
             ])
         ])
     }

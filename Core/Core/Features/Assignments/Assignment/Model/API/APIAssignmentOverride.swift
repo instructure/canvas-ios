@@ -20,41 +20,45 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/assignments.html#AssignmentOverride
 public struct APIAssignmentOverride: Codable, Equatable {
-    let assignment_id: ID
-    let course_section_id: ID?
-    let due_at: Date?
-    let group_id: ID?
     let id: ID
-    let lock_at: Date?
-    let student_ids: [ID]?
+    let assignment_id: ID
     let title: String
+
+    // Targets
+    let course_section_id: ID?
+    let group_id: ID?
+    let student_ids: [ID]?
+
+    // Dates
+    let due_at: Date?
     let unlock_at: Date?
+    let lock_at: Date?
 }
 
 #if DEBUG
 
 extension APIAssignmentOverride {
-    public func make(
-        assignment_id: ID,
-        course_section_id: ID?,
-        due_at: Date?,
-        group_id: ID?,
-        id: ID,
-        lock_at: Date?,
-        student_ids: [ID]?,
-        title: String,
-        unlock_at: Date?
+    public static func make(
+        id: String = "",
+        assignment_id: String = "",
+        title: String = "",
+        course_section_id: String? = nil,
+        group_id: String? = nil,
+        student_ids: [String]? = nil,
+        due_at: Date? = nil,
+        unlock_at: Date? = nil,
+        lock_at: Date? = nil
     ) -> APIAssignmentOverride {
         APIAssignmentOverride(
-            assignment_id: assignment_id,
-            course_section_id: course_section_id,
-            due_at: due_at,
-            group_id: group_id,
-            id: id,
-            lock_at: lock_at,
-            student_ids: student_ids,
+            id: ID(id),
+            assignment_id: ID(assignment_id),
             title: title,
-            unlock_at: unlock_at
+            course_section_id: ID(course_section_id),
+            group_id: ID(group_id),
+            student_ids: student_ids?.map { ID($0) },
+            due_at: due_at,
+            unlock_at: unlock_at,
+            lock_at: lock_at
         )
     }
 }

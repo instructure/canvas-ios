@@ -315,9 +315,17 @@ struct SpeedGraderSubmissionGradesView: View {
 
     private func sliderButton(score: Double, isPercent: Bool) -> some View {
         Button(
-            action: { updateGrade(score) },
+            action: { updateGrade(score, isPercent: isPercent) },
             label: {
-                Text(score)
+                let label = {
+                    if isPercent {
+                        return Text(verbatim: GradeFormatter.percentFormatter.string(from: NSNumber(value: score/100)) ?? "\(score)%")
+                    } else {
+                        return Text(score)
+                    }
+                }()
+
+                label
                     .foregroundStyle(.tint)
                     .font(.semibold14)
                     .frame(height: 30)
@@ -330,13 +338,22 @@ struct SpeedGraderSubmissionGradesView: View {
         )
     }
 
-    func updateGrade(excused: Bool? = nil, noMark: Bool? = false, _ grade: Double? = nil) {
+    func updateGrade(
+        excused: Bool? = nil,
+        noMark: Bool? = false,
+        _ grade: Double? = nil,
+        isPercent: Bool = false
+    ) {
         if excused == true {
             gradeViewModel.excuseStudent()
         } else if noMark == true {
             gradeViewModel.removeGrade()
-        } else if let grade = grade {
-            gradeViewModel.setPointsGrade(grade)
+        } else if let grade {
+            if isPercent {
+                gradeViewModel.setPercentGrade(grade)
+            } else {
+                gradeViewModel.setPointsGrade(grade)
+            }
         }
     }
 
