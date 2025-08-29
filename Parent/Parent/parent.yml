@@ -7,7 +7,7 @@ targets:
     settings:
       APPLICATION_EXTENSION_API_ONLY: false
       SWIFT_EMIT_LOC_STRINGS: true
-      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.ios.parentapp
+      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.parentapp
       INFOPLIST_FILE: Parent/Info.plist
       CODE_SIGN_ENTITLEMENTS: Parent/Parent.entitlements
       TARGETED_DEVICE_FAMILY: 1,2
