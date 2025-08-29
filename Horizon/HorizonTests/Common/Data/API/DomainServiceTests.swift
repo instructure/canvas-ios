@@ -34,7 +34,6 @@ struct DomainServiceTests {
         // Given
         let mockAPI = TestHooks.MockAPI()
         mockAPI.mockResult = ["token": "dGVzdF90b2tlbg=="]
-        var subscriptions = Set<AnyCancellable>()
 
         // When
         let domainService = DomainService(
@@ -43,7 +42,6 @@ struct DomainServiceTests {
             region: "us-east-1",
             horizonApi: mockAPI
         )
-        //wait for receiveValue to get a value then continue
         let api = try? await domainService.api().values.first { _ in true }
 
         // Then
