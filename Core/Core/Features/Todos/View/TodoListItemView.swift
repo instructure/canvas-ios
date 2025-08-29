@@ -38,7 +38,6 @@ struct TodoListItemView: View {
                     Text(item.title)
                         .font(.regular16)
                         .foregroundStyle(.textDarkest)
-                        .lineLimit(2)
 
                     if let subtitle = item.subtitle {
                         Text(subtitle)
