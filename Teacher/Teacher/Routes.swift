@@ -328,9 +328,9 @@ let router = Router(routes: [
         guard let context = Context(path: url.path) else { return nil }
         return AppEnvironment.shared.router.match("\(context.pathComponent)/pages/front_page")
     },
-    RouteHandler("/:context/:contextID/pages") { url, _, _ in
+    RouteHandler("/:context/:contextID/pages") { url, _, _, env in
         guard let context = Context(path: url.path) else { return nil }
-        return PageListViewController.create(context: context, app: .teacher)
+        return PageListViewController.create(context: context, app: .teacher, env: env)
     },
 
     RouteHandler("/:context/:contextID/pages/new") { url, _, _ in

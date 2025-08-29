@@ -199,6 +199,11 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
 
 extension PageDetailsViewController: CoreWebViewLinkDelegate {
 
+    public func handleLink(_ url: URL) -> Bool {
+        env.router.route(to: url, from: self)
+        return true
+    }
+
     public func finishedNavigation() {
         UIAccessibility.post(notification: .screenChanged, argument: titleSubtitleView)
     }

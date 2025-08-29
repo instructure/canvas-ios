@@ -21,7 +21,7 @@ import XCTest
 import TestsFoundation
 
 class StudentQuizDetailsViewControllerTests: CoreTestCase {
-    lazy var controller = StudentQuizDetailsViewController.create(courseID: "1", quizID: "1")
+    lazy var controller = StudentQuizDetailsViewController.create(courseID: "1", quizID: "1", env: environment)
 
     override func setUp() {
         super.setUp()
@@ -110,7 +110,7 @@ class StudentQuizDetailsViewControllerTests: CoreTestCase {
     func testPointsTextWhenQuantitativeDataEnabled() {
         // MARK: GIVEN
         mockDataForQuantitativeDataTests(restrict_quantitative_data: true)
-        let testee = StudentQuizDetailsViewController.create(courseID: "1", quizID: "123")
+        let testee = StudentQuizDetailsViewController.create(courseID: "1", quizID: "123", env: environment)
 
         // MARK: WHEN
         testee.loadViewIfNeeded()
@@ -122,7 +122,7 @@ class StudentQuizDetailsViewControllerTests: CoreTestCase {
     func testPointsTextWhenQuantitativeDataDisabled() {
         // MARK: GIVEN
         mockDataForQuantitativeDataTests(restrict_quantitative_data: false)
-        let testee = StudentQuizDetailsViewController.create(courseID: "1", quizID: "123")
+        let testee = StudentQuizDetailsViewController.create(courseID: "1", quizID: "123", env: environment)
 
         // MARK: WHEN
         testee.loadViewIfNeeded()
@@ -134,7 +134,7 @@ class StudentQuizDetailsViewControllerTests: CoreTestCase {
     func testPointsTextWhenQuantitativeDataNotSpecified() {
         // MARK: GIVEN
         mockDataForQuantitativeDataTests(restrict_quantitative_data: nil)
-        let testee = StudentQuizDetailsViewController.create(courseID: "1", quizID: "123")
+        let testee = StudentQuizDetailsViewController.create(courseID: "1", quizID: "123", env: environment)
 
         // MARK: WHEN
         testee.loadViewIfNeeded()

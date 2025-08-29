@@ -150,7 +150,8 @@ class SubmissionButtonPresenter: NSObject {
             guard let quizID = assignment.quizID else { return }
             env.router.show(StudentQuizWebViewController.create(
                 courseID: courseID,
-                quizID: quizID
+                quizID: quizID,
+                env: env
             ), from: view, options: .modal(.fullScreen, isDismissable: false, embedInNav: true))
         case .online_upload:
             Analytics.shared.logEvent("submit_fileupload_selected")
@@ -172,12 +173,10 @@ class SubmissionButtonPresenter: NSObject {
     }
 
     private func presentStudentAnnotation(assignment: Assignment, view: UIViewController) {
-        let courseScope = Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(Course.id), assignment.courseID), order: [])
-
         guard
             let submissionId = assignment.submission?.id,
             let userID = assignment.submission?.userID,
-            let course: Course = env.database.viewContext.fetch(scope: courseScope).first
+            let course = GetCourse(courseID: assignment.courseID).fetchFromDatabase(environment: env).first
         else {
             return
         }

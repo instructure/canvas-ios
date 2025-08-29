@@ -124,9 +124,9 @@ public enum HorizonRoutes {
 
     private static var pageRoutes: [RouteHandler] {
         [
-            RouteHandler("/:context/:contextID/pages") { url, _, _ in
+            RouteHandler("/:context/:contextID/pages") { url, _, _, env in
                 guard let context = Context(path: url.path) else { return nil }
-                return PageListViewController.create(context: context, app: .student)
+                return PageListViewController.create(context: context, app: .student, env: env)
             },
             RouteHandler("/:context/:contextID/pages/:url", factory: pageViewController)
         ]
@@ -181,7 +181,8 @@ public enum HorizonRoutes {
                         url: url
                     )
                 }
-                return StudentQuizDetailsViewController.create(courseID: courseID, quizID: quizID)
+                return StudentQuizDetailsViewController
+                    .create(courseID: courseID, quizID: quizID, env: env)
             }
         ]
     }

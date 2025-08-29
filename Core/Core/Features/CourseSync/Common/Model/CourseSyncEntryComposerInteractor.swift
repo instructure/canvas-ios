@@ -64,7 +64,7 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
             .getFiles(
                 courseId: course.courseId.localID,
                 useCache: useCache,
-                environment: .resolved(for: apiBaseURL)
+                environment: .resolved(for: apiBaseURL, courseShardID: course.courseId.shardID)
             )
             .map { files in
                 files.map {

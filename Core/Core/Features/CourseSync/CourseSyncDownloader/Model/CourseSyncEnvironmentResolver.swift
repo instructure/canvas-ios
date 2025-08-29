@@ -71,7 +71,7 @@ class CourseSyncEnvironmentResolverLive: CourseSyncEnvironmentResolver {
     }
 
     func targetEnvironment(for courseID: CourseSyncID) -> AppEnvironment {
-        .resolved(for: courseID.apiBaseURL)
+        .resolved(for: courseID.apiBaseURL, courseShardID: courseID.value.shardID)
     }
 
     init() {}
