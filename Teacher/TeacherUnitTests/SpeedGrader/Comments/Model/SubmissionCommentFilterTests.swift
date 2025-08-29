@@ -90,7 +90,7 @@ class SubmissionCommentFilterTests: TeacherTestCase {
     private func makeTestComment(id: String, attempt: Int?) -> SubmissionComment {
         let comment = SubmissionComment(context: databaseClient)
         comment.id = id
-        comment.attemptFromAPI = attempt.map(NSNumber.init)
+        comment.attemptFromAPI = NSNumber(value: attempt)
         return comment
     }
 }
