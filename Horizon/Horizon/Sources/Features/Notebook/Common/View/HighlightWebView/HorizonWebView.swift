@@ -238,13 +238,12 @@ final class HorizonWebView: CoreWebView {
               let viewController = viewController else {
             return
         }
-        let assistRoutingParams = AssistAssembly.RoutingParams(
+        let routingParams = AssistAssembly.RoutingParams(
             courseID: courseID,
             pageURL: pageURL,
             textSelection: textSelection
         )
-        let queryString = assistRoutingParams.queryString
-        router.route(to: "/assistant?\(queryString)", from: viewController)
+        router.route(to: "/assistant?\(routingParams.queryString)", from: viewController)
     }
 }
 
