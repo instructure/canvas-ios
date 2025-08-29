@@ -44,7 +44,7 @@ public final class TodoInteractorLive: TodoInteractor {
 
     @discardableResult
     public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        let todosPublisher = ReactiveStore(useCase: GetAllCourses())
+        let todosPublisher = ReactiveStore(useCase: GetCourses())
             .getEntities()
             .map {
                 var contextCodes: [String] = $0.filter(\.isPublished).map(\.canvasContextID)
