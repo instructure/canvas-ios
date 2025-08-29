@@ -45,7 +45,7 @@ public struct GradeRowView: View {
     }
 
     private var assignmentIcon: some View {
-        Image(uiImage: assignment.assignmentIcon)
+        assignment.icon
             .padding(.top, 12)
             .padding(.leading, 22)
             .padding(.trailing, 18)
@@ -53,7 +53,7 @@ public struct GradeRowView: View {
 
     private var assignmentDetailsView: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(assignment.assignmentName)
+            Text(assignment.name)
                 .font(.medium16)
                 .foregroundStyle(Color.textDarkest)
                 .multilineTextAlignment(.leading)
@@ -76,7 +76,7 @@ public struct GradeRowView: View {
         Text(assignment.gradeText)
             .font(.regular16)
             .foregroundStyle(Color.textDarkest)
-            .accessibilityLabel(Text(assignment.gradeAccessibilityLabel))
+            .accessibilityLabel(assignment.gradeAccessibilityLabel)
     }
 
     private var editButton: some View {

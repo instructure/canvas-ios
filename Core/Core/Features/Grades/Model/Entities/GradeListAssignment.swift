@@ -23,8 +23,8 @@ public struct GradeListAssignment: Equatable {
     public let userID: String?
 
     public let id: String
-    public let assignmentName: String
-    public let assignmentIcon: UIImage
+    public let name: String
+    public let icon: Image
     public let dueText: String
     public let gradeText: String
     public let gradeAccessibilityLabel: String
@@ -35,8 +35,8 @@ public struct GradeListAssignment: Equatable {
     public init(assignment: Assignment, userID: String?) {
         self.id = assignment.id
         self.userID = userID
-        self.assignmentName = assignment.name
-        self.assignmentIcon = assignment.icon
+        self.name = assignment.name
+        self.icon = Image(uiImage: assignment.icon)
         self.dueText = assignment.dueText
 
         let submission = assignment.submissions?.first { $0.userID == userID }
@@ -58,6 +58,6 @@ public struct GradeListAssignment: Equatable {
             style: .medium
         )
         self.gradeAccessibilityLabel = gradeA11yString
-            .flatMap { String(localized: "Grade", bundle: .core) + ", " + $0 } ?? ""
+            .flatMap { [String(localized: "Grade", bundle: .core), $0].accessibilityJoined() } ?? ""
     }
 }
