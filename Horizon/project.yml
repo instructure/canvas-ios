@@ -22,6 +22,7 @@ sources:
   - path: ../packages
 include:
   - Horizon/horizon.yml
+  - HorizonTests/horizon-unit-tests.yml
 projectReferences:
   Core:
     path: ../Core/Core.xcodeproj

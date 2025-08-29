@@ -55,13 +55,12 @@ final class DomainService {
     init(
         _ domainServiceOption: Option,
         baseURL: String = AppEnvironment.shared.currentSession?.baseURL.absoluteString ?? "",
-        region: Region? = nil,
+        region: String? = AppEnvironment.shared.currentSession?.canvasRegion,
         horizonApi: API = AppEnvironment.defaultValue.api
     ) {
-        let defaultRegion = AppEnvironment.shared.currentSession?.canvasRegion.map { Region(rawValue: $0) ?? .east1 } ?? .east1
         self.option = domainServiceOption
         self.baseURL = baseURL
-        self.region = region ?? defaultRegion
+        self.region = region.map { Region(rawValue: $0) ?? .east1 } ?? .east1
         self.horizonApi = horizonApi
     }
 
@@ -78,7 +77,10 @@ final class DomainService {
             )
             .tryMap { [weak self] response, urlResponse in
                 guard let self else { throw DomainService.Issue.unableToGetToken }
-                return try tokenResponseToUtf8String(tokenResponse: response, urlResponse: urlResponse)
+                return try tokenResponseToUtf8String(
+                    tokenResponse: response,
+                    urlResponse: urlResponse
+                )
             }
             .compactMap { [weak self] jwt in
                 guard let self else { return nil }
