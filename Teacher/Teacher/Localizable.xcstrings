@@ -781,6 +781,7 @@
       }
     },
     "%g out of %g" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3064,6 +3065,7 @@
       }
     },
     "Add Comment" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3320,6 +3322,7 @@
       }
     },
     "Add custom grade" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -13311,6 +13314,7 @@
       }
     },
     "Customize Grade" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -38796,6 +38800,7 @@
       "comment" : "Example: 'out of 10 points'"
     },
     "out_of_g_pts" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -50847,6 +50852,7 @@
       }
     },
     "This criterion will not impact the score." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -54690,6 +54696,7 @@
       }
     },
     "View Long Description" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

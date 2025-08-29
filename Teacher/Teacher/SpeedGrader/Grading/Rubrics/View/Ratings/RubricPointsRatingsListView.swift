@@ -22,7 +22,7 @@ import Core
 struct RubricPointsRatingsListView: View {
 
     @Binding var isExpanded: Bool
-    @ObservedObject var viewModel: RedesignedRubricCriterionViewModel
+    @ObservedObject var viewModel: RubricCriterionViewModel
 
     var body: some View {
 
@@ -43,7 +43,7 @@ struct RubricPointsRatingsListView: View {
         } else {
             FlowLayout(spacing: 16, minimumLineSpacing: 16) {
                 ForEach(viewModel.ratingViewModels) { ratingViewModel in
-                    RedesignedRubricRatingView(viewModel: ratingViewModel)
+                    RubricRatingView(viewModel: ratingViewModel)
                 }
             }
             .padding(.horizontal, 16)
