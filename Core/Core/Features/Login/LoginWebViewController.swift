@@ -287,7 +287,8 @@ extension LoginWebViewController: WKNavigationDelegate {
                     userID: token.user.id.value,
                     userName: token.user.name,
                     clientID: mobileVerify.client_id,
-                    clientSecret: mobileVerify.client_secret
+                    clientSecret: mobileVerify.client_secret,
+                    canvasRegion: token.canvas_region
                 )
 
                 if let completion = self.loginCompletion {

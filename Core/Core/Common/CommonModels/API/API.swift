@@ -18,7 +18,7 @@
 
 import Foundation
 
-public class API {
+open class API {
     public var loginSession: LoginSession?
     public let baseURL: URL
     public let urlSession: URLSession
@@ -32,7 +32,7 @@ public class API {
     }
 
     @discardableResult
-    public func makeRequest<Request: APIRequestable>(
+    open func makeRequest<Request: APIRequestable>(
         _ requestable: Request,
         refreshToken: Bool = true,
         callback: @escaping (Request.Response?, URLResponse?, Error?) -> Void
