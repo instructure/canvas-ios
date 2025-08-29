@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B36A2DE2322C26A00599A1E"
+               BlueprintIdentifier = "41BA2B211CB47478407A6101"
                BuildableName = "ParentUnitTests.xctest"
                BlueprintName = "ParentUnitTests"
                ReferencedContainer = "container:Parent/Parent.xcodeproj">
@@ -42,9 +42,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B15CA25C221DDB820014FB02"
-               BuildableName = "TeacherTests.xctest"
-               BlueprintName = "TeacherTests"
+               BlueprintIdentifier = "4F93B7247D9941F0080F583E"
+               BuildableName = "TeacherUnitTests.xctest"
+               BlueprintName = "TeacherUnitTests"
                ReferencedContainer = "container:Teacher/Teacher.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -120,7 +120,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B36A2DE2322C26A00599A1E"
+            BlueprintIdentifier = "41BA2B211CB47478407A6101"
             BuildableName = "ParentUnitTests.xctest"
             BlueprintName = "ParentUnitTests"
             ReferencedContainer = "container:Parent/Parent.xcodeproj">

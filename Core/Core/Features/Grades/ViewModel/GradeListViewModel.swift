@@ -83,7 +83,7 @@ public final class GradeListViewModel: ObservableObject {
         interactor: GradeListInteractor,
         gradeFilterInteractor: GradeFilterInteractor,
         env: AppEnvironment,
-        scheduler: AnySchedulerOf<DispatchQueue> = .main,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
         self.env = env
