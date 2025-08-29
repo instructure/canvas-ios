@@ -19,8 +19,7 @@
 import SwiftUI
 
 public struct GradeRowView: View {
-    public let assignment: Assignment
-    public let userID: String?
+    public let assignment: GradeListAssignment
     public let isWhatIfScoreModeOn: Bool
     public let editScoreButtonDidTap: () -> Void
 
@@ -46,7 +45,7 @@ public struct GradeRowView: View {
     }
 
     private var assignmentIcon: some View {
-        Image(uiImage: assignment.icon)
+        assignment.icon
             .padding(.top, 12)
             .padding(.leading, 22)
             .padding(.trailing, 18)
@@ -63,37 +62,21 @@ public struct GradeRowView: View {
                 .foregroundStyle(Color.textDark)
                 .multilineTextAlignment(.leading)
 
-            let submission = assignment.submissions?.first { $0.userID == userID }
-            let displayProperties = submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
-
             HStack(spacing: 2) {
-                Image(uiImage: displayProperties.icon)
+                assignment.statusIcon
                     .size(uiScale.iconScale * 18)
-                    .foregroundColor(Color(displayProperties.color))
-
-                Text(displayProperties.text)
-                    .foregroundStyle(Color(displayProperties.color))
+                Text(assignment.statusText)
                     .font(.regular14)
             }
+            .foregroundStyle(assignment.statusColor)
         }
     }
 
     private var gradeText: some View {
-        Text(GradeFormatter.string(
-            from: assignment,
-            userID: userID,
-            style: .medium
-        ) ?? "")
+        Text(assignment.gradeText)
             .font(.regular16)
             .foregroundStyle(Color.textDarkest)
-            .accessibilityLabel(Text(
-                GradeFormatter.a11yString(
-                    from: assignment,
-                    userID: userID,
-                    style: .medium
-                )
-                .flatMap { String(localized: "Grade", bundle: .core) + ", " + $0 } ?? ""
-            ))
+            .accessibilityLabel(assignment.gradeAccessibilityLabel)
     }
 
     private var editButton: some View {
@@ -109,18 +92,25 @@ public struct GradeRowView: View {
     }
 }
 
+extension GradeRowView: Equatable {
+
+    public static func == (lhs: GradeRowView, rhs: GradeRowView) -> Bool {
+        lhs.assignment == rhs.assignment && lhs.isWhatIfScoreModeOn == rhs.isWhatIfScoreModeOn
+    }
+}
+
 #if DEBUG
 
 struct GradeRowViewPreview: PreviewProvider {
     static var previews: some View {
+        let assignment = Assignment.save(
+            .make(name: "Radiation Processes - ASTR 25400"),
+            in: PreviewEnvironment().globalDatabase.viewContext,
+            updateSubmission: false,
+            updateScoreStatistics: false
+        )
         GradeRowView(
-            assignment: .save(
-                .make(name: "Radiation Processes - ASTR 25400"),
-                in: PreviewEnvironment().globalDatabase.viewContext,
-                updateSubmission: false,
-                updateScoreStatistics: false
-            ),
-            userID: "",
+            assignment: GradeListAssignment(assignment: assignment, userID: ""),
             isWhatIfScoreModeOn: true,
             editScoreButtonDidTap: {}
         )

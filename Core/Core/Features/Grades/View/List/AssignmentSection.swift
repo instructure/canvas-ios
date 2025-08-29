@@ -18,19 +18,22 @@
 
 import SwiftUI
 
-struct AssignmentSection<Header: View, Content: View>: View {
+struct AssignmentSection<Content: View>: View {
 
     // MARK: - Properties
     @State private var isExpanded: Bool = true
-    private let header: Header
+    private let title: String
+    private let titleA11yLabel: String
     private let content: Content
 
     // MARK: - Init
     init(
-        @ViewBuilder header: () -> Header,
+        title: String,
+        titleA11yLabel: String,
         @ViewBuilder content: () -> Content
     ) {
-        self.header = header()
+        self.title = title
+        self.titleA11yLabel = titleA11yLabel
         self.content = content()
     }
 
@@ -40,11 +43,9 @@ struct AssignmentSection<Header: View, Content: View>: View {
             if isExpanded {
                 content
             }
-
         } header: {
             Button {
                 isExpanded.toggle()
-
             } label: {
                 VStack(spacing: 0) {
                     headerView()
@@ -52,20 +53,26 @@ struct AssignmentSection<Header: View, Content: View>: View {
                     InstUI.Divider()
                         .accessibilityHidden(true)
                 }
-                .background(Color.backgroundLightest)
             }
             .accessibilityElement(children: .combine)
             .accessibilityHint(isExpanded
                                ? String(localized: "expanded", bundle: .core)
                                : String(localized: "collapsed", bundle: .core)
             )
+            .background(Color.backgroundLightest)
         }
     }
 
     @ViewBuilder
     private func headerView() -> some View {
         HStack {
-            header
+            Text(title)
+                .foregroundStyle(Color.textDark)
+                .font(.semibold14)
+                .frame(maxWidth: .infinity, minHeight: 40, alignment: .leading)
+                .frame(height: 40)
+                .paddingStyle(.horizontal, .standard)
+                .accessibilityLabel(titleA11yLabel)
             Spacer()
             Image.arrowOpenUpLine
                 .size(16)
@@ -77,5 +84,12 @@ struct AssignmentSection<Header: View, Content: View>: View {
         .onTapGesture {
             isExpanded.toggle()
         }
+    }
+}
+
+extension AssignmentSection: Equatable {
+
+    static func == (lhs: AssignmentSection<Content>, rhs: AssignmentSection<Content>) -> Bool {
+        lhs.title == rhs.title
     }
 }
