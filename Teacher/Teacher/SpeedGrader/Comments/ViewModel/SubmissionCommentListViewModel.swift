@@ -49,6 +49,7 @@ class SubmissionCommentListViewModel: ObservableObject {
     private let contextColorPublisher: AnyPublisher<Color, Never>
     private let interactor: SubmissionCommentsInteractor
     private let commentLibraryViewModel: CommentLibraryViewModel
+    private let commentFilter: SubmissionCommentFilter
     private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
@@ -65,6 +66,7 @@ class SubmissionCommentListViewModel: ObservableObject {
         currentUserId: String?,
         contextColor: AnyPublisher<Color, Never>,
         interactor: SubmissionCommentsInteractor,
+        commentFilter: SubmissionCommentFilter = SubmissionCommentFilterLive(),
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         env: AppEnvironment
     ) {
@@ -77,6 +79,7 @@ class SubmissionCommentListViewModel: ObservableObject {
 
         self.contextColorPublisher = contextColor
         self.interactor = interactor
+        self.commentFilter = commentFilter
         self.env = env
 
         let comment = CurrentValueSubject<String, Never>("")
@@ -98,8 +101,12 @@ class SubmissionCommentListViewModel: ObservableObject {
             unownedSelf.allComments = comments
             unownedSelf.isAssignmentEnhancementsEnabled = isAssignmentEnhancementsEnabled
             unownedSelf.isCommentLibraryEnabled = isCommentLibraryEnabled
-            return unownedSelf
-                .filterComments(comments, for: unownedSelf.selectedAttemptNumber)
+            return unownedSelf.commentFilter
+                .filterComments(
+                    comments,
+                    for: unownedSelf.selectedAttemptNumber,
+                    isAssignmentEnhancementsEnabled: isAssignmentEnhancementsEnabled
+                )
                 .map(unownedSelf.commentViewModel)
         }
         .receive(on: scheduler)
@@ -129,19 +136,13 @@ class SubmissionCommentListViewModel: ObservableObject {
         selectedAttemptNumber = attempt
         guard state == .data || state == .empty else { return }
 
-        let comments = filterComments(allComments, for: attempt)
+        let comments = commentFilter.filterComments(
+            allComments,
+            for: attempt,
+            isAssignmentEnhancementsEnabled: isAssignmentEnhancementsEnabled
+        )
         state = comments.isEmpty ? .empty : .data
         cellViewModels = comments.map(commentViewModel)
-    }
-
-    private func filterComments(_ comments: [SubmissionComment], for attempt: Int?) -> [SubmissionComment] {
-        if isAssignmentEnhancementsEnabled {
-            return comments.filter {
-                $0.attemptFromAPI == nil || $0.attemptFromAPI?.intValue == attempt
-            }
-        } else {
-            return comments
-        }
     }
 
     private func commentViewModel(comment: SubmissionComment) -> SubmissionCommentListCellViewModel {
