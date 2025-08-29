@@ -75,15 +75,15 @@ public struct TodoItem: Identifiable, Equatable {
     // MARK: Preview & Testing
 
     public static func make(
-        id: String = "1",
+        id: String = "",
         type: PlannableType = .assignment,
         date: Date = Clock.now,
-        title: String = "Example Assignment",
-        subtitle: String = "Subtitle",
-        contextName: String = "Example Course",
+        title: String = "",
+        subtitle: String? = nil,
+        contextName: String = "",
         htmlURL: URL? = nil,
         color: Color = .red,
-        icon: Image? = Image.assignmentLine
+        icon: Image? = nil
     ) -> TodoItem {
 
         TodoItem(

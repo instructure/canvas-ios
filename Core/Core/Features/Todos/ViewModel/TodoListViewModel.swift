@@ -24,18 +24,20 @@ public class TodoListViewModel: ObservableObject {
     @Published var items: [TodoItem] = []
     @Published var hasError: Bool = false
 
-    private let env: AppEnvironment
     private let interactor: TodoInteractor
+    private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
-    init(env: AppEnvironment = .shared, interactor: TodoInteractor? = nil) {
+    init(interactor: TodoInteractor, env: AppEnvironment) {
+        self.interactor = interactor
         self.env = env
-        self.interactor = interactor ?? TodoInteractorLive(env: env, startDate: .now.startOfDay(), endDate: .now.addDays(28))
+
         refresh()
     }
 
-    public func refresh(completion: (() -> Void)? = nil) {
-        interactor.todosPublisher
+    public func refresh(ignoreCache: Bool = false, completion: (() -> Void)? = nil) {
+        interactor.refresh(ignoreCache: ignoreCache)
+        interactor.todos
             .catch { [weak self] _ in
                 self?.hasError = true
                 let empty: [TodoItem] = []
@@ -62,7 +64,7 @@ public class TodoListViewModel: ObservableObject {
             env.router.show(vc, from: viewController, options: .detail)
         default:
             guard let url = item.htmlURL else { return }
-            let to = url.appendingOrigin("calendar")
+            let to = url.appendingOrigin("todo")
             env.router.route(to: to, from: viewController, options: .detail)
             return
         }

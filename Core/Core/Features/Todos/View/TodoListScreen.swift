@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct TodoListScreen: View {
     @Environment(\.viewController) private var viewController
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ObservedObject var viewModel: TodoListViewModel
 
     public init(viewModel: TodoListViewModel) {
@@ -33,32 +34,33 @@ public struct TodoListScreen: View {
 
     @ViewBuilder
     private var contentView: some View {
-        if viewModel.hasError {
-            errorView
-        } else if viewModel.items.isEmpty {
-            emptyView
-        } else {
-            dataView
+        RefreshableScrollView(showsIndicators: false) {
+            if viewModel.hasError {
+                errorView
+            } else if viewModel.items.isEmpty {
+                emptyView
+            } else {
+                dataView
+            }
+        } refreshAction: { completion in
+            viewModel.refresh(ignoreCache: true, completion: completion)
         }
+        .padding(.vertical, 8)
+
     }
 
     private var dataView: some View {
-        RefreshableScrollView(showsIndicators: false) {
-            ForEach(viewModel.items, id: \.id) { item in
-                VStack(spacing: 0) {
-                    Button {
-                        viewModel.didTapItem(item, viewController)
-                    } label: {
-                        TodoListItemView(item: item)
-                            .paddingStyle(set: .iconCell)
-                    }
-                    InstUI.Divider(item != viewModel.items.last ? .padded : .full)
+        ForEach(viewModel.items, id: \.id) { item in
+            VStack(spacing: 0) {
+                Button {
+                    viewModel.didTapItem(item, viewController)
+                } label: {
+                    TodoListItemView(item: item)
+                        .paddingStyle(set: .iconCell)
                 }
+                InstUI.Divider(item != viewModel.items.last ? .padded : .full)
             }
-        } refreshAction: { completion in
-            viewModel.refresh(completion: completion)
         }
-        .padding(.vertical, 8)
     }
 
     private var emptyView: some View {
@@ -89,7 +91,7 @@ public struct TodoListScreen: View {
 #if DEBUG
 
 #Preview {
-    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview())
+    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(), env: PreviewEnvironment())
     TodoListScreen(viewModel: viewModel)
 }
 

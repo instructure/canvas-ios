@@ -19,14 +19,15 @@
 import SwiftUI
 
 struct TodoListItemView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     let item: TodoItem
 
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
-            item.icon
+            item.icon?.scaledIcon()
                 .font(.regular14)
                 .foregroundStyle(item.color)
-                .frame(width: 25)
 
             HStack(alignment: .center) {
                 VStack(alignment: .leading, spacing: 4) {
@@ -52,9 +53,8 @@ struct TodoListItemView: View {
 
                 Spacer()
 
-                Image(systemName: "chevron.right")
-                    .font(.regular14)
-                    .foregroundStyle(.textDarkest)
+                InstUI.DisclosureIndicator()
+                    .paddingStyle(.leading, .cellAccessoryPadding)
             }
         }
     }

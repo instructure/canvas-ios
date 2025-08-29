@@ -20,30 +20,52 @@ import Foundation
 import Combine
 
 public protocol TodoInteractor {
-    var todosPublisher: AnyPublisher<[TodoItem], Error> { get }
+    var todos: CurrentValueSubject<[TodoItem], Error> { get }
+
+    @discardableResult
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
 }
 
 public final class TodoInteractorLive: TodoInteractor {
-    public let todosPublisher: AnyPublisher<[TodoItem], Error>
+    public let todos = CurrentValueSubject<[TodoItem], Error>([])
 
-    init(env: AppEnvironment, startDate: Date, endDate: Date) {
-        self.todosPublisher = ReactiveStore(useCase: GetAllCourses())
+    private let env: AppEnvironment
+    private let startDate: Date
+    private let endDate: Date
+
+    private var refreshCancellable: AnyCancellable?
+
+    init(env: AppEnvironment, startDate: Date = .now, endDate: Date = .distantFuture) {
+        self.env = env
+        self.startDate = startDate
+        self.endDate = endDate
+        refresh(ignoreCache: false)
+    }
+
+    @discardableResult
+    public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+        let todosPublisher = ReactiveStore(useCase: GetAllCourses())
             .getEntities()
-            .compactMap {
-                var contextCodes: [String] = $0.map { $0.canvasContextID }
-                if let userContextCode = Context(.user, id: env.currentSession?.userID)?.canvasContextID {
+            .map {
+                var contextCodes: [String] = $0.filter(\.isPublished).map(\.canvasContextID)
+                if let userContextCode = Context(.user, id: self.env.currentSession?.userID)?.canvasContextID {
                     contextCodes.append(userContextCode)
                 }
                 return contextCodes
             }
             .flatMap { codes in
-                return ReactiveStore(useCase: GetPlannables(startDate: startDate, endDate: endDate, contextCodes: codes))
-                    .getEntities(ignoreCache: true)
-                    .compactMap {
-                        $0.compactMap(TodoItem.init)
-                    }
-                    .eraseToAnyPublisher()
+                return ReactiveStore(useCase: GetPlannables(startDate: self.startDate, endDate: self.endDate, contextCodes: codes))
+                    .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
+                    .map { $0.compactMap(TodoItem.init) }
             }
+            .share()
+            .eraseToAnyPublisher()
+
+        refreshCancellable = todosPublisher
+            .subscribe(todos)
+
+        return todosPublisher
+            .mapToVoid()
             .eraseToAnyPublisher()
     }
 }
@@ -51,11 +73,17 @@ public final class TodoInteractorLive: TodoInteractor {
 #if DEBUG
 
 public final class TodoInteractorPreview: TodoInteractor {
-    public let todosPublisher: AnyPublisher<[TodoItem], Error>
+    public let todos: CurrentValueSubject<[TodoItem], Error>
 
     public init(todos: [TodoItem] = []) {
         let todos: [TodoItem] = todos.isEmpty ? [.make(id: "1"), .make(id: "2")] : todos
-        self.todosPublisher = Just(todos).setFailureType(to: Error.self).eraseToAnyPublisher()
+        self.todos = CurrentValueSubject<[TodoItem], Error>(todos)
+    }
+
+    public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+        return Just<Void>(())
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }
 
