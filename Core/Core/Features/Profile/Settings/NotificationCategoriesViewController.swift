@@ -113,7 +113,9 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
         let alerts = String(localized: "Alerts", bundle: .core)
 
         var map = [
+			"all_submissions": (0, String(localized: "All Submissions", bundle: .core), courseActivities),
             "announcement": (0, String(localized: "Announcement", bundle: .core), courseActivities),
+			"announcement_created_by_you": (0, String(localized: "Announcement Created By You", bundle: .core), courseActivities),
             "appointment_availability": (3, String(localized: "Appointment Availability", bundle: .core), scheduling),
             "appointment_cancelations": (3, String(localized: "Appointment Cancellations", bundle: .core), scheduling),
             "calendar": (3, String(localized: "Calendar", bundle: .core), scheduling),
