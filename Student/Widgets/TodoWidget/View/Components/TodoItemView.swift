@@ -52,10 +52,18 @@ struct TodoItemView: View {
     }
 
     private var titleSection: some View {
-        Text(item.title)
-            .font(.semibold14)
-            .foregroundStyle(Color.textDarkest)
-            .lineLimit(1)
+        VStack(alignment: .leading) {
+            Text(item.title)
+                .font(.semibold14)
+                .foregroundStyle(Color.textDarkest)
+                .lineLimit(1)
+            if let subtitle = item.subtitle {
+                Text(subtitle)
+                    .font(.regular12)
+                    .foregroundStyle(Color.textDark)
+                    .lineLimit(1)
+            }
+        }
     }
 
     private var timeSection: some View {

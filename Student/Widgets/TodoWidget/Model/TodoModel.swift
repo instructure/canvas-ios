@@ -67,7 +67,7 @@ extension TodoModel {
     static func make(count: Int = 5) -> TodoModel {
         let items = [
             TodoItem.make(
-                plannableID: "1",
+                id: "1",
                 type: .assignment,
                 date: Date.now, title: "Important Assignment",
                 contextName: "Student",
@@ -75,7 +75,7 @@ extension TodoModel {
                 icon: .assignmentLine
             ),
             TodoItem.make(
-                plannableID: "2",
+                id: "2",
                 type: .discussion_topic,
                 date: Date.now,
                 title: "Discussion About Everything",
@@ -84,7 +84,7 @@ extension TodoModel {
                 icon: .discussionLine
             ),
             TodoItem.make(
-                plannableID: "3",
+                id: "3",
                 type: .calendar_event,
                 date: Date.now,
                 title: "Huge Event",
@@ -92,10 +92,10 @@ extension TodoModel {
                 color: .orange,
                 icon: .calendarMonthLine
             ),
-            TodoItem.make(plannableID: "4", type: .planner_note, date: Date.now.addDays(3), title: "Don't forget", icon: .noteLine),
-            TodoItem.make(plannableID: "5", type: .quiz, date: Date.now.addDays(3), title: "Quiz About Life", icon: .quizLine),
-            TodoItem.make(plannableID: "6", type: .assignment, date: Date.now.addDays(3), title: "Another Assignment", icon: .assignmentLine),
-            TodoItem.make(plannableID: "7", type: .wiki_page, date: Date.now.addDays(3), title: "Some Page", icon: .documentLine)
+            TodoItem.make(id: "4", type: .planner_note, date: Date.now.addDays(3), title: "Don't forget", icon: .noteLine),
+            TodoItem.make(id: "5", type: .quiz, date: Date.now.addDays(3), title: "Quiz About Life", icon: .quizLine),
+            TodoItem.make(id: "6", type: .assignment, date: Date.now.addDays(3), title: "Another Assignment", icon: .assignmentLine),
+            TodoItem.make(id: "7", type: .wiki_page, date: Date.now.addDays(3), title: "Some Page", icon: .documentLine)
         ]
         return TodoModel(items: Array(items.prefix(count)))
     }

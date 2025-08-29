@@ -226,6 +226,10 @@ public extension Date {
         DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .short)
     }
 
+    var dateTimeStringShort: String {
+        formatted(.dateTime.month(.abbreviated).day().hour().minute())
+    }
+
     func formatted(format: String, locale: Locale = .current, calendar: Calendar = Cal.currentCalendar) -> String {
         Date
             .formatter(withFormat: format, locale: locale, calendar: calendar)

@@ -82,6 +82,13 @@ public extension URLComponents {
         return false
     }
 
+    var originIsTodo: Bool {
+        if queryItems?.first(where: { $0.name == "origin" })?.value == "todo" {
+            return true
+        }
+        return false
+    }
+
     var originIsModuleItemDetails: Bool {
         queryItems?.contains(URLQueryItem(name: "origin", value: "module_item_details")) == true
     }
