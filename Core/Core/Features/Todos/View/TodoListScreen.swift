@@ -45,16 +45,19 @@ public struct TodoListScreen: View {
     private var dataView: some View {
         RefreshableScrollView(showsIndicators: false) {
             ForEach(viewModel.items, id: \.id) { item in
-                TodoListItemView(item: item)
-                    .onTapGesture { viewModel.didTapItem(item, viewController) }
-                if item != viewModel.items.last {
-                    InstUI.Divider()
+                VStack(spacing: 0) {
+                    Button {
+                        viewModel.didTapItem(item, viewController)
+                    } label: {
+                        TodoListItemView(item: item)
+                            .paddingStyle(set: .iconCell)
+                    }
+                    InstUI.Divider(item != viewModel.items.last ? .padded : .full)
                 }
             }
         } refreshAction: { completion in
             viewModel.refresh(completion: completion)
         }
-        .padding(.horizontal, 16)
         .padding(.vertical, 8)
     }
 

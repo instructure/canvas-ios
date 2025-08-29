@@ -53,9 +53,18 @@ public class TodoListViewModel: ObservableObject {
     }
 
     func didTapItem(_ item: TodoItem, _ viewController: WeakViewController) {
-        if let url = item.htmlURL {
-            let to = url.appendingQueryItems(URLQueryItem(name: "origin", value: "todo"))
+        switch item.type {
+        case .planner_note:
+            let vc = PlannerAssembly.makeToDoDetailsViewController(plannableId: item.id)
+            env.router.show(vc, from: viewController, options: .detail)
+        case .calendar_event:
+            let vc = PlannerAssembly.makeEventDetailsViewController(eventId: item.id)
+            env.router.show(vc, from: viewController, options: .detail)
+        default:
+            guard let url = item.htmlURL else { return }
+            let to = url.appendingOrigin("calendar")
             env.router.route(to: to, from: viewController, options: .detail)
+            return
         }
     }
 }

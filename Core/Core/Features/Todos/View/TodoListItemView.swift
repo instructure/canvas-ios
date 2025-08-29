@@ -57,6 +57,5 @@ struct TodoListItemView: View {
                     .foregroundStyle(.textDarkest)
             }
         }
-        .padding(.vertical, 8)
     }
 }

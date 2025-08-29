@@ -24,18 +24,20 @@ public protocol TodoInteractor {
 }
 
 public final class TodoInteractorLive: TodoInteractor {
-    public var todosPublisher: AnyPublisher<[TodoItem], Error> {
-        ReactiveStore(useCase: GetAllCourses())
+    public let todosPublisher: AnyPublisher<[TodoItem], Error>
+
+    init(env: AppEnvironment, startDate: Date, endDate: Date) {
+        self.todosPublisher = ReactiveStore(useCase: GetAllCourses())
             .getEntities()
             .compactMap {
                 var contextCodes: [String] = $0.map { $0.canvasContextID }
-                if let userContextCode = Context(.user, id: self.env.currentSession?.userID)?.canvasContextID {
+                if let userContextCode = Context(.user, id: env.currentSession?.userID)?.canvasContextID {
                     contextCodes.append(userContextCode)
                 }
                 return contextCodes
             }
             .flatMap { codes in
-                return ReactiveStore(useCase: GetPlannables(startDate: self.startDate, endDate: self.endDate, contextCodes: codes))
+                return ReactiveStore(useCase: GetPlannables(startDate: startDate, endDate: endDate, contextCodes: codes))
                     .getEntities(ignoreCache: true)
                     .compactMap {
                         $0.compactMap(TodoItem.init)
@@ -43,16 +45,6 @@ public final class TodoInteractorLive: TodoInteractor {
                     .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
-    }
-
-    private let startDate: Date
-    private let endDate: Date
-    private let env: AppEnvironment
-
-    init(env: AppEnvironment, startDate: Date, endDate: Date) {
-        self.env = env
-        self.startDate = startDate
-        self.endDate = endDate
     }
 }
 
@@ -62,7 +54,7 @@ public final class TodoInteractorPreview: TodoInteractor {
     public let todosPublisher: AnyPublisher<[TodoItem], Error>
 
     public init(todos: [TodoItem] = []) {
-        let todos: [TodoItem] = todos.isEmpty ? [.make(plannableID: "1"), .make(plannableID: "2")] : todos
+        let todos: [TodoItem] = todos.isEmpty ? [.make(id: "1"), .make(id: "2")] : todos
         self.todosPublisher = Just(todos).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }

@@ -19,7 +19,7 @@
 import SwiftUI
 
 public struct TodoItem: Identifiable, Equatable {
-    public let plannableID: String
+    public let id: String
     public let type: PlannableType
     public let date: Date
 
@@ -34,7 +34,7 @@ public struct TodoItem: Identifiable, Equatable {
     public init?(_ plannable: Plannable) {
         guard let date = plannable.date else { return nil }
 
-        self.plannableID = plannable.id
+        self.id = plannable.id
         self.type = plannable.plannableType
         self.date = date
 
@@ -48,7 +48,7 @@ public struct TodoItem: Identifiable, Equatable {
     }
 
     public init(
-        plannableID: String,
+        id: String,
         type: PlannableType,
         date: Date,
         title: String,
@@ -59,7 +59,7 @@ public struct TodoItem: Identifiable, Equatable {
         icon: Image?
     ) {
 
-        self.plannableID = plannableID
+        self.id = id
         self.type = type
         self.date = date
 
@@ -72,12 +72,10 @@ public struct TodoItem: Identifiable, Equatable {
         self.icon = icon
     }
 
-    public var id: String { plannableID }
-
     // MARK: Preview & Testing
 
     public static func make(
-        plannableID: String = "1",
+        id: String = "1",
         type: PlannableType = .assignment,
         date: Date = Clock.now,
         title: String = "Example Assignment",
@@ -89,7 +87,7 @@ public struct TodoItem: Identifiable, Equatable {
     ) -> TodoItem {
 
         TodoItem(
-            plannableID: plannableID,
+            id: id,
             type: type,
             date: date,
             title: title,
