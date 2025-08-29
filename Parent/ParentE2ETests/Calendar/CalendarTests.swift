@@ -38,23 +38,23 @@ class CalendarTests: E2ETestCase {
 
         // MARK: Navigate to Calendar, check events
         calendarTab.hit()
-        let todaysEventCell = CalendarHelper.eventCell(event: calendarEvents.todays!).waitUntil(.visible)
+        let todaysEventCell = CalendarHelper.itemCell(for: calendarEvents.todays!).waitUntil(.visible)
         var titleOfEventCell = todaysEventCell.find(label: calendarEvents.todays!.title, type: .staticText).waitUntil(.visible)
         XCTAssertTrue(todaysEventCell.isVisible)
         XCTAssertTrue(titleOfEventCell.isVisible)
 
-        let tomorrowsEventCell = CalendarHelper.navigateToEvent(event: calendarEvents.tomorrows!)
+        let tomorrowsEventCell = CalendarHelper.navigateToItemCell(for: calendarEvents.tomorrows!)
         titleOfEventCell = tomorrowsEventCell.find(label: calendarEvents.tomorrows!.title, type: .staticText).waitUntil(.visible)
         XCTAssertTrue(tomorrowsEventCell.isVisible)
         XCTAssertTrue(titleOfEventCell.isVisible)
 
         // MARK: Check event details
         tomorrowsEventCell.hit()
-        let titleLabel = CalendarHelper.Details.titleLabel(event: calendarEvents.tomorrows!).waitUntil(.visible)
-        let dateLabel = CalendarHelper.Details.dateLabel(event: calendarEvents.tomorrows!, parent: true).waitUntil(.visible)
-        let locationNameLabel = CalendarHelper.Details.locationNameLabel(event: calendarEvents.tomorrows!).waitUntil(.visible)
-        let locationAddressLabel = CalendarHelper.Details.locationAddressLabel(event: calendarEvents.tomorrows!).waitUntil(.visible)
-        let descriptionLabel = CalendarHelper.Details.descriptionLabel(event: calendarEvents.tomorrows!).waitUntil(.visible)
+        let titleLabel = CalendarHelper.EventDetails.titleLabel(event: calendarEvents.tomorrows!).waitUntil(.visible)
+        let dateLabel = CalendarHelper.EventDetails.dateLabel(event: calendarEvents.tomorrows!, parent: true).waitUntil(.visible)
+        let locationNameLabel = CalendarHelper.EventDetails.locationNameLabel(event: calendarEvents.tomorrows!).waitUntil(.visible)
+        let locationAddressLabel = CalendarHelper.EventDetails.locationAddressLabel(event: calendarEvents.tomorrows!).waitUntil(.visible)
+        let descriptionLabel = CalendarHelper.EventDetails.descriptionLabel(event: calendarEvents.tomorrows!).waitUntil(.visible)
         XCTAssertTrue(titleLabel.isVisible)
         XCTAssertTrue(dateLabel.isVisible)
         XCTAssertTrue(locationNameLabel.isVisible)

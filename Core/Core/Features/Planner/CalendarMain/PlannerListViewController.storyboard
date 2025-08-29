@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,15 +17,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="z9c-iF-0LB">
-                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <rect key="frame" x="0.0" y="96" width="414" height="732"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="dTW-wT-oRZ" customClass="TableViewBackgroundView" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="172" width="414" height="226"/>
+                                    <rect key="frame" x="0.0" y="194.5" width="414" height="144"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8wG-8h-aIj" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
-                                            <rect key="frame" x="187" y="93" width="40" height="40"/>
+                                            <rect key="frame" x="187" y="52" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="1Ea-9b-Dfc"/>
                                                 <constraint firstAttribute="height" constant="40" id="KTo-Ki-oOP"/>
@@ -84,7 +83,7 @@
                                             </constraints>
                                         </view>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kr5-GN-tEi" customClass="ListErrorView" customModule="Core" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="15.5" width="414" height="195"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="195"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="195" placeholder="YES" id="L6g-ah-EMm"/>
                                             </constraints>
@@ -105,10 +104,10 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlannerListCell" id="nc6-qC-n7j" customClass="PlannerListCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="94"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="116.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nc6-qC-n7j" id="gQz-yJ-vt1">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="116.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wqm-ri-CUc">
@@ -119,7 +118,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="nvF-o5-JX4">
-                                                    <rect key="frame" x="68" y="12" width="330" height="65.5"/>
+                                                    <rect key="frame" x="68" y="12" width="330" height="88"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="AST 101" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyU-M2-T4c" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="330" height="20.5"/>
@@ -139,8 +138,17 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tLO-4R-VWa">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some subtitle" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkz-wl-emF" userLabel="Subtitle" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="45" width="330" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tLO-4R-VWa">
+                                                            <rect key="frame" x="0.0" y="67.5" width="330" height="20.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Apr 6 at 11:59pm" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdg-qH-tTU" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="165" height="20.5"/>
@@ -196,6 +204,7 @@
                                             <outlet property="icon" destination="wqm-ri-CUc" id="Tut-EC-dO2"/>
                                             <outlet property="points" destination="Rnu-Vo-JB5" id="lLd-rT-wgc"/>
                                             <outlet property="pointsDivider" destination="Mhc-eL-e4P" id="e9Q-NR-Suv"/>
+                                            <outlet property="subtitle" destination="vkz-wl-emF" id="hQr-UQ-aY3"/>
                                             <outlet property="title" destination="Q3t-LK-Jry" id="7Js-rf-rat"/>
                                         </connections>
                                     </tableViewCell>
@@ -230,32 +239,6 @@
             <point key="canvasLocation" x="-75.362318840579718" y="19.419642857142858"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="EGK-kT-erl">
-            <size key="intrinsicContentSize" width="229" height="151"/>
-        </designable>
-        <designable name="HyU-M2-T4c">
-            <size key="intrinsicContentSize" width="61.5" height="20.5"/>
-        </designable>
-        <designable name="Mhc-eL-e4P">
-            <size key="intrinsicContentSize" width="4" height="20.5"/>
-        </designable>
-        <designable name="Q3t-LK-Jry">
-            <size key="intrinsicContentSize" width="184" height="20.5"/>
-        </designable>
-        <designable name="Rnu-Vo-JB5">
-            <size key="intrinsicContentSize" width="69" height="20.5"/>
-        </designable>
-        <designable name="bdg-qH-tTU">
-            <size key="intrinsicContentSize" width="165" height="20.5"/>
-        </designable>
-        <designable name="oWT-oI-47b">
-            <size key="intrinsicContentSize" width="124.5" height="20.5"/>
-        </designable>
-        <designable name="qCU-lc-Waf">
-            <size key="intrinsicContentSize" width="481.5" height="20.5"/>
-        </designable>
-    </designables>
     <resources>
         <image name="PandaNoEvents" width="229" height="151"/>
         <systemColor name="systemBackgroundColor">

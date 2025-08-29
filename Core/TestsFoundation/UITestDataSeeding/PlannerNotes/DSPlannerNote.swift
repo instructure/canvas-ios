@@ -20,9 +20,9 @@ import Foundation
 
 public struct DSPlannerNote: Codable {
     public let id: String
-    public let todo_date: Date
     public let title: String
-    public let details: String
-    public let user_id: String
-    public let workflow_state: String
+    public let details: String?
+    public let todo_date: Date
+    public let user_id: String?
+    public let course_id: String?
 }

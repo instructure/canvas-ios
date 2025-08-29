@@ -27,6 +27,7 @@ struct PlannerListRowView: View {
             VStack(alignment: .leading) {
                 courseCodeText.style(.textCellTopLabel)
                 Text(item.title ?? "").style(.textCellTitle)
+                // TODO: add subtitle for Discussion Checkpoints
                 Text(item.dueDateText ?? "").style(.textCellSupportingText)
                 if let pointsText = item.pointsText {
                     Text(pointsText).style(.textCellSupportingText)
