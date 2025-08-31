@@ -173,13 +173,10 @@ class SubmissionButtonPresenter: NSObject {
     }
 
     private func presentStudentAnnotation(assignment: Assignment, view: UIViewController) {
-        let courseID = assignment.courseID.asNonRootPrefixedCourseID(in: env)
-        let courseScope = Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(Course.id), courseID), order: [])
-
         guard
             let submissionId = assignment.submission?.id,
             let userID = assignment.submission?.userID,
-            let course: Course = env.database.viewContext.fetch(scope: courseScope).first
+            let course = GetCourse(courseID: assignment.courseID).fetchFromDatabase(environment: env).first
         else {
             return
         }

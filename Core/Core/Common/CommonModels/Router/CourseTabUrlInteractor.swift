@@ -241,30 +241,33 @@ public final class CourseTabUrlInteractor {
     }
 
     public func courseShardID(for url: URLComponents) -> String? {
-        let context = Context(path: url.path)
+        let pathContext = Context(path: url.path)
 
-        if let context,
-           context.contextType == .course,
-           let shardID = context.id.shardID {
+        if let pathContext,
+           let shardID = pathContext.courseId?.shardID {
             return shardID
         }
 
-        if let urlHost = url.host,
-           let shardID = baseURLHostOverridesPerCourse
-            .first(where: { $0.key.id.hasShardID && $0.value == urlHost })?
-            .key
-            .id
-            .shardID {
-            return shardID
+        if let urlHost = url.host {
+
+            let overrideContexts = baseURLHostOverridesPerCourse
+                .filter { $0.value == urlHost } // It's possible to have multiple contexts with the same `value`
+                .map { $0.key }
+
+            if let shardID = overrideContexts.compactMap(\.id.shardID).first {
+                return shardID
+            }
         }
 
-        if let context,
-           let shardID = baseURLHostOverridesPerCourse
-            .keys
-            .first(where: { $0.id.hasShardID && $0.isEquivalent(to: context) })?
-            .id
-            .shardID {
-            return shardID
+        if let pathContext {
+
+            let overrideContexts = baseURLHostOverridesPerCourse
+                .filter { $0.key.isEquivalent(to: pathContext) } // It's possible to have multiple equivalent contexts
+                .map { $0.key }
+
+            if let shardID = overrideContexts.compactMap(\.id.shardID).first {
+                return shardID
+            }
         }
 
         return nil

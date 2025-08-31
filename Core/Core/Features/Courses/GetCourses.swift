@@ -266,17 +266,29 @@ struct GetCourseWithGradingSchemeOnly: APIUseCase {
     typealias Request = GetCourseRequest
     typealias Response = APICourse
 
-    public let request: Request
+    public private(set) var request: Request
     public let cacheKey: String?
     public let scope: Scope
 
-    private let courseId: String
+    private var courseId: String
 
     init(courseId: String) {
         self.request = Request(courseID: courseId, include: [.grading_scheme])
         self.cacheKey = "get-course-with-grading-scheme-only-\(courseId)"
         self.scope = .where(#keyPath(Model.id), equals: courseId)
         self.courseId = courseId
+    }
+
+    func modified(for env: AppEnvironment) -> GetCourseWithGradingSchemeOnly {
+        var modifiedCase = self
+
+        if env.isRoot == false {
+            let newCourseID = courseId.asGlobalID(of: env.courseShardID)
+            modifiedCase.courseId = newCourseID
+            modifiedCase.request = Request(courseID: newCourseID, include: request.include)
+        }
+
+        return modifiedCase
     }
 
     func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
