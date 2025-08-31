@@ -127,12 +127,14 @@ public struct WebView: UIViewRepresentable {
         let webViewContainer = UIView()
         let webView = CoreWebView(features: features, configuration: configuration)
         webView.resetEnvironment(env)
+
         webViewContainer.addSubview(webView)
         if canToggleTheme {
             webView.pinWithThemeSwitchButton(inside: webViewContainer)
         } else {
             webView.pin(inside: webViewContainer)
         }
+        
         webView.autoresizesHeight = true
         webView.scrollView.isScrollEnabled = isScrollEnabled
         webView.scrollView.showsVerticalScrollIndicator = false
