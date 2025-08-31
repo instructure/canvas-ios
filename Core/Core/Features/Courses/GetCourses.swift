@@ -285,7 +285,7 @@ struct GetCourseWithGradingSchemeOnly: APIUseCase {
         if env.isRoot == false {
             let newCourseID = courseId.asGlobalID(of: env.courseShardID)
             modifiedCase.courseId = newCourseID
-            modifiedCase.request = Request(courseID: newCourseID, include: [.grading_scheme])
+            modifiedCase.request = Request(courseID: newCourseID, include: request.include)
         }
 
         return modifiedCase
