@@ -121,6 +121,8 @@ public extension UseCase {
 
     /// Execute fetch request synchronously from local database
     func fetchFromDatabase(environment: AppEnvironment = .shared) -> [Model] {
+        precondition(Thread.isMainThread)
+
         let modifiedUseCase = modified(for: environment)
         return environment.database.viewContext.fetch(scope: modifiedUseCase.scope)
     }

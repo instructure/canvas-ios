@@ -266,7 +266,7 @@ struct GetCourseWithGradingSchemeOnly: APIUseCase {
     typealias Request = GetCourseRequest
     typealias Response = APICourse
 
-    public var request: Request
+    public private(set) var request: Request
     public let cacheKey: String?
     public let scope: Scope
 
