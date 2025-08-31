@@ -72,6 +72,9 @@ open class AppEnvironment {
     public var isRoot: Bool { root === self }
 
     public var sessionShardID: String? { currentSession?.accessToken?.shardID }
+
+    // This can be different from `sessionShardID` for cross-shard setup.
+    // See `AppEnvironmentOverride` impl. for it.
     public var courseShardID: String? { sessionShardID }
 
     /**
