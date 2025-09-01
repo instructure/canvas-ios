@@ -16875,7 +16875,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Afegeix un comentari"
+            "value" : "Afegiu un comentari"
           }
         },
         "cy" : {
@@ -16977,7 +16977,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuir ráiteas leis"
+            "value" : "Add comment"
           }
         },
         "hi" : {
@@ -20022,7 +20022,7 @@
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Besked"
+            "value" : "Meddelelse"
           }
         },
         "da-instk12" : {
@@ -20148,7 +20148,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "発表"
+            "value" : "アナウンスメント"
           }
         },
         "mi" : {
@@ -20196,7 +20196,7 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anúncio"
+            "value" : "Aviso"
           }
         },
         "ru" : {
@@ -20412,7 +20412,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "発表"
+            "value" : "アナウンス"
           }
         },
         "mi" : {
@@ -20478,13 +20478,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Meddelanden"
+            "value" : "Anslag"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Meddelanden"
+            "value" : "Meddelande"
           }
         },
         "th" : {
@@ -20496,7 +20496,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Thông Báo Chung"
+            "value" : "Thông báo chung"
           }
         },
         "zh" : {
@@ -28251,7 +28251,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whakakore"
+            "value" : "Whakakore "
           }
         },
         "ms" : {
@@ -35153,7 +35153,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Completat"
+            "value" : "S’ha completat"
           }
         },
         "cy" : {
@@ -35291,13 +35291,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "完了済"
+            "value" : "完了"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kua oti"
+            "value" : "Kua Oti"
           }
         },
         "ms" : {
@@ -35357,13 +35357,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Slutförd"
+            "value" : "Färdig"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fullgjord"
+            "value" : "Slutförd"
           }
         },
         "th" : {
@@ -45569,7 +45569,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Feito"
+            "value" : "Concluído"
           }
         },
         "pt-BR" : {
@@ -47799,7 +47799,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "À rendre le"
+            "value" : "Dû le"
           }
         },
         "fr-CA" : {
@@ -47829,7 +47829,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Batas"
+            "value" : "Batas Waktu"
           }
         },
         "is" : {
@@ -47889,7 +47889,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Limite"
+            "value" : "Data de vencimento"
           }
         },
         "pt-BR" : {
@@ -47907,7 +47907,7 @@
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Roki"
+            "value" : "Rok"
           }
         },
         "sv" : {
@@ -50341,7 +50341,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Correu electrònic"
+            "value" : "Adreça electrònica"
           }
         },
         "cy" : {
@@ -50431,7 +50431,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Email"
+            "value" : "Adresse e-mail"
           }
         },
         "fr-CA" : {
@@ -50515,7 +50515,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "E-mail"
+            "value" : "Adres e-mail"
           }
         },
         "pt" : {
@@ -56130,7 +56130,7 @@
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ffeil wedi’i llwytho i fyny"
+            "value" : "Llwytho ffeil i fyny"
           }
         },
         "da" : {
@@ -56226,7 +56226,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uaslódáil comhaid"
+            "value" : "File upload"
           }
         },
         "hi" : {
@@ -56292,7 +56292,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bestand upload"
+            "value" : "Bestandsupload"
           }
         },
         "pl" : {
@@ -66586,7 +66586,260 @@
       }
     },
     "It looks like your account isn't set up as a learner role. If you believe this is a mistake, contact your admin or support team." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يبدو أن حسابك غير مُعد لدور المتعلم. إذا كنت تعتقد أن هذا خطأ، فتواصل مع مسؤولك أو فريق الدعم."
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sembla que el compte no està configurat amb un rol d'alumne. Si creieu que això és un error, poseu-vos en contacte amb l’administrador o l'equip d'assistència tècnica."
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mae’n edrych yn debyg nad yw’ch cyfrif wedi’i osod fel rôl dysgwr. Os ydych chi’n credu mai camgymeriad yw hwn, cysylltwch â’ch tîm cymorth neu weinyddol."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det ser ud til, at din konto ikke er konfigureret til studerende. Hvis du mener, at dette er en fejl, skal du kontakte din administrator eller dit supportteam."
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det ser ud til, at din konto ikke er konfigureret til studerende. Hvis du mener, at dette er en fejl, skal du kontakte din administrator eller dit supportteam."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es sieht so aus, als ob Ihr Konto nicht für die Teilnehmer-Rolle eingerichtet ist. Wenn Sie glauben, dass dies ein Fehler ist, wenden Sie sich an Ihren Admin oder das Support-Team."
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It looks like your account isn't set up as a learner role. If you believe this is a mistake, contact your admin or support team."
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It looks like your account isn't set up as a learner role. If you believe this is a mistake, contact your admin or support team."
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It looks like your account isn't set up as a learner role. If you believe this is a mistake, contact your admin or support team."
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It looks like your account isn't set up as a learner role. If you believe this is a mistake, contact your admin or support team."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It looks like your account isn't set up as a learner role. If you believe this is a mistake, contact your admin or support team."
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It looks like your account isn't set up as a learner role. If you believe this is a mistake, contact your admin or support team."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parece que su cuenta no está configurada como estudiante. Si cree que se trata de un error, comuníquese con su administrador o con el equipo de asistencia."
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parece que tu cuenta no está configurada con rol de estudiante. Si piensas que es un error, ponte en contacto con tu administrador o con el equipo de asistencia técnica."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Näyttää siltä, että tiliäsi ei ole määritetty oppijan rooliksi. Jos uskot, että tämä on virhe, ota yhteyttä ylläpitäjään tai tukitiimiin."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il semble que votre compte n’est pas configuré avec le rôle d’apprenant. Si vous pensez qu’il s’agit d’une erreur, prenez contact avec l’administrateur ou l’équipe d’assistance technique."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il semble que votre compte ne soit pas configuré en tant que rôle d’apprenant. Si vous pensez qu’il s’agit d’une erreur, contactez votre administrateur ou votre équipe d’assistance."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Is cosúil nach bhfuil do chuntas socraithe mar ról foghlaimeora. Má chreideann tú gur botún é seo, déan teagmháil le do riarthóir nó le d’fhoireann tacaíochta."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऐसा लगता है कि आपका खाता शिक्षार्थी भूमिका के रूप में सेट नहीं किया गया है। यदि आपको लगता है कि यह एक गलती है, तो अपने व्यवस्थापक या सहायता टीम से संपर्क करें।"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta sanble kont ou an pa konfigire tankou an tan ke wòl elèv. Si w panse se yon erè, kontakte administratè w la oswa ekip sipò a."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sepertinya akun Anda belum diatur sebagai peran pelajar. Jika Anda yakin ini adalah kesalahan, hubungi admin atau tim dukungan Anda."
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Það lítur út fyrir að aðgangurinn þinn sé ekki settur upp sem nemandahlutverk Ef þú telur að þetta sé mistök skaltu hafa samband við stjórnanda eða þjónustuteymi."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sembra che il tuo account sia configurato come Ruolo Allievo. Se pensi sia un errore, contatta il tuo amministratore o il team di assistenza."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アカウントが学習者ロールとして設定されていないようです。これが間違いだと思われる場合は、管理者またはサポートチームにご連絡ください。"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Te ahua nei kaore to putea i whakaritea hei mahi ako. Ki te whakapono koe he he tenei, whakapa atu ki to kaiwhakahaere, ki to roopu tautoko ranei."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nampaknya akaun anda tidak ditetapkan sebagai peranan pelajar. Jika anda dapati ini satu kesilapan, hubungi pentadbir anda atau pasukan sokongan."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det ser ut til at kontoen din ikke er konfigurert som en studentrolle. Hvis du mener dette er en feil, kan du kontakte administratoren eller brukerstøtteteamet ditt."
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det ser ut til at kontoen din ikke er konfigurert som en studentrolle. Hvis du mener dette er en feil, kan du kontakte administratoren eller brukerstøtteteamet ditt."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het lijkt erop dat je account niet is ingesteld voor een cursistenrol. Als je van mening bent dat dit een vergissing is, kun je contact opnemen met je beheerder of ondersteuningsteam."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wygląda na to, że Twojego konta nie skonfigurowano jako konta uczestnika. Jeśli uważasz, że nastąpiła pomyłka, skontaktuj się z administratorem lub działem pomocy technicznej."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parece que a sua conta não está configurada como um utilizador com função de aluno. Se acredita que se trata de um erro, contacte o seu administrador ou a equipa de suporte."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parece que sua conta não está configurada como aluno. Se você acredita que isso é um erro, entre em contato com seu administrador ou equipe de suporte."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Похоже, что ваша учетная запись не настроена в качестве роли учащегося. Если вы считаете, что это ошибка, обратитесь к своему администратору или в службу поддержки"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Videti je, da vaš račun ni nastavljen v vlogi učenca. Če menite, da gre za napako, se obrnite na skrbnika ali ekipo podpore."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det verkar som om ditt konto inte är konfigurerat för en lärarroll. Om du anser att detta är ett misstag kontaktar du din administratör eller ditt supportteam."
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det verkar som om ditt konto inte är konfigurerat för en lärarroll. Om du anser att detta är ett misstag kontaktar du din administratör eller ditt supportteam."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ดูเหมือนบัญชีผู้ใช้ของคุณยังไม่ได้กำหนดบทบาทเป็นผู้เรียน หากคุณเชื่อว่าเกิดข้อผิดพลาดขึ้น กรุณาติดต่อผู้ดูแลระบบหรือทีมให้บริการของคุณ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Có vẻ như tài khoản của bạn chưa được thiết lập ở vai trò học viên. Nếu bạn cho rằng đây là nhầm lẫn, hãy liên hệ với quản trị viên hoặc nhóm hỗ trợ."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您的帐户似乎没有设置为学员角色。如果您认为有错，请联系管理员或支持团队。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您的帐户似乎没有设置为学员角色。如果您认为有错，请联系管理员或支持团队。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您的帳戶似乎未設定為學習者角色。如果您認為這是一個錯誤，請聯絡您的管理員或支援團隊。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您的帳戶似乎未設定為學習者角色。如果您認為這是一個錯誤，請聯絡您的管理員或支援團隊。"
+          }
+        }
+      }
     },
     "It’s empty, what are you still doing here." : {
       "comment" : "It’s empty, what are you still doing here.",
@@ -70794,7 +71047,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tancament de sessió"
+            "value" : "Tanca la sessió"
           }
         },
         "cy" : {
@@ -70848,19 +71101,19 @@
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Log out"
+            "value" : "Logout"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Log out"
+            "value" : "Logout"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Log out"
+            "value" : "Logout"
           }
         },
         "es" : {
@@ -70962,7 +71215,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Afmelden"
+            "value" : "Uitloggen"
           }
         },
         "pl" : {
@@ -79628,7 +79881,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kahore "
+            "value" : "Kahore"
           }
         },
         "ms" : {
@@ -86921,7 +87174,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ceart go leor"
+            "value" : "Ok"
           }
         },
         "hi" : {
@@ -88619,7 +88872,260 @@
       }
     },
     "Oops, something went wrong" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عذرًا، حدث خطأ ما"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ui, s’ha produït un error"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wps, aeth rhywbeth o’i le"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ups, noget gik galt"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ups, noget gik galt"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ups, etwas ist schief gelaufen"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops, something went wrong"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops, something went wrong"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops, something went wrong"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops, something went wrong"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops, something went wrong"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops, something went wrong"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lo sentimos, algo salió mal"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lo sentimos, algo ha salido mal"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hups, jotakin meni pieleen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un problème est survenu."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oups, quelque chose s’est mal produit"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ó, chuaigh rud éigin mícheart."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ओह, कुछ गड़बड़ हुई"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops, yon bagay pase mal"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ups, terjadi kesalahan"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Úbbs, eitthvað fór úrskeiðis"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ops, si è verificato un errore."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "おっと、何か問題が発生しました"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aue, kua he"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ops, sesuatu tidak kena"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obs, noe gikk galt"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obs, noe gikk galt"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oeps, er is iets misgegaan"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ups, coś poszło nie tak."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops, algo correu mal"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opa, algo deu errado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ой, что-то пошло не так"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ups, nekaj je narobe"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoppsan, något gick fel"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoppsan, något gick fel"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "อุ๊ปส์ มีบางอย่างผิดปกติ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rất tiếc, đã xảy ra vấn đề"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "糟糕，出错了"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "糟糕，出错了"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "糟糕，出現問題"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "糟糕，出現問題"
+          }
+        }
+      }
     },
     "Oops!" : {
       "comment" : "Error message title\n   Error title\n   Masquerade error title",
@@ -90839,7 +91345,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "as %@"
+            "value" : "out of %@"
           }
         },
         "hi" : {
@@ -90893,7 +91399,7 @@
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "av %@"
+            "value" : "ut av %@"
           }
         },
         "nb-instk12" : {
@@ -90905,7 +91411,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "van %@"
+            "value" : "van de %@"
           }
         },
         "pl" : {
@@ -93731,7 +94237,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Postáil"
+            "value" : "Post"
           }
         },
         "hi" : {
@@ -93767,7 +94273,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "投稿"
+            "value" : "掲示"
           }
         },
         "mi" : {
@@ -93791,7 +94297,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Post"
+            "value" : "Innlegg"
           }
         },
         "nl" : {
@@ -93833,13 +94339,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Publicera"
+            "value" : "Offentliggör"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inlägg"
+            "value" : "Offentliggör"
           }
         },
         "th" : {
@@ -93869,13 +94375,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "發佈"
+            "value" : "公佈"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "發佈"
+            "value" : "公佈"
           }
         }
       }
@@ -95575,7 +96081,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Próifíl"
+            "value" : "Profile"
           }
         },
         "hi" : {
@@ -98447,7 +98953,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Faighteoirí"
+            "value" : "Recipients"
           }
         },
         "hi" : {
@@ -103951,7 +104457,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ngana anō"
+            "value" : "Ngana ano"
           }
         },
         "ms" : {
@@ -107203,7 +107709,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enviat"
+            "value" : "S’ha enviat"
           }
         },
         "cy" : {
@@ -107305,7 +107811,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seolta"
+            "value" : "Sent"
           }
         },
         "hi" : {
@@ -107413,7 +107919,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Skickat"
+            "value" : "Skickade"
           }
         },
         "th" : {
@@ -107460,7 +107966,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "إعدادات"
+            "value" : "الإعدادات"
           }
         },
         "ca" : {
@@ -107640,7 +108146,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Configurações"
+            "value" : "Definições"
           }
         },
         "pt-BR" : {
@@ -135643,13 +136149,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obegränsad"
+            "value" : "Obegränsat"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obegränsad"
+            "value" : "Obegränsat"
           }
         },
         "th" : {
@@ -135804,7 +136310,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neamhléite"
+            "value" : "Unread"
           }
         },
         "hi" : {
@@ -135828,7 +136334,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ólesið"
+            "value" : "Ólesin"
           }
         },
         "it" : {
@@ -135846,7 +136352,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kia pānuitia"
+            "value" : "Kia panuitia"
           }
         },
         "ms" : {
@@ -135864,7 +136370,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uleste"
+            "value" : "Ulest"
           }
         },
         "nl" : {
@@ -135906,13 +136412,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Olästa"
+            "value" : "Oläst"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oläst"
+            "value" : "Olästa"
           }
         },
         "th" : {
@@ -137548,7 +138054,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Penja el fitxer"
+            "value" : "Pengeu el fitxer"
           }
         },
         "cy" : {
@@ -137638,7 +138144,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Télécharger un fichier"
+            "value" : "Charger un fichier"
           }
         },
         "fr-CA" : {
@@ -137680,7 +138186,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Carica File"
+            "value" : "Carica file"
           }
         },
         "ja" : {
@@ -137722,7 +138228,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pobierz plik"
+            "value" : "Prześlij plik"
           }
         },
         "pt" : {
@@ -144183,13 +144689,13 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tá"
+            "value" : "Yes"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "हां"
+            "value" : "हाँ"
           }
         },
         "ht" : {
