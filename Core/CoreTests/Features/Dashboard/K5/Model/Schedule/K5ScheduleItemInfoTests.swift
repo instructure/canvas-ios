@@ -77,10 +77,10 @@ class K5ScheduleItemInfoTests: CoreTestCase {
     }
 
     func testDueText() {
-        let allDayTestee = APIPlannable.make(plannable: .init(all_day: true, details: nil, end_at: nil, points_possible: nil, start_at: nil, title: nil))
+        let allDayTestee = APIPlannable.make(plannable: .make(all_day: true, start_at: nil, end_at: nil))
         XCTAssertEqual(allDayTestee.k5ScheduleDueText, String(localized: "All Day", bundle: .core))
 
-        let intervalTestee = APIPlannable.make(plannable: .init(all_day: nil, details: nil, end_at: Date().addHours(1), points_possible: nil, start_at: Date(), title: nil))
+        let intervalTestee = APIPlannable.make(plannable: .make(all_day: nil, start_at: Date(), end_at: Date().addHours(1)))
         XCTAssertTrue(intervalTestee.k5ScheduleDueText.contains(" – "))
 
         let otherTestee = APIPlannable.make(plannable_type: "other", plannable_date: Date())
@@ -88,10 +88,10 @@ class K5ScheduleItemInfoTests: CoreTestCase {
     }
 
     func testPoints() {
-        let singularTestee = APIPlannable.make(plannable: .init(all_day: nil, details: nil, end_at: nil, points_possible: 1, start_at: nil, title: nil))
+        let singularTestee = APIPlannable.make(plannable: .make(points_possible: 1))
         XCTAssertEqual(singularTestee.k5SchedulePoints, "1 pt")
 
-        let pluralTestee = APIPlannable.make(plannable: .init(all_day: nil, details: nil, end_at: nil, points_possible: 2, start_at: nil, title: nil))
+        let pluralTestee = APIPlannable.make(plannable: .make(points_possible: 2))
         XCTAssertEqual(pluralTestee.k5SchedulePoints, "2 pts")
     }
 

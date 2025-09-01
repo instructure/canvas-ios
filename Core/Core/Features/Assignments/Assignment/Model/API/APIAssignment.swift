@@ -67,6 +67,10 @@ public struct APIAssignment: Codable, Equatable {
     let url: URL?
     let use_rubric_for_grading: Bool?
     let hide_in_gradebook: Bool?
+
+    // Checkpoints
+    let has_sub_assignments: Bool? // include[]=checkpoints
+    let checkpoints: [APIAssignmentCheckpoint]? // include[]=checkpoints
 }
 
 extension APIAssignment {
@@ -132,7 +136,9 @@ extension APIAssignment {
         unpublishable: Bool? = true,
         url: URL? = nil,
         use_rubric_for_grading: Bool? = nil,
-        hide_in_gradebook: Bool? = false
+        hide_in_gradebook: Bool? = false,
+        has_sub_assignments: Bool? = nil,
+        checkpoints: [APIAssignmentCheckpoint]? = nil
     ) -> APIAssignment {
 
         var submissionList: APIList<APISubmission>?
@@ -189,7 +195,9 @@ extension APIAssignment {
             unpublishable: unpublishable,
             url: url,
             use_rubric_for_grading: use_rubric_for_grading,
-            hide_in_gradebook: hide_in_gradebook
+            hide_in_gradebook: hide_in_gradebook,
+            has_sub_assignments: has_sub_assignments,
+            checkpoints: checkpoints
         )
     }
 }

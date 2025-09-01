@@ -83,7 +83,10 @@ public struct GradeListView: View, ScreenViewTrackable {
         .animation(.smooth, value: isScoreEditorPresented)
         .safeAreaInset(edge: .top, spacing: 0) {
             switch viewModel.state {
-            case .data, .empty: nonCollapsableGradeDetails
+            case .data, .empty: GradeListHeaderView(
+                viewModel: viewModel,
+                toggleViewIsVisible: toggleViewIsVisible
+            )
             default: SwiftUI.EmptyView()
             }
         }
@@ -97,7 +100,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 viewModel.isShowingRevertDialog = true
             }
             ToolbarItem(placement: .primaryAction) {
-                filterButton
+                GradeListFilterButton(viewModel: viewModel)
             }
         }
         .navigationBarStyle(.color(nil))
@@ -107,30 +110,12 @@ public struct GradeListView: View, ScreenViewTrackable {
         )
     }
 
-    private var filterButton: some View {
-        Button {
-            viewModel.navigateToFilter(viewController: viewController)
-        } label: {
-            Image.filterLine
-                .size(24)
-                .padding(5)
-                .foregroundStyle(viewModel.isParentApp
-                                 ? Color(Brand.shared.primary)
-                                 : .textLightest)
-
-        }
-        .hidden(viewModel.state == .initialLoading)
-        .accessibilityLabel(Text("Filter", bundle: .core))
-        .accessibilityHint(Text("Filter grades options", bundle: .core))
-        .accessibilityIdentifier("GradeList.filterButton")
-    }
-
     @ViewBuilder
     private var contentView: some View {
         VStack(spacing: 0) {
             switch viewModel.state {
             case .data, .empty:
-                collapsableToggles
+                GradeListTogglesView(viewModel: viewModel)
                     .bindTopPosition(id: "collapsableHeader", coordinateSpace: .global, to: $scrollOffset)
                     .readingFrame { frame in
                         if collapsableHeaderHeight != frame.height {
@@ -173,68 +158,6 @@ public struct GradeListView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private var gradeDetailsView: some View {
-        HStack {
-            totalLabelText
-                .frame(maxWidth: .infinity, alignment: .leading)
-            if let totalGrade = viewModel.totalGradeText {
-                Text(totalGrade)
-                    .foregroundStyle(Color.textDarkest)
-                    .font(.semibold22)
-                    .multilineTextAlignment(.center)
-                    .accessibilityLabel(Text("Total grade is \(totalGrade)", bundle: .core))
-                    .accessibilityIdentifier("CourseTotalGrade")
-            } else {
-                Image(uiImage: .lockLine)
-                    .size(16)
-                    .accessibilityHidden(true)
-                    .accessibilityIdentifier("lockIcon")
-            }
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, verticalSizeClass == .regular ? 20 : 5)
-        .background(
-            Color.backgroundLightest
-                .cornerRadius(6)
-        )
-        .shadow(color: Color.textDark.opacity(0.2), radius: 5, x: 0, y: 0)
-    }
-
-    @ViewBuilder
-    private var nonCollapsableGradeDetails: some View {
-        VStack(spacing: 0) {
-            HStack(alignment: .center) {
-                gradeDetailsView
-                if viewModel.isParentApp {
-                    filterButton
-                        .paddingStyle(.leading, .standard)
-                }
-            }
-            .padding([.horizontal, .top], 16)
-            .padding(.bottom, 10)
-            .background(Color.backgroundLight)
-            .overlay(alignment: .bottom) {
-                if !toggleViewIsVisible {
-                    InstUI.Divider()
-                }
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var collapsableToggles: some View {
-        VStack(spacing: 0) {
-            if viewModel.totalGradeText != nil {
-                togglesView
-                    .frame(minHeight: 51)
-                    .padding(.horizontal, 16)
-            }
-            InstUI.Divider()
-        }
-        .background(Color.backgroundLight)
-    }
-
-    @ViewBuilder
     private var emptyView: some View {
         InteractivePanda(
             scene: SpacePanda(),
@@ -261,24 +184,6 @@ public struct GradeListView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private var totalLabelText: some View {
-        let isShowGradeAssignment = !toggleViewIsVisible &&
-        viewModel.baseOnGradedAssignment &&
-        viewModel.totalGradeText != nil
-
-        let totalText = String(localized: "Total", bundle: .core)
-        let restrictedText = String(localized: "Total grades are restricted", bundle: .core)
-        let gradedAssignmentsText = String(localized: "Based on graded assignments", bundle: .core)
-        let text = isShowGradeAssignment ? gradedAssignmentsText : totalText
-        Text(viewModel.totalGradeText == nil ? restrictedText : text)
-            .foregroundStyle(Color.textDark)
-            .font(.regular14)
-            .accessibilityHidden(true)
-            .animation(.smooth, value: isShowGradeAssignment)
-            .lineLimit(1)
-    }
-
-    @ViewBuilder
     private func totalGradeText(_ totalGrade: String) -> some View {
         Text(totalGrade)
             .foregroundStyle(Color.textDarkest)
@@ -289,32 +194,6 @@ public struct GradeListView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private var togglesView: some View {
-        VStack(spacing: 0) {
-            InstUI.Toggle(isOn: $viewModel.baseOnGradedAssignment) {
-                Text("Based on graded assignments", bundle: .core)
-                    .foregroundStyle(Color.textDarkest)
-                    .font(.regular16)
-                    .multilineTextAlignment(.leading)
-            }
-            .frame(minHeight: 51)
-            .accessibilityIdentifier("BasedOnGradedToggle")
-
-            if viewModel.isWhatIfScoreFlagEnabled {
-                Divider()
-
-                InstUI.Toggle(isOn: $viewModel.isWhatIfScoreModeOn) {
-                    Text("Show What-if Score", bundle: .core)
-                        .foregroundStyle(Color.textDarkest)
-                        .font(.regular16)
-                        .multilineTextAlignment(.leading)
-                }
-                .frame(minHeight: 51)
-            }
-        }
-    }
-
-    @ViewBuilder
     private func assignmentListView(
         courseColor: UIColor?,
         assignmentSections: [GradeListData.AssignmentSections],
@@ -322,29 +201,24 @@ public struct GradeListView: View, ScreenViewTrackable {
     ) -> some View {
         LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
             ForEach(assignmentSections, id: \.id) { section in
-                let itemCountLabel = String.format(numberOfItems: section.assignments.count)
-                AssignmentSection {
-                    VStack(spacing: 0) {
-                        listSectionView(title: section.title)
-                            .frame(height: 40)
-                            .paddingStyle(.horizontal, .standard)
-                    }
-                    .accessibilityLabel(Text(verbatim: "\(section.title), \(itemCountLabel)"))
-                } content: {
-                    ForEach(section.assignments, id: \.id) { assignment in
+                AssignmentSection(
+                    title: section.title,
+                    titleA11yLabel: section.accessibilityLabel
+                ) {
+                    ForEach(section.assignments, id: \.id) { entry in
                         VStack(alignment: .leading, spacing: 0) {
                             listRowView(
-                                assignment: assignment,
+                                assignment: entry,
                                 userID: userID,
                                 courseColor: courseColor
                             )
 
-                            if assignment.id != section.assignments.last?.id {
+                            if entry.id != section.assignments.last?.id {
                                 InstUI.Divider()
                                     .paddingStyle(.horizontal, .standard)
                                     .accessibilityHidden(true)
                             }
-                        }.id(assignment.id)
+                        }.id(entry.id)
                     }
                 }
             }
@@ -355,25 +229,16 @@ public struct GradeListView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private func listSectionView(title: String?) -> some View {
-        Text(title ?? "")
-            .foregroundStyle(Color.textDark)
-            .font(.semibold14)
-            .frame(maxWidth: .infinity, minHeight: 40, alignment: .leading)
-    }
-
-    @ViewBuilder
     private func listRowView(
-        assignment: Assignment,
+        assignment: GradeListAssignment,
         userID: String,
         courseColor _: UIColor?
     ) -> some View {
         Button {
-            viewModel.didSelectAssignment.accept((viewController, assignment))
+            viewModel.didSelectAssignment.accept((viewController, assignment.id))
         } label: {
             GradeRowView(
                 assignment: assignment,
-                userID: userID,
                 isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn
             ) {
                 isScoreEditorPresented.toggle()
@@ -411,11 +276,15 @@ public struct GradeListView: View, ScreenViewTrackable {
     }
 
     private func revertWhatIfScoreSwipeButton(id: String) -> [SwipeModel] {
+        guard viewModel.isWhatIfScoreModeOn else {
+            return []
+        }
+
         let slot = SwipeModel(id: id,
                               image: { Image(uiImage: .replyLine)},
                               action: { viewModel.isShowingRevertDialog = true },
                               style: .init(background: Color.backgroundDark))
-        return viewModel.isWhatIfScoreModeOn ? [slot] : []
+        return [slot]
     }
 }
 

@@ -1,0 +1,38 @@
+---
+targets:
+  ParentE2ETests:
+    type: bundle.ui-testing
+    platform: iOS
+    settings:
+      ENABLE_TESTABILITY: true
+      TEST_TARGET_NAME: Parent
+    sources:
+      - path: ./
+        excludes:
+          - ".swiftlint.yml"
+    dependencies:
+      - target: Core/Core
+      - target: Core/TestsFoundation
+schemes:
+  E2ETests-iPad-Parent:
+    build:
+      targets:
+        Parent: all
+    test:
+      language: en
+      region: US
+      targets: ParentE2ETests
+      testPlans:
+        - path: ../../TestPlans/IPadParentTests.xctestplan
+          defaultPlan: true
+  E2ETests-Parent:
+    build:
+      targets:
+        Parent: all
+    test:
+      language: en
+      region: US
+      targets: ParentE2ETests
+      testPlans:
+        - path: ../../TestPlans/ParentE2E.xctestplan
+          defaultPlan: true
