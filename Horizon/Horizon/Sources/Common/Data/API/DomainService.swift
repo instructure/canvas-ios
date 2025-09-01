@@ -20,8 +20,11 @@ import Combine
 import Core
 import Foundation
 
+protocol DomainServiceProtocol {
+    func api() -> AnyPublisher<API, Error>
+}
 /// A representation of our domain services
-final class DomainService {
+final class DomainService: DomainServiceProtocol {
 
     enum Region: String {
         case central1 = "ca-central-1"
@@ -140,7 +143,7 @@ extension DomainService {
 }
 
 extension DomainService {
-    private struct JWTTokenRequest: APIRequestable {
+     struct JWTTokenRequest: APIRequestable {
         typealias Response = Result
         let service: String
 

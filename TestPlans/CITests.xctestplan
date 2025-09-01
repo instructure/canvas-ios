@@ -43,8 +43,13 @@
         },
         {
           "containerPath" : "container:Parent\/Parent.xcodeproj",
-          "identifier" : "5E6441861C3EE2E0003D7397",
+          "identifier" : "5A4DC779202A0919CE9AF177",
           "name" : "Parent"
+        },
+        {
+          "containerPath" : "container:Horizon\/Horizon.xcodeproj",
+          "identifier" : "8A70486345F78B79281EC178",
+          "name" : "Horizon"
         }
       ]
     },
