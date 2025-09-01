@@ -64,6 +64,7 @@ struct TodoListItemCell: View {
                             .paddingStyle(.leading, .cellAccessoryPadding)
                             .accessibilityHidden(true)
                     }
+                    .multilineTextAlignment(.leading)
                 }
                 .paddingStyle(set: .iconCell)
             }
