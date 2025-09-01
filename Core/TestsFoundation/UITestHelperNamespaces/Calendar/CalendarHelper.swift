@@ -122,7 +122,6 @@ public class CalendarHelper: BaseHelper {
         return itemCell(forTitle: title).waitUntil(.visible)
     }
 
-
     private static func navigateToDate(_ date: Date) {
         let dayButtonOfEvent = dayButtonOfDate(date).waitUntil(.visible, timeout: 3)
 
