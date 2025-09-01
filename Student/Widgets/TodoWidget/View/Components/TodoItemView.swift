@@ -37,13 +37,11 @@ struct TodoItemView: View {
 
     private var contextSection: some View {
         HStack(spacing: 5) {
-            if let itemIcon = item.icon {
-                itemIcon
-                    .scaledIcon(size: 16)
-                    .foregroundStyle(item.color)
-                    .accessibilityHidden(true)
-                InstUI.Divider().frame(maxHeight: 16 * uiScale)
-            }
+            item.icon
+                .scaledIcon(size: 16)
+                .foregroundStyle(item.color)
+                .accessibilityHidden(true)
+            InstUI.Divider().frame(maxHeight: 16 * uiScale)
             Text(item.contextName)
                 .foregroundStyle(item.color)
                 .font(.regular12)

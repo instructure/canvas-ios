@@ -29,7 +29,7 @@ public struct TodoItem: Identifiable, Equatable {
     public let htmlURL: URL?
 
     public let color: Color
-    public let icon: Image?
+    public let icon: Image
 
     public init?(_ plannable: Plannable) {
         guard let date = plannable.date else { return nil }
@@ -44,7 +44,7 @@ public struct TodoItem: Identifiable, Equatable {
         self.htmlURL = plannable.htmlURL
 
         self.color = plannable.color.asColor
-        self.icon = plannable.icon().flatMap({ Image(uiImage: $0) })
+        self.icon = Image(uiImage: plannable.icon)
     }
 
     public init(
@@ -56,7 +56,7 @@ public struct TodoItem: Identifiable, Equatable {
         contextName: String,
         htmlURL: URL?,
         color: Color,
-        icon: Image?
+        icon: Image
     ) {
 
         self.id = id
@@ -83,7 +83,7 @@ public struct TodoItem: Identifiable, Equatable {
         contextName: String = "",
         htmlURL: URL? = nil,
         color: Color = .red,
-        icon: Image? = nil
+        icon: Image = .assignmentLine
     ) -> TodoItem {
 
         TodoItem(

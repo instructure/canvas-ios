@@ -93,7 +93,7 @@ public final class Plannable: NSManagedObject {
 }
 
 extension Plannable {
-    public func icon() -> UIImage? {
+    public var icon: UIImage {
         switch plannableType {
         case .assignment:
             .assignmentLine

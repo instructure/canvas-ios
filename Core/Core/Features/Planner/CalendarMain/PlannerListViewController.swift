@@ -243,7 +243,7 @@ class PlannerListCell: UITableViewCell {
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: customColor)
 
-        icon.image = p?.icon()
+        icon.image = p?.icon
         if let customColor {
             icon.tintColor = customColor
         }

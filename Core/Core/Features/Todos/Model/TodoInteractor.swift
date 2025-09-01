@@ -20,31 +20,31 @@ import Foundation
 import Combine
 
 public protocol TodoInteractor {
-    var todos: CurrentValueSubject<[TodoItem], Error> { get }
+    var todos: AnyPublisher<[TodoItem], Never> { get }
 
-    @discardableResult
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Bool, Error>
 }
 
 public final class TodoInteractorLive: TodoInteractor {
-    public let todos = CurrentValueSubject<[TodoItem], Error>([])
+    public var todos: AnyPublisher<[TodoItem], Never> {
+        todosSubject.eraseToAnyPublisher()
+    }
 
+    private let todosSubject = CurrentValueSubject<[TodoItem], Never>([])
     private let env: AppEnvironment
     private let startDate: Date
     private let endDate: Date
 
-    private var refreshCancellable: AnyCancellable?
+    private var subscriptions = Set<AnyCancellable>()
 
     init(env: AppEnvironment, startDate: Date = .now, endDate: Date = .distantFuture) {
         self.env = env
         self.startDate = startDate
         self.endDate = endDate
-        refresh(ignoreCache: false)
     }
 
-    @discardableResult
-    public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        let todosPublisher = ReactiveStore(useCase: GetCourses())
+    public func refresh(ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
+        ReactiveStore(useCase: GetCourses())
             .getEntities()
             .map {
                 var contextCodes: [String] = $0.filter(\.isPublished).map(\.canvasContextID)
@@ -58,14 +58,10 @@ public final class TodoInteractorLive: TodoInteractor {
                     .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
                     .map { $0.compactMap(TodoItem.init) }
             }
-            .share()
-            .eraseToAnyPublisher()
-
-        refreshCancellable = todosPublisher
-            .subscribe(todos)
-
-        return todosPublisher
-            .mapToVoid()
+            .map { [weak self] in
+                self?.todosSubject.value = $0
+                return $0.isEmpty
+            }
             .eraseToAnyPublisher()
     }
 }
@@ -73,17 +69,15 @@ public final class TodoInteractorLive: TodoInteractor {
 #if DEBUG
 
 public final class TodoInteractorPreview: TodoInteractor {
-    public let todos: CurrentValueSubject<[TodoItem], Error>
+    public let todos: AnyPublisher<[TodoItem], Never>
 
     public init(todos: [TodoItem] = []) {
         let todos: [TodoItem] = todos.isEmpty ? [.make(id: "1"), .make(id: "2")] : todos
-        self.todos = CurrentValueSubject<[TodoItem], Error>(todos)
+        self.todos = Publishers.typedJust(todos)
     }
 
-    public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        return Just<Void>(())
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+    public func refresh(ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
+        Publishers.typedJust(false)
     }
 }
 

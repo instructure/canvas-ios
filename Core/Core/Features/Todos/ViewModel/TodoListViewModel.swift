@@ -18,11 +18,11 @@
 
 import Foundation
 import Combine
+import CombineExt
 
 public class TodoListViewModel: ObservableObject {
-
     @Published var items: [TodoItem] = []
-    @Published var hasError: Bool = false
+    @Published var state: InstUI.ScreenState = .loading
 
     private let interactor: TodoInteractor
     private let env: AppEnvironment
@@ -32,26 +32,24 @@ public class TodoListViewModel: ObservableObject {
         self.interactor = interactor
         self.env = env
 
-        refresh()
-    }
-
-    public func refresh(ignoreCache: Bool = false, completion: (() -> Void)? = nil) {
-        interactor.refresh(ignoreCache: ignoreCache)
-        interactor.todos
-            .catch { [weak self] _ in
-                self?.hasError = true
-                let empty: [TodoItem] = []
-                return Just(empty).eraseToAnyPublisher()
-            }
-            .sink { [weak self] items in
-                self?.hasError = false
-                self?.items = items
-            }
+        self.interactor.todos
+            .assign(to: \.items, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
-        if let completion {
-            completion()
-        }
+        refresh(completion: { }, ignoreCache: false)
+    }
+
+    public func refresh(completion: @escaping () -> Void, ignoreCache: Bool) {
+        self.state = .loading
+        interactor.refresh(ignoreCache: ignoreCache)
+            .sinkFailureOrValue { [weak self] _ in
+                self?.state = .error
+                completion()
+            } receiveValue: { [weak self] isEmpty in
+                self?.state = isEmpty ? .empty : .data
+                completion()
+            }
+            .store(in: &subscriptions)
     }
 
     func didTapItem(_ item: TodoItem, _ viewController: WeakViewController) {
