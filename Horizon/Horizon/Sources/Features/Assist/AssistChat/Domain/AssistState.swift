@@ -18,21 +18,21 @@
 
 import CombineExt
 
-struct AssistState {
-    private(set) var courseID = CurrentValueRelay<String?>(nil)
-    private(set) var fileID = CurrentValueRelay<String?>(nil)
-    private(set) var pageURL = CurrentValueRelay<String?>(nil)
-    private(set) var textSelection = CurrentValueRelay<String?>(nil)
+struct AssistState: Codable, Equatable {
+    var courseID: String?
+    var fileID: String?
+    var pageID: String?
+    var textSelection: String?
 
     init(
         courseID: String? = nil,
         fileID: String? = nil,
-        pageURL: String? = nil,
+        pageID: String? = nil,
         textSelection: String? = nil
     ) {
-        self.courseID.accept(courseID)
-        self.fileID.accept(fileID)
-        self.pageURL.accept(pageURL)
-        self.textSelection.accept(textSelection)
+        self.courseID = courseID
+        self.fileID = fileID
+        self.pageID = pageID
+        self.textSelection = textSelection
     }
 }

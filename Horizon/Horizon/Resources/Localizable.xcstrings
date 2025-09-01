@@ -292,9 +292,6 @@
     "Copenhagen (+01:00/+02:00)" : {
 
     },
-    "Course Selection" : {
-
-    },
     "Create message" : {
 
     },
@@ -406,9 +403,6 @@
     "Full Name can only be changed by your institution." : {
 
     },
-    "Generate flashcards" : {
-
-    },
     "Georgetown (-04:00/-04:00)" : {
 
     },
@@ -419,9 +413,6 @@
 
     },
     "Get a notification anytime you receive a course announcement or a new message." : {
-
-    },
-    "Give me key takeaways" : {
 
     },
     "Greenland (-02:00/-01:00)" : {
@@ -442,9 +433,6 @@
     "Hawaii (-10:00)" : {
 
     },
-    "Hello! Which course would you like to discuss today?" : {
-
-    },
     "Helsinki (+02:00/+03:00)" : {
 
     },
@@ -461,9 +449,6 @@
 
     },
     "hours" : {
-
-    },
-    "How can I help with this today?" : {
 
     },
     "IgniteAI" : {
@@ -494,9 +479,6 @@
 
     },
     "Istanbul (+03:00/+03:00)" : {
-
-    },
-    "It doesn't look like you have any courses available. Enroll in a course to get started." : {
 
     },
     "Jakarta (+07:00)" : {
@@ -771,9 +753,6 @@
     "Quito (-05:00/-05:00)" : {
 
     },
-    "Quiz me on this material" : {
-
-    },
     "Rangoon (+06:30/+06:30)" : {
 
     },
@@ -784,9 +763,6 @@
 
     },
     "Regenerate flashcards" : {
-
-    },
-    "Rephrase this material" : {
 
     },
     "Reply" : {
@@ -882,15 +858,6 @@
     "Something went wrong" : {
 
     },
-    "Sorry, can we try that again? Which course is it you'd like to discuss?" : {
-
-    },
-    "Sorry, I can't answer that question right now. Please try again later" : {
-
-    },
-    "Sorry, I can't summarize that content right now. Please try again later" : {
-
-    },
     "Sorry, we were not able to display this page right now." : {
 
     },
@@ -955,9 +922,6 @@
 
     },
     "Tehran (+03:30/+03:30)" : {
-
-    },
-    "Tell me more about this topic" : {
 
     },
     "Text" : {
@@ -1069,12 +1033,6 @@
 
     },
     "West Central Africa (+01:00)" : {
-
-    },
-    "What would you like to discuss about the course %@?" : {
-
-    },
-    "What would you like to discuss today?" : {
 
     },
     "Yakutsk (+09:00/+09:00)" : {

@@ -215,10 +215,16 @@ final class ModuleItemSequenceViewModel {
             return
         }
 
-        var pageURL: String?
         var fileID: String?
-        if case let .page(url) = moduleItem?.type {
-            pageURL = url
+        var pageURL: String?
+
+        switch moduleItem?.type {
+        case .file(let id):
+                fileID = id
+        case .page(let url):
+                pageURL = url
+        default:
+            break
         }
         if case let .file(file) = moduleItem?.type {
             fileID = file
@@ -229,7 +235,12 @@ final class ModuleItemSequenceViewModel {
             pageURL: pageURL
         ).queryString
 
-        router.route(to: "/assistant?\(params)", from: viewController, options: .modal())
+        let routingParams: AssistAssembly.RoutingParams = .init(
+            courseID: courseID,
+            fileID: fileID,
+            pageURL: pageURL
+        )
+        router.route(to: "/assistant?\(routingParams.queryString)", from: viewController, options: .modal())
     }
 
     private func updateModuleItemDetails() {

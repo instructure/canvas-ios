@@ -314,42 +314,42 @@ public enum HorizonRoutes {
     }
 
     private static var aiRoutes: [RouteHandler] {
-            [
-                RouteHandler("/assistant") { url, _, _ in
-                    let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
-                    return AssistAssembly.makeAssistChatView(
-                        courseID: routingParams?.courseID,
-                        pageURL: routingParams?.pageURL,
-                        fileID: routingParams?.fileID,
-                        textSelection: routingParams?.textSelection
-                    )
-                },
-                RouteHandler("/assistant/flashcards") { url, _, userInfo in
-                    let flashCards = userInfo?["flashCards"] as? [AssistFlashCardModel] ?? []
-                    let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
-                    return CoreHostingController(
-                        AssistAssembly.makeAIFlashCardView(
+                [
+                    RouteHandler("/assistant") { url, _, _ in
+                        let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
+                        return AssistAssembly.makeAssistChatView(
+                            courseID: routingParams?.courseID,
+                            pageURL: routingParams?.pageURL,
+                            fileID: routingParams?.fileID,
+                            textSelection: routingParams?.textSelection
+                        )
+                    },
+                    RouteHandler("/assistant/flashcards") { url, _, userInfo in
+                        let flashCards = userInfo?["flashCards"] as? [AssistFlashCardModel] ?? []
+                        let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
+                        return CoreHostingController(
+                            AssistAssembly.makeAIFlashCardView(
+                                courseID: routingParams?.courseID,
+                                fileID: routingParams?.fileID,
+                                pageURL: routingParams?.pageURL,
+                                flashCards: flashCards
+                            )
+                        )
+                    },
+                    RouteHandler("/assistant/quiz") { url, _, userInfo in
+                        let quizzes = userInfo?["quizzes"] as? [AssistQuizModel]
+                        let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
+                        let quizView = AssistAssembly.makeAIQuizView(
                             courseID: routingParams?.courseID,
                             fileID: routingParams?.fileID,
                             pageURL: routingParams?.pageURL,
-                            flashCards: flashCards
+                            quizzes: quizzes ?? []
                         )
-                    )
-                },
-                RouteHandler("/assistant/quiz") { url, _, userInfo in
-                    let quizzes = userInfo?["quizzes"] as? [AssistQuizModel]
-                    let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
-                    let quizView = AssistAssembly.makeAIQuizView(
-                        courseID: routingParams?.courseID,
-                        fileID: routingParams?.fileID,
-                        pageURL: routingParams?.pageURL,
-                        quizzes: quizzes ?? []
-                    )
 
-                    return CoreHostingController(quizView)
-                }
-            ]
-        }
+                        return CoreHostingController(quizView)
+                    }
+                ]
+            }
 
     private static var notificationSettings: [RouteHandler] {
         [

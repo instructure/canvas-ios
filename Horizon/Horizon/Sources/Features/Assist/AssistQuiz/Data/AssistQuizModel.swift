@@ -16,85 +16,142 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+import CombineSchedulers
+import Core
 import Foundation
+import Observation
 
-struct AssistQuizModel {
-    // MARK: - Properties
+@Observable
+final class AssistQuizViewModel {
+    // MARK: - Input
 
-    let id: UUID
-    let question: String
-    let options: [AnswerOption]
-    let correctAnswerIndex: Int
+    var selectedAnswer: AssistQuizModel.AnswerOption?
 
-    init(from quiz: AssistChatMessage.QuizItem) {
-        id = UUID()
-        question = quiz.question
-        options = quiz.answers.map { AnswerOption($0) }
-        correctAnswerIndex = quiz.correctAnswerIndex
-    }
+    // MARK: - Output
 
-    init(question: String, options: [AnswerOption], correctAnswerIndex: Int) {
-        id = UUID()
-        self.question = question
-        self.options = options
-        self.correctAnswerIndex = correctAnswerIndex
-    }
-}
-
-extension AssistQuizModel {
-    struct AnswerOption: Identifiable, Equatable {
-        let id: UUID
-        let answer: String
-
-        init(_ answer: String) {
-            id = UUID()
-            self.answer = answer
+    private(set) var isLoaderVisible = true
+    private(set) var errorMessage: String?
+    var quiz: AssistQuizModel? {
+        didSet {
+            if quiz == nil {
+                regenerateQuiz()
+            } else {
+                isLoaderVisible = false
+            }
         }
     }
-}
+    var didSubmitQuiz: Bool = false
+    var isSubmitButtonDisabled: Bool {
+        selectedAnswer == nil
+    }
 
-extension AssistQuizModel {
-    static var mock: [AssistQuizModel] {
-        [
-            .init(
-                question: "What is the capital of Egypt?",
-                options: [
-                    .init("Alex"),
-                    .init("Cairo"),
-                    .init("Mansura"),
-                    .init("Giza")
-                ],
-                correctAnswerIndex: 2
-            ),
-            .init(
-                question: "Is the Earth flat?",
-                options: [
-                    .init("True"),
-                    .init("False")
-                ],
-                correctAnswerIndex: 2
-            ),
-            .init(
-                question: "Which of these is a programming language?",
-                options: [
-                    .init("PhotoShop"),
-                    .init("HTML"),
-                    .init("CSS"),
-                    .init("Photoshop"),
-                    .init("Python")
-                ],
-                correctAnswerIndex: 5
-            ),
-            .init(
-                question: "What is the smallest planet in our solar system?",
-                options: [
-                    .init("Earth, our home, which is not the smallest planet"),
-                    .init("Mercury, the smallest planet and closest to the Sun"),
-                    .init("Mars, known as the Red Planet but larger than Mercury"),
-                    .init("Venus, similar in size to Earth but still not the smallest")
-                ],
-                correctAnswerIndex: 2
+    // MARK: - Private
+
+    private var currentQuizIndex: Int = 0
+
+    // MARK: - Dependencies
+
+    private let chatBotInteractor: AssistChatInteractor
+    private var history: [AssistChatMessage] = []
+    private let router: Router
+    private var quizzes: [AssistQuizModel] = []
+    private let scheduler: AnySchedulerOf<DispatchQueue>
+    private var subscriptions = Set<AnyCancellable>()
+
+    // MARK: - Init
+
+    init(
+        chatBotInteractor: AssistChatInteractor,
+        quizzes: [AssistQuizModel],
+        router: Router = AppEnvironment.defaultValue.router,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
+        self.chatBotInteractor = chatBotInteractor
+        self.router = router
+        self.scheduler = scheduler
+        self.quizzes = quizzes
+
+        self.chatBotInteractor
+            .listen
+            .receive(on: scheduler)
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    switch completion {
+                    case .finished:
+                        self?.isLoaderVisible = false
+                    case .failure(let error):
+                        self?.isLoaderVisible = false
+                        self?.errorMessage = error.localizedDescription
+                    }
+                },
+                receiveValue: { [weak self] result in
+                    switch result {
+                    case .success(let message):
+                        self?.onMessage(message)
+                    case .failure(let error):
+                        self?.isLoaderVisible = false
+                        self?.errorMessage = error.localizedDescription
+                    }
+                }
             )
-        ]
+            .store(in: &subscriptions)
+
+        quiz = quizzes.first
+    }
+
+    // MARK: - Input Actions
+
+    func isCorrect(answer: AssistQuizModel.AnswerOption) -> Bool? {
+        if !didSubmitQuiz {
+            return nil
+        }
+        guard let quiz = quiz else {
+            return nil
+        }
+        return quiz.options.firstIndex { $0.id == answer.id } == quiz.correctAnswerIndex
+    }
+
+    func submitQuiz() {
+        didSubmitQuiz = true
+    }
+
+    func regenerateQuiz() {
+        didSubmitQuiz = false
+        let countQuizzes = quizzes.count
+        guard currentQuizIndex < countQuizzes - 1 else {
+            fetchQuizzes()
+            return
+        }
+        currentQuizIndex += 1
+        quiz = quizzes[safe: currentQuizIndex]
+    }
+
+    func dismiss(controller: WeakViewController) {
+        router.dismiss(controller)
+    }
+
+    func pop(controller: WeakViewController) {
+        router.pop(from: controller)
+    }
+
+    // MARK: - private
+
+    private func onMessage(_ response: AssistChatResponse) {
+        history = response.history
+        guard let quizItems = response.history.last?.quizItems else {
+            return
+        }
+        let quizzes = quizItems.map { AssistQuizModel(from: $0) }
+        quiz = quizzes.first
+    }
+
+    private func fetchQuizzes() {
+        isLoaderVisible = true
+        currentQuizIndex = 0
+        chatBotInteractor.publish(
+            prompt: "Create a Quiz",
+            history: history
+        )
     }
 }
