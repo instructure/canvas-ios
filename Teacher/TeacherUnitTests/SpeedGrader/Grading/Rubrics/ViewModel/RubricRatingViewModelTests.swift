@@ -90,4 +90,46 @@ class RubricRatingViewModelTests: TeacherTestCase {
         XCTAssertFalse(viewModel.matchPoints(5))
         XCTAssertFalse(viewModel.matchPoints(10.1))
     }
+
+    func test_selection() {
+        // Given
+        let rating = CDRubricRating.save(.make(id: "r11", points: 10), assignmentID: assignment.id, in: databaseClient)
+        viewModel = RubricRatingViewModel(rating: rating, ratingPointsLowerBound: 5, criterionId: "crit341", interactor: interactor)
+
+        // When
+        viewModel.isSelected = true
+
+        // Then
+        XCTAssertEqual(interactor.selectedRating?.criterionId, "crit341")
+        XCTAssertEqual(interactor.selectedRating?.ratingId, "r11")
+
+        // When
+        viewModel.isSelected = false
+
+        // Then
+        XCTAssertEqual(interactor.criterionIdForClearedRating, "crit341")
+    }
+
+    func test_display_props() {
+        // Given
+        let rating = CDRubricRating
+            .save(
+                .make(
+                    description: "short name",
+                    id: "r11",
+                    long_description: "A very long desc about it",
+                    points: 8
+                ),
+                assignmentID: assignment.id,
+                in: databaseClient
+            )
+
+        viewModel = RubricRatingViewModel(rating: rating, ratingPointsLowerBound: 5, criterionId: "criterion1", interactor: interactor)
+
+        // Then
+        XCTAssertEqual(viewModel.value, 8.formatted())
+        XCTAssertEqual(viewModel.bubble.title, "short name")
+        XCTAssertEqual(viewModel.bubble.subtitle, "A very long desc about it")
+        XCTAssertEqual(viewModel.accessibilityLabel, "short name")
+    }
 }

@@ -33,9 +33,9 @@ class RubricGradingInteractorMock: RubricGradingInteractor {
         self.assessments = assessmentsSubject.eraseToAnyPublisher()
     }
 
-    private(set) var clearedCriterion: String?
+    private(set) var criterionIdForClearedRating: String?
     func clearRating(criterionId: String) {
-        self.clearedCriterion = criterionId
+        self.criterionIdForClearedRating = criterionId
     }
 
     private(set) var selectedRating: SelectedRating?
