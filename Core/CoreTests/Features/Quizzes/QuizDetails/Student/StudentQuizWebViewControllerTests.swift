@@ -22,7 +22,7 @@ import WebKit
 import TestsFoundation
 
 class StudentQuizWebViewControllerTests: CoreTestCase {
-    lazy var controller = StudentQuizWebViewController.create(courseID: "1", quizID: "1")
+    lazy var controller = StudentQuizWebViewController.create(courseID: "1", quizID: "1", env: environment)
 
     let to = URL(string: "https://canvas.instructure.com/courses/1/quizzes/1?force_user=1&persist_headless=1&platform=ios")!
     let session_url = URL(string: "data:text/plain,")!

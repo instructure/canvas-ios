@@ -44,7 +44,7 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
 
     public var color: UIColor?
     var courseID = ""
-    let env = AppEnvironment.shared
+    private(set) var env = AppEnvironment.shared
     var quizID = ""
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "courses/\(courseID)/quizzes/\(quizID)"
@@ -63,11 +63,14 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
     public static func create(
         courseID: String,
         quizID: String,
-        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) -> StudentQuizDetailsViewController {
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(),
+        env: AppEnvironment
+    ) -> StudentQuizDetailsViewController {
         let controller = loadFromStoryboard()
         controller.courseID = courseID
         controller.quizID = quizID
         controller.offlineModeInteractor = offlineModeInteractor
+        controller.env = env
         return controller
     }
 
@@ -208,7 +211,8 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
         if quiz.canTake {
             env.router.show(StudentQuizWebViewController.create(
                 courseID: courseID,
-                quizID: quizID
+                quizID: quizID,
+                env: env
             ), from: self, options: .modal(.fullScreen, isDismissable: false, embedInNav: true))
         } else if let url = quiz.resultsURL {
             env.router.route(to: url, from: self, options: .modal(embedInNav: true))

@@ -26,6 +26,8 @@ xctestrun/
 Core/Core.xcodeproj/
 Student/Student.xcodeproj/
 Horizon/Horizon.xcodeproj/
+Teacher/Teacher.xcodeproj/
+Parent/Parent.xcodeproj/
 Brewfile.lock
 
 # AppCode

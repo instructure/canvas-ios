@@ -129,6 +129,12 @@
             "value" : "\"%@\" bukan nilai yang valid"
           }
         },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ er ekki gild einkunn."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -387,6 +393,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ kepada %2$@"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ til %2$@"
           }
         },
         "it" : {
@@ -769,6 +781,7 @@
       }
     },
     "%g out of %g" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2411,6 +2424,12 @@
             "value" : "< %1$@ ke %2$@"
           }
         },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "< %1$@ til %2$@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3046,6 +3065,7 @@
       }
     },
     "Add Comment" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3302,6 +3322,7 @@
       }
     },
     "Add custom grade" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4838,6 +4859,7 @@
       }
     },
     "All submissions" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -5450,7 +5472,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dates de la tâche"
+            "value" : "Dates du travail"
           }
         },
         "ga" : {
@@ -5706,7 +5728,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Détails de la tâche"
+            "value" : "Détails du travail"
           }
         },
         "ga" : {
@@ -12394,6 +12416,12 @@
             "value" : "Komentar (%lld)"
           }
         },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Athugasemdir (%lld)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13286,6 +13314,7 @@
       }
     },
     "Customize Grade" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -14691,6 +14720,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Detail"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upplýsingar"
           }
         },
         "it" : {
@@ -22258,6 +22293,7 @@
       }
     },
     "Filter" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -22514,6 +22550,7 @@
       }
     },
     "Filter (%d)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -24408,7 +24445,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Note et rubrique"
+            "value" : "Note et grille de notation"
           }
         },
         "ga" : {
@@ -24433,6 +24470,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nilai & Rubrik"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einkunn og matskvarði"
           }
         },
         "it" : {
@@ -24558,6 +24601,7 @@
       }
     },
     "Grade post policy" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -29263,6 +29307,7 @@
       }
     },
     "Group %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -29619,7 +29664,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aidez vos élèves à cette tâche par l’ajout d’instructions."
+            "value" : "Aidez vos élèves à ce travail par l’ajout d’instructions."
           }
         },
         "ga" : {
@@ -29900,6 +29945,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tersembunyi"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falið"
           }
         },
         "it" : {
@@ -30921,6 +30972,12 @@
             "value" : "Nilai Tidak Valid"
           }
         },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ógild einkunn"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31683,6 +31740,12 @@
             "value" : "Penalti Terlambat:"
           }
         },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viðurlög vegna of seinna skila:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31804,6 +31867,9 @@
           }
         }
       }
+    },
+    "Launch External Tool" : {
+
     },
     "Letter grade" : {
       "extractionState" : "stale",
@@ -38471,6 +38537,9 @@
         }
       }
     },
+    "Open the Quiz" : {
+
+    },
     "Others" : {
       "localizations" : {
         "ar" : {
@@ -38731,6 +38800,7 @@
       "comment" : "Example: 'out of 10 points'"
     },
     "out_of_g_pts" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -42573,6 +42643,7 @@
       }
     },
     "Reset" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -42954,6 +43025,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Atur Ulang Status"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Endurstilla stöðu"
           }
         },
         "it" : {
@@ -43435,7 +43512,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rubrique"
+            "value" : "Grille de notation"
           }
         },
         "ga" : {
@@ -44112,6 +44189,7 @@
 
     },
     "Scored above..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -44368,6 +44446,7 @@
       }
     },
     "Scored below..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -45261,6 +45340,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pilih Nilai"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velja einkunn"
           }
         },
         "it" : {
@@ -47563,6 +47648,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Catatan Siswa"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Athugasemdir nemanda"
           }
         },
         "it" : {
@@ -50349,7 +50440,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cette tâche ne permet pas d’envoi."
+            "value" : "Ce travail ne permet pas d’envoi."
           }
         },
         "ga" : {
@@ -50605,7 +50696,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cette tâche permet uniquement des envois sur support papier."
+            "value" : "Ce travail permet uniquement des envois sur support papier."
           }
         },
         "ga" : {
@@ -50761,6 +50852,7 @@
       }
     },
     "This criterion will not impact the score." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -51117,7 +51209,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ce groupe n’a pas d’envoi pour cette tâche."
+            "value" : "Ce groupe n’a pas d’envoi pour ce travail."
           }
         },
         "ga" : {
@@ -51373,7 +51465,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cet étudiant n’a pas d’envoi pour cette tâche."
+            "value" : "Cet étudiant n’a pas d’envoi pour ce travail."
           }
         },
         "ga" : {
@@ -51629,7 +51721,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les réponses de cet étudiant sont masquées du fait que cette tâche est anonyme."
+            "value" : "Les réponses de cet étudiant sont masquées du fait que ce travail est anonyme."
           }
         },
         "ga" : {
@@ -54604,6 +54696,7 @@
       }
     },
     "View Long Description" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -55507,6 +55600,12 @@
             "value" : "Kami tidak memiliki detail lebih lanjut untuk Siswa dan Tugas ini"
           }
         },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Við höfum ekki frekari upplýsingar um þennan nemanda og verkefni"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55755,6 +55854,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jumlah Kata"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orðafjöldi"
           }
         },
         "it" : {
@@ -56007,6 +56112,12 @@
             "value" : "Tuliskan persentase di sini"
           }
         },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrifaðu prósentu hér"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -56255,6 +56366,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tuliskan skor di sini"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrifaðu einkunn hér"
           }
         },
         "it" : {

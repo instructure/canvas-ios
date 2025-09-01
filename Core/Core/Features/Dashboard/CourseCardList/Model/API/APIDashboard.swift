@@ -18,15 +18,6 @@
 
 import Foundation
 
-// undocumented
-struct APIDashboardCardLink: Codable, Equatable {
-    let css_class: String
-    let hidden: Bool?
-    let icon: String
-    let label: String
-    let path: String
-}
-
 public struct APIDashboardCard: Codable, Equatable {
     let assetString: String
     let courseCode: String
@@ -38,7 +29,6 @@ public struct APIDashboardCard: Codable, Equatable {
     let image: String?
     let isHomeroom: Bool?
     let isK5Subject: Bool?
-    let links: [APIDashboardCardLink]
     let longName: String
     let originalName: String
     let position: Int?
@@ -59,7 +49,6 @@ extension APIDashboardCard {
         image: String? = nil,
         isHomeroom: Bool? = false,
         isK5Subject: Bool? = false,
-        links: [APIDashboardCardLink] = [],
         longName: String = "Course 1",
         originalName: String = "Course 1",
         position: Int? = nil,
@@ -77,7 +66,6 @@ extension APIDashboardCard {
             image: image,
             isHomeroom: isHomeroom,
             isK5Subject: isK5Subject,
-            links: links,
             longName: longName,
             originalName: originalName,
             position: position,
