@@ -22,6 +22,7 @@ public extension HorizonUI {
     struct ProgramCard: View {
         // MARK: - Content
         private let courseName: String
+        private let isLinear: Bool
         private let isSelfEnrolled: Bool
         private let isRequired: Bool
         private let estimatedTime: String?
@@ -43,6 +44,7 @@ public extension HorizonUI {
         // MARK: - Init
         public init(
             courseName: String,
+            isLinear: Bool,
             isSelfEnrolled: Bool,
             isRequired: Bool,
             isLoading: Binding<Bool>,
@@ -52,6 +54,7 @@ public extension HorizonUI {
             onTapEnroll: @escaping () -> Void
         ) {
             self.courseName = courseName
+            self.isLinear = isLinear
             self.isSelfEnrolled = isSelfEnrolled
             self.isRequired = isRequired
             _isLoading = isLoading
@@ -94,6 +97,7 @@ public extension HorizonUI {
             HorizonUI.ProgramCard.Pills(
                 isEnrolled: status.isEnrolled && isSelfEnrolled,
                 isRequired: isRequired,
+                isLinear: isLinear,
                 status: status,
                 estimatedTime: estimatedTime
             )
@@ -141,6 +145,7 @@ public extension HorizonUI {
     @Previewable @State var isLoading: Bool = false
     HorizonUI.ProgramCard(
         courseName: "Course Name Dolor Sit Amet",
+        isLinear: true,
         isSelfEnrolled: true,
         isRequired: true,
         isLoading: $isLoading,

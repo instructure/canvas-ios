@@ -79,6 +79,10 @@ struct LearnView: View {
             )
             .padding(.bottom, viewModel.currentProgram?.hasPills == true ? .huiSpaces.space32 : .zero)
 
+            if let program = viewModel.currentProgram, !program.isLinear, !program.isOptionalProgram {
+                completeProgram(program)
+                    .padding(.bottom, .huiSpaces.space16)
+            }
             programCards
                 .id(viewModel.currentProgram?.id)
         }
@@ -136,6 +140,18 @@ private extension LearnView {
             ),
             isSmall: true
         )
+    }
+
+    private func completeProgram(_ program: Program) -> some View {
+        HStack(spacing: .huiSpaces.space4) {
+            Text("Complete", bundle: .horizon)
+            Text(viewModel.currentProgram?.countOfRequiredCourses.description ?? "")
+            Text("of")
+            Text(viewModel.currentProgram?.courses.count.description ?? "")
+            Text("courses")
+        }
+        .foregroundStyle(Color.huiColors.text.body)
+        .huiTypography(.h4)
     }
 }
 

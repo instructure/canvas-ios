@@ -16,10 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import Core
 import Combine
-import HorizonUI
+import Foundation
 
 protocol ProgramInteractor {
     func getPrograms(ignoreCache: Bool) -> AnyPublisher<[Program], Error>

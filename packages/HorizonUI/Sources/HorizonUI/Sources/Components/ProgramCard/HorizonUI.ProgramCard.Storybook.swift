@@ -26,6 +26,7 @@ extension HorizonUI.ProgramCard {
             VStack {
                 HorizonUI.ProgramCard(
                     courseName: "Course Name Dolor Sit Amet",
+                    isLinear: true,
                     isSelfEnrolled: true,
                     isRequired: true,
                     isLoading: $isLoading,
@@ -37,6 +38,7 @@ extension HorizonUI.ProgramCard {
 
                 HorizonUI.ProgramCard(
                     courseName: "Course Name Dolor Sit Amet",
+                    isLinear: false,
                     isSelfEnrolled: false,
                     isRequired: true,
                     isLoading: $isLoading,
@@ -47,6 +49,7 @@ extension HorizonUI.ProgramCard {
 
                 HorizonUI.ProgramCard(
                     courseName: "Course Name Dolor Sit Amet",
+                    isLinear: true,
                     isSelfEnrolled: false,
                     isRequired: false,
                     isLoading: $isLoading,
@@ -57,6 +60,7 @@ extension HorizonUI.ProgramCard {
 
                 HorizonUI.ProgramCard(
                     courseName: "Course Name Dolor Sit Amet",
+                    isLinear: false,
                     isSelfEnrolled: true,
                     isRequired: true,
                     isLoading: $isLoading,
@@ -67,6 +71,7 @@ extension HorizonUI.ProgramCard {
 
                 HorizonUI.ProgramCard(
                     courseName: "Course Name Dolor Sit Amet",
+                    isLinear: true,
                     isSelfEnrolled: true,
                     isRequired: true,
                     isLoading: $isLoading,
@@ -77,6 +82,7 @@ extension HorizonUI.ProgramCard {
 
                 HorizonUI.ProgramCard(
                     courseName: "Course Name Dolor Sit Amet",
+                    isLinear: true,
                     isSelfEnrolled: true,
                     isRequired: true,
                     isLoading: $isLoading,
@@ -87,6 +93,7 @@ extension HorizonUI.ProgramCard {
 
                 HorizonUI.ProgramCard(
                     courseName: "Course Name Dolor Sit Amet",
+                    isLinear: false,
                     isSelfEnrolled: true,
                     isRequired: true,
                     isLoading: $isLoading,

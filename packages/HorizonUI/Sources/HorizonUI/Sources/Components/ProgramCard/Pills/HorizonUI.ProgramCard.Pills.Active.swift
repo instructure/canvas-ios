@@ -22,6 +22,7 @@ extension HorizonUI.ProgramCard.Pills {
     struct Active: View {
         let isEnrolled: Bool
         let isRequired: Bool
+        let isLinear: Bool
         let estimatedTime: String?
 
         var body: some View {
@@ -41,10 +42,12 @@ extension HorizonUI.ProgramCard.Pills {
                         icon: .huiIcons.checkCircleFull
                     )
                 }
-                defaultPill(title: isRequired
-                            ? String(localized: "Required")
-                            : String(localized: "Optional")
-                )
+                if isLinear {
+                    defaultPill(title: isRequired
+                                ? String(localized: "Required")
+                                : String(localized: "Optional")
+                    )
+                }
 
                 if let estimatedTime {
                     defaultPill(title: estimatedTime)
@@ -72,6 +75,7 @@ extension HorizonUI.ProgramCard.Pills {
     HorizonUI.ProgramCard.Pills.Active(
         isEnrolled: true,
         isRequired: true,
+        isLinear: true,
         estimatedTime: "10 hours"
     )
 }

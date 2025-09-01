@@ -43,6 +43,7 @@ struct ListProgramCards: View {
     private var lastPoint: ProgramCardPoint? { sortedPoints.last }
 
     private var lastCompletedPoint: ProgramCardPoint? {
+
         guard let lastCompletedIndex = sortedPoints.lastIndex(where: { $0.isCompleted && $0.isRequired }) else {
             return nil
         }
@@ -100,6 +101,7 @@ struct ListProgramCards: View {
     private func programCard(for program: ProgramCourse) -> some View {
         HorizonUI.ProgramCard(
             courseName: program.name,
+            isLinear: isLinear,
             isSelfEnrolled: program.isSelfEnrolled,
             isRequired: program.isRequired,
             isLoading: .constant(selectedCourse?.id == program.id ? isLoading : false),

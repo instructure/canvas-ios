@@ -20,6 +20,7 @@ import SwiftUI
 extension HorizonUI.ProgramCard.Pills {
     struct Locked: View {
         let isRequired: Bool
+        let isLinear: Bool
         let estimatedTime: String?
 
         var body: some View {
@@ -38,17 +39,19 @@ extension HorizonUI.ProgramCard.Pills {
                     icon: .huiIcons.lock
                 )
 
-                HorizonUI.Pill(
-                    title: isRequired ?  String(localized: "Required") : String(localized: "Optional"),
-                    style: .outline(
-                        .init(
-                            borderColor: Color.huiColors.lineAndBorders.lineStroke,
-                            textColor: Color.huiColors.text.title
-                        )
-                    ),
-                    isSmall: true,
-                    cornerRadius: .level1
-                )
+                if isLinear {
+                    HorizonUI.Pill(
+                        title: isRequired ?  String(localized: "Required") : String(localized: "Optional"),
+                        style: .outline(
+                            .init(
+                                borderColor: Color.huiColors.lineAndBorders.lineStroke,
+                                textColor: Color.huiColors.text.title
+                            )
+                        ),
+                        isSmall: true,
+                        cornerRadius: .level1
+                    )
+                }
 
                 if let estimatedTime {
                     HorizonUI.Pill(
@@ -72,6 +75,7 @@ extension HorizonUI.ProgramCard.Pills {
     HorizonUI.ProgramCard.Pills
         .Locked(
             isRequired: true,
+            isLinear: true,
             estimatedTime: "10 hours"
         )
 }

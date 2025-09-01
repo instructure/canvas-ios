@@ -22,25 +22,30 @@ extension HorizonUI.ProgramCard.Pills {
     struct InProgress: View {
         let isEnrolled: Bool
         let isRequired: Bool
+        let isLinear: Bool
         let estimatedTime: String?
 
         init(
             isEnrolled: Bool = false,
             isRequired: Bool,
+            isLinear: Bool,
             estimatedTime: String?
         ) {
             self.isEnrolled = isEnrolled
             self.isRequired = isRequired
+            self.isLinear = isLinear
             self.estimatedTime = estimatedTime
         }
 
         var body: some View {
             HorizonUI.HFlow {
                 defaultPill(title: String(localized: "In progress"))
-                defaultPill(title: isRequired
-                            ? String(localized: "Required")
-                            : String(localized: "Optional")
-                )
+                if isLinear {
+                    defaultPill(title: isRequired
+                                ? String(localized: "Required")
+                                : String(localized: "Optional")
+                    )
+                }
 
                 if let estimatedTime {
                     defaultPill(title: estimatedTime)
@@ -69,6 +74,7 @@ extension HorizonUI.ProgramCard.Pills {
         .InProgress(
             isEnrolled: true,
             isRequired: true,
+            isLinear: true,
             estimatedTime: "10 hours"
         )
 }

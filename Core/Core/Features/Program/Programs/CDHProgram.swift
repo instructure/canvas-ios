@@ -39,10 +39,10 @@ final public class CDHProgram: NSManagedObject {
             equals: apiEntity.id
         ) ?? context.insert()
 
-        dbEntity.id = apiEntity.id ?? ""
-        dbEntity.name = apiEntity.name ?? ""
+        dbEntity.id = apiEntity.id.orEmpty
+        dbEntity.name = apiEntity.name.orEmpty
         dbEntity.programDescription = apiEntity.description
-        dbEntity.variant = apiEntity.variant ?? ""
+        dbEntity.variant = apiEntity.variant.orEmpty
         dbEntity.courseCompletionCount = apiEntity.courseCompletionCount as NSNumber?
         dbEntity.startDate = apiEntity.startDate
         dbEntity.endDate = apiEntity.endDate

@@ -17,8 +17,8 @@
 //
 
 import CoreData
-import Foundation
 import Combine
+import Foundation
 
 public final class GetHProgramCourseUseCase: APIUseCase {
     public typealias Model = CDHProgramCourse

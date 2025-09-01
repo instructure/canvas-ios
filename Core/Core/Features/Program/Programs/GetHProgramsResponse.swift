@@ -44,6 +44,36 @@ public struct GetHProgramsResponse: Codable {
             case description, owner, startDate, endDate, variant, progresses, requirements, enrollments, courseCompletionCount
         }
 
+        public init(
+            id: String? = nil,
+            name: String? = nil,
+            courseCompletionCount: Int? = nil,
+            publicName: String? = nil,
+            customerID: String? = nil,
+            description: String? = nil,
+            owner: String? = nil,
+            startDate: Date? = nil,
+            endDate: Date? = nil,
+            variant: String? = nil,
+            progresses: [Progress]? = nil,
+            requirements: [Requirement]? = nil,
+            enrollments: [Enrollment]? = nil
+        ) {
+            self.id = id
+            self.name = name
+            self.courseCompletionCount = courseCompletionCount
+            self.publicName = publicName
+            self.customerID = customerID
+            self.description = description
+            self.owner = owner
+            self.startDate = startDate
+            self.endDate = endDate
+            self.variant = variant
+            self.progresses = progresses
+            self.requirements = requirements
+            self.enrollments = enrollments
+        }
+
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 

@@ -30,7 +30,7 @@ final public class CDHProgramDependency: NSManagedObject {
         in context: NSManagedObjectContext
     ) -> CDHProgramDependency {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(format: "%K == %@", #keyPath(CDHProgramDependency.id), apiEntity.id ?? ""),
+            NSPredicate(format: "%K == %@", #keyPath(CDHProgramDependency.id), apiEntity.id.orEmpty),
             NSPredicate(format: "%K == %@", #keyPath(CDHProgramDependency.requirementId), requirementId)
         ])
 

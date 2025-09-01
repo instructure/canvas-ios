@@ -36,14 +36,14 @@ final public class CDHProgramRequirement: NSManagedObject {
             equals: apiEntity.id
         ) ?? context.insert()
 
-        dbEntity.id = apiEntity.id ?? ""
-        dbEntity.isCompletionRequired = apiEntity.isCompletionRequired ?? false
-        dbEntity.courseEnrollment = apiEntity.courseEnrollment ?? ""
-        dbEntity.position = (apiEntity.position ?? 0) as NSNumber
+        dbEntity.id = apiEntity.id.orEmpty
+        dbEntity.isCompletionRequired = apiEntity.isCompletionRequired.orFalse
+        dbEntity.courseEnrollment = apiEntity.courseEnrollment.orEmpty
+        dbEntity.position = (apiEntity.position.orZero) as NSNumber
         if let dependency = apiEntity.dependency {
             dbEntity.dependency = CDHProgramDependency.save(
                 dependency,
-                requirementId: apiEntity.id ?? "",
+                requirementId: apiEntity.id.orEmpty,
                 in: context
             )
         } else {
@@ -53,7 +53,7 @@ final public class CDHProgramRequirement: NSManagedObject {
         if let dependent = apiEntity.dependent {
             dbEntity.dependent = CDHProgramDependent.save(
                 dependent,
-                requirementId: apiEntity.id ?? "",
+                requirementId: apiEntity.id.orEmpty,
                 in: context
             )
         } else {

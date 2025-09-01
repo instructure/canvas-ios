@@ -22,6 +22,7 @@ extension HorizonUI.ProgramCard {
     struct Pills: View {
          let isEnrolled: Bool
          let isRequired: Bool
+         let isLinear: Bool
          let status: HorizonUI.ProgramCard.Status
          let estimatedTime: String?
 
@@ -31,17 +32,20 @@ extension HorizonUI.ProgramCard {
                 HorizonUI.ProgramCard.Pills.Active(
                     isEnrolled: isEnrolled,
                     isRequired: isRequired,
+                    isLinear: isLinear,
                     estimatedTime: estimatedTime
                 )
             case .inProgress:
                 HorizonUI.ProgramCard.Pills.InProgress(
                     isRequired: isRequired,
+                    isLinear: isLinear,
                     estimatedTime: estimatedTime
                 )
 
             case .locked:
                 HorizonUI.ProgramCard.Pills.Locked(
                     isRequired: isRequired,
+                    isLinear: isLinear,
                     estimatedTime: estimatedTime
                 )
             case .completed:
@@ -56,6 +60,7 @@ extension HorizonUI.ProgramCard {
         HorizonUI.ProgramCard.Pills(
             isEnrolled: true,
             isRequired: true,
+            isLinear: true,
             status: .active,
             estimatedTime: "10 hours"
         )
@@ -63,6 +68,7 @@ extension HorizonUI.ProgramCard {
         HorizonUI.ProgramCard.Pills(
             isEnrolled: false,
             isRequired: false,
+            isLinear: false,
             status: .inProgress,
             estimatedTime: "10 hours"
         )
@@ -70,6 +76,7 @@ extension HorizonUI.ProgramCard {
         HorizonUI.ProgramCard.Pills(
             isEnrolled: false,
             isRequired: false,
+            isLinear: true,
             status: .locked,
             estimatedTime: "10 hours",
         )
@@ -77,6 +84,7 @@ extension HorizonUI.ProgramCard {
         HorizonUI.ProgramCard.Pills(
             isEnrolled: false,
             isRequired: false,
+            isLinear: false,
             status: .completed,
             estimatedTime: "10 hours"
         )

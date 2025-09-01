@@ -61,6 +61,10 @@ struct Program {
     var hasPills: Bool {
         estimatedTime != nil || date != nil
     }
+
+    var countOfRequiredCourses: Int {
+        courses.filter(\.isRequired).count
+    }
 }
 
 struct ProgramCourse: Identifiable {
