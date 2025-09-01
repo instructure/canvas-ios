@@ -23,20 +23,56 @@ public struct Scope: Equatable {
     public let order: [NSSortDescriptor]
     public let sectionNameKeyPath: String?
 
-    public init(predicate: NSPredicate, order: [NSSortDescriptor], sectionNameKeyPath: String? = nil) {
+    // MARK: - Init
+
+    public init(
+        predicate: NSPredicate,
+        order: [NSSortDescriptor],
+        sectionNameKeyPath: String? = nil
+    ) {
         self.predicate = predicate
         self.order = order
         self.sectionNameKeyPath = sectionNameKeyPath
     }
 
-    public init(predicate: NSPredicate, orderBy order: String, ascending: Bool = true, naturally: Bool = false, sectionNameKeyPath: String? = nil) {
+    public init(
+        predicate: NSPredicate,
+        orderBy order: String,
+        ascending: Bool = true,
+        naturally: Bool = false,
+        sectionNameKeyPath: String? = nil
+    ) {
         let sort = NSSortDescriptor(key: order, ascending: ascending, naturally: naturally)
         self.init(predicate: predicate, order: [sort], sectionNameKeyPath: sectionNameKeyPath)
     }
 
+    public init<Root, OrderValue, SectionNameValue>(
+        predicate: NSPredicate,
+        orderBy orderKeyPath: ReferenceWritableKeyPath<Root, OrderValue>,
+        ascending: Bool = true,
+        naturally: Bool = false,
+        sectionNameKeyPath: ReferenceWritableKeyPath<Root, SectionNameValue>
+    ) {
+        self.init(
+            predicate: predicate,
+            order: [
+                NSSortDescriptor(keyPath: orderKeyPath, ascending: ascending, naturally: naturally)
+            ],
+            sectionNameKeyPath: sectionNameKeyPath.string
+        )
+    }
+
+    // MARK: - Where
+
     /// Returns a scope where all `key`s match `value`
     /// Adds a default `order` using the `key` ascending
-    public static func `where`(_ key: String, equals value: Any?, orderBy order: String? = nil, ascending: Bool = true, naturally: Bool = false) -> Scope {
+    public static func `where`(
+        _ key: String,
+        equals value: Any?,
+        orderBy order: String? = nil,
+        ascending: Bool = true,
+        naturally: Bool = false
+    ) -> Scope {
         let predicate: NSPredicate
         if let value = value {
             predicate = NSPredicate(format: "%K == %@", argumentArray: [key, value])
@@ -47,8 +83,39 @@ public struct Scope: Equatable {
         return Scope(predicate: predicate, order: [sort])
     }
 
+    /// Returns a scope where all `keyPath`s match `value`
+    /// Adds a default `order` using the `keyPath`
+    public static func `where`<Root, Value>(
+        _ keyPath: ReferenceWritableKeyPath<Root, Value>,
+        equals value: CVarArg?,
+        ascending: Bool = true,
+        naturally: Bool = false
+    ) -> Scope {
+        .where(keyPath, equals: value, orderBy: keyPath, ascending: ascending, naturally: naturally)
+    }
+
+    /// Returns a scope where all `keyPath`s match `value`
+    public static func `where`<Root, KeyValue, OrderValue>(
+        _ keyPath: ReferenceWritableKeyPath<Root, KeyValue>,
+        equals value: CVarArg?,
+        orderBy orderKeyPath: ReferenceWritableKeyPath<Root, OrderValue>,
+        ascending: Bool = true,
+        naturally: Bool = false
+    ) -> Scope {
+        Scope(
+            predicate: NSPredicate(keyPath, equals: value),
+            order: [
+                NSSortDescriptor(keyPath: orderKeyPath, ascending: ascending, naturally: naturally)
+            ]
+        )
+    }
+
     /// Returns a scope where all `key`s match `value`
-    public static func `where`(_ key: String, equals value: Any?, sortDescriptors: [NSSortDescriptor]) -> Scope {
+    public static func `where`(
+        _ key: String,
+        equals value: Any?,
+        sortDescriptors: [NSSortDescriptor]
+    ) -> Scope {
         let predicate: NSPredicate
         if let value = value {
             predicate = NSPredicate(format: "%K == %@", argumentArray: [key, value])
@@ -58,16 +125,59 @@ public struct Scope: Equatable {
         return Scope(predicate: predicate, order: sortDescriptors)
     }
 
-    public static func all(orderBy order: String = "objectID", ascending: Bool = true, naturally: Bool = false) -> Scope {
+    /// Returns a scope where all `keyPath`s match `value`
+    public static func `where`<Root, Value>(
+        _ keyPath: ReferenceWritableKeyPath<Root, Value>,
+        equals value: CVarArg?,
+        sortDescriptors: [NSSortDescriptor]
+    ) -> Scope {
+        Scope(
+            predicate: NSPredicate(keyPath, equals: value),
+            order: sortDescriptors
+        )
+    }
+
+    // MARK: - All
+
+    public static func all(
+        orderBy order: String = "objectID",
+        ascending: Bool = true,
+        naturally: Bool = false
+    ) -> Scope {
         let sort = NSSortDescriptor(key: order, ascending: ascending, naturally: naturally)
         return Scope(predicate: .all, order: [sort])
+    }
+
+    public static func all<Root, Value>(
+        orderBy orderKeyPath: ReferenceWritableKeyPath<Root, Value>,
+        ascending: Bool = true,
+        naturally: Bool = false
+    ) -> Scope {
+        Scope(
+            predicate: .all,
+            order: [
+                NSSortDescriptor(keyPath: orderKeyPath, ascending: ascending, naturally: naturally)
+            ]
+        )
     }
 
     public static var all: Scope { all() }
 }
 
 extension NSSortDescriptor {
-    convenience init(key: String?, ascending: Bool = true, naturally: Bool) {
-        self.init(key: key, ascending: ascending, selector: naturally ? #selector(NSString.localizedStandardCompare(_:)) : nil)
+    public convenience init(key: String?, ascending: Bool = true, naturally: Bool) {
+        self.init(
+            key: key,
+            ascending: ascending,
+            selector: naturally ? #selector(NSString.localizedStandardCompare(_:)) : nil
+        )
+    }
+
+    public convenience init<Root, Value>(keyPath: ReferenceWritableKeyPath<Root, Value>, ascending: Bool = true, naturally: Bool) {
+        self.init(
+            key: keyPath.string,
+            ascending: ascending,
+            selector: naturally ? #selector(NSString.localizedStandardCompare(_:)) : nil
+        )
     }
 }

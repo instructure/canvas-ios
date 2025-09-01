@@ -1,0 +1,38 @@
+---
+targets:
+  TeacherE2ETests:
+    type: bundle.ui-testing
+    platform: iOS
+    settings:
+      ENABLE_TESTABILITY: true
+      TEST_TARGET_NAME: Teacher
+    sources:
+      - path: ./
+        excludes:
+          - ".swiftlint.yml"
+    dependencies:
+      - target: Core/Core
+      - target: Core/TestsFoundation
+schemes:
+  E2ETests-iPad-Teacher:
+    build:
+      targets:
+        Teacher: all
+    test:
+      language: en
+      region: US
+      targets: TeacherE2ETests
+      testPlans:
+        - path: ../../TestPlans/IPadTeacherTests.xctestplan
+          defaultPlan: true
+  E2ETests-Teacher:
+    build:
+      targets:
+        Teacher: all
+    test:
+      language: en
+      region: US
+      targets: TeacherE2ETests
+      testPlans:
+        - path: ../../TestPlans/TeacherE2E.xctestplan
+          defaultPlan: true

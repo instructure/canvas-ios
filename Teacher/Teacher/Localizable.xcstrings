@@ -781,6 +781,7 @@
       }
     },
     "%g out of %g" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3064,6 +3065,7 @@
       }
     },
     "Add Comment" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3320,6 +3322,7 @@
       }
     },
     "Add custom grade" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4856,6 +4859,7 @@
       }
     },
     "All submissions" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -13310,6 +13314,7 @@
       }
     },
     "Customize Grade" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -22288,6 +22293,7 @@
       }
     },
     "Filter" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -22544,6 +22550,7 @@
       }
     },
     "Filter (%d)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -24594,6 +24601,7 @@
       }
     },
     "Grade post policy" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -29299,6 +29307,7 @@
       }
     },
     "Group %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -31858,6 +31867,9 @@
           }
         }
       }
+    },
+    "Launch External Tool" : {
+
     },
     "Letter grade" : {
       "extractionState" : "stale",
@@ -38525,6 +38537,9 @@
         }
       }
     },
+    "Open the Quiz" : {
+
+    },
     "Others" : {
       "localizations" : {
         "ar" : {
@@ -38785,6 +38800,7 @@
       "comment" : "Example: 'out of 10 points'"
     },
     "out_of_g_pts" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -42627,6 +42643,7 @@
       }
     },
     "Reset" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -44172,6 +44189,7 @@
 
     },
     "Scored above..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -44428,6 +44446,7 @@
       }
     },
     "Scored below..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -50833,6 +50852,7 @@
       }
     },
     "This criterion will not impact the score." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -54676,6 +54696,7 @@
       }
     },
     "View Long Description" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

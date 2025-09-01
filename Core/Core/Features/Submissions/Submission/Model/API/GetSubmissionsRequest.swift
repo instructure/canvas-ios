@@ -23,7 +23,14 @@ public struct GetSubmissionsRequest: APIRequestable {
     public typealias Response = [APISubmission]
 
     enum Include: String, CaseIterable {
-        case rubric_assessment, submission_comments, submission_history, total_scores, user, group, assignment
+        case assignment
+        case group
+        case rubric_assessment
+        case sub_assignment_submissions
+        case submission_comments
+        case submission_history
+        case total_scores
+        case user
     }
 
     let context: Context
