@@ -66,42 +66,126 @@ class RubricCriterionViewModelTests: TeacherTestCase {
         let criterion = CDRubricCriterion.save(.make(id: "criterion1"), assignmentID: assignment.id, in: databaseClient)
         viewModel = RubricCriterionViewModel(criterion: criterion, isFreeFormCommentsEnabled: false, hideRubricPoints: false, interactor: interactor)
 
-        let assessment: APIRubricAssessmentMap = ["criterion1": .init(comments: "comment", points: 8.0, rating_id: "rating1")]
-        let commentExp = XCTestExpectation(description: "userComment should update")
-        let pointsExp = XCTestExpectation(description: "userPoints should update")
-        let ratingIdExp = XCTestExpectation(description: "userRatingId should update")
-
-        viewModel.$userComment
-            .dropFirst()
-            .sink {
-                if $0 == "comment" {
-                    commentExp.fulfill()
-                }
-            }
-            .store(in: &cancellables)
-
-        viewModel.$userPoints
-            .dropFirst()
-            .sink {
-                if $0 == 8.0 {
-                    pointsExp.fulfill()
-                }
-            }
-            .store(in: &cancellables)
-
-        viewModel.$userRatingId
-            .dropFirst()
-            .sink {
-                if $0 == "rating1" {
-                    ratingIdExp.fulfill()
-                }
-            }
-            .store(in: &cancellables)
+        let assessmentMap: APIRubricAssessmentMap = [
+            "criterion1": .init(comments: "comment", points: 8.0, rating_id: "rating1")
+        ]
 
         // When
-        viewModel.updateUserValues(assessment)
+        interactor.assessmentsSubject.send(assessmentMap)
 
         // Then
-        wait(for: [commentExp, pointsExp, ratingIdExp], timeout: 1.0)
+        XCTAssertEqual(viewModel.userComment, "comment")
+        XCTAssertEqual(viewModel.userPoints, 8.0)
+        XCTAssertEqual(viewModel.userRatingId, "rating1")
+    }
+
+    func test_showRubricRatings() {
+        let criterion = CDRubricCriterion.save(.make(id: "criterion1"), assignmentID: assignment.id, in: databaseClient)
+
+        // When
+        viewModel = RubricCriterionViewModel(
+            criterion: criterion,
+            isFreeFormCommentsEnabled: false,
+            hideRubricPoints: false,
+            interactor: interactor
+        )
+
+        // Then
+        XCTAssertTrue(viewModel.shouldShowRubricRatings)
+
+        // When
+        viewModel = RubricCriterionViewModel(
+            criterion: criterion,
+            isFreeFormCommentsEnabled: true,
+            hideRubricPoints: false,
+            interactor: interactor
+        )
+
+        // Then
+        XCTAssertFalse(viewModel.shouldShowRubricRatings)
+    }
+
+    // MARK: - State Update Tests
+
+    func test_saving() {
+        let criterion = CDRubricCriterion.save(.make(id: "criterion1"), assignmentID: assignment.id, in: databaseClient)
+        viewModel = RubricCriterionViewModel(criterion: criterion, isFreeFormCommentsEnabled: false, hideRubricPoints: false, interactor: interactor)
+
+        // When
+        interactor.isSaving.send(true)
+
+        // Then
+        XCTAssertTrue(viewModel.isSaving.value)
+
+        // When
+        interactor.isSaving.send(false)
+
+        // Then
+        XCTAssertFalse(viewModel.isSaving.value)
+    }
+
+    func test_textual_properties() {
+        // Given
+        let criterion = CDRubricCriterion
+            .save(
+                .make(
+                    description: "short desc 111",
+                    id: "criterion1",
+                    long_description: "long desc 22",
+                    points: 7.0
+                ),
+                assignmentID: assignment.id,
+                in: databaseClient
+            )
+
+        // When
+        viewModel = RubricCriterionViewModel(
+            criterion: criterion,
+            isFreeFormCommentsEnabled: false,
+            hideRubricPoints: false,
+            interactor: interactor
+        )
+
+        // Then
+        XCTAssertEqual(viewModel.title, "short desc 111")
+        XCTAssertEqual(viewModel.longDescription, "long desc 22")
+        XCTAssertEqual(viewModel.pointsPossibleText, String.format(pts: 7.0))
+        XCTAssertEqual(viewModel.pointsPossibleAccessibilityText, String.format(points: 7.0))
+    }
+
+    func test_update_calling() {
+        // Given
+        let criterion = CDRubricCriterion
+            .save(
+                .make(
+                    description: "short desc 111",
+                    id: "criterion345",
+                    long_description: "long desc 22",
+                    points: 7.0
+                ),
+                assignmentID: assignment.id,
+                in: databaseClient
+            )
+
+        viewModel = RubricCriterionViewModel(
+            criterion: criterion,
+            isFreeFormCommentsEnabled: false,
+            hideRubricPoints: false,
+            interactor: interactor
+        )
+
+        // When
+        viewModel.updateComment("new comment 11")
+
+        // Then
+        XCTAssertEqual(interactor.updatedComment?.comment, "new comment 11")
+        XCTAssertEqual(interactor.updatedComment?.criterionId, "criterion345")
+
+        // When
+        viewModel.updateCustomRating(4.5)
+
+        // Then
+        XCTAssertEqual(interactor.selectedRating?.criterionId, "criterion345")
+        XCTAssertEqual(interactor.selectedRating?.points, 4.5)
     }
 }
