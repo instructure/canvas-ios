@@ -18,6 +18,7 @@
 
 import TestsFoundation
 import XCTest
+import Core
 
 class CalendarTests: E2ETestCase {
     typealias Helper = CalendarHelper
@@ -56,11 +57,11 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(eventTitleLabel.isVisible)
         XCTAssertEqual(eventTitleLabel.label, event.title)
 
-        let eventDateLabel = Helper.ItemCell.dateLabel(in: eventItem).waitUntil(.visible)
+        let eventDateLabel = Helper.ItemCell.secondLabel(in: eventItem).waitUntil(.visible)
         XCTAssertTrue(eventDateLabel.isVisible)
         XCTAssertEqual(eventDateLabel.label, Helper.ItemCell.formattedDate(for: event))
 
-        let eventCourseLabel = Helper.ItemCell.courseLabel(in: eventItem).waitUntil(.visible)
+        let eventCourseLabel = Helper.ItemCell.thirdLabel(in: eventItem).waitUntil(.visible)
         XCTAssertTrue(eventCourseLabel.isVisible)
         XCTAssertEqual(eventCourseLabel.label, course.name)
     }
@@ -165,6 +166,46 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(cell.isVisible)
         let titleLabel = Helper.ItemCell.titleLabel(in: cell).waitUntil(.visible)
         XCTAssertEqual(titleLabel.label, assignment.name)
+    }
+
+    func testEventForDiscussionCheckpoint() {
+        let title = "Sample Assignment"
+        let date1 = Date.now
+        let date2 = Date.now.addDays(1)
+
+        // Seed
+        let (student, course) = Helper.createStudentEnrolledInCourse()
+        Helper.createDiscussionCheckpoints(
+            course: course,
+            title: title,
+            repliesRequired: 3,
+            replyToTopicDueDate: date1,
+            requiredRepliesDueDate: date2
+        )
+
+        // Log in, navigate to entry point
+        logInDSUser(student)
+        Helper.navigateToCalendarTab()
+
+        // Navigate to Step1 cell and check it
+        var cell = Helper.navigateToItemCell(forTitle: title, dueAt: date1)
+        XCTAssertTrue(cell.isVisible)
+        var titleLabel = Helper.ItemCell.titleLabel(in: cell).waitUntil(.visible)
+        XCTAssertEqual(titleLabel.label, title)
+        var subtitleLabel = Helper.ItemCell.secondLabel(in: cell).waitUntil(.visible)
+        XCTAssertEqual(subtitleLabel.label, "Reply to topic")
+        var dateLabel = Helper.ItemCell.thirdLabel(in: cell).waitUntil(.visible)
+        XCTAssertEqual(dateLabel.label, Helper.ItemCell.formattedDate(date1))
+
+        // Navigate to Step2 cell and check it
+        cell = Helper.navigateToItemCell(forTitle: title, dueAt: date2)
+        XCTAssertTrue(cell.isVisible)
+        titleLabel = Helper.ItemCell.titleLabel(in: cell).waitUntil(.visible)
+        XCTAssertEqual(titleLabel.label, title)
+        subtitleLabel = Helper.ItemCell.secondLabel(in: cell).waitUntil(.visible)
+        XCTAssertEqual(subtitleLabel.label, "Additional replies (3)")
+        dateLabel = Helper.ItemCell.thirdLabel(in: cell).waitUntil(.visible)
+        XCTAssertEqual(dateLabel.label, Helper.ItemCell.formattedDate(date2))
     }
 
     func testCourseFilter() {
