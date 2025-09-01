@@ -47,7 +47,7 @@ public class GetSubmission: APIUseCase {
                 #keyPath(Submission.assignmentID),
                 assignmentID,
                 #keyPath(Submission.userID),
-                userID
+                userID.localID
             ),
             order: [NSSortDescriptor(key: #keyPath(Submission.attempt), ascending: false)]
         )

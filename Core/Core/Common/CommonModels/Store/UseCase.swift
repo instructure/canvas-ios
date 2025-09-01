@@ -119,6 +119,14 @@ public extension UseCase {
         }
     }
 
+    /// Execute fetch request synchronously from local database
+    func fetchFromDatabase(environment: AppEnvironment = .shared) -> [Model] {
+        precondition(Thread.isMainThread)
+
+        let modifiedUseCase = modified(for: environment)
+        return environment.database.viewContext.fetch(scope: modifiedUseCase.scope)
+    }
+
     /// Cache expiration check used by the `ReactiveStore`.
     func hasCacheExpired(environment: AppEnvironment = .shared) -> Future<Bool, Never> {
         Future<Bool, Never> { promise in

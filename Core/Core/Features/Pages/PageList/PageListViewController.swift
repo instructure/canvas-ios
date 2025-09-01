@@ -32,7 +32,7 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
     var canCreatePage: Bool { app == .teacher || context.contextType == .group }
     public var color: UIColor?
     var context = Context.currentUser
-    let env = AppEnvironment.shared
+    private(set) var env = AppEnvironment.shared
     var selectedFirstPage: Bool = false
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "\(context.pathComponent)/pages"
@@ -47,16 +47,17 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
     lazy var group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var frontPage = env.subscribe(GetFrontPage(context: context)) { [weak self] in
+    lazy var frontPage = env.subscribe(GetFrontPage(context: context.local)) { [weak self] in
         self?.update()
     }
-    lazy var pages = env.subscribe(GetPages(context: context)) { [weak self] in
+    lazy var pages = env.subscribe(GetPages(context: context.local)) { [weak self] in
         self?.update()
     }
 
-    public static func create(context: Context, app: App) -> PageListViewController {
+    public static func create(context: Context, app: App, env: AppEnvironment) -> PageListViewController {
         let controller = loadFromStoryboard()
         controller.app = app
+        controller.env = env
         controller.context = context
         return controller
     }
@@ -125,13 +126,21 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
         if !selectedFirstPage, !isLoading, let url = frontPage.first?.htmlURL ?? pages.first?.htmlURL {
             selectedFirstPage = true
             if splitViewController?.isCollapsed == false, !isInSplitViewDetail {
-                env.router.route(to: url, from: self, options: .detail)
+                env.router.route(
+                    to: url,
+                    from: self,
+                    options: .detail
+                )
             }
         }
     }
 
     @objc func createPage() {
-        env.router.route(to: "\(context.pathComponent)/pages/new", from: self, options: .modal(isDismissable: false, embedInNav: true))
+        env.router.route(
+            to: "\(context.pathComponent)/pages/new",
+            from: self,
+            options: .modal(isDismissable: false, embedInNav: true)
+        )
     }
 
     @objc func refresh() {
@@ -190,7 +199,11 @@ extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let page = (indexPath.section == 0 && !frontPage.isEmpty) ? frontPage.first : pages[indexPath.row]
         guard let url = page?.htmlURL else { return }
-        env.router.route(to: url, from: self, options: .detail)
+        env.router.route(
+            to: url,
+            from: self,
+            options: .detail
+        )
     }
 
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
