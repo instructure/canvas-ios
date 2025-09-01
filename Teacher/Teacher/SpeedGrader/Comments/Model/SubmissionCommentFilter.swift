@@ -43,13 +43,9 @@ struct SubmissionCommentFilterLive: SubmissionCommentFilter {
             let commentAttempt = comment.attemptFromAPI?.intValue
             let isCommentBeforeFirstAttempt = commentAttempt == 0
 
-            if commentAttempt == nil
+            return commentAttempt == nil
                 || commentAttempt == attempt
-                || (attempt == 1 && isCommentBeforeFirstAttempt) {
-                return true
-            }
-
-            return false
+                || (attempt == 1 && isCommentBeforeFirstAttempt)
         }
     }
 }

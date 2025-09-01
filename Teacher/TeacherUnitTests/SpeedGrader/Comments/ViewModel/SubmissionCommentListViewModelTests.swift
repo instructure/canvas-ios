@@ -136,7 +136,7 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
     // MARK: - filtering
 
     func test_commentFilter_callsProtocolMethodWithCorrectParameters() {
-        let mockFilter = MockSubmissionCommentFilter()
+        let mockFilter = SubmissionCommentFilterMock()
         let comment1 = makeComment(id: "1", attempt: nil)
         let comment2 = makeComment(id: "2", attempt: 1)
         interactor.getCommentsResult = Publishers.typedJust([comment1, comment2])
@@ -333,7 +333,7 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
     }
 }
 
-private class MockSubmissionCommentFilter: SubmissionCommentFilter {
+private class SubmissionCommentFilterMock: SubmissionCommentFilter {
     var filterCommentsCallArgs: [(comments: [SubmissionComment], attempt: Int?, isAssignmentEnhancementsEnabled: Bool)] = []
     var filterCommentsResult: [SubmissionComment] = []
 
