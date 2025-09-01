@@ -25,7 +25,7 @@ class RubricsViewModelTests: TeacherTestCase {
 
     // MARK: - Properties
 
-    private var viewModel: RedesignedRubricsViewModel!
+    private var viewModel: RubricsViewModel!
     private var interactor: RubricGradingInteractorMock!
     private var cancellables = Set<AnyCancellable>()
 
@@ -47,7 +47,7 @@ class RubricsViewModelTests: TeacherTestCase {
 
     func test_init_createsCriterionViewModels() {
         let apiAssignment = APIAssignment.make(rubric: [.make(id: "rubric1"), .make(id: "rubric2")])
-        viewModel = RedesignedRubricsViewModel(assignment: .make(from: apiAssignment), submission: .make(), interactor: interactor, router: router)
+        viewModel = RubricsViewModel(assignment: .make(from: apiAssignment), submission: .make(), interactor: interactor, router: router)
 
         // Then
         XCTAssertEqual(viewModel.criterionViewModels.count, 2)
@@ -56,7 +56,7 @@ class RubricsViewModelTests: TeacherTestCase {
     // MARK: - Combine Publisher Tests
 
     func test_isSaving_isBoundToInteractor() {
-        viewModel = RedesignedRubricsViewModel(assignment: .make(), submission: .make(), interactor: interactor, router: router)
+        viewModel = RubricsViewModel(assignment: .make(), submission: .make(), interactor: interactor, router: router)
         let expectation = XCTestExpectation(description: "isSaving should update when interactor's isSaving updates")
 
         viewModel.$isSaving

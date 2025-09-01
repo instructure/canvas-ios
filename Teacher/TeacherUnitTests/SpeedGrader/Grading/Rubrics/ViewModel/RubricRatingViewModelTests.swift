@@ -25,7 +25,7 @@ class RubricRatingViewModelTests: TeacherTestCase {
 
     // MARK: - Properties
 
-    private var viewModel: RedesignedRubricRatingViewModel!
+    private var viewModel: RubricRatingViewModel!
     private var interactor: RubricGradingInteractorMock!
     private var cancellables = Set<AnyCancellable>()
     private var assignment: Assignment!
@@ -52,7 +52,7 @@ class RubricRatingViewModelTests: TeacherTestCase {
 
         // When
         let rating = CDRubricRating.save(.make(id: "rating1"), assignmentID: assignment.id, in: databaseClient)
-        viewModel = RedesignedRubricRatingViewModel(rating: rating, criterionId: "criterion1", interactor: interactor)
+        viewModel = RubricRatingViewModel(rating: rating, criterionId: "criterion1", interactor: interactor)
 
         // Then
         XCTAssertTrue(viewModel.isSelected)
@@ -63,7 +63,7 @@ class RubricRatingViewModelTests: TeacherTestCase {
 
         // When
         let rating = CDRubricRating.save(.make(id: "rating1"), assignmentID: assignment.id, in: databaseClient)
-        viewModel = RedesignedRubricRatingViewModel(rating: rating, criterionId: "criterion1", interactor: interactor)
+        viewModel = RubricRatingViewModel(rating: rating, criterionId: "criterion1", interactor: interactor)
 
         // Then
         XCTAssertFalse(viewModel.isSelected)
@@ -73,7 +73,7 @@ class RubricRatingViewModelTests: TeacherTestCase {
 
     func test_matchPoints_strict() {
         let rating = CDRubricRating.save(.make(points: 10), assignmentID: assignment.id, in: databaseClient)
-        viewModel = RedesignedRubricRatingViewModel(rating: rating, criterionId: "criterion1", interactor: interactor)
+        viewModel = RubricRatingViewModel(rating: rating, criterionId: "criterion1", interactor: interactor)
 
         // Then
         XCTAssertTrue(viewModel.matchPoints(10, strict: true))
@@ -82,7 +82,7 @@ class RubricRatingViewModelTests: TeacherTestCase {
 
     func test_matchPoints_ranged() {
         let rating = CDRubricRating.save(.make(points: 10), assignmentID: assignment.id, in: databaseClient)
-        viewModel = RedesignedRubricRatingViewModel(rating: rating, ratingPointsLowerBound: 5, criterionId: "criterion1", interactor: interactor)
+        viewModel = RubricRatingViewModel(rating: rating, ratingPointsLowerBound: 5, criterionId: "criterion1", interactor: interactor)
 
         // Then
         XCTAssertTrue(viewModel.matchPoints(7))

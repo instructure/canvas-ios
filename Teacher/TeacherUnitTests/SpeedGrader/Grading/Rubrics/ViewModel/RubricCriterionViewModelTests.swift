@@ -25,7 +25,7 @@ class RubricCriterionViewModelTests: TeacherTestCase {
 
     // MARK: - Properties
 
-    private var viewModel: RedesignedRubricCriterionViewModel!
+    private var viewModel: RubricCriterionViewModel!
     private var interactor: RubricGradingInteractorMock!
     private var cancellables = Set<AnyCancellable>()
     private var assignment: Assignment!
@@ -52,7 +52,7 @@ class RubricCriterionViewModelTests: TeacherTestCase {
         let criterion = CDRubricCriterion.save(.make(criterion_use_range: true, id: "criterion1", ratings: ratings), assignmentID: assignment.id, in: databaseClient)
 
         // When
-        viewModel = RedesignedRubricCriterionViewModel(criterion: criterion, isFreeFormCommentsEnabled: false, hideRubricPoints: false, interactor: interactor)
+        viewModel = RubricCriterionViewModel(criterion: criterion, isFreeFormCommentsEnabled: false, hideRubricPoints: false, interactor: interactor)
 
         // Then
         XCTAssertEqual(viewModel.ratingViewModels.count, 2)
@@ -64,7 +64,7 @@ class RubricCriterionViewModelTests: TeacherTestCase {
 
     func test_updateUserValues_updatesPublishedProperties() {
         let criterion = CDRubricCriterion.save(.make(id: "criterion1"), assignmentID: assignment.id, in: databaseClient)
-        viewModel = RedesignedRubricCriterionViewModel(criterion: criterion, isFreeFormCommentsEnabled: false, hideRubricPoints: false, interactor: interactor)
+        viewModel = RubricCriterionViewModel(criterion: criterion, isFreeFormCommentsEnabled: false, hideRubricPoints: false, interactor: interactor)
 
         let assessment: APIRubricAssessmentMap = ["criterion1": .init(comments: "comment", points: 8.0, rating_id: "rating1")]
         let commentExp = XCTestExpectation(description: "userComment should update")
