@@ -168,7 +168,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         let plannables = [makePlannable(courseId: "1", plannableId: "p1", type: "assignment", title: "Assignment 1")]
 
         // When
-        testee = TodoInteractorLive(env: environment, startDate: startDate, endDate: endDate)
+        testee = TodoInteractorLive(startDate: startDate, endDate: endDate, env: environment)
         mockCourses(courses)
         mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]), startDate: startDate, endDate: endDate)
 

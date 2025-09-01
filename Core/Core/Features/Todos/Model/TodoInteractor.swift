@@ -31,16 +31,16 @@ public final class TodoInteractorLive: TodoInteractor {
     }
 
     private let todosSubject = CurrentValueSubject<[TodoItem], Never>([])
-    private let env: AppEnvironment
     private let startDate: Date
     private let endDate: Date
+    private let env: AppEnvironment
 
     private var subscriptions = Set<AnyCancellable>()
 
-    init(env: AppEnvironment, startDate: Date = .now, endDate: Date = .distantFuture) {
-        self.env = env
+    init(startDate: Date = .now, endDate: Date = .distantFuture, env: AppEnvironment) {
         self.startDate = startDate
         self.endDate = endDate
+        self.env = env
     }
 
     public func refresh(ignoreCache: Bool) -> AnyPublisher<Bool, Error> {

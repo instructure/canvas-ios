@@ -69,8 +69,7 @@ struct TodoListItemCell: View {
                 .paddingStyle(set: .iconCell)
             }
             .accessibilityElement(children: .combine)
-            .accessibilityLabel("\(item.title), \(item.date.dateTimeStringShort)")
-            InstUI.Divider(isLastItem ? .padded : .full)
+            InstUI.Divider(isLastItem ? .full : .padded)
         }
     }
 }
