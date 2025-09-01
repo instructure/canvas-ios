@@ -55,21 +55,24 @@ final class GradeListInteractorPreview: GradeListInteractor {
                         id: UUID.string,
                         title: "Overdue Assignments",
                         assignments: (1...5).map {
-                            .save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
+                            let assignment = Assignment.save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
+                            return .init(assignment: assignment, userID: "userID")
                         }
                     ),
                     .init(
                         id: UUID.string,
                         title: "Upcoming Assignments",
                         assignments: (6...8).map {
-                            .save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
+                            let assignment = Assignment.save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
+                            return .init(assignment: assignment, userID: "userID")
                         }
                     ),
                     .init(
                         id: UUID.string,
                         title: "Past Assignments",
                         assignments: (9...10).map {
-                            .save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
+                            let assignment = Assignment.save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
+                            return .init(assignment: assignment, userID: "userID")
                         }
                     )
                 ],

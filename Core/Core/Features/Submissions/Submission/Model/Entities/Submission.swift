@@ -67,6 +67,10 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
     @NSManaged public var user: User?
 
+    // Sub-assignment (aka: Checkpoint) submissions
+    @NSManaged public var hasSubAssignmentSubmissions: Bool
+    @NSManaged public var subAssignmentSubmissions: Set<CDSubAssignmentSubmission>
+
     /// Transient property to use for group resolving in Teacher's submission list
     public var fetchedGroup: FetchedGroup?
     public var displayGroupName: String? { groupName ?? fetchedGroup?.name }
@@ -286,6 +290,16 @@ extension Submission: WriteableModel {
                 #keyPath(Enrollment.userID), item.user_id.value
             ))
             model.enrollments.formUnion(enrollments)
+        }
+
+        if let hasSubAssignmentSubmissions = item.has_sub_assignment_submissions {
+            model.hasSubAssignmentSubmissions = hasSubAssignmentSubmissions
+            // else CoreData can default to `false`
+        }
+        if let subAssignmentSubmissions = item.sub_assignment_submissions {
+            model.subAssignmentSubmissions = Set(subAssignmentSubmissions.map {
+                CDSubAssignmentSubmission.save($0, submissionId: item.id.value, in: client)
+            })
         }
 
         return model

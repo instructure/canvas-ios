@@ -57,6 +57,10 @@ public struct APISubmission: Codable, Equatable {
     var user: APIUser? // include[]=user
     let user_id: ID
     let workflow_state: SubmissionWorkflowState
+
+    // Sub-assignment (aka: Checkpoint) submissions
+    let has_sub_assignment_submissions: Bool? // include[]=sub_assignment_submissions
+    let sub_assignment_submissions: [APISubAssignmentSubmission]? // include[]=sub_assignment_submissions
 }
 
 extension APISubmission {
@@ -105,7 +109,9 @@ extension APISubmission {
         url: URL? = nil,
         user: APIUser? = nil,
         user_id: String = "1",
-        workflow_state: SubmissionWorkflowState = .submitted
+        workflow_state: SubmissionWorkflowState = .submitted,
+        has_sub_assignment_submissions: Bool? = nil,
+        sub_assignment_submissions: [APISubAssignmentSubmission]? = nil
     ) -> APISubmission {
         return APISubmission(
             assignment: assignment,
@@ -144,7 +150,9 @@ extension APISubmission {
             url: url,
             user: user,
             user_id: ID(user_id),
-            workflow_state: workflow_state
+            workflow_state: workflow_state,
+            has_sub_assignment_submissions: has_sub_assignment_submissions,
+            sub_assignment_submissions: sub_assignment_submissions
         )
     }
 }

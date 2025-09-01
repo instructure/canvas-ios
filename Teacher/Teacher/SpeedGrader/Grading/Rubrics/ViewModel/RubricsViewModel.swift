@@ -22,28 +22,15 @@ import SwiftUI
 
 class RubricsViewModel: ObservableObject {
 
-    // MARK: - Input / Output
-
-    @Published var criterionComment: String = ""
-    @Published var commentingOnCriterionID: String?
-
     // MARK: - Outputs
 
     @Published private(set) var isSaving = false
     @Published private(set) var submission: Submission
-    @Published private(set) var totalRubricScore: Double = 0
-    @Published private(set) var isRubricScoreAvailable = false
+
     private(set) var criterionViewModels: [RubricCriterionViewModel] = []
     let interactor: RubricGradingInteractor
-    let maximumRubricPoints: Double
 
-    // MARK: - Inputs
-
-    var controller = WeakViewController() {
-        didSet {
-            criterionViewModels.forEach { $0.controller = controller }
-        }
-    }
+    var controller = WeakViewController()
 
     // MARK: - Private
 
@@ -61,22 +48,13 @@ class RubricsViewModel: ObservableObject {
         self.submission = submission
         self.interactor = interactor
         self.router = router
-        self.maximumRubricPoints = assignment.rubricPointsPossible ?? 0
-        criterionViewModels = (assignment.rubric ?? []).map { [unowned self] criterion in
-            let rubricCommentBinding = Binding(
-                get: { self.criterionComment },
-                set: { self.criterionComment = $0 }
-            )
-            let rubricCommentIdBinding = Binding(
-                get: { self.commentingOnCriterionID },
-                set: { self.commentingOnCriterionID = $0 }
-            )
+
+        criterionViewModels = (assignment.rubric ?? []).map { criterion in
             return RubricCriterionViewModel(
                 criterion: criterion,
                 isFreeFormCommentsEnabled: assignment.freeFormCriterionCommentsOnRubric,
-                interactor: interactor,
-                rubricComment: rubricCommentBinding,
-                rubricCommentID: rubricCommentIdBinding
+                hideRubricPoints: assignment.hideRubricPoints,
+                interactor: interactor
             )
         }
 
@@ -85,27 +63,11 @@ class RubricsViewModel: ObservableObject {
             .assign(to: &$isSaving)
 
         interactor
-            .isRubricScoreAvailable
-            .assign(to: &$isRubricScoreAvailable)
-
-        interactor
-            .totalRubricScore
-            .assign(to: &$totalRubricScore)
-
-        interactor
             .showSaveError
             .sink { [weak self] error in
                 self?.showError(error)
             }
             .store(in: &subscriptions)
-    }
-
-    func saveComment() {
-        guard let commentingOnCriterionID else {
-            return
-        }
-        interactor.updateComment(criterionId: commentingOnCriterionID, comment: criterionComment)
-        self.commentingOnCriterionID = nil
     }
 
     // MARK: - Private Methods

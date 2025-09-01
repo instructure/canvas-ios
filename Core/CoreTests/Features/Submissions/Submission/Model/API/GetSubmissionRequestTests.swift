@@ -22,14 +22,22 @@ import XCTest
 
 class GetSubmissionRequestTests: CoreTestCase {
 
-    func testGetSubmissionRequest() {
-        XCTAssertEqual(GetSubmissionRequest(context: .course("1"), assignmentID: "2", userID: "3").path, "courses/1/assignments/2/submissions/3")
-        XCTAssertEqual(GetSubmissionRequest(context: .course("1"), assignmentID: "2", userID: "3").query, [ APIQueryItem.array("include", [
+    func test_path() {
+        let testee = GetSubmissionRequest(context: .course("1"), assignmentID: "2", userID: "3")
+
+        XCTAssertEqual(testee.path, "courses/1/assignments/2/submissions/3")
+    }
+
+    func test_includes() {
+        let testee = GetSubmissionRequest(context: .course("1"), assignmentID: "2", userID: "3")
+
+        XCTAssertEqual(testee.query, [ APIQueryItem.array("include", [
             "submission_comments",
             "submission_history",
             "user",
             "rubric_assessment",
-            "group"
+            "group",
+            "sub_assignment_submissions"
         ]) ])
     }
 }

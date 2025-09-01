@@ -84,7 +84,7 @@ class SpeedGraderTests: E2ETestCase {
             SpeedGraderHelper.GradeStatusButtons.late.actionUntilElementCondition(action: .tap, condition: .vanish)
             let daysLateButton = SpeedGraderHelper.daysLateButton
             XCTAssertVisible(daysLateButton.waitUntil(.visible))
-            XCTAssertTrue(daysLateButton.label.hasPrefix("0 days late"))
+            XCTAssertEqual(daysLateButton.label, "Days late, 0, No due date was set")
 
             daysLateButton.tapAt(CGPoint(x: daysLateButton.frame.width - 10, y: 20))
             let daysLateTextField = SpeedGraderHelper.daysLateTextField
@@ -94,8 +94,8 @@ class SpeedGraderTests: E2ETestCase {
             XCTAssertEqual(daysLateTextField.stringValue, "6")
             SpeedGraderHelper.daysLateAlertOkButton.hit()
 
-            daysLateButton.waitUntil(.labelHasPrefix(expected: "6 days late"))
-            XCTAssertTrue(daysLateButton.label.hasPrefix("6 days late"))
+            daysLateButton.waitUntil(.label(expected: "Days late, 6, No due date was set", strict: true))
+            XCTAssertEqual(daysLateButton.label, "Days late, 6, No due date was set")
         }
 
         XCTContext.runActivity(named: "Swipe to the first student") { _ in
@@ -166,11 +166,11 @@ class SpeedGraderTests: E2ETestCase {
 
         speedGraderGradeSlider.waitUntil(.visible)
         XCTAssertTrue(speedGraderGradeSlider.isVisible)
-        XCTAssertEqual(speedGraderGradeSlider.stringValue, "0.00")
+        XCTAssertEqual(speedGraderGradeSlider.stringValue, "0 points")
 
         speedGraderGradeSlider.swipeRight(velocity: .slow)
-        speedGraderGradeSlider.waitUntil(.value(expected: "0.75"))
-        XCTAssertEqual(speedGraderGradeSlider.stringValue, "0.75")
+        speedGraderGradeSlider.waitUntil(.value(expected: "0.75 points"))
+        XCTAssertEqual(speedGraderGradeSlider.stringValue, "0.75 points")
 
         speedGraderDoneButton.hit()
         submissionItem.waitUntil(.vanish)
