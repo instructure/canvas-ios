@@ -134,7 +134,7 @@ public struct WebView: UIViewRepresentable {
         } else {
             webView.pin(inside: webViewContainer)
         }
-        
+
         webView.autoresizesHeight = true
         webView.scrollView.isScrollEnabled = isScrollEnabled
         webView.scrollView.showsVerticalScrollIndicator = false
