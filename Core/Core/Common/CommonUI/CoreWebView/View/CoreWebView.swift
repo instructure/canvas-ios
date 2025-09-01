@@ -443,7 +443,9 @@ open class CoreWebView: WKWebView {
                 return newCookies.nilIfEmpty
             })
             .flatMap({ [weak self] newCookies in
-                guard let self else { return Empty<Void, Never>().eraseToAnyPublisher() }
+                guard let self else {
+                    return Just<Void>(()).eraseToAnyPublisher()
+                }
                 return configuration.websiteDataStore.httpCookieStore.setCookies(newCookies)
             })
             .sink(receiveValue: {
