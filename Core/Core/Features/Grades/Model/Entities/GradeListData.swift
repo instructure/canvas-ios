@@ -33,6 +33,18 @@ public struct GradeListData: Identifiable, Equatable {
     struct AssignmentSections: Identifiable, Equatable {
         var id: String
         let title: String
-        var assignments: [Assignment]
+        let accessibilityLabel: String
+        var assignments: [GradeListAssignment]
+
+        init(
+            id: String,
+            title: String,
+            assignments: [GradeListAssignment]
+        ) {
+            self.id = id
+            self.title = title
+            self.assignments = assignments
+            self.accessibilityLabel = "\(title), \(String.format(numberOfItems: assignments.count))"
+        }
     }
 }
