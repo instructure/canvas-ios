@@ -404,18 +404,24 @@ open class CoreWebView: WKWebView {
         sizeDelegate?.coreWebView(self, didChangeContentHeight: contentHeight)
     }
 
-    public func resetEnvironment(_ env: AppEnvironment) {
+    public func resetEnvironment(_ env: AppEnvironment, completion: (() -> Void)? = nil) {
         self.env = env
-        self.resetCookiesForEnvironmentOverride(env)
+        self.copyRootDomainCookies(for: env, completion: completion)
     }
 
-    private func resetCookiesForEnvironmentOverride(_ env: AppEnvironment) {
-        guard env.isRoot == false else { return }
+    private func copyRootDomainCookies(for env: AppEnvironment, completion: (() -> Void)?) {
+        guard env.isRoot == false else {
+            completion?()
+            return
+        }
 
         guard
             let rootDomain = AppEnvironment.shared.api.baseURL.host(),
             let newDomain = env.api.baseURL.host()
-        else { return }
+        else {
+            completion?()
+            return
+        }
 
         configuration
             .websiteDataStore
@@ -440,7 +446,9 @@ open class CoreWebView: WKWebView {
                 guard let self else { return Empty<Void, Never>().eraseToAnyPublisher() }
                 return configuration.websiteDataStore.httpCookieStore.setCookies(newCookies)
             })
-            .sink()
+            .sink(receiveValue: {
+                completion?()
+            })
             .store(in: &subscriptions)
     }
 }

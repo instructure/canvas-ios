@@ -224,7 +224,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         lockedIconImageView.image = UIImage(named: Panda.Locked.name, in: .core, compatibleWith: nil)
 
         // Routing from description
-        webView.resetEnvironment(env)
         webView.linkDelegate = self
         webView.autoresizesHeight = true
         webView.heightAnchor.constraint(equalToConstant: 0).isActive = true
@@ -261,7 +260,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         gradeSectionBoundsObservation = gradeSection?.observe(\.bounds) { [weak self] gradeSection, _ in
             self?.updateGradeBorder(using: gradeSection)
         }
-        presenter?.viewIsReady()
 
         // updateSubmissionLabels is also called from the update method that is triggered by CoreData
         // but during a file resubmission flow the presenter's onlineUploadState is updated after
@@ -269,6 +267,10 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         presenter?.didChangeOnlineUploadState = { [weak self] state in
             guard let state else { return }
             self?.updateSubmissionLabels(state: state)
+        }
+
+        webView.resetEnvironment(env) { [weak self] in
+            self?.presenter?.viewIsReady()
         }
     }
 
