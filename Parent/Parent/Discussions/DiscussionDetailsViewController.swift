@@ -55,13 +55,18 @@ class DiscussionDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         webView.autoresizesHeight = true
         webView.heightAnchor.constraint(equalToConstant: 0).isActive = true
         webView.linkDelegate = self
-        webView.resetEnvironment(env)
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         scrollView.refreshControl = refreshControl
 
         titleLabel.text = ""
 
+        webView.resetEnvironment(env) { [weak self] in
+            self?.viewIsReady()
+        }
+    }
+
+    private func viewIsReady() {
         course.refresh()
         topic.refresh()
     }

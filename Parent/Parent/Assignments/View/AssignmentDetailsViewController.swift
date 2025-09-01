@@ -94,7 +94,6 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         webView.autoresizesHeight = true
         webView.heightAnchor.constraint(equalToConstant: 0).isActive = true
         webView.linkDelegate = self
-        webView.resetEnvironment(env)
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         scrollView.refreshControl = refreshControl
@@ -145,11 +144,6 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             return config
         }()
 
-        assignment.refresh()
-        course.refresh()
-        student.refresh()
-        teachers.refresh()
-        featuresStore.refresh()
         localNotifications.getReminder(assignmentID) { [weak self] request in performUIUpdate {
             guard let self = self else { return }
             let date = (request?.trigger as? UNCalendarNotificationTrigger).flatMap {
@@ -162,6 +156,18 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                 self.reminderDateButton.isHidden = false
             }
         } }
+
+        webView.resetEnvironment(env) { [weak self] in
+            self?.viewIsReady()
+        }
+    }
+
+    private func viewIsReady() {
+        assignment.refresh()
+        course.refresh()
+        student.refresh()
+        teachers.refresh()
+        featuresStore.refresh()
     }
 
     override func viewWillAppear(_ animated: Bool) {

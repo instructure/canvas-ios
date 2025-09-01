@@ -84,7 +84,6 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
         webViewContainer.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: webViewContainer)
         webView.linkDelegate = self
-        webView.resetEnvironment(env)
 
         if context.contextType == .course {
             webView.addScript("window.ENV={COURSE:{id:\(CoreWebView.jsString(context.id))}}")
@@ -93,6 +92,14 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         webView.scrollView.refreshControl = refreshControl
 
+        NotificationCenter.default.post(moduleItem: .page(pageURL), completedRequirement: .view, courseID: context.id)
+
+        webView.resetEnvironment(env) { [weak self] in
+            self?.viewIsReady()
+        }
+    }
+
+    private func viewIsReady() {
         colors.refresh()
         if context.contextType == .course {
             courses.refresh()
@@ -100,7 +107,6 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
             groups.refresh()
         }
         pages.refresh(force: true)
-        NotificationCenter.default.post(moduleItem: .page(pageURL), completedRequirement: .view, courseID: context.id)
     }
 
     public override func viewWillAppear(_ animated: Bool) {

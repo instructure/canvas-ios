@@ -94,7 +94,6 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
         instructionsWebView.scrollView.alwaysBounceVertical = false
         instructionsWebView.backgroundColor = .backgroundLightest
         instructionsWebView.linkDelegate = self
-        instructionsWebView.resetEnvironment(env)
 
         loadingView.color = nil
         refreshControl.color = nil
@@ -105,6 +104,12 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
 
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .quizRefresh, object: nil)
 
+        instructionsWebView.resetEnvironment(env) { [weak self] in
+            self?.viewIsReady()
+        }
+    }
+
+    private func viewIsReady() {
         colors.refresh()
         courses.refresh()
         // We need to force refresh because the list deletes (& kills the submission association)

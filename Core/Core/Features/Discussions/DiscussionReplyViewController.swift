@@ -163,7 +163,6 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         viewMoreButton.layer.borderColor = UIColor.borderMedium.cgColor
         viewMoreButton.layer.borderWidth = 1 / UIScreen.main.scale
 
-        webView.resetEnvironment(env)
         webViewContainer.addSubview(webView)
         webView.autoresizesHeight = true
         webView.backgroundColor = .backgroundLightest
@@ -178,14 +177,6 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
 
         updateButtons()
 
-        if context.contextType == .course {
-            course.refresh()
-        } else {
-            group.refresh()
-        }
-        replyToEntry?.refresh()
-        topic.refresh()
-
         if context.id.hasShardID {
             ContextBaseURLInteractor(api: env.api)
                 .getBaseURL(context: context)
@@ -196,6 +187,20 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         }
 
         registerForTraitChanges()
+
+        webView.resetEnvironment(env) { [weak self] in
+            self?.viewIsReady()
+        }
+    }
+
+    private func viewIsReady() {
+        if context.contextType == .course {
+            course.refresh()
+        } else {
+            group.refresh()
+        }
+        replyToEntry?.refresh()
+        topic.refresh()
     }
 
     public override func viewWillAppear(_ animated: Bool) {

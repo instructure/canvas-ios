@@ -149,7 +149,6 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.pinWithThemeSwitchButton(inside: webViewPlaceholder)
         webView.heightAnchor.constraint(equalToConstant: 100).isActive = true
 
-        webView.resetEnvironment(env)
         webView.autoresizesHeight = true // will update the height constraint
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.alwaysBounceVertical = false
@@ -169,6 +168,12 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
             navigationItem.rightBarButtonItem = nil
         }
 
+        webView.resetEnvironment(env) { [weak self] in
+            self?.viewIsReady()
+        }
+    }
+
+    private func viewIsReady() {
         colors.refresh()
         if context.contextType == .course {
             course.refresh()
