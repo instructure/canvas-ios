@@ -64,19 +64,19 @@ public class CalendarHelper: BaseHelper {
         app.find(id: "PlannerList.event.\(item.id)")
     }
 
-    public static func itemCell(for assignment: DSAssignment) -> XCUIElement {
+    public static func itemCell(forTitle title: String) -> XCUIElement {
         for cell in allItemCells() {
-            let title = cell.find(labelContaining: assignment.name)
-            if title.exists {
+            let titleLabel = cell.find(labelContaining: title)
+            if titleLabel.exists {
                 return cell
             }
         }
-        return .notFoundFailure("Calendar Item not found for assignment: \(assignment.name)")
+        return .notFoundFailure("Calendar Item not found for title: \(title)")
     }
 
-    public static func itemCells(for assignment: DSAssignment) -> [XCUIElement] {
+    public static func itemCells(forTitle title: String) -> [XCUIElement] {
         allItemCells()
-            .filter { $0.find(labelContaining: assignment.name).exists }
+            .filter { $0.find(labelContaining: title).exists }
     }
 
     // MARK: - Navigation
@@ -114,9 +114,14 @@ public class CalendarHelper: BaseHelper {
     }
 
     public static func navigateToItemCell(for assignment: DSAssignment) -> XCUIElement {
-        navigateToDate(assignment.due_at ?? .now)
-        return itemCell(for: assignment).waitUntil(.visible)
+        navigateToItemCell(forTitle: assignment.name, dueAt: assignment.due_at ?? .now)
     }
+
+    public static func navigateToItemCell(forTitle title: String, dueAt: Date) -> XCUIElement {
+        navigateToDate(dueAt)
+        return itemCell(forTitle: title).waitUntil(.visible)
+    }
+
 
     private static func navigateToDate(_ date: Date) {
         let dayButtonOfEvent = dayButtonOfDate(date).waitUntil(.visible, timeout: 3)
@@ -180,17 +185,25 @@ extension CalendarHelper {
             cell.findAll(type: .staticText, minimumCount: 1)[0]
         }
 
-        public static func dateLabel(in cell: XCUIElement) -> XCUIElement {
+        public static func secondLabel(in cell: XCUIElement) -> XCUIElement {
             cell.findAll(type: .staticText, minimumCount: 2)[1]
         }
 
-        public static func courseLabel(in cell: XCUIElement) -> XCUIElement {
+        public static func thirdLabel(in cell: XCUIElement) -> XCUIElement {
             cell.findAll(type: .staticText, minimumCount: 3)[2]
         }
 
+        public static func fourthLabel(in cell: XCUIElement) -> XCUIElement {
+            cell.findAll(type: .staticText, minimumCount: 4)[3]
+        }
+
         public static func formattedDate(for event: DSCalendarEvent) -> String {
+            formattedDate(event.start_at)
+        }
+
+        public static func formattedDate(_ date: Date) -> String {
             dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
-            return dateFormatter.string(from: event.start_at)
+            return dateFormatter.string(from: date)
         }
     }
 

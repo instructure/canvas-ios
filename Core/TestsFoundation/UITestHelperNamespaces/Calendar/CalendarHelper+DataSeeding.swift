@@ -18,6 +18,7 @@
 
 import Foundation
 import XCTest
+import Core
 
 extension CalendarHelper {
 
@@ -125,6 +126,23 @@ extension CalendarHelper {
         AssignmentsHelper.createAssignment(
             course: course,
             dueDate: dueDate
+        )
+    }
+
+    @discardableResult
+    public static func createDiscussionCheckpoints(
+        course: DSCourse,
+        title: String,
+        repliesRequired: Int = 3,
+        replyToTopicDueDate: Date = Date.now,
+        requiredRepliesDueDate: Date = Date.now.addDays(1)
+    ) -> CreateDSDiscussionWithCheckpointsResponse {
+        DiscussionsHelper.createDiscussionWithCheckpoints(
+            course: course,
+            title: title,
+            repliesRequired: repliesRequired,
+            replyToTopicDueDate: replyToTopicDueDate,
+            requiredRepliesDueDate: requiredRepliesDueDate
         )
     }
 
