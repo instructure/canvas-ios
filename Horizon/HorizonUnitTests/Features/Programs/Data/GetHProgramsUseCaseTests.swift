@@ -42,7 +42,7 @@ final class GetHProgramsUseCaseTests: HorizonTestCase {
         testee = GetHProgramsUseCase(journey: DomainServiceMock(result: .success(api)))
         // When
         let expection = expectation(description: "Wait for completion")
-        api.mock(DomainService.JWTTokenRequest(service: "journey"), value: DomainService.JWTTokenRequest.Result(token: ProgramStubs.token))
+        api.mock(DomainService.JWTTokenRequest(domainServiceOption: .journey), value: DomainService.JWTTokenRequest.Result(token: ProgramStubs.token))
         api.mock(GetHProgramsRequest(), value: ProgramStubs.response)
 
         // Then
@@ -60,7 +60,7 @@ final class GetHProgramsUseCaseTests: HorizonTestCase {
         // When
         let expection = expectation(description: "Wait for completion")
         api.mock(
-                DomainService.JWTTokenRequest(service: "journey"),
+            DomainService.JWTTokenRequest(domainServiceOption: .journey),
                 value: DomainService.JWTTokenRequest.Result(token: ProgramStubs.token),
                error: DomainService.Issue.unableToGetToken
             )

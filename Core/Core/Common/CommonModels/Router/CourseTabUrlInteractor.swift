@@ -239,6 +239,39 @@ public final class CourseTabUrlInteractor {
             return $0.key.isEquivalent(to: context)
         })?.value
     }
+
+    public func courseShardID(for url: URLComponents) -> String? {
+        let pathContext = Context(path: url.path)
+
+        if let pathContext,
+           let shardID = pathContext.courseId?.shardID {
+            return shardID
+        }
+
+        if let urlHost = url.host {
+
+            let overrideContexts = baseURLHostOverridesPerCourse
+                .filter { $0.value == urlHost } // It's possible to have multiple contexts with the same `value`
+                .map { $0.key }
+
+            if let shardID = overrideContexts.compactMap(\.id.shardID).first {
+                return shardID
+            }
+        }
+
+        if let pathContext {
+
+            let overrideContexts = baseURLHostOverridesPerCourse
+                .filter { $0.key.isEquivalent(to: pathContext) } // It's possible to have multiple equivalent contexts
+                .map { $0.key }
+
+            if let shardID = overrideContexts.compactMap(\.id.shardID).first {
+                return shardID
+            }
+        }
+
+        return nil
+    }
 }
 
 // MARK: - CourseTabFormat

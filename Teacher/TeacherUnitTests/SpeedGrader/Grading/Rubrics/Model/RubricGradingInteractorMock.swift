@@ -27,14 +27,38 @@ class RubricGradingInteractorMock: RubricGradingInteractor {
     let totalRubricScore = CurrentValueSubject<Double, Never>(0)
     let isRubricScoreAvailable = CurrentValueSubject<Bool, Never>(false)
 
-    private let assessmentsSubject = CurrentValueSubject<APIRubricAssessmentMap, Never>([:])
+    let assessmentsSubject = CurrentValueSubject<APIRubricAssessmentMap, Never>([:])
 
     init() {
         self.assessments = assessmentsSubject.eraseToAnyPublisher()
     }
 
-    func clearRating(criterionId: String) {}
-    func selectRating(criterionId: String, points: Double, ratingId: String) {}
-    func hasAssessmentUserComment(criterionId: String) -> Bool { false }
-    func updateComment(criterionId: String, comment: String?) {}
+    private(set) var criterionIdForClearedRating: String?
+    func clearRating(criterionId: String) {
+        self.criterionIdForClearedRating = criterionId
+    }
+
+    private(set) var selectedRating: SelectedRating?
+    func selectRating(criterionId: String, points: Double, ratingId: String) {
+        selectedRating = SelectedRating(criterionId: criterionId, points: points, ratingId: ratingId)
+    }
+
+    var assessmentUserCommentMockMap: [String: Bool] = [:]
+    func hasAssessmentUserComment(criterionId: String) -> Bool { assessmentUserCommentMockMap[criterionId] ?? false }
+
+    private(set) var updatedComment: UpdatedComment?
+    func updateComment(criterionId: String, comment: String?) {
+        updatedComment = UpdatedComment(criterionId: criterionId, comment: comment)
+    }
+
+    struct UpdatedComment {
+        let criterionId: String
+        let comment: String?
+    }
+
+    struct SelectedRating {
+        let criterionId: String
+        let points: Double
+        let ratingId: String
+    }
 }

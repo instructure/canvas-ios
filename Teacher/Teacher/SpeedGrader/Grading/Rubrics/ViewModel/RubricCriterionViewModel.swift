@@ -36,10 +36,6 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
     let hideRubricPoints: Bool
     let ratingViewModels: [RubricRatingViewModel]
 
-    var shouldShowRubricNotUsedForScoringMessage: Bool {
-        criterion.ignoreForScoring
-    }
-
     var isSaving: CurrentValueSubject<Bool, Never> {
         interactor.isSaving
     }
@@ -114,7 +110,7 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
             .store(in: &subscriptions)
     }
 
-    func updateUserValues(_ assessments: APIRubricAssessmentMap) {
+    private func updateUserValues(_ assessments: APIRubricAssessmentMap) {
         let assessment = assessments[criterion.id]
 
         userComment = assessment?.comments

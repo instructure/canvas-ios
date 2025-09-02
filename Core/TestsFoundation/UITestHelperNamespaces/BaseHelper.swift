@@ -52,6 +52,18 @@ open class BaseHelper {
         return users
     }
 
+    public static func createStudentEnrolledInCourse() -> (DSUser, DSCourse) {
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        return (student, course)
+    }
+
+    public static func createStudentEnrolled() -> DSUser {
+        let (student, _) = createStudentEnrolledInCourse()
+        return student
+    }
+
     public struct TabBar {
         public static var dashboardTab: XCUIElement { app.find(id: "TabBar.dashboardTab", type: .button) }
         public static var calendarTab: XCUIElement { app.find(id: "TabBar.calendarTab", type: .button) }

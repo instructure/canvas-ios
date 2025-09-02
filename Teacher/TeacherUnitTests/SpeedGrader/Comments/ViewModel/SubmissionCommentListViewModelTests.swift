@@ -135,39 +135,21 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
 
     // MARK: - filtering
 
-    func test_cellViewModels_whenAssignmentEnhancementsIsEnabled_shouldBeFiltered() throws {
-        interactor.getCommentsResult = Publishers.typedJust([
-            makeComment(id: "0", attempt: nil),
-            makeComment(id: "1", attempt: 1),
-            makeComment(id: "2", attempt: 2),
-            makeComment(id: "3", attempt: nil)
-        ])
+    func test_commentFilter_callsProtocolMethodWithCorrectParameters() {
+        let mockFilter = SubmissionCommentFilterMock()
+        let comment1 = makeComment(id: "1", attempt: nil)
+        let comment2 = makeComment(id: "2", attempt: 1)
+        interactor.getCommentsResult = Publishers.typedJust([comment1, comment2])
         interactor.getIsAssignmentEnhancementsEnabledResult = Publishers.typedJust(true)
 
-        let testee = makeViewModel(latestAttemptNumber: 2)
+        let testee = makeViewModel(latestAttemptNumber: 1, commentFilter: mockFilter)
 
-        guard testee.cellViewModels.count == 3 else { throw InvalidCountError() }
-        XCTAssertEqual(testee.cellViewModels[0].id, "0")
-        XCTAssertEqual(testee.cellViewModels[1].id, "2")
-        XCTAssertEqual(testee.cellViewModels[2].id, "3")
-    }
-
-    func test_cellViewModels_whenAssignmentEnhancementsIsDisabled_shouldNotBeFiltered() throws {
-        interactor.getCommentsResult = Publishers.typedJust([
-            makeComment(id: "0", attempt: nil),
-            makeComment(id: "1", attempt: 1),
-            makeComment(id: "2", attempt: 2),
-            makeComment(id: "3", attempt: nil)
-        ])
-        interactor.getIsAssignmentEnhancementsEnabledResult = Publishers.typedJust(false)
-
-        let testee = makeViewModel(latestAttemptNumber: 2)
-
-        guard testee.cellViewModels.count == 4 else { throw InvalidCountError() }
-        XCTAssertEqual(testee.cellViewModels[0].id, "0")
-        XCTAssertEqual(testee.cellViewModels[1].id, "1")
-        XCTAssertEqual(testee.cellViewModels[2].id, "2")
-        XCTAssertEqual(testee.cellViewModels[3].id, "3")
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(mockFilter.filterCommentsCallArgs.count, 1)
+        let callArgs = mockFilter.filterCommentsCallArgs[0]
+        XCTAssertEqual(callArgs.comments.count, 2)
+        XCTAssertEqual(callArgs.attempt, 1)
+        XCTAssertEqual(callArgs.isAssignmentEnhancementsEnabled, true)
     }
 
     // MARK: - cellViewModels
@@ -308,7 +290,8 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
     private func makeViewModel(
         latestAttemptNumber: Int? = nil,
         currentUserId: String? = TestConstants.currentUserId,
-        contextColor: AnyPublisher<Color, Never> = Publishers.typedEmpty()
+        contextColor: AnyPublisher<Color, Never> = Publishers.typedEmpty(),
+        commentFilter: SubmissionCommentFilter = SubmissionCommentFilterLive()
     ) -> SubmissionCommentListViewModel {
         SubmissionCommentListViewModel(
             assignment: assignment,
@@ -317,6 +300,7 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
             currentUserId: currentUserId,
             contextColor: contextColor,
             interactor: interactor,
+            commentFilter: commentFilter,
             scheduler: .immediate,
             env: environment
         )
@@ -346,5 +330,19 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
             .make(attempt: attempt, id: .init(id)),
             in: databaseClient
         )
+    }
+}
+
+private class SubmissionCommentFilterMock: SubmissionCommentFilter {
+    var filterCommentsCallArgs: [(comments: [SubmissionComment], attempt: Int?, isAssignmentEnhancementsEnabled: Bool)] = []
+    var filterCommentsResult: [SubmissionComment] = []
+
+    func filterComments(
+        _ comments: [SubmissionComment],
+        for attempt: Int?,
+        isAssignmentEnhancementsEnabled: Bool
+    ) -> [SubmissionComment] {
+        filterCommentsCallArgs.append((comments: comments, attempt: attempt, isAssignmentEnhancementsEnabled: isAssignmentEnhancementsEnabled))
+        return filterCommentsResult.isEmpty ? comments : filterCommentsResult
     }
 }

@@ -291,10 +291,10 @@ let router = Router(routes: [
         return ModuleListViewController.create(env: env, courseID: courseID, moduleID: moduleID)
     },
 
-    RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
+            env: env,
             courseID: courseID,
             assetType: .moduleItem,
             assetID: itemID,
@@ -302,10 +302,10 @@ let router = Router(routes: [
         )
     },
 
-    RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
+            env: env,
             courseID: courseID,
             assetType: .moduleItem,
             assetID: itemID,
@@ -313,10 +313,10 @@ let router = Router(routes: [
         )
     },
 
-    RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
+            env: env,
             courseID: courseID,
             assetType: .moduleItem,
             assetID: itemID,
@@ -328,9 +328,9 @@ let router = Router(routes: [
         guard let context = Context(path: url.path) else { return nil }
         return AppEnvironment.shared.router.match("\(context.pathComponent)/pages/front_page")
     },
-    RouteHandler("/:context/:contextID/pages") { url, _, _ in
+    RouteHandler("/:context/:contextID/pages") { url, _, _, env in
         guard let context = Context(path: url.path) else { return nil }
-        return PageListViewController.create(context: context, app: .teacher)
+        return PageListViewController.create(context: context, app: .teacher, env: env)
     },
 
     RouteHandler("/:context/:contextID/pages/new") { url, _, _ in
@@ -525,9 +525,13 @@ private func fileEditor(url: URLComponents, params: [String: String], userInfo: 
     return CoreHostingController(FileEditorView(context: Context(path: url.path), fileID: fileID))
 }
 
-private func syllabus(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+private func syllabus(url: URLComponents, params: [String: String], userInfo: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard let courseID = params["courseID"] else { return nil }
-    return SyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
+    return SyllabusTabViewController.create(
+        context: Context(path: url.path),
+        courseID: ID.expandTildeID(courseID),
+        env: env
+    )
 }
 
 private func courseDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

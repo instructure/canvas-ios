@@ -42,9 +42,18 @@ final class DomainService: DomainServiceProtocol {
     // MARK: - Private
 
     private var audience: String {
-        baseURL.contains("horizon.cd.instructure.com") == true
-        ? option.horizonCDURL
-        : option.productionURL(region: region, baseURL: baseURL)
+        return baseURL.contains("horizon.cd.instructure.com") == true ? horizonCDURL : productionURL
+    }
+
+    private var horizonCDURL: String {
+        if( option == .journey) {
+            return "journey-server-dev.journey.nonprod.inseng.io"
+        }
+        return "\(option)-api-dev.domain-svcs.nonprod.inseng.io"
+    }
+
+    private var productionURL: String {
+        "\(option)-api-production.\(region.rawValue).temp.prod.inseng.io"
     }
 
     // MARK: - Init
@@ -71,7 +80,7 @@ final class DomainService: DomainServiceProtocol {
         horizonApi
             .makeRequest(
                 JWTTokenRequest(
-                    service: option.service
+                    domainServiceOption: option
                 )
             )
             .tryMap { [weak self] response, urlResponse in
@@ -129,25 +138,17 @@ extension DomainService {
 extension DomainService {
     enum Option: String {
         case cedar
+        case journey
         case pine
         case redwood
-        case journey
         var service: String {
             rawValue
         }
 
-        var horizonCDURL: String {
-            switch self {
-            case .journey: "journey-server-dev.journey.nonprod.inseng.io"
-            default: "\(rawValue)-api-dev.domain-svcs.nonprod.inseng.io"
-            }
-        }
-
-        func productionURL(region: Region, baseURL: String) -> String {
-            switch self {
-            case .journey: "journey-server-prod.us-east-1.temp.prod.inseng.io"
-            default: "\(self.rawValue)-api-production.\(region.rawValue).temp.prod.inseng.io"
-            }
+        var workflows: [Option] {
+            self == .journey ?
+            [self, .pine] :
+            [self]
         }
     }
 }
@@ -155,10 +156,14 @@ extension DomainService {
 extension DomainService {
      struct JWTTokenRequest: APIRequestable {
         typealias Response = Result
-        let service: String
+
+        let domainServiceOption: DomainService.Option
 
         var path: String {
-            "/api/v1/jwts?canvas_audience=false&workflows[]=\(service)"
+            let workflowQueryParams = domainServiceOption.workflows.map {
+                "workflows[]=\($0.rawValue)"
+            }.joined(separator: "&")
+            return "/api/v1/jwts?canvas_audience=false&\(workflowQueryParams)"
         }
 
         var method: APIMethod { .post }

@@ -16,23 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CombineExt
+import Foundation
 
-struct AssistState {
-    private(set) var courseID = CurrentValueRelay<String?>(nil)
-    private(set) var fileID = CurrentValueRelay<String?>(nil)
-    private(set) var pageURL = CurrentValueRelay<String?>(nil)
-    private(set) var textSelection = CurrentValueRelay<String?>(nil)
+public protocol DSCalendarItem {
+    var id: String { get }
+    var title: String { get }
+    var details: String? { get }
+    var date: Date { get }
+}
 
-    init(
-        courseID: String? = nil,
-        fileID: String? = nil,
-        pageURL: String? = nil,
-        textSelection: String? = nil
-    ) {
-        self.courseID.accept(courseID)
-        self.fileID.accept(fileID)
-        self.pageURL.accept(pageURL)
-        self.textSelection.accept(textSelection)
-    }
+extension DSCalendarEvent: DSCalendarItem {
+    public var details: String? { description }
+    public var date: Date { start_at }
+}
+
+extension DSPlannerNote: DSCalendarItem {
+    public var date: Date { todo_date }
 }
