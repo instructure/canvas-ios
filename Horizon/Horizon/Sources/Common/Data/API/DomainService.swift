@@ -52,12 +52,14 @@ final class DomainService: DomainServiceProtocol {
     init(
         _ domainServiceOption: Option,
         baseURL: String = AppEnvironment.shared.currentSession?.baseURL.absoluteString ?? "",
-        region: String? = AppEnvironment.shared.currentSession?.canvasRegion,
+        region: Region? = nil,
         horizonApi: API = AppEnvironment.defaultValue.api
     ) {
+        let defaultRegion = AppEnvironment.shared.currentSession?.canvasRegion.map { Region(rawValue: $0 ) ?? .east1
+        } ?? .east1
         self.option = domainServiceOption
         self.baseURL = baseURL
-        self.region = region.map { Region(rawValue: $0) ?? .east1 } ?? .east1
+        self.region = region ?? defaultRegion
         self.horizonApi = horizonApi
     }
 

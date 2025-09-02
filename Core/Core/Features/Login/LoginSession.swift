@@ -150,8 +150,7 @@ public struct LoginSession: Codable, Hashable {
             userName: userName,
             userEmail: userEmail,
             clientID: clientID,
-            clientSecret: clientSecret,
-            canvasRegion: canvasRegion
+            clientSecret: clientSecret
         )
     }
 
