@@ -95,11 +95,11 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
         NotificationCenter.default.post(moduleItem: .page(pageURL), completedRequirement: .view, courseID: context.id)
 
         webView.resetEnvironment(env) { [weak self] in
-            self?.viewIsReady()
+            self?.refreshAfterViewIsReady()
         }
     }
 
-    private func viewIsReady() {
+    private func refreshAfterViewIsReady() {
         colors.refresh()
         if context.contextType == .course {
             courses.refresh()

@@ -62,11 +62,11 @@ class DiscussionDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         titleLabel.text = ""
 
         webView.resetEnvironment(env) { [weak self] in
-            self?.viewIsReady()
+            self?.refreshAfterViewIsReady()
         }
     }
 
-    private func viewIsReady() {
+    private func refreshAfterViewIsReady() {
         course.refresh()
         topic.refresh()
     }

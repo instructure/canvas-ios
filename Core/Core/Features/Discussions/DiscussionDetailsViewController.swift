@@ -169,11 +169,11 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         }
 
         webView.resetEnvironment(env) { [weak self] in
-            self?.viewIsReady()
+            self?.refreshAfterViewIsReady()
         }
     }
 
-    private func viewIsReady() {
+    private func refreshAfterViewIsReady() {
         colors.refresh()
         if context.contextType == .course {
             course.refresh()

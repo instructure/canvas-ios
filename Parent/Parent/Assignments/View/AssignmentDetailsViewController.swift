@@ -158,11 +158,11 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         } }
 
         webView.resetEnvironment(env) { [weak self] in
-            self?.viewIsReady()
+            self?.refreshAfterViewIsReady()
         }
     }
 
-    private func viewIsReady() {
+    private func refreshAfterViewIsReady() {
         assignment.refresh()
         course.refresh()
         student.refresh()

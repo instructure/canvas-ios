@@ -105,11 +105,11 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .quizRefresh, object: nil)
 
         instructionsWebView.resetEnvironment(env) { [weak self] in
-            self?.viewIsReady()
+            self?.refreshAfterViewIsReady()
         }
     }
 
-    private func viewIsReady() {
+    private func refreshAfterViewIsReady() {
         colors.refresh()
         courses.refresh()
         // We need to force refresh because the list deletes (& kills the submission association)
