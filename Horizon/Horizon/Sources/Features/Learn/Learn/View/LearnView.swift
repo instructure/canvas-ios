@@ -110,25 +110,6 @@ private extension LearnView {
         }
     }
 
-    private var pills: some View {
-        HorizonUI.HFlow {
-            defaultPill(title: "Program format")
-            defaultPill(title: "6 hours 20 minutes")
-            HorizonUI.Pill(
-                title: "20/10/2025 - 20/10/2027",
-                style: .solid(
-                    .init(
-                        backgroundColor: Color.huiColors.surface.pageSecondary,
-                        textColor: Color.huiColors.text.title,
-                        iconColor: Color.huiColors.icon.default
-                    )
-                ),
-                isSmall: true,
-                icon: .huiIcons.calendarToday
-            )
-        }
-    }
-
     private func defaultPill(title: String) -> some View {
         HorizonUI.Pill(
             title: title,
@@ -146,9 +127,9 @@ private extension LearnView {
         HStack(spacing: .huiSpaces.space4) {
             Text("Complete", bundle: .horizon)
             Text(viewModel.currentProgram?.countOfRequiredCourses.description ?? "")
-            Text("of")
+            Text("of", bundle: .horizon)
             Text(viewModel.currentProgram?.courses.count.description ?? "")
-            Text("courses")
+            Text("courses", bundle: .horizon)
         }
         .foregroundStyle(Color.huiColors.text.body)
         .huiTypography(.h4)

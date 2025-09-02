@@ -21,14 +21,17 @@ import Combine
 import Core
 
 final public class GetHProgramsUseCase: APIUseCase {
-
-    private let journey = DomainService(.journey)
+    private let journey: DomainServiceProtocol
     public typealias Model = CDHProgram
     private var subscriptions = Set<AnyCancellable>()
     public var request: GetHProgramsRequest {
         return GetHProgramsRequest()
     }
 
+    init(journey: DomainServiceProtocol = DomainService(.journey)) {
+        self.journey = journey
+
+    }
     public var cacheKey: String? { "get-programs" }
 
     public func write(
