@@ -20,8 +20,8 @@ import Foundation
 import Combine
 
 public protocol TodoInteractor {
+    typealias IsEmptyState = Bool
     var todos: AnyPublisher<[TodoItem], Never> { get }
-
     func refresh(ignoreCache: Bool) -> AnyPublisher<Bool, Error>
 }
 
@@ -43,9 +43,9 @@ public final class TodoInteractorLive: TodoInteractor {
         self.env = env
     }
 
-    public func refresh(ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
+    public func refresh(ignoreCache: Bool) -> AnyPublisher<IsEmptyState, Error> {
         ReactiveStore(useCase: GetCourses())
-            .getEntities()
+            .getEntities(ignoreCache: ignoreCache)
             .map {
                 var contextCodes: [String] = $0.filter(\.isPublished).map(\.canvasContextID)
                 if let userContextCode = Context(.user, id: self.env.currentSession?.userID)?.canvasContextID {
@@ -76,7 +76,7 @@ public final class TodoInteractorPreview: TodoInteractor {
         self.todos = Publishers.typedJust(todos)
     }
 
-    public func refresh(ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
+    public func refresh(ignoreCache: Bool) -> AnyPublisher<IsEmptyState, Error> {
         Publishers.typedJust(false)
     }
 }

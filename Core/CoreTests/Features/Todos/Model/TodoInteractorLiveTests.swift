@@ -114,14 +114,33 @@ class TodoInteractorLiveTests: CoreTestCase {
         let courses = [makeCourse(id: "1", name: "Course 1")]
         let plannables = [makePlannable(courseId: "1", plannableId: "p1", type: "assignment", title: "Assignment 1")]
 
-        // When
-        mockCourses(courses)
-        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]))
+        let coursesAPICallExpectation = expectation(description: "Courses API called")
+        coursesAPICallExpectation.expectedFulfillmentCount = 2
 
-        // Then
+        let plannablesAPICallExpectation = expectation(description: "Plannables API called")
+        plannablesAPICallExpectation.expectedFulfillmentCount = 2
+
+        // When
+        api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), expectation: coursesAPICallExpectation, value: courses)
+        api.mock(GetPlannablesRequest(
+            userID: nil,
+            startDate: Date.now,
+            endDate: Date.distantFuture,
+            contextCodes: makeContextCodes(courseIds: ["1"])
+        ), expectation: plannablesAPICallExpectation, value: plannables)
+
+        // Then - First call with ignoreCache: false
+        XCTAssertFirstValueAndCompletion(testee.refresh(ignoreCache: false)) { isEmpty in
+            XCTAssertFalse(isEmpty)
+        }
+
+        // Then - Second call with ignoreCache: true should trigger API calls again
         XCTAssertFirstValueAndCompletion(testee.refresh(ignoreCache: true)) { isEmpty in
             XCTAssertFalse(isEmpty)
         }
+
+        wait(for: [coursesAPICallExpectation, plannablesAPICallExpectation], timeout: 1.0)
+
         XCTAssertFirstValue(testee.todos) { todos in
             XCTAssertEqual(todos.count, 1)
             XCTAssertEqual(todos[0].title, "Assignment 1")
