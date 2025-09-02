@@ -74,7 +74,8 @@ public class GetSSOLogin {
                     userName: model.user.name,
                     userEmail: model.user.email,
                     clientID: client.client_id,
-                    clientSecret: client.client_secret
+                    clientSecret: client.client_secret,
+                    canvasRegion: model.canvas_region
                 ), nil)
             }
         }

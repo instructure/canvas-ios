@@ -178,7 +178,8 @@ class LoginStartViewController: UIViewController {
                     userName: response.short_name,
                     userEmail: response.email,
                     clientID: session.clientID,
-                    clientSecret: session.clientSecret
+                    clientSecret: session.clientSecret,
+                    canvasRegion: session.canvasRegion
                 )
                 if LoginSession.sessions.contains(entry) {
                     LoginSession.add(entry)

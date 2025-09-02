@@ -96,6 +96,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
                 userEmail: cSession.userEmail,
                 clientID: cSession.clientID,
                 clientSecret: cSession.clientSecret,
+                canvasRegion: cSession.canvasRegion,
                 isFakeStudent: cSession.isFakeStudent
             )
         }
