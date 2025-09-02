@@ -1174,7 +1174,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "発表"
+            "value" : "アナウンス"
           }
         },
         "mi" : {
@@ -1240,13 +1240,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Meddelanden"
+            "value" : "Anslag"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Meddelanden"
+            "value" : "Meddelande"
           }
         },
         "th" : {
@@ -1258,7 +1258,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Thông Báo Chung"
+            "value" : "Thông báo chung"
           }
         },
         "zh" : {
