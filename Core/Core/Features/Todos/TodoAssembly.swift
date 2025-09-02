@@ -16,16 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Core
+import SwiftUI
 
-struct TodoList {
-    let days: [TodoDay]
-    let isFullList: Bool
-}
-
-struct TodoDay: Identifiable {
-    let date: Date
-    let items: [TodoItem]
-    var id: Double { date.timeIntervalSince1970 }
+public struct TodoAssembly {
+    public static func makeTodoListViewController(env: AppEnvironment) -> UIViewController {
+        let interactor = TodoInteractorLive(env: env)
+        let model = TodoListViewModel(interactor: interactor, env: env)
+        let todoVC = CoreHostingController(TodoListScreen(viewModel: model))
+        todoVC.navigationBarStyle = .global
+        todoVC.navigationItem.titleView = Brand.shared.headerImageView()
+        return todoVC
+    }
 }
