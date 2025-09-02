@@ -22,7 +22,7 @@ import Combine
 public protocol TodoInteractor {
     typealias IsEmptyState = Bool
     var todos: AnyPublisher<[TodoItem], Never> { get }
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Bool, Error>
+    func refresh(ignoreCache: Bool) -> AnyPublisher<IsEmptyState, Error>
 }
 
 public final class TodoInteractorLive: TodoInteractor {
