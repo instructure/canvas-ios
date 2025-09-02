@@ -67,4 +67,8 @@ public class TodoListViewModel: ObservableObject {
             return
         }
     }
+
+    func openProfile(_ viewController: WeakViewController) {
+        env.router.route(to: "/profile", from: viewController, options: .modal())
+    }
 }

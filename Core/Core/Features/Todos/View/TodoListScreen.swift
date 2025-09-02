@@ -42,6 +42,24 @@ public struct TodoListScreen: View {
                 )
             }
         }
+        .navigationBarItems(leading: profileMenuButton)
+    }
+
+    private var profileMenuButton: some View {
+        Button {
+            viewModel.openProfile(viewController)
+        } label: {
+            Image.hamburgerSolid
+                .foregroundColor(Color(Brand.shared.navTextColor))
+        }
+        .frame(width: 44, height: 44)
+        .padding(.leading, -6)
+        .identifier("ToDos.profileButton")
+        .accessibility(label: Text(
+            "Profile Menu, Closed",
+            bundle: .core,
+            comment: "Accessibility text describing the Profile Menu button and its state"
+        ))
     }
 }
 
