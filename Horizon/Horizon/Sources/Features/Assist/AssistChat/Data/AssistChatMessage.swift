@@ -20,7 +20,7 @@ import Combine
 import Foundation
 
 /// A message returned from the interactor
-struct AssistChatMessage {
+struct AssistChatMessage: Codable {
 
     let id: UUID
 
@@ -45,31 +45,19 @@ struct AssistChatMessage {
 
     init(
         botResponse: String? = nil,
-        chipOptions: [AssistChipOption] = [],
-        citations: [Citation] = []
+        chipOptions: [AssistChipOption]? = nil,
+        flashCards: [AssistChatFlashCard]? = nil,
+        quizItems: [QuizItem]? = nil,
+        citations: [Citation]? = nil
     ) {
         self.init(
             role: .Assistant,
             prompt: botResponse,
             text: botResponse,
-            chipOptions: chipOptions,
-            citations: citations
-        )
-    }
-
-    /// The user has asked for FlashCards
-    init(flashCards: [AssistChatFlashCard]) {
-        self.init(
-            role: .Assistant,
-            flashCards: flashCards
-        )
-    }
-
-    /// The user has asked for a quiz
-    init(quizItems: [QuizItem]) {
-        self.init(
-            role: .Assistant,
-            quizItems: quizItems
+            chipOptions: chipOptions ?? [],
+            flashCards: flashCards ?? [],
+            quizItems: quizItems ?? [],
+            citations: citations ?? []
         )
     }
 
@@ -87,7 +75,7 @@ struct AssistChatMessage {
         text: String? = nil,
         chipOptions: [AssistChipOption] = [],
         flashCards: [AssistChatFlashCard] = [],
-        quizItems: [QuizItem]? = nil,
+        quizItems: [QuizItem] = [],
         citations: [Citation] = []
     ) {
         self.id = UUID()

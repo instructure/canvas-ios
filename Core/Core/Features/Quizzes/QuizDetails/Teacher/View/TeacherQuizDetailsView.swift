@@ -116,9 +116,9 @@ public struct TeacherQuizDetailsView<ViewModel: TeacherQuizDetailsViewModel>: Vi
 
         if viewModel.showSubmissions {
             if let assViewModel = viewModel.assignmentSubmissionBreakdownViewModel {
-                SubmissionBreakdown(viewModel: assViewModel)
+                SubmissionBreakdownView(viewModel: assViewModel)
             } else if let quizViewModel = viewModel.quizSubmissionBreakdownViewModel {
-                SubmissionBreakdown(viewModel: quizViewModel)
+                SubmissionBreakdownView(viewModel: quizViewModel)
             }
             Divider().padding(.horizontal, 16)
         }

@@ -23,7 +23,7 @@ import TestsFoundation
 
 class SyllabusSummaryViewControllerTests: CoreTestCase {
     let courseID = "1"
-    lazy var controller = SyllabusSummaryViewController.create(courseID: courseID)
+    lazy var controller = SyllabusSummaryViewController.create(courseID: courseID, env: environment)
 
     func testLayout() {
         let date = DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 12).date!

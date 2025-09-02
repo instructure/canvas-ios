@@ -17,19 +17,30 @@
 //
 
 /// A response from the interactor
-struct AssistChatResponse {
+struct AssistChatResponse: Codable {
     // MARK: - Properties
-    let chatHistory: [AssistChatMessage]
+    let history: [AssistChatMessage]
+    let error: String?
     let isLoading: Bool
 
     // MARK: - Init
     init(
         _ message: AssistChatMessage? = nil,
-        chatHistory: [AssistChatMessage] = [],
+        history: [AssistChatMessage] = [],
         isLoading: Bool = false,
         isFreeTextAvailable: Bool = true
     ) {
-        self.chatHistory = chatHistory + (message.map { [$0] } ?? [])
+        self.history = history + (message.map { [$0] } ?? [])
         self.isLoading = isLoading
+        self.error = nil
+    }
+
+    init(
+        error: String,
+        history: [AssistChatMessage] = []
+    ) {
+        self.history = history
+        self.isLoading = false
+        self.error = error
     }
 }

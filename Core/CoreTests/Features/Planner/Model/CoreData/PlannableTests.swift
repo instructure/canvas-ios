@@ -115,37 +115,37 @@ class PlannableTests: CoreTestCase {
 
     func testIcon() {
         var p = Plannable.make(from: .make(plannable_type: "assignment"))
-        XCTAssertEqual(p.icon(), UIImage.assignmentLine)
+        XCTAssertEqual(p.icon, UIImage.assignmentLine)
 
         p = Plannable.make(from: .make(plannable_type: "quiz"))
-        XCTAssertEqual(p.icon(), UIImage.quizLine)
+        XCTAssertEqual(p.icon, UIImage.quizLine)
 
         p = Plannable.make(from: .make(plannable_type: "discussion_topic"))
-        XCTAssertEqual(p.icon(), UIImage.discussionLine)
+        XCTAssertEqual(p.icon, UIImage.discussionLine)
 
         p = Plannable.make(from: .make(plannable_type: "sub_assignment"))
-        XCTAssertEqual(p.icon(), UIImage.assignmentLine)
+        XCTAssertEqual(p.icon, UIImage.assignmentLine)
 
         p = Plannable.make(from: .make(plannable_type: "sub_assignment"))
         p.discussionCheckpointStep = .replyToTopic
-        XCTAssertEqual(p.icon(), UIImage.discussionLine)
+        XCTAssertEqual(p.icon, UIImage.discussionLine)
 
         p = Plannable.make(from: .make(plannable_type: "wiki_page"))
-        XCTAssertEqual(p.icon(), UIImage.documentLine)
+        XCTAssertEqual(p.icon, UIImage.documentLine)
 
         p = Plannable.make(from: .make(plannable_type: "planner_note"))
-        XCTAssertEqual(p.icon(), UIImage.noteLine)
+        XCTAssertEqual(p.icon, UIImage.noteLine)
 
         p = Plannable.make(from: .make(plannable_type: "other"))
-        XCTAssertEqual(p.icon(), UIImage.warningLine)
+        XCTAssertEqual(p.icon, UIImage.warningLine)
 
         p = Plannable.make(from: .make(plannable_type: "announcement"))
-        XCTAssertEqual(p.icon(), UIImage.announcementLine)
+        XCTAssertEqual(p.icon, UIImage.announcementLine)
 
         p = Plannable.make(from: .make(plannable_type: "calendar_event"))
-        XCTAssertEqual(p.icon(), UIImage.calendarMonthLine)
+        XCTAssertEqual(p.icon, UIImage.calendarMonthLine)
         p = Plannable.make(from: .make(plannable_type: "assessment_request"))
-        XCTAssertEqual(p.icon(), UIImage.peerReviewLine)
+        XCTAssertEqual(p.icon, UIImage.peerReviewLine)
     }
 
     func testColor() {

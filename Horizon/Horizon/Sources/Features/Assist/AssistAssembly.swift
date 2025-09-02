@@ -54,7 +54,7 @@ final class AssistAssembly {
     ) -> AssistChatInteractor {
         AssistChatInteractorLive(
             courseID: courseID,
-            pageURL: pageURL,
+            pageID: pageURL,
             fileID: fileID,
             textSelection: textSelection
         )

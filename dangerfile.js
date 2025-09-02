@@ -134,7 +134,7 @@ function handleBuilds (message) {
   buildTypes = buildTypes.split(',').map(build => build.trim()).map(build =>
     build[0].toUpperCase() + build.slice(1).toLowerCase()
   )
-  const valid = ['Student', 'Teacher', 'Parent', 'All']
+  const valid = ['Student', 'Teacher', 'Parent', 'All', 'None']
   const invalid = buildTypes.filter(build => !valid.includes(build))
   if (invalid.length > 0) {
     fail(`You have included an invalid build. Valid values are: ${valid.join(', ')}`)

@@ -110,12 +110,12 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func configureSyllabus() {
-        syllabusViewController = Core.SyllabusViewController.create(courseID: courseID)
+        syllabusViewController = Core.SyllabusViewController.create(courseID: courseID, env: env)
         viewControllers.append(syllabusViewController)
     }
 
     func configureSummary() {
-        summaryViewController = Core.SyllabusSummaryViewController.create(courseID: courseID, colorDelegate: self)
+        summaryViewController = Core.SyllabusSummaryViewController.create(courseID: courseID, colorDelegate: self, env: env)
         viewControllers.append(summaryViewController)
     }
 
