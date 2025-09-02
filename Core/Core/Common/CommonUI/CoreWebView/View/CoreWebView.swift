@@ -427,7 +427,6 @@ open class CoreWebView: WKWebView {
             .websiteDataStore
             .httpCookieStore
             .getAllCookies()
-            .receive(on: DispatchQueue.main)
             .compactMap({ cookies in
 
                 var newCookies: [HTTPCookie] = []
@@ -448,6 +447,7 @@ open class CoreWebView: WKWebView {
                 }
                 return configuration.websiteDataStore.httpCookieStore.setCookies(newCookies)
             })
+            .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { _ in completion?() },
                 receiveValue: { _ in }
