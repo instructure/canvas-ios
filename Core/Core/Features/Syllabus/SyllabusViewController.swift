@@ -21,7 +21,7 @@ import SwiftUI
 
 open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
     public var courseID = ""
-    public let env = AppEnvironment.shared
+    public private(set) var env = AppEnvironment.shared
     public let refreshControl = CircleRefreshControl()
     public var webView = CoreWebView()
 
@@ -29,9 +29,10 @@ open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
         self?.update()
     }
 
-    public static func create(courseID: String) -> SyllabusViewController {
+    public static func create(courseID: String, env: AppEnvironment) -> SyllabusViewController {
         let controller = SyllabusViewController()
         controller.courseID = courseID
+        controller.env = env
         return controller
     }
 
@@ -46,6 +47,13 @@ open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
 
         view.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: view)
+
+        webView.resetEnvironment(env) { [weak self] in
+            self?.refreshAfterViewIsReady()
+        }
+    }
+
+    private func refreshAfterViewIsReady() {
         courses.refresh()
     }
 

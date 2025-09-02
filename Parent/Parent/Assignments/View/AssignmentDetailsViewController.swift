@@ -144,11 +144,6 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             return config
         }()
 
-        assignment.refresh()
-        course.refresh()
-        student.refresh()
-        teachers.refresh()
-        featuresStore.refresh()
         localNotifications.getReminder(assignmentID) { [weak self] request in performUIUpdate {
             guard let self = self else { return }
             let date = (request?.trigger as? UNCalendarNotificationTrigger).flatMap {
@@ -161,6 +156,18 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                 self.reminderDateButton.isHidden = false
             }
         } }
+
+        webView.resetEnvironment(env) { [weak self] in
+            self?.refreshAfterViewIsReady()
+        }
+    }
+
+    private func refreshAfterViewIsReady() {
+        assignment.refresh()
+        course.refresh()
+        student.refresh()
+        teachers.refresh()
+        featuresStore.refresh()
     }
 
     override func viewWillAppear(_ animated: Bool) {
