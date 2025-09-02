@@ -136,11 +136,13 @@ private extension LearnView {
     }
 }
 
+#if DEBUG
 #Preview {
     LearnView(
         viewModel: .init(
-            interactor: ProgramInteractorLive(programCourseInteractor: ProgramCourseInteractorLive()),
+            interactor: ProgramInteractorPreview(),
             router: AppEnvironment.shared.router
         )
     )
 }
+#endif
