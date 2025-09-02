@@ -31,7 +31,7 @@ struct LearnView: View {
             }
         }
         .toolbar(.hidden)
-        .safeAreaInset(edge: .top, spacing: .zero) { LearnTopBar() }
+        .safeAreaInset(edge: .top, spacing: .zero) { LearnTopBarView() }
         .background(Color.huiColors.surface.pagePrimary)
         .onFirstAppear { viewModel.featchPrograms() }
         .overlay {
@@ -62,7 +62,7 @@ struct LearnView: View {
                 .id(viewModel.programs.count)
 
             if viewModel.shouldShowProgress {
-                LearnProgressBar(completionPercent: viewModel.currentProgram?.completionPercent)
+                LearnProgressBarView(completionPercent: viewModel.currentProgram?.completionPercent)
                     .padding(.bottom, .huiSpaces.space8)
             }
 
@@ -133,13 +133,6 @@ private extension LearnView {
         }
         .foregroundStyle(Color.huiColors.text.body)
         .huiTypography(.h4)
-    }
-}
-
-// MARK: - ViewModel Helpers
-private extension LearnViewModel {
-    var shouldShowProgress: Bool {
-        currentProgram?.isOptionalProgram == false
     }
 }
 

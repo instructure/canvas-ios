@@ -25,6 +25,7 @@ import Foundation
 @Observable
 final class LearnViewModel {
     // MARK: - Outputs (State)
+
     private(set) var isLoaderVisible = true
     private(set) var isLoadingEnrollButton = false
     private(set) var hasError = false
@@ -36,15 +37,22 @@ final class LearnViewModel {
     private(set) var dropdownMenuPrograms: [DropdownMenuItem] = []
 
     // MARK: - Inputs
+
     var onSelectProgram: (DropdownMenuItem?) -> Void = { _ in }
 
     // MARK: - Inputs / Ouputs
+
     var toastIsPresented = false
+    var shouldShowProgress: Bool {
+        currentProgram?.isOptionalProgram == false
+    }
 
     // MARK: - Private
+
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
+
     private let interactor: ProgramInteractor
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
@@ -61,7 +69,6 @@ final class LearnViewModel {
         configureSelectionHandler()
     }
 
-    // MARK: - Setup
     private func configureSelectionHandler() {
         onSelectProgram = { [weak self] selectedProgram in
             guard let self, self.selectedProgram != selectedProgram else { return }
@@ -70,12 +77,11 @@ final class LearnViewModel {
         }
     }
 
-    // MARK: - Data Loading
     func refreshPrograms() async {
-        await featchPrograms(ignoreCache: true)
+        await fetchPrograms(ignoreCache: true)
     }
 
-    func featchPrograms(ignoreCache: Bool = false) async {
+    func fetchPrograms(ignoreCache: Bool = false) async {
         await withCheckedContinuation { continuation in
             featchPrograms(ignoreCache: ignoreCache) {
                 continuation.resume()
@@ -101,6 +107,7 @@ final class LearnViewModel {
     }
 
     // MARK: - Actions
+
     func navigateToCourseDetails(course: ProgramCourse, viewController: WeakViewController) {
         guard let enrollemtID = course.enrollemtID else { return }
         router.show(
@@ -128,6 +135,7 @@ final class LearnViewModel {
     }
 
     // MARK: - Helpers
+
     private func handleProgramsLoaded(_ programs: [Program]) {
         self.programs = programs
         dropdownMenuPrograms = programs.map { .init(id: $0.id, name: $0.name) }

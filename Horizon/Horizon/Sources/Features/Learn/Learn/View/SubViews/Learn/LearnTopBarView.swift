@@ -18,9 +18,9 @@
 
 import SwiftUI
 
-struct LearnTopBar: View {
+struct LearnTopBarView: View {
     var body: some View {
-        HStack {
+        HStack(spacing: .zero) {
             InstitutionLogo()
             Spacer()
         }

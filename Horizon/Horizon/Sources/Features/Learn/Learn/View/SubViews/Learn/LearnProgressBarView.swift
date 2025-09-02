@@ -19,7 +19,7 @@
 import SwiftUI
 import HorizonUI
 
-struct LearnProgressBar: View {
+struct LearnProgressBarView: View {
     let completionPercent: Double?
 
     var body: some View {

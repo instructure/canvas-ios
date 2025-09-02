@@ -19,7 +19,7 @@
 import Foundation
 @testable import Core
 
-enum ProgramStubs {
+enum HProgramStubs {
     static var response: GetHProgramsResponse {
         let result: GetHProgramsResponse? = loadJSON(bundle: Bundle.testBundle, jsonName: "ProgramsResponse")
         return result ?? GetHProgramsResponse(data: nil)

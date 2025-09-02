@@ -309,7 +309,7 @@
         <attribute name="programDescription" optional="YES" attributeType="String"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="variant" attributeType="String"/>
-        <relationship name="porgresses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHProgramProgress" inverseName="progress" inverseEntity="CDHProgramProgress"/>
+        <relationship name="progresses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHProgramProgress" inverseName="progress" inverseEntity="CDHProgramProgress"/>
         <relationship name="requirements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHProgramRequirement" inverseName="relationship" inverseEntity="CDHProgramRequirement"/>
     </entity>
     <entity name="CDHProgramCourse" representedClassName="Core.CDHProgramCourse" syncable="YES">
@@ -344,7 +344,7 @@
         <attribute name="completionPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="courseEnrollmentStatus" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
-        <relationship name="progress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHProgram" inverseName="porgresses" inverseEntity="CDHProgram"/>
+        <relationship name="progress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHProgram" inverseName="progresses" inverseEntity="CDHProgram"/>
     </entity>
     <entity name="CDHProgramRequirement" representedClassName=".CDHProgramRequirement" syncable="YES">
         <attribute name="courseEnrollment" attributeType="String"/>

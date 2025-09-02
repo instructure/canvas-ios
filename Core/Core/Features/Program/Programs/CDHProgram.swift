@@ -23,7 +23,7 @@ final public class CDHProgram: NSManagedObject {
     @NSManaged public var name: String
     @NSManaged public var programDescription: String?
     @NSManaged public var variant: String
-    @NSManaged public var porgresses: Set<CDHProgramProgress>
+    @NSManaged public var progresses: Set<CDHProgramProgress>
     @NSManaged public var requirements: Set<CDHProgramRequirement>
     @NSManaged public var courseCompletionCount: NSNumber?
     @NSManaged public var startDate: Date?
@@ -50,9 +50,9 @@ final public class CDHProgram: NSManagedObject {
             let progressesEntities: [CDHProgramProgress] = progresses.map { apiItem in
                 return CDHProgramProgress.save(apiItem, in: context)
             }
-            dbEntity.porgresses = Set(progressesEntities)
+            dbEntity.progresses = Set(progressesEntities)
         } else {
-            dbEntity.porgresses = []
+            dbEntity.progresses = []
         }
 
         if let requirements = apiEntity.requirements {

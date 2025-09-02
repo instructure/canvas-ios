@@ -18,31 +18,31 @@
 
 import Foundation
 
-struct GetCoursesEnrollmentIDResponse: Codable {
-    let data: LegacyNodeWrapper?
+struct HGetCoursesEnrollmentIDRequest: APIGraphQLRequestable {
+    public typealias Response = HGetCoursesEnrollmentIDResponse
+    public let variables: Input
 
-    struct LegacyNodeWrapper: Codable {
-        let legacyNode: LegacyNode?
+    public struct Input: Codable, Equatable {
+        var id: String
     }
 
-    struct LegacyNode: Codable {
-        let enrollments: [Enrollment]?
+    public init(userId: String) {
+        self.variables = Input(id: userId)
     }
 
-    struct Enrollment: Codable {
-        let id: String
-        let course: Course?
-
-        enum CodingKeys: String, CodingKey {
-            case id = "_id"
-            case course
+    public static let operationName = "GetCoursesEnrollmentIDs"
+    public static let query = """
+            query \(operationName)($id: ID!) {
+         legacyNode(_id: $id, type: User) {
+           ... on User {
+            enrollments(currentOnly: false) {
+              _id
+              course {
+                _id
+              }
+            }
+          }
+          }
         }
-    }
-
-    struct Course: Codable {
-        let id: String
-        enum CodingKeys: String, CodingKey {
-            case id = "_id"
-        }
-    }
+        """
 }

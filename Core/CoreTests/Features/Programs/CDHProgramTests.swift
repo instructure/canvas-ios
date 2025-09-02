@@ -34,9 +34,7 @@ final class CDHProgramTests: CoreTestCase {
         XCTAssertEqual(Int(truncating: savedEntity.courseCompletionCount ?? 0), ProgramStubs.programsResponse.courseCompletionCount)
         XCTAssertEqual(savedEntity.startDate, ProgramStubs.programsResponse.startDate)
         XCTAssertEqual(savedEntity.endDate, ProgramStubs.programsResponse.endDate)
-        XCTAssertEqual(savedEntity.porgresses.count, 1)
-        XCTAssertEqual(savedEntity.porgresses.count, 1)
-
+        XCTAssertEqual(savedEntity.progresses.count, 1)
     }
 
     func testSaveWithNilValues() {
@@ -47,7 +45,7 @@ final class CDHProgramTests: CoreTestCase {
         // Then
         XCTAssertEqual(savedEntity.id, ProgramStubs.programsResponse.id)
         XCTAssertEqual(savedEntity.name, ProgramStubs.programsResponse.name)
-        XCTAssertEqual(savedEntity.porgresses.count, 0)
+        XCTAssertEqual(savedEntity.progresses.count, 0)
         XCTAssertEqual(savedEntity.requirements.count, 0)
     }
 }

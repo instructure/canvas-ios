@@ -72,7 +72,7 @@ final class ProgramInteractorLive: ProgramInteractor {
     // MARK: - Mapping
 
     private func map(_ program: CDHProgram) -> Program {
-        let progresses = program.porgresses
+        let progresses = program.progresses
         let requirements = program.requirements.sorted { $0.position.intValue < $1.position.intValue }
 
         let courses: [ProgramCourse] = requirements.compactMap { requirement in
