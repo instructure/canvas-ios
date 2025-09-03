@@ -18,7 +18,6 @@
 
 import SwiftUI
 import Core
-import Combine
 
 enum SubmissionFilterMode: String, CaseIterable {
     case all
