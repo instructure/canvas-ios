@@ -31,45 +31,17 @@ public struct AssignmentGroupView: View {
     }
 
     public var body: some View {
-        Section(header: ListSectionHeaderOld(backgroundColor: .backgroundLightest) { headerView() }) {
-            if isExpanded {
-                ForEach(viewModel.assignments, id: \.id) { assignment in
-                    let assignmentCellViewModel = AssignmentCellViewModel(env: env, assignment: assignment, courseColor: viewModel.courseColor)
-                    VStack(spacing: 0) {
-                        AssignmentCellView(viewModel: assignmentCellViewModel)
-
-                        InstUI.Divider()
-                    }
+        InstUI.CollapsibleListSection(title: viewModel.name, itemCount: viewModel.assignments.count) {
+            ForEach(viewModel.assignments, id: \.id) { assignment in
+                let assignmentCellViewModel = AssignmentCellViewModel(env: env, assignment: assignment, courseColor: viewModel.courseColor)
+                VStack(spacing: 0) {
+                    AssignmentCellView(viewModel: assignmentCellViewModel)
+                    InstUI.Divider()
                 }
             }
         }
         .listRowInsets(EdgeInsets())
         .listRowSeparator(.hidden)
-    }
-
-    private func headerView() -> some View {
-        Button {
-            isExpanded.toggle()
-        } label: {
-            Text(viewModel.name)
-            Spacer()
-            Image.arrowOpenUpLine
-                .size(uiScale.iconScale * 16)
-                .rotationEffect(isExpanded ? .degrees(0) : .degrees(-180))
-                .accessibilityHidden(true)
-                .animation(.smooth, value: isExpanded)
-        }
-        .accessibilityAddTraits(.isHeader)
-        .accessibilityLabel([
-            viewModel.name,
-            String.format(numberOfItems: viewModel.assignments.count)
-        ].joined(separator: ", "))
-        .accessibilityHint(
-            isExpanded
-                ? String(localized: "Expanded", bundle: .core)
-                : String(localized: "Collapsed", bundle: .core)
-        )
-        .padding(.vertical, 8)
     }
 }
 
