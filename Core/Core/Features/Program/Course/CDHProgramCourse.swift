@@ -43,8 +43,8 @@ public final class CDHProgramCourse: NSManagedObject {
         dbEntity.programID = programID
         dbEntity.courseID = courseID
         dbEntity.enrollemtID = enrollemtID
-        dbEntity.courseName = apiEntity?.name ?? ""
-        dbEntity.completionPercentage = apiEntity?.usersConnection?.nodes?.first?.courseProgression?.requirements?.completionPercentage ?? 0
+        dbEntity.courseName = (apiEntity?.name).orEmpty
+        dbEntity.completionPercentage = (apiEntity?.usersConnection?.nodes?.first?.courseProgression?.requirements?.completionPercentage).orZero
 
         let moduleItems = (apiEntity?.modulesConnection?.edges ?? [])
             .compactMap { $0.node }
@@ -52,7 +52,7 @@ public final class CDHProgramCourse: NSManagedObject {
         let moduleItemsEntites: [CDHProgramCourseModuleItem] = moduleItems.map { moduleItem in
             CDHProgramCourseModuleItem.save(
                 moduleItem,
-                courseID: apiEntity?.id ?? "",
+                courseID: (apiEntity?.id).orEmpty,
                 programID: programID,
                 in: context
             )

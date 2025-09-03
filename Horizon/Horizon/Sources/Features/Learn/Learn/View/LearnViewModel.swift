@@ -129,7 +129,9 @@ final class LearnViewModel {
                 guard let self else { return }
                 handleProgramsLoaded(programs)
                 let message = String(localized: "You’ve been enrolled in Course", bundle: .horizon)
-                self.showToast("\(message) \(course.name)")
+                    .appending(" ")
+                    .appending(course.name)
+                self.showToast(message)
             }
             .store(in: &subscriptions)
     }

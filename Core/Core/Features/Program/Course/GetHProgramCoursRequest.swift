@@ -128,7 +128,7 @@ public struct GetHProgramCourseRequest: APIGraphQLRequestable {
                   ... on Course {
                     id
                     name
-                    modulesConnection(first: 20) {
+                    modulesConnection {
                       pageInfo {
                         hasNextPage
                         startCursor

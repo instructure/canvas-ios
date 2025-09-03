@@ -18,6 +18,7 @@
 
 import Foundation
 @testable import Core
+@testable import Horizon
 
 enum HProgramStubs {
     static var response: GetHProgramsResponse {
@@ -26,4 +27,77 @@ enum HProgramStubs {
     }
 
     static let token = "ZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKU1V6STFOaUlzSW10cFpDSTZJakl3TWpVdE1EZ3RNREZVTURBNk1EQTZNVEJhWHpaak5HVXpaV0U0TFV"
+
+    static var courses: [ProgramCourse] {
+        [
+            ProgramCourse(
+                id: "c1",
+                name: "Introduction to SwiftUI",
+                isSelfEnrolled: true,
+                isRequired: true,
+                status: "ENROLLED",
+                progressID: "p1",
+                completionPercent: 100.0,
+                enrollemtID: "e1",
+                moduleItemsestimatedTime: ["2PT", "3PT"]
+            ),
+            ProgramCourse(
+                id: "c2",
+                name: "Advanced iOS Development",
+                isSelfEnrolled: false,
+                isRequired: true,
+                status: "self-enrollment",
+                progressID: "p2",
+                completionPercent: 45.0,
+                enrollemtID: "e2",
+                moduleItemsestimatedTime: ["5PT", "2PT", "1PT"]
+            ),
+            ProgramCourse(
+                id: "c3",
+                name: "Data Structures & Algorithms",
+                isSelfEnrolled: true,
+                isRequired: false,
+                status: "ENROLLED",
+                progressID: "p3",
+                completionPercent: 0.0,
+                enrollemtID: nil,
+                moduleItemsestimatedTime: ["4PT"]
+            )
+        ]
+    }
+
+    static var program: Program {
+        Program(
+            id: "p123",
+            name: "iOS Developer Track",
+            variant: "Full-Time",
+            description: "A comprehensive program designed to take you from beginner to advanced iOS developer.",
+            date: "2025-09-01",
+            courseCompletionCount: 1,
+            courses: courses
+        )
+    }
+
+    static var programs: [Program] {
+        [
+            Program(
+                id: "ID-1",
+                name: "Program 1",
+                variant: "LINEARe",
+                description: "A comprehensive program designed to take you from beginner to advanced iOS developer.",
+                date: "2025-09-01",
+                courseCompletionCount: 1,
+                courses: courses
+            ),
+            Program(
+                id: "ID-2",
+                name: "Program 2",
+                variant: "LINEAR",
+                description: "New description",
+                date: "2025-09-01",
+                courseCompletionCount: 2,
+                courses: [courses[0]]
+            )
+        ]
+    }
 }

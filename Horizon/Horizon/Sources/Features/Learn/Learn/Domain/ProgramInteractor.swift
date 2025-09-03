@@ -30,15 +30,20 @@ final class ProgramInteractorLive: ProgramInteractor {
     // MARK: - Dependencies
 
     private let programCourseInteractor: ProgramCourseInteractor
+    private let programsUseCase: GetHProgramsUseCase
 
     // MARK: - Init
 
-    init(programCourseInteractor: ProgramCourseInteractor) {
+    init(
+        programCourseInteractor: ProgramCourseInteractor,
+        programsUseCase: GetHProgramsUseCase = GetHProgramsUseCase()
+    ) {
         self.programCourseInteractor = programCourseInteractor
+        self.programsUseCase = programsUseCase
     }
 
     func getPrograms(ignoreCache: Bool) -> AnyPublisher<[Program], Error> {
-        ReactiveStore(useCase: GetHProgramsUseCase())
+        ReactiveStore(useCase: programsUseCase)
             .getEntities(ignoreCache: ignoreCache)
             .map { [weak self] response in
                 return response.compactMap { self?.map($0) }
@@ -97,8 +102,8 @@ final class ProgramInteractorLive: ProgramInteractor {
 
     private func mapCourse(progress: CDHProgramProgress, requirement: CDHProgramRequirement) -> ProgramCourse {
         ProgramCourse(
-            id: requirement.dependent?.canvasCourseId ?? "",
-            name: requirement.dependent?.canvasCourseId ?? "",
+            id: (requirement.dependent?.canvasCourseId).orEmpty,
+            name: (requirement.dependent?.canvasCourseId).orEmpty,
             isSelfEnrolled: requirement.courseEnrollment == CourseEnrollmentStatus.selfEnrollment.rawValue,
             isRequired: requirement.isCompletionRequired,
             status: progress.courseEnrollmentStatus,

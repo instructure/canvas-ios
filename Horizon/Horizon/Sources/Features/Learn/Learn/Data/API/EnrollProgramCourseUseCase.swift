@@ -24,7 +24,7 @@ final class EnrollProgramCourseUseCase: APIUseCase {
     public typealias Model = CDHProgramCourse
     var cacheKey: String?
 
-    private let journey = DomainService(.journey)
+    private let journey: DomainServiceProtocol
     private var subscriptions = Set<AnyCancellable>()
 
     public var request: EnrollProgramCourseRequest {
@@ -33,8 +33,12 @@ final class EnrollProgramCourseUseCase: APIUseCase {
 
     private let progressId: String
 
-    init(progressId: String) {
+    init(
+        progressId: String,
+        journey: DomainServiceProtocol = DomainService(.journey)
+    ) {
         self.progressId = progressId
+        self.journey = journey
     }
 
     public func makeRequest(
