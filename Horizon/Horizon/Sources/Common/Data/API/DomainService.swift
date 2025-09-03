@@ -20,24 +20,13 @@ import Combine
 import Core
 import Foundation
 
-protocol DomainServiceProtocol {
-    func api() -> AnyPublisher<API, Error>
-}
-/// A representation of our domain services
-final class DomainService: DomainServiceProtocol {
-
-    enum Region: String {
-        case central1 = "ca-central-1"
-        case east1 = "us-east-1"
-        case west2 = "us-west-2"
-    }
-
+final class DomainService {
     // MARK: - Dependencies
 
     private let baseURL: String
     private let horizonApi: API
     let option: Option
-    private let region: Region
+    private let region: String
 
     // MARK: - Private
 
@@ -50,7 +39,7 @@ final class DomainService: DomainServiceProtocol {
     }
 
     private var productionURL: String {
-        "\(option)-api-production.\(region.rawValue).temp.prod.inseng.io"
+        "\(option)-api-production.\(region).temp.prod.inseng.io"
     }
 
     // MARK: - Init
@@ -63,7 +52,7 @@ final class DomainService: DomainServiceProtocol {
     ) {
         self.option = domainServiceOption
         self.baseURL = baseURL
-        self.region = region.map { Region(rawValue: $0) ?? .east1 } ?? .east1
+        self.region = region ?? "us-east-1"
         self.horizonApi = horizonApi
     }
 

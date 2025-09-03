@@ -50,7 +50,6 @@ class HorizonTestCase: XCTestCase {
         logger = env.logger as? TestLogger
         currentSession = env.currentSession
         AppEnvironment.shared = env
-        AppEnvironment.shared.uploadManager = uploadManager
         MockUploadManager.reset()
     }
 

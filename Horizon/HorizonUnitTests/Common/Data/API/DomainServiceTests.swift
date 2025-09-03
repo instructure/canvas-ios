@@ -17,10 +17,10 @@
 //
 
 import Combine
-import Core
 import Foundation
 import XCTest
 
+@testable import Core
 @testable import Horizon
 
 class DomainServiceTests: HorizonTestCase {
@@ -30,20 +30,30 @@ class DomainServiceTests: HorizonTestCase {
     // When initialized with the baseURL https://example.com
     // When initialized with the us-east-1 region
     // Then the url is https://cedar-api-production.us-east-1.temp.prod.inseng.io
-    func when_initialized_with_east_1_region_then_url_is_correct() async throws {
+    func test_when_initialized_with_east_1_region_then_url_is_correct() async throws {
+        // Given
+        let baseURL = "https://example.com"
+        let requestKey = "POST:https://canvas.instructure.com/api/v1/jwts?canvas_audience=false&no_verifiers=1&workflows%5B%5D=cedar"
+        let response = DomainService.JWTTokenRequest.Result(token: "")
+        let responseData = try! JSONEncoder().encode(response)
+        let apiMock = APIMock { _ in
+            (responseData, nil, nil)
+        }
+        API.mocks = [requestKey: apiMock]
+
         // When
         let domainService = DomainService(
             .cedar,
-            baseURL: "https://example.com",
-            region: "us-east-1",
+            baseURL: baseURL,
+            region: "us-west-1",
             horizonApi: api
         )
         let domainServiceApi = try? await domainService.api().values.first { _ in true }
 
         // Then
         XCTAssertEqual(
-            domainServiceApi?.baseURL.absoluteString,
-            "https://cedar-api-production.us-east-1.temp.prod.inseng.io",
+            domainServiceApi!.baseURL.absoluteString,
+            "https://cedar-api-production.us-west-1.temp.prod.inseng.io",
             "The region should be included in the domain service URL"
         )
     }
