@@ -45,21 +45,32 @@ public struct APICalendarEvent: Codable, Equatable {
     let series_head: Bool?
     /// The event repetition in human readable format
     let series_natural_language: String?
+    let sub_assignment: APISubAssignment?
+}
+
+public struct APISubAssignment: Codable, Equatable {
+    let id: ID
+    let course_id: ID
+    let submission_types: [SubmissionType]
+    let sub_assignment_tag: String?
+    let discussion_topic: APIDiscussionTopic?
+    let html_url: URL?
 }
 
 #if DEBUG
+
 extension APICalendarEvent {
     public static func make(
-        id: ID = "1",
-        html_url: URL = URL(string: "https://narmstrong.instructure.com/calendar?event_id=10&include_contexts=course_1")!,
-        title: String = "calendar event #1",
-        start_at: Date? = Date(fromISOString: "2018-05-18T06:00:00Z"),
-        end_at: Date? = Date(fromISOString: "2018-05-18T06:00:00Z"),
+        id: ID = "",
+        html_url: URL = URL(string: "https://instructure.com")!,
+        title: String = "",
+        start_at: Date? = nil,
+        end_at: Date? = nil,
         all_day: Bool = false,
         type: CalendarEventType = .event,
-        context_code: String = "course_1",
+        context_code: String = "",
         effective_context_code: String? = nil,
-        context_name: String? = "Course One",
+        context_name: String? = "",
         created_at: Date = Clock.now.startOfHour(),
         updated_at: Date = Clock.now.startOfHour(),
         workflow_state: CalendarEventWorkflowState = .active,
@@ -71,7 +82,8 @@ extension APICalendarEvent {
         important_dates: Bool = false,
         rrule: String? = nil,
         series_head: Bool? = nil,
-        series_natural_language: String? = "Weekly on Wed, 52 times"
+        series_natural_language: String? = "",
+        sub_assignment: APISubAssignment? = nil
     ) -> APICalendarEvent {
         return APICalendarEvent(
             id: id,
@@ -95,10 +107,32 @@ extension APICalendarEvent {
             important_dates: important_dates,
             rrule: rrule,
             series_head: series_head,
-            series_natural_language: series_natural_language
+            series_natural_language: series_natural_language,
+            sub_assignment: sub_assignment
         )
     }
 }
+
+extension APISubAssignment {
+    public static func make(
+        id: ID = "",
+        course_id: ID = "",
+        submission_types: [SubmissionType] = [.discussion_topic],
+        sub_assignment_tag: String? = nil,
+        discussion_topic: APIDiscussionTopic? = nil,
+        html_url: URL? = nil
+    ) -> APISubAssignment {
+        return APISubAssignment(
+            id: id,
+            course_id: course_id,
+            submission_types: submission_types,
+            sub_assignment_tag: sub_assignment_tag,
+            discussion_topic: discussion_topic,
+            html_url: html_url
+        )
+    }
+}
+
 #endif
 
 // https://canvas.instructure.com/doc/api/calendar_events.html#method.calendar_events_api.index
@@ -109,8 +143,8 @@ public struct GetCalendarEventsRequest: APIRequestable {
     }
 
     public var path: String {
-        if let userID = userID {
-            let context = Context(.user, id: userID)
+        if let userId {
+            let context = Context(.user, id: userId)
             return "\(context.pathComponent)/calendar_events"
         }
         return "calendar_events"
@@ -122,7 +156,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
     public let perPage: Int
     public let include: [Include]
     public let allEvents: Bool?
-    public let userID: String?
+    public let userId: String?
     public let importantDates: Bool?
     public var useExtendedPercentEncoding: Bool { true }
     private static let dateFormatter: DateFormatter = {
@@ -141,7 +175,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
         perPage: Int = 100,
         include: [Include] = [],
         allEvents: Bool? = nil,
-        userID: String? = nil,
+        userId: String? = nil,
         importantDates: Bool? = nil
     ) {
         self.contexts = contexts
@@ -153,7 +187,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
         self.perPage = perPage
         self.include = include
         self.allEvents = allEvents
-        self.userID = userID
+        self.userId = userId
         self.importantDates = importantDates
     }
 
@@ -166,10 +200,10 @@ public struct GetCalendarEventsRequest: APIRequestable {
             .optionalValue("end_date", createDateString(from: endDate)),
             .optionalBool("important_dates", importantDates)
         ]
-        if let contexts = contexts {
+        if let contexts {
             query.append(.array("context_codes", contexts.map { $0.canvasContextID }))
         }
-        if let allEvents = allEvents {
+        if let allEvents {
             query.append(.bool("all_events", allEvents))
         }
 
@@ -177,7 +211,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
     }
 
     private func createDateString(from date: Date?) -> String {
-        if let date = date {
+        if let date {
             return Self.dateFormatter.string(from: date)
         } else {
             return ""

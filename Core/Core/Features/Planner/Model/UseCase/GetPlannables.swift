@@ -19,99 +19,6 @@
 import CoreData
 import Combine
 
-public protocol APIPlannableItem {
-    var plannableID: String { get }
-    var plannableType: PlannableType { get }
-    var htmlURL: URL? { get }
-    var context: Context? { get }
-    var contextName: String? { get }
-    var plannableTitle: String? { get }
-    var date: Date? { get }
-    var pointsPossible: Double? { get }
-    var detailsText: String? { get }
-    var isHidden: Bool { get }
-    var discussionCheckpointStep: DiscussionCheckpointStep? { get }
-}
-
-extension APIPlannable: APIPlannableItem {
-    public var plannableID: String { plannable_id.value }
-    public var plannableType: PlannableType { PlannableType(rawValue: plannable_type) ?? .other }
-    public var htmlURL: URL? { html_url?.rawValue }
-    public var plannableTitle: String? { self.plannable?.title }
-    public var date: Date? { plannable_date }
-    public var pointsPossible: Double? { self.plannable?.points_possible }
-    public var detailsText: String? { self.plannable?.details }
-    public var contextName: String? { context_name }
-    public var isHidden: Bool { false }
-    public var discussionCheckpointStep: DiscussionCheckpointStep? {
-        .init(tag: plannable?.sub_assignment_tag, requiredReplyCount: details?.reply_to_entry_required_count)
-    }
-
-    public var context: Context? {
-        if let context = contextFromContextType() {
-            return context
-        }
-        if plannableType == .planner_note {
-            // Notes have no 'context_type', but have IDs in the inner 'plannable' object
-            return contextFromInnerPlannableObject()
-        }
-        return nil
-    }
-
-    private func contextFromContextType() -> Context? {
-        guard let raw = context_type, let type = ContextType(rawValue: raw.lowercased()) else {
-            return nil
-        }
-        return switch type {
-        case .course: Context(.course, id: course_id?.rawValue)
-        case .group: Context(.group, id: group_id?.rawValue)
-        case .user: Context(.user, id: user_id?.rawValue)
-        default: nil
-        }
-    }
-
-    private func contextFromInnerPlannableObject() -> Context? {
-        // order matters: 'course_id' has precedence over 'user_id'
-        return Context(.course, id: self.plannable?.course_id)
-            ?? Context(.user, id: self.plannable?.user_id)
-    }
-}
-
-extension APICalendarEvent: APIPlannableItem {
-    public var plannableID: String { id.value }
-    public var plannableType: PlannableType {
-        if case .assignment = type { return .assignment }
-        return .calendar_event
-    }
-    public var plannableTitle: String? { title }
-    public var htmlURL: URL? { html_url }
-    public var context: Context? { Context(canvasContextID: context_code) }
-    public var contextName: String? { nil }
-    public var date: Date? { start_at }
-    public var pointsPossible: Double? { assignment?.points_possible }
-    public var detailsText: String? { description }
-    public var isHidden: Bool { hidden == true }
-    public var discussionCheckpointStep: DiscussionCheckpointStep? { nil }
-}
-
-extension APIPlannerNote: APIPlannableItem {
-    public var plannableID: String { id }
-    public var plannableType: PlannableType { .planner_note }
-    public var htmlURL: URL? { nil }
-
-    public var context: Context? {
-        Context(.course, id: course_id) ?? Context(.user, id: user_id)
-    }
-
-    public var contextName: String? { nil }
-    public var plannableTitle: String? { title }
-    public var date: Date? { todo_date }
-    public var pointsPossible: Double? { nil }
-    public var detailsText: String? { details }
-    public var isHidden: Bool { false }
-    public var discussionCheckpointStep: DiscussionCheckpointStep? { nil }
-}
-
 public class GetPlannables: UseCase {
     public typealias Model = Plannable
 
@@ -123,7 +30,7 @@ public class GetPlannables: UseCase {
         var plannerNotes: [APIPlannerNote]?
     }
 
-    var userID: String?
+    var userId: String?
     var startDate: Date
     var endDate: Date
     var contextCodes: [String]?
@@ -132,8 +39,8 @@ public class GetPlannables: UseCase {
     let observerEvents = PassthroughSubject<EventsRequest, Never>()
     var subscriptions = Set<AnyCancellable>()
 
-    public init(userID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String]? = nil, filter: String = "") {
-        self.userID = userID
+    public init(userId: String? = nil, startDate: Date, endDate: Date, contextCodes: [String]? = nil, filter: String = "") {
+        self.userId = userId
         self.startDate = startDate
         self.endDate = endDate
         self.contextCodes = contextCodes
@@ -144,7 +51,7 @@ public class GetPlannables: UseCase {
 
     public var cacheKey: String? {
         let codes = contextCodes?.joined(separator: ",") ?? ""
-        return "get-plannables-\(userID ?? "")-\(startDate)-\(endDate)-\(filter)-\(codes)"
+        return "get-plannables-\(userId ?? "")-\(startDate)-\(endDate)-\(filter)-\(codes)"
     }
 
     public var scope: Scope {
@@ -152,9 +59,9 @@ public class GetPlannables: UseCase {
             startDate as NSDate, #keyPath(Plannable.date),
             #keyPath(Plannable.date), endDate as NSDate
         )
-        if let userID = userID {
+        if let userId {
             predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                NSPredicate(key: #keyPath(Plannable.userID), equals: userID),
+                NSPredicate(key: #keyPath(Plannable.userId), equals: userId),
                 predicate
             ])
         }
@@ -188,7 +95,7 @@ public class GetPlannables: UseCase {
 
         case .student:
             let request = GetPlannablesRequest(
-                userID: userID,
+                userId: userId,
                 startDate: startDate,
                 endDate: endDate,
                 contextCodes: contextCodes ?? [],
@@ -205,12 +112,20 @@ public class GetPlannables: UseCase {
     }
 
     public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        var items: [APIPlannableItem] = response?.plannables ?? []
-        items.append(contentsOf: response?.calendarEvents ?? [])
-        items.append(contentsOf: response?.plannerNotes ?? [])
+        let plannableItems: [APIPlannable] = response?.plannables ?? []
+        let calendarEventItems: [APICalendarEvent] = response?.calendarEvents ?? []
+        let plannerNoteItems: [APIPlannerNote] = response?.plannerNotes ?? []
 
-        for item in items where item.plannableType != .announcement && !item.isHidden {
-            Plannable.save(item, userID: userID, in: client)
+        for item in plannableItems where item.plannableType != .announcement {
+            Plannable.save(item, userId: userId, in: client)
+        }
+
+        for item in calendarEventItems where item.hidden != true {
+            Plannable.save(item, userId: userId, in: client)
+        }
+
+        for item in plannerNoteItems {
+            Plannable.save(item, contextName: nil, in: client)
         }
     }
 }

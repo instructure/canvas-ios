@@ -35,13 +35,14 @@ extension GetPlannables {
                     .flatMap { contexts in
                         let calendarEvents = self.calendarEventsPublisher(env: request.env, contexts: contexts, for: .event)
                         let calendarAssignments = self.calendarEventsPublisher(env: request.env, contexts: contexts, for: .assignment)
+                        let calendarSubAssignments = self.calendarEventsPublisher(env: request.env, contexts: contexts, for: .sub_assignment)
 
                         let allPublisher: AnyPublisher<[ObserverEvent], EventsFailure>
                         if case .teacher = request.env.app {
                             let plannerNotes = self.plannerNotesPublisher(env: request.env, contexts: contexts)
-                            allPublisher = calendarEvents.merge(with: calendarAssignments, plannerNotes).eraseToAnyPublisher()
+                            allPublisher = calendarEvents.merge(with: calendarAssignments, calendarSubAssignments, plannerNotes).eraseToAnyPublisher()
                         } else {
-                            allPublisher = calendarEvents.merge(with: calendarAssignments).eraseToAnyPublisher()
+                            allPublisher = calendarEvents.merge(with: calendarAssignments, calendarSubAssignments).eraseToAnyPublisher()
                         }
 
                         return allPublisher
@@ -78,7 +79,7 @@ extension GetPlannables {
             return Just(contexts).eraseToAnyPublisher()
         }
 
-        guard let userID = userID else {
+        guard let userId else {
             return Just([]).eraseToAnyPublisher()
         }
 
@@ -100,7 +101,7 @@ extension GetPlannables {
                 var contexts: [Context] = []
                 for course in courses {
                     let enrollments = course.enrollments ?? []
-                    for enrollment in enrollments where enrollment.associated_user_id?.value == userID {
+                    for enrollment in enrollments where enrollment.associated_user_id?.value == userId {
                         contexts.append(Context(.course, id: course.id.value))
                     }
                 }
@@ -120,7 +121,7 @@ extension GetPlannables {
             type: type,
             include: [.submission],
             allEvents: false,
-            userID: userID
+            userId: userId
         )
 
         return Future<[ObserverEvent], EventsFailure> { promise in

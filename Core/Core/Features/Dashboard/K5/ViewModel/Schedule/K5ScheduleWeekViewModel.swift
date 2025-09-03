@@ -57,7 +57,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
 
     private func downloadPlannables() {
         isDownloadStarted = true
-        let plannablesRequest = GetPlannablesRequest(userID: nil, startDate: weekRange.lowerBound, endDate: weekRange.upperBound, contextCodes: [], filter: "")
+        let plannablesRequest = GetPlannablesRequest(userId: nil, startDate: weekRange.lowerBound, endDate: weekRange.upperBound, contextCodes: [], filter: "")
         plannableDownloadTask = AppEnvironment.shared.api.makeRequest(plannablesRequest) { [weak self] plannables, _, _ in
             guard let self = self else { return }
             // Filter to active todo items
@@ -163,12 +163,12 @@ public class K5ScheduleWeekViewModel: ObservableObject {
                 let apiService = PlannerOverrideUpdater(api: AppEnvironment.shared.api, plannable: plannable)
                 return K5ScheduleEntryViewModel(leading: .checkbox(isChecked: isCompleted),
                                                 icon: plannable.k5ScheduleIcon,
-                                                title: plannable.plannableTitle ?? "",
+                                                title: plannable.plannable?.title ?? "",
                                                 subtitle: nil,
                                                 labels: plannable.k5ScheduleLabels.map { K5ScheduleEntryViewModel.LabelViewModel(text: $0.text, color: $0.color)},
                                                 score: subject.shouldHideQuantitativeData ? nil : plannable.k5SchedulePoints,
                                                 dueText: plannable.k5ScheduleDueText,
-                                                route: plannable.htmlURL,
+                                                route: plannable.html_url?.rawValue,
                                                 apiService: apiService)
             }
 

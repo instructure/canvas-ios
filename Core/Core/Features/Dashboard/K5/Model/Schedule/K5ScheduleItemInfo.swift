@@ -37,7 +37,7 @@ public extension APIPlannable {
         }
     }
 
-    var k5SchedulePoints: String? { Self.k5SchedulePoints(from: pointsPossible) }
+    var k5SchedulePoints: String? { Self.k5SchedulePoints(from: plannable?.points_possible) }
 
     static func k5SchedulePoints(from points: Double?) -> String? {
         guard let points = points else { return nil }
