@@ -31,7 +31,7 @@ class K5ScheduleWeekViewModelTests: CoreTestCase {
             K5ScheduleDayViewModel(range: weekStart.addDays(1)..<weekStart.addDays(2), calendar: .current)
         ])
 
-        let plannablesRequest = GetPlannablesRequest(userID: nil, startDate: weekRange.lowerBound, endDate: weekRange.upperBound, contextCodes: [], filter: "")
+        let plannablesRequest = GetPlannablesRequest(userId: nil, startDate: weekRange.lowerBound, endDate: weekRange.upperBound, contextCodes: [], filter: "")
         let plannablesResponse: [APIPlannable] = [.make(plannable_date: weekStart.addSeconds(1))]
         api.mock(plannablesRequest, value: plannablesResponse)
         let courseRequest = GetCourses(enrollmentState: nil)

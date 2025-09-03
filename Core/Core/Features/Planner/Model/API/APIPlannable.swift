@@ -61,6 +61,48 @@ extension APIPlannable {
     public struct Details: Codable, Equatable {
         public let reply_to_entry_required_count: Int?
     }
+
+    public var plannableID: String { plannable_id.value }
+    public var plannableType: PlannableType { PlannableType(rawValue: plannable_type) ?? .other }
+    public var htmlURL: URL? { html_url?.rawValue }
+    public var plannableTitle: String? { self.plannable?.title }
+    public var date: Date? { plannable_date }
+    public var pointsPossible: Double? { self.plannable?.points_possible }
+    public var detailsText: String? { self.plannable?.details }
+    public var contextName: String? { context_name }
+    public var isHidden: Bool { false }
+    public var discussionCheckpointStep: DiscussionCheckpointStep? {
+        .init(tag: plannable?.sub_assignment_tag, requiredReplyCount: details?.reply_to_entry_required_count)
+    }
+
+    public var context: Context? {
+        if let context = contextFromContextType() {
+            return context
+        }
+        if plannableType == .planner_note {
+            // Notes have no 'context_type', but have IDs in the inner 'plannable' object
+            return contextFromInnerPlannableObject()
+        }
+        return nil
+    }
+
+    private func contextFromContextType() -> Context? {
+        guard let raw = context_type, let type = ContextType(rawValue: raw.lowercased()) else {
+            return nil
+        }
+        return switch type {
+        case .course: Context(.course, id: course_id?.rawValue)
+        case .group: Context(.group, id: group_id?.rawValue)
+        case .user: Context(.user, id: user_id?.rawValue)
+        default: nil
+        }
+    }
+
+    private func contextFromInnerPlannableObject() -> Context? {
+        // order matters: 'course_id' has precedence over 'user_id'
+        return Context(.course, id: self.plannable?.course_id)
+            ?? Context(.user, id: self.plannable?.user_id)
+    }
 }
 
 public struct APIPlannerOverride: Codable, Equatable {
@@ -207,15 +249,15 @@ extension APIPlannerOverride {
 public struct GetPlannablesRequest: APIRequestable {
     public typealias Response = [APIPlannable]
 
-    var userID: String?
+    var userId: String?
     var startDate: Date?
     var endDate: Date?
     var contextCodes: [String] = []
     var filter: String = ""
 
     public var path: String {
-        if let userID = userID {
-            return "users/\(userID)/planner/items"
+        if let userId = userId {
+            return "users/\(userId)/planner/items"
         } else {
             return "planner/items"
         }

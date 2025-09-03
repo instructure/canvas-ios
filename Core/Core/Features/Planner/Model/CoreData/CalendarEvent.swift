@@ -20,7 +20,7 @@ import Foundation
 import CoreData
 
 public enum CalendarEventType: String, Codable {
-    case assignment, event
+    case assignment, event, sub_assignment
 }
 
 public enum CalendarEventWorkflowState: String, Codable {

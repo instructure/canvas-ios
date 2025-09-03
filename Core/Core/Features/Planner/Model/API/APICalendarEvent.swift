@@ -45,6 +45,23 @@ public struct APICalendarEvent: Codable, Equatable {
     let series_head: Bool?
     /// The event repetition in human readable format
     let series_natural_language: String?
+    let sub_assignment: APISubAssignment?
+}
+
+extension APICalendarEvent {
+    public var plannableID: String { id.value }
+    public var plannableType: PlannableType { .init(rawValue: type.rawValue) ?? .other }
+    public var plannableTitle: String? { sub_assignment?.discussion_topic?.title ?? title }
+    public var htmlURL: URL? { sub_assignment?.html_url ?? html_url }
+    public var context: Context? { Context(canvasContextID: context_code) }
+    public var contextName: String? { context_name }
+    public var date: Date? { start_at }
+    public var pointsPossible: Double? { assignment?.points_possible }
+    public var detailsText: String? { description }
+    public var isHidden: Bool { hidden == true }
+    public var discussionCheckpointStep: DiscussionCheckpointStep? {
+        .init(tag: sub_assignment?.sub_assignment_tag, requiredReplyCount: sub_assignment?.discussion_topic?.reply_to_entry_required_count)
+    }
 }
 
 #if DEBUG
@@ -71,7 +88,8 @@ extension APICalendarEvent {
         important_dates: Bool = false,
         rrule: String? = nil,
         series_head: Bool? = nil,
-        series_natural_language: String? = "Weekly on Wed, 52 times"
+        series_natural_language: String? = "Weekly on Wed, 52 times",
+        sub_assignment: APISubAssignment? = nil
     ) -> APICalendarEvent {
         return APICalendarEvent(
             id: id,
@@ -95,7 +113,8 @@ extension APICalendarEvent {
             important_dates: important_dates,
             rrule: rrule,
             series_head: series_head,
-            series_natural_language: series_natural_language
+            series_natural_language: series_natural_language,
+            sub_assignment: sub_assignment
         )
     }
 }
@@ -109,8 +128,8 @@ public struct GetCalendarEventsRequest: APIRequestable {
     }
 
     public var path: String {
-        if let userID = userID {
-            let context = Context(.user, id: userID)
+        if let userId = userId {
+            let context = Context(.user, id: userId)
             return "\(context.pathComponent)/calendar_events"
         }
         return "calendar_events"
@@ -122,7 +141,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
     public let perPage: Int
     public let include: [Include]
     public let allEvents: Bool?
-    public let userID: String?
+    public let userId: String?
     public let importantDates: Bool?
     public var useExtendedPercentEncoding: Bool { true }
     private static let dateFormatter: DateFormatter = {
@@ -141,7 +160,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
         perPage: Int = 100,
         include: [Include] = [],
         allEvents: Bool? = nil,
-        userID: String? = nil,
+        userId: String? = nil,
         importantDates: Bool? = nil
     ) {
         self.contexts = contexts
@@ -153,7 +172,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
         self.perPage = perPage
         self.include = include
         self.allEvents = allEvents
-        self.userID = userID
+        self.userId = userId
         self.importantDates = importantDates
     }
 

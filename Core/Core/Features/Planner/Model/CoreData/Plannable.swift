@@ -36,7 +36,7 @@ public final class Plannable: NSManagedObject {
     @NSManaged public var contextName: String?
     @NSManaged public var date: Date?
     @NSManaged public var pointsPossibleRaw: NSNumber?
-    @NSManaged public var userID: String?
+    @NSManaged public var userId: String?
     @NSManaged public var details: String?
     @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
     public var discussionCheckpointStep: DiscussionCheckpointStep? {
@@ -59,7 +59,7 @@ public final class Plannable: NSManagedObject {
     }
 
     @discardableResult
-    public static func save(_ item: APIPlannableItem, userID: String?, in client: NSManagedObjectContext) -> Plannable {
+    public static func save(_ item: APIPlannable, userId: String?, in client: NSManagedObjectContext) -> Plannable {
         let model: Plannable = client.first(where: #keyPath(Plannable.id), equals: item.plannableID) ?? client.insert()
         model.id = item.plannableID
         model.plannableType = item.plannableType
@@ -70,7 +70,7 @@ public final class Plannable: NSManagedObject {
         model.pointsPossible = item.pointsPossible
         model.details = item.detailsText
         model.context = item.context
-        model.userID = userID
+        model.userId = userId
         model.discussionCheckpointStep = item.discussionCheckpointStep
         return model
     }
@@ -87,7 +87,24 @@ public final class Plannable: NSManagedObject {
         model.pointsPossible = nil
         model.details = item.details
         model.context = Context(.course, id: item.course_id) ?? Context(.user, id: item.user_id)
-        model.userID = item.user_id
+        model.userId = item.user_id
+        return model
+    }
+
+    @discardableResult
+    public static func save(_ item: APICalendarEvent, userId: String?, in client: NSManagedObjectContext) -> Plannable {
+        let model: Plannable = client.first(where: #keyPath(Plannable.id), equals: item.plannableID) ?? client.insert()
+        model.id = item.plannableID
+        model.plannableType = item.plannableType
+        model.htmlURL = item.htmlURL
+        model.contextName = item.contextName
+        model.title = item.plannableTitle
+        model.date = item.date
+        model.pointsPossible = item.pointsPossible
+        model.details = item.detailsText
+        model.context = item.context
+        model.userId = userId
+        model.discussionCheckpointStep = item.discussionCheckpointStep
         return model
     }
 }

@@ -27,7 +27,7 @@ public class GetK5HomeroomDueItemCount: CollectionUseCase {
 
     public init(courseIds: [String]) {
         let courseContextIds = courseIds.map { Core.Context(.course, id: $0).canvasContextID }
-        request = GetPlannablesRequest(userID: nil, startDate: Date().startOfDay(), endDate: Date().endOfDay(), contextCodes: courseContextIds, filter: "")
+        request = GetPlannablesRequest(userId: nil, startDate: Date().startOfDay(), endDate: Date().endOfDay(), contextCodes: courseContextIds, filter: "")
     }
 
     public func write(response: [APIPlannable]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {

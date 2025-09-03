@@ -33,6 +33,24 @@ public struct APIPlannerNote: Codable, Equatable {
     public let updated_at: Date?
 }
 
+extension APIPlannerNote {
+    public var plannableID: String { id }
+    public var plannableType: PlannableType { .planner_note }
+    public var htmlURL: URL? { nil }
+
+    public var context: Context? {
+        Context(.course, id: course_id) ?? Context(.user, id: user_id)
+    }
+
+    public var contextName: String? { nil }
+    public var plannableTitle: String? { title }
+    public var date: Date? { todo_date }
+    public var pointsPossible: Double? { nil }
+    public var detailsText: String? { details }
+    public var isHidden: Bool { false }
+    public var discussionCheckpointStep: DiscussionCheckpointStep? { nil }
+}
+
 #if DEBUG
 extension APIPlannerNote {
     public static func make(
