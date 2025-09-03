@@ -28666,6 +28666,12 @@
         }
       }
     },
+    "Enroll" : {
+
+    },
+    "Enrolled" : {
+
+    },
     "Error" : {
       "localizations" : {
         "ar" : {
@@ -44025,6 +44031,9 @@
           }
         }
       }
+    },
+    "Locked" : {
+
     },
     "Locked Content" : {
       "localizations" : {
@@ -62726,6 +62735,9 @@
           }
         }
       }
+    },
+    "Required" : {
+
     },
     "Result: %@" : {
       "localizations" : {

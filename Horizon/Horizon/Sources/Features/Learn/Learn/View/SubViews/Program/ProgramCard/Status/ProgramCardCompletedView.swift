@@ -17,25 +17,24 @@
 //
 
 import SwiftUI
+import HorizonUI
 
-extension HorizonUI.ProgramCard.Pills {
-    struct Completed: View {
-        var body: some View {
-            HorizonUI.Pill(
-                title: String(localized: "Completed"),
-                style: .solid(
-                    .init(
-                        backgroundColor: Color.huiColors.primitives.honey12,
-                        textColor: Color.huiColors.primitives.honey90
-                    )
-                ),
-                isSmall: true,
-                cornerRadius: .level1
-            )
-        }
+struct ProgramCardCompletedView: View {
+    var body: some View {
+        HorizonUI.Pill(
+            title: String(localized: "Completed"),
+            style: .solid(
+                .init(
+                    backgroundColor: Color.huiColors.primitives.honey12,
+                    textColor: Color.huiColors.primitives.honey90
+                )
+            ),
+            isSmall: true,
+            cornerRadius: .level1
+        )
     }
 }
 
 #Preview {
-    HorizonUI.ProgramCard.Pills.Completed()
+    ProgramCardCompletedView()
 }

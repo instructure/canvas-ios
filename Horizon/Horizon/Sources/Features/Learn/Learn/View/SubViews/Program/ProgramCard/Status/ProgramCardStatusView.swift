@@ -17,47 +17,47 @@
 //
 
 import SwiftUI
+import HorizonUI
 
-extension HorizonUI.ProgramCard {
-    struct Pills: View {
-         let isEnrolled: Bool
-         let isRequired: Bool
-         let isLinear: Bool
-         let status: HorizonUI.ProgramCard.Status
-         let estimatedTime: String?
+struct ProgramCardStatusView: View {
+    let isEnrolled: Bool
+    let isRequired: Bool
+    let isLinear: Bool
+    let status: ProgramCardStatus
+    let estimatedTime: String?
 
-        var body: some View {
-            switch status {
-            case .active, .notEnrolled:
-                HorizonUI.ProgramCard.Pills.Active(
-                    isEnrolled: isEnrolled,
-                    isRequired: isRequired,
-                    isLinear: isLinear,
-                    estimatedTime: estimatedTime
-                )
-            case .inProgress:
-                HorizonUI.ProgramCard.Pills.InProgress(
-                    isRequired: isRequired,
-                    isLinear: isLinear,
-                    estimatedTime: estimatedTime
-                )
+    var body: some View {
+        switch status {
+        case .active, .notEnrolled:
+            ProgramCardActiveView(
+                isEnrolled: isEnrolled,
+                isRequired: isRequired,
+                isLinear: isLinear,
+                estimatedTime: estimatedTime
+            )
+        case .inProgress:
+            ProgramCardInProgressView(
+                isRequired: isRequired,
+                isLinear: isLinear,
+                estimatedTime: estimatedTime
+            )
 
-            case .locked:
-                HorizonUI.ProgramCard.Pills.Locked(
-                    isRequired: isRequired,
-                    isLinear: isLinear,
-                    estimatedTime: estimatedTime
-                )
-            case .completed:
-                HorizonUI.ProgramCard.Pills.Completed()
-            }
+        case .locked:
+            ProgramCardLockedView(
+                isRequired: isRequired,
+                isLinear: isLinear,
+                estimatedTime: estimatedTime
+            )
+        case .completed:
+            ProgramCardCompletedView()
         }
     }
 }
 
+
 #Preview {
     VStack(alignment: .leading) {
-        HorizonUI.ProgramCard.Pills(
+        ProgramCardStatusView(
             isEnrolled: true,
             isRequired: true,
             isLinear: true,
@@ -65,7 +65,7 @@ extension HorizonUI.ProgramCard {
             estimatedTime: "10 hours"
         )
 
-        HorizonUI.ProgramCard.Pills(
+        ProgramCardStatusView(
             isEnrolled: false,
             isRequired: false,
             isLinear: false,
@@ -73,7 +73,7 @@ extension HorizonUI.ProgramCard {
             estimatedTime: "10 hours"
         )
 
-        HorizonUI.ProgramCard.Pills(
+        ProgramCardStatusView(
             isEnrolled: false,
             isRequired: false,
             isLinear: true,
@@ -81,7 +81,7 @@ extension HorizonUI.ProgramCard {
             estimatedTime: "10 hours",
         )
 
-        HorizonUI.ProgramCard.Pills(
+        ProgramCardStatusView(
             isEnrolled: false,
             isRequired: false,
             isLinear: false,

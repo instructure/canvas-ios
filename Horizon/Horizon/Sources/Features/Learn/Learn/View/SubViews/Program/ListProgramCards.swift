@@ -99,7 +99,7 @@ struct ListProgramCards: View {
     }
 
     private func programCard(for program: ProgramCourse) -> some View {
-        HorizonUI.ProgramCard(
+        ProgramCard(
             courseName: program.name,
             isLinear: isLinear,
             isSelfEnrolled: program.isSelfEnrolled,
