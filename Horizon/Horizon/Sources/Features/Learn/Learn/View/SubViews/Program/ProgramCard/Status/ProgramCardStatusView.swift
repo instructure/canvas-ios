@@ -54,7 +54,6 @@ struct ProgramCardStatusView: View {
     }
 }
 
-
 #Preview {
     VStack(alignment: .leading) {
         ProgramCardStatusView(

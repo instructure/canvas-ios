@@ -19,7 +19,7 @@
 import SwiftUI
 import HorizonUI
 
-struct ProgramCard: View {
+struct ProgramCardView: View {
     // MARK: - Content
     private let courseName: String
     private let isLinear: Bool
@@ -140,10 +140,9 @@ struct ProgramCard: View {
     }
 }
 
-
 #Preview {
     @Previewable @State var isLoading: Bool = false
-    ProgramCard(
+    ProgramCardView(
         courseName: "Course Name Dolor Sit Amet",
         isLinear: true,
         isSelfEnrolled: true,

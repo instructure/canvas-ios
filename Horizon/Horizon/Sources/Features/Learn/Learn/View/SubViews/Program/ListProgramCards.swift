@@ -99,7 +99,7 @@ struct ListProgramCards: View {
     }
 
     private func programCard(for program: ProgramCourse) -> some View {
-        ProgramCard(
+        ProgramCardView(
             courseName: program.name,
             isLinear: isLinear,
             isSelfEnrolled: program.isSelfEnrolled,

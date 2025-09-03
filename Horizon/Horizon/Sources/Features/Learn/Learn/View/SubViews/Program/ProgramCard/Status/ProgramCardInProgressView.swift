@@ -65,7 +65,6 @@ struct ProgramCardInProgressView: View {
     }
 }
 
-
 #Preview {
     ProgramCardInProgressView(
         isEnrolled: true,
