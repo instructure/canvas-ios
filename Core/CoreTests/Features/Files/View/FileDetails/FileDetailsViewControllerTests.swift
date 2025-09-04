@@ -23,24 +23,33 @@ import PSPDFKitUI
 import QuickLook
 @testable import Core
 import TestsFoundation
+import Combine
+import CombineSchedulers
 
 class FileDetailsViewControllerTests: CoreTestCase {
     let file = APIFile.make()
     var context = Context(.course, id: "2")
-    lazy var controller = FileDetailsViewController
-        .create(
-            context: context,
-            fileID: "1",
-            assignmentID: "3",
-            environment: environment
-        )
+    var controller: FileDetailsViewController!
     var navigation: UINavigationController!
     var saveWasCalled = false
     var didSaveExpectation: XCTestExpectation!
     var observer: NSObjectProtocol?
+    private var studentAccessInteractor: StudentAccessInteractorMock!
+    private var testScheduler: AnySchedulerOf<DispatchQueue>!
 
     override func setUp() {
         super.setUp()
+        testScheduler = DispatchQueue.immediate.eraseToAnyScheduler()
+        studentAccessInteractor = StudentAccessInteractorMock()
+        controller = FileDetailsViewController
+            .create(
+                context: context,
+                fileID: "1",
+                assignmentID: "3",
+                studentAccessInteractor: studentAccessInteractor,
+                environment: environment,
+                scheduler: testScheduler
+            )
         navigation = UINavigationController(rootViewController: controller)
         api.mock(controller.files, value: file)
         api.mockDownload(file.url!.rawValue)
@@ -293,6 +302,16 @@ class FileDetailsViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         _ = controller.shareButton.target?.perform(controller.shareButton.action, with: [controller.shareButton])
         XCTAssert(router.presented is UIActivityViewController)
+    }
+
+    func test_shareButtonHidden_whenRestricted() {
+        controller.view.layoutIfNeeded()
+
+        XCTAssertFalse(controller.shareButton.isHidden) // visible by default
+
+        studentAccessInteractor.setRestricted(true)
+
+        XCTAssertTrue(controller.shareButton.isHidden)  // hidden after restriction
     }
 
     func testLocked() {

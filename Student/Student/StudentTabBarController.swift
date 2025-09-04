@@ -119,7 +119,11 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         if ExperimentalFeature.rebuiltCalendar.isEnabled {
             planner = PlannerAssembly.makeNewPlannerViewController()
         } else {
-            planner = CoreNavigationController(rootViewController: PlannerViewController.create())
+            planner = CoreNavigationController(
+                rootViewController: PlannerViewController.create(
+                    studentAccessInteractor: StudentAccessInteractorLive(env: AppEnvironment.shared)
+                )
+            )
         }
 
         split.viewControllers = [

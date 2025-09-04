@@ -18,6 +18,7 @@
 
 import AVKit
 import Combine
+import CombineSchedulers
 import PSPDFKit
 import PSPDFKitUI
 import QuickLook
@@ -66,8 +67,10 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     }
     public var offlineFileSource: OfflineFileSource?
     private var accessReportInteractor: FileAccessReportInteractor?
+    private var studentAccessInteractor: StudentAccessInteractor?
     private var subscriptions = Set<AnyCancellable>()
     private var offlineFileInteractor: OfflineFileInteractor?
+    private var scheduler: AnySchedulerOf<DispatchQueue>!
     private var imageLoader: ImageLoader?
     private var isFileLocalURLAvailable: Bool { localURL != nil }
     private var isPresentingOfflineModeAlert = false
@@ -80,7 +83,9 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         assignmentID: String? = nil,
         canEdit: Bool = true,
         offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive(),
-        environment: AppEnvironment
+        studentAccessInteractor: StudentAccessInteractor? = nil,
+        environment: AppEnvironment,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
@@ -89,7 +94,9 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         controller.originURL = originURL
         controller.env = environment
         controller.offlineFileInteractor = offlineFileInteractor
+        controller.studentAccessInteractor = studentAccessInteractor
         controller.canEdit = canEdit && controller.env.app == .teacher
+        controller.scheduler = scheduler
 
         if let context {
             controller.accessReportInteractor = FileAccessReportInteractor(context: context,
@@ -170,6 +177,14 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         accessReportInteractor?
             .reportFileAccess()
             .sink()
+            .store(in: &subscriptions)
+
+        studentAccessInteractor?
+            .isRestricted()
+            .receive(on: scheduler)
+            .sink { [weak self] isRestricted in
+                self?.shareButton.isHidden = isRestricted
+            }
             .store(in: &subscriptions)
     }
 
