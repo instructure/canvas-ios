@@ -769,6 +769,9 @@
         }
       }
     },
+    "%" : {
+
+    },
     "%@ %@" : {
       "localizations" : {
         "ar" : {
@@ -20718,6 +20721,12 @@
         }
       }
     },
+    "complete" : {
+
+    },
+    "Complete" : {
+
+    },
     "Complete all of the items." : {
       "localizations" : {
         "ar" : {
@@ -23021,6 +23030,9 @@
           }
         }
       }
+    },
+    "courses" : {
+
     },
     "Create message" : {
       "localizations" : {
@@ -28653,6 +28665,12 @@
           }
         }
       }
+    },
+    "Enroll" : {
+
+    },
+    "Enrolled" : {
+
     },
     "Error" : {
       "localizations" : {
@@ -44014,6 +44032,9 @@
         }
       }
     },
+    "Locked" : {
+
+    },
     "Locked Content" : {
       "localizations" : {
         "ar" : {
@@ -55534,6 +55555,9 @@
         }
       }
     },
+    "of" : {
+
+    },
     "Ok" : {
       "localizations" : {
         "ar" : {
@@ -62711,6 +62735,9 @@
           }
         }
       }
+    },
+    "Required" : {
+
     },
     "Result: %@" : {
       "localizations" : {
@@ -87543,6 +87570,9 @@
           }
         }
       }
+    },
+    "You’ve been enrolled in Course" : {
+
     },
     "Your draft was deleted." : {
       "localizations" : {
