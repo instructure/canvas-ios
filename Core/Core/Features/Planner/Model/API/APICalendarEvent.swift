@@ -48,22 +48,6 @@ public struct APICalendarEvent: Codable, Equatable {
     let sub_assignment: APISubAssignment?
 }
 
-extension APICalendarEvent {
-    public var plannableID: String { id.value }
-    public var plannableType: PlannableType { .init(rawValue: type.rawValue) ?? .other }
-    public var plannableTitle: String? { sub_assignment?.discussion_topic?.title ?? title }
-    public var htmlURL: URL? { sub_assignment?.html_url ?? html_url }
-    public var context: Context? { Context(canvasContextID: context_code) }
-    public var contextName: String? { context_name }
-    public var date: Date? { start_at }
-    public var pointsPossible: Double? { assignment?.points_possible }
-    public var detailsText: String? { description }
-    public var isHidden: Bool { hidden == true }
-    public var discussionCheckpointStep: DiscussionCheckpointStep? {
-        .init(tag: sub_assignment?.sub_assignment_tag, requiredReplyCount: sub_assignment?.discussion_topic?.reply_to_entry_required_count)
-    }
-}
-
 #if DEBUG
 extension APICalendarEvent {
     public static func make(

@@ -116,16 +116,16 @@ public class GetPlannables: UseCase {
         let calendarEventItems: [APICalendarEvent] = response?.calendarEvents ?? []
         let plannerNoteItems: [APIPlannerNote] = response?.plannerNotes ?? []
 
-        for item in plannableItems where item.plannableType != .announcement && !item.isHidden {
+        for item in plannableItems where item.plannableType != .announcement {
             Plannable.save(item, userId: userId, in: client)
         }
 
-        for item in calendarEventItems where item.plannableType != .announcement && !item.isHidden {
+        for item in calendarEventItems where item.hidden != true {
             Plannable.save(item, userId: userId, in: client)
         }
 
-        for item in plannerNoteItems where item.plannableType != .announcement && !item.isHidden {
-            Plannable.save(item, contextName: item.contextName, in: client)
+        for item in plannerNoteItems {
+            Plannable.save(item, contextName: nil, in: client)
         }
     }
 }
