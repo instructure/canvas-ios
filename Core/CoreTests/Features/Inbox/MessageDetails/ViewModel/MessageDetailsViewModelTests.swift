@@ -29,7 +29,7 @@ class MessageDetailsViewModelTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         mockInteractor = MessageDetailsInteractorMock()
-        mockStudentAccessInteractor = StudentAccessInteractorMock(restricted: false)
+        mockStudentAccessInteractor = StudentAccessInteractorMock()
         testee = MessageDetailsViewModel(
             interactor: mockInteractor,
             studentAccessInteractor: mockStudentAccessInteractor,
@@ -206,7 +206,7 @@ class MessageDetailsViewModelTests: CoreTestCase {
     func test_messageMoreTapped_whenRestrictStudentAccessEnabled_replyAllAndDeleteNotShown() {
         // Given
         mockInteractor = MessageDetailsInteractorMock()
-        mockStudentAccessInteractor = StudentAccessInteractorMock(restricted: true)
+        mockStudentAccessInteractor.setRestricted(true)
         testee = MessageDetailsViewModel(
             interactor: mockInteractor,
             studentAccessInteractor: mockStudentAccessInteractor,
@@ -457,17 +457,5 @@ private class MessageDetailsInteractorMock: MessageDetailsInteractor {
     func passConversationEvent(with cannotReply: Bool) {
         conversation.send(([
             Conversation.make(from: .make( message_count: 1, messages: [ .make() ], cannot_reply: cannotReply))]))
-    }
-}
-
-private class StudentAccessInteractorMock: StudentAccessInteractor {
-    private let restricted: Bool
-
-    init(restricted: Bool) {
-        self.restricted = restricted
-    }
-
-    func isRestricted() -> AnyPublisher<Bool, Never> {
-        Just(restricted).eraseToAnyPublisher()
     }
 }

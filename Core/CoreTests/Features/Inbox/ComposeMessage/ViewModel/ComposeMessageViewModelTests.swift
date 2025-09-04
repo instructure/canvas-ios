@@ -776,20 +776,3 @@ private class InboxSettingsInteractorMock: InboxSettingsInteractor {
         return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
-
-private class StudentAccessInteractorMock: StudentAccessInteractor {
-    private let isBulkMessagingEnforcedBasedOnStudentAccessRestriction: CurrentValueSubject<Bool, Never>
-
-    init(restricted: Bool = false) {
-        self.isBulkMessagingEnforcedBasedOnStudentAccessRestriction = CurrentValueSubject(restricted)
-    }
-
-    func isRestricted() -> AnyPublisher<Bool, Never> {
-        isBulkMessagingEnforcedBasedOnStudentAccessRestriction.eraseToAnyPublisher()
-    }
-
-    // Optional: allow changing value in test
-    func setRestricted(_ value: Bool) {
-        isBulkMessagingEnforcedBasedOnStudentAccessRestriction.send(value)
-    }
-}
