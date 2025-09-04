@@ -390,20 +390,3 @@ class FileListViewControllerTests: CoreTestCase {
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "Oops")
     }
 }
-
-private class StudentAccessInteractorMock: StudentAccessInteractor {
-    private let isStudentAccessRestricted: CurrentValueSubject<Bool, Never>
-
-    init(isRestricted: Bool = false) {
-        isStudentAccessRestricted = CurrentValueSubject(isRestricted)
-    }
-
-    func isRestricted() -> AnyPublisher<Bool, Never> {
-        isStudentAccessRestricted.eraseToAnyPublisher()
-    }
-
-    // Optional: allow changing value in test
-    func setRestricted(_ value: Bool) {
-        isStudentAccessRestricted.send(value)
-    }
-}
