@@ -60,6 +60,7 @@ public extension ButtonStyle where Self == ContextButton {
 
 // MARK: - Preview
 
+#if DEBUG
 struct ContextButton_Previews: PreviewProvider {
     private static var textButton: some View {
         Button(action: {}) {
@@ -74,3 +75,4 @@ struct ContextButton_Previews: PreviewProvider {
             .previewLayout(.sizeThatFits)
     }
 }
+#endif

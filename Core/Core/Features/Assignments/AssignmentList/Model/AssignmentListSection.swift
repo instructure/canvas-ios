@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,18 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import XCTest
+import Foundation
+import SwiftUI
 
-class AssignmentGroupViewModelTests: CoreTestCase {
+struct AssignmentListSection: Equatable, Identifiable {
+    let id: String
+    let title: String
+    let rows: [Row]
 
-    func testEqualityDetectsDifferentAssignments() {
-        let assignment1: Assignment = databaseClient.insert()
-        let assignment2: Assignment = databaseClient.insert()
+    enum Row: Equatable, Identifiable {
+        case student(StudentAssignmentListRow)
+        case teacher(TeacherAssignmentListRow)
 
-        let viewModel1 = AssignmentGroupViewModel(name: "", id: "1", assignments: [assignment1], courseColor: nil)
-        let viewModel2 = AssignmentGroupViewModel(name: "", id: "1", assignments: [assignment2], courseColor: nil)
-
-        XCTAssertNotEqual(viewModel1, viewModel2)
+        var id: String {
+            switch self {
+            case .student(let row): row.id
+            case .teacher(let row): row.id
+            }
+        }
     }
 }

@@ -92,7 +92,7 @@ extension InstUI {
                             }
                         },
                         label: {
-                            CollapseButtonIcon(isExpanded: configuration.$isExpanded)
+                            InstUI.CollapseButtonIcon(isExpanded: configuration.$isExpanded)
                                 .frame(maxHeight: .infinity, alignment: .top)
                                 .paddingStyle(set: .standardCell)
                                 .contentShape(Rectangle())
@@ -114,38 +114,45 @@ extension InstUI {
 
 // MARK: - Previews
 
-//#if DEBUG
-//
-//#Preview {
-//    let count1 = 3
-//    let count2 = 25
-//    InstUI.BaseScreen(state: .data) { _ in
-//        VStack(spacing: 0) {
-//            InstUI.Divider()
-//            InstUI.CollapsibleListRow(title: "First Section", itemCount: count1) {
-//                VStack(spacing: 0) {
-//                    ForEach(0..<count1, id: \.self) { index in
-//                        Text(verbatim: "Item \(index)")
-//                            .textStyle(.cellLabel)
-//                            .frame(maxWidth: .infinity, alignment: .leading)
-//                            .paddingStyle(set: .standardCell)
-//                        InstUI.Divider(isLast: index == count1 - 1)
-//                    }
-//                }
-//            }
-//            InstUI.CollapsibleListRow(title: "Second Section", itemCount: count2) {
-//                VStack(spacing: 0) {
-//                    ForEach(0..<count2, id: \.self) { index in
-//                        Text(verbatim: "Item \(index)")
-//                            .textStyle(.cellLabel)
-//                            .frame(maxWidth: .infinity, alignment: .leading)
-//                            .paddingStyle(set: .standardCell)
-//                        InstUI.Divider(isLast: index == count2 - 1)
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
-//
-//#endif
+#if DEBUG
+
+#Preview {
+    let count1 = 3
+    let count2 = 25
+    PreviewContainer {
+        InstUI.Divider()
+        InstUI.CollapsibleListRow(cell: InstUI.LabelCell(label: Text("First Row"))) {
+            VStack(spacing: 0) {
+                ForEach(0..<count1, id: \.self) { index in
+                    ItemCell(index: index)
+                }
+            }
+        }
+        InstUI.Divider()
+        InstUI.CollapsibleListRow(cell: InstUI.LabelCell(label: Text("Second Row")), isInitiallyExpanded: false) {
+            VStack(spacing: 0) {
+                ForEach(0..<count2, id: \.self) { index in
+                    ItemCell(index: index)
+                }
+            }
+        }
+        InstUI.Divider()
+    }
+}
+
+private struct ItemCell: View {
+    let index: Int
+
+    var body: some View {
+        VStack(spacing: 0) {
+            InstUI.Divider(.padded)
+            Text(verbatim: "Item \(index)")
+                .textStyle(.cellLabel)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .paddingStyle(set: .standardCell)
+        }
+        .paddingStyle(.leading, .standard)
+    }
+}
+
+#endif

@@ -18,16 +18,40 @@
 
 import SwiftUI
 
-extension View {
+extension InstUI {
 
-    /// Applies a custom tint color to the view if the color is not nil.
-    /// If the color is nil, it returns the view unchanged.
-    @ViewBuilder
-    public func customTint(_ color: Color?) -> some View {
-        if let color {
-            self.tint(color)
-        } else {
-            self
+    public struct SubtitleTextDivider: View {
+        private let padding: CGFloat
+
+        public init(padding: CGFloat = 4) {
+            self.padding = padding
+        }
+
+        public var body: some View {
+            Color.borderMedium
+                .frame(width: 1)
+                .clipShape(RoundedRectangle(cornerRadius: 2))
+                .padding(.horizontal, padding)
         }
     }
 }
+
+#if DEBUG
+
+#Preview {
+    PreviewContainer {
+        HStack(alignment: .top, spacing: 0) {
+            Text("Graded")
+                .font(.regular14)
+                .foregroundStyle(.textSuccess)
+
+            InstUI.SubtitleTextDivider()
+
+            Text(Date.now.dateTimeString)
+                .font(.regular14)
+                .foregroundStyle(.textDark)
+        }
+    }
+}
+
+#endif

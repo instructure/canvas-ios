@@ -55,9 +55,9 @@ struct SpeedGraderPageHeaderView: View {
                         nameText
 
                         ViewThatFits(in: .horizontal) {
-                            HStack(alignment: .top, spacing: 4) {
+                            HStack(alignment: .top, spacing: 0) {
                                 status
-                                statusDueTextDivider
+                                InstUI.SubtitleTextDivider()
                                 dueText
                             }
                             .fixedSize(horizontal: false, vertical: true)
@@ -112,12 +112,6 @@ struct SpeedGraderPageHeaderView: View {
         Text(submission.dueText)
             .font(.regular14)
             .foregroundStyle(.textDark)
-    }
-
-    private var statusDueTextDivider: some View {
-        Color.borderMedium
-            .frame(width: 1)
-            .clipShape(RoundedRectangle(cornerRadius: 2))
     }
 
     private func navigateToSubmitter() {
