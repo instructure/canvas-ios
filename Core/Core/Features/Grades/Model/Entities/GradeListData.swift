@@ -31,10 +31,14 @@ public struct GradeListData: Identifiable, Equatable {
     var currentGradingPeriodID: String?
 
     struct AssignmentSections: Identifiable, Equatable {
-        var id: String
+        let id: String
         let title: String
-        let accessibilityLabel: String
-        var assignments: [GradeListAssignment]
+        private(set) var accessibilityLabel: String = ""
+        var assignments: [GradeListAssignment] {
+            didSet {
+                accessibilityLabel = makeAccessibilityLabel()
+            }
+        }
 
         init(
             id: String,
@@ -44,7 +48,11 @@ public struct GradeListData: Identifiable, Equatable {
             self.id = id
             self.title = title
             self.assignments = assignments
-            self.accessibilityLabel = "\(title), \(String.format(numberOfItems: assignments.count))"
+            self.accessibilityLabel = makeAccessibilityLabel()
+        }
+
+        private func makeAccessibilityLabel() -> String {
+            "\(title), \(String.format(numberOfItems: assignments.count))"
         }
     }
 }

@@ -16,69 +16,45 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/*
-
 import Combine
-import Core
 import Foundation
-import Testing
+import XCTest
 
+@testable import Core
 @testable import Horizon
 
-struct DomainServiceTests {
+class DomainServiceTests: HorizonTestCase {
 
     // Given the Domain Service
     // When initilized with .cedar
     // When initialized with the baseURL https://example.com
     // When initialized with the us-east-1 region
     // Then the url is https://cedar-api-production.us-east-1.temp.prod.inseng.io
-    @Test func when_initialized_with_east_1_region_then_url_is_correct() async throws {
+    func test_when_initialized_with_east_1_region_then_url_is_correct() async throws {
         // Given
-        let mockAPI = TestHooks.MockAPI()
-        mockAPI.mockResult = ["token": "dGVzdF90b2tlbg=="]
+        let baseURL = "https://example.com"
+        let requestKey = "POST:https://canvas.instructure.com/api/v1/jwts?canvas_audience=false&no_verifiers=1&workflows%5B%5D=cedar"
+        let response = DomainService.JWTTokenRequest.Result(token: "")
+        let responseData = try! JSONEncoder().encode(response)
+        let apiMock = APIMock { _ in
+            (responseData, nil, nil)
+        }
+        API.mocks = [requestKey: apiMock]
 
         // When
         let domainService = DomainService(
             .cedar,
-            baseURL: "https://example.com",
-            region: "us-east-1",
-            horizonApi: mockAPI
+            baseURL: baseURL,
+            region: "us-west-1",
+            horizonApi: api
         )
-        let api = try? await domainService.api().values.first { _ in true }
+        let domainServiceApi = try? await domainService.api().values.first { _ in true }
 
         // Then
-        #expect(
-            api?.baseURL.absoluteString == "https://cedar-api-production.us-east-1.temp.prod.inseng.io"
+        XCTAssertEqual(
+            domainServiceApi!.baseURL.absoluteString,
+            "https://cedar-api-production.us-west-1.temp.prod.inseng.io",
+            "The region should be included in the domain service URL"
         )
     }
 }
-
-// Test helpers
-enum TestHooks {
-    class MockAPI: API {
-        var mockResult: [String: String] = [:]
-        var requestable: (any APIRequestable)?
-
-        override func makeRequest<Request: APIRequestable>(
-            _ requestable: Request,
-            refreshToken: Bool = true,
-            callback: @escaping (Request.Response?, URLResponse?, Error?) -> Void
-        ) -> APITask? {
-            self.requestable = requestable
-            let task = MockTask()
-            task.resume()
-            let json = #"{"token": "SGVsbG8sIFJlZWQh"}"#.data(using: .utf8)!
-            let decoded = try? JSONDecoder().decode(Request.Response.self, from: json)
-            callback(decoded, nil, nil)
-            return task
-        }
-    }
-}
-
-struct MockTask: APITask {
-    var state: URLSessionTask.State = .completed
-    var taskID: String?
-    func cancel() {}
-    func resume() {}
-}
- */
