@@ -22,11 +22,11 @@ import Foundation
 public class GetEnrollments: CollectionUseCase {
     public typealias Model = Enrollment
 
-    public let cacheKey: String?
-    public let context: Context
     public let gradingPeriodID: String?
-    public let request: GetEnrollmentsRequest
     public let scope: Scope
+
+    public private(set) var context: Context
+    public private(set) var request: GetEnrollmentsRequest
 
     public init(
         context: Context,
@@ -56,12 +56,26 @@ public class GetEnrollments: CollectionUseCase {
             predicates.append(NSPredicate(key: #keyPath(Enrollment.userID), equals: userID))
         }
         scope = Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: predicates), order: [])
-
-        var url = URLComponents()
-        url.queryItems = request.queryItems
-        cacheKey = "\(request.path)?\(url.query ?? "")"
     }
 
+    public var cacheKey: String? {
+        var url = URLComponents()
+        url.queryItems = request.queryItems
+        return "\(request.path)?\(url.query ?? "")"
+    }
+
+    public func modified(for env: AppEnvironment) -> Self {
+        guard env.isRoot == false else { return self }
+
+        self.context = context.local
+
+        var request = self.request
+        request.userID = request.userID?.asGlobalID(of: env.sessionShardID)
+        self.request = request
+
+        return self
+
+    }
     public func write(response: [APIEnrollment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         response?.forEach { item in
             let enrollment: Enrollment = client.first(where: #keyPath(Enrollment.id), equals: item.id!.rawValue) ?? client.insert()
