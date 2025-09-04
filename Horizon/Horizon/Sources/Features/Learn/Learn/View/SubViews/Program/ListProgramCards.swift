@@ -41,7 +41,7 @@ struct ListProgramCards: View {
     @State private var points: [ProgramCardPoint] = []
 
     // MARK: - Computed
-    
+
     private var sortedPoints: [ProgramCardPoint] { points.sorted { $0.point.y < $1.point.y } }
     private var firstPoint: ProgramCardPoint? { sortedPoints.first }
     private var lastPoint: ProgramCardPoint? { sortedPoints.last }
