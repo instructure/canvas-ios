@@ -90,6 +90,6 @@ struct AssignmentSection<Content: View>: View {
 extension AssignmentSection: Equatable {
 
     static func == (lhs: AssignmentSection<Content>, rhs: AssignmentSection<Content>) -> Bool {
-        lhs.title == rhs.title
+        lhs.title == rhs.title && lhs.titleA11yLabel == rhs.titleA11yLabel
     }
 }
