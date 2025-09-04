@@ -93,7 +93,7 @@ public final class GetHProgramCourseUseCase: APIUseCase {
                         .setFailureType(to: Error.self)
                         .eraseToAnyPublisher()
                 }
-                return self.fetchCombine(request: HGetCoursesEnrollmentIDRequest(userId: userId))
+                return self.fetchCombine(request: GetHCoursesEnrollmentIDRequest(userId: userId))
                     .map { enrollmentResponse in
                         let enrollments = enrollmentResponse.body.data?.legacyNode?.enrollments ?? []
                         let enrollmentsDic = Dictionary(

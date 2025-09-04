@@ -19,13 +19,13 @@
 @testable import Core
 import XCTest
 
-final class HGetCoursesEnrollmentIDRequestTests: CoreTestCase {
+final class GetHCoursesEnrollmentIDRequestTests: CoreTestCase {
     func testOperationName() {
-        XCTAssertEqual(HGetCoursesEnrollmentIDRequest.operationName, "GetCoursesEnrollmentIDs")
+        XCTAssertEqual(GetHCoursesEnrollmentIDRequest.operationName, "GetCoursesEnrollmentIDs")
     }
 
     func testVariables() {
-        let testee = HGetCoursesEnrollmentIDRequest(userId: "1234")
+        let testee = GetHCoursesEnrollmentIDRequest(userId: "1234")
         XCTAssertEqual(testee.variables.id, "1234")
     }
 
@@ -44,6 +44,6 @@ final class HGetCoursesEnrollmentIDRequestTests: CoreTestCase {
           }
         }
         """
-        XCTAssertEqual(HGetCoursesEnrollmentIDRequest.query, query)
+        XCTAssertEqual(GetHCoursesEnrollmentIDRequest.query, query)
     }
 }

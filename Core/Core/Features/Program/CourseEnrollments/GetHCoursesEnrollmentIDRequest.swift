@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct HGetCoursesEnrollmentIDRequest: APIGraphQLRequestable {
+struct GetHCoursesEnrollmentIDRequest: APIGraphQLRequestable {
     public typealias Response = HGetCoursesEnrollmentIDResponse
     public let variables: Input
 

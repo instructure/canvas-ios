@@ -21,6 +21,7 @@ import HorizonUI
 
 struct ListProgramCards: View {
     // MARK: - Dependencies
+
     let programs: [ProgramCourse]
     let isLoading: Bool
     let isLinear: Bool
@@ -28,16 +29,19 @@ struct ListProgramCards: View {
     let onTapEnroll: (ProgramCourse) -> Void
 
     // MARK: - Private
+
     private enum Constants {
         static let coordinateSpaceID = "programID"
         static let indexCircleSize: CGFloat = 26
     }
 
     // MARK: - State
+
     @State private var selectedCourse: ProgramCourse?
     @State private var points: [ProgramCardPoint] = []
 
     // MARK: - Computed
+    
     private var sortedPoints: [ProgramCardPoint] { points.sorted { $0.point.y < $1.point.y } }
     private var firstPoint: ProgramCardPoint? { sortedPoints.first }
     private var lastPoint: ProgramCardPoint? { sortedPoints.last }
