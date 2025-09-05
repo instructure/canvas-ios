@@ -245,7 +245,7 @@ public struct GetPlannablesRequest: APIRequestable {
     var filter: String = ""
 
     public var path: String {
-        if let userId = userId {
+        if let userId {
             return "users/\(userId)/planner/items"
         } else {
             return "planner/items"

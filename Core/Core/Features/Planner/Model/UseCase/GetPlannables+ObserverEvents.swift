@@ -79,7 +79,7 @@ extension GetPlannables {
             return Just(contexts).eraseToAnyPublisher()
         }
 
-        guard let userId = userId else {
+        guard let userId else {
             return Just([]).eraseToAnyPublisher()
         }
 

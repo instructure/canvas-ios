@@ -59,7 +59,7 @@ public class GetPlannables: UseCase {
             startDate as NSDate, #keyPath(Plannable.date),
             #keyPath(Plannable.date), endDate as NSDate
         )
-        if let userId = userId {
+        if let userId {
             predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(Plannable.userId), equals: userId),
                 predicate
