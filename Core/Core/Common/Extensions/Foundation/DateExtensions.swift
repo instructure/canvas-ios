@@ -50,6 +50,10 @@ public extension Date {
         Cal.currentCalendar.component(.minute, from: self)
     }
 
+    var isInCurrentYear: Bool {
+        Calendar.current.component(.year, from: self) == Calendar.current.component(.year, from: Date())
+    }
+
     // MARK: - add methods
 
     func addYears(_ years: Int) -> Date {
@@ -226,8 +230,20 @@ public extension Date {
         DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .short)
     }
 
+    var dateOnlyStringShort: String {
+        if isInCurrentYear {
+            formatted(.dateTime.month(.abbreviated).day())
+        } else {
+            formatted(.dateTime.year().month(.abbreviated).day())
+        }
+    }
+
     var dateTimeStringShort: String {
-        formatted(.dateTime.month(.abbreviated).day().hour().minute())
+        if isInCurrentYear {
+            formatted(.dateTime.month(.abbreviated).day().hour().minute())
+        } else {
+            formatted(.dateTime.year().month(.abbreviated).day().hour().minute())
+        }
     }
 
     func formatted(format: String, locale: Locale = .current, calendar: Calendar = Cal.currentCalendar) -> String {

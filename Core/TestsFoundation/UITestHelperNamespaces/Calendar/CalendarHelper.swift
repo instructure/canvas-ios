@@ -201,7 +201,7 @@ extension CalendarHelper {
         }
 
         public static func formattedDate(_ date: Date) -> String {
-            dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
+            dateFormatter.dateFormat = "MMM d 'at' h:mm a"
             return dateFormatter.string(from: date)
         }
     }

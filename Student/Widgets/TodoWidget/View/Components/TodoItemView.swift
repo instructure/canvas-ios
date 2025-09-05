@@ -30,7 +30,9 @@ struct TodoItemView: View {
             VStack(alignment: .leading, spacing: 0) {
                 contextSection
                 titleSection
-                timeSection
+                if !item.isAllDay {
+                    timeSection
+                }
             }
         }
     }
@@ -62,6 +64,7 @@ struct TodoItemView: View {
                     .lineLimit(1)
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var timeSection: some View {

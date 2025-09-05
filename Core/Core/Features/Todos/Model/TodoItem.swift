@@ -22,6 +22,7 @@ public struct TodoItem: Identifiable, Equatable {
     public let id: String
     public let type: PlannableType
     public let date: Date
+    public let isAllDay: Bool
 
     public let title: String
     public let subtitle: String?
@@ -37,6 +38,7 @@ public struct TodoItem: Identifiable, Equatable {
         self.id = plannable.id
         self.type = plannable.plannableType
         self.date = date
+        self.isAllDay = plannable.isAllDay
 
         self.title = plannable.title ?? ""
         self.subtitle = plannable.discussionCheckpointStep?.text
@@ -51,6 +53,7 @@ public struct TodoItem: Identifiable, Equatable {
         id: String,
         type: PlannableType,
         date: Date,
+        isAllDay: Bool = false,
         title: String,
         subtitle: String?,
         contextName: String,
@@ -62,6 +65,7 @@ public struct TodoItem: Identifiable, Equatable {
         self.id = id
         self.type = type
         self.date = date
+        self.isAllDay = isAllDay
 
         self.title = title
         self.subtitle = subtitle
@@ -78,6 +82,7 @@ public struct TodoItem: Identifiable, Equatable {
         id: String = "",
         type: PlannableType = .assignment,
         date: Date = Clock.now,
+        isAllDay: Bool = false,
         title: String = "",
         subtitle: String? = nil,
         contextName: String = "",
@@ -90,6 +95,7 @@ public struct TodoItem: Identifiable, Equatable {
             id: id,
             type: type,
             date: date,
+            isAllDay: isAllDay,
             title: title,
             subtitle: subtitle,
             contextName: contextName,

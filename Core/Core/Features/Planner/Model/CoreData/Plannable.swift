@@ -38,7 +38,9 @@ public final class Plannable: NSManagedObject {
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var userId: String?
     @NSManaged public var details: String?
+    @NSManaged public var isAllDay: Bool
     @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
+
     public var discussionCheckpointStep: DiscussionCheckpointStep? {
         get { return discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(value: newValue) }
     }
@@ -71,6 +73,7 @@ public final class Plannable: NSManagedObject {
         model.details = item.plannable?.details
         model.context = item.context
         model.userId = userId
+        model.isAllDay = item.plannable?.all_day ?? false
         model.discussionCheckpointStep = .init(
             tag: item.plannable?.sub_assignment_tag,
             requiredReplyCount: item.details?.reply_to_entry_required_count
@@ -91,6 +94,7 @@ public final class Plannable: NSManagedObject {
         model.details = item.details
         model.context = Context(.course, id: item.course_id) ?? Context(.user, id: item.user_id)
         model.userId = item.user_id
+        model.isAllDay = false
         return model
     }
 
@@ -107,6 +111,7 @@ public final class Plannable: NSManagedObject {
         model.pointsPossible = item.assignment?.points_possible
         model.details = item.description
         model.userId = userId
+        model.isAllDay = item.all_day
         model.discussionCheckpointStep = .init(
             tag: item.sub_assignment?.sub_assignment_tag,
             requiredReplyCount: item.sub_assignment?.discussion_topic?.reply_to_entry_required_count

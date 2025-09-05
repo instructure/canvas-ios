@@ -54,7 +54,7 @@ struct TodoListItemCell: View {
                                     .foregroundStyle(.textDark)
                             }
 
-                            Text(item.date.dateTimeStringShort)
+                            Text(item.isAllDay ? item.date.dateOnlyStringShort : item.date.dateTimeStringShort)
                                 .font(.regular14)
                                 .foregroundStyle(.textDark)
                         }
