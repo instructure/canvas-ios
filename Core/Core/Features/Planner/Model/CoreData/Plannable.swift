@@ -84,7 +84,7 @@ public final class Plannable: NSManagedObject {
         model.id = item.id
         model.plannableType = .planner_note
         model.htmlURL = nil
-        model.contextName = nil
+        model.contextName = contextName
         model.title = item.title
         model.date = item.todo_date
         model.pointsPossible = nil
