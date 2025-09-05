@@ -125,18 +125,13 @@ struct HInboxView: View {
     }
 
     private var topBar: some View {
-        HStack {
-            HorizonBackButton(onBack: viewModel.goBack)
-            Spacer()
-            HorizonUI.PrimaryButton(
-                String(localized: "Create message", bundle: .horizon),
-                type: .institution,
-                leading: HorizonUI.icons.editSquare
-            ) {
-                viewModel.goToComposeMessage(viewController)
+        HTitleBar(page: .inbox) { action in
+            if action == .back {
+                viewModel.goBack(viewController)
+                return
             }
+            viewModel.goToComposeMessage(viewController)
         }
-        .padding(.huiSpaces.space16)
     }
 }
 

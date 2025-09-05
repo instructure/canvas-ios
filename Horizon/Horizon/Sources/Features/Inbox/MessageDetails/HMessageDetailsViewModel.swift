@@ -32,8 +32,8 @@ class HMessageDetailsViewModel {
         spinnerOpacity == 0.0 ? 1.0 : 0.0
     }
     var isAnimationEnabled: Bool = false
-    var isAnnouncementIconVisible: Bool {
-        announcementID != nil
+    var titleBarPage: HTitleBar.Page {
+        announcementID != nil ? .inboxAnnouncement : .inboxMessageDetails
     }
     var isAttachmentsListScrollViewVisible: Bool {
         (attachmentViewModel?.items.count ?? 0) > 3

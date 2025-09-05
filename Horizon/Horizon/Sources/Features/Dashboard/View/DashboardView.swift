@@ -164,21 +164,15 @@ struct DashboardView: View {
     }
 
     private var navigationBar: some View {
-        HStack(spacing: .zero) {
-            InstitutionLogo()
-            Spacer()
-            HorizonUI.NavigationBar.Trailing {
+        HTitleBar(page: .dashboard) { action in
+            if action == .notebook {
                 viewModel.notebookDidTap(viewController: viewController)
-            } onNotificationDidTap: {
+            } else if action == .notifications {
                 viewModel.notificationsDidTap(viewController: viewController)
-            } onMailDidTap: {
+            } else {
                 viewModel.mailDidTap(viewController: viewController)
             }
         }
-        .padding(.horizontal, .huiSpaces.space24)
-        .padding(.top, .huiSpaces.space10)
-        .padding(.bottom, .huiSpaces.space4)
-        .background(Color.huiColors.surface.pagePrimary)
     }
 
     private var invitedCoursesView: some View {
