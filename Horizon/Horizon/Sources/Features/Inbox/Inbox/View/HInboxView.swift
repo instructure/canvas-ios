@@ -125,10 +125,13 @@ struct HInboxView: View {
     }
 
     private var topBar: some View {
-        HTitleBar(
-            back: { viewModel.goBack(viewController) },
-            createMessage: { viewModel.goToComposeMessage(viewController) }
-        )
+        HTitleBar(page: .inbox) { action in
+            if action == .back {
+                viewModel.goBack(viewController)
+                return
+            }
+            viewModel.goToComposeMessage(viewController)
+        }
     }
 }
 

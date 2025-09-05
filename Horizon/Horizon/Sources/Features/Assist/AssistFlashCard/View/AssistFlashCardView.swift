@@ -87,7 +87,7 @@ extension AssistFlashCardView {
     }
 
     private var headerView: some View {
-        AssistTitle(onBack: { viewModel.pop(controller: viewController) }) {
+        HTitleBar(page: .assistFlashCards) { _ in
             viewModel.dismiss(controller: viewController)
         }
     }

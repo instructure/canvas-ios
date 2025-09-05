@@ -29,7 +29,7 @@ struct ProfileAdvancedView: View {
     }
 
     var body: some View {
-        ProfileBody(String(localized: "Advanced", bundle: .horizon)) {
+        ProfileBody(.settingsAdvanced) {
             VStack(alignment: .leading) {
                 HorizonUI.SingleSelect(
                     selection: $viewModel.timeZone,

@@ -59,8 +59,15 @@ struct AssistChatView: View {
     }
 
     private var topHeader: some View {
-        AssistTitle(onBack: viewModel.isBackButtonVisible ? viewModel.setInitialState : nil) {
-            viewModel.dismiss(controller: viewController)
+        HTitleBar(
+            page: .assist,
+            actionStates: [.back: viewModel.isBackButtonVisible ? .enabled : .hidden]
+        ) { action in
+            if action == .back {
+                viewModel.dismiss(controller: viewController)
+            } else {
+                viewModel.setInitialState()
+            }
         }
     }
 

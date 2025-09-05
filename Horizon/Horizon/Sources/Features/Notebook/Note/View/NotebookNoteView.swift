@@ -165,11 +165,13 @@ struct NotebookNoteView: View {
     }
 
     private var titleBar: some View {
-        HTitleBar(
-            title: String(localized: "Notebook", bundle: .horizon),
-            icon: HorizonUI.icons.menuBookNotebook,
-            close: viewModel.closeButtonDisabled ? nil : { viewModel.close(viewController) }
-        )
+        HTitleBar(page: .note) { _ in
+            // TODO: Check how we can disable the close button
+            if(viewModel.closeButtonDisabled) {
+                return
+            }
+            viewModel.close(viewController)
+        }
         .padding(.top, .huiSpaces.space24)
     }
 }

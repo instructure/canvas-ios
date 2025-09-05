@@ -20,18 +20,21 @@ import SwiftUI
 
 struct ProfileBody<Content: View>: View {
 
-    let title: String
+    let page: HTitleBar.Page
     @ViewBuilder let content: Content
+    @Environment(\.appEnvironment) var environment
+    @Environment(\.viewController) var viewController
 
-    init(_ title: String, @ViewBuilder content: @escaping () -> Content) {
-        self.title = title
+    init(_ page: HTitleBar.Page, @ViewBuilder content: @escaping () -> Content) {
+        self.page = page
         self.content = content()
     }
 
     var body: some View {
         VStack(spacing: 0) {
-            AccountNavigationBar(title)
-                .background(Color.huiColors.surface.pagePrimary)
+            HTitleBar(page: page) { _ in
+                environment.router.pop(from: viewController)
+            }
 
             VStack(spacing: 0) {
                 content

@@ -20,115 +20,180 @@ import Core
 import HorizonUI
 import SwiftUI
 
-/// A callback with no parameters
-public typealias Callback = () -> Void
 
 struct HTitleBar: View {
 
+    // MARK: - Types
+    typealias Callback = (Action) -> Void
+    enum Action {
+        case back
+        case close
+        case createMessage
+        case inbox
+        case notebook
+        case notifications
+    }
+
+    enum ActionState {
+        case disabled
+        case enabled
+        case hidden
+    }
+
+    enum Page {
+        case assist
+        case assistQuiz
+        case assistFlashCards
+        case createMessage
+        case dashboard
+        case inbox
+        case inboxDetails
+        case note
+        case notebook
+        case notifications
+        case settingsAdvanced
+        case settingsNotifications
+        case settingsProfile
+        case skillspace
+    }
+
+    // MARK: - Constants
+    private static let actionIcon: [Action: Image] = [
+        .back: .huiIcons.arrowBack,
+        .close: .huiIcons.close,
+        .inbox: .huiIcons.mail,
+        .notebook: .huiIcons.menuBookNotebook,
+        .notifications: .huiIcons.notifications
+    ]
+
+    private static let backgroundColorMap: [Page: Color] = [
+        .assist: .clear,
+        .createMessage: HorizonUI.colors.surface.pageSecondary
+    ]
+
+    private static let backButtonPages: [Page] = [
+        .assistFlashCards,
+        .assistQuiz,
+        .inbox,
+        .inboxDetails,
+        .notebook,
+        .notifications,
+        .settingsAdvanced,
+        .settingsNotifications,
+        .settingsProfile
+    ]
+    private static let closeButtonPages: [Page] = [
+        .assist,
+        .createMessage,
+        .note
+    ]
+    private static let closeButtonType: [Page: HorizonUI.ButtonStyles.ButtonType] = [
+        .assist: .whiteOutline
+    ]
+    private static let iconPages: [Page: Image] = [
+        .assist: HorizonUI.icons.aiFilled,
+        .note: HorizonUI.icons.menuBookNotebook,
+        .notebook: HorizonUI.icons.menuBookNotebook
+    ]
+    private static let institutionLogoPages: [Page] = [
+        .dashboard,
+        .skillspace
+    ]
+    private static let titles: [Page: String] = [
+        .createMessage: .init(localized: "Create message", bundle: .horizon),
+        .note: .init(localized: "Notebook", bundle: .horizon),
+        .notebook: .init(localized: "Notebook", bundle: .horizon),
+        .notifications: .init(localized: "Notifications", bundle: .horizon),
+        .settingsAdvanced: .init(localized: "Advanced", bundle: .horizon),
+        .settingsNotifications: .init(localized: "Notifications", bundle: .horizon),
+        .settingsProfile: .init(localized: "Profile", bundle: .horizon)
+    ]
+
     // MARK: - Dependencies
 
-    private var background: Color = HorizonUI.colors.surface.pagePrimary
+    private let background: Color
     private let leading: AnyView?
     private let title: AnyView?
     private let trailing: AnyView?
-    private var trailingSpace: CGFloat = .huiSpaces.space24
+    private let trailingSpace: CGFloat
 
     // MARK: - Init
 
     init(
+        page: Page,
         title: String? = nil,
-        icon: Image? = nil,
-        color: Color = HorizonUI.colors.surface.pagePrimary,
-        back: Callback? = nil,
-        close: Callback? = nil
+        actionStates: [Action: ActionState] = [:],
+        callback: Callback? = nil
     ) {
-        self.leading = HTitleBar.button(back: back).map { AnyView($0) }
-        self.trailing = HTitleBar.button(close: close).map { AnyView($0) }
-        self.title = HTitleBar.titleText(title, icon: icon).map { AnyView($0) }
-    }
+        // background
+        self.background = HTitleBar.backgroundColorMap[page] ?? HorizonUI.colors.surface.pagePrimary
 
-    /// Initializer for Dashboard and Skillspace views
-    /// - Parameters:
-    ///   - notebook: Optional callback for notebook button action
-    ///   - notifications: Optional callback for notifications button action
-    ///   - inbox: Optional callback for inbox button action
-    init(
-        notebook: Callback? = nil,
-        notifications: Callback? = nil,
-        inbox: Callback? = nil
-    ) {
-        self.title = nil
-        self.leading = AnyView(InstitutionLogo())
+        // leading
+        if HTitleBar.institutionLogoPages.contains(page) {
+            self.leading = AnyView(InstitutionLogo())
+        } else if HTitleBar.backButtonPages.contains(page) {
+            self.leading = HTitleBar.button(
+                action: .back,
+                state: actionStates[.back] ?? .enabled,
+                callback: callback
+            )
+            .map { AnyView($0) }
+        } else if page == .assist {
+            self.leading = AnyView(HTitleBar.assistTitle)
+        } else {
+            self.leading = nil
+        }
 
-        // Create button configurations
-        let buttonConfigs = [
-            (icon: HorizonUI.icons.menuBookNotebook, action: notebook),
-            (icon: HorizonUI.icons.notifications, action: notifications),
-            (icon: HorizonUI.icons.mail, action: inbox)
-        ]
+        // title
+        self.title = (title ?? HTitleBar.titles[page])
+            .map { HTitleBar.titleText($0, icon: HTitleBar.iconPages[page]) }
+            .map { AnyView($0) }
 
-        self.trailing = AnyView(
-            HStack(spacing: .huiSpaces.space8) {
-                ForEach(buttonConfigs.indices, id: \.self) { index in
-                    if let action = buttonConfigs[index].action {
-                        HorizonUI.IconButton(
-                            buttonConfigs[index].icon,
-                            type: .darkOutline,
-                            isSmall: true,
-                            action: action
+        // trailing
+        if HTitleBar.closeButtonPages.contains(page) {
+            self.trailing = AnyView(
+                HTitleBar.button(
+                    action: .close,
+                    state: actionStates[.back] ?? .enabled,
+                    type: HTitleBar.closeButtonType[page] ?? .darkOutline,
+                    callback: callback
+                )
+            )
+        } else if page == .dashboard {
+            let actions: [Action] = [
+                .notebook,
+                .notifications,
+                .inbox
+            ]
+            self.trailing = AnyView(
+                HStack(spacing: .huiSpaces.space8) {
+                    ForEach(actions.indices, id: \.self) { index in
+                        HTitleBar.button(
+                            action: actions[index],
+                            state: actionStates[actions[index]] ?? .enabled,
+                            callback: callback
                         )
                     }
                 }
-            }
-        )
-    }
-
-    /// Initializer for HInboxView
-    /// - Parameters:
-    ///   - back: Callback for back button action
-    ///   - createMessage: Callback for create message button action
-    init(
-        back: @escaping Callback,
-        createMessage: @escaping Callback
-    ) {
-        self.leading = HTitleBar.button(back: back).map { AnyView($0) }
-        self.trailing = AnyView(
-            HorizonUI.PrimaryButton(
-                String(localized: "Create message", bundle: .horizon),
-                type: .institution,
-                leading: HorizonUI.icons.editSquare,
-                action: createMessage
             )
-            .frame(width: 200)
-        )
-        self.title = nil
-        self.trailingSpace = .huiSpaces.space8
-    }
+        } else if page == .inbox {
+            self.trailing = AnyView(
+                HorizonUI.PrimaryButton(
+                    String(localized: "Create message", bundle: .horizon),
+                    type: .institution,
+                    leading: HorizonUI.icons.editSquare,
+                    action: { callback.map { $0(.createMessage) } }
+                )
+                .frame(width: 200)
+            )
+        } else {
+            self.trailing = nil
+        }
 
-    init(close: @escaping Callback, back: Callback? = nil) {
-        self.leading = AnyView(HTitleBar.assistTitle)
-        self.trailing = AnyView(
-            HStack {
-                HTitleBar.button(back: back, type: .whiteOutline)
-                HTitleBar.button(close: close, type: .whiteOutline)
-            }
-        )
-        self.background = .clear
-        self.title = nil
-    }
-
-    /// Initializer for HCreateMessageView
-    /// - Parameters:
-    ///   - title: The title to display
-    ///   - close: Callback for close button action
-    init(
-        title: String,
-        close: Callback? = nil
-    ) {
-        self.trailing = HTitleBar.button(close: close).map { AnyView($0) }
-        self.leading = HTitleBar.titleText(title).map { AnyView($0) }
-        self.title = nil
-        self.background = HorizonUI.colors.surface.pageSecondary
+        // trailing space
+        self.trailingSpace = page == .inbox ?
+            .huiSpaces.space8 :
+            .huiSpaces.space24
     }
 
     // MARK: - Body
@@ -149,34 +214,22 @@ struct HTitleBar: View {
     }
 
     // MARK: - Private
-
     @ViewBuilder
     private static func button(
-        back: Callback?,
-        type: HorizonUI.ButtonStyles.ButtonType = .darkOutline
+        action: Action = .close,
+        state: ActionState = .enabled,
+        type: HorizonUI.ButtonStyles.ButtonType = .darkOutline,
+        callback: Callback?
     ) -> (some View)? {
-        back.map {
+        callback.map { fn in
             HorizonUI.IconButton(
-                .huiIcons.arrowBack,
+                HTitleBar.actionIcon[action] ?? .huiIcons.close,
                 type: type,
                 isSmall: true,
-                action: $0
+                action: { fn(action) }
             )
-        }
-    }
-
-    @ViewBuilder
-    private static func button(
-        close: Callback?,
-        type: HorizonUI.ButtonStyles.ButtonType = .darkOutline
-    ) -> (some View)? {
-        close.map {
-            HorizonUI.IconButton(
-                .huiIcons.close,
-                type: type,
-                isSmall: true,
-                action: $0
-            )
+            .opacity(state == .hidden ? 0.0 : 1.0)
+            .disabled(state == .disabled)
         }
     }
 

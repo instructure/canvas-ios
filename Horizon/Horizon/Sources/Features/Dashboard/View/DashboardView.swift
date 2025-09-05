@@ -164,11 +164,15 @@ struct DashboardView: View {
     }
 
     private var navigationBar: some View {
-        HTitleBar(
-            notebook: { viewModel.notebookDidTap(viewController: viewController) },
-            notifications: { viewModel.notificationsDidTap(viewController: viewController) },
-            inbox: { viewModel.mailDidTap(viewController: viewController) }
-        )
+        HTitleBar(page: .dashboard) { action in
+            if action == .notebook {
+                viewModel.notebookDidTap(viewController: viewController)
+            } else if action == .notifications {
+                viewModel.notificationsDidTap(viewController: viewController)
+            } else {
+                viewModel.mailDidTap(viewController: viewController)
+            }
+        }
     }
 
     private var invitedCoursesView: some View {

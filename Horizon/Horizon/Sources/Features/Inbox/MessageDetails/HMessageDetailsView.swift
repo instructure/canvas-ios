@@ -238,11 +238,11 @@ struct HMessageDetailsView: View {
     }
 
     private var navigationBar: some View {
-        HTitleBar(
-            title: model.headerTitle,
-            icon: model.isAnnouncementIconVisible ? HorizonUI.icons.announcement : nil,
-            back: { model.pop(viewController: viewController) }
-        )
+        // TODO: What about an announcement icon?
+        // HorizonUI.icons.announcement
+        HTitleBar(page: .inboxDetails, title: model.headerTitle) { _ in
+            model.pop(viewController: viewController)
+        }
     }
 
     private func dismissKeyboard() {

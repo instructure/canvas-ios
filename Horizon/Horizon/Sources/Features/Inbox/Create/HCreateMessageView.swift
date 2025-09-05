@@ -164,10 +164,9 @@ struct HCreateMessageView: View {
     }
 
     private var header: some View {
-        HTitleBar(
-            title: String(localized: "Create message", bundle: .horizon),
-            close: { viewModel.close(viewController: viewController) }
-        )
+        HTitleBar(page:.createMessage) { _ in
+            viewModel.close(viewController: viewController)
+        }
         .padding(.top, .huiSpaces.space12)
     }
 
