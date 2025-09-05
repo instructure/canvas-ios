@@ -42,6 +42,8 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
             start_at: TestConstants.date10,
             end_at: nil,
             all_day: true,
+            context_code: "1",
+            context_name: "Course One",
             description: "This test is written",
             location_name: "Instructure Inc",
             location_address: "6330 S 3000 E Unit 700\nSalt Lake City, UT 84121"
