@@ -34,7 +34,7 @@ class GetCalendarEventsTests: CoreTestCase {
     }
 
     func testItCreatesCalendarEvents() {
-        let event = APICalendarEvent.make(id: "1", context_code: "course_1")
+        let event = APICalendarEvent.make(id: "1", title: "calendar event #1", context_code: "course_1")
         useCase.write(response: [event], urlResponse: nil, to: databaseClient)
 
         let events: [CalendarEvent] = databaseClient.fetch()
@@ -55,8 +55,8 @@ class GetCalendarEventsTests: CoreTestCase {
     }
 
     func testScopePredicate() {
-        let b = CalendarEvent.make(from: .make(id: "2", title: "b"))
-        let a = CalendarEvent.make(from: .make(id: "1", title: "a"))
+        let b = CalendarEvent.make(from: .make(id: "2", title: "b", context_code: "course_1"))
+        let a = CalendarEvent.make(from: .make(id: "1", title: "a", context_code: "course_1"))
         CalendarEvent.make(from: .make(id: "3", title: "c", context_code: "course_2")) // should not show up b/c of context
 
         let events: [CalendarEvent] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)

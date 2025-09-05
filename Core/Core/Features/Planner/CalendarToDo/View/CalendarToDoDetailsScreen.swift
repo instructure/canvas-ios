@@ -90,7 +90,7 @@ public struct CalendarToDoDetailsScreen: View {
                     """
             )
         ),
-        userID: "",
+        userId: "",
         in: PreviewEnvironment().database.viewContext
     )
 

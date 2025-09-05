@@ -54,7 +54,7 @@ class PlannableTests: CoreTestCase {
             details: .make(reply_to_entry_required_count: 42)
         )
 
-        let plannable = Plannable.save(apiPlannable, userID: "another userId", in: databaseClient)
+        let plannable = Plannable.save(apiPlannable, userId: "another userId", in: databaseClient)
 
         XCTAssertEqual(plannable.id, TestConstants.plannableId)
         XCTAssertEqual(plannable.plannableType, .assignment)
@@ -65,7 +65,7 @@ class PlannableTests: CoreTestCase {
         XCTAssertEqual(plannable.pointsPossible, TestConstants.pointsPossible)
         XCTAssertEqual(plannable.details, TestConstants.plannableDetails)
         XCTAssertEqual(plannable.context?.courseId, TestConstants.courseId)
-        XCTAssertEqual(plannable.userID, "another userId")
+        XCTAssertEqual(plannable.userId, "another userId")
         XCTAssertEqual(plannable.discussionCheckpointStep, .requiredReplies(42))
     }
 
@@ -92,25 +92,25 @@ class PlannableTests: CoreTestCase {
         apiPlannerNote = APIPlannerNote.make(user_id: TestConstants.userId, course_id: TestConstants.courseId)
         plannable = Plannable.save(apiPlannerNote, contextName: nil, in: databaseClient)
         XCTAssertEqual(plannable.context?.courseId, TestConstants.courseId)
-        XCTAssertEqual(plannable.userID, TestConstants.userId)
+        XCTAssertEqual(plannable.userId, TestConstants.userId)
 
         // with only userId
         apiPlannerNote = APIPlannerNote.make(user_id: TestConstants.userId, course_id: nil)
         plannable = Plannable.save(apiPlannerNote, contextName: nil, in: databaseClient)
         XCTAssertEqual(plannable.context?.userId, TestConstants.userId)
-        XCTAssertEqual(plannable.userID, TestConstants.userId)
+        XCTAssertEqual(plannable.userId, TestConstants.userId)
 
         // with only courseId
         apiPlannerNote = APIPlannerNote.make(user_id: nil, course_id: TestConstants.courseId)
         plannable = Plannable.save(apiPlannerNote, contextName: nil, in: databaseClient)
         XCTAssertEqual(plannable.context?.courseId, TestConstants.courseId)
-        XCTAssertEqual(plannable.userID, nil)
+        XCTAssertEqual(plannable.userId, nil)
 
         // without userId or courseId
         apiPlannerNote = APIPlannerNote.make(user_id: nil, course_id: nil)
         plannable = Plannable.save(apiPlannerNote, contextName: nil, in: databaseClient)
         XCTAssertEqual(plannable.context, nil)
-        XCTAssertEqual(plannable.userID, nil)
+        XCTAssertEqual(plannable.userId, nil)
     }
 
     func testIcon() {
