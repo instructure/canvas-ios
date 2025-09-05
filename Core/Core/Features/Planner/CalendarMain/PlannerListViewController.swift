@@ -258,10 +258,7 @@ class PlannerListCell: UITableViewCell {
 
         subtitle.setText(p?.discussionCheckpointStep?.text, style: .textCellSupportingText)
 
-        let dueDateText = (p?.date).flatMap {
-            DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .short)
-        }
-        dueDate.setText(dueDateText, style: .textCellSupportingText)
+        dueDate.setText(p?.date?.dateTimeStringShort, style: .textCellSupportingText)
         let pointsText: String? = p?.pointsPossible.flatMap {
             let format = String(localized: "g_points", bundle: .core)
             return String.localizedStringWithFormat(format, $0)
