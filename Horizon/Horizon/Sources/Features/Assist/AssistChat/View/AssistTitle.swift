@@ -37,15 +37,7 @@ struct AssistTitle: View {
     }
 
     var body: some View {
-        HStack(spacing: .huiSpaces.space8) {
-            title
-            Spacer()
-            back
-            close
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.vertical, .huiSpaces.space16)
-        .padding(.horizontal, .huiSpaces.space16)
+        HTitleBar(close: onClose, back: onBack)
         .overlay(
             HorizonUI.colors.surface.pageSecondary
                 .frame(height: 1)

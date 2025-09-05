@@ -28,7 +28,7 @@ class AccountNavigationBarViewModel {
     }
 
     func navigateBack(viewController: WeakViewController) {
-        router.dismiss(viewController)
+        router.pop(from: viewController)
     }
 }
 
@@ -45,26 +45,10 @@ struct AccountNavigationBar: View {
     }
 
     var body: some View {
-        ZStack {
-            Text(title)
-                .huiTypography(.h3)
-                .foregroundStyle(Color.huiColors.text.title)
-                .frame(height: 44)
-                .frame(maxWidth: .infinity, alignment: .center)
-            HStack(spacing: 0) {
-                HorizonUI.IconButton(
-                    HorizonUI.icons.arrowBack,
-                    type: .gray,
-                    isSmall: false
-                ) {
-                    viewModel.navigateBack(viewController: viewController)
-                }
-                .frame(width: 44, height: 44)
-                .padding(.leading, .huiSpaces.space24)
-                Spacer()
-            }
-        }
-        .padding(.bottom, .huiSpaces.space8)
+        HTitleBar(
+            title: title,
+            back: { viewModel.navigateBack(viewController: viewController) }
+        )
     }
 }
 

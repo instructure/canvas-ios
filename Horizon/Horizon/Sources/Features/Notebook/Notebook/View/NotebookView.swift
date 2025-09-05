@@ -133,15 +133,13 @@ struct NotebookView: View {
     }
 
     private var navigationBar: some View {
-        TitleBar(
-            onBack: viewModel.isBackVisible ? viewModel.onBack : nil,
-            onClose: viewModel.isCloseVisible ? viewModel.onClose : nil
-        ) {
-            NotebookTitle()
-        }
+        HTitleBar(
+            title: String(localized: "Notebook", bundle: .horizon),
+            icon: Image.huiIcons.menuBookNotebook,
+            back: viewModel.isBackVisible ? { viewModel.onBack(viewController) } : nil,
+            close: viewModel.isCloseVisible ? { viewModel.onClose(viewController) } : nil
+        )
         .padding(.top, viewModel.navigationBarTopPadding)
-        .padding(.bottom, .huiSpaces.space16)
-        .padding(.horizontal, .huiSpaces.space16)
         .background(Color.huiColors.surface.pagePrimary)
     }
 

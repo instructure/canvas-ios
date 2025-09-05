@@ -128,18 +128,10 @@ struct HNotificationView: View {
     }
 
     private var navigationBar: some View {
-        TitleBar(
-            onBack: { _ in dismiss() },
-            onClose: nil
-        ) {
-            Text("Notifications", bundle: .horizon)
-                .frame(maxWidth: .infinity)
-                .huiTypography(.h3)
-                .foregroundStyle(Color.huiColors.text.title)
-        }
-        .padding(.bottom, .huiSpaces.space16)
-        .padding(.horizontal, .huiSpaces.space16)
-        .background(Color.huiColors.surface.pagePrimary)
+        HTitleBar(
+            title: String(localized: "Notifications", bundle: .horizon),
+            back: { dismiss() }
+        )
     }
 
     @ViewBuilder

@@ -125,25 +125,9 @@ struct NotificationSettingsView: View {
     }
 
     private var navigationBar: some View {
-        ZStack {
-            Text("Notifications")
-                .huiTypography(.h3)
-                .foregroundStyle(Color.huiColors.text.title)
-                .frame(height: 44)
-                .frame(maxWidth: .infinity, alignment: .center)
-            HStack(spacing: 0) {
-                HorizonUI.IconButton(
-                    HorizonUI.icons.arrowBack,
-                    type: .gray,
-                    isSmall: false
-                ) {
-                    viewModel.navigateBack(viewController: viewController)
-                }
-                .frame(width: 44, height: 44)
-                .padding(.leading, .huiSpaces.space24)
-                Spacer()
-            }
-        }
+        HTitleBar(title: String(localized: "Notifications", bundle: .horizon), back: {
+            viewModel.navigateBack(viewController: viewController)
+        })
         .padding(.bottom, .huiSpaces.space8)
     }
 

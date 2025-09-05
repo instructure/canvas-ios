@@ -49,7 +49,6 @@ struct ProfileAdvancedView: View {
             .padding(.huiSpaces.space32)
         }
         .onTapGesture {
-            print("On Tap")
             focused = false
         }
     }

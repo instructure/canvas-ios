@@ -30,12 +30,10 @@ struct SkillSpaceView: View {
     }
 
     private var navigationBar: some View {
-        HStack(spacing: .zero) {
-            InstitutionLogo()
-            Spacer()
-        }
-        .padding(.horizontal, .huiSpaces.space24)
-        .padding(.top, .huiSpaces.space10)
-        .padding(.bottom, .huiSpaces.space4)
+        HTitleBar(
+            notebook: nil,
+            notifications: nil,
+            inbox: nil
+        )
     }
 }
