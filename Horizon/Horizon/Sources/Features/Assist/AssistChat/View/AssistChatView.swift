@@ -64,9 +64,9 @@ struct AssistChatView: View {
             actionStates: [.back: viewModel.isBackButtonVisible ? .enabled : .hidden]
         ) { action in
             if action == .back {
-                viewModel.dismiss(controller: viewController)
-            } else {
                 viewModel.setInitialState()
+            } else {
+                viewModel.dismiss(controller: viewController)
             }
         }
     }

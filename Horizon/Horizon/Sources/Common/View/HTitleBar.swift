@@ -20,7 +20,6 @@ import Core
 import HorizonUI
 import SwiftUI
 
-
 struct HTitleBar: View {
 
     // MARK: - Types
@@ -47,7 +46,8 @@ struct HTitleBar: View {
         case createMessage
         case dashboard
         case inbox
-        case inboxDetails
+        case inboxAnnouncement
+        case inboxMessageDetails
         case note
         case notebook
         case notifications
@@ -75,25 +75,32 @@ struct HTitleBar: View {
         .assistFlashCards,
         .assistQuiz,
         .inbox,
-        .inboxDetails,
+        .inboxAnnouncement,
+        .inboxMessageDetails,
         .notebook,
         .notifications,
         .settingsAdvanced,
         .settingsNotifications,
         .settingsProfile
     ]
-    private static let closeButtonPages: [Page] = [
-        .assist,
-        .createMessage,
-        .note
+    private static let trailingButtonPages: [Page: [Action]] = [
+        .assist: [.back, .close],
+        .createMessage: [.close],
+        .dashboard: [
+            .notebook,
+            .notifications,
+            .inbox
+        ],
+        .note: [.close]
     ]
-    private static let closeButtonType: [Page: HorizonUI.ButtonStyles.ButtonType] = [
+    private static let actionButtonType: [Page: HorizonUI.ButtonStyles.ButtonType] = [
         .assist: .whiteOutline
     ]
     private static let iconPages: [Page: Image] = [
-        .assist: HorizonUI.icons.aiFilled,
-        .note: HorizonUI.icons.menuBookNotebook,
-        .notebook: HorizonUI.icons.menuBookNotebook
+        .assist: .huiIcons.aiFilled,
+        .inboxAnnouncement: .huiIcons.announcement,
+        .note: .huiIcons.menuBookNotebook,
+        .notebook: .huiIcons.menuBookNotebook
     ]
     private static let institutionLogoPages: [Page] = [
         .dashboard,
@@ -150,27 +157,15 @@ struct HTitleBar: View {
             .map { AnyView($0) }
 
         // trailing
-        if HTitleBar.closeButtonPages.contains(page) {
-            self.trailing = AnyView(
-                HTitleBar.button(
-                    action: .close,
-                    state: actionStates[.back] ?? .enabled,
-                    type: HTitleBar.closeButtonType[page] ?? .darkOutline,
-                    callback: callback
-                )
-            )
-        } else if page == .dashboard {
-            let actions: [Action] = [
-                .notebook,
-                .notifications,
-                .inbox
-            ]
+        if HTitleBar.trailingButtonPages.keys.contains(page) {
+            let actions = HTitleBar.trailingButtonPages[page] ?? []
             self.trailing = AnyView(
                 HStack(spacing: .huiSpaces.space8) {
                     ForEach(actions.indices, id: \.self) { index in
                         HTitleBar.button(
                             action: actions[index],
                             state: actionStates[actions[index]] ?? .enabled,
+                            type: HTitleBar.actionButtonType[page] ?? .darkOutline,
                             callback: callback
                         )
                     }

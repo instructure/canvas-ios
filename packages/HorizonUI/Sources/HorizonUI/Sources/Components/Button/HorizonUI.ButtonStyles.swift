@@ -92,13 +92,15 @@ public extension HorizonUI {
         }
 
         private func iconButton(_ configuration: Configuration) -> some View {
-            ZStack {
+            let smallButtonPadding = 4.0
+            return ZStack {
                 if let icon = icon {
                     icon
                         .frame(
-                            width: isSmall ? smallButtonSize : mediumButtonSize,
-                            height: isSmall ? smallButtonSize : mediumButtonSize
+                            width: isSmall ? (smallButtonSize - smallButtonPadding) : mediumButtonSize,
+                            height: isSmall ? (smallButtonSize - smallButtonPadding) : mediumButtonSize
                         )
+                        .padding(isSmall ? smallButtonPadding : 0)
                         .modifier(
                             HorizonButtonModifier(
                                 type: type,

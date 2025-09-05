@@ -164,7 +164,7 @@ struct HCreateMessageView: View {
     }
 
     private var header: some View {
-        HTitleBar(page:.createMessage) { _ in
+        HTitleBar(page: .createMessage) { _ in
             viewModel.close(viewController: viewController)
         }
         .padding(.top, .huiSpaces.space12)

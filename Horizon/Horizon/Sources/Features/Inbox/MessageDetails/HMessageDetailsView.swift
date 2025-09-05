@@ -238,9 +238,7 @@ struct HMessageDetailsView: View {
     }
 
     private var navigationBar: some View {
-        // TODO: What about an announcement icon?
-        // HorizonUI.icons.announcement
-        HTitleBar(page: .inboxDetails, title: model.headerTitle) { _ in
+        HTitleBar(page: model.titleBarPage, title: model.headerTitle) { _ in
             model.pop(viewController: viewController)
         }
     }
