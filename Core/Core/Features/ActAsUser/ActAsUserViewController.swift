@@ -142,7 +142,8 @@ public class ActAsUserViewController: UIViewController {
                 userName: user.short_name,
                 userEmail: user.email,
                 clientID: session.clientID,
-                clientSecret: session.clientSecret
+                clientSecret: session.clientSecret,
+                canvasRegion: session.canvasRegion
             ))
         } }
     }

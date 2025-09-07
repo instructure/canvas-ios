@@ -40,7 +40,6 @@ public class TodoListViewModel: ObservableObject {
     }
 
     public func refresh(completion: @escaping () -> Void, ignoreCache: Bool) {
-        self.state = .loading
         interactor.refresh(ignoreCache: ignoreCache)
             .sinkFailureOrValue { [weak self] _ in
                 self?.state = .error
