@@ -510,9 +510,35 @@ extension LoginStartViewController: ScannerDelegate, ErrorViewController {
 extension LoginStartViewController: LoginQRCodeTutorialDelegate {
     func loginQRCodeTutorialDidFinish(_ controller: LoginQRCodeTutorialViewController) {
         env.router.dismiss(controller) {
+            #if targetEnvironment(simulator)
+            self.showInputDialogForSimulator()
+            #else
             self.launchQRScanner()
+            #endif
         }
     }
+
+    #if targetEnvironment(simulator)
+    func showInputDialogForSimulator() {
+        let alert = UIAlertController(
+            title: String(localized: "Input QR Code", bundle: .core),
+            message: nil,
+            preferredStyle: .alert
+        )
+        alert.addTextField { field in
+            field.placeholder = String(localized: "QR Code Text", bundle: .core)
+        }
+        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
+        alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { [weak self] _ in
+            guard
+                let code = alert.textFields?.first?.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                code.isNotEmpty
+            else { return }
+            self?.logIn(withCode: code)
+        })
+        env.router.show(alert, from: self, options: .modal())
+    }
+    #endif
 }
 
 extension LoginStartViewController: PairWithStudentQRCodeTutorialDelegate {
