@@ -56,6 +56,10 @@ public final class AppEnvironmentOverride: AppEnvironment {
         set {}
     }
 
+    public override var k5: K5State {
+        base.k5
+    }
+
     public override var database: NSPersistentContainer {
         get { base.database }
         set {}
@@ -99,6 +103,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
                 userEmail: cSession.userEmail,
                 clientID: cSession.clientID,
                 clientSecret: cSession.clientSecret,
+                canvasRegion: cSession.canvasRegion,
                 isFakeStudent: cSession.isFakeStudent
             )
         }

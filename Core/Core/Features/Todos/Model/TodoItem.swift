@@ -17,51 +17,54 @@
 //
 
 import SwiftUI
-import Core
 
-struct TodoItem: Identifiable, Equatable {
-    let plannableID: String
-    let type: PlannableType
-    let date: Date
+public struct TodoItem: Identifiable, Equatable {
+    public let id: String
+    public let type: PlannableType
+    public let date: Date
 
-    let title: String
-    let contextName: String
-    let htmlURL: URL?
+    public let title: String
+    public let subtitle: String?
+    public let contextName: String
+    public let htmlURL: URL?
 
-    let color: Color
-    let icon: Image?
+    public let color: Color
+    public let icon: Image
 
-    init?(_ plannable: Plannable) {
+    public init?(_ plannable: Plannable) {
         guard let date = plannable.date else { return nil }
 
-        self.plannableID = plannable.id
+        self.id = plannable.id
         self.type = plannable.plannableType
         self.date = date
 
         self.title = plannable.title ?? ""
+        self.subtitle = plannable.discussionCheckpointStep?.text
         self.contextName = plannable.contextNameUserFacing ?? ""
         self.htmlURL = plannable.htmlURL
 
         self.color = plannable.color.asColor
-        self.icon = plannable.icon().flatMap({ Image(uiImage: $0) })
+        self.icon = Image(uiImage: plannable.icon)
     }
 
-    init(
-        plannableID: String,
+    public init(
+        id: String,
         type: PlannableType,
         date: Date,
         title: String,
+        subtitle: String?,
         contextName: String,
         htmlURL: URL?,
         color: Color,
-        icon: Image?
+        icon: Image
     ) {
 
-        self.plannableID = plannableID
+        self.id = id
         self.type = type
         self.date = date
 
         self.title = title
+        self.subtitle = subtitle
         self.contextName = contextName
         self.htmlURL = htmlURL
 
@@ -69,26 +72,26 @@ struct TodoItem: Identifiable, Equatable {
         self.icon = icon
     }
 
-    var id: String { plannableID }
-
     // MARK: Preview & Testing
 
-    static func make(
-        plannableID: String = "1",
+    public static func make(
+        id: String = "",
         type: PlannableType = .assignment,
         date: Date = Clock.now,
-        title: String = "Example Assignment",
-        contextName: String = "Example Course",
+        title: String = "",
+        subtitle: String? = nil,
+        contextName: String = "",
         htmlURL: URL? = nil,
         color: Color = .red,
-        icon: Image? = Image.assignmentLine
+        icon: Image = .assignmentLine
     ) -> TodoItem {
 
         TodoItem(
-            plannableID: plannableID,
+            id: id,
             type: type,
             date: date,
             title: title,
+            subtitle: subtitle,
             contextName: contextName,
             htmlURL: htmlURL,
             color: color,

@@ -225,6 +225,7 @@ class PlannerListCell: UITableViewCell {
     @IBOutlet weak var points: UILabel!
     @IBOutlet weak var pointsDivider: UILabel!
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var subtitle: UILabel!
     @IBOutlet weak var icon: UIImageView!
 
     override func awakeFromNib() {
@@ -243,7 +244,7 @@ class PlannerListCell: UITableViewCell {
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: customColor)
 
-        icon.image = p?.icon()
+        icon.image = p?.icon
         if let customColor {
             icon.tintColor = customColor
         }
@@ -254,6 +255,8 @@ class PlannerListCell: UITableViewCell {
         }
 
         title.setText(p?.title, style: .textCellTitle)
+
+        subtitle.setText(p?.discussionCheckpointStep?.text, style: .textCellSupportingText)
 
         let dueDateText = (p?.date).flatMap {
             DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .short)

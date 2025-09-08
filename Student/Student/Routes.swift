@@ -140,15 +140,20 @@ let academicRouter = Router(routes: [
         return CoreHostingController(AssignmentListScreen(viewModel: viewModel), env: env)
     }),
 
-    RouteHandler("/courses/:courseID/syllabus") { url, params, _ in
+    RouteHandler("/courses/:courseID/syllabus") { url, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
-        return SyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
+        return SyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID), env: env)
     },
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID") { url, params, _, env in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         if assignmentID == "syllabus" {
-            return SyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
+            return SyllabusTabViewController
+                .create(
+                    context: Context(path: url.path),
+                    courseID: ID.expandTildeID(courseID),
+                    env: env
+                )
         }
         if !url.originIsModuleItemDetails {
             return ModuleItemSequenceViewController.create(
@@ -181,7 +186,7 @@ let academicRouter = Router(routes: [
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { url, params, _, env in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else { return nil }
-        if url.originIsCalendar || url.originIsNotification {
+        if url.originIsCalendar || url.originIsTodo || url.originIsNotification {
             return AssignmentDetailsViewController.create(
                 courseID: ID.expandTildeID(courseID),
                 assignmentID: ID.expandTildeID(assignmentID),

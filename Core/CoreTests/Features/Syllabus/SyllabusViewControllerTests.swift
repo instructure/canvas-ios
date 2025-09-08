@@ -29,7 +29,7 @@ class SyllabusViewControllerTests: CoreTestCase {
         }
     }
 
-    lazy var controller = SyllabusViewController.create(courseID: "1")
+    lazy var controller = SyllabusViewController.create(courseID: "1", env: environment)
 
     func testLayout() {
         let html = "<body>hello world</body>"
