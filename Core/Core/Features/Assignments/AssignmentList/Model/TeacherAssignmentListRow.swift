@@ -32,12 +32,19 @@ struct TeacherAssignmentListRow: Equatable, Identifiable {
 
     let route: URL?
 
-    init(assignment: Assignment) {
+    init(
+        assignment: Assignment,
+        dueDateFormatter: DueDateFormatter = DueDateFormatterLive()
+    ) {
         self.id = assignment.id
         self.title = assignment.name
         self.icon = assignment.icon.asImage
         self.isPublished = assignment.published
-        self.dueDate = assignment.formattedDueDate
+        self.dueDate = dueDateFormatter.format(
+            assignment.dueAt,
+            lockDate: assignment.lockAt,
+            hasMultipleDueDates: assignment.hasMultipleDueDates
+        )
         self.needsGrading = assignment.needsGradingText
         let hasPointsPossible = assignment.pointsPossible != nil
         self.pointsPossible = hasPointsPossible ? assignment.pointsPossibleCompleteText : nil
@@ -46,18 +53,6 @@ struct TeacherAssignmentListRow: Equatable, Identifiable {
 }
 
 private extension Assignment {
-    var formattedDueDate: String {
-        if let lockAt, Clock.now > lockAt {
-            return String(localized: "Availability: Closed", bundle: .core)
-        }
-
-        if hasMultipleDueDates {
-            return String(localized: "Multiple Due Dates", bundle: .core)
-        }
-
-        return dueText
-    }
-
     var needsGradingText: String? {
         guard needsGradingCount > 0, gradingType != .not_graded else {
             return nil

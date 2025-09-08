@@ -31,27 +31,20 @@ struct StudentAssignmentListRow: Equatable, Identifiable {
 
     let route: URL?
 
-    init(assignment: Assignment) {
+    init(
+        assignment: Assignment,
+        dueDateFormatter: DueDateFormatter = DueDateFormatterLive()
+    ) {
         let stateDisplayProperties = assignment.submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
 
         self.id = assignment.id
         self.title = assignment.name
         self.icon = assignment.icon.asImage
-        self.dueDate = assignment.formattedDueDate
+        self.dueDate = dueDateFormatter.format(assignment.dueAt, lockDate: assignment.lockAt)
         self.submissionStatus = .init(stateDisplayProperties: stateDisplayProperties)
         let hasPointsPossible = assignment.pointsPossible != nil
         self.score = hasPointsPossible ? GradeFormatter.string(from: assignment, style: .medium) : nil
         self.route = assignment.htmlURL
-    }
-}
-
-private extension Assignment {
-    var formattedDueDate: String {
-        if let lockAt, Clock.now > lockAt {
-            return String(localized: "Availability: Closed", bundle: .core)
-        }
-
-        return dueText
     }
 }
 
