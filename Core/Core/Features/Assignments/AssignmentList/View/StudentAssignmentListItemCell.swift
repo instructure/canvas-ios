@@ -18,17 +18,16 @@
 
 import SwiftUI
 
-struct TeacherAssignmentListCell: View {
+struct StudentAssignmentListItemCell: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @ScaledMetric private var uiScale: CGFloat = 1
 
-    private let model: TeacherAssignmentListRow
-    private let isLastItem: Bool
+    private let model: StudentAssignmentListItem
+    private let isLastItem: Bool?
     private let action: () -> Void
 
     init(
-        model: TeacherAssignmentListRow,
-        isLastItem: Bool,
+        model: StudentAssignmentListItem,
+        isLastItem: Bool?,
         action: @escaping () -> Void
     ) {
         self.model = model
@@ -48,7 +47,10 @@ struct TeacherAssignmentListCell: View {
                     VStack(alignment: .leading, spacing: 2) {
                         titleLabel
                         dueDateLabel
-                        needsGradingAndPointsPossibleLine
+                        submissionStatusLabel
+                        if let score = model.score {
+                            scoreLabel(score)
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -58,7 +60,9 @@ struct TeacherAssignmentListCell: View {
             .background(.backgroundLightest)
             .buttonStyle(.tintedContextButton)
 
-            InstUI.Divider(isLast: isLastItem)
+            if let isLastItem {
+                InstUI.Divider(isLast: isLastItem)
+            }
         }
         .accessibility(identifier: "AssignmentList.\(model.id)")
     }
@@ -67,7 +71,6 @@ struct TeacherAssignmentListCell: View {
         model.icon
             .scaledIcon()
             .applyTint()
-            .publishedStateOverlay(isPublished: model.isPublished)
     }
 
     private var titleLabel: some View {
@@ -81,37 +84,12 @@ struct TeacherAssignmentListCell: View {
             .textStyle(.cellLabelSubtitle)
     }
 
-    @ViewBuilder
-    private var needsGradingAndPointsPossibleLine: some View {
-        switch (model.needsGrading, model.pointsPossible) {
-        case (.some(let needsGrading), .some(let pointsPossible)):
-            HStack(alignment: .center, spacing: 2) {
-                needsGradingTag(needsGrading)
-                InstUI.SubtitleTextDivider(padding: 8)
-                    .frame(maxHeight: 16 * uiScale)
-                pointsPossibleLabel(pointsPossible)
-            }
-        case (.some(let needsGrading), .none):
-            needsGradingTag(needsGrading)
-        case (.none, .some(let pointsPossible)):
-            pointsPossibleLabel(pointsPossible)
-        case (.none, .none):
-            SwiftUI.EmptyView()
-        }
+    private var submissionStatusLabel: some View {
+        SubmissionStatusLabel(model: model.submissionStatus)
     }
 
-    private func needsGradingTag(_ needsGrading: String) -> some View {
-        Text(needsGrading)
-            .font(.regular12)
-            .foregroundColor(.textLightest)
-            .padding(.horizontal, 10).padding(.vertical, 4)
-            .background(RoundedRectangle(cornerRadius: 16).applyTint())
-            .padding(.top, 4)
-            .padding(.bottom, 6)
-    }
-
-    private func pointsPossibleLabel(_ pointsPossible: String) -> some View {
-        Text(pointsPossible)
+    private func scoreLabel(_ score: String) -> some View {
+        Text(score)
             .font(.semibold16)
             .applyTint()
     }
@@ -124,49 +102,34 @@ struct TeacherAssignmentListCell: View {
 #Preview {
     PreviewContainer {
         let date = Date.now.dateTimeString
-        let rows: [TeacherAssignmentListRow] = [
+        let rows: [StudentAssignmentListItem] = [
             .make(
                 id: "1",
                 title: "Assignment 1",
                 icon: .assignmentLine,
-                isPublished: true,
                 dueDate: date,
-                needsGrading: "7 Need Grading",
-                pointsPossible: "256 points"
+                submissionStatus: .init(text: "Graded", icon: .completeSolid, color: .textSuccess),
+                score: "42 / 100"
             ),
             .make(
                 id: "2",
-                title: "Discussion 2 - Only points",
+                title: "Discussion 2",
                 icon: .discussionLine,
-                isPublished: false,
                 dueDate: date,
-                pointsPossible: "256 points"
+                submissionStatus: .init(text: "Not Submitted", icon: .noSolid, color: .textDark)
             ),
             .make(
                 id: "3",
-                title: "Quiz 3 - Only NeedsGrading",
-                icon: .quizLine,
-                dueDate: date,
-                needsGrading: "7 Need Grading"
-            ),
-            .make(
-                id: "4",
-                title: "No NeedsGrading, No points",
-                icon: .quizLine,
-                dueDate: date
-            ),
-            .make(
-                id: "5",
                 title: "Long titled assignment to test how layout behaves",
                 icon: .assignmentLine,
                 dueDate: .loremIpsumMedium,
-                needsGrading: .loremIpsumMedium,
-                pointsPossible: .loremIpsumMedium
+                submissionStatus: .init(text: .loremIpsumMedium, icon: .completeSolid, color: .textSuccess),
+                score: .loremIpsumMedium
             )
         ]
 
         ForEach(rows) { row in
-            TeacherAssignmentListCell(model: row, isLastItem: rows.last == row) { }
+            StudentAssignmentListItemCell(model: row, isLastItem: rows.last == row) { }
         }
     }
     .tint(.course10)

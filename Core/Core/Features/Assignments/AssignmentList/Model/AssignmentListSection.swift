@@ -25,8 +25,8 @@ struct AssignmentListSection: Equatable, Identifiable {
     let rows: [Row]
 
     enum Row: Equatable, Identifiable {
-        case student(StudentAssignmentListRow)
-        case teacher(TeacherAssignmentListRow)
+        case student(StudentAssignmentListItem)
+        case teacher(TeacherAssignmentListItem)
 
         var id: String {
             switch self {

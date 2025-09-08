@@ -140,16 +140,37 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             ForEach(section.rows) { row in
                 switch row {
                 case .student(let model):
-                    StudentAssignmentListCell(model: model, isLastItem: section.rows.last == row) {
-                        viewModel.didSelectAssignment.send((model.route, controller))
-                    }
+                    studentCell(model: model, isLastItem: section.rows.last == row)
                 case .teacher(let model):
-                    TeacherAssignmentListCell(model: model, isLastItem: section.rows.last == row) {
+                    TeacherAssignmentListItemCell(model: model, isLastItem: section.rows.last == row) {
                         viewModel.didSelectAssignment.send((model.route, controller))
                     }
                 }
             }
         }
+    }
+
+    @ViewBuilder
+    private func studentCell(model: StudentAssignmentListItem, isLastItem: Bool) -> some View {
+        let routeAction = { navigateToDetails(at: model.route) }
+
+        if let subAssignments = model.subAssignments {
+            InstUI.CollapsibleListRow(
+                cell: StudentAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction),
+                isInitiallyExpanded: false
+            ) {
+                ForEach(subAssignments) { subItemRow in
+                    StudentAssignmentListSubItemCell(model: subItemRow, action: routeAction)
+                }
+            }
+            InstUI.Divider(isLast: isLastItem)
+        } else {
+            StudentAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
+        }
+    }
+
+    private func navigateToDetails(at url: URL?) {
+        viewModel.didSelectAssignment.send((url, controller))
     }
 
     private func setupDefaultSplitDetailView(_ routeUrl: String) {
@@ -163,8 +184,8 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
 #if DEBUG
 
 private func createSections() -> [AssignmentListSection] {
-    let studentRows = [
-        StudentAssignmentListRow.make(
+    let studentRows: [StudentAssignmentListItem] = [
+        .make(
             id: "1",
             title: "Math Assignment",
             icon: .assignmentLine,
@@ -172,7 +193,7 @@ private func createSections() -> [AssignmentListSection] {
             submissionStatus: .init(status: .notSubmitted),
             score: "10 / 15"
         ),
-        StudentAssignmentListRow.make(
+        .make(
             id: "2",
             title: "Quiz 1",
             icon: .quizLine,
@@ -180,7 +201,7 @@ private func createSections() -> [AssignmentListSection] {
             submissionStatus: .init(status: .graded),
             score: "8 / 10"
         ),
-        StudentAssignmentListRow.make(
+        .make(
             id: "3",
             title: "Discussion Topic",
             icon: .discussionLine,

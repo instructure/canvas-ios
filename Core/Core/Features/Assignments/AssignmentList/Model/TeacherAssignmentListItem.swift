@@ -19,7 +19,17 @@
 import Foundation
 import SwiftUI
 
-struct TeacherAssignmentListRow: Equatable, Identifiable {
+struct TeacherAssignmentListItem: Equatable, Identifiable {
+
+    struct SubAssignmentRow: Equatable, Identifiable {
+        let tag: String
+        let title: String
+        let dueDate: String
+        let needsGrading: String?
+        let pointsPossible: String?
+
+        var id: String { tag }
+    }
 
     let id: String
     let title: String
@@ -65,7 +75,7 @@ private extension Assignment {
 
 #if DEBUG
 
-extension TeacherAssignmentListRow {
+extension TeacherAssignmentListItem {
     private init(
         id: String,
         title: String,

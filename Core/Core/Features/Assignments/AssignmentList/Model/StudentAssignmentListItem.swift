@@ -19,7 +19,18 @@
 import Foundation
 import SwiftUI
 
-struct StudentAssignmentListRow: Equatable, Identifiable {
+struct StudentAssignmentListItem: Equatable, Identifiable {
+
+    struct SubItem: Equatable, Identifiable {
+        let tag: String
+        let title: String
+        let dueDate: String
+
+        let submissionStatus: SubmissionStatusLabel.Model
+        let score: String?
+
+        var id: String { tag }
+    }
 
     let id: String
     let title: String
@@ -29,6 +40,8 @@ struct StudentAssignmentListRow: Equatable, Identifiable {
     let submissionStatus: SubmissionStatusLabel.Model
     let score: String?
 
+    let subAssignments: [SubItem]?
+
     let route: URL?
 
     init(
@@ -36,6 +49,7 @@ struct StudentAssignmentListRow: Equatable, Identifiable {
         dueDateFormatter: DueDateFormatter = DueDateFormatterLive()
     ) {
         let stateDisplayProperties = assignment.submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
+        let hasSubAssignments = assignment.hasSubAssignments
 
         self.id = assignment.id
         self.title = assignment.name
@@ -45,12 +59,30 @@ struct StudentAssignmentListRow: Equatable, Identifiable {
         let hasPointsPossible = assignment.pointsPossible != nil
         self.score = hasPointsPossible ? GradeFormatter.string(from: assignment, style: .medium) : nil
         self.route = assignment.htmlURL
+
+        if hasSubAssignments {
+            self.subAssignments = assignment.checkpoints
+                .map { checkpoint in
+                    let subSubmission = assignment.submission?.subAssignmentSubmissions
+                        .first { $0.subAssignmentTag == checkpoint.tag }
+
+                    return .init(
+                        tag: checkpoint.tag,
+                        title: checkpoint.discussionCheckpointStep?.text ?? checkpoint.assignmentName,
+                        dueDate: dueDateFormatter.format(checkpoint.dueDate, lockDate: checkpoint.lockDate),
+                        submissionStatus: .init(status: .notSubmitted), // TODO
+                        score: String(subSubmission?.score ?? -1) // TODO
+                    )
+                }
+        } else {
+            self.subAssignments = nil
+        }
     }
 }
 
 #if DEBUG
 
-extension StudentAssignmentListRow {
+extension StudentAssignmentListItem {
     private init(
         id: String,
         title: String,
@@ -58,6 +90,7 @@ extension StudentAssignmentListRow {
         dueDate: String,
         submissionStatus: SubmissionStatusLabel.Model,
         score: String?,
+        subAssignments: [SubItem]?,
         route: URL?
     ) {
         self.id = id
@@ -66,6 +99,7 @@ extension StudentAssignmentListRow {
         self.dueDate = dueDate
         self.submissionStatus = submissionStatus
         self.score = score
+        self.subAssignments = subAssignments
         self.route = route
     }
 
@@ -76,6 +110,7 @@ extension StudentAssignmentListRow {
         dueDate: String = "",
         submissionStatus: SubmissionStatusLabel.Model = .init(text: "", icon: .emptyLine, color: .clear),
         score: String? = nil,
+        subAssignments: [SubItem]? = nil,
         route: URL? = nil
     ) -> Self {
         self.init(
@@ -85,6 +120,7 @@ extension StudentAssignmentListRow {
             dueDate: dueDate,
             submissionStatus: submissionStatus,
             score: score,
+            subAssignments: subAssignments,
             route: route
         )
     }
