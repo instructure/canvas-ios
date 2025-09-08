@@ -192,7 +192,7 @@ public class DiscussionsHelper: BaseHelper {
         repliesRequired: Int = 3,
         replyToTopicDueDate: Date? = nil,
         requiredRepliesDueDate: Date? = nil
-    ) -> CreateDSDiscussionWithCheckpointsResponse {
+    ) -> DSDiscussionCheckpoint {
         seeder.createDiscussionWithCheckpoints(
             courseId: course.id,
             title: title,

@@ -20,7 +20,7 @@ import Core
 import Foundation
 
 public struct CreateDSDiscussionWithCheckpointsRequest: APIGraphQLRequestable {
-    public typealias Response = CreateDSDiscussionWithCheckpointsResponse
+    public typealias Response = DSDiscussionCheckpoint
     public typealias RequestBody = CreateDSDiscussionWithCheckpointsRequestBody
 
     public let variables: Variables
@@ -384,45 +384,66 @@ public struct CreateDSDiscussionWithCheckpointsRequestBody: Codable, Equatable {
     }
 }
 
-public struct CreateDSDiscussionWithCheckpointsResponse: Codable, Equatable {
-    let data: Data
+public struct DSDiscussionCheckpoint: Codable, Equatable {
+    public let data: Data
 
-    struct Data: Codable, Equatable {
-        let createDiscussionTopic: CreateDiscussionTopic
+    public var replyToEntryCount: Int {
+        data.createDiscussionTopic.discussionTopic?.replyToEntryRequiredCount ?? 0
+    }
+    public var checkpoints: [Data.CreateDiscussionTopic.DiscussionTopic.Assignment.Checkpoint] { data.createDiscussionTopic.discussionTopic?.assignment?.checkpoints ?? []
+    }
 
-        struct CreateDiscussionTopic: Codable, Equatable {
-            let discussionTopic: DiscussionTopic?
+    public var pointsPossible: Int {
+        Int(data.createDiscussionTopic.discussionTopic?.assignment?.pointsPossible ?? 0)
+    }
+
+    public var id: String? { data.createDiscussionTopic.discussionTopic!.assignment?.id }
+
+    public struct Data: Codable, Equatable {
+        public let createDiscussionTopic: CreateDiscussionTopic
+
+        public struct CreateDiscussionTopic: Codable, Equatable {
+            public let discussionTopic: DiscussionTopic?
             let errors: [ValidationError]?
 
-            struct DiscussionTopic: Codable, Equatable {
-                let id: String
-                let contextType: String?
-                let title: String?
-                let message: String?
-                let published: Bool?
-                let assignment: Assignment?
+            public struct DiscussionTopic: Codable, Equatable {
+                public let id: String
+                public let contextType: String?
+                public let title: String?
+                public let message: String?
+                public let published: Bool?
+                public let assignment: Assignment?
+                public let replyToEntryRequiredCount: Int?
 
                 private enum CodingKeys: String, CodingKey {
                     case id = "_id"
-                    case contextType, title, message, published, assignment
+                    case contextType, title, message, published, assignment, replyToEntryRequiredCount
                 }
 
-                struct Assignment: Codable, Equatable {
-                    let id: String
-                    let name: String?
-                    let pointsPossible: Double?
-                    let checkpoints: [Checkpoint]?
+                public struct Assignment: Codable, Equatable {
+                    public let id: String
+                    public let name: String?
+                    public let pointsPossible: Double?
+                    public let checkpoints: [Checkpoint]?
 
                     private enum CodingKeys: String, CodingKey {
                         case id = "_id"
                         case name, pointsPossible, checkpoints
                     }
 
-                    struct Checkpoint: Codable, Equatable {
-                        let dueAt: String?
-                        let name: String?
-                        let pointsPossible: Double?
-                        let tag: String?
+                    public struct Checkpoint: Codable, Equatable {
+                        public let dueAt: Date?
+                        public let name: String?
+                        public let pointsPossible: Double?
+                        public let tag: String?
+
+                        public func getSubtitle(_ replyToEntryRequiredCount: Int) -> String {
+                            switch tag {
+                            case "reply_to_topic": "Reply to topic"
+                            case "reply_to_entry": "Additional replies (\(replyToEntryRequiredCount))"
+                            default: ""
+                            }
+                        }
                     }
                 }
             }

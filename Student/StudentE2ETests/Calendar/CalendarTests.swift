@@ -558,4 +558,102 @@ class CalendarTests: E2ETestCase {
         let noEventsLabel = Helper.noEventsLabel.waitUntil(.visible)
         XCTAssertTrue(noEventsLabel.isVisible)
     }
+
+    func testDiscussionCheckpointItem() {
+        // MARK: Seed
+        let featureResponse = seeder.setFeatureFlag(featureFlag: .discussionCheckpoints, state: .allowedOn)
+        XCTAssertTrue(featureResponse.state == DSFeatureFlagState.allowedOn.rawValue)
+
+        let (student, course) = Helper.createStudentEnrolledInCourse()
+        let dueDate: Date = .now
+        let discussion = DiscussionsHelper.createDiscussionWithCheckpoints(
+            course: course,
+            replyToTopicDueDate: dueDate,
+            requiredRepliesDueDate: dueDate
+        )
+        // MARK: Check seeded DCP so that we can force unwrap later
+        XCTAssertEqual(discussion.checkpoints.count, 2)
+        XCTAssertEqual(discussion.pointsPossible, 0)
+        XCTAssertEqual(discussion.replyToEntryCount, 3)
+        let checkpoints = discussion.checkpoints
+        checkpoints.forEach {
+            XCTAssertNotNil($0.dueAt)
+            XCTAssertEqual($0.dueAt?.dateTimeString, dueDate.dateTimeString)
+            XCTAssertNotNil($0.name)
+            XCTAssertNotNil($0.getSubtitle(discussion.replyToEntryCount))
+            XCTAssertNotNil($0.pointsPossible)
+        }
+
+        /// This is a workaround because we don't have the event ID for these, and we also can't search them by title because that is the same for both,
+        /// and also in the API response we don't get the checkpoints' IDs. As noticed, the checkpoint ids are always incremented by 1 from the assignment ID.
+        XCTAssertNotNil(discussion.id)
+        XCTAssertNotNil(Int(discussion.id!))
+        let replyToTopicCheckpoint = checkpoints[0]
+        let replyToTopicCheckpointId = String(Int(discussion.id!)! + 1)
+        let replyToEntryCheckpoint = checkpoints[1]
+        let replyToEntryCheckpointId = String(Int(replyToTopicCheckpointId)! + 1)
+
+        // MARK: Log in, navigate to entry point
+        logInDSUser(student)
+        Helper.navigateToCalendarTab()
+
+        let navBar = Helper.navBar.waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
+
+        let eventDateButton = Helper.dayButtonOfDate(dueDate).waitUntil(.visible)
+        XCTAssertTrue(eventDateButton.isVisible)
+
+        eventDateButton.hit()
+        XCTAssertTrue(eventDateButton.waitUntil(.selected).isSelected)
+
+        // MARK: Check Reply To Topic checkpoint item
+
+        let replyToTopicItem = Helper.itemCell(id: replyToTopicCheckpointId).waitUntil(.visible)
+        XCTAssertTrue(replyToTopicItem.isVisible)
+
+        let titleLabel = Helper.ItemCell.titleLabel(in: replyToTopicItem).waitUntil(.visible)
+        XCTAssertTrue(titleLabel.isVisible)
+        XCTAssertEqual(titleLabel.label, replyToTopicCheckpoint.name!)
+
+        let subtitleLabel = Helper.ItemCell.secondLabel(in: replyToTopicItem).waitUntil(.visible)
+        XCTAssertTrue(subtitleLabel.isVisible)
+        XCTAssertEqual(subtitleLabel.label, replyToTopicCheckpoint.getSubtitle(discussion.replyToEntryCount))
+
+        let dateLabel = Helper.ItemCell.thirdLabel(in: replyToTopicItem).waitUntil(.visible)
+        XCTAssertTrue(dateLabel.isVisible)
+        XCTAssertEqual(dateLabel.label, Helper.ItemCell.formattedDate(dueDate))
+
+        let pointsLabel = Helper.ItemCell.fourthLabel(in: replyToTopicItem).waitUntil(.visible)
+        XCTAssertTrue(pointsLabel.isVisible)
+        XCTAssertEqual(pointsLabel.label, "\(Int(replyToTopicCheckpoint.pointsPossible!)) points")
+
+        let courseLabel = Helper.ItemCell.fifthLabel(in: replyToTopicItem).waitUntil(.visible)
+        XCTAssertTrue(courseLabel.isVisible)
+        XCTAssertEqual(courseLabel.label, course.name)
+
+        // MARK: Check Reply To Entry checkpoint item
+
+        let replyToEntryItem = Helper.itemCell(id: replyToEntryCheckpointId).waitUntil(.visible)
+        XCTAssertTrue(replyToEntryItem.isVisible)
+
+        let entryTitleLabel = Helper.ItemCell.titleLabel(in: replyToEntryItem).waitUntil(.visible)
+        XCTAssertTrue(entryTitleLabel.isVisible)
+        XCTAssertEqual(entryTitleLabel.label, replyToEntryCheckpoint.name!)
+
+        let entrySubtitleLabel = Helper.ItemCell.secondLabel(in: replyToEntryItem).waitUntil(.visible)
+        XCTAssertTrue(entrySubtitleLabel.isVisible)
+        XCTAssertEqual(entrySubtitleLabel.label, replyToEntryCheckpoint.getSubtitle(discussion.replyToEntryCount))
+
+        let entryDateLabel = Helper.ItemCell.thirdLabel(in: replyToEntryItem).waitUntil(.visible)
+        XCTAssertTrue(entryDateLabel.isVisible)
+        XCTAssertEqual(entryDateLabel.label, Helper.ItemCell.formattedDate(dueDate))
+
+        let entryPointsLabel = Helper.ItemCell.fourthLabel(in: replyToEntryItem).waitUntil(.visible)
+        XCTAssertTrue(entryPointsLabel.isVisible)
+        XCTAssertEqual(entryPointsLabel.label, "\(Int(replyToEntryCheckpoint.pointsPossible!)) points")
+
+        let entryCourseLabel = Helper.ItemCell.fifthLabel(in: replyToEntryItem).waitUntil(.visible)
+        XCTAssertTrue(entryCourseLabel.isVisible)
+        XCTAssertEqual(entryCourseLabel.label, course.name)
+    }
 }

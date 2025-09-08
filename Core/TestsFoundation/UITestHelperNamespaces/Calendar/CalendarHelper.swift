@@ -43,7 +43,7 @@ public class CalendarHelper: BaseHelper {
         dayButtonOfDate(item.date)
     }
 
-    private static func dayButtonOfDate(_ date: Date) -> XCUIElement {
+    public static func dayButtonOfDate(_ date: Date) -> XCUIElement {
         dateFormatter.dateFormat = "yyyy-M-d"
         let dateString = dateFormatter.string(from: date)
         return app.find(id: "PlannerCalendar.dayButton.\(dateString)")
@@ -61,7 +61,11 @@ public class CalendarHelper: BaseHelper {
     }
 
     public static func itemCell(for item: DSCalendarItem) -> XCUIElement {
-        app.find(id: "PlannerList.event.\(item.id)")
+        itemCell(id: item.id)
+    }
+
+    public static func itemCell(id: String) -> XCUIElement {
+        app.find(id: "PlannerList.event.\(id)")
     }
 
     public static func itemCell(forTitle title: String) -> XCUIElement {
@@ -194,6 +198,10 @@ extension CalendarHelper {
 
         public static func fourthLabel(in cell: XCUIElement) -> XCUIElement {
             cell.findAll(type: .staticText, minimumCount: 4)[3]
+        }
+
+        public static func fifthLabel(in cell: XCUIElement) -> XCUIElement {
+            cell.findAll(type: .staticText, minimumCount: 5)[4]
         }
 
         public static func formattedDate(for event: DSCalendarEvent) -> String {

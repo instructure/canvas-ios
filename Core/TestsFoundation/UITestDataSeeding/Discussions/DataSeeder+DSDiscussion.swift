@@ -34,7 +34,7 @@ extension DataSeeder {
         repliesRequired: Int,
         replyToTopicDueDate: Date?,
         requiredRepliesDueDate: Date?
-    ) -> CreateDSDiscussionWithCheckpointsResponse {
+    ) -> DSDiscussionCheckpoint {
         let request = CreateDSDiscussionWithCheckpointsRequest(
             body: .init(
                 contextId: courseId,

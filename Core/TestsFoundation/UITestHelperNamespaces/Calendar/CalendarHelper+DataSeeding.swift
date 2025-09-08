@@ -136,7 +136,7 @@ extension CalendarHelper {
         repliesRequired: Int = 3,
         replyToTopicDueDate: Date = Date.now,
         requiredRepliesDueDate: Date = Date.now.addDays(1)
-    ) -> CreateDSDiscussionWithCheckpointsResponse {
+    ) -> DSDiscussionCheckpoint {
         DiscussionsHelper.createDiscussionWithCheckpoints(
             course: course,
             title: title,

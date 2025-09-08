@@ -18,6 +18,7 @@
 
 public enum DSFeatureFlag: String {
     case newQuiz = "quizzes_next"
+    case discussionCheckpoints = "discussion_checkpoints"
 }
 
 public struct DSFeatureFlagResponse: Codable {
