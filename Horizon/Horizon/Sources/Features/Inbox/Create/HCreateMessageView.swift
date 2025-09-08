@@ -164,25 +164,10 @@ struct HCreateMessageView: View {
     }
 
     private var header: some View {
-        HStack(spacing: .zero) {
-            Text("Create message")
-                .huiTypography(.h2)
-            Spacer()
-            HorizonUI.IconButton(
-                HorizonUI.icons.close,
-                type: .white,
-                isSmall: true
-            ) {
-                viewModel.close(viewController: viewController)
-            }
-            .disabled(viewModel.isCloseDisabled)
+        HTitleBar(page: .createMessage) { _ in
+            viewModel.close(viewController: viewController)
         }
-        .frame(height: 88)
-        .padding(.horizontal, .huiSpaces.space24)
-        .overlay(
-            divider,
-            alignment: .bottom
-        )
+        .padding(.top, .huiSpaces.space12)
     }
 
     private var messageBodyInput: some View {

@@ -29,7 +29,7 @@ struct ProfileView: View {
     }
 
     var body: some View {
-        ProfileBody(String(localized: "Profile", bundle: .horizon)) {
+        ProfileBody(.settingsProfile) {
             ScrollView {
                 VStack(spacing: .huiSpaces.space24) {
                     nameView

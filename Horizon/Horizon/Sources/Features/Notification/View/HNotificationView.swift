@@ -111,11 +111,11 @@ struct HNotificationView: View {
                     .foregroundStyle(Color.huiColors.text.body)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
-//                if !notification.isRead {
-//                    Circle()
-//                        .fill(Color.huiColors.surface.institution)
-//                        .frame(width: 8, height: 8)
-//                }
+                if !notification.isRead {
+                    Circle()
+                        .fill(Color.huiColors.surface.institution)
+                        .frame(width: 8, height: 8)
+                }
             }
 
             Text(notification.date)
@@ -128,18 +128,9 @@ struct HNotificationView: View {
     }
 
     private var navigationBar: some View {
-        TitleBar(
-            onBack: { _ in dismiss() },
-            onClose: nil
-        ) {
-            Text("Notifications", bundle: .horizon)
-                .frame(maxWidth: .infinity)
-                .huiTypography(.h3)
-                .foregroundStyle(Color.huiColors.text.title)
+        HTitleBar(page: .notifications) { _ in
+            dismiss()
         }
-        .padding(.bottom, .huiSpaces.space16)
-        .padding(.horizontal, .huiSpaces.space16)
-        .background(Color.huiColors.surface.pagePrimary)
     }
 
     @ViewBuilder

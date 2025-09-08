@@ -43,7 +43,7 @@ struct HMessageDetailsView: View {
 
     private var content: some View {
         VStack(alignment: .leading) {
-            titleBar
+            navigationBar
             messages
             replyArea
         }
@@ -237,32 +237,8 @@ struct HMessageDetailsView: View {
         }
     }
 
-    private var titleBar: some View {
-        HStack {
-            backButton
-            Spacer()
-            if model.isAnnouncementIconVisible {
-                HorizonUI.icons.announcement
-                    .renderingMode(.template)
-                    .foregroundStyle(HorizonUI.colors.surface.institution)
-            }
-            Text(model.headerTitle)
-                .lineLimit(2)
-                .huiTypography(.labelLargeBold)
-                .foregroundColor(HorizonUI.colors.surface.institution)
-            Spacer()
-            backButton
-                .opacity(0)
-        }
-        .padding(.horizontal, HorizonUI.spaces.space24)
-        .frame(maxWidth: .infinity)
-    }
-
-    private var backButton: some View {
-        HorizonUI.IconButton(
-            HorizonUI.icons.arrowBack,
-            type: .ghost
-        ) {
+    private var navigationBar: some View {
+        HTitleBar(page: model.titleBarPage, title: model.headerTitle) { _ in
             model.pop(viewController: viewController)
         }
     }

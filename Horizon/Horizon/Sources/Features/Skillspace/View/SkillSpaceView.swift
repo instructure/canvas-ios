@@ -25,17 +25,7 @@ struct SkillSpaceView: View {
     var body: some View {
         HEmbeddedWebPageContainerView(viewModel: viewModel)
             .toolbar(.hidden)
-            .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
+            .safeAreaInset(edge: .top, spacing: .zero) { HTitleBar(page: .skillspace) }
             .background(Color.huiColors.surface.pagePrimary)
-    }
-
-    private var navigationBar: some View {
-        HStack(spacing: .zero) {
-            InstitutionLogo()
-            Spacer()
-        }
-        .padding(.horizontal, .huiSpaces.space24)
-        .padding(.top, .huiSpaces.space10)
-        .padding(.bottom, .huiSpaces.space4)
     }
 }

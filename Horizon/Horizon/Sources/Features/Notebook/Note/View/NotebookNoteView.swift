@@ -53,33 +53,34 @@ struct NotebookNoteView: View {
         ) { proxy in
             VStack(spacing: 0) {
                 titleBar
-                highlightedText
-                labels
-                noteView(proxy: proxy)
-                ZStack {
-                    saveButton
-                    deleteButton
+                VStack(spacing: 0) {
+                    highlightedText
+                    labels
+                    noteView(proxy: proxy)
+                    ZStack {
+                        saveButton
+                        deleteButton
+                    }
+                    .padding(.top, .huiSpaces.space16)
                 }
-                .padding(.top, .huiSpaces.space16)
-            }
-            .padding(.vertical, .huiSpaces.space36)
-            .padding(.horizontal, .huiSpaces.space24)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .navigationBarBackButtonHidden(true)
-            .toolbarBackground(Color.huiColors.surface.pagePrimary, for: .navigationBar)
-            .alert(isPresented: $viewModel.isDeleteAlertPresented) {
-                Alert(
-                    title: Text(String(localized: "Confirmation", bundle: .horizon)),
-                    message: Text(String(localized: "Are you sure you want to proceed?", bundle: .horizon)),
-                    primaryButton: .default(Text(String(localized: "Yes", bundle: .horizon))) {
-                        viewModel.deleteNoteAndDismiss(viewController: viewController)
-                    },
-                    secondaryButton: .cancel()
-                )
-            }
-            .onTapGesture {
-                if isTextFieldFocused {
-                    isTextFieldFocused = false
+                .padding(.horizontal, .huiSpaces.space24)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .navigationBarBackButtonHidden(true)
+                .toolbarBackground(Color.huiColors.surface.pagePrimary, for: .navigationBar)
+                .alert(isPresented: $viewModel.isDeleteAlertPresented) {
+                    Alert(
+                        title: Text(String(localized: "Confirmation", bundle: .horizon)),
+                        message: Text(String(localized: "Are you sure you want to proceed?", bundle: .horizon)),
+                        primaryButton: .default(Text(String(localized: "Yes", bundle: .horizon))) {
+                            viewModel.deleteNoteAndDismiss(viewController: viewController)
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
+                .onTapGesture {
+                    if isTextFieldFocused {
+                        isTextFieldFocused = false
+                    }
                 }
             }
         }
@@ -164,11 +165,14 @@ struct NotebookNoteView: View {
     }
 
     private var titleBar: some View {
-        TitleBar(
-            onClose: viewModel.closeButtonDisabled ? nil : viewModel.close
-        ) {
-            NotebookTitle()
+        HTitleBar(page: .note) { _ in
+            // TODO: Check how we can disable the close button
+            if(viewModel.closeButtonDisabled) {
+                return
+            }
+            viewModel.close(viewController)
         }
+        .padding(.top, .huiSpaces.space24)
     }
 }
 
