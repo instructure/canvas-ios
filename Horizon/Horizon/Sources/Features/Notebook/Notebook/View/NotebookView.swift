@@ -98,7 +98,6 @@ struct NotebookView: View {
                     }
                 }
             }
-            .padding(.top, viewModel.isNavigationBarVisible ? .huiSpaces.space16 : .zero)
             .padding([.horizontal, .bottom], .huiSpaces.space16)
             .padding(.horizontal, .huiSpaces.space8)
             .animation(.smooth, value: viewModel.notes.count)
@@ -133,15 +132,14 @@ struct NotebookView: View {
     }
 
     private var navigationBar: some View {
-        HTitleBar(page: .notebook) { action in
-            // TODO - check on viewModel.isBackVisible and viewModel.isCloseVisible
+        HTitleBar(page: viewModel.titleBarPage) { action in
             if action == .back {
                 viewModel.onBack(viewController)
                 return
             }
             viewModel.onClose(viewController)
         }
-        .padding(.top, viewModel.navigationBarTopPadding)
+        .padding(.top, .huiSpaces.space8)
         .background(Color.huiColors.surface.pagePrimary)
     }
 

@@ -69,6 +69,7 @@ struct AssistChatView: View {
                 viewModel.dismiss(controller: viewController)
             }
         }
+        .padding(.top, .huiSpaces.space24)
     }
 
     private var contentView: some View {

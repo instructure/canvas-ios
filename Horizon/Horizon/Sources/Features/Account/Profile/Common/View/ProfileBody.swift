@@ -35,6 +35,7 @@ struct ProfileBody<Content: View>: View {
             HTitleBar(page: page) { _ in
                 environment.router.pop(from: viewController)
             }
+            .padding(.top, .huiSpaces.space8)
 
             VStack(spacing: 0) {
                 content

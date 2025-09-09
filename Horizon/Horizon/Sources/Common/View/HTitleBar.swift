@@ -55,6 +55,7 @@ struct HTitleBar: View {
         case inboxMessageDetails
         case note
         case notebook
+        case notebookModal
         case notifications
         case settingsAdvanced
         case settingsNotifications
@@ -101,7 +102,8 @@ struct HTitleBar: View {
             .notifications,
             .inbox
         ],
-        .note: [.close]
+        .note: [.close],
+        .notebookModal: [.close]
     ]
 
     /// configuring the button type for each page's action buttons
@@ -128,6 +130,7 @@ struct HTitleBar: View {
         .createMessage: .init(localized: "Create message", bundle: .horizon),
         .note: .init(localized: "Notebook", bundle: .horizon),
         .notebook: .init(localized: "Notebook", bundle: .horizon),
+        .notebookModal: .init(localized: "Notebook", bundle: .horizon),
         .notifications: .init(localized: "Notifications", bundle: .horizon),
         .settingsAdvanced: .init(localized: "Advanced", bundle: .horizon),
         .settingsNotifications: .init(localized: "Notifications", bundle: .horizon),
