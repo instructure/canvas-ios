@@ -54,7 +54,7 @@ class PlannableTests: CoreTestCase {
             details: .make(reply_to_entry_required_count: 42)
         )
 
-        let plannable = Plannable.save(apiPlannable, userID: "another userId", in: databaseClient)
+        let plannable = Plannable.save(apiPlannable, userId: "another userId", in: databaseClient)
 
         XCTAssertEqual(plannable.id, TestConstants.plannableId)
         XCTAssertEqual(plannable.plannableType, .assignment)
