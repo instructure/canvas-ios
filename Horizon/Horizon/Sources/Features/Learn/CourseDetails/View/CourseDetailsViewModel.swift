@@ -35,7 +35,7 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
     }
     private(set) var isShowHeader = true
     private(set) var programs: [ProgramSwitcherModel] = []
-    private(set) var selectedCoure: ProgramSwitcherModel.Course?
+    private(set) var selectedCourse: ProgramSwitcherModel.Course?
     private(set) var selectedProgram: ProgramSwitcherModel?
     private(set) var isLoaderVisible: Bool = false
     private(set) var overviewDescription = ""
@@ -136,7 +136,7 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
 
     private func observeCourseSelection() {
         onSelectCourse = { [weak self] selectedCourse in
-            guard let self, let selectedCourse, self.selectedCoure != selectedCourse else {
+            guard let self, let selectedCourse, self.selectedCourse != selectedCourse else {
                 return
             }
             self.selectedProgram = selectedCourse.programID != nil ? programs.first(where: { $0.id == selectedCourse.programID }) : nil
@@ -144,7 +144,7 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
             pullToRefreshCancellable?.cancel()
             pullToRefreshCancellable = nil
             isLoaderVisible = true
-            self.selectedCoure = selectedCourse
+            self.selectedCourse = selectedCourse
             self.selectedTabIndex = nil
             getCourse(for: selectedCourse.id)
                 .sink { [weak self] courseInfo in
@@ -205,11 +205,11 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
     }
 
     private func updateCourse(course: HCourse?, syllabus: String?) {
-        guard let course, (course.id == selectedCoure?.id || selectedCoure == nil ) else {
+        guard let course, (course.id == selectedCourse?.id || selectedCourse == nil ) else {
             return
         }
         self.course = course
-        selectedCoure = .init(
+        selectedCourse = .init(
             id: course.id,
             name: course.name,
             enrollemtID: course.enrollmentID,

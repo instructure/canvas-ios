@@ -27,6 +27,7 @@ struct ProgramSwitcherView: View {
     private let onSelectCourse: (ProgramSwitcherModel.Course?) -> Void
     private let isProgramPage: Bool
     private let cornerRadius: HorizonUI.CornerRadius = .level2
+    private let time: Double = 0.4
 
     // MARK: - Bindings
 
@@ -39,6 +40,7 @@ struct ProgramSwitcherView: View {
     @State private var selectedProgram: ProgramSwitcherModel?
     @State private var selectedCourse: ProgramSwitcherModel.Course?
     @State private var isCoursesViewVisible: Bool
+    @State private var contentHeight: CGFloat = .zero
 
     private var shouldHighlightProgram: Bool {
         initialCourse == nil && initialProgram == selectedProgram
@@ -70,42 +72,49 @@ struct ProgramSwitcherView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: .zero) {
-            if let selectedProgram, isCoursesViewVisible {
-                ProgramSwitcherHeaderView(
-                    programName: selectedProgram.name ?? "",
-                    shouldHighlightProgram: shouldHighlightProgram) {
-                        isCoursesViewVisible = false
-                    } onSelectOverview: {
-                        initialCourse = nil
-                        selectedCourse = nil
-                        initialProgram = selectedProgram
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            dismiss(isSelectedProgram: true)
+        ScrollView {
+            VStack(alignment: .leading, spacing: .zero) {
+                if let selectedProgram, isCoursesViewVisible {
+                    ProgramSwitcherHeaderView(
+                        programName: selectedProgram.name ?? "",
+                        shouldHighlightProgram: shouldHighlightProgram) {
+                            isCoursesViewVisible = false
+                        } onSelectOverview: {
+                            initialCourse = nil
+                            selectedCourse = nil
+                            initialProgram = selectedProgram
+                            DispatchQueue.main.asyncAfter(deadline: .now() + time) {
+                                dismiss(isSelectedProgram: true)
+                            }
                         }
-                    }
 
-                coursesView(for: selectedProgram)
-            } else {
-                ProgramSwitcherListView(
-                    programs: programs,
-                    selectedProgram: selectedProgram,
-                    selectedCourse: selectedCourse) { program in
-                        selectedProgram = program
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            isCoursesViewVisible = true
+                    coursesView(for: selectedProgram)
+                } else {
+                    ProgramSwitcherListView(
+                        programs: programs,
+                        selectedProgram: selectedProgram,
+                        selectedCourse: selectedCourse) { program in
+                            selectedProgram = program
+                            DispatchQueue.main.asyncAfter(deadline: .now() + time) {
+                                isCoursesViewVisible = true
+                            }
+                        } onSelectCourse: { course in
+                            selectedProgram = nil
+                            initialProgram = nil
+                            initialCourse = course
+                            selectedCourse = course
+                            DispatchQueue.main.asyncAfter(deadline: .now() + time) {
+                                dismiss(isSelectedProgram: false)
+                            }
                         }
-                    } onSelectCourse: { course in
-                        selectedProgram = nil
-                        initialProgram = nil
-                        initialCourse = course
-                        selectedCourse = course
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            dismiss(isSelectedProgram: false)
-                        }
-                    }
+                }
+            }
+            .readingFrame { frame in
+                contentHeight = min(frame.height, 550)
             }
         }
+       .scrollBounceBehavior(.basedOnSize)
+       .frame(height: contentHeight)
         .animation(.easeInOut, value: isCoursesViewVisible)
         .background(Color.huiColors.surface.cardPrimary)
         .clipShape(.rect(cornerRadius: cornerRadius.attributes.radius))
@@ -136,12 +145,12 @@ struct ProgramSwitcherView: View {
                 initialCourse = course
                 selectedCourse = course
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + time) {
                     dismiss(isSelectedProgram: false)
                 }
 
             } label: {
-                ProgramSwitcherCourseRowView(course: course, isSelected: course == selectedCourse)
+                ProgramSwitcherCourseView(course: course, isSelected: course == selectedCourse)
             }
         }
     }

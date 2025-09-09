@@ -49,7 +49,7 @@ struct LearnAssembly {
     static func makeViewModel(
         courseID: String,
         enrollmentID: String,
-        programID: String?,
+        programID: String? = nil,
         course: HCourse? = nil,
         selectedTab: CourseDetailsTabs? = nil
     ) -> CourseDetailsViewModel {
@@ -71,7 +71,7 @@ struct LearnAssembly {
     static func makeCourseDetailsView(
         courseID: String,
         enrollmentID: String,
-        programID: String?,
+        programID: String? = nil,
         course: HCourse? = nil
     ) -> CourseDetailsView {
         let viewModel = makeViewModel(

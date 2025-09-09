@@ -24,8 +24,16 @@ import Foundation
 
 @Observable
 final class LearnViewModel: ProgramSwitcherMapper {
+
+    enum State {
+        case programs
+        case courseDetails
+        case empty
+    }
     // MARK: - Outputs (State)
 
+    private(set) var state: State = .empty
+    private(set) var courseDetailsViewModel: CourseDetailsViewModel?
     private(set) var isLoaderVisible = true
     private(set) var isLoadingEnrollButton = false
     private(set) var hasError = false
@@ -117,8 +125,23 @@ final class LearnViewModel: ProgramSwitcherMapper {
             } receiveValue: { [weak self] programs, courses in
                 self?.handleProgramsLoaded(programs)
                 self?.dropdownMenuPrograms = self?.mapPrograms(programs: programs, courses: courses) ?? []
+                self?.setState(programs: programs, courses: courses)
             }
             .store(in: &subscriptions)
+    }
+
+    private func setState(programs: [Program], courses: [LearnCourse]) {
+        if programs.isNotEmpty {
+            state = .programs
+        } else if let firtCourse = courses.first {
+            courseDetailsViewModel = LearnAssembly.makeViewModel(
+                courseID: firtCourse.id,
+                enrollmentID: firtCourse.enrollmentId
+            )
+            state = .courseDetails
+        } else {
+            state = .empty
+        }
     }
 
     // MARK: - Actions

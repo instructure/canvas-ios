@@ -43,7 +43,7 @@ struct ProgramSwitcherListView: View {
                         Button {
                             onSelectCourse(course)
                         } label: {
-                            ProgramSwitcherCourseRowView(
+                            ProgramSwitcherCourseView(
                                 course: course,
                                 isSelected: course == selectedCourse
                             )

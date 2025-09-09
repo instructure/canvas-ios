@@ -87068,6 +87068,9 @@
         }
       }
     },
+    "You aren’t currently enrolled in a course or program." : {
+
+    },
     "You aren’t currently enrolled in a course." : {
       "localizations" : {
         "ar" : {

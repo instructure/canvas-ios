@@ -58,22 +58,21 @@ struct CourseDetailsView: View {
             if viewModel.isShowHeader {
                 VStack(spacing: .zero) {
                     VStack(spacing: .zero) {
-                        if let selectedProgram = viewModel.selectedCoure, let programName = selectedProgram.programName {
+                        if let programName = viewModel.selectedCourse?.programName {
                             ProgramNameView(name: programName)
                                 .padding(.horizontal, .huiSpaces.space24)
                                 .padding(.bottom, .huiSpaces.space16)
                                 .onTapGesture {
-                                    onSwitchToLearnTab(.init(id: selectedProgram.programID), viewController)
+                                    onSwitchToLearnTab(.init(id: viewModel.selectedCourse?.programID), viewController)
                                 }
                         }
                         ExpandTitleView(
-                            title: viewModel.selectedCoure?.name ?? "",
+                            title: viewModel.selectedCourse?.name ?? "",
                             isExpanded: isCourseDropdownVisible
                         )
                         .padding(.horizontal, .huiSpaces.space24)
                         .padding(.bottom, .huiSpaces.space16)
                         .onTapGesture { isCourseDropdownVisible.toggle() }
-
                     }
                     .readingFrame { frame in courseNameHeight = frame.height }
                     headerView
@@ -85,9 +84,16 @@ struct CourseDetailsView: View {
         }
         .padding(.top, .huiSpaces.space12)
         .hidden(viewModel.isLoaderVisible)
-        .background(Color.huiColors.surface.pagePrimary)
+        .background {
+            Color.huiColors.surface.pagePrimary
+                .ignoresSafeArea()
+                .onTapGesture { isCourseDropdownVisible = false }
+        }
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
-        .onWillDisappear { onShowNavigationBarAndTabBar(true) }
+        .onWillDisappear {
+            isCourseDropdownVisible = false
+            onShowNavigationBarAndTabBar(true)
+        }
         .onWillAppear { onShowNavigationBarAndTabBar(false) }
         .overlay {
             if viewModel.isLoaderVisible {
@@ -101,13 +107,13 @@ struct CourseDetailsView: View {
                     isProgramPage: false,
                     programs: viewModel.programs,
                     selectedProgram: viewModel.selectedProgram,
-                    selectedCourse: viewModel.selectedCoure,
+                    selectedCourse: viewModel.selectedCourse,
                     onSelectProgram: { program in
                         onSwitchToLearnTab(program, viewController)
                     },
                     onSelectCourse: viewModel.onSelectCourse
                 )
-                .padding(.top, courseNameHeight + 40)
+                .padding(.top, courseNameHeight + (isBackButtonVisible ? 40 : 0))
                 .padding(.horizontal, .huiSpaces.space24)
             }
         }

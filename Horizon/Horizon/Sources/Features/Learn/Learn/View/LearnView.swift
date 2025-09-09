@@ -21,32 +21,27 @@ import SwiftUI
 import HorizonUI
 
 struct LearnView: View {
-    @State private var isProgramDropdownVisible: Bool = false
-    @State private var programNameHeight: CGFloat?
     @Bindable var viewModel: LearnViewModel
-    @Environment(\.viewController) private var viewController
+
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        VStack(spacing: .zero) {
             if !viewModel.isLoaderVisible {
-                content
-                    .padding([.horizontal, .bottom], .huiSpaces.space24)
+                switch viewModel.state {
+                case .programs:
+                    ProgramListView(viewModel: viewModel)
+                case .courseDetails:
+                    if let courseDetailsViewModel = viewModel.courseDetailsViewModel {
+                        LearnAssembly.makeCourseDetailsView(viewModel: courseDetailsViewModel, isBackButtonVisible: false)
+                    }
+                case .empty:
+                    emptyView
+                }
             }
         }
-        .padding(.top, .huiSpaces.space2)
-
-        .toolbar(.hidden)
-        .safeAreaInset(edge: .top, spacing: .huiSpaces.space24) {
-            ExpandTitleView(title: viewModel.currentProgram?.name ?? "", isExpanded: isProgramDropdownVisible)
-                .padding([.horizontal, .top], .huiSpaces.space24)
-                .hidden(viewModel.isLoaderVisible)
-                .transition(.move(edge: .top).combined(with: .opacity))
-                .onTapGesture { isProgramDropdownVisible.toggle() }
-                .readingFrame { frame in programNameHeight = frame.height }
-
-        }
-        .background(Color.huiColors.surface.pagePrimary)
-        .onTapGesture { isProgramDropdownVisible = false }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onFirstAppear { viewModel.featchPrograms() }
+        .background(Color.huiColors.surface.pagePrimary)
+        .toolbar(.hidden)
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)
@@ -56,102 +51,24 @@ struct LearnView: View {
                     .background(Color.huiColors.surface.pagePrimary)
             }
         }
+    }
+
+    private var emptyView: some View {
+        ScrollView {
+            Text("You aren’t currently enrolled in a course or program.", bundle: .horizon)
+                .padding(.huiSpaces.space24)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                .foregroundStyle(Color.huiColors.text.body)
+                .huiTypography(.h3)
+                .padding(.top, .huiSpaces.space32)
+        }
         .refreshable {
-            await viewModel.refreshPrograms()
+            await viewModel.fetchPrograms(ignoreCache: false)
         }
-        .huiToast(
-            viewModel: .init(
-                text: viewModel.toastMessage,
-                style: viewModel.hasError ? .error : .success
-            ),
-            isPresented: $viewModel.toastIsPresented
-        )
-        .overlay(alignment: .top) {
-            if isProgramDropdownVisible {
-                ProgramSwitcherView(
-                    isExpanded: $isProgramDropdownVisible,
-                    programs: viewModel.dropdownMenuPrograms,
-                    selectedProgram: viewModel.selectedProgram,
-                    onSelectProgram: viewModel.onSelectProgram) { course in
-                        viewModel.navigateToCourseDetails(
-                            courseID: course?.id ?? "",
-                            enrollemtID: course?.enrollemtID,
-                            programID: course?.programID,
-                            viewController: viewController
-                        )
-                    }
-                    .padding(.top, programNameHeight)
-                    .padding(.horizontal, .huiSpaces.space24)
-            }
-        }
-        .animation(.linear, value: isProgramDropdownVisible)
-    }
-
-    private var content: some View {
-        VStack(alignment: .leading, spacing: .zero) {
-            if viewModel.shouldShowProgress {
-                LearnProgressBarView(completionPercent: viewModel.currentProgram?.completionPercent)
-                    .padding(.bottom, .huiSpaces.space8)
-            }
-
-            if let description = viewModel.currentProgram?.description {
-                Text(description)
-                    .foregroundStyle(Color.huiColors.text.body)
-                    .huiTypography(.p1)
-                    .padding(.bottom, .huiSpaces.space16)
-            }
-
-            LearnAttributesView(
-                estimatedDuration: viewModel.currentProgram?.estimatedTime,
-                date: viewModel.currentProgram?.date
-            )
-            .padding(.bottom, viewModel.currentProgram?.hasPills == true ? .huiSpaces.space32 : .zero)
-
-            if let program = viewModel.currentProgram, !program.isLinear, !program.isOptionalProgram {
-                completeProgram(program)
-                    .padding(.bottom, .huiSpaces.space16)
-            }
-            programCards
-                .id(viewModel.currentProgram?.id)
-        }
-    }
-    var programCards: some View {
-        ListProgramCards(
-            programs: viewModel.currentProgram?.courses ?? [],
-            isLoading: viewModel.isLoadingEnrollButton, isLinear: viewModel.currentProgram?.isLinear ?? false
-        ) { course in
-            viewModel.navigateToCourseDetails(
-                courseID: course.id,
-                enrollemtID: course.enrollemtID,
-                programID: viewModel.currentProgram?.id,
-                viewController: viewController
-            )
-        } onTapEnroll: { course in
-            viewModel.enrollInProgram(course: course )
-        }
-    }
-
-    private func completeProgram(_ program: Program) -> some View {
-        HStack(spacing: .huiSpaces.space4) {
-            Text("Complete", bundle: .horizon)
-            Text(viewModel.currentProgram?.countOfRemeaningCourses.description ?? "")
-            Text("of", bundle: .horizon)
-            Text(viewModel.currentProgram?.courses.count.description ?? "")
-            Text("courses", bundle: .horizon)
-        }
-        .foregroundStyle(Color.huiColors.text.body)
-        .huiTypography(.h4)
     }
 }
 
 #if DEBUG
 #Preview {
-    LearnView(
-        viewModel: .init(
-            interactor: ProgramInteractorPreview(),
-            learnCoursesInteractor: GetLearnCoursesInteractorPreview(),
-            router: AppEnvironment.shared.router
-        )
-    )
 }
 #endif
