@@ -125,7 +125,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         api.mock(GetPlannablesRequest(
             userID: nil,
             startDate: Date.now,
-            endDate: Date.distantFuture,
+            endDate: Date.now.addDays(28),
             contextCodes: makeContextCodes(courseIds: ["1"])
         ), expectation: plannablesAPICallExpectation, value: plannables)
 
@@ -210,7 +210,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         api.mock(GetPlannablesRequest(
             userID: nil,
             startDate: Date.now,
-            endDate: Date.distantFuture,
+            endDate: Date.now.addDays(28),
             contextCodes: contextCodes
         ), value: plannables)
     }
