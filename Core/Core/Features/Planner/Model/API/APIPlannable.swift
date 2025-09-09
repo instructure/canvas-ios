@@ -236,31 +236,31 @@ extension APIPlannerOverride {
 
 // https://canvas.instructure.com/doc/api/planner.html#method.planner.index
 public struct GetPlannablesRequest: APIRequestable {
-public typealias Response = [APIPlannable]
+    public typealias Response = [APIPlannable]
 
-var userID: String?
-var startDate: Date?
-var endDate: Date?
-var contextCodes: [String] = []
-var filter: String = ""
+    var userID: String?
+    var startDate: Date?
+    var endDate: Date?
+    var contextCodes: [String] = []
+    var filter: String = ""
 
-public var path: String {
-    if let userID {
-        return "users/\(userID)/planner/items"
-    } else {
-        return "planner/items"
+    public var path: String {
+        if let userID {
+            return "users/\(userID)/planner/items"
+        } else {
+            return "planner/items"
+        }
     }
-}
 
-public var query: [APIQueryItem] {
-        [
-            .perPage(100),
-            .optionalValue("start_date", startDate?.isoString()),
-            .optionalValue("end_date", endDate?.isoString()),
-            .array("context_codes", contextCodes),
-            .value("filter", filter)
-        ]
-    }
+    public var query: [APIQueryItem] {
+            [
+                .perPage(100),
+                .optionalValue("start_date", startDate?.isoString()),
+                .optionalValue("end_date", endDate?.isoString()),
+                .array("context_codes", contextCodes),
+                .value("filter", filter)
+            ]
+        }
 }
 
 // https://canvas.instructure.com/doc/api/planner.html#method.planner_overrides.update
