@@ -87,7 +87,7 @@ extension AssistFlashCardView {
     }
 
     private var headerView: some View {
-        HTitleBar(page: .assistFlashCards) { _ in
+        AssistTitle(page: .assistFlashCards) { _ in
             viewModel.dismiss(controller: viewController)
         }
     }

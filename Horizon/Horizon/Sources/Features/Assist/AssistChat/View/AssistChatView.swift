@@ -59,7 +59,7 @@ struct AssistChatView: View {
     }
 
     private var topHeader: some View {
-        HTitleBar(
+        AssistTitle(
             page: .assist,
             actionStates: [.back: viewModel.isBackButtonVisible ? .enabled : .hidden]
         ) { action in

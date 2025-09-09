@@ -132,6 +132,7 @@ struct HInboxView: View {
             }
             viewModel.goToComposeMessage(viewController)
         }
+        .padding(.top, .huiSpaces.space4)
     }
 }
 

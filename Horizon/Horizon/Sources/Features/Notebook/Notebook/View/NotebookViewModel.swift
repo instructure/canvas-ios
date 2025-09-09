@@ -47,7 +47,7 @@ final class NotebookViewModel {
         }
     }
 
-    var isBackVisible: Bool { courseId == nil }
+    var titleBarPage: HTitleBar.Page { courseId == nil ? .notebook : .notebookModal }
     var isCloseVisible: Bool { courseId != nil }
     var isEmptyCardVisible: Bool { notes.isEmpty && filter == nil && isLoaderVisible == false && isNextDisabled && isPreviousDisabled }
     var isFiltersVisible: Bool { courseId == nil }
@@ -57,7 +57,6 @@ final class NotebookViewModel {
         !(isNextDisabled && isPreviousDisabled)
     }
     private(set) var isPreviousDisabled: Bool = true
-    var navigationBarTopPadding: CGFloat { courseId == nil ? .huiSpaces.space16 : .huiSpaces.space24 }
     private(set) var notes: [NotebookNote] = []
     private(set) var isLoaderVisible = true
     private(set) var title: String = ""

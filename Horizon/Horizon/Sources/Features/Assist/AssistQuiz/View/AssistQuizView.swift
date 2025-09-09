@@ -73,7 +73,7 @@ extension AssistQuizView {
     }
 
     private var headerView: some View {
-        HTitleBar(page: .assistQuiz) { _ in
+        AssistTitle(page: .assistQuiz) { _ in
             viewModel.dismiss(controller: viewController)
         }
     }
