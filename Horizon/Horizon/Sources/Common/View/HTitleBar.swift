@@ -76,13 +76,13 @@ struct HTitleBar: View {
     /// Configuring the background color for each page
     private static let backgroundColorMap: [Page: Color] = [
         .assist: .clear,
+        .assistQuiz: .clear,
+        .assistFlashCards: .clear,
         .createMessage: HorizonUI.colors.surface.pageSecondary
     ]
 
     /// configuring which pages have a back button
     private static let backButtonPages: [Page] = [
-        .assistFlashCards,
-        .assistQuiz,
         .inbox,
         .inboxAnnouncement,
         .inboxMessageDetails,
@@ -96,6 +96,8 @@ struct HTitleBar: View {
     /// configuring which pages have trailing buttons and what those buttons are
     private static let trailingButtonPages: [Page: [Action]] = [
         .assist: [.back, .close],
+        .assistQuiz: [.close],
+        .assistFlashCards: [.close],
         .createMessage: [.close],
         .dashboard: [
             .notebook,
@@ -108,12 +110,16 @@ struct HTitleBar: View {
 
     /// configuring the button type for each page's action buttons
     private static let actionButtonType: [Page: HorizonUI.ButtonStyles.ButtonType] = [
-        .assist: .whiteOutline
+        .assist: .whiteOutline,
+        .assistQuiz: .whiteOutline,
+        .assistFlashCards: .whiteOutline
     ]
 
     /// configuring the icon for each page title, when a page has an icon in the title
     private static let iconPages: [Page: Image] = [
         .assist: .huiIcons.aiFilled,
+        .assistQuiz: .huiIcons.aiFilled,
+        .assistFlashCards: .huiIcons.aiFilled,
         .inboxAnnouncement: .huiIcons.announcement,
         .note: .huiIcons.menuBookNotebook,
         .notebook: .huiIcons.menuBookNotebook
@@ -164,7 +170,7 @@ struct HTitleBar: View {
                 callback: callback
             )
             .map { AnyView($0) }
-        } else if page == .assist {
+        } else if page == .assist || page == .assistQuiz || page == .assistFlashCards {
             self.leading = AnyView(HTitleBar.assistTitle)
         } else {
             self.leading = nil
