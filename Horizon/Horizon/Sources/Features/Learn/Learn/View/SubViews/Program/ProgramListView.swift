@@ -144,6 +144,7 @@ struct ProgramListView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     ProgramListView(
         viewModel: .init(
@@ -153,3 +154,4 @@ struct ProgramListView: View {
         )
     )
 }
+#endif

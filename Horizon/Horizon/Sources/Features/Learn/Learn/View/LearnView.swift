@@ -70,5 +70,12 @@ struct LearnView: View {
 
 #if DEBUG
 #Preview {
+    LearnView(
+        viewModel: .init(
+            interactor: ProgramInteractorPreview(),
+            learnCoursesInteractor: GetLearnCoursesInteractorPreview(),
+            router: AppEnvironment.shared.router
+        )
+    )
 }
 #endif
