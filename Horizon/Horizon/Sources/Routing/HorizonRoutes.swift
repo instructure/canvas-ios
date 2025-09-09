@@ -28,7 +28,6 @@ public enum HorizonRoutes {
 
     private static let routes = [
         accountRoutes,
-//        splashRoutes,
         moduleRoutes,
         pageRoutes,
         courseRoutes,
@@ -49,19 +48,12 @@ public enum HorizonRoutes {
             },
             RouteHandler("/account/advanced") { _, _, _ in
                 ProfileAdvancedAssembly.makeViewController()
+            },
+            RouteHandler("/account/problem_report") { _, _, _ in
+                CoreHostingController(ProblemReportView())
             }
         ]
     }
-
-    /*
-     private static var splashRoutes: [RouteHandler] {
-         [
-             RouteHandler("/splash") { _, _, _ in
-                 SplashAssembly.makeViewController()
-             }
-         ]
-     }
-     */
 
     private static var moduleRoutes: [RouteHandler] {
         [

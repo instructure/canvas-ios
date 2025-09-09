@@ -58,6 +58,7 @@ struct HTitleBar: View {
         case notifications
         case settingsAdvanced
         case settingsNotifications
+        case settingsProblemReport
         case settingsProfile
         case skillspace
     }
@@ -89,6 +90,7 @@ struct HTitleBar: View {
         .notifications,
         .settingsAdvanced,
         .settingsNotifications,
+        .settingsProblemReport,
         .settingsProfile
     ]
 
@@ -131,6 +133,7 @@ struct HTitleBar: View {
         .notifications: .init(localized: "Notifications", bundle: .horizon),
         .settingsAdvanced: .init(localized: "Advanced", bundle: .horizon),
         .settingsNotifications: .init(localized: "Notifications", bundle: .horizon),
+        .settingsProblemReport: .init(localized: "Report a problem", bundle: .horizon),
         .settingsProfile: .init(localized: "Profile", bundle: .horizon)
     ]
 

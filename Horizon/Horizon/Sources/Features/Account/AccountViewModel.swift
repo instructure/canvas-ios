@@ -115,10 +115,8 @@ final class AccountViewModel {
 
     func betaCommunityDidTap() {}
 
-    func giveFeedbackDidTap(viewController: WeakViewController) {
-        if let url = URL(string: "https://forms.gle/jxDp3zKYe7LxNhZHA") {
-            router.route(to: url, from: viewController)
-        }
+    func reportBug(viewController: WeakViewController) {
+        router.route(to: "/account/problem_report", from: viewController)
     }
 
     func logoutDidTap() {

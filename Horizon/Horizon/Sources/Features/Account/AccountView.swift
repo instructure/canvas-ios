@@ -148,12 +148,12 @@ struct AccountView: View {
                 .foregroundStyle(Color.huiColors.text.title)
 
             VStack(spacing: 0) { AccountEntryRowView(
-                title: "Give Feedback",
+                title: "Report a bug",
                 image: .huiIcons.openInNew,
                 isFirstItem: true,
                 isLastItem: true,
                 didTapRow: {
-                    viewModel.giveFeedbackDidTap(viewController: viewController)
+                    viewModel.reportBug(viewController: viewController)
                 }
             )
             }
