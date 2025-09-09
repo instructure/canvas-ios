@@ -42,4 +42,25 @@ class UserProfileTests: CoreTestCase {
         let profile = UserProfile.save(apiProfile, in: databaseClient)
         XCTAssertEqual(profile.isK5User, false)
     }
+
+    func testCalendarURLPreservedWhenAPIResponseMissingCalendar() {
+        // First, save a profile with a calendar URL
+        let originalCalendarURL = URL(string: "https://example.com/calendar.ics")!
+        let apiProfileWithCalendar = APIProfile.make(
+            calendar: .init(ics: originalCalendarURL)
+        )
+        let profile = UserProfile.save(apiProfileWithCalendar, in: databaseClient)
+        XCTAssertEqual(profile.calendarURL, originalCalendarURL)
+
+        // Then save the same profile again, but this time without calendar data
+        let apiProfileWithoutCalendar = APIProfile.make(
+            id: apiProfileWithCalendar.id,
+            calendar: nil
+        )
+        let updatedProfile = UserProfile.save(apiProfileWithoutCalendar, in: databaseClient)
+
+        // Verify the calendar URL is preserved
+        XCTAssertEqual(updatedProfile.calendarURL, originalCalendarURL)
+        XCTAssertEqual(profile.id, updatedProfile.id) // Same profile object
+    }
 }
