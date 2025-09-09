@@ -72,7 +72,6 @@ struct TeacherAssignmentListItemCell: View {
 
     private var titleLabel: some View {
         Text(model.title)
-            .style(.textCellTitle)
             .textStyle(.cellLabel)
     }
 
@@ -85,12 +84,12 @@ struct TeacherAssignmentListItemCell: View {
     private var needsGradingAndPointsPossibleLine: some View {
         switch (model.needsGrading, model.pointsPossible) {
         case (.some(let needsGrading), .some(let pointsPossible)):
-            HStack(alignment: .center, spacing: 2) {
-                needsGradingTag(needsGrading)
-                InstUI.SubtitleTextDivider(padding: 8)
-                    .frame(maxHeight: 16 * uiScale)
-                pointsPossibleLabel(pointsPossible)
-            }
+            InstUI.JoinedSubtitleLabels(
+                label1: { needsGradingTag(needsGrading) },
+                label2: { pointsPossibleLabel(pointsPossible) },
+                spacing: 8,
+                dividerVerticalPadding: 4
+            )
         case (.some(let needsGrading), .none):
             needsGradingTag(needsGrading)
         case (.none, .some(let pointsPossible)):

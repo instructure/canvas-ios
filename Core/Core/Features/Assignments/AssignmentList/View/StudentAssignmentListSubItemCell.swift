@@ -37,10 +37,7 @@ struct StudentAssignmentListSubItemCell: View {
             labels: {
                 titleLabel
                 dueDateLabel
-                submissionStatusLabel
-                if let score = model.score {
-                    scoreLabel(score)
-                }
+                scoreAndStatusLine
             },
             action: action
         )
@@ -48,13 +45,24 @@ struct StudentAssignmentListSubItemCell: View {
 
     private var titleLabel: some View {
         Text(model.title)
-            .style(.textCellTitle)
             .textStyle(.cellLabel)
     }
 
     private var dueDateLabel: some View {
         Text(model.dueDate)
             .textStyle(.cellLabelSubtitle)
+    }
+
+    @ViewBuilder
+    private var scoreAndStatusLine: some View {
+        if let score = model.score {
+            InstUI.JoinedSubtitleLabels(
+                label1: { scoreLabel(score) },
+                label2: { submissionStatusLabel }
+            )
+        } else {
+            submissionStatusLabel
+        }
     }
 
     private var submissionStatusLabel: some View {

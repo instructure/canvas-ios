@@ -44,10 +44,7 @@ struct StudentAssignmentListItemCell: View {
             labels: {
                 titleLabel
                 dueDateLabel
-                submissionStatusLabel
-                if let score = model.score {
-                    scoreLabel(score)
-                }
+                scoreAndStatusLine
             },
             isLastItem: isLastItem,
             action: action
@@ -70,14 +67,26 @@ struct StudentAssignmentListItemCell: View {
             .textStyle(.cellLabelSubtitle)
     }
 
-    private var submissionStatusLabel: some View {
-        SubmissionStatusLabel(model: model.submissionStatus)
+    @ViewBuilder
+    private var scoreAndStatusLine: some View {
+        if let score = model.score {
+            InstUI.JoinedSubtitleLabels(
+                label1: { scoreLabel(score) },
+                label2: { submissionStatusLabel }
+            )
+        } else {
+            submissionStatusLabel
+        }
     }
 
     private func scoreLabel(_ score: String) -> some View {
         Text(score)
             .font(.semibold16)
             .applyTint()
+    }
+
+    private var submissionStatusLabel: some View {
+        SubmissionStatusLabel(model: model.submissionStatus)
     }
 }
 
@@ -99,17 +108,25 @@ struct StudentAssignmentListItemCell: View {
             ),
             .make(
                 id: "2",
-                title: "Discussion 2",
+                title: "Assignment 2",
+                icon: .assignmentLine,
+                dueDate: date,
+                submissionStatus: .init(text: "My favorite custom status", icon: .flagLine, color: .textInfo),
+                score: "123 456 / 1 000 000 (Some cool grade)"
+            ),
+            .make(
+                id: "3",
+                title: "Discussion 3",
                 icon: .discussionLine,
                 dueDate: date,
                 submissionStatus: .init(text: "Not Submitted", icon: .noSolid, color: .textDark)
             ),
             .make(
-                id: "3",
+                id: "4",
                 title: "Long titled assignment to test how layout behaves",
                 icon: .assignmentLine,
                 dueDate: .loremIpsumMedium,
-                submissionStatus: .init(text: .loremIpsumMedium, icon: .completeSolid, color: .textSuccess),
+                submissionStatus: .init(text: .loremIpsumShort, icon: .completeSolid, color: .textSuccess),
                 score: .loremIpsumMedium
             )
         ]

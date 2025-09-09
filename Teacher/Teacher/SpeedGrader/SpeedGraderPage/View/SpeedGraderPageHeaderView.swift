@@ -55,13 +55,11 @@ struct SpeedGraderPageHeaderView: View {
                         nameText
 
                         ViewThatFits(in: .horizontal) {
-                            HStack(alignment: .top, spacing: 0) {
-                                status
-                                InstUI.SubtitleTextDivider()
-                                dueText
-                            }
-                            .fixedSize(horizontal: false, vertical: true)
-
+                            InstUI.JoinedSubtitleLabels(
+                                label1: { status },
+                                label2: { dueText },
+                                alignment: .top
+                            )
                             VStack(alignment: .leading, spacing: 2) {
                                 status
                                 dueText
