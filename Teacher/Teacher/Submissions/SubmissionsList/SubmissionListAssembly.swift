@@ -34,4 +34,17 @@ public enum SubmissionListAssembly {
         let view = SubmissionListScreen(viewModel: viewModel)
         return CoreHostingController(view, env: env)
     }
+
+#if DEBUG
+
+    public static func makeFilterScreenPreview() -> UIViewController {
+        let env = PreviewEnvironment()
+        let interactor = SubmissionListInteractorPreview()
+        let viewModel = SubmissionListViewModel(interactor: interactor, filterMode: .all, env: env)
+        let view = SubmissionsFilterScreen(viewModel: viewModel)
+        let hostingController = CoreHostingController(view, env: env)
+        return CoreNavigationController(rootViewController: hostingController)
+    }
+
+#endif
 }
