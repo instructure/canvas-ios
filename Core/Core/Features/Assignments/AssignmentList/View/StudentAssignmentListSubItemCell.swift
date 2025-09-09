@@ -20,7 +20,6 @@ import SwiftUI
 
 struct StudentAssignmentListSubItemCell: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @ScaledMetric private var uiScale: CGFloat = 1
 
     private let model: StudentAssignmentListItem.SubItem
     private let action: () -> Void
@@ -34,33 +33,17 @@ struct StudentAssignmentListSubItemCell: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            InstUI.Divider()
-                .padding(.leading, leadingPadding)
-                .paddingStyle(.trailing, .standard)
-
-            Button {
-                action()
-            } label: {
-                VStack(alignment: .leading, spacing: 2) {
-                    titleLabel
-                    dueDateLabel
-                    submissionStatusLabel
-                    if let score = model.score {
-                        scoreLabel(score)
-                    }
+        InstUI.ContextItemListSubItemCell(
+            labels: {
+                titleLabel
+                dueDateLabel
+                submissionStatusLabel
+                if let score = model.score {
+                    scoreLabel(score)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .paddingStyle(.top, .cellTop)
-                .paddingStyle(.bottom, .cellBottom)
-                .padding(.leading, leadingPadding)
-                .paddingStyle(.trailing, .standard)
-                .contentShape(Rectangle())
-            }
-            .background(.backgroundLightest)
-            .buttonStyle(.tintedContextButton)
-        }
-        .accessibility(identifier: "AssignmentList.\(model.id)")
+            },
+            action: action
+        )
     }
 
     private var titleLabel: some View {
@@ -82,11 +65,6 @@ struct StudentAssignmentListSubItemCell: View {
         Text(score)
             .font(.semibold16)
             .applyTint()
-    }
-
-    private var leadingPadding: CGFloat {
-        // cellIconLeading + scaledIconSize + cellIconText
-        22 + uiScale.iconScale * 24 + 18
     }
 }
 

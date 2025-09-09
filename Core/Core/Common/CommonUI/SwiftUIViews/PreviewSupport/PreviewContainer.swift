@@ -45,7 +45,6 @@ public struct PreviewContainer<Content: View>: View {
                 VStack(alignment: alignment, spacing: spacing) {
                     content()
                 }
-                .padding(.top)
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
         }

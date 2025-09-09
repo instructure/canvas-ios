@@ -36,35 +36,22 @@ struct StudentAssignmentListItemCell: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            Button {
-                action()
-            } label: {
-                HStack(alignment: .top, spacing: 0) {
-                    icon
-                        .paddingStyle(.trailing, .cellIconText)
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        titleLabel
-                        dueDateLabel
-                        submissionStatusLabel
-                        if let score = model.score {
-                            scoreLabel(score)
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
+        InstUI.ContextItemListCell(
+            icon: {
+                model.icon
+                    .scaledIcon()
+            },
+            labels: {
+                titleLabel
+                dueDateLabel
+                submissionStatusLabel
+                if let score = model.score {
+                    scoreLabel(score)
                 }
-                .paddingStyle(set: .iconCell)
-                .contentShape(Rectangle())
-            }
-            .background(.backgroundLightest)
-            .buttonStyle(.tintedContextButton)
-
-            if let isLastItem {
-                InstUI.Divider(isLast: isLastItem)
-            }
-        }
-        .accessibility(identifier: "AssignmentList.\(model.id)")
+            },
+            isLastItem: isLastItem,
+            action: action
+        )
     }
 
     private var icon: some View {
@@ -75,7 +62,6 @@ struct StudentAssignmentListItemCell: View {
 
     private var titleLabel: some View {
         Text(model.title)
-            .style(.textCellTitle)
             .textStyle(.cellLabel)
     }
 

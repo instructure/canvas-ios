@@ -153,19 +153,23 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     @ViewBuilder
     private func studentCell(model: StudentAssignmentListItem, isLastItem: Bool) -> some View {
         let routeAction = { navigateToDetails(at: model.route) }
+        let identifier = "AssignmentList.\(model.id)"
 
         if let subAssignments = model.subAssignments {
             InstUI.CollapsibleListRow(
-                cell: StudentAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction),
+                cell: StudentAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
+                    .identifier(identifier),
                 isInitiallyExpanded: false
             ) {
-                ForEach(subAssignments) { subItemRow in
-                    StudentAssignmentListSubItemCell(model: subItemRow, action: routeAction)
+                ForEach(subAssignments) { subItem in
+                    StudentAssignmentListSubItemCell(model: subItem, action: routeAction)
+                        .identifier(identifier, subItem.tag)
                 }
             }
             InstUI.Divider(isLast: isLastItem)
         } else {
             StudentAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
+                .identifier(identifier)
         }
     }
 
