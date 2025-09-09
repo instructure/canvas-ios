@@ -25,10 +25,6 @@ struct LearnAttributesView: View {
 
     var body: some View {
         HorizonUI.HFlow {
-            if let estimatedDuration {
-                pill(title: estimatedDuration)
-            }
-
             if let date {
                 HorizonUI.Pill(
                     title: date,
@@ -42,6 +38,10 @@ struct LearnAttributesView: View {
                     isSmall: true,
                     icon: .huiIcons.calendarToday
                 )
+            }
+
+            if let estimatedDuration {
+                pill(title: estimatedDuration)
             }
         }
     }

@@ -16,17 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
 import SwiftUI
 
-struct LearnTopBarView: View {
+struct ExpandTitleView: View {
+    let title: String
+    let isExpanded: Bool
     var body: some View {
-        HStack(spacing: .zero) {
-            InstitutionLogo()
+        HStack(alignment: .top, spacing: .huiSpaces.space8) {
+            Text(title)
+                .huiTypography(.h3)
+                .frame(alignment: .leading)
+                .multilineTextAlignment(.leading)
+                .fixedSize(horizontal: false, vertical: true)
+                .foregroundStyle(Color.huiColors.text.title)
+
+            Image.huiIcons.keyboardArrowDown
+                .tint(Color.huiColors.icon.default)
+                .rotationEffect(.degrees(isExpanded ? 180 : 0))
+                .animation(.easeInOut, value: isExpanded)
+                .frame(width: 24, height: 24)
             Spacer()
         }
-        .padding(.horizontal, .huiSpaces.space24)
-        .padding(.top, .huiSpaces.space10)
-        .padding(.bottom, .huiSpaces.space4)
-        .background(Color.huiColors.surface.pagePrimary)
     }
 }

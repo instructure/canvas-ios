@@ -21,6 +21,8 @@ import SwiftUI
 import HorizonUI
 
 struct LearnView: View {
+    @State private var isProgramDropdownVisible: Bool = false
+    @State private var programNameHeight: CGFloat?
     @Bindable var viewModel: LearnViewModel
     @Environment(\.viewController) private var viewController
     var body: some View {
@@ -30,9 +32,20 @@ struct LearnView: View {
                     .padding([.horizontal, .bottom], .huiSpaces.space24)
             }
         }
+        .padding(.top, .huiSpaces.space2)
+
         .toolbar(.hidden)
-        .safeAreaInset(edge: .top, spacing: .zero) { LearnTopBarView() }
+        .safeAreaInset(edge: .top, spacing: .huiSpaces.space24) {
+            ExpandTitleView(title: viewModel.currentProgram?.name ?? "", isExpanded: isProgramDropdownVisible)
+                .padding([.horizontal, .top], .huiSpaces.space24)
+                .hidden(viewModel.isLoaderVisible)
+                .transition(.move(edge: .top).combined(with: .opacity))
+                .onTapGesture { isProgramDropdownVisible.toggle() }
+                .readingFrame { frame in programNameHeight = frame.height }
+
+        }
         .background(Color.huiColors.surface.pagePrimary)
+        .onTapGesture { isProgramDropdownVisible = false }
         .onFirstAppear { viewModel.featchPrograms() }
         .overlay {
             if viewModel.isLoaderVisible {
@@ -44,7 +57,7 @@ struct LearnView: View {
             }
         }
         .refreshable {
-           await viewModel.refreshPrograms()
+            await viewModel.refreshPrograms()
         }
         .huiToast(
             viewModel: .init(
@@ -53,14 +66,29 @@ struct LearnView: View {
             ),
             isPresented: $viewModel.toastIsPresented
         )
+        .overlay(alignment: .top) {
+            if isProgramDropdownVisible {
+                ProgramSwitcherView(
+                    isExpanded: $isProgramDropdownVisible,
+                    programs: viewModel.dropdownMenuPrograms,
+                    selectedProgram: viewModel.selectedProgram,
+                    onSelectProgram: viewModel.onSelectProgram) { course in
+                        viewModel.navigateToCourseDetails(
+                            courseID: course?.id ?? "",
+                            enrollemtID: course?.enrollemtID,
+                            programID: course?.programID,
+                            viewController: viewController
+                        )
+                    }
+                    .padding(.top, programNameHeight)
+                    .padding(.horizontal, .huiSpaces.space24)
+            }
+        }
+        .animation(.linear, value: isProgramDropdownVisible)
     }
 
     private var content: some View {
         VStack(alignment: .leading, spacing: .zero) {
-            programDropdown
-                .padding(.bottom, .huiSpaces.space24)
-                .id(viewModel.programs.count)
-
             if viewModel.shouldShowProgress {
                 LearnProgressBarView(completionPercent: viewModel.currentProgram?.completionPercent)
                     .padding(.bottom, .huiSpaces.space8)
@@ -87,46 +115,26 @@ struct LearnView: View {
                 .id(viewModel.currentProgram?.id)
         }
     }
-}
-
-// MARK: - Subviews
-private extension LearnView {
-    var programDropdown: some View {
-        DropdownMenu(
-            items: viewModel.dropdownMenuPrograms,
-            selectedItem: viewModel.selectedProgram,
-            onSelect: viewModel.onSelectProgram
-        )
-    }
-
     var programCards: some View {
         ListProgramCards(
             programs: viewModel.currentProgram?.courses ?? [],
             isLoading: viewModel.isLoadingEnrollButton, isLinear: viewModel.currentProgram?.isLinear ?? false
         ) { course in
-            viewModel.navigateToCourseDetails(course: course, viewController: viewController)
+            viewModel.navigateToCourseDetails(
+                courseID: course.id,
+                enrollemtID: course.enrollemtID,
+                programID: viewModel.currentProgram?.id,
+                viewController: viewController
+            )
         } onTapEnroll: { course in
             viewModel.enrollInProgram(course: course )
         }
     }
 
-    private func defaultPill(title: String) -> some View {
-        HorizonUI.Pill(
-            title: title,
-            style: .solid(
-                .init(
-                    backgroundColor: Color.huiColors.surface.pageSecondary,
-                    textColor: Color.huiColors.text.title
-                )
-            ),
-            isSmall: true
-        )
-    }
-
     private func completeProgram(_ program: Program) -> some View {
         HStack(spacing: .huiSpaces.space4) {
             Text("Complete", bundle: .horizon)
-            Text(viewModel.currentProgram?.countOfRequiredCourses.description ?? "")
+            Text(viewModel.currentProgram?.countOfRemeaningCourses.description ?? "")
             Text("of", bundle: .horizon)
             Text(viewModel.currentProgram?.courses.count.description ?? "")
             Text("courses", bundle: .horizon)
@@ -141,6 +149,7 @@ private extension LearnView {
     LearnView(
         viewModel: .init(
             interactor: ProgramInteractorPreview(),
+            learnCoursesInteractor: GetLearnCoursesInteractorPreview(),
             router: AppEnvironment.shared.router
         )
     )

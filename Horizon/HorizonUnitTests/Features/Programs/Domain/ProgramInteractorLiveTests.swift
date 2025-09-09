@@ -41,7 +41,7 @@ final class ProgramInteractorLiveTests: HorizonTestCase {
             XCTAssertEqual(courses[0].id, "488")
             XCTAssertEqual(courses[1].id, "664")
             XCTAssertEqual(courses[2].id, "486")
-            XCTAssertEqual(firstProgram?.countOfRequiredCourses, 2)
+            XCTAssertEqual(firstProgram?.countOfRemeaningCourses, 2)
         }
     }
 
