@@ -37,7 +37,7 @@ public final class TodoInteractorLive: TodoInteractor {
 
     private var subscriptions = Set<AnyCancellable>()
 
-    init(startDate: Date = .now, endDate: Date = .distantFuture, env: AppEnvironment) {
+    init(startDate: Date = .now, endDate: Date = .now.addDays(28), env: AppEnvironment) {
         self.startDate = startDate
         self.endDate = endDate
         self.env = env
@@ -56,9 +56,14 @@ public final class TodoInteractorLive: TodoInteractor {
             .flatMap { codes in
                 return ReactiveStore(useCase: GetPlannables(startDate: self.startDate, endDate: self.endDate, contextCodes: codes))
                     .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
-                    .map { $0.compactMap(TodoItem.init) }
+                    .map { plannables in
+                        plannables
+                            .filter(\.shouldShowInTodoList)
+                            .compactMap(TodoItem.init)
+                    }
             }
             .map { [weak self] in
+                TabBarBadgeCounts.todoListCount = UInt($0.count)
                 self?.todosSubject.value = $0
                 return $0.isEmpty
             }
