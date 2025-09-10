@@ -18,91 +18,45 @@
 
 import Foundation
 
-public protocol DueDateFormatter {
-    func format(_ dueDate: Date?) -> String
-    func format(_ dueDate: Date?, lockDate: Date?) -> String
+public enum DueDateFormatter {
 
-    func formatWithoutPrefix(_ dueDate: Date?, lockDate: Date?) -> String
+    public static func format(_ dueDate: Date?, lockDate: Date? = nil, hasOverrides: Bool = false) -> String {
+        format(DueDateSummary(dueDate, lockDate: lockDate, hasOverrides: hasOverrides), addDuePrefix: true)
+    }
 
-    func format(_ dueDate: Date?, hasMultipleDueDates: Bool) -> String
-    func format(_ dueDate: Date?, lockDate: Date?, hasMultipleDueDates: Bool) -> String
-}
+    public static func formatWithoutPrefix(_ dueDate: Date?, lockDate: Date? = nil, hasOverrides: Bool = false) -> String {
+        format(DueDateSummary(dueDate, lockDate: lockDate, hasOverrides: hasOverrides), addDuePrefix: false)
+    }
 
-public struct DueDateFormatterLive: DueDateFormatter {
-
-    // MARK: - Format with Due prefix
-
-    public func format(_ dueDate: Date?) -> String {
-        guard let dueDate else {
+    public static func format(_ dueDateSummary: DueDateSummary, addDuePrefix: Bool = true) -> String {
+        switch dueDateSummary {
+        case .noDueDate:
             return noDueDateText
+        case .dueDate(let date):
+            return addDuePrefix ? dateText(date) : dateTextWithoutDue(date)
+        case .availabilityClosed:
+            return availabilityClosedText
+        case .multipleDueDates:
+            return multipleDueDatesText
         }
-
-        return dateTextWithDue(dueDate)
-    }
-
-    public func format(_ dueDate: Date?, lockDate: Date?) -> String {
-        availabilityText(lockDate)
-            ?? format(dueDate)
-    }
-
-    // MARK: - Format without Due prefix
-
-    private func formatWithoutPrefix(_ dueDate: Date?) -> String {
-        guard let dueDate else {
-            return noDueDateText
-        }
-
-        return dateTextWithoutDue(dueDate)
-    }
-
-    public func formatWithoutPrefix(_ dueDate: Date?, lockDate: Date?) -> String {
-        availabilityText(lockDate)
-            ?? formatWithoutPrefix(dueDate)
-    }
-
-    // MARK: - Format considering Multiple Due Dates
-
-    public func format(_ dueDate: Date?, hasMultipleDueDates: Bool) -> String {
-        multipleDueDatesText(hasMultipleDueDates)
-            ?? format(dueDate)
-    }
-
-    public func format(_ dueDate: Date?, lockDate: Date?, hasMultipleDueDates: Bool) -> String {
-        availabilityText(lockDate)
-            ?? multipleDueDatesText(hasMultipleDueDates)
-            ?? format(dueDate)
     }
 
     // MARK: - Formatted texts
 
-    private func dateTextWithoutDue(_ date: Date) -> String {
-        date.relativeDateTimeString
-    }
-
-    private func dateTextWithDue(_ date: Date) -> String {
+    public static func dateText(_ date: Date) -> String {
         return String.localizedStringWithFormat(
             String(localized: "Due %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 at 9:00 PM>"),
             date.relativeDateTimeString
         )
     }
 
-    private var noDueDateText: String {
-        String(localized: "No Due Date", bundle: .core)
+    public static func dateTextWithoutDue(_ date: Date) -> String {
+        date.relativeDateTimeString
     }
 
-    private func availabilityText(_ lockDate: Date?) -> String? {
-        if let lockDate, Clock.now > lockDate {
-            return String(localized: "Availability: Closed", bundle: .core)
-        }
+    public static let noDueDateText: String = String(localized: "No Due Date", bundle: .core)
 
-        return nil
-    }
+    public static let availabilityClosedText: String = String(localized: "Closed For Submission", bundle: .core)
 
-    private func multipleDueDatesText(_ hasMultipleDueDates: Bool) -> String? {
-        if hasMultipleDueDates {
-            return String(localized: "Multiple Due Dates", bundle: .core)
-        }
-
-        return nil
-    }
+    public static let multipleDueDatesText: String = String(localized: "Multiple Due Dates", bundle: .core)
 }

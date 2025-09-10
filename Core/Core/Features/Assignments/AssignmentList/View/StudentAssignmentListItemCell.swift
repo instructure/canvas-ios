@@ -43,7 +43,7 @@ struct StudentAssignmentListItemCell: View {
             },
             labels: {
                 titleLabel
-                dueDateLabel
+                dueDateLabels
                 scoreAndStatusLine
             },
             isLastItem: isLastItem,
@@ -62,9 +62,11 @@ struct StudentAssignmentListItemCell: View {
             .textStyle(.cellLabel)
     }
 
-    private var dueDateLabel: some View {
-        Text(model.dueDate)
-            .textStyle(.cellLabelSubtitle)
+    private var dueDateLabels: some View {
+        ForEach(Array(model.dueDates.enumerated()), id: \.offset) {
+            Text($1)
+        }
+        .textStyle(.cellLabelSubtitle)
     }
 
     @ViewBuilder
@@ -102,7 +104,7 @@ struct StudentAssignmentListItemCell: View {
                 id: "1",
                 title: "Assignment 1",
                 icon: .assignmentLine,
-                dueDate: date,
+                dueDates: [date],
                 submissionStatus: .init(text: "Graded", icon: .completeSolid, color: .textSuccess),
                 score: "42 / 100"
             ),
@@ -110,7 +112,7 @@ struct StudentAssignmentListItemCell: View {
                 id: "2",
                 title: "Assignment 2",
                 icon: .assignmentLine,
-                dueDate: date,
+                dueDates: [date],
                 submissionStatus: .init(text: "My favorite custom status", icon: .flagLine, color: .textInfo),
                 score: "123 456 / 1 000 000 (Some cool grade)"
             ),
@@ -118,14 +120,14 @@ struct StudentAssignmentListItemCell: View {
                 id: "3",
                 title: "Discussion 3",
                 icon: .discussionLine,
-                dueDate: date,
+                dueDates: [date],
                 submissionStatus: .init(text: "Not Submitted", icon: .noSolid, color: .textDark)
             ),
             .make(
                 id: "4",
                 title: "Long titled assignment to test how layout behaves",
                 icon: .assignmentLine,
-                dueDate: .loremIpsumMedium,
+                dueDates: [.loremIpsumMedium],
                 submissionStatus: .init(text: .loremIpsumShort, icon: .completeSolid, color: .textSuccess),
                 score: .loremIpsumMedium
             )

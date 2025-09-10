@@ -42,18 +42,15 @@ struct TeacherAssignmentListItem: Equatable, Identifiable {
 
     let route: URL?
 
-    init(
-        assignment: Assignment,
-        dueDateFormatter: DueDateFormatter = DueDateFormatterLive()
-    ) {
+    init(assignment: Assignment) {
         self.id = assignment.id
         self.title = assignment.name
         self.icon = assignment.icon.asImage
         self.isPublished = assignment.published
-        self.dueDate = dueDateFormatter.format(
+        self.dueDate = DueDateFormatter.format(
             assignment.dueAt,
             lockDate: assignment.lockAt,
-            hasMultipleDueDates: assignment.hasMultipleDueDates
+            hasOverrides: assignment.hasMultipleDueDates
         )
         self.needsGrading = assignment.needsGradingText
         let hasPointsPossible = assignment.pointsPossible != nil

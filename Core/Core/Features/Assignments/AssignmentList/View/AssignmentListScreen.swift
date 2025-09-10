@@ -193,7 +193,7 @@ private func createSections() -> [AssignmentListSection] {
             id: "1",
             title: "Math Assignment",
             icon: .assignmentLine,
-            dueDate: "Due Sep 10, 2025 at 11:59 PM",
+            dueDates: ["Due Sep 10, 2025 at 11:59 PM"],
             submissionStatus: .init(status: .notSubmitted),
             score: "10 / 15"
         ),
@@ -201,7 +201,7 @@ private func createSections() -> [AssignmentListSection] {
             id: "2",
             title: "Quiz 1",
             icon: .quizLine,
-            dueDate: "Due Sep 15, 2025 at 11:59 PM",
+            dueDates: ["Due Sep 15, 2025 at 11:59 PM"],
             submissionStatus: .init(status: .graded),
             score: "8 / 10"
         ),
@@ -209,7 +209,7 @@ private func createSections() -> [AssignmentListSection] {
             id: "3",
             title: "Discussion Topic",
             icon: .discussionLine,
-            dueDate: "Due Sep 20, 2025 at 11:59 PM",
+            dueDates: ["Due Sep 20, 2025 at 11:59 PM"],
             submissionStatus: .init(status: .late),
             score: "5 / 10"
         )

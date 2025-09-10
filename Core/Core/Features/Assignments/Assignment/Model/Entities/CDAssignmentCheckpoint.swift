@@ -36,7 +36,9 @@ public class CDAssignmentCheckpoint: NSManagedObject {
     }
 
     @NSManaged public var dueDate: Date?
+    /// Expected to match Assignment's unlock date. It is common for each checkpoint.
     @NSManaged public var unlockDate: Date?
+    /// Expected to match Assignment's lock date. It is common for each checkpoint.
     @NSManaged public var lockDate: Date?
 
     @NSManaged public var isOnlyVisibleToOverrides: Bool

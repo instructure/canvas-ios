@@ -88,29 +88,36 @@ struct StudentAssignmentListSubItemCell: View {
                 id: "1",
                 title: "Assignment 1",
                 icon: .assignmentLine,
-                dueDate: date,
-                submissionStatus: .init(text: "Graded", icon: .completeSolid, color: .textSuccess),
-                score: "42 / 100"
+                dueDates: [date],
+                submissionStatus: .init(status: .graded),
+                score: "42 / 100",
+                subAssignments: [
+                    .make(tag: "a", title: "Sub-assignment A", dueDate: date, submissionStatus: .init(status: .graded), score: "42 / 100")
+                ]
             ),
             .make(
                 id: "2",
-                title: "Discussion 2",
-                icon: .discussionLine,
-                dueDate: date,
-                submissionStatus: .init(text: "Not Submitted", icon: .noSolid, color: .textDark)
-            ),
-            .make(
-                id: "3",
-                title: "Long titled assignment to test how layout behaves",
+                title: "Assignment 2",
                 icon: .assignmentLine,
-                dueDate: .loremIpsumMedium,
-                submissionStatus: .init(text: .loremIpsumMedium, icon: .completeSolid, color: .textSuccess),
-                score: .loremIpsumMedium
+                dueDates: [date],
+                submissionStatus: .init(status: .excused),
+                subAssignments: [
+                    .make(tag: "a", title: "Sub-assignment A", dueDate: date, submissionStatus: .init(status: .graded), score: "42 / 100"),
+                    .make(tag: "b", title: "Sub-assignment B", dueDate: date, submissionStatus: .init(status: .excused))
+                ]
             )
         ]
 
         ForEach(rows) { row in
-            StudentAssignmentListItemCell(model: row, isLastItem: rows.last == row) { }
+            InstUI.CollapsibleListRow(
+                cell: StudentAssignmentListItemCell(model: row, isLastItem: nil) {},
+                isInitiallyExpanded: true
+            ) {
+                ForEach(row.subAssignments ?? []) { subItem in
+                    StudentAssignmentListSubItemCell(model: subItem) {}
+                }
+            }
+            InstUI.Divider()
         }
     }
     .tint(.course10)

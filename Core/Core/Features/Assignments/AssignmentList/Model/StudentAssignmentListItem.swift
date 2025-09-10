@@ -24,8 +24,8 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
     struct SubItem: Equatable, Identifiable {
         let tag: String
         let title: String
-        let dueDate: String
 
+        let dueDate: String
         let submissionStatus: SubmissionStatusLabel.Model
         let score: String?
 
@@ -36,7 +36,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
     let title: String
     let icon: Image
 
-    let dueDate: String
+    let dueDates: [String]
     let submissionStatus: SubmissionStatusLabel.Model
     let score: String?
 
@@ -44,17 +44,25 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
 
     let route: URL?
 
-    init(
-        assignment: Assignment,
-        dueDateFormatter: DueDateFormatter = DueDateFormatterLive()
-    ) {
+    init(assignment: Assignment) {
         let stateDisplayProperties = assignment.submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
         let hasSubAssignments = assignment.hasSubAssignments
 
         self.id = assignment.id
         self.title = assignment.name
         self.icon = assignment.icon.asImage
-        self.dueDate = dueDateFormatter.format(assignment.dueAt, lockDate: assignment.lockAt)
+
+        if hasSubAssignments {
+            self.dueDates = assignment.checkpoints
+                .map { DueDateSummary($0.dueDate, lockDate: $0.lockDate) }
+                .reduceIfNeeded()
+                .map(\.text)
+        } else {
+            self.dueDates = [
+                DueDateFormatter.format(assignment.dueAt, lockDate: assignment.lockAt)
+            ]
+        }
+
         self.submissionStatus = .init(stateDisplayProperties: stateDisplayProperties)
         let hasPointsPossible = assignment.pointsPossible != nil
         self.score = hasPointsPossible ? GradeFormatter.string(from: assignment, style: .medium) : nil
@@ -69,7 +77,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
                     return .init(
                         tag: checkpoint.tag,
                         title: checkpoint.discussionCheckpointStep?.text ?? checkpoint.assignmentName,
-                        dueDate: dueDateFormatter.format(checkpoint.dueDate, lockDate: checkpoint.lockDate),
+                        dueDate: DueDateFormatter.format(checkpoint.dueDate, lockDate: checkpoint.lockDate),
                         submissionStatus: .init(status: .notSubmitted), // TODO
                         score: String(subSubmission?.score ?? -1) // TODO
                     )
@@ -87,7 +95,7 @@ extension StudentAssignmentListItem {
         id: String,
         title: String,
         icon: Image,
-        dueDate: String,
+        dueDates: [String],
         submissionStatus: SubmissionStatusLabel.Model,
         score: String?,
         subAssignments: [SubItem]?,
@@ -96,7 +104,7 @@ extension StudentAssignmentListItem {
         self.id = id
         self.title = title
         self.icon = icon
-        self.dueDate = dueDate
+        self.dueDates = dueDates
         self.submissionStatus = submissionStatus
         self.score = score
         self.subAssignments = subAssignments
@@ -107,7 +115,7 @@ extension StudentAssignmentListItem {
         id: String = "",
         title: String = "",
         icon: Image = .emptyLine,
-        dueDate: String = "",
+        dueDates: [String] = [],
         submissionStatus: SubmissionStatusLabel.Model = .init(text: "", icon: .emptyLine, color: .clear),
         score: String? = nil,
         subAssignments: [SubItem]? = nil,
@@ -117,11 +125,29 @@ extension StudentAssignmentListItem {
             id: id,
             title: title,
             icon: icon,
-            dueDate: dueDate,
+            dueDates: dueDates,
             submissionStatus: submissionStatus,
             score: score,
             subAssignments: subAssignments,
             route: route
+        )
+    }
+}
+
+extension StudentAssignmentListItem.SubItem {
+    public static func make(
+        tag: String = "",
+        title: String = "",
+        dueDate: String = "",
+        submissionStatus: SubmissionStatusLabel.Model = .init(text: "", icon: .emptyLine, color: .clear),
+        score: String? = nil
+    ) -> Self {
+        self.init(
+            tag: tag,
+            title: title,
+            dueDate: dueDate,
+            submissionStatus: submissionStatus,
+            score: score
         )
     }
 }
