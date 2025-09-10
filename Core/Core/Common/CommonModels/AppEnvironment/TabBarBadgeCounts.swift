@@ -45,7 +45,13 @@ public class TabBarBadgeCounts: NSObject {
 
     private static func updateApplicationIconBadgeNumber() {
         let count = Int(unreadMessageCount + todoListCount)
-        notificationCenter.setBadgeCount(count) { _ in }
+        notificationCenter.setBadgeCount(count) { error in
+            guard let error else {
+                return
+            }
+            RemoteLogger.shared.logError(name: "Failed to update app badge count", reason: error.localizedDescription)
+            Logger.shared.error(error)
+        }
     }
 
     private static func updateUnreadMessageCount() {
