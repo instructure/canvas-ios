@@ -301,7 +301,7 @@ class PlannableTests: CoreTestCase {
         XCTAssertFalse(plannable.isSubmitted)
     }
 
-    func testShouldShowInTodoList() {
+    func testShouldShowInTodoListForAssignments() {
         let assignmentNotCompleted = Plannable.save(
             APIPlannable.make(
                 planner_override: .make(marked_complete: false),
@@ -347,29 +347,9 @@ class PlannableTests: CoreTestCase {
             in: databaseClient
         )
         XCTAssertFalse(completedAndSubmittedAssignment.shouldShowInTodoList)
+    }
 
-        let announcement = Plannable.save(
-            APIPlannable.make(
-                planner_override: .make(marked_complete: false),
-                plannable_id: ID("announcement1"),
-                plannable_type: PlannableType.announcement.rawValue
-            ),
-            userId: "user1",
-            in: databaseClient
-        )
-        XCTAssertFalse(announcement.shouldShowInTodoList)
-
-        let assessmentRequest = Plannable.save(
-            APIPlannable.make(
-                planner_override: .make(marked_complete: false),
-                plannable_id: ID("assessment1"),
-                plannable_type: PlannableType.assessment_request.rawValue
-            ),
-            userId: "user1",
-            in: databaseClient
-        )
-        XCTAssertFalse(assessmentRequest.shouldShowInTodoList)
-
+    func testShouldShowInTodoListForQuizzes() {
         let quiz = Plannable.save(
             APIPlannable.make(
                 planner_override: .make(marked_complete: false),
@@ -392,7 +372,9 @@ class PlannableTests: CoreTestCase {
             in: databaseClient
         )
         XCTAssertFalse(submittedQuiz.shouldShowInTodoList)
+    }
 
+    func testShouldShowInTodoListForDiscussions() {
         let discussionTopic = Plannable.save(
             APIPlannable.make(
                 planner_override: .make(marked_complete: false),
@@ -415,5 +397,29 @@ class PlannableTests: CoreTestCase {
             in: databaseClient
         )
         XCTAssertFalse(submittedDiscussion.shouldShowInTodoList)
+    }
+
+    func testShouldShowInTodoListForNonTodoTypes() {
+        let announcement = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(marked_complete: false),
+                plannable_id: ID("announcement1"),
+                plannable_type: PlannableType.announcement.rawValue
+            ),
+            userId: "user1",
+            in: databaseClient
+        )
+        XCTAssertFalse(announcement.shouldShowInTodoList)
+
+        let assessmentRequest = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(marked_complete: false),
+                plannable_id: ID("assessment1"),
+                plannable_type: PlannableType.assessment_request.rawValue
+            ),
+            userId: "user1",
+            in: databaseClient
+        )
+        XCTAssertFalse(assessmentRequest.shouldShowInTodoList)
     }
 }
