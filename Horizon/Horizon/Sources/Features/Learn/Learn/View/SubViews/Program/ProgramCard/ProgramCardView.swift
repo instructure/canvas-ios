@@ -99,7 +99,8 @@ struct ProgramCardView: View {
             isRequired: isRequired,
             isLinear: isLinear,
             status: status,
-            estimatedTime: estimatedTime
+            estimatedTime: estimatedTime,
+            completionPercent: completionPercent
         )
     }
 
