@@ -25,6 +25,7 @@ struct ProgramCardStatusView: View {
     let isLinear: Bool
     let status: ProgramCardStatus
     let estimatedTime: String?
+    let completionPercent: Double?
 
     var body: some View {
         switch status {
@@ -39,7 +40,8 @@ struct ProgramCardStatusView: View {
             ProgramCardInProgressView(
                 isRequired: isRequired,
                 isLinear: isLinear,
-                estimatedTime: estimatedTime
+                estimatedTime: estimatedTime,
+                completionPercent: completionPercent
             )
 
         case .locked:
@@ -61,7 +63,8 @@ struct ProgramCardStatusView: View {
             isRequired: true,
             isLinear: true,
             status: .active,
-            estimatedTime: "10 hours"
+            estimatedTime: "10 hours",
+            completionPercent: 0.9
         )
 
         ProgramCardStatusView(
@@ -69,7 +72,8 @@ struct ProgramCardStatusView: View {
             isRequired: false,
             isLinear: false,
             status: .inProgress,
-            estimatedTime: "10 hours"
+            estimatedTime: "10 hours",
+            completionPercent: 0.6
         )
 
         ProgramCardStatusView(
@@ -78,6 +82,7 @@ struct ProgramCardStatusView: View {
             isLinear: true,
             status: .locked,
             estimatedTime: "10 hours",
+            completionPercent: 0.2
         )
 
         ProgramCardStatusView(
@@ -85,7 +90,8 @@ struct ProgramCardStatusView: View {
             isRequired: false,
             isLinear: false,
             status: .completed,
-            estimatedTime: "10 hours"
+            estimatedTime: "10 hours",
+            completionPercent: 0.5
         )
     }
 }

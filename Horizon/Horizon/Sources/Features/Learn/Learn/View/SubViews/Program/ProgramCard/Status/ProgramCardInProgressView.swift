@@ -24,22 +24,27 @@ struct ProgramCardInProgressView: View {
     let isRequired: Bool
     let isLinear: Bool
     let estimatedTime: String?
+    let completionPercent: Double?
 
     init(
         isEnrolled: Bool = false,
         isRequired: Bool,
         isLinear: Bool,
-        estimatedTime: String?
+        estimatedTime: String?,
+        completionPercent: Double?
     ) {
         self.isEnrolled = isEnrolled
         self.isRequired = isRequired
         self.isLinear = isLinear
         self.estimatedTime = estimatedTime
+        self.completionPercent = completionPercent
     }
 
     var body: some View {
         HorizonUI.HFlow {
-            defaultPill(title: String(localized: "In progress"))
+            if let completionPercent {
+                progressBar(completionPercent: completionPercent)
+            }
             if isLinear {
                 ProgramStatusView(isRequired: isRequired)
             }
@@ -47,6 +52,25 @@ struct ProgramCardInProgressView: View {
             if let estimatedTime {
                 defaultPill(title: estimatedTime)
             }
+        }
+    }
+
+    private func progressBar(completionPercent: Double) -> some View {
+        VStack(spacing: .huiSpaces.space8) {
+            let rounded = round(completionPercent * 100)
+            HStack(spacing: .huiSpaces.space2) {
+                Text(rounded, format: .number) + Text("%")
+                Text("complete", bundle: .horizon)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .huiTypography(.p2)
+            .foregroundStyle(Color.huiColors.surface.institution)
+            HorizonUI.ProgressBar(
+                progress: 0.4,
+                size: .small,
+                numberPosition: .hidden,
+                backgroundColor: Color.huiColors.surface.pageTertiary
+            )
         }
     }
 
@@ -70,6 +94,7 @@ struct ProgramCardInProgressView: View {
         isEnrolled: true,
         isRequired: true,
         isLinear: true,
-        estimatedTime: "10 hours"
+        estimatedTime: "10 hours",
+        completionPercent: 0.3
     )
 }

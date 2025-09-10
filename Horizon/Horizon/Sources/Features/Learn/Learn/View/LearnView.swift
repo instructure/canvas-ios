@@ -28,7 +28,7 @@ struct LearnView: View {
             if !viewModel.isLoaderVisible {
                 switch viewModel.state {
                 case .programs:
-                    ProgramListView(viewModel: viewModel)
+                    ProgramView(viewModel: viewModel)
                 case .courseDetails:
                     if let courseDetailsViewModel = viewModel.courseDetailsViewModel {
                         LearnAssembly.makeCourseDetailsView(viewModel: courseDetailsViewModel, isBackButtonVisible: false)

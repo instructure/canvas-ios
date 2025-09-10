@@ -20,7 +20,7 @@ import Core
 import HorizonUI
 import SwiftUI
 
-struct ProgramListView: View {
+struct ProgramView: View {
     @State private var isProgramDropdownVisible: Bool = false
     @State private var programNameHeight: CGFloat?
     @Bindable var viewModel: LearnViewModel
@@ -147,7 +147,7 @@ struct ProgramListView: View {
 
 #if DEBUG
 #Preview {
-    ProgramListView(
+    ProgramView(
         viewModel: .init(
             interactor: ProgramInteractorPreview(),
             learnCoursesInteractor: GetLearnCoursesInteractorPreview(),
