@@ -22,22 +22,16 @@ import SwiftUI
 struct ProgramNameView: View {
     let name: String
     var body: some View {
-        HStack(spacing: .huiSpaces.space4) {
+        HStack(alignment: .top, spacing: .huiSpaces.space4) {
             Text("Part of", bundle: .horizon)
                 .huiTypography(.p1)
                 .foregroundStyle(Color.huiColors.text.body)
                 .frame(alignment: .leading)
 
-                Text(name)
-                    .huiTypography(.buttonTextLarge)
-                    .foregroundStyle(Color.huiColors.text.body)
-                    .overlay(
-                        Rectangle()
-                            .fill(Color.huiColors.text.body)
-                            .frame(height: 1)
-                            .frame(maxHeight: .infinity, alignment: .bottom),
-                        alignment: .bottomLeading
-                    )
+            Text(name)
+                .underline()
+                .huiTypography(.buttonTextLarge)
+                .foregroundStyle(Color.huiColors.text.body)
             Spacer()
         }
     }

@@ -75,8 +75,8 @@ struct ProgramListView: View {
                     onSelectProgram: viewModel.onSelectProgram) { course in
                         viewModel.navigateToCourseDetails(
                             courseID: course?.id ?? "",
-                            enrollemtID: course?.enrollemtID,
                             programID: course?.programID,
+                            isEnrolled: course?.isEnrolled ?? false,
                             viewController: viewController
                         )
                     }
@@ -113,6 +113,7 @@ struct ProgramListView: View {
             }
             programCards
                 .id(viewModel.currentProgram?.id)
+                .padding(.top, .huiSpaces.space2)
         }
     }
     var programCards: some View {
@@ -122,8 +123,8 @@ struct ProgramListView: View {
         ) { course in
             viewModel.navigateToCourseDetails(
                 courseID: course.id,
-                enrollemtID: course.enrollemtID,
                 programID: viewModel.currentProgram?.id,
+                isEnrolled: course.isEnrolled,
                 viewController: viewController
             )
         } onTapEnroll: { course in

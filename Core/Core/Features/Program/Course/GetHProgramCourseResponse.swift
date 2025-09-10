@@ -19,65 +19,44 @@
 import Foundation
 
 public struct GetHProgramCourseResponse: Codable {
-    let data: [String: ProgramCourse]?
-    var enrollemtIDs: [String: String]?
+    let data: Response?
+
+    public struct Response: Codable {
+        var courses: [ProgramCourse]?
+    }
 
     public struct ProgramCourse: Codable {
-        public let id: String?
-        public let name: String?
-        public let modulesConnection: ModuleConnection?
-        public let usersConnection: UsersConnection?
+        let id, name: String
+        let modulesConnection: ModulesConnection?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "_id"
+            case name, modulesConnection
+        }
     }
 
-    public struct ModuleConnection: Codable {
-        public let pageInfo: PageInfo?
-        public let edges: [Edge]?
-    }
-
-    public struct PageInfo: Codable {
-        public let hasNextPage: Bool?
-        public let startCursor: String?
+    public struct ModulesConnection: Codable {
+        let edges: [Edge]?
     }
 
     public struct Edge: Codable {
-        public let node: EdgeNode?
+        let node: Node?
     }
 
-    public struct EdgeNode: Codable {
-        public let id, name: String
-        public let moduleItems: [ModuleItem]
+    public struct Node: Codable {
+        let id, name: String?
+        let moduleItems: [ModuleItem]?
     }
 
     public struct ModuleItem: Codable {
-        public let published: Bool?
-        public let id: String?
-        public let estimatedDuration: String?
+        let published: Bool?
+        let id: String?
+        let estimatedDuration: String?
 
         enum CodingKeys: String, CodingKey {
             case published
             case id = "_id"
             case estimatedDuration
         }
-    }
-
-    public struct Module: Codable {
-        let id: String?
-        let name: String?
-    }
-
-    public struct UsersConnection: Codable {
-        public let nodes: [NodeElement]?
-    }
-
-    public struct NodeElement: Codable {
-        public let courseProgression: CourseProgression?
-    }
-
-    public struct CourseProgression: Codable {
-        public let requirements: Requirements?
-    }
-
-    public struct Requirements: Codable {
-        public let completionPercentage: Double?
     }
 }

@@ -23,7 +23,7 @@ public class GetHLearnCoursesUseCase: APIUseCase {
     // MARK: - Typealias
 
     public typealias Model = CDHLearnCourse
-    public typealias Request = GetHCoursesProgressionRequest
+    public typealias Request = GetHLearnCoursesProgressionRequest
 
     // MARK: - Properties
 
@@ -32,15 +32,20 @@ public class GetHLearnCoursesUseCase: APIUseCase {
     }
 
     private let userId: String
+    /// - true: Fetch only horizon courses
+    /// - false: Fetch only non-horizon courses
+    /// - nil: Fetch both
+    private let horizonCourses: Bool?
 
-    public var request: GetHCoursesProgressionRequest {
-        .init(userId: userId, horizonCourses: true)
+    public var request: GetHLearnCoursesProgressionRequest {
+        .init(userId: userId, horizonCourses: horizonCourses)
     }
 
     // MARK: - Init
 
-    public init(userId: String) {
+    public init(userId: String, horizonCourses: Bool? = true) {
         self.userId = userId
+        self.horizonCourses = horizonCourses
     }
 
     // MARK: - Functions

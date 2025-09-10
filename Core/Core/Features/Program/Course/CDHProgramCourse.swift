@@ -21,34 +21,30 @@ import CoreData
 public final class CDHProgramCourse: NSManagedObject {
     @NSManaged public var programID: String
     @NSManaged public var courseID: String
-    @NSManaged public var completionPercentage: Double
     @NSManaged public var courseName: String
-    @NSManaged public var enrollemtID: String?
     @NSManaged public var moduleItems: Set<CDHProgramCourseModuleItem>
 
     @discardableResult
     public static func save(
         _ apiEntity: GetHProgramCourseResponse.ProgramCourse?,
         programID: String,
-        courseID: String,
-        enrollemtID: String?,
         in context: NSManagedObjectContext
     ) -> CDHProgramCourse {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(format: "%K == %@", #keyPath(CDHProgramCourse.programID), programID),
-            NSPredicate(format: "%K == %@", #keyPath(CDHProgramCourse.courseID), courseID)
+            NSPredicate(format: "%K == %@", #keyPath(CDHProgramCourse.courseID), (apiEntity?.id).orEmpty)
         ])
 
         let dbEntity: CDHProgramCourse = context.fetch(predicate).first ?? context.insert()
         dbEntity.programID = programID
-        dbEntity.courseID = courseID
-        dbEntity.enrollemtID = enrollemtID
+        dbEntity.courseID = (apiEntity?.id).orEmpty
         dbEntity.courseName = (apiEntity?.name).orEmpty
-        dbEntity.completionPercentage = (apiEntity?.usersConnection?.nodes?.first?.courseProgression?.requirements?.completionPercentage).orZero
 
         let moduleItems = (apiEntity?.modulesConnection?.edges ?? [])
             .compactMap { $0.node }
-            .flatMap { $0.moduleItems }
+            .compactMap { $0.moduleItems }
+            .flatMap { $0 }
+
         let moduleItemsEntites: [CDHProgramCourseModuleItem] = moduleItems.map { moduleItem in
             CDHProgramCourseModuleItem.save(
                 moduleItem,
