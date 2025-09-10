@@ -125,7 +125,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), expectation: coursesAPICallExpectation, value: courses)
         api.mock(GetPlannablesRequest(
             userID: nil,
-            startDate: Clock.now.startOfDay(),
+            startDate: Clock.now.startOfDay().addDays(-28),
             endDate: Clock.now.startOfDay().addDays(28),
             contextCodes: contextCodes
         ), expectation: plannablesAPICallExpectation, value: plannables)
@@ -201,6 +201,24 @@ class TodoInteractorLiveTests: CoreTestCase {
         }
     }
 
+    func testDefaultStartDateIs28DaysBeforeNow() {
+        // Given
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let plannables = [makePlannable(courseId: "1", plannableId: "p1", type: "assignment", title: "Assignment 1")]
+
+        // When
+        mockCourses(courses)
+        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]))
+
+        // Then
+        XCTAssertFirstValueAndCompletion(testee.refresh(ignoreCache: false)) { isEmpty in
+            XCTAssertFalse(isEmpty)
+        }
+        XCTAssertFirstValue(testee.todos) { todos in
+            XCTAssertEqual(todos.count, 1)
+        }
+    }
+
     // MARK: - Helpers
 
     private func mockCourses(_ courses: [APICourse]) {
@@ -210,7 +228,7 @@ class TodoInteractorLiveTests: CoreTestCase {
     private func mockPlannables(_ plannables: [APIPlannable], contextCodes: [String]) {
         api.mock(GetPlannablesRequest(
             userID: nil,
-            startDate: Clock.now.startOfDay(),
+            startDate: Clock.now.startOfDay().addDays(-28),
             endDate: Clock.now.startOfDay().addDays(28),
             contextCodes: contextCodes
         ), value: plannables)

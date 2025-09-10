@@ -37,7 +37,7 @@ public final class TodoInteractorLive: TodoInteractor {
 
     private var subscriptions = Set<AnyCancellable>()
 
-    init(startDate: Date = Clock.now.startOfDay(), endDate: Date = Clock.now.startOfDay().addDays(28), env: AppEnvironment) {
+    init(startDate: Date = Clock.now.startOfDay().addDays(-28), endDate: Date = Clock.now.startOfDay().addDays(28), env: AppEnvironment) {
         self.startDate = startDate
         self.endDate = endDate
         self.env = env
