@@ -60,6 +60,7 @@ public final class Plannable: NSManagedObject {
         set { canvasContextIDRaw = newValue?.canvasContextID }
     }
 
+    // Evaluates only the state of the item, not the correct date range (currently 28 days).
     public var shouldShowInTodoList: Bool {
         plannableType != .announcement && plannableType != .assessment_request && !isMarkedComplete && !isSubmitted
     }
@@ -99,6 +100,8 @@ public final class Plannable: NSManagedObject {
         model.details = item.details
         model.context = Context(.course, id: item.course_id) ?? Context(.user, id: item.user_id)
         model.userID = item.user_id
+        model.isMarkedComplete = false
+        model.isSubmitted = false
         return model
     }
 
@@ -115,6 +118,8 @@ public final class Plannable: NSManagedObject {
         model.pointsPossible = item.assignment?.points_possible
         model.details = item.description
         model.userID = userId
+        model.isMarkedComplete = false
+        model.isSubmitted = false
         return model
     }
 }

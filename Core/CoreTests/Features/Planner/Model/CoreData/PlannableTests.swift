@@ -230,4 +230,190 @@ class PlannableTests: CoreTestCase {
         XCTAssertEqual(testee.contextName, TestConstants.contextName)
         XCTAssertEqual(testee.contextNameUserFacing, TestConstants.contextName + " To Do")
     }
+
+    func testIsMarkedCompleteFromAPIPlannable() {
+        let apiPlannableWithOverride = APIPlannable.make(
+            planner_override: .make(marked_complete: true),
+            plannable_id: ID("1")
+        )
+        let plannableMarkedComplete = Plannable.save(apiPlannableWithOverride, userId: "user1", in: databaseClient)
+        XCTAssertTrue(plannableMarkedComplete.isMarkedComplete)
+
+        let apiPlannableWithoutOverride = APIPlannable.make(
+            planner_override: nil,
+            plannable_id: ID("2")
+        )
+        let plannableNotMarkedComplete = Plannable.save(apiPlannableWithoutOverride, userId: "user1", in: databaseClient)
+        XCTAssertFalse(plannableNotMarkedComplete.isMarkedComplete)
+
+        let apiPlannableWithFalseOverride = APIPlannable.make(
+            planner_override: .make(marked_complete: false),
+            plannable_id: ID("3")
+        )
+        let plannableWithFalseOverride = Plannable.save(apiPlannableWithFalseOverride, userId: "user1", in: databaseClient)
+        XCTAssertFalse(plannableWithFalseOverride.isMarkedComplete)
+    }
+
+    func testIsMarkedCompleteFromAPIPlannerNote() {
+        let apiPlannerNote = APIPlannerNote.make(id: "note1")
+        let plannable = Plannable.save(apiPlannerNote, contextName: "Context", in: databaseClient)
+        XCTAssertFalse(plannable.isMarkedComplete)
+    }
+
+    func testIsMarkedCompleteFromAPICalendarEvent() {
+        let apiCalendarEvent = APICalendarEvent.make(id: ID("event1"))
+        let plannable = Plannable.save(apiCalendarEvent, userId: "user1", in: databaseClient)
+        XCTAssertFalse(plannable.isMarkedComplete)
+    }
+
+    func testIsSubmittedFromAPIPlannable() {
+        let apiPlannableWithSubmission = APIPlannable.make(
+            plannable_id: ID("1"),
+            submissions: .make(submitted: true)
+        )
+        let plannableSubmitted = Plannable.save(apiPlannableWithSubmission, userId: "user1", in: databaseClient)
+        XCTAssertTrue(plannableSubmitted.isSubmitted)
+
+        let apiPlannableWithoutSubmission = APIPlannable.make(
+            plannable_id: ID("2"),
+            submissions: nil
+        )
+        let plannableNotSubmitted = Plannable.save(apiPlannableWithoutSubmission, userId: "user1", in: databaseClient)
+        XCTAssertFalse(plannableNotSubmitted.isSubmitted)
+
+        let apiPlannableWithFalseSubmission = APIPlannable.make(
+            plannable_id: ID("3"),
+            submissions: .make(submitted: false)
+        )
+        let plannableWithFalseSubmission = Plannable.save(apiPlannableWithFalseSubmission, userId: "user1", in: databaseClient)
+        XCTAssertFalse(plannableWithFalseSubmission.isSubmitted)
+    }
+
+    func testIsSubmittedFromAPIPlannerNote() {
+        let apiPlannerNote = APIPlannerNote.make(id: "note1")
+        let plannable = Plannable.save(apiPlannerNote, contextName: "Context", in: databaseClient)
+        XCTAssertFalse(plannable.isSubmitted)
+    }
+
+    func testIsSubmittedFromAPICalendarEvent() {
+        let apiCalendarEvent = APICalendarEvent.make(id: ID("event1"))
+        let plannable = Plannable.save(apiCalendarEvent, userId: "user1", in: databaseClient)
+        XCTAssertFalse(plannable.isSubmitted)
+    }
+
+    func testShouldShowInTodoList() {
+        let assignmentNotCompleted = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(marked_complete: false),
+                plannable_id: ID("assignment1"),
+                plannable_type: PlannableType.assignment.rawValue
+            ),
+            userId: "user1",
+            in: databaseClient
+        )
+        XCTAssertTrue(assignmentNotCompleted.shouldShowInTodoList)
+
+        let assignmentCompleted = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(marked_complete: true),
+                plannable_id: ID("assignment2"),
+                plannable_type: PlannableType.assignment.rawValue
+            ),
+            userId: "user1",
+            in: databaseClient
+        )
+        XCTAssertFalse(assignmentCompleted.shouldShowInTodoList)
+
+        let submittedAssignment = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(marked_complete: false),
+                plannable_id: ID("assignment3"),
+                plannable_type: PlannableType.assignment.rawValue,
+                submissions: .make(submitted: true)
+            ),
+            userId: "user1",
+            in: databaseClient
+        )
+        XCTAssertFalse(submittedAssignment.shouldShowInTodoList)
+
+        let completedAndSubmittedAssignment = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(marked_complete: true),
+                plannable_id: ID("assignment4"),
+                plannable_type: PlannableType.assignment.rawValue,
+                submissions: .make(submitted: true)
+            ),
+            userId: "user1",
+            in: databaseClient
+        )
+        XCTAssertFalse(completedAndSubmittedAssignment.shouldShowInTodoList)
+
+        let announcement = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(marked_complete: false),
+                plannable_id: ID("announcement1"),
+                plannable_type: PlannableType.announcement.rawValue
+            ),
+            userId: "user1",
+            in: databaseClient
+        )
+        XCTAssertFalse(announcement.shouldShowInTodoList)
+
+        let assessmentRequest = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(marked_complete: false),
+                plannable_id: ID("assessment1"),
+                plannable_type: PlannableType.assessment_request.rawValue
+            ),
+            userId: "user1",
+            in: databaseClient
+        )
+        XCTAssertFalse(assessmentRequest.shouldShowInTodoList)
+
+        let quiz = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(marked_complete: false),
+                plannable_id: ID("quiz1"),
+                plannable_type: PlannableType.quiz.rawValue
+            ),
+            userId: "user1",
+            in: databaseClient
+        )
+        XCTAssertTrue(quiz.shouldShowInTodoList)
+
+        let submittedQuiz = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(marked_complete: false),
+                plannable_id: ID("quiz2"),
+                plannable_type: PlannableType.quiz.rawValue,
+                submissions: .make(submitted: true)
+            ),
+            userId: "user1",
+            in: databaseClient
+        )
+        XCTAssertFalse(submittedQuiz.shouldShowInTodoList)
+
+        let discussionTopic = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(marked_complete: false),
+                plannable_id: ID("discussion1"),
+                plannable_type: PlannableType.discussion_topic.rawValue
+            ),
+            userId: "user1",
+            in: databaseClient
+        )
+        XCTAssertTrue(discussionTopic.shouldShowInTodoList)
+
+        let submittedDiscussion = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(marked_complete: false),
+                plannable_id: ID("discussion2"),
+                plannable_type: PlannableType.discussion_topic.rawValue,
+                submissions: .make(submitted: true)
+            ),
+            userId: "user1",
+            in: databaseClient
+        )
+        XCTAssertFalse(submittedDiscussion.shouldShowInTodoList)
+    }
 }
