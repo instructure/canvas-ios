@@ -100,8 +100,7 @@ public final class Plannable: NSManagedObject {
         model.details = item.details
         model.context = Context(.course, id: item.course_id) ?? Context(.user, id: item.user_id)
         model.userID = item.user_id
-        model.isMarkedComplete = false
-        model.isSubmitted = false
+        // isMarkedComplete and isSubmitted defaults to false, should not be set here
         return model
     }
 
@@ -118,8 +117,7 @@ public final class Plannable: NSManagedObject {
         model.pointsPossible = item.assignment?.points_possible
         model.details = item.description
         model.userID = userId
-        model.isMarkedComplete = false
-        model.isSubmitted = false
+        // isMarkedComplete and isSubmitted defaults to false, should not be set here
         return model
     }
 }
