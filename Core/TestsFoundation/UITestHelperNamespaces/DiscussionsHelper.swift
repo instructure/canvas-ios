@@ -151,20 +151,56 @@ public class DiscussionsHelper: BaseHelper {
 
     // MARK: Other functions
     @discardableResult
-    public static func createDiscussion(course: DSCourse,
-                                        title: String = "Sample Discussion",
-                                        message: String = "Message of ",
-                                        isAnnouncement: Bool = false,
-                                        published: Bool = true,
-                                        isAssignment: Bool = false,
-                                        dueDate: Date? = nil) -> DSDiscussionTopic {
-        let discussionAssignment = isAssignment ? CreateDSAssignmentRequest.RequestedDSAssignment(
-            name: title, description: message + title, published: published, submission_types: [.discussion_topic], due_at: dueDate) : nil
+    public static func createDiscussion(
+        course: DSCourse,
+        title: String = "Sample Discussion",
+        message: String = "Message of ",
+        isAnnouncement: Bool = false,
+        published: Bool = true,
+        isAssignment: Bool = false,
+        isCheckpointed: Bool = false,
+        dueDate: Date? = nil
+    ) -> DSDiscussionTopic {
+        var assignment: CreateDSAssignmentRequest.RequestedDSAssignment?
+        if isAssignment {
+            assignment = .init(
+                name: title,
+                description: message + title,
+                published: published,
+                submission_types: [.discussion_topic],
+                due_at: dueDate
+            )
+        }
 
-        let discussionBody = CreateDSDiscussionRequest.RequestedDSDiscussion(
-            title: title, message: message + title, is_announcement: isAnnouncement,
-            published: published, assignment: discussionAssignment)
-        return seeder.createDiscussion(courseId: course.id, requestBody: discussionBody)
+        return seeder.createDiscussion(
+            courseId: course.id,
+            requestBody: .init(
+                title: title,
+                message: message + title,
+                is_announcement: isAnnouncement,
+                published: published,
+                assignment: assignment
+            )
+        )
+    }
+
+    @discardableResult
+    public static func createDiscussionWithCheckpoints(
+        course: DSCourse,
+        title: String = "Sample Discussion",
+        message: String = "Message of ",
+        repliesRequired: Int = 3,
+        replyToTopicDueDate: Date? = nil,
+        requiredRepliesDueDate: Date? = nil
+    ) -> CreateDSDiscussionWithCheckpointsResponse {
+        seeder.createDiscussionWithCheckpoints(
+            courseId: course.id,
+            title: title,
+            message: message,
+            repliesRequired: repliesRequired,
+            replyToTopicDueDate: replyToTopicDueDate,
+            requiredRepliesDueDate: requiredRepliesDueDate
+        )
     }
 
     public static func navigateToDiscussions(course: DSCourse) {

@@ -210,6 +210,13 @@ public extension XCUIElement {
         return false
     }
 
+    /// Fails the test and returns a dummy element, which is not intended to be used,
+    /// because failure stops the execution.
+    static func notFoundFailure(_ message: String? = nil) -> XCUIElement {
+        XCTFail(message ?? "Matching element not found.")
+        return app
+    }
+
     @discardableResult
     func writeText(text: String, hitGo: Bool = false, hitEnter: Bool = false, customApp: XCUIApplication? = nil) -> XCUIElement {
         let appInUse = customApp ?? app

@@ -20,34 +20,32 @@ import Combine
 import Core
 import Foundation
 
-/// A representation of our domain services
 final class DomainService {
-
-    enum Region: String {
-        case central1 = "ca-central-1"
-        case east1 = "us-east-1"
-        case west2 = "us-west-2"
-    }
-
     // MARK: - Dependencies
 
     private let baseURL: String
     private let horizonApi: API
     let option: Option
-    private let region: Region
+    private let region: String
 
     // MARK: - Private
 
     private var audience: String {
-        baseURL.contains("horizon.cd.instructure.com") == true ? horizonCDURL : productionURL
+        return baseURL.contains("horizon.cd.instructure.com") == true ? horizonCDURL : productionURL
     }
 
     private var horizonCDURL: String {
-        "\(option)-api-dev.domain-svcs.nonprod.inseng.io"
+        if( option == .journey) {
+            return "journey-server-dev.journey.nonprod.inseng.io"
+        }
+        return "\(option)-api-dev.domain-svcs.nonprod.inseng.io"
     }
 
     private var productionURL: String {
-        "\(option)-api-production.\(region.rawValue).temp.prod.inseng.io"
+        if option == .journey {
+            return "journey-server-prod.\(region).temp.prod.inseng.io"
+        }
+        return "\(option)-api-production.\(region).temp.prod.inseng.io"
     }
 
     // MARK: - Init
@@ -55,13 +53,12 @@ final class DomainService {
     init(
         _ domainServiceOption: Option,
         baseURL: String = AppEnvironment.shared.currentSession?.baseURL.absoluteString ?? "",
-        region: Region? = nil,
+        region: String? = AppEnvironment.shared.currentSession?.canvasRegion,
         horizonApi: API = AppEnvironment.defaultValue.api
     ) {
-        let defaultRegion = AppEnvironment.shared.currentSession?.canvasRegion.map { Region(rawValue: $0) ?? .east1 } ?? .east1
         self.option = domainServiceOption
         self.baseURL = baseURL
-        self.region = region ?? defaultRegion
+        self.region = region ?? "us-east-1"
         self.horizonApi = horizonApi
     }
 
@@ -73,12 +70,15 @@ final class DomainService {
         horizonApi
             .makeRequest(
                 JWTTokenRequest(
-                    service: option.service
+                    domainServiceOption: option
                 )
             )
             .tryMap { [weak self] response, urlResponse in
                 guard let self else { throw DomainService.Issue.unableToGetToken }
-                return try tokenResponseToUtf8String(tokenResponse: response, urlResponse: urlResponse)
+                return try tokenResponseToUtf8String(
+                    tokenResponse: response,
+                    urlResponse: urlResponse
+                )
             }
             .compactMap { [weak self] jwt in
                 guard let self else { return nil }
@@ -128,22 +128,33 @@ extension DomainService {
 extension DomainService {
     enum Option: String {
         case cedar
+        case journey
         case pine
         case redwood
 
         var service: String {
             rawValue
         }
+
+        var workflows: [Option] {
+            self == .journey ?
+            [self, .pine] :
+            [self]
+        }
     }
 }
 
 extension DomainService {
-    private struct JWTTokenRequest: APIRequestable {
+     struct JWTTokenRequest: APIRequestable {
         typealias Response = Result
-        let service: String
+
+        let domainServiceOption: DomainService.Option
 
         var path: String {
-            "/api/v1/jwts?canvas_audience=false&workflows[]=\(service)"
+            let workflowQueryParams = domainServiceOption.workflows.map {
+                "workflows[]=\($0.rawValue)"
+            }.joined(separator: "&")
+            return "/api/v1/jwts?canvas_audience=false&\(workflowQueryParams)"
         }
 
         var method: APIMethod { .post }

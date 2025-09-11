@@ -177,14 +177,6 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
 
         updateButtons()
 
-        if context.contextType == .course {
-            course.refresh()
-        } else {
-            group.refresh()
-        }
-        replyToEntry?.refresh()
-        topic.refresh()
-
         if context.id.hasShardID {
             ContextBaseURLInteractor(api: env.api)
                 .getBaseURL(context: context)
@@ -195,6 +187,20 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         }
 
         registerForTraitChanges()
+
+        webView.resetEnvironment(env) { [weak self] in
+            self?.refreshAfterViewIsReady()
+        }
+    }
+
+    private func refreshAfterViewIsReady() {
+        if context.contextType == .course {
+            course.refresh()
+        } else {
+            group.refresh()
+        }
+        replyToEntry?.refresh()
+        topic.refresh()
     }
 
     public override func viewWillAppear(_ animated: Bool) {

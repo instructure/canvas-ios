@@ -116,9 +116,9 @@ final class AssistChatViewModel {
     }
 
     func retry() {
-        guard let lastMessage = messages.popLast() else { return }
+        let lastMessage = messages.popLast()
         chatMessages = chatMessages.dropLast()
-        assistChatInteractor.publish(prompt: lastMessage.content, history: chatMessages)
+        assistChatInteractor.publish(prompt: lastMessage?.content, history: chatMessages)
         isRetryButtonVisible = false
         shouldOpenKeyboardPublisher.send(false)
     }
@@ -161,11 +161,11 @@ final class AssistChatViewModel {
     private func onMessage(_ response: AssistChatResponse) {
         guard let viewController = viewController else { return }
         weak var weakSelf = self
-        self.chatMessages = response.chatHistory
+        self.chatMessages = response.history
         var newMessages: [AssistChatMessageViewModel] = []
 
         shouldOpenKeyboardPublisher.send(messages.count == 1)
-        newMessages = response.chatHistory.map { message in
+        newMessages = response.history.map { message in
             let onFeedbackChange: ((Bool?) -> Void)? = message.isSolicitingFeedback(with: response) ? { isGood in
                 weakSelf?.onFeedbackChange(isGood)
             } : nil
@@ -196,13 +196,13 @@ final class AssistChatViewModel {
             pageURL: pageURL
         ).queryString
 
-        if let flashCards = response.chatHistory.last?.flashCards?.flashCardModels, flashCards.count > 0 {
+        if let flashCards = response.history.last?.flashCards?.flashCardModels, flashCards.count > 0 {
             router.route(
                 to: "/assistant/flashcards?\(params)",
                 userInfo: ["flashCards": flashCards],
                 from: viewController
             )
-        } else if let quizItems = response.chatHistory.last?.quizItems {
+        } else if let quizItems = response.history.last?.quizItems, quizItems.count > 0 {
             let quizzes = quizItems.map { AssistQuizModel(from: $0) }
             router.route(
                 to: "/assistant/quiz?\(params)",
@@ -289,7 +289,7 @@ private extension AssistChatMessage {
     }
 
     func isSolicitingFeedback(with response: AssistChatResponse) -> Bool {
-        return self.role == .Assistant && self.isFinalMessage(in: response.chatHistory) && !response.isLoading
+        return self.role == .Assistant && self.isFinalMessage(in: response.history) && !response.isLoading
     }
 
     func viewModel(
@@ -298,7 +298,7 @@ private extension AssistChatMessage {
         onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil,
         onTapCitation: AssistChatMessageViewModel.OnTapCitation? = nil
     ) -> AssistChatMessageViewModel {
-        let chipOptions = id == response.chatHistory.last?.id ? (response.chatHistory.last?.chipOptions ?? []) : []
+        let chipOptions = id == response.history.last?.id ? (response.history.last?.chipOptions ?? []) : []
         return .init(
             id: "\(id)\(chipOptions.count)\(onFeedbackChange != nil ? "feedback" : ""))",
             content: text ?? "",

@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Core
 
 struct TodoList {
     let days: [TodoDay]

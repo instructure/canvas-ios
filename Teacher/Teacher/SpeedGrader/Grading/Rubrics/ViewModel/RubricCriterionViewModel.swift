@@ -22,94 +22,132 @@ import SwiftUI
 
 class RubricCriterionViewModel: ObservableObject, Identifiable {
 
-    // MARK: - Inputs
+    // MARK: - Published
 
-    var controller = WeakViewController() {
-        didSet {
-            customRatingViewModel.controller = controller
-        }
-    }
-    @Binding var rubricComment: String
-    @Binding var rubricCommentID: String?
     @Published var userComment: String?
+    @Published var userPoints: Double?
+    @Published var userRatingId: String?
+    @Published var userRatingBubble: RubricRatingBubble?
 
     // MARK: - Outputs
 
-    var shouldShowLongDescriptionButton: Bool {
-        criterion.longDescription.isEmpty == false
+    let criterion: CDRubricCriterion
+    let isFreeFormCommentsEnabled: Bool
+    let hideRubricPoints: Bool
+    let ratingViewModels: [RubricRatingViewModel]
+
+    var isSaving: CurrentValueSubject<Bool, Never> {
+        interactor.isSaving
     }
-    var shouldShowRubricNotUsedForScoringMessage: Bool {
-        criterion.ignoreForScoring
-    }
-    var description: String {
-        criterion.shortDescription
-    }
+
     var shouldShowRubricRatings: Bool {
         !isFreeFormCommentsEnabled
     }
-    var shouldShowAddFreeFormCommentButton: Bool {
-        isFreeFormCommentsEnabled && !interactor.hasAssessmentUserComment(criterionId: criterion.id)
+
+    var title: String {
+        criterion.shortDescription
     }
-    var addCommentButtonA11yID: String {
-        "SpeedGrader.Rubric.\(criterion.id).addCommentButton"
+
+    var longDescription: String {
+        criterion.longDescription
     }
-    var criterionId: String {
-        criterion.id
-    }
-    var ratingViewModels: [RubricRatingViewModel]
-    var customRatingViewModel: RubricCustomRatingViewModel
 
     // MARK: - Private Properties
 
-    private let criterion: CDRubricCriterion
-    private let isFreeFormCommentsEnabled: Bool
-    private let router: Router
     private let interactor: RubricGradingInteractor
+    private var subscriptions = Set<AnyCancellable>()
 
     init(
         criterion: CDRubricCriterion,
         isFreeFormCommentsEnabled: Bool,
-        interactor: RubricGradingInteractor,
-        rubricComment: Binding<String>,
-        rubricCommentID: Binding<String?>,
-        router: Router = AppEnvironment.shared.router
+        hideRubricPoints: Bool,
+        interactor: RubricGradingInteractor
     ) {
         self.criterion = criterion
         self.isFreeFormCommentsEnabled = isFreeFormCommentsEnabled
+        self.hideRubricPoints = hideRubricPoints
         self.interactor = interactor
-        self._rubricComment = rubricComment
-        self._rubricCommentID = rubricCommentID
-        self.router = router
-        ratingViewModels = (criterion.ratings ?? [])
-            .reversed()
-            .map {
-                RubricRatingViewModel(
-                    rating: $0,
-                    criterionId: criterion.id,
-                    interactor: interactor
-                )
-            }
-        customRatingViewModel = RubricCustomRatingViewModel(criterion: criterion, interactor: interactor)
 
-        interactor.assessments
-            .map { assessments in
-                assessments[criterion.id]?.comments
+        let ratings = (criterion.ratings ?? [])
+            .sorted(by: { $0.points < $1.points })
+
+        if criterion.criterionUseRange {
+
+            var ratingModels = [RubricRatingViewModel]()
+            var lowerPoints: Double = 0
+
+            for rating in ratings {
+                ratingModels.append(
+                    RubricRatingViewModel(
+                        rating: rating,
+                        ratingPointsLowerBound: lowerPoints,
+                        criterionId: criterion.id,
+                        interactor: interactor
+                    )
+                )
+                lowerPoints = rating.points
             }
-            .assign(to: &$userComment)
+
+            ratingViewModels = ratingModels
+
+        } else {
+
+            ratingViewModels = ratings
+                .map {
+                    RubricRatingViewModel(
+                        rating: $0,
+                        criterionId: criterion.id,
+                        interactor: interactor
+                    )
+                }
+        }
+
+        interactor
+            .assessments
+            .sink { [weak self] assessments in
+                self?.updateUserValues(assessments)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func updateUserValues(_ assessments: APIRubricAssessmentMap) {
+        let assessment = assessments[criterion.id]
+
+        userComment = assessment?.comments
+        userPoints = assessment?.points
+        userRatingId = assessment?.rating_id?.nilIfEmpty
+
+        let ratingModel = userRatingId
+            .flatMap { ratingId in ratingViewModels.first { $0.rating.id == ratingId } }
+        ?? userPoints
+            .flatMap({ points in ratingViewModels.first { $0.matchPoints(points) } })
+
+        userRatingBubble = ratingModel.flatMap({ $0.bubble })
     }
 
     // MARK: - User Actions
 
-    func didTapAddCommentButton() {
-        rubricComment = ""
-        rubricCommentID = criterion.id
+    func updateComment(_ newComment: String) {
+        userComment = newComment
+        interactor.updateComment(criterionId: criterion.id, comment: newComment)
     }
 
-    func didTapShowLongDescriptionButton() {
-        let web = CoreWebViewController()
-        web.title = criterion.shortDescription
-        web.webView.loadHTMLString(criterion.longDescription)
-        web.addDoneButton(side: .right)
-        router.show(web, from: controller, options: .modal(embedInNav: true))
+    func updateCustomRating(_ newPoints: Double) {
+        interactor.selectRating(criterionId: criterion.id, points: newPoints, ratingId: APIRubricAssessment.customRatingId)
     }
+
+    // MARK: - Rubric Score input
+
+    var pointsPossibleText: String {
+        String.format(pts: criterion.points)
+    }
+
+    var pointsPossibleAccessibilityText: String {
+        String.format(points: criterion.points)
+    }
+}
+
+struct RubricRatingBubble {
+    let title: String
+    let subtitle: String
 }

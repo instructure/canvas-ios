@@ -53,7 +53,7 @@ open class AppEnvironment {
         }
     }
     public var lastLoginAccount: APIAccountResult?
-    public let k5 = K5State()
+    public private(set) var k5 = K5State()
     public weak var loginDelegate: LoginDelegate?
     public var userDidLogin: (() -> Void)?
 
@@ -70,6 +70,12 @@ open class AppEnvironment {
 
     open var root: AppEnvironment { self }
     public var isRoot: Bool { root === self }
+
+    public var sessionShardID: String? { currentSession?.accessToken?.shardID }
+
+    // This can be different from `sessionShardID` for cross-shard setup.
+    // See `AppEnvironmentOverride` impl. for it.
+    public var courseShardID: String? { sessionShardID }
 
     /**
      - parameters:

@@ -168,6 +168,12 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
             navigationItem.rightBarButtonItem = nil
         }
 
+        webView.resetEnvironment(env) { [weak self] in
+            self?.refreshAfterViewIsReady()
+        }
+    }
+
+    private func refreshAfterViewIsReady() {
         colors.refresh()
         if context.contextType == .course {
             course.refresh()

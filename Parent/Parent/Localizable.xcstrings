@@ -2329,7 +2329,7 @@
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Besked"
+            "value" : "Meddelelse"
           }
         },
         "da-instk12" : {
@@ -2449,7 +2449,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "発表"
+            "value" : "アナウンスメント"
           }
         },
         "mi" : {
@@ -2497,7 +2497,7 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anúncio"
+            "value" : "Aviso"
           }
         },
         "ru" : {
@@ -3992,7 +3992,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whakakore"
+            "value" : "Whakakore "
           }
         },
         "ms" : {
@@ -8806,7 +8806,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "À rendre le"
+            "value" : "Dû le"
           }
         },
         "fr-CA" : {
@@ -8836,7 +8836,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Batas"
+            "value" : "Batas Waktu"
           }
         },
         "is" : {
@@ -8896,7 +8896,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Limite"
+            "value" : "Data de vencimento"
           }
         },
         "pt-BR" : {
@@ -8914,7 +8914,7 @@
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Roki"
+            "value" : "Rok"
           }
         },
         "sv" : {
@@ -14422,7 +14422,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "N. a."
+            "value" : "N/C"
           }
         },
         "es-ES" : {
@@ -14554,7 +14554,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ej tillämpligt"
+            "value" : "n/a"
           }
         },
         "sv-instk12" : {
@@ -19105,7 +19105,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ngana anō"
+            "value" : "Ngana ano"
           }
         },
         "ms" : {
@@ -19473,7 +19473,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "إعدادات"
+            "value" : "الإعدادات"
           }
         },
         "ca" : {
@@ -19653,7 +19653,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Configurações"
+            "value" : "Definições"
           }
         },
         "pt-BR" : {
@@ -23929,7 +23929,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neamhléite"
+            "value" : "Unread"
           }
         },
         "hi" : {
@@ -23953,7 +23953,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ólesið"
+            "value" : "Ólesin"
           }
         },
         "it" : {
@@ -23971,7 +23971,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kia pānuitia"
+            "value" : "Kia panuitia"
           }
         },
         "ms" : {
@@ -23989,7 +23989,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uleste"
+            "value" : "Ulest"
           }
         },
         "nl" : {
@@ -24031,13 +24031,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Olästa"
+            "value" : "Oläst"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oläst"
+            "value" : "Olästa"
           }
         },
         "th" : {
