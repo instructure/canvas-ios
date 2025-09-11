@@ -90,11 +90,11 @@ public struct CalendarToDoDetailsScreen: View {
                     """
             )
         ),
-        userID: "",
+        userId: "",
         in: PreviewEnvironment().database.viewContext
     )
 
-    return PlannerAssembly.makeToDoDetailsScreenPreview(plannable: plannable)
+    PlannerAssembly.makeToDoDetailsScreenPreview(plannable: plannable)
 }
 
 #endif

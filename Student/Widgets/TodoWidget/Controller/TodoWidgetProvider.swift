@@ -102,9 +102,7 @@ class TodoWidgetProvider: TimelineProvider {
             }
             .map { plannables in
                 let todoItems = plannables
-                    .filter {
-                        $0.plannableType != .announcement && $0.plannableType != .assessment_request
-                    }
+                    .filter(\.shouldShowInTodoList)
                     .compactMap(TodoItem.init)
 
                 let model = TodoModel(items: todoItems)

@@ -27,7 +27,7 @@ extension Plannable {
         userID: String? = "1",
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Plannable {
-        let model = Plannable.save(api, userID: userID, in: context)
+        let model = Plannable.save(api, userId: userID, in: context)
         try! context.save()
         return model
     }
