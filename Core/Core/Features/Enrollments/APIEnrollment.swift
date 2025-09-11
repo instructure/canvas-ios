@@ -222,7 +222,7 @@ public struct GetEnrollmentsRequest: APIRequestable {
     }
 
     let context: Context
-    let userID: String?
+    var userID: String?
     let gradingPeriodID: String?
     let types: [String]?
     let includes: [Include]
