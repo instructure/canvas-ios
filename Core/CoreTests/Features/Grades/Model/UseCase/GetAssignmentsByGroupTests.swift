@@ -155,7 +155,7 @@ class GetAssignmentsByGroupTests: CoreTestCase {
 
         // THEN
         waitForExpectations(timeout: 1)
-        XCTAssertEqual(store.numberOfSections, 1)
+        XCTAssertEqual(store.numberOfSections, 2)
     }
 
     func testFetchesAssignmentsForEachGradingPeriodAndReturnsAssignmentsForAGradingPeriod() {

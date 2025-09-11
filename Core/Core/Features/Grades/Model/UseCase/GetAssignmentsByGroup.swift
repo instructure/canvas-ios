@@ -72,8 +72,6 @@ public class GetAssignmentsByGroup: UseCase {
                 predicate = predicate.and(NSPredicate(format: "ANY submissions.userID == %@", userID))
             }
 
-            predicate = predicate.and(NSPredicate(key: #keyPath(Assignment.hideInGradeBook), equals: false))
-
             return predicate
         }()
 
