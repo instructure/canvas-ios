@@ -360,6 +360,36 @@ class CoreWebViewTests: CoreTestCase {
         XCTAssertEqual(mockHelper.receivedView, testee)
         XCTAssertEqual(mockHelper.receivedViewController, hostVC)
     }
+
+    func test_showsFileViewer_whenCanvasUserContentLinkTapped() throws {
+        let canvasUserContentURL = "https://example.canvas-user-content.com/file.pdf"
+        let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        let delegate = LinkDelegate()
+        view.linkDelegate = delegate
+        let policyCallbackExpectation = expectation(description: "Policy callback invoked")
+
+        // WHEN
+        view.webView(
+            view,
+            decidePolicyFor: MockNavigationAction(url: canvasUserContentURL, type: .linkActivated)
+        ) { policy in
+            XCTAssertEqual(policy, .cancel)
+            policyCallbackExpectation.fulfill()
+        }
+
+        // THEN
+        wait(for: [policyCallbackExpectation], timeout: 10)
+        let lastShow = router.viewControllerCalls.last
+        let fileViewer = try XCTUnwrap(lastShow?.0 as? FileViewerWebViewController)
+        XCTAssertEqual(fileViewer.url, URL(string: canvasUserContentURL))
+        XCTAssertEqual(lastShow?.1, delegate.routeLinksFrom)
+        XCTAssertEqual(lastShow?.2, .modal(
+            .fullScreen,
+            isDismissable: false,
+            embedInNav: true,
+            addDoneButton: true
+        ))
+    }
 }
 
 private class MockA11yHelper: CoreWebViewAccessibilityHelper {
