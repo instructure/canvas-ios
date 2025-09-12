@@ -17,16 +17,19 @@
 //
 
 import Combine
+import CombineSchedulers
 @testable import Core
 import XCTest
 
 class AssignmentPickerViewModelTests: CoreTestCase {
     private let mockService = MockAssignmentPickerListService()
+    private var testScheduler: TestSchedulerOf<DispatchQueue>!
     private var testee: AssignmentPickerViewModel!
 
     override func setUp() {
         super.setUp()
-        testee = AssignmentPickerViewModel(service: mockService)
+        testScheduler = DispatchQueue.test
+        testee = AssignmentPickerViewModel(service: mockService, scheduler: testScheduler.eraseToAnyScheduler())
         testee.sharedFileExtensions.send(Set())
         environment.userDefaults?.reset()
     }
@@ -138,15 +141,19 @@ class AssignmentPickerViewModelTests: CoreTestCase {
     }
 
     func testDismissesViewDelayedAfterAssignmentSelection() {
-        let viewDismissed = expectation(description: "View dismissed")
         var isDismissCalled = false
         let dismissSubscription = testee.dismissViewDidTrigger.sink {
-            viewDismissed.fulfill()
             isDismissCalled = true
         }
+
         testee.assignmentSelected(.init(id: "", name: "", notAvailableReason: nil))
         XCTAssertFalse(isDismissCalled)
-        waitForExpectations(timeout: 0.3)
+
+        testScheduler.advance(by: .milliseconds(199))
+        XCTAssertFalse(isDismissCalled)
+        testScheduler.advance(by: .milliseconds(1))
+        XCTAssertTrue(isDismissCalled)
+
         dismissSubscription.cancel()
     }
 

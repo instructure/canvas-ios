@@ -47,4 +47,32 @@ class APITurnItInDataTests: CoreTestCase {
         )
         XCTAssertEqual(turnItInData.rawValue["submission_1"]?.status, "scored")
     }
+
+    func testDynamicCodingKeysIntInitializer() {
+        let codingKey = APITurnItInData.DynamicCodingKeys(intValue: 123)
+        XCTAssertNil(codingKey)
+    }
+
+    func testRawValueInitializer() {
+        let item1 = APITurnItInData.Item(
+            status: "scored",
+            similarity_score: 85.5,
+            outcome_response: .init(outcomes_tool_placement_url: APIURL(rawValue: URL(string: "https://example.com")))
+        )
+        let item2 = APITurnItInData.Item(
+            status: "pending",
+            similarity_score: nil,
+            outcome_response: nil
+        )
+
+        let rawValue = ["attachment_1": item1, "submission_2": item2]
+        let turnItInData = APITurnItInData(rawValue: rawValue)
+
+        XCTAssertEqual(turnItInData.rawValue.keys.count, 2)
+        XCTAssertEqual(turnItInData.rawValue["attachment_1"]?.status, "scored")
+        XCTAssertEqual(turnItInData.rawValue["attachment_1"]?.similarity_score, 85.5)
+        XCTAssertEqual(turnItInData.rawValue["submission_2"]?.status, "pending")
+        XCTAssertNil(turnItInData.rawValue["submission_2"]?.similarity_score)
+        XCTAssertNil(turnItInData.rawValue["submission_2"]?.outcome_response)
+    }
 }
