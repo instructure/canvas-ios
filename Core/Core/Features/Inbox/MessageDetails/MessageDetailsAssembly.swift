@@ -26,8 +26,10 @@ public enum MessageDetailsAssembly {
         env: AppEnvironment
     ) -> UIViewController {
         let interactor = MessageDetailsInteractorLive(env: env, conversationID: conversationID)
+        let studentAccessInteractor = StudentAccessInteractorLive(env: env)
         let viewModel = MessageDetailsViewModel(
             interactor: interactor,
+            studentAccessInteractor: studentAccessInteractor,
             myID: env.currentSession?.userID ?? "",
             allowArchive: allowArchive,
             env: env
@@ -43,8 +45,11 @@ public enum MessageDetailsAssembly {
                                    messages: [ConversationMessage])
     -> MessageDetailsView {
         let interactor = MessageDetailsInteractorPreview(env: env, subject: subject, messages: messages)
+        let studentAccessInteractor = StudentAccessInteractorPreview(env: env)
+
         let viewModel = MessageDetailsViewModel(
             interactor: interactor,
+            studentAccessInteractor: studentAccessInteractor,
             myID: env.currentSession?.userID ?? "",
             allowArchive: true,
             env: env
