@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct Program {
+struct Program: Identifiable {
     let id: String
     let name: String
     let variant: String
@@ -62,12 +62,12 @@ struct Program {
         estimatedTime != nil || date != nil
     }
 
-    var countOfRequiredCourses: Int {
-        courses.filter(\.isRequired).count
+    var countOfRemainingCourses: Int {
+        courses.filter { $0.isRequired && !$0.isCompleted }.count
     }
 }
 
-struct ProgramCourse: Identifiable {
+struct ProgramCourse: Identifiable, Equatable {
     let id: String
     var name: String = ""
     let isSelfEnrolled: Bool
@@ -89,7 +89,7 @@ struct ProgramCourse: Identifiable {
     }
 
     var isEnrolled: Bool {
-        courseStatus == .enrolled
+        enrollemtID != nil
     }
 
     var courseStatus: ProgramCourse.Status {
@@ -117,6 +117,18 @@ extension Array where Element == ProgramCourse {
                 updatedCourse.index = 0
             }
             return updatedCourse
+        }
+    }
+
+    func mapToProgramSwitcher(programID: String?, programName: String?) -> [ProgramSwitcherModel.Course] {
+        return self.map {
+            .init(
+                id: $0.id,
+                name: $0.name,
+                enrollemtID: $0.enrollemtID,
+                programID: programID,
+                programName: programName
+            )
         }
     }
 }

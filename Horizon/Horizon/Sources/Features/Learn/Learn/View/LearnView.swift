@@ -22,18 +22,26 @@ import HorizonUI
 
 struct LearnView: View {
     @Bindable var viewModel: LearnViewModel
-    @Environment(\.viewController) private var viewController
+
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        VStack(spacing: .zero) {
             if !viewModel.isLoaderVisible {
-                content
-                    .padding([.horizontal, .bottom], .huiSpaces.space24)
+                switch viewModel.state {
+                case .programs:
+                    ProgramView(viewModel: viewModel)
+                case .courseDetails:
+                    if let courseDetailsViewModel = viewModel.courseDetailsViewModel {
+                        LearnAssembly.makeCourseDetailsView(viewModel: courseDetailsViewModel, isBackButtonVisible: false)
+                    }
+                case .empty:
+                    emptyView
+                }
             }
         }
-        .toolbar(.hidden)
-        .safeAreaInset(edge: .top, spacing: .zero) { LearnTopBarView() }
-        .background(Color.huiColors.surface.pagePrimary)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onFirstAppear { viewModel.featchPrograms() }
+        .background(Color.huiColors.surface.pagePrimary)
+        .toolbar(.hidden)
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)
@@ -43,96 +51,20 @@ struct LearnView: View {
                     .background(Color.huiColors.surface.pagePrimary)
             }
         }
+    }
+
+    private var emptyView: some View {
+        ScrollView {
+            Text("You aren’t currently enrolled in a course or program.", bundle: .horizon)
+                .padding(.huiSpaces.space24)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                .foregroundStyle(Color.huiColors.text.body)
+                .huiTypography(.h3)
+                .padding(.top, .huiSpaces.space32)
+        }
         .refreshable {
-           await viewModel.refreshPrograms()
+            await viewModel.fetchPrograms(ignoreCache: true)
         }
-        .huiToast(
-            viewModel: .init(
-                text: viewModel.toastMessage,
-                style: viewModel.hasError ? .error : .success
-            ),
-            isPresented: $viewModel.toastIsPresented
-        )
-    }
-
-    private var content: some View {
-        VStack(alignment: .leading, spacing: .zero) {
-            programDropdown
-                .padding(.bottom, .huiSpaces.space24)
-                .id(viewModel.programs.count)
-
-            if viewModel.shouldShowProgress {
-                LearnProgressBarView(completionPercent: viewModel.currentProgram?.completionPercent)
-                    .padding(.bottom, .huiSpaces.space8)
-            }
-
-            if let description = viewModel.currentProgram?.description {
-                Text(description)
-                    .foregroundStyle(Color.huiColors.text.body)
-                    .huiTypography(.p1)
-                    .padding(.bottom, .huiSpaces.space16)
-            }
-
-            LearnAttributesView(
-                estimatedDuration: viewModel.currentProgram?.estimatedTime,
-                date: viewModel.currentProgram?.date
-            )
-            .padding(.bottom, viewModel.currentProgram?.hasPills == true ? .huiSpaces.space32 : .zero)
-
-            if let program = viewModel.currentProgram, !program.isLinear, !program.isOptionalProgram {
-                completeProgram(program)
-                    .padding(.bottom, .huiSpaces.space16)
-            }
-            programCards
-                .id(viewModel.currentProgram?.id)
-        }
-    }
-}
-
-// MARK: - Subviews
-private extension LearnView {
-    var programDropdown: some View {
-        DropdownMenu(
-            items: viewModel.dropdownMenuPrograms,
-            selectedItem: viewModel.selectedProgram,
-            onSelect: viewModel.onSelectProgram
-        )
-    }
-
-    var programCards: some View {
-        ListProgramCards(
-            programs: viewModel.currentProgram?.courses ?? [],
-            isLoading: viewModel.isLoadingEnrollButton, isLinear: viewModel.currentProgram?.isLinear ?? false
-        ) { course in
-            viewModel.navigateToCourseDetails(course: course, viewController: viewController)
-        } onTapEnroll: { course in
-            viewModel.enrollInProgram(course: course )
-        }
-    }
-
-    private func defaultPill(title: String) -> some View {
-        HorizonUI.Pill(
-            title: title,
-            style: .solid(
-                .init(
-                    backgroundColor: Color.huiColors.surface.pageSecondary,
-                    textColor: Color.huiColors.text.title
-                )
-            ),
-            isSmall: true
-        )
-    }
-
-    private func completeProgram(_ program: Program) -> some View {
-        HStack(spacing: .huiSpaces.space4) {
-            Text("Complete", bundle: .horizon)
-            Text(viewModel.currentProgram?.countOfRequiredCourses.description ?? "")
-            Text("of", bundle: .horizon)
-            Text(viewModel.currentProgram?.courses.count.description ?? "")
-            Text("courses", bundle: .horizon)
-        }
-        .foregroundStyle(Color.huiColors.text.body)
-        .huiTypography(.h4)
     }
 }
 
@@ -141,6 +73,7 @@ private extension LearnView {
     LearnView(
         viewModel: .init(
             interactor: ProgramInteractorPreview(),
+            learnCoursesInteractor: GetLearnCoursesInteractorPreview(),
             router: AppEnvironment.shared.router
         )
     )

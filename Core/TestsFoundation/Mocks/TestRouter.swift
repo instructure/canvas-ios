@@ -86,7 +86,7 @@ public class TestRouter: Router {
         popExpectation.fulfill()
     }
 
-    public override func popToRoot(from: UIViewController) {
+    public override func popToRoot(from: UIViewController, animated: Bool = true) {
         popped = from
         popExpectation.fulfill()
     }

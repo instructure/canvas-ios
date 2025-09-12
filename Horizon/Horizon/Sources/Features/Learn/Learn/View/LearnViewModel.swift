@@ -23,9 +23,17 @@ import Observation
 import Foundation
 
 @Observable
-final class LearnViewModel {
+final class LearnViewModel: ProgramSwitcherMapper {
+
+    enum State {
+        case programs
+        case courseDetails
+        case empty
+    }
     // MARK: - Outputs (State)
 
+    private(set) var state: State = .empty
+    private(set) var courseDetailsViewModel: CourseDetailsViewModel?
     private(set) var isLoaderVisible = true
     private(set) var isLoadingEnrollButton = false
     private(set) var hasError = false
@@ -33,12 +41,12 @@ final class LearnViewModel {
 
     private(set) var programs: [Program] = []
     private(set) var currentProgram: Program?
-    private(set) var selectedProgram: DropdownMenuItem?
-    private(set) var dropdownMenuPrograms: [DropdownMenuItem] = []
+    private(set) var selectedProgram: ProgramSwitcherModel?
+    private(set) var dropdownMenuPrograms: [ProgramSwitcherModel] = []
 
     // MARK: - Inputs
 
-    var onSelectProgram: (DropdownMenuItem?) -> Void = { _ in }
+    var onSelectProgram: (ProgramSwitcherModel?) -> Void = { _ in }
 
     // MARK: - Inputs / Ouputs
 
@@ -54,16 +62,19 @@ final class LearnViewModel {
     // MARK: - Dependencies
 
     private let interactor: ProgramInteractor
+    private let learnCoursesInteractor: GetLearnCoursesInteractor
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
     init(
         interactor: ProgramInteractor,
+        learnCoursesInteractor: GetLearnCoursesInteractor,
         router: Router,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
+        self.learnCoursesInteractor = learnCoursesInteractor
         self.router = router
         self.scheduler = scheduler
         configureSelectionHandler()
@@ -75,6 +86,11 @@ final class LearnViewModel {
             self.selectedProgram = selectedProgram
             self.updateCurrentProgram(by: selectedProgram?.id)
         }
+    }
+
+    func updateProgram(_ program: ProgramSwitcherModel?) {
+        selectedProgram = dropdownMenuPrograms.isEmpty ? program : dropdownMenuPrograms.first(where: { $0.id ==  program?.id })
+        updateCurrentProgram(by: selectedProgram?.id)
     }
 
     func refreshPrograms() async {
@@ -93,27 +109,55 @@ final class LearnViewModel {
         ignoreCache: Bool = false,
         completionHandler: (() -> Void)? = nil
     ) {
-        interactor.getProgramsWithCourses(ignoreCache: ignoreCache)
+        interactor
+            .getProgramsWithCourses(ignoreCache: ignoreCache)
+            .zip(
+                learnCoursesInteractor
+                    .getCourses(ignoreCache: false)
+                    .setFailureType(to: Error.self)
+            )
             .receive(on: scheduler)
-            .sinkFailureOrValue { [weak self] error in
-                self?.handleError(error)
+            .sink { [weak self] completion in
+                if case .failure(let error) = completion {
+                    self?.handleError(error)
+                }
                 completionHandler?()
-            } receiveValue: { [weak self] programs in
-                guard let self else { return }
-                self.handleProgramsLoaded(programs)
-                completionHandler?()
+            } receiveValue: { [weak self] programs, courses in
+                self?.handleProgramsLoaded(programs)
+                self?.dropdownMenuPrograms = self?.mapPrograms(programs: programs, courses: courses) ?? []
+                self?.setState(programs: programs, courses: courses)
             }
             .store(in: &subscriptions)
     }
 
+    private func setState(programs: [Program], courses: [LearnCourse]) {
+        if programs.isNotEmpty {
+            state = .programs
+        } else if let firtCourse = courses.first {
+            courseDetailsViewModel = LearnAssembly.makeViewModel(
+                courseID: firtCourse.id,
+                enrollmentID: firtCourse.enrollmentId
+            )
+            state = .courseDetails
+        } else {
+            state = .empty
+        }
+    }
+
     // MARK: - Actions
 
-    func navigateToCourseDetails(course: ProgramCourse, viewController: WeakViewController) {
-        guard let enrollemtID = course.enrollemtID else { return }
+    func navigateToCourseDetails(
+        courseID: String,
+        enrollemtID: String?,
+        programID: String? = nil,
+        viewController: WeakViewController
+    ) {
+        guard let enrollemtID else { return }
         router.show(
                 LearnAssembly.makeCourseDetailsViewController(
-                    courseID: course.id,
-                    enrollmentID: enrollemtID
+                    courseID: courseID,
+                    enrollmentID: enrollemtID,
+                    programID: programID
                 ),
                 from: viewController
             )
@@ -140,14 +184,14 @@ final class LearnViewModel {
 
     private func handleProgramsLoaded(_ programs: [Program]) {
         self.programs = programs
-        dropdownMenuPrograms = programs.map { .init(id: $0.id, name: $0.name) }
 
         if let first = programs.first {
-            if currentProgram == nil {
+            if selectedProgram == nil {
                 currentProgram = applyIndexing(to: first)
-                selectedProgram = .init(id: first.id, name: first.name)
-            } else if let existing = programs.first(where: { $0.id == currentProgram?.id }) {
+                selectedProgram = mapProgram(program: first)
+            } else if let existing = programs.first(where: { $0.id == selectedProgram?.id }) {
                 currentProgram = applyIndexing(to: existing)
+                selectedProgram = mapProgram(program: currentProgram)
             }
         }
 

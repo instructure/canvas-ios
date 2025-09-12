@@ -25,14 +25,19 @@ final class LearnViewModelTests: HorizonTestCase {
     func testFeatchProgramsSuccessResponse() {
         // Given
         let interactor = ProgramInteractorMock()
-        let testee = LearnViewModel(interactor: interactor, router: router)
+        let learnCoursesInteractor = GetLearnCoursesInteractorMock()
+        let testee = LearnViewModel(
+            interactor: interactor,
+            learnCoursesInteractor: learnCoursesInteractor,
+            router: router
+        )
         // When
         let expection = expectation(description: "Wait for completion")
         testee.featchPrograms {
             expection.fulfill()
             XCTAssertEqual(testee.programs.count, 2)
             XCTAssertTrue(testee.shouldShowProgress)
-            XCTAssertEqual(testee.dropdownMenuPrograms.count, 2)
+            XCTAssertEqual(testee.dropdownMenuPrograms.count, 3)
             XCTAssertEqual(testee.currentProgram?.id, HProgramStubs.programs.first?.id)
             XCTAssertEqual(testee.selectedProgram?.id, HProgramStubs.programs.first?.id)
             XCTAssertFalse(testee.isLoaderVisible)
@@ -50,8 +55,13 @@ final class LearnViewModelTests: HorizonTestCase {
     func testFeatchProgramsFailureResponse() {
         // Given
         let interactor = ProgramInteractorMock()
+        let learnCoursesInteractor = GetLearnCoursesInteractorMock()
         interactor.shouldFail = true
-        let testee = LearnViewModel(interactor: interactor, router: router)
+        let testee = LearnViewModel(
+            interactor: interactor,
+            learnCoursesInteractor: learnCoursesInteractor,
+            router: router
+        )
         // When
         let expection = expectation(description: "Wait for completion")
         testee.featchPrograms {
@@ -72,7 +82,12 @@ final class LearnViewModelTests: HorizonTestCase {
     func testFetchPullToRefresh() async {
         // Given
         let interactor = ProgramInteractorMock()
-        let testee = LearnViewModel(interactor: interactor, router: router)
+        let learnCoursesInteractor = GetLearnCoursesInteractorMock()
+        let testee = LearnViewModel(
+            interactor: interactor,
+            learnCoursesInteractor: learnCoursesInteractor,
+            router: router
+        )
 
         // When
         await testee.refreshPrograms()
@@ -83,13 +98,13 @@ final class LearnViewModelTests: HorizonTestCase {
     func testNavigateToCourseDetails() {
         // Given
         let interactor = ProgramInteractorMock()
-        let testee = LearnViewModel(interactor: interactor, router: router)
+        let learnCoursesInteractor = GetLearnCoursesInteractorMock()
+        let testee = LearnViewModel(interactor: interactor, learnCoursesInteractor: learnCoursesInteractor, router: router)
         let sourceView = UIViewController()
         let viewController = WeakViewController(sourceView)
 
         // When
-        testee.navigateToCourseDetails(course: HProgramStubs.courses[0], viewController: viewController)
-
+        testee.navigateToCourseDetails(courseID: HProgramStubs.courses[0].id, enrollemtID: "12", viewController: viewController)
         // Then
         let courseDetailsView = router.lastViewController as? CoreHostingController<Horizon.CourseDetailsView>
         XCTAssertNotNil(courseDetailsView)
@@ -100,7 +115,13 @@ final class LearnViewModelTests: HorizonTestCase {
     func testEnrollInProgramSuccessResponse() {
         // Given
         let interactor = ProgramInteractorMock()
-        let testee = LearnViewModel(interactor: interactor, router: router, scheduler: .immediate)
+        let learnCoursesInteractor = GetLearnCoursesInteractorMock()
+        let testee = LearnViewModel(
+            interactor: interactor,
+            learnCoursesInteractor: learnCoursesInteractor,
+            router: router,
+            scheduler: .immediate
+        )
 
         // When
         testee.enrollInProgram(course: HProgramStubs.courses[0])
@@ -114,8 +135,9 @@ final class LearnViewModelTests: HorizonTestCase {
     func testEnrollInProgramFailureResponse() {
         // Given
         let interactor = ProgramInteractorMock()
+        let learnCoursesInteractor = GetLearnCoursesInteractorMock()
         interactor.shouldFail = true
-        let testee = LearnViewModel(interactor: interactor, router: router, scheduler: .immediate)
+        let testee = LearnViewModel(interactor: interactor, learnCoursesInteractor: learnCoursesInteractor, router: router, scheduler: .immediate)
 
         // When
         testee.enrollInProgram(course: HProgramStubs.courses[0])
@@ -130,15 +152,13 @@ final class LearnViewModelTests: HorizonTestCase {
     func testConfigureSelectionProgram() async {
         // Given
         let interactor = ProgramInteractorMock()
-        let testee = LearnViewModel(interactor: interactor, router: router)
+        let learnCoursesInteractor = GetLearnCoursesInteractorMock()
+        let testee = LearnViewModel(interactor: interactor, learnCoursesInteractor: learnCoursesInteractor, router: router)
 
         // When
         await testee.refreshPrograms()
         testee.onSelectProgram(
-            DropdownMenuItem(
-                id: HProgramStubs.programs.last!.id,
-                name: HProgramStubs.programs.last!.name
-            )
+            ProgramSwitcherModel(id: HProgramStubs.programs.last!.id, name: HProgramStubs.programs.last!.name)
         )
 
         XCTAssertEqual(testee.currentProgram?.id, HProgramStubs.programs.last!.id)

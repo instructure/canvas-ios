@@ -772,6 +772,9 @@
     "%" : {
 
     },
+    "% complete" : {
+
+    },
     "%@ %@" : {
       "localizations" : {
         "ar" : {
@@ -4588,6 +4591,9 @@
           }
         }
       }
+    },
+    "All" : {
+
     },
     "All messages" : {
       "localizations" : {
@@ -20724,8 +20730,15 @@
     "complete" : {
 
     },
-    "Complete" : {
-
+    "Complete %d of %d courses" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Complete %1$d of %2$d courses"
+          }
+        }
+      }
     },
     "Complete all of the items." : {
       "localizations" : {
@@ -55555,9 +55568,6 @@
         }
       }
     },
-    "of" : {
-
-    },
     "Ok" : {
       "localizations" : {
         "ar" : {
@@ -58381,6 +58391,9 @@
         }
       }
     },
+    "Part of" : {
+
+    },
     "Perth (+08:00)" : {
       "localizations" : {
         "ar" : {
@@ -60428,6 +60441,9 @@
           }
         }
       }
+    },
+    "Program overview" : {
+
     },
     "Puerto Rico (-04:00)" : {
       "localizations" : {
@@ -87058,6 +87074,9 @@
           }
         }
       }
+    },
+    "You aren’t currently enrolled in a course or program." : {
+
     },
     "You aren’t currently enrolled in a course." : {
       "localizations" : {
