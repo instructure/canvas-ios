@@ -63,7 +63,7 @@ struct LearnView: View {
                 .padding(.top, .huiSpaces.space32)
         }
         .refreshable {
-            await viewModel.fetchPrograms(ignoreCache: false)
+            await viewModel.fetchPrograms(ignoreCache: true)
         }
     }
 }

@@ -62,7 +62,7 @@ struct Program: Identifiable {
         estimatedTime != nil || date != nil
     }
 
-    var countOfRemeaningCourses: Int {
+    var countOfRemainingCourses: Int {
         courses.filter { $0.isRequired && !$0.isCompleted }.count
     }
 }

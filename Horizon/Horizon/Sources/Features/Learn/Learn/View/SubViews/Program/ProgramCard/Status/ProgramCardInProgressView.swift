@@ -58,19 +58,19 @@ struct ProgramCardInProgressView: View {
     private func progressBar(completionPercent: Double) -> some View {
         VStack(spacing: .huiSpaces.space8) {
             let rounded = round(completionPercent * 100)
-            HStack(spacing: .huiSpaces.space2) {
-                Text(rounded, format: .number) + Text("%")
-                Text("complete", bundle: .horizon)
+            Group {
+                Text(rounded, format: .number) + Text("% complete", bundle: .horizon)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .huiTypography(.p2)
             .foregroundStyle(Color.huiColors.surface.institution)
             HorizonUI.ProgressBar(
-                progress: 0.4,
+                progress: completionPercent,
                 size: .small,
                 numberPosition: .hidden,
                 backgroundColor: Color.huiColors.surface.pageTertiary
             )
+            .padding(.bottom, .huiSpaces.space8)
         }
     }
 
