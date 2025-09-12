@@ -27,7 +27,7 @@ struct ProgramSwitcherView: View {
     private let onSelectCourse: (ProgramSwitcherModel.Course?) -> Void
     private let isProgramPage: Bool
     private let cornerRadius: HorizonUI.CornerRadius = .level2
-    private let time: Double = 0.4
+    private let time: Double = 0.1
 
     // MARK: - Bindings
 
@@ -79,6 +79,7 @@ struct ProgramSwitcherView: View {
                         programName: selectedProgram.name ?? "",
                         shouldHighlightProgram: shouldHighlightProgram) {
                             isCoursesViewVisible = false
+                            selectedCourse = nil
                         } onSelectOverview: {
                             initialCourse = nil
                             selectedCourse = nil
