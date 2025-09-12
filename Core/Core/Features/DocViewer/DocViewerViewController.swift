@@ -83,6 +83,7 @@ public class DocViewerViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+		
 
         loadingView.color = nil
         self.view.backgroundColor = .backgroundMedium
