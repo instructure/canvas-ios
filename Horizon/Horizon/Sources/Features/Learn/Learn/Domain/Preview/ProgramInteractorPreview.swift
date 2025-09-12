@@ -82,8 +82,9 @@ class ProgramInteractorPreview: ProgramInteractor {
 
     // MARK: - Protocol Conformance
 
-    func getPrograms(ignoreCache: Bool) -> AnyPublisher<[Program], any Error> {
-        publisherWithProgram()
+    func getPrograms(ignoreCache: Bool) -> AnyPublisher<[Program], Never> {
+        Just([sampleProgram])
+            .eraseToAnyPublisher()
     }
 
     func getProgramsWithCourses(ignoreCache: Bool) -> AnyPublisher<[Program], any Error> {

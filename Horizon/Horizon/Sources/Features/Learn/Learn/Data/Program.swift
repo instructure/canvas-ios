@@ -65,6 +65,10 @@ struct Program: Identifiable {
     var countOfRemainingCourses: Int {
         courses.filter { $0.isRequired && !$0.isCompleted }.count
     }
+
+    var hasEnrolledCourse: Bool {
+        courses.contains { $0.status == "ENROLLED" }
+    }
 }
 
 struct ProgramCourse: Identifiable, Equatable {

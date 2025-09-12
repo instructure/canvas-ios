@@ -29,6 +29,7 @@ class DashboardViewModel {
     private(set) var errorMessage = ""
     var title: String = ""
     private(set) var courses: [HCourse] = []
+    private(set) var unenrolledPrograms: [Program] = []
     private(set) var invitedCourses: [InvitedCourse] = []
 
     // MARK: - Input / Outputs
@@ -38,6 +39,7 @@ class DashboardViewModel {
     // MARK: - Dependencies
 
     private let dashboardInteractor: DashboardInteractor
+    private let programInteractor: ProgramInteractor
     private let router: Router
 
     // MARK: - Private variables
@@ -45,14 +47,17 @@ class DashboardViewModel {
     private var getDashboardCoursesCancellable: AnyCancellable?
     private var refreshCompletedModuleItemCancellable: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
+    private var programs: [Program] = []
 
     // MARK: - Init
 
     init(
         dashboardInteractor: DashboardInteractor,
+        programInteractor: ProgramInteractor,
         router: Router
     ) {
         self.dashboardInteractor = dashboardInteractor
+        self.programInteractor = programInteractor
         self.router = router
         getCourses()
     }
@@ -72,8 +77,11 @@ class DashboardViewModel {
         refreshCompletedModuleItemCancellable?.cancel()
 
         getDashboardCoursesCancellable = dashboardInteractor.getAndObserveCoursesWithoutModules(ignoreCache: ignoreCache)
-            .sink { [weak self] items in
-                self?.courses = items.filter { $0.state == HCourse.EnrollmentState.active.rawValue }
+            .combineLatest(programInteractor.getPrograms(ignoreCache: ignoreCache))
+            .sink { [weak self] items, programs in
+                let courses = items.filter { $0.state == HCourse.EnrollmentState.active.rawValue }
+                self?.courses = self?.getAttachPrograms(to: courses, from: programs) ?? []
+                self?.unenrolledPrograms = programs.filter { !$0.hasEnrolledCourse  }
                 let invitedCourses = items.filter { $0.state == HCourse.EnrollmentState.invited.rawValue }
                 let message = String(localized: "You have been invited to join", bundle: .horizon)
                 self?.invitedCourses = invitedCourses.map { .init(id: $0.id, name: "\(message) \($0.name)", enrollmentID: $0.enrollmentID) }
@@ -83,6 +91,18 @@ class DashboardViewModel {
 
         refreshCompletedModuleItemCancellable = dashboardInteractor.refreshModuleItemsUponCompletions()
             .sink()
+    }
+
+   private func getAttachPrograms(to hcourses: [HCourse], from programs: [Program]) -> [HCourse] {
+        return hcourses.map { hcourse in
+            var updateCourse = hcourse
+            // Find all programs that contain this course id
+            let matchedPrograms = programs.filter { program in
+                program.courses.contains { $0.id == hcourse.id }
+            }
+            updateCourse.programs = matchedPrograms
+            return updateCourse
+        }
     }
 
     // MARK: - Inputs
@@ -121,6 +141,10 @@ class DashboardViewModel {
         viewController: WeakViewController
     ) {
         router.route(to: "/courses/\(id)/\(enrollmentID)", from: viewController)
+    }
+
+    func navigateProgram(id: String, viewController: WeakViewController) {
+        router.show(LearnAssembly.makeLearnView(programID: id), from: viewController)
     }
 
     func acceptInvitation(course: InvitedCourse) {

@@ -71,12 +71,14 @@ final class LearnViewModel: ProgramSwitcherMapper {
         interactor: ProgramInteractor,
         learnCoursesInteractor: GetLearnCoursesInteractor,
         router: Router,
+        programID: String?,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
         self.learnCoursesInteractor = learnCoursesInteractor
         self.router = router
         self.scheduler = scheduler
+        selectedProgram = programID != nil  ? .init(id: programID) : nil
         configureSelectionHandler()
     }
 

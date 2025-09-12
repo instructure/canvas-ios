@@ -74,7 +74,8 @@ struct LearnView: View {
         viewModel: .init(
             interactor: ProgramInteractorPreview(),
             learnCoursesInteractor: GetLearnCoursesInteractorPreview(),
-            router: AppEnvironment.shared.router
+            router: AppEnvironment.shared.router,
+            programID: nil
         )
     )
 }

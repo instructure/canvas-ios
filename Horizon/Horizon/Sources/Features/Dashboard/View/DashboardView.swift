@@ -52,6 +52,9 @@ struct DashboardView: View {
 
                     } else {
                         topView
+                        ProgramOverviewListView(programs: viewModel.unenrolledPrograms) { program in
+                            viewModel.navigateProgram(id: program.id, viewController: viewController)
+                        }
                         contentView(courses: viewModel.courses)
                     }
                 }
@@ -89,6 +92,10 @@ struct DashboardView: View {
     private func contentView(courses: [HCourse]) -> some View {
         ForEach(courses) { course in
             VStack(alignment: .leading, spacing: .zero) {
+                ProgramNameListView(programs: course.programs) { program in
+                    viewModel.navigateProgram(id: program.id, viewController: viewController)
+                }
+                .padding(.bottom, .huiSpaces.space12)
                 courseProgressionView(course: course)
                     .contentShape(Rectangle())
                     .onTapGesture {
