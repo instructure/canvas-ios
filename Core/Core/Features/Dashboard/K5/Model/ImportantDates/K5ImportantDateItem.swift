@@ -72,6 +72,8 @@ public struct K5ImportantDateItem {
             return Image.announcementLine
         case .assignment:
             return Image.assignmentLine
+        case .sub_assignment:
+            return Image.discussionLine
         }
     }
 

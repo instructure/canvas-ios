@@ -36,8 +36,10 @@ public final class Plannable: NSManagedObject {
     @NSManaged public var contextName: String?
     @NSManaged public var date: Date?
     @NSManaged public var pointsPossibleRaw: NSNumber?
-    @NSManaged public var userID: String?
+    @NSManaged public var userId: String?
     @NSManaged public var details: String?
+    @NSManaged public var isMarkedComplete: Bool
+    @NSManaged public var isSubmitted: Bool
     @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
     public var discussionCheckpointStep: DiscussionCheckpointStep? {
         get { return discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(value: newValue) }
@@ -59,19 +61,24 @@ public final class Plannable: NSManagedObject {
     }
 
     @discardableResult
-    public static func save(_ item: APIPlannableItem, userID: String?, in client: NSManagedObjectContext) -> Plannable {
-        let model: Plannable = client.first(where: #keyPath(Plannable.id), equals: item.plannableID) ?? client.insert()
-        model.id = item.plannableID
+    public static func save(_ item: APIPlannable, userId: String?, in client: NSManagedObjectContext) -> Plannable {
+        let model: Plannable = client.first(where: #keyPath(Plannable.id), equals: item.plannable_id.value) ?? client.insert()
+        model.id = item.plannable_id.value
         model.plannableType = item.plannableType
-        model.htmlURL = item.htmlURL
-        model.contextName = item.contextName
-        model.title = item.plannableTitle
-        model.date = item.date
-        model.pointsPossible = item.pointsPossible
-        model.details = item.detailsText
+        model.htmlURL = item.html_url?.rawValue
+        model.contextName = item.context_name
+        model.title = item.plannable?.title
+        model.date = item.plannable_date
+        model.pointsPossible = item.plannable?.points_possible
+        model.details = item.plannable?.details
         model.context = item.context
-        model.userID = userID
-        model.discussionCheckpointStep = item.discussionCheckpointStep
+        model.userId = userId
+        model.discussionCheckpointStep = .init(
+            tag: item.plannable?.sub_assignment_tag,
+            requiredReplyCount: item.details?.reply_to_entry_required_count
+        )
+        model.isMarkedComplete = item.planner_override?.marked_complete ?? false
+        model.isSubmitted = item.submissions?.value1?.submitted ?? false
         return model
     }
 
@@ -87,7 +94,27 @@ public final class Plannable: NSManagedObject {
         model.pointsPossible = nil
         model.details = item.details
         model.context = Context(.course, id: item.course_id) ?? Context(.user, id: item.user_id)
-        model.userID = item.user_id
+        model.userId = item.user_id
+        return model
+    }
+
+    @discardableResult
+    public static func save(_ item: APICalendarEvent, userId: String?, in client: NSManagedObjectContext) -> Plannable {
+        let model: Plannable = client.first(where: #keyPath(Plannable.id), equals: item.id.value) ?? client.insert()
+        model.id = item.id.value
+        model.plannableType = .init(rawValue: item.type.rawValue) ?? .other
+        model.title = item.sub_assignment?.discussion_topic?.title ?? item.title
+        model.htmlURL = item.sub_assignment?.html_url ?? item.html_url
+        model.context = Context(canvasContextID: item.context_code)
+        model.contextName = item.context_name
+        model.date = item.start_at
+        model.pointsPossible = item.assignment?.points_possible
+        model.details = item.description
+        model.userId = userId
+        model.discussionCheckpointStep = .init(
+            tag: item.sub_assignment?.sub_assignment_tag,
+            requiredReplyCount: item.sub_assignment?.discussion_topic?.reply_to_entry_required_count
+        )
         return model
     }
 }
