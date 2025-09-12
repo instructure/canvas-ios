@@ -98,12 +98,8 @@ class DashboardViewModel {
             dashboardInteractor.getUnreadInboxMessageCount()
         )
         .sink { [weak self] notificationCount, inboxCount in
-            if notificationCount > 0 {
-                self?.hasUnreadNotification = true
-            }
-            if inboxCount > 0 {
-                self?.hasUnreadInboxMessage = true
-            }
+            self?.hasUnreadNotification = notificationCount > 0
+            self?.hasUnreadInboxMessage = inboxCount > 0
             TabBarBadgeCounts.unreadActivityStreamCount = UInt(notificationCount)
             TabBarBadgeCounts.unreadMessageCount = UInt(inboxCount)
         }

@@ -80377,6 +80377,7 @@
       }
     },
     "Unknown Course" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
