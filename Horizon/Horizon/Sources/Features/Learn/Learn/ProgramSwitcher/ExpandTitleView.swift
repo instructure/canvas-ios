@@ -32,6 +32,7 @@ struct ExpandTitleView: View {
                 .foregroundStyle(Color.huiColors.text.title)
 
             Image.huiIcons.keyboardArrowDown
+                .padding(.top, .huiSpaces.space4)
                 .tint(Color.huiColors.icon.default)
                 .rotationEffect(.degrees(isExpanded ? 180 : 0))
                 .animation(.easeInOut, value: isExpanded)

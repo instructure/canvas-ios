@@ -133,13 +133,13 @@ struct ProgramView: View {
     }
 
     private func completeProgram(_ program: Program) -> some View {
-        HStack(spacing: .huiSpaces.space4) {
-            Text("Complete", bundle: .horizon)
-            Text(viewModel.currentProgram?.countOfRemeaningCourses.description ?? "")
-            Text("of", bundle: .horizon)
-            Text(viewModel.currentProgram?.courses.count.description ?? "")
-            Text("courses", bundle: .horizon)
-        }
+        Text(
+            String(
+                format: String(localized: "Complete %d of %d courses", bundle: .horizon),
+                viewModel.currentProgram?.countOfRemeaningCourses ?? 0,
+                viewModel.currentProgram?.courses.count ?? 0
+            )
+        )
         .foregroundStyle(Color.huiColors.text.body)
         .huiTypography(.h4)
     }

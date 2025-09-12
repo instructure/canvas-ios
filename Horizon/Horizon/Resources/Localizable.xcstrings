@@ -772,6 +772,9 @@
     "%" : {
 
     },
+    "% complete" : {
+
+    },
     "%@ %@" : {
       "localizations" : {
         "ar" : {
@@ -20727,8 +20730,15 @@
     "complete" : {
 
     },
-    "Complete" : {
-
+    "Complete %d of %d courses" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Complete %1$d of %2$d courses"
+          }
+        }
+      }
     },
     "Complete all of the items." : {
       "localizations" : {
@@ -55557,9 +55567,6 @@
           }
         }
       }
-    },
-    "of" : {
-
     },
     "Ok" : {
       "localizations" : {
