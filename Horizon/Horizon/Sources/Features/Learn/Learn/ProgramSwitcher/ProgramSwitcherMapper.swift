@@ -52,7 +52,7 @@ extension ProgramSwitcherMapper {
             ProgramSwitcherModel.Course(
                 id: $0.id,
                 name: $0.name,
-                enrollemtID: $0.enrollmentId
+                isEnrolled: $0.enrollmentId.isNotEmpty
             )
         }
 
@@ -124,23 +124,22 @@ struct ProgramSwitcherModel: Identifiable, Equatable {
     struct Course: Identifiable, Equatable {
         let id: String
         let name: String
-        let enrollemtID: String?
         let programID: String?
         let programName: String?
-        var isEnrolled: Bool { enrollemtID != nil }
+        let isEnrolled: Bool
 
         init(
             id: String,
             name: String,
-            enrollemtID: String?,
             programID: String? = nil,
-            programName: String? = nil
+            programName: String? = nil,
+            isEnrolled: Bool
         ) {
             self.id = id
             self.name = name
-            self.enrollemtID = enrollemtID
             self.programID = programID
             self.programName = programName
+            self.isEnrolled = isEnrolled
         }
 
         var hasProgram: Bool { programID != nil }

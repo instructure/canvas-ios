@@ -19,31 +19,39 @@
 @testable import Core
 import XCTest
 
-final class GetHCoursesEnrollmentIDRequestTests: CoreTestCase {
+final class GetHProgramCoursRequestTests: XCTestCase {
+
     func testOperationName() {
-        XCTAssertEqual(GetHCoursesEnrollmentIDRequest.operationName, "GetCoursesEnrollmentIDs")
+        XCTAssertEqual(GetHCoursesByIdsRequest.operationName, "GetCoursesByIds")
     }
 
     func testVariables() {
-        let testee = GetHCoursesEnrollmentIDRequest(userId: "1234")
-        XCTAssertEqual(testee.variables.id, "1234")
+        let request = GetHCoursesByIdsRequest(courseIDs: ["1", "2", "3"])
+        XCTAssertEqual(request.variables.ids, ["1", "2", "3"])
     }
 
     func testQuery() {
-        let query = """
-            query GetCoursesEnrollmentIDs($id: ID!) {
-         legacyNode(_id: $id, type: User) {
-           ... on User {
-            enrollments(currentOnly: false) {
-              _id
-              course {
+        let query: String = """
+            query GetCoursesByIds($ids: [ID!]) {
+              courses(ids: $ids) {
                 _id
+                name
+                modulesConnection {
+                  edges {
+                    node {
+                      id
+                      name
+                      moduleItems {
+                        published
+                        _id
+                        estimatedDuration
+                      }
+                    }
+                  }
+                }
               }
             }
-          }
-          }
-        }
-        """
-        XCTAssertEqual(GetHCoursesEnrollmentIDRequest.query, query)
+    """
+        XCTAssertEqual(GetHCoursesByIdsRequest.query, query)
     }
 }

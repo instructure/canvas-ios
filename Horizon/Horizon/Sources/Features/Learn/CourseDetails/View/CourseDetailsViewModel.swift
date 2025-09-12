@@ -212,9 +212,9 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
         selectedCourse = .init(
             id: course.id,
             name: course.name,
-            enrollemtID: course.enrollmentID,
             programID: selectedProgram?.id,
-            programName: selectedProgram?.name
+            programName: selectedProgram?.name,
+            isEnrolled: course.enrollmentID.isNotEmpty
         )
         overviewDescription = syllabus ?? ""
         if selectedTabIndex == nil {

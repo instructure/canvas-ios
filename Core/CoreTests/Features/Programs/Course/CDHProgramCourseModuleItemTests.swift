@@ -24,7 +24,7 @@ final class CDHProgramCourseModuleItemTests: CoreTestCase {
         // Given
         let courseID = "477"
         let programID = "programID-10"
-        let apiEntity = GetHProgramCourseResponse.ModuleItem(
+        let apiEntity = GetHCoursesByIdsResponse.ModuleItem(
             published: true,
             id: "ID-1",
             estimatedDuration: "20PT"
@@ -47,7 +47,7 @@ final class CDHProgramCourseModuleItemTests: CoreTestCase {
         // Given
         let courseID = "477"
         let programID = "programID-10"
-        let apiEntity = GetHProgramCourseResponse.ModuleItem(
+        let apiEntity = GetHCoursesByIdsResponse.ModuleItem(
             published: false,
             id: "ID-1",
             estimatedDuration: "20PT"

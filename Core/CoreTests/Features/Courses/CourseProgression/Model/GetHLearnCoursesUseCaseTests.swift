@@ -32,7 +32,7 @@ class GetHLearnCoursesUseCaseTests: CoreTestCase {
         let request = useCase.request
 
         XCTAssertEqual(request.variables.id, "user_123")
-        XCTAssertTrue(request.variables.horizonCourses)
+        XCTAssertTrue(request.variables.horizonCourses ?? false)
     }
 
     func testWriteSavesLearnCoursesToCoreData() {

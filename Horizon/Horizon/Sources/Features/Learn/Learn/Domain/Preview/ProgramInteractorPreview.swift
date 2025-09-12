@@ -34,7 +34,6 @@ class ProgramInteractorPreview: ProgramInteractor {
                 status: "ENROLLED",
                 progressID: "p1",
                 completionPercent: 100.0,
-                enrollemtID: "e1",
                 moduleItemsestimatedTime: ["2PT", "3PT"]
             ),
             ProgramCourse(
@@ -45,7 +44,6 @@ class ProgramInteractorPreview: ProgramInteractor {
                 status: "self-enrollment",
                 progressID: "p2",
                 completionPercent: 45.0,
-                enrollemtID: "e2",
                 moduleItemsestimatedTime: ["5PT", "2PT", "1PT"]
             ),
             ProgramCourse(
@@ -56,7 +54,6 @@ class ProgramInteractorPreview: ProgramInteractor {
                 status: "ENROLLED",
                 progressID: "p3",
                 completionPercent: 0.0,
-                enrollemtID: nil,
                 moduleItemsestimatedTime: ["4PT"]
             )
         ]

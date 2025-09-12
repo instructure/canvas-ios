@@ -62,7 +62,7 @@ struct Program: Identifiable {
         estimatedTime != nil || date != nil
     }
 
-    var countOfRemainingCourses: Int {
+    var countOfRemeaningCourses: Int {
         courses.filter { $0.isRequired && !$0.isCompleted }.count
     }
 }
@@ -74,8 +74,7 @@ struct ProgramCourse: Identifiable, Equatable {
     let isRequired: Bool
     let status: String
     let progressID: String
-    var completionPercent: Double
-    var enrollemtID: String?
+    let completionPercent: Double
     var moduleItemsestimatedTime: [String] = []
     var index = 0
 
@@ -89,7 +88,7 @@ struct ProgramCourse: Identifiable, Equatable {
     }
 
     var isEnrolled: Bool {
-        enrollemtID != nil
+        courseStatus == .enrolled
     }
 
     var courseStatus: ProgramCourse.Status {
@@ -125,9 +124,9 @@ extension Array where Element == ProgramCourse {
             .init(
                 id: $0.id,
                 name: $0.name,
-                enrollemtID: $0.enrollemtID,
                 programID: programID,
-                programName: programName
+                programName: programName,
+                isEnrolled: $0.isEnrolled
             )
         }
     }

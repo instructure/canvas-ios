@@ -25,21 +25,21 @@ class GetHLearnCoursesProgressionRequestTests: CoreTestCase {
     func testInputInit() {
         let input = GetHLearnCoursesProgressionRequest.Input(id: "user_123", horizonCourses: true)
         XCTAssertEqual(input.id, "user_123")
-        XCTAssertTrue(input.horizonCourses)
+        XCTAssertTrue(input.horizonCourses ?? false)
     }
 
     func testRequestInit() {
         let request = GetHLearnCoursesProgressionRequest(userId: "user_123", horizonCourses: true)
         XCTAssertEqual(request.variables.id, "user_123")
-        XCTAssertTrue(request.variables.horizonCourses)
+        XCTAssertTrue(request.variables.horizonCourses ?? false)
 
         let defaultRequest = GetHLearnCoursesProgressionRequest(userId: "user_123")
         XCTAssertEqual(defaultRequest.variables.id, "user_123")
-        XCTAssertTrue(defaultRequest.variables.horizonCourses)
+        XCTAssertTrue(defaultRequest.variables.horizonCourses ?? false)
 
         let falseRequest = GetHLearnCoursesProgressionRequest(userId: "user_123", horizonCourses: false)
         XCTAssertEqual(falseRequest.variables.id, "user_123")
-        XCTAssertFalse(falseRequest.variables.horizonCourses)
+        XCTAssertFalse(falseRequest.variables.horizonCourses ?? false)
     }
 
     func testOperationName() {
@@ -48,7 +48,7 @@ class GetHLearnCoursesProgressionRequestTests: CoreTestCase {
 
     func testQuery() {
         let expectedQuery = """
-            query GetUserCourses($id: ID!, $horizonCourses: Boolean!) {
+            query GetUserCourses($id: ID!, $horizonCourses: Boolean) {
                 legacyNode(_id: $id, type: User) {
                     ... on User {
                         enrollments(currentOnly: false, horizonCourses: $horizonCourses) {

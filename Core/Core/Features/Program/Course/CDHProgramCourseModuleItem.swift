@@ -26,7 +26,7 @@ public final class CDHProgramCourseModuleItem: NSManagedObject {
 
     @discardableResult
     public static func save(
-        _ apiEntity: GetHProgramCourseResponse.ModuleItem,
+        _ apiEntity: GetHCoursesByIdsResponse.ModuleItem,
         courseID: String,
         programID: String,
         in context: NSManagedObjectContext

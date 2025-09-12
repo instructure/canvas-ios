@@ -23,16 +23,13 @@ final class CDHProgramCourseTests: CoreTestCase {
     func testSave() {
         // Given
         let programID = "123"
-        let courseID = "477"
-        let enrollemtID = "enrollemtID-123"
+        let courseID = "1"
         let apiEntity = HProgramCourseStub.getProgramCourse()
 
         // When
         let savedEntity = CDHProgramCourse.save(
             apiEntity,
             programID: programID,
-            courseID: courseID,
-            enrollemtID: enrollemtID,
             in: databaseClient
         )
         let secondModule = savedEntity.moduleItems.first(where: { $0.id == "2" })
@@ -40,9 +37,7 @@ final class CDHProgramCourseTests: CoreTestCase {
         // Then
         XCTAssertEqual(savedEntity.courseID, courseID)
         XCTAssertEqual(savedEntity.programID, programID)
-        XCTAssertEqual(savedEntity.enrollemtID, enrollemtID)
         XCTAssertEqual(savedEntity.courseName, apiEntity.name)
-        XCTAssertEqual(savedEntity.completionPercentage, 0.4)
         XCTAssertEqual(savedEntity.moduleItems.count, 4)
         XCTAssertNil(secondModule?.estimatedDuration)
     }

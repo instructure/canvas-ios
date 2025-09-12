@@ -57,7 +57,6 @@ final class ProgramCourseInteractorMock: ProgramCourseInteractor {
                 status: "ENROLLED",
                 progressID: "p1",
                 completionPercent: 1,
-                enrollemtID: "e1",
                 moduleItemsestimatedTime: ["PT4M", "PT1M"]
             ),
             ProgramCourse(
@@ -68,7 +67,6 @@ final class ProgramCourseInteractorMock: ProgramCourseInteractor {
                 status: "ENROLLED",
                 progressID: "p2",
                 completionPercent: 0.45,
-                enrollemtID: "e2",
                 moduleItemsestimatedTime: ["PT4M", "PT32M", "PT10M"]
             ),
             ProgramCourse(
@@ -79,7 +77,6 @@ final class ProgramCourseInteractorMock: ProgramCourseInteractor {
                 status: "ENROLLED",
                 progressID: "p3",
                 completionPercent: 0.0,
-                enrollemtID: nil,
                 moduleItemsestimatedTime: ["PT4M"]
             )
         ]

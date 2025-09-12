@@ -24,17 +24,17 @@ public struct GetHLearnCoursesProgressionRequest: APIGraphQLRequestable {
 
     public struct Input: Codable, Equatable {
         var id: String
-        var horizonCourses: Bool
+        var horizonCourses: Bool?
     }
 
-    public init(userId: String, horizonCourses: Bool = true) {
+    public init(userId: String, horizonCourses: Bool? = true) {
         self.variables = Input(id: userId, horizonCourses: horizonCourses)
     }
 
     public static let operationName = "GetUserCourses"
 
     public static let query = """
-        query \(operationName)($id: ID!, $horizonCourses: Boolean!) {
+        query \(operationName)($id: ID!, $horizonCourses: Boolean) {
             legacyNode(_id: $id, type: User) {
                 ... on User {
                     enrollments(currentOnly: false, horizonCourses: $horizonCourses) {

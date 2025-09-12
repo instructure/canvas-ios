@@ -99,12 +99,22 @@ final class LearnViewModelTests: HorizonTestCase {
         // Given
         let interactor = ProgramInteractorMock()
         let learnCoursesInteractor = GetLearnCoursesInteractorMock()
-        let testee = LearnViewModel(interactor: interactor, learnCoursesInteractor: learnCoursesInteractor, router: router)
+        let testee = LearnViewModel(
+            interactor: interactor,
+            learnCoursesInteractor: learnCoursesInteractor,
+            router: router,
+            scheduler: .immediate
+        )
         let sourceView = UIViewController()
         let viewController = WeakViewController(sourceView)
 
         // When
-        testee.navigateToCourseDetails(courseID: HProgramStubs.courses[0].id, enrollemtID: "12", viewController: viewController)
+        testee.featchPrograms()
+        testee.navigateToCourseDetails(
+            courseID: "ID-1",
+            isEnrolled: true,
+            viewController: viewController
+        )
         // Then
         let courseDetailsView = router.lastViewController as? CoreHostingController<Horizon.CourseDetailsView>
         XCTAssertNotNil(courseDetailsView)
