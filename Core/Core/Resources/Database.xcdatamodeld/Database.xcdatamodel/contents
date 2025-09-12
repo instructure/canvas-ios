@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24G84" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24G90" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -428,6 +428,20 @@
         <attribute name="submissionId" attributeType="String"/>
         <attribute name="userId" attributeType="String"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="subAssignmentSubmissions" inverseEntity="Submission"/>
+    </entity>
+    <entity name="CDUserGroup" representedClassName="Core.CDUserGroup" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isDifferentiationTag" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="userIdsInGroup" attributeType="Transformable" valueTransformerName="StringSetValueTransformer"/>
+        <relationship name="parentGroupSet" maxCount="1" deletionRule="Nullify" destinationEntity="CDUserGroupSet" inverseName="userGroups" inverseEntity="CDUserGroupSet"/>
+        <relationship name="usersInGroup" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="userGroups" inverseEntity="User"/>
+    </entity>
+    <entity name="CDUserGroupSet" representedClassName="Core.CDUserGroupSet" syncable="YES">
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="userGroups" toMany="YES" deletionRule="Cascade" destinationEntity="CDUserGroup" inverseName="parentGroupSet" inverseEntity="CDUserGroup"/>
     </entity>
     <entity name="CDWidgetAnnouncement" representedClassName="Core.CDWidgetAnnouncement" syncable="YES">
         <attribute name="authorName" attributeType="String"/>
@@ -1345,6 +1359,7 @@
         <attribute name="sortableName" attributeType="String"/>
         <relationship name="observerEnrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="observedUser" inverseEntity="Enrollment"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="user" inverseEntity="Submission"/>
+        <relationship name="userGroups" toMany="YES" deletionRule="Nullify" destinationEntity="CDUserGroup" inverseName="usersInGroup" inverseEntity="CDUserGroup"/>
     </entity>
     <entity name="UserProfile" representedClassName="Core.UserProfile" syncable="YES">
         <attribute name="accountUUID" optional="YES" attributeType="String"/>

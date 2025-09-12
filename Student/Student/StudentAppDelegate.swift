@@ -60,7 +60,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private lazy var appExperienceInteractor = ExperienceSummaryInteractorLive(environment: environment)
 
     func application(_: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        CDExperienceSummary.registerTransformers()
         HorizonUI.registerCustomFonts()
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
         BackgroundProcessingAssembly.register(scheduler: CoreTaskSchedulerLive(taskScheduler: .shared))
