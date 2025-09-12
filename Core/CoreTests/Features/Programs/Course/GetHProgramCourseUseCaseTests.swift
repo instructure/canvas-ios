@@ -46,7 +46,7 @@ final class GetHProgramCourseUseCaseTests: CoreTestCase {
         let programs = [GetHProgramCourseUseCase.RequestModel(programId: "123", courseIds: ["1"])]
         let testee = GetHProgramCourseUseCase(programs: programs)
         // When
-        testee.write(response: .init(data: .init(courses: [response])), urlResponse: nil, to: databaseClient)
+        testee.write(response: .init(data: .init(courses: [response], course: nil)), urlResponse: nil, to: databaseClient)
         let savedData: [CDHProgramCourse] = databaseClient.fetch()
         // Then
         XCTAssertEqual(savedData.count, 1)
@@ -61,11 +61,11 @@ final class GetHProgramCourseUseCaseTests: CoreTestCase {
         let courses = HProgramCourseStub.getProgramCourse()
         let programs = [GetHProgramCourseUseCase.RequestModel(programId: "123", courseIds: ["1"])]
         let testee = GetHProgramCourseUseCase(programs: programs)
-        let response = GetHProgramCourseResponse(data: .init(courses: [courses]))
+        let response = GetHCoursesByIdsResponse(data: .init(courses: [courses], course: nil))
         let expection = expectation(description: "Wait for completion")
 
         // When
-        api.mock(GetHProgramCourseRequest(courseIDs: ["1"]), value: response)
+        api.mock(GetHCoursesByIdsRequest(courseIDs: ["1"]), value: response)
         testee.makeRequest(environment: environment) { response, _, _ in
             expection.fulfill()
             XCTAssertEqual(response?.data?.courses?.count, 1)
@@ -78,15 +78,54 @@ final class GetHProgramCourseUseCaseTests: CoreTestCase {
         let courses = HProgramCourseStub.getProgramCourse()
         let programs = [GetHProgramCourseUseCase.RequestModel(programId: "123", courseIds: ["1"])]
         let testee = GetHProgramCourseUseCase(programs: programs)
-        let response = GetHProgramCourseResponse(data: .init(courses: [courses]))
+        let response = GetHCoursesByIdsResponse(data: .init(courses: [courses], course: nil))
         let expection = expectation(description: "Wait for completion")
 
         // When
-        api.mock(GetHProgramCourseRequest(courseIDs: ["1"]), value: response, error: URLError(.badURL))
+        api.mock(GetHCoursesByIdsRequest(courseIDs: ["1"]), value: response, error: URLError(.badURL))
+        api.mock(GetHCoursesByIdRequest(courseID: "1"), value: response, error: URLError(.badURL))
         testee.makeRequest(environment: environment) { response, _, error in
             expection.fulfill()
             XCTAssertNil(response)
             XCTAssertEqual(error?.localizedDescription, URLError(.badURL).localizedDescription)
+        }
+        wait(for: [expection], timeout: 0.2)
+    }
+
+    func testMakeRequestFallbacksToCourseAPIOnFailure() {
+        // Given
+        let course = HProgramCourseStub.getProgramCourse()
+        let programs = [GetHProgramCourseUseCase.RequestModel(programId: "123", courseIds: ["1"])]
+        let testee = GetHProgramCourseUseCase(programs: programs)
+        let response = GetHCoursesByIdsResponse(data: .init(courses: [course], course: nil))
+        let courseResponse = GetHCoursesByIdsResponse(data: .init(courses: nil, course: course))
+        let expection = expectation(description: "Wait for completion")
+
+        // When
+        api.mock(GetHCoursesByIdsRequest(courseIDs: ["1"]), value: response, error: URLError(.badURL))
+        api.mock(GetHCoursesByIdRequest(courseID: "1"), value: courseResponse)
+        testee.makeRequest(environment: environment) { response, _, _ in
+            expection.fulfill()
+            XCTAssertEqual(response?.data?.courses?.count, 1)
+        }
+        wait(for: [expection], timeout: 0.2)
+    }
+
+    func testMakeRequestFallbacksToCourseAPIOnResponseNil() {
+        // Given
+        let course = HProgramCourseStub.getProgramCourse()
+        let programs = [GetHProgramCourseUseCase.RequestModel(programId: "123", courseIds: ["1"])]
+        let testee = GetHProgramCourseUseCase(programs: programs)
+        let response = GetHCoursesByIdsResponse(data: .init(courses: nil, course: nil))
+        let courseResponse = GetHCoursesByIdsResponse(data: .init(courses: nil, course: course))
+        let expection = expectation(description: "Wait for completion")
+
+        // When
+        api.mock(GetHCoursesByIdsRequest(courseIDs: ["1"]), value: response)
+        api.mock(GetHCoursesByIdRequest(courseID: "1"), value: courseResponse)
+        testee.makeRequest(environment: environment) { response, _, _ in
+            expection.fulfill()
+            XCTAssertEqual(response?.data?.courses?.count, 1)
         }
         wait(for: [expection], timeout: 0.2)
     }

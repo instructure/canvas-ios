@@ -18,11 +18,12 @@
 
 import Foundation
 
-public struct GetHProgramCourseResponse: Codable {
+public struct GetHCoursesByIdsResponse: Codable {
     let data: Response?
 
     public struct Response: Codable {
         var courses: [ProgramCourse]?
+        let course: ProgramCourse?
     }
 
     public struct ProgramCourse: Codable {

@@ -16,23 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
-import XCTest
+import Foundation
 
-final class GetHProgramCoursRequestTests: XCTestCase {
+public struct GetHCoursesByIdsRequest: APIGraphQLRequestable {
+    public typealias Response = GetHCoursesByIdsResponse
+    public typealias Variables = Input
 
-    func testOperationName() {
-        XCTAssertEqual(GetHCoursesByIdsRequest.operationName, "GetCoursesByIds")
+    public struct Input: Codable, Equatable {
+        let ids: [String]
     }
 
-    func testVariables() {
-        let request = GetHCoursesByIdsRequest(courseIDs: ["1", "2", "3"])
-        XCTAssertEqual(request.variables.ids, ["1", "2", "3"])
+    public static let operationName = "GetCoursesByIds"
+    public let variables: Input
+
+    // MARK: - Init
+
+    public init(courseIDs: [String]) {
+        self.variables = Input(ids: courseIDs)
     }
 
-    func testQuery() {
-        let query: String = """
-            query GetCoursesByIds($ids: [ID!]) {
+    public static let query: String = """
+            query \(operationName)($ids: [ID!]) {
               courses(ids: $ids) {
                 _id
                 name
@@ -52,6 +56,4 @@ final class GetHProgramCoursRequestTests: XCTestCase {
               }
             }
     """
-        XCTAssertEqual(GetHCoursesByIdsRequest.query, query)
-    }
 }

@@ -18,26 +18,26 @@
 
 import Foundation
 
-public struct GetHProgramCourseRequest: APIGraphQLRequestable {
-    public typealias Response = GetHProgramCourseResponse
+struct GetHCoursesByIdRequest: APIGraphQLRequestable {
+    public typealias Response = GetHCoursesByIdsResponse
     public typealias Variables = Input
 
     public struct Input: Codable, Equatable {
-        let ids: [String]
+        let id: String
     }
 
-    public static let operationName = "GetProgramCourse"
+    public static let operationName = "GetCoursesById"
     public let variables: Input
 
     // MARK: - Init
 
-    public init(courseIDs: [String]) {
-        self.variables = Input(ids: courseIDs)
+    public init(courseID: String) {
+        self.variables = Input(id: courseID)
     }
 
     public static let query: String = """
-            query \(operationName)($ids: [ID!]) {
-              courses(ids: $ids) {
+            query \(operationName)($id: ID!) {
+              course(id: $id) {
                 _id
                 name
                 modulesConnection {

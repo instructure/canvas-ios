@@ -45,15 +45,15 @@ public final class GetHProgramCourseUseCase: APIUseCase {
         self.programs = programs
     }
 
-    public var request: GetHProgramCourseRequest {
+    public var request: GetHCoursesByIdsRequest {
         let courseIDs = programs.map { $0.courseIds }.flatMap { $0 }
-        return GetHProgramCourseRequest(courseIDs: courseIDs)
+        return GetHCoursesByIdsRequest(courseIDs: courseIDs)
     }
 
     public var cacheKey: String? {  programs.map { $0.cacheKey }.joined(separator: "-") }
 
     public func write(
-        response: GetHProgramCourseResponse?,
+        response: GetHCoursesByIdsResponse?,
         urlResponse _: URLResponse?,
         to client: NSManagedObjectContext
     ) {
@@ -74,27 +74,46 @@ public final class GetHProgramCourseUseCase: APIUseCase {
     }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
-        let allCourseIDs = programs
-            .flatMap { $0.courseIds }
+        let allCourseIDs = programs.flatMap { $0.courseIds }
         let uniqueCourseIDs = Array(Set(allCourseIDs))
-        let requests = uniqueCourseIDs
-            .chunked(into: maxLimit)
-            .map { fetch(request: GetHProgramCourseRequest(courseIDs: $0), environment: environment) }
 
-        Publishers.MergeMany(requests)
-            .map { $0.body }
-            .collect()
-            .map { responses -> GetHProgramCourseResponse in
-                var mergedCourses: [GetHProgramCourseResponse.ProgramCourse] = []
+        func fallbackToSingleCourses() -> AnyPublisher<GetHCoursesByIdsResponse, Error> {
+            let singleRequests = uniqueCourseIDs.map { courseID in
+                fetchSingleCourse(courseID: courseID, environment: environment)
+            }
 
-                for response in responses {
-                    if let courses = response.data?.courses {
-                        mergedCourses.append(contentsOf: courses)
-                    }
+            return Publishers.MergeMany(singleRequests)
+                .collect()
+                .map { responses in
+                    let mergedCourses = responses.compactMap { $0.data?.course }
+                    return GetHCoursesByIdsResponse(
+                        data: .init(courses: mergedCourses, course: nil)
+                    )
                 }
+                .eraseToAnyPublisher()
+        }
 
-                return GetHProgramCourseResponse(
-                    data: GetHProgramCourseResponse.Response(courses: mergedCourses)
+        let chunkedRequests = uniqueCourseIDs
+            .chunked(into: maxLimit)
+            .map { fetch(request: GetHCoursesByIdsRequest(courseIDs: $0), environment: environment) }
+
+        Publishers.MergeMany(chunkedRequests)
+            .flatMap { response -> AnyPublisher<GetHCoursesByIdsResponse, Error> in
+                if response.body.data?.courses == nil {
+                    return fallbackToSingleCourses()
+                }
+                return Just(response.body)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            .catch { _ in
+                fallbackToSingleCourses()
+            }
+            .collect()
+            .map { responses -> GetHCoursesByIdsResponse in
+                let mergedCourses = responses.flatMap { $0.data?.courses ?? [] }
+                return GetHCoursesByIdsResponse(
+                    data: .init(courses: mergedCourses, course: nil)
                 )
             }
             .sinkFailureOrValue(
@@ -106,6 +125,17 @@ public final class GetHProgramCourseUseCase: APIUseCase {
                 }
             )
             .store(in: &subscriptions)
+    }
+
+    private func fetchSingleCourse(
+        courseID: String,
+        environment: AppEnvironment
+    ) -> AnyPublisher<GetHCoursesByIdsResponse, Error> {
+        fetch(request: GetHCoursesByIdRequest(courseID: courseID), environment: environment)
+            .map { response in
+                GetHCoursesByIdsResponse(data: .init(courses: nil, course: response.body.data?.course))
+            }
+            .eraseToAnyPublisher()
     }
 
     private func fetch<Request: APIRequestable>(
