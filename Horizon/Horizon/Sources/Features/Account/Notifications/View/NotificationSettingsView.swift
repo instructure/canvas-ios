@@ -25,8 +25,7 @@ struct NotificationSettingsView: View {
     @Environment(\.viewController) private var viewController
 
     var body: some View {
-        ZStack {
-            Color.huiColors.surface.pagePrimary.edgesIgnoringSafeArea(.all)
+        ProfileBody(.settingsNotifications) {
             switch viewModel.viewState {
             case .loading:
                 loadingView
@@ -34,8 +33,6 @@ struct NotificationSettingsView: View {
                 dataView
             }
         }
-        .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
-        .background(Color.huiColors.surface.pagePrimary)
     }
 
     private var dataView: some View {
@@ -122,29 +119,6 @@ struct NotificationSettingsView: View {
         )
         .padding(.top, .huiSpaces.space32)
         .padding(.horizontal, .huiSpaces.space32)
-    }
-
-    private var navigationBar: some View {
-        ZStack {
-            Text("Notifications")
-                .huiTypography(.h3)
-                .foregroundStyle(Color.huiColors.text.title)
-                .frame(height: 44)
-                .frame(maxWidth: .infinity, alignment: .center)
-            HStack(spacing: 0) {
-                HorizonUI.IconButton(
-                    HorizonUI.icons.arrowBack,
-                    type: .gray,
-                    isSmall: false
-                ) {
-                    viewModel.navigateBack(viewController: viewController)
-                }
-                .frame(width: 44, height: 44)
-                .padding(.leading, .huiSpaces.space24)
-                Spacer()
-            }
-        }
-        .padding(.bottom, .huiSpaces.space8)
     }
 
     @ViewBuilder
