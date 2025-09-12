@@ -24,6 +24,7 @@ import Foundation
 protocol DashboardInteractor {
     func getAndObserveCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never>
+    func getUnreadInboxMessageCount() -> AnyPublisher<Int, Never>
 }
 
 final class DashboardInteractorLive: DashboardInteractor {
@@ -100,5 +101,19 @@ final class DashboardInteractorLive: DashboardInteractor {
             .replaceError(with: ([], []))
             .map { _ in () }
             .eraseToAnyPublisher()
+    }
+
+    func getUnreadInboxMessageCount() -> AnyPublisher<Int, Never> {
+        ReactiveStore(
+            useCase: GetInboxMessageList(currentUserId: userId)
+        )
+        .getEntities(ignoreCache: true)
+        .map { messages in
+            messages.reduce(0) { count, message in
+                message.state == .unread ? count + 1 : count
+            }
+        }
+        .replaceError(with: 0)
+        .eraseToAnyPublisher()
     }
 }

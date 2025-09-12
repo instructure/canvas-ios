@@ -22,6 +22,7 @@ import Core
 
 protocol NotificationInteractor {
     func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never>
+    func getUnreadNotificationCount() -> AnyPublisher<Int, Never>
 }
 
 final class NotificationInteractorLive: NotificationInteractor {
@@ -45,6 +46,17 @@ final class NotificationInteractorLive: NotificationInteractor {
             .map { [weak self] activities, courses -> [NotificationModel] in
                 self?.formatter.formatNotifications(activities, courses: courses) ?? []
             }
+            .eraseToAnyPublisher()
+    }
+
+    func getUnreadNotificationCount() -> AnyPublisher<Int, Never> {
+        getNotifications(ignoreCache: true)
+            .map { notifications in
+                notifications.reduce(0) { count, notification in
+                    notification.isRead ? count : count + 1
+                }
+            }
+            .replaceError(with: 0)
             .eraseToAnyPublisher()
     }
 

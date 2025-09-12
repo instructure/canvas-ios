@@ -25,22 +25,22 @@ protocol NotificationFormatter {
 final class NotificationFormatterLive: NotificationFormatter {
     func formatNotifications(_ notifications: [HActivity], courses: [HCourse]) -> [NotificationModel] {
         unowned let unownedSelf = self
-        return notifications.map { notification in
-            let course = courses.first(where: { $0.id == notification.courseId })
+        return notifications.compactMap { notification in
+            guard let course = courses.first(where: { $0.id == notification.courseId }) else { return nil }
             return NotificationModel(
                 id: notification.id,
                 category: unownedSelf.getNotificationCategory(for: notification, course: course),
                 title: unownedSelf.getTitle(for: notification, course: course),
                 date: notification.dateFormatted,
                 isRead: notification.isRead,
-                courseID: course?.id ?? "",
-                enrollmentID: course?.enrollmentID ?? "",
+                courseID: course.id,
+                enrollmentID: course.enrollmentID,
                 isScoreAnnouncement: (unownedSelf.isAssignmentScored(notification) || unownedSelf.isGradingWeightChanged(notification))
             )
         }
     }
 
-    private func getNotificationCategory(for notification: HActivity, course: HCourse?) -> String {
+    private func getNotificationCategory(for notification: HActivity, course: HCourse) -> String {
         if isAssignmentScored(notification) {
             return String(localized: "Assignment Scored", bundle: .horizon)
         }
@@ -51,12 +51,12 @@ final class NotificationFormatterLive: NotificationFormatter {
             return String(localized: "Scoring Weight Changed", bundle: .horizon)
         }
         if notification.contextType == "Course" {
-            return "\(String(localized: "Announcement from", bundle: .horizon)) \(course?.name ?? String(localized: "Unknown Course", bundle: .horizon))"
+            return "\(String(localized: "Announcement from", bundle: .horizon))"
         }
         return notification.notificationCategory ?? (notification.type?.rawValue ?? "")
     }
 
-    private func getTitle(for notification: HActivity, course: HCourse?) -> String {
+    private func getTitle(for notification: HActivity, course: HCourse) -> String {
         if isAssignmentScored(notification) {
             return "\(notification.title) \(String(localized: "'s score is now available", bundle: .horizon))"
         }
@@ -64,7 +64,7 @@ final class NotificationFormatterLive: NotificationFormatter {
             return formatDueDateTitle(for: notification, course: course)
         }
         if isAssignmentCreated(notification) {
-            return notification.title.replacingOccurrences(of: ", \(course?.name ?? "")", with: "")
+            return notification.title.replacingOccurrences(of: ", \(course.name)", with: "")
         }
         if isGradingWeightChanged(notification) {
             return formatGradingWeightChangeTitle(notification)
@@ -93,10 +93,10 @@ final class NotificationFormatterLive: NotificationFormatter {
         notification.notificationCategory == HNotificationCategory.gradingPolicies.rawValue
     }
 
-    private func formatDueDateTitle(for notification: HActivity, course: HCourse?) -> String {
+    private func formatDueDateTitle(for notification: HActivity, course: HCourse) -> String {
         let assignmentName = notification.title
             .replacingOccurrences(of: "Assignment Due Date Changed: ", with: "")
-            .replacingOccurrences(of: ", \(course?.name ?? "")", with: "")
+            .replacingOccurrences(of: ", \(course.name)", with: "")
 
         let dateComponents = notification.message?.components(separatedBy: "\n\n") ?? []
         let date = dateComponents[safe: 1] ?? String(localized: "Unknown date", bundle: .horizon)

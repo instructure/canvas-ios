@@ -30,6 +30,8 @@ class DashboardViewModel {
     var title: String = ""
     private(set) var courses: [HCourse] = []
     private(set) var invitedCourses: [InvitedCourse] = []
+    private(set) var hasUnreadNotification = false
+    private(set) var hasUnreadInboxMessage = false
 
     // MARK: - Input / Outputs
 
@@ -38,6 +40,8 @@ class DashboardViewModel {
     // MARK: - Dependencies
 
     private let dashboardInteractor: DashboardInteractor
+    private let notificationInteractor: NotificationInteractor
+
     private let router: Router
 
     // MARK: - Private variables
@@ -50,11 +54,14 @@ class DashboardViewModel {
 
     init(
         dashboardInteractor: DashboardInteractor,
+        notificationInteractor: NotificationInteractor,
         router: Router
     ) {
         self.dashboardInteractor = dashboardInteractor
+        self.notificationInteractor = notificationInteractor
         self.router = router
         getCourses()
+        setNotificationBadge()
     }
 
     deinit {
@@ -83,6 +90,20 @@ class DashboardViewModel {
 
         refreshCompletedModuleItemCancellable = dashboardInteractor.refreshModuleItemsUponCompletions()
             .sink()
+    }
+
+    private func setNotificationBadge() {
+        Publishers.Zip(
+            notificationInteractor.getUnreadNotificationCount(),
+            dashboardInteractor.getUnreadInboxMessageCount()
+        )
+        .sink { [weak self] notificationCount, inboxCount in
+            self?.hasUnreadNotification = notificationCount > 0
+            self?.hasUnreadInboxMessage = inboxCount > 0
+            TabBarBadgeCounts.unreadActivityStreamCount = UInt(notificationCount)
+            TabBarBadgeCounts.unreadMessageCount = UInt(inboxCount)
+        }
+        .store(in: &subscriptions)
     }
 
     // MARK: - Inputs
@@ -155,6 +176,10 @@ class DashboardViewModel {
             ignoreCache: true,
             completion: completion
         )
+    }
+
+    func reloadUnreadBadges() {
+        setNotificationBadge()
     }
 
     func getStatus(percent: Double) -> String {

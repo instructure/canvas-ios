@@ -111,11 +111,11 @@ struct HNotificationView: View {
                     .foregroundStyle(Color.huiColors.text.body)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
-//                if !notification.isRead {
-//                    Circle()
-//                        .fill(Color.huiColors.surface.institution)
-//                        .frame(width: 8, height: 8)
-//                }
+                if !notification.isRead {
+                    Circle()
+                        .fill(Color.huiColors.surface.institution)
+                        .frame(width: 8, height: 8)
+                }
             }
 
             Text(notification.date)

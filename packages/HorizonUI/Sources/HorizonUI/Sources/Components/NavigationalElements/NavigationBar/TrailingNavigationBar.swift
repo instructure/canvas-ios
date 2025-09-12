@@ -18,10 +18,12 @@
 
 import SwiftUI
 
-public extension HorizonUI.NavigationBar {
-    struct Trailing: View {
+extension HorizonUI.NavigationBar {
+    public struct Trailing: View {
         // MARK: - Dependencies
 
+        private let hasUnreadNotification: Bool
+        private let hasUnreadInboxMessage: Bool
         private let onNotebookDidTap: (() -> Void)?
         private let onNotificationDidTap: () -> Void
         private let onMailDidTap: () -> Void
@@ -29,10 +31,14 @@ public extension HorizonUI.NavigationBar {
         // MARK: - Init
 
         public init(
+            hasUnreadNotification: Bool,
+            hasUnreadInboxMessage: Bool,
             onNotebookDidTap: (() -> Void)? = nil,
             onNotificationDidTap: @escaping () -> Void,
             onMailDidTap: @escaping () -> Void
         ) {
+            self.hasUnreadNotification = hasUnreadNotification
+            self.hasUnreadInboxMessage = hasUnreadInboxMessage
             self.onNotebookDidTap = onNotebookDidTap
             self.onNotificationDidTap = onNotificationDidTap
             self.onMailDidTap = onMailDidTap
@@ -40,36 +46,65 @@ public extension HorizonUI.NavigationBar {
 
         public var body: some View {
             HStack(spacing: .huiSpaces.space8) {
-
                 if let onNotebookDidTap = onNotebookDidTap {
-                    Button {
-                        onNotebookDidTap()
-                    } label: {
-                        Image.huiIcons.menuBookNotebook
-                            .dropShadow()
+                    ZStack {
+                        HorizonUI.IconButton(
+                            Image.huiIcons.menuBookNotebook,
+                            type: .white
+                        ) {
+                            onNotebookDidTap()
+                        }
+                    }
+                    .dropShadow()
+
+                }
+
+                ZStack(alignment: .topTrailing) {
+                    HorizonUI.IconButton(
+                        Image.huiIcons.notifications,
+                        type: .white
+                    ) {
+                        onNotificationDidTap()
+                    }
+
+                    if hasUnreadNotification {
+                        HorizonUI.Badge(
+                            type: .solidColor,
+                            style: .custom(backgroundColor: .huiColors.surface.inversePrimary, foregroundColor: .clear)
+                        )
                     }
                 }
+                .dropShadow()
 
-                Button {
-                    onNotificationDidTap()
-                } label: {
-                    Image.huiIcons.notifications
-                        .dropShadow()
-                }
+                ZStack(alignment: .topTrailing) {
+                    HorizonUI.IconButton(
+                        Image.huiIcons.mail,
+                        type: .white
+                    ) {
+                        onMailDidTap()
+                    }
 
-                Button {
-                    onMailDidTap()
-                } label: {
-                    Image.huiIcons.mail
-                        .dropShadow()
+                    if hasUnreadInboxMessage {
+                        HorizonUI.Badge(
+                            type: .solidColor,
+                            style: .custom(backgroundColor: .huiColors.surface.inversePrimary, foregroundColor: .clear)
+                        )
+                    }
                 }
+                .dropShadow()
             }
         }
     }
 }
 
 #Preview {
-    HorizonUI.NavigationBar.Trailing(onNotebookDidTap: {}, onNotificationDidTap: {}, onMailDidTap: {})
+    HorizonUI.NavigationBar.Trailing(
+        hasUnreadNotification: true,
+        hasUnreadInboxMessage: true,
+        onNotebookDidTap: {},
+        onNotificationDidTap: {},
+        onMailDidTap: {}
+    )
 }
 
 fileprivate extension HorizonUI.NavigationBar.Trailing {

@@ -36,5 +36,9 @@ final class NotificationInteractorPreview: NotificationInteractor {
         ])
         .eraseToAnyPublisher()
     }
+
+    func getUnreadNotificationCount() -> AnyPublisher<Int, Never> {
+        Just(3).eraseToAnyPublisher()
+    }
 }
 #endif

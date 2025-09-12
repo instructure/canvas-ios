@@ -43,8 +43,14 @@ public class TabBarBadgeCounts: NSObject {
         }
     }
 
+    @objc public static var unreadActivityStreamCount: UInt = 0 {
+        didSet {
+            updateApplicationIconBadgeNumber()
+        }
+    }
+
     private static func updateApplicationIconBadgeNumber() {
-        let count = Int(unreadMessageCount + todoListCount)
+        let count = Int(unreadMessageCount + todoListCount + unreadActivityStreamCount)
         notificationCenter.setBadgeCount(count) { _ in }
     }
 

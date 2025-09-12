@@ -23,6 +23,8 @@ public extension HorizonUI.NavigationBar {
             VStack {}
                 .navigationBarItems(
                     trailing: HorizonUI.NavigationBar.Trailing(
+                        hasUnreadNotification: true,
+                        hasUnreadInboxMessage: true,
                         onNotebookDidTap: {},
                         onNotificationDidTap: {},
                         onMailDidTap: {}
