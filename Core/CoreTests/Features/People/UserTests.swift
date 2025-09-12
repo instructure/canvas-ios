@@ -62,4 +62,42 @@ class UserTests: CoreTestCase {
         XCTAssertEqual(User.displayName("Jane Doe", pronouns: nil), "Jane Doe")
         XCTAssertEqual(User.displayName("Jane Doe", pronouns: "She/Her"), "Jane Doe (She/Her)")
     }
+
+    func testConnectsUserToGroups() {
+        let groupSet: CDUserGroupSet = databaseClient.insert()
+        groupSet.id = "groupset"
+        groupSet.name = "Test Group Set"
+
+        let userGroup1: CDUserGroup = databaseClient.insert()
+        userGroup1.id = "group1"
+        userGroup1.name = "Group 1"
+        userGroup1.isDifferentiationTag = false
+        userGroup1.parentGroupSet = groupSet
+        userGroup1.userIdsInGroup = Set(["user1", "user2"])
+
+        let userGroup2: CDUserGroup = databaseClient.insert()
+        userGroup2.id = "group2"
+        userGroup2.name = "Group 2"
+        userGroup2.isDifferentiationTag = true
+        userGroup2.parentGroupSet = groupSet
+        userGroup2.userIdsInGroup = Set(["user2", "user3"])
+
+        let userGroup3: CDUserGroup = databaseClient.insert()
+        userGroup3.id = "group3"
+        userGroup3.name = "Group 3"
+        userGroup3.isDifferentiationTag = false
+        userGroup3.parentGroupSet = groupSet
+        userGroup3.userIdsInGroup = Set(["user3", "user4"])
+
+        let apiUser = APIUser.make(id: "user2", name: "Test User")
+
+        // WHEN
+        let user = User.save(apiUser, in: databaseClient)
+
+        // THEN
+        XCTAssertEqual(
+            Set(user.userGroups.map { $0.id }),
+            Set(["group1", "group2"])
+        )
+    }
 }
