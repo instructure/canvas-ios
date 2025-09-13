@@ -182,6 +182,10 @@ final class LearnViewModel: ProgramSwitcherMapper {
             .store(in: &subscriptions)
     }
 
+    func didTapBackButton(viewController: WeakViewController) {
+        router.dismiss(viewController)
+    }
+
     // MARK: - Helpers
 
     private func handleProgramsLoaded(_ programs: [Program]) {

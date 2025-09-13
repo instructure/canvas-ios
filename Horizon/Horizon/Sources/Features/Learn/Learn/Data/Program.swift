@@ -67,7 +67,7 @@ struct Program: Identifiable {
     }
 
     var hasEnrolledCourse: Bool {
-        courses.contains { $0.status == "ENROLLED" }
+        courses.contains { $0.status == ProgramCourse.Status.enrolled.rawValue }
     }
 }
 

@@ -108,7 +108,7 @@ struct LearnAssembly {
         )
     }
 
-    static func makeLearnView(programID: String? = nil) -> UIViewController {
+    static func makeLearnView(programID: String? = nil, isBackButtonVisible: Bool = false) -> UIViewController {
         let programCourseInteractor = ProgramCourseInteractorLive()
         let interactor = ProgramInteractorLive(programCourseInteractor: programCourseInteractor)
         let router = AppEnvironment.shared.router
@@ -119,7 +119,8 @@ struct LearnAssembly {
             programID: programID
         )
         let view = LearnView(
-            viewModel: viewModel
+            viewModel: viewModel,
+            isBackButtonVisible: isBackButtonVisible
         )
         return CoreHostingController(view)
     }

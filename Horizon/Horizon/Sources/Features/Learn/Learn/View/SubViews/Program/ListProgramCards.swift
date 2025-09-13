@@ -100,6 +100,10 @@ struct ListProgramCards: View {
                 points.append(.init(point: point, isCompleted: program.isCompleted, isRequired: program.isRequired))
             }
         }
+        .id(isLoading)
+        .onChange(of: isLoading) { _, _ in
+            points = []
+        }
     }
 
     private func programCard(for program: ProgramCourse) -> some View {

@@ -23,8 +23,10 @@ struct ProgramOverviewListView: View {
     let programs: [Program]
     let onSelect: (Program) -> Void
     var body: some View {
-        ForEach(programs) { program in
-            programView(program: program)
+        VStack(alignment: .leading, spacing: .huiSpaces.space12) {
+            ForEach(programs) { program in
+                programView(program: program)
+            }
         }
     }
 

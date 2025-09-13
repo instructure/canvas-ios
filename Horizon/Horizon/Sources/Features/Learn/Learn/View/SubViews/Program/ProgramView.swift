@@ -24,6 +24,7 @@ struct ProgramView: View {
     @State private var isProgramDropdownVisible: Bool = false
     @State private var programNameHeight: CGFloat?
     @Bindable var viewModel: LearnViewModel
+    let isBackButtonVisible: Bool
     @Environment(\.viewController) private var viewController
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -36,13 +37,16 @@ struct ProgramView: View {
 
         .toolbar(.hidden)
         .safeAreaInset(edge: .top, spacing: .huiSpaces.space24) {
-            ExpandTitleView(title: viewModel.currentProgram?.name ?? "", isExpanded: isProgramDropdownVisible)
-                .padding([.horizontal, .top], .huiSpaces.space24)
-                .hidden(viewModel.isLoaderVisible)
-                .transition(.move(edge: .top).combined(with: .opacity))
-                .onTapGesture { isProgramDropdownVisible.toggle() }
-                .readingFrame { frame in programNameHeight = frame.height }
-
+            VStack(alignment: .leading, spacing: .zero) {
+                navigationBar
+                ExpandTitleView(title: viewModel.currentProgram?.name ?? "", isExpanded: isProgramDropdownVisible)
+                    .padding(.top, isBackButtonVisible ? .huiSpaces.space10 : .huiSpaces.space24)
+                    .padding(.horizontal, .huiSpaces.space24)
+                    .hidden(viewModel.isLoaderVisible)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                    .onTapGesture { isProgramDropdownVisible.toggle() }
+                    .readingFrame { frame in programNameHeight = frame.height + ( isBackButtonVisible ? 45 : 0)  }
+            }
         }
         .background(Color.huiColors.surface.pagePrimary)
         .onTapGesture { isProgramDropdownVisible = false }
@@ -142,6 +146,24 @@ struct ProgramView: View {
         .foregroundStyle(Color.huiColors.text.body)
         .huiTypography(.h4)
     }
+
+    @ViewBuilder
+    private var navigationBar: some View {
+        if isBackButtonVisible {
+            HStack {
+                Button {
+                    viewModel.didTapBackButton(viewController: viewController)
+                } label: {
+                    Image.huiIcons.arrowBack
+                        .foregroundStyle(Color.huiColors.icon.default)
+                        .frame(width: 44, height: 44, alignment: .leading)
+
+                }
+                Spacer()
+            }
+            .padding(.horizontal, .huiSpaces.space24)
+        }
+    }
 }
 
 #if DEBUG
@@ -152,7 +174,8 @@ struct ProgramView: View {
             learnCoursesInteractor: GetLearnCoursesInteractorPreview(),
             router: AppEnvironment.shared.router,
             programID: nil
-        )
+        ),
+        isBackButtonVisible: false
     )
 }
 #endif

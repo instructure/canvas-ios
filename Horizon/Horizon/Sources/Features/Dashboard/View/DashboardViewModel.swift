@@ -80,7 +80,7 @@ class DashboardViewModel {
             .combineLatest(programInteractor.getPrograms(ignoreCache: ignoreCache))
             .sink { [weak self] items, programs in
                 let courses = items.filter { $0.state == HCourse.EnrollmentState.active.rawValue }
-                self?.courses = self?.getAttachPrograms(to: courses, from: programs) ?? []
+                self?.courses = self?.getAttachedPrograms(to: courses, from: programs) ?? []
                 self?.unenrolledPrograms = programs.filter { !$0.hasEnrolledCourse  }
                 let invitedCourses = items.filter { $0.state == HCourse.EnrollmentState.invited.rawValue }
                 let message = String(localized: "You have been invited to join", bundle: .horizon)
@@ -93,7 +93,7 @@ class DashboardViewModel {
             .sink()
     }
 
-   private func getAttachPrograms(to hcourses: [HCourse], from programs: [Program]) -> [HCourse] {
+   private func getAttachedPrograms(to hcourses: [HCourse], from programs: [Program]) -> [HCourse] {
         return hcourses.map { hcourse in
             var updateCourse = hcourse
             // Find all programs that contain this course id
@@ -144,7 +144,7 @@ class DashboardViewModel {
     }
 
     func navigateProgram(id: String, viewController: WeakViewController) {
-        router.show(LearnAssembly.makeLearnView(programID: id), from: viewController)
+        router.show(LearnAssembly.makeLearnView(programID: id, isBackButtonVisible: true), from: viewController)
     }
 
     func acceptInvitation(course: InvitedCourse) {
