@@ -18,31 +18,46 @@
 
 import Foundation
 
-struct HGetCoursesEnrollmentIDResponse: Codable {
-    let data: LegacyNodeWrapper?
+public struct GetHCoursesByIdsResponse: Codable {
+    let data: Response?
 
-    struct LegacyNodeWrapper: Codable {
-        let legacyNode: LegacyNode?
+    public struct Response: Codable {
+        var courses: [ProgramCourse]?
+        let course: ProgramCourse?
     }
 
-    struct LegacyNode: Codable {
-        let enrollments: [Enrollment]?
-    }
-
-    struct Enrollment: Codable {
-        let id: String
-        let course: Course?
+    public struct ProgramCourse: Codable {
+        let id, name: String
+        let modulesConnection: ModulesConnection?
 
         enum CodingKeys: String, CodingKey {
             case id = "_id"
-            case course
+            case name, modulesConnection
         }
     }
 
-    struct Course: Codable {
-        let id: String
+    public struct ModulesConnection: Codable {
+        let edges: [Edge]?
+    }
+
+    public struct Edge: Codable {
+        let node: Node?
+    }
+
+    public struct Node: Codable {
+        let id, name: String?
+        let moduleItems: [ModuleItem]?
+    }
+
+    public struct ModuleItem: Codable {
+        let published: Bool?
+        let id: String?
+        let estimatedDuration: String?
+
         enum CodingKeys: String, CodingKey {
+            case published
             case id = "_id"
+            case estimatedDuration
         }
     }
 }

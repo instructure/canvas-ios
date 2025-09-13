@@ -58,6 +58,7 @@ final class LearnViewModel: ProgramSwitcherMapper {
     // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
+    private var courses: [LearnCourse] = []
 
     // MARK: - Dependencies
 
@@ -115,7 +116,7 @@ final class LearnViewModel: ProgramSwitcherMapper {
             .getProgramsWithCourses(ignoreCache: ignoreCache)
             .zip(
                 learnCoursesInteractor
-                    .getCourses(ignoreCache: false)
+                    .getCourses(ignoreCache: ignoreCache)
                     .setFailureType(to: Error.self)
             )
             .receive(on: scheduler)
@@ -125,6 +126,7 @@ final class LearnViewModel: ProgramSwitcherMapper {
                 }
                 completionHandler?()
             } receiveValue: { [weak self] programs, courses in
+                self?.courses = courses
                 self?.handleProgramsLoaded(programs)
                 self?.dropdownMenuPrograms = self?.mapPrograms(programs: programs, courses: courses) ?? []
                 self?.setState(programs: programs, courses: courses)
@@ -150,11 +152,11 @@ final class LearnViewModel: ProgramSwitcherMapper {
 
     func navigateToCourseDetails(
         courseID: String,
-        enrollemtID: String?,
         programID: String? = nil,
+        isEnrolled: Bool,
         viewController: WeakViewController
     ) {
-        guard let enrollemtID else { return }
+        guard isEnrolled, let enrollemtID = courses.first(where: { $0.id == courseID })?.enrollmentId  else { return }
         router.show(
                 LearnAssembly.makeCourseDetailsViewController(
                     courseID: courseID,

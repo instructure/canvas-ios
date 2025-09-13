@@ -18,31 +18,42 @@
 
 import Foundation
 
-struct GetHCoursesEnrollmentIDRequest: APIGraphQLRequestable {
-    public typealias Response = HGetCoursesEnrollmentIDResponse
-    public let variables: Input
+struct GetHCoursesByIdRequest: APIGraphQLRequestable {
+    public typealias Response = GetHCoursesByIdsResponse
+    public typealias Variables = Input
 
     public struct Input: Codable, Equatable {
-        var id: String
+        let id: String
     }
 
-    public init(userId: String) {
-        self.variables = Input(id: userId)
+    public static let operationName = "GetCoursesById"
+    public let variables: Input
+
+    // MARK: - Init
+
+    public init(courseID: String) {
+        self.variables = Input(id: courseID)
     }
 
-    public static let operationName = "GetCoursesEnrollmentIDs"
-    public static let query = """
+    public static let query: String = """
             query \(operationName)($id: ID!) {
-         legacyNode(_id: $id, type: User) {
-           ... on User {
-            enrollments(currentOnly: false) {
-              _id
-              course {
+              course(id: $id) {
                 _id
+                name
+                modulesConnection {
+                  edges {
+                    node {
+                      id
+                      name
+                      moduleItems {
+                        published
+                        _id
+                        estimatedDuration
+                      }
+                    }
+                  }
+                }
               }
             }
-          }
-          }
-        }
-        """
+    """
 }

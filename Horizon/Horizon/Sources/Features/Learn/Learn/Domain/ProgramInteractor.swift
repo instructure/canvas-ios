@@ -109,7 +109,7 @@ final class ProgramInteractorLive: ProgramInteractor {
             isRequired: requirement.isCompletionRequired,
             status: progress.courseEnrollmentStatus,
             progressID: progress.id,
-            completionPercent: progress.completionPercentage
+            completionPercent: Double(progress.completionPercentage) / 100.0
         )
     }
 

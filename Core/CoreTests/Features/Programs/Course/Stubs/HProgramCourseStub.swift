@@ -21,23 +21,19 @@ import Foundation
 
 enum HProgramCourseStub {
 
-    static func getProgramCourse() -> GetHProgramCourseResponse.ProgramCourse {
-        .init(id: "1", name: "Test Course", modulesConnection: getModules(), usersConnection: getUsersConnection())
+    static func getProgramCourse() -> GetHCoursesByIdsResponse.ProgramCourse {
+        .init(id: "1", name: "Test Course", modulesConnection: getModules())
     }
 
-    static func getModules() -> GetHProgramCourseResponse.ModuleConnection {
-        let moduleItems: [GetHProgramCourseResponse.ModuleItem] = [
+    static func getModules() -> GetHCoursesByIdsResponse.ModulesConnection {
+        let moduleItems: [GetHCoursesByIdsResponse.ModuleItem] = [
             .init(published: true, id: "1", estimatedDuration: "12PT"),
             .init(published: false, id: "2", estimatedDuration: "10PT"),
             .init(published: true, id: "3", estimatedDuration: "12PT"),
             .init(published: true, id: "5", estimatedDuration: "20pT")
         ]
-        let node: GetHProgramCourseResponse.EdgeNode = .init(id: "modudel - 1", name: "Module 1", moduleItems: moduleItems)
-        let edges: [GetHProgramCourseResponse.Edge] =  [ .init(node: node) ]
-        return GetHProgramCourseResponse.ModuleConnection(pageInfo: nil, edges: edges)
-    }
-
-    static func getUsersConnection() -> GetHProgramCourseResponse.UsersConnection {
-        .init(nodes: [.init(courseProgression: .init(requirements: .init(completionPercentage: 0.4)))])
+        let node: GetHCoursesByIdsResponse.Node = .init(id: "modudel - 1", name: "Module 1", moduleItems: moduleItems)
+        let edges: [GetHCoursesByIdsResponse.Edge] =  [ .init(node: node) ]
+        return GetHCoursesByIdsResponse.ModulesConnection(edges: edges)
     }
 }

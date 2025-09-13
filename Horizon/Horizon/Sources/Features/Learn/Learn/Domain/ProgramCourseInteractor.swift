@@ -36,18 +36,8 @@ final class ProgramCourseInteractorLive: ProgramCourseInteractor {
     }
 
     func getCourses(programs: [Program], ignoreCache: Bool) -> AnyPublisher<[Program], Error> {
-        let parameters = programs
-            .flatMap { program in
-                program.courses.map { course in
-                    GetHProgramCourseRequest.Parameters(
-                        programID: program.id,
-                        courseID: course.id
-                    )
-                }
-            }
-
-        return ReactiveStore(
-            useCase: GetHProgramCourseUseCase(userId: userId, programs: parameters)
+        ReactiveStore(
+            useCase: GetHProgramCourseUseCase(programs: programs.toRequestModels())
         )
         .getEntities(ignoreCache: ignoreCache)
         .map { [weak self] response in
@@ -78,8 +68,17 @@ final class ProgramCourseInteractorLive: ProgramCourseInteractor {
         var updatedCourse = course
         updatedCourse.moduleItemsestimatedTime = programCourse.moduleItems.compactMap { $0.estimatedDuration }
         updatedCourse.name = programCourse.courseName
-        updatedCourse.enrollemtID = programCourse.enrollemtID
-        updatedCourse.completionPercent = Double(programCourse.completionPercentage) / 100.0
         return updatedCourse
+    }
+}
+
+extension Array where Element == Program {
+    func toRequestModels() -> [GetHProgramCourseUseCase.RequestModel] {
+        self.map { program in
+            GetHProgramCourseUseCase.RequestModel(
+                programId: program.id,
+                courseIds: program.courses.map { $0.id }
+            )
+        }
     }
 }
