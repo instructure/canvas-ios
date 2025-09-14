@@ -90,15 +90,15 @@ extension GetSubmissions.Filter {
 
     public enum Status: RawRepresentable, Equatable {
 
-        public static var predefinedCases: [Status] {
+        public static var sharedCases: [Status] {
             return [.notSubmitted, .submitted, .graded, .late, .missing]
         }
 
-        public static func allCases(courseID: String, env: AppEnvironment) -> [Status] {
-            let customStatuses = GetCustomGradeStatuses(courseID: courseID)
-                .fetchFromDatabase(environment: env)
-                .map({ $0.name })
-            return predefinedCases + customStatuses.map { .custom($0) }
+        public static func courseAllCases(_ courseID: String) -> [Status] {
+            let viewContext = AppEnvironment.shared.database.viewContext
+            let customStatuses: [CDCustomGradeStatus] = viewContext
+                .fetch(NSPredicate(key: #keyPath(CDCustomGradeStatus.courseID), equals: courseID))
+            return sharedCases + customStatuses.map { .custom($0.name) }
         }
 
         case notSubmitted
@@ -108,28 +108,9 @@ extension GetSubmissions.Filter {
         case missing
         case custom(String)
 
-        public var rawValue: String {
-            switch self {
-            case .notSubmitted:
-                "not_submitted"
-            case .submitted:
-                "submitted"
-            case .graded:
-                "graded"
-            case .late:
-                "late"
-            case .missing:
-                "missing"
-            case .custom(let name):
-                "custom:\(name)"
-            }
-        }
-
-        public var queryValue: String { rawValue }
-
         public init?(rawValue: String) {
 
-            if let mode = Self.predefinedCases.first(where: { $0.rawValue == rawValue }) {
+            if let mode = Self.sharedCases.first(where: { $0.rawValue == rawValue }) {
                 self = mode
                 return
             }
@@ -157,6 +138,27 @@ extension GetSubmissions.Filter {
             case .custom(let name):
                 name
             }
+        }
+
+        public var rawValue: String {
+            switch self {
+            case .notSubmitted:
+                "not_submitted"
+            case .submitted:
+                "submitted"
+            case .graded:
+                "graded"
+            case .late:
+                "late"
+            case .missing:
+                "missing"
+            case .custom(let name):
+                "custom:\(name)"
+            }
+        }
+
+        public var queryValue: String {
+            rawValue
         }
 
         var predicate: NSPredicate {
@@ -217,13 +219,14 @@ extension Collection where Element == GetSubmissions.Filter.Status {
 
     var predicate: NSPredicate? { map(\.predicate).orRelated }
 
-    public var isPredefinedCasesIncluded: Bool {
-        return Element.predefinedCases.allSatisfy { contains($0) }
+    public var isSharedCasesIncluded: Bool {
+        return Element.sharedCases.allSatisfy { contains($0) }
     }
 
-    public func allIncluded(for courseID: String, client: NSManagedObjectContext) -> Bool {
-        guard isPredefinedCasesIncluded else { return false }
-        let statuses: [CDCustomGradeStatus] = client
+    public func isCourseAllCasesIncluded(_ courseID: String) -> Bool {
+        guard isSharedCasesIncluded else { return false }
+        let viewContext = AppEnvironment.shared.database.viewContext
+        let statuses: [CDCustomGradeStatus] = viewContext
             .fetch(NSPredicate(key: #keyPath(CDCustomGradeStatus.courseID), equals: courseID))
         return statuses.map(\.name).allSatisfy({ contains(.custom($0)) })
     }
@@ -330,7 +333,7 @@ extension Collection where Element == GetSubmissions.Filter.DifferentiationTag {
 
 // MARK: - Utils
 
-extension Array where Element == NSPredicate {
+private extension Array where Element == NSPredicate {
 
     var andRelated: NSPredicate? {
         if count <= 1 { return first }
@@ -343,7 +346,7 @@ extension Array where Element == NSPredicate {
     }
 }
 
-extension Collection {
+private extension Collection {
 
     func inPredicate<Value: CVarArg>(key: String, propertyKeyPath: KeyPath<Element, Value>) -> NSPredicate? {
         if isEmpty { return nil }
