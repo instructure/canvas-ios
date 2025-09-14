@@ -170,7 +170,7 @@ class SubmissionListViewModel: ObservableObject {
     }
 
     func didTapSubmissionRow(_ submission: SubmissionListItem, from controller: WeakViewController) {
-        let query = isFilterActive ? "" : "?filter=\(filterMode.filters.map { $0.rawValue }.joined(separator: ","))"
+        let query = isFilterActive ? "?filter=\(filterMode.filters.map { $0.rawValue }.joined(separator: ","))" : ""
         env.router.route(
             to: assignmentRoute + "/submissions/\(submission.originalUserID)\(query)",
             from: controller.value,
