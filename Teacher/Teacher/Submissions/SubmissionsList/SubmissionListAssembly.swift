@@ -25,7 +25,7 @@ public enum SubmissionListAssembly {
         env: AppEnvironment,
         context: Context,
         assignmentID: String,
-        filter: [GetSubmissions.Filter]
+        filter: [GetSubmissions.Filter.Status]
     ) -> UIViewController {
 
         let filterMode = SubmissionFilterMode.allCases.first(where: { $0.filters == filter }) ?? .all

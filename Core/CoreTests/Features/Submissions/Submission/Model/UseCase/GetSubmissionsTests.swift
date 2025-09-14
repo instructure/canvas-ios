@@ -110,8 +110,8 @@ class GetSubmissionsTests: CoreTestCase {
         XCTAssertEqual(useCase.cacheKey, "courses/1/assignments/1/submissions")
         XCTAssertEqual(useCase.request.assignmentID, "1")
         XCTAssertEqual(useCase.scope.order, [
-            NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true),
             NSSortDescriptor(key: #keyPath(Submission.user.sortableName), naturally: true),
+            NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true),
             NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true)
         ])
         useCase.shuffled = true
@@ -129,22 +129,6 @@ class GetSubmissionsTests: CoreTestCase {
             ])
         ]))
 
-        XCTAssertEqual(useCase.scopeKeepingIDs(["3"]).predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"),
-            NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
-            NSCompoundPredicate(orPredicateWithSubpredicates: [
-                NSPredicate(format: "%K.@count == 0", #keyPath(Submission.enrollments)),
-                NSPredicate(format: "NONE %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["inactive", "invited"]),
-                NSCompoundPredicate(andPredicateWithSubpredicates: [
-                    NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.stateRaw), ["active"]),
-                    NSPredicate(format: "ANY %K != nil", #keyPath(Submission.enrollments.courseSectionID))
-                ])
-            ]),
-            NSCompoundPredicate(orPredicateWithSubpredicates: [
-                NSCompoundPredicate(andPredicateWithSubpredicates: []),
-                NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), ["3"])
-            ])
-        ]))
         useCase.filter = [.late]
         XCTAssertEqual(useCase.scope.predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"),
@@ -162,32 +146,23 @@ class GetSubmissionsTests: CoreTestCase {
     }
 
     func testGetSubmissionsFilterRawValue() {
-        typealias Filter = GetSubmissions.Filter
-        XCTAssertEqual(Filter(rawValue: nil), nil)
-        XCTAssertEqual(Filter(rawValue: "bogus" as String?), nil)
-        XCTAssertEqual(Filter(rawValue: "late"), .late)
-        XCTAssertEqual(Filter.late.rawValue, "late")
-        XCTAssertEqual(Filter(rawValue: "not_submitted"), .notSubmitted)
-        XCTAssertEqual(Filter.notSubmitted.rawValue, "not_submitted")
-        XCTAssertEqual(Filter(rawValue: "needs_grading"), .needsGrading)
-        XCTAssertEqual(Filter.needsGrading.rawValue, "needs_grading")
-        XCTAssertEqual(Filter(rawValue: "graded"), .graded)
-        XCTAssertEqual(Filter.graded.rawValue, "graded")
-        XCTAssertEqual(Filter(rawValue: "score_above_10"), .scoreAbove(10))
-        XCTAssertEqual(Filter.scoreAbove(1.5).rawValue, "score_above_1.5")
-        XCTAssertEqual(Filter(rawValue: "score_below_0.7"), .scoreBelow(0.7))
-        XCTAssertEqual(Filter.scoreBelow(-2).rawValue, "score_below_-2.0")
-        XCTAssertEqual(Filter(rawValue: "user_7"), .user("7"))
-        XCTAssertEqual(Filter.user("a").rawValue, "user_a")
-        XCTAssertEqual(Filter(rawValue: "section_a_2"), .section([ "a", "2" ]))
-        XCTAssertEqual(Filter.section([ "c", "1" ]).rawValue, "section_1_c")
+        typealias Status = GetSubmissions.Filter.Status
+        XCTAssertEqual(Status(rawValue: "bogus"), nil)
+        XCTAssertEqual(Status(rawValue: "late"), .late)
+        XCTAssertEqual(Status.late.rawValue, "late")
+        XCTAssertEqual(Status(rawValue: "not_submitted"), .notSubmitted)
+        XCTAssertEqual(Status.notSubmitted.rawValue, "not_submitted")
+        XCTAssertEqual(Status(rawValue: "submitted"), .submitted)
+        XCTAssertEqual(Status.submitted.rawValue, "submitted")
+        XCTAssertEqual(Status(rawValue: "graded"), .graded)
+        XCTAssertEqual(Status.graded.rawValue, "graded")
     }
 
     func testGetSubmissionsFilterPredicate() {
         typealias Filter = GetSubmissions.Filter
-        XCTAssertEqual(Filter.late.predicate, NSPredicate(key: #keyPath(Submission.late), equals: true))
+        XCTAssertEqual(Filter.Status.late.predicate, NSPredicate(key: #keyPath(Submission.late), equals: true))
         XCTAssertEqual(
-            Filter.notSubmitted.predicate,
+            Filter.Status.notSubmitted.predicate,
             NSCompoundPredicate(type: .or, subpredicates: [
                 NSPredicate(
                     format: "workflowStateRaw == 'unsubmitted' AND (excusedRaw == nil OR excusedRaw != true) AND customGradeStatusId == nil"
@@ -197,16 +172,16 @@ class GetSubmissionsTests: CoreTestCase {
                 )
             ])
         )
-        XCTAssertEqual(Filter.graded.predicate, NSPredicate(format: "%K == true OR %K != nil OR (%K != nil AND %K == 'graded')",
+        XCTAssertEqual(Filter.status(.graded).predicate, NSPredicate(format: "%K == true OR %K != nil OR (%K != nil AND %K == 'graded')",
             #keyPath(Submission.excusedRaw),
             #keyPath(Submission.customGradeStatusId),
             #keyPath(Submission.scoreRaw),
             #keyPath(Submission.workflowStateRaw)
         ))
-        XCTAssertEqual(Filter.scoreAbove(100).predicate, NSPredicate(format: "%K > %@", #keyPath(Submission.scoreRaw), NSNumber(value: 100.0)))
-        XCTAssertEqual(Filter.scoreBelow(0).predicate, NSPredicate(format: "%K < %@", #keyPath(Submission.scoreRaw), NSNumber(value: 0.0)))
+        XCTAssertEqual(Filter.scoreMoreThan(100).predicate, NSPredicate(format: "%K > %@", #keyPath(Submission.scoreRaw), NSNumber(value: 100.0)))
+        XCTAssertEqual(Filter.scoreLessThan(0).predicate, NSPredicate(format: "%K < %@", #keyPath(Submission.scoreRaw), NSNumber(value: 0.0)))
         XCTAssertEqual(Filter.user("1").predicate, NSPredicate(key: #keyPath(Submission.userID), equals: "1"))
-        XCTAssertEqual(Filter.section([ "c", "1" ]).predicate, NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.courseSectionID), Set([ "c", "1" ])))
+        XCTAssertEqual(Filter.section("c", "1").predicate, NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.courseSectionID), [ "c", "1" ]))
     }
 
     func testGetSubmissionsFilterName() {
@@ -218,14 +193,14 @@ class GetSubmissionsTests: CoreTestCase {
         Enrollment.make(from: .make(id: "2", course_id: "1", user_id: "2"))
         Submission.make(from: .make(assignment: .make(), id: "1", user_id: "1"))
         Submission.make(from: .make(id: "2", user_id: "2"))
-        XCTAssertEqual(Filter.late.name, "Late")
-        XCTAssertEqual(Filter.notSubmitted.name, "Not Submitted")
-        XCTAssertEqual(Filter.needsGrading.name, "Needs Grading")
-        XCTAssertEqual(Filter.graded.name, "Graded")
-        XCTAssertEqual(Filter.scoreAbove(100).name, "Scored above 100")
-        XCTAssertEqual(Filter.scoreBelow(0).name, "Scored below 0")
-        XCTAssertEqual(Filter.user("1").name, "Me")
-        XCTAssertEqual(Filter.section([ "2", "1" ]).name, "One and Two")
+
+        XCTAssertEqual(Filter.Status.late.name, "Late")
+        XCTAssertEqual(Filter.Status.notSubmitted.name, "Not Submitted")
+        XCTAssertEqual(Filter.Status.submitted.name, "Submitted")
+        XCTAssertEqual(Filter.Status.graded.name, "Graded")
+
+        XCTAssertEqual(Filter.Score.moreThan(100).name, "Scored More than 100")
+        XCTAssertEqual(Filter.Score.lessThan(0).name, "Scored Less than 0")
     }
 
     func testGroupSubmissionWithIndividualGradesOrder() {
@@ -250,7 +225,7 @@ class GetSubmissionsTests: CoreTestCase {
         Submission.save(.make(attempt: 0, workflow_state: .unsubmitted), in: databaseClient)
         XCTAssertEqual((databaseClient.fetch() as [Submission]).count, 1)
 
-        let testee = GetSubmissions(context: .course("1"), assignmentID: "1", filter: [.needsGrading], shuffled: false)
+        let testee = GetSubmissions(context: .course("1"), assignmentID: "1", shuffled: false, filter: [.submitted])
         // Simulate Store executing these after API fetch completes
         testee.reset(context: databaseClient)
         testee.write(response: [.make(attempt: 1, workflow_state: .submitted)], urlResponse: nil, to: databaseClient)

@@ -63,7 +63,7 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
             ),
             environment: env)
         submissionsStore = ReactiveStore(
-            useCase: GetSubmissions(context: .course(courseID), assignmentID: assignmentID, filter: []),
+            useCase: GetSubmissions(context: .course(courseID), assignmentID: assignmentID),
             environment: env
         )
     }
@@ -95,23 +95,25 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
         )
     }
 
+    private typealias SubmissionStatusFilter = GetSubmissions.Filter.Status
+
     public func routeToGraded(router: Router, viewController: WeakViewController) {
         router.route(
-            to: "\(submissionsPath)?filter=graded",
+            to: "\(submissionsPath)?filter=\(SubmissionStatusFilter.graded.queryValue)",
             from: viewController
         )
     }
 
     public func routeToUngraded(router: Router, viewController: WeakViewController) {
         router.route(
-            to: "\(submissionsPath)?filter=needs_grading",
+            to: "\(submissionsPath)?filter=\(SubmissionStatusFilter.submitted.queryValue)",
             from: viewController
         )
     }
 
     public func routeToUnsubmitted(router: Router, viewController: WeakViewController) {
         router.route(
-            to: "\(submissionsPath)?filter=not_submitted",
+            to: "\(submissionsPath)?filter=\(SubmissionStatusFilter.notSubmitted.queryValue)",
             from: viewController
         )
     }

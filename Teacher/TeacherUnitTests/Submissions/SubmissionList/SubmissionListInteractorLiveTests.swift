@@ -41,7 +41,7 @@ class SubmissionListInteractorLiveTests: TeacherTestCase {
         super.tearDown()
     }
 
-    func makeInteractor(filters: [GetSubmissions.Filter] = []) -> SubmissionListInteractorLive {
+    func makeInteractor(filters: [GetSubmissions.Filter.Status] = []) -> SubmissionListInteractorLive {
         return SubmissionListInteractorLive(
             context: TestConstants.context,
             assignmentID: TestConstants.assignmentID,

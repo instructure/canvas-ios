@@ -27,7 +27,7 @@ enum SpeedGraderAssembly {
         context: Context,
         assignmentId: String,
         userId: String?,
-        filter: [GetSubmissions.Filter],
+        filter: [GetSubmissions.Filter.Status],
         env: AppEnvironment
     ) -> UIViewController {
         let normalizedUserId = SpeedGraderUserIdNormalization.normalizeUserId(userId)

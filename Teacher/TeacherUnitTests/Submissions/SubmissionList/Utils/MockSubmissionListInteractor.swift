@@ -58,8 +58,8 @@ final class MockSubmissionListInteractor: SubmissionListInteractor {
         return Just<Void>(()).eraseToAnyPublisher()
     }
 
-    var appliedFilters: [GetSubmissions.Filter] = []
-    func applyFilters(_ filters: [GetSubmissions.Filter]) {
-        appliedFilters = filters
+    var appliedFilter: GetSubmissions.Filter?
+    func applyFilter(_ filter: GetSubmissions.Filter) {
+        appliedFilter = filter
     }
 }

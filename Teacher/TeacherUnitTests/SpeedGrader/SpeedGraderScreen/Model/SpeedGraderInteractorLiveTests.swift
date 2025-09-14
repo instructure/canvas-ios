@@ -194,7 +194,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
 
     private func makeInteractor(
         userId: String = testData.userId,
-        filter: [GetSubmissions.Filter] = []
+        filter: [GetSubmissions.Filter.Status] = []
     ) -> SpeedGraderInteractorLive {
         SpeedGraderInteractorLive(
             context: testData.context,
