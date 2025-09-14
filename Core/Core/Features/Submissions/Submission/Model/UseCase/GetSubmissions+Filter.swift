@@ -95,10 +95,7 @@ extension GetSubmissions.Filter {
         }
 
         public static func courseAllCases(_ courseID: String) -> [Status] {
-            let viewContext = AppEnvironment.shared.database.viewContext
-            let customStatuses: [CDCustomGradeStatus] = viewContext
-                .fetch(NSPredicate(key: #keyPath(CDCustomGradeStatus.courseID), equals: courseID))
-            return sharedCases + customStatuses.map { .custom($0.name) }
+            return sharedCases + CDCustomGradeStatus.allForCourse(courseID).map { .custom($0.name) }
         }
 
         case notSubmitted
@@ -225,10 +222,10 @@ extension Collection where Element == GetSubmissions.Filter.Status {
 
     public func isCourseAllCasesIncluded(_ courseID: String) -> Bool {
         guard isSharedCasesIncluded else { return false }
-        let viewContext = AppEnvironment.shared.database.viewContext
-        let statuses: [CDCustomGradeStatus] = viewContext
-            .fetch(NSPredicate(key: #keyPath(CDCustomGradeStatus.courseID), equals: courseID))
-        return statuses.map(\.name).allSatisfy({ contains(.custom($0)) })
+        return CDCustomGradeStatus
+            .allForCourse(courseID)
+            .map(\.name)
+            .allSatisfy({ contains(.custom($0)) })
     }
 
     public var query: String {
@@ -332,6 +329,22 @@ extension Collection where Element == GetSubmissions.Filter.DifferentiationTag {
 }
 
 // MARK: - Utils
+
+private extension CDCustomGradeStatus {
+
+    static func allForCourse(_ courseID: String) -> [CDCustomGradeStatus] {
+        return AppEnvironment
+            .shared
+            .database
+            .viewContext
+            .fetch(
+                NSPredicate(key: #keyPath(CDCustomGradeStatus.courseID), equals: courseID),
+                sortDescriptors: [
+                    NSSortDescriptor(key: #keyPath(CDCustomGradeStatus.name), naturally: true)
+                ]
+            )
+    }
+}
 
 private extension Array where Element == NSPredicate {
 
