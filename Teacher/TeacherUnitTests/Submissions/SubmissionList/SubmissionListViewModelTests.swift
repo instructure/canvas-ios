@@ -47,7 +47,7 @@ final class SubmissionListViewModelTests: TeacherTestCase {
             context: TestConstants.context,
             assignmentID: TestConstants.assignmentID
         )
-        viewModel = SubmissionListViewModel(interactor: interactor, filterMode: .all, env: environment, scheduler: scheduler)
+        viewModel = SubmissionListViewModel(interactor: interactor, statusFilters: [], env: environment, scheduler: scheduler)
     }
 
     override func tearDown() {
@@ -263,7 +263,7 @@ final class SubmissionListViewModelTests: TeacherTestCase {
     }
 
     func testFilterModeChange() {
-        viewModel.filterMode = .graded
+        viewModel.statusFilters = [.graded]
         XCTAssertEqual(interactor.appliedFilter?.statuses, [.graded])
     }
 
@@ -374,19 +374,13 @@ final class SubmissionListViewModelTests: TeacherTestCase {
         XCTAssertNil(routedURL.query)
 
         // When
-        viewModel.filterMode = .needsGrading
+        viewModel.statusFilters = [.submitted]
         viewModel.didTapSubmissionRow(mockItem, from: WeakViewController())
 
         // Then
         routedURL = try XCTUnwrap(router.calls.last?.0)
 
-        let expectedFilters = SubmissionFilterMode
-            .needsGrading
-            .filters
-            .map { $0.rawValue }
-            .joined(separator: ",")
-            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-
+        let expectedFilters = [SubmissionStatusFilter.submitted].query
         XCTAssertEqual(routedURL.query, "filter=\(expectedFilters)")
     }
 }

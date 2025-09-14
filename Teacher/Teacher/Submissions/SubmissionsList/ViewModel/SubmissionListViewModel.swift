@@ -27,7 +27,7 @@ class SubmissionListViewModel: ObservableObject {
     @Published private(set) var state: InstUI.ScreenState = .loading
 
     @Published var searchText: String = ""
-    @Published var filterMode: SubmissionFilterMode
+    @Published var statusFilters: [SubmissionStatusFilter]
 
     @Published var assignment: Assignment?
     @Published var course: Course?
@@ -38,9 +38,11 @@ class SubmissionListViewModel: ObservableObject {
     private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
-    init(interactor: SubmissionListInteractor, filterMode: SubmissionFilterMode, env: AppEnvironment, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+    init(interactor: SubmissionListInteractor, statusFilters: [SubmissionStatusFilter], env: AppEnvironment, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
-        self.filterMode = filterMode
+        self.statusFilters = statusFilters.isEmpty
+            ? SubmissionStatusFilter.courseAllCases(interactor.context.id)
+            : statusFilters
         self.env = env
         self.scheduler = scheduler
         setupBindings()
@@ -84,9 +86,9 @@ class SubmissionListViewModel: ObservableObject {
             .map({ $0.isEmpty ? .empty : .data })
             .assign(to: &$state)
 
-        $filterMode
-            .sink { [weak self] mode in
-                self?.interactor.applyFilter(.init(statuses: mode.filters))
+        $statusFilters
+            .sink { [weak self] filters in
+                self?.interactor.applyFilter(.init(statuses: filters))
             }
             .store(in: &subscriptions)
     }
@@ -97,8 +99,16 @@ class SubmissionListViewModel: ObservableObject {
 
     // MARK: Exposed To View
 
+    var statusFilterOptions: [SubmissionStatusFilter] {
+        SubmissionStatusFilter.courseAllCases(interactor.context.id)
+    }
+
     var isFilterActive: Bool {
-        return filterMode != .all
+        let isDefaultStatusFilterSelection = statusFilters.isEmpty || statusFilters == SubmissionStatusFilter.courseAllCases(interactor.context.id)
+
+        if isDefaultStatusFilterSelection == false { return true }
+
+        return false
     }
 
     func refresh(_ completion: @escaping () -> Void) {
@@ -112,11 +122,7 @@ class SubmissionListViewModel: ObservableObject {
     }
 
     func messageUsers(from controller: WeakViewController) {
-        guard var subject = assignment?.name else { return }
-
-        if isFilterActive {
-            subject = "\(filterMode.title) - \(subject)"
-        }
+        guard let subject = assignment?.name else { return }
 
         let recipients = sections
             .flatMap { section in
@@ -170,7 +176,7 @@ class SubmissionListViewModel: ObservableObject {
     }
 
     func didTapSubmissionRow(_ submission: SubmissionListItem, from controller: WeakViewController) {
-        let query = isFilterActive ? "?filter=\(filterMode.filters.map { $0.rawValue }.joined(separator: ","))" : ""
+        let query = isFilterActive ? "?\(statusFilters.query)" : ""
         env.router.route(
             to: assignmentRoute + "/submissions/\(submission.originalUserID)\(query)",
             from: controller.value,
