@@ -381,7 +381,7 @@ final class SubmissionListViewModelTests: TeacherTestCase {
         routedURL = try XCTUnwrap(router.calls.last?.0)
 
         let expectedFilters = [SubmissionStatusFilter.submitted].query
-        XCTAssertEqual(routedURL.query, "filter=\(expectedFilters)")
+        XCTAssertEqual(routedURL.query, expectedFilters)
     }
 }
 
