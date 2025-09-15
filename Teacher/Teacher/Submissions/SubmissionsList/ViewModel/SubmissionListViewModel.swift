@@ -28,9 +28,11 @@ class SubmissionListViewModel: ObservableObject {
 
     @Published var searchText: String = ""
     @Published var statusFilters: [SubmissionStatusFilter]
+    @Published var sectionFilters: [CourseSection] = []
 
     @Published var assignment: Assignment?
     @Published var course: Course?
+    @Published var courseSections: [CourseSection] = []
     @Published var sections: [SubmissionListSection] = []
 
     private let interactor: SubmissionListInteractor
@@ -38,11 +40,18 @@ class SubmissionListViewModel: ObservableObject {
     private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
-    init(interactor: SubmissionListInteractor, statusFilters: [SubmissionStatusFilter], env: AppEnvironment, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+    init(
+        interactor: SubmissionListInteractor,
+        statusFilters: [SubmissionStatusFilter],
+        sectionFilters: [CourseSection],
+        env: AppEnvironment,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
         self.interactor = interactor
         self.statusFilters = statusFilters.isEmpty
             ? SubmissionStatusFilter.courseAllCases(interactor.context.id)
             : statusFilters
+        self.sectionFilters = sectionFilters
         self.env = env
         self.scheduler = scheduler
         setupBindings()
@@ -53,6 +62,7 @@ class SubmissionListViewModel: ObservableObject {
     private func setupBindings() {
         interactor.assignment.assign(to: &$assignment)
         interactor.course.assign(to: &$course)
+        interactor.courseSections.assign(to: &$courseSections)
 
         Publishers.CombineLatest3(
             interactor.submissions.receive(on: scheduler),

@@ -24,7 +24,9 @@ struct SubmissionsFilterScreen: View {
     @Environment(\.viewController) private var controller
 
     @ObservedObject private var viewModel: SubmissionListViewModel
-    private let filterOptions: MultiSelectionOptions
+
+    private let statusFilterOptions: MultiSelectionOptions
+    private let sectionFilterOptions: MultiSelectionOptions
     private let courseColor: Color
 
     init(viewModel: SubmissionListViewModel) {
@@ -32,12 +34,20 @@ struct SubmissionsFilterScreen: View {
 
         courseColor = viewModel.course.flatMap { Color(uiColor: $0.color) } ?? Color(Brand.shared.primary)
 
-        let initialSelection = Set(viewModel.statusFilters.map({ OptionItem(id: $0.rawValue, title: $0.name) }))
+        let statusesSelection = Set(viewModel.statusFilters.map({ OptionItem(id: $0.rawValue, title: $0.name) }))
         let allOptions = viewModel.statusFilterOptions.map({ OptionItem(id: $0.rawValue, title: $0.name) })
 
-        self.filterOptions = MultiSelectionOptions(
+        self.statusFilterOptions = MultiSelectionOptions(
             all: allOptions,
-            initial: initialSelection
+            initial: statusesSelection
+        )
+
+        let sectionSelection = Set(viewModel.sectionFilters.map({ OptionItem(id: $0.id, title: $0.name) }))
+        let sectionOptions = viewModel.courseSections.map { OptionItem(id: $0.id, title: $0.name) }
+
+        self.sectionFilterOptions = MultiSelectionOptions(
+            all: sectionOptions,
+            initial: sectionSelection
         )
     }
 
@@ -46,7 +56,13 @@ struct SubmissionsFilterScreen: View {
             MultiSelectionView(
                 title: String(localized: "Submission Filter", bundle: .teacher),
                 identifierGroup: "SubmissionsFilter.filterOptions",
-                options: filterOptions
+                options: statusFilterOptions
+            )
+            .tint(courseColor)
+            MultiSelectionView(
+                title: String(localized: "Filter by Section", bundle: .teacher),
+                identifierGroup: "SubmissionsFilter.sectionOptions",
+                options: sectionFilterOptions
             )
             .tint(courseColor)
             Spacer()
@@ -56,7 +72,8 @@ struct SubmissionsFilterScreen: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(
                     action: {
-                        viewModel.statusFilters = selectedFilters
+                        viewModel.statusFilters = selectedStatusFilters
+                        viewModel.sectionFilters = selectedSectionFilters
                         controller.value.dismiss(animated: true)
                     },
                     label: {
@@ -85,8 +102,17 @@ struct SubmissionsFilterScreen: View {
         .navigationBarStyle(.modal)
     }
 
-    private var selectedFilters: [SubmissionStatusFilter] {
-        filterOptions.selected.value.compactMap({ SubmissionStatusFilter(rawValue: $0.id) })
+    private var selectedStatusFilters: [SubmissionStatusFilter] {
+        statusFilterOptions.selected.value.compactMap({ SubmissionStatusFilter(rawValue: $0.id) })
+    }
+
+    private var selectedSectionFilters: [CourseSection] {
+        sectionFilterOptions
+            .selected
+            .value
+            .compactMap({ option in
+                viewModel.courseSections.first(where: { $0.id == option.id })
+            })
     }
 
     private var color: Color {
