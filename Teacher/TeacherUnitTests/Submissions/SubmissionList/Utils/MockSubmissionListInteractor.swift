@@ -63,8 +63,8 @@ final class MockSubmissionListInteractor: SubmissionListInteractor {
         return Just<Void>(()).eraseToAnyPublisher()
     }
 
-    var appliedFilter: GetSubmissions.Filter?
-    func applyFilter(_ filter: GetSubmissions.Filter) {
-        appliedFilter = filter
+    var appliedPreference: SubmissionListPreference?
+    func applyPreference(_ pref: SubmissionListPreference) {
+        appliedPreference = pref
     }
 }

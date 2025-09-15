@@ -264,7 +264,7 @@ final class SubmissionListViewModelTests: TeacherTestCase {
 
     func testFilterModeChange() {
         viewModel.statusFilters = [.graded]
-        XCTAssertEqual(interactor.appliedFilter?.statuses, [.graded])
+        XCTAssertEqual(interactor.appliedPreference?.filter.statuses, [.graded])
     }
 
     func testRefresh() {
