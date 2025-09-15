@@ -27,7 +27,7 @@ class SubmissionListViewModel: ObservableObject {
     @Published private(set) var state: InstUI.ScreenState = .loading
 
     @Published var searchText: String = ""
-    @Published var statusFilters: [SubmissionStatusFilter]
+    @Published var statusFilters: Set<SubmissionStatusFilter>
 
     @Published var assignment: Assignment?
     @Published var course: Course?
@@ -40,9 +40,10 @@ class SubmissionListViewModel: ObservableObject {
 
     init(interactor: SubmissionListInteractor, statusFilters: [SubmissionStatusFilter], env: AppEnvironment, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
-        self.statusFilters = statusFilters.isEmpty
+        self.statusFilters = Set(statusFilters.isEmpty
             ? SubmissionStatusFilter.courseAllCases(interactor.context.id)
             : statusFilters
+        )
         self.env = env
         self.scheduler = scheduler
         setupBindings()
@@ -104,7 +105,7 @@ class SubmissionListViewModel: ObservableObject {
     }
 
     var isFilterActive: Bool {
-        let isDefaultStatusFilterSelection = statusFilters.isEmpty || statusFilters == SubmissionStatusFilter.courseAllCases(interactor.context.id)
+        let isDefaultStatusFilterSelection = statusFilters.isEmpty || statusFilters == Set(SubmissionStatusFilter.courseAllCases(interactor.context.id))
 
         if isDefaultStatusFilterSelection == false { return true }
 
