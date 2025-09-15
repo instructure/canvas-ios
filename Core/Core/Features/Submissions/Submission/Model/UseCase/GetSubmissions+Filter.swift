@@ -214,7 +214,7 @@ extension GetSubmissions.Filter {
 
 extension Collection where Element == GetSubmissions.Filter.Status {
 
-    var predicate: NSPredicate? { map(\.predicate).orRelated }
+    var predicate: NSPredicate? { sorted(by: \.rawValue).map(\.predicate).orRelated }
 
     public var isSharedCasesIncluded: Bool {
         return Element.sharedCases.allSatisfy { contains($0) }
@@ -231,6 +231,12 @@ extension Collection where Element == GetSubmissions.Filter.Status {
     public var query: String {
         let value = map(\.rawValue).joined(separator: ",").nilIfEmpty ?? ""
         return value.isEmpty ? "" : "filter=\(value)"
+    }
+}
+
+extension Set where Element == GetSubmissions.Filter.Status {
+    public static func allCourseCases(_ courseID: String) -> Self {
+        Set(GetSubmissions.Filter.Status.courseAllCases(courseID))
     }
 }
 
@@ -276,7 +282,7 @@ extension GetSubmissions.Filter {
 }
 
 extension Collection where Element == GetSubmissions.Filter.Score {
-    var predicate: NSPredicate? { map(\.predicate).andRelated }
+    var predicate: NSPredicate? { sorted(by: \.score).map(\.predicate).andRelated }
 }
 
 // MARK: - Users
@@ -293,7 +299,7 @@ extension Collection where Element == GetSubmissions.Filter.User {
         if count == 1, let user = first {
             return NSPredicate(key: #keyPath(Submission.userID), equals: user.userID)
         }
-        return NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), map({ $0.userID }))
+        return NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), sorted(by: \.userID).map(\.userID))
 
     }
 }
@@ -309,7 +315,11 @@ extension GetSubmissions.Filter {
 extension Collection where Element == GetSubmissions.Filter.Section {
     var predicate: NSPredicate? {
         if isEmpty { return nil }
-        return NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.courseSectionID), map({ $0.sectionID }))
+        return NSPredicate(
+            format: "ANY %K IN %@",
+            #keyPath(Submission.enrollments.courseSectionID),
+            sorted(by: \.sectionID).map(\.sectionID)
+        )
     }
 }
 

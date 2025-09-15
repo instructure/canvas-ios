@@ -181,7 +181,7 @@ class GetSubmissionsTests: CoreTestCase {
         XCTAssertEqual(Filter.scoreMoreThan(100).predicate, NSPredicate(format: "%K > %@", #keyPath(Submission.scoreRaw), NSNumber(value: 100.0)))
         XCTAssertEqual(Filter.scoreLessThan(0).predicate, NSPredicate(format: "%K < %@", #keyPath(Submission.scoreRaw), NSNumber(value: 0.0)))
         XCTAssertEqual(Filter.user("1").predicate, NSPredicate(key: #keyPath(Submission.userID), equals: "1"))
-        XCTAssertEqual(Filter.section("c", "1").predicate, NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.courseSectionID), [ "c", "1" ]))
+        XCTAssertEqual(Filter.section("1", "c").predicate, NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.courseSectionID), [ "1", "c" ]))
     }
 
     func testGetSubmissionsFilterName() {
