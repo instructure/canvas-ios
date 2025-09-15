@@ -85,8 +85,10 @@ struct SubmissionsFilterScreen: View {
         .navigationBarStyle(.modal)
     }
 
-    private var selectedFilters: [SubmissionStatusFilter] {
-        filterOptions.selected.value.compactMap({ SubmissionStatusFilter(rawValue: $0.id) })
+    private var selectedFilters: Set<SubmissionStatusFilter> {
+        Set(
+            filterOptions.selected.value.compactMap({ SubmissionStatusFilter(rawValue: $0.id) })
+        )
     }
 
     private var color: Color {

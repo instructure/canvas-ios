@@ -34,12 +34,12 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     private var submissionsStore: ReactiveStore<GetSubmissions>?
 
     private var submissionsSubject = PassthroughSubject<[Submission], Never>()
-    private var filtersSubject: CurrentValueSubject<[SubmissionStatusFilter], Never>
+    private var filtersSubject: CurrentValueSubject<Set<SubmissionStatusFilter>, Never>
 
     init(context: Context, assignmentID: String, filters: [SubmissionStatusFilter], env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
-        self.filtersSubject = CurrentValueSubject<[GetSubmissions.Filter.Status], Never>(filters)
+        self.filtersSubject = CurrentValueSubject<Set<SubmissionStatusFilter>, Never>(Set(filters))
         self.env = env
 
         customStatusesStore = ReactiveStore(
@@ -70,7 +70,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .store(in: &subscriptions)
     }
 
-    private func setupSubmissionsStore(_ filters: [SubmissionStatusFilter] = []) {
+    private func setupSubmissionsStore(_ filters: Set<SubmissionStatusFilter> = []) {
         let filter = GetSubmissions.Filter(statuses: filters)
 
         submissionsStore = ReactiveStore(

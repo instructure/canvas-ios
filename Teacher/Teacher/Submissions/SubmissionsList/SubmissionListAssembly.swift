@@ -27,7 +27,6 @@ public enum SubmissionListAssembly {
         assignmentID: String,
         filter: [GetSubmissions.Filter.Status]
     ) -> UIViewController {
-
         let interactor = SubmissionListInteractorLive(context: context, assignmentID: assignmentID, filters: filter, env: env)
         let viewModel = SubmissionListViewModel(interactor: interactor, statusFilters: filter, env: env)
         let view = SubmissionListScreen(viewModel: viewModel)
