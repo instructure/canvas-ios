@@ -413,6 +413,7 @@
     </entity>
     <entity name="CDSubAssignmentSubmission" representedClassName="Core.CDSubAssignmentSubmission" syncable="YES">
         <attribute name="customGradeStatusId" optional="YES" attributeType="String"/>
+        <attribute name="customGradeStatusName" optional="YES" attributeType="String"/>
         <attribute name="enteredGrade" optional="YES" attributeType="String"/>
         <attribute name="enteredScoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="grade" optional="YES" attributeType="String"/>
@@ -427,6 +428,7 @@
         <attribute name="scoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="subAssignmentTag" attributeType="String"/>
         <attribute name="submissionId" attributeType="String"/>
+        <attribute name="submittedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="userId" attributeType="String"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="subAssignmentSubmissions" inverseEntity="Submission"/>
     </entity>

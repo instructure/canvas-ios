@@ -34,7 +34,9 @@ public class CDSubAssignmentSubmission: NSManagedObject {
     }
     @NSManaged public var lateSeconds: Int
     @NSManaged public var isMissing: Bool
+    @NSManaged public var submittedAt: Date?
     @NSManaged public var customGradeStatusId: String?
+    @NSManaged public var customGradeStatusName: String?
 
     // Score
     @NSManaged private var enteredScoreRaw: NSNumber?
@@ -56,12 +58,28 @@ public class CDSubAssignmentSubmission: NSManagedObject {
     @NSManaged public var publishedGrade: String?
     @NSManaged public var gradeMatchesCurrentSubmission: Bool
 
+    public var status: SubmissionStatus {
+        .init(
+            isLate: isLate,
+            isMissing: isMissing,
+            isExcused: isExcused,
+            isSubmitted: submittedAt != nil,
+            isGraded: score != nil,
+            customStatusId: customGradeStatusId,
+            customStatusName: customGradeStatusName,
+            submissionType: nil,
+            isGradeBelongToCurrentSubmission: gradeMatchesCurrentSubmission
+        )
+    }
+
     // MARK: - Save
 
     @discardableResult
     public static func save(
         _ item: APISubAssignmentSubmission,
         submissionId: String,
+        // This is a temporary workaround until `item.submitted_at` is populated
+        submittedAtWorkaround: Date? = nil, // TODO: remove once API is fixed in EVAL-5938
         in moContext: NSManagedObjectContext
     ) -> Self {
         let predicate = NSPredicate(\CDSubAssignmentSubmission.submissionId, equals: submissionId)
@@ -78,7 +96,14 @@ public class CDSubAssignmentSubmission: NSManagedObject {
         model.latePolicyStatus = item.late_policy_status
         model.lateSeconds = item.seconds_late ?? 0
         model.isMissing = item.missing ?? false
+        model.submittedAt = item.submitted_at ?? submittedAtWorkaround
+
         model.customGradeStatusId = item.custom_grade_status_id
+        if let customStatusId = item.custom_grade_status_id {
+            let customStatus: CDCustomGradeStatus? = moContext
+                .first(where: \CDCustomGradeStatus.id, equals: customStatusId)
+            model.customGradeStatusName = customStatus?.name
+        }
 
         model.enteredScore = item.entered_score
         model.score = item.score

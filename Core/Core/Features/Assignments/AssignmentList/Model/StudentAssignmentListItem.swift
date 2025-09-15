@@ -45,7 +45,6 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
     let route: URL?
 
     init(assignment: Assignment) {
-        let stateDisplayProperties = assignment.submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
         let hasSubAssignments = assignment.hasSubAssignments
 
         self.id = assignment.id
@@ -63,7 +62,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
             ]
         }
 
-        self.submissionStatus = .init(stateDisplayProperties: stateDisplayProperties)
+        self.submissionStatus = .init(status: assignment.submission?.statusNew ?? .notSubmitted)
         let hasPointsPossible = assignment.pointsPossible != nil
         self.score = hasPointsPossible ? GradeFormatter.string(from: assignment, style: .medium) : nil
         self.route = assignment.htmlURL
@@ -78,13 +77,30 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
                         tag: checkpoint.tag,
                         title: checkpoint.discussionCheckpointStep?.text ?? checkpoint.assignmentName,
                         dueDate: DueDateFormatter.format(checkpoint.dueDate, lockDate: checkpoint.lockDate),
-                        submissionStatus: .init(status: .notSubmitted), // TODO
+                        submissionStatus: .init(status: subSubmission?.status ?? .notSubmitted),
                         score: String(subSubmission?.score ?? -1) // TODO
                     )
                 }
         } else {
             self.subAssignments = nil
         }
+    }
+}
+
+private extension Submission {
+    // TODO: move this to `Submission.status` once `SubmissionStatusOld` is removed in MBL-19323
+    var statusNew: SubmissionStatus {
+        .init(
+            isLate: late,
+            isMissing: missing,
+            isExcused: excused ?? false,
+            isSubmitted: submittedAt != nil,
+            isGraded: workflowState == .graded && score != nil,
+            customStatusId: customGradeStatusId,
+            customStatusName: customGradeStatusName,
+            submissionType: type ?? assignment?.submissionTypes.first,
+            isGradeBelongToCurrentSubmission: gradeMatchesCurrentSubmission
+        )
     }
 }
 

@@ -58,24 +58,14 @@ extension SubmissionStatusLabel {
             self.icon = icon
             self.color = color
         }
-    }
-}
 
-extension SubmissionStatusLabel.Model {
-    public init(status: SubmissionStatusOld) {
-        self.init(
-            text: status.text,
-            icon: status.icon.asImage,
-            color: status.color.asColor
-        )
-    }
-
-    public init(stateDisplayProperties: SubmissionStateDisplayProperties) {
-        self.init(
-            text: stateDisplayProperties.text,
-            icon: stateDisplayProperties.icon.asImage,
-            color: stateDisplayProperties.color.asColor
-        )
+        public init(status: SubmissionStatus) {
+            self.init(
+                text: status.text,
+                icon: status.icon,
+                color: status.color
+            )
+        }
     }
 }
 
