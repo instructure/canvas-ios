@@ -78,8 +78,6 @@ public class CDSubAssignmentSubmission: NSManagedObject {
     public static func save(
         _ item: APISubAssignmentSubmission,
         submissionId: String,
-        // This is a temporary workaround until `item.submitted_at` is populated
-        submittedAtWorkaround: Date? = nil, // TODO: remove once API is fixed in EVAL-5938
         in moContext: NSManagedObjectContext
     ) -> Self {
         let predicate = NSPredicate(\CDSubAssignmentSubmission.submissionId, equals: submissionId)
@@ -96,7 +94,7 @@ public class CDSubAssignmentSubmission: NSManagedObject {
         model.latePolicyStatus = item.late_policy_status
         model.lateSeconds = item.seconds_late ?? 0
         model.isMissing = item.missing ?? false
-        model.submittedAt = item.submitted_at ?? submittedAtWorkaround
+        model.submittedAt = item.submitted_at
 
         model.customGradeStatusId = item.custom_grade_status_id
         if let customStatusId = item.custom_grade_status_id {

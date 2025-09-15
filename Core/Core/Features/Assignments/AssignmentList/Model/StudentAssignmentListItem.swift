@@ -26,7 +26,8 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
         let title: String
 
         let dueDate: String
-        let submissionStatus: SubmissionStatusLabel.Model
+        // TODO: remove optionality after EVAL-5938
+        let submissionStatus: SubmissionStatusLabel.Model?
         let score: String?
 
         var id: String { tag }
@@ -73,11 +74,18 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
                     let subSubmission = assignment.submission?.subAssignmentSubmissions
                         .first { $0.subAssignmentTag == checkpoint.tag }
 
+                    // This is only needed because `APISubassignmentSUbmission.subitted_at` is currently not populated by backend.
+                    // TODO: fallback to `.notSubmitted` and remove optionality once status can be calculated after EVAL-5938
+                    var status = subSubmission?.status
+                    if status == .notSubmitted {
+                        status = nil
+                    }
+
                     return .init(
                         tag: checkpoint.tag,
                         title: checkpoint.discussionCheckpointStep?.text ?? checkpoint.assignmentName,
                         dueDate: DueDateFormatter.format(checkpoint.dueDate, lockDate: checkpoint.lockDate),
-                        submissionStatus: .init(status: subSubmission?.status ?? .notSubmitted),
+                        submissionStatus: status.map { .init(status: $0) },
                         score: String(subSubmission?.score ?? -1) // TODO
                     )
                 }

@@ -298,7 +298,7 @@ extension Submission: WriteableModel {
         }
         if let subAssignmentSubmissions = item.sub_assignment_submissions {
             model.subAssignmentSubmissions = Set(subAssignmentSubmissions.map {
-                CDSubAssignmentSubmission.save($0, submissionId: item.id.value, submittedAtWorkaround: item.submitted_at , in: client)
+                CDSubAssignmentSubmission.save($0, submissionId: item.id.value, in: client)
             })
         }
 

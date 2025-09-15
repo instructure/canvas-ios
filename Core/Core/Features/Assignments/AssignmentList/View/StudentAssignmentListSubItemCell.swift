@@ -55,18 +55,23 @@ struct StudentAssignmentListSubItemCell: View {
 
     @ViewBuilder
     private var scoreAndStatusLine: some View {
-        if let score = model.score {
+        switch (model.score, model.submissionStatus) {
+        case (.some(let score), .some(let status)):
             InstUI.JoinedSubtitleLabels(
                 label1: { scoreLabel(score) },
-                label2: { submissionStatusLabel }
+                label2: { submissionStatusLabel(status) }
             )
-        } else {
-            submissionStatusLabel
+        case (.some(let score), .none):
+            scoreLabel(score)
+        case (.none, .some(let status)):
+            submissionStatusLabel(status)
+        case (.none, .none):
+            SwiftUI.EmptyView()
         }
     }
 
-    private var submissionStatusLabel: some View {
-        SubmissionStatusLabel(model: model.submissionStatus)
+    private func submissionStatusLabel(_ model: SubmissionStatusLabel.Model) -> some View {
+        SubmissionStatusLabel(model: model)
     }
 
     private func scoreLabel(_ score: String) -> some View {
