@@ -28,11 +28,7 @@ extension InstUI {
         private let accessoryIconSize: CGFloat
         private let content: () -> Content
 
-        @State private var _isExpandedState: Bool
-        private var _isExpandedBinding: Binding<Bool>?
-        private var isExpanded: Binding<Bool> {
-            _isExpandedBinding ?? $_isExpandedState
-        }
+        @State private var isExpanded: Bool
         @State private var expandedState: CollapseButtonExpandedState
 
         private let headerAccessibilityLabel: String
@@ -44,7 +40,6 @@ extension InstUI {
             itemCount: Int?,
             paddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
             accessoryIconSize: CGFloat = 18,
-            isExpanded: Binding<Bool>? = nil,
             isInitiallyExpanded: Bool = true,
             content: @escaping () -> Content
         ) where Label == Text {
@@ -54,7 +49,6 @@ extension InstUI {
                 itemCount: itemCount,
                 paddingSet: paddingSet,
                 accessoryIconSize: accessoryIconSize,
-                isExpanded: isExpanded,
                 isInitiallyExpanded: isInitiallyExpanded,
                 content: content
             )
@@ -66,7 +60,6 @@ extension InstUI {
             itemCount: Int?,
             paddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
             accessoryIconSize: CGFloat = 18,
-            isExpanded: Binding<Bool>? = nil,
             isInitiallyExpanded: Bool = true,
             content: @escaping () -> Content
         ) {
@@ -75,9 +68,8 @@ extension InstUI {
             self.accessoryIconSize = accessoryIconSize
             self.content = content
 
-            self._isExpandedState = isInitiallyExpanded
-            self._isExpandedBinding = isExpanded
-            self.expandedState = .init(isExpanded: isExpanded?.wrappedValue ?? isInitiallyExpanded)
+            self.isExpanded = isInitiallyExpanded
+            self.expandedState = .init(isExpanded: isInitiallyExpanded)
 
             self.headerAccessibilityLabel = [
                 accessibilityLabel,
@@ -93,7 +85,7 @@ extension InstUI {
             // Using `Section` instead of `DisclosureGroup` to support pinning the header.
             // The downside is that a11y must be handled manually, approximating the `DisclosureGroup` behavior.
             Section(
-                isExpanded: isExpanded,
+                isExpanded: $isExpanded,
                 content: {
                     content()
                         .accessibilityElement(children: .contain)
@@ -104,7 +96,7 @@ extension InstUI {
                         Button(
                             action: {
                                 withAnimation(.smooth(duration: 0.3)) {
-                                    isExpanded.wrappedValue.toggle()
+                                    isExpanded.toggle()
                                 }
                             },
                             label: {
@@ -120,8 +112,8 @@ extension InstUI {
                 }
             )
             .background(.backgroundLightest) // to stop collapsing views above showing through
-            .onChange(of: isExpanded.wrappedValue) {
-                expandedState = .init(isExpanded: isExpanded.wrappedValue)
+            .onChange(of: isExpanded) {
+                expandedState = .init(isExpanded: isExpanded)
             }
         }
 
@@ -131,7 +123,7 @@ extension InstUI {
                     .textStyle(.sectionHeader)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                CollapseButtonIcon(size: accessoryIconSize, isExpanded: isExpanded)
+                CollapseButtonIcon(size: accessoryIconSize, isExpanded: $isExpanded)
                     .paddingStyle(.leading, .cellAccessoryPadding)
             }
             .accessibilityElement(children: .ignore)

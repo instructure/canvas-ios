@@ -26,48 +26,43 @@ extension InstUI {
         private let cell: Label
         private let content: () -> Content
 
-        @State private var _isExpandedState: Bool
-        private var _isExpandedBinding: Binding<Bool>?
-        private var isExpanded: Binding<Bool> {
-            _isExpandedBinding ?? $_isExpandedState
-        }
+        @State private var isExpanded: Bool
         @State private var expandedState: CollapseButtonExpandedState
 
         public init(
             cell: Label,
-            isExpanded: Binding<Bool>? = nil,
             isInitiallyExpanded: Bool = true,
             content: @escaping () -> Content
         ) {
             self.cell = cell
             self.content = content
-            self._isExpandedState = isInitiallyExpanded
-            self._isExpandedBinding = isExpanded
-            self.expandedState = .init(isExpanded: isExpanded?.wrappedValue ?? isInitiallyExpanded)
+
+            self.isExpanded = isInitiallyExpanded
+            self.expandedState = .init(isExpanded: isInitiallyExpanded)
         }
 
         // MARK: - Body
 
         public var body: some View {
             DisclosureGroup(
-                isExpanded: isExpanded,
+                isExpanded: $isExpanded,
                 content: content,
                 label: { cell }
             )
             .disclosureGroupStyle(
                 CollapsibleListRowDisclosureStyle()
             )
-            .onChange(of: isExpanded.wrappedValue) {
-                expandedState = .init(isExpanded: isExpanded.wrappedValue)
+            .onChange(of: isExpanded) {
+                expandedState = .init(isExpanded: isExpanded)
             }
             .accessibilityRepresentation {
                 VStack {
                     cell
                         .accessibilityValue(expandedState.a11yValue)
                         .accessibilityAction(named: expandedState.a11yActionLabel) {
-                            isExpanded.wrappedValue.toggle()
+                            isExpanded.toggle()
                         }
-                    if isExpanded.wrappedValue {
+                    if isExpanded {
                         content()
                     }
                 }
