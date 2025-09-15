@@ -32,17 +32,26 @@ class SubmissionListViewModel: ObservableObject {
     @Published var assignment: Assignment?
     @Published var course: Course?
     @Published var sections: [SubmissionListSection] = []
+    @Published var differentiationTags: [CDUserGroup] = []
 
     private let interactor: SubmissionListInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let env: AppEnvironment
+    private let differentiationTagsSortComparator: (CDUserGroup, CDUserGroup) -> Bool
     private var subscriptions = Set<AnyCancellable>()
 
-    init(interactor: SubmissionListInteractor, filterMode: SubmissionFilterMode, env: AppEnvironment, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+    init(
+        interactor: SubmissionListInteractor,
+        filterMode: SubmissionFilterMode,
+        env: AppEnvironment,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
+        differentiationTagsSortComparator: @escaping (CDUserGroup, CDUserGroup) -> Bool = DifferentiationTagsSortStrategy.sort
+    ) {
         self.interactor = interactor
         self.filterMode = filterMode
         self.env = env
         self.scheduler = scheduler
+        self.differentiationTagsSortComparator = differentiationTagsSortComparator
         setupBindings()
     }
 
@@ -51,6 +60,12 @@ class SubmissionListViewModel: ObservableObject {
     private func setupBindings() {
         interactor.assignment.assign(to: &$assignment)
         interactor.course.assign(to: &$course)
+        interactor.differentiationTags
+            .map { [differentiationTagsSortComparator] tags in
+                tags.sorted(by: differentiationTagsSortComparator)
+            }
+            .assign(to: \.differentiationTags, on: self, ownership: .weak)
+            .store(in: &subscriptions)
 
         Publishers.CombineLatest3(
             interactor.submissions.receive(on: scheduler),

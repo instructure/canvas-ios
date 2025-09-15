@@ -24,6 +24,9 @@ public final class CDUserGroup: NSManagedObject {
     @NSManaged public var name: String
     /// If this property is `false`, then this is a public user group.
     @NSManaged public var isDifferentiationTag: Bool
+    public var isSingleTag: Bool {
+        name == parentGroupSet.name
+    }
 
     // MARK: - Relationships
 

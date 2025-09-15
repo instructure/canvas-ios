@@ -32,14 +32,17 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     private var courseStore: ReactiveStore<GetCourse>
     private var assignmentStore: ReactiveStore<GetAssignment>
     private var submissionsStore: ReactiveStore<GetSubmissions>?
+    private var userGroupsStore: ReactiveStore<GetUserGroups>
 
     private var submissionsSubject = PassthroughSubject<[Submission], Never>()
     private var filtersSubject: CurrentValueSubject<[SubmissionStatusFilter], Never>
+    private var differentiationTagsSubject: CurrentValueSubject<[CDUserGroup], Never>
 
     init(context: Context, assignmentID: String, filters: [SubmissionStatusFilter], env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
         self.filtersSubject = CurrentValueSubject<[GetSubmissions.Filter.Status], Never>(filters)
+        self.differentiationTagsSubject = CurrentValueSubject<[CDUserGroup], Never>([])
         self.env = env
 
         customStatusesStore = ReactiveStore(
@@ -57,6 +60,11 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             environment: env
         )
 
+        userGroupsStore = ReactiveStore(
+            useCase: GetUserGroups(courseId: context.id, filterToDifferentiationTags: true),
+            environment: env
+        )
+
         filtersSubject
             .sink { [weak self] filters in
                 self?.setupSubmissionsStore(filters)
@@ -67,6 +75,15 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
         customStatusesStore
             .getEntities()
             .sink()
+            .store(in: &subscriptions)
+
+        /// Load differentiation tags
+        userGroupsStore
+            .getEntities()
+            .replaceError(with: [])
+            .sink { [weak differentiationTagsSubject] in
+                differentiationTagsSubject?.send($0)
+            }
             .store(in: &subscriptions)
     }
 
@@ -148,14 +165,21 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .eraseToAnyPublisher()
     }
 
+    var differentiationTags: AnyPublisher<[CDUserGroup], Never> {
+        differentiationTagsSubject.eraseToAnyPublisher()
+    }
+
     func refresh() -> AnyPublisher<Void, Never> {
         return Publishers.Last(
             upstream:
-                Publishers.Merge4(
-                    customStatusesStore.forceRefresh(),
-                    courseStore.forceRefresh(),
-                    assignmentStore.forceRefresh(),
-                    submissionsStore?.forceRefresh() ?? Empty<Void, Never>().eraseToAnyPublisher()
+                Publishers.Merge(
+                    Publishers.Merge4(
+                        customStatusesStore.forceRefresh(),
+                        courseStore.forceRefresh(),
+                        assignmentStore.forceRefresh(),
+                        submissionsStore?.forceRefresh() ?? Empty<Void, Never>().eraseToAnyPublisher()
+                    ),
+                    userGroupsStore.forceRefresh()
                 )
         )
         .eraseToAnyPublisher()

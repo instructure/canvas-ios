@@ -20,7 +20,7 @@ import Foundation
 import CoreData
 
 public class GetUserGroups: CollectionUseCase {
-    public typealias Model = CDUserGroupSet
+    public typealias Model = CDUserGroup
     public typealias Response = GetUserGroupsResponse
 
     public let scope: Scope
@@ -28,14 +28,23 @@ public class GetUserGroups: CollectionUseCase {
     public let cacheKey: String?
     private let courseId: String
 
-    public init(courseId: String) {
+    /// - Parameters:
+    ///   - filterToDifferentiationTags: If true, only returns groups that are differentiation tags (non-collaborative groups).
+    ///                                  If false (default), returns all groups for the course regardless of group type.
+    public init(courseId: String, filterToDifferentiationTags: Bool = false) {
         self.courseId = courseId
         self.cacheKey = "user-groups-\(courseId)"
         self.request = GetUserGroupsRequest(courseId: courseId)
-        self.scope = Scope.where(
-            #keyPath(CDUserGroupSet.courseId),
-            equals: courseId,
-            orderBy: #keyPath(CDUserGroupSet.name)
+
+        var predicates = [NSPredicate(format: "%K == %@", #keyPath(CDUserGroup.parentGroupSet.courseId), courseId)]
+
+        if filterToDifferentiationTags {
+            predicates.append(NSPredicate(format: "%K == YES", #keyPath(CDUserGroup.isDifferentiationTag)))
+        }
+
+        self.scope = Scope(
+            predicate: NSCompoundPredicate(andPredicateWithSubpredicates: predicates),
+            order: [NSSortDescriptor(key: #keyPath(CDUserGroup.name), ascending: true)]
         )
     }
 
@@ -47,7 +56,10 @@ public class GetUserGroups: CollectionUseCase {
         guard let response else { return }
 
         for groupSetData in response.groupSets {
-            CDUserGroupSet.save(groupSetData, courseId: courseId, in: client)
+            let groupSet = CDUserGroupSet.save(groupSetData, courseId: courseId, in: client)
+            for groupData in groupSetData.groups {
+                CDUserGroup.save(groupData, parentGroupSet: groupSet, in: client)
+            }
         }
     }
 }

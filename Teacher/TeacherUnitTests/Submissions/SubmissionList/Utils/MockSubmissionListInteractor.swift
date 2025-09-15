@@ -22,7 +22,7 @@ import Combine
 @testable import Teacher
 
 final class MockSubmissionListInteractor: SubmissionListInteractor {
-
+    var differentiationTagsSubject = CurrentValueSubject<[CDUserGroup], Never>([])
     var submissionsSubject = PassthroughSubject<[Submission], Never>()
     var assignmentSubject = PassthroughSubject<Assignment?, Never>()
     var courseSubject = PassthroughSubject<Course?, Never>()
@@ -42,6 +42,10 @@ final class MockSubmissionListInteractor: SubmissionListInteractor {
 
     var assigneeGroups: AnyPublisher<[AssigneeGroup], Never> {
         assigneeGroupsSubject.eraseToAnyPublisher()
+    }
+
+    var differentiationTags: AnyPublisher<[CDUserGroup], Never> {
+        differentiationTagsSubject.eraseToAnyPublisher()
     }
 
     var context: Context

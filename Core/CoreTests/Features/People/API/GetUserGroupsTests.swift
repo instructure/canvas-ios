@@ -20,7 +20,7 @@ import Foundation
 import XCTest
 @testable import Core
 
-class GetUserGroupsTests: XCTestCase {
+class GetUserGroupsTests: CoreTestCase {
     let jsonData = """
     {
       "data": {
@@ -28,11 +28,11 @@ class GetUserGroupsTests: XCTestCase {
           "groupSets": [
             {
               "_id": "1271",
-              "name": "Primary Course's Group",
+              "name": "Collaborative Project Groups",
               "groups": [
                 {
                   "_id": "2779",
-                  "name": "Primary Course's Group 1",
+                  "name": "Collaborative Team 1",
                   "nonCollaborative": false,
                   "membersConnection": {
                     "nodes": []
@@ -42,11 +42,11 @@ class GetUserGroupsTests: XCTestCase {
             },
             {
               "_id": "3466",
-              "name": "single_tag",
+              "name": "Single Differentiation Tag Set",
               "groups": [
                 {
                   "_id": "7813",
-                  "name": "single_tag",
+                  "name": "Differentiation Tag: Reading Support",
                   "nonCollaborative": true,
                   "membersConnection": {
                     "nodes": [
@@ -62,11 +62,11 @@ class GetUserGroupsTests: XCTestCase {
             },
             {
               "_id": "3467",
-              "name": "My Tags",
+              "name": "Mixed Groups and Tags",
               "groups": [
                 {
                   "_id": "7814",
-                  "name": "another_tag_in_group",
+                  "name": "Differentiation Tag: Extended Time",
                   "nonCollaborative": true,
                   "membersConnection": {
                     "nodes": []
@@ -74,7 +74,7 @@ class GetUserGroupsTests: XCTestCase {
                 },
                 {
                   "_id": "7815",
-                  "name": "tag_in_group",
+                  "name": "Differentiation Tag: Visual Learning",
                   "nonCollaborative": true,
                   "membersConnection": {
                     "nodes": [
@@ -101,11 +101,11 @@ class GetUserGroupsTests: XCTestCase {
                     groupSets: [
                         GetUserGroupsResponse.GroupSet(
                             _id: "1271",
-                            name: "Primary Course's Group",
+                            name: "Collaborative Project Groups",
                             groups: [
                                 GetUserGroupsResponse.Group(
                                     _id: "2779",
-                                    name: "Primary Course's Group 1",
+                                    name: "Collaborative Team 1",
                                     nonCollaborative: false,
                                     membersConnection: GetUserGroupsResponse.MembersConnection(
                                         nodes: []
@@ -115,11 +115,11 @@ class GetUserGroupsTests: XCTestCase {
                         ),
                         GetUserGroupsResponse.GroupSet(
                             _id: "3466",
-                            name: "single_tag",
+                            name: "Single Differentiation Tag Set",
                             groups: [
                                 GetUserGroupsResponse.Group(
                                     _id: "7813",
-                                    name: "single_tag",
+                                    name: "Differentiation Tag: Reading Support",
                                     nonCollaborative: true,
                                     membersConnection: GetUserGroupsResponse.MembersConnection(
                                         nodes: [
@@ -135,11 +135,11 @@ class GetUserGroupsTests: XCTestCase {
                         ),
                         GetUserGroupsResponse.GroupSet(
                             _id: "3467",
-                            name: "My Tags",
+                            name: "Mixed Groups and Tags",
                             groups: [
                                 GetUserGroupsResponse.Group(
                                     _id: "7814",
-                                    name: "another_tag_in_group",
+                                    name: "Differentiation Tag: Extended Time",
                                     nonCollaborative: true,
                                     membersConnection: GetUserGroupsResponse.MembersConnection(
                                         nodes: []
@@ -147,7 +147,7 @@ class GetUserGroupsTests: XCTestCase {
                                 ),
                                 GetUserGroupsResponse.Group(
                                     _id: "7815",
-                                    name: "tag_in_group",
+                                    name: "Differentiation Tag: Visual Learning",
                                     nonCollaborative: true,
                                     membersConnection: GetUserGroupsResponse.MembersConnection(
                                         nodes: [
@@ -180,5 +180,64 @@ class GetUserGroupsTests: XCTestCase {
         XCTAssertTrue(GetUserGroupsRequest.query.contains("GetUserGroupsRequest"))
         XCTAssertTrue(GetUserGroupsRequest.query.contains("$courseId: ID!"))
         XCTAssertTrue(GetUserGroupsRequest.query.contains("groupSets(includeNonCollaborative: true)"))
+    }
+
+    func testGetUserGroupsFilteringBehavior() {
+        let courseId = "course-123"
+
+        // Group Set 1: Contains only collaborative groups (non-differentiation)
+        let collaborativeGroupSet = CDUserGroupSet(context: database.viewContext)
+        collaborativeGroupSet.id = "collaborative-groupset"
+        collaborativeGroupSet.name = "Collaborative Project Groups"
+        collaborativeGroupSet.courseId = courseId
+
+        let collaborativeGroup = CDUserGroup(context: database.viewContext)
+        collaborativeGroup.id = "collaborative-team-alpha"
+        collaborativeGroup.name = "Collaborative Team Alpha"
+        collaborativeGroup.isDifferentiationTag = false
+        collaborativeGroup.userIdsInGroup = Set(["student1", "student2"])
+        collaborativeGroup.parentGroupSet = collaborativeGroupSet
+
+        // Group Set 2: Contains both collaborative groups and differentiation tags (mixed)
+        let mixedGroupSet = CDUserGroupSet(context: database.viewContext)
+        mixedGroupSet.id = "mixed-groupset"
+        mixedGroupSet.name = "Study Groups & Differentiation Tags"
+        mixedGroupSet.courseId = courseId
+
+        let collaborativeStudyGroup = CDUserGroup(context: database.viewContext)
+        collaborativeStudyGroup.id = "collaborative-study-group"
+        collaborativeStudyGroup.name = "Collaborative Evening Study Group"
+        collaborativeStudyGroup.isDifferentiationTag = false
+        collaborativeStudyGroup.userIdsInGroup = Set(["student3", "student4"])
+        collaborativeStudyGroup.parentGroupSet = mixedGroupSet
+
+        let differentiationTag = CDUserGroup(context: database.viewContext)
+        differentiationTag.id = "differentiation-tag-visual"
+        differentiationTag.name = "Differentiation Tag: Visual Learners"
+        differentiationTag.isDifferentiationTag = true
+        differentiationTag.userIdsInGroup = Set(["student1", "student3"])
+        differentiationTag.parentGroupSet = mixedGroupSet
+
+        try! database.viewContext.save()
+
+        // MARK: - WHEN (Filtered)
+        let filteredUseCase = GetUserGroups(courseId: courseId, filterToDifferentiationTags: true)
+        let filteredGroups: [CDUserGroup] = database.viewContext.fetch(scope: filteredUseCase.scope)
+
+        // MARK: - THEN (Filtered)
+        XCTAssertEqual(filteredGroups.count, 1)
+        XCTAssertEqual(filteredGroups.first?.id, "differentiation-tag-visual")
+        XCTAssertTrue(filteredGroups.first?.isDifferentiationTag == true)
+
+        // MARK: - WHEN (Unfiltered)
+        let unfilteredUseCase = GetUserGroups(courseId: courseId, filterToDifferentiationTags: false)
+        let allGroups: [CDUserGroup] = database.viewContext.fetch(scope: unfilteredUseCase.scope)
+
+        // MARK: - THEN (Unfiltered)
+        XCTAssertEqual(allGroups.count, 3)
+        let allGroupIds = Set(allGroups.map { $0.id })
+        XCTAssertTrue(allGroupIds.contains("collaborative-team-alpha"))
+        XCTAssertTrue(allGroupIds.contains("collaborative-study-group"))
+        XCTAssertTrue(allGroupIds.contains("differentiation-tag-visual"))
     }
 }
