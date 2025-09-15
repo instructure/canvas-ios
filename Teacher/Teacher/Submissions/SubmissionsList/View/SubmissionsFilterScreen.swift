@@ -38,7 +38,7 @@ enum SubmissionFilterMode: String, CaseIterable {
         }
     }
 
-    var filters: [GetSubmissions.Filter.Status] {
+    var filters: Set<GetSubmissions.Filter.Status> {
         switch self {
         case .all:
             return GetSubmissions.Filter.Status.sharedCases
