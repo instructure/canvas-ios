@@ -104,15 +104,48 @@ public class GradeFormatter {
     /// Creates a formatted grade string for the given `submission`.
     /// This variant enforces `short` style for Letter Grade (but not for GPA, for some reason...)
     public static func string(from assignment: Assignment, submission: Submission, style: Style = .medium) -> String? {
+        string(
+            pointsPossible: assignment.pointsPossible,
+            gradingType: assignment.gradingType,
+            gradingScheme: submission.assignment?.gradingScheme, // maybe we could use assignment directly, but not founding out now
+            hideScores: assignment.hideQuantitativeData,
+            style: style,
+            isExcused: submission.excused == true,
+            score: submission.score,
+            normalizedScore: submission.normalizedScore,
+            grade: submission.grade,
+            enforceShortStyleForLetterGrade: true
+        )
+    }
+
+    /// Creates a formatted grade string for the given `assignment` and `submission` properties.
+    public static func string(
+        pointsPossible: Double?,
+        gradingType: GradingType,
+        gradingScheme: GradingScheme?,
+        hideScores: Bool,
+        style: Style = .medium,
+        isExcused: Bool,
+        score: Double?,
+        normalizedScore: Double?,
+        grade: String?,
+        enforceShortStyleForLetterGrade: Bool
+    ) -> String? {
         let formatter = GradeFormatter()
-        formatter.pointsPossible = assignment.pointsPossible ?? 0
-        formatter.gradingType = assignment.gradingType
+        formatter.pointsPossible = pointsPossible ?? 0
+        formatter.gradingType = gradingType
         formatter.gradeStyle = style
-        formatter.hideScores = assignment.hideQuantitativeData
-        if assignment.gradingType == .letter_grade {
+        formatter.hideScores = hideScores
+        if enforceShortStyleForLetterGrade && gradingType == .letter_grade {
             formatter.gradeStyle = .short
         }
-        return formatter.string(from: submission)
+        return formatter.string(
+            isExcused: isExcused,
+            score: score,
+            normalizedScore: normalizedScore,
+            grade: grade,
+            gradingScheme: gradingScheme
+        )
     }
 
     /// The actual `a11yString` logic
@@ -130,10 +163,26 @@ public class GradeFormatter {
         GradeFormatter.a11yString(from: string(from: submission))
     }
 
-    /// The actual `string` logic
+    /// Convenience using a Submission
     internal func string(from submission: Submission?) -> String? {
-        let isExcused = submission?.excused == true
-        guard let submission = submission, let score = submission.score, !isExcused else {
+        string(
+            isExcused: submission?.excused == true,
+            score: submission?.score,
+            normalizedScore: submission?.normalizedScore,
+            grade: submission?.grade,
+            gradingScheme: submission?.assignment?.gradingScheme
+        )
+    }
+
+    /// The actual `string` logic
+    internal func string(
+        isExcused: Bool,
+        score: Double?,
+        normalizedScore: Double?,
+        grade: String?,
+        gradingScheme: GradingScheme?
+    ) -> String? {
+        guard let score, !isExcused else {
             let excused = String(localized: "Excused", bundle: .core)
             switch gradeStyle {
             case .short: return isExcused ? excused : nil
@@ -142,15 +191,15 @@ public class GradeFormatter {
         }
         switch gradingType {
         case .pass_fail:
-            let grade = submission.grade.flatMap(PassFail.init(rawValue:))
+            let grade = grade.flatMap(PassFail.init(rawValue:))
             switch gradeStyle {
             case .short: return grade?.localizedString
             case .medium: return medium(score: grade?.localizedString ?? placeholder)
             }
         case .points:
             if hideScores {
-                if let normalizedScore = submission.normalizedScore,
-                   let gradingScheme = submission.assignment?.gradingScheme,
+                if let normalizedScore,
+                   let gradingScheme,
                    let letterGrade = gradingScheme.convertNormalizedScoreToLetterGrade(normalizedScore) {
                     return letterGrade
                 } else {
@@ -163,22 +212,22 @@ public class GradeFormatter {
             }
         case .gpa_scale:
             if hideScores {
-                if let grade = submission.grade, !grade.containsNumber {
+                if let grade, !grade.containsNumber {
                     return String.localizedStringWithFormat(String(localized: "%@ GPA", bundle: .core), grade)
                 }
                 return nil
             }
             switch gradeStyle {
             case .short:
-                guard let grade = submission.grade else { return nil }
+                guard let grade else { return nil }
                 return String.localizedStringWithFormat(String(localized: "%@ GPA", bundle: .core), grade)
             case .medium:
-                return medium(score: score, grade: submission.grade)
+                return medium(score: score, grade: grade)
             }
         case .percent:
             if hideScores {
-                if let normalizedScore = submission.normalizedScore,
-                   let gradingScheme = submission.assignment?.gradingScheme,
+                if let normalizedScore,
+                   let gradingScheme,
                    let letterGrade = gradingScheme.convertNormalizedScoreToLetterGrade(normalizedScore) {
                     return letterGrade
                 } else {
@@ -187,16 +236,16 @@ public class GradeFormatter {
             }
             switch gradeStyle {
             case .short:
-                return submission.grade
+                return grade
             case .medium:
-                return medium(score: score, grade: submission.grade)
+                return medium(score: score, grade: grade)
             }
         case .letter_grade:
             switch gradeStyle {
             case .short:
-                return submission.grade
+                return grade
             case .medium:
-                return medium(score: score, grade: submission.grade)
+                return medium(score: score, grade: grade)
             }
         case .not_graded:
             return nil
