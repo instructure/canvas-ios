@@ -81,12 +81,28 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
                         status = nil
                     }
 
+                    var score: String?
+                    if let pointsPossible = checkpoint.pointsPossible {
+                        score = GradeFormatter.string(
+                            pointsPossible: pointsPossible,
+                            gradingType: assignment.gradingType,
+                            gradingScheme: assignment.gradingScheme,
+                            hideScores: assignment.hideQuantitativeData,
+                            style: .medium,
+                            isExcused: subSubmission?.isExcused ?? false,
+                            score: subSubmission?.score,
+                            normalizedScore: (subSubmission?.score).map { $0 / pointsPossible },
+                            grade: subSubmission?.grade,
+                            enforceShortStyleForLetterGrade: false
+                        )
+                    }
+
                     return .init(
                         tag: checkpoint.tag,
                         title: checkpoint.discussionCheckpointStep?.text ?? checkpoint.assignmentName,
                         dueDate: DueDateFormatter.format(checkpoint.dueDate, lockDate: checkpoint.lockDate),
                         submissionStatus: status.map { .init(status: $0) },
-                        score: String(subSubmission?.score ?? -1) // TODO
+                        score: score
                     )
                 }
         } else {
