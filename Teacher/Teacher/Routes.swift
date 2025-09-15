@@ -162,7 +162,7 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions") { url, params, _, env in
         guard let context = Context(path: url.path), let assignmentID = params["assignmentID"] else { return nil }
-        let filter = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
+        let statuses = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
             GetSubmissions.Filter.Status(rawValue: $0)
         } ?? []
 
@@ -170,7 +170,7 @@ let router = Router(routes: [
             env: env,
             context: context,
             assignmentID: assignmentID,
-            filter: filter
+            filter: .init(statuses: Set(statuses))
         )
     },
 

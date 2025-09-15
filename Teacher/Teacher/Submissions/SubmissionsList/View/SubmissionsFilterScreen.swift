@@ -42,7 +42,7 @@ struct SubmissionsFilterScreen: View {
             initial: statusesSelection
         )
 
-        let sectionSelection = Set(viewModel.sectionFilters.map({ OptionItem(id: $0.id, title: $0.name) }))
+        let sectionSelection = Set(viewModel.sectionFiltersRealized.map({ OptionItem(id: $0.id, title: $0.name) }))
         let sectionOptions = viewModel.courseSections.map { OptionItem(id: $0.id, title: $0.name) }
 
         self.sectionFilterOptions = MultiSelectionOptions(
@@ -52,23 +52,27 @@ struct SubmissionsFilterScreen: View {
     }
 
     var body: some View {
-        VStack {
-            MultiSelectionView(
-                title: String(localized: "Submission Filter", bundle: .teacher),
-                identifierGroup: "SubmissionsFilter.filterOptions",
-                options: statusFilterOptions
-            )
-            .tint(courseColor)
-            MultiSelectionView(
-                title: String(localized: "Filter by Section", bundle: .teacher),
-                identifierGroup: "SubmissionsFilter.sectionOptions",
-                options: sectionFilterOptions
-            )
-            .tint(courseColor)
-            Spacer()
+        ScrollView {
+            VStack {
+                MultiSelectionView(
+                    title: String(localized: "Submission Filter", bundle: .teacher),
+                    identifierGroup: "SubmissionsFilter.filterOptions",
+                    hasAllSelectionButton: true,
+                    options: statusFilterOptions
+                )
+                .tint(courseColor)
+                MultiSelectionView(
+                    title: String(localized: "Filter by Section", bundle: .teacher),
+                    identifierGroup: "SubmissionsFilter.sectionOptions",
+                    hasAllSelectionButton: true,
+                    options: sectionFilterOptions
+                )
+                .tint(courseColor)
+            }
         }
         .background(Color.backgroundLightest)
         .toolbar {
+
             ToolbarItem(placement: .topBarTrailing) {
                 Button(
                     action: {
@@ -102,17 +106,21 @@ struct SubmissionsFilterScreen: View {
         .navigationBarStyle(.modal)
     }
 
-    private var selectedStatusFilters: [SubmissionStatusFilter] {
-        statusFilterOptions.selected.value.compactMap({ SubmissionStatusFilter(rawValue: $0.id) })
+    private var selectedStatusFilters: Set<SubmissionStatusFilter> {
+        Set(
+            statusFilterOptions.selected.value.compactMap({ SubmissionStatusFilter(rawValue: $0.id) })
+        )
     }
 
-    private var selectedSectionFilters: [CourseSection] {
-        sectionFilterOptions
-            .selected
-            .value
-            .compactMap({ option in
-                viewModel.courseSections.first(where: { $0.id == option.id })
-            })
+    private var selectedSectionFilters: Set<String> {
+        Set(
+            sectionFilterOptions
+                .selected
+                .value
+                .compactMap({ option in
+                    viewModel.courseSections.first(where: { $0.id == option.id })?.id
+                })
+        )
     }
 
     private var color: Color {

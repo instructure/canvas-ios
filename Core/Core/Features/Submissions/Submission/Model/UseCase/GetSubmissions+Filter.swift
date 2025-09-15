@@ -293,7 +293,7 @@ extension Collection where Element == GetSubmissions.Filter.User {
         if count == 1, let user = first {
             return NSPredicate(key: #keyPath(Submission.userID), equals: user.userID)
         }
-        return NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), map({ $0.userID }))
+        return NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), map(\.userID))
 
     }
 }
@@ -309,7 +309,7 @@ extension GetSubmissions.Filter {
 extension Collection where Element == GetSubmissions.Filter.Section {
     var predicate: NSPredicate? {
         if isEmpty { return nil }
-        return NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.courseSectionID), map({ $0.sectionID }))
+        return NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.courseSectionID), map(\.sectionID))
     }
 }
 

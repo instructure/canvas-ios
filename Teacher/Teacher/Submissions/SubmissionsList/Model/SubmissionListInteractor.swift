@@ -27,6 +27,7 @@ public protocol SubmissionListInteractor {
     var submissions: AnyPublisher<[Submission], Never> { get }
     var assignment: AnyPublisher<Assignment?, Never> { get }
     var course: AnyPublisher<Course?, Never> { get }
+    var courseSections: AnyPublisher<[CourseSection], Never> { get }
     var assigneeGroups: AnyPublisher<[AssigneeGroup], Never> { get }
 
     var context: Context { get }

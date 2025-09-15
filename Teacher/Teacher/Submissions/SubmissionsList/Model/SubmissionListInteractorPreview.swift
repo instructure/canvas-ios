@@ -36,6 +36,10 @@ class SubmissionListInteractorPreview: SubmissionListInteractor {
         Just(nil).eraseToAnyPublisher()
     }
 
+    var courseSections: AnyPublisher<[Core.CourseSection], Never> {
+        Just([]).eraseToAnyPublisher()
+    }
+
     var assigneeGroups: AnyPublisher<[AssigneeGroup], Never> {
         Just([]).eraseToAnyPublisher()
     }

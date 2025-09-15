@@ -27,8 +27,8 @@ class SubmissionListViewModel: ObservableObject {
     @Published private(set) var state: InstUI.ScreenState = .loading
 
     @Published var searchText: String = ""
-    @Published var statusFilters: [SubmissionStatusFilter]
-    @Published var sectionFilters: [CourseSection] = []
+    @Published var statusFilters: Set<SubmissionStatusFilter>
+    @Published var sectionFilters: Set<String>
 
     @Published var assignment: Assignment?
     @Published var course: Course?
@@ -42,16 +42,13 @@ class SubmissionListViewModel: ObservableObject {
 
     init(
         interactor: SubmissionListInteractor,
-        statusFilters: [SubmissionStatusFilter],
-        sectionFilters: [CourseSection],
+        filter: GetSubmissions.Filter,
         env: AppEnvironment,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
-        self.statusFilters = statusFilters.isEmpty
-            ? SubmissionStatusFilter.courseAllCases(interactor.context.id)
-            : statusFilters
-        self.sectionFilters = sectionFilters
+        self.statusFilters = Set(filter.statuses)
+        self.sectionFilters = Set(filter.sections.map(\.sectionID))
         self.env = env
         self.scheduler = scheduler
         setupBindings()
@@ -63,6 +60,22 @@ class SubmissionListViewModel: ObservableObject {
         interactor.assignment.assign(to: &$assignment)
         interactor.course.assign(to: &$course)
         interactor.courseSections.assign(to: &$courseSections)
+
+        if statusFilters.isEmpty {
+            self.statusFilters = Set(SubmissionStatusFilter.courseAllCases(interactor.context.id))
+        }
+
+        $courseSections
+            .filter({ $0.isNotEmpty })
+            .first()
+            .sink { [weak self] loadedSections in
+                guard let self else { return }
+
+                if sectionFilters.isEmpty {
+                    sectionFilters = Set(loadedSections.map(\.id))
+                }
+            }
+            .store(in: &subscriptions)
 
         Publishers.CombineLatest3(
             interactor.submissions.receive(on: scheduler),
@@ -96,9 +109,13 @@ class SubmissionListViewModel: ObservableObject {
             .map({ $0.isEmpty ? .empty : .data })
             .assign(to: &$state)
 
-        $statusFilters
-            .sink { [weak self] filters in
-                self?.interactor.applyFilter(.init(statuses: filters))
+        Publishers
+            .CombineLatest($statusFilters, $sectionFilters)
+            .map { (statuses, sections) -> GetSubmissions.Filter in
+                GetSubmissions.Filter(statuses: statuses, sections: sections)
+            }
+            .sink { [weak self] filter in
+                self?.interactor.applyFilter(filter)
             }
             .store(in: &subscriptions)
     }
@@ -113,10 +130,21 @@ class SubmissionListViewModel: ObservableObject {
         SubmissionStatusFilter.courseAllCases(interactor.context.id)
     }
 
+    var sectionFiltersRealized: [CourseSection] {
+        courseSections.filter { section in
+            sectionFilters.contains(section.id)
+        }
+    }
+
     var isFilterActive: Bool {
-        let isDefaultStatusFilterSelection = statusFilters.isEmpty || statusFilters == SubmissionStatusFilter.courseAllCases(interactor.context.id)
+        let isDefaultStatusFilterSelection = statusFilters.isEmpty || statusFilters == Set(SubmissionStatusFilter.courseAllCases(interactor.context.id))
 
         if isDefaultStatusFilterSelection == false { return true }
+
+        let defaultSectionsList = Set(courseSections.map(\.id))
+        let isDefaultSectionFilterSelection = sectionFilters.isEmpty || sectionFilters == defaultSectionsList
+
+        if isDefaultSectionFilterSelection == false { return true }
 
         return false
     }

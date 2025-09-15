@@ -30,16 +30,17 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
     private var customStatusesStore: ReactiveStore<GetCustomGradeStatuses>
     private var courseStore: ReactiveStore<GetCourse>
+    private var courseSectionsStore: ReactiveStore<GetCourseSections>
     private var assignmentStore: ReactiveStore<GetAssignment>
     private var submissionsStore: ReactiveStore<GetSubmissions>?
 
     private var submissionsSubject = PassthroughSubject<[Submission], Never>()
-    private var filtersSubject: CurrentValueSubject<Set<SubmissionStatusFilter>, Never>
+    private var filterSubject: CurrentValueSubject<GetSubmissions.Filter, Never>
 
-    init(context: Context, assignmentID: String, filters: [SubmissionStatusFilter], env: AppEnvironment) {
+    init(context: Context, assignmentID: String, filter: GetSubmissions.Filter, env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
-        self.filtersSubject = CurrentValueSubject<Set<SubmissionStatusFilter>, Never>(Set(filters))
+        self.filterSubject = CurrentValueSubject<GetSubmissions.Filter, Never>(filter)
         self.env = env
 
         customStatusesStore = ReactiveStore(
@@ -52,14 +53,19 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             environment: env
         )
 
+        courseSectionsStore = ReactiveStore(
+            useCase: GetCourseSections(courseID: context.id),
+            environment: env
+        )
+
         assignmentStore = ReactiveStore(
             useCase: GetAssignment(courseID: context.id, assignmentID: assignmentID),
             environment: env
         )
 
-        filtersSubject
-            .sink { [weak self] filters in
-                self?.setupSubmissionsStore(filters)
+        filterSubject
+            .sink { [weak self] filter in
+                self?.setupSubmissionsStore(filter)
             }
             .store(in: &subscriptions)
 
@@ -70,9 +76,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .store(in: &subscriptions)
     }
 
-    private func setupSubmissionsStore(_ filters: Set<SubmissionStatusFilter> = []) {
-        let filter = GetSubmissions.Filter(statuses: filters)
-
+    private func setupSubmissionsStore(_ filter: GetSubmissions.Filter) {
         submissionsStore = ReactiveStore(
             useCase: GetSubmissions(context: context, assignmentID: assignmentID, filter: filter),
             environment: env
@@ -101,6 +105,13 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .getEntities(keepObservingDatabaseChanges: true)
             .map { $0.first }
             .replaceError(with: nil)
+            .eraseToAnyPublisher()
+    }
+
+    var courseSections: AnyPublisher<[CourseSection], Never> {
+        courseSectionsStore
+            .getEntities(keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
             .eraseToAnyPublisher()
     }
 
@@ -151,9 +162,10 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     func refresh() -> AnyPublisher<Void, Never> {
         return Publishers.Last(
             upstream:
-                Publishers.Merge4(
+                Publishers.Merge5(
                     customStatusesStore.forceRefresh(),
                     courseStore.forceRefresh(),
+                    courseSectionsStore.forceRefresh(),
                     assignmentStore.forceRefresh(),
                     submissionsStore?.forceRefresh() ?? Empty<Void, Never>().eraseToAnyPublisher()
                 )
@@ -162,7 +174,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     }
 
     func applyFilter(_ filter: GetSubmissions.Filter) {
-        filtersSubject.send(filter.statuses)
+        filterSubject.send(filter)
     }
 }
 
