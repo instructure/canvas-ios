@@ -18943,6 +18943,12 @@
             "value" : "Kontroller svar"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontroller svar"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18995,6 +19001,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comprobar respuesta"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarkista vastaus"
           }
         },
         "fr" : {
@@ -19069,6 +19081,12 @@
             "value" : "Sjekk svar"
           }
         },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sjekk svar"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19099,7 +19117,19 @@
             "value" : "Проверить ответ"
           }
         },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preveri odgovor"
+          }
+        },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontrollera svaret"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kontrollera svaret"
@@ -62690,6 +62720,12 @@
             "value" : "Regenerer flashcards"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regenerer flashcards"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -62742,6 +62778,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Regenerar tarjetas de estudio"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Luo muistikortit uudelleen"
           }
         },
         "fr" : {
@@ -62816,6 +62858,12 @@
             "value" : "Generer puggekort på nytt"
           }
         },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generer puggekort på nytt"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -62846,7 +62894,19 @@
             "value" : "Восстановить флэш-карты"
           }
         },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obnovitev kartic za učenje"
+          }
+        },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generera om flash-kort"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Generera om flash-kort"
