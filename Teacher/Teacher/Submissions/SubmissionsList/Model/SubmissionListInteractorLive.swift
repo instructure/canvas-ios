@@ -31,6 +31,8 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     private var customStatusesStore: ReactiveStore<GetCustomGradeStatuses>
     private var courseStore: ReactiveStore<GetCourse>
     private var courseSectionsStore: ReactiveStore<GetCourseSections>
+    private var enrollmentsStore: ReactiveStore<GetEnrollments>
+
     private var assignmentStore: ReactiveStore<GetAssignment>
     private var submissionsStore: ReactiveStore<GetSubmissions>?
 
@@ -55,6 +57,11 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
         courseSectionsStore = ReactiveStore(
             useCase: GetCourseSections(courseID: context.id),
+            environment: env
+        )
+
+        enrollmentsStore = ReactiveStore(
+            useCase: GetEnrollments(context: context),
             environment: env
         )
 
@@ -101,10 +108,19 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     }
 
     var course: AnyPublisher<Course?, Never> {
-        courseStore
+        let course = courseStore
             .getEntities(keepObservingDatabaseChanges: true)
             .map { $0.first }
             .replaceError(with: nil)
+
+        let enrollments = enrollmentsStore
+            .getEntities()
+            .mapToVoid()
+            .replaceError(with: ())
+
+        return Publishers
+            .CombineLatest(course, enrollments)
+            .map { $0.0 }
             .eraseToAnyPublisher()
     }
 
@@ -162,10 +178,11 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     func refresh() -> AnyPublisher<Void, Never> {
         return Publishers.Last(
             upstream:
-                Publishers.Merge5(
+                Publishers.Merge6(
                     customStatusesStore.forceRefresh(),
                     courseStore.forceRefresh(),
                     courseSectionsStore.forceRefresh(),
+                    enrollmentsStore.forceRefresh(),
                     assignmentStore.forceRefresh(),
                     submissionsStore?.forceRefresh() ?? Empty<Void, Never>().eraseToAnyPublisher()
                 )

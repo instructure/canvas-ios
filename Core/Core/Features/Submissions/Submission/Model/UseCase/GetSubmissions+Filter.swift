@@ -234,6 +234,12 @@ extension Collection where Element == GetSubmissions.Filter.Status {
     }
 }
 
+extension Set where Element == GetSubmissions.Filter.Status {
+    public static func allCourseCases(_ courseID: String) -> Self {
+        Set(GetSubmissions.Filter.Status.courseAllCases(courseID))
+    }
+}
+
 // MARK: - Score
 
 extension GetSubmissions.Filter {

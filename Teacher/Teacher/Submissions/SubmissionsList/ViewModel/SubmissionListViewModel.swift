@@ -137,7 +137,8 @@ class SubmissionListViewModel: ObservableObject {
     }
 
     var isFilterActive: Bool {
-        let isDefaultStatusFilterSelection = statusFilters.isEmpty || statusFilters == Set(SubmissionStatusFilter.courseAllCases(interactor.context.id))
+        let isDefaultStatusFilterSelection = statusFilters.isEmpty
+            || statusFilters == .allCourseCases(interactor.context.id)
 
         if isDefaultStatusFilterSelection == false { return true }
 
