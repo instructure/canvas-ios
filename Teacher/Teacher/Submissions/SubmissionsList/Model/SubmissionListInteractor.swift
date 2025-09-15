@@ -21,6 +21,13 @@ import Core
 import Combine
 
 public typealias SubmissionStatusFilter = GetSubmissions.Filter.Status
+public typealias SubmissionsFilter = GetSubmissions.Filter
+public typealias SubmissionsSortOrder = GetSubmissions.SortOrder
+
+public struct SubmissionListPreference {
+    let filter: SubmissionsFilter
+    let sortOrder: SubmissionsSortOrder
+}
 
 public protocol SubmissionListInteractor {
 
@@ -34,7 +41,7 @@ public protocol SubmissionListInteractor {
     var assignmentID: String { get }
 
     func refresh() -> AnyPublisher<Void, Never>
-    func applyFilter(_ filter: GetSubmissions.Filter)
+    func applyPreference(_ pref: SubmissionListPreference)
 }
 
 public struct AssigneeGroup: Equatable {

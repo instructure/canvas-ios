@@ -37,12 +37,14 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     private var submissionsStore: ReactiveStore<GetSubmissions>?
 
     private var submissionsSubject = PassthroughSubject<[Submission], Never>()
-    private var filterSubject: CurrentValueSubject<GetSubmissions.Filter, Never>
+    private var preferenceSubject: CurrentValueSubject<SubmissionListPreference, Never>
 
     init(context: Context, assignmentID: String, filter: GetSubmissions.Filter, env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
-        self.filterSubject = CurrentValueSubject<GetSubmissions.Filter, Never>(filter)
+        self.preferenceSubject = CurrentValueSubject<SubmissionListPreference, Never>(
+            SubmissionListPreference(filter: filter, sortOrder: .studentSortableName)
+        )
         self.env = env
 
         customStatusesStore = ReactiveStore(
@@ -70,9 +72,9 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             environment: env
         )
 
-        filterSubject
-            .sink { [weak self] filter in
-                self?.setupSubmissionsStore(filter)
+        preferenceSubject
+            .sink { [weak self] pref in
+                self?.setupSubmissionsStore(pref)
             }
             .store(in: &subscriptions)
 
@@ -83,9 +85,14 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .store(in: &subscriptions)
     }
 
-    private func setupSubmissionsStore(_ filter: GetSubmissions.Filter) {
+    private func setupSubmissionsStore(_ pref: SubmissionListPreference) {
         submissionsStore = ReactiveStore(
-            useCase: GetSubmissions(context: context, assignmentID: assignmentID, filter: filter),
+            useCase: GetSubmissions(
+                context: context,
+                assignmentID: assignmentID,
+                filter: pref.filter,
+                sortOrder: pref.sortOrder
+            ),
             environment: env
         )
 
@@ -190,8 +197,8 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
         .eraseToAnyPublisher()
     }
 
-    func applyFilter(_ filter: GetSubmissions.Filter) {
-        filterSubject.send(filter)
+    func applyPreference(_ pref: SubmissionListPreference) {
+        preferenceSubject.send(pref)
     }
 }
 

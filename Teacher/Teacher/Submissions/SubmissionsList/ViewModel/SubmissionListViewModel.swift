@@ -29,6 +29,7 @@ class SubmissionListViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var statusFilters: Set<SubmissionStatusFilter>
     @Published var sectionFilters: Set<String>
+    @Published var sortOrder: SubmissionsSortOrder = .studentSortableName
 
     @Published var assignment: Assignment?
     @Published var course: Course?
@@ -110,12 +111,15 @@ class SubmissionListViewModel: ObservableObject {
             .assign(to: &$state)
 
         Publishers
-            .CombineLatest($statusFilters, $sectionFilters)
-            .map { (statuses, sections) -> GetSubmissions.Filter in
-                GetSubmissions.Filter(statuses: statuses, sections: sections)
+            .CombineLatest3($statusFilters, $sectionFilters, $sortOrder)
+            .map { (statuses, sections, order) -> SubmissionListPreference in
+                SubmissionListPreference(
+                    filter: SubmissionsFilter(statuses: statuses, sections: sections),
+                    sortOrder: order
+                )
             }
-            .sink { [weak self] filter in
-                self?.interactor.applyFilter(filter)
+            .sink { [weak self] pref in
+                self?.interactor.applyPreference(pref)
             }
             .store(in: &subscriptions)
     }

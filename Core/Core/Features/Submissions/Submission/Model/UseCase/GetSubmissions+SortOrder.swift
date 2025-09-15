@@ -22,7 +22,7 @@ import Foundation
 
 extension GetSubmissions {
 
-    public enum SortOrder {
+    public enum SortOrder: String, CaseIterable {
         case studentSortableName
         case studentName
         case submissionDate

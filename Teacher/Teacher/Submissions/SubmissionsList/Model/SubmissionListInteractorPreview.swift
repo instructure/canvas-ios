@@ -48,5 +48,5 @@ class SubmissionListInteractorPreview: SubmissionListInteractor {
         Just(()).eraseToAnyPublisher()
     }
 
-    func applyFilter(_ filter: GetSubmissions.Filter) {}
+    func applyPreference(_ pref: SubmissionListPreference) { }
 }

@@ -27,6 +27,7 @@ struct SubmissionsFilterScreen: View {
 
     private let statusFilterOptions: MultiSelectionOptions
     private let sectionFilterOptions: MultiSelectionOptions
+    private let sortOptions: SingleSelectionOptions
     private let courseColor: Color
 
     init(viewModel: SubmissionListViewModel) {
@@ -49,6 +50,15 @@ struct SubmissionsFilterScreen: View {
             all: sectionOptions,
             initial: sectionSelection
         )
+
+        let sortOptionItems = SubmissionsSortOrder.allCases.map { order in
+            OptionItem(id: order.rawValue, title: order.name)
+        }
+
+        self.sortOptions = SingleSelectionOptions(
+            all: sortOptionItems,
+            initialId: viewModel.sortOrder.rawValue
+        )
     }
 
     var body: some View {
@@ -68,6 +78,11 @@ struct SubmissionsFilterScreen: View {
                     options: sectionFilterOptions
                 )
                 .tint(courseColor)
+                SingleSelectionView(
+                    title: String(localized: "Sort by", bundle: .teacher),
+                    identifierGroup: "SubmissionsFilter.sortOrderOptions",
+                    options: sortOptions
+                )
             }
         }
         .background(Color.backgroundLightest)
@@ -76,8 +91,11 @@ struct SubmissionsFilterScreen: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(
                     action: {
+
                         viewModel.statusFilters = selectedStatusFilters
                         viewModel.sectionFilters = selectedSectionFilters
+                        viewModel.sortOrder = selectedSortOrder
+
                         controller.value.dismiss(animated: true)
                     },
                     label: {
@@ -121,6 +139,14 @@ struct SubmissionsFilterScreen: View {
                     viewModel.courseSections.first(where: { $0.id == option.id })?.id
                 })
         )
+    }
+
+    private var selectedSortOrder: SubmissionsSortOrder {
+        return sortOptions
+            .selected
+            .value
+            .flatMap({ SubmissionsSortOrder(rawValue: $0.id) })
+        ?? .studentSortableName
     }
 
     private var color: Color {
