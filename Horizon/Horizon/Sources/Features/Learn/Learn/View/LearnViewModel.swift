@@ -72,7 +72,7 @@ final class LearnViewModel: ProgramSwitcherMapper {
         interactor: ProgramInteractor,
         learnCoursesInteractor: GetLearnCoursesInteractor,
         router: Router,
-        programID: String?,
+        programID: String? = nil,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
@@ -81,6 +81,7 @@ final class LearnViewModel: ProgramSwitcherMapper {
         self.scheduler = scheduler
         selectedProgram = programID != nil  ? .init(id: programID) : nil
         configureSelectionHandler()
+        featchPrograms()
     }
 
     private func configureSelectionHandler() {
@@ -94,6 +95,9 @@ final class LearnViewModel: ProgramSwitcherMapper {
     func updateProgram(_ program: ProgramSwitcherModel?) {
         selectedProgram = dropdownMenuPrograms.isEmpty ? program : dropdownMenuPrograms.first(where: { $0.id ==  program?.id })
         updateCurrentProgram(by: selectedProgram?.id)
+        if dropdownMenuPrograms.isEmpty {
+            featchPrograms()
+        }
     }
 
     func refreshPrograms() async {

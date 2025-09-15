@@ -50,7 +50,6 @@ struct ProgramView: View {
         }
         .background(Color.huiColors.surface.pagePrimary)
         .onTapGesture { isProgramDropdownVisible = false }
-        .onFirstAppear { viewModel.featchPrograms() }
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)
@@ -103,6 +102,7 @@ struct ProgramView: View {
                     .foregroundStyle(Color.huiColors.text.body)
                     .huiTypography(.p1)
                     .padding(.bottom, .huiSpaces.space16)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
 
             LearnAttributesView(

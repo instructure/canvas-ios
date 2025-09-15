@@ -77,7 +77,7 @@ class DashboardViewModel {
         refreshCompletedModuleItemCancellable?.cancel()
 
         getDashboardCoursesCancellable = dashboardInteractor.getAndObserveCoursesWithoutModules(ignoreCache: ignoreCache)
-            .combineLatest(programInteractor.getPrograms(ignoreCache: ignoreCache))
+            .combineLatest(programInteractor.getProgramsWithObserving(ignoreCache: ignoreCache))
             .sink { [weak self] items, programs in
                 let courses = items.filter { $0.state == HCourse.EnrollmentState.active.rawValue }
                 self?.courses = self?.getAttachedPrograms(to: courses, from: programs) ?? []
@@ -138,9 +138,17 @@ class DashboardViewModel {
     func navigateToCourseDetails(
         id: String,
         enrollmentID: String,
+        programID: String?,
         viewController: WeakViewController
     ) {
-        router.route(to: "/courses/\(id)/\(enrollmentID)", from: viewController)
+        router.show(
+                LearnAssembly.makeCourseDetailsViewController(
+                    courseID: id,
+                    enrollmentID: enrollmentID,
+                    programID: programID
+                ),
+                from: viewController
+            )
     }
 
     func navigateProgram(id: String, viewController: WeakViewController) {

@@ -21,7 +21,6 @@ import Combine
 import Foundation
 
 class ProgramInteractorPreview: ProgramInteractor {
-
     // MARK: - Sample Data
 
     private var sampleCourses: [ProgramCourse] {
@@ -90,6 +89,11 @@ class ProgramInteractorPreview: ProgramInteractor {
 
     func enrollInProgram(progressID: String) -> AnyPublisher<[Program], any Error> {
         publisherWithProgram()
+    }
+
+    func getProgramsWithObserving(ignoreCache: Bool) -> AnyPublisher<[Program], Never> {
+        Just([sampleProgram])
+            .eraseToAnyPublisher()
     }
 }
 #endif

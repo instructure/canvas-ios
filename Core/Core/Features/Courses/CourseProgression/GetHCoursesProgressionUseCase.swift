@@ -37,7 +37,7 @@ public class GetHCoursesProgressionUseCase: APIUseCase {
 
     private let courseId: String?
     private let userId: String
-    private let horizonCourses: Bool
+    private let horizonCourses: Bool?
 
     public var request: GetHCoursesProgressionRequest {
         .init(userId: userId, horizonCourses: horizonCourses)
@@ -45,7 +45,7 @@ public class GetHCoursesProgressionUseCase: APIUseCase {
 
     // MARK: - Init
 
-    public init(userId: String, courseId: String? = nil, horizonCourses: Bool = false) {
+    public init(userId: String, courseId: String? = nil, horizonCourses: Bool? = false) {
         self.userId = userId
         self.courseId = courseId
         self.horizonCourses = horizonCourses

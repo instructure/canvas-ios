@@ -108,6 +108,7 @@ struct DashboardView: View {
                         viewModel.navigateToCourseDetails(
                             id: course.id,
                             enrollmentID: course.enrollmentID,
+                            programID: course.programs.first?.id,
                             viewController: viewController
                         )
                     }

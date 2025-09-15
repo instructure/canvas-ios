@@ -40,7 +40,6 @@ struct LearnView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .onFirstAppear { viewModel.featchPrograms() }
         .background(Color.huiColors.surface.pagePrimary)
         .toolbar(.hidden)
         .overlay {
