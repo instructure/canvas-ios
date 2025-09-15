@@ -140,7 +140,7 @@ struct ProgramView: View {
         Text(
             String(
                 format: String(localized: "Complete %d of %d courses", bundle: .horizon),
-                viewModel.currentProgram?.countOfRemainingCourses ?? 0,
+                viewModel.currentProgram?.countOfRemeaningCourses ?? 0,
                 viewModel.currentProgram?.courses.count ?? 0
             )
         )
