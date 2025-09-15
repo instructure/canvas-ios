@@ -41,7 +41,7 @@ enum SubmissionFilterMode: String, CaseIterable {
     var filters: Set<GetSubmissions.Filter.Status> {
         switch self {
         case .all:
-            return GetSubmissions.Filter.Status.sharedCases
+            return Set(GetSubmissions.Filter.Status.sharedCases)
         case .needsGrading:
             return [.submitted]
         case .notSubmitted:

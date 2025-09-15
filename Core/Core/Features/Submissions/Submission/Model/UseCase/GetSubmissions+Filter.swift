@@ -90,16 +90,12 @@ extension GetSubmissions.Filter {
 
     public enum Status: RawRepresentable, Hashable {
 
-        public static var sharedCases: Set<Status> {
+        public static var sharedCases: [Status] {
             return [.notSubmitted, .submitted, .graded, .late, .missing]
         }
 
-        public static func courseAllCases(_ courseID: String) -> Set<Status> {
-            return sharedCases
-                .union(
-                    Set(CDCustomGradeStatus.allForCourse(courseID).map({ .custom($0.name) })
-                )
-            )
+        public static func courseAllCases(_ courseID: String) -> [Status] {
+            return sharedCases + CDCustomGradeStatus.allForCourse(courseID).map { .custom($0.name) }
         }
 
         case notSubmitted
