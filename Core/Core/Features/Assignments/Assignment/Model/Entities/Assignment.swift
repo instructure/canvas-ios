@@ -39,6 +39,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var details: String?
     @NSManaged public var discussionTopic: DiscussionTopic?
     @NSManaged public var dueAt: Date?
+    @NSManaged public var dueAtOrCheckpointsDueAt: Date?
     @NSManaged public var dueAtSortNilsAtBottom: Date?
     @NSManaged public var externalToolContentID: String?
     @NSManaged public var freeFormCriterionCommentsOnRubric: Bool
@@ -322,6 +323,9 @@ public class Assignment: NSManagedObject {
                     )
                 }
                 .sorted(by: <)
+            self.dueAtOrCheckpointsDueAt = self.checkpoints.reduce(dueAt) { $0 ?? $1.dueDate }
+        } else {
+            self.dueAtOrCheckpointsDueAt = dueAt
         }
     }
 }

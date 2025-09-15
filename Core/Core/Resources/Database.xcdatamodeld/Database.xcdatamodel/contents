@@ -46,6 +46,7 @@
         <attribute name="courseID" attributeType="String"/>
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dueAtOrCheckpointsDueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dueAtSortNilsAtBottom" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="externalToolContentID" optional="YES" attributeType="String"/>
         <attribute name="externalToolTagAttributeURL" optional="YES" attributeType="URI"/>

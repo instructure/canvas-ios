@@ -204,7 +204,7 @@ public class AssignmentListViewModel: ObservableObject {
         var sections: [AssignmentListSection] = []
         let allAssignments: [Assignment] = assignmentGroups
             .compactMap { $0 }
-            .sorted { $0.dueAt ?? Date.distantFuture < $1.dueAt ?? Date.distantFuture }
+            .sorted { $0.dueAtOrCheckpointsDueAt ?? Date.distantFuture < $1.dueAtOrCheckpointsDueAt ?? Date.distantFuture }
         let filteredAssignments = isTeacher
             ? filterAssignmentsTeacher(allAssignments)
             : filterAssignmentsStudent(allAssignments)
@@ -225,9 +225,9 @@ public class AssignmentListViewModel: ObservableObject {
             }
         case .dueDate:
             let rightNow = Clock.now
-            let overdue = filteredAssignments.filter { $0.dueAt ?? Date.distantFuture < rightNow }
-            let upcoming = filteredAssignments.filter { $0.dueAt ?? Date.distantPast > rightNow }
-            let undated = filteredAssignments.filter { $0.dueAt == nil }
+            let overdue = filteredAssignments.filter { $0.dueAtOrCheckpointsDueAt ?? Date.distantFuture < rightNow }
+            let upcoming = filteredAssignments.filter { $0.dueAtOrCheckpointsDueAt ?? Date.distantPast > rightNow }
+            let undated = filteredAssignments.filter { $0.dueAtOrCheckpointsDueAt == nil }
 
             if overdue.isNotEmpty {
                 sections.append(.init(
