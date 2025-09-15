@@ -88,6 +88,7 @@ public struct MultiSelectionView: View {
     private func optionCell(with item: OptionItem) -> some View {
         InstUI.CheckboxCell(
             title: item.title,
+            headerTitle: item.headerTitle,
             subtitle: item.subtitle,
             isSelected: selectionBinding(for: item),
             accessoryView: { item.accessoryIcon },
@@ -123,7 +124,7 @@ public struct MultiSelectionView: View {
             title: "Section 2 title",
             hasAllSelectionButton: true,
             allOptions: [
-                .make(id: "A", title: "Option A", color: .textDanger),
+                .make(id: "A", title: "Option A", headerTitle: "Header", color: .textDanger),
                 .make(id: "B", title: "Option B", color: .textSuccess),
                 .make(id: "C", title: "Option C", color: .textInfo)
             ],
