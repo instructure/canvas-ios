@@ -75,8 +75,8 @@ struct ProgramView: View {
                     onSelectProgram: viewModel.onSelectProgram) { course in
                         viewModel.navigateToCourseDetails(
                             courseID: course?.id ?? "",
-                            enrollemtID: course?.enrollemtID,
                             programID: course?.programID,
+                            isEnrolled: course?.isEnrolled ?? false,
                             viewController: viewController
                         )
                     }
@@ -113,6 +113,7 @@ struct ProgramView: View {
             }
             programCards
                 .id(viewModel.currentProgram?.id)
+                .padding(.top, .huiSpaces.space2)
         }
     }
     var programCards: some View {
@@ -122,8 +123,8 @@ struct ProgramView: View {
         ) { course in
             viewModel.navigateToCourseDetails(
                 courseID: course.id,
-                enrollemtID: course.enrollemtID,
                 programID: viewModel.currentProgram?.id,
+                isEnrolled: course.isEnrolled,
                 viewController: viewController
             )
         } onTapEnroll: { course in
@@ -135,7 +136,7 @@ struct ProgramView: View {
         Text(
             String(
                 format: String(localized: "Complete %d of %d courses", bundle: .horizon),
-                viewModel.currentProgram?.countOfRemainingCourses ?? 0,
+                viewModel.currentProgram?.countOfRemeaningCourses ?? 0,
                 viewModel.currentProgram?.courses.count ?? 0
             )
         )

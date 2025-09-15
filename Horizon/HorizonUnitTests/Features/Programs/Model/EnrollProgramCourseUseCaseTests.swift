@@ -47,7 +47,7 @@ final class EnrollProgramCourseUseCaseTests: HorizonTestCase {
         wait(for: [expection], timeout: 0.2)
     }
 
-    func testMakeRequestSFailureResponse() {
+    func testMakeRequestFailureResponse() {
         // Given
         let testee = EnrollProgramCourseUseCase(
             progressId: "123",
