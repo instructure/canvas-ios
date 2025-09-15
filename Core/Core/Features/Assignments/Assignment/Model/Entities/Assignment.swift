@@ -389,7 +389,7 @@ extension Assignment {
         }
     }
 
-    public var submissionStatus: SubmissionStatus {
+    public var submissionStatus: SubmissionStatusOld {
         return submission?.status ?? .notSubmitted
     }
 

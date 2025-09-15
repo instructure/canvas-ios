@@ -460,14 +460,14 @@ extension Submission {
         }
     }
 
-    public var status: SubmissionStatus {
+    public var status: SubmissionStatusOld {
         if late { return .late }
         if missing { return .missing }
         if submittedAt != nil { return .submitted }
         return .notSubmitted
     }
 
-    public var statusIncludingGradedState: SubmissionStatus {
+    public var statusIncludingGradedState: SubmissionStatusOld {
         if isGraded {
             if excused == true { return .excused }
             if customGradeStatusId != nil { return customGradedStatus }
@@ -484,7 +484,7 @@ extension Submission {
         return .graded
     }
 
-    private var customGradedStatus: SubmissionStatus {
+    private var customGradedStatus: SubmissionStatusOld {
         if let name = customGradeStatusName {
             return .custom(name)
         }

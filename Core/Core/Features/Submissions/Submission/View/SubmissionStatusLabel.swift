@@ -62,7 +62,7 @@ extension SubmissionStatusLabel {
 }
 
 extension SubmissionStatusLabel.Model {
-    public init(status: SubmissionStatus) {
+    public init(status: SubmissionStatusOld) {
         self.init(
             text: status.text,
             icon: status.icon.asImage,

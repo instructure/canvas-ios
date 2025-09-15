@@ -120,9 +120,9 @@ struct SubmissionListRowView: View {
 
 // MARK: - Submission Status for Redesign List
 
-private extension SubmissionStatus {
+private extension SubmissionStatusOld {
     struct RedesignAppearance {
-        let submissionStatus: SubmissionStatus
+        let submissionStatus: SubmissionStatusOld
     }
 
     var redesignAppearance: RedesignAppearance {
@@ -130,7 +130,7 @@ private extension SubmissionStatus {
     }
 }
 
-private extension SubmissionStatus.RedesignAppearance {
+private extension SubmissionStatusOld.RedesignAppearance {
 
     var color: Color {
         switch submissionStatus {

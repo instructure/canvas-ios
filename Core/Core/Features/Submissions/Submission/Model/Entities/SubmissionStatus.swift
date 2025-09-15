@@ -19,7 +19,7 @@
 import Foundation
 import UIKit
 
-public enum SubmissionStatus: Hashable {
+public enum SubmissionStatusOld: Hashable {
     case late
     case missing
     case submitted
