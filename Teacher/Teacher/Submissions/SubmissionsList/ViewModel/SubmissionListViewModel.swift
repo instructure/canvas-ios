@@ -42,13 +42,13 @@ class SubmissionListViewModel: ObservableObject {
 
     init(
         interactor: SubmissionListInteractor,
-        filter: GetSubmissions.Filter,
+        filter: GetSubmissions.Filter?,
         env: AppEnvironment,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
-        self.statusFilters = Set(filter.statuses)
-        self.sectionFilters = Set(filter.sections.map(\.sectionID))
+        self.statusFilters = Set(filter?.statuses ?? [])
+        self.sectionFilters = Set(filter?.sections.map(\.sectionID) ?? [])
         self.env = env
         self.scheduler = scheduler
         setupBindings()

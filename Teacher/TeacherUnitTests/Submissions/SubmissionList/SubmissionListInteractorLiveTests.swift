@@ -45,7 +45,7 @@ class SubmissionListInteractorLiveTests: TeacherTestCase {
         return SubmissionListInteractorLive(
             context: TestConstants.context,
             assignmentID: TestConstants.assignmentID,
-            filters: filters,
+            filter: .init(statuses: Set(filters)),
             env: environment
         )
     }

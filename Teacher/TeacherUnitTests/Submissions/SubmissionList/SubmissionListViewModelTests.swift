@@ -47,7 +47,7 @@ final class SubmissionListViewModelTests: TeacherTestCase {
             context: TestConstants.context,
             assignmentID: TestConstants.assignmentID
         )
-        viewModel = SubmissionListViewModel(interactor: interactor, statusFilters: [], env: environment, scheduler: scheduler)
+        viewModel = SubmissionListViewModel(interactor: interactor, filter: nil, env: environment, scheduler: scheduler)
     }
 
     override func tearDown() {
