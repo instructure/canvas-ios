@@ -51,6 +51,7 @@ public class FileViewerWebViewController: UIViewController {
         view.backgroundColor = .backgroundLightest
         navigationItem.title = String(
             localized: "File Viewer",
+            bundle: .core,
             comment: "Title for a screen that displays the contents of a file"
         )
 
