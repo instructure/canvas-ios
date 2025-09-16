@@ -81,7 +81,6 @@ final class LearnViewModel: ProgramSwitcherMapper {
         self.scheduler = scheduler
         selectedProgram = programID != nil  ? .init(id: programID) : nil
         configureSelectionHandler()
-        featchPrograms()
     }
 
     private func configureSelectionHandler() {

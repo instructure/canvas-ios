@@ -44,7 +44,7 @@ final class GetLearnCoursesInteractorLive: GetLearnCoursesInteractor {
     }
 
     func getFirstCourse(ignoreCache: Bool) -> AnyPublisher<LearnCourse?, any Error> {
-        ReactiveStore(useCase: GetHLearnCoursesUseCase(userId: userId, horizonCourses: true))
+        ReactiveStore(useCase: GetHLearnCoursesUseCase(userId: userId, horizonCourses: ignoreCache))
             .getEntities(ignoreCache: ignoreCache)
             .map { $0.first }
             .map { LearnCourse(from: $0) }
