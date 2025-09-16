@@ -32,6 +32,7 @@ final class DashboardAssembly {
         DashboardView(
             viewModel: .init(
                 dashboardInteractor: makeDashboardInteractor(),
+                notificationInteractor: NotificationAssembly.makeInteractor(),
                 programInteractor: ProgramInteractorLive(programCourseInteractor: ProgramCourseInteractorLive()),
                 router: AppEnvironment.shared.router
             )
@@ -43,6 +44,7 @@ final class DashboardAssembly {
         let dashboardInteractorPreview = DashboardInteractorPreview()
         let viewModel = DashboardViewModel(
             dashboardInteractor: dashboardInteractorPreview,
+            notificationInteractor: NotificationInteractorPreview(),
             programInteractor: ProgramInteractorPreview(),
             router: AppEnvironment.shared.router
         )

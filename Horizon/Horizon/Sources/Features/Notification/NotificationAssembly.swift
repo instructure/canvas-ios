@@ -27,14 +27,9 @@ struct NotificationAssembly {
             environment.tabBar(isVisible: isVisible)
             environment.navigationBar(isVisible: isVisible)
         }
-        let userID = AppEnvironment.shared.currentSession?.userID ?? ""
-        let formatter = NotificationFormatterLive()
-        let interactor = NotificationInteractorLive(
-            userID: userID,
-            formatter: formatter
-        )
+
         let viewModel = HNotificationViewModel(
-            interactor: interactor,
+            interactor: makeInteractor(),
             router: AppEnvironment.shared.router
         )
         let view = HNotificationView(
@@ -42,6 +37,15 @@ struct NotificationAssembly {
             onShowNavigationBarAndTabBar: showTabBarAndNavigationBar
         )
         return CoreHostingController(view)
+    }
+
+    static func makeInteractor(userID: String = AppEnvironment.shared.currentSession?.userID ?? "") -> NotificationInteractor {
+        let formatter = NotificationFormatterLive()
+        let interactor = NotificationInteractorLive(
+            userID: userID,
+            formatter: formatter
+        )
+        return interactor
     }
 
 #if DEBUG

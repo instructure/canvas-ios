@@ -138,9 +138,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 
     func todoTab() -> UIViewController {
         let todo = CoreSplitViewController()
-        let env = AppEnvironment.shared
-        let isStudent = env.app == .student
-        let todoController = isStudent ? TodoAssembly.makeTodoListViewController(env: env) : TodoListViewController.create()
+        let todoController = TodoListViewController.create()
         todo.viewControllers = [
             CoreNavigationController(rootViewController: todoController),
             CoreNavigationController(rootViewController: EmptyViewController())

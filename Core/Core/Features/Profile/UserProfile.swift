@@ -48,7 +48,9 @@ extension UserProfile: WriteableModel {
         model.locale = item.locale
         model.loginID = item.login_id
         model.avatarURL = item.avatar_url?.rawValue
-        model.calendarURL = item.calendar?.ics
+        // In case profile is fetched via GetSelfUserIncludingUUIDRequest,
+        // the calendar url is missing from the API response so we just keep the existing DB value
+        model.calendarURL = item.calendar?.ics ?? model.calendarURL
         model.pronouns = item.pronouns
         model.isK5User = (item.k5_user == true)
         model.canUpdateName = item.permissions?.canUpdateName ?? model.canUpdateName
