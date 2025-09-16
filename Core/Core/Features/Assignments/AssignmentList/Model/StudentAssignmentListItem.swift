@@ -63,9 +63,10 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
             ]
         }
 
-        self.submissionStatus = .init(status: assignment.submission?.status ?? .notSubmitted)
+        let status = assignment.submission?.status ?? .notSubmitted
+        self.submissionStatus = .init(status: status)
         let hasPointsPossible = assignment.pointsPossible != nil
-        self.score = hasPointsPossible ? GradeFormatter.string(from: assignment, style: .medium) : nil
+        self.score = hasPointsPossible && status != .excused ? GradeFormatter.string(from: assignment, style: .medium) : nil
         self.route = assignment.htmlURL
 
         if hasSubAssignments {
@@ -82,14 +83,14 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
                     }
 
                     var score: String?
-                    if let pointsPossible = checkpoint.pointsPossible {
+                    if let pointsPossible = checkpoint.pointsPossible, status != .excused {
                         score = GradeFormatter.string(
                             pointsPossible: pointsPossible,
                             gradingType: assignment.gradingType,
                             gradingScheme: assignment.gradingScheme,
                             hideScores: assignment.hideQuantitativeData,
                             style: .medium,
-                            isExcused: subSubmission?.isExcused ?? false,
+                            isExcused: false,
                             score: subSubmission?.score,
                             normalizedScore: (subSubmission?.score).map { $0 / pointsPossible },
                             grade: subSubmission?.grade,
