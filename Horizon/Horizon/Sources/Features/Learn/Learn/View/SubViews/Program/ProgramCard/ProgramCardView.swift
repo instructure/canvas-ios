@@ -68,7 +68,7 @@ struct ProgramCardView: View {
     public var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
             titleView
-            pillsView
+            statusView
             if status == .notEnrolled {
                 enrollButton
             }
@@ -93,7 +93,7 @@ struct ProgramCardView: View {
         }
     }
 
-    private var pillsView: some View {
+    private var statusView: some View {
         ProgramCardStatusView(
             isEnrolled: status.isEnrolled && isSelfEnrolled,
             isRequired: isRequired,

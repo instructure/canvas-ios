@@ -95,7 +95,10 @@ final class LearnViewModel: ProgramSwitcherMapper {
     func updateProgram(_ program: ProgramSwitcherModel?) {
         selectedProgram = dropdownMenuPrograms.isEmpty ? program : dropdownMenuPrograms.first(where: { $0.id ==  program?.id })
         updateCurrentProgram(by: selectedProgram?.id)
-        if dropdownMenuPrograms.isEmpty {
+        // We call fetchPrograms in case the learner has courses but no programs.
+        // This handles the scenario when the learner pulls to refresh after enrolling
+        // in a program, so they can see it immediately.
+        if dropdownMenuPrograms.allSatisfy({ $0.id == nil }) {
             featchPrograms()
         }
     }

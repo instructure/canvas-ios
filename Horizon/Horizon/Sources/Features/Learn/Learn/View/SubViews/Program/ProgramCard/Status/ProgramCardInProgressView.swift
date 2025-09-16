@@ -46,11 +46,17 @@ struct ProgramCardInProgressView: View {
                 progressBar(completionPercent: completionPercent)
             }
             if isLinear {
-                ProgramStatusView(isRequired: isRequired)
+                HorizonUI.StatusChip(
+                    title: isRequired ? String(localized: "Required") : String(localized: "Optional"),
+                    style: .gray
+                )
             }
 
             if let estimatedTime {
-                defaultPill(title: estimatedTime)
+                HorizonUI.StatusChip(
+                    title: estimatedTime,
+                    style: .gray
+                )
             }
         }
     }
@@ -72,20 +78,6 @@ struct ProgramCardInProgressView: View {
             )
             .padding(.bottom, .huiSpaces.space8)
         }
-    }
-
-    private func defaultPill(title: String) -> some View {
-        HorizonUI.Pill(
-            title: title,
-            style: .solid(
-                .init(
-                    backgroundColor: Color.huiColors.primitives.grey11,
-                    textColor: Color.huiColors.text.title
-                )
-            ),
-            isSmall: true,
-            cornerRadius: .level1,
-        )
     }
 }
 

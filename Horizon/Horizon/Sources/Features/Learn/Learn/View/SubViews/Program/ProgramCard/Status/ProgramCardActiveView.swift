@@ -28,42 +28,26 @@ struct ProgramCardActiveView: View {
     var body: some View {
         HorizonUI.HFlow {
             if isEnrolled {
-                HorizonUI.Pill(
+                HorizonUI.StatusChip(
                     title: String(localized: "Enrolled"),
-                    style: .solid(
-                        .init(
-                            backgroundColor: Color.huiColors.primitives.green12,
-                            textColor: Color.huiColors.primitives.green82,
-                            iconColor: Color.huiColors.primitives.green82
-                        )
-                    ),
-                    isSmall: true,
-                    cornerRadius: .level1,
+                    style: .green,
                     icon: .huiIcons.checkCircleFull
                 )
             }
             if isLinear {
-                ProgramStatusView(isRequired: isRequired)
+                HorizonUI.StatusChip(
+                    title: isRequired ? String(localized: "Required") : String(localized: "Optional"),
+                    style: .gray
+                )
             }
 
             if let estimatedTime {
-                defaultPill(title: estimatedTime)
+                HorizonUI.StatusChip(
+                    title: estimatedTime,
+                    style: .gray
+                )
             }
         }
-    }
-
-    private func defaultPill(title: String) -> some View {
-        HorizonUI.Pill(
-            title: title,
-            style: .solid(
-                .init(
-                    backgroundColor: Color.huiColors.primitives.grey11,
-                    textColor: Color.huiColors.text.title
-                )
-            ),
-            isSmall: true,
-            cornerRadius: .level1,
-        )
     }
 }
 

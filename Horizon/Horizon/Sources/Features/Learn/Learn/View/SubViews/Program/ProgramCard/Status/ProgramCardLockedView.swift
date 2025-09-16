@@ -26,35 +26,26 @@ struct ProgramCardLockedView: View {
 
     var body: some View {
         HorizonUI.HFlow {
-            HorizonUI.Pill(
+            HorizonUI.StatusChip(
                 title: String(localized: "Locked"),
-                style: .outline(
-                    .init(
-                        borderColor: Color.huiColors.lineAndBorders.lineStroke,
-                        textColor: Color.huiColors.text.title,
-                        iconColor: Color.huiColors.icon.default
-                    )
-                ),
-                isSmall: true,
-                cornerRadius: .level1,
-                icon: .huiIcons.lock
+                style: .white,
+                icon: .huiIcons.lock,
+                hasBorder: true
             )
 
             if isLinear {
-                ProgramStatusView(isRequired: isRequired, isLocked: true)
+                HorizonUI.StatusChip(
+                    title: isRequired ? String(localized: "Required") : String(localized: "Optional"),
+                    style: .white,
+                    hasBorder: true
+                )
             }
 
             if let estimatedTime {
-                HorizonUI.Pill(
+                HorizonUI.StatusChip(
                     title: estimatedTime,
-                    style: .outline(
-                        .init(
-                            borderColor: Color.huiColors.lineAndBorders.lineStroke,
-                            textColor: Color.huiColors.text.title
-                        )
-                    ),
-                    isSmall: true,
-                    cornerRadius: .level1
+                    style: .white,
+                    hasBorder: true
                 )
             }
         }

@@ -51,7 +51,10 @@ struct ProgramCardStatusView: View {
                 estimatedTime: estimatedTime
             )
         case .completed:
-            ProgramCardCompletedView()
+            HorizonUI.StatusChip(
+                title: String(localized: "Completed"),
+                style: .hone
+            )
         }
     }
 }
