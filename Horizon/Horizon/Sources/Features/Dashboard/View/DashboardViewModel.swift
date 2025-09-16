@@ -58,7 +58,7 @@ class DashboardViewModel {
     init(
         dashboardInteractor: DashboardInteractor,
         notificationInteractor: NotificationInteractor,
-		programInteractor: ProgramInteractor,
+        programInteractor: ProgramInteractor,
         router: Router
     ) {
         self.dashboardInteractor = dashboardInteractor
@@ -113,7 +113,8 @@ class DashboardViewModel {
         }
         .store(in: &subscriptions)
     }
- private func getAttachedPrograms(to hcourses: [HCourse], from programs: [Program]) -> [HCourse] {
+
+    private func getAttachedPrograms(to hcourses: [HCourse], from programs: [Program]) -> [HCourse] {
         return hcourses.map { hcourse in
             var updateCourse = hcourse
             // Find all programs that contain this course id
@@ -123,8 +124,6 @@ class DashboardViewModel {
             updateCourse.programs = matchedPrograms
             return updateCourse
         }
-
-
     }
 
     // MARK: - Inputs
