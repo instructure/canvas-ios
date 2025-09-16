@@ -65,7 +65,7 @@ struct SubmissionsFilterScreen: View {
         ScrollView {
             VStack {
                 MultiSelectionView(
-                    title: String(localized: "Submission Filter", bundle: .teacher),
+                    title: String(localized: "Statuses", bundle: .teacher),
                     identifierGroup: "SubmissionsFilter.filterOptions",
                     options: statusFilterOptions
                 )
