@@ -27,6 +27,7 @@ extension InstUI {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         private let title: String
+        private let headerTitle: String?
         private let subtitle: String?
         @Binding private var isSelected: Bool
         private let accessoryView: (() -> Accessory)?
@@ -36,12 +37,14 @@ extension InstUI {
 
         public init(
             title: String,
+            headerTitle: String? = nil,
             subtitle: String? = nil,
             isSelected: Binding<Bool>,
             accessoryView: (() -> Accessory)?,
             dividerStyle: InstUI.Divider.Style = .full
         ) {
             self.title = title
+            self.headerTitle = headerTitle
             self.subtitle = subtitle
             self._isSelected = isSelected
             self.accessoryView = accessoryView
@@ -50,12 +53,14 @@ extension InstUI {
 
         public init(
             title: String,
+            headerTitle: String? = nil,
             subtitle: String? = nil,
             isSelected: Binding<Bool>,
             dividerStyle: InstUI.Divider.Style = .full
         ) where Accessory == SwiftUI.EmptyView {
             self.init(
                 title: title,
+                headerTitle: headerTitle,
                 subtitle: subtitle,
                 isSelected: isSelected,
                 accessoryView: nil,
@@ -76,6 +81,12 @@ extension InstUI {
                             .animation(.default, value: isSelected)
 
                         VStack(spacing: 2) {
+                            if let headerTitle {
+                                Text(headerTitle)
+                                    .textStyle(.cellLabelSubtitle)
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
                             Text(title)
                                 .textStyle(.cellLabel)
                                 .multilineTextAlignment(.leading)
@@ -99,7 +110,7 @@ extension InstUI {
             }
             .accessibilityRepresentation {
                 SwiftUI.Toggle(isOn: $isSelected) {
-                    Text(title)
+                    Text([headerTitle, title, subtitle].accessibilityJoined())
                 }
             }
         }
@@ -113,8 +124,23 @@ private struct Container: View {
 
     var body: some View {
         InstUI.CheckboxCell(
-            title: "Checkbox here",
+            title: "Checkbox 1",
+            isSelected: $isSelected
+        )
+        InstUI.CheckboxCell(
+            title: "Checkbox 2",
             subtitle: "Subtitle",
+            isSelected: $isSelected
+        )
+        InstUI.CheckboxCell(
+            title: "Checkbox 2",
+            headerTitle: "Header Title",
+            subtitle: "Subtitle",
+            isSelected: $isSelected
+        )
+        InstUI.CheckboxCell(
+            title: "Checkbox 2",
+            headerTitle: "Header Title",
             isSelected: $isSelected
         )
     }

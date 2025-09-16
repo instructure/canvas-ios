@@ -26,6 +26,7 @@ public struct OptionItem: Equatable, Hashable, Identifiable {
 
     public let id: String
     public let title: String
+    public let headerTitle: String?
     public let subtitle: String?
     public let color: Color?
     public let customAccessibilityLabel: String?
@@ -34,6 +35,7 @@ public struct OptionItem: Equatable, Hashable, Identifiable {
     public init(
         id: String,
         title: String,
+        headerTitle: String? = nil,
         subtitle: String? = nil,
         customAccessibilityLabel: String? = nil,
         colorOverride: Color? = nil,
@@ -41,6 +43,7 @@ public struct OptionItem: Equatable, Hashable, Identifiable {
     ) {
         self.id = id
         self.title = title
+        self.headerTitle = headerTitle
         self.subtitle = subtitle
         self.color = colorOverride
         self.customAccessibilityLabel = customAccessibilityLabel
@@ -67,6 +70,7 @@ extension OptionItem {
     static func make(
         id: String = "",
         title: String = "",
+        headerTitle: String? = nil,
         subtitle: String? = nil,
         customAccessibilityLabel: String? = nil,
         color: Color? = nil,
@@ -75,6 +79,7 @@ extension OptionItem {
         return OptionItem(
             id: id,
             title: title,
+            headerTitle: headerTitle,
             subtitle: subtitle,
             customAccessibilityLabel: customAccessibilityLabel,
             colorOverride: color,
