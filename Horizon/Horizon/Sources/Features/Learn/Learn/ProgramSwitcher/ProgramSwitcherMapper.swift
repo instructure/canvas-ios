@@ -89,10 +89,10 @@ extension ProgramSwitcherMapper {
         courseID: String,
         programs: [Program]
     ) -> Program? {
-        if let programID {
-            return programs.first { $0.id == programID }
+        guard let programID = programID else {
+            return nil
         }
-        return programs.first { $0.courses.contains { $0.id == courseID } }
+        return programs.first { $0.id == programID }
     }
 
     func mapProgram(program: Program?) -> ProgramSwitcherModel? {

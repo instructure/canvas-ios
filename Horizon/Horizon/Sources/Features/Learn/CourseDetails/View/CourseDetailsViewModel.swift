@@ -36,6 +36,7 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
     private(set) var isShowHeader = true
     private(set) var programs: [ProgramSwitcherModel] = []
     private(set) var selectedCourse: ProgramSwitcherModel.Course?
+    private(set) var courses: [LearnCourse] = []
     private(set) var selectedProgram: ProgramSwitcherModel?
     private(set) var isLoaderVisible: Bool = false
     private(set) var overviewDescription = ""
@@ -72,7 +73,7 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
         programInteractor: ProgramInteractor,
         courseID: String,
         enrollmentID: String,
-        programID: String?,
+        programID: String? = nil,
         course: HCourse?,
         selectedTab: CourseDetailsTabs? = nil,
         scoresViewModelBuilder: @escaping ScoresViewModelBuilder
@@ -110,13 +111,14 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
 
             let syllabusPublisher = getCoursesInteractor
                 .getCourseSyllabus(courseID: course.id, ignoreCache: true)
+            let programsPublisher = getPrograms(ignoreCache: true)
 
-            pullToRefreshCancellable = coursePublisher
-                .zip(syllabusPublisher)
-                .sink { [weak self] course, syllabus in
+            pullToRefreshCancellable = Publishers.Zip3(coursePublisher, syllabusPublisher, programsPublisher)
+                .sink { [weak self] course, syllabus, programs in
                     continuation.resume()
                     guard let self = self, let course = course else { return }
                     self.course = course
+                    self.programs = mapPrograms(programs: programs, courses: self.courses)
                     self.overviewDescription = syllabus ?? ""
                 }
         }
@@ -172,6 +174,7 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
         )
         .sink { [weak self] courseInfo, courses, allPrograms in
             guard let self else { return }
+            self.courses = courses
             self.programs = mapPrograms(programs: allPrograms, courses: courses)
             selectedProgram = findProgram(containing: courseID, programID: selectedProgram?.id, in: allPrograms)
             updateCourse(course: courseInfo.course, syllabus: courseInfo.syllabus)
@@ -179,9 +182,9 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
         .store(in: &subscriptions)
     }
 
-    private func getPrograms() -> AnyPublisher<[Program], Never> {
+    private func getPrograms(ignoreCache: Bool = false) -> AnyPublisher<[Program], Never> {
         programInteractor
-            .getProgramsWithCourses(ignoreCache: false)
+            .getProgramsWithCourses(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .eraseToAnyPublisher()
     }

@@ -21,7 +21,8 @@ import Combine
 import Foundation
 
 protocol ProgramInteractor {
-    func getPrograms(ignoreCache: Bool) -> AnyPublisher<[Program], Error>
+    func getPrograms(ignoreCache: Bool) -> AnyPublisher<[Program], Never>
+    func getProgramsWithObserving(ignoreCache: Bool) -> AnyPublisher<[Program], Never>
     func getProgramsWithCourses(ignoreCache: Bool) -> AnyPublisher<[Program], Error>
     func enrollInProgram(progressID: String) -> AnyPublisher<[Program], Error>
 }
@@ -42,9 +43,20 @@ final class ProgramInteractorLive: ProgramInteractor {
         self.programsUseCase = programsUseCase
     }
 
-    func getPrograms(ignoreCache: Bool) -> AnyPublisher<[Program], Error> {
+    func getPrograms(ignoreCache: Bool) -> AnyPublisher<[Program], Never> {
         ReactiveStore(useCase: programsUseCase)
             .getEntities(ignoreCache: ignoreCache)
+            .replaceError(with: [])
+            .map { [weak self] response in
+                return response.compactMap { self?.map($0) }
+            }
+            .eraseToAnyPublisher()
+    }
+
+    func getProgramsWithObserving(ignoreCache: Bool) -> AnyPublisher<[Program], Never> {
+        ReactiveStore(useCase: programsUseCase)
+            .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
             .map { [weak self] response in
                 return response.compactMap { self?.map($0) }
             }

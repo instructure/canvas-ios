@@ -22,13 +22,14 @@ import HorizonUI
 
 struct LearnView: View {
     @Bindable var viewModel: LearnViewModel
+    let isBackButtonVisible: Bool
 
     var body: some View {
         VStack(spacing: .zero) {
             if !viewModel.isLoaderVisible {
                 switch viewModel.state {
                 case .programs:
-                    ProgramView(viewModel: viewModel)
+                    ProgramView(viewModel: viewModel, isBackButtonVisible: isBackButtonVisible)
                 case .courseDetails:
                     if let courseDetailsViewModel = viewModel.courseDetailsViewModel {
                         LearnAssembly.makeCourseDetailsView(viewModel: courseDetailsViewModel, isBackButtonVisible: false)
@@ -39,9 +40,9 @@ struct LearnView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .onFirstAppear { viewModel.featchPrograms() }
         .background(Color.huiColors.surface.pagePrimary)
         .toolbar(.hidden)
+        .onFirstAppear { viewModel.fetchPrograms() }
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)
@@ -74,8 +75,10 @@ struct LearnView: View {
         viewModel: .init(
             interactor: ProgramInteractorPreview(),
             learnCoursesInteractor: GetLearnCoursesInteractorPreview(),
-            router: AppEnvironment.shared.router
-        )
+            router: AppEnvironment.shared.router,
+            programID: nil
+        ),
+        isBackButtonVisible: true
     )
 }
 #endif

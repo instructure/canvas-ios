@@ -33,7 +33,7 @@ final class LearnViewModelTests: HorizonTestCase {
         )
         // When
         let expection = expectation(description: "Wait for completion")
-        testee.featchPrograms {
+        testee.fetchPrograms {
             expection.fulfill()
             XCTAssertEqual(testee.programs.count, 2)
             XCTAssertTrue(testee.shouldShowProgress)
@@ -64,7 +64,7 @@ final class LearnViewModelTests: HorizonTestCase {
         )
         // When
         let expection = expectation(description: "Wait for completion")
-        testee.featchPrograms {
+        testee.fetchPrograms {
             expection.fulfill()
             XCTAssertEqual(testee.programs.count, 0)
             XCTAssertEqual(testee.dropdownMenuPrograms.count, 0)
@@ -109,7 +109,7 @@ final class LearnViewModelTests: HorizonTestCase {
         let viewController = WeakViewController(sourceView)
 
         // When
-        testee.featchPrograms()
+        testee.fetchPrograms()
         testee.navigateToCourseDetails(
             courseID: "ID-1",
             isEnrolled: true,

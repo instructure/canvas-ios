@@ -58,12 +58,12 @@ struct CourseDetailsView: View {
             if viewModel.isShowHeader {
                 VStack(spacing: .zero) {
                     VStack(spacing: .zero) {
-                        if let programName = viewModel.selectedCourse?.programName {
+                        if let programName = viewModel.selectedProgram?.name {
                             ProgramNameView(name: programName)
                                 .padding(.horizontal, .huiSpaces.space24)
                                 .padding(.bottom, .huiSpaces.space16)
                                 .onTapGesture {
-                                    onSwitchToLearnTab(.init(id: viewModel.selectedCourse?.programID), viewController)
+                                    onSwitchToLearnTab(.init(id: viewModel.selectedProgram?.id), viewController)
                                 }
                         }
                         ExpandTitleView(

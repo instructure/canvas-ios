@@ -72,12 +72,14 @@ final class LearnViewModel: ProgramSwitcherMapper {
         interactor: ProgramInteractor,
         learnCoursesInteractor: GetLearnCoursesInteractor,
         router: Router,
+        programID: String? = nil,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
         self.learnCoursesInteractor = learnCoursesInteractor
         self.router = router
         self.scheduler = scheduler
+        selectedProgram = programID != nil  ? .init(id: programID) : nil
         configureSelectionHandler()
     }
 
@@ -92,6 +94,9 @@ final class LearnViewModel: ProgramSwitcherMapper {
     func updateProgram(_ program: ProgramSwitcherModel?) {
         selectedProgram = dropdownMenuPrograms.isEmpty ? program : dropdownMenuPrograms.first(where: { $0.id ==  program?.id })
         updateCurrentProgram(by: selectedProgram?.id)
+        if dropdownMenuPrograms.isEmpty {
+            fetchPrograms()
+        }
     }
 
     func refreshPrograms() async {
@@ -100,13 +105,13 @@ final class LearnViewModel: ProgramSwitcherMapper {
 
     func fetchPrograms(ignoreCache: Bool = false) async {
         await withCheckedContinuation { continuation in
-            featchPrograms(ignoreCache: ignoreCache) {
+            fetchPrograms(ignoreCache: ignoreCache) {
                 continuation.resume()
             }
         }
     }
 
-    func featchPrograms(
+    func fetchPrograms(
         ignoreCache: Bool = false,
         completionHandler: (() -> Void)? = nil
     ) {
@@ -180,6 +185,10 @@ final class LearnViewModel: ProgramSwitcherMapper {
                 self.showToast(message)
             }
             .store(in: &subscriptions)
+    }
+
+    func didTapBackButton(viewController: WeakViewController) {
+        router.dismiss(viewController)
     }
 
     // MARK: - Helpers
