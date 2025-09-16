@@ -42,7 +42,7 @@ struct LearnView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.huiColors.surface.pagePrimary)
         .toolbar(.hidden)
-        .onFirstAppear { viewModel.featchPrograms() }
+        .onFirstAppear { viewModel.fetchPrograms() }
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)

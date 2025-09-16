@@ -95,7 +95,7 @@ final class LearnViewModel: ProgramSwitcherMapper {
         selectedProgram = dropdownMenuPrograms.isEmpty ? program : dropdownMenuPrograms.first(where: { $0.id ==  program?.id })
         updateCurrentProgram(by: selectedProgram?.id)
         if dropdownMenuPrograms.isEmpty {
-            featchPrograms()
+            fetchPrograms()
         }
     }
 
@@ -105,13 +105,13 @@ final class LearnViewModel: ProgramSwitcherMapper {
 
     func fetchPrograms(ignoreCache: Bool = false) async {
         await withCheckedContinuation { continuation in
-            featchPrograms(ignoreCache: ignoreCache) {
+            fetchPrograms(ignoreCache: ignoreCache) {
                 continuation.resume()
             }
         }
     }
 
-    func featchPrograms(
+    func fetchPrograms(
         ignoreCache: Bool = false,
         completionHandler: (() -> Void)? = nil
     ) {
