@@ -44,7 +44,7 @@ struct SubmissionsFilterScreen: View {
     var body: some View {
         VStack {
             MultiSelectionView(
-                title: String(localized: "Submission Filter", bundle: .teacher),
+                title: String(localized: "Statuses", bundle: .teacher),
                 identifierGroup: "SubmissionsFilter.filterOptions",
                 options: filterOptions
             )
