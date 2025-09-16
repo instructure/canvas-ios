@@ -57,7 +57,6 @@ extension ProgramSwitcherMapper {
         }
 
         switcherModels.append(.init(courses: extraCourses))
-
         return switcherModels
     }
 
