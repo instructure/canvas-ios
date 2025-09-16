@@ -21,11 +21,11 @@ import SwiftUI
 
 struct TeacherAssignmentListItem: Equatable, Identifiable {
 
-    struct SubAssignmentRow: Equatable, Identifiable {
+    struct SubItem: Equatable, Identifiable {
         let tag: String
         let title: String
+
         let dueDate: String
-        let needsGrading: String?
         let pointsPossible: String?
 
         var id: String { tag }
@@ -36,37 +36,61 @@ struct TeacherAssignmentListItem: Equatable, Identifiable {
     let icon: Image
     let isPublished: Bool
 
-    let dueDate: String
+    let dueDates: [String]
     let needsGrading: String?
     let pointsPossible: String?
+
+    let subItems: [SubItem]?
 
     let route: URL?
 
     init(assignment: Assignment) {
+        let hasSubAssignments = assignment.hasSubAssignments
+
         self.id = assignment.id
         self.title = assignment.name
         self.icon = assignment.icon.asImage
         self.isPublished = assignment.published
-        self.dueDate = DueDateFormatter.format(
-            assignment.dueAt,
-            lockDate: assignment.lockAt,
-            hasOverrides: assignment.hasMultipleDueDates
-        )
-        self.needsGrading = assignment.needsGradingText
+
+        if hasSubAssignments {
+            self.dueDates = assignment.checkpoints
+                .map { DueDateSummary($0.dueDate, lockDate: $0.lockDate, hasOverrides: $0.overrides.isNotEmpty) }
+                .reduceIfNeeded()
+                .map(\.text)
+        } else {
+            self.dueDates = [
+                DueDateFormatter.format(
+                    assignment.dueAt,
+                    lockDate: assignment.lockAt,
+                    hasOverrides: assignment.hasOverrides
+                )
+            ]
+        }
+
+        let canBeGraded = assignment.gradingType != .not_graded
+        self.needsGrading = canBeGraded ? String.format(needsGrading: assignment.needsGradingCount) : nil
         let hasPointsPossible = assignment.pointsPossible != nil
         self.pointsPossible = hasPointsPossible ? assignment.pointsPossibleCompleteText : nil
         self.route = assignment.htmlURL
-    }
-}
 
-private extension Assignment {
-    var needsGradingText: String? {
-        guard needsGradingCount > 0, gradingType != .not_graded else {
-            return nil
+        if hasSubAssignments {
+            self.subItems = assignment.checkpoints
+                .map { checkpoint in
+                    SubItem(
+                        tag: checkpoint.tag,
+                        title: checkpoint.title,
+                        dueDate: DueDateFormatter.format(
+                            checkpoint.dueDate,
+                            lockDate: checkpoint.lockDate,
+                            hasOverrides: checkpoint.overrides.isNotEmpty
+                        ),
+                        pointsPossible: String.format(points: checkpoint.pointsPossible)
+                            ?? String(localized: "Not Graded", bundle: .core)
+                    )
+                }
+        } else {
+            self.subItems = nil
         }
-
-        let format = String(localized: "d_needs_grading", bundle: .core)
-        return String.localizedStringWithFormat(format, needsGradingCount).localizedCapitalized
     }
 }
 
@@ -78,18 +102,20 @@ extension TeacherAssignmentListItem {
         title: String,
         icon: Image,
         isPublished: Bool,
-        dueDate: String,
+        dueDates: [String],
         needsGrading: String?,
         pointsPossible: String?,
+        subItems: [SubItem]?,
         route: URL?
     ) {
         self.id = id
         self.title = title
         self.icon = icon
         self.isPublished = isPublished
-        self.dueDate = dueDate
+        self.dueDates = dueDates
         self.needsGrading = needsGrading
         self.pointsPossible = pointsPossible
+        self.subItems = subItems
         self.route = route
     }
 
@@ -98,9 +124,10 @@ extension TeacherAssignmentListItem {
         title: String = "",
         icon: Image = .emptyLine,
         isPublished: Bool = false,
-        dueDate: String = "",
+        dueDates: [String] = [],
         needsGrading: String? = nil,
         pointsPossible: String? = nil,
+        subItems: [SubItem]? = nil,
         route: URL? = nil
     ) -> Self {
         self.init(
@@ -108,10 +135,27 @@ extension TeacherAssignmentListItem {
             title: title,
             icon: icon,
             isPublished: isPublished,
-            dueDate: dueDate,
+            dueDates: dueDates,
             needsGrading: needsGrading,
             pointsPossible: pointsPossible,
+            subItems: subItems,
             route: route
+        )
+    }
+}
+
+extension TeacherAssignmentListItem.SubItem {
+    public static func make(
+        tag: String = "",
+        title: String = "",
+        dueDate: String = "",
+        pointsPossible: String? = nil
+    ) -> Self {
+        self.init(
+            tag: tag,
+            title: title,
+            dueDate: dueDate,
+            pointsPossible: pointsPossible
         )
     }
 }

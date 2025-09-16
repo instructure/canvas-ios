@@ -41,7 +41,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
     let submissionStatus: SubmissionStatusLabel.Model
     let score: String?
 
-    let subAssignments: [SubItem]?
+    let subItems: [SubItem]?
 
     let route: URL?
 
@@ -70,12 +70,12 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
         self.route = assignment.htmlURL
 
         if hasSubAssignments {
-            self.subAssignments = assignment.checkpoints
+            self.subItems = assignment.checkpoints
                 .map { checkpoint in
                     let subSubmission = assignment.submission?.subAssignmentSubmissions
                         .first { $0.subAssignmentTag == checkpoint.tag }
 
-                    // This is only needed because `APISubassignmentSUbmission.subitted_at` is currently not populated by backend.
+                    // This is only needed because `APISubAssignmentSubmission.submitted_at` is currently not populated by backend.
                     // TODO: fallback to `.notSubmitted` and remove optionality once status can be calculated after EVAL-5938
                     var status = subSubmission?.status
                     if status == .notSubmitted {
@@ -98,16 +98,16 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
                         )
                     }
 
-                    return .init(
+                    return SubItem(
                         tag: checkpoint.tag,
-                        title: checkpoint.discussionCheckpointStep?.text ?? checkpoint.assignmentName,
+                        title: checkpoint.title,
                         dueDate: DueDateFormatter.format(checkpoint.dueDate, lockDate: checkpoint.lockDate),
                         submissionStatus: status.map { .init(status: $0) },
                         score: score
                     )
                 }
         } else {
-            self.subAssignments = nil
+            self.subItems = nil
         }
     }
 }
@@ -122,7 +122,7 @@ extension StudentAssignmentListItem {
         dueDates: [String],
         submissionStatus: SubmissionStatusLabel.Model,
         score: String?,
-        subAssignments: [SubItem]?,
+        subItems: [SubItem]?,
         route: URL?
     ) {
         self.id = id
@@ -131,7 +131,7 @@ extension StudentAssignmentListItem {
         self.dueDates = dueDates
         self.submissionStatus = submissionStatus
         self.score = score
-        self.subAssignments = subAssignments
+        self.subItems = subItems
         self.route = route
     }
 
@@ -142,7 +142,7 @@ extension StudentAssignmentListItem {
         dueDates: [String] = [],
         submissionStatus: SubmissionStatusLabel.Model = .init(text: "", icon: .emptyLine, color: .clear),
         score: String? = nil,
-        subAssignments: [SubItem]? = nil,
+        subItems: [SubItem]? = nil,
         route: URL? = nil
     ) -> Self {
         self.init(
@@ -152,7 +152,7 @@ extension StudentAssignmentListItem {
             dueDates: dueDates,
             submissionStatus: submissionStatus,
             score: score,
-            subAssignments: subAssignments,
+            subItems: subItems,
             route: route
         )
     }

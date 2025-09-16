@@ -20,15 +20,14 @@ import SwiftUI
 
 struct TeacherAssignmentListItemCell: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @ScaledMetric private var uiScale: CGFloat = 1
 
     private let model: TeacherAssignmentListItem
-    private let isLastItem: Bool
+    private let isLastItem: Bool?
     private let action: () -> Void
 
     init(
         model: TeacherAssignmentListItem,
-        isLastItem: Bool,
+        isLastItem: Bool?,
         action: @escaping () -> Void
     ) {
         self.model = model
@@ -37,37 +36,20 @@ struct TeacherAssignmentListItemCell: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            Button {
-                action()
-            } label: {
-                HStack(alignment: .top, spacing: 0) {
-                    icon
-                        .paddingStyle(.trailing, .cellIconText)
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        titleLabel
-                        dueDateLabel
-                        needsGradingAndPointsPossibleLine
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-                .paddingStyle(set: .iconCell)
-                .contentShape(Rectangle())
-            }
-            .background(.backgroundLightest)
-            .buttonStyle(.tintedContextButton)
-
-            InstUI.Divider(isLast: isLastItem)
-        }
-        .accessibility(identifier: "AssignmentList.\(model.id)")
-    }
-
-    private var icon: some View {
-        model.icon
-            .scaledIcon()
-            .applyTint()
-            .publishedStateOverlay(isPublished: model.isPublished)
+        InstUI.ContextItemListCell(
+            icon: {
+                model.icon
+                    .scaledIcon()
+                    .publishedStateOverlay(isPublished: model.isPublished)
+            },
+            labels: {
+                titleLabel
+                dueDateLabels
+                needsGradingAndPointsPossibleLine
+            },
+            isLastItem: isLastItem,
+            action: action
+        )
     }
 
     private var titleLabel: some View {
@@ -75,9 +57,11 @@ struct TeacherAssignmentListItemCell: View {
             .textStyle(.cellLabel)
     }
 
-    private var dueDateLabel: some View {
-        Text(model.dueDate)
-            .textStyle(.cellLabelSubtitle)
+    private var dueDateLabels: some View {
+        ForEach(Array(model.dueDates.enumerated()), id: \.offset) {
+            Text($1)
+        }
+        .textStyle(.cellLabelSubtitle)
     }
 
     @ViewBuilder
@@ -103,7 +87,8 @@ struct TeacherAssignmentListItemCell: View {
         Text(needsGrading)
             .font(.regular12)
             .foregroundColor(.textLightest)
-            .padding(.horizontal, 10).padding(.vertical, 4)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 4)
             .background(RoundedRectangle(cornerRadius: 16).applyTint())
             .padding(.top, 4)
             .padding(.bottom, 6)
@@ -129,7 +114,7 @@ struct TeacherAssignmentListItemCell: View {
                 title: "Assignment 1",
                 icon: .assignmentLine,
                 isPublished: true,
-                dueDate: date,
+                dueDates: [date],
                 needsGrading: "7 Need Grading",
                 pointsPossible: "256 points"
             ),
@@ -138,27 +123,27 @@ struct TeacherAssignmentListItemCell: View {
                 title: "Discussion 2 - Only points",
                 icon: .discussionLine,
                 isPublished: false,
-                dueDate: date,
+                dueDates: [date],
                 pointsPossible: "256 points"
             ),
             .make(
                 id: "3",
                 title: "Quiz 3 - Only NeedsGrading",
                 icon: .quizLine,
-                dueDate: date,
+                dueDates: [date],
                 needsGrading: "7 Need Grading"
             ),
             .make(
                 id: "4",
                 title: "No NeedsGrading, No points",
                 icon: .quizLine,
-                dueDate: date
+                dueDates: [date]
             ),
             .make(
                 id: "5",
                 title: "Long titled assignment to test how layout behaves",
                 icon: .assignmentLine,
-                dueDate: .loremIpsumMedium,
+                dueDates: [.loremIpsumMedium],
                 needsGrading: .loremIpsumMedium,
                 pointsPossible: .loremIpsumMedium
             )

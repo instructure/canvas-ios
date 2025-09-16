@@ -44,6 +44,10 @@ public class CDAssignmentCheckpoint: NSManagedObject {
     @NSManaged public var isOnlyVisibleToOverrides: Bool
     @NSManaged public var overrides: Set<AssignmentOverride>
 
+    public var title: String {
+        discussionCheckpointStep?.text ?? assignmentName
+    }
+
     // MARK: - Save
 
     @discardableResult

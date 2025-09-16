@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2021-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,14 +18,14 @@
 
 import SwiftUI
 
-struct StudentAssignmentListSubItemCell: View {
+struct TeacherAssignmentListSubItemCell: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    private let model: StudentAssignmentListItem.SubItem
+    private let model: TeacherAssignmentListItem.SubItem
     private let action: () -> Void
 
     init(
-        model: StudentAssignmentListItem.SubItem,
+        model: TeacherAssignmentListItem.SubItem,
         action: @escaping () -> Void
     ) {
         self.model = model
@@ -37,7 +37,9 @@ struct StudentAssignmentListSubItemCell: View {
             labels: {
                 titleLabel
                 dueDateLabel
-                scoreAndStatusLine
+                if let pointsPossible = model.pointsPossible {
+                    pointsPossibleLabel(pointsPossible)
+                }
             },
             action: action
         )
@@ -53,29 +55,8 @@ struct StudentAssignmentListSubItemCell: View {
             .textStyle(.cellLabelSubtitle)
     }
 
-    @ViewBuilder
-    private var scoreAndStatusLine: some View {
-        switch (model.score, model.submissionStatus) {
-        case (.some(let score), .some(let status)):
-            InstUI.JoinedSubtitleLabels(
-                label1: { scoreLabel(score) },
-                label2: { submissionStatusLabel(status) }
-            )
-        case (.some(let score), .none):
-            scoreLabel(score)
-        case (.none, .some(let status)):
-            submissionStatusLabel(status)
-        case (.none, .none):
-            SwiftUI.EmptyView()
-        }
-    }
-
-    private func submissionStatusLabel(_ model: SubmissionStatusLabel.Model) -> some View {
-        SubmissionStatusLabel(model: model)
-    }
-
-    private func scoreLabel(_ score: String) -> some View {
-        Text(score)
+    private func pointsPossibleLabel(_ pointsPossible: String) -> some View {
+        Text(pointsPossible)
             .font(.semibold16)
             .applyTint()
     }
@@ -88,16 +69,16 @@ struct StudentAssignmentListSubItemCell: View {
 #Preview {
     PreviewContainer {
         let date = Date.now.dateTimeString
-        let rows: [StudentAssignmentListItem] = [
+        let rows: [TeacherAssignmentListItem] = [
             .make(
                 id: "1",
                 title: "Assignment 1",
                 icon: .assignmentLine,
                 dueDates: [date],
-                submissionStatus: .init(status: .graded),
-                score: "42 / 100",
+                needsGrading: "5 Need Grading",
+                pointsPossible: "100",
                 subItems: [
-                    .make(tag: "a", title: "Sub-assignment A", dueDate: date, submissionStatus: .init(status: .graded), score: "42 / 100")
+                    .make(tag: "a", title: "Sub-assignment A", dueDate: date, pointsPossible: "100")
                 ]
             ),
             .make(
@@ -105,21 +86,21 @@ struct StudentAssignmentListSubItemCell: View {
                 title: "Assignment 2",
                 icon: .assignmentLine,
                 dueDates: [date],
-                submissionStatus: .init(status: .excused),
+                needsGrading: "1 Needs Grading",
                 subItems: [
-                    .make(tag: "a", title: "Sub-assignment A", dueDate: date, submissionStatus: .init(status: .graded), score: "42 / 100"),
-                    .make(tag: "b", title: "Sub-assignment B", dueDate: date, submissionStatus: .init(status: .excused))
+                    .make(tag: "a", title: "Sub-assignment A", dueDate: date, pointsPossible: "60"),
+                    .make(tag: "b", title: "Sub-assignment B", dueDate: date, pointsPossible: "40")
                 ]
             )
         ]
 
         ForEach(rows) { row in
             InstUI.CollapsibleListRow(
-                cell: StudentAssignmentListItemCell(model: row, isLastItem: nil) {},
+                cell: TeacherAssignmentListItemCell(model: row, isLastItem: nil) {},
                 isInitiallyExpanded: true
             ) {
                 ForEach(row.subItems ?? []) { subItem in
-                    StudentAssignmentListSubItemCell(model: subItem) {}
+                    TeacherAssignmentListSubItemCell(model: subItem) {}
                 }
             }
             InstUI.Divider()

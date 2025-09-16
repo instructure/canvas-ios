@@ -142,9 +142,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
                 case .student(let model):
                     studentCell(model: model, isLastItem: section.rows.last == row)
                 case .teacher(let model):
-                    TeacherAssignmentListItemCell(model: model, isLastItem: section.rows.last == row) {
-                        viewModel.didSelectAssignment.send((model.route, controller))
-                    }
+                    teacherCell(model: model, isLastItem: section.rows.last == row)
                 }
             }
         }
@@ -155,13 +153,13 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
         let routeAction = { navigateToDetails(at: model.route) }
         let identifier = "AssignmentList.\(model.id)"
 
-        if let subAssignments = model.subAssignments {
+        if let subItems = model.subItems {
             InstUI.CollapsibleListRow(
                 cell: StudentAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
                     .identifier(identifier),
                 isInitiallyExpanded: false
             ) {
-                ForEach(subAssignments) { subItem in
+                ForEach(subItems) { subItem in
                     StudentAssignmentListSubItemCell(model: subItem, action: routeAction)
                         .identifier(identifier, subItem.tag)
                 }
@@ -169,6 +167,29 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             InstUI.Divider(isLast: isLastItem)
         } else {
             StudentAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
+                .identifier(identifier)
+        }
+    }
+
+    @ViewBuilder
+    private func teacherCell(model: TeacherAssignmentListItem, isLastItem: Bool) -> some View {
+        let routeAction = { navigateToDetails(at: model.route) }
+        let identifier = "AssignmentList.\(model.id)"
+
+        if let subItems = model.subItems {
+            InstUI.CollapsibleListRow(
+                cell: TeacherAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
+                    .identifier(identifier),
+                isInitiallyExpanded: false
+            ) {
+                ForEach(subItems) { subItem in
+                    TeacherAssignmentListSubItemCell(model: subItem, action: routeAction)
+                        .identifier(identifier, subItem.tag)
+                }
+            }
+            InstUI.Divider(isLast: isLastItem)
+        } else {
+            TeacherAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
                 .identifier(identifier)
         }
     }

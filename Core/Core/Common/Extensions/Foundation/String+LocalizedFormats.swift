@@ -81,6 +81,19 @@ extension String {
         points.map(format(points:))
     }
 
+    // MARK: - Needs Grading
+
+    /// Localized string for number of submissions need grading. Example: "5 Needs Grading"
+    public static func format(needsGrading count: Int) -> String? {
+        guard count > 0 else { return nil }
+
+        return localizedStringWithFormat(
+            String(localized: "d_needs_grading", bundle: .core),
+            count
+        )
+        .localizedCapitalized
+    }
+
     // MARK: - "Error: Invalid start time"
 
     /// Localized string to be used for error messages intended for accessibility usage. Adds some context for VoiceOver users that this is an error.
