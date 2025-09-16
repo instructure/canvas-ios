@@ -81,7 +81,6 @@ final class LearnViewModel: ProgramSwitcherMapper {
         self.scheduler = scheduler
         selectedProgram = programID != nil  ? .init(id: programID) : nil
         configureSelectionHandler()
-        featchPrograms()
     }
 
     private func configureSelectionHandler() {
@@ -99,7 +98,7 @@ final class LearnViewModel: ProgramSwitcherMapper {
         // This handles the scenario when the learner pulls to refresh after enrolling
         // in a program, so they can see it immediately.
         if dropdownMenuPrograms.allSatisfy({ $0.id == nil }) {
-            featchPrograms()
+            fetchPrograms()
         }
     }
 
@@ -109,13 +108,13 @@ final class LearnViewModel: ProgramSwitcherMapper {
 
     func fetchPrograms(ignoreCache: Bool = false) async {
         await withCheckedContinuation { continuation in
-            featchPrograms(ignoreCache: ignoreCache) {
+            fetchPrograms(ignoreCache: ignoreCache) {
                 continuation.resume()
             }
         }
     }
 
-    func featchPrograms(
+    func fetchPrograms(
         ignoreCache: Bool = false,
         completionHandler: (() -> Void)? = nil
     ) {
