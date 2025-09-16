@@ -228,9 +228,9 @@ extension Collection where Element == GetSubmissions.Filter.Status {
             .allSatisfy({ contains(.custom($0)) })
     }
 
-    public var query: String {
+    public var query: String? {
         let value = map(\.rawValue).joined(separator: ",").nilIfEmpty ?? ""
-        return value.isEmpty ? "" : "filter=\(value)"
+        return value.isEmpty ? nil : "filter=\(value)"
     }
 }
 

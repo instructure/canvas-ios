@@ -43,7 +43,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
         self.context = context
         self.assignmentID = assignmentID
         self.preferenceSubject = CurrentValueSubject<SubmissionListPreference, Never>(
-            SubmissionListPreference(filter: filter, sortOrder: .studentSortableName)
+            SubmissionListPreference(filter: filter, sortMode: .studentSortableName)
         )
         self.env = env
 
@@ -91,7 +91,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
                 context: context,
                 assignmentID: assignmentID,
                 filter: pref.filter,
-                sortOrder: pref.sortOrder
+                sortMode: pref.sortMode
             ),
             environment: env
         )

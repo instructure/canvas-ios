@@ -36,6 +36,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
 
     private let env: AppEnvironment
     private let filter: Set<GetSubmissions.Filter.Status>
+    private let sortMode: GetSubmissions.SortMode
     private var subscriptions = Set<AnyCancellable>()
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
 
@@ -44,6 +45,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         assignmentID: String,
         userID: String,
         filter: [GetSubmissions.Filter.Status],
+        sortMode: GetSubmissions.SortMode,
         gradeStatusInteractor: GradeStatusInteractor,
         submissionWordCountInteractor: SubmissionWordCountInteractor,
         customGradebookColumnsInteractor: CustomGradebookColumnsInteractor,
@@ -54,6 +56,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         self.assignmentID = assignmentID
         self.userID = userID
         self.filter = Set(filter)
+        self.sortMode = sortMode
         self.gradeStatusInteractor = gradeStatusInteractor
         self.submissionWordCountInteractor = submissionWordCountInteractor
         self.customGradebookColumnsInteractor = customGradebookColumnsInteractor
@@ -110,7 +113,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                 guard let self else { return }
 
                 let submissions = fetchedSubmissions
-                    .sorted(using: .submissionsSortComparator)
+                    .sorted(using: .submissionsComparator(mode: sortMode))
 
                 if submissions.isEmpty {
                     state.send(.error(.submissionNotFound))

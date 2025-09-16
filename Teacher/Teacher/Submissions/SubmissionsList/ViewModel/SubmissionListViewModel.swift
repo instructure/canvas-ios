@@ -29,7 +29,7 @@ class SubmissionListViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var statusFilters: Set<SubmissionStatusFilter>
     @Published var sectionFilters: Set<String>
-    @Published var sortOrder: SubmissionsSortOrder = .studentSortableName
+    @Published var sortMode: SubmissionsSortMode = .studentSortableName
 
     @Published var assignment: Assignment?
     @Published var course: Course?
@@ -111,11 +111,11 @@ class SubmissionListViewModel: ObservableObject {
             .assign(to: &$state)
 
         Publishers
-            .CombineLatest3($statusFilters, $sectionFilters, $sortOrder)
+            .CombineLatest3($statusFilters, $sectionFilters, $sortMode)
             .map { (statuses, sections, order) -> SubmissionListPreference in
                 SubmissionListPreference(
                     filter: SubmissionsFilter(statuses: statuses, sections: sections),
-                    sortOrder: order
+                    sortMode: order
                 )
             }
             .sink { [weak self] pref in
@@ -219,7 +219,15 @@ class SubmissionListViewModel: ObservableObject {
     }
 
     func didTapSubmissionRow(_ submission: SubmissionListItem, from controller: WeakViewController) {
-        let query = isFilterActive ? "?\(statusFilters.query)" : ""
+        var query: String = [
+            isFilterActive ? statusFilters.query : nil,
+            sortMode.query
+        ]
+            .compactMap { $0 }
+            .joined(separator: "&")
+
+        query = query.isNotEmpty ? "?\(query)" : query
+
         env.router.route(
             to: assignmentRoute + "/submissions/\(submission.originalUserID)\(query)",
             from: controller.value,

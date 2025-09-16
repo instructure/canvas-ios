@@ -22,11 +22,11 @@ import Combine
 
 public typealias SubmissionStatusFilter = GetSubmissions.Filter.Status
 public typealias SubmissionsFilter = GetSubmissions.Filter
-public typealias SubmissionsSortOrder = GetSubmissions.SortOrder
+public typealias SubmissionsSortMode = GetSubmissions.SortMode
 
 public struct SubmissionListPreference {
     let filter: SubmissionsFilter
-    let sortOrder: SubmissionsSortOrder
+    let sortMode: SubmissionsSortMode
 }
 
 public protocol SubmissionListInteractor {

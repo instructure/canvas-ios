@@ -27,7 +27,7 @@ struct SubmissionsFilterScreen: View {
 
     private let statusFilterOptions: MultiSelectionOptions
     private let sectionFilterOptions: MultiSelectionOptions
-    private let sortOptions: SingleSelectionOptions
+    private let sortModeOptions: SingleSelectionOptions
     private let courseColor: Color
 
     init(viewModel: SubmissionListViewModel) {
@@ -51,13 +51,13 @@ struct SubmissionsFilterScreen: View {
             initial: sectionSelection
         )
 
-        let sortOptionItems = SubmissionsSortOrder.allCases.map { order in
+        let sortOptionItems = SubmissionsSortMode.allCases.map { order in
             OptionItem(id: order.rawValue, title: order.name)
         }
 
-        self.sortOptions = SingleSelectionOptions(
+        self.sortModeOptions = SingleSelectionOptions(
             all: sortOptionItems,
-            initialId: viewModel.sortOrder.rawValue
+            initialId: viewModel.sortMode.rawValue
         )
     }
 
@@ -67,21 +67,19 @@ struct SubmissionsFilterScreen: View {
                 MultiSelectionView(
                     title: String(localized: "Submission Filter", bundle: .teacher),
                     identifierGroup: "SubmissionsFilter.filterOptions",
-                    hasAllSelectionButton: true,
                     options: statusFilterOptions
                 )
                 .tint(courseColor)
                 MultiSelectionView(
                     title: String(localized: "Filter by Section", bundle: .teacher),
                     identifierGroup: "SubmissionsFilter.sectionOptions",
-                    hasAllSelectionButton: true,
                     options: sectionFilterOptions
                 )
                 .tint(courseColor)
                 SingleSelectionView(
                     title: String(localized: "Sort by", bundle: .teacher),
                     identifierGroup: "SubmissionsFilter.sortOrderOptions",
-                    options: sortOptions
+                    options: sortModeOptions
                 )
             }
         }
@@ -94,7 +92,7 @@ struct SubmissionsFilterScreen: View {
 
                         viewModel.statusFilters = selectedStatusFilters
                         viewModel.sectionFilters = selectedSectionFilters
-                        viewModel.sortOrder = selectedSortOrder
+                        viewModel.sortMode = selectedSortMode
 
                         controller.value.dismiss(animated: true)
                     },
@@ -141,11 +139,11 @@ struct SubmissionsFilterScreen: View {
         )
     }
 
-    private var selectedSortOrder: SubmissionsSortOrder {
-        return sortOptions
+    private var selectedSortMode: SubmissionsSortMode {
+        return sortModeOptions
             .selected
             .value
-            .flatMap({ SubmissionsSortOrder(rawValue: $0.id) })
+            .flatMap({ SubmissionsSortMode(rawValue: $0.id) })
         ?? .studentSortableName
     }
 

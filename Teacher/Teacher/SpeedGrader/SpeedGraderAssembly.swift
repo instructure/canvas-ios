@@ -28,6 +28,7 @@ enum SpeedGraderAssembly {
         assignmentId: String,
         userId: String?,
         filter: [GetSubmissions.Filter.Status],
+        sortMode: GetSubmissions.SortMode,
         env: AppEnvironment
     ) -> UIViewController {
         let normalizedUserId = SpeedGraderUserIdNormalization.normalizeUserId(userId)
@@ -43,6 +44,7 @@ enum SpeedGraderAssembly {
             assignmentID: assignmentId,
             userID: normalizedUserId,
             filter: filter,
+            sortMode: sortMode,
             gradeStatusInteractor: gradeStatusInteractor,
             submissionWordCountInteractor: submissionWordCountInteractor,
             customGradebookColumnsInteractor: customGradebookColumnsInteractor,
