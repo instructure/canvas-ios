@@ -293,19 +293,19 @@ let academicRouter = Router(routes: [
     RouteHandler("/:context/:contextID/files/:fileID/edit", factory: fileEditor),
     RouteHandler("/courses/:courseID/files/:section/:resourceID/:fileID/offline", factory: offlineFileDetails),
 
-    RouteHandler("/courses/:courseID/grades") { _, params, _ in
+    RouteHandler("/courses/:courseID/grades") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
         return GradeListAssembly.makeGradeListViewController(
-            env: AppEnvironment.shared,
+            env: env,
             courseID: courseID,
-            userID: AppEnvironment.shared.currentSession?.userID
+            userID: env.currentSession?.userID
         )
     },
 
     RouteHandler("/courses/:courseID/modules") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
         return ModuleListViewController
-            .create(env: env, courseID: courseID.localID)
+            .create(env: env, courseID: courseID)
     },
 
     RouteHandler("/courses/:courseID/modules/:moduleID") { _, params, _, env in
@@ -360,10 +360,10 @@ let academicRouter = Router(routes: [
         url.path = url.path.replacingOccurrences(of: "wiki", with: "pages/front_page")
         return AppEnvironment.shared.router.match(url)
     },
-    RouteHandler("/:context/:contextID/front_page") { url, _, _ in
+    RouteHandler("/:context/:contextID/front_page") { url, _, _, env in
         var url = url
         url.path = url.path.replacingOccurrences(of: "front_page", with: "pages/front_page")
-        return AppEnvironment.shared.router.match(url)
+        return env.router.match(url)
     },
 
     RouteHandler("/:context/:contextID/pages/new") { url, _, _ in
