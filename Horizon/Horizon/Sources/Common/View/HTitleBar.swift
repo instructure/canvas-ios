@@ -21,8 +21,8 @@ import HorizonUI
 import SwiftUI
 
 struct HTitleBar: View {
-
     // MARK: - Types
+
     typealias Callback = (Action) -> Void
 
     /// These are the possible actions that can be taken on the title bar
@@ -64,6 +64,7 @@ struct HTitleBar: View {
     }
 
     // MARK: - Constants
+
     /// Configuring the icons for each action
     private static let actionIcon: [Action: Image] = [
         .back: .huiIcons.arrowBack,
@@ -93,6 +94,14 @@ struct HTitleBar: View {
         .settingsProfile
     ]
 
+    private static let isLargeButton: [Page: Bool] = [
+        .dashboard: true
+    ]
+
+    private static let buttonElevation: [Page: HorizonUI.Elevations] = [
+        .dashboard: .level4
+    ]
+
     /// configuring which pages have trailing buttons and what those buttons are
     private static let trailingButtonPages: [Page: [Action]] = [
         .assist: [.back, .close],
@@ -112,7 +121,8 @@ struct HTitleBar: View {
     private static let actionButtonType: [Page: HorizonUI.ButtonStyles.ButtonType] = [
         .assist: .whiteOutline,
         .assistQuiz: .whiteOutline,
-        .assistFlashCards: .whiteOutline
+        .assistFlashCards: .whiteOutline,
+        .dashboard: .white
     ]
 
     /// configuring the icon for each page title, when a page has an icon in the title
@@ -144,19 +154,24 @@ struct HTitleBar: View {
     ]
 
     // MARK: - Dependencies
+
     private let background: Color
     private let leading: AnyView?
+    private let page: Page
     private let title: AnyView?
     private let trailing: AnyView?
     private let trailingSpace: CGFloat
 
     // MARK: - Init
+
     init(
         page: Page,
         title: String? = nil,
         actionStates: [Action: ActionState] = [:],
         callback: Callback? = nil
     ) {
+        self.page = page
+
         // background
         self.background = HTitleBar.backgroundColorMap[page] ?? HorizonUI.colors.surface.pagePrimary
 
@@ -184,6 +199,7 @@ struct HTitleBar: View {
         // trailing
         if HTitleBar.trailingButtonPages.keys.contains(page) {
             let actions = HTitleBar.trailingButtonPages[page] ?? []
+
             self.trailing = AnyView(
                 HStack(spacing: .huiSpaces.space8) {
                     ForEach(actions.indices, id: \.self) { index in
@@ -191,6 +207,8 @@ struct HTitleBar: View {
                             action: actions[index],
                             state: actionStates[actions[index]] ?? .enabled,
                             type: HTitleBar.actionButtonType[page] ?? .darkOutline,
+                            isLargeButton: HTitleBar.isLargeButton[page] ?? false,
+                            buttonElevation: HTitleBar.buttonElevation[page] ?? .level0,
                             callback: callback
                         )
                     }
@@ -217,9 +235,10 @@ struct HTitleBar: View {
     }
 
     // MARK: - Body
+
     var body: some View {
-        let leadingView = leading == nil && trailing != nil ? AnyView(trailing?.opacity(0)) : leading
-        let trailingView = trailing == nil && leading != nil ? AnyView(leading?.opacity(0)) : trailing
+        let leadingView = self.leading == nil && self.trailing != nil ? AnyView(self.trailing?.opacity(0)) : self.leading
+        let trailingView = self.trailing == nil && self.leading != nil ? AnyView(self.leading?.opacity(0)) : self.trailing
         let title = title ?? AnyView(Spacer())
         HStack(spacing: .zero) {
             leadingView
@@ -228,27 +247,31 @@ struct HTitleBar: View {
         }
         .padding(.vertical, .huiSpaces.space12)
         .padding(.leading, .huiSpaces.space24)
-        .padding(.trailing, trailingSpace)
-        .background(background)
+        .padding(.trailing, self.trailingSpace)
+        .background(self.background)
     }
 
     // MARK: - Private
+
     @ViewBuilder
     private static func button(
         action: Action = .close,
         state: ActionState = .enabled,
         type: HorizonUI.ButtonStyles.ButtonType = .darkOutline,
+        isLargeButton: Bool = false,
+        buttonElevation: HorizonUI.Elevations = .level0,
         callback: Callback?
     ) -> (some View)? {
         callback.map { fn in
             HorizonUI.IconButton(
                 HTitleBar.actionIcon[action] ?? .huiIcons.close,
                 type: type,
-                isSmall: true,
+                isSmall: !isLargeButton,
                 action: { fn(action) }
             )
             .opacity(state == .hidden ? 0.0 : 1.0)
             .disabled(state == .disabled)
+            .huiElevation(level: buttonElevation)
         }
     }
 
@@ -273,9 +296,19 @@ struct HTitleBar: View {
             HorizonUI.icons.aiFilled
             Text(String(localized: "IgniteAI", bundle: .horizon))
                 .huiTypography(.h4)
-
         }
         .foregroundStyle(Color.textLightest)
         .foregroundStyle(Color.huiColors.text.surfaceColored)
+    }
+}
+
+extension View {
+    @ViewBuilder
+    func conditionalElevation(_ shouldApply: Bool) -> some View {
+        if shouldApply {
+            self.huiElevation(level: .level4)
+        } else {
+            self
+        }
     }
 }

@@ -132,7 +132,7 @@ struct HInboxView: View {
             }
             viewModel.goToComposeMessage(viewController)
         }
-        .padding(.top, .huiSpaces.space4)
+        .padding(.top, -(HorizonUI.spaces.space4))
     }
 }
 

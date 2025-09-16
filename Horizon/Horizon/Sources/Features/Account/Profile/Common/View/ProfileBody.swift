@@ -32,20 +32,20 @@ struct ProfileBody<Content: View>: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HTitleBar(page: page) { _ in
-                environment.router.pop(from: viewController)
-            }
-            .padding(.top, .huiSpaces.space8)
-
-            VStack(spacing: 0) {
-                content
-            }
-            .background(Color.huiColors.surface.pageSecondary)
-            .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
+            content
         }
+        .background(Color.huiColors.surface.pageSecondary)
+        .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
         .ignoresSafeArea(.all, edges: .bottom)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .toolbar(.hidden)
         .background(Color.huiColors.surface.pagePrimary)
+        .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
+    }
+
+    private var navigationBar: some View {
+        HTitleBar(page: page) { _ in
+            environment.router.pop(from: viewController)
+        }
     }
 }

@@ -139,7 +139,6 @@ struct NotebookView: View {
             }
             viewModel.onClose(viewController)
         }
-        .padding(.top, .huiSpaces.space8)
         .background(Color.huiColors.surface.pagePrimary)
     }
 
