@@ -436,14 +436,14 @@ extension Submission {
     /// **has a** grade associated with it.
     public var stateDisplayProperties: SubmissionStateDisplayProperties {
         let desc: SubmissionStateDisplayProperties = {
-            if case .notSubmitted = status {
+            if case .notSubmitted = statusOld {
                 if let submissionTypes = assignment?.submissionTypes {
                     if submissionTypes.contains(.on_paper) { return .onPaper }
                     if submissionTypes.contains(.none) { return .noSubmission }
                 }
                 return .usingStatus(.notSubmitted)
             } else {
-                return .usingStatus(status)
+                return .usingStatus(statusOld)
             }
         }()
 
@@ -460,7 +460,21 @@ extension Submission {
         }
     }
 
-    public var status: SubmissionStatusOld {
+    public var status: SubmissionStatus {
+        .init(
+            isLate: late,
+            isMissing: missing,
+            isExcused: excused ?? false,
+            isSubmitted: submittedAt != nil,
+            isGraded: workflowState == .graded && score != nil,
+            customStatusId: customGradeStatusId,
+            customStatusName: customGradeStatusName,
+            submissionType: type ?? assignment?.submissionTypes.first,
+            isGradeBelongToCurrentSubmission: gradeMatchesCurrentSubmission
+        )
+    }
+
+    public var statusOld: SubmissionStatusOld {
         if late { return .late }
         if missing { return .missing }
         if submittedAt != nil { return .submitted }
@@ -473,7 +487,7 @@ extension Submission {
             if customGradeStatusId != nil { return customGradedStatus }
             return .graded
         }
-        return status
+        return statusOld
     }
 
     private var gradedState: SubmissionStateDisplayProperties {

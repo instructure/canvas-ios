@@ -72,6 +72,13 @@ public class CDSubAssignmentSubmission: NSManagedObject {
         )
     }
 
+    // TODO: remove during Status unification in MBL-19323
+    public var isGraded: Bool {
+        isExcused
+            || customGradeStatusId != nil
+            || score != nil
+    }
+
     // MARK: - Save
 
     @discardableResult

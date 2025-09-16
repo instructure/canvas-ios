@@ -394,7 +394,7 @@ extension Assignment {
     }
 
     public var submissionStatus: SubmissionStatusOld {
-        return submission?.status ?? .notSubmitted
+        return submission?.statusOld ?? .notSubmitted
     }
 
     public var icon: UIImage {

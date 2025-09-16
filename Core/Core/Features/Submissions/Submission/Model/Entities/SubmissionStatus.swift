@@ -21,15 +21,32 @@ import UIKit
 import SwiftUI
 
 public enum SubmissionStatus: Equatable {
+    /// not submitted, before due date
     case notSubmitted
-    case submitted
-    case late
-    case missing
-    case graded
-    case excused
-    case custom(id: String, name: String)
+
+    /// not submitted for on-paper assignments, before due date
     case onPaper
+
+    /// not submitted for no-submission assignments, before due date
     case noSubmission
+
+    /// not submitted, after due date (Teacher can force it)
+    case missing
+
+    /// submitted, before due date
+    case submitted
+
+    /// submitted, after due date (Teacher can force it)
+    case late
+
+    /// graded, regardless of submission or due date
+    case graded
+
+    /// excused, regardless of submission or due date
+    case excused
+
+    /// custom status, regardless of submission or due date
+    case custom(id: String, name: String)
 
     public init(
         isLate: Bool,
@@ -67,21 +84,22 @@ public enum SubmissionStatus: Equatable {
         }
     }
 
-    public var isGraded: Bool {
-        switch self {
-        case .excused,
-             .custom,
-             .graded:
-            true
-        case .late,
-             .missing,
-             .submitted,
-             .notSubmitted,
-             .onPaper,
-             .noSubmission:
-            false
-        }
-    }
+    // TODO: uncomment and replace Submission.isGraded with this one in MBL-19323
+//    public var isGraded: Bool {
+//        switch self {
+//        case .excused,
+//             .custom,
+//             .graded:
+//            true
+//        case .late,
+//             .missing,
+//             .submitted,
+//             .notSubmitted,
+//             .onPaper,
+//             .noSubmission:
+//            false
+//        }
+//    }
 }
 
 // MARK: - View Model

@@ -25,7 +25,7 @@ struct ContextCardSubmissionsView: View {
 
     init(submissions: [Submission]) {
         for submission in submissions {
-            switch submission.status {
+            switch submission.statusOld {
             case .submitted, .graded, .excused, .custom:
                 submitted += 1
             case .late:

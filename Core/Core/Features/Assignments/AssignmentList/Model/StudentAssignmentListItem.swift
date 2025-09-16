@@ -63,7 +63,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
             ]
         }
 
-        self.submissionStatus = .init(status: assignment.submission?.statusNew ?? .notSubmitted)
+        self.submissionStatus = .init(status: assignment.submission?.status ?? .notSubmitted)
         let hasPointsPossible = assignment.pointsPossible != nil
         self.score = hasPointsPossible ? GradeFormatter.string(from: assignment, style: .medium) : nil
         self.route = assignment.htmlURL
@@ -108,23 +108,6 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
         } else {
             self.subAssignments = nil
         }
-    }
-}
-
-private extension Submission {
-    // TODO: move this to `Submission.status` once `SubmissionStatusOld` is removed in MBL-19323
-    var statusNew: SubmissionStatus {
-        .init(
-            isLate: late,
-            isMissing: missing,
-            isExcused: excused ?? false,
-            isSubmitted: submittedAt != nil,
-            isGraded: workflowState == .graded && score != nil,
-            customStatusId: customGradeStatusId,
-            customStatusName: customGradeStatusName,
-            submissionType: type ?? assignment?.submissionTypes.first,
-            isGradeBelongToCurrentSubmission: gradeMatchesCurrentSubmission
-        )
     }
 }
 
