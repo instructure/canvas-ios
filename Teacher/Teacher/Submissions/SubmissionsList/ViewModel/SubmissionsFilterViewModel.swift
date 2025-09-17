@@ -27,10 +27,14 @@ struct SubmissionsFilterViewModel {
 
     let courseColor: Color
     let assignmentName: String?
+    let gradeInputType: GradeInputTextFieldCell.InputType?
 
     let statusFilterOptions: MultiSelectionOptions
     let sectionFilterOptions: MultiSelectionOptions
     let sortModeOptions: SingleSelectionOptions
+
+    let scoredMoreFilterValue: CurrentValueSubject<String, Never>
+    let scoredLessFilterValue: CurrentValueSubject<String, Never>
 
     init(listViewModel: SubmissionListViewModel) {
         self.listViewModel = listViewModel
@@ -62,12 +66,46 @@ struct SubmissionsFilterViewModel {
             all: sortOptionItems,
             initialId: listViewModel.sortMode.rawValue
         )
+
+        gradeInputType = listViewModel.gradeInputType
+
+        scoredMoreFilterValue = .init(listViewModel
+            .scoreBasedFilters
+            .moreThanFilter
+            .flatMap({ listViewModel.toScoreInputValue($0.score) })?
+            .formatted(.number.precision(.fractionLength(0 ... 3))) ?? ""
+        )
+
+        scoredLessFilterValue = .init(
+            listViewModel
+                .scoreBasedFilters
+                .lessThanFilter
+                .flatMap({ listViewModel.toScoreInputValue($0.score) })?
+                .formatted(.number.precision(.fractionLength(0 ... 3))) ?? ""
+        )
     }
 
     func saveSelection() {
         listViewModel.statusFilters = selectedStatusFilters
         listViewModel.sectionFilters = selectedSectionFilters
+        listViewModel.scoreBasedFilters = selectedScoreBasedFilters
         listViewModel.sortMode = selectedSortMode
+    }
+
+    // MARK: Selection
+
+    private var assignment: Assignment? {
+        listViewModel.assignment
+    }
+
+    var pointsPossibleText: String {
+        guard gradeInputType == .points else { return "" }
+        return assignment?.pointsPossibleText ?? ""
+    }
+
+    var pointsPossibleAccessibilityText: String {
+        guard gradeInputType == .points else { return "" }
+        return assignment?.pointsPossibleCompleteText ?? ""
     }
 
     // MARK: Selection
@@ -80,6 +118,17 @@ struct SubmissionsFilterViewModel {
 
     private var selectedSectionFilters: Set<String> {
         Set(sectionFilterOptions.selected.value.map(\.id))
+    }
+
+    private var selectedScoreBasedFilters: Set<GetSubmissions.Filter.Score> {
+        var filters = Set<GetSubmissions.Filter.Score>()
+        if let moreThanValue = scoredMoreFilterValue.value.doubleValueByFixingDecimalSeparator {
+            filters.insert(.moreThan(listViewModel.toScoreValue(moreThanValue)))
+        }
+        if let lessThanValue = scoredLessFilterValue.value.doubleValueByFixingDecimalSeparator {
+            filters.insert(.lessThan(listViewModel.toScoreValue(lessThanValue)))
+        }
+        return filters
     }
 
     private var selectedSortMode: SubmissionsSortMode {
@@ -103,5 +152,26 @@ private extension SubmissionListViewModel {
         courseSections.filter { section in
             sectionFilters.contains(section.id)
         }
+    }
+
+    var gradeInputType: GradeInputTextFieldCell.InputType? {
+        switch assignment?.gradingType {
+        case .percent:
+            return .percentage
+        case .points:
+            return .points
+        default:
+            return nil
+        }
+    }
+
+    func toScoreInputValue(_ score: Double) -> Double {
+        guard gradeInputType == .percentage else { return score }
+        return score / (assignment?.pointsPossible ?? 1) * 100
+    }
+
+    func toScoreValue(_ input: Double) -> Double {
+        guard gradeInputType == .percentage else { return input }
+        return input / 100 * (assignment?.pointsPossible ?? 1)
     }
 }

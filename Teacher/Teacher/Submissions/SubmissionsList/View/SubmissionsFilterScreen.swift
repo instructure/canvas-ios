@@ -49,7 +49,7 @@ struct SubmissionsFilterScreen: View {
                                 pointsPossibleText: viewModel.pointsPossibleText,
                                 pointsPossibleAccessibilityText: viewModel.pointsPossibleAccessibilityText,
                                 isExcused: false,
-                                text: $scoredMoreFilterValue,
+                                text: viewModel.scoredMoreFilterValue.binding,
                                 isSaving: .init(false)
                             )
                             InstUI.Divider(.padded)
@@ -59,7 +59,7 @@ struct SubmissionsFilterScreen: View {
                                 pointsPossibleText: viewModel.pointsPossibleText,
                                 pointsPossibleAccessibilityText: viewModel.pointsPossibleAccessibilityText,
                                 isExcused: false,
-                                text: $scoredLessFilterValue,
+                                text: viewModel.scoredLessFilterValue.binding,
                                 isSaving: .init(false)
                             )
                         }
@@ -123,17 +123,6 @@ struct SubmissionsFilterScreen: View {
             subtitle: viewModel.assignmentName
         )
         .navigationBarStyle(.modal)
-    }
-
-    private var selectedScoreBasedFilters: Set<GetSubmissions.Filter.Score> {
-        var filters = Set<GetSubmissions.Filter.Score>()
-        if let moreThanValue = scoredMoreFilterValue.doubleValueByFixingDecimalSeparator {
-            filters.insert(.moreThan(viewModel.toScoreValue(moreThanValue)))
-        }
-        if let lessThanValue = scoredLessFilterValue.doubleValueByFixingDecimalSeparator {
-            filters.insert(.lessThan(viewModel.toScoreValue(lessThanValue)))
-        }
-        return filters
     }
 }
 
