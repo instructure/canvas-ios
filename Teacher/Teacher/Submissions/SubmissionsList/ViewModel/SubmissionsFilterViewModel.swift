@@ -30,6 +30,7 @@ struct SubmissionsFilterViewModel {
 
     let statusFilterOptions: MultiSelectionOptions
     let sectionFilterOptions: MultiSelectionOptions
+    let sortModeOptions: SingleSelectionOptions
 
     init(listViewModel: SubmissionListViewModel) {
         self.listViewModel = listViewModel
@@ -52,11 +53,21 @@ struct SubmissionsFilterViewModel {
             all: sectionOptions,
             initial: sectionSelection
         )
+
+        let sortOptionItems = SubmissionsSortMode.allCases.map { order in
+            OptionItem(id: order.rawValue, title: order.name)
+        }
+
+        sortModeOptions = SingleSelectionOptions(
+            all: sortOptionItems,
+            initialId: listViewModel.sortMode.rawValue
+        )
     }
 
     func saveSelection() {
         listViewModel.statusFilters = selectedStatusFilters
         listViewModel.sectionFilters = selectedSectionFilters
+        listViewModel.sortMode = selectedSortMode
     }
 
     // MARK: Selection
@@ -69,6 +80,14 @@ struct SubmissionsFilterViewModel {
 
     private var selectedSectionFilters: Set<String> {
         Set(sectionFilterOptions.selected.value.map(\.id))
+    }
+
+    private var selectedSortMode: SubmissionsSortMode {
+        sortModeOptions
+            .selected
+            .value
+            .flatMap({ SubmissionsSortMode(rawValue: $0.id) })
+        ?? .studentSortableName
     }
 }
 
