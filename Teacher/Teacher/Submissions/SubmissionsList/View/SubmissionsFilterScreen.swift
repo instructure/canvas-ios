@@ -23,22 +23,14 @@ struct SubmissionsFilterScreen: View {
 
     @Environment(\.viewController) private var controller
 
-    @ObservedObject private var viewModel: SubmissionListViewModel
-    private let filterOptions: MultiSelectionOptions
-    private let courseColor: Color
+    @ObservedObject
+    private var listViewModel: SubmissionListViewModel
 
-    init(viewModel: SubmissionListViewModel) {
-        self.viewModel = viewModel
+    private let viewModel: SubmissionsFilterViewModel
 
-        courseColor = viewModel.course.flatMap { Color(uiColor: $0.color) } ?? Color(Brand.shared.primary)
-
-        let initialSelection = Set(viewModel.statusFilters.map({ OptionItem(id: $0.rawValue, title: $0.name) }))
-        let allOptions = viewModel.statusFilterOptions.map({ OptionItem(id: $0.rawValue, title: $0.name) })
-
-        self.filterOptions = MultiSelectionOptions(
-            all: allOptions,
-            initial: initialSelection
-        )
+    init(listViewModel: SubmissionListViewModel) {
+        self.listViewModel = listViewModel
+        self.viewModel = SubmissionsFilterViewModel(listViewModel: listViewModel)
     }
 
     var body: some View {
@@ -46,9 +38,9 @@ struct SubmissionsFilterScreen: View {
             MultiSelectionView(
                 title: String(localized: "Statuses", bundle: .teacher),
                 identifierGroup: "SubmissionsFilter.filterOptions",
-                options: filterOptions
+                options: viewModel.filterOptions
             )
-            .tint(courseColor)
+            .tint(viewModel.courseColor)
             Spacer()
         }
         .background(Color.backgroundLightest)
@@ -56,13 +48,13 @@ struct SubmissionsFilterScreen: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(
                     action: {
-                        viewModel.statusFilters = selectedFilters
+                        viewModel.save(to: listViewModel)
                         controller.value.dismiss(animated: true)
                     },
                     label: {
                         Text("Done", bundle: .teacher)
                             .font(.semibold16)
-                            .foregroundColor(color)
+                            .foregroundColor(viewModel.courseColor)
                     }
                 )
             }
@@ -73,26 +65,16 @@ struct SubmissionsFilterScreen: View {
                     label: {
                         Text("Cancel", bundle: .teacher)
                             .font(.regular16)
-                            .foregroundColor(color)
+                            .foregroundColor(viewModel.courseColor)
                     }
                 )
             }
         }
         .navigationBarTitleView(
             title: String(localized: "Submission List Preferences", bundle: .teacher),
-            subtitle: viewModel.assignment?.name
+            subtitle: listViewModel.assignment?.name
         )
         .navigationBarStyle(.modal)
-    }
-
-    private var selectedFilters: Set<SubmissionStatusFilter> {
-        Set(
-            filterOptions.selected.value.compactMap({ SubmissionStatusFilter(rawValue: $0.id) })
-        )
-    }
-
-    private var color: Color {
-        viewModel.course.flatMap { Color(uiColor: $0.color) } ?? .accentColor
     }
 }
 

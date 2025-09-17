@@ -33,7 +33,7 @@ class SubmissionListViewModel: ObservableObject {
     @Published var course: Course?
     @Published var sections: [SubmissionListSection] = []
 
-    private let interactor: SubmissionListInteractor
+    let interactor: SubmissionListInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
@@ -46,6 +46,7 @@ class SubmissionListViewModel: ObservableObject {
         )
         self.env = env
         self.scheduler = scheduler
+
         setupBindings()
     }
 
@@ -99,10 +100,6 @@ class SubmissionListViewModel: ObservableObject {
     }
 
     // MARK: Exposed To View
-
-    var statusFilterOptions: [SubmissionStatusFilter] {
-        SubmissionStatusFilter.allCasesForCourse(interactor.context.id)
-    }
 
     var isFilterActive: Bool {
         let isDefaultStatusFilterSelection = statusFilters.isEmpty || statusFilters == Set(SubmissionStatusFilter.allCasesForCourse(interactor.context.id))
@@ -170,7 +167,7 @@ class SubmissionListViewModel: ObservableObject {
 
     func showFilterScreen(from controller: WeakViewController) {
         let filterVC = CoreHostingController(
-            SubmissionsFilterScreen(viewModel: self),
+            SubmissionsFilterScreen(listViewModel: self),
             env: env
         )
         env.router.show(filterVC, from: controller, options: .modal(embedInNav: true))

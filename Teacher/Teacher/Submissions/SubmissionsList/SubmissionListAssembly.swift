@@ -43,7 +43,7 @@ public enum SubmissionListAssembly {
             statusFilters: SubmissionStatusFilter.basicCases,
             env: env
         )
-        let view = SubmissionsFilterScreen(viewModel: viewModel)
+        let view = SubmissionsFilterScreen(listViewModel: viewModel)
         let hostingController = CoreHostingController(view, env: env)
         return CoreNavigationController(rootViewController: hostingController)
     }
