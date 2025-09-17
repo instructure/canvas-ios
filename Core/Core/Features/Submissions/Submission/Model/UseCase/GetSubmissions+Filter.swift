@@ -29,20 +29,17 @@ extension GetSubmissions {
         public let score: Set<Score>
         public let sections: Set<Section>
         let differentiationTags: Set<DifferentiationTag>
-        let users: Set<User>
 
         public init(
             statuses: Set<Status>,
             score: Set<Score> = [],
             sections: Set<String> = [],
-            differentiationTags: Set<String> = [],
-            users: Set<String> = []
+            differentiationTags: Set<String> = []
         ) {
             self.statuses = statuses
             self.score = score
             self.sections = Set(sections.map(Section.init))
             self.differentiationTags = Set(differentiationTags.map(DifferentiationTag.init))
-            self.users = Set(users.map(User.init))
         }
 
         var predicate: NSPredicate? {
@@ -50,8 +47,7 @@ extension GetSubmissions {
                 statuses.predicate,
                 score.predicate,
                 sections.predicate,
-                differentiationTags.predicate,
-                users.predicate
+                differentiationTags.predicate
             ]
                 .compactMap({ $0 })
                 .andRelated
@@ -79,10 +75,6 @@ extension GetSubmissions.Filter: ExpressibleByArrayLiteral {
 
     public static func section(_ sections: String...) -> Self {
         .init(statuses: [], sections: Set(sections))
-    }
-
-    public static func user(_ users: String...) -> Self {
-        .init(statuses: [], users: Set(users))
     }
 }
 
@@ -283,25 +275,6 @@ extension GetSubmissions.Filter {
 
 extension Collection where Element == GetSubmissions.Filter.Score {
     var predicate: NSPredicate? { sorted(by: \.score).map(\.predicate).andRelated }
-}
-
-// MARK: - Users
-
-extension GetSubmissions.Filter {
-    struct User: Hashable {
-        let userID: String
-    }
-}
-
-extension Collection where Element == GetSubmissions.Filter.User {
-    var predicate: NSPredicate? {
-        if isEmpty { return nil }
-        if count == 1, let user = first {
-            return NSPredicate(key: #keyPath(Submission.userID), equals: user.userID)
-        }
-        return NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), sorted(by: \.userID).map(\.userID))
-
-    }
 }
 
 // MARK: - Sections

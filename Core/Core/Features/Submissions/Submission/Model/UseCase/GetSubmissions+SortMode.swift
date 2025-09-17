@@ -18,7 +18,7 @@
 
 import Foundation
 
-// MARK: - Sort Order
+// MARK: - Sort Mode
 
 extension GetSubmissions {
 
@@ -60,7 +60,7 @@ extension GetSubmissions {
                 ]
             case .submissionStatus:
                 descriptors = [
-                    NSSortDescriptor(key: #keyPath(Submission.workflowStateRaw), ascending: false)
+                    NSSortDescriptor(key: #keyPath(Submission.workflowStateRaw), naturally: true)
                 ]
             }
 
