@@ -516,6 +516,19 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
 
+        // Handle file links that are directly pointing to the canvas content server
+        if action.isCanvasUserContentLinkTap, let url = action.request.url, let viewController = linkDelegate?.routeLinksFrom {
+            let controller = FileViewerWebViewController(url: url)
+            let routeOptions = RouteOptions.modal(
+                .fullScreen,
+                isDismissable: false,
+                embedInNav: true,
+                addDoneButton: true
+            )
+            env.router.show(controller, from: viewController, options: routeOptions)
+            return decisionHandler(.cancel)
+        }
+
         // Forward decision to delegate
         if action.navigationType == .linkActivated, let url = action.request.url,
            linkDelegate?.handleLink(url) == true {
@@ -825,5 +838,14 @@ extension CoreWebView {
         } else {
             loadHTMLString(content ?? "", baseURL: originalBaseURL)
         }
+    }
+}
+
+// MARK: - WKNavigationAction Extensions
+
+extension WKNavigationAction {
+
+    var isCanvasUserContentLinkTap: Bool {
+        navigationType == .linkActivated && request.url?.host()?.hasSuffix(".canvas-user-content.com") == true
     }
 }
