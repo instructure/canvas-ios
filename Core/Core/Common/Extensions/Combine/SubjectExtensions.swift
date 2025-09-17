@@ -20,7 +20,6 @@ import Combine
 import SwiftUI
 
 public extension CurrentValueSubject {
-    
     var binding: Binding<Output> {
         Binding(
             get: { self.value },
