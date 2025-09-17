@@ -60,7 +60,7 @@ public extension HorizonUI.StatusChip {
 
                 HorizonUI.StatusChip(
                     title: "Title",
-                    style: .hone,
+                    style: .honey,
                     icon: nil,
                     label: nil,
                     isFilled: true,
