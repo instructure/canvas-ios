@@ -26,36 +26,16 @@ struct LearnAttributesView: View {
     var body: some View {
         HorizonUI.HFlow {
             if let date {
-                HorizonUI.Pill(
+                HorizonUI.StatusChip(
                     title: date,
-                    style: .solid(
-                        .init(
-                            backgroundColor: Color.huiColors.surface.pageSecondary,
-                            textColor: Color.huiColors.text.title,
-                            iconColor: Color.huiColors.icon.default
-                        )
-                    ),
-                    isSmall: true,
+                    style: .white,
                     icon: .huiIcons.calendarToday
                 )
             }
 
             if let estimatedDuration {
-                pill(title: estimatedDuration)
+                HorizonUI.StatusChip(title: estimatedDuration, style: .white)
             }
         }
-    }
-
-    private func pill(title: String) -> some View {
-        HorizonUI.Pill(
-            title: title,
-            style: .solid(
-                .init(
-                    backgroundColor: Color.huiColors.surface.pageSecondary,
-                    textColor: Color.huiColors.text.title
-                )
-            ),
-            isSmall: true
-        )
     }
 }

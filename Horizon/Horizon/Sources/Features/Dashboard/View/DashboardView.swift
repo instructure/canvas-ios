@@ -83,6 +83,9 @@ struct DashboardView: View {
         .alert(isPresented: $viewModel.isAlertPresented) {
             Alert(title: Text("Something went wrong", bundle: .horizon), message: Text(viewModel.errorMessage))
         }
+        .onAppear {
+            viewModel.reloadUnreadBadges()
+        }
     }
 
     private var topView: some View {
@@ -181,13 +184,19 @@ struct DashboardView: View {
         HStack(spacing: .zero) {
             InstitutionLogo()
             Spacer()
-            HorizonUI.NavigationBar.Trailing {
-                viewModel.notebookDidTap(viewController: viewController)
-            } onNotificationDidTap: {
-                viewModel.notificationsDidTap(viewController: viewController)
-            } onMailDidTap: {
-                viewModel.mailDidTap(viewController: viewController)
-            }
+            HorizonUI.NavigationBar.Trailing(
+                hasUnreadNotification: viewModel.hasUnreadNotification,
+                hasUnreadInboxMessage: viewModel.hasUnreadInboxMessage,
+                onNotebookDidTap: {
+                    viewModel.notebookDidTap(viewController: viewController)
+                },
+                onNotificationDidTap: {
+                    viewModel.notificationsDidTap(viewController: viewController)
+                },
+                onMailDidTap: {
+                    viewModel.mailDidTap(viewController: viewController)
+                }
+            )
         }
         .padding(.horizontal, .huiSpaces.space24)
         .padding(.top, .huiSpaces.space10)
@@ -205,7 +214,8 @@ struct DashboardView: View {
                         dismissAfter: nil,
                         confirmActionButton: .init(
                             title: String(localized: "Accept", bundle: .horizon),
-                            action: {  viewModel.acceptInvitation(course: course) })
+                            action: { viewModel.acceptInvitation(course: course) }
+                        )
                     )) { viewModel.declineInvitation(course: course) }
                 .padding(.bottom, .huiSpaces.space12)
         }

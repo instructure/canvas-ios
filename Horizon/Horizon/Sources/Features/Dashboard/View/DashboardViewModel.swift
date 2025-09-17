@@ -31,6 +31,8 @@ class DashboardViewModel {
     private(set) var courses: [HCourse] = []
     private(set) var unenrolledPrograms: [Program] = []
     private(set) var invitedCourses: [InvitedCourse] = []
+    private(set) var hasUnreadNotification = false
+    private(set) var hasUnreadInboxMessage = false
 
     // MARK: - Input / Outputs
 
@@ -39,6 +41,8 @@ class DashboardViewModel {
     // MARK: - Dependencies
 
     private let dashboardInteractor: DashboardInteractor
+    private let notificationInteractor: NotificationInteractor
+
     private let programInteractor: ProgramInteractor
     private let router: Router
 
@@ -53,13 +57,16 @@ class DashboardViewModel {
 
     init(
         dashboardInteractor: DashboardInteractor,
+        notificationInteractor: NotificationInteractor,
         programInteractor: ProgramInteractor,
         router: Router
     ) {
         self.dashboardInteractor = dashboardInteractor
-        self.programInteractor = programInteractor
+        self.notificationInteractor = notificationInteractor
+		self.programInteractor = programInteractor
         self.router = router
         getCourses()
+        setNotificationBadge()
     }
 
     deinit {
@@ -93,7 +100,21 @@ class DashboardViewModel {
             .sink()
     }
 
-   private func getAttachedPrograms(to hcourses: [HCourse], from programs: [Program]) -> [HCourse] {
+    private func setNotificationBadge() {
+        Publishers.Zip(
+            notificationInteractor.getUnreadNotificationCount(),
+            dashboardInteractor.getUnreadInboxMessageCount()
+        )
+        .sink { [weak self] notificationCount, inboxCount in
+            self?.hasUnreadNotification = notificationCount > 0
+            self?.hasUnreadInboxMessage = inboxCount > 0
+            TabBarBadgeCounts.unreadActivityStreamCount = UInt(notificationCount)
+            TabBarBadgeCounts.unreadMessageCount = UInt(inboxCount)
+        }
+        .store(in: &subscriptions)
+    }
+
+    private func getAttachedPrograms(to hcourses: [HCourse], from programs: [Program]) -> [HCourse] {
         return hcourses.map { hcourse in
             var updateCourse = hcourse
             // Find all programs that contain this course id
@@ -187,6 +208,10 @@ class DashboardViewModel {
             ignoreCache: true,
             completion: completion
         )
+    }
+
+    func reloadUnreadBadges() {
+        setNotificationBadge()
     }
 
     func getStatus(percent: Double) -> String {

@@ -57,6 +57,7 @@ final class GetLearnCoursesInteractorLive: GetLearnCoursesInteractor {
             .replaceError(with: [])
             .flatMap {
                 $0.publisher
+                    .filter { $0.state == HCourse.EnrollmentState.active.rawValue }
                     .map { LearnCourse(from: $0) }
                     .compactMap { $0 }
                     .collect()

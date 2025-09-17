@@ -46,7 +46,10 @@ final class DomainService: DomainServiceProtocol {
     }
 
     private var productionURL: String {
-        "\(option)-api-production.\(region).temp.prod.inseng.io"
+        if option == .journey {
+            return "journey-server-prod.\(region).temp.prod.inseng.io"
+        }
+        return "\(option)-api-production.\(region).temp.prod.inseng.io"
     }
 
     // MARK: - Init

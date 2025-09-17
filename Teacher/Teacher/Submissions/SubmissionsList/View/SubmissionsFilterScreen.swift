@@ -130,3 +130,11 @@ struct SubmissionsFilterScreen: View {
         viewModel.course.flatMap { Color(uiColor: $0.color) } ?? .accentColor
     }
 }
+
+#if DEBUG
+
+#Preview {
+    SubmissionListAssembly.makeFilterScreenPreview()
+}
+
+#endif

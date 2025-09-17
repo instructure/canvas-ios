@@ -281,6 +281,7 @@
         <attribute name="enrollmentId" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="state" attributeType="String"/>
     </entity>
     <entity name="CDHNotebookNote" representedClassName=".CDHNotebookNote" syncable="YES">
         <attribute name="after" optional="YES" attributeType="String"/>
