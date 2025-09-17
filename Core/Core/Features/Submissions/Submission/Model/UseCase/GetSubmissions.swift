@@ -28,20 +28,20 @@ public class GetSubmissions: CollectionUseCase {
     public var shuffled: Bool
 
     public var filter: Filter?
-    public var sortOrder: SortOrder
+    public var sortMode: SortMode
 
     public init(
         context: Context,
         assignmentID: String,
         shuffled: Bool = false,
         filter: Filter? = nil,
-        sortOrder: SortOrder = .studentSortableName
+        sortMode: SortMode = .studentSortableName
     ) {
         self.assignmentID = assignmentID
         self.context = context
         self.shuffled = shuffled
         self.filter = filter
-        self.sortOrder = sortOrder
+        self.sortMode = sortMode
     }
 
     public var cacheKey: String? {
@@ -83,7 +83,7 @@ public class GetSubmissions: CollectionUseCase {
             predicate: NSCompoundPredicate(andPredicateWithSubpredicates: predicates),
             order: shuffled
                 ? [NSSortDescriptor(key: #keyPath(Submission.shuffleOrder), ascending: true)]
-                : sortOrder.sortDescriptors
+                : sortMode.sortDescriptors
         )
     }
 

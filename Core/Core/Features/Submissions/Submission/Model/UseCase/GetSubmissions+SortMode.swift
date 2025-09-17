@@ -18,11 +18,11 @@
 
 import Foundation
 
-// MARK: - Sort Order
+// MARK: - Sort Mode
 
 extension GetSubmissions {
 
-    public enum SortOrder {
+    public enum SortMode: String, CaseIterable {
         case studentSortableName
         case studentName
         case submissionDate
@@ -41,7 +41,7 @@ extension GetSubmissions {
             }
         }
 
-        var sortDescriptors: [NSSortDescriptor] {
+        public var sortDescriptors: [NSSortDescriptor] {
             let descriptors: [NSSortDescriptor]
 
             switch self {
@@ -56,15 +56,25 @@ extension GetSubmissions {
                 ]
             case .submissionDate:
                 descriptors = [
-                    NSSortDescriptor(key: #keyPath(Submission.submittedAt), ascending: false)
+                    NSSortDescriptor(key: #keyPath(Submission.submittedAt), ascending: true)
                 ]
             case .submissionStatus:
                 descriptors = [
-                    NSSortDescriptor(key: #keyPath(Submission.workflowStateRaw), ascending: false)
+                    NSSortDescriptor(key: #keyPath(Submission.workflowStateRaw), naturally: true)
                 ]
             }
 
             return descriptors + [NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true)]
+        }
+
+        public var typedSortDescriptors: [SortDescriptor<Submission>] {
+            return sortDescriptors.compactMap { descriptor in
+                SortDescriptor<Submission>(descriptor, comparing: Submission.self)
+            }
+        }
+
+        public var query: String {
+            return "sort=\(rawValue)"
         }
     }
 }
