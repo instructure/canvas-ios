@@ -81,6 +81,7 @@ struct SubmissionsFilterScreen: View {
                     identifierGroup: "SubmissionsFilter.sortOrderOptions",
                     options: sortModeOptions
                 )
+                .tint(courseColor)
             }
         }
         .background(Color.backgroundLightest)
