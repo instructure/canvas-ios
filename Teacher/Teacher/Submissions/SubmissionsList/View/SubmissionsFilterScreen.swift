@@ -27,6 +27,7 @@ struct SubmissionsFilterScreen: View {
 
     private let statusFilterOptions: MultiSelectionOptions
     private let sectionFilterOptions: MultiSelectionOptions
+    private let differentiationTagFilterOptions: MultiSelectionOptions
     private let sortModeOptions: SingleSelectionOptions
     private let courseColor: Color
 
@@ -59,6 +60,21 @@ struct SubmissionsFilterScreen: View {
             all: sortOptionItems,
             initialId: viewModel.sortMode.rawValue
         )
+
+        let differentiationTagOptions = viewModel.differentiationTags.map {
+            OptionItem(
+                id: $0.id,
+                title: $0.name,
+                headerTitle: $0.isSingleTag ? nil : $0.parentGroupSet.name
+            )
+        }
+        let selectedDifferentiationTagOptions = differentiationTagOptions.filter {
+            viewModel.differentiationTagFilters.contains($0.id) || viewModel.differentiationTagFilters.isEmpty
+        }
+        differentiationTagFilterOptions = MultiSelectionOptions(
+            all: differentiationTagOptions,
+            initial: Set(selectedDifferentiationTagOptions)
+        )
     }
 
     var body: some View {
@@ -74,6 +90,12 @@ struct SubmissionsFilterScreen: View {
                     title: String(localized: "Filter by Section", bundle: .teacher),
                     identifierGroup: "SubmissionsFilter.sectionOptions",
                     options: sectionFilterOptions
+                )
+                .tint(courseColor)
+                MultiSelectionView(
+                    title: String(localized: "Differentiation Tags", bundle: .teacher),
+                    identifierGroup: "SubmissionsFilter.diffTagOptions",
+                    options: differentiationTagFilterOptions
                 )
                 .tint(courseColor)
                 SingleSelectionView(
@@ -92,6 +114,7 @@ struct SubmissionsFilterScreen: View {
 
                         viewModel.statusFilters = selectedStatusFilters
                         viewModel.sectionFilters = selectedSectionFilters
+                        viewModel.differentiationTagFilters = selectedDifferentiationTagFilters
                         viewModel.sortMode = selectedSortMode
 
                         controller.value.dismiss(animated: true)
@@ -137,6 +160,10 @@ struct SubmissionsFilterScreen: View {
                     viewModel.courseSections.first(where: { $0.id == option.id })?.id
                 })
         )
+    }
+
+    private var selectedDifferentiationTagFilters: Set<String> {
+        Set(differentiationTagFilterOptions.selected.value.map(\.id))
     }
 
     private var selectedSortMode: SubmissionsSortMode {

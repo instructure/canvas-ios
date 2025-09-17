@@ -28,7 +28,7 @@ extension GetSubmissions {
         public let statuses: Set<Status>
         public let score: Set<Score>
         public let sections: Set<Section>
-        let differentiationTags: Set<DifferentiationTag>
+        public let differentiationTags: Set<DifferentiationTag>
 
         public init(
             statuses: Set<Status>,
@@ -299,15 +299,20 @@ extension Collection where Element == GetSubmissions.Filter.Section {
 // MARK: - Differentiation Tags
 
 extension GetSubmissions.Filter {
-    struct DifferentiationTag: Hashable {
-        let tagID: String
+    public struct DifferentiationTag: Hashable {
+        public let tagID: String
     }
 }
 
 extension Collection where Element == GetSubmissions.Filter.DifferentiationTag {
     var predicate: NSPredicate? {
-        // TODO: - OR predicates for differentiation tags selection
-        nil
+        if isEmpty { return nil }
+        return NSPredicate(
+            format: "ANY %K.%K IN %@",
+            #keyPath(Submission.user.userGroups),
+            #keyPath(CDUserGroup.id),
+            map(\.tagID)
+        )
     }
 }
 

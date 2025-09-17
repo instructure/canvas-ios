@@ -94,7 +94,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
         /// Load differentiation tags
         userGroupsStore
-            .getEntities()
+            .getEntities(keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .sink { [weak differentiationTagsSubject] in
                 differentiationTagsSubject?.send($0)

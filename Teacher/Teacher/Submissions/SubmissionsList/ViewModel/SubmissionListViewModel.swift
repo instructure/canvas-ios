@@ -29,6 +29,7 @@ class SubmissionListViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var statusFilters: Set<SubmissionStatusFilter>
     @Published var sectionFilters: Set<String>
+    @Published var differentiationTagFilters: Set<String>
     @Published var sortMode: SubmissionsSortMode = .studentSortableName
 
     @Published var assignment: Assignment?
@@ -53,6 +54,7 @@ class SubmissionListViewModel: ObservableObject {
         self.interactor = interactor
         self.statusFilters = Set(filter?.statuses ?? [])
         self.sectionFilters = Set(filter?.sections.map(\.sectionID) ?? [])
+        self.differentiationTagFilters = Set(filter?.differentiationTags.map(\.tagID) ?? [])
         self.env = env
         self.scheduler = scheduler
         self.differentiationTagsSortComparator = differentiationTagsSortComparator
@@ -120,10 +122,10 @@ class SubmissionListViewModel: ObservableObject {
             .assign(to: &$state)
 
         Publishers
-            .CombineLatest3($statusFilters, $sectionFilters, $sortMode)
-            .map { (statuses, sections, order) -> SubmissionListPreference in
+            .CombineLatest4($statusFilters, $sectionFilters, $differentiationTagFilters, $sortMode)
+            .map { (statuses, sections, diffTags, order) -> SubmissionListPreference in
                 SubmissionListPreference(
-                    filter: SubmissionsFilter(statuses: statuses, sections: sections),
+                    filter: SubmissionsFilter(statuses: statuses, sections: sections, differentiationTags: diffTags),
                     sortMode: order
                 )
             }
@@ -159,6 +161,10 @@ class SubmissionListViewModel: ObservableObject {
         let isDefaultSectionFilterSelection = sectionFilters.isEmpty || sectionFilters == defaultSectionsList
 
         if isDefaultSectionFilterSelection == false { return true }
+
+        if differentiationTagFilters.isNotEmpty, differentiationTagFilters.count < differentiationTags.count {
+            return true
+        }
 
         return false
     }
