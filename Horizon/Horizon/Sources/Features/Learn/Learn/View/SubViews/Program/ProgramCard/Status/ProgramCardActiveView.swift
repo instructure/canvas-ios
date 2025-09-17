@@ -36,7 +36,9 @@ struct ProgramCardActiveView: View {
             }
             if isLinear {
                 HorizonUI.StatusChip(
-                    title: isRequired ? String(localized: "Required") : String(localized: "Optional"),
+                    title: isRequired
+                    ? String(localized: "Required", bundle: .horizon)
+                    : String(localized: "Optional", bundle: .horizon),
                     style: .gray
                 )
             }

@@ -52,8 +52,8 @@ struct ProgramCardStatusView: View {
             )
         case .completed:
             HorizonUI.StatusChip(
-                title: String(localized: "Completed"),
-                style: .hone
+                title: String(localized: "Completed", bundle: .horizon),
+                style: .honey
             )
         }
     }

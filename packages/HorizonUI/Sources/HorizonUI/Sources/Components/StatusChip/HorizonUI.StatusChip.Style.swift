@@ -25,12 +25,12 @@ public extension HorizonUI.StatusChip {
         case green // Success
         case blue
         case sky
-        case hone
+        case honey
         case orange // Warning
         case red // Error
         case gum
         case plum
-        case vilot
+        case violet
         case institution
 
         func forgroundColor(isFilled: Bool) -> Color {
@@ -40,12 +40,12 @@ public extension HorizonUI.StatusChip {
             case .green: Color.huiColors.primitives.green82
             case .blue: Color.huiColors.primitives.blue82
             case .sky: Color.huiColors.primitives.sky82
-            case .hone: Color.huiColors.primitives.honey90
+            case .honey: Color.huiColors.primitives.honey90
             case .orange: Color.huiColors.primitives.orange82
             case .red: Color.huiColors.primitives.red82
             case .gum: Color.huiColors.primitives.gum90
             case .plum: Color.huiColors.primitives.plum90
-            case .vilot: Color.huiColors.primitives.violet90
+            case .violet: Color.huiColors.primitives.violet90
             case .institution: isFilled ? Color.huiColors.text.surfaceColored : Color.huiColors.surface.institution
             }
         }
@@ -57,12 +57,12 @@ public extension HorizonUI.StatusChip {
             case .green: Color.huiColors.primitives.green12
             case .blue: Color.huiColors.primitives.blue12
             case .sky: Color.huiColors.primitives.sky12
-            case .hone:  Color.huiColors.primitives.honey12
+            case .honey:  Color.huiColors.primitives.honey12
             case .orange:  Color.huiColors.primitives.orange12
             case .red: Color.huiColors.primitives.red12
             case .gum: Color.huiColors.primitives.gum12
             case .plum: Color.huiColors.primitives.plum12
-            case .vilot: Color.huiColors.primitives.violet12
+            case .violet: Color.huiColors.primitives.violet12
             case .institution: Color.huiColors.surface.institution
             }
         }
@@ -74,12 +74,12 @@ public extension HorizonUI.StatusChip {
             case .green: Color.huiColors.primitives.green82
             case .blue: Color.huiColors.primitives.blue82
             case .sky: Color.huiColors.primitives.sky90
-            case .hone:  Color.huiColors.primitives.honey90
+            case .honey:  Color.huiColors.primitives.honey90
             case .orange: Color.huiColors.primitives.orange82
             case .red: Color.huiColors.primitives.red82
             case .gum: Color.huiColors.primitives.gum90
             case .plum: Color.huiColors.primitives.plum90
-            case .vilot: Color.huiColors.primitives.violet90
+            case .violet: Color.huiColors.primitives.violet90
             case .institution: isFilled ? Color.huiColors.icon.surfaceColored : Color.huiColors.surface.institution
             }
         }
