@@ -18,6 +18,8 @@
 
 import Foundation
 
+/// Due date labels can display more kinds of texts besides the actual due date.
+/// These are the summarized cases based on due date, lock date, overrides.
 public enum DueDateSummary: Equatable {
     case noDueDate
     case dueDate(Date)
@@ -46,6 +48,9 @@ public enum DueDateSummary: Equatable {
 }
 
 extension Array<DueDateSummary> {
+
+    /// Returns multiple due dates when all cases are regular due dates,
+    /// or a single special case when any element matches that special case.
     public func reduceIfNeeded() -> [DueDateSummary] {
         if contains(.availabilityClosed) {
             [.availabilityClosed]

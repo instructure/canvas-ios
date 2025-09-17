@@ -88,7 +88,7 @@ struct TeacherAssignmentListSubItemCell: View {
                 dueDates: [date],
                 needsGrading: "1 Needs Grading",
                 subItems: [
-                    .make(tag: "a", title: "Sub-assignment A", dueDate: date, pointsPossible: "60"),
+                    .make(tag: "a", title: "Sub-assignment A", dueDate: date, pointsPossible: nil),
                     .make(tag: "b", title: "Sub-assignment B", dueDate: date, pointsPossible: "40")
                 ]
             )

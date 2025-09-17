@@ -69,8 +69,7 @@ struct TeacherAssignmentListItem: Equatable, Identifiable {
 
         let canBeGraded = assignment.gradingType != .not_graded
         self.needsGrading = canBeGraded ? String.format(needsGrading: assignment.needsGradingCount) : nil
-        let hasPointsPossible = assignment.pointsPossible != nil
-        self.pointsPossible = hasPointsPossible ? assignment.pointsPossibleCompleteText : nil
+        self.pointsPossible = String.format(points: assignment.pointsPossible)
         self.route = assignment.htmlURL
 
         if hasSubAssignments {
@@ -85,7 +84,6 @@ struct TeacherAssignmentListItem: Equatable, Identifiable {
                             hasOverrides: checkpoint.overrides.isNotEmpty
                         ),
                         pointsPossible: String.format(points: checkpoint.pointsPossible)
-                            ?? String(localized: "Not Graded", bundle: .core)
                     )
                 }
         } else {

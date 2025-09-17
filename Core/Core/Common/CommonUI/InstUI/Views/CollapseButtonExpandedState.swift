@@ -20,6 +20,7 @@ import Foundation
 
 extension InstUI {
 
+    /// Provides accessibility strings for the given state of a Collapes/Expand button.
     public struct CollapseButtonExpandedState {
         private let isExpanded: Bool
 

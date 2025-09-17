@@ -153,11 +153,14 @@ public enum AssignmentFilterOptionsTeacher: String, CaseIterable {
             return { $0.needsGradingCount > 0 }
         case .notSubmitted:
             return {
-                if let submissions = $0.submissions {
-                    guard submissions.count > 0 else { return true }
-                    return !submissions.filter { $0.submittedAt == nil && ![SubmissionType.none, SubmissionType.on_paper].contains($0.type) }.isEmpty
+                guard let submissions = $0.submissions, submissions.count > 0 else { return true }
+
+                return submissions.contains { submission in
+                    submission.status == .notSubmitted
+                    || submission.subAssignmentSubmissions.contains { subSubmission in
+                        subSubmission.status == .notSubmitted
+                    }
                 }
-                return true
             }
         }
     }

@@ -64,6 +64,12 @@ class StringLocalizedFormatsTests: XCTestCase {
         XCTAssertEqual(String.format(points: nil), nil)
     }
 
+    func test_format_needsGrading() {
+        XCTAssertEqual(String.format(needsGrading: 1), "1 Needs Grading")
+        XCTAssertEqual(String.format(needsGrading: 5), "5 Need Grading")
+        XCTAssertEqual(String.format(needsGrading: 0), nil)
+    }
+
     func test_format_accessibilityErrorMessage() {
         XCTAssertEqual(String.format(accessibilityErrorMessage: "Some error description"), "Error: Some error description")
         XCTAssertEqual(String.format(accessibilityErrorMessage: ""), "Error: ")
