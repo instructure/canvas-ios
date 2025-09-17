@@ -19,77 +19,81 @@
 import SwiftUI
 import Core
 
-enum SubmissionFilterMode: String, CaseIterable {
-    case all
-    case needsGrading
-    case notSubmitted
-    case graded
-
-    var title: String {
-        switch self {
-        case .all:
-            String(localized: "All Submissions", bundle: .teacher)
-        case .needsGrading:
-            String(localized: "Needs Grading", bundle: .teacher)
-        case .notSubmitted:
-            String(localized: "Not Submitted", bundle: .teacher)
-        case .graded:
-            String(localized: "Graded", bundle: .teacher)
-        }
-    }
-
-    var filters: [GetSubmissions.Filter.Status] {
-        switch self {
-        case .all:
-            return GetSubmissions.Filter.Status.sharedCases
-        case .needsGrading:
-            return [.submitted]
-        case .notSubmitted:
-            return [.notSubmitted]
-        case .graded:
-            return [.graded]
-        }
-    }
-}
-
 struct SubmissionsFilterScreen: View {
 
     @Environment(\.viewController) private var controller
 
     @ObservedObject private var viewModel: SubmissionListViewModel
-    private let filterOptions: SingleSelectionOptions
+
+    private let statusFilterOptions: MultiSelectionOptions
+    private let sectionFilterOptions: MultiSelectionOptions
+    private let sortModeOptions: SingleSelectionOptions
     private let courseColor: Color
 
     init(viewModel: SubmissionListViewModel) {
         self.viewModel = viewModel
 
         courseColor = viewModel.course.flatMap { Color(uiColor: $0.color) } ?? Color(Brand.shared.primary)
-        let initialMode = viewModel.filterMode
 
-        self.filterOptions = SingleSelectionOptions(
-            all: SubmissionFilterMode.allCases.map {
-                OptionItem(id: $0.rawValue, title: $0.title)
-            },
-            initial: OptionItem(id: initialMode.rawValue, title: initialMode.title)
+        let statusesSelection = Set(viewModel.statusFilters.map({ OptionItem(id: $0.rawValue, title: $0.name) }))
+        let allOptions = viewModel.statusFilterOptions.map({ OptionItem(id: $0.rawValue, title: $0.name) })
+
+        self.statusFilterOptions = MultiSelectionOptions(
+            all: allOptions,
+            initial: statusesSelection
+        )
+
+        let sectionSelection = Set(viewModel.sectionFiltersRealized.map({ OptionItem(id: $0.id, title: $0.name) }))
+        let sectionOptions = viewModel.courseSections.map { OptionItem(id: $0.id, title: $0.name) }
+
+        self.sectionFilterOptions = MultiSelectionOptions(
+            all: sectionOptions,
+            initial: sectionSelection
+        )
+
+        let sortOptionItems = SubmissionsSortMode.allCases.map { order in
+            OptionItem(id: order.rawValue, title: order.name)
+        }
+
+        self.sortModeOptions = SingleSelectionOptions(
+            all: sortOptionItems,
+            initialId: viewModel.sortMode.rawValue
         )
     }
 
     var body: some View {
-        VStack {
-            SingleSelectionView(
-                title: String(localized: "Submission Filter", bundle: .teacher),
-                identifierGroup: "SubmissionsFilter.filterOptions",
-                options: filterOptions
-            )
-            .tint(courseColor)
-            Spacer()
+        ScrollView {
+            VStack {
+                MultiSelectionView(
+                    title: String(localized: "Statuses", bundle: .teacher),
+                    identifierGroup: "SubmissionsFilter.filterOptions",
+                    options: statusFilterOptions
+                )
+                .tint(courseColor)
+                MultiSelectionView(
+                    title: String(localized: "Filter by Section", bundle: .teacher),
+                    identifierGroup: "SubmissionsFilter.sectionOptions",
+                    options: sectionFilterOptions
+                )
+                .tint(courseColor)
+                SingleSelectionView(
+                    title: String(localized: "Sort by", bundle: .teacher),
+                    identifierGroup: "SubmissionsFilter.sortOrderOptions",
+                    options: sortModeOptions
+                )
+            }
         }
         .background(Color.backgroundLightest)
         .toolbar {
+
             ToolbarItem(placement: .topBarTrailing) {
                 Button(
                     action: {
-                        viewModel.filterMode = selectedFilterMode
+
+                        viewModel.statusFilters = selectedStatusFilters
+                        viewModel.sectionFilters = selectedSectionFilters
+                        viewModel.sortMode = selectedSortMode
+
                         controller.value.dismiss(animated: true)
                     },
                     label: {
@@ -118,12 +122,29 @@ struct SubmissionsFilterScreen: View {
         .navigationBarStyle(.modal)
     }
 
-    private var selectedFilterMode: SubmissionFilterMode {
-        guard
-            let modeID = filterOptions.selected.value?.id,
-            let mode = SubmissionFilterMode(rawValue: modeID)
-        else { return .all }
-        return mode
+    private var selectedStatusFilters: Set<SubmissionStatusFilter> {
+        Set(
+            statusFilterOptions.selected.value.compactMap({ SubmissionStatusFilter(rawValue: $0.id) })
+        )
+    }
+
+    private var selectedSectionFilters: Set<String> {
+        Set(
+            sectionFilterOptions
+                .selected
+                .value
+                .compactMap({ option in
+                    viewModel.courseSections.first(where: { $0.id == option.id })?.id
+                })
+        )
+    }
+
+    private var selectedSortMode: SubmissionsSortMode {
+        return sortModeOptions
+            .selected
+            .value
+            .flatMap({ SubmissionsSortMode(rawValue: $0.id) })
+        ?? .studentSortableName
     }
 
     private var color: Color {

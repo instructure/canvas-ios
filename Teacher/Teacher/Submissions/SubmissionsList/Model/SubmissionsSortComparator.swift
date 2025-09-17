@@ -21,6 +21,7 @@ import Foundation
 
 struct SubmissionsSortComparator: SortComparator {
 
+    let mode: SubmissionsSortMode
     var order: SortOrder
 
     func compare(_ lhs: Core.Submission, _ rhs: Core.Submission) -> ComparisonResult {
@@ -28,25 +29,31 @@ struct SubmissionsSortComparator: SortComparator {
         let sub2KindOrder = rhs.listSectionKind.order
 
         if sub1KindOrder != sub2KindOrder {
-            return sub1KindOrder < sub2KindOrder ? inOrder : againstOrder
+            return sub1KindOrder < sub2KindOrder ? .orderedAscending : .orderedDescending
         }
 
-        // This is to match ordering of submission as
-        // they are being fetched to submission list
-        // via GetSubmissions use case.
-        if lhs != rhs {
-            return lhs < rhs ? inOrder : againstOrder
+        for descriptor in sortDescriptors {
+            let result = descriptor.compare(lhs, rhs)
+            if result != .orderedSame {
+                return result
+            }
         }
 
         return .orderedSame
     }
 
-    private var inOrder: ComparisonResult {
-        order == .forward ? .orderedAscending : .orderedDescending
+    private var sortDescriptors: [SortDescriptor<Submission>] {
+        return mode.typedSortDescriptors.map({ descriptor in
+            var tweaked = descriptor
+            tweaked.order = order
+            return tweaked
+        })
     }
+}
 
-    private var againstOrder: ComparisonResult {
-        order == .forward ? .orderedDescending : .orderedAscending
+extension SortComparator where Self == SubmissionsSortComparator {
+    static func submissionsComparator(mode: SubmissionsSortMode) -> SubmissionsSortComparator {
+        SubmissionsSortComparator(mode: mode, order: .forward)
     }
 }
 
@@ -55,27 +62,28 @@ struct SubmissionsSortComparator: SortComparator {
 extension Array where Element == Submission {
 
     func toSectionedItems(assignment: Assignment? = nil) -> [SubmissionListSection] {
-        let list = sorted(using: .submissionsSortComparator)
 
         var displayIndex = 0
-        return Dictionary(grouping: list, by: { $0.listSectionKind })
-            .sorted(by: { $0.key.order < $1.key.order })
-            .filter { $0.value.isNotEmpty }
-            .map { (kind, submissions) in
-                SubmissionListSection(
-                    kind: kind,
-                    items: submissions.map { sub in
-                        displayIndex += 1
-                        return SubmissionListItem(submission: sub, assignment: assignment, displayIndex: displayIndex)
-                    }
-                )
-            }
-    }
-}
+        let sections = SubmissionListSection
+            .Kind
+            .allCases
+            .compactMap { kind -> SubmissionListSection? in
 
-extension SortComparator where Self == SubmissionsSortComparator {
-    static var submissionsSortComparator: Self {
-        SubmissionsSortComparator(order: .forward)
+                let submissions = filter({ $0.listSectionKind == kind })
+                guard submissions.isNotEmpty else { return nil }
+
+                let items = submissions.map { sub in
+                    displayIndex += 1
+                    return SubmissionListItem(submission: sub, assignment: assignment, displayIndex: displayIndex)
+                }
+
+                return SubmissionListSection(
+                    kind: kind,
+                    items: items
+                )
+        }
+
+        return sections
     }
 }
 

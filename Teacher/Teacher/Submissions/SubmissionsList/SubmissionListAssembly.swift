@@ -25,12 +25,10 @@ public enum SubmissionListAssembly {
         env: AppEnvironment,
         context: Context,
         assignmentID: String,
-        filter: [GetSubmissions.Filter.Status]
+        filter: GetSubmissions.Filter
     ) -> UIViewController {
-
-        let filterMode = SubmissionFilterMode.allCases.first(where: { $0.filters == filter }) ?? .all
-        let interactor = SubmissionListInteractorLive(context: context, assignmentID: assignmentID, filters: filter, env: env)
-        let viewModel = SubmissionListViewModel(interactor: interactor, filterMode: filterMode, env: env)
+        let interactor = SubmissionListInteractorLive(context: context, assignmentID: assignmentID, filter: filter, env: env)
+        let viewModel = SubmissionListViewModel(interactor: interactor, filter: filter, env: env)
         let view = SubmissionListScreen(viewModel: viewModel)
         return CoreHostingController(view, env: env)
     }
@@ -40,7 +38,11 @@ public enum SubmissionListAssembly {
     public static func makeFilterScreenPreview() -> UIViewController {
         let env = PreviewEnvironment()
         let interactor = SubmissionListInteractorPreview()
-        let viewModel = SubmissionListViewModel(interactor: interactor, filterMode: .all, env: env)
+        let viewModel = SubmissionListViewModel(
+            interactor: interactor,
+            filter: .init(statuses: Set(SubmissionStatusFilter.sharedCases)),
+            env: env
+        )
         let view = SubmissionsFilterScreen(viewModel: viewModel)
         let hostingController = CoreHostingController(view, env: env)
         return CoreNavigationController(rootViewController: hostingController)

@@ -25,24 +25,21 @@ extension GetSubmissions {
 
     public struct Filter {
 
-        public let statuses: [Status]
-        public let score: [Score]
-        let sections: [Section]
-        let differentiationTags: [DifferentiationTag]
-        let users: [User]
+        public let statuses: Set<Status>
+        public let score: Set<Score>
+        public let sections: Set<Section>
+        let differentiationTags: Set<DifferentiationTag>
 
         public init(
-            statuses: [Status],
-            score: [Score] = [],
-            sections: [String] = [],
-            differentiationTags: [String] = [],
-            users: [String] = []
+            statuses: Set<Status>,
+            score: Set<Score> = [],
+            sections: Set<String> = [],
+            differentiationTags: Set<String> = []
         ) {
             self.statuses = statuses
             self.score = score
-            self.sections = sections.map(Section.init)
-            self.differentiationTags = differentiationTags.map(DifferentiationTag.init)
-            self.users = users.map(User.init)
+            self.sections = Set(sections.map(Section.init))
+            self.differentiationTags = Set(differentiationTags.map(DifferentiationTag.init))
         }
 
         var predicate: NSPredicate? {
@@ -50,8 +47,7 @@ extension GetSubmissions {
                 statuses.predicate,
                 score.predicate,
                 sections.predicate,
-                differentiationTags.predicate,
-                users.predicate
+                differentiationTags.predicate
             ]
                 .compactMap({ $0 })
                 .andRelated
@@ -62,11 +58,11 @@ extension GetSubmissions {
 extension GetSubmissions.Filter: ExpressibleByArrayLiteral {
 
     public init(arrayLiteral elements: Status...) {
-        self.init(statuses: elements)
+        self.init(statuses: Set(elements))
     }
 
     public static func status(_ statuses: Status...) -> Self {
-        .init(statuses: statuses)
+        .init(statuses: Set(statuses))
     }
 
     public static func scoreMoreThan(_ score: Double) -> Self {
@@ -78,17 +74,13 @@ extension GetSubmissions.Filter: ExpressibleByArrayLiteral {
     }
 
     public static func section(_ sections: String...) -> Self {
-        .init(statuses: [], sections: sections)
-    }
-
-    public static func user(_ users: String...) -> Self {
-        .init(statuses: [], users: users)
+        .init(statuses: [], sections: Set(sections))
     }
 }
 
 extension GetSubmissions.Filter {
 
-    public enum Status: RawRepresentable, Equatable {
+    public enum Status: RawRepresentable, Hashable {
 
         public static var sharedCases: [Status] {
             return [.notSubmitted, .submitted, .graded, .late, .missing]
@@ -214,7 +206,7 @@ extension GetSubmissions.Filter {
 
 extension Collection where Element == GetSubmissions.Filter.Status {
 
-    var predicate: NSPredicate? { map(\.predicate).orRelated }
+    var predicate: NSPredicate? { sorted(by: \.rawValue).map(\.predicate).orRelated }
 
     public var isSharedCasesIncluded: Bool {
         return Element.sharedCases.allSatisfy { contains($0) }
@@ -228,9 +220,15 @@ extension Collection where Element == GetSubmissions.Filter.Status {
             .allSatisfy({ contains(.custom($0)) })
     }
 
-    public var query: String {
+    public var query: String? {
         let value = map(\.rawValue).joined(separator: ",").nilIfEmpty ?? ""
-        return value.isEmpty ? "" : "filter=\(value)"
+        return value.isEmpty ? nil : "filter=\(value)"
+    }
+}
+
+extension Set where Element == GetSubmissions.Filter.Status {
+    public static func allCourseCases(_ courseID: String) -> Self {
+        Set(GetSubmissions.Filter.Status.courseAllCases(courseID))
     }
 }
 
@@ -238,7 +236,7 @@ extension Collection where Element == GetSubmissions.Filter.Status {
 
 extension GetSubmissions.Filter {
 
-    public struct Score: Equatable {
+    public struct Score: Hashable {
         public enum Operation {
             case moreThan
             case lessThan
@@ -276,39 +274,24 @@ extension GetSubmissions.Filter {
 }
 
 extension Collection where Element == GetSubmissions.Filter.Score {
-    var predicate: NSPredicate? { map(\.predicate).andRelated }
-}
-
-// MARK: - Users
-
-extension GetSubmissions.Filter {
-    struct User {
-        let userID: String
-    }
-}
-
-extension Collection where Element == GetSubmissions.Filter.User {
-    var predicate: NSPredicate? {
-        inPredicate(
-            key: #keyPath(Submission.userID),
-            propertyKeyPath: \.userID
-        )
-    }
+    var predicate: NSPredicate? { sorted(by: \.score).map(\.predicate).andRelated }
 }
 
 // MARK: - Sections
 
 extension GetSubmissions.Filter {
-    struct Section {
-        let sectionID: String
+    public struct Section: Hashable {
+        public let sectionID: String
     }
 }
 
 extension Collection where Element == GetSubmissions.Filter.Section {
     var predicate: NSPredicate? {
-        inPredicate(
-            key: #keyPath(Submission.enrollments.courseSectionID),
-            propertyKeyPath: \.sectionID
+        if isEmpty { return nil }
+        return NSPredicate(
+            format: "ANY %K IN %@",
+            #keyPath(Submission.enrollments.courseSectionID),
+            sorted(by: \.sectionID).map(\.sectionID)
         )
     }
 }
@@ -316,7 +299,7 @@ extension Collection where Element == GetSubmissions.Filter.Section {
 // MARK: - Differentiation Tags
 
 extension GetSubmissions.Filter {
-    struct DifferentiationTag {
+    struct DifferentiationTag: Hashable {
         let tagID: String
     }
 }
@@ -356,16 +339,5 @@ private extension Array where Element == NSPredicate {
     var orRelated: NSPredicate? {
         if count <= 1 { return first }
         return NSCompoundPredicate(type: .or, subpredicates: self)
-    }
-}
-
-private extension Collection {
-
-    func inPredicate<Value: CVarArg>(key: String, propertyKeyPath: KeyPath<Element, Value>) -> NSPredicate? {
-        if isEmpty { return nil }
-        if count == 1, let element = first {
-            return NSPredicate(key: key, equals: element[keyPath: propertyKeyPath])
-        }
-        return NSPredicate(format: "ANY %K IN %@", key, map { $0[keyPath: propertyKeyPath] })
     }
 }

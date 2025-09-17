@@ -162,7 +162,7 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions") { url, params, _, env in
         guard let context = Context(path: url.path), let assignmentID = params["assignmentID"] else { return nil }
-        let filter = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
+        let statuses = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
             GetSubmissions.Filter.Status(rawValue: $0)
         } ?? []
 
@@ -170,7 +170,7 @@ let router = Router(routes: [
             env: env,
             context: context,
             assignmentID: assignmentID,
-            filter: filter
+            filter: .init(statuses: Set(statuses))
         )
     },
 
@@ -185,6 +185,7 @@ let router = Router(routes: [
             assignmentId: assignmentId,
             userId: url.queryValue(for: "student_id"),
             filter: [],
+            sortMode: .studentSortableName,
             env: env
         )
     },
@@ -202,11 +203,16 @@ let router = Router(routes: [
             .compactMap {
                 GetSubmissions.Filter.Status(rawValue: $0)
             } ?? []
+
+        let sortMode = url.queryValue(for: "sort").flatMap({ GetSubmissions.SortMode(rawValue: $0) })
+                        ?? .studentSortableName
+
         return SpeedGraderAssembly.makeSpeedGraderViewController(
             context: context,
             assignmentId: assignmentId,
             userId: userId,
             filter: filter,
+            sortMode: sortMode,
             env: env
         )
     },

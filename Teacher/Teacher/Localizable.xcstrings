@@ -23822,6 +23822,9 @@
         }
       }
     },
+    "Filter by Section" : {
+
+    },
     "Filter submissions" : {
       "localizations" : {
         "ar" : {
@@ -49029,6 +49032,9 @@
         }
       }
     },
+    "Sort by" : {
+
+    },
     "Specific Sections" : {
       "localizations" : {
         "ar" : {
@@ -49540,6 +49546,9 @@
           }
         }
       }
+    },
+    "Statuses" : {
+
     },
     "Student" : {
       "extractionState" : "stale",
@@ -50311,6 +50320,7 @@
       }
     },
     "Submission Filter" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

@@ -30,18 +30,23 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
     private var customStatusesStore: ReactiveStore<GetCustomGradeStatuses>
     private var courseStore: ReactiveStore<GetCourse>
+    private var courseSectionsStore: ReactiveStore<GetCourseSections>
+    private var enrollmentsStore: ReactiveStore<GetEnrollments>
+
     private var assignmentStore: ReactiveStore<GetAssignment>
     private var submissionsStore: ReactiveStore<GetSubmissions>?
     private var userGroupsStore: ReactiveStore<GetUserGroups>
 
     private var submissionsSubject = PassthroughSubject<[Submission], Never>()
-    private var filtersSubject: CurrentValueSubject<[SubmissionStatusFilter], Never>
     private var differentiationTagsSubject: CurrentValueSubject<[CDUserGroup], Never>
+    private var preferenceSubject: CurrentValueSubject<SubmissionListPreference, Never>
 
-    init(context: Context, assignmentID: String, filters: [SubmissionStatusFilter], env: AppEnvironment) {
+    init(context: Context, assignmentID: String, filter: GetSubmissions.Filter, env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
-        self.filtersSubject = CurrentValueSubject<[GetSubmissions.Filter.Status], Never>(filters)
+        self.preferenceSubject = CurrentValueSubject<SubmissionListPreference, Never>(
+            SubmissionListPreference(filter: filter, sortMode: .studentSortableName)
+        )
         self.differentiationTagsSubject = CurrentValueSubject<[CDUserGroup], Never>([])
         self.env = env
 
@@ -55,6 +60,16 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             environment: env
         )
 
+        courseSectionsStore = ReactiveStore(
+            useCase: GetCourseSections(courseID: context.id),
+            environment: env
+        )
+
+        enrollmentsStore = ReactiveStore(
+            useCase: GetEnrollments(context: context),
+            environment: env
+        )
+
         assignmentStore = ReactiveStore(
             useCase: GetAssignment(courseID: context.id, assignmentID: assignmentID),
             environment: env
@@ -65,9 +80,9 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             environment: env
         )
 
-        filtersSubject
-            .sink { [weak self] filters in
-                self?.setupSubmissionsStore(filters)
+        preferenceSubject
+            .sink { [weak self] pref in
+                self?.setupSubmissionsStore(pref)
             }
             .store(in: &subscriptions)
 
@@ -87,11 +102,14 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .store(in: &subscriptions)
     }
 
-    private func setupSubmissionsStore(_ filters: [SubmissionStatusFilter] = []) {
-        let filter = GetSubmissions.Filter(statuses: filters)
-
+    private func setupSubmissionsStore(_ pref: SubmissionListPreference) {
         submissionsStore = ReactiveStore(
-            useCase: GetSubmissions(context: context, assignmentID: assignmentID, filter: filter),
+            useCase: GetSubmissions(
+                context: context,
+                assignmentID: assignmentID,
+                filter: pref.filter,
+                sortMode: pref.sortMode
+            ),
             environment: env
         )
 
@@ -114,10 +132,26 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     }
 
     var course: AnyPublisher<Course?, Never> {
-        courseStore
+        let course = courseStore
             .getEntities(keepObservingDatabaseChanges: true)
             .map { $0.first }
             .replaceError(with: nil)
+
+        let enrollments = enrollmentsStore
+            .getEntities()
+            .mapToVoid()
+            .replaceError(with: ())
+
+        return Publishers
+            .CombineLatest(course, enrollments)
+            .map { $0.0 }
+            .eraseToAnyPublisher()
+    }
+
+    var courseSections: AnyPublisher<[CourseSection], Never> {
+        courseSectionsStore
+            .getEntities(keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
             .eraseToAnyPublisher()
     }
 
@@ -172,21 +206,21 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     func refresh() -> AnyPublisher<Void, Never> {
         return Publishers.Last(
             upstream:
-                Publishers.Merge(
-                    Publishers.Merge4(
-                        customStatusesStore.forceRefresh(),
-                        courseStore.forceRefresh(),
-                        assignmentStore.forceRefresh(),
-                        submissionsStore?.forceRefresh() ?? Empty<Void, Never>().eraseToAnyPublisher()
-                    ),
-                    userGroupsStore.forceRefresh()
+                Publishers.Merge7(
+                    customStatusesStore.forceRefresh(),
+                    courseStore.forceRefresh(),
+                    courseSectionsStore.forceRefresh(),
+                    enrollmentsStore.forceRefresh(),
+                    assignmentStore.forceRefresh(),
+                    userGroupsStore.forceRefresh(),
+                    submissionsStore?.forceRefresh() ?? Empty<Void, Never>().eraseToAnyPublisher()
                 )
         )
         .eraseToAnyPublisher()
     }
 
-    func applyFilter(_ filter: GetSubmissions.Filter) {
-        filtersSubject.send(filter.statuses)
+    func applyPreference(_ pref: SubmissionListPreference) {
+        preferenceSubject.send(pref)
     }
 }
 

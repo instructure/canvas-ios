@@ -36,6 +36,10 @@ class SubmissionListInteractorPreview: SubmissionListInteractor {
         Just(nil).eraseToAnyPublisher()
     }
 
+    var courseSections: AnyPublisher<[Core.CourseSection], Never> {
+        Just([]).eraseToAnyPublisher()
+    }
+
     var assigneeGroups: AnyPublisher<[AssigneeGroup], Never> {
         Just([]).eraseToAnyPublisher()
     }
@@ -48,5 +52,5 @@ class SubmissionListInteractorPreview: SubmissionListInteractor {
         Just(()).eraseToAnyPublisher()
     }
 
-    func applyFilter(_ filter: GetSubmissions.Filter) {}
+    func applyPreference(_ pref: SubmissionListPreference) { }
 }

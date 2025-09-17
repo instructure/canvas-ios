@@ -180,8 +180,7 @@ class GetSubmissionsTests: CoreTestCase {
         ))
         XCTAssertEqual(Filter.scoreMoreThan(100).predicate, NSPredicate(format: "%K > %@", #keyPath(Submission.scoreRaw), NSNumber(value: 100.0)))
         XCTAssertEqual(Filter.scoreLessThan(0).predicate, NSPredicate(format: "%K < %@", #keyPath(Submission.scoreRaw), NSNumber(value: 0.0)))
-        XCTAssertEqual(Filter.user("1").predicate, NSPredicate(key: #keyPath(Submission.userID), equals: "1"))
-        XCTAssertEqual(Filter.section("c", "1").predicate, NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.courseSectionID), [ "c", "1" ]))
+        XCTAssertEqual(Filter.section("1", "c").predicate, NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.courseSectionID), [ "1", "c" ]))
     }
 
     func testGetSubmissionsFilterName() {
@@ -231,5 +230,37 @@ class GetSubmissionsTests: CoreTestCase {
         testee.write(response: [.make(attempt: 1, workflow_state: .submitted)], urlResponse: nil, to: databaseClient)
 
         XCTAssertEqual((databaseClient.fetch() as [Submission]).count, 1)
+    }
+
+    func testSortMode() {
+        // 1
+        let useCase = GetSubmissions(context: .course("1"), assignmentID: "1", sortMode: .studentSortableName)
+
+        XCTAssertEqual(useCase.scope.order, [
+            NSSortDescriptor(key: #keyPath(Submission.user.sortableName), naturally: true),
+            NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true),
+            NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true)
+        ])
+
+        useCase.sortMode = .studentName
+        XCTAssertEqual(useCase.scope.order, [
+            NSSortDescriptor(key: #keyPath(Submission.user.name), naturally: true),
+            NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true)
+        ])
+
+        useCase.sortMode = .submissionDate
+        XCTAssertEqual(useCase.scope.order, [
+            NSSortDescriptor(key: #keyPath(Submission.submittedAt), ascending: true),
+            NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true)
+        ])
+        XCTAssertEqual(useCase.sortMode.query, "sort=submissionDate")
+
+        useCase.sortMode = .submissionStatus
+        XCTAssertEqual(useCase.scope.order, [
+            NSSortDescriptor(key: #keyPath(Submission.workflowStateRaw), naturally: true),
+            NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true)
+        ])
+
+        XCTAssertEqual(useCase.sortMode.query, "sort=submissionStatus")
     }
 }

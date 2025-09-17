@@ -201,6 +201,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             assignmentID: testData.assignmentId,
             userID: userId,
             filter: filter,
+            sortMode: .studentSortableName,
             gradeStatusInteractor: gradeStatusInteractorMock,
             submissionWordCountInteractor: submissionWordCountInteractor,
             customGradebookColumnsInteractor: customGradebookColumnsInteractor,
