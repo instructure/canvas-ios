@@ -108,7 +108,7 @@ struct LearnAssembly {
         )
     }
 
-    static func makeLearnView(programID: String? = nil, isBackButtonVisible: Bool = false) -> UIViewController {
+    static func makeLearnView(programID: String? = nil) -> UIViewController {
         let programCourseInteractor = ProgramCourseInteractorLive()
         let interactor = ProgramInteractorLive(programCourseInteractor: programCourseInteractor)
         let router = AppEnvironment.shared.router
@@ -118,16 +118,13 @@ struct LearnAssembly {
             router: router,
             programID: programID
         )
-        let view = LearnView(
-            viewModel: viewModel,
-            isBackButtonVisible: isBackButtonVisible
-        )
+        let view = LearnView(viewModel: viewModel)
         return CoreHostingController(view)
     }
 }
 
 extension AppEnvironment {
-    fileprivate func switchToLearnTab(
+     func switchToLearnTab(
         with program: ProgramSwitcherModel?,
         from viewController: WeakViewController
     ) {

@@ -42,9 +42,9 @@ class DashboardViewModel {
 
     private let dashboardInteractor: DashboardInteractor
     private let notificationInteractor: NotificationInteractor
-
     private let programInteractor: ProgramInteractor
     private let router: Router
+    private let onTapProgram: (ProgramSwitcherModel?, WeakViewController) -> Void
 
     // MARK: - Private variables
 
@@ -59,12 +59,14 @@ class DashboardViewModel {
         dashboardInteractor: DashboardInteractor,
         notificationInteractor: NotificationInteractor,
         programInteractor: ProgramInteractor,
-        router: Router
+        router: Router,
+        onTapProgram: @escaping (ProgramSwitcherModel?, WeakViewController) -> Void
     ) {
         self.dashboardInteractor = dashboardInteractor
         self.notificationInteractor = notificationInteractor
 		self.programInteractor = programInteractor
         self.router = router
+        self.onTapProgram = onTapProgram
         getCourses()
         setNotificationBadge()
     }
@@ -173,7 +175,7 @@ class DashboardViewModel {
     }
 
     func navigateProgram(id: String, viewController: WeakViewController) {
-        router.show(LearnAssembly.makeLearnView(programID: id, isBackButtonVisible: true), from: viewController)
+        onTapProgram(.init(id: id), viewController)
     }
 
     func acceptInvitation(course: InvitedCourse) {
