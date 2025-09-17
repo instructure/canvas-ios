@@ -24,29 +24,46 @@ import CombineSchedulers
 struct SubmissionsFilterViewModel {
 
     let courseColor: Color
-    let filterOptions: MultiSelectionOptions
+
+    let statusFilterOptions: MultiSelectionOptions
+    let sectionFilterOptions: MultiSelectionOptions
 
     init(listViewModel: SubmissionListViewModel) {
 
         courseColor = listViewModel.course.flatMap { Color(uiColor: $0.color) } ?? Color(Brand.shared.primary)
 
-        let initialSelection = Set(listViewModel.statusFilters.map({ OptionItem(id: $0.rawValue, title: $0.name) }))
+        let statusesSelection = Set(listViewModel.statusFilters.map({ OptionItem(id: $0.rawValue, title: $0.name) }))
         let allOptions = listViewModel.statusFilterOptions.map({ OptionItem(id: $0.rawValue, title: $0.name) })
 
-        self.filterOptions = MultiSelectionOptions(
+        self.statusFilterOptions = MultiSelectionOptions(
             all: allOptions,
-            initial: initialSelection
+            initial: statusesSelection
+        )
+
+        let sectionSelection = Set(listViewModel.sectionFiltersRealized.map({ OptionItem(id: $0.id, title: $0.name) }))
+        let sectionOptions = listViewModel.courseSections.map { OptionItem(id: $0.id, title: $0.name) }
+
+        self.sectionFilterOptions = MultiSelectionOptions(
+            all: sectionOptions,
+            initial: sectionSelection
         )
     }
 
     func save(to listViewModel: SubmissionListViewModel) {
-        listViewModel.statusFilters = selectedFilters
+        listViewModel.statusFilters = selectedStatusFilters
+        listViewModel.sectionFilters = selectedSectionFilters
     }
 
-    private var selectedFilters: Set<SubmissionStatusFilter> {
+    // MARK: Selection
+
+    private var selectedStatusFilters: Set<SubmissionStatusFilter> {
         Set(
-            filterOptions.selected.value.compactMap({ SubmissionStatusFilter(rawValue: $0.id) })
+            statusFilterOptions.selected.value.compactMap({ SubmissionStatusFilter(rawValue: $0.id) })
         )
+    }
+
+    private var selectedSectionFilters: Set<String> {
+        Set(sectionFilterOptions.selected.value.map(\.id))
     }
 }
 
@@ -56,5 +73,11 @@ private extension SubmissionListViewModel {
 
     var statusFilterOptions: [SubmissionStatusFilter] {
         SubmissionStatusFilter.allCasesForCourse(interactor.context.id)
+    }
+
+    var sectionFiltersRealized: [CourseSection] {
+        courseSections.filter { section in
+            sectionFilters.contains(section.id)
+        }
     }
 }
