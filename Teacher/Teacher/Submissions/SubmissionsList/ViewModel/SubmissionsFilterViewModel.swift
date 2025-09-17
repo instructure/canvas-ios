@@ -23,12 +23,18 @@ import CombineSchedulers
 
 struct SubmissionsFilterViewModel {
 
+    let listViewModel: SubmissionListViewModel
+
     let courseColor: Color
+    let assignmentName: String?
+
     let filterOptions: MultiSelectionOptions
 
     init(listViewModel: SubmissionListViewModel) {
+        self.listViewModel = listViewModel
 
         courseColor = listViewModel.course.flatMap { Color(uiColor: $0.color) } ?? Color(Brand.shared.primary)
+        assignmentName = listViewModel.assignment?.name
 
         let initialSelection = Set(listViewModel.statusFilters.map({ OptionItem(id: $0.rawValue, title: $0.name) }))
         let allOptions = listViewModel.statusFilterOptions.map({ OptionItem(id: $0.rawValue, title: $0.name) })
@@ -39,7 +45,7 @@ struct SubmissionsFilterViewModel {
         )
     }
 
-    func save(to listViewModel: SubmissionListViewModel) {
+    func saveSelection() {
         listViewModel.statusFilters = selectedFilters
     }
 

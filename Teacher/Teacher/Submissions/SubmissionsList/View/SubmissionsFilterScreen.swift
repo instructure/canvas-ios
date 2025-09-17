@@ -23,13 +23,9 @@ struct SubmissionsFilterScreen: View {
 
     @Environment(\.viewController) private var controller
 
-    @ObservedObject
-    private var listViewModel: SubmissionListViewModel
-
     private let viewModel: SubmissionsFilterViewModel
 
     init(listViewModel: SubmissionListViewModel) {
-        self.listViewModel = listViewModel
         self.viewModel = SubmissionsFilterViewModel(listViewModel: listViewModel)
     }
 
@@ -48,7 +44,7 @@ struct SubmissionsFilterScreen: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(
                     action: {
-                        viewModel.save(to: listViewModel)
+                        viewModel.saveSelection()
                         controller.value.dismiss(animated: true)
                     },
                     label: {
@@ -72,7 +68,7 @@ struct SubmissionsFilterScreen: View {
         }
         .navigationBarTitleView(
             title: String(localized: "Submission List Preferences", bundle: .teacher),
-            subtitle: listViewModel.assignment?.name
+            subtitle: viewModel.assignmentName
         )
         .navigationBarStyle(.modal)
     }
