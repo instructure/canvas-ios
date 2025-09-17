@@ -44,7 +44,7 @@ public class PlannerViewController: VisibilityObservedViewController {
 
     lazy var offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     private var studentAccessInteractor: StudentAccessInteractor?
-    private var isRestricted = false
+    private var isStudentAccessRestricted = false
     private var subscriptions = Set<AnyCancellable>()
     private var scheduler: AnySchedulerOf<DispatchQueue>!
 
@@ -141,7 +141,7 @@ public class PlannerViewController: VisibilityObservedViewController {
         )
         .receive(on: scheduler)
         .sink { [weak self] isRestricted, isOffline in
-            self?.isRestricted = isRestricted
+            self?.isStudentAccessRestricted = isRestricted
             self?.updateAddButton(isOffline)
         }
         .store(in: &subscriptions)
@@ -163,7 +163,7 @@ public class PlannerViewController: VisibilityObservedViewController {
             }
         ]
 
-        if !isRestricted {
+        if !isStudentAccessRestricted {
             actions.append(
                 UIAction(title: String(localized: "Add Event", bundle: .core), image: .calendarMonthLine) { [weak self] _ in
                     self?.addEvent()

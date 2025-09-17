@@ -79,7 +79,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     private var offlineFileInteractor: OfflineFileInteractor?
     private var studentAccessInteractor: StudentAccessInteractor?
     private var subscriptions = Set<AnyCancellable>()
-    private var isRestricted = false
+    private var isStudentAccessRestricted = false
     private var scheduler: AnySchedulerOf<DispatchQueue>!
 
     public static func create(
@@ -133,7 +133,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         studentAccessInteractor?
             .isRestricted()
             .receive(on: scheduler)
-            .assign(to: \.isRestricted, on: self, ownership: .weak)
+            .assign(to: \.isStudentAccessRestricted, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
         colors.refresh()
@@ -343,7 +343,7 @@ extension FileListViewController: FilePickerDelegate {
         ) { [weak self] in
             self?.addFolder()
         }
-        if !isRestricted {
+        if !isStudentAccessRestricted {
             sheet.addAction(
                 image: .addDocumentLine,
                 title: String(localized: "Add File", bundle: .core),
