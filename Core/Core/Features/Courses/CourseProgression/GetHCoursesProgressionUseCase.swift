@@ -45,7 +45,7 @@ public class GetHCoursesProgressionUseCase: APIUseCase {
 
     // MARK: - Init
 
-    public init(userId: String, courseId: String? = nil, horizonCourses: Bool = false) {
+    public init(userId: String, courseId: String? = nil, horizonCourses: Bool = true) {
         self.userId = userId
         self.courseId = courseId
         self.horizonCourses = horizonCourses

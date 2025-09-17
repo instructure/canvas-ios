@@ -37,4 +37,8 @@ final class DashboardInteractorPreview: DashboardInteractor {
         Just(())
             .eraseToAnyPublisher()
     }
+
+    func getUnreadInboxMessageCount() -> AnyPublisher<Int, Never> {
+        Just(5).eraseToAnyPublisher()
+    }
 }
