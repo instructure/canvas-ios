@@ -263,4 +263,73 @@ class GetSubmissionsTests: CoreTestCase {
 
         XCTAssertEqual(useCase.sortMode.query, "sort=submissionStatus")
     }
+
+    func testDifferentiationTagsFilterPredicate() throws {
+        typealias Filter = GetSubmissions.Filter
+
+        // Create users
+        let user1 = User.save(.make(id: "1", name: "User 1"), in: databaseClient)
+        let user2 = User.save(.make(id: "2", name: "User 2"), in: databaseClient)
+        let user3 = User.save(.make(id: "3", name: "User 3"), in: databaseClient)
+
+        // Create user group set
+        let groupSet: CDUserGroupSet = databaseClient.insert()
+        groupSet.id = "groupset1"
+        groupSet.name = "Differentiation Tags"
+        groupSet.courseId = "course1"
+
+        // Create user groups (differentiation tags)
+        let tag1: CDUserGroup = databaseClient.insert()
+        tag1.id = "tag1"
+        tag1.name = "Tag 1"
+        tag1.isDifferentiationTag = true
+        tag1.parentGroupSet = groupSet
+        tag1.userIdsInGroup = Set(["1", "2"])
+
+        let tag2: CDUserGroup = databaseClient.insert()
+        tag2.id = "tag2"
+        tag2.name = "Tag 2"
+        tag2.isDifferentiationTag = true
+        tag2.parentGroupSet = groupSet
+        tag2.userIdsInGroup = Set(["2", "3"])
+
+        // Connect users to their groups
+        user1.userGroups = Set([tag1])
+        user2.userGroups = Set([tag1, tag2])
+        user3.userGroups = Set([tag2])
+
+        // Create submissions
+        let submission1 = Submission.save(.make(id: "1", user_id: "1"), in: databaseClient)
+        let submission2 = Submission.save(.make(id: "2", user_id: "2"), in: databaseClient)
+        let submission3 = Submission.save(.make(id: "3", user_id: "3"), in: databaseClient)
+
+        submission1.user = user1
+        submission2.user = user2
+        submission3.user = user3
+
+        try databaseClient.save()
+
+        // Test filtering by tag1 - should return submissions for users 1 and 2
+        let tag1Filter = [Filter.DifferentiationTag(tagID: "tag1")]
+        let tag1Results: [Submission] = databaseClient.fetch(scope: .init(predicate: tag1Filter.predicate!, order: []))
+        XCTAssertEqual(tag1Results.count, 2)
+        XCTAssertTrue(tag1Results.contains { $0.userID == "1" })
+        XCTAssertTrue(tag1Results.contains { $0.userID == "2" })
+
+        // Test filtering by tag2 - should return submissions for users 2 and 3
+        let tag2Filter = [Filter.DifferentiationTag(tagID: "tag2")]
+        let tag2Results: [Submission] = databaseClient.fetch(scope: .init(predicate: tag2Filter.predicate!, order: []))
+        XCTAssertEqual(tag2Results.count, 2)
+        XCTAssertTrue(tag2Results.contains { $0.userID == "2" })
+        XCTAssertTrue(tag2Results.contains { $0.userID == "3" })
+
+        // Test filtering by both tags - should return all submissions (union)
+        let bothTagsFilter = [Filter.DifferentiationTag(tagID: "tag1"), Filter.DifferentiationTag(tagID: "tag2")]
+        let bothTagsResults: [Submission] = databaseClient.fetch(scope: .init(predicate: bothTagsFilter.predicate!, order: []))
+        XCTAssertEqual(bothTagsResults.count, 3)
+
+        // Test empty filter - should return nil predicate
+        let emptyFilter: [Filter.DifferentiationTag] = []
+        XCTAssertNil(emptyFilter.predicate)
+    }
 }
