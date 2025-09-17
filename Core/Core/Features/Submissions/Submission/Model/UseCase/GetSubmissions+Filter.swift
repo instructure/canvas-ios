@@ -237,7 +237,7 @@ extension Set where Element == GetSubmissions.Filter.Status {
 extension GetSubmissions.Filter {
 
     public struct Score: Hashable {
-        public enum Operation {
+        public enum Operation: Int {
             case moreThan
             case lessThan
         }
@@ -274,7 +274,15 @@ extension GetSubmissions.Filter {
 }
 
 extension Collection where Element == GetSubmissions.Filter.Score {
-    var predicate: NSPredicate? { sorted(by: \.score).map(\.predicate).andRelated }
+    var predicate: NSPredicate? { sorted(by: \.operation.rawValue).map(\.predicate).andRelated }
+
+    public var moreThanFilter: GetSubmissions.Filter.Score? {
+        first(where: { $0.operation == .moreThan })
+    }
+
+    public var lessThanFilter: GetSubmissions.Filter.Score? {
+        first(where: { $0.operation == .lessThan })
+    }
 }
 
 // MARK: - Sections

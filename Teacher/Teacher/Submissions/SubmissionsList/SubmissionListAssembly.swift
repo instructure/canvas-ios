@@ -37,7 +37,28 @@ public enum SubmissionListAssembly {
 
     public static func makeFilterScreenPreview() -> UIViewController {
         let env = PreviewEnvironment()
-        let interactor = SubmissionListInteractorPreview()
+        let context = env.database.viewContext
+
+        let assignment: Assignment = context.insert()
+        assignment.gradingType = .points
+        assignment.pointsPossible = 5
+
+        let section1: CourseSection = context.insert()
+        section1.id = "1"
+        section1.name = "Default"
+        section1.courseID = "1"
+
+        let section2: CourseSection = context.insert()
+        section2.id = "2"
+        section2.name = "Performers"
+        section2.courseID = "1"
+
+        let section3: CourseSection = context.insert()
+        section3.id = "3"
+        section3.name = "Explorers"
+        section3.courseID = "1"
+
+        let interactor = SubmissionListInteractorPreview(env: env)
         let viewModel = SubmissionListViewModel(
             interactor: interactor,
             filter: .init(statuses: Set(SubmissionStatusFilter.sharedCases)),

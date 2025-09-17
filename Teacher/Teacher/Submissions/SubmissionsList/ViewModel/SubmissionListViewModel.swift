@@ -30,6 +30,7 @@ class SubmissionListViewModel: ObservableObject {
     @Published var statusFilters: Set<SubmissionStatusFilter>
     @Published var sectionFilters: Set<String>
     @Published var sortMode: SubmissionsSortMode = .studentSortableName
+    @Published var scoreBasedFilters: Set<GetSubmissions.Filter.Score> = []
 
     @Published var assignment: Assignment?
     @Published var course: Course?
@@ -111,10 +112,10 @@ class SubmissionListViewModel: ObservableObject {
             .assign(to: &$state)
 
         Publishers
-            .CombineLatest3($statusFilters, $sectionFilters, $sortMode)
-            .map { (statuses, sections, order) -> SubmissionListPreference in
+            .CombineLatest4($statusFilters, $scoreBasedFilters, $sectionFilters, $sortMode)
+            .map { (statuses, scores, sections, order) -> SubmissionListPreference in
                 SubmissionListPreference(
-                    filter: SubmissionsFilter(statuses: statuses, sections: sections),
+                    filter: SubmissionsFilter(statuses: statuses, score: scores, sections: sections),
                     sortMode: order
                 )
             }
@@ -138,6 +139,37 @@ class SubmissionListViewModel: ObservableObject {
         courseSections.filter { section in
             sectionFilters.contains(section.id)
         }
+    }
+
+    var gradeInputType: GradeInputTextFieldCell.InputType? {
+        switch assignment?.gradingType {
+        case .percent:
+            return .percentage
+        case .points:
+            return .points
+        default:
+            return nil
+        }
+    }
+
+    var pointsPossibleText: String {
+        guard gradeInputType == .points else { return "" }
+        return assignment?.pointsPossibleText ?? ""
+    }
+
+    var pointsPossibleAccessibilityText: String {
+        guard gradeInputType == .points else { return "" }
+        return assignment?.pointsPossibleCompleteText ?? ""
+    }
+
+    func toScoreInputValue(_ score: Double) -> Double {
+        guard gradeInputType == .percentage else { return score }
+        return score / (assignment?.pointsPossible ?? 1) * 100
+    }
+
+    func toScoreValue(_ input: Double) -> Double {
+        guard gradeInputType == .percentage else { return input }
+        return input / 100 * (assignment?.pointsPossible ?? 1)
     }
 
     var isFilterActive: Bool {

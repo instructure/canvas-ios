@@ -30,6 +30,11 @@ struct SubmissionsFilterScreen: View {
     private let sortModeOptions: SingleSelectionOptions
     private let courseColor: Color
 
+    @State
+    private var scoredMoreFilterValue: String = ""
+    @State
+    private var scoredLessFilterValue: String = ""
+
     init(viewModel: SubmissionListViewModel) {
         self.viewModel = viewModel
 
@@ -59,23 +64,78 @@ struct SubmissionsFilterScreen: View {
             all: sortOptionItems,
             initialId: viewModel.sortMode.rawValue
         )
+
+        _scoredMoreFilterValue = .init(
+            initialValue: viewModel
+                .scoreBasedFilters
+                .moreThanFilter
+                .flatMap({ viewModel.toScoreInputValue($0.score) })?
+                .formatted(.number.precision(.fractionLength(0 ... 3))) ?? ""
+        )
+
+        _scoredLessFilterValue = .init(
+            initialValue: viewModel
+                .scoreBasedFilters
+                .lessThanFilter
+                .flatMap({ viewModel.toScoreInputValue($0.score) })?
+                .formatted(.number.precision(.fractionLength(0 ... 3))) ?? ""
+        )
     }
 
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(spacing: 0) {
                 MultiSelectionView(
                     title: String(localized: "Statuses", bundle: .teacher),
                     identifierGroup: "SubmissionsFilter.filterOptions",
                     options: statusFilterOptions
                 )
                 .tint(courseColor)
+
+                if let gradeInputType = viewModel.gradeInputType {
+
+                    Section {
+                        VStack(alignment: .leading, spacing: 0) {
+                            GradeInputTextFieldCell(
+                                title: String(localized: "Scored More than", bundle: .teacher),
+                                inputType: gradeInputType,
+                                pointsPossibleText: viewModel.pointsPossibleText,
+                                pointsPossibleAccessibilityText: viewModel.pointsPossibleAccessibilityText,
+                                isExcused: false,
+                                text: $scoredMoreFilterValue,
+                                isSaving: .init(false)
+                            )
+                            InstUI.Divider(.padded)
+                            GradeInputTextFieldCell(
+                                title: String(localized: "Scored Less than", bundle: .teacher),
+                                inputType: gradeInputType,
+                                pointsPossibleText: viewModel.pointsPossibleText,
+                                pointsPossibleAccessibilityText: viewModel.pointsPossibleAccessibilityText,
+                                isExcused: false,
+                                text: $scoredLessFilterValue,
+                                isSaving: .init(false)
+                            )
+                        }
+
+                    } header: {
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text("Precise filtering", bundle: .teacher)
+                                .textStyle(.sectionHeader)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .paddingStyle(set: .sectionHeader)
+                                .accessibilityAddTraits([.isHeader])
+                            InstUI.Divider()
+                        }
+                    }
+                }
+
                 MultiSelectionView(
                     title: String(localized: "Filter by Section", bundle: .teacher),
                     identifierGroup: "SubmissionsFilter.sectionOptions",
                     options: sectionFilterOptions
                 )
                 .tint(courseColor)
+
                 SingleSelectionView(
                     title: String(localized: "Sort by", bundle: .teacher),
                     identifierGroup: "SubmissionsFilter.sortOrderOptions",
@@ -92,6 +152,7 @@ struct SubmissionsFilterScreen: View {
 
                         viewModel.statusFilters = selectedStatusFilters
                         viewModel.sectionFilters = selectedSectionFilters
+                        viewModel.scoreBasedFilters = selectedScoreBasedFilters
                         viewModel.sortMode = selectedSortMode
 
                         controller.value.dismiss(animated: true)
@@ -137,6 +198,17 @@ struct SubmissionsFilterScreen: View {
                     viewModel.courseSections.first(where: { $0.id == option.id })?.id
                 })
         )
+    }
+
+    private var selectedScoreBasedFilters: Set<GetSubmissions.Filter.Score> {
+        var filters = Set<GetSubmissions.Filter.Score>()
+        if let moreThanValue = scoredMoreFilterValue.doubleValueByFixingDecimalSeparator {
+            filters.insert(.moreThan(viewModel.toScoreValue(moreThanValue)))
+        }
+        if let lessThanValue = scoredLessFilterValue.doubleValueByFixingDecimalSeparator {
+            filters.insert(.lessThan(viewModel.toScoreValue(lessThanValue)))
+        }
+        return filters
     }
 
     private var selectedSortMode: SubmissionsSortMode {
