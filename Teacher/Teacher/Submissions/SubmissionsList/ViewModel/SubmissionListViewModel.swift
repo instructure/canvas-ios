@@ -35,7 +35,7 @@ class SubmissionListViewModel: ObservableObject {
     @Published var courseSections: [CourseSection] = []
     @Published var sections: [SubmissionListSection] = []
 
-    private let interactor: SubmissionListInteractor
+    let interactor: SubmissionListInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
@@ -51,6 +51,7 @@ class SubmissionListViewModel: ObservableObject {
         self.sectionFilters = Set(filter?.sections.map(\.sectionID) ?? [])
         self.env = env
         self.scheduler = scheduler
+
         setupBindings()
     }
 
@@ -62,7 +63,7 @@ class SubmissionListViewModel: ObservableObject {
         interactor.courseSections.assign(to: &$courseSections)
 
         if statusFilters.isEmpty {
-            self.statusFilters = Set(SubmissionStatusFilter.courseAllCases(interactor.context.id))
+            self.statusFilters = Set(SubmissionStatusFilter.allCasesForCourse(interactor.context.id))
         }
 
         $courseSections
@@ -126,19 +127,8 @@ class SubmissionListViewModel: ObservableObject {
 
     // MARK: Exposed To View
 
-    var statusFilterOptions: [SubmissionStatusFilter] {
-        SubmissionStatusFilter.courseAllCases(interactor.context.id)
-    }
-
-    var sectionFiltersRealized: [CourseSection] {
-        courseSections.filter { section in
-            sectionFilters.contains(section.id)
-        }
-    }
-
     var isFilterActive: Bool {
-        let isDefaultStatusFilterSelection = statusFilters.isEmpty
-            || statusFilters == .allCourseCases(interactor.context.id)
+        let isDefaultStatusFilterSelection = statusFilters.isEmpty || statusFilters == Set(SubmissionStatusFilter.allCasesForCourse(interactor.context.id))
 
         if isDefaultStatusFilterSelection == false { return true }
 
@@ -208,7 +198,7 @@ class SubmissionListViewModel: ObservableObject {
 
     func showFilterScreen(from controller: WeakViewController) {
         let filterVC = CoreHostingController(
-            SubmissionsFilterScreen(viewModel: self),
+            SubmissionsFilterScreen(listViewModel: self),
             env: env
         )
         env.router.show(filterVC, from: controller, options: .modal(embedInNav: true))
