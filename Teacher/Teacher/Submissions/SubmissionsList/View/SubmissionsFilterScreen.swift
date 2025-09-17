@@ -113,14 +113,7 @@ struct SubmissionsFilterScreen: View {
     }
 
     private var selectedSectionFilters: Set<String> {
-        Set(
-            sectionFilterOptions
-                .selected
-                .value
-                .compactMap({ option in
-                    viewModel.courseSections.first(where: { $0.id == option.id })?.id
-                })
-        )
+        Set(sectionFilterOptions.selected.value.map(\.id))
     }
 
     private var color: Color {
