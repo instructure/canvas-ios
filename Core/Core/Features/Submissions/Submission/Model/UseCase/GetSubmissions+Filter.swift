@@ -82,12 +82,12 @@ extension GetSubmissions.Filter {
 
     public enum Status: RawRepresentable, Hashable {
 
-        public static var sharedCases: [Status] {
+        public static var basicCases: [Status] {
             return [.notSubmitted, .submitted, .graded, .late, .missing]
         }
 
-        public static func courseAllCases(_ courseID: String) -> [Status] {
-            return sharedCases + CDCustomGradeStatus.allForCourse(courseID).map { .custom($0.name) }
+        public static func allCasesForCourse(_ courseID: String) -> [Status] {
+            return basicCases + CDCustomGradeStatus.allForCourse(courseID).map { .custom($0.name) }
         }
 
         case notSubmitted
@@ -99,7 +99,7 @@ extension GetSubmissions.Filter {
 
         public init?(rawValue: String) {
 
-            if let mode = Self.sharedCases.first(where: { $0.rawValue == rawValue }) {
+            if let mode = Self.basicCases.first(where: { $0.rawValue == rawValue }) {
                 self = mode
                 return
             }
@@ -209,10 +209,10 @@ extension Collection where Element == GetSubmissions.Filter.Status {
     var predicate: NSPredicate? { sorted(by: \.rawValue).map(\.predicate).orRelated }
 
     public var isSharedCasesIncluded: Bool {
-        return Element.sharedCases.allSatisfy { contains($0) }
+        return Element.basicCases.allSatisfy { contains($0) }
     }
 
-    public func isCourseAllCasesIncluded(_ courseID: String) -> Bool {
+    public func isAllCasesForCourseIncluded(_ courseID: String) -> Bool {
         guard isSharedCasesIncluded else { return false }
         return CDCustomGradeStatus
             .allForCourse(courseID)
@@ -227,8 +227,8 @@ extension Collection where Element == GetSubmissions.Filter.Status {
 }
 
 extension Set where Element == GetSubmissions.Filter.Status {
-    public static func allCourseCases(_ courseID: String) -> Self {
-        Set(GetSubmissions.Filter.Status.courseAllCases(courseID))
+    public static func allCasesForCourse(_ courseID: String) -> Self {
+        Set(GetSubmissions.Filter.Status.allCasesForCourse(courseID))
     }
 }
 
