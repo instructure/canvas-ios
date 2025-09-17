@@ -61,10 +61,10 @@ public enum SubmissionListAssembly {
         let interactor = SubmissionListInteractorPreview(env: env)
         let viewModel = SubmissionListViewModel(
             interactor: interactor,
-            filter: .init(statuses: Set(SubmissionStatusFilter.sharedCases)),
+            filter: .init(statuses: Set(SubmissionStatusFilter.basicCases)),
             env: env
         )
-        let view = SubmissionsFilterScreen(viewModel: viewModel)
+        let view = SubmissionsFilterScreen(listViewModel: viewModel)
         let hostingController = CoreHostingController(view, env: env)
         return CoreNavigationController(rootViewController: hostingController)
     }
