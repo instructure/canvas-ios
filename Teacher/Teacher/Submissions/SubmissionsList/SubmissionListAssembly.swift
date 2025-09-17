@@ -40,7 +40,7 @@ public enum SubmissionListAssembly {
         let interactor = SubmissionListInteractorPreview()
         let viewModel = SubmissionListViewModel(
             interactor: interactor,
-            statusFilters: SubmissionStatusFilter.sharedCases,
+            statusFilters: SubmissionStatusFilter.basicCases,
             env: env
         )
         let view = SubmissionsFilterScreen(viewModel: viewModel)

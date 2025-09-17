@@ -41,7 +41,7 @@ class SubmissionListViewModel: ObservableObject {
     init(interactor: SubmissionListInteractor, statusFilters: [SubmissionStatusFilter], env: AppEnvironment, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
         self.statusFilters = Set(statusFilters.isEmpty
-            ? SubmissionStatusFilter.courseAllCases(interactor.context.id)
+            ? SubmissionStatusFilter.allCasesForCourse(interactor.context.id)
             : statusFilters
         )
         self.env = env
@@ -101,11 +101,11 @@ class SubmissionListViewModel: ObservableObject {
     // MARK: Exposed To View
 
     var statusFilterOptions: [SubmissionStatusFilter] {
-        SubmissionStatusFilter.courseAllCases(interactor.context.id)
+        SubmissionStatusFilter.allCasesForCourse(interactor.context.id)
     }
 
     var isFilterActive: Bool {
-        let isDefaultStatusFilterSelection = statusFilters.isEmpty || statusFilters == Set(SubmissionStatusFilter.courseAllCases(interactor.context.id))
+        let isDefaultStatusFilterSelection = statusFilters.isEmpty || statusFilters == Set(SubmissionStatusFilter.allCasesForCourse(interactor.context.id))
 
         if isDefaultStatusFilterSelection == false { return true }
 
