@@ -82,12 +82,16 @@ struct SubmissionsFilterScreen: View {
                     options: viewModel.sectionFilterOptions
                 )
                 .tint(viewModel.courseColor)
-                MultiSelectionView(
-                    title: String(localized: "Differentiation Tags", bundle: .teacher),
-                    identifierGroup: "SubmissionsFilter.diffTagOptions",
-                    options: viewModel.differentiationTagFilterOptions
-                )
-                .tint(viewModel.courseColor)
+
+                if viewModel.differentiationTagFilterOptions.all.isNotEmpty {
+                    MultiSelectionView(
+                        title: String(localized: "Differentiation Tags", bundle: .teacher),
+                        identifierGroup: "SubmissionsFilter.diffTagOptions",
+                        options: viewModel.differentiationTagFilterOptions
+                    )
+                    .tint(viewModel.courseColor)
+                }
+
                 SingleSelectionView(
                     title: String(localized: "Sort by", bundle: .teacher),
                     identifierGroup: "SubmissionsFilter.sortByOptions",
