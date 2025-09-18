@@ -82,7 +82,7 @@ final public class CalendarEvent: NSManagedObject, WriteableModel {
         model.startAt = item.start_at
         model.endAt = item.end_at
         model.isAllDay = item.all_day
-        model.isHidden = item.hidden == true
+        model.isHidden = item.hidden ?? false
         model.type = item.type
         model.htmlURL = item.html_url
         model.contextRaw = item.context_code

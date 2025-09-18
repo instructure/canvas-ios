@@ -45,16 +45,7 @@ public struct APICalendarEvent: Codable, Equatable {
     let series_head: Bool?
     /// The event repetition in human readable format
     let series_natural_language: String?
-    let sub_assignment: APISubAssignment?
-}
-
-public struct APISubAssignment: Codable, Equatable {
-    let id: ID
-    let course_id: ID
-    let submission_types: [SubmissionType]
-    let sub_assignment_tag: String?
-    let discussion_topic: APIDiscussionTopic?
-    let html_url: URL?
+    let sub_assignment: APICalendarEventSubAssignment?
 }
 
 #if DEBUG
@@ -83,7 +74,7 @@ extension APICalendarEvent {
         rrule: String? = nil,
         series_head: Bool? = nil,
         series_natural_language: String? = "",
-        sub_assignment: APISubAssignment? = nil
+        sub_assignment: APICalendarEventSubAssignment? = nil
     ) -> APICalendarEvent {
         return APICalendarEvent(
             id: id,
@@ -109,26 +100,6 @@ extension APICalendarEvent {
             series_head: series_head,
             series_natural_language: series_natural_language,
             sub_assignment: sub_assignment
-        )
-    }
-}
-
-extension APISubAssignment {
-    public static func make(
-        id: ID = "",
-        course_id: ID = "",
-        submission_types: [SubmissionType] = [.discussion_topic],
-        sub_assignment_tag: String? = nil,
-        discussion_topic: APIDiscussionTopic? = nil,
-        html_url: URL? = nil
-    ) -> APISubAssignment {
-        return APISubAssignment(
-            id: id,
-            course_id: course_id,
-            submission_types: submission_types,
-            sub_assignment_tag: sub_assignment_tag,
-            discussion_topic: discussion_topic,
-            html_url: html_url
         )
     }
 }
