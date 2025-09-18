@@ -105,12 +105,10 @@ struct SubmissionsFilterViewModel {
     }
 
     var pointsPossibleText: String {
-        guard gradeInputType == .points else { return "" }
         return assignment?.pointsPossibleText ?? ""
     }
 
     var pointsPossibleAccessibilityText: String {
-        guard gradeInputType == .points else { return "" }
         return assignment?.pointsPossibleCompleteText ?? ""
     }
 
