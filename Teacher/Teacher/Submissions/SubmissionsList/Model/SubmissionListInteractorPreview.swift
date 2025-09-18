@@ -21,15 +21,24 @@ import Core
 
 class SubmissionListInteractorPreview: SubmissionListInteractor {
 
+    let env: AppEnvironment
     let context = Context(.course, id: "1")
     let assignmentID = "1"
+
+    init(env: AppEnvironment) {
+        self.env = env
+    }
 
     var submissions: AnyPublisher<[Submission], Never> {
         Just([]).eraseToAnyPublisher()
     }
 
     var assignment: AnyPublisher<Assignment?, Never> {
-        Just(nil).eraseToAnyPublisher()
+        let assignment: Assignment? = env
+            .database
+            .viewContext
+            .first(scope: .all)
+        return Just(assignment).eraseToAnyPublisher()
     }
 
     var course: AnyPublisher<Course?, Never> {
@@ -37,7 +46,11 @@ class SubmissionListInteractorPreview: SubmissionListInteractor {
     }
 
     var courseSections: AnyPublisher<[Core.CourseSection], Never> {
-        Just([]).eraseToAnyPublisher()
+        let sections: [CourseSection] = env
+            .database
+            .viewContext
+            .fetch(scope: .where(\CourseSection.courseID, equals: "1"))
+        return Just(sections).eraseToAnyPublisher()
     }
 
     var assigneeGroups: AnyPublisher<[AssigneeGroup], Never> {

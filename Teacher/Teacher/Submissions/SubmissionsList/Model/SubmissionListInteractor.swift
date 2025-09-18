@@ -25,8 +25,12 @@ public typealias SubmissionsFilter = GetSubmissions.Filter
 public typealias SubmissionsSortMode = GetSubmissions.SortMode
 
 public struct SubmissionListPreference {
-    let filter: SubmissionsFilter
+    let filter: SubmissionsFilter?
     let sortMode: SubmissionsSortMode
+
+    var query: [URLQueryItem] {
+        (filter?.query ?? []) + [sortMode.query]
+    }
 }
 
 public protocol SubmissionListInteractor {

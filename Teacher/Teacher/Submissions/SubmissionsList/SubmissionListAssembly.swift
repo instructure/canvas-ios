@@ -25,7 +25,7 @@ public enum SubmissionListAssembly {
         env: AppEnvironment,
         context: Context,
         assignmentID: String,
-        filter: GetSubmissions.Filter
+        filter: GetSubmissions.Filter?
     ) -> UIViewController {
         let interactor = SubmissionListInteractorLive(context: context, assignmentID: assignmentID, filter: filter, env: env)
         let viewModel = SubmissionListViewModel(interactor: interactor, filter: filter, env: env)
@@ -37,13 +37,34 @@ public enum SubmissionListAssembly {
 
     public static func makeFilterScreenPreview() -> UIViewController {
         let env = PreviewEnvironment()
-        let interactor = SubmissionListInteractorPreview()
+        let context = env.database.viewContext
+
+        let assignment: Assignment = context.insert()
+        assignment.gradingType = .points
+        assignment.pointsPossible = 5
+
+        let section1: CourseSection = context.insert()
+        section1.id = "1"
+        section1.name = "Default"
+        section1.courseID = "1"
+
+        let section2: CourseSection = context.insert()
+        section2.id = "2"
+        section2.name = "Performers"
+        section2.courseID = "1"
+
+        let section3: CourseSection = context.insert()
+        section3.id = "3"
+        section3.name = "Explorers"
+        section3.courseID = "1"
+
+        let interactor = SubmissionListInteractorPreview(env: env)
         let viewModel = SubmissionListViewModel(
             interactor: interactor,
-            filter: .init(statuses: Set(SubmissionStatusFilter.sharedCases)),
+            filter: .init(statuses: Set(SubmissionStatusFilter.basicCases)),
             env: env
         )
-        let view = SubmissionsFilterScreen(viewModel: viewModel)
+        let view = SubmissionsFilterScreen(listViewModel: viewModel)
         let hostingController = CoreHostingController(view, env: env)
         return CoreNavigationController(rootViewController: hostingController)
     }

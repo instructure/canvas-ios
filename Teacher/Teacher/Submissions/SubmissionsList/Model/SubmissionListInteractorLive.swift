@@ -41,7 +41,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     private var differentiationTagsSubject: CurrentValueSubject<[CDUserGroup], Never>
     private var preferenceSubject: CurrentValueSubject<SubmissionListPreference, Never>
 
-    init(context: Context, assignmentID: String, filter: GetSubmissions.Filter, env: AppEnvironment) {
+    init(context: Context, assignmentID: String, filter: GetSubmissions.Filter?, env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
         self.preferenceSubject = CurrentValueSubject<SubmissionListPreference, Never>(
@@ -204,18 +204,22 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     }
 
     func refresh() -> AnyPublisher<Void, Never> {
-        return Publishers.Last(
-            upstream:
-                Publishers.Merge7(
-                    customStatusesStore.forceRefresh(),
-                    courseStore.forceRefresh(),
-                    courseSectionsStore.forceRefresh(),
-                    enrollmentsStore.forceRefresh(),
-                    assignmentStore.forceRefresh(),
-                    userGroupsStore.forceRefresh(),
-                    submissionsStore?.forceRefresh() ?? Empty<Void, Never>().eraseToAnyPublisher()
-                )
+        return Publishers.CombineLatest(
+            Publishers.CombineLatest3(
+                customStatusesStore.forceRefresh(),
+                courseStore.forceRefresh(),
+                courseSectionsStore.forceRefresh(),
+            )
+            .mapToVoid(),
+            Publishers.CombineLatest4(
+                enrollmentsStore.forceRefresh(),
+                assignmentStore.forceRefresh(),
+                userGroupsStore.forceRefresh(),
+                submissionsStore?.forceRefresh() ?? Just<Void>(()).eraseToAnyPublisher()
+            )
+            .mapToVoid()
         )
+        .mapToVoid()
         .eraseToAnyPublisher()
     }
 

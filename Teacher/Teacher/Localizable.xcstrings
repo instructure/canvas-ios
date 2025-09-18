@@ -42631,6 +42631,9 @@
         }
       }
     },
+    "Precise filtering" : {
+
+    },
     "Present" : {
       "localizations" : {
         "ar" : {
@@ -46986,6 +46989,12 @@
           }
         }
       }
+    },
+    "Scored Less than" : {
+
+    },
+    "Scored More than" : {
+
     },
     "Search" : {
       "localizations" : {

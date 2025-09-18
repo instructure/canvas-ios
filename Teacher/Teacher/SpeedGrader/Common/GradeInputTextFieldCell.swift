@@ -153,12 +153,12 @@ extension GradeInputTextFieldCell {
         isSaving: CurrentValueSubject<Bool, Never>
     ) {
         let subtitle: String? = switch inputType {
-        case .points: nil
-        case .percentage: "(\(pointsPossibleText))"
+        case .percentage where pointsPossibleText.isNotEmpty: "(\(pointsPossibleText))"
+        default: nil
         }
         let a11ySubtitle: String? = switch inputType {
-        case .points: nil
-        case .percentage: String(localized: "\(pointsPossibleAccessibilityText) maximum", bundle: .teacher, comment: "Example: '10 points maximum'")
+        case .percentage where pointsPossibleAccessibilityText.isNotEmpty: String(localized: "\(pointsPossibleAccessibilityText) maximum", bundle: .teacher, comment: "Example: '10 points maximum'")
+        default: nil
         }
 
         let placeholder = switch inputType {
