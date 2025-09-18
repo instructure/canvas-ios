@@ -29,7 +29,13 @@ public class GetAssignment: APIUseCase {
     public init(courseID: String, assignmentID: String, include: [GetAssignmentRequest.Include] = []) {
         self.courseID = courseID
         self.assignmentID = assignmentID
-        self.include = include
+
+        // adding required includes
+        var includes = include.appendingUnique(.checkpoints)
+        if include.contains(.submission) {
+            includes.appendUnique(.sub_assignment_submissions)
+        }
+        self.include = includes
     }
 
     public var cacheKey: String? {

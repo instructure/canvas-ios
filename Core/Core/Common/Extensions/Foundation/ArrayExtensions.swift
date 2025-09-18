@@ -39,6 +39,26 @@ public extension Array {
 
 public extension Array where Element: Equatable {
 
+    /// Appends element only if it's not already included in the array.
+    mutating func appendUnique(_ element: Element) {
+        if contains(element) {
+            return
+        }
+
+        append(element)
+    }
+
+    /// Returns an array appending the element only if it's not already included in the array.
+    func appendingUnique(_ element: Element) -> Self {
+        if contains(element) {
+            return self
+        }
+
+        var result = self
+        result.append(element)
+        return result
+    }
+
     /// Appends element if not included in the array, otherwise it will remove
     /// all occurrences of it.
     mutating func appendOrRemove(_ element: Element) {

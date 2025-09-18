@@ -271,4 +271,35 @@ class GetAssignmentTests: CoreTestCase {
         XCTAssertEqual(assignment?.rubric?.first?.ratings?.first?.assignmentID, "2")
         XCTAssertEqual(assignment?.rubric?.first?.ratings?.count, 1)
     }
+
+    // MARK: - Required Includes
+
+    func test_includes_always_shouldHaveCheckpoints() {
+        var testee = makeUseCase(include: [])
+        XCTAssertEqual(testee.include, [.checkpoints])
+
+        testee = makeUseCase(include: [.overrides])
+        XCTAssertEqual(testee.include, [.overrides, .checkpoints])
+
+        testee = makeUseCase(include: [.checkpoints])
+        XCTAssertEqual(testee.include, [.checkpoints])
+    }
+
+    func test_includes_whenHaveSubmission_shouldHaveSubAssignmentSubmissions() {
+        var testee = makeUseCase(include: [.submission])
+        XCTAssertEqual(testee.include, [.submission, .checkpoints, .sub_assignment_submissions])
+
+        testee = makeUseCase(include: [.submission, .sub_assignment_submissions])
+        XCTAssertEqual(testee.include, [.submission, .sub_assignment_submissions, .checkpoints])
+    }
+
+    // MARK: - Private helpers
+
+    private func makeUseCase(
+        courseID: String = "1",
+        assignmentID: String = "2",
+        include: [GetAssignmentRequest.Include] = []
+    ) -> GetAssignment {
+        GetAssignment(courseID: courseID, assignmentID: assignmentID, include: include)
+    }
 }

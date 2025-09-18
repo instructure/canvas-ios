@@ -323,6 +323,9 @@ public class Assignment: NSManagedObject {
                     )
                 }
                 .sorted(by: <)
+        }
+
+        if hasSubAssignments {
             self.dueAtOrCheckpointsDueAt = self.checkpoints.reduce(dueAt) { $0 ?? $1.dueDate }
         } else {
             self.dueAtOrCheckpointsDueAt = dueAt
