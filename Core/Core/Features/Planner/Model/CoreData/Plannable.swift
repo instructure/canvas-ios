@@ -38,8 +38,6 @@ public final class Plannable: NSManagedObject {
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var userID: String?
     @NSManaged public var details: String?
-    @NSManaged public var isMarkedComplete: Bool
-    @NSManaged public var isSubmitted: Bool
     @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
     public var discussionCheckpointStep: DiscussionCheckpointStep? {
         get { return discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(value: newValue) }
@@ -77,8 +75,6 @@ public final class Plannable: NSManagedObject {
             tag: item.plannable?.sub_assignment_tag,
             requiredReplyCount: item.details?.reply_to_entry_required_count
         )
-        model.isMarkedComplete = item.planner_override?.marked_complete ?? false
-        model.isSubmitted = item.submissions?.value1?.submitted ?? false
         return model
     }
 
