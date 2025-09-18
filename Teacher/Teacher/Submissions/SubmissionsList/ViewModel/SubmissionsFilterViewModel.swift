@@ -89,19 +89,21 @@ struct SubmissionsFilterViewModel {
 
         gradeInputType = listViewModel.gradeInputType
 
+        let formatter = GradeFormatter.numberFormatter
+
         scoredMoreFilterValue = .init(listViewModel
             .scoreBasedFilters
             .moreThanFilter
-            .flatMap({ listViewModel.toScoreInputValue($0.score) })?
-            .formatted(.number.precision(.fractionLength(0 ... 3))) ?? ""
+            .flatMap({ listViewModel.toScoreInputValue($0.score) })
+            .flatMap({ formatter.string(from: NSNumber(value: $0)) }) ?? ""
         )
 
         scoredLessFilterValue = .init(
             listViewModel
                 .scoreBasedFilters
                 .lessThanFilter
-                .flatMap({ listViewModel.toScoreInputValue($0.score) })?
-                .formatted(.number.precision(.fractionLength(0 ... 3))) ?? ""
+                .flatMap({ listViewModel.toScoreInputValue($0.score) })
+                .flatMap({ formatter.string(from: NSNumber(value: $0)) }) ?? ""
         )
     }
 
@@ -120,12 +122,10 @@ struct SubmissionsFilterViewModel {
     }
 
     var pointsPossibleText: String {
-        guard gradeInputType == .points else { return "" }
         return assignment?.pointsPossibleText ?? ""
     }
 
     var pointsPossibleAccessibilityText: String {
-        guard gradeInputType == .points else { return "" }
         return assignment?.pointsPossibleCompleteText ?? ""
     }
 

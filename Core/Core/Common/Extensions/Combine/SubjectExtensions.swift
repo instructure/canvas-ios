@@ -19,7 +19,7 @@
 import Combine
 import SwiftUI
 
-public extension CurrentValueSubject {
+public extension CurrentValueSubject where Failure == Never {
     var binding: Binding<Output> {
         Binding(
             get: { self.value },

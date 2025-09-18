@@ -196,10 +196,10 @@ extension String {
     }
 
     public func asURLPathWithQuery(_ queryItems: [URLQueryItem]) -> String {
-        var comps = URLComponents()
-        comps.path = self
-        comps.queryItems = queryItems
-        return comps.string ?? self
+        var components = URLComponents()
+        components.path = self
+        components.queryItems = queryItems
+        return components.string ?? self
     }
 }
 

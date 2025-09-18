@@ -39,13 +39,13 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
     private var submissionsSubject = PassthroughSubject<[Submission], Never>()
     private var differentiationTagsSubject: CurrentValueSubject<[CDUserGroup], Never>
-    private var preferenceSubject: CurrentValueSubject<SubmissionListPreference, Never>
+    private var preferencesSubject: CurrentValueSubject<SubmissionListPreferences, Never>
 
     init(context: Context, assignmentID: String, filter: GetSubmissions.Filter?, env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
-        self.preferenceSubject = CurrentValueSubject<SubmissionListPreference, Never>(
-            SubmissionListPreference(filter: filter, sortMode: .studentSortableName)
+        self.preferencesSubject = CurrentValueSubject<SubmissionListPreferences, Never>(
+            SubmissionListPreferences(filter: filter, sortMode: .studentSortableName)
         )
         self.differentiationTagsSubject = CurrentValueSubject<[CDUserGroup], Never>([])
         self.env = env
@@ -80,7 +80,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             environment: env
         )
 
-        preferenceSubject
+        preferencesSubject
             .sink { [weak self] pref in
                 self?.setupSubmissionsStore(pref)
             }
@@ -102,7 +102,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .store(in: &subscriptions)
     }
 
-    private func setupSubmissionsStore(_ pref: SubmissionListPreference) {
+    private func setupSubmissionsStore(_ pref: SubmissionListPreferences) {
         submissionsStore = ReactiveStore(
             useCase: GetSubmissions(
                 context: context,
@@ -223,8 +223,8 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
         .eraseToAnyPublisher()
     }
 
-    func applyPreference(_ pref: SubmissionListPreference) {
-        preferenceSubject.send(pref)
+    func applyPreferences(_ pref: SubmissionListPreferences) {
+        preferencesSubject.send(pref)
     }
 }
 
