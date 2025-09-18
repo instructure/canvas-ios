@@ -116,7 +116,7 @@ class SubmissionListViewModel: ObservableObject {
             .CombineLatest4($statusFilters, $scoreBasedFilters, $sectionFilters, $sortMode)
             .sink { [weak self] _ in
                 guard let self else { return }
-                interactor.applyPreference(selectedPreference)
+                interactor.applyPreferences(selectedPreferences)
             }
             .store(in: &subscriptions)
     }
@@ -143,8 +143,8 @@ class SubmissionListViewModel: ObservableObject {
         return sectionFilters.isEmpty || sectionFilters == defaultSectionsList
     }
 
-    private var selectedPreference: SubmissionListPreference {
-        SubmissionListPreference(
+    private var selectedPreferences: SubmissionListPreferences {
+        SubmissionListPreferences(
             filter: SubmissionsFilter(
                 statuses: hasStatusesFilterDefaultSelection ? [] : statusFilters,
                 score: scoreBasedFilters,
@@ -219,7 +219,7 @@ class SubmissionListViewModel: ObservableObject {
     }
 
     func didTapSubmissionRow(_ submission: SubmissionListItem, from controller: WeakViewController) {
-        let queryItems = selectedPreference.query
+        let queryItems = selectedPreferences.query
         env.router.route(
             to: (assignmentRoute + "/submissions/\(submission.originalUserID)").asURLPathWithQuery(queryItems),
             from: controller.value,

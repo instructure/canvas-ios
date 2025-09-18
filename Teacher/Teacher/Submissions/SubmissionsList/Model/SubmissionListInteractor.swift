@@ -24,7 +24,7 @@ public typealias SubmissionStatusFilter = GetSubmissions.Filter.Status
 public typealias SubmissionsFilter = GetSubmissions.Filter
 public typealias SubmissionsSortMode = GetSubmissions.SortMode
 
-public struct SubmissionListPreference {
+public struct SubmissionListPreferences {
     let filter: SubmissionsFilter?
     let sortMode: SubmissionsSortMode
 
@@ -45,7 +45,7 @@ public protocol SubmissionListInteractor {
     var assignmentID: String { get }
 
     func refresh() -> AnyPublisher<Void, Never>
-    func applyPreference(_ pref: SubmissionListPreference)
+    func applyPreferences(_ pref: SubmissionListPreferences)
 }
 
 public struct AssigneeGroup: Equatable {

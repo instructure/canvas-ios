@@ -37,7 +37,6 @@ struct SubmissionsFilterScreen: View {
                     identifierGroup: "SubmissionsFilter.statusOptions",
                     options: viewModel.statusFilterOptions
                 )
-                .tint(viewModel.courseColor)
 
                 if let gradeInputType = viewModel.gradeInputType {
 
@@ -65,14 +64,10 @@ struct SubmissionsFilterScreen: View {
                         }
 
                     } header: {
-                        VStack(alignment: .leading, spacing: 0) {
-                            Text("Precise filtering", bundle: .teacher)
-                                .textStyle(.sectionHeader)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .paddingStyle(set: .sectionHeader)
-                                .accessibilityAddTraits([.isHeader])
-                            InstUI.Divider()
-                        }
+                        InstUI.ListSectionHeader(
+                            title: String(localized: "Precise filtering", bundle: .teacher),
+                            itemCount: 2
+                        )
                     }
                 }
 
@@ -82,7 +77,6 @@ struct SubmissionsFilterScreen: View {
                         identifierGroup: "SubmissionsFilter.sectionOptions",
                         options: sectionOptions
                     )
-                    .tint(viewModel.courseColor)
                 }
 
                 SingleSelectionView(
@@ -90,8 +84,8 @@ struct SubmissionsFilterScreen: View {
                     identifierGroup: "SubmissionsFilter.sortByOptions",
                     options: viewModel.sortModeOptions
                 )
-                .tint(viewModel.courseColor)
             }
+            .tint(viewModel.courseColor)
         }
         .background(Color.backgroundLightest)
         .toolbar {
