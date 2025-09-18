@@ -197,21 +197,40 @@ let router = Router(routes: [
             let userId = params["userID"]
         else { return nil }
 
-        let filter = url
-            .queryValue(for: "filter")?
-            .components(separatedBy: ",")
-            .compactMap {
-                GetSubmissions.Filter.Status(rawValue: $0)
-            } ?? []
+        let statuses = Set(
+            url
+                .queryValue(for: "filter")?
+                .components(separatedBy: ",")
+                .compactMap {
+                    GetSubmissions.Filter.Status(rawValue: $0)
+                } ?? []
+        )
 
-        let sortMode = url.queryValue(for: "sort").flatMap({ GetSubmissions.SortMode(rawValue: $0) })
-                        ?? .studentSortableName
+        let scoreBased = Set(
+            [
+                url
+                    .queryValue(for: "scoredMore")
+                    .flatMap({ $0.removingPercentEncoding })
+                    .flatMap(Double.init)
+                    .flatMap({ GetSubmissions.Filter.Score(operation: .moreThan, score: $0) }),
+
+                url.queryValue(for: "scoredLess")
+                    .flatMap({ $0.removingPercentEncoding })
+                    .flatMap(Double.init)
+                    .flatMap({ GetSubmissions.Filter.Score(operation: .lessThan, score: $0) })
+            ]
+                .compactMap({ $0 })
+        )
+
+        let sortMode = url
+            .queryValue(for: "sort")
+            .flatMap({ GetSubmissions.SortMode(rawValue: $0) }) ?? .studentSortableName
 
         return SpeedGraderAssembly.makeSpeedGraderViewController(
             context: context,
             assignmentId: assignmentId,
             userId: userId,
-            filter: filter,
+            filter: .init(statuses: statuses, score: scoreBased),
             sortMode: sortMode,
             env: env
         )

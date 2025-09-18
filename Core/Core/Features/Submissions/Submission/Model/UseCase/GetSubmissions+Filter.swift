@@ -245,6 +245,11 @@ extension GetSubmissions.Filter {
         public let operation: Operation
         public let score: Double
 
+        public init(operation: Operation, score: Double) {
+            self.operation = operation
+            self.score = score
+        }
+
         var predicate: NSPredicate {
             switch operation {
             case .moreThan:
@@ -270,6 +275,15 @@ extension GetSubmissions.Filter {
         public static func lessThan(_ score: Double) -> Self {
             Score(operation: .lessThan, score: score)
         }
+
+        var query: String {
+            switch operation {
+            case .moreThan:
+                return "scoredMore=\(String(score).urlSafePercentEncoded)"
+            case .lessThan:
+                return "scoredLess=\(String(score).urlSafePercentEncoded)"
+            }
+        }
     }
 }
 
@@ -282,6 +296,10 @@ extension Collection where Element == GetSubmissions.Filter.Score {
 
     public var lessThanFilter: GetSubmissions.Filter.Score? {
         first(where: { $0.operation == .lessThan })
+    }
+
+    public var query: String? {
+        map { $0.query }.joined(separator: "&").nilIfEmpty
     }
 }
 

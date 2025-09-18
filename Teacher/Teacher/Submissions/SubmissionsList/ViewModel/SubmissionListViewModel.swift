@@ -212,6 +212,7 @@ class SubmissionListViewModel: ObservableObject {
     func didTapSubmissionRow(_ submission: SubmissionListItem, from controller: WeakViewController) {
         var query: String = [
             isFilterActive ? statusFilters.query : nil,
+            scoreBasedFilters.query,
             sortMode.query
         ]
             .compactMap { $0 }
