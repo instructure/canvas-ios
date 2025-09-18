@@ -143,6 +143,7 @@ class SubmissionListViewModel: ObservableObject {
         if !hasStatusesFilterDefaultSelection { return true }
         if !hasSectionsFilterDefaultSelection { return true }
         if hasDifferentiationTagFilter { return true}
+        if scoreBasedFilters.isNotEmpty { return true }
         return false
     }
 
