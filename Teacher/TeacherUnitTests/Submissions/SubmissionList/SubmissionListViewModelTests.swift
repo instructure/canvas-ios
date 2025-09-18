@@ -264,6 +264,9 @@ final class SubmissionListViewModelTests: TeacherTestCase {
 
     func testFilterModeChange() {
         viewModel.statusFilters = [.graded]
+        viewModel.sectionFilters = []
+        viewModel.scoreBasedFilters = []
+        viewModel.sortMode = .studentSortableName
         XCTAssertEqual(interactor.appliedPreference?.filter?.statuses, [.graded])
     }
 
@@ -371,7 +374,9 @@ final class SubmissionListViewModelTests: TeacherTestCase {
         ].joined(separator: "/")
 
         XCTAssertEqual(routedURL.path, expectedPath)
-        XCTAssertNil(routedURL.query)
+        XCTAssertEqual(routedURL.queryItems, [
+            GetSubmissions.SortMode.studentSortableName.query
+        ])
 
         // When
         viewModel.statusFilters = [.submitted]
@@ -380,8 +385,13 @@ final class SubmissionListViewModelTests: TeacherTestCase {
         // Then
         routedURL = try XCTUnwrap(router.calls.last?.0)
 
-        let expectedFilters = [SubmissionStatusFilter.submitted].query.flatMap({ [$0] })
-        XCTAssertEqual(routedURL.queryItems, expectedFilters)
+        XCTAssertEqual(
+            Set(routedURL.queryItems ?? []),
+            Set([
+                GetSubmissions.SortMode.studentSortableName.query,
+                [SubmissionStatusFilter.submitted].query
+            ].compactMap({ $0 }))
+        )
     }
 }
 
