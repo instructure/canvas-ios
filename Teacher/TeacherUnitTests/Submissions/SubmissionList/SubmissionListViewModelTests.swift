@@ -264,7 +264,7 @@ final class SubmissionListViewModelTests: TeacherTestCase {
 
     func testFilterModeChange() {
         viewModel.statusFilters = [.graded]
-        XCTAssertEqual(interactor.appliedPreference?.filter.statuses, [.graded])
+        XCTAssertEqual(interactor.appliedPreference?.filter?.statuses, [.graded])
     }
 
     func testRefresh() {
@@ -380,8 +380,8 @@ final class SubmissionListViewModelTests: TeacherTestCase {
         // Then
         routedURL = try XCTUnwrap(router.calls.last?.0)
 
-        let expectedFilters = [SubmissionStatusFilter.submitted].query
-        XCTAssertEqual(routedURL.query, expectedFilters)
+        let expectedFilters = [SubmissionStatusFilter.submitted].query.flatMap({ [$0] })
+        XCTAssertEqual(routedURL.queryItems, expectedFilters)
     }
 }
 

@@ -52,6 +52,21 @@ extension GetSubmissions {
                 .compactMap({ $0 })
                 .andRelated
         }
+
+        public var query: [URLQueryItem] {
+            let checkables = [statuses.query, sections.query].compactMap({ $0 })
+            return checkables + score.query
+        }
+
+        public var nilIfEmpty: Self? {
+            if statuses.isEmpty,
+               score.isEmpty,
+               sections.isEmpty,
+               differentiationTags.isEmpty {
+                return nil
+            }
+            return self
+        }
     }
 }
 
@@ -75,6 +90,43 @@ extension GetSubmissions.Filter: ExpressibleByArrayLiteral {
 
     public static func section(_ sections: String...) -> Self {
         .init(statuses: [], sections: Set(sections))
+    }
+
+    public init(urlComponents url: URLComponents) {
+        let statuses: Set<GetSubmissions.Filter.Status> = Set(
+            url
+                .queryValue(for: "statuses")
+                .flatMap({ $0.removingPercentEncoding })?
+                .components(separatedBy: ",")
+                .compactMap {
+                    GetSubmissions.Filter.Status(rawValue: $0)
+                } ?? []
+        )
+
+        let sections: Set<String> = Set(
+            url
+                .queryValue(for: "sections")
+                .flatMap({ $0.removingPercentEncoding })?
+                .components(separatedBy: ",") ?? []
+        )
+
+        let scores: Set<GetSubmissions.Filter.Score> = Set(
+            [
+                url
+                    .queryValue(for: "scoredMore")
+                    .flatMap({ $0.removingPercentEncoding })
+                    .flatMap(Double.init)
+                    .flatMap({ GetSubmissions.Filter.Score(operation: .moreThan, score: $0) }),
+
+                url.queryValue(for: "scoredLess")
+                    .flatMap({ $0.removingPercentEncoding })
+                    .flatMap(Double.init)
+                    .flatMap({ GetSubmissions.Filter.Score(operation: .lessThan, score: $0) })
+            ]
+                .compactMap({ $0 })
+        )
+
+        self.init(statuses: statuses, score: scores, sections: sections)
     }
 }
 
@@ -144,10 +196,6 @@ extension GetSubmissions.Filter {
             case .custom(let name):
                 "custom:\(name)"
             }
-        }
-
-        public var queryValue: String {
-            rawValue
         }
 
         var predicate: NSPredicate {
@@ -220,9 +268,12 @@ extension Collection where Element == GetSubmissions.Filter.Status {
             .allSatisfy({ contains(.custom($0)) })
     }
 
-    public var query: String? {
-        let value = map(\.rawValue).joined(separator: ",").nilIfEmpty ?? ""
-        return value.isEmpty ? nil : "filter=\(value)"
+    public var query: URLQueryItem? {
+        return map(\.rawValue)
+            .joined(separator: ",")
+            .nilIfEmpty
+            .flatMap({ $0.urlQuerySafePercentEncoded })
+            .flatMap({ URLQueryItem(name: "statuses", value: $0) })
     }
 }
 
@@ -276,12 +327,14 @@ extension GetSubmissions.Filter {
             Score(operation: .lessThan, score: score)
         }
 
-        var query: String {
-            switch operation {
+        var queryItem: URLQueryItem? {
+            guard let scoreValue = String(score).urlQuerySafePercentEncoded else { return nil }
+
+            return switch operation {
             case .moreThan:
-                return "scoredMore=\(String(score).urlSafePercentEncoded)"
+                URLQueryItem(name: "scoredMore", value: scoreValue)
             case .lessThan:
-                return "scoredLess=\(String(score).urlSafePercentEncoded)"
+                URLQueryItem(name: "scoredLess", value: scoreValue)
             }
         }
     }
@@ -298,8 +351,8 @@ extension Collection where Element == GetSubmissions.Filter.Score {
         first(where: { $0.operation == .lessThan })
     }
 
-    public var query: String? {
-        map { $0.query }.joined(separator: "&").nilIfEmpty
+    public var query: [URLQueryItem] {
+        return compactMap { $0.queryItem }
     }
 }
 
@@ -319,6 +372,14 @@ extension Collection where Element == GetSubmissions.Filter.Section {
             #keyPath(Submission.enrollments.courseSectionID),
             sorted(by: \.sectionID).map(\.sectionID)
         )
+    }
+
+    public var query: URLQueryItem? {
+        map(\.sectionID)
+            .joined(separator: ",")
+            .nilIfEmpty
+            .flatMap({ $0.urlQuerySafePercentEncoded })
+            .flatMap({ URLQueryItem(name: "sections", value: $0) })
     }
 }
 

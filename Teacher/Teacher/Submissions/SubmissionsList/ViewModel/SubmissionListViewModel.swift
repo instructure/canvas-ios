@@ -114,14 +114,9 @@ class SubmissionListViewModel: ObservableObject {
 
         Publishers
             .CombineLatest4($statusFilters, $scoreBasedFilters, $sectionFilters, $sortMode)
-            .map { (statuses, scores, sections, order) -> SubmissionListPreference in
-                SubmissionListPreference(
-                    filter: SubmissionsFilter(statuses: statuses, score: scores, sections: sections),
-                    sortMode: order
-                )
-            }
-            .sink { [weak self] pref in
-                self?.interactor.applyPreference(pref)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                interactor.applyPreference(selectedPreference)
             }
             .store(in: &subscriptions)
     }
@@ -133,16 +128,29 @@ class SubmissionListViewModel: ObservableObject {
     // MARK: Exposed To View
 
     var isFilterActive: Bool {
-        let isDefaultStatusFilterSelection = statusFilters.isEmpty || statusFilters == Set(SubmissionStatusFilter.allCasesForCourse(interactor.context.id))
-
-        if isDefaultStatusFilterSelection == false { return true }
-
-        let defaultSectionsList = Set(courseSections.map(\.id))
-        let isDefaultSectionFilterSelection = sectionFilters.isEmpty || sectionFilters == defaultSectionsList
-
-        if isDefaultSectionFilterSelection == false { return true }
-
+        if !hasStatusesFilterDefaultSelection { return true }
+        if !hasSectionsFilterDefaultSelection { return true }
         return false
+    }
+
+    private var hasStatusesFilterDefaultSelection: Bool {
+        statusFilters.isEmpty || statusFilters.isAllCasesForCourseIncluded(interactor.context.id)
+    }
+
+    private var hasSectionsFilterDefaultSelection: Bool {
+        let defaultSectionsList = Set(courseSections.map(\.id))
+        return sectionFilters.isEmpty || sectionFilters == defaultSectionsList
+    }
+
+    private var selectedPreference: SubmissionListPreference {
+        SubmissionListPreference(
+            filter: SubmissionsFilter(
+                statuses: hasStatusesFilterDefaultSelection ? [] : statusFilters,
+                score: scoreBasedFilters,
+                sections: hasSectionsFilterDefaultSelection ? [] : sectionFilters
+            ).nilIfEmpty,
+            sortMode: sortMode
+        )
     }
 
     func refresh(_ completion: @escaping () -> Void) {
@@ -210,18 +218,9 @@ class SubmissionListViewModel: ObservableObject {
     }
 
     func didTapSubmissionRow(_ submission: SubmissionListItem, from controller: WeakViewController) {
-        var query: String = [
-            isFilterActive ? statusFilters.query : nil,
-            scoreBasedFilters.query,
-            sortMode.query
-        ]
-            .compactMap { $0 }
-            .joined(separator: "&")
-
-        query = query.isNotEmpty ? "?\(query)" : query
-
+        let queryItems = selectedPreference.query
         env.router.route(
-            to: assignmentRoute + "/submissions/\(submission.originalUserID)\(query)",
+            to: (assignmentRoute + "/submissions/\(submission.originalUserID)").asURLPathWithQuery(queryItems),
             from: controller.value,
             options: .modal(.fullScreen, isDismissable: false, embedInNav: true)
         )

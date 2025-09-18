@@ -39,7 +39,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     private var submissionsSubject = PassthroughSubject<[Submission], Never>()
     private var preferenceSubject: CurrentValueSubject<SubmissionListPreference, Never>
 
-    init(context: Context, assignmentID: String, filter: GetSubmissions.Filter, env: AppEnvironment) {
+    init(context: Context, assignmentID: String, filter: GetSubmissions.Filter?, env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
         self.preferenceSubject = CurrentValueSubject<SubmissionListPreference, Never>(

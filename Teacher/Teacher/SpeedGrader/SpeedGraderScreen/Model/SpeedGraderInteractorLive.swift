@@ -35,7 +35,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     let customGradebookColumnsInteractor: CustomGradebookColumnsInteractor
 
     private let env: AppEnvironment
-    private let filter: GetSubmissions.Filter
+    private let filter: GetSubmissions.Filter?
     private let sortMode: GetSubmissions.SortMode
     private var subscriptions = Set<AnyCancellable>()
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
@@ -44,7 +44,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         context: Context,
         assignmentID: String,
         userID: String,
-        filter: GetSubmissions.Filter,
+        filter: GetSubmissions.Filter?,
         sortMode: GetSubmissions.SortMode,
         gradeStatusInteractor: GradeStatusInteractor,
         submissionWordCountInteractor: SubmissionWordCountInteractor,

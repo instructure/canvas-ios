@@ -162,15 +162,12 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions") { url, params, _, env in
         guard let context = Context(path: url.path), let assignmentID = params["assignmentID"] else { return nil }
-        let statuses = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
-            GetSubmissions.Filter.Status(rawValue: $0)
-        } ?? []
-
+        let filter = GetSubmissions.Filter(urlComponents: url)
         return SubmissionListAssembly.makeViewController(
             env: env,
             context: context,
             assignmentID: assignmentID,
-            filter: .init(statuses: Set(statuses))
+            filter: filter.nilIfEmpty
         )
     },
 
@@ -197,30 +194,7 @@ let router = Router(routes: [
             let userId = params["userID"]
         else { return nil }
 
-        let statuses = Set(
-            url
-                .queryValue(for: "filter")?
-                .components(separatedBy: ",")
-                .compactMap {
-                    GetSubmissions.Filter.Status(rawValue: $0)
-                } ?? []
-        )
-
-        let scoreBased = Set(
-            [
-                url
-                    .queryValue(for: "scoredMore")
-                    .flatMap({ $0.removingPercentEncoding })
-                    .flatMap(Double.init)
-                    .flatMap({ GetSubmissions.Filter.Score(operation: .moreThan, score: $0) }),
-
-                url.queryValue(for: "scoredLess")
-                    .flatMap({ $0.removingPercentEncoding })
-                    .flatMap(Double.init)
-                    .flatMap({ GetSubmissions.Filter.Score(operation: .lessThan, score: $0) })
-            ]
-                .compactMap({ $0 })
-        )
+        let filter = GetSubmissions.Filter(urlComponents: url).nilIfEmpty
 
         let sortMode = url
             .queryValue(for: "sort")
@@ -230,7 +204,7 @@ let router = Router(routes: [
             context: context,
             assignmentId: assignmentId,
             userId: userId,
-            filter: .init(statuses: statuses, score: scoreBased),
+            filter: filter,
             sortMode: sortMode,
             env: env
         )

@@ -27,7 +27,7 @@ enum SpeedGraderAssembly {
         context: Context,
         assignmentId: String,
         userId: String?,
-        filter: GetSubmissions.Filter,
+        filter: GetSubmissions.Filter?,
         sortMode: GetSubmissions.SortMode,
         env: AppEnvironment
     ) -> UIViewController {
