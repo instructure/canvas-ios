@@ -30,7 +30,7 @@ public class GetPlannables: UseCase {
         var plannerNotes: [APIPlannerNote]?
     }
 
-    var userId: String?
+    var userID: String?
     var startDate: Date
     var endDate: Date
     var contextCodes: [String]?
@@ -39,8 +39,8 @@ public class GetPlannables: UseCase {
     let observerEvents = PassthroughSubject<EventsRequest, Never>()
     var subscriptions = Set<AnyCancellable>()
 
-    public init(userId: String? = nil, startDate: Date, endDate: Date, contextCodes: [String]? = nil, filter: String = "") {
-        self.userId = userId
+    public init(userID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String]? = nil, filter: String = "") {
+        self.userID = userID
         self.startDate = startDate
         self.endDate = endDate
         self.contextCodes = contextCodes
@@ -51,7 +51,7 @@ public class GetPlannables: UseCase {
 
     public var cacheKey: String? {
         let codes = contextCodes?.joined(separator: ",") ?? ""
-        return "get-plannables-\(userId ?? "")-\(startDate)-\(endDate)-\(filter)-\(codes)"
+        return "get-plannables-\(userID ?? "")-\(startDate)-\(endDate)-\(filter)-\(codes)"
     }
 
     public var scope: Scope {
@@ -59,9 +59,9 @@ public class GetPlannables: UseCase {
             startDate as NSDate, #keyPath(Plannable.date),
             #keyPath(Plannable.date), endDate as NSDate
         )
-        if let userId {
+        if let userID = userID {
             predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                NSPredicate(key: #keyPath(Plannable.userId), equals: userId),
+                NSPredicate(key: #keyPath(Plannable.userID), equals: userID),
                 predicate
             ])
         }
@@ -95,7 +95,7 @@ public class GetPlannables: UseCase {
 
         case .student:
             let request = GetPlannablesRequest(
-                userId: userId,
+                userID: userID,
                 startDate: startDate,
                 endDate: endDate,
                 contextCodes: contextCodes ?? [],
@@ -117,11 +117,11 @@ public class GetPlannables: UseCase {
         let plannerNoteItems: [APIPlannerNote] = response?.plannerNotes ?? []
 
         for item in plannableItems where item.plannableType != .announcement {
-            Plannable.save(item, userId: userId, in: client)
+            Plannable.save(item, userId: userID, in: client)
         }
 
         for item in calendarEventItems where item.hidden != true {
-            Plannable.save(item, userId: userId, in: client)
+            Plannable.save(item, userId: userID, in: client)
         }
 
         for item in plannerNoteItems {

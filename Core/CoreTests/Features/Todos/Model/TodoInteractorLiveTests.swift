@@ -123,7 +123,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         // When
         api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), expectation: coursesAPICallExpectation, value: courses)
         api.mock(GetPlannablesRequest(
-            userId: nil,
+            userID: nil,
             startDate: Date.now,
             endDate: Date.distantFuture,
             contextCodes: makeContextCodes(courseIds: ["1"])
@@ -208,7 +208,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
     private func mockPlannables(_ plannables: [APIPlannable], contextCodes: [String]) {
         api.mock(GetPlannablesRequest(
-            userId: nil,
+            userID: nil,
             startDate: Date.now,
             endDate: Date.distantFuture,
             contextCodes: contextCodes
@@ -217,7 +217,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
     private func mockPlannables(_ plannables: [APIPlannable], contextCodes: [String], startDate: Date, endDate: Date) {
         api.mock(GetPlannablesRequest(
-            userId: nil,
+            userID: nil,
             startDate: startDate,
             endDate: endDate,
             contextCodes: contextCodes

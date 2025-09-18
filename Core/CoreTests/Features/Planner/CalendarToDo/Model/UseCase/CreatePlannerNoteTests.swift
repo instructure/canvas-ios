@@ -82,7 +82,7 @@ final class CreatePlannerNoteTests: CoreTestCase {
         XCTAssertEqual(model?.title, TestConstants.responseTitle)
         XCTAssertEqual(model?.details, TestConstants.responseDetails)
         XCTAssertEqual(model?.date, TestConstants.responseTodoDate)
-        XCTAssertEqual(model?.userId, TestConstants.responseUserId)
+        XCTAssertEqual(model?.userID, TestConstants.responseUserId)
         XCTAssertEqual(model?.context?.courseId, TestConstants.responseCourseId)
     }
 }

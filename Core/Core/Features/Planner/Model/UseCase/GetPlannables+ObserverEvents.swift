@@ -79,7 +79,7 @@ extension GetPlannables {
             return Just(contexts).eraseToAnyPublisher()
         }
 
-        guard let userId else {
+        guard let userID = userID else {
             return Just([]).eraseToAnyPublisher()
         }
 
@@ -101,7 +101,7 @@ extension GetPlannables {
                 var contexts: [Context] = []
                 for course in courses {
                     let enrollments = course.enrollments ?? []
-                    for enrollment in enrollments where enrollment.associated_user_id?.value == userId {
+                    for enrollment in enrollments where enrollment.associated_user_id?.value == userID {
                         contexts.append(Context(.course, id: course.id.value))
                     }
                 }
@@ -121,7 +121,7 @@ extension GetPlannables {
             type: type,
             include: [.submission],
             allEvents: false,
-            userId: userId
+            userID: userID
         )
 
         return Future<[ObserverEvent], EventsFailure> { promise in

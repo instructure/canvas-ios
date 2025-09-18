@@ -143,8 +143,8 @@ public struct GetCalendarEventsRequest: APIRequestable {
     }
 
     public var path: String {
-        if let userId {
-            let context = Context(.user, id: userId)
+        if let userID = userID {
+            let context = Context(.user, id: userID)
             return "\(context.pathComponent)/calendar_events"
         }
         return "calendar_events"
@@ -156,7 +156,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
     public let perPage: Int
     public let include: [Include]
     public let allEvents: Bool?
-    public let userId: String?
+    public let userID: String?
     public let importantDates: Bool?
     public var useExtendedPercentEncoding: Bool { true }
     private static let dateFormatter: DateFormatter = {
@@ -175,7 +175,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
         perPage: Int = 100,
         include: [Include] = [],
         allEvents: Bool? = nil,
-        userId: String? = nil,
+        userID: String? = nil,
         importantDates: Bool? = nil
     ) {
         self.contexts = contexts
@@ -187,7 +187,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
         self.perPage = perPage
         self.include = include
         self.allEvents = allEvents
-        self.userId = userId
+        self.userID = userID
         self.importantDates = importantDates
     }
 
@@ -200,10 +200,10 @@ public struct GetCalendarEventsRequest: APIRequestable {
             .optionalValue("end_date", createDateString(from: endDate)),
             .optionalBool("important_dates", importantDates)
         ]
-        if let contexts {
+        if let contexts = contexts {
             query.append(.array("context_codes", contexts.map { $0.canvasContextID }))
         }
-        if let allEvents {
+        if let allEvents = allEvents {
             query.append(.bool("all_events", allEvents))
         }
 
@@ -211,7 +211,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
     }
 
     private func createDateString(from date: Date?) -> String {
-        if let date {
+        if let date = date {
             return Self.dateFormatter.string(from: date)
         } else {
             return ""

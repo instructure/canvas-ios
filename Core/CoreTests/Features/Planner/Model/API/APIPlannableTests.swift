@@ -32,7 +32,7 @@ class APIPlannableTests: XCTestCase {
     }
 
     func testPathWithUserID() {
-        req = GetPlannablesRequest(userId: "1", startDate: nil, endDate: nil, contextCodes: [], filter: "")
+        req = GetPlannablesRequest(userID: "1", startDate: nil, endDate: nil, contextCodes: [], filter: "")
         XCTAssertEqual(req.path, "users/1/planner/items")
     }
 

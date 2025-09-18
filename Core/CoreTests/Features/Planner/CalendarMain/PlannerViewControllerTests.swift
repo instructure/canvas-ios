@@ -89,7 +89,7 @@ class PlannerViewControllerTests: CoreTestCase {
             .rootView.content.screenViewTrackingParameters.eventName
         XCTAssertEqual(presentedEventName, "/calendar/new")
 
-        XCTAssertEqual(controller.getPlannables(from: Clock.now, to: Clock.now).userId, controller.studentID)
+        XCTAssertEqual(controller.getPlannables(from: Clock.now, to: Clock.now).userID, controller.studentID)
 
         let selected = DateComponents(calendar: .current, year: 2020, month: 2, day: 22).date!
         controller.calendar.delegate?.calendarDidSelectDate(selected)
@@ -156,7 +156,7 @@ class PlannerViewControllerTests: CoreTestCase {
 
         controller.studentID = "changed"
         controller.list.delegate?.plannerListWillRefresh()
-        XCTAssertEqual(controller.calendar.days.plannables?.useCase.userId, "changed")
+        XCTAssertEqual(controller.calendar.days.plannables?.useCase.userID, "changed")
 
         let list = controller.list!
         let dataSource = controller.listPageController.dataSource

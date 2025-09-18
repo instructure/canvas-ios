@@ -21,7 +21,7 @@ import XCTest
 
 class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
     func getPlannables(from: Date, to: Date) -> GetPlannables {
-        return GetPlannables(userId: userId, startDate: from, endDate: to, contextCodes: contextCodes)
+        return GetPlannables(userID: userID, startDate: from, endDate: to, contextCodes: contextCodes)
     }
 
     var willRefresh = false
@@ -47,7 +47,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
 
     var start = Clock.now.startOfDay()
     var end = Clock.now.startOfDay().addDays(1)
-    var userId: String?
+    var userID: String?
     var contextCodes = ["course_1"]
     lazy var controller = PlannerListViewController.create(start: start, end: end, delegate: self)
 
@@ -116,14 +116,14 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
 
     func testLayoutParentApp() {
         environment.app = .parent
-        userId = "1"
+        userID = "1"
         contextCodes = ["course_1"]
         api.mock(GetCoursesRequest(
             enrollmentState: .active,
             enrollmentType: .observer,
             state: [.available],
             perPage: 100
-        ), value: [.make(id: "1", enrollments: [.make(id: "1", associated_user_id: userId)])])
+        ), value: [.make(id: "1", enrollments: [.make(id: "1", associated_user_id: userID)])])
         api.mock(GetCalendarEventsRequest(
             contexts: [Context(.course, id: "1")],
             startDate: start,
@@ -131,7 +131,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
             type: .event,
             include: [.submission],
             allEvents: false,
-            userId: userId
+            userID: userID
         ), value: [.make(id: "1", title: "Event", start_at: Clock.now, type: .event)])
         api.mock(GetCalendarEventsRequest(
             contexts: [Context(.course, id: "1")],
@@ -140,7 +140,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
             type: .assignment,
             include: [.submission],
             allEvents: false,
-            userId: userId
+            userID: userID
         ), value: [.make(id: "2", title: "Assignment", start_at: Clock.now, type: .assignment)])
         api.mock(GetCalendarEventsRequest(
             contexts: [Context(.course, id: "1")],
@@ -149,7 +149,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
             type: .sub_assignment,
             include: [.submission],
             allEvents: false,
-            userId: userId
+            userID: userID
         ), value: [])
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.tableView.dataSource?.tableView(controller.tableView, numberOfRowsInSection: 0), 2)

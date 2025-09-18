@@ -57,7 +57,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
 
     private func downloadPlannables() {
         isDownloadStarted = true
-        let plannablesRequest = GetPlannablesRequest(userId: nil, startDate: weekRange.lowerBound, endDate: weekRange.upperBound, contextCodes: [], filter: "")
+        let plannablesRequest = GetPlannablesRequest(userID: nil, startDate: weekRange.lowerBound, endDate: weekRange.upperBound, contextCodes: [], filter: "")
         plannableDownloadTask = AppEnvironment.shared.api.makeRequest(plannablesRequest) { [weak self] plannables, _, _ in
             guard let self = self else { return }
             // Filter to active todo items

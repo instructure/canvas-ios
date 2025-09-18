@@ -36,7 +36,7 @@ public final class Plannable: NSManagedObject {
     @NSManaged public var contextName: String?
     @NSManaged public var date: Date?
     @NSManaged public var pointsPossibleRaw: NSNumber?
-    @NSManaged public var userId: String?
+    @NSManaged public var userID: String?
     @NSManaged public var details: String?
     @NSManaged public var isMarkedComplete: Bool
     @NSManaged public var isSubmitted: Bool
@@ -72,7 +72,7 @@ public final class Plannable: NSManagedObject {
         model.pointsPossible = item.plannable?.points_possible
         model.details = item.plannable?.details
         model.context = item.context
-        model.userId = userId
+        model.userID = userId
         model.discussionCheckpointStep = .init(
             tag: item.plannable?.sub_assignment_tag,
             requiredReplyCount: item.details?.reply_to_entry_required_count
@@ -94,7 +94,7 @@ public final class Plannable: NSManagedObject {
         model.pointsPossible = nil
         model.details = item.details
         model.context = Context(.course, id: item.course_id) ?? Context(.user, id: item.user_id)
-        model.userId = item.user_id
+        model.userID = item.user_id
         return model
     }
 
@@ -110,7 +110,7 @@ public final class Plannable: NSManagedObject {
         model.date = item.start_at
         model.pointsPossible = item.assignment?.points_possible
         model.details = item.description
-        model.userId = userId
+        model.userID = userId
         model.discussionCheckpointStep = .init(
             tag: item.sub_assignment?.sub_assignment_tag,
             requiredReplyCount: item.sub_assignment?.discussion_topic?.reply_to_entry_required_count

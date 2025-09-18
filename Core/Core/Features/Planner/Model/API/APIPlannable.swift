@@ -238,15 +238,15 @@ extension APIPlannerOverride {
 public struct GetPlannablesRequest: APIRequestable {
     public typealias Response = [APIPlannable]
 
-    var userId: String?
+    var userID: String?
     var startDate: Date?
     var endDate: Date?
     var contextCodes: [String] = []
     var filter: String = ""
 
     public var path: String {
-        if let userId {
-            return "users/\(userId)/planner/items"
+        if let userID = userID {
+            return "users/\(userID)/planner/items"
         } else {
             return "planner/items"
         }
