@@ -17,6 +17,8 @@
 //
 
 import UIKit
+import Combine
+import CombineSchedulers
 
 public class FileListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyImageView: UIImageView!
@@ -75,13 +77,26 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     }
 
     private var offlineFileInteractor: OfflineFileInteractor?
+    private var studentAccessInteractor: StudentAccessInteractor?
+    private var subscriptions = Set<AnyCancellable>()
+    private var isStudentAccessRestricted = false
+    private var scheduler: AnySchedulerOf<DispatchQueue>!
 
-    public static func create(env: AppEnvironment, context: Context, path: String? = nil, offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileListViewController {
+    public static func create(
+        env: AppEnvironment,
+        context: Context,
+        path: String? = nil,
+        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive(),
+        studentAccessInteractor: StudentAccessInteractor? = nil,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) -> FileListViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.env = env
         controller.path = path ?? ""
         controller.offlineFileInteractor = offlineFileInteractor
+        controller.studentAccessInteractor = studentAccessInteractor
+        controller.scheduler = scheduler
         return controller
     }
 
@@ -92,7 +107,6 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
 
         addButton.accessibilityIdentifier = "FileList.addButton"
         addButton.accessibilityLabel = String(localized: "Add Item", bundle: .core)
-
         editButton.accessibilityIdentifier = "FileList.editButton"
 
         emptyImageView.image = UIImage(named: Panda.FilePicker.name, in: .core, compatibleWith: nil)
@@ -115,6 +129,12 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
             self.tableView.contentOffset.y = self.searchBar.frame.height
         }
+
+        studentAccessInteractor?
+            .isRestricted()
+            .receive(on: scheduler)
+            .assign(to: \.isStudentAccessRestricted, on: self, ownership: .weak)
+            .store(in: &subscriptions)
 
         colors.refresh()
         course?.refresh()
@@ -323,13 +343,15 @@ extension FileListViewController: FilePickerDelegate {
         ) { [weak self] in
             self?.addFolder()
         }
-        sheet.addAction(
-            image: .addDocumentLine,
-            title: String(localized: "Add File", bundle: .core),
-            accessibilityIdentifier: "FileList.addFileButton"
-        ) { [weak self] in
-            guard let self = self else { return }
-            self.filePicker.pick(from: self)
+        if !isStudentAccessRestricted {
+            sheet.addAction(
+                image: .addDocumentLine,
+                title: String(localized: "Add File", bundle: .core),
+                accessibilityIdentifier: "FileList.addFileButton"
+            ) { [weak self] in
+                guard let self = self else { return }
+                self.filePicker.pick(from: self)
+            }
         }
         env.router.show(sheet, from: self, options: .modal())
     }

@@ -509,7 +509,8 @@ private func fileList(url: URLComponents, params: [String: String], userInfo: [S
     return FileListViewController.create(
         env: environment,
         context: Context(path: url.path) ?? .currentUser,
-        path: params["subFolder"]
+        path: params["subFolder"],
+        studentAccessInteractor: StudentAccessInteractorLive(env: environment)
     )
 }
 
@@ -535,6 +536,7 @@ private func fileDetails(url: URLComponents, params: [String: String], userInfo 
             fileID: fileID.localID,
             originURL: url,
             assignmentID: assignmentID?.localID,
+            studentAccessInteractor: StudentAccessInteractorLive(env: environment),
             environment: environment
         )
 }
