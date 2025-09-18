@@ -38,13 +38,13 @@ struct SubmissionsFilterScreen: View {
                     options: viewModel.statusFilterOptions
                 )
 
-                if let gradeInputType = viewModel.gradeInputType {
+                if viewModel.isScoreBasedFilteringEnabled {
 
                     Section {
                         VStack(alignment: .leading, spacing: 0) {
                             GradeInputTextFieldCell(
                                 title: String(localized: "Scored More than", bundle: .teacher),
-                                inputType: gradeInputType,
+                                inputType: .points,
                                 pointsPossibleText: viewModel.pointsPossibleText,
                                 pointsPossibleAccessibilityText: viewModel.pointsPossibleAccessibilityText,
                                 isExcused: false,
@@ -54,7 +54,7 @@ struct SubmissionsFilterScreen: View {
                             InstUI.Divider(.padded)
                             GradeInputTextFieldCell(
                                 title: String(localized: "Scored Less than", bundle: .teacher),
-                                inputType: gradeInputType,
+                                inputType: .points,
                                 pointsPossibleText: viewModel.pointsPossibleText,
                                 pointsPossibleAccessibilityText: viewModel.pointsPossibleAccessibilityText,
                                 isExcused: false,
