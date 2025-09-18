@@ -30,7 +30,7 @@ struct SubmissionsFilterViewModel {
     let gradeInputType: GradeInputTextFieldCell.InputType?
 
     let statusFilterOptions: MultiSelectionOptions
-    let sectionFilterOptions: MultiSelectionOptions
+    let sectionFilterOptions: MultiSelectionOptions?
     let sortModeOptions: SingleSelectionOptions
 
     let scoredMoreFilterValue: CurrentValueSubject<String, Never>
@@ -53,10 +53,14 @@ struct SubmissionsFilterViewModel {
         let sectionSelection = Set(listViewModel.sectionFiltersRealized.map({ OptionItem(id: $0.id, title: $0.name) }))
         let sectionOptions = listViewModel.courseSections.map { OptionItem(id: $0.id, title: $0.name) }
 
-        sectionFilterOptions = MultiSelectionOptions(
-            all: sectionOptions,
-            initial: sectionSelection
-        )
+        if sectionOptions.count > 1 {
+            sectionFilterOptions = MultiSelectionOptions(
+                all: sectionOptions,
+                initial: sectionSelection
+            )
+        } else {
+            sectionFilterOptions = nil
+        }
 
         let sortOptionItems = SubmissionsSortMode.allCases.map { order in
             OptionItem(id: order.rawValue, title: order.name)
@@ -117,7 +121,7 @@ struct SubmissionsFilterViewModel {
     }
 
     private var selectedSectionFilters: Set<String> {
-        Set(sectionFilterOptions.selected.value.map(\.id))
+        Set(sectionFilterOptions?.selected.value.map(\.id) ?? [])
     }
 
     private var selectedScoreBasedFilters: Set<GetSubmissions.Filter.Score> {

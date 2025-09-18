@@ -76,12 +76,15 @@ struct SubmissionsFilterScreen: View {
                     }
                 }
 
-                MultiSelectionView(
-                    title: String(localized: "Filter by Section", bundle: .teacher),
-                    identifierGroup: "SubmissionsFilter.sectionOptions",
-                    options: viewModel.sectionFilterOptions
-                )
-                .tint(viewModel.courseColor)
+                if let sectionOptions = viewModel.sectionFilterOptions {
+                    MultiSelectionView(
+                        title: String(localized: "Filter by Section", bundle: .teacher),
+                        identifierGroup: "SubmissionsFilter.sectionOptions",
+                        options: sectionOptions
+                    )
+                    .tint(viewModel.courseColor)
+                }
+
                 SingleSelectionView(
                     title: String(localized: "Sort by", bundle: .teacher),
                     identifierGroup: "SubmissionsFilter.sortByOptions",

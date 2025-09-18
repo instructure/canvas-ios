@@ -130,6 +130,7 @@ class SubmissionListViewModel: ObservableObject {
     var isFilterActive: Bool {
         if !hasStatusesFilterDefaultSelection { return true }
         if !hasSectionsFilterDefaultSelection { return true }
+        if scoreBasedFilters.isNotEmpty { return true }
         return false
     }
 
