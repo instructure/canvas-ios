@@ -769,6 +769,12 @@
         }
       }
     },
+    "%" : {
+
+    },
+    "% complete" : {
+
+    },
     "%@ %@" : {
       "localizations" : {
         "ar" : {
@@ -4585,6 +4591,9 @@
           }
         }
       }
+    },
+    "All" : {
+
     },
     "All messages" : {
       "localizations" : {
@@ -20965,6 +20974,19 @@
         }
       }
     },
+    "complete" : {
+
+    },
+    "Complete %d of %d courses" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Complete %1$d of %2$d courses"
+          }
+        }
+      }
+    },
     "Complete all of the items." : {
       "localizations" : {
         "ar" : {
@@ -23268,6 +23290,9 @@
           }
         }
       }
+    },
+    "courses" : {
+
     },
     "Create message" : {
       "localizations" : {
@@ -28900,6 +28925,12 @@
           }
         }
       }
+    },
+    "Enroll" : {
+
+    },
+    "Enrolled" : {
+
     },
     "Error" : {
       "localizations" : {
@@ -44261,6 +44292,9 @@
         }
       }
     },
+    "Locked" : {
+
+    },
     "Locked Content" : {
       "localizations" : {
         "ar" : {
@@ -50404,6 +50438,9 @@
           }
         }
       }
+    },
+    "My program" : {
+
     },
     "My progress" : {
       "localizations" : {
@@ -58604,6 +58641,9 @@
         }
       }
     },
+    "Part of" : {
+
+    },
     "Perth (+08:00)" : {
       "localizations" : {
         "ar" : {
@@ -60651,6 +60691,9 @@
           }
         }
       }
+    },
+    "Program overview" : {
+
     },
     "Puerto Rico (-04:00)" : {
       "localizations" : {
@@ -63205,6 +63248,9 @@
           }
         }
       }
+    },
+    "Required" : {
+
     },
     "Result: %@" : {
       "localizations" : {
@@ -85479,6 +85525,9 @@
         }
       }
     },
+    "Welcome! View your program to enroll in your first course." : {
+
+    },
     "Wellington (+12:00/+13:00)" : {
       "localizations" : {
         "ar" : {
@@ -87527,6 +87576,9 @@
         }
       }
     },
+    "You aren’t currently enrolled in a course or program." : {
+
+    },
     "You aren’t currently enrolled in a course." : {
       "localizations" : {
         "ar" : {
@@ -88038,6 +88090,9 @@
           }
         }
       }
+    },
+    "You’ve been enrolled in Course" : {
+
     },
     "Your draft was deleted." : {
       "localizations" : {

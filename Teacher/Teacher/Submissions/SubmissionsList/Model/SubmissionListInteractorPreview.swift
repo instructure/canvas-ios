@@ -20,7 +20,6 @@ import Combine
 import Core
 
 class SubmissionListInteractorPreview: SubmissionListInteractor {
-
     let context = Context(.course, id: "1")
     let assignmentID = "1"
 
@@ -44,5 +43,5 @@ class SubmissionListInteractorPreview: SubmissionListInteractor {
         Just(()).eraseToAnyPublisher()
     }
 
-    func applyFilter(_ filter: GetSubmissions.Filter) {}
+    func applyFilters(_ filters: [GetSubmissions.Filter]) {}
 }

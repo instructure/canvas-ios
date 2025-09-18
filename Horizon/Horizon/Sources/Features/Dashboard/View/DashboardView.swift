@@ -52,6 +52,13 @@ struct DashboardView: View {
 
                     } else {
                         topView
+                        if viewModel.unenrolledPrograms.isNotEmpty {
+                            ProgramOverviewListView(programs: viewModel.unenrolledPrograms) { program in
+                                viewModel.navigateProgram(id: program.id, viewController: viewController)
+                            }
+                            .padding(.bottom, .huiSpaces.space24)
+                            .padding(.horizontal, .huiSpaces.space24)
+                        }
                         contentView(courses: viewModel.courses)
                     }
                 }
@@ -92,12 +99,19 @@ struct DashboardView: View {
     private func contentView(courses: [HCourse]) -> some View {
         ForEach(courses) { course in
             VStack(alignment: .leading, spacing: .zero) {
+                if course.programs.isNotEmpty {
+                    ProgramNameListView(programs: course.programs) { program in
+                        viewModel.navigateProgram(id: program.id, viewController: viewController)
+                    }
+                    .padding(.bottom, .huiSpaces.space12)
+                }
                 courseProgressionView(course: course)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         viewModel.navigateToCourseDetails(
                             id: course.id,
                             enrollmentID: course.enrollmentID,
+                            programID: course.programs.first?.id,
                             viewController: viewController
                         )
                     }

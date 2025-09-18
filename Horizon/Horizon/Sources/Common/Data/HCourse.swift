@@ -46,6 +46,7 @@ struct HCourse: Identifiable {
     let progress: Double
     let overviewDescription: String
     let learningObjectCardModel: LearningObjectCard? // upcoming module item details
+    var programs: [Program] = []
 
     init(
         id: String = "",

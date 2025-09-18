@@ -24,19 +24,19 @@ import CoreData
 
 class HorizonTestCase: XCTestCase {
     var database: NSPersistentContainer {
-        return singleSharedTestDatabase
+        return TestsFoundation.singleSharedTestDatabase
     }
     var databaseClient: NSManagedObjectContext {
         return database.viewContext
     }
 
-    var api: API { env.api }
+    var api: API { environment.api }
+    var environment: TestEnvironment!
     var queue = OperationQueue()
-    var env: TestEnvironment!
-    var logger: TestLogger!
-    var router: TestRouter { env.router as! TestRouter }
-    lazy var uploadManager = MockUploadManager(env: env)
-    var currentSession: LoginSession!
+    var router = TestRouter()
+    var logger = TestLogger()
+
+    let window = UIWindow()
 
     override func setUp() {
         super.setUp()
@@ -44,17 +44,23 @@ class HorizonTestCase: XCTestCase {
         Clock.reset()
         API.resetMocks()
         LoginSession.clearAll()
-        queue = OperationQueue()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
-        env = TestEnvironment()
-        logger = env.logger as? TestLogger
-        currentSession = env.currentSession
-        AppEnvironment.shared = env
-        MockUploadManager.reset()
+        environment = TestEnvironment()
+        AppEnvironment.shared = environment
+        environment.api = API()
+        environment.database = singleSharedTestDatabase
+        environment.globalDatabase = singleSharedTestDatabase
+        environment.router = router
+        environment.logger = logger
+        environment.currentSession = LoginSession.make()
+        environment.window = window
+        window.rootViewController = UIViewController()
+        window.makeKeyAndVisible()
     }
 
     override func tearDown() {
         super.tearDown()
         LoginSession.clearAll()
+        window.rootViewController = UIViewController()
     }
 }
