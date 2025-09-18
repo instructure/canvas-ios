@@ -98,7 +98,13 @@ public final class Plannable: NSManagedObject {
     public static func save(_ item: APICalendarEvent, userId: String?, in client: NSManagedObjectContext) -> Plannable {
         let model: Plannable = client.first(where: #keyPath(Plannable.id), equals: item.id.value) ?? client.insert()
         model.id = item.id.value
-        model.plannableType = .init(rawValue: item.type.rawValue) ?? .other
+        model.plannableType = {
+            switch item.type {
+            case .assignment: .assignment
+            case .sub_assignment: .sub_assignment
+            case .event: .calendar_event
+            }
+        }()
         model.title = item.sub_assignment?.discussion_topic?.title ?? item.title
         model.htmlURL = item.sub_assignment?.html_url ?? item.html_url
         model.context = Context(canvasContextID: item.context_code)

@@ -33,13 +33,15 @@ public struct APIPlannable: Codable, Equatable {
     let submissions: TypeSafeCodable<APIPlannable.Submissions, Bool>?
     public let details: APIPlannable.Details?
 
-    public var plannableType: PlannableType { .init(rawValue: plannable_type) ?? .other }
+    public var plannableType: PlannableType {
+        .init(rawValue: plannable_type) ?? .other
+    }
 
     public var context: Context? {
         if let context = contextFromContextType() {
             return context
         }
-        if PlannableType(rawValue: plannable_type) == .planner_note {
+        if plannableType == .planner_note {
             // Notes have no 'context_type', but have IDs in the inner 'plannable' object
             return contextFromInnerPlannableObject()
         }
