@@ -193,7 +193,6 @@ class DashboardViewModel {
                     self?.errorMessage = error.localizedDescription
                     self?.isAlertPresented = true
                 }
-
             }, receiveValue: { [weak self] _ in
                 self?.reload(completion: {})
                 self?.declineInvitation(course: course)
