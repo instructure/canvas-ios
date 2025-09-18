@@ -54,7 +54,7 @@ extension GetSubmissions {
         }
 
         public var query: [URLQueryItem] {
-            let checkables = [statuses.query, sections.query].compactMap({ $0 })
+            let checkables = [statuses.query, sections.query, differentiationTags.query].compactMap({ $0 })
             return checkables + score.query
         }
 
@@ -126,7 +126,14 @@ extension GetSubmissions.Filter: ExpressibleByArrayLiteral {
                 .compactMap({ $0 })
         )
 
-        self.init(statuses: statuses, score: scores, sections: sections)
+        let differentiationTags: Set<String> = Set(
+            url
+                .queryValue(for: "differentiationTags")
+                .flatMap({ $0.removingPercentEncoding })?
+                .components(separatedBy: ",") ?? []
+        )
+
+        self.init(statuses: statuses, score: scores, sections: sections, differentiationTags: differentiationTags)
     }
 }
 
@@ -400,6 +407,14 @@ extension Collection where Element == GetSubmissions.Filter.DifferentiationTag {
             #keyPath(CDUserGroup.id),
             map(\.tagID)
         )
+    }
+
+    public var query: URLQueryItem? {
+        return map(\.tagID)
+            .joined(separator: ",")
+            .nilIfEmpty
+            .flatMap({ $0.urlQuerySafePercentEncoded })
+            .flatMap({ URLQueryItem(name: "differentiationTags", value: $0) })
     }
 }
 
