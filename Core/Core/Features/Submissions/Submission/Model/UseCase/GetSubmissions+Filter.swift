@@ -208,12 +208,12 @@ extension Collection where Element == GetSubmissions.Filter.Status {
 
     var predicate: NSPredicate? { sorted(by: \.rawValue).map(\.predicate).orRelated }
 
-    public var isSharedCasesIncluded: Bool {
+    public var isBasicCasesIncluded: Bool {
         return Element.basicCases.allSatisfy { contains($0) }
     }
 
     public func isAllCasesForCourseIncluded(_ courseID: String) -> Bool {
-        guard isSharedCasesIncluded else { return false }
+        guard isBasicCasesIncluded else { return false }
         return CDCustomGradeStatus
             .allForCourse(courseID)
             .map(\.name)
