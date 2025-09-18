@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import SwiftUI
 
 public class AssignmentPickerViewModel: ObservableObject {
@@ -41,6 +42,7 @@ public class AssignmentPickerViewModel: ObservableObject {
 
     // MARK: - Properties
     private let service: AssignmentPickerListServiceProtocol
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     private var serviceSubscription: AnyCancellable?
 
     #if DEBUG
@@ -50,14 +52,19 @@ public class AssignmentPickerViewModel: ObservableObject {
     public init(state: ViewModelState<[AssignmentPickerItem]>) {
         self.state = state
         self.service = AssignmentPickerListService()
+        self.scheduler = .main
     }
 
     // MARK: Preview Support -
 
     #endif
 
-    public init(service: AssignmentPickerListServiceProtocol = AssignmentPickerListService()) {
+    public init(
+        service: AssignmentPickerListServiceProtocol = AssignmentPickerListService(),
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
         self.service = service
+        self.scheduler = scheduler
         self.serviceSubscription = service.result
             .combineLatest(sharedFileExtensions) { result, sharedExtensions -> State in
                 guard var sharedExtensions = sharedExtensions else { return .loading }
@@ -82,7 +89,7 @@ public class AssignmentPickerViewModel: ObservableObject {
             incompatibleFilesMessage = AlertMessage(message: notAvailableReason)
         } else {
             selectedAssignment = assignment
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            scheduler.schedule(after: scheduler.now.advanced(by: .milliseconds(200))) {
                 self.dismissViewDidTrigger.send()
             }
         }

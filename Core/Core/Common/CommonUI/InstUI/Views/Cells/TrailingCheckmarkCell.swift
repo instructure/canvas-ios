@@ -25,6 +25,7 @@ extension InstUI {
 
         @Binding private var selectedValue: Value?
         private let title: String
+        private let headerTitle: String?
         private let subtitle: String?
         private let value: Value?
         private let dividerStyle: InstUI.Divider.Style
@@ -35,12 +36,14 @@ extension InstUI {
         ///                    The value is equatable so this cell can decide when to display the selected state.
         public init(
             title: String,
+            headerTitle: String? = nil,
             subtitle: String? = nil,
             value: Value?,
             selectedValue: Binding<Value?>,
             dividerStyle: InstUI.Divider.Style = .full
         ) {
             self.title = title
+            self.headerTitle = headerTitle
             self.subtitle = subtitle
             self.value = value
             self._selectedValue = selectedValue
@@ -56,6 +59,12 @@ extension InstUI {
                 } label: {
                     HStack(spacing: 0) {
                         VStack(alignment: .leading, spacing: 2) {
+                            if let headerTitle {
+                                Text(headerTitle)
+                                    .textStyle(.cellLabelSubtitle)
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
                             Text(title)
                                 .textStyle(.cellLabel)
                                 .multilineTextAlignment(.leading)
@@ -99,7 +108,21 @@ extension InstUI {
         .tint(.green)
         InstUI.TrailingCheckmarkCell(
             title: "Value 2",
+            subtitle: "Subtitle",
             value: 2,
+            selectedValue: $selectedValue
+        )
+        InstUI.TrailingCheckmarkCell(
+            title: "Value 3",
+            headerTitle: "Header Title",
+            subtitle: "Subtitle",
+            value: 3,
+            selectedValue: $selectedValue
+        )
+        InstUI.TrailingCheckmarkCell(
+            title: "Value 4",
+            headerTitle: "Header Title",
+            value: 4,
             selectedValue: $selectedValue
         )
     }

@@ -19,13 +19,20 @@
 import XCTest
 @testable import Core
 @testable import TestsFoundation
+import Combine
+import CombineSchedulers
 
 class FileListViewControllerTests: CoreTestCase {
-    lazy var controller = FileListViewController
-        .create(env: environment, context: .currentUser, path: "Folder A")
+    var controller: FileListViewController!
+    private var studentAccessInteractor: StudentAccessInteractorMock!
+    private var testScheduler: AnySchedulerOf<DispatchQueue>!
 
     override func setUp() {
         super.setUp()
+        testScheduler = DispatchQueue.immediate.eraseToAnyScheduler()
+        controller = FileListViewController
+            .create(env: environment, context: .currentUser, path: "Folder A")
+        studentAccessInteractor = StudentAccessInteractorMock()
         api.mock(controller.colors, value: APICustomColors(custom_colors: [
             "course_1": "#f00",
             "group_1": "#00f"
@@ -269,6 +276,48 @@ class FileListViewControllerTests: CoreTestCase {
 
         File.make(from: .make(id: "1", folder_id: "2"), batchID: controller.batchID, session: currentSession)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 0)
+    }
+
+    func test_addFileButtonVisible_whenNotRestricted() {
+        studentAccessInteractor.setRestricted(false)
+
+        controller = FileListViewController.create(
+            env: environment,
+            context: .currentUser,
+            path: "Folder A",
+            studentAccessInteractor: studentAccessInteractor
+        )
+
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        _ = controller.addButton.target?.perform(controller.addButton.action)
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let titles = sheet?.actions.map { $0.title } ?? []
+
+        XCTAssertTrue(titles.contains("Add File"), "Add File should be visible when not restricted")
+        XCTAssertTrue(titles.contains("Add Folder"), "Add Folder should always be visible")
+    }
+
+    func test_addFileButtonHidden_whenRestricted() {
+        studentAccessInteractor.setRestricted(true)
+
+        controller = FileListViewController.create(
+            env: environment,
+            context: .currentUser,
+            path: "Folder A",
+            studentAccessInteractor: studentAccessInteractor,
+            scheduler: testScheduler
+        )
+
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        _ = controller.addButton.target?.perform(controller.addButton.action)
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let titles = sheet?.actions.map { $0.title } ?? []
+        XCTAssertFalse(titles.contains("Add File"), "Add File should be hidden when restricted")
+        XCTAssertTrue(titles.contains("Add Folder"), "Add Folder should always be visible")
     }
 
     func testDeleteFile() {

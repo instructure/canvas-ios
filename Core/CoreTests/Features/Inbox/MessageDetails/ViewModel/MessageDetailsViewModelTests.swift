@@ -18,16 +18,25 @@
 
 import Combine
 @testable import Core
+import TestsFoundation
 import XCTest
 
 class MessageDetailsViewModelTests: CoreTestCase {
     private var mockInteractor: MessageDetailsInteractorMock!
+    private var mockStudentAccessInteractor: StudentAccessInteractorMock!
     var testee: MessageDetailsViewModel!
 
     override func setUp() {
         super.setUp()
         mockInteractor = MessageDetailsInteractorMock()
-        testee = MessageDetailsViewModel(interactor: mockInteractor, myID: "1", allowArchive: true, env: environment)
+        mockStudentAccessInteractor = StudentAccessInteractorMock()
+        testee = MessageDetailsViewModel(
+            interactor: mockInteractor,
+            studentAccessInteractor: mockStudentAccessInteractor,
+            myID: "1",
+            allowArchive: true,
+            env: environment
+        )
     }
 
     func testInteractorStateMappedToViewModel() {
@@ -192,6 +201,58 @@ class MessageDetailsViewModelTests: CoreTestCase {
         replyAction?.action()
         wait(for: [router.showExpectation], timeout: 1)
         XCTAssertTrue(router.presented is CoreHostingController<ComposeMessageView>)
+    }
+
+    func test_messageMoreTapped_whenRestrictStudentAccessEnabled_replyAllAndDeleteNotShown() {
+        // Given
+        mockInteractor = MessageDetailsInteractorMock()
+        mockStudentAccessInteractor.setRestricted(true)
+        testee = MessageDetailsViewModel(
+            interactor: mockInteractor,
+            studentAccessInteractor: mockStudentAccessInteractor,
+            myID: "1",
+            allowArchive: true,
+            env: environment
+        )
+
+        waitUntil {
+            testee.isStudentAccessRestricted == true
+        }
+
+        let sourceView = UIViewController()
+
+        // When
+        testee.messageMoreTapped(
+            message: ConversationMessage.make(),
+            viewController: WeakViewController(sourceView)
+        )
+
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let actionTitles = sheet?.actions.map { $0.title } ?? []
+        XCTAssertFalse(actionTitles.contains("Reply All"))
+        XCTAssertFalse(actionTitles.contains("Delete Message"))
+    }
+
+    func test_messageMoreTapped_whenRestrictStudentAccessDisabled_replyAllAndDeleteShown() {
+        // Given
+        let sourceView = UIViewController()
+
+        waitUntil {
+            testee.isStudentAccessRestricted == false
+        }
+
+        // When
+        testee.messageMoreTapped(
+            message: ConversationMessage.make(),
+            viewController: WeakViewController(sourceView)
+        )
+
+        // Then
+        let sheet = router.presented as? BottomSheetPickerViewController
+        let actionTitles = sheet?.actions.map { $0.title } ?? []
+        XCTAssertTrue(actionTitles.contains("Reply All"))
+        XCTAssertTrue(actionTitles.contains("Delete Message"))
     }
 
     func test_messageMoreTapped_forward_presentComposeMessageView() {

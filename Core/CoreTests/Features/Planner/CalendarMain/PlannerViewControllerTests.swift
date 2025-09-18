@@ -18,13 +18,54 @@
 
 import XCTest
 @testable import Core
+import Combine
+import CombineSchedulers
 
 class PlannerViewControllerTests: CoreTestCase {
-    lazy var controller = PlannerViewController.create(studentID: "1")
+    var controller: PlannerViewController!
+    private var studentAccessInteractor: StudentAccessInteractorMock!
+    private var testScheduler: AnySchedulerOf<DispatchQueue>!
 
     override func setUp() {
         super.setUp()
+        testScheduler = DispatchQueue.immediate.eraseToAnyScheduler()
         environment.userDefaults?.reset()
+        controller = PlannerViewController.create(studentID: "1")
+        studentAccessInteractor = StudentAccessInteractorMock()
+    }
+
+    func test_addEventButtonVisible_whenNotRestricted() {
+        studentAccessInteractor.setRestricted(false)
+        controller = PlannerViewController.create(
+            studentID: "1",
+            studentAccessInteractor: studentAccessInteractor,
+            scheduler: testScheduler
+        )
+
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        let titles = controller.addButton.menu?.allActions.map { $0.title } ?? []
+
+        XCTAssertTrue(titles.contains("Add Event"), "Add Event should be visible when not restricted")
+        XCTAssertTrue(titles.contains("Add To Do"), "Add To Do should always be visible")
+    }
+
+    func test_addEventButtonHidden_whenRestricted() {
+        studentAccessInteractor.setRestricted(true)
+        controller = PlannerViewController.create(
+            studentID: "1",
+            studentAccessInteractor: studentAccessInteractor,
+            scheduler: testScheduler
+        )
+
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        let titles = controller.addButton.menu?.allActions.map { $0.title } ?? []
+
+        XCTAssertFalse(titles.contains("Add Event"), "Add Event should be hidden when restricted")
+        XCTAssertTrue(titles.contains("Add To Do"), "Add To Do should always be visible")
     }
 
     func testLayout() {
