@@ -174,13 +174,25 @@ final class LearnViewModel: ProgramSwitcherMapper {
     }
 
     func enrollInProgram(course: ProgramCourse) {
+        // Need to fetch learn courses again to get the updated enrollment IDs
         isLoadingEnrollButton = true
         interactor.enrollInProgram(progressID: course.progressID)
+            .flatMap { [weak self] programs -> AnyPublisher<([Program], [LearnCourse]), Error> in
+                guard let self else {
+                    return Empty().eraseToAnyPublisher()
+                }
+                return self.learnCoursesInteractor
+                    .getCourses(ignoreCache: true)
+                    .setFailureType(to: Error.self)
+                    .map { courses in (programs, courses) }
+                    .eraseToAnyPublisher()
+            }
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
                 self?.handleError(error)
-            } receiveValue: { [weak self] programs in
+            } receiveValue: { [weak self] programs, courses in
                 guard let self else { return }
+                self.courses = courses
                 handleProgramsLoaded(programs)
                 let message = String(localized: "You’ve been enrolled in Course", bundle: .horizon)
                     .appending(" ")

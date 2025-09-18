@@ -78,7 +78,7 @@ struct ProgramCardInProgressView: View {
                 numberPosition: .hidden,
                 backgroundColor: Color.huiColors.surface.pageTertiary
             )
-            .padding(.bottom, .huiSpaces.space8)
+            .padding(.bottom, .huiSpaces.space12)
         }
     }
 }

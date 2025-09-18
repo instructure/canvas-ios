@@ -24,7 +24,7 @@ struct ProgramNameListView: View {
     let onSelect: (Program) -> Void
     var body: some View {
         VStack(alignment: .leading) {
-            HorizonUI.HFlow {
+            HorizonUI.HFlow(spacing: .huiSpaces.space2) {
                 Text("Part of", bundle: .horizon)
                     .huiTypography(.p1)
                     .foregroundStyle(Color.huiColors.text.body)
@@ -39,6 +39,10 @@ struct ProgramNameListView: View {
                             .foregroundStyle(Color.huiColors.text.body)
                             .huiTypography(.buttonTextLarge)
                     }
+                    Text(verbatim: ",")
+                        .foregroundStyle(Color.huiColors.text.body)
+                        .huiTypography(.buttonTextLarge)
+                        .hidden(program.id == programs.last?.id)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)

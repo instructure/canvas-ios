@@ -22,14 +22,13 @@ import HorizonUI
 
 struct LearnView: View {
     @Bindable var viewModel: LearnViewModel
-    let isBackButtonVisible: Bool
 
     var body: some View {
         VStack(spacing: .zero) {
             if !viewModel.isLoaderVisible {
                 switch viewModel.state {
                 case .programs:
-                    ProgramView(viewModel: viewModel, isBackButtonVisible: isBackButtonVisible)
+                    ProgramView(viewModel: viewModel)
                 case .courseDetails:
                     if let courseDetailsViewModel = viewModel.courseDetailsViewModel {
                         LearnAssembly.makeCourseDetailsView(viewModel: courseDetailsViewModel, isBackButtonVisible: false)
@@ -77,8 +76,7 @@ struct LearnView: View {
             learnCoursesInteractor: GetLearnCoursesInteractorPreview(),
             router: AppEnvironment.shared.router,
             programID: nil
-        ),
-        isBackButtonVisible: true
+        )
     )
 }
 #endif
