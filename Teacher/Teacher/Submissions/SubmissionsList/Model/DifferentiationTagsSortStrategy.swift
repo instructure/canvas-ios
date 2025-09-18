@@ -21,28 +21,26 @@ import Foundation
 
 // MARK: - Differentiation Tags Sorting
 
-enum DifferentiationTagsSortStrategy {
+/// - returns: true if its first argument should be ordered before its second argument; otherwise, false.
+public func DifferentiationTagsComparator(_ lhs: CDUserGroup, _ rhs: CDUserGroup) -> Bool {
+    // First, separate single tags (ungrouped) from grouped tags
+    let lhsIsSingle = lhs.isSingleTag
+    let rhsIsSingle = rhs.isSingleTag
 
-    static let sort: (CDUserGroup, CDUserGroup) -> Bool = { lhs, rhs in
-        // First, separate single tags (ungrouped) from grouped tags
-        let lhsIsSingle = lhs.isSingleTag
-        let rhsIsSingle = rhs.isSingleTag
+    // Single tags come first, then grouped tags
+    if lhsIsSingle != rhsIsSingle {
+        return lhsIsSingle
+    }
 
-        // Single tags come first, then grouped tags
-        if lhsIsSingle != rhsIsSingle {
-            return lhsIsSingle
+    if lhsIsSingle && rhsIsSingle {
+        // Both are single tags - sort alphabetically by name
+        return lhs.name.localizedCaseInsensitiveCompare(rhs.name) == .orderedAscending
+    } else {
+        // Both are grouped tags - sort by group name first, then by tag name
+        let groupComparison = lhs.parentGroupSet.name.localizedCaseInsensitiveCompare(rhs.parentGroupSet.name)
+        if groupComparison != .orderedSame {
+            return groupComparison == .orderedAscending
         }
-
-        if lhsIsSingle && rhsIsSingle {
-            // Both are single tags - sort alphabetically by name
-            return lhs.name.localizedCaseInsensitiveCompare(rhs.name) == .orderedAscending
-        } else {
-            // Both are grouped tags - sort by group name first, then by tag name
-            let groupComparison = lhs.parentGroupSet.name.localizedCaseInsensitiveCompare(rhs.parentGroupSet.name)
-            if groupComparison != .orderedSame {
-                return groupComparison == .orderedAscending
-            }
-            return lhs.name.localizedCaseInsensitiveCompare(rhs.name) == .orderedAscending
-        }
+        return lhs.name.localizedCaseInsensitiveCompare(rhs.name) == .orderedAscending
     }
 }

@@ -50,7 +50,7 @@ class SubmissionListViewModel: ObservableObject {
         filter: GetSubmissions.Filter?,
         env: AppEnvironment,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
-        differentiationTagsSortComparator: @escaping (CDUserGroup, CDUserGroup) -> Bool = DifferentiationTagsSortStrategy.sort
+        differentiationTagsSortComparator: @escaping (CDUserGroup, CDUserGroup) -> Bool = DifferentiationTagsComparator
     ) {
         self.interactor = interactor
         self.statusFilters = Set(filter?.statuses ?? [])

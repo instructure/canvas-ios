@@ -22,7 +22,7 @@ import TestsFoundation
 @testable import Core
 @testable import Teacher
 
-final class DifferentiationTagsSortComparatorTests: TeacherTestCase {
+final class DifferentiationTagsComparatorTests: TeacherTestCase {
 
     func testSort() {
         // Create group sets
@@ -46,7 +46,7 @@ final class DifferentiationTagsSortComparatorTests: TeacherTestCase {
         let unsortedTags = [colorCoding, singleMathSupport, extraHelp, singleExtendedTime, charts, tutoring, singleAcademicSupport]
 
         // Sort using the comparator
-        let sortedTags = unsortedTags.sorted(by: DifferentiationTagsSortStrategy.sort)
+        let sortedTags = unsortedTags.sorted(by: DifferentiationTagsComparator)
 
         // Expected order:
         // 1. Single tags first, alphabetically:
