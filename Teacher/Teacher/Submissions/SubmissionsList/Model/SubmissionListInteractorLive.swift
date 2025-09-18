@@ -149,15 +149,13 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     }
 
     func refresh() -> AnyPublisher<Void, Never> {
-        return Publishers.Last(
-            upstream:
-                Publishers.Merge4(
-                    customStatusesStore.forceRefresh(),
-                    courseStore.forceRefresh(),
-                    assignmentStore.forceRefresh(),
-                    submissionsStore?.forceRefresh() ?? Empty<Void, Never>().eraseToAnyPublisher()
-                )
+        return Publishers.CombineLatest4(
+            customStatusesStore.forceRefresh(),
+            courseStore.forceRefresh(),
+            assignmentStore.forceRefresh(),
+            submissionsStore?.forceRefresh() ?? Just<Void>(()).eraseToAnyPublisher()
         )
+        .mapToVoid()
         .eraseToAnyPublisher()
     }
 
