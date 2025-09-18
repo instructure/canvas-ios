@@ -22,7 +22,7 @@ import Foundation
 enum HProgramCourseStub {
 
     static func getProgramCourse() -> GetHCoursesByIdsResponse.ProgramCourse {
-        .init(id: "1", name: "Test Course", modulesConnection: getModules())
+        .init(id: "1", name: "Test Course", modulesConnection: getModules(), usersConnection: getUserConnection())
     }
 
     static func getModules() -> GetHCoursesByIdsResponse.ModulesConnection {
@@ -35,5 +35,9 @@ enum HProgramCourseStub {
         let node: GetHCoursesByIdsResponse.Node = .init(id: "modudel - 1", name: "Module 1", moduleItems: moduleItems)
         let edges: [GetHCoursesByIdsResponse.Edge] =  [ .init(node: node) ]
         return GetHCoursesByIdsResponse.ModulesConnection(edges: edges)
+    }
+
+    static func getUserConnection() -> GetHCoursesByIdsResponse.UsersConnection {
+        .init(nodes: [.init(courseProgression: .init(requirements: .init(completed: 1, completionPercentage: 40))) ])
     }
 }

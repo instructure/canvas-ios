@@ -81,6 +81,16 @@ final class LearnViewModel: ProgramSwitcherMapper {
         self.scheduler = scheduler
         selectedProgram = programID != nil  ? .init(id: programID) : nil
         configureSelectionHandler()
+
+        NotificationCenter.default.addObserver(
+            forName: .moduleItemRequirementCompleted,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            if self?.programs.isNotEmpty == true {
+                self?.fetchPrograms(ignoreCache: true)
+            }
+        }
     }
 
     private func configureSelectionHandler() {

@@ -37,7 +37,7 @@ final class ProgramCourseInteractorLive: ProgramCourseInteractor {
 
     func getCourses(programs: [Program], ignoreCache: Bool) -> AnyPublisher<[Program], Error> {
         ReactiveStore(
-            useCase: GetHProgramCourseUseCase(programs: programs.toRequestModels())
+            useCase: GetHProgramCourseUseCase(userId: userId, programs: programs.toRequestModels())
         )
         .getEntities(ignoreCache: ignoreCache)
         .map { [weak self] response in
@@ -68,6 +68,7 @@ final class ProgramCourseInteractorLive: ProgramCourseInteractor {
         var updatedCourse = course
         updatedCourse.moduleItemsestimatedTime = programCourse.moduleItems.compactMap { $0.estimatedDuration }
         updatedCourse.name = programCourse.courseName
+        updatedCourse.completionPercent = Double(programCourse.completionPercentage) / 100.0
         return updatedCourse
     }
 }

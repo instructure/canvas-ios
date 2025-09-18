@@ -29,10 +29,11 @@ public struct GetHCoursesByIdsResponse: Codable {
     public struct ProgramCourse: Codable {
         let id, name: String
         let modulesConnection: ModulesConnection?
+        let usersConnection: UsersConnection?
 
         enum CodingKeys: String, CodingKey {
             case id = "_id"
-            case name, modulesConnection
+            case name, modulesConnection, usersConnection
         }
     }
 
@@ -60,4 +61,22 @@ public struct GetHCoursesByIdsResponse: Codable {
             case estimatedDuration
         }
     }
+
+    struct UsersConnection: Codable {
+        let nodes: [NodeElement]?
+    }
+
+    struct NodeElement: Codable {
+        let courseProgression: CourseProgression?
+    }
+
+    struct CourseProgression: Codable {
+        let requirements: Requirements?
+    }
+
+    struct Requirements: Codable {
+        let completed: Int?
+        let completionPercentage: Double?
+    }
+
 }

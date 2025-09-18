@@ -26,32 +26,43 @@ final class GetHProgramCoursRequestTests: XCTestCase {
     }
 
     func testVariables() {
-        let request = GetHCoursesByIdsRequest(courseIDs: ["1", "2", "3"])
+        let request = GetHCoursesByIdsRequest(courseIDs: ["1", "2", "3"], userId: "123")
         XCTAssertEqual(request.variables.ids, ["1", "2", "3"])
+        XCTAssertEqual(request.variables.userId, "123")
     }
 
     func testQuery() {
         let query: String = """
-            query GetCoursesByIds($ids: [ID!]) {
-              courses(ids: $ids) {
-                _id
-                name
-                modulesConnection {
-                  edges {
-                    node {
-                      id
-                      name
-                      moduleItems {
-                        published
-                        _id
-                        estimatedDuration
+                query GetCoursesByIds($ids: [ID!], $userId: ID!) {
+                  courses(ids: $ids) {
+                    _id
+                    name
+                    usersConnection(filter: { userIds: [$userId] }) {
+                      nodes {
+                        courseProgression {
+                          requirements {
+                            completed
+                            completionPercentage
+                          }
+                        }
+                      }
+                    }
+                    modulesConnection {
+                      edges {
+                        node {
+                          id
+                          name
+                          moduleItems {
+                            published
+                            _id
+                            estimatedDuration
+                          }
+                        }
                       }
                     }
                   }
                 }
-              }
-            }
-    """
+        """
         XCTAssertEqual(GetHCoursesByIdsRequest.query, query)
     }
 }

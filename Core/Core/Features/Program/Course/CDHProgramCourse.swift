@@ -22,6 +22,7 @@ public final class CDHProgramCourse: NSManagedObject {
     @NSManaged public var programID: String
     @NSManaged public var courseID: String
     @NSManaged public var courseName: String
+    @NSManaged public var completionPercentage: Double
     @NSManaged public var moduleItems: Set<CDHProgramCourseModuleItem>
 
     @discardableResult
@@ -39,6 +40,7 @@ public final class CDHProgramCourse: NSManagedObject {
         dbEntity.programID = programID
         dbEntity.courseID = (apiEntity?.id).orEmpty
         dbEntity.courseName = (apiEntity?.name).orEmpty
+        dbEntity.completionPercentage = (apiEntity?.usersConnection?.nodes?.first?.courseProgression?.requirements?.completionPercentage).orZero
 
         let moduleItems = (apiEntity?.modulesConnection?.edges ?? [])
             .compactMap { $0.node }

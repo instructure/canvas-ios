@@ -23,8 +23,9 @@ final class GetHProgramCourseUseCaseTests: CoreTestCase {
 
     func testCacheKey() {
         // Given
+        let userId = "321"
         let programs = [GetHProgramCourseUseCase.RequestModel(programId: "123", courseIds: ["200", "300"])]
-        let testee = GetHProgramCourseUseCase(programs: programs)
+        let testee = GetHProgramCourseUseCase(userId: userId, programs: programs)
         // Then
         let key = "123-200,300"
         XCTAssertEqual(testee.cacheKey, key)
@@ -32,8 +33,9 @@ final class GetHProgramCourseUseCaseTests: CoreTestCase {
 
     func testRequest() {
         // Given
+        let userId = "321"
         let programs = [GetHProgramCourseUseCase.RequestModel(programId: "123", courseIds: ["200", "300"])]
-        let testee = GetHProgramCourseUseCase(programs: programs)
+        let testee = GetHProgramCourseUseCase(userId: userId, programs: programs)
         // When
         let requst = testee.request
         // Then
@@ -42,9 +44,10 @@ final class GetHProgramCourseUseCaseTests: CoreTestCase {
 
     func testWriteResponse() {
         // Given
+        let userId = "321"
         let response = HProgramCourseStub.getProgramCourse()
         let programs = [GetHProgramCourseUseCase.RequestModel(programId: "123", courseIds: ["1"])]
-        let testee = GetHProgramCourseUseCase(programs: programs)
+        let testee = GetHProgramCourseUseCase(userId: userId, programs: programs)
         // When
         testee.write(response: .init(data: .init(courses: [response], course: nil)), urlResponse: nil, to: databaseClient)
         let savedData: [CDHProgramCourse] = databaseClient.fetch()
@@ -53,19 +56,21 @@ final class GetHProgramCourseUseCaseTests: CoreTestCase {
         XCTAssertEqual(savedData.first?.courseID, "1")
         XCTAssertEqual(savedData.first?.programID, "123")
         XCTAssertEqual(savedData.first?.courseName, "Test Course")
+        XCTAssertEqual(savedData.first?.completionPercentage, 40)
         XCTAssertEqual(savedData.first?.moduleItems.count, 4)
     }
 
     func testMakeReqestSuccess() {
         // Given
+        let userId = "321"
         let courses = HProgramCourseStub.getProgramCourse()
         let programs = [GetHProgramCourseUseCase.RequestModel(programId: "123", courseIds: ["1"])]
-        let testee = GetHProgramCourseUseCase(programs: programs)
+        let testee = GetHProgramCourseUseCase(userId: userId, programs: programs)
         let response = GetHCoursesByIdsResponse(data: .init(courses: [courses], course: nil))
         let expection = expectation(description: "Wait for completion")
 
         // When
-        api.mock(GetHCoursesByIdsRequest(courseIDs: ["1"]), value: response)
+        api.mock(GetHCoursesByIdsRequest(courseIDs: ["1"], userId: userId), value: response)
         testee.makeRequest(environment: environment) { response, _, _ in
             expection.fulfill()
             XCTAssertEqual(response?.data?.courses?.count, 1)
@@ -75,14 +80,15 @@ final class GetHProgramCourseUseCaseTests: CoreTestCase {
 
     func testMakeReqestFail() {
         // Given
+        let userId = "321"
         let courses = HProgramCourseStub.getProgramCourse()
         let programs = [GetHProgramCourseUseCase.RequestModel(programId: "123", courseIds: ["1"])]
-        let testee = GetHProgramCourseUseCase(programs: programs)
+        let testee = GetHProgramCourseUseCase(userId: userId, programs: programs)
         let response = GetHCoursesByIdsResponse(data: .init(courses: [courses], course: nil))
         let expection = expectation(description: "Wait for completion")
 
         // When
-        api.mock(GetHCoursesByIdsRequest(courseIDs: ["1"]), value: response, error: URLError(.badURL))
+        api.mock(GetHCoursesByIdsRequest(courseIDs: ["1"], userId: userId), value: response, error: URLError(.badURL))
         api.mock(GetHCoursesByIdRequest(courseID: "1"), value: response, error: URLError(.badURL))
         testee.makeRequest(environment: environment) { response, _, error in
             expection.fulfill()
@@ -94,15 +100,16 @@ final class GetHProgramCourseUseCaseTests: CoreTestCase {
 
     func testMakeRequestFallbacksToCourseAPIOnFailure() {
         // Given
+        let userId = "321"
         let course = HProgramCourseStub.getProgramCourse()
         let programs = [GetHProgramCourseUseCase.RequestModel(programId: "123", courseIds: ["1"])]
-        let testee = GetHProgramCourseUseCase(programs: programs)
+        let testee = GetHProgramCourseUseCase(userId: userId, programs: programs)
         let response = GetHCoursesByIdsResponse(data: .init(courses: [course], course: nil))
         let courseResponse = GetHCoursesByIdsResponse(data: .init(courses: nil, course: course))
         let expection = expectation(description: "Wait for completion")
 
         // When
-        api.mock(GetHCoursesByIdsRequest(courseIDs: ["1"]), value: response, error: URLError(.badURL))
+        api.mock(GetHCoursesByIdsRequest(courseIDs: ["1"], userId: userId), value: response, error: URLError(.badURL))
         api.mock(GetHCoursesByIdRequest(courseID: "1"), value: courseResponse)
         testee.makeRequest(environment: environment) { response, _, _ in
             expection.fulfill()
@@ -113,15 +120,16 @@ final class GetHProgramCourseUseCaseTests: CoreTestCase {
 
     func testMakeRequestFallbacksToCourseAPIOnResponseNil() {
         // Given
+        let userId = "321"
         let course = HProgramCourseStub.getProgramCourse()
         let programs = [GetHProgramCourseUseCase.RequestModel(programId: "123", courseIds: ["1"])]
-        let testee = GetHProgramCourseUseCase(programs: programs)
+        let testee = GetHProgramCourseUseCase(userId: userId, programs: programs)
         let response = GetHCoursesByIdsResponse(data: .init(courses: nil, course: nil))
         let courseResponse = GetHCoursesByIdsResponse(data: .init(courses: nil, course: course))
         let expection = expectation(description: "Wait for completion")
 
         // When
-        api.mock(GetHCoursesByIdsRequest(courseIDs: ["1"]), value: response)
+        api.mock(GetHCoursesByIdsRequest(courseIDs: ["1"], userId: userId), value: response)
         api.mock(GetHCoursesByIdRequest(courseID: "1"), value: courseResponse)
         testee.makeRequest(environment: environment) { response, _, _ in
             expection.fulfill()

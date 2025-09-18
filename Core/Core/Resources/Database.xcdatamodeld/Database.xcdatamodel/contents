@@ -314,6 +314,7 @@
         <relationship name="requirements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHProgramRequirement" inverseName="relationship" inverseEntity="CDHProgramRequirement"/>
     </entity>
     <entity name="CDHProgramCourse" representedClassName="Core.CDHProgramCourse" syncable="YES">
+        <attribute name="completionPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="courseID" attributeType="String"/>
         <attribute name="courseName" attributeType="String"/>
         <attribute name="programID" attributeType="String"/>
