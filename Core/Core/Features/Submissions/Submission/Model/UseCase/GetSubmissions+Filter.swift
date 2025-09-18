@@ -394,6 +394,7 @@ extension Collection where Element == GetSubmissions.Filter.Section {
 
 extension GetSubmissions.Filter {
     public struct DifferentiationTag: Hashable {
+        public static let UsersWithoutTagsID = "_UsersWithoutTagsID"
         public let tagID: String
     }
 }
@@ -401,12 +402,36 @@ extension GetSubmissions.Filter {
 extension Collection where Element == GetSubmissions.Filter.DifferentiationTag {
     var predicate: NSPredicate? {
         if isEmpty { return nil }
-        return NSPredicate(
-            format: "ANY %K.%K IN %@",
-            #keyPath(Submission.user.userGroups),
-            #keyPath(CDUserGroup.id),
-            map(\.tagID)
-        )
+
+        // Check if we have the special "users without tags" filter
+        let usersWithoutTagsFilter = first { $0.tagID == Element.UsersWithoutTagsID }
+        let regularTagFilters = filter { $0.tagID != Element.UsersWithoutTagsID }
+
+        var predicates: [NSPredicate] = []
+
+        // Handle regular differentiation tag filters
+        if regularTagFilters.isNotEmpty {
+            let regularTagsPredicate = NSPredicate(
+                format: "ANY %K.%K IN %@",
+                #keyPath(Submission.user.userGroups),
+                #keyPath(CDUserGroup.id),
+                regularTagFilters.map(\.tagID)
+            )
+            predicates.append(regularTagsPredicate)
+        }
+
+        // Handle "users without tags" filter
+        if usersWithoutTagsFilter != nil {
+            let usersWithoutTagsPredicate = NSPredicate(
+                format: "NOT (ANY %K.%K == YES)",
+                #keyPath(Submission.user.userGroups),
+                #keyPath(CDUserGroup.isDifferentiationTag)
+            )
+            predicates.append(usersWithoutTagsPredicate)
+        }
+
+        // Combine predicates with OR (union of results)
+        return predicates.count == 1 ? predicates.first : NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
     }
 
     public var query: URLQueryItem? {

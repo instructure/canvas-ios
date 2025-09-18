@@ -63,13 +63,24 @@ struct SubmissionsFilterViewModel {
             sectionFilterOptions = nil
         }
 
-        let differentiationTagOptions = listViewModel.differentiationTags.map {
+        var differentiationTagOptions = listViewModel.differentiationTags.map {
             OptionItem(
                 id: $0.id,
                 title: $0.name,
                 headerTitle: $0.isSingleTag ? nil : $0.parentGroupSet.name
             )
         }
+
+        if differentiationTagOptions.isNotEmpty {
+            differentiationTagOptions.insert(
+                OptionItem(
+                    id: GetSubmissions.Filter.DifferentiationTag.UsersWithoutTagsID,
+                    title: String(localized: "Students without Differentiation tags", bundle: .teacher)
+                ),
+                at: 0
+            )
+        }
+
         let selectedDifferentiationTagOptions = differentiationTagOptions.filter {
             listViewModel.differentiationTagFilters.contains($0.id) || listViewModel.differentiationTagFilters.isEmpty
         }

@@ -333,4 +333,73 @@ class GetSubmissionsTests: CoreTestCase {
         let emptyFilter: [Filter.DifferentiationTag] = []
         XCTAssertNil(emptyFilter.predicate)
     }
+
+    func testUsersWithoutTagsFilterPredicate() throws {
+        typealias Filter = GetSubmissions.Filter
+
+        // Create users
+        let userWithTags = User.save(.make(id: "1", name: "User With Tags"), in: databaseClient)
+        let userWithoutTags = User.save(.make(id: "2", name: "User Without Tags"), in: databaseClient)
+        let userWithRegularGroup = User.save(.make(id: "3", name: "User With Regular Group"), in: databaseClient)
+
+        // Create user group set
+        let groupSet: CDUserGroupSet = databaseClient.insert()
+        groupSet.id = "groupset1"
+        groupSet.name = "Test Groups"
+        groupSet.courseId = "course1"
+
+        // Create a differentiation tag
+        let diffTag: CDUserGroup = databaseClient.insert()
+        diffTag.id = "difftag1"
+        diffTag.name = "Differentiation Tag"
+        diffTag.isDifferentiationTag = true
+        diffTag.parentGroupSet = groupSet
+        diffTag.userIdsInGroup = Set(["1"])
+
+        // Create a regular (non-differentiation) group
+        let regularGroup: CDUserGroup = databaseClient.insert()
+        regularGroup.id = "regular1"
+        regularGroup.name = "Regular Group"
+        regularGroup.isDifferentiationTag = false
+        regularGroup.parentGroupSet = groupSet
+        regularGroup.userIdsInGroup = Set(["3"])
+
+        // Connect users to their groups
+        userWithTags.userGroups = Set([diffTag])
+        userWithoutTags.userGroups = Set() // No groups
+        userWithRegularGroup.userGroups = Set([regularGroup]) // Only regular group, no differentiation tags
+
+        // Create submissions
+        let submission1 = Submission.save(.make(id: "1", user_id: "1"), in: databaseClient)
+        let submission2 = Submission.save(.make(id: "2", user_id: "2"), in: databaseClient)
+        let submission3 = Submission.save(.make(id: "3", user_id: "3"), in: databaseClient)
+
+        submission1.user = userWithTags
+        submission2.user = userWithoutTags
+        submission3.user = userWithRegularGroup
+
+        try databaseClient.save()
+
+        // Test filtering by "users without tags" - should return submissions for users 2 and 3
+        let usersWithoutTagsFilter = [Filter.DifferentiationTag(tagID: Filter.DifferentiationTag.UsersWithoutTagsID)]
+        let results: [Submission] = databaseClient.fetch(scope: .init(predicate: usersWithoutTagsFilter.predicate!, order: []))
+
+        XCTAssertEqual(results.count, 2)
+        XCTAssertTrue(results.contains { $0.userID == "2" }) // User with no groups
+        XCTAssertTrue(results.contains { $0.userID == "3" }) // User with only regular groups
+        XCTAssertFalse(results.contains { $0.userID == "1" }) // User with differentiation tags should be excluded
+
+        // Test combining "users without tags" with regular tag filter
+        let combinedFilter = [
+            Filter.DifferentiationTag(tagID: Filter.DifferentiationTag.UsersWithoutTagsID),
+            Filter.DifferentiationTag(tagID: "difftag1")
+        ]
+        let combinedResults: [Submission] = databaseClient.fetch(scope: .init(predicate: combinedFilter.predicate!, order: []))
+
+        // Should return all submissions (union of both filters)
+        XCTAssertEqual(combinedResults.count, 3)
+        XCTAssertTrue(combinedResults.contains { $0.userID == "1" }) // From regular tag filter
+        XCTAssertTrue(combinedResults.contains { $0.userID == "2" }) // From users without tags filter
+        XCTAssertTrue(combinedResults.contains { $0.userID == "3" }) // From users without tags filter
+    }
 }
