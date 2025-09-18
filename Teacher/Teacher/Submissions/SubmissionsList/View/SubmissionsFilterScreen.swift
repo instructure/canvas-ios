@@ -38,12 +38,12 @@ enum SubmissionFilterMode: String, CaseIterable {
         }
     }
 
-    var filters: [GetSubmissions.Filter] {
+    var filters: Set<GetSubmissions.Filter.Status> {
         switch self {
         case .all:
-            return []
+            return Set(GetSubmissions.Filter.Status.basicCases)
         case .needsGrading:
-            return [.needsGrading]
+            return [.submitted]
         case .notSubmitted:
             return [.notSubmitted]
         case .graded:

@@ -25,10 +25,11 @@ public enum SubmissionListAssembly {
         env: AppEnvironment,
         context: Context,
         assignmentID: String,
-        filter: [GetSubmissions.Filter]
+        filter: [GetSubmissions.Filter.Status]
     ) -> UIViewController {
 
-        let filterMode = SubmissionFilterMode.allCases.first(where: { $0.filters == filter }) ?? .all
+        let filtersSet = Set(filter)
+        let filterMode = SubmissionFilterMode.allCases.first(where: { $0.filters == filtersSet }) ?? .all
         let interactor = SubmissionListInteractorLive(context: context, assignmentID: assignmentID, filters: filter, env: env)
         let viewModel = SubmissionListViewModel(interactor: interactor, filterMode: filterMode, env: env)
         let view = SubmissionListScreen(viewModel: viewModel)

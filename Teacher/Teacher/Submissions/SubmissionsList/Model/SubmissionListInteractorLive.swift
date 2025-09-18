@@ -34,12 +34,12 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     private var submissionsStore: ReactiveStore<GetSubmissions>?
 
     private var submissionsSubject = PassthroughSubject<[Submission], Never>()
-    private var filtersSubject: CurrentValueSubject<[GetSubmissions.Filter], Never>
+    private var filtersSubject: CurrentValueSubject<Set<SubmissionStatusFilter>, Never>
 
-    init(context: Context, assignmentID: String, filters: [GetSubmissions.Filter], env: AppEnvironment) {
+    init(context: Context, assignmentID: String, filters: [SubmissionStatusFilter], env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
-        self.filtersSubject = CurrentValueSubject<[GetSubmissions.Filter], Never>(filters)
+        self.filtersSubject = CurrentValueSubject<Set<SubmissionStatusFilter>, Never>(Set(filters))
         self.env = env
 
         customStatusesStore = ReactiveStore(
@@ -70,9 +70,11 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .store(in: &subscriptions)
     }
 
-    private func setupSubmissionsStore(_ filters: [GetSubmissions.Filter] = []) {
+    private func setupSubmissionsStore(_ filters: Set<SubmissionStatusFilter> = []) {
+        let filter = GetSubmissions.Filter(statuses: filters)
+
         submissionsStore = ReactiveStore(
-            useCase: GetSubmissions(context: context, assignmentID: assignmentID, filter: filters),
+            useCase: GetSubmissions(context: context, assignmentID: assignmentID, filter: filter),
             environment: env
         )
 
@@ -147,20 +149,18 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     }
 
     func refresh() -> AnyPublisher<Void, Never> {
-        return Publishers.Last(
-            upstream:
-                Publishers.Merge4(
-                    customStatusesStore.forceRefresh(),
-                    courseStore.forceRefresh(),
-                    assignmentStore.forceRefresh(),
-                    submissionsStore?.forceRefresh() ?? Empty<Void, Never>().eraseToAnyPublisher()
-                )
+        return Publishers.CombineLatest4(
+            customStatusesStore.forceRefresh(),
+            courseStore.forceRefresh(),
+            assignmentStore.forceRefresh(),
+            submissionsStore?.forceRefresh() ?? Just<Void>(()).eraseToAnyPublisher()
         )
+        .mapToVoid()
         .eraseToAnyPublisher()
     }
 
-    func applyFilters(_ filters: [GetSubmissions.Filter]) {
-        filtersSubject.send(filters)
+    func applyFilter(_ filter: GetSubmissions.Filter) {
+        filtersSubject.send(filter.statuses)
     }
 }
 

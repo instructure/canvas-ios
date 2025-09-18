@@ -35,7 +35,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     let customGradebookColumnsInteractor: CustomGradebookColumnsInteractor
 
     private let env: AppEnvironment
-    private let filter: [GetSubmissions.Filter]
+    private let filter: Set<GetSubmissions.Filter.Status>
     private var subscriptions = Set<AnyCancellable>()
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
 
@@ -43,7 +43,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         context: Context,
         assignmentID: String,
         userID: String,
-        filter: [GetSubmissions.Filter],
+        filter: [GetSubmissions.Filter.Status],
         gradeStatusInteractor: GradeStatusInteractor,
         submissionWordCountInteractor: SubmissionWordCountInteractor,
         customGradebookColumnsInteractor: CustomGradebookColumnsInteractor,
@@ -53,7 +53,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         self.context = context
         self.assignmentID = assignmentID
         self.userID = userID
-        self.filter = filter
+        self.filter = Set(filter)
         self.gradeStatusInteractor = gradeStatusInteractor
         self.submissionWordCountInteractor = submissionWordCountInteractor
         self.customGradebookColumnsInteractor = customGradebookColumnsInteractor
@@ -175,6 +175,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     }
 
     private func loadSubmissions(anonymizeStudents: Bool) -> AnyPublisher<([Submission]), Error> {
+        let filter = GetSubmissions.Filter(statuses: filter)
         let submissionsUseCase = GetSubmissions(context: context, assignmentID: assignmentID, filter: filter)
         submissionsUseCase.shuffled = anonymizeStudents
         return ReactiveStore(useCase: submissionsUseCase, environment: env)

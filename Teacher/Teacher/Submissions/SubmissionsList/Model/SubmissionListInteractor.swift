@@ -20,6 +20,8 @@ import Foundation
 import Core
 import Combine
 
+public typealias SubmissionStatusFilter = GetSubmissions.Filter.Status
+
 public protocol SubmissionListInteractor {
 
     var submissions: AnyPublisher<[Submission], Never> { get }
@@ -31,7 +33,7 @@ public protocol SubmissionListInteractor {
     var assignmentID: String { get }
 
     func refresh() -> AnyPublisher<Void, Never>
-    func applyFilters(_ filters: [GetSubmissions.Filter])
+    func applyFilter(_ filter: GetSubmissions.Filter)
 }
 
 public struct AssigneeGroup: Equatable {

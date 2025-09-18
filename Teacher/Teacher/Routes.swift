@@ -163,7 +163,7 @@ let router = Router(routes: [
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions") { url, params, _, env in
         guard let context = Context(path: url.path), let assignmentID = params["assignmentID"] else { return nil }
         let filter = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
-            GetSubmissions.Filter(rawValue: $0)
+            GetSubmissions.Filter.Status(rawValue: $0)
         } ?? []
 
         return SubmissionListAssembly.makeViewController(
@@ -200,7 +200,7 @@ let router = Router(routes: [
             .queryValue(for: "filter")?
             .components(separatedBy: ",")
             .compactMap {
-                GetSubmissions.Filter(rawValue: $0)
+                GetSubmissions.Filter.Status(rawValue: $0)
             } ?? []
         return SpeedGraderAssembly.makeSpeedGraderViewController(
             context: context,

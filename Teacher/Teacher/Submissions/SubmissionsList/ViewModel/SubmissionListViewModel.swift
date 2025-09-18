@@ -86,7 +86,7 @@ class SubmissionListViewModel: ObservableObject {
 
         $filterMode
             .sink { [weak self] mode in
-                self?.interactor.applyFilters(mode.filters)
+                self?.interactor.applyFilter(.init(statuses: mode.filters))
             }
             .store(in: &subscriptions)
     }
@@ -96,6 +96,10 @@ class SubmissionListViewModel: ObservableObject {
     }
 
     // MARK: Exposed To View
+
+    var isFilterActive: Bool {
+        return filterMode != .all
+    }
 
     func refresh(_ completion: @escaping () -> Void) {
         interactor
@@ -110,7 +114,7 @@ class SubmissionListViewModel: ObservableObject {
     func messageUsers(from controller: WeakViewController) {
         guard var subject = assignment?.name else { return }
 
-        if filterMode != .all {
+        if isFilterActive {
             subject = "\(filterMode.title) - \(subject)"
         }
 
@@ -166,7 +170,7 @@ class SubmissionListViewModel: ObservableObject {
     }
 
     func didTapSubmissionRow(_ submission: SubmissionListItem, from controller: WeakViewController) {
-        let query = filterMode == .all ? "" : "?filter=\(filterMode.filters.map { $0.rawValue }.joined(separator: ","))"
+        let query = isFilterActive ? "?filter=\(filterMode.filters.map { $0.rawValue }.joined(separator: ","))" : ""
         env.router.route(
             to: assignmentRoute + "/submissions/\(submission.originalUserID)\(query)",
             from: controller.value,
