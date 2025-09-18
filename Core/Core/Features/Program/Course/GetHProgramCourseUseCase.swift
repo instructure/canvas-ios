@@ -37,17 +37,20 @@ public final class GetHProgramCourseUseCase: APIUseCase {
 
     public typealias Model = CDHProgramCourse
     private let programs: [RequestModel]
+    private let userId: String
     private let maxLimit = 100
     private var subscriptions = Set<AnyCancellable>()
+
     // MARK: - Init
 
-    public init(programs: [RequestModel]) {
+    public init(userId: String, programs: [RequestModel]) {
+        self.userId = userId
         self.programs = programs
     }
 
     public var request: GetHCoursesByIdsRequest {
         let courseIDs = programs.map { $0.courseIds }.flatMap { $0 }
-        return GetHCoursesByIdsRequest(courseIDs: courseIDs)
+        return GetHCoursesByIdsRequest(courseIDs: courseIDs, userId: userId)
     }
 
     public var cacheKey: String? {  programs.map { $0.cacheKey }.joined(separator: "-") }
@@ -95,7 +98,7 @@ public final class GetHProgramCourseUseCase: APIUseCase {
 
         let chunkedRequests = uniqueCourseIDs
             .chunked(into: maxLimit)
-            .map { fetch(request: GetHCoursesByIdsRequest(courseIDs: $0), environment: environment) }
+            .map { fetch(request: GetHCoursesByIdsRequest(courseIDs: $0, userId: userId), environment: environment) }
 
         Publishers.MergeMany(chunkedRequests)
             .flatMap { response -> AnyPublisher<GetHCoursesByIdsResponse, Error> in

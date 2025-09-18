@@ -23,6 +23,7 @@ public struct GetHCoursesByIdsRequest: APIGraphQLRequestable {
     public typealias Variables = Input
 
     public struct Input: Codable, Equatable {
+        let userId: String
         let ids: [String]
     }
 
@@ -31,15 +32,25 @@ public struct GetHCoursesByIdsRequest: APIGraphQLRequestable {
 
     // MARK: - Init
 
-    public init(courseIDs: [String]) {
-        self.variables = Input(ids: courseIDs)
+    public init(courseIDs: [String], userId: String) {
+        self.variables = Input(userId: userId, ids: courseIDs)
     }
 
     public static let query: String = """
-            query \(operationName)($ids: [ID!]) {
+            query \(operationName)($ids: [ID!], $userId: ID!) {
               courses(ids: $ids) {
                 _id
                 name
+                usersConnection(filter: { userIds: [$userId] }) {
+                  nodes {
+                    courseProgression {
+                      requirements {
+                        completed
+                        completionPercentage
+                      }
+                    }
+                  }
+                }
                 modulesConnection {
                   edges {
                     node {

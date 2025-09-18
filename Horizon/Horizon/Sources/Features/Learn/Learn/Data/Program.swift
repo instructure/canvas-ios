@@ -78,7 +78,7 @@ struct ProgramCourse: Identifiable, Equatable {
     let isRequired: Bool
     let status: String
     let progressID: String
-    let completionPercent: Double
+    var completionPercent: Double
     var moduleItemsestimatedTime: [String] = []
     var index = 0
 
