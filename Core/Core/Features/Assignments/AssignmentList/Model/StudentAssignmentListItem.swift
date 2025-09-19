@@ -1,0 +1,179 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Foundation
+import SwiftUI
+
+struct StudentAssignmentListItem: Equatable, Identifiable {
+
+    struct SubItem: Equatable, Identifiable {
+        let tag: String
+        let title: String
+
+        let dueDate: String
+        // TODO: remove optionality after EVAL-5938
+        let submissionStatus: SubmissionStatusLabel.Model?
+        let score: String?
+
+        var id: String { tag }
+    }
+
+    let id: String
+    let title: String
+    let icon: Image
+
+    let dueDates: [String]
+    let submissionStatus: SubmissionStatusLabel.Model
+    let score: String?
+
+    let subItems: [SubItem]?
+
+    let route: URL?
+
+    init(assignment: Assignment) {
+        let hasSubAssignments = assignment.hasSubAssignments
+
+        self.id = assignment.id
+        self.title = assignment.name
+        self.icon = assignment.icon.asImage
+
+        if hasSubAssignments {
+            self.dueDates = assignment.checkpoints
+                .map { DueDateSummary($0.dueDate, lockDate: $0.lockDate) }
+                .reduceIfNeeded()
+                .map(\.text)
+        } else {
+            self.dueDates = [
+                DueDateFormatter.format(assignment.dueAt, lockDate: assignment.lockAt)
+            ]
+        }
+
+        let status = assignment.submission?.status ?? .notSubmitted
+        self.submissionStatus = .init(status: status)
+        let hasPointsPossible = assignment.pointsPossible != nil
+        self.score = hasPointsPossible && status != .excused ? GradeFormatter.string(from: assignment, style: .medium) : nil
+        self.route = assignment.htmlURL
+
+        if hasSubAssignments {
+            self.subItems = assignment.checkpoints
+                .map { checkpoint in
+                    let subSubmission = assignment.submission?.subAssignmentSubmissions
+                        .first { $0.subAssignmentTag == checkpoint.tag }
+
+                    // This is only needed because `APISubAssignmentSubmission.submitted_at` is currently not populated by backend.
+                    // TODO: fallback to `.notSubmitted` and remove optionality once status can be calculated after EVAL-5938
+                    var status = subSubmission?.status
+                    if status == .notSubmitted {
+                        status = nil
+                    }
+
+                    var score: String?
+                    if let pointsPossible = checkpoint.pointsPossible, status != .excused {
+                        score = GradeFormatter.string(
+                            pointsPossible: pointsPossible,
+                            gradingType: assignment.gradingType,
+                            gradingScheme: assignment.gradingScheme,
+                            hideScores: assignment.hideQuantitativeData,
+                            style: .medium,
+                            isExcused: false,
+                            score: subSubmission?.score,
+                            normalizedScore: (subSubmission?.score).map { $0 / pointsPossible },
+                            grade: subSubmission?.grade,
+                            enforceShortStyleForLetterGrade: false
+                        )
+                    }
+
+                    return SubItem(
+                        tag: checkpoint.tag,
+                        title: checkpoint.title,
+                        dueDate: DueDateFormatter.format(checkpoint.dueDate, lockDate: checkpoint.lockDate),
+                        submissionStatus: status.map { .init(status: $0) },
+                        score: score
+                    )
+                }
+        } else {
+            self.subItems = nil
+        }
+    }
+}
+
+#if DEBUG
+
+extension StudentAssignmentListItem {
+    private init(
+        id: String,
+        title: String,
+        icon: Image,
+        dueDates: [String],
+        submissionStatus: SubmissionStatusLabel.Model,
+        score: String?,
+        subItems: [SubItem]?,
+        route: URL?
+    ) {
+        self.id = id
+        self.title = title
+        self.icon = icon
+        self.dueDates = dueDates
+        self.submissionStatus = submissionStatus
+        self.score = score
+        self.subItems = subItems
+        self.route = route
+    }
+
+    public static func make(
+        id: String = "",
+        title: String = "",
+        icon: Image = .emptyLine,
+        dueDates: [String] = [],
+        submissionStatus: SubmissionStatusLabel.Model = .init(text: "", icon: .emptyLine, color: .clear),
+        score: String? = nil,
+        subItems: [SubItem]? = nil,
+        route: URL? = nil
+    ) -> Self {
+        self.init(
+            id: id,
+            title: title,
+            icon: icon,
+            dueDates: dueDates,
+            submissionStatus: submissionStatus,
+            score: score,
+            subItems: subItems,
+            route: route
+        )
+    }
+}
+
+extension StudentAssignmentListItem.SubItem {
+    public static func make(
+        tag: String = "",
+        title: String = "",
+        dueDate: String = "",
+        submissionStatus: SubmissionStatusLabel.Model = .init(text: "", icon: .emptyLine, color: .clear),
+        score: String? = nil
+    ) -> Self {
+        self.init(
+            tag: tag,
+            title: title,
+            dueDate: dueDate,
+            submissionStatus: submissionStatus,
+            score: score
+        )
+    }
+}
+
+#endif

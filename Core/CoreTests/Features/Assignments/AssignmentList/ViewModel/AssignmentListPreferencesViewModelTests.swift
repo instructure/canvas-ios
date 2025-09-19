@@ -180,14 +180,14 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
         XCTAssertFalse(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
         XCTAssertTrue(AssignmentFilterOptionStudent.toBeGraded.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionStudent.graded.rule(assignment))
-        XCTAssertTrue(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
 
         submission.workflowState = .graded
         submission.score = 1.0
         XCTAssertFalse(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionStudent.toBeGraded.rule(assignment))
         XCTAssertTrue(AssignmentFilterOptionStudent.graded.rule(assignment))
-        XCTAssertTrue(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
+        XCTAssertFalse(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
 
         submission.workflowState = .submitted
         submission.score = nil

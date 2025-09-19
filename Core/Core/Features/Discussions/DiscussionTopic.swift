@@ -187,9 +187,16 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
         }
 
         if let checkpoints = item.checkpoints {
-            self.checkpoints = checkpoints.map {
-                CDAssignmentCheckpoint.save($0, assignmentId: item.id.value, in: moContext)
-            }
+            self.checkpoints = checkpoints
+                .map {
+                    CDAssignmentCheckpoint.save(
+                        $0,
+                        requiredReplyCount: item.reply_to_entry_required_count,
+                        assignmentId: item.id.value,
+                        in: moContext
+                    )
+                }
+                .sorted(by: <)
         }
     }
 }

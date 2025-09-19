@@ -18,16 +18,26 @@
 
 import SwiftUI
 
-extension View {
+extension InstUI {
 
-    /// Applies a custom tint color to the view if the color is not nil.
-    /// If the color is nil, it returns the view unchanged.
-    @ViewBuilder
-    public func customTint(_ color: Color?) -> some View {
-        if let color {
-            self.tint(color)
-        } else {
-            self
+    public struct CollapseButtonIcon: View {
+
+        private let size: CGFloat
+        @Binding private var isExpanded: Bool
+
+        public init(
+            size: CGFloat = Image.defaultIconSize,
+            isExpanded: Binding<Bool>
+        ) {
+            self.size = size
+            self._isExpanded = isExpanded
+        }
+
+        public var body: some View {
+            Image.chevronDown
+                .scaledIcon(size: size)
+                .foregroundStyle(.textDark)
+                .rotationEffect(.degrees(isExpanded ? 180 : 0))
         }
     }
 }

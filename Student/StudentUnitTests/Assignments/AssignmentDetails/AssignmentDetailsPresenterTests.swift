@@ -84,7 +84,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         XCTAssertEqual(presenter.assignments.useCase.courseID, presenter.courseID)
         XCTAssertEqual(presenter.assignments.useCase.assignmentID, presenter.assignmentID)
 
-        XCTAssertEqual(presenter.assignments.useCase.include, [.submission, .score_statistics])
+        XCTAssertEqual(presenter.assignments.useCase.include, [.submission, .score_statistics, .checkpoints, .sub_assignment_submissions])
 
         XCTAssertEqual(presenter.arc.useCase.courseID, presenter.courseID)
     }

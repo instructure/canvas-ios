@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,17 +17,15 @@
 //
 
 import Core
+import SwiftUI
 import XCTest
 
-class AssignmentGroupViewModelTests: CoreTestCase {
+class UIImageImageTests: XCTestCase {
 
-    func testEqualityDetectsDifferentAssignments() {
-        let assignment1: Assignment = databaseClient.insert()
-        let assignment2: Assignment = databaseClient.insert()
+    func test_asImage_shouldCreateImage() {
+        let uiImage = UIImage.archiveLine
+        let testee = uiImage.asImage
 
-        let viewModel1 = AssignmentGroupViewModel(name: "", id: "1", assignments: [assignment1], courseColor: nil)
-        let viewModel2 = AssignmentGroupViewModel(name: "", id: "1", assignments: [assignment2], courseColor: nil)
-
-        XCTAssertNotEqual(viewModel1, viewModel2)
+        XCTAssertEqual(testee, Image(uiImage: .archiveLine))
     }
 }

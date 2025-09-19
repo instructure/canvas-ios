@@ -60,7 +60,7 @@ struct ContextCardSubmissionRow: View {
             }
         }
         .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-        .accessibility(label: Text("Submission \(assignment.name), \(submission.status.text), \(a11ySubmissionStatus)", bundle: .core))
+        .accessibility(label: Text("Submission \(assignment.name), \(submission.statusOld.text), \(a11ySubmissionStatus)", bundle: .core))
         .identifier("ContextCard.submissionCell(\(assignment.id))")
     }
 

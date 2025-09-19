@@ -24,7 +24,7 @@ public struct SubmissionListItem {
     let originalUserID: String
     let userNameModel: UserNameModel
     let userAsRecipient: Recipient?
-    let status: SubmissionStatus
+    let status: SubmissionStatusOld
     let needsGrading: Bool
     let gradeFormatted: String
 
@@ -35,7 +35,7 @@ public struct SubmissionListItem {
         originalUserID: String,
         userNameModel: UserNameModel,
         userAsRecipient: Recipient?,
-        status: SubmissionStatus,
+        status: SubmissionStatusOld,
         needsGrading: Bool,
         gradeFormatted: String
     ) {
@@ -85,7 +85,7 @@ extension SubmissionListItem {
         originalUserID: String = "",
         userNameModel: UserNameModel = .anonymousUser,
         userAsRecipient: Recipient? = nil,
-        status: SubmissionStatus = .notSubmitted,
+        status: SubmissionStatusOld = .notSubmitted,
         needsGrading: Bool = false,
         gradeFormatted: String = "-"
     ) -> SubmissionListItem {
