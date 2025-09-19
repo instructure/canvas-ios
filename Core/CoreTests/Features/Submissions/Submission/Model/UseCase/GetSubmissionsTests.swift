@@ -253,7 +253,8 @@ class GetSubmissionsTests: CoreTestCase {
             NSSortDescriptor(key: #keyPath(Submission.submittedAt), ascending: true),
             NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true)
         ])
-        XCTAssertEqual(useCase.sortMode.query, "sort=submissionDate")
+
+        XCTAssertEqual(useCase.sortMode.query, URLQueryItem(name: "sort", value: "submissionDate"))
 
         useCase.sortMode = .submissionStatus
         XCTAssertEqual(useCase.scope.order, [
@@ -261,6 +262,6 @@ class GetSubmissionsTests: CoreTestCase {
             NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true)
         ])
 
-        XCTAssertEqual(useCase.sortMode.query, "sort=submissionStatus")
+        XCTAssertEqual(useCase.sortMode.query, URLQueryItem(name: "sort", value: "submissionStatus"))
     }
 }

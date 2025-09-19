@@ -162,15 +162,12 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions") { url, params, _, env in
         guard let context = Context(path: url.path), let assignmentID = params["assignmentID"] else { return nil }
-        let filter = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
-            GetSubmissions.Filter.Status(rawValue: $0)
-        } ?? []
-
+        let filter = GetSubmissions.Filter(urlComponents: url)
         return SubmissionListAssembly.makeViewController(
             env: env,
             context: context,
             assignmentID: assignmentID,
-            filter: filter
+            filter: filter.nilIfEmpty
         )
     },
 
@@ -185,6 +182,7 @@ let router = Router(routes: [
             assignmentId: assignmentId,
             userId: url.queryValue(for: "student_id"),
             filter: [],
+            sortMode: .studentSortableName,
             env: env
         )
     },
@@ -196,17 +194,18 @@ let router = Router(routes: [
             let userId = params["userID"]
         else { return nil }
 
-        let filter = url
-            .queryValue(for: "filter")?
-            .components(separatedBy: ",")
-            .compactMap {
-                GetSubmissions.Filter.Status(rawValue: $0)
-            } ?? []
+        let filter = GetSubmissions.Filter(urlComponents: url).nilIfEmpty
+
+        let sortMode = url
+            .queryValue(for: "sort")
+            .flatMap({ GetSubmissions.SortMode(rawValue: $0) }) ?? .studentSortableName
+
         return SpeedGraderAssembly.makeSpeedGraderViewController(
             context: context,
             assignmentId: assignmentId,
             userId: userId,
             filter: filter,
+            sortMode: sortMode,
             env: env
         )
     },

@@ -21,19 +21,31 @@ import Core
 import Combine
 
 public typealias SubmissionStatusFilter = GetSubmissions.Filter.Status
+public typealias SubmissionsFilter = GetSubmissions.Filter
+public typealias SubmissionsSortMode = GetSubmissions.SortMode
+
+public struct SubmissionListPreferences {
+    let filter: SubmissionsFilter?
+    let sortMode: SubmissionsSortMode
+
+    var query: [URLQueryItem] {
+        (filter?.query ?? []) + [sortMode.query]
+    }
+}
 
 public protocol SubmissionListInteractor {
 
     var submissions: AnyPublisher<[Submission], Never> { get }
     var assignment: AnyPublisher<Assignment?, Never> { get }
     var course: AnyPublisher<Course?, Never> { get }
+    var courseSections: AnyPublisher<[CourseSection], Never> { get }
     var assigneeGroups: AnyPublisher<[AssigneeGroup], Never> { get }
 
     var context: Context { get }
     var assignmentID: String { get }
 
     func refresh() -> AnyPublisher<Void, Never>
-    func applyFilter(_ filter: GetSubmissions.Filter)
+    func applyPreferences(_ pref: SubmissionListPreferences)
 }
 
 public struct AssigneeGroup: Equatable {

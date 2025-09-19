@@ -95,25 +95,25 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
         )
     }
 
-    private typealias SubmissionStatusFilter = GetSubmissions.Filter.Status
+    private typealias SubmissionsFilter = GetSubmissions.Filter
 
     public func routeToGraded(router: Router, viewController: WeakViewController) {
         router.route(
-            to: "\(submissionsPath)?filter=\(SubmissionStatusFilter.graded.queryValue)",
+            to: submissionsPath.asURLPathWithQuery(SubmissionsFilter.status(.graded).query),
             from: viewController
         )
     }
 
     public func routeToUngraded(router: Router, viewController: WeakViewController) {
         router.route(
-            to: "\(submissionsPath)?filter=\(SubmissionStatusFilter.submitted.queryValue)",
+            to: submissionsPath.asURLPathWithQuery(SubmissionsFilter.status(.submitted).query),
             from: viewController
         )
     }
 
     public func routeToUnsubmitted(router: Router, viewController: WeakViewController) {
         router.route(
-            to: "\(submissionsPath)?filter=\(SubmissionStatusFilter.notSubmitted.queryValue)",
+            to: submissionsPath.asURLPathWithQuery(SubmissionsFilter.status(.notSubmitted).query),
             from: viewController
         )
     }

@@ -190,6 +190,17 @@ extension String {
     public var doubleValue: Double? {
         StringFormatUtils.numberFormatter.number(from: self)?.doubleValue
     }
+
+    public var urlQuerySafePercentEncoded: String? {
+        addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+    }
+
+    public func asURLPathWithQuery(_ queryItems: [URLQueryItem]) -> String {
+        var components = URLComponents()
+        components.path = self
+        components.queryItems = queryItems
+        return components.string ?? self
+    }
 }
 
 private enum StringFormatUtils {
