@@ -27,10 +27,10 @@ public enum DueDateSummary: Equatable {
     case multipleDueDates
 
     public init(_ dueDate: Date?, lockDate: Date? = nil, hasOverrides: Bool = false) {
-        if let lockDate, Clock.now > lockDate {
-            self = .availabilityClosed
-        } else if hasOverrides {
+        if hasOverrides {
             self = .multipleDueDates
+        } else if let lockDate, Clock.now > lockDate {
+            self = .availabilityClosed
         } else if let dueDate {
             self = .dueDate(dueDate)
         } else {
@@ -49,13 +49,13 @@ public enum DueDateSummary: Equatable {
 
 extension Array<DueDateSummary> {
 
-    /// Returns multiple due dates when all cases are regular due dates,
+    /// Returns more than one due date cases when all cases are regular due dates,
     /// or a single special case when any element matches that special case.
     public func reduceIfNeeded() -> [DueDateSummary] {
-        if contains(.availabilityClosed) {
-            [.availabilityClosed]
-        } else if contains(.multipleDueDates) {
+        if contains(.multipleDueDates) {
             [.multipleDueDates]
+        } else if contains(.availabilityClosed) {
+            [.availabilityClosed]
         } else {
             self
         }

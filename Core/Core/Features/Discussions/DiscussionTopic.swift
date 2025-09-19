@@ -67,7 +67,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     @NSManaged public var isCheckpointed: Bool
     @NSManaged private var requiredReplyCountRaw: NSNumber?
     public var requiredReplyCount: Int? {
-        get { return requiredReplyCountRaw?.intValue } set { requiredReplyCountRaw = .init(newValue) }
+        get { requiredReplyCountRaw?.intValue } set { requiredReplyCountRaw = .init(newValue) }
     }
     @NSManaged public var hasSubAssignments: Bool
     @NSManaged private var checkpointsRaw: NSOrderedSet
