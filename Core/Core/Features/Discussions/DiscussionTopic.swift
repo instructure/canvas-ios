@@ -103,7 +103,13 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
         model.anonymousState = item.anonymous_state
         if let assignment = item.assignment?.values.first {
             model.assignment = nil // sever relationship first so assignment doesn't delete me
-            model.assignment = Assignment.save(assignment, in: context, updateSubmission: false, updateScoreStatistics: false)
+            model.assignment = Assignment.save(
+                assignment,
+                in: context,
+                updateSubmission: false,
+                updateScoreStatistics: false,
+                requiredReplyCount: item.reply_to_entry_required_count
+            )
         } else {
             model.assignment = item.assignment_id.flatMap { context.first(where: (\Assignment.id).string, equals: $0.value) }
         }
@@ -186,13 +192,14 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
             // else CoreData can default to `false`
         }
 
-        if let checkpoints = item.checkpoints {
+        if let checkpoints = item.checkpoints,
+           let assignment = item.assignment?.values.first {
             self.checkpoints = checkpoints
                 .map {
                     CDAssignmentCheckpoint.save(
                         $0,
                         requiredReplyCount: item.reply_to_entry_required_count,
-                        assignmentId: item.id.value,
+                        assignmentId: assignment.id.value,
                         in: moContext
                     )
                 }
