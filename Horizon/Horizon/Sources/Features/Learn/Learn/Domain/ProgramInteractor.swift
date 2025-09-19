@@ -114,8 +114,8 @@ final class ProgramInteractorLive: ProgramInteractor {
 
     private func mapCourse(progress: CDHProgramProgress, requirement: CDHProgramRequirement) -> ProgramCourse {
         ProgramCourse(
-            id: (requirement.dependent?.canvasCourseId).orEmpty,
-            name: (requirement.dependent?.canvasCourseId).orEmpty,
+            id: (requirement.dependent?.canvasCourseId).defaultToEmpty,
+            name: (requirement.dependent?.canvasCourseId).defaultToEmpty,
             isSelfEnrolled: requirement.courseEnrollment == CourseEnrollmentStatus.selfEnrollment.rawValue,
             isRequired: requirement.isCompletionRequired,
             status: progress.courseEnrollmentStatus,

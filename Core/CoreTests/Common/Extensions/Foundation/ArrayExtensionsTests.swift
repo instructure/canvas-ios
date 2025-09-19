@@ -16,34 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+@testable import Core
+import XCTest
 
-extension Optional {
+final class ArrayExtensionsTests: XCTestCase {
 
-    public func unwrapOrThrow() throws -> Wrapped {
-        guard let unwrapped = self else {
-            throw NSError.instructureError("Optional value was nil")
-        }
-        return unwrapped
+    func testChunked() {
+        // Given
+        let numbers = Array(1...50)
+        // When
+        let chunkedList = numbers.chunked(into: 10)
+        // Then
+        XCTAssertEqual(chunkedList.count, 5)
     }
-}
-
-public extension Optional where Wrapped == String {
-    var defaultToEmpty: String { self ?? "" }
-}
-
-public extension Optional where Wrapped == Int {
-    var defaultToZero: Int { self ?? 0 }
-}
-
-public extension Optional where Wrapped == Double {
-    var defaultToZero: Double { self ?? 0.0 }
-}
-
-public extension Optional where Wrapped == Bool {
-    var defaultToFalse: Bool { self ?? false }
-}
-
-public extension Optional where Wrapped == Bool {
-    var defaultToTrue: Bool { self ?? true }
 }

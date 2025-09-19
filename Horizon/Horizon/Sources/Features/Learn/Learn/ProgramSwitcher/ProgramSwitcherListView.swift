@@ -59,7 +59,7 @@ struct ProgramSwitcherListView: View {
 
     private func programView(program: ProgramSwitcherModel, isSelected: Bool) -> some View {
         HStack(spacing: .huiSpaces.space8) {
-            Text(program.name.orEmpty)
+            Text(program.name.defaultToEmpty)
                 .foregroundStyle(isSelected ? Color.huiColors.surface.pageSecondary : Color.huiColors.text.body)
                 .huiTypography(.buttonTextLarge)
                 .frame(maxWidth: .infinity, alignment: .leading)

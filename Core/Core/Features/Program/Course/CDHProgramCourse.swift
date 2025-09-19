@@ -33,14 +33,14 @@ public final class CDHProgramCourse: NSManagedObject {
     ) -> CDHProgramCourse {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(format: "%K == %@", #keyPath(CDHProgramCourse.programID), programID),
-            NSPredicate(format: "%K == %@", #keyPath(CDHProgramCourse.courseID), (apiEntity?.id).orEmpty)
+            NSPredicate(format: "%K == %@", #keyPath(CDHProgramCourse.courseID), (apiEntity?.id).defaultToEmpty)
         ])
 
         let dbEntity: CDHProgramCourse = context.fetch(predicate).first ?? context.insert()
         dbEntity.programID = programID
-        dbEntity.courseID = (apiEntity?.id).orEmpty
-        dbEntity.courseName = (apiEntity?.name).orEmpty
-        dbEntity.completionPercentage = (apiEntity?.usersConnection?.nodes?.first?.courseProgression?.requirements?.completionPercentage).orZero
+        dbEntity.courseID = (apiEntity?.id).defaultToEmpty
+        dbEntity.courseName = (apiEntity?.name).defaultToEmpty
+        dbEntity.completionPercentage = (apiEntity?.usersConnection?.nodes?.first?.courseProgression?.requirements?.completionPercentage).defaultToZero
 
         let moduleItems = (apiEntity?.modulesConnection?.edges ?? [])
             .compactMap { $0.node }
@@ -50,7 +50,7 @@ public final class CDHProgramCourse: NSManagedObject {
         let moduleItemsEntites: [CDHProgramCourseModuleItem] = moduleItems.map { moduleItem in
             CDHProgramCourseModuleItem.save(
                 moduleItem,
-                courseID: (apiEntity?.id).orEmpty,
+                courseID: (apiEntity?.id).defaultToEmpty,
                 programID: programID,
                 in: context
             )

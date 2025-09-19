@@ -32,13 +32,13 @@ public final class CDHProgramCourseModuleItem: NSManagedObject {
         in context: NSManagedObjectContext
     ) -> CDHProgramCourseModuleItem {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(format: "%K == %@", #keyPath(CDHProgramCourseModuleItem.id), apiEntity.id.orEmpty),
+            NSPredicate(format: "%K == %@", #keyPath(CDHProgramCourseModuleItem.id), apiEntity.id.defaultToEmpty),
             NSPredicate(format: "%K == %@", #keyPath(CDHProgramCourseModuleItem.courseID), courseID),
             NSPredicate(format: "%K == %@", #keyPath(CDHProgramCourseModuleItem.programID), programID)
         ])
 
         let dbEntity: CDHProgramCourseModuleItem = context.fetch(predicate).first ?? context.insert()
-        dbEntity.id = apiEntity.id.orEmpty
+        dbEntity.id = apiEntity.id.defaultToEmpty
         dbEntity.courseID = courseID
         dbEntity.programID = programID
         dbEntity.estimatedDuration = apiEntity.published == true ? apiEntity.estimatedDuration : nil

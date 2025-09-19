@@ -34,9 +34,9 @@ final public class CDHProgramProgress: NSManagedObject {
             equals: apiEntity.id
         ) ?? context.insert()
 
-        dbEntity.id = apiEntity.id.orEmpty
-        dbEntity.completionPercentage = apiEntity.completionPercentage.orZero
-        dbEntity.courseEnrollmentStatus = apiEntity.courseEnrollmentStatus.orEmpty
+        dbEntity.id = apiEntity.id.defaultToEmpty
+        dbEntity.completionPercentage = apiEntity.completionPercentage.defaultToZero
+        dbEntity.courseEnrollmentStatus = apiEntity.courseEnrollmentStatus.defaultToEmpty
         dbEntity.canvasCourseId = apiEntity.requirement?.dependent?.canvasCourseID ?? ""
         return dbEntity
     }

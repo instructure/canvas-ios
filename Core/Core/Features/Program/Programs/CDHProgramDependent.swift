@@ -30,14 +30,14 @@ final public class CDHProgramDependent: NSManagedObject {
         in context: NSManagedObjectContext
     ) -> CDHProgramDependent {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(format: "%K == %@", #keyPath(CDHProgramDependent.id), apiEntity.id.orEmpty),
+            NSPredicate(format: "%K == %@", #keyPath(CDHProgramDependent.id), apiEntity.id.defaultToEmpty),
             NSPredicate(format: "%K == %@", #keyPath(CDHProgramDependent.requirementId), requirementId)
         ])
 
         let dbEntity: CDHProgramDependent = context.fetch(predicate).first ?? context.insert()
-        dbEntity.id = apiEntity.id.orEmpty
+        dbEntity.id = apiEntity.id.defaultToEmpty
         dbEntity.requirementId = requirementId
-        dbEntity.canvasCourseId = apiEntity.canvasCourseID.orEmpty
+        dbEntity.canvasCourseId = apiEntity.canvasCourseID.defaultToEmpty
         return dbEntity
     }
 }
