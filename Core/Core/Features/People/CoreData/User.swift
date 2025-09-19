@@ -31,6 +31,9 @@ public final class User: NSManagedObject {
     @NSManaged public var pronouns: String?
     @NSManaged public var observerID: String?
 
+    // MARK: - Relationships
+
+    @NSManaged public var userGroups: Set<CDUserGroup>
     public var enrollments: Set<Enrollment> {
         Set(managedObjectContext?.all(where: #keyPath(Enrollment.userID), equals: id) ?? [])
     }
@@ -57,7 +60,20 @@ extension User: WriteableModel {
                 entity.update(fromApiModel: item, course: course, in: context)
             }
         }
+
+        user.connectUserToGroups(in: context)
         return user
+    }
+
+    private func connectUserToGroups(
+        in context: NSManagedObjectContext
+    ) {
+        // `userIdsInGroup` is a custom transformable so we can't query it with a predicate in the database
+        let allGroups: [CDUserGroup] = context.fetch(.all)
+        let userGroups = allGroups.filter { group in
+            group.userIdsInGroup.contains(id)
+        }
+        self.userGroups = Set(userGroups)
     }
 }
 

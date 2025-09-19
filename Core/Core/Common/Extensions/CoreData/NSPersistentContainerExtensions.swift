@@ -52,6 +52,7 @@ extension NSPersistentContainer {
         FileUploadTargetTransformer.register()
         UIColorTransformer.register()
         DiscussionCheckpointStepTransformer.register()
+        StringSetValueTransformer.register()
     }
 
     // MARK: - Public Instance Methods

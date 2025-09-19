@@ -30,6 +30,7 @@ struct SubmissionsFilterViewModel {
 
     let statusFilterOptions: MultiSelectionOptions
     let sectionFilterOptions: MultiSelectionOptions?
+    let differentiationTagFilterOptions: MultiSelectionOptions
     let sortModeOptions: SingleSelectionOptions
 
     let scoredMoreFilterValue: CurrentValueSubject<String, Never>
@@ -61,6 +62,32 @@ struct SubmissionsFilterViewModel {
             sectionFilterOptions = nil
         }
 
+        var differentiationTagOptions = listViewModel.differentiationTags.map {
+            OptionItem(
+                id: $0.id,
+                title: $0.name,
+                headerTitle: $0.isSingleTag ? nil : $0.parentGroupSet.name
+            )
+        }
+
+        if differentiationTagOptions.isNotEmpty {
+            differentiationTagOptions.insert(
+                OptionItem(
+                    id: GetSubmissions.Filter.DifferentiationTag.UsersWithoutTagsID,
+                    title: String(localized: "Students without Differentiation tags", bundle: .teacher)
+                ),
+                at: 0
+            )
+        }
+
+        let selectedDifferentiationTagOptions = differentiationTagOptions.filter {
+            listViewModel.differentiationTagFilters.contains($0.id) || listViewModel.differentiationTagFilters.isEmpty
+        }
+        differentiationTagFilterOptions = MultiSelectionOptions(
+            all: differentiationTagOptions,
+            initial: Set(selectedDifferentiationTagOptions)
+        )
+
         let sortOptionItems = SubmissionsSortMode.allCases.map { order in
             OptionItem(id: order.rawValue, title: order.name)
         }
@@ -90,6 +117,7 @@ struct SubmissionsFilterViewModel {
         listViewModel.statusFilters = selectedStatusFilters
         listViewModel.sectionFilters = selectedSectionFilters
         listViewModel.scoreBasedFilters = selectedScoreBasedFilters
+        listViewModel.differentiationTagFilters = selectedDifferentiationTagFilters
         listViewModel.sortMode = selectedSortMode
     }
 
@@ -132,6 +160,10 @@ struct SubmissionsFilterViewModel {
             filters.insert(.lessThan(lessThanValue))
         }
         return filters
+    }
+
+    private var selectedDifferentiationTagFilters: Set<String> {
+        Set(differentiationTagFilterOptions.selected.value.map(\.id))
     }
 
     private var selectedSortMode: SubmissionsSortMode {

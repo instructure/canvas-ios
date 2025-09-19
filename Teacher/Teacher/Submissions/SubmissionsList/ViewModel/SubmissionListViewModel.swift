@@ -29,6 +29,7 @@ class SubmissionListViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var statusFilters: Set<SubmissionStatusFilter>
     @Published var sectionFilters: Set<String>
+    @Published var differentiationTagFilters: Set<String>
     @Published var sortMode: SubmissionsSortMode = .studentSortableName
     @Published var scoreBasedFilters: Set<GetSubmissions.Filter.Score> = []
 
@@ -36,23 +37,28 @@ class SubmissionListViewModel: ObservableObject {
     @Published var course: Course?
     @Published var courseSections: [CourseSection] = []
     @Published var sections: [SubmissionListSection] = []
+    @Published var differentiationTags: [CDUserGroup] = []
 
     let interactor: SubmissionListInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let env: AppEnvironment
+    private let differentiationTagsSortComparator: (CDUserGroup, CDUserGroup) -> Bool
     private var subscriptions = Set<AnyCancellable>()
 
     init(
         interactor: SubmissionListInteractor,
         filter: GetSubmissions.Filter?,
         env: AppEnvironment,
-        scheduler: AnySchedulerOf<DispatchQueue> = .main
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
+        differentiationTagsSortComparator: @escaping (CDUserGroup, CDUserGroup) -> Bool = DifferentiationTagsComparator
     ) {
         self.interactor = interactor
         self.statusFilters = Set(filter?.statuses ?? [])
         self.sectionFilters = Set(filter?.sections.map(\.sectionID) ?? [])
+        self.differentiationTagFilters = Set(filter?.differentiationTags.map(\.tagID) ?? [])
         self.env = env
         self.scheduler = scheduler
+        self.differentiationTagsSortComparator = differentiationTagsSortComparator
 
         setupBindings()
     }
@@ -63,6 +69,11 @@ class SubmissionListViewModel: ObservableObject {
         interactor.assignment.assign(to: &$assignment)
         interactor.course.assign(to: &$course)
         interactor.courseSections.assign(to: &$courseSections)
+        interactor.differentiationTags
+            .map { [differentiationTagsSortComparator] tags in
+                tags.sorted(by: differentiationTagsSortComparator)
+            }
+            .assign(to: &$differentiationTags)
 
         if statusFilters.isEmpty {
             self.statusFilters = Set(SubmissionStatusFilter.allCasesForCourse(interactor.context.id))
@@ -113,7 +124,8 @@ class SubmissionListViewModel: ObservableObject {
             .assign(to: &$state)
 
         Publishers
-            .CombineLatest4($statusFilters, $scoreBasedFilters, $sectionFilters, $sortMode)
+            .CombineLatest4($statusFilters, $scoreBasedFilters, $sectionFilters, $differentiationTagFilters)
+            .combineLatest($sortMode)
             .sink { [weak self] _ in
                 guard let self else { return }
                 interactor.applyPreferences(selectedPreferences)
@@ -130,6 +142,7 @@ class SubmissionListViewModel: ObservableObject {
     var isFilterActive: Bool {
         if !hasStatusesFilterDefaultSelection { return true }
         if !hasSectionsFilterDefaultSelection { return true }
+        if hasDifferentiationTagFilter { return true}
         if scoreBasedFilters.isNotEmpty { return true }
         return false
     }
@@ -143,12 +156,17 @@ class SubmissionListViewModel: ObservableObject {
         return sectionFilters.isEmpty || sectionFilters == defaultSectionsList
     }
 
+    private var hasDifferentiationTagFilter: Bool {
+	    differentiationTagFilters.isNotEmpty && differentiationTagFilters.count < differentiationTags.count
+    }
+
     private var selectedPreferences: SubmissionListPreferences {
         SubmissionListPreferences(
             filter: SubmissionsFilter(
                 statuses: hasStatusesFilterDefaultSelection ? [] : statusFilters,
                 score: scoreBasedFilters,
-                sections: hasSectionsFilterDefaultSelection ? [] : sectionFilters
+                sections: hasSectionsFilterDefaultSelection ? [] : sectionFilters,
+                differentiationTags: hasDifferentiationTagFilter ? differentiationTagFilters : []
             ).nilIfEmpty,
             sortMode: sortMode
         )

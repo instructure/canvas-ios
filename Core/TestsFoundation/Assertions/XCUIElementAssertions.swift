@@ -25,3 +25,19 @@ public func XCTAssertVisible(
 ) {
     XCTAssertTrue(element.isVisible, "Element is not visible: \(element.debugDescription)", file: file, line: line)
 }
+
+public func XCTAssertSelected(
+    _ element: XCUIElement,
+    file: StaticString = #filePath,
+    line: UInt = #line
+) {
+    XCTAssertTrue(element.isSelected, "Element is not selected: \(element.debugDescription)", file: file, line: line)
+}
+
+public func XCTAssertNotSelected(
+    _ element: XCUIElement,
+    file: StaticString = #filePath,
+    line: UInt = #line
+) {
+    XCTAssertFalse(element.isSelected, "Element is selected: \(element.debugDescription)", file: file, line: line)
+}
