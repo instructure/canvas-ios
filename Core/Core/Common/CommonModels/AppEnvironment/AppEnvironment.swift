@@ -221,6 +221,24 @@ open class AppEnvironment {
         }
     }
 
+    public func switchToTab(at index: Int) {
+        (window?.rootViewController as? UITabBarController)?.selectedIndex = index
+    }
+
+    public func getTabHostingController<T: View>(
+        at index: Int,
+        of type: T.Type
+    ) -> CoreHostingController<T>? {
+        guard
+            let tabBar = window?.rootViewController as? UITabBarController,
+            let nav = tabBar.viewControllers?[index] as? UINavigationController,
+            let host = nav.viewControllers.first as? CoreHostingController<T>
+        else {
+            return nil
+        }
+        return host
+    }
+
     public func navigationBar(isVisible: Bool) {
         let currentTabBar = (window?.rootViewController as? UITabBarController)
         if let currentNavigation = currentTabBar?.selectedViewController as? UINavigationController {

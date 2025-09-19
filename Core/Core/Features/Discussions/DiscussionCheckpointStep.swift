@@ -38,6 +38,20 @@ public enum DiscussionCheckpointStep: Equatable {
     }
 }
 
+extension DiscussionCheckpointStep: Comparable {
+    public static func < (lhs: DiscussionCheckpointStep, rhs: DiscussionCheckpointStep) -> Bool {
+        switch (lhs, rhs) {
+        case (.replyToTopic, .requiredReplies):
+            return true
+        case (.requiredReplies, .replyToTopic):
+            return false
+        case (.replyToTopic, .replyToTopic),
+             (.requiredReplies, .requiredReplies):
+            return false
+        }
+    }
+}
+
 // MARK: - ViewModel
 
 extension DiscussionCheckpointStep {

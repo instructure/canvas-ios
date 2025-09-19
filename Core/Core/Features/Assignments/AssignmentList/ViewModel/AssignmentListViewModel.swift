@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+import CombineSchedulers
 import SwiftUI
 
 // MARK: - ViewModel
@@ -32,31 +34,13 @@ public class AssignmentListViewModel: ObservableObject {
         case assignmentType
     }
 
-    public struct AssignmentDateGroup {
-        public let id: String
-        public let name: String
-        public let assignments: [Assignment]
-
-        init(id: String, name: String.LocalizationValue, assignments: [Assignment]) {
-            self.id = id
-            self.name = String(localized: name, bundle: .core)
-            self.assignments = assignments
-        }
-    }
-
-    public enum ViewModelState<T: Equatable>: Equatable {
-        case loading
-        case empty
-        case data(T)
-    }
-
     // MARK: - Outputs
 
-    @Published public private(set) var state: ViewModelState<[AssignmentGroupViewModel]> = .loading
+    @Published public private(set) var state: InstUI.ScreenState = .loading
+    @Published private(set) var sections: [AssignmentListSection] = []
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var courseName: String?
     @Published public private(set) var defaultDetailViewRoute = "/empty"
-    @Published public private(set) var isShowingGradingPeriods: Bool = false
 
     public var isFilterIconSolid: Bool = false
     public var defaultGradingPeriodId: String?
@@ -65,6 +49,10 @@ public class AssignmentListViewModel: ObservableObject {
     public var selectedGradingPeriodTitle: String? { gradingPeriods.filter({ $0.id == selectedGradingPeriodId }).first?.title }
     public var wasCurrentPeriodPreselected: Bool = false
     public var selectedSortingOption: AssignmentArrangementOptions
+
+    // MARK: - Inputs
+
+    let didSelectAssignment = PassthroughSubject<(URL?, WeakViewController), Never>()
 
     // MARK: - Private properties
 
@@ -91,8 +79,11 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private let env: AppEnvironment
+    private var subscriptions = Set<AnyCancellable>()
     private var userDefaults: SessionDefaults?
     let courseID: String
+
+    // MARK: - Stores
 
     private lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.courseDidUpdate()
@@ -109,11 +100,13 @@ public class AssignmentListViewModel: ObservableObject {
     private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID)))
 
     // MARK: - Init
+
     public init(
         env: AppEnvironment,
         context: Context,
         userDefaults: SessionDefaults? = nil,
-        defaultGradingPeriod: GradingPeriod? = nil
+        defaultGradingPeriod: GradingPeriod? = nil,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.env = env
         self.userDefaults = userDefaults ?? env.userDefaults
@@ -127,6 +120,14 @@ public class AssignmentListViewModel: ObservableObject {
         featureFlags.refresh()
         course.refresh()
         gradingPeriods.refresh()
+
+        didSelectAssignment
+            .receive(on: scheduler)
+            .sink { url, controller in
+                guard let url else { return }
+                env.router.route(to: url, from: controller, options: .detail)
+            }
+            .store(in: &subscriptions)
     }
 
     // MARK: - Functions
@@ -200,72 +201,96 @@ public class AssignmentListViewModel: ObservableObject {
             return
         }
 
-        isShowingGradingPeriods = gradingPeriods.count > 1
-        var assignmentGroupViewModels: [AssignmentGroupViewModel] = []
-        let assignments: [Assignment]
-        let compactAssignmentGroups = assignmentGroups.compactMap { $0 }
-        let sortedAssignmentGroups = compactAssignmentGroups.sorted { $0.dueAt ?? Date.distantFuture < $1.dueAt ?? Date.distantFuture }
-        assignments = isTeacher ? filterAssignmentsTeacher(sortedAssignmentGroups) : filterAssignments(sortedAssignmentGroups)
+        var sections: [AssignmentListSection] = []
+        let allAssignments: [Assignment] = assignmentGroups
+            .compactMap { $0 }
+            .sorted { $0.dueAtOrCheckpointsDueAt ?? Date.distantFuture < $1.dueAtOrCheckpointsDueAt ?? Date.distantFuture }
+        let filteredAssignments = isTeacher
+            ? filterAssignmentsTeacher(allAssignments)
+            : filterAssignmentsStudent(allAssignments)
 
         switch selectedSortingOption {
         case .groupName, .assignmentGroup:
             for section in 0..<(assignmentGroups.sections?.count ?? 0) {
-                if let group = assignmentGroups[IndexPath(row: 0, section: section)]?.assignmentGroup {
-                    let groupAssignments: [Assignment] = assignments.filter { $0.assignmentGroup == group }
-                    if !groupAssignments.isEmpty {
-                        assignmentGroupViewModels.append(AssignmentGroupViewModel(
-                            assignmentGroup: group,
-                            assignments: groupAssignments,
-                            courseColor: courseColor
+                if let assignmentGroup = assignmentGroups[IndexPath(row: 0, section: section)]?.assignmentGroup {
+                    let assignments: [Assignment] = filteredAssignments.filter { $0.assignmentGroup == assignmentGroup }
+                    if assignments.isNotEmpty {
+                        sections.append(.init(
+                            id: assignmentGroup.id,
+                            title: assignmentGroup.name,
+                            rows: assignments.map { row(for: $0) }
                         ))
                     }
                 }
             }
         case .dueDate:
             let rightNow = Clock.now
+            let overdue = filteredAssignments.filter { $0.dueAtOrCheckpointsDueAt ?? Date.distantFuture < rightNow }
+            let upcoming = filteredAssignments.filter { $0.dueAtOrCheckpointsDueAt ?? Date.distantPast > rightNow }
+            let undated = filteredAssignments.filter { $0.dueAtOrCheckpointsDueAt == nil }
 
-            let overdue = assignments.filter { $0.dueAt ?? Date.distantFuture < rightNow }
-            if !overdue.isEmpty {
-                let overdueGroup = AssignmentDateGroup(id: "overdue", name: "Overdue Assignments", assignments: overdue)
-                assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: overdueGroup, courseColor: courseColor))
+            if overdue.isNotEmpty {
+                sections.append(.init(
+                    id: "overdue",
+                    title: String(localized: "Overdue Assignments", bundle: .core),
+                    rows: overdue.map { row(for: $0) }
+                ))
             }
-            let upcoming = assignments.filter { $0.dueAt ?? Date.distantPast > rightNow }
-            if !upcoming.isEmpty {
-                let upcomingGroup = AssignmentDateGroup(id: "upcoming", name: "Upcoming Assignments", assignments: upcoming)
-                assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: upcomingGroup, courseColor: courseColor))
+            if upcoming.isNotEmpty {
+                sections.append(.init(
+                    id: "upcoming",
+                    title: String(localized: "Upcoming Assignments", bundle: .core),
+                    rows: upcoming.map { row(for: $0) }
+                ))
             }
-            let undated = assignments.filter { $0.dueAt == nil }
-            if !undated.isEmpty {
-                let undatedGroup = AssignmentDateGroup(id: "undated", name: "Undated Assignments", assignments: undated)
-                assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: undatedGroup, courseColor: courseColor))
+            if undated.isNotEmpty {
+                sections.append(.init(
+                    id: "undated",
+                    title: String(localized: "Undated Assignments", bundle: .core),
+                    rows: undated.map { row(for: $0) }
+                ))
             }
         case .assignmentType:
-            let normal = assignments.filter { $0.quizID == nil && !$0.isLTIAssignment && !$0.isDiscussion }
-            if !normal.isEmpty {
-                let normalGroup = AssignmentDateGroup(id: "normal", name: "Assignments", assignments: normal)
-                assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: normalGroup, courseColor: courseColor))
+            let normal = filteredAssignments.filter { $0.quizID == nil && !$0.isLTIAssignment && !$0.isDiscussion }
+            let discussions = filteredAssignments.filter { $0.isDiscussion }
+            let quizzes = filteredAssignments.filter { $0.quizID != nil || $0.isQuizLTI }
+            let lti = filteredAssignments.filter { $0.isLTIAssignment && !$0.isQuizLTI }
+
+            if normal.isNotEmpty {
+                sections.append(.init(
+                    id: "normal",
+                    title: String(localized: "Assignments", bundle: .core),
+                    rows: normal.map { row(for: $0) }
+                ))
             }
-            let discussions = assignments.filter { $0.isDiscussion }
-            if !discussions.isEmpty {
-                let discussionsGroup = AssignmentDateGroup(id: "discussions", name: "Discussions", assignments: discussions)
-                assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: discussionsGroup, courseColor: courseColor))
+            if discussions.isNotEmpty {
+                sections.append(.init(
+                    id: "discussions",
+                    title: String(localized: "Discussions", bundle: .core),
+                    rows: discussions.map { row(for: $0) }
+                ))
             }
-            let quizzes = assignments.filter { $0.quizID != nil || $0.isQuizLTI }
-            if !quizzes.isEmpty {
-                let quizzesGroup = AssignmentDateGroup(id: "quizzes", name: "Quiz", assignments: quizzes)
-                assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: quizzesGroup, courseColor: courseColor))
+            if quizzes.isNotEmpty {
+                sections.append(.init(
+                    id: "quizzes",
+                    title: String(localized: "Quizzes", bundle: .core),
+                    rows: quizzes.map { row(for: $0) }
+                ))
             }
-            let lti = assignments.filter { $0.isLTIAssignment && !$0.isQuizLTI }
-            if !lti.isEmpty {
-                let ltiGroup = AssignmentDateGroup(id: "lti", name: "LTI", assignments: lti)
-                assignmentGroupViewModels.append(AssignmentGroupViewModel(assignmentDateGroup: ltiGroup, courseColor: courseColor))
+            if lti.isNotEmpty {
+                sections.append(.init(
+                    id: "lti",
+                    title: String(localized: "LTI", bundle: .core),
+                    rows: lti.map { row(for: $0) }
+                ))
             }
         }
 
-        state = (assignmentGroupViewModels.isEmpty ? .empty : .data(assignmentGroupViewModels))
+        self.sections = sections
+        state = (sections.isEmpty ? .empty : .data)
     }
 
-    private func filterAssignments(_ assignments: [Assignment]) -> [Assignment] {
+    private func filterAssignmentsStudent(_ assignments: [Assignment]) -> [Assignment] {
         // all filter selected is the same as no filter selected
         guard isFilteringCustom else {
             return assignments
@@ -293,6 +318,14 @@ public class AssignmentListViewModel: ObservableObject {
         }
 
         return filteredAssignments
+    }
+
+    private func row(for assignment: Assignment) -> AssignmentListSection.Row {
+        if isTeacher {
+            .teacher(.init(assignment: assignment))
+        } else {
+            .student(.init(assignment: assignment))
+        }
     }
 
     private func courseDidUpdate() {
@@ -407,10 +440,11 @@ public class AssignmentListViewModel: ObservableObject {
 
 #if DEBUG
 
-    init(state: ViewModelState<[AssignmentGroupViewModel]>) {
+    init(state: InstUI.ScreenState, sections: [AssignmentListSection] = []) {
         self.env = .shared
         self.courseID = ""
         self.state = state
+        self.sections = sections
         self.defaultGradingPeriodId = nil
         self.defaultSortingOption = AppEnvironment.shared.app == .teacher ? .assignmentType : .dueDate
         self.selectedSortingOption = AppEnvironment.shared.app == .teacher ? .assignmentType : .dueDate

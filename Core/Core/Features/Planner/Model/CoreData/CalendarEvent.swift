@@ -20,7 +20,7 @@ import Foundation
 import CoreData
 
 public enum CalendarEventType: String, Codable {
-    case assignment, event
+    case assignment, event, sub_assignment
 }
 
 public enum CalendarEventWorkflowState: String, Codable {
@@ -82,7 +82,7 @@ final public class CalendarEvent: NSManagedObject, WriteableModel {
         model.startAt = item.start_at
         model.endAt = item.end_at
         model.isAllDay = item.all_day
-        model.isHidden = item.isHidden
+        model.isHidden = item.hidden ?? false
         model.type = item.type
         model.htmlURL = item.html_url
         model.contextRaw = item.context_code

@@ -44,52 +44,92 @@ public struct AssignmentFilterOptionStudent: CaseIterable, Equatable {
         self.rule = rule
     }
 
+    /// Submissions which are not yet submitted, but submittable, and not graded yet.
     static let notYetSubmitted = Self(
         id: "notYetSubmitted",
         title: String(localized: "Not Yet Submitted", bundle: .core),
         rule: { assignment in
-            if assignment.submissionTypes.contains(SubmissionType.none) || assignment.submissionTypes.contains(SubmissionType.on_paper) {
+            guard let submission = assignment.submission else { return false }
+
+            let status = submission.status
+
+            if [.onPaper, .noSubmission].contains(status) {
                 return false
             }
-            if let submission = assignment.submission {
-                return (submission.missing || submission.submittedAt == nil) && !submission.isGraded
+
+            // TODO: remove isGraded check in MBL-19323
+            if (status == .missing && !submission.isGraded) || status == .notSubmitted {
+                return true
             }
-            return false
+
+            return submission.subAssignmentSubmissions.contains {
+                // TODO: remove isGraded check in MBL-19323
+                // TODO: also return true for .notSubmitted after EVAL-5938
+                $0.status == .missing && !$0.isGraded
+            }
         }
     )
 
+    /// Submissions which are submitted, gradable, and not graded yet.
+    /// This also includes not yet graded resubmissions (even if earlier attempt had been graded).
     static let toBeGraded = Self(
         id: "toBeGraded",
         title: String(localized: "To Be Graded", bundle: .core),
         rule: { assignment in
+            guard let submission = assignment.submission else { return false }
+
             if assignment.submissionTypes.contains(.not_graded) {
                 return false
             }
-            if let submission = assignment.submission {
-                return (submission.late || submission.submittedAt != nil) && submission.excused != true && !submission.isGraded
+
+            let status = submission.status
+
+            // TODO: remove isGraded check in MBL-19323
+            if (status == .late && !submission.isGraded) || status == .submitted {
+                return true
             }
-            return false
+
+            return submission.subAssignmentSubmissions.contains {
+                // TODO: remove isGraded check in MBL-19323
+                // TODO: also return true for .submitted after EVAL-5938
+                $0.status == .late && !$0.isGraded
+            }
         }
     )
 
+    /// Submissions which are graded in any way (points, excused, or custom state).
+    /// This not includes not yet graded resubmissions (even if earlier attempt had been graded).
     static let graded = Self(
         id: "graded",
         title: String(localized: "Graded", bundle: .core),
         rule: { assignment in
-            if let submission = assignment.submission {
-                return submission.isGraded
+            guard let submission = assignment.submission else { return false }
+
+            if submission.isGraded {
+                return true
             }
-            return false
+
+            return submission.subAssignmentSubmissions.contains {
+                $0.isGraded
+            }
         }
     )
 
+    /// Submissions which are not submittable and not graded,
+    /// plus excused submissions.
     static let noSubmission = Self(
         id: "noSubmission",
         title: String(localized: "Other", bundle: .core),
         rule: { assignment in
-            return assignment.submissionTypes.contains(SubmissionType.none)
-                || assignment.submissionTypes.contains(SubmissionType.on_paper)
-                || assignment.submission?.excused == true
+            guard let submission = assignment.submission else { return false }
+
+            if [.onPaper, .noSubmission, .excused].contains(submission.status) {
+                return true
+            }
+
+            return submission.subAssignmentSubmissions.contains {
+                $0.status == .excused
+            }
         }
     )
 
@@ -113,11 +153,14 @@ public enum AssignmentFilterOptionsTeacher: String, CaseIterable {
             return { $0.needsGradingCount > 0 }
         case .notSubmitted:
             return {
-                if let submissions = $0.submissions {
-                    guard submissions.count > 0 else { return true }
-                    return !submissions.filter { $0.submittedAt == nil && ![SubmissionType.none, SubmissionType.on_paper].contains($0.type) }.isEmpty
+                guard let submissions = $0.submissions, submissions.count > 0 else { return true }
+
+                return submissions.contains { submission in
+                    submission.status == .notSubmitted
+                    || submission.subAssignmentSubmissions.contains { subSubmission in
+                        subSubmission.status == .notSubmitted
+                    }
                 }
-                return true
             }
         }
     }

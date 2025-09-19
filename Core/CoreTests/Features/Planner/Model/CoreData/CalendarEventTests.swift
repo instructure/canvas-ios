@@ -20,15 +20,18 @@ import XCTest
 @testable import Core
 
 class CalendarEventTests: CoreTestCase {
+    private func makeCalendarEvent() -> CalendarEvent {
+        .make(from: .make(id: "1"))
+    }
 
     func testRoutingURL() {
-        let event = CalendarEvent.make()
+        let event = makeCalendarEvent()
         let expected = URL(string: "calendar_events/1")
         XCTAssertEqual(event.routingURL, expected)
     }
 
     func testIsPartOfSeries() {
-        let event = CalendarEvent.make()
+        let event = makeCalendarEvent()
 
         event.repetitionRule = nil
         event.seriesInNaturalLanguage = nil
@@ -52,7 +55,7 @@ class CalendarEventTests: CoreTestCase {
     }
 
     func testRecurrenceRule() {
-        let event = CalendarEvent.make()
+        let event = makeCalendarEvent()
 
         event.repetitionRule = nil
         XCTAssertEqual(event.recurrenceRule, nil)

@@ -25,6 +25,7 @@ public final class CDHLearnCourse: NSManagedObject, WriteableModel {
     @NSManaged public var id: String
     @NSManaged public var name: String
     @NSManaged public var enrollmentId: String
+    @NSManaged public var state: String
 
     @discardableResult
     public static func save(
@@ -44,6 +45,7 @@ public final class CDHLearnCourse: NSManagedObject, WriteableModel {
         let entity: CDHLearnCourse = context.first(where: #keyPath(CDHLearnCourse.id), equals: course.id) ?? context.insert()
         entity.id = course.id
         entity.name = course.name
+        entity.state = enrollmentModel.state
         entity.enrollmentId = enrollmentModel.id
         return entity
     }

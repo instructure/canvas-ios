@@ -218,7 +218,7 @@ struct SubmissionCommentView: View {
     }
 
     private var postButton: some View {
-        SavingButton(
+        HorizonUI.LoadingButton(
             title: String(localized: "Post", bundle: .horizon),
             type: .institution,
             fillsWidth: true,

@@ -439,7 +439,7 @@ extension StudentAppDelegate {
                     UIApplication.shared.registerForPushNotifications()
                 }
             })
-        case .careerLearner:
+        case .careerLearner, .careerLearningProvider:
             AppEnvironment.shared.app = .horizon
             AppEnvironment.shared.router = Router(routes: HorizonRoutes.routeHandlers())
             HorizonUI.setInstitutionColor(Brand.shared.primary)
@@ -454,8 +454,8 @@ extension StudentAppDelegate {
                     UIApplication.shared.registerForPushNotifications()
                 }
             })
-        case .careerLearningProvider:
-            showIncorrectAppExperienceAlert(session: session)
+//        case .careerLearningProvider:
+//            showIncorrectAppExperienceAlert(session: session)
         }
     }
 }

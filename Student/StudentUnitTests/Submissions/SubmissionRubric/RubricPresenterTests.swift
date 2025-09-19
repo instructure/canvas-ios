@@ -41,7 +41,7 @@ class RubricPresenterTests: StudentTestCase {
     func testUseCasesSetupProperly() {
         XCTAssertEqual(presenter.assignments.useCase.courseID, presenter.courseID)
         XCTAssertEqual(presenter.assignments.useCase.assignmentID, presenter.assignmentID)
-        XCTAssertEqual(presenter.assignments.useCase.include, [.submission])
+        XCTAssertEqual(presenter.assignments.useCase.include, [.submission, .checkpoints, .sub_assignment_submissions])
 
         XCTAssertEqual(presenter.submissions.useCase.context.canvasContextID, "course_\(presenter.courseID)")
         XCTAssertEqual(presenter.submissions.useCase.assignmentID, presenter.assignmentID)

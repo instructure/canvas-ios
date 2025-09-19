@@ -27,7 +27,6 @@ struct SubmissionsFilterViewModel {
 
     let courseColor: Color
     let assignmentName: String?
-    let gradeInputType: GradeInputTextFieldCell.InputType?
 
     let statusFilterOptions: MultiSelectionOptions
     let sectionFilterOptions: MultiSelectionOptions?
@@ -98,23 +97,19 @@ struct SubmissionsFilterViewModel {
             initialId: listViewModel.sortMode.rawValue
         )
 
-        gradeInputType = listViewModel.gradeInputType
-
         let formatter = GradeFormatter.numberFormatter
 
         scoredMoreFilterValue = .init(listViewModel
             .scoreBasedFilters
             .moreThanFilter
-            .flatMap({ listViewModel.toScoreInputValue($0.score) })
-            .flatMap({ formatter.string(from: NSNumber(value: $0)) }) ?? ""
+            .flatMap({ formatter.string(from: NSNumber(value: $0.score)) }) ?? ""
         )
 
         scoredLessFilterValue = .init(
             listViewModel
                 .scoreBasedFilters
                 .lessThanFilter
-                .flatMap({ listViewModel.toScoreInputValue($0.score) })
-                .flatMap({ formatter.string(from: NSNumber(value: $0)) }) ?? ""
+                .flatMap({ formatter.string(from: NSNumber(value: $0.score)) }) ?? ""
         )
     }
 
@@ -130,6 +125,10 @@ struct SubmissionsFilterViewModel {
 
     private var assignment: Assignment? {
         listViewModel.assignment
+    }
+
+    var isScoreBasedFilteringEnabled: Bool {
+        assignment?.pointsPossible != nil
     }
 
     var pointsPossibleText: String {
@@ -155,10 +154,10 @@ struct SubmissionsFilterViewModel {
     private var selectedScoreBasedFilters: Set<GetSubmissions.Filter.Score> {
         var filters = Set<GetSubmissions.Filter.Score>()
         if let moreThanValue = scoredMoreFilterValue.value.doubleValueByFixingDecimalSeparator {
-            filters.insert(.moreThan(listViewModel.toScoreValue(moreThanValue)))
+            filters.insert(.moreThan(moreThanValue))
         }
         if let lessThanValue = scoredLessFilterValue.value.doubleValueByFixingDecimalSeparator {
-            filters.insert(.lessThan(listViewModel.toScoreValue(lessThanValue)))
+            filters.insert(.lessThan(lessThanValue))
         }
         return filters
     }
@@ -188,26 +187,5 @@ private extension SubmissionListViewModel {
         courseSections.filter { section in
             sectionFilters.contains(section.id)
         }
-    }
-
-    var gradeInputType: GradeInputTextFieldCell.InputType? {
-        switch assignment?.gradingType {
-        case .percent:
-            return .percentage
-        case .points:
-            return .points
-        default:
-            return nil
-        }
-    }
-
-    func toScoreInputValue(_ score: Double) -> Double {
-        guard gradeInputType == .percentage else { return score }
-        return score / (assignment?.pointsPossible ?? 1) * 100
-    }
-
-    func toScoreValue(_ input: Double) -> Double {
-        guard gradeInputType == .percentage else { return input }
-        return input / 100 * (assignment?.pointsPossible ?? 1)
     }
 }

@@ -39,7 +39,6 @@ class AssignmentListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.defaultGradingPeriodId, "2")
 
         testee.viewDidAppear()
-        XCTAssertTrue(testee.isShowingGradingPeriods)
         XCTAssertEqual(testee.selectedGradingPeriodTitle, "GP2")
     }
 
@@ -117,37 +116,36 @@ class AssignmentListViewModelTests: CoreTestCase {
         testee.filterOptionsDidUpdate(sortingOption: .groupName, gradingPeriodId: nil)
         testee.viewDidAppear()
 
-        guard case .data(let groupViewModels) = testee.state else {
-            XCTFail("State doesn't contain any view models.")
-            return
-        }
+        XCTAssertEqual(testee.state, .data)
 
-        guard let firstGroupViewModel = groupViewModels.filter({ $0.name == "AGroup1" }).first else {
+        let sections = testee.sections
+
+        guard let firstSection = sections.filter({ $0.title == "AGroup1" }).first else {
             XCTFail("AssignmentGroup1 View Model is not available.")
             return
         }
 
-        guard let secondGroupViewModel = groupViewModels.filter({ $0.name == "AGroup2" }).first else {
+        guard let secondSection = sections.filter({ $0.title == "AGroup2" }).first else {
             XCTFail("AssignmentGroup2 View Model is not available.")
             return
         }
 
-        guard let thirdGroupViewModel = groupViewModels.filter({ $0.name == "AGroup3" }).first else {
+        guard let thirdSection = sections.filter({ $0.title == "AGroup3" }).first else {
             XCTFail("AssignmentGroup3 View Model is not available.")
             return
         }
 
-        XCTAssertEqual(groupViewModels.count, 3)
-        XCTAssertEqual(firstGroupViewModel.name, "AGroup1")
-        XCTAssertEqual(firstGroupViewModel.assignments.count, 1)
-        XCTAssertEqual(firstGroupViewModel.assignments[0].name, "Upcoming Assignment")
-        XCTAssertEqual(secondGroupViewModel.name, "AGroup2")
-        XCTAssertEqual(secondGroupViewModel.assignments.count, 1)
-        XCTAssertEqual(secondGroupViewModel.assignments[0].name, "Overdue Assignment")
-        XCTAssertEqual(thirdGroupViewModel.name, "AGroup3")
-        XCTAssertEqual(thirdGroupViewModel.assignments.count, 2)
-        XCTAssertEqual(thirdGroupViewModel.assignments[0].name, "Another Undated Assignment")
-        XCTAssertEqual(thirdGroupViewModel.assignments[1].name, "Undated Assignment")
+        XCTAssertEqual(sections.count, 3)
+        XCTAssertEqual(firstSection.title, "AGroup1")
+        XCTAssertEqual(firstSection.rows.count, 1)
+        XCTAssertEqual(firstSection.rows[0].title, "Upcoming Assignment")
+        XCTAssertEqual(secondSection.title, "AGroup2")
+        XCTAssertEqual(secondSection.rows.count, 1)
+        XCTAssertEqual(secondSection.rows[0].title, "Overdue Assignment")
+        XCTAssertEqual(thirdSection.title, "AGroup3")
+        XCTAssertEqual(thirdSection.rows.count, 2)
+        XCTAssertEqual(thirdSection.rows[0].title, "Another Undated Assignment")
+        XCTAssertEqual(thirdSection.rows[1].title, "Undated Assignment")
     }
 
     func testGroupAssignmentsByDueDate() {
@@ -177,40 +175,39 @@ class AssignmentListViewModelTests: CoreTestCase {
         testee.selectedSortingOption = .dueDate
         testee.viewDidAppear()
 
-        guard case .data(let groupViewModels) = testee.state else {
-            XCTFail("State doesn't contain any view models.")
-            return
-        }
+        XCTAssertEqual(testee.state, .data)
 
-        guard let overdueGroupViewModel = groupViewModels.filter({ $0.name == "Overdue Assignments" }).first else {
+        let sections = testee.sections
+
+        guard let overdueSection = sections.filter({ $0.title == "Overdue Assignments" }).first else {
             XCTFail("Overdue Assignments View Model is not available.")
             return
         }
 
-        guard let upcomingGroupViewModel = groupViewModels.filter({ $0.name == "Upcoming Assignments" }).first else {
+        guard let upcomingSection = sections.filter({ $0.title == "Upcoming Assignments" }).first else {
             XCTFail("Upcoming Assignments View Model is not available.")
             return
         }
 
-        guard let undatedGroupViewModel = groupViewModels.filter({ $0.name == "Undated Assignments" }).first else {
+        guard let undatedSection = sections.filter({ $0.title == "Undated Assignments" }).first else {
             XCTFail("Undated Assignments View Model is not available.")
             return
         }
 
-        XCTAssertEqual(groupViewModels.count, 3)
-        XCTAssertEqual(overdueGroupViewModel.id, "overdue")
-        XCTAssertEqual(overdueGroupViewModel.name, "Overdue Assignments")
-        XCTAssertEqual(overdueGroupViewModel.assignments.count, 1)
-        XCTAssertEqual(overdueGroupViewModel.assignments[0].name, "Overdue Assignment")
-        XCTAssertEqual(upcomingGroupViewModel.id, "upcoming")
-        XCTAssertEqual(upcomingGroupViewModel.name, "Upcoming Assignments")
-        XCTAssertEqual(upcomingGroupViewModel.assignments.count, 1)
-        XCTAssertEqual(upcomingGroupViewModel.assignments[0].name, "Upcoming Assignment")
-        XCTAssertEqual(undatedGroupViewModel.id, "undated")
-        XCTAssertEqual(undatedGroupViewModel.name, "Undated Assignments")
-        XCTAssertEqual(undatedGroupViewModel.assignments.count, 2)
-        XCTAssertEqual(undatedGroupViewModel.assignments[0].name, "Another Undated Assignment")
-        XCTAssertEqual(undatedGroupViewModel.assignments[1].name, "Undated Assignment")
+        XCTAssertEqual(sections.count, 3)
+        XCTAssertEqual(overdueSection.id, "overdue")
+        XCTAssertEqual(overdueSection.title, "Overdue Assignments")
+        XCTAssertEqual(overdueSection.rows.count, 1)
+        XCTAssertEqual(overdueSection.rows[0].title, "Overdue Assignment")
+        XCTAssertEqual(upcomingSection.id, "upcoming")
+        XCTAssertEqual(upcomingSection.title, "Upcoming Assignments")
+        XCTAssertEqual(upcomingSection.rows.count, 1)
+        XCTAssertEqual(upcomingSection.rows[0].title, "Upcoming Assignment")
+        XCTAssertEqual(undatedSection.id, "undated")
+        XCTAssertEqual(undatedSection.title, "Undated Assignments")
+        XCTAssertEqual(undatedSection.rows.count, 2)
+        XCTAssertEqual(undatedSection.rows[0].title, "Another Undated Assignment")
+        XCTAssertEqual(undatedSection.rows[1].title, "Undated Assignment")
     }
 
     func testGroupAssignmentsByAssignmentType() {
@@ -240,48 +237,47 @@ class AssignmentListViewModelTests: CoreTestCase {
         testee.filterOptionsDidUpdate(sortingOption: .assignmentType, gradingPeriodId: nil)
         testee.viewDidAppear()
 
-        guard case .data(let groupViewModels) = testee.state else {
-            XCTFail("State doesn't contain any view models.")
-            return
-        }
+        XCTAssertEqual(testee.state, .data)
 
-        guard let normalGroupViewModel = groupViewModels.filter({ $0.name == "Assignments" }).first else {
+        let sections = testee.sections
+
+        guard let normalSection = sections.filter({ $0.title == "Assignments" }).first else {
             XCTFail("Normal Assignments View Model is not available.")
             return
         }
 
-        guard let discussionGroupViewModel = groupViewModels.filter({ $0.name == "Discussions" }).first else {
+        guard let discussionSection = sections.filter({ $0.title == "Discussions" }).first else {
             XCTFail("Discussion Assignments View Model is not available.")
             return
         }
 
-        guard let quizGroupViewModel = groupViewModels.filter({ $0.name == "Quiz" }).first else {
+        guard let quizSection = sections.filter({ $0.title == "Quizzes" }).first else {
             XCTFail("Quiz Assignments View Model is not available.")
             return
         }
 
-        guard let ltiGroupViewModel = groupViewModels.filter({ $0.name == "LTI" }).first else {
+        guard let ltiSection = sections.filter({ $0.title == "LTI" }).first else {
             XCTFail("LTI Assignments View Model is not available.")
             return
         }
 
-        XCTAssertEqual(groupViewModels.count, 4)
-        XCTAssertEqual(normalGroupViewModel.id, "normal")
-        XCTAssertEqual(normalGroupViewModel.name, "Assignments")
-        XCTAssertEqual(normalGroupViewModel.assignments.count, 1)
-        XCTAssertEqual(normalGroupViewModel.assignments[0].name, "Another Undated Assignment")
-        XCTAssertEqual(discussionGroupViewModel.id, "discussions")
-        XCTAssertEqual(discussionGroupViewModel.name, "Discussions")
-        XCTAssertEqual(discussionGroupViewModel.assignments.count, 1)
-        XCTAssertEqual(discussionGroupViewModel.assignments[0].name, "Upcoming Assignment")
-        XCTAssertEqual(quizGroupViewModel.id, "quizzes")
-        XCTAssertEqual(quizGroupViewModel.name, "Quiz")
-        XCTAssertEqual(quizGroupViewModel.assignments.count, 1)
-        XCTAssertEqual(quizGroupViewModel.assignments[0].name, "Overdue Assignment")
-        XCTAssertEqual(ltiGroupViewModel.id, "lti")
-        XCTAssertEqual(ltiGroupViewModel.name, "LTI")
-        XCTAssertEqual(ltiGroupViewModel.assignments.count, 1)
-        XCTAssertEqual(ltiGroupViewModel.assignments[0].name, "Undated Assignment")
+        XCTAssertEqual(sections.count, 4)
+        XCTAssertEqual(normalSection.id, "normal")
+        XCTAssertEqual(normalSection.title, "Assignments")
+        XCTAssertEqual(normalSection.rows.count, 1)
+        XCTAssertEqual(normalSection.rows[0].title, "Another Undated Assignment")
+        XCTAssertEqual(discussionSection.id, "discussions")
+        XCTAssertEqual(discussionSection.title, "Discussions")
+        XCTAssertEqual(discussionSection.rows.count, 1)
+        XCTAssertEqual(discussionSection.rows[0].title, "Upcoming Assignment")
+        XCTAssertEqual(quizSection.id, "quizzes")
+        XCTAssertEqual(quizSection.title, "Quizzes")
+        XCTAssertEqual(quizSection.rows.count, 1)
+        XCTAssertEqual(quizSection.rows[0].title, "Overdue Assignment")
+        XCTAssertEqual(ltiSection.id, "lti")
+        XCTAssertEqual(ltiSection.title, "LTI")
+        XCTAssertEqual(ltiSection.rows.count, 1)
+        XCTAssertEqual(ltiSection.rows[0].title, "Undated Assignment")
     }
 
     func testEmptyStateIfNoAssignments() {
@@ -300,6 +296,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         testee.viewDidAppear()
 
         XCTAssertEqual(testee.state, .empty)
+        XCTAssertEqual(testee.sections, [])
     }
 
     func testGradingPeriodFilterChange() {
@@ -346,5 +343,16 @@ class AssignmentListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.selectedGradingPeriodId, "1")
         XCTAssertEqual(testee.selectedGradingPeriodTitle, "GP1")
         XCTAssertTrue(testee.isFilterIconSolid)
+    }
+}
+
+private extension AssignmentListSection.Row {
+    var title: String {
+        switch self {
+        case .student(let model):
+            model.title
+        case .teacher(let model):
+            model.title
+        }
     }
 }

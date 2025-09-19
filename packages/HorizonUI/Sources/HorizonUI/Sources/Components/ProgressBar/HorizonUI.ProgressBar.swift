@@ -27,6 +27,7 @@ public extension HorizonUI {
         private let progressColor: Color
         private let numberPosition: NumberPosition
         private let textColor: Color
+        private let backgroundColor: Color?
         private let cornerRadius: CornerRadius = .level6
 
         // MARK: - Init
@@ -51,13 +52,15 @@ public extension HorizonUI {
             progressColor: Color = .huiColors.surface.institution,
             size: Size,
             numberPosition: NumberPosition = .inside,
-            textColor: Color = .huiColors.surface.institution
+            textColor: Color = .huiColors.surface.institution,
+            backgroundColor: Color? = nil
         ) {
             self.progress = max(min(progress, 1.0), 0.0)
             self.size = size
             self.progressColor = progressColor
             self.numberPosition = numberPosition
             self.textColor = progress == 0 ? progressColor : textColor
+            self.backgroundColor = backgroundColor
         }
 
         public var body: some View {
@@ -113,7 +116,7 @@ extension HorizonUI.ProgressBar {
 
     private var backgroundView: some View {
         Rectangle()
-            .fill(size.backgroundColor)
+            .fill(backgroundColor ?? size.backgroundColor)
             .huiCornerRadius(level: cornerRadius)
             .huiBorder(
                 level: .level2,

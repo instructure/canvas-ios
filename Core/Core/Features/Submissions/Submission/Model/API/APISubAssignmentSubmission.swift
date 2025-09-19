@@ -28,6 +28,7 @@ public struct APISubAssignmentSubmission: Codable, Equatable {
     let late_policy_status: LatePolicyStatus?
     let seconds_late: Int?
     let missing: Bool?
+    let submitted_at: Date?
     let custom_grade_status_id: String?
 
     // Score
@@ -53,6 +54,7 @@ extension APISubAssignmentSubmission {
         late_policy_status: LatePolicyStatus? = nil,
         seconds_late: Int? = nil,
         missing: Bool? = nil,
+        submitted_at: Date? = nil,
         custom_grade_status_id: String? = nil,
         entered_score: Double? = nil,
         score: Double? = nil,
@@ -70,6 +72,7 @@ extension APISubAssignmentSubmission {
             late_policy_status: late_policy_status,
             seconds_late: seconds_late,
             missing: missing,
+            submitted_at: submitted_at,
             custom_grade_status_id: custom_grade_status_id,
             entered_score: entered_score,
             score: score,
