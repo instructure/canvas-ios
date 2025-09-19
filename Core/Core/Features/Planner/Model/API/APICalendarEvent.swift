@@ -45,21 +45,23 @@ public struct APICalendarEvent: Codable, Equatable {
     let series_head: Bool?
     /// The event repetition in human readable format
     let series_natural_language: String?
+    let sub_assignment: APICalendarEventSubAssignment?
 }
 
 #if DEBUG
+
 extension APICalendarEvent {
     public static func make(
-        id: ID = "1",
-        html_url: URL = URL(string: "https://narmstrong.instructure.com/calendar?event_id=10&include_contexts=course_1")!,
-        title: String = "calendar event #1",
-        start_at: Date? = Date(fromISOString: "2018-05-18T06:00:00Z"),
-        end_at: Date? = Date(fromISOString: "2018-05-18T06:00:00Z"),
+        id: ID = "",
+        html_url: URL = URL(string: "https://instructure.com")!,
+        title: String = "",
+        start_at: Date? = nil,
+        end_at: Date? = nil,
         all_day: Bool = false,
         type: CalendarEventType = .event,
-        context_code: String = "course_1",
+        context_code: String = "",
         effective_context_code: String? = nil,
-        context_name: String? = "Course One",
+        context_name: String? = "",
         created_at: Date = Clock.now.startOfHour(),
         updated_at: Date = Clock.now.startOfHour(),
         workflow_state: CalendarEventWorkflowState = .active,
@@ -71,7 +73,8 @@ extension APICalendarEvent {
         important_dates: Bool = false,
         rrule: String? = nil,
         series_head: Bool? = nil,
-        series_natural_language: String? = "Weekly on Wed, 52 times"
+        series_natural_language: String? = "",
+        sub_assignment: APICalendarEventSubAssignment? = nil
     ) -> APICalendarEvent {
         return APICalendarEvent(
             id: id,
@@ -95,10 +98,12 @@ extension APICalendarEvent {
             important_dates: important_dates,
             rrule: rrule,
             series_head: series_head,
-            series_natural_language: series_natural_language
+            series_natural_language: series_natural_language,
+            sub_assignment: sub_assignment
         )
     }
 }
+
 #endif
 
 // https://canvas.instructure.com/doc/api/calendar_events.html#method.calendar_events_api.index
