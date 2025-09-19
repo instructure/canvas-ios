@@ -72,6 +72,9 @@ public struct K5ImportantDateItem {
             return Image.announcementLine
         case .assignment:
             return Image.assignmentLine
+        case .sub_assignment:
+            // as of now this event type is used only for Discussions with Checkpoints
+            return Image.discussionLine
         }
     }
 

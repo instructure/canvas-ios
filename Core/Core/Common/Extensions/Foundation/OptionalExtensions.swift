@@ -27,3 +27,23 @@ extension Optional {
         return unwrapped
     }
 }
+
+public extension Optional where Wrapped == String {
+    var defaultToEmpty: String { self ?? "" }
+}
+
+public extension Optional where Wrapped == Int {
+    var defaultToZero: Int { self ?? 0 }
+}
+
+public extension Optional where Wrapped == Double {
+    var defaultToZero: Double { self ?? 0.0 }
+}
+
+public extension Optional where Wrapped == Bool {
+    var defaultToFalse: Bool { self ?? false }
+}
+
+public extension Optional where Wrapped == Bool {
+    var defaultToTrue: Bool { self ?? true }
+}

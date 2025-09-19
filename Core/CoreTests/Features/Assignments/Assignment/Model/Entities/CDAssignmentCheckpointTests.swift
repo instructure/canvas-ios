@@ -24,8 +24,8 @@ class CDAssignmentCheckpointTests: CoreTestCase {
 
     private static let testData = (
         assignmentId: "some assignmentId",
+        assignmentName: "some assignmentName",
         tag: "some tag",
-        name: "some name",
         pointsPossible: 42.5,
         date1: Date.make(year: 2020, month: 1, day: 1),
         date2: Date.make(year: 2020, month: 2, day: 1),
@@ -58,7 +58,7 @@ class CDAssignmentCheckpointTests: CoreTestCase {
         let model2 = saveModel(.make(tag: "1", name: "new name"))
 
         XCTAssertEqual(model1.objectID, model2.objectID)
-        XCTAssertEqual(model1.name, "new name")
+        XCTAssertEqual(model1.assignmentName, "new name")
     }
 
     // MARK: - Save Properties
@@ -67,7 +67,7 @@ class CDAssignmentCheckpointTests: CoreTestCase {
         let testee = saveModel(
             .make(
                 tag: testData.tag,
-                name: testData.name,
+                name: testData.assignmentName,
                 points_possible: testData.pointsPossible,
                 due_at: testData.date1,
                 unlock_at: testData.date2,
@@ -77,8 +77,8 @@ class CDAssignmentCheckpointTests: CoreTestCase {
         )
 
         XCTAssertEqual(testee.assignmentId, testData.assignmentId)
+        XCTAssertEqual(testee.assignmentName, testData.assignmentName)
         XCTAssertEqual(testee.tag, testData.tag)
-        XCTAssertEqual(testee.name, testData.name)
         XCTAssertEqual(testee.pointsPossible, testData.pointsPossible)
         XCTAssertEqual(testee.dueDate, testData.date1)
         XCTAssertEqual(testee.unlockDate, testData.date2)
@@ -162,8 +162,14 @@ class CDAssignmentCheckpointTests: CoreTestCase {
 
     private func saveModel(
         _ item: APIAssignmentCheckpoint,
+        requiredReplyCount: Int? = nil,
         assignmentId: String = testData.assignmentId
     ) -> CDAssignmentCheckpoint {
-        CDAssignmentCheckpoint.save(item, assignmentId: assignmentId, in: databaseClient)
+        CDAssignmentCheckpoint.save(
+            item,
+            requiredReplyCount: requiredReplyCount,
+            assignmentId: assignmentId,
+            in: databaseClient
+        )
     }
 }

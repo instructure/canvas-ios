@@ -43,6 +43,23 @@ class DiscussionCheckpointStepTests: XCTestCase {
         XCTAssertEqual(testee, nil)
     }
 
+    func test_comparison() {
+        let replyToTopic = DiscussionCheckpointStep.replyToTopic
+        let requiredReplies7 = DiscussionCheckpointStep.requiredReplies(7)
+        let requiredReplies42 = DiscussionCheckpointStep.requiredReplies(42)
+
+        XCTAssertEqual(replyToTopic < requiredReplies7, true)
+        XCTAssertEqual(requiredReplies7 > replyToTopic, true)
+
+        // matching cases do not affect sorting
+        XCTAssertEqual(replyToTopic < replyToTopic, false)
+        XCTAssertEqual(replyToTopic > replyToTopic, false)
+
+        // count parameter is ignored
+        XCTAssertEqual(requiredReplies7 < requiredReplies42, false)
+        XCTAssertEqual(requiredReplies7 > requiredReplies42, false)
+    }
+
     func test_text() {
         var testee: DiscussionCheckpointStep
 

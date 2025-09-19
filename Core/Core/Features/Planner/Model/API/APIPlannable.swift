@@ -32,6 +32,39 @@ public struct APIPlannable: Codable, Equatable {
     public let plannable_date: Date
     let submissions: TypeSafeCodable<APIPlannable.Submissions, Bool>?
     public let details: APIPlannable.Details?
+
+    public var plannableType: PlannableType {
+        .init(rawValue: plannable_type) ?? .other
+    }
+
+    public var context: Context? {
+        if let context = contextFromContextType() {
+            return context
+        }
+        if plannableType == .planner_note {
+            // Notes have no 'context_type', but have IDs in the inner 'plannable' object
+            return contextFromInnerPlannableObject()
+        }
+        return nil
+    }
+
+    private func contextFromContextType() -> Context? {
+        guard let raw = context_type, let type = ContextType(rawValue: raw.lowercased()) else {
+            return nil
+        }
+        return switch type {
+        case .course: Context(.course, id: course_id?.rawValue)
+        case .group: Context(.group, id: group_id?.rawValue)
+        case .user: Context(.user, id: user_id?.rawValue)
+        default: nil
+        }
+    }
+
+    private func contextFromInnerPlannableObject() -> Context? {
+        // order matters: 'course_id' has precedence over 'user_id'
+        return Context(.course, id: self.plannable?.course_id)
+            ?? Context(.user, id: self.plannable?.user_id)
+    }
 }
 
 extension APIPlannable {

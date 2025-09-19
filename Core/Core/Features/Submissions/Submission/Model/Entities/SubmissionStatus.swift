@@ -18,8 +18,154 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
-public enum SubmissionStatus: Hashable {
+public enum SubmissionStatus: Equatable {
+    /// not submitted, before due date
+    case notSubmitted
+
+    /// not submitted for on-paper assignments, before due date
+    case onPaper
+
+    /// not submitted for no-submission assignments, before due date
+    case noSubmission
+
+    /// not submitted, after due date (Teacher can force it)
+    case missing
+
+    /// submitted, before due date
+    case submitted
+
+    /// submitted, after due date (Teacher can force it)
+    case late
+
+    /// graded, regardless of submission or due date
+    case graded
+
+    /// excused, regardless of submission or due date
+    case excused
+
+    /// custom status, regardless of submission or due date
+    case custom(id: String, name: String)
+
+    public init(
+        isLate: Bool,
+        isMissing: Bool,
+        isExcused: Bool,
+        isSubmitted: Bool,
+        isGraded: Bool,
+        customStatusId: String?,
+        customStatusName: String?,
+        submissionType: SubmissionType?,
+        isGradeBelongToCurrentSubmission: Bool
+    ) {
+        self = if isExcused {
+            .excused
+        } else if let customStatusId, let customStatusName {
+            .custom(id: customStatusId, name: customStatusName)
+        // graded should have priority over late/missing, but currently
+        // all other places in Student app check for late/missing before checking for graded.
+        // We should move the `isGraded` check up here once SubmissionStatus is unified in MBL-19323.
+        // This logic is currently used only in Student Assignment List, so it won't cause issues in Teacher.
+        } else if isLate {
+            .late
+        } else if isMissing {
+            .missing
+        } else if isGraded {
+            isGradeBelongToCurrentSubmission ? .graded : .submitted
+        } else if isSubmitted {
+            .submitted
+        } else if submissionType == .on_paper {
+            .onPaper
+        } else if submissionType == SubmissionType.none {
+            .noSubmission
+        } else {
+            .notSubmitted
+        }
+    }
+
+    // TODO: uncomment and replace Submission.isGraded with this one in MBL-19323
+//    public var isGraded: Bool {
+//        switch self {
+//        case .excused,
+//             .custom,
+//             .graded:
+//            true
+//        case .late,
+//             .missing,
+//             .submitted,
+//             .notSubmitted,
+//             .onPaper,
+//             .noSubmission:
+//            false
+//        }
+//    }
+}
+
+// MARK: - View Model
+
+extension SubmissionStatus {
+    public var text: String {
+        switch self {
+        case .notSubmitted: String(localized: "Not Submitted", bundle: .core)
+        case .submitted: String(localized: "Submitted", bundle: .core)
+        case .late: String(localized: "Late", bundle: .core)
+        case .missing: String(localized: "Missing", bundle: .core)
+        case .graded: String(localized: "Graded", bundle: .core)
+        case .excused: String(localized: "Excused", bundle: .core)
+        case .custom(_, let name): name
+        case .onPaper: String(localized: "On Paper", bundle: .core)
+        case .noSubmission: String(localized: "No Submission", bundle: .core)
+        }
+    }
+
+    public var color: Color {
+        switch self {
+        case .notSubmitted: .textDark
+        case .submitted: .textSuccess
+        case .late: .textWarning
+        case .missing: .textDanger
+        case .graded: .textSuccess
+        case .excused: .textWarning
+        case .custom: .textInfo
+        case .onPaper: .textDark
+        case .noSubmission: .textDark
+        }
+    }
+
+    public var icon: Image {
+        switch self {
+        case .notSubmitted: .noSolid
+        case .submitted: .completeLine
+        case .late: .clockLine
+        case .missing: .noSolid
+        case .graded: .completeSolid
+        case .excused: .completeSolid
+        case .custom: .flagLine
+        case .onPaper: .noSolid
+        case .noSubmission: .noSolid
+        }
+    }
+
+    // TODO: remove once not needed
+    public var uiImageIcon: UIImage {
+        switch self {
+        case .notSubmitted: .noSolid
+        case .submitted: .completeLine
+        case .late: .clockLine
+        case .missing: .noSolid
+        case .graded: .completeSolid
+        case .excused: .completeSolid
+        case .custom: .flagLine
+        case .onPaper: .noSolid
+        case .noSubmission: .noSolid
+        }
+    }
+}
+
+// MARK: - To be removed in MBL-19323
+
+public enum SubmissionStatusOld: Hashable {
     case late
     case missing
     case submitted

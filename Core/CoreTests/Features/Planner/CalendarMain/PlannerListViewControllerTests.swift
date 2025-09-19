@@ -142,6 +142,15 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
             allEvents: false,
             userID: userID
         ), value: [.make(id: "2", title: "Assignment", start_at: Clock.now, type: .assignment)])
+        api.mock(GetCalendarEventsRequest(
+            contexts: [Context(.course, id: "1")],
+            startDate: start,
+            endDate: end,
+            type: .sub_assignment,
+            include: [.submission],
+            allEvents: false,
+            userID: userID
+        ), value: [])
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.tableView.dataSource?.tableView(controller.tableView, numberOfRowsInSection: 0), 2)
         let index0 = IndexPath(row: 0, section: 0)

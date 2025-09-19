@@ -24,7 +24,7 @@ import UIKit
 /// meant to replace status cases, or be used in all related areas of the apps.
 /// i.e. use with caution.
 public enum SubmissionStateDisplayProperties: Equatable {
-    case usingStatus(SubmissionStatus)
+    case usingStatus(SubmissionStatusOld)
     case onPaper
     case noSubmission
     case graded

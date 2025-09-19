@@ -22,8 +22,13 @@ import CoreData
 public class CDAssignmentCheckpoint: NSManagedObject {
 
     @NSManaged public var assignmentId: String
+    @NSManaged public var assignmentName: String
+
     @NSManaged public var tag: String
-    @NSManaged public var name: String
+    @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
+    public var discussionCheckpointStep: DiscussionCheckpointStep? {
+        get { return discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(value: newValue) }
+    }
 
     @NSManaged private var pointsPossibleRaw: NSNumber?
     public var pointsPossible: Double? {
@@ -31,17 +36,24 @@ public class CDAssignmentCheckpoint: NSManagedObject {
     }
 
     @NSManaged public var dueDate: Date?
+    /// Expected to match Assignment's unlock date. It is common for each checkpoint.
     @NSManaged public var unlockDate: Date?
+    /// Expected to match Assignment's lock date. It is common for each checkpoint.
     @NSManaged public var lockDate: Date?
 
     @NSManaged public var isOnlyVisibleToOverrides: Bool
     @NSManaged public var overrides: Set<AssignmentOverride>
+
+    public var title: String {
+        discussionCheckpointStep?.text ?? assignmentName
+    }
 
     // MARK: - Save
 
     @discardableResult
     public static func save(
         _ item: APIAssignmentCheckpoint,
+        requiredReplyCount: Int?,
         assignmentId: String,
         in moContext: NSManagedObjectContext
     ) -> Self {
@@ -50,8 +62,10 @@ public class CDAssignmentCheckpoint: NSManagedObject {
         let model: Self = moContext.fetch(predicate).first ?? moContext.insert()
 
         model.assignmentId = assignmentId
+        model.assignmentName = item.name
+
         model.tag = item.tag
-        model.name = item.name
+        model.discussionCheckpointStep = .init(tag: item.tag, requiredReplyCount: requiredReplyCount)
 
         model.pointsPossible = item.points_possible
 
@@ -65,5 +79,18 @@ public class CDAssignmentCheckpoint: NSManagedObject {
         }
 
         return model
+    }
+}
+
+extension CDAssignmentCheckpoint: Comparable {
+    /// Compares by `discussionCheckpointStep`.
+    /// It is assumed both checkpoints belong to the same assignment, otherwise comparison is meaningless.
+    public static func < (lhs: CDAssignmentCheckpoint, rhs: CDAssignmentCheckpoint) -> Bool {
+        guard let lhsStep = lhs.discussionCheckpointStep,
+              let rhsStep = rhs.discussionCheckpointStep else {
+            return false
+        }
+
+        return lhsStep < rhsStep
     }
 }

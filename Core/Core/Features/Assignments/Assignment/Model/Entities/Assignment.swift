@@ -39,6 +39,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var details: String?
     @NSManaged public var discussionTopic: DiscussionTopic?
     @NSManaged public var dueAt: Date?
+    @NSManaged public var dueAtOrCheckpointsDueAt: Date?
     @NSManaged public var dueAtSortNilsAtBottom: Date?
     @NSManaged public var externalToolContentID: String?
     @NSManaged public var freeFormCriterionCommentsOnRubric: Bool
@@ -312,9 +313,22 @@ public class Assignment: NSManagedObject {
         }
 
         if let checkpoints = item.checkpoints {
-            self.checkpoints = checkpoints.map {
-                CDAssignmentCheckpoint.save($0, assignmentId: item.id.value, in: moContext)
-            }
+            self.checkpoints = checkpoints
+                .map {
+                    CDAssignmentCheckpoint.save(
+                        $0,
+                        requiredReplyCount: item.discussion_topic?.reply_to_entry_required_count,
+                        assignmentId: item.id.value,
+                        in: moContext
+                    )
+                }
+                .sorted(by: <)
+        }
+
+        if hasSubAssignments {
+            self.dueAtOrCheckpointsDueAt = self.checkpoints.reduce(dueAt) { $0 ?? $1.dueDate }
+        } else {
+            self.dueAtOrCheckpointsDueAt = dueAt
         }
     }
 }
@@ -382,8 +396,8 @@ extension Assignment {
         }
     }
 
-    public var submissionStatus: SubmissionStatus {
-        return submission?.status ?? .notSubmitted
+    public var submissionStatus: SubmissionStatusOld {
+        return submission?.statusOld ?? .notSubmitted
     }
 
     public var icon: UIImage {

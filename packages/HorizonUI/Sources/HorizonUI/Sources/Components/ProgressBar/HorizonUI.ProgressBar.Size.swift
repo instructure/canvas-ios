@@ -35,7 +35,7 @@ public extension HorizonUI.ProgressBar {
         var backgroundColor: Color {
             switch self {
             case .small:
-                return .huiColors.primitives.white10.opacity(0.3)
+                return .huiColors.surface.pageTertiary
             case .medium:
                 return .clear
             }

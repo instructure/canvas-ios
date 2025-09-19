@@ -419,6 +419,10 @@ struct SpeedGraderSubmissionGradesView: View {
     @ViewBuilder
     private var comments: some View {
         let commentCount = commentListViewModel.commentCount
+        let a11yLabel = [
+            String(localized: "Comments", bundle: .core),
+            String.format(numberOfItems: commentCount)
+        ].joined(separator: ", ")
         let header = HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
             Image.discussionLine
                 .scaledIcon()
@@ -428,11 +432,6 @@ struct SpeedGraderSubmissionGradesView: View {
             Text("Comments (\(commentCount))", bundle: .teacher)
                 .foregroundStyle(.textDarkest)
                 .font(.semibold16)
-                .accessibilityLabel([
-                    String(localized: "Comments", bundle: .core),
-                    String.format(numberOfItems: commentCount)
-                ].joined(separator: ", "))
-                .accessibilityAddTraits(.isHeader)
         }
         let content = SubmissionCommentListView(
             viewModel: commentListViewModel,
@@ -444,20 +443,21 @@ struct SpeedGraderSubmissionGradesView: View {
             InstUI.Divider()
 
             if assignment.hasRubrics {
-                DisclosureGroup {
-                    content
-                } label: {
-                    header
-                }
-                .disclosureGroupStyle(InstUI.SectionDisclosureStyle(headerConfig: .init(
+                InstUI.CollapsibleListSection(
+                    label: header,
+                    accessibilityLabel: a11yLabel,
+                    itemCount: nil,
                     paddingSet: .iconCell,
                     accessoryIconSize: 24,
-                    hasDividerBelowHeader: true
-                )))
+                    isInitiallyExpanded: false,
+                    content: { content }
+                )
             } else {
                 header
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .paddingStyle(set: .iconCell)
+                    .accessibilityLabel(a11yLabel)
+                    .accessibilityAddTraits(.isHeader)
 
                 InstUI.Divider()
 

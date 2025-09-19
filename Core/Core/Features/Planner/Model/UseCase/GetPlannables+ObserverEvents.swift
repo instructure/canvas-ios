@@ -35,13 +35,14 @@ extension GetPlannables {
                     .flatMap { contexts in
                         let calendarEvents = self.calendarEventsPublisher(env: request.env, contexts: contexts, for: .event)
                         let calendarAssignments = self.calendarEventsPublisher(env: request.env, contexts: contexts, for: .assignment)
+                        let calendarSubAssignments = self.calendarEventsPublisher(env: request.env, contexts: contexts, for: .sub_assignment)
 
                         let allPublisher: AnyPublisher<[ObserverEvent], EventsFailure>
                         if case .teacher = request.env.app {
                             let plannerNotes = self.plannerNotesPublisher(env: request.env, contexts: contexts)
-                            allPublisher = calendarEvents.merge(with: calendarAssignments, plannerNotes).eraseToAnyPublisher()
+                            allPublisher = calendarEvents.merge(with: calendarAssignments, calendarSubAssignments, plannerNotes).eraseToAnyPublisher()
                         } else {
-                            allPublisher = calendarEvents.merge(with: calendarAssignments).eraseToAnyPublisher()
+                            allPublisher = calendarEvents.merge(with: calendarAssignments, calendarSubAssignments).eraseToAnyPublisher()
                         }
 
                         return allPublisher

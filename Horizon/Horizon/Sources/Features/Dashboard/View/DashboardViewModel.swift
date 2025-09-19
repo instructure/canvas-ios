@@ -29,6 +29,7 @@ class DashboardViewModel {
     private(set) var errorMessage = ""
     var title: String = ""
     private(set) var courses: [HCourse] = []
+    private(set) var unenrolledPrograms: [Program] = []
     private(set) var invitedCourses: [InvitedCourse] = []
     private(set) var hasUnreadNotification = false
     private(set) var hasUnreadInboxMessage = false
@@ -41,25 +42,31 @@ class DashboardViewModel {
 
     private let dashboardInteractor: DashboardInteractor
     private let notificationInteractor: NotificationInteractor
-
+    private let programInteractor: ProgramInteractor
     private let router: Router
+    private let onTapProgram: (ProgramSwitcherModel?, WeakViewController) -> Void
 
     // MARK: - Private variables
 
     private var getDashboardCoursesCancellable: AnyCancellable?
     private var refreshCompletedModuleItemCancellable: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
+    private var programs: [Program] = []
 
     // MARK: - Init
 
     init(
         dashboardInteractor: DashboardInteractor,
         notificationInteractor: NotificationInteractor,
-        router: Router
+        programInteractor: ProgramInteractor,
+        router: Router,
+        onTapProgram: @escaping (ProgramSwitcherModel?, WeakViewController) -> Void
     ) {
         self.dashboardInteractor = dashboardInteractor
         self.notificationInteractor = notificationInteractor
+		self.programInteractor = programInteractor
         self.router = router
+        self.onTapProgram = onTapProgram
         getCourses()
         setNotificationBadge()
     }
@@ -79,8 +86,11 @@ class DashboardViewModel {
         refreshCompletedModuleItemCancellable?.cancel()
 
         getDashboardCoursesCancellable = dashboardInteractor.getAndObserveCoursesWithoutModules(ignoreCache: ignoreCache)
-            .sink { [weak self] items in
-                self?.courses = items.filter { $0.state == HCourse.EnrollmentState.active.rawValue }
+            .combineLatest(programInteractor.getProgramsWithObserving(ignoreCache: ignoreCache))
+            .sink { [weak self] items, programs in
+                let courses = items.filter { $0.state == HCourse.EnrollmentState.active.rawValue }
+                self?.courses = self?.getAttachedPrograms(to: courses, from: programs) ?? []
+                self?.unenrolledPrograms = programs.filter { !$0.hasEnrolledCourse  }
                 let invitedCourses = items.filter { $0.state == HCourse.EnrollmentState.invited.rawValue }
                 let message = String(localized: "You have been invited to join", bundle: .horizon)
                 self?.invitedCourses = invitedCourses.map { .init(id: $0.id, name: "\(message) \($0.name)", enrollmentID: $0.enrollmentID) }
@@ -104,6 +114,18 @@ class DashboardViewModel {
             TabBarBadgeCounts.unreadMessageCount = UInt(inboxCount)
         }
         .store(in: &subscriptions)
+    }
+
+    private func getAttachedPrograms(to hcourses: [HCourse], from programs: [Program]) -> [HCourse] {
+        return hcourses.map { hcourse in
+            var updateCourse = hcourse
+            // Find all programs that contain this course id
+            let matchedPrograms = programs.filter { program in
+                program.courses.contains { $0.id == hcourse.id }
+            }
+            updateCourse.programs = matchedPrograms
+            return updateCourse
+        }
     }
 
     // MARK: - Inputs
@@ -139,9 +161,21 @@ class DashboardViewModel {
     func navigateToCourseDetails(
         id: String,
         enrollmentID: String,
+        programID: String?,
         viewController: WeakViewController
     ) {
-        router.route(to: "/courses/\(id)/\(enrollmentID)", from: viewController)
+        router.show(
+                LearnAssembly.makeCourseDetailsViewController(
+                    courseID: id,
+                    enrollmentID: enrollmentID,
+                    programID: programID
+                ),
+                from: viewController
+            )
+    }
+
+    func navigateProgram(id: String, viewController: WeakViewController) {
+        onTapProgram(.init(id: id), viewController)
     }
 
     func acceptInvitation(course: InvitedCourse) {
@@ -159,7 +193,6 @@ class DashboardViewModel {
                     self?.errorMessage = error.localizedDescription
                     self?.isAlertPresented = true
                 }
-
             }, receiveValue: { [weak self] _ in
                 self?.reload(completion: {})
                 self?.declineInvitation(course: course)

@@ -38,17 +38,18 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     public var body: some View {
         VStack(spacing: 0) {
             switch viewModel.state {
-            case .empty:
+            case .empty, .error:
                 gradingPeriodTitle
                 emptyPanda
             case .loading:
                 loadingView
-            case .data(let groups):
+            case .data:
                 gradingPeriodTitle
-                assignmentList(groups)
+                assignmentList
             }
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+        .tint(viewModel.courseColor?.asColor)
         .navigationBarTitleView(
             title: String(localized: "Assignments", bundle: .core),
             subtitle: viewModel.courseName
@@ -120,17 +121,81 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
         Spacer()
     }
 
-    private func assignmentList(_ groups: [AssignmentGroupViewModel]) -> some View {
+    private var assignmentList: some View {
         ScrollView {
             LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
-                ForEach(groups) { assignmentGroup in
-                    AssignmentGroupView(viewModel: assignmentGroup)
+                InstUI.TopDivider()
+                ForEach(viewModel.sections) { section in
+                    sectionView(with: section)
                 }
             }
         }
         .refreshable {
             await viewModel.refresh()
         }
+    }
+
+    private func sectionView(with section: AssignmentListSection) -> some View {
+        InstUI.CollapsibleListSection(title: section.title, itemCount: section.rows.count) {
+            ForEach(section.rows) { row in
+                switch row {
+                case .student(let model):
+                    studentCell(model: model, isLastItem: section.rows.last == row)
+                case .teacher(let model):
+                    teacherCell(model: model, isLastItem: section.rows.last == row)
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func studentCell(model: StudentAssignmentListItem, isLastItem: Bool) -> some View {
+        let routeAction = { navigateToDetails(at: model.route) }
+        let identifier = "AssignmentList.\(model.id)"
+
+        if let subItems = model.subItems {
+            InstUI.CollapsibleListRow(
+                cell: StudentAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
+                    .identifier(identifier),
+                isInitiallyExpanded: false
+            ) {
+                ForEach(subItems) { subItem in
+                    StudentAssignmentListSubItemCell(model: subItem, action: routeAction)
+                        .identifier(identifier, subItem.tag)
+                }
+            }
+            InstUI.Divider(isLast: isLastItem)
+        } else {
+            StudentAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
+                .identifier(identifier)
+        }
+    }
+
+    @ViewBuilder
+    private func teacherCell(model: TeacherAssignmentListItem, isLastItem: Bool) -> some View {
+        let routeAction = { navigateToDetails(at: model.route) }
+        let identifier = "AssignmentList.\(model.id)"
+
+        if let subItems = model.subItems {
+            InstUI.CollapsibleListRow(
+                cell: TeacherAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
+                    .identifier(identifier),
+                isInitiallyExpanded: false
+            ) {
+                ForEach(subItems) { subItem in
+                    TeacherAssignmentListSubItemCell(model: subItem, action: routeAction)
+                        .identifier(identifier, subItem.tag)
+                }
+            }
+            InstUI.Divider(isLast: isLastItem)
+        } else {
+            TeacherAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
+                .identifier(identifier)
+        }
+    }
+
+    private func navigateToDetails(at url: URL?) {
+        viewModel.didSelectAssignment.send((url, controller))
     }
 
     private func setupDefaultSplitDetailView(_ routeUrl: String) {
@@ -143,37 +208,62 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
 
 #if DEBUG
 
-struct AssignmentListScreen_Previews: PreviewProvider {
-    private static let env = PreviewEnvironment()
-    private static let context = env.globalDatabase.viewContext
-    private static func createAssignments() -> [Assignment] {
-        let assignments: [APIAssignment] = [
-            APIAssignment.make(needs_grading_count: 0),
-            APIAssignment.make(id: "2", quiz_id: "1"),
-            APIAssignment.make(id: "3", submission_types: [.discussion_topic]),
-            APIAssignment.make(id: "4", submission_types: [.external_tool]),
-            APIAssignment.make(id: "5", locked_for_user: true)
-        ]
-        return assignments.map {
-            Assignment.save($0, in: context, updateSubmission: false, updateScoreStatistics: false)
-        }
-    }
+private func createSections() -> [AssignmentListSection] {
+    let studentRows: [StudentAssignmentListItem] = [
+        .make(
+            id: "1",
+            title: "Math Assignment",
+            icon: .assignmentLine,
+            dueDates: ["Due Sep 10, 2025 at 11:59 PM"],
+            submissionStatus: .init(status: .notSubmitted),
+            score: "10 / 15"
+        ),
+        .make(
+            id: "2",
+            title: "Quiz 1",
+            icon: .quizLine,
+            dueDates: ["Due Sep 15, 2025 at 11:59 PM"],
+            submissionStatus: .init(status: .graded),
+            score: "8 / 10"
+        ),
+        .make(
+            id: "3",
+            title: "Discussion Topic",
+            icon: .discussionLine,
+            dueDates: ["Due Sep 20, 2025 at 11:59 PM"],
+            submissionStatus: .init(status: .late),
+            score: "5 / 10"
+        )
+    ]
 
-    static var previews: some View {
-        let assignments = createAssignments()
-        let assignmentGroups: [AssignmentGroupViewModel] = [
-            AssignmentGroupViewModel(name: "Assignment Group 1", id: "1", assignments: assignments, courseColor: .red),
-            AssignmentGroupViewModel(name: "Assignment Group 2", id: "2", assignments: assignments, courseColor: .red)
-        ]
-        let viewModel = AssignmentListViewModel(state: .data(assignmentGroups))
-        AssignmentListScreen(viewModel: viewModel)
+    return [
+        AssignmentListSection(
+            id: "1",
+            title: "Assignment Group 1",
+            rows: studentRows.map { .student($0) }
+        ),
+        AssignmentListSection(
+            id: "2",
+            title: "Assignment Group 2",
+            rows: studentRows.map { .student($0) }
+        )
+    ]
+}
 
-        let emptyModel = AssignmentListViewModel(state: .empty)
-        AssignmentListScreen(viewModel: emptyModel)
+#Preview("Data State") {
+    let sections = createSections()
+    let viewModel = AssignmentListViewModel(state: .data, sections: sections)
+    AssignmentListScreen(viewModel: viewModel)
+}
 
-        let loadingModel = AssignmentListViewModel(state: .loading)
-        AssignmentListScreen(viewModel: loadingModel)
-    }
+#Preview("Empty State") {
+    let emptyModel = AssignmentListViewModel(state: .empty)
+    AssignmentListScreen(viewModel: emptyModel)
+}
+
+#Preview("Loading State") {
+    let loadingModel = AssignmentListViewModel(state: .loading)
+    AssignmentListScreen(viewModel: loadingModel)
 }
 
 #endif

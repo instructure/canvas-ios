@@ -22,6 +22,8 @@ import SwiftUI
 
 struct CourseDetailsView: View {
     @State private var viewModel: CourseDetailsViewModel
+    @State private var isCourseDropdownVisible: Bool = false
+    @State private var courseNameHeight: CGFloat = .zero
     @Environment(\.viewController) private var viewController
 
     private var tabs: [CourseDetailsTabs] {
@@ -33,51 +35,89 @@ struct CourseDetailsView: View {
     private let isBackButtonVisible: Bool
     private let shouldHideTabBar: Bool
     private let onShowNavigationBarAndTabBar: (Bool) -> Void
+    private let onSwitchToLearnTab: (ProgramSwitcherModel?, WeakViewController) -> Void
+
     // MARK: - Init
 
     init(
         viewModel: CourseDetailsViewModel,
         isBackButtonVisible: Bool = true,
         shouldHideTabBar: Bool = false,
-        onShowNavigationBarAndTabBar: @escaping (Bool) -> Void
+        onShowNavigationBarAndTabBar: @escaping (Bool) -> Void,
+        onSwitchToLearnTab: @escaping (ProgramSwitcherModel?, WeakViewController) -> Void
     ) {
         self.viewModel = viewModel
         self.shouldHideTabBar = shouldHideTabBar
         self.isBackButtonVisible = isBackButtonVisible
         self.onShowNavigationBarAndTabBar = onShowNavigationBarAndTabBar
+        self.onSwitchToLearnTab = onSwitchToLearnTab
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
             if viewModel.isShowHeader {
-                Group {
-                    // Hide courses DropdownMenu
-                    DropdownMenu(
-                        items: viewModel.courses,
-                        selectedItem: viewModel.selectedCoure,
-                        onSelect: viewModel.onSelectCourse
-                    )
-                    .padding(.horizontal, .huiSpaces.space24)
-                    .padding(.bottom, .huiSpaces.space16)
-
+                VStack(spacing: .zero) {
+                    VStack(spacing: .zero) {
+                        if let programName = viewModel.selectedProgram?.name {
+                            ProgramNameView(name: programName)
+                                .padding(.horizontal, .huiSpaces.space24)
+                                .padding(.bottom, .huiSpaces.space16)
+                                .onTapGesture {
+                                    onSwitchToLearnTab(.init(id: viewModel.selectedProgram?.id), viewController)
+                                }
+                        }
+                        ExpandTitleView(
+                            title: viewModel.selectedCourse?.name ?? "",
+                            isExpanded: isCourseDropdownVisible
+                        )
+                        .padding(.horizontal, .huiSpaces.space24)
+                        .padding(.bottom, .huiSpaces.space16)
+                        .onTapGesture { isCourseDropdownVisible.toggle() }
+                    }
+                    .readingFrame { frame in courseNameHeight = frame.height }
                     headerView
                 }
                 .transition(.move(edge: .top).combined(with: .opacity))
+                .onTapGesture { isCourseDropdownVisible = false }
             }
             learningContentView()
         }
         .padding(.top, .huiSpaces.space12)
         .hidden(viewModel.isLoaderVisible)
-        .animation(.linear, value: viewModel.isShowHeader)
-        .background(Color.huiColors.surface.pagePrimary)
+        .background {
+            Color.huiColors.surface.pagePrimary
+                .ignoresSafeArea()
+                .onTapGesture { isCourseDropdownVisible = false }
+        }
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
-        .onWillDisappear { onShowNavigationBarAndTabBar(true) }
+        .onWillDisappear {
+            isCourseDropdownVisible = false
+            onShowNavigationBarAndTabBar(true)
+        }
         .onWillAppear { onShowNavigationBarAndTabBar(false) }
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)
             }
         }
+        .overlay(alignment: .top) {
+            if isCourseDropdownVisible {
+                ProgramSwitcherView(
+                    isExpanded: $isCourseDropdownVisible,
+                    isProgramPage: false,
+                    programs: viewModel.programs,
+                    selectedProgram: viewModel.selectedProgram,
+                    selectedCourse: viewModel.selectedCourse,
+                    onSelectProgram: { program in
+                        onSwitchToLearnTab(program, viewController)
+                    },
+                    onSelectCourse: viewModel.onSelectCourse
+                )
+                .padding(.top, courseNameHeight + (isBackButtonVisible ? 40 : 0))
+                .padding(.horizontal, .huiSpaces.space24)
+            }
+        }
+        .animation(.linear, value: [viewModel.isShowHeader, isCourseDropdownVisible])
     }
 
     @ViewBuilder

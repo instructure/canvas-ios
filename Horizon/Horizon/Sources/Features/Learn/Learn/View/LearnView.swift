@@ -24,36 +24,59 @@ struct LearnView: View {
     @Bindable var viewModel: LearnViewModel
 
     var body: some View {
-        VStack {
-            if let courseDetailsViewModel = viewModel.courseDetailsViewModel {
-                LearnAssembly.makeCourseDetailsView(viewModel: courseDetailsViewModel, isBackButtonVisible: false)
-            } else if viewModel.courseDetailsViewModel == nil, !viewModel.isLoaderVisible {
-               ScrollView {
-                    Text("You aren’t currently enrolled in a course.", bundle: .horizon)
-                        .padding(.huiSpaces.space24)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                        .foregroundStyle(Color.huiColors.text.body)
-                        .huiTypography(.h3)
-                        .padding(.top, .huiSpaces.space32)
+        VStack(spacing: .zero) {
+            if !viewModel.isLoaderVisible {
+                switch viewModel.state {
+                case .programs:
+                    ProgramView(viewModel: viewModel)
+                case .courseDetails:
+                    if let courseDetailsViewModel = viewModel.courseDetailsViewModel {
+                        LearnAssembly.makeCourseDetailsView(viewModel: courseDetailsViewModel, isBackButtonVisible: false)
+                    }
+                case .empty:
+                    emptyView
                 }
-               .refreshable {
-                   await viewModel.refreshCourses()
-               }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .toolbar(.hidden)
         .background(Color.huiColors.surface.pagePrimary)
-        .alert(isPresented: $viewModel.isAlertPresented) {
-            Alert(title: Text("Something went wrong", bundle: .horizon), message: Text(viewModel.errorMessage))
-        }
+        .toolbar(.hidden)
+        .onFirstAppear { viewModel.fetchPrograms() }
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)
+                    .padding(.horizontal, .huiSpaces.space24)
+                    .padding(.top, .huiSpaces.space10)
+                    .padding(.bottom, .huiSpaces.space4)
+                    .background(Color.huiColors.surface.pagePrimary)
             }
         }
-        .onFirstAppear {
-            viewModel.fetchCourses()
+    }
+
+    private var emptyView: some View {
+        ScrollView {
+            Text("You aren’t currently enrolled in a course or program.", bundle: .horizon)
+                .padding(.huiSpaces.space24)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                .foregroundStyle(Color.huiColors.text.body)
+                .huiTypography(.h3)
+                .padding(.top, .huiSpaces.space32)
+        }
+        .refreshable {
+            await viewModel.fetchPrograms(ignoreCache: true)
         }
     }
 }
+
+#if DEBUG
+#Preview {
+    LearnView(
+        viewModel: .init(
+            interactor: ProgramInteractorPreview(),
+            learnCoursesInteractor: GetLearnCoursesInteractorPreview(),
+            router: AppEnvironment.shared.router,
+            programID: nil
+        )
+    )
+}
+#endif
