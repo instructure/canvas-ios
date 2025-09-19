@@ -98,7 +98,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .discussionLine)
         XCTAssertEqual(cell?.iconImageView.state, .published)
         XCTAssertEqual(cell?.titleLabel.text, "Alien invasion probabilities")
-        XCTAssertEqual(cell?.dateLabel.text, "Last post " + TestConstants.date1103.dateTimeString)
+        XCTAssertEqual(cell?.lastPostLabel.text, "Last post " + TestConstants.date1103.dateTimeString)
 
         let actions = controller.tableView.delegate?.tableView?(controller.tableView, trailingSwipeActionsConfigurationForRowAt: IndexPath(row: 0, section: 0))?.actions
         XCTAssertEqual(actions?.count, 3)
@@ -123,7 +123,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .assignmentLine)
         XCTAssertEqual(cell?.iconImageView.state, .published)
         XCTAssertEqual(cell?.titleLabel.text, "Dude")
-        XCTAssertEqual(cell?.dateLabel.text, "Due " + TestConstants.date1031.relativeDateTimeString)
+        XCTAssertEqual(cell?.dueDateLabel1.text, "Due " + TestConstants.date1031.relativeDateTimeString)
 
         XCTAssertEqual(controller.tableView.delegate?.tableView?(
             controller.tableView, trailingSwipeActionsConfigurationForRowAt: IndexPath(row: 0, section: 1)
@@ -133,8 +133,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .assignmentLine)
         XCTAssertEqual(cell?.iconImageView.state, .published)
         XCTAssertEqual(cell?.titleLabel.text, "Locked")
-        XCTAssertEqual(cell?.statusLabel.text, "Closed")
-        XCTAssertEqual(cell?.dateLabel.text, "Due " + TestConstants.date1031.relativeDateTimeString)
+        XCTAssertEqual(cell?.dueDateLabel1.text, DueDateFormatter.availabilityClosedText)
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 2))
         XCTAssert(router.lastRoutedTo("/courses/1/discussion_topics/3", withOptions: .detail))
@@ -243,7 +242,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .discussionLine)
         XCTAssertEqual(cell?.iconImageView.state, nil)
         XCTAssertEqual(cell?.titleLabel.text, "Study group tomorrow")
-        XCTAssertEqual(cell?.dateLabel.text, "Last post " + TestConstants.date1103.dateTimeString)
+        XCTAssertEqual(cell?.lastPostLabel.text, "Last post " + TestConstants.date1103.dateTimeString)
 
         api.mock(controller.topics, error: NSError.internalError())
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
@@ -271,7 +270,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
 
         // Then
         let cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? Core.DiscussionListCell
-        XCTAssertEqual(cell?.statusLabel.text, "Not supported")
+        XCTAssertEqual(cell?.dueDateLabel1.text, "Not supported")
         XCTAssertEqual(cell?.contentView.alpha, 0.5)
     }
 
@@ -291,7 +290,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
 
         // Then
         let cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? Core.DiscussionListCell
-        XCTAssertEqual(cell?.statusLabel.text, "Closed")
+        XCTAssertEqual(cell?.dueDateLabel1.text, DueDateFormatter.noDueDateText)
         XCTAssertEqual(cell?.contentView.alpha, 1)
     }
 }

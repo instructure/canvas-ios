@@ -55,11 +55,18 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     }
 
     private var offlineModeInteractor: OfflineModeInteractor?
+    private var dueDateTextsProvider: AssignmentDueDateTextsProvider?
 
-    public static func create(context: Context, offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(), env: AppEnvironment) -> DiscussionListViewController {
+    public static func create(
+        context: Context,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(),
+        dueDateTextsProvider: AssignmentDueDateTextsProvider = .live,
+        env: AppEnvironment
+    ) -> DiscussionListViewController {
         let controller = loadFromStoryboard()
         controller.context = context.local
         controller.offlineModeInteractor = offlineModeInteractor
+        controller.dueDateTextsProvider = dueDateTextsProvider
         controller.env = env
         return controller
     }
@@ -219,20 +226,25 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: DiscussionListCell = tableView.dequeue(for: indexPath)
         let topic = topics[indexPath]
-        cell.update(topic: topic, isTeacher: course?.first?.hasTeacherEnrollment == true, color: color)
+        cell.update(
+            topic: topic,
+            isTeacher: course?.first?.hasTeacherEnrollment == true,
+            color: color,
+            dueDateTextsProvider: dueDateTextsProvider
+        )
         if topic?.anonymousState != nil && offlineModeInteractor?.isOfflineModeEnabled() == true {
             cell.selectionStyle = .none
             cell.contentView.alpha = 0.5
-            cell.statusLabel.text = String(localized: "Not supported", bundle: .core)
-            cell.statusLabel.isHidden = false
-            cell.statusDot.isHidden = true
+            cell.dueDateLabel1.text = String(localized: "Not supported", bundle: .core)
+            cell.dueDateLabel1.isHidden = false
+            cell.dueDateLabel2.isHidden = true
+            cell.lastPostLabel.isHidden = true
             cell.repliesLabel.isHidden = true
             cell.repliesDot.isHidden = true
             cell.unreadLabel.isHidden = true
             cell.unreadDot.isHidden = true
             cell.pointsLabel.isHidden = true
             cell.pointsDot.isHidden = true
-            cell.dateLabel.isHidden = true
             cell.isUserInteractionEnabled = false
             cell.accessoryType = .none
         }
@@ -281,14 +293,14 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
 }
 
 class DiscussionListCell: UITableViewCell {
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dueDateLabel1: UILabel!
+    @IBOutlet weak var dueDateLabel2: UILabel!
+    @IBOutlet weak var lastPostLabel: UILabel!
     @IBOutlet weak var iconImageView: AccessIconView!
     @IBOutlet weak var pointsDot: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var repliesLabel: UILabel!
     @IBOutlet weak var repliesDot: UILabel!
-    @IBOutlet weak var statusDot: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var unreadDot: UIView!
     @IBOutlet weak var unreadLabel: UILabel!
@@ -298,11 +310,15 @@ class DiscussionListCell: UITableViewCell {
 
         pointsDot.setText(pointsDot.text, style: .textCellBottomLabel)
         repliesDot.setText(repliesDot.text, style: .textCellBottomLabel)
-        statusDot.setText(statusDot.text, style: .textCellBottomLabel)
         setupInstDisclosureIndicator()
     }
 
-    func update(topic: DiscussionTopic?, isTeacher: Bool, color: UIColor?) {
+    func update(
+        topic: DiscussionTopic?,
+        isTeacher: Bool,
+        color: UIColor?,
+        dueDateTextsProvider: AssignmentDueDateTextsProvider?
+    ) {
         accessibilityIdentifier = "DiscussionListCell.\(topic?.id ?? "")"
         iconImageView.icon = topic?.assignmentID == nil ? .discussionLine : .assignmentLine
         if isTeacher {
@@ -315,24 +331,13 @@ class DiscussionListCell: UITableViewCell {
 
         titleLabel.setText(topic?.title, style: .textCellTitle)
 
-        statusDot.isHidden = true
-        statusLabel.isHidden = true
-        let dateText: String?
+        updateDueDateLabels(assignment: topic?.assignment, dueDateTextsProvider: dueDateTextsProvider)
 
-        if topic?.assignment?.dueAt == nil, let replyAt = topic?.lastReplyAt {
-            dateText = String.localizedStringWithFormat(String(localized: "Last post %@", bundle: .core), replyAt.dateTimeString)
-        } else if isTeacher, topic?.assignment?.dueAt != nil, topic?.assignment?.hasOverrides == true {
-            dateText = String(localized: "Multiple Due Dates", bundle: .core)
-        } else if topic?.assignment?.dueAt != nil, let lockAt = topic?.assignment?.lockAt, lockAt < Clock.now {
-            dateText = topic?.assignment?.dueText
-            statusLabel.text = String(localized: "Closed", bundle: .core)
-            statusLabel.isHidden = false
-            statusDot.isHidden = false
-        } else {
-            dateText = topic?.assignment?.dueText
+        let lastPostText = topic?.lastReplyAt.map {
+            String.localizedStringWithFormat(String(localized: "Last post %@", bundle: .core), $0.dateTimeString)
         }
+        updateDateLabel(lastPostLabel, text: lastPostText)
 
-        dateLabel.setText(dateText, style: .textCellSupportingText)
         pointsLabel.setText(topic?.assignment?.pointsPossibleText, style: .textCellBottomLabel)
         pointsLabel.isHidden = topic?.assignment?.pointsPossible == nil
         pointsDot.isHidden = topic?.assignment?.pointsPossible == nil
@@ -343,7 +348,48 @@ class DiscussionListCell: UITableViewCell {
         unreadDot.backgroundColor = .backgroundInfo
 
         accessibilityIdentifier = "DiscussionListCell.\(topic?.id ?? "")"
-        accessibilityLabel = [titleLabel.text, statusLabel.text, dateLabel.text, pointsLabel.text, repliesLabel.text, unreadLabel.text].joined(separator: " ")
+        accessibilityLabel = [
+            titleLabel.text,
+            dueDateLabel1.text,
+            dueDateLabel2.text,
+            lastPostLabel.text,
+            pointsLabel.text,
+            repliesLabel.text,
+            unreadLabel.text
+        ].joined(separator: " ")
+    }
+
+    private func updateDueDateLabels(
+        assignment: Assignment?,
+        dueDateTextsProvider: AssignmentDueDateTextsProvider?
+    ) {
+        guard let assignment else {
+            updateDateLabel(dueDateLabel1, text: nil)
+            updateDateLabel(dueDateLabel2, text: nil)
+            return
+        }
+
+        let dueDateTexts = dueDateTextsProvider?.formattedDueDates(for: assignment) ?? []
+
+        switch dueDateTexts.count {
+        case 0:
+            // should never happen
+            updateDateLabel(dueDateLabel1, text: nil)
+            updateDateLabel(dueDateLabel2, text: nil)
+        case 1:
+            updateDateLabel(dueDateLabel1, text: dueDateTexts[0])
+            updateDateLabel(dueDateLabel2, text: nil)
+        default:
+            // Displaying only first 2 labels, since we have a set number of labels.
+            // There shouldn't be more anyway. SwiftUI implenentation shall handle this properly.
+            updateDateLabel(dueDateLabel1, text: dueDateTexts[0])
+            updateDateLabel(dueDateLabel2, text: dueDateTexts[1])
+        }
+    }
+
+    private func updateDateLabel(_ label: UILabel, text: String?) {
+        label.setText(text, style: .textCellSupportingText)
+        label.isHidden = text == nil
     }
 
     override func prepareForReuse() {
@@ -352,7 +398,9 @@ class DiscussionListCell: UITableViewCell {
         repliesDot.isHidden = false
         unreadLabel.isHidden = false
         unreadDot.isHidden = false
-        dateLabel.isHidden = false
+        dueDateLabel1.isHidden = false
+        dueDateLabel2.isHidden = false
+        lastPostLabel.isHidden = false
         isUserInteractionEnabled = true
     }
 }

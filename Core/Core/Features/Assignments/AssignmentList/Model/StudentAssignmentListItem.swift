@@ -45,23 +45,17 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
 
     let route: URL?
 
-    init(assignment: Assignment) {
+    init(
+        assignment: Assignment,
+        dueDateTextsProvider: AssignmentDueDateTextsProvider = .live
+    ) {
         let hasSubAssignments = assignment.hasSubAssignments
 
         self.id = assignment.id
         self.title = assignment.name
         self.icon = assignment.icon.asImage
 
-        if hasSubAssignments {
-            self.dueDates = assignment.checkpoints
-                .map { DueDateSummary($0.dueDate, lockDate: $0.lockDate) }
-                .reduceIfNeeded()
-                .map(\.text)
-        } else {
-            self.dueDates = [
-                DueDateFormatter.format(assignment.dueAt, lockDate: assignment.lockAt)
-            ]
-        }
+        self.dueDates = dueDateTextsProvider.formattedDueDates(for: assignment)
 
         let status = assignment.submission?.status ?? .notSubmitted
         self.submissionStatus = .init(status: status)

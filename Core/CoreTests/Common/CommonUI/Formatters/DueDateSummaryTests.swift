@@ -93,10 +93,10 @@ final class DueDateSummaryTests: CoreTestCase {
         XCTAssertEqual(testee, .multipleDueDates)
     }
 
-    func test_init_whenHasOverridesAndLockDateInPast_shouldReturnAvailabilityClosed() {
+    func test_init_whenHasOverridesAndLockDateInPast_shouldReturnMultipleDueDates() {
         let testee = DueDateSummary(testData.dateFuture, lockDate: testData.lockDatePast, hasOverrides: true)
 
-        XCTAssertEqual(testee, .availabilityClosed)
+        XCTAssertEqual(testee, .multipleDueDates)
     }
 
     func test_init_whenNoDueDateAndHasOverrides_shouldReturnMultipleDueDates() {
@@ -165,7 +165,7 @@ final class DueDateSummaryTests: CoreTestCase {
 
     // MARK: - Array Extension - reduceIfNeeded
 
-    func test_reduceIfNeeded_whenContainsAvailabilityClosed_shouldReturnOnlyAvailabilityClosed() {
+    func test_reduceIfNeeded_whenContainsMultipleDueDates_shouldReturnOnlyMultipleDueDates() {
         let array: [DueDateSummary] = [
             .noDueDate,
             .dueDate(testData.dateFuture),
@@ -175,20 +175,20 @@ final class DueDateSummaryTests: CoreTestCase {
 
         let result = array.reduceIfNeeded()
 
-        XCTAssertEqual(result, [.availabilityClosed])
+        XCTAssertEqual(result, [.multipleDueDates])
     }
 
-    func test_reduceIfNeeded_whenContainsMultipleDueDatesButNoAvailabilityClosed_shouldReturnOnlyMultipleDueDates() {
+    func test_reduceIfNeeded_whenContainsAvailabilityClosedButNoMultipleDueDates_shouldReturnAvailabilityClosed() {
         let array: [DueDateSummary] = [
             .noDueDate,
             .dueDate(testData.dateFuture),
-            .multipleDueDates,
+            .availabilityClosed,
             .dueDate(testData.datePast)
         ]
 
         let result = array.reduceIfNeeded()
 
-        XCTAssertEqual(result, [.multipleDueDates])
+        XCTAssertEqual(result, [.availabilityClosed])
     }
 
     func test_reduceIfNeeded_whenContainsOnlyNoDueDateAndDueDate_shouldReturnOriginalArray() {

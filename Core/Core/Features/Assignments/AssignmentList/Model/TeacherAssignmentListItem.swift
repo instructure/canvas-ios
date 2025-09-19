@@ -44,7 +44,10 @@ struct TeacherAssignmentListItem: Equatable, Identifiable {
 
     let route: URL?
 
-    init(assignment: Assignment) {
+    init(
+        assignment: Assignment,
+        dueDateTextsProvider: AssignmentDueDateTextsProvider = .live
+    ) {
         let hasSubAssignments = assignment.hasSubAssignments
 
         self.id = assignment.id
@@ -52,20 +55,7 @@ struct TeacherAssignmentListItem: Equatable, Identifiable {
         self.icon = assignment.icon.asImage
         self.isPublished = assignment.published
 
-        if hasSubAssignments {
-            self.dueDates = assignment.checkpoints
-                .map { DueDateSummary($0.dueDate, lockDate: $0.lockDate, hasOverrides: $0.overrides.isNotEmpty) }
-                .reduceIfNeeded()
-                .map(\.text)
-        } else {
-            self.dueDates = [
-                DueDateFormatter.format(
-                    assignment.dueAt,
-                    lockDate: assignment.lockAt,
-                    hasOverrides: assignment.hasOverrides
-                )
-            ]
-        }
+        self.dueDates = dueDateTextsProvider.formattedDueDates(for: assignment)
 
         let canBeGraded = assignment.gradingType != .not_graded
         self.needsGrading = canBeGraded ? String.format(needsGrading: assignment.needsGradingCount) : nil

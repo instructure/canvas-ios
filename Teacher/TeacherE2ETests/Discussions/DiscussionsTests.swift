@@ -40,16 +40,21 @@ class DiscussionsTests: E2ETestCase {
         // MARK: Navigate to Discussions and check visibility of buttons and labels
         Helper.navigateToDiscussions(course: course)
         let discussionButton = Helper.discussionButton(discussion: discussion).waitUntil(.visible)
-        let discussionLastPostLabel = Helper.discussionDataLabel(discussion: discussion, label: .lastPost)!.waitUntil(.visible)
-        let discussionRepliesLabel = Helper.discussionDataLabel(discussion: discussion, label: .replies)!.waitUntil(.visible)
-        let discussionUnreadLabel = Helper.discussionDataLabel(discussion: discussion, label: .unread)!.waitUntil(.visible)
-        XCTAssertTrue(discussionButton.isVisible)
-        XCTAssertContains(discussionButton.label, discussion.title)
-        XCTAssertTrue(discussionLastPostLabel.isVisible)
-        XCTAssertTrue(discussionRepliesLabel.isVisible)
-        XCTAssertEqual(discussionRepliesLabel.label, "\(discussion.discussion_subentry_count) Replies")
-        XCTAssertTrue(discussionUnreadLabel.isVisible)
-        XCTAssertEqual(discussionUnreadLabel.label, "\(discussion.unread_count) Unread")
+
+        let discussionLastPostLabel = discussionButton
+            .find(labelContaining: "Last post", type: .staticText)
+            .waitUntil(.visible)
+        XCTAssert(discussionLastPostLabel.isVisible)
+
+        let discussionRepliesLabel = discussionButton
+            .find(label: "\(discussion.discussion_subentry_count) Replies", type: .staticText)
+            .waitUntil(.visible)
+        XCTAssert(discussionRepliesLabel.isVisible)
+
+        let discussionUnreadLabel = discussionButton
+            .find(label: "\(discussion.unread_count) Unread", type: .staticText)
+            .waitUntil(.visible)
+        XCTAssert(discussionUnreadLabel.isVisible)
     }
 
     func testDiscussionDetails() {

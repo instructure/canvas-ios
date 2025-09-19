@@ -42,17 +42,20 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertTrue(discussionButton.isVisible)
         XCTAssertContains(discussionButton.label, discussion.title)
 
-        let discussionLastPostLabel = Helper.discussionDataLabel(discussion: discussion, label: .lastPost)!.waitUntil(.visible)
-        XCTAssertTrue(discussionLastPostLabel.isVisible)
-
-        let discussionRepliesLabel = Helper.discussionDataLabel(discussion: discussion, label: .replies)!.waitUntil(.visible)
-        XCTAssertTrue(discussionRepliesLabel.isVisible)
-        XCTAssertEqual(discussionRepliesLabel.label, "\(discussion.discussion_subentry_count) Replies")
-
-        let discussionUnreadLabel = Helper.discussionDataLabel(discussion: discussion, label: .unread)!
+        let discussionLastPostLabel = discussionButton
+            .find(labelContaining: "Last post", type: .staticText)
             .waitUntil(.visible)
-        XCTAssertTrue(discussionUnreadLabel.isVisible)
-        XCTAssertEqual(discussionUnreadLabel.label, "\(discussion.unread_count) Unread")
+        XCTAssert(discussionLastPostLabel.isVisible)
+
+        let discussionRepliesLabel = discussionButton
+            .find(label: "\(discussion.discussion_subentry_count) Replies", type: .staticText)
+            .waitUntil(.visible)
+        XCTAssert(discussionRepliesLabel.isVisible)
+
+        let discussionUnreadLabel = discussionButton
+            .find(label: "\(discussion.unread_count) Unread", type: .staticText)
+            .waitUntil(.visible)
+        XCTAssert(discussionUnreadLabel.isVisible)
     }
 
     func testReplyToDiscussion() {
@@ -163,13 +166,16 @@ class DiscussionsTests: E2ETestCase {
 
         // On iPad: Discussion replies label is visible right after the reply is sent
         // On iPhone: Back button needs to be tapped for the label to get visible
-        var discussionDataLabelReplies = Helper.discussionDataLabel(discussion: assignmentDiscussion, label: .replies)
+        let discussionDataLabelReplies = Helper.discussionDataLabel(discussion: assignmentDiscussion, label: .replies)
         if discussionDataLabelReplies == nil {
             Helper.backButton.hit()
             app.pullToRefresh()
         }
-        discussionDataLabelReplies = Helper.discussionDataLabel(discussion: assignmentDiscussion, label: .replies)!.waitUntil(.visible)
-        XCTAssertEqual(discussionDataLabelReplies!.label, "1 Reply")
+        let discussionRepliesLabel = Helper.discussionButton(discussion: assignmentDiscussion)
+            .waitUntil(.visible)
+            .find(label: "1 Reply", type: .staticText)
+            .waitUntil(.visible)
+        XCTAssert(discussionRepliesLabel.isVisible)
 
         // MARK: Navigate to Grades and check for updates regarding submission
         Helper.backButton.hit()
