@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,33 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import HorizonUI
 import SwiftUI
 
-struct ContentProgressBar: View {
-    let progress: Double
-
+struct ProgramNameView: View {
+    let name: String
     var body: some View {
-        GeometryReader { proxy in
-            Rectangle()
-                .fill(Color.backgroundMedium)
-                .frame(width: proxy.size.width, height: 6)
-                .overlay(alignment: .leading) {
-                    Rectangle()
-                        .fill(Color.backgroundDarkest)
-                        .frame(
-                            width: progress * proxy.size.width,
-                            height: 6
-                        )
-                }
-                .animation(.easeIn, value: progress)
+        HStack(alignment: .top, spacing: .huiSpaces.space4) {
+            Text("Part of", bundle: .horizon)
+                .huiTypography(.p1)
+                .foregroundStyle(Color.huiColors.text.body)
+                .frame(alignment: .leading)
+
+            Text(name)
+                .underline()
+                .huiTypography(.buttonTextLarge)
+                .foregroundStyle(Color.huiColors.text.body)
+            Spacer()
         }
-        .background(Color.green)
-        .frame(height: 6)
-        .background(Color.yellow)
     }
 }
 
 #Preview {
-    ContentProgressBar(progress: 0.30)
+    ProgramNameView(name: "Here Lorem Ipsum Dolor Sit Amet Adipiscing")
 }

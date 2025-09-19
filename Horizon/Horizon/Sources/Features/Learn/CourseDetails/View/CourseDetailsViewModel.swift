@@ -21,7 +21,7 @@ import Core
 import Foundation
 
 @Observable
-final class CourseDetailsViewModel {
+final class CourseDetailsViewModel: ProgramSwitcherMapper {
     typealias ScoresViewModelBuilder = ((String, String) -> ScoresViewModel)
 
     // MARK: - Outputs
@@ -34,15 +34,17 @@ final class CourseDetailsViewModel {
         }
     }
     private(set) var isShowHeader = true
-    private(set) var courses: [DropdownMenuItem] = []
-    private(set) var selectedCoure: DropdownMenuItem?
+    private(set) var programs: [ProgramSwitcherModel] = []
+    private(set) var selectedCourse: ProgramSwitcherModel.Course?
+    private(set) var courses: [LearnCourse] = []
+    private(set) var selectedProgram: ProgramSwitcherModel?
     private(set) var isLoaderVisible: Bool = false
     private(set) var overviewDescription = ""
     private(set) var scoresViewModel: ScoresViewModel?
 
     // MARK: - Inputs
 
-    var onSelectCourse: (DropdownMenuItem?) -> Void = { _ in }
+    var onSelectCourse: (ProgramSwitcherModel.Course?) -> Void = { _ in }
     private(set) var showHeaderPublisher = PassthroughSubject<Bool, Never>()
 
     // MARK: - Inputs / Outputs
@@ -56,6 +58,7 @@ final class CourseDetailsViewModel {
     private var subscriptions = Set<AnyCancellable>()
     private let getCoursesInteractor: GetCoursesInteractor
     private let learnCoursesInteractor: GetLearnCoursesInteractor
+    private let programInteractor: ProgramInteractor
     private let selectedTab: CourseDetailsTabs?
     private var pullToRefreshCancellable: AnyCancellable?
     private let scoresViewModelBuilder: ScoresViewModelBuilder
@@ -67,8 +70,10 @@ final class CourseDetailsViewModel {
         router: Router,
         getCoursesInteractor: GetCoursesInteractor,
         learnCoursesInteractor: GetLearnCoursesInteractor,
+        programInteractor: ProgramInteractor,
         courseID: String,
         enrollmentID: String,
+        programID: String? = nil,
         course: HCourse?,
         selectedTab: CourseDetailsTabs? = nil,
         scoresViewModelBuilder: @escaping ScoresViewModelBuilder
@@ -76,8 +81,10 @@ final class CourseDetailsViewModel {
         self.router = router
         self.getCoursesInteractor = getCoursesInteractor
         self.learnCoursesInteractor = learnCoursesInteractor
+        self.programInteractor = programInteractor
         self.courseID = courseID
         self.course = course ?? .init()
+        self.selectedProgram = .init(id: programID)
         self.isLoaderVisible = true
         self.selectedTab = selectedTab
         self.scoresViewModelBuilder = scoresViewModelBuilder
@@ -104,13 +111,14 @@ final class CourseDetailsViewModel {
 
             let syllabusPublisher = getCoursesInteractor
                 .getCourseSyllabus(courseID: course.id, ignoreCache: true)
+            let programsPublisher = getPrograms(ignoreCache: true)
 
-            pullToRefreshCancellable = coursePublisher
-                .zip(syllabusPublisher)
-                .sink { [weak self] course, syllabus in
+            pullToRefreshCancellable = Publishers.Zip3(coursePublisher, syllabusPublisher, programsPublisher)
+                .sink { [weak self] course, syllabus, programs in
                     continuation.resume()
                     guard let self = self, let course = course else { return }
                     self.course = course
+                    self.programs = mapPrograms(programs: programs, courses: self.courses)
                     self.overviewDescription = syllabus ?? ""
                 }
         }
@@ -130,17 +138,17 @@ final class CourseDetailsViewModel {
 
     private func observeCourseSelection() {
         onSelectCourse = { [weak self] selectedCourse in
-            guard let self, self.selectedCoure != selectedCourse else {
+            guard let self, let selectedCourse, self.selectedCourse != selectedCourse else {
                 return
             }
-
+            self.selectedProgram = selectedCourse.programID != nil ? programs.first(where: { $0.id == selectedCourse.programID }) : nil
             // Needs to cancel refresh api after change the course
             pullToRefreshCancellable?.cancel()
             pullToRefreshCancellable = nil
             isLoaderVisible = true
-            self.selectedCoure = selectedCourse
+            self.selectedCourse = selectedCourse
             self.selectedTabIndex = nil
-            getCourse(for: selectedCourse?.id ?? "")
+            getCourse(for: selectedCourse.id)
                 .sink { [weak self] courseInfo in
                     self?.updateCourse(course: courseInfo.course, syllabus: courseInfo.syllabus)
                 }
@@ -159,22 +167,32 @@ final class CourseDetailsViewModel {
     }
 
     private func fetchData() {
-        Publishers.CombineLatest(
+        Publishers.CombineLatest3(
             getCourse(for: courseID),
-            getCourses()
+            getCourses(),
+            getPrograms()
         )
-        .sink { [weak self] courseInfo, courses in
-            self?.courses = courses
-            self?.updateCourse(course: courseInfo.course, syllabus: courseInfo.syllabus)
+        .sink { [weak self] courseInfo, courses, allPrograms in
+            guard let self else { return }
+            self.courses = courses
+            self.programs = mapPrograms(programs: allPrograms, courses: courses)
+            selectedProgram = findProgram(containing: courseID, programID: selectedProgram?.id, in: allPrograms)
+            updateCourse(course: courseInfo.course, syllabus: courseInfo.syllabus)
         }
         .store(in: &subscriptions)
     }
 
-    private func getCourses() -> AnyPublisher<[DropdownMenuItem], Never> {
+    private func getPrograms(ignoreCache: Bool = false) -> AnyPublisher<[Program], Never> {
+        programInteractor
+            .getProgramsWithCourses(ignoreCache: ignoreCache)
+            .replaceError(with: [])
+            .eraseToAnyPublisher()
+    }
+
+    private func getCourses() -> AnyPublisher<[LearnCourse], Never> {
         learnCoursesInteractor
             .getCourses(ignoreCache: false)
             .flatMap { Publishers.Sequence(sequence: $0) }
-            .map { DropdownMenuItem(id: $0.id, name: $0.name) }
             .collect()
             .eraseToAnyPublisher()
     }
@@ -190,11 +208,17 @@ final class CourseDetailsViewModel {
     }
 
     private func updateCourse(course: HCourse?, syllabus: String?) {
-        guard let course, (course.id == selectedCoure?.id || selectedCoure == nil ) else {
+        guard let course, (course.id == selectedCourse?.id || selectedCourse == nil ) else {
             return
         }
         self.course = course
-        selectedCoure = .init(id: course.id, name: course.name)
+        selectedCourse = .init(
+            id: course.id,
+            name: course.name,
+            programID: selectedProgram?.id,
+            programName: selectedProgram?.name,
+            isEnrolled: course.enrollmentID.isNotEmpty
+        )
         overviewDescription = syllabus ?? ""
         if selectedTabIndex == nil {
             selectedTabIndex = if let index = selectedTab?.rawValue {

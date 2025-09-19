@@ -312,11 +312,11 @@ open class Router {
         }
     }
 
-    open func popToRoot(from: UIViewController) {
+    open func popToRoot(from: UIViewController, animated: Bool = true) {
         guard let navController = from.navigationController else {
             return
         }
-        navController.popToRootViewController(animated: true)
+        navController.popToRootViewController(animated: animated)
     }
 
     open func dismiss(_ view: UIViewController, completion: (() -> Void)? = nil) {

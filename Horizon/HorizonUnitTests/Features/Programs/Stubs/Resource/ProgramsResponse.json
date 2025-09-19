@@ -1,0 +1,736 @@
+{
+    "data": {
+        "enrolledPrograms": [
+            {
+                "id": "d3aaa471-1eb6-4ae7-817a-f0582ea0f806",
+                "name": "Ahmed Program",
+                "publicName": null,
+                "customerId": "1212",
+                "description": null,
+                "owner": "d9b0b70a-2876-4533-a213-e7f31e3209f6",
+                "startDate": "2025-08-01T00:00:00.000Z",
+                "endDate": "2025-10-10T00:00:00.000Z",
+                "variant": "LINEAR",
+                "courseCompletionCount": null,
+                "progresses": [
+                    {
+                        "id": "b55472c2-a260-41d1-a4f2-3e95611e2acd",
+                        "completionPercentage": 100,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "52889cc1-8b1e-4fd6-ba5d-b9fbbd9a9e13",
+                            "dependent": {
+                                "id": "36579141-58ba-4192-9be7-dfa713d6c108",
+                                "canvasCourseId": "488",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "c080a3a9-df82-4246-aa51-a7f7662353c9",
+                        "completionPercentage": 100,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "aed9dcb6-959c-4f94-a2ce-971ed5616b0f",
+                            "dependent": {
+                                "id": "c8bd68e1-5b7d-4e0c-ab21-f933de453e0f",
+                                "canvasCourseId": "664",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "6322eaa1-2f56-40dc-96e1-4674f08e705c",
+                        "completionPercentage": 83.333,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "d03d5d42-b38e-44d2-bd70-e060abe05248",
+                            "dependent": {
+                                "id": "95afe97f-b51f-4dbc-8d69-f50261cebd94",
+                                "canvasCourseId": "486",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    }
+                ],
+                "requirements": [
+                    {
+                        "id": "52889cc1-8b1e-4fd6-ba5d-b9fbbd9a9e13",
+                        "isCompletionRequired": true,
+                        "dependency": null,
+                        "dependent": {
+                            "id": "36579141-58ba-4192-9be7-dfa713d6c108",
+                            "canvasCourseId": "488",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "d03d5d42-b38e-44d2-bd70-e060abe05248",
+                        "isCompletionRequired": false,
+                        "dependency": {
+                            "id": "c8bd68e1-5b7d-4e0c-ab21-f933de453e0f",
+                            "canvasCourseId": "664",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "95afe97f-b51f-4dbc-8d69-f50261cebd94",
+                            "canvasCourseId": "486",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "aed9dcb6-959c-4f94-a2ce-971ed5616b0f",
+                        "isCompletionRequired": true,
+                        "dependency": {
+                            "id": "36579141-58ba-4192-9be7-dfa713d6c108",
+                            "canvasCourseId": "488",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "c8bd68e1-5b7d-4e0c-ab21-f933de453e0f",
+                            "canvasCourseId": "664",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    }
+                ],
+                "enrollments": [
+                    {
+                        "id": "ecd0fddd-ff66-4dae-a34a-64a2e0906355",
+                        "enrollee": "b7b6e9be-fdd3-4813-8de5-2d5c76a39df0"
+                    }
+                ]
+            },
+            {
+                "id": "496ad46c-985e-4ccb-9686-06d44bcd9c66",
+                "name": "Dated Program ",
+                "publicName": "Dated Program ",
+                "customerId": null,
+                "description": "Dated Program",
+                "owner": "10fe184c-e6ae-40eb-bd1e-e134efadd67f",
+                "startDate": "2025-07-14T00:00:00.000Z",
+                "endDate": "2025-10-31T00:00:00.000Z",
+                "variant": "LINEAR",
+                "courseCompletionCount": null,
+                "progresses": [
+                    {
+                        "id": "abb673a6-0d8d-4319-8414-3fd0ce94570d",
+                        "completionPercentage": 11.765,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "8116b397-b1cc-4928-ab81-f8b01079374f",
+                            "dependent": {
+                                "id": "2fe05c3f-80da-4c2f-9b2b-1dedaae8bf1c",
+                                "canvasCourseId": "477",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "9bdf5a22-5ed7-46e5-af3c-1059c7dd98e1",
+                        "completionPercentage": 0,
+                        "courseEnrollmentStatus": "BLOCKED",
+                        "requirement": {
+                            "id": "799436ef-b1f2-4fb7-a9e1-4b6a2307fe85",
+                            "dependent": {
+                                "id": "be41647f-b461-4597-a4ae-24bf98e99973",
+                                "canvasCourseId": "531",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    }
+                ],
+                "requirements": [
+                    {
+                        "id": "8116b397-b1cc-4928-ab81-f8b01079374f",
+                        "isCompletionRequired": true,
+                        "dependency": null,
+                        "dependent": {
+                            "id": "2fe05c3f-80da-4c2f-9b2b-1dedaae8bf1c",
+                            "canvasCourseId": "477",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "799436ef-b1f2-4fb7-a9e1-4b6a2307fe85",
+                        "isCompletionRequired": true,
+                        "dependency": {
+                            "id": "2fe05c3f-80da-4c2f-9b2b-1dedaae8bf1c",
+                            "canvasCourseId": "477",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "be41647f-b461-4597-a4ae-24bf98e99973",
+                            "canvasCourseId": "531",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    }
+                ],
+                "enrollments": [
+                    {
+                        "id": "d3ff8b0d-4c7f-4f3c-b6cc-a285c258fd87",
+                        "enrollee": "b7b6e9be-fdd3-4813-8de5-2d5c76a39df0"
+                    }
+                ]
+            },
+            {
+                "id": "e63da2ef-44b9-4f28-be3a-d464364afcf1",
+                "name": "Auto enroller Program",
+                "publicName": null,
+                "customerId": null,
+                "description": null,
+                "owner": "d9b0b70a-2876-4533-a213-e7f31e3209f6",
+                "startDate": null,
+                "endDate": null,
+                "variant": "LINEAR",
+                "courseCompletionCount": null,
+                "progresses": [
+                    {
+                        "id": "cba2336d-8b55-41d4-8f70-d5a2a6468111",
+                        "completionPercentage": 11.765,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "b9aa8116-0ad0-45bb-bb2c-9220fd7b8074",
+                            "dependent": {
+                                "id": "2fe05c3f-80da-4c2f-9b2b-1dedaae8bf1c",
+                                "canvasCourseId": "477",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "1fcd5bf1-b854-4752-a7ae-75db3d553467",
+                        "completionPercentage": 66.667,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "8146e93b-30b7-477e-8466-d3b411604285",
+                            "dependent": {
+                                "id": "e6f538d7-511e-4c5f-a4c6-0c01f5432d12",
+                                "canvasCourseId": "655",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "2c607d32-afbe-477e-900a-d77ac4f3c488",
+                        "completionPercentage": 0,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "4c1948d1-a2b7-40f1-8599-67055ccf98b4",
+                            "dependent": {
+                                "id": "0a26e35d-b9c4-4571-9f2f-9f13801ac8f4",
+                                "canvasCourseId": "535",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    }
+                ],
+                "requirements": [
+                    {
+                        "id": "b9aa8116-0ad0-45bb-bb2c-9220fd7b8074",
+                        "isCompletionRequired": true,
+                        "dependency": null,
+                        "dependent": {
+                            "id": "2fe05c3f-80da-4c2f-9b2b-1dedaae8bf1c",
+                            "canvasCourseId": "477",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "8146e93b-30b7-477e-8466-d3b411604285",
+                        "isCompletionRequired": true,
+                        "dependency": {
+                            "id": "2fe05c3f-80da-4c2f-9b2b-1dedaae8bf1c",
+                            "canvasCourseId": "477",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "e6f538d7-511e-4c5f-a4c6-0c01f5432d12",
+                            "canvasCourseId": "655",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "4c1948d1-a2b7-40f1-8599-67055ccf98b4",
+                        "isCompletionRequired": true,
+                        "dependency": {
+                            "id": "e6f538d7-511e-4c5f-a4c6-0c01f5432d12",
+                            "canvasCourseId": "655",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "0a26e35d-b9c4-4571-9f2f-9f13801ac8f4",
+                            "canvasCourseId": "535",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    }
+                ],
+                "enrollments": [
+                    {
+                        "id": "07b32e82-5f5c-4f38-ac6e-fa0876108d9f",
+                        "enrollee": "b7b6e9be-fdd3-4813-8de5-2d5c76a39df0"
+                    }
+                ]
+            },
+            {
+                "id": "ae1ff5ce-30ab-412e-a5a3-a5de0d32b983",
+                "name": "Loading test 5",
+                "publicName": "Loading test 5",
+                "customerId": "Loading test 5",
+                "description": "Loading test 5",
+                "owner": "10fe184c-e6ae-40eb-bd1e-e134efadd67f",
+                "startDate": null,
+                "endDate": null,
+                "variant": "NON_LINEAR",
+                "courseCompletionCount": null,
+                "progresses": [
+                    {
+                        "id": "2b763cad-3f35-480c-b41e-7bf3d62b89bd",
+                        "completionPercentage": 0,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "20f6629d-27b2-47ee-9a17-b94b3a275ed0",
+                            "dependent": {
+                                "id": "7a3c6a0a-d894-4d99-ae6d-a8f21ffdeea8",
+                                "canvasCourseId": "906",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "f28cbdb3-dc0e-4f9a-ac8b-a6a695bcefbe",
+                        "completionPercentage": 0,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "57156aef-2065-4167-8637-2f5794f34b50",
+                            "dependent": {
+                                "id": "b5d9c6c1-e494-40f6-a7f3-74b98c29172d",
+                                "canvasCourseId": "855",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "944ca384-0af8-4d03-9c21-24d8275a68ba",
+                        "completionPercentage": 0,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "ac3fe3c9-cc71-41aa-9d95-479fa15a5d12",
+                            "dependent": {
+                                "id": "d2065253-6baf-4bfb-acbf-cc9960d88962",
+                                "canvasCourseId": "905",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "ebd6a614-72d6-4851-8ff3-c3859b0ddfec",
+                        "completionPercentage": 100,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "d6da76b4-75c2-41c4-bbef-35ed37712a61",
+                            "dependent": {
+                                "id": "9b7b20af-d321-4c75-a027-0d6cf5ae6fe9",
+                                "canvasCourseId": "908",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "7d93ca6c-41e8-462a-9f14-efacc3b2054e",
+                        "completionPercentage": 0,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "2174d400-4336-4333-a527-45b9f204f2f2",
+                            "dependent": {
+                                "id": "a5476c73-3c5d-430d-87c6-5affe8195975",
+                                "canvasCourseId": "907",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "3fd023f3-9626-425f-b82f-e60ab48840d4",
+                        "completionPercentage": 100,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "a5c9a0bc-3b77-4d63-beb1-f140a8541c53",
+                            "dependent": {
+                                "id": "f734eb56-dade-47b0-9301-e805e2bb9629",
+                                "canvasCourseId": "882",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    }
+                ],
+                "requirements": [
+                    {
+                        "id": "d6da76b4-75c2-41c4-bbef-35ed37712a61",
+                        "isCompletionRequired": true,
+                        "dependency": null,
+                        "dependent": {
+                            "id": "9b7b20af-d321-4c75-a027-0d6cf5ae6fe9",
+                            "canvasCourseId": "908",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "2174d400-4336-4333-a527-45b9f204f2f2",
+                        "isCompletionRequired": true,
+                        "dependency": {
+                            "id": "9b7b20af-d321-4c75-a027-0d6cf5ae6fe9",
+                            "canvasCourseId": "908",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "a5476c73-3c5d-430d-87c6-5affe8195975",
+                            "canvasCourseId": "907",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "20f6629d-27b2-47ee-9a17-b94b3a275ed0",
+                        "isCompletionRequired": true,
+                        "dependency": {
+                            "id": "a5476c73-3c5d-430d-87c6-5affe8195975",
+                            "canvasCourseId": "907",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "7a3c6a0a-d894-4d99-ae6d-a8f21ffdeea8",
+                            "canvasCourseId": "906",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "ac3fe3c9-cc71-41aa-9d95-479fa15a5d12",
+                        "isCompletionRequired": true,
+                        "dependency": {
+                            "id": "7a3c6a0a-d894-4d99-ae6d-a8f21ffdeea8",
+                            "canvasCourseId": "906",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "d2065253-6baf-4bfb-acbf-cc9960d88962",
+                            "canvasCourseId": "905",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "a5c9a0bc-3b77-4d63-beb1-f140a8541c53",
+                        "isCompletionRequired": true,
+                        "dependency": {
+                            "id": "d2065253-6baf-4bfb-acbf-cc9960d88962",
+                            "canvasCourseId": "905",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "f734eb56-dade-47b0-9301-e805e2bb9629",
+                            "canvasCourseId": "882",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "57156aef-2065-4167-8637-2f5794f34b50",
+                        "isCompletionRequired": true,
+                        "dependency": {
+                            "id": "f734eb56-dade-47b0-9301-e805e2bb9629",
+                            "canvasCourseId": "882",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "b5d9c6c1-e494-40f6-a7f3-74b98c29172d",
+                            "canvasCourseId": "855",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    }
+                ],
+                "enrollments": [
+                    {
+                        "id": "a44b733f-4eca-46e3-a7c9-8285b8087089",
+                        "enrollee": "b7b6e9be-fdd3-4813-8de5-2d5c76a39df0"
+                    }
+                ]
+            },
+            {
+                "id": "d036dcd3-a414-4496-be1b-03670e555b66",
+                "name": "Ahmed liner ",
+                "publicName": "Ahmed liner ",
+                "customerId": "Ahmed liner ",
+                "description": "Ahmed liner ",
+                "owner": "d9b0b70a-2876-4533-a213-e7f31e3209f6",
+                "startDate": null,
+                "endDate": null,
+                "variant": "LINEAR",
+                "courseCompletionCount": null,
+                "progresses": [
+                    {
+                        "id": "9d33ee92-3147-4268-a55e-ddd42e9413ff",
+                        "completionPercentage": 100,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "5b3e34e1-7a22-46ec-b7ed-8cb73171a7e3",
+                            "dependent": {
+                                "id": "c8bd68e1-5b7d-4e0c-ab21-f933de453e0f",
+                                "canvasCourseId": "664",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "7bf766a8-4ebe-436d-8309-a2505c3c460c",
+                        "completionPercentage": 0,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "3dfb71cd-20e7-4118-af3c-e881a62416d9",
+                            "dependent": {
+                                "id": "303598e4-20ac-4ad8-9948-ef841eee7b8d",
+                                "canvasCourseId": "866",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "25a61c33-b3b2-46ef-a7cf-973a8f05bc65",
+                        "completionPercentage": 11.765,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "7e851056-4231-40c2-94be-9638a2b3f828",
+                            "dependent": {
+                                "id": "2fe05c3f-80da-4c2f-9b2b-1dedaae8bf1c",
+                                "canvasCourseId": "477",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "c9f9f7ee-3903-48e9-93d5-15616fdf67d8",
+                        "completionPercentage": 66.667,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "588e3b45-0cfd-4ea3-be06-fcf85095aee4",
+                            "dependent": {
+                                "id": "e6f538d7-511e-4c5f-a4c6-0c01f5432d12",
+                                "canvasCourseId": "655",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "a67b8c58-e0c9-4557-b0c4-5c870a619eec",
+                        "completionPercentage": 100,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "0bff9feb-1b6e-4d54-9e37-0faa5ed53852",
+                            "dependent": {
+                                "id": "c99f3368-353f-4a92-ac9d-8225eb1c6a80",
+                                "canvasCourseId": "489",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "47944748-8dd9-4d47-88bf-489781fdd6c1",
+                        "completionPercentage": 100,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "3feaea6d-5e8e-4aee-9c9b-bb3f1e7d1fd8",
+                            "dependent": {
+                                "id": "36579141-58ba-4192-9be7-dfa713d6c108",
+                                "canvasCourseId": "488",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    }
+                ],
+                "requirements": [
+                    {
+                        "id": "5b3e34e1-7a22-46ec-b7ed-8cb73171a7e3",
+                        "isCompletionRequired": true,
+                        "dependency": null,
+                        "dependent": {
+                            "id": "c8bd68e1-5b7d-4e0c-ab21-f933de453e0f",
+                            "canvasCourseId": "664",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "3feaea6d-5e8e-4aee-9c9b-bb3f1e7d1fd8",
+                        "isCompletionRequired": true,
+                        "dependency": {
+                            "id": "c8bd68e1-5b7d-4e0c-ab21-f933de453e0f",
+                            "canvasCourseId": "664",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "36579141-58ba-4192-9be7-dfa713d6c108",
+                            "canvasCourseId": "488",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "0bff9feb-1b6e-4d54-9e37-0faa5ed53852",
+                        "isCompletionRequired": true,
+                        "dependency": {
+                            "id": "36579141-58ba-4192-9be7-dfa713d6c108",
+                            "canvasCourseId": "488",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "c99f3368-353f-4a92-ac9d-8225eb1c6a80",
+                            "canvasCourseId": "489",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "3dfb71cd-20e7-4118-af3c-e881a62416d9",
+                        "isCompletionRequired": false,
+                        "dependency": {
+                            "id": "c99f3368-353f-4a92-ac9d-8225eb1c6a80",
+                            "canvasCourseId": "489",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "303598e4-20ac-4ad8-9948-ef841eee7b8d",
+                            "canvasCourseId": "866",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "588e3b45-0cfd-4ea3-be06-fcf85095aee4",
+                        "isCompletionRequired": true,
+                        "dependency": {
+                            "id": "303598e4-20ac-4ad8-9948-ef841eee7b8d",
+                            "canvasCourseId": "866",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "e6f538d7-511e-4c5f-a4c6-0c01f5432d12",
+                            "canvasCourseId": "655",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "7e851056-4231-40c2-94be-9638a2b3f828",
+                        "isCompletionRequired": false,
+                        "dependency": {
+                            "id": "e6f538d7-511e-4c5f-a4c6-0c01f5432d12",
+                            "canvasCourseId": "655",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "2fe05c3f-80da-4c2f-9b2b-1dedaae8bf1c",
+                            "canvasCourseId": "477",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    }
+                ],
+                "enrollments": [
+                    {
+                        "id": "2d4c1680-aacc-409e-9148-78dcbf9a745c",
+                        "enrollee": "b7b6e9be-fdd3-4813-8de5-2d5c76a39df0"
+                    }
+                ]
+            },
+            {
+                "id": "9bfa82f5-07a9-467c-b470-2740cf246377",
+                "name": "Test program for progress",
+                "publicName": "Test program for progress",
+                "customerId": "Test program for progress",
+                "description": "This is the description",
+                "owner": "58c8ddbb-6b63-4154-b8ff-5d48f4e72eec",
+                "startDate": "2025-08-01T00:00:00.000Z",
+                "endDate": "2026-06-24T00:00:00.000Z",
+                "variant": "LINEAR",
+                "courseCompletionCount": null,
+                "progresses": [
+                    {
+                        "id": "26afb4b0-0675-4e18-b564-ecc42e9be147",
+                        "completionPercentage": 11.765,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "f780eb1d-efac-4d2c-8a54-f50df40b080b",
+                            "dependent": {
+                                "id": "2fe05c3f-80da-4c2f-9b2b-1dedaae8bf1c",
+                                "canvasCourseId": "477",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "5b1d8e3f-f228-4ec0-9df1-3adbbc3558b3",
+                        "completionPercentage": 46.667,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "2ba7f671-e673-4a78-9fb0-b3070ff55bd8",
+                            "dependent": {
+                                "id": "845c3ded-43aa-44cb-aeb1-497995c4ee13",
+                                "canvasCourseId": "484",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    },
+                    {
+                        "id": "ae689141-0815-4968-acb9-ab95255c21f8",
+                        "completionPercentage": 0,
+                        "courseEnrollmentStatus": "ENROLLED",
+                        "requirement": {
+                            "id": "27a62a93-6842-4128-a074-2b9d533c0b58",
+                            "dependent": {
+                                "id": "9638820b-582c-48ac-a768-3b6749b3c630",
+                                "canvasCourseId": "702",
+                                "canvasUrl": "https://horizon.cd.instructure.com"
+                            }
+                        }
+                    }
+                ],
+                "requirements": [
+                    {
+                        "id": "f780eb1d-efac-4d2c-8a54-f50df40b080b",
+                        "isCompletionRequired": true,
+                        "dependency": {
+                            "id": "9638820b-582c-48ac-a768-3b6749b3c630",
+                            "canvasCourseId": "702",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "2fe05c3f-80da-4c2f-9b2b-1dedaae8bf1c",
+                            "canvasCourseId": "477",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "2ba7f671-e673-4a78-9fb0-b3070ff55bd8",
+                        "isCompletionRequired": true,
+                        "dependency": {
+                            "id": "2fe05c3f-80da-4c2f-9b2b-1dedaae8bf1c",
+                            "canvasCourseId": "477",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        },
+                        "dependent": {
+                            "id": "845c3ded-43aa-44cb-aeb1-497995c4ee13",
+                            "canvasCourseId": "484",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    },
+                    {
+                        "id": "27a62a93-6842-4128-a074-2b9d533c0b58",
+                        "isCompletionRequired": true,
+                        "dependency": null,
+                        "dependent": {
+                            "id": "9638820b-582c-48ac-a768-3b6749b3c630",
+                            "canvasCourseId": "702",
+                            "canvasUrl": "https://horizon.cd.instructure.com"
+                        }
+                    }
+                ],
+                "enrollments": [
+                    {
+                        "id": "a577c0aa-b61d-4e9d-9ee4-445e59ffd982",
+                        "enrollee": "b7b6e9be-fdd3-4813-8de5-2d5c76a39df0"
+                    }
+                ]
+            }
+        ]
+    }
+}
+

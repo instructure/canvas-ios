@@ -29,11 +29,16 @@ final class DashboardAssembly {
     }
 
     static func makeView() -> DashboardView {
-        DashboardView(
+        let onTapProgram: (ProgramSwitcherModel?, WeakViewController) -> Void = { program, viewController in
+            AppEnvironment.shared.switchToLearnTab(with: program, from: viewController)
+        }
+      return DashboardView(
             viewModel: .init(
                 dashboardInteractor: makeDashboardInteractor(),
                 notificationInteractor: NotificationAssembly.makeInteractor(),
-                router: AppEnvironment.shared.router
+                programInteractor: ProgramInteractorLive(programCourseInteractor: ProgramCourseInteractorLive()),
+                router: AppEnvironment.shared.router,
+                onTapProgram: onTapProgram
             )
         )
     }
@@ -44,8 +49,9 @@ final class DashboardAssembly {
         let viewModel = DashboardViewModel(
             dashboardInteractor: dashboardInteractorPreview,
             notificationInteractor: NotificationInteractorPreview(),
+            programInteractor: ProgramInteractorPreview(),
             router: AppEnvironment.shared.router
-        )
+        ) { _, _ in }
         return DashboardView(viewModel: viewModel)
     }
     #endif

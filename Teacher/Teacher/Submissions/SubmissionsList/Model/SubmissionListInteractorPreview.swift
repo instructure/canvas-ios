@@ -20,7 +20,6 @@ import Combine
 import Core
 
 class SubmissionListInteractorPreview: SubmissionListInteractor {
-
     let context = Context(.course, id: "1")
     let assignmentID = "1"
 

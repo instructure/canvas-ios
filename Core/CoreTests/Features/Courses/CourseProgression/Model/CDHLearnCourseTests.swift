@@ -74,11 +74,13 @@ class CDHLearnCourseTests: CoreTestCase {
         let entity1 = entities[0]
         let entity2 = entities[1]
         XCTAssertEqual(entity1.id, "course_1")
+        XCTAssertEqual(entity1.state, "active")
         XCTAssertEqual(entity1.name, "Course 1")
         XCTAssertEqual(entity1.enrollmentId, "enroll_1")
         XCTAssertEqual(entity2.id, "course_2")
         XCTAssertEqual(entity2.name, "Course 2")
         XCTAssertEqual(entity2.enrollmentId, "enroll_2")
+        XCTAssertEqual(entity2.state, "completed")
     }
 
     func testOverwriteExistingCourse() {
@@ -113,5 +115,6 @@ class CDHLearnCourseTests: CoreTestCase {
         XCTAssertEqual(updated.id, "course_1")
         XCTAssertEqual(updated.name, "Updated Name")
         XCTAssertEqual(updated.enrollmentId, "enroll_1")
+        XCTAssertEqual(updated.state, "active")
     }
 }

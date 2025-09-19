@@ -20,7 +20,11 @@ import Combine
 import Core
 import Foundation
 
-final class DomainService {
+protocol DomainServiceProtocol {
+    func api() -> AnyPublisher<API, Error>
+}
+
+final class DomainService: DomainServiceProtocol {
     // MARK: - Dependencies
 
     private let baseURL: String
@@ -131,7 +135,6 @@ extension DomainService {
         case journey
         case pine
         case redwood
-
         var service: String {
             rawValue
         }
