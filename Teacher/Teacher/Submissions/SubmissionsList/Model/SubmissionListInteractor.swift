@@ -40,6 +40,7 @@ public protocol SubmissionListInteractor {
     var course: AnyPublisher<Course?, Never> { get }
     var courseSections: AnyPublisher<[CourseSection], Never> { get }
     var assigneeGroups: AnyPublisher<[AssigneeGroup], Never> { get }
+    var differentiationTags: AnyPublisher<[CDUserGroup], Never> { get }
 
     var context: Context { get }
     var assignmentID: String { get }

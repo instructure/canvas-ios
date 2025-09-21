@@ -487,6 +487,20 @@
         <attribute name="userId" attributeType="String"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="subAssignmentSubmissions" inverseEntity="Submission"/>
     </entity>
+    <entity name="CDUserGroup" representedClassName="Core.CDUserGroup" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isDifferentiationTag" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="userIdsInGroup" attributeType="Transformable" valueTransformerName="StringSetValueTransformer"/>
+        <relationship name="parentGroupSet" maxCount="1" deletionRule="Nullify" destinationEntity="CDUserGroupSet" inverseName="userGroups" inverseEntity="CDUserGroupSet"/>
+        <relationship name="usersInGroup" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="userGroups" inverseEntity="User"/>
+    </entity>
+    <entity name="CDUserGroupSet" representedClassName="Core.CDUserGroupSet" syncable="YES">
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="userGroups" toMany="YES" deletionRule="Cascade" destinationEntity="CDUserGroup" inverseName="parentGroupSet" inverseEntity="CDUserGroup"/>
+    </entity>
     <entity name="CDWidgetAnnouncement" representedClassName="Core.CDWidgetAnnouncement" syncable="YES">
         <attribute name="authorName" attributeType="String"/>
         <attribute name="avatarRaw" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
@@ -1403,6 +1417,7 @@
         <attribute name="sortableName" attributeType="String"/>
         <relationship name="observerEnrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="observedUser" inverseEntity="Enrollment"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="user" inverseEntity="Submission"/>
+        <relationship name="userGroups" toMany="YES" deletionRule="Nullify" destinationEntity="CDUserGroup" inverseName="usersInGroup" inverseEntity="CDUserGroup"/>
     </entity>
     <entity name="UserProfile" representedClassName="Core.UserProfile" syncable="YES">
         <attribute name="accountUUID" optional="YES" attributeType="String"/>

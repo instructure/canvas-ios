@@ -57,6 +57,10 @@ class SubmissionListInteractorPreview: SubmissionListInteractor {
         Just([]).eraseToAnyPublisher()
     }
 
+    var differentiationTags: AnyPublisher<[CDUserGroup], Never> {
+        Just([]).eraseToAnyPublisher()
+    }
+
     func refresh() -> AnyPublisher<Void, Never> {
         Just(()).eraseToAnyPublisher()
     }

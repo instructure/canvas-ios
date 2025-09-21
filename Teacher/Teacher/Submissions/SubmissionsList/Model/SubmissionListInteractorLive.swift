@@ -35,8 +35,10 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
     private var assignmentStore: ReactiveStore<GetAssignment>
     private var submissionsStore: ReactiveStore<GetSubmissions>?
+    private var userGroupsStore: ReactiveStore<GetUserGroups>
 
     private var submissionsSubject = PassthroughSubject<[Submission], Never>()
+    private var differentiationTagsSubject: CurrentValueSubject<[CDUserGroup], Never>
     private var preferencesSubject: CurrentValueSubject<SubmissionListPreferences, Never>
 
     init(context: Context, assignmentID: String, filter: GetSubmissions.Filter?, env: AppEnvironment) {
@@ -45,6 +47,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
         self.preferencesSubject = CurrentValueSubject<SubmissionListPreferences, Never>(
             SubmissionListPreferences(filter: filter, sortMode: .studentSortableName)
         )
+        self.differentiationTagsSubject = CurrentValueSubject<[CDUserGroup], Never>([])
         self.env = env
 
         customStatusesStore = ReactiveStore(
@@ -72,6 +75,11 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             environment: env
         )
 
+        userGroupsStore = ReactiveStore(
+            useCase: GetUserGroups(courseId: context.id, filterToDifferentiationTags: true),
+            environment: env
+        )
+
         preferencesSubject
             .sink { [weak self] pref in
                 self?.setupSubmissionsStore(pref)
@@ -82,6 +90,15 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
         customStatusesStore
             .getEntities()
             .sink()
+            .store(in: &subscriptions)
+
+        /// Load differentiation tags
+        userGroupsStore
+            .getEntities(keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
+            .sink { [weak differentiationTagsSubject] in
+                differentiationTagsSubject?.send($0)
+            }
             .store(in: &subscriptions)
     }
 
@@ -182,6 +199,10 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .eraseToAnyPublisher()
     }
 
+    var differentiationTags: AnyPublisher<[CDUserGroup], Never> {
+        differentiationTagsSubject.eraseToAnyPublisher()
+    }
+
     func refresh() -> AnyPublisher<Void, Never> {
         return Publishers.CombineLatest(
             Publishers.CombineLatest3(
@@ -190,9 +211,10 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
                 courseSectionsStore.forceRefresh(),
             )
             .mapToVoid(),
-            Publishers.CombineLatest3(
+            Publishers.CombineLatest4(
                 enrollmentsStore.forceRefresh(),
                 assignmentStore.forceRefresh(),
+                userGroupsStore.forceRefresh(),
                 submissionsStore?.forceRefresh() ?? Just<Void>(()).eraseToAnyPublisher()
             )
             .mapToVoid()

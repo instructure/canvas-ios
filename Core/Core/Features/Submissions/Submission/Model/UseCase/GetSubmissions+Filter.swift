@@ -28,7 +28,7 @@ extension GetSubmissions {
         public let statuses: Set<Status>
         public let score: Set<Score>
         public let sections: Set<Section>
-        let differentiationTags: Set<DifferentiationTag>
+        public let differentiationTags: Set<DifferentiationTag>
 
         public init(
             statuses: Set<Status>,
@@ -54,7 +54,7 @@ extension GetSubmissions {
         }
 
         public var query: [URLQueryItem] {
-            let checkables = [statuses.query, sections.query].compactMap({ $0 })
+            let checkables = [statuses.query, sections.query, differentiationTags.query].compactMap({ $0 })
             return checkables + score.query
         }
 
@@ -126,7 +126,14 @@ extension GetSubmissions.Filter: ExpressibleByArrayLiteral {
                 .compactMap({ $0 })
         )
 
-        self.init(statuses: statuses, score: scores, sections: sections)
+        let differentiationTags: Set<String> = Set(
+            url
+                .queryValue(for: "differentiationTags")
+                .flatMap({ $0.removingPercentEncoding })?
+                .components(separatedBy: ",") ?? []
+        )
+
+        self.init(statuses: statuses, score: scores, sections: sections, differentiationTags: differentiationTags)
     }
 }
 
@@ -386,15 +393,53 @@ extension Collection where Element == GetSubmissions.Filter.Section {
 // MARK: - Differentiation Tags
 
 extension GetSubmissions.Filter {
-    struct DifferentiationTag: Hashable {
-        let tagID: String
+    public struct DifferentiationTag: Hashable {
+        public static let UsersWithoutTagsID = "_UsersWithoutTagsID"
+        public let tagID: String
     }
 }
 
 extension Collection where Element == GetSubmissions.Filter.DifferentiationTag {
     var predicate: NSPredicate? {
-        // TODO: - OR predicates for differentiation tags selection
-        nil
+        if isEmpty { return nil }
+
+        // Check if we have the special "users without tags" filter
+        let usersWithoutTagsFilter = first { $0.tagID == Element.UsersWithoutTagsID }
+        let regularTagFilters = filter { $0.tagID != Element.UsersWithoutTagsID }
+
+        var predicates: [NSPredicate] = []
+
+        // Handle regular differentiation tag filters
+        if regularTagFilters.isNotEmpty {
+            let regularTagsPredicate = NSPredicate(
+                format: "ANY %K.%K IN %@",
+                #keyPath(Submission.user.userGroups),
+                #keyPath(CDUserGroup.id),
+                regularTagFilters.map(\.tagID)
+            )
+            predicates.append(regularTagsPredicate)
+        }
+
+        // Handle "users without tags" filter
+        if usersWithoutTagsFilter != nil {
+            let usersWithoutTagsPredicate = NSPredicate(
+                format: "NOT (ANY %K.%K == YES)",
+                #keyPath(Submission.user.userGroups),
+                #keyPath(CDUserGroup.isDifferentiationTag)
+            )
+            predicates.append(usersWithoutTagsPredicate)
+        }
+
+        // Combine predicates with OR (union of results)
+        return predicates.count == 1 ? predicates.first : NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
+    }
+
+    public var query: URLQueryItem? {
+        return map(\.tagID)
+            .joined(separator: ",")
+            .nilIfEmpty
+            .flatMap({ $0.urlQuerySafePercentEncoded })
+            .flatMap({ URLQueryItem(name: "differentiationTags", value: $0) })
     }
 }
 
