@@ -54,7 +54,6 @@ public class SyllabusSummaryViewController: UITableViewController {
         return vc
     }()
 
-
     public static func create(courseID: String, colorDelegate: ColorDelegate? = nil, env: AppEnvironment) -> SyllabusSummaryViewController {
         let viewController = SyllabusSummaryViewController(nibName: nil, bundle: nil)
         viewController.courseID = courseID
