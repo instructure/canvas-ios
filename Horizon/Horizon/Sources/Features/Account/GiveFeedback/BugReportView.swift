@@ -38,10 +38,7 @@ struct BugReportView: View {
     </html>
     """
     var body: some View {
-        WebView(
-            html: htmlContent,
-            features: [.onLoadFeedback {dismiss()}]
-        )
+        WebView(html: htmlContent,features: [.onLoadFeedback {dismiss()}])
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
