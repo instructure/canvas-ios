@@ -52,6 +52,8 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
         // If offline mode isn't enabled for the app we just don't
         // update the flag state and leave it at its default false value
         if isOfflineModeEnabledForApp {
+            // Subscribing is async and slow, so we synchronously fetch the current value first
+            fetchFlagStateSynchronously()
             subscribeToOfflineFeatureFlagChanges()
         }
     }
@@ -94,6 +96,10 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
     }
 
     // MARK: - Private Methods
+
+    private func fetchFlagStateSynchronously() {
+        featureFlagEnabled.accept(offlineFlagStore.useCase.fetchFromDatabase().first?.enabled ?? false)
+    }
 
     private func subscribeToOfflineFeatureFlagChanges() {
         offlineFlagStore
