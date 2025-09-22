@@ -68746,19 +68746,19 @@
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Launch external tool"
+            "value" : "Launch External Tool"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Launch external tool"
+            "value" : "Launch External Tool"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Launch external tool"
+            "value" : "Launch External Tool"
           }
         },
         "es" : {
@@ -68782,13 +68782,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lancer l'outil externe"
+            "value" : "Lancer l’outil externe"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lancer l'outil externe"
+            "value" : "Lancer l’outil externe"
           }
         },
         "ga" : {
@@ -90194,7 +90194,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obre la prova"
+            "value" : "Obriu la prova"
           }
         },
         "cy" : {
@@ -90410,7 +90410,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mở Bài Kiểm Tra"
+            "value" : "Mở bài Kiểm Tra"
           }
         },
         "zh" : {

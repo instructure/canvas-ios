@@ -18940,6 +18940,12 @@
             "value" : "تحقق من الإجابة"
           }
         },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comproveu la resposta"
+          }
+        },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23290,9 +23296,6 @@
           }
         }
       }
-    },
-    "courses" : {
-
     },
     "Create message" : {
       "localizations" : {
@@ -62749,6 +62752,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "إعادة إنشاء بطاقات Flash"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regenereu les targetes Flash"
           }
         },
         "cy" : {
