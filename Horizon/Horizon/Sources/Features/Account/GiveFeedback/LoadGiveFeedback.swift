@@ -22,8 +22,7 @@ private class LoadGiveFeedback: CoreWebViewFeature {
     private let eventName = "giveFeed.submitted"
     private let handlerName = "cancelFeedbackDialog"
     private let scriptId = "jira-issue-collector"
-    // swiftlint:disable:next line_length
-    private let scriptSrc = ""
+    private let scriptSrc = Secret.careerReportBugURL.string ?? ""
 
     private let script: String
     private let callback: () -> Void
