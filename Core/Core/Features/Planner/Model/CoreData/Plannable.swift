@@ -121,30 +121,30 @@ public final class Plannable: NSManagedObject {
     }
 }
 
-extension Plannable {
+extension PlannableType {
+
     public var icon: UIImage {
-        switch plannableType {
-        case .assignment:
-            .assignmentLine
-        case .quiz:
-            .quizLine
-        case .discussion_topic:
-            .discussionLine
-        case .sub_assignment:
-            discussionCheckpointStep != nil ? .discussionLine : .assignmentLine
-        case .announcement:
-            .announcementLine
-        case .wiki_page:
-            .documentLine
-        case .planner_note:
-            .noteLine
-        case .calendar_event:
-            .calendarMonthLine
-        case .assessment_request:
-            .peerReviewLine
-        case .other:
-            .warningLine
+        switch self {
+        case .assignment, .sub_assignment: .assignmentLine
+        case .quiz: .quizLine
+        case .discussion_topic: .discussionLine
+        case .announcement: .announcementLine
+        case .wiki_page: .documentLine
+        case .planner_note:  .noteLine
+        case .calendar_event: .calendarMonthLine
+        case .assessment_request: .peerReviewLine
+        case .other: .warningLine
         }
+    }
+}
+
+extension Plannable {
+
+    public var icon: UIImage {
+        if case .sub_assignment = plannableType {
+            return discussionCheckpointStep != nil ? .discussionLine : plannableType.icon
+        }
+        return plannableType.icon
     }
 
     public var color: UIColor {

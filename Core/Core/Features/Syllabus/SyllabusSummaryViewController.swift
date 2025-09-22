@@ -30,10 +30,7 @@ public class SyllabusSummaryViewController: UITableViewController {
     public weak var colorDelegate: ColorDelegate?
     public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
-    public lazy var assignments = env.subscribe(GetCalendarEvents(context: context, type: .assignment)) { [weak self] in
-        self?.update()
-    }
-    public lazy var events = env.subscribe(GetCalendarEvents(context: context, type: .event)) { [weak self] in
+    public lazy var summary = env.subscribe(GetSyllabusSummary(context: context)) { [weak self] in
         self?.update()
     }
 
@@ -57,22 +54,6 @@ public class SyllabusSummaryViewController: UITableViewController {
         return vc
     }()
 
-    public lazy var summary: Store<LocalUseCase<CalendarEvent>> = {
-        let contextPredicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.contextRaw), self.context.canvasContextID)
-        let notHiddenPredicate = NSPredicate(format: "%K == false", #keyPath(CalendarEvent.isHidden))
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            contextPredicate,
-            notHiddenPredicate
-        ])
-        let hasStartAt = NSSortDescriptor(key: #keyPath(CalendarEvent.hasStartAt), ascending: false)
-        let startAt = NSSortDescriptor(key: #keyPath(CalendarEvent.startAt), ascending: true)
-        let title = NSSortDescriptor(key: #keyPath(CalendarEvent.title), ascending: true, naturally: true)
-        let order = [hasStartAt, startAt, title]
-        let scope = Scope(predicate: predicate, order: order)
-        return env.subscribe(scope: scope) { [weak self] in
-            self?.update()
-        }
-    }()
 
     public static func create(courseID: String, colorDelegate: ColorDelegate? = nil, env: AppEnvironment) -> SyllabusSummaryViewController {
         let viewController = SyllabusSummaryViewController(nibName: nil, bundle: nil)
@@ -98,16 +79,15 @@ public class SyllabusSummaryViewController: UITableViewController {
 
         course.refresh()
         color.refresh()
-        summary.refresh()
 
-        assignments.exhaust(force: false)
-        events.exhaust(force: false)
+        summary.exhaust(force: false)
     }
 
     func update() {
-        guard !assignments.pending, !events.pending, !summary.pending, !course.pending else {
+        guard !summary.pending, !course.pending else {
             return
         }
+
         if tableView.refreshControl?.isRefreshing == true {
             tableView.refreshControl?.endRefreshing()
         }
@@ -130,8 +110,7 @@ public class SyllabusSummaryViewController: UITableViewController {
     }
 
     @objc func refresh(_ sender: UIRefreshControl) {
-        assignments.exhaust(force: true)
-        events.exhaust(force: true)
+        summary.exhaust(force: true)
     }
 
     override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -176,17 +155,13 @@ class SyllabusSummaryItemCell: UITableViewCell {
         backgroundColor = .backgroundLightest
     }
 
-    func update(_ item: CalendarEvent?, indexPath: IndexPath, color: UIColor?) {
+    func update(_ item: SyllabusSummaryItem?, indexPath: IndexPath, color: UIColor?) {
         backgroundColor = .backgroundLightest
         itemNameLabel?.setText(item?.title, style: .textCellTitle)
-        iconImageView?.image = item?.type == .assignment ? .assignmentLine : .calendarMonthLine
+        iconImageView?.image = item?.icon
         iconImageView?.tintColor = color
-        dateLabel?.setText(item?.startAt.flatMap(formatDate(_:)) ?? String(localized: "No Due Date", bundle: .core), style: .textCellSupportingText)
+        dateLabel?.setText(item?.dateFormatted ?? String(localized: "No Due Date", bundle: .core), style: .textCellSupportingText)
         accessibilityIdentifier = "itemCell.\(item?.id ?? "")"
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
-    }
-
-    func formatDate(_ date: Date) -> String? {
-        DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short)
     }
 }
