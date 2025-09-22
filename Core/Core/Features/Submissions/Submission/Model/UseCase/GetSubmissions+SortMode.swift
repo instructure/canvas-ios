@@ -73,8 +73,8 @@ extension GetSubmissions {
             }
         }
 
-        public var query: String {
-            return "sort=\(rawValue)"
+        public var query: URLQueryItem {
+            URLQueryItem(name: "sort", value: rawValue)
         }
     }
 }

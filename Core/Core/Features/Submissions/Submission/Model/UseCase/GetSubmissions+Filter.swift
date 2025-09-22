@@ -28,7 +28,7 @@ extension GetSubmissions {
         public let statuses: Set<Status>
         public let score: Set<Score>
         public let sections: Set<Section>
-        let differentiationTags: Set<DifferentiationTag>
+        public let differentiationTags: Set<DifferentiationTag>
 
         public init(
             statuses: Set<Status>,
@@ -51,6 +51,21 @@ extension GetSubmissions {
             ]
                 .compactMap({ $0 })
                 .andRelated
+        }
+
+        public var query: [URLQueryItem] {
+            let checkables = [statuses.query, sections.query, differentiationTags.query].compactMap({ $0 })
+            return checkables + score.query
+        }
+
+        public var nilIfEmpty: Self? {
+            if statuses.isEmpty,
+               score.isEmpty,
+               sections.isEmpty,
+               differentiationTags.isEmpty {
+                return nil
+            }
+            return self
         }
     }
 }
@@ -75,6 +90,50 @@ extension GetSubmissions.Filter: ExpressibleByArrayLiteral {
 
     public static func section(_ sections: String...) -> Self {
         .init(statuses: [], sections: Set(sections))
+    }
+
+    public init(urlComponents url: URLComponents) {
+        let statuses: Set<GetSubmissions.Filter.Status> = Set(
+            url
+                .queryValue(for: "statuses")
+                .flatMap({ $0.removingPercentEncoding })?
+                .components(separatedBy: ",")
+                .compactMap {
+                    GetSubmissions.Filter.Status(rawValue: $0)
+                } ?? []
+        )
+
+        let sections: Set<String> = Set(
+            url
+                .queryValue(for: "sections")
+                .flatMap({ $0.removingPercentEncoding })?
+                .components(separatedBy: ",") ?? []
+        )
+
+        let scores: Set<GetSubmissions.Filter.Score> = Set(
+            [
+                url
+                    .queryValue(for: "scoredMore")
+                    .flatMap({ $0.removingPercentEncoding })
+                    .flatMap(Double.init)
+                    .flatMap({ GetSubmissions.Filter.Score(operation: .moreThan, score: $0) }),
+
+                url.queryValue(for: "scoredLess")
+                    .flatMap({ $0.removingPercentEncoding })
+                    .flatMap(Double.init)
+                    .flatMap({ GetSubmissions.Filter.Score(operation: .lessThan, score: $0) })
+            ]
+                .compactMap({ $0 })
+        )
+
+        let differentiationTags: Set<String> = Set(
+            url
+                .queryValue(for: "differentiationTags")
+                .flatMap({ $0.removingPercentEncoding })?
+                .components(separatedBy: ",") ?? []
+        )
+
+        self.init(statuses: statuses, score: scores, sections: sections, differentiationTags: differentiationTags)
     }
 }
 
@@ -144,10 +203,6 @@ extension GetSubmissions.Filter {
             case .custom(let name):
                 "custom:\(name)"
             }
-        }
-
-        public var queryValue: String {
-            rawValue
         }
 
         var predicate: NSPredicate {
@@ -220,9 +275,12 @@ extension Collection where Element == GetSubmissions.Filter.Status {
             .allSatisfy({ contains(.custom($0)) })
     }
 
-    public var query: String {
-        let value = map(\.rawValue).joined(separator: ",").nilIfEmpty ?? ""
-        return value.isEmpty ? "" : "filter=\(value)"
+    public var query: URLQueryItem? {
+        return map(\.rawValue)
+            .joined(separator: ",")
+            .nilIfEmpty
+            .flatMap({ $0.urlQuerySafePercentEncoded })
+            .flatMap({ URLQueryItem(name: "statuses", value: $0) })
     }
 }
 
@@ -237,13 +295,18 @@ extension Set where Element == GetSubmissions.Filter.Status {
 extension GetSubmissions.Filter {
 
     public struct Score: Hashable {
-        public enum Operation {
+        public enum Operation: Int {
             case moreThan
             case lessThan
         }
 
         public let operation: Operation
         public let score: Double
+
+        public init(operation: Operation, score: Double) {
+            self.operation = operation
+            self.score = score
+        }
 
         var predicate: NSPredicate {
             switch operation {
@@ -270,11 +333,34 @@ extension GetSubmissions.Filter {
         public static func lessThan(_ score: Double) -> Self {
             Score(operation: .lessThan, score: score)
         }
+
+        var queryItem: URLQueryItem? {
+            guard let scoreValue = String(score).urlQuerySafePercentEncoded else { return nil }
+
+            return switch operation {
+            case .moreThan:
+                URLQueryItem(name: "scoredMore", value: scoreValue)
+            case .lessThan:
+                URLQueryItem(name: "scoredLess", value: scoreValue)
+            }
+        }
     }
 }
 
 extension Collection where Element == GetSubmissions.Filter.Score {
-    var predicate: NSPredicate? { sorted(by: \.score).map(\.predicate).andRelated }
+    var predicate: NSPredicate? { sorted(by: \.operation.rawValue).map(\.predicate).andRelated }
+
+    public var moreThanFilter: GetSubmissions.Filter.Score? {
+        first(where: { $0.operation == .moreThan })
+    }
+
+    public var lessThanFilter: GetSubmissions.Filter.Score? {
+        first(where: { $0.operation == .lessThan })
+    }
+
+    public var query: [URLQueryItem] {
+        return compactMap { $0.queryItem }
+    }
 }
 
 // MARK: - Sections
@@ -294,20 +380,66 @@ extension Collection where Element == GetSubmissions.Filter.Section {
             sorted(by: \.sectionID).map(\.sectionID)
         )
     }
+
+    public var query: URLQueryItem? {
+        map(\.sectionID)
+            .joined(separator: ",")
+            .nilIfEmpty
+            .flatMap({ $0.urlQuerySafePercentEncoded })
+            .flatMap({ URLQueryItem(name: "sections", value: $0) })
+    }
 }
 
 // MARK: - Differentiation Tags
 
 extension GetSubmissions.Filter {
-    struct DifferentiationTag: Hashable {
-        let tagID: String
+    public struct DifferentiationTag: Hashable {
+        public static let UsersWithoutTagsID = "_UsersWithoutTagsID"
+        public let tagID: String
     }
 }
 
 extension Collection where Element == GetSubmissions.Filter.DifferentiationTag {
     var predicate: NSPredicate? {
-        // TODO: - OR predicates for differentiation tags selection
-        nil
+        if isEmpty { return nil }
+
+        // Check if we have the special "users without tags" filter
+        let usersWithoutTagsFilter = first { $0.tagID == Element.UsersWithoutTagsID }
+        let regularTagFilters = filter { $0.tagID != Element.UsersWithoutTagsID }
+
+        var predicates: [NSPredicate] = []
+
+        // Handle regular differentiation tag filters
+        if regularTagFilters.isNotEmpty {
+            let regularTagsPredicate = NSPredicate(
+                format: "ANY %K.%K IN %@",
+                #keyPath(Submission.user.userGroups),
+                #keyPath(CDUserGroup.id),
+                regularTagFilters.map(\.tagID)
+            )
+            predicates.append(regularTagsPredicate)
+        }
+
+        // Handle "users without tags" filter
+        if usersWithoutTagsFilter != nil {
+            let usersWithoutTagsPredicate = NSPredicate(
+                format: "NOT (ANY %K.%K == YES)",
+                #keyPath(Submission.user.userGroups),
+                #keyPath(CDUserGroup.isDifferentiationTag)
+            )
+            predicates.append(usersWithoutTagsPredicate)
+        }
+
+        // Combine predicates with OR (union of results)
+        return predicates.count == 1 ? predicates.first : NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
+    }
+
+    public var query: URLQueryItem? {
+        return map(\.tagID)
+            .joined(separator: ",")
+            .nilIfEmpty
+            .flatMap({ $0.urlQuerySafePercentEncoded })
+            .flatMap({ URLQueryItem(name: "differentiationTags", value: $0) })
     }
 }
 

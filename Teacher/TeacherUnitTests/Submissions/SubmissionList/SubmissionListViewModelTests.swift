@@ -47,7 +47,7 @@ final class SubmissionListViewModelTests: TeacherTestCase {
             context: TestConstants.context,
             assignmentID: TestConstants.assignmentID
         )
-        viewModel = SubmissionListViewModel(interactor: interactor, filterMode: .all, env: environment, scheduler: scheduler)
+        viewModel = SubmissionListViewModel(interactor: interactor, filter: nil, env: environment, scheduler: scheduler)
     }
 
     override func tearDown() {
@@ -263,8 +263,11 @@ final class SubmissionListViewModelTests: TeacherTestCase {
     }
 
     func testFilterModeChange() {
-        viewModel.filterMode = .graded
-        XCTAssertEqual(interactor.appliedFilter?.statuses, [.graded])
+        viewModel.statusFilters = [.graded]
+        viewModel.sectionFilters = []
+        viewModel.scoreBasedFilters = []
+        viewModel.sortMode = .studentSortableName
+        XCTAssertEqual(interactor.appliedPreferences?.filter?.statuses, [.graded])
     }
 
     func testRefresh() {
@@ -371,23 +374,24 @@ final class SubmissionListViewModelTests: TeacherTestCase {
         ].joined(separator: "/")
 
         XCTAssertEqual(routedURL.path, expectedPath)
-        XCTAssertNil(routedURL.query)
+        XCTAssertEqual(routedURL.queryItems, [
+            GetSubmissions.SortMode.studentSortableName.query
+        ])
 
         // When
-        viewModel.filterMode = .needsGrading
+        viewModel.statusFilters = [.submitted]
         viewModel.didTapSubmissionRow(mockItem, from: WeakViewController())
 
         // Then
         routedURL = try XCTUnwrap(router.calls.last?.0)
 
-        let expectedFilters = SubmissionFilterMode
-            .needsGrading
-            .filters
-            .map { $0.rawValue }
-            .joined(separator: ",")
-            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-
-        XCTAssertEqual(routedURL.query, "filter=\(expectedFilters)")
+        XCTAssertEqual(
+            Set(routedURL.queryItems ?? []),
+            Set([
+                GetSubmissions.SortMode.studentSortableName.query,
+                [SubmissionStatusFilter.submitted].query
+            ].compactMap({ $0 }))
+        )
     }
 }
 

@@ -194,13 +194,14 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
 
     private func makeInteractor(
         userId: String = testData.userId,
-        filter: [GetSubmissions.Filter.Status] = []
+        filter: GetSubmissions.Filter? = nil
     ) -> SpeedGraderInteractorLive {
         SpeedGraderInteractorLive(
             context: testData.context,
             assignmentID: testData.assignmentId,
             userID: userId,
             filter: filter,
+            sortMode: .studentSortableName,
             gradeStatusInteractor: gradeStatusInteractorMock,
             submissionWordCountInteractor: submissionWordCountInteractor,
             customGradebookColumnsInteractor: customGradebookColumnsInteractor,

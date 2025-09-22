@@ -50,11 +50,3 @@ public final class CDExperienceSummary: NSManagedObject {
         entity.currentAppRaw = experience
     }
 }
-
-// MARK: - Transformer Registration
-
-extension CDExperienceSummary {
-    public static func registerTransformers() {
-        StringSetValueTransformer.register()
-    }
-}

@@ -60,7 +60,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private lazy var appExperienceInteractor = ExperienceSummaryInteractorLive(environment: environment)
 
     func application(_: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        CDExperienceSummary.registerTransformers()
         HorizonUI.registerCustomFonts()
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
         BackgroundProcessingAssembly.register(scheduler: CoreTaskSchedulerLive(taskScheduler: .shared))
@@ -440,7 +439,7 @@ extension StudentAppDelegate {
                     UIApplication.shared.registerForPushNotifications()
                 }
             })
-        case .careerLearner:
+        case .careerLearner, .careerLearningProvider:
             AppEnvironment.shared.app = .horizon
             AppEnvironment.shared.router = Router(routes: HorizonRoutes.routeHandlers())
             HorizonUI.setInstitutionColor(Brand.shared.primary)
@@ -455,8 +454,8 @@ extension StudentAppDelegate {
                     UIApplication.shared.registerForPushNotifications()
                 }
             })
-        case .careerLearningProvider:
-            showIncorrectAppExperienceAlert(session: session)
+//        case .careerLearningProvider:
+//            showIncorrectAppExperienceAlert(session: session)
         }
     }
 }

@@ -16,28 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
+import Combine
+import SwiftUI
 
-public func XCTAssertVisible(
-    _ element: XCUIElement,
-    file: StaticString = #filePath,
-    line: UInt = #line
-) {
-    XCTAssertTrue(element.isVisible, "Element is not visible: \(element.debugDescription)", file: file, line: line)
-}
-
-public func XCTAssertSelected(
-    _ element: XCUIElement,
-    file: StaticString = #filePath,
-    line: UInt = #line
-) {
-    XCTAssertTrue(element.isSelected, "Element is not selected: \(element.debugDescription)", file: file, line: line)
-}
-
-public func XCTAssertNotSelected(
-    _ element: XCUIElement,
-    file: StaticString = #filePath,
-    line: UInt = #line
-) {
-    XCTAssertFalse(element.isSelected, "Element is selected: \(element.debugDescription)", file: file, line: line)
+public extension CurrentValueSubject where Failure == Never {
+    var binding: Binding<Output> {
+        Binding(
+            get: { self.value },
+            set: { self.send($0) }
+        )
+    }
 }

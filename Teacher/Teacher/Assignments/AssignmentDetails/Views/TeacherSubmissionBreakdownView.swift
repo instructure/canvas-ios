@@ -52,6 +52,7 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
                         )
                         .font(.regular16)
                         .tint(viewModel.color)
+                        .identifier("AssignmentDetails.viewAllSubmissionsButton")
                         .accessibilityLabel(
                             Text("View all submissions", bundle: .teacher)
                         )
@@ -138,7 +139,6 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
         .elevation(.cardSmall, background: .backgroundLightestElevated)
         .padding(16)
         .accessibilityElement(children: .contain)
-        .identifier("AssignmentDetails.viewAllSubmissionsButton")
         .onAppear {
             viewModel.viewDidAppear()
         }

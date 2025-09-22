@@ -22,10 +22,11 @@ import Combine
 @testable import Teacher
 
 final class MockSubmissionListInteractor: SubmissionListInteractor {
-
+    var differentiationTagsSubject = CurrentValueSubject<[CDUserGroup], Never>([])
     var submissionsSubject = PassthroughSubject<[Submission], Never>()
     var assignmentSubject = PassthroughSubject<Assignment?, Never>()
     var courseSubject = PassthroughSubject<Course?, Never>()
+    var courseSectionsSubject = PassthroughSubject<[CourseSection], Never>()
     var assigneeGroupsSubject = CurrentValueSubject<[AssigneeGroup], Never>([])
 
     var submissions: AnyPublisher<[Submission], Never> {
@@ -40,8 +41,16 @@ final class MockSubmissionListInteractor: SubmissionListInteractor {
         courseSubject.eraseToAnyPublisher()
     }
 
+    var courseSections: AnyPublisher<[CourseSection], Never> {
+        courseSectionsSubject.eraseToAnyPublisher()
+    }
+
     var assigneeGroups: AnyPublisher<[AssigneeGroup], Never> {
         assigneeGroupsSubject.eraseToAnyPublisher()
+    }
+
+    var differentiationTags: AnyPublisher<[CDUserGroup], Never> {
+        differentiationTagsSubject.eraseToAnyPublisher()
     }
 
     var context: Context
@@ -58,8 +67,8 @@ final class MockSubmissionListInteractor: SubmissionListInteractor {
         return Just<Void>(()).eraseToAnyPublisher()
     }
 
-    var appliedFilter: GetSubmissions.Filter?
-    func applyFilter(_ filter: GetSubmissions.Filter) {
-        appliedFilter = filter
+    var appliedPreferences: SubmissionListPreferences?
+    func applyPreferences(_ pref: SubmissionListPreferences) {
+        appliedPreferences = pref
     }
 }

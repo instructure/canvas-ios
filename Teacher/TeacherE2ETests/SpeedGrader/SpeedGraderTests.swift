@@ -23,7 +23,7 @@ class SpeedGraderTests: E2ETestCase {
     typealias Helper = GradesHelper
     typealias DetailsHelper = AssignmentsHelper.Details
     typealias EditorHelper = DetailsHelper.Editor
-    typealias SubmissionsHelper = DetailsHelper.Submissions
+    typealias SubmissionsHelper = DetailsHelper.TeacherSubmissionsList
     typealias SpeedGraderHelper = AssignmentsHelper.SpeedGrader
 
     func testOpenAndSwipeBetweenUsers() {

@@ -27,22 +27,39 @@ class SubmissionListViewModel: ObservableObject {
     @Published private(set) var state: InstUI.ScreenState = .loading
 
     @Published var searchText: String = ""
-    @Published var filterMode: SubmissionFilterMode
+    @Published var statusFilters: Set<SubmissionStatusFilter>
+    @Published var sectionFilters: Set<String>
+    @Published var differentiationTagFilters: Set<String>
+    @Published var sortMode: SubmissionsSortMode = .studentSortableName
+    @Published var scoreBasedFilters: Set<GetSubmissions.Filter.Score> = []
 
     @Published var assignment: Assignment?
     @Published var course: Course?
+    @Published var courseSections: [CourseSection] = []
     @Published var sections: [SubmissionListSection] = []
+    @Published var differentiationTags: [CDUserGroup] = []
 
-    private let interactor: SubmissionListInteractor
+    let interactor: SubmissionListInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let env: AppEnvironment
+    private let differentiationTagsSortComparator: (CDUserGroup, CDUserGroup) -> Bool
     private var subscriptions = Set<AnyCancellable>()
 
-    init(interactor: SubmissionListInteractor, filterMode: SubmissionFilterMode, env: AppEnvironment, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+    init(
+        interactor: SubmissionListInteractor,
+        filter: GetSubmissions.Filter?,
+        env: AppEnvironment,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
+        differentiationTagsSortComparator: @escaping (CDUserGroup, CDUserGroup) -> Bool = DifferentiationTagsComparator
+    ) {
         self.interactor = interactor
-        self.filterMode = filterMode
+        self.statusFilters = Set(filter?.statuses ?? [])
+        self.sectionFilters = Set(filter?.sections.map(\.sectionID) ?? [])
+        self.differentiationTagFilters = Set(filter?.differentiationTags.map(\.tagID) ?? [])
         self.env = env
         self.scheduler = scheduler
+        self.differentiationTagsSortComparator = differentiationTagsSortComparator
+
         setupBindings()
     }
 
@@ -51,6 +68,28 @@ class SubmissionListViewModel: ObservableObject {
     private func setupBindings() {
         interactor.assignment.assign(to: &$assignment)
         interactor.course.assign(to: &$course)
+        interactor.courseSections.assign(to: &$courseSections)
+        interactor.differentiationTags
+            .map { [differentiationTagsSortComparator] tags in
+                tags.sorted(by: differentiationTagsSortComparator)
+            }
+            .assign(to: &$differentiationTags)
+
+        if statusFilters.isEmpty {
+            self.statusFilters = Set(SubmissionStatusFilter.allCasesForCourse(interactor.context.id))
+        }
+
+        $courseSections
+            .filter({ $0.isNotEmpty })
+            .first()
+            .sink { [weak self] loadedSections in
+                guard let self else { return }
+
+                if sectionFilters.isEmpty {
+                    sectionFilters = Set(loadedSections.map(\.id))
+                }
+            }
+            .store(in: &subscriptions)
 
         Publishers.CombineLatest3(
             interactor.submissions.receive(on: scheduler),
@@ -84,9 +123,12 @@ class SubmissionListViewModel: ObservableObject {
             .map({ $0.isEmpty ? .empty : .data })
             .assign(to: &$state)
 
-        $filterMode
-            .sink { [weak self] mode in
-                self?.interactor.applyFilter(.init(statuses: mode.filters))
+        Publishers
+            .CombineLatest4($statusFilters, $scoreBasedFilters, $sectionFilters, $differentiationTagFilters)
+            .combineLatest($sortMode)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                interactor.applyPreferences(selectedPreferences)
             }
             .store(in: &subscriptions)
     }
@@ -98,7 +140,36 @@ class SubmissionListViewModel: ObservableObject {
     // MARK: Exposed To View
 
     var isFilterActive: Bool {
-        return filterMode != .all
+        if !hasStatusesFilterDefaultSelection { return true }
+        if !hasSectionsFilterDefaultSelection { return true }
+        if hasDifferentiationTagFilter { return true}
+        if scoreBasedFilters.isNotEmpty { return true }
+        return false
+    }
+
+    private var hasStatusesFilterDefaultSelection: Bool {
+        statusFilters.isEmpty || statusFilters.isAllCasesForCourseIncluded(interactor.context.id)
+    }
+
+    private var hasSectionsFilterDefaultSelection: Bool {
+        let defaultSectionsList = Set(courseSections.map(\.id))
+        return sectionFilters.isEmpty || sectionFilters == defaultSectionsList
+    }
+
+    private var hasDifferentiationTagFilter: Bool {
+	    differentiationTagFilters.isNotEmpty && differentiationTagFilters.count < differentiationTags.count
+    }
+
+    private var selectedPreferences: SubmissionListPreferences {
+        SubmissionListPreferences(
+            filter: SubmissionsFilter(
+                statuses: hasStatusesFilterDefaultSelection ? [] : statusFilters,
+                score: scoreBasedFilters,
+                sections: hasSectionsFilterDefaultSelection ? [] : sectionFilters,
+                differentiationTags: hasDifferentiationTagFilter ? differentiationTagFilters : []
+            ).nilIfEmpty,
+            sortMode: sortMode
+        )
     }
 
     func refresh(_ completion: @escaping () -> Void) {
@@ -112,11 +183,7 @@ class SubmissionListViewModel: ObservableObject {
     }
 
     func messageUsers(from controller: WeakViewController) {
-        guard var subject = assignment?.name else { return }
-
-        if isFilterActive {
-            subject = "\(filterMode.title) - \(subject)"
-        }
+        guard let subject = assignment?.name else { return }
 
         let recipients = sections
             .flatMap { section in
@@ -163,16 +230,16 @@ class SubmissionListViewModel: ObservableObject {
 
     func showFilterScreen(from controller: WeakViewController) {
         let filterVC = CoreHostingController(
-            SubmissionsFilterScreen(viewModel: self),
+            SubmissionsFilterScreen(listViewModel: self),
             env: env
         )
         env.router.show(filterVC, from: controller, options: .modal(embedInNav: true))
     }
 
     func didTapSubmissionRow(_ submission: SubmissionListItem, from controller: WeakViewController) {
-        let query = isFilterActive ? "?filter=\(filterMode.filters.map { $0.rawValue }.joined(separator: ","))" : ""
+        let queryItems = selectedPreferences.query
         env.router.route(
-            to: assignmentRoute + "/submissions/\(submission.originalUserID)\(query)",
+            to: (assignmentRoute + "/submissions/\(submission.originalUserID)").asURLPathWithQuery(queryItems),
             from: controller.value,
             options: .modal(.fullScreen, isDismissable: false, embedInNav: true)
         )

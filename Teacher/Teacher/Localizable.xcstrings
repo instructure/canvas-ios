@@ -15104,6 +15104,9 @@
         }
       }
     },
+    "Differentiation Tags" : {
+
+    },
     "Dismiss" : {
       "localizations" : {
         "ar" : {
@@ -23821,6 +23824,9 @@
           }
         }
       }
+    },
+    "Filter by Section" : {
+
     },
     "Filter submissions" : {
       "localizations" : {
@@ -42625,6 +42631,9 @@
         }
       }
     },
+    "Precise filtering" : {
+
+    },
     "Present" : {
       "localizations" : {
         "ar" : {
@@ -46981,6 +46990,12 @@
         }
       }
     },
+    "Scored Less than" : {
+
+    },
+    "Scored More than" : {
+
+    },
     "Search" : {
       "localizations" : {
         "ar" : {
@@ -49029,6 +49044,9 @@
         }
       }
     },
+    "Sort by" : {
+
+    },
     "Specific Sections" : {
       "localizations" : {
         "ar" : {
@@ -49540,6 +49558,9 @@
           }
         }
       }
+    },
+    "Statuses" : {
+
     },
     "Student" : {
       "extractionState" : "stale",
@@ -50310,7 +50331,11 @@
         }
       }
     },
+    "Students without Differentiation tags" : {
+
+    },
     "Submission Filter" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

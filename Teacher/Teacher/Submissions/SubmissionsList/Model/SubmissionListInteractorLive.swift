@@ -30,16 +30,24 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
     private var customStatusesStore: ReactiveStore<GetCustomGradeStatuses>
     private var courseStore: ReactiveStore<GetCourse>
+    private var courseSectionsStore: ReactiveStore<GetCourseSections>
+    private var enrollmentsStore: ReactiveStore<GetEnrollments>
+
     private var assignmentStore: ReactiveStore<GetAssignment>
     private var submissionsStore: ReactiveStore<GetSubmissions>?
+    private var userGroupsStore: ReactiveStore<GetUserGroups>
 
     private var submissionsSubject = PassthroughSubject<[Submission], Never>()
-    private var filtersSubject: CurrentValueSubject<Set<SubmissionStatusFilter>, Never>
+    private var differentiationTagsSubject: CurrentValueSubject<[CDUserGroup], Never>
+    private var preferencesSubject: CurrentValueSubject<SubmissionListPreferences, Never>
 
-    init(context: Context, assignmentID: String, filters: [SubmissionStatusFilter], env: AppEnvironment) {
+    init(context: Context, assignmentID: String, filter: GetSubmissions.Filter?, env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
-        self.filtersSubject = CurrentValueSubject<Set<SubmissionStatusFilter>, Never>(Set(filters))
+        self.preferencesSubject = CurrentValueSubject<SubmissionListPreferences, Never>(
+            SubmissionListPreferences(filter: filter, sortMode: .studentSortableName)
+        )
+        self.differentiationTagsSubject = CurrentValueSubject<[CDUserGroup], Never>([])
         self.env = env
 
         customStatusesStore = ReactiveStore(
@@ -52,14 +60,29 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             environment: env
         )
 
+        courseSectionsStore = ReactiveStore(
+            useCase: GetCourseSections(courseID: context.id),
+            environment: env
+        )
+
+        enrollmentsStore = ReactiveStore(
+            useCase: GetEnrollments(context: context),
+            environment: env
+        )
+
         assignmentStore = ReactiveStore(
             useCase: GetAssignment(courseID: context.id, assignmentID: assignmentID),
             environment: env
         )
 
-        filtersSubject
-            .sink { [weak self] filters in
-                self?.setupSubmissionsStore(filters)
+        userGroupsStore = ReactiveStore(
+            useCase: GetUserGroups(courseId: context.id, filterToDifferentiationTags: true),
+            environment: env
+        )
+
+        preferencesSubject
+            .sink { [weak self] pref in
+                self?.setupSubmissionsStore(pref)
             }
             .store(in: &subscriptions)
 
@@ -68,13 +91,25 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .getEntities()
             .sink()
             .store(in: &subscriptions)
+
+        /// Load differentiation tags
+        userGroupsStore
+            .getEntities(keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
+            .sink { [weak differentiationTagsSubject] in
+                differentiationTagsSubject?.send($0)
+            }
+            .store(in: &subscriptions)
     }
 
-    private func setupSubmissionsStore(_ filters: Set<SubmissionStatusFilter> = []) {
-        let filter = GetSubmissions.Filter(statuses: filters)
-
+    private func setupSubmissionsStore(_ pref: SubmissionListPreferences) {
         submissionsStore = ReactiveStore(
-            useCase: GetSubmissions(context: context, assignmentID: assignmentID, filter: filter),
+            useCase: GetSubmissions(
+                context: context,
+                assignmentID: assignmentID,
+                filter: pref.filter,
+                sortMode: pref.sortMode
+            ),
             environment: env
         )
 
@@ -97,10 +132,26 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     }
 
     var course: AnyPublisher<Course?, Never> {
-        courseStore
+        let course = courseStore
             .getEntities(keepObservingDatabaseChanges: true)
             .map { $0.first }
             .replaceError(with: nil)
+
+        let enrollments = enrollmentsStore
+            .getEntities()
+            .mapToVoid()
+            .replaceError(with: ())
+
+        return Publishers
+            .CombineLatest(course, enrollments)
+            .map { $0.0 }
+            .eraseToAnyPublisher()
+    }
+
+    var courseSections: AnyPublisher<[CourseSection], Never> {
+        courseSectionsStore
+            .getEntities(keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
             .eraseToAnyPublisher()
     }
 
@@ -148,19 +199,32 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .eraseToAnyPublisher()
     }
 
+    var differentiationTags: AnyPublisher<[CDUserGroup], Never> {
+        differentiationTagsSubject.eraseToAnyPublisher()
+    }
+
     func refresh() -> AnyPublisher<Void, Never> {
-        return Publishers.CombineLatest4(
-            customStatusesStore.forceRefresh(),
-            courseStore.forceRefresh(),
-            assignmentStore.forceRefresh(),
-            submissionsStore?.forceRefresh() ?? Just<Void>(()).eraseToAnyPublisher()
+        return Publishers.CombineLatest(
+            Publishers.CombineLatest3(
+                customStatusesStore.forceRefresh(),
+                courseStore.forceRefresh(),
+                courseSectionsStore.forceRefresh(),
+            )
+            .mapToVoid(),
+            Publishers.CombineLatest4(
+                enrollmentsStore.forceRefresh(),
+                assignmentStore.forceRefresh(),
+                userGroupsStore.forceRefresh(),
+                submissionsStore?.forceRefresh() ?? Just<Void>(()).eraseToAnyPublisher()
+            )
+            .mapToVoid()
         )
         .mapToVoid()
         .eraseToAnyPublisher()
     }
 
-    func applyFilter(_ filter: GetSubmissions.Filter) {
-        filtersSubject.send(filter.statuses)
+    func applyPreferences(_ pref: SubmissionListPreferences) {
+        preferencesSubject.send(pref)
     }
 }
 
