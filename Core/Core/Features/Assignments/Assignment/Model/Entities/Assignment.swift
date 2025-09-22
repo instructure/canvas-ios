@@ -181,14 +181,34 @@ public class Assignment: NSManagedObject {
 
     public var hasRubrics: Bool { rubric?.isNotEmpty ?? false }
 
+    /// - parameters:
+    ///     - requiredReplyCount: Needed for Discussions with Checkpoints when Assignment is saved from DiscussionTopic.
     @discardableResult
-    public static func save(_ item: APIAssignment, in context: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) -> Assignment {
+    public static func save(
+        _ item: APIAssignment,
+        in context: NSManagedObjectContext,
+        updateSubmission: Bool,
+        updateScoreStatistics: Bool,
+        requiredReplyCount: Int? = nil
+    ) -> Assignment {
         let assignment: Assignment = context.first(where: (\Assignment.id).string, equals: item.id.value) ?? context.insert()
-        assignment.update(fromApiModel: item, in: context, updateSubmission: updateSubmission, updateScoreStatistics: updateScoreStatistics)
+        assignment.update(
+            fromApiModel: item,
+            in: context,
+            updateSubmission: updateSubmission,
+            updateScoreStatistics: updateScoreStatistics,
+            requiredReplyCount: requiredReplyCount
+        )
         return assignment
     }
 
-    public func update(fromApiModel item: APIAssignment, in client: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) {
+    public func update(
+        fromApiModel item: APIAssignment,
+        in client: NSManagedObjectContext,
+        updateSubmission: Bool,
+        updateScoreStatistics: Bool,
+        requiredReplyCount: Int? = nil
+    ) {
         allowedAttempts = item.allowed_attempts ?? 0
         allowedExtensions = item.allowed_extensions ?? []
         annotatableAttachmentID = item.annotatable_attachment_id
@@ -303,21 +323,25 @@ public class Assignment: NSManagedObject {
             overrides = Set(items.map { AssignmentOverride.save($0, in: client) })
         }
 
-        updateCheckpoints(from: item, in: client)
+        updateCheckpoints(from: item, requiredReplyCount: requiredReplyCount, in: client)
     }
 
-    private func updateCheckpoints(from item: APIAssignment, in moContext: NSManagedObjectContext) {
+    private func updateCheckpoints(from item: APIAssignment, requiredReplyCount: Int?, in moContext: NSManagedObjectContext) {
         if let hasSubAssignments = item.has_sub_assignments {
             self.hasSubAssignments = hasSubAssignments
             // else CoreData can default to `false`
         }
+
+        // APIAssignment not always has a `discussion_topic`, for example when returned from `discussion_topics` endpoint.
+        // In those cases we pass in `requiredReplyCount`, because it is required for checkpoint creation.
+        let requiredReplyCount = item.discussion_topic?.reply_to_entry_required_count ?? requiredReplyCount
 
         if let checkpoints = item.checkpoints {
             self.checkpoints = checkpoints
                 .map {
                     CDAssignmentCheckpoint.save(
                         $0,
-                        requiredReplyCount: item.discussion_topic?.reply_to_entry_required_count,
+                        requiredReplyCount: requiredReplyCount,
                         assignmentId: item.id.value,
                         in: moContext
                     )

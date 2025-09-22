@@ -32,7 +32,7 @@ public class CDAssignmentCheckpoint: NSManagedObject {
 
     @NSManaged private var pointsPossibleRaw: NSNumber?
     public var pointsPossible: Double? {
-        get { return pointsPossibleRaw?.doubleValue } set { pointsPossibleRaw = .init(newValue) }
+        get { pointsPossibleRaw?.doubleValue } set { pointsPossibleRaw = .init(newValue) }
     }
 
     @NSManaged public var dueDate: Date?

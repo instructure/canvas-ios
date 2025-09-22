@@ -109,33 +109,34 @@ class DiscussionTopicTests: CoreTestCase {
     }
 
     func test_updateCheckpoints_whenNilOrEmpty() {
-        var item = APIDiscussionTopic.make(checkpoints: nil)
+        var item = APIDiscussionTopic.make(assignment: .make(), checkpoints: nil)
         var testee = saveModel(item)
         XCTAssertEqual(testee.checkpoints.isEmpty, true)
 
-        item = APIDiscussionTopic.make(checkpoints: [])
+        item = APIDiscussionTopic.make(assignment: .make(), checkpoints: [])
         testee = saveModel(item)
         XCTAssertEqual(testee.checkpoints.isEmpty, true)
 
         // set some value
-        item = APIDiscussionTopic.make(checkpoints: [.make()])
+        item = APIDiscussionTopic.make(assignment: .make(), checkpoints: [.make()])
         testee = saveModel(item)
         XCTAssertEqual(testee.checkpoints.isEmpty, false)
 
         // nil should not clear values
-        item = APIDiscussionTopic.make(checkpoints: nil)
+        item = APIDiscussionTopic.make(assignment: .make(), checkpoints: nil)
         testee = saveModel(item)
         XCTAssertEqual(testee.checkpoints.isEmpty, false)
 
         // [] should clear values
-        item = APIDiscussionTopic.make(checkpoints: [])
+        item = APIDiscussionTopic.make(assignment: .make(), checkpoints: [])
         testee = saveModel(item)
         XCTAssertEqual(testee.checkpoints.isEmpty, true)
     }
 
     func test_updateCheckpoints_whenNotEmpty() {
         let item = APIDiscussionTopic.make(
-            id: "42",
+            assignment: .make(id: "ass id"),
+            id: "disc id",
             checkpoints: [
                 .make(tag: "tag1"),
                 .make(tag: "tag2")
@@ -149,7 +150,7 @@ class DiscussionTopicTests: CoreTestCase {
         XCTAssertEqual(sortedCheckpoints.last?.tag, "tag2")
 
         let fetchedCheckpoints: [CDAssignmentCheckpoint] = databaseClient
-            .all(where: \.assignmentId, equals: "42")
+            .all(where: \.assignmentId, equals: "ass id")
             .sorted(by: \.tag)
         XCTAssertEqual(fetchedCheckpoints.count, 2)
         XCTAssertEqual(fetchedCheckpoints.first?.tag, "tag1")
