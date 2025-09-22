@@ -22,7 +22,7 @@ private class LoadGiveFeedback: CoreWebViewFeature {
     private let eventName = "giveFeed.submitted"
     private let handlerName = "cancelFeedbackDialog"
     private let scriptId = "jira-issue-collector"
-    private let scriptSrc = Secret.careerReportBugURL.string ?? ""
+    private let scriptSrc = Secret.careerBugReportURL.string ?? ""
 
     private let script: String
     private let callback: () -> Void

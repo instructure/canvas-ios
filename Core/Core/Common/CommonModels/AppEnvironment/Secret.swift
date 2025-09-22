@@ -41,7 +41,6 @@ public enum Secret {
 
     /// The value used for testing that Secret is working properly
     case testSecret
-    
     case careerBugReportURL
 
     public var string: String? {

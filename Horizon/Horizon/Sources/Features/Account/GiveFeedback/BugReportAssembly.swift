@@ -17,30 +17,10 @@
 //
 
 import Core
-import SwiftUI
+import UIKit
 
-struct GiveFeedbackView: View {
-    @Environment(\.dismiss) private var dismiss
-
-    private let htmlContent = """
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <style>
-            body {
-                height: 100%;
-                background-color: white;
-            }
-        </style>
-    </head>
-    <body>
-    </body>
-    </html>
-    """
-    var body: some View {
-        WebView(html: htmlContent, features: [.onLoadFeedback {
-            dismiss()
-        }])
-        .ignoresSafeArea(.keyboard, edges: .bottom)
+struct BugReportAssembly {
+    static func makeViewConroller() -> UIViewController {
+        CoreHostingController(BugReportView())
     }
 }
