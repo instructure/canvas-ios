@@ -95,7 +95,7 @@ public class AppStoreReview: NSObject {
 
     @objc
     public class func getState() -> [String: Int] {
-        func getTime (forKey: String) -> Int {
+        func getTime(forKey: String) -> Int {
             if let date = UserDefaults.standard.value(forKey: forKey) as? Date {
                 return Int(date.timeIntervalSince1970 * 1000)
             }

@@ -16,35 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
+import UIKit
 
-public struct APIActivityMessage: Codable {
-    let id: ID
-    let created_at: Date
-    let body: String?
-    let author_id: String
-    let message: String
-    let participating_user_ids: [String]
-}
-
-#if DEBUG
-extension APIActivityMessage {
-    public static func make(
-        id: ID = "",
-        created_at: Date = .now,
-        body: String? = nil,
-        author_id: String = "",
-        message: String = "",
-        participating_user_ids: [String] = []
-    ) -> APIActivityMessage {
-        .init(
-            id: id,
-            created_at: created_at,
-            body: body,
-            author_id: author_id,
-            message: message,
-            participating_user_ids: participating_user_ids
-        )
+struct BugReportAssembly {
+    static func makeViewConroller() -> UIViewController {
+        CoreHostingController(BugReportView())
     }
 }
-#endif

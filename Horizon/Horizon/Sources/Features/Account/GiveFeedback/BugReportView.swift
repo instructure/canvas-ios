@@ -16,35 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
+import SwiftUI
 
-public struct APIActivityMessage: Codable {
-    let id: ID
-    let created_at: Date
-    let body: String?
-    let author_id: String
-    let message: String
-    let participating_user_ids: [String]
-}
+struct BugReportView: View {
+    @Environment(\.dismiss) private var dismiss
 
-#if DEBUG
-extension APIActivityMessage {
-    public static func make(
-        id: ID = "",
-        created_at: Date = .now,
-        body: String? = nil,
-        author_id: String = "",
-        message: String = "",
-        participating_user_ids: [String] = []
-    ) -> APIActivityMessage {
-        .init(
-            id: id,
-            created_at: created_at,
-            body: body,
-            author_id: author_id,
-            message: message,
-            participating_user_ids: participating_user_ids
-        )
+    private let htmlContent = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <style>
+            body {
+                height: 100%;
+                background-color: white;
+            }
+        </style>
+    </head>
+    <body>
+    </body>
+    </html>
+    """
+    var body: some View {
+        WebView(html: htmlContent, features: [.onLoadFeedback {dismiss()}])
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
-#endif
