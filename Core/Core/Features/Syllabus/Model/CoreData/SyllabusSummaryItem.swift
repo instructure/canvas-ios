@@ -25,6 +25,7 @@ public final class SyllabusSummaryItem: NSManagedObject {
     @NSManaged public var typeRaw: String
     @NSManaged public var title: String?
     @NSManaged public var date: Date?
+    @NSManaged public var hasDate: Bool
     @NSManaged public var htmlURL: URL?
     @NSManaged public var canvasContextIDRaw: String?
     @NSManaged public var isDiscussionCheckpointStep: Bool
@@ -46,6 +47,7 @@ public final class SyllabusSummaryItem: NSManagedObject {
         model.type = .plannable(item.plannableType)
         model.title = item.plannable?.title
         model.date = item.plannable_date
+        model.hasDate = true
         model.htmlURL = item.html_url?.rawValue
         model.context = item.context
         model.isDiscussionCheckpointStep = DiscussionCheckpointStep(
@@ -62,6 +64,7 @@ public final class SyllabusSummaryItem: NSManagedObject {
         model.type = .calendarEvent(item.type)
         model.title = item.sub_assignment?.discussion_topic?.title ?? item.title
         model.date = item.start_at
+        model.hasDate = item.start_at != nil
         model.htmlURL = item.sub_assignment?.html_url ?? item.html_url
         model.context = Context(canvasContextID: item.context_code)
         model.isDiscussionCheckpointStep = DiscussionCheckpointStep(

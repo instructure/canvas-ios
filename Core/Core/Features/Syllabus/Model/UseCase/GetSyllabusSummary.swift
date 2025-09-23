@@ -44,39 +44,45 @@ public class GetSyllabusSummary: UseCase {
             key: #keyPath(SyllabusSummaryItem.canvasContextIDRaw),
             equals: context.canvasContextID
         )
+        let hasDate = NSSortDescriptor(key: #keyPath(SyllabusSummaryItem.hasDate), ascending: false)
         let date = NSSortDescriptor(key: #keyPath(SyllabusSummaryItem.date), ascending: true)
         let title = NSSortDescriptor(key: #keyPath(SyllabusSummaryItem.title), naturally: true)
-        return Scope(predicate: predicate, order: [date, title])
+        return Scope(predicate: predicate, order: [hasDate, date, title])
+    }
+
+    var assignmentsRequest: GetCalendarEventsRequest {
+        GetCalendarEventsRequest(contexts: [context], type: .assignment, allEvents: true)
+    }
+
+    var eventsRequest: GetCalendarEventsRequest {
+        GetCalendarEventsRequest(contexts: [context], type: .event, allEvents: true)
+    }
+
+    var ungradedItemsRequest: GetPlannablesRequest {
+        GetPlannablesRequest(
+            contextCodes: [context].map(\.canvasContextID),
+            filter: "all_ungraded_todo_items"
+        )
     }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
-
-        let contexts = [context]
-        let contextCodes = [context].map(\.canvasContextID)
-
-        let assignments = environment.api.makeRequest(
-            GetCalendarEventsRequest(contexts: contexts, type: .assignment, allEvents: true)
-        )
-
-        let events = environment.api.makeRequest(
-            GetCalendarEventsRequest(contexts: contexts, type: .event, allEvents: true)
-        )
-
-        let ungradedItems = environment.api.makeRequest(
-            GetPlannablesRequest(
-                contextCodes: contextCodes,
-                filter: "all_ungraded_todo_items"
-            )
-        )
+        let api = environment.api
+        let assignments = api.makeRequest(assignmentsRequest)
+        let events = api.makeRequest(eventsRequest)
+        let ungradedItems = api.makeRequest(ungradedItemsRequest)
 
         subscription?.cancel()
         subscription = Publishers
             .CombineLatest(
-                assignments.merge(with: events).compactMap(\.body),
+                Publishers.CombineLatest(
+                    assignments.compactMap(\.body),
+                    events.compactMap(\.body)
+                )
+                .map({ $0.0 + $0.1 }),
                 ungradedItems.compactMap(\.body)
             )
             .map { (events, plannables) in
-                Response(calendarEvents: events, plannables: plannables)
+                Response(calendarEvents: events.filter({ $0.hidden != true }), plannables: plannables)
             }
             .sinkFailureOrValue(
                 receiveFailure: { error in
