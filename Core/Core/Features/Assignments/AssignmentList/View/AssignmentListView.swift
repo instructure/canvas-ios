@@ -21,7 +21,8 @@ import SwiftUI
 struct AssignmentListView: View {
 
     private let sections: [AssignmentListSection]
-    private let identifierGroup: String
+    private let sectionIdentifierGroup: String
+    private let itemIdentifierGroup: String
     private let navigateToDetailsAction: (URL?) -> Void
     private let whatIfModel: GradeListWhatIfModel?
 
@@ -32,7 +33,8 @@ struct AssignmentListView: View {
         whatIfModel: GradeListWhatIfModel? = nil
     ) {
         self.sections = sections
-        self.identifierGroup = identifierGroup
+        self.sectionIdentifierGroup = "\(identifierGroup).Sections"
+        self.itemIdentifierGroup = "\(identifierGroup).Items"
         self.navigateToDetailsAction = navigateToDetailsAction
         self.whatIfModel = whatIfModel
     }
@@ -46,7 +48,11 @@ struct AssignmentListView: View {
     }
 
     private func sectionView(with section: AssignmentListSection) -> some View {
-        InstUI.CollapsibleListSection(title: section.title, itemCount: section.rows.count) {
+        InstUI.CollapsibleListSection(
+            title: section.title,
+            headerIdentifier: "\(sectionIdentifierGroup).\(section.id)",
+            itemCount: section.rows.count
+        ) {
             ForEach(section.rows) { row in
                 switch row {
                 case .student(let model):
@@ -63,53 +69,53 @@ struct AssignmentListView: View {
     @ViewBuilder
     private func studentCell(model: StudentAssignmentListItem, isLastItem: Bool) -> some View {
         let routeAction = { navigateToDetailsAction(model.route) }
-        let identifier = "\(identifierGroup).\(model.id)"
+        let itemIdentifier = "\(itemIdentifierGroup).\(model.id)"
 
         if let subItems = model.subItems {
             InstUI.CollapsibleListRow(
                 cell: StudentAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
-                    .identifier(identifier),
+                    .identifier(itemIdentifier),
                 isInitiallyExpanded: false
             ) {
                 ForEach(subItems) { subItem in
                     StudentAssignmentListSubItemCell(model: subItem, action: routeAction)
-                        .identifier(identifier, subItem.tag)
+                        .identifier(itemIdentifier, subItem.tag)
                 }
             }
             InstUI.Divider(isLast: isLastItem)
         } else {
             StudentAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
-                .identifier(identifier)
+                .identifier(itemIdentifier)
         }
     }
 
     @ViewBuilder
     private func teacherCell(model: TeacherAssignmentListItem, isLastItem: Bool) -> some View {
         let routeAction = { navigateToDetailsAction(model.route) }
-        let identifier = "\(identifierGroup).\(model.id)"
+        let itemIdentifier = "\(itemIdentifierGroup).\(model.id)"
 
         if let subItems = model.subItems {
             InstUI.CollapsibleListRow(
                 cell: TeacherAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
-                    .identifier(identifier),
+                    .identifier(itemIdentifier),
                 isInitiallyExpanded: false
             ) {
                 ForEach(subItems) { subItem in
                     TeacherAssignmentListSubItemCell(model: subItem, action: routeAction)
-                        .identifier(identifier, subItem.tag)
+                        .identifier(itemIdentifier, subItem.tag)
                 }
             }
             InstUI.Divider(isLast: isLastItem)
         } else {
             TeacherAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
-                .identifier(identifier)
+                .identifier(itemIdentifier)
         }
     }
 
     @ViewBuilder
     private func gradeListCell(model: StudentAssignmentListItem, isLastItem: Bool) -> some View {
         let routeAction = { navigateToDetailsAction(model.route) }
-        let identifier = "\(identifierGroup).\(model.id)"
+        let itemIdentifier = "\(itemIdentifierGroup).\(model.id)"
 
         if let subItems = model.subItems {
             InstUI.CollapsibleListRow(
@@ -118,12 +124,12 @@ struct AssignmentListView: View {
                     whatIfModel: whatIfModel,
                     isLastItem: nil,
                     action: routeAction
-                ).identifier(identifier),
+                ).identifier(itemIdentifier),
                 isInitiallyExpanded: false
             ) {
                 ForEach(subItems) { subItem in
                     StudentAssignmentListSubItemCell(model: subItem, action: routeAction)
-                        .identifier(identifier, subItem.tag)
+                        .identifier(itemIdentifier, subItem.tag)
                 }
             }
             InstUI.Divider(isLast: isLastItem)
@@ -133,7 +139,7 @@ struct AssignmentListView: View {
                 whatIfModel: whatIfModel,
                 isLastItem: isLastItem,
                 action: routeAction
-            ).identifier(identifier)
+            ).identifier(itemIdentifier)
         }
     }
 }
