@@ -454,7 +454,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         var showGradeSection = assignment.submission?.needsGrading == true ||
             (assignment.submission?.isGraded == true && assignment.gradingType != .not_graded ) ||
             presenter.onlineUploadState != nil
-        let gradeText = GradeFormatter.string(from: assignment, style: .short)
+        let gradeText = GradeFormatter.string(from: assignment, submission: submission, style: .short)
         if assignment.hideQuantitativeData, (gradeText ?? "").isEmpty == true {
             showGradeSection = false
         }

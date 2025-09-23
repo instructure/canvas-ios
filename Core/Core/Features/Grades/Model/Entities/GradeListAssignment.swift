@@ -46,17 +46,14 @@ public struct GradeListAssignment: Equatable {
         self.statusColor = Color(submissionDisplayProperties.color)
         self.statusText = submissionDisplayProperties.text
 
-        self.gradeText = GradeFormatter.string(
+        let gradeText = GradeFormatter.string(
             from: assignment,
-            userID: userID,
-            style: .medium
-        ) ?? ""
-
-        let gradeA11yString = GradeFormatter.a11yString(
-            from: assignment,
-            userID: userID,
+            submission: submission ?? assignment.submission,
             style: .medium
         )
+        self.gradeText = gradeText ?? ""
+
+        let gradeA11yString = GradeFormatter.a11yString(from: gradeText)
         self.gradeAccessibilityLabel = gradeA11yString
             .flatMap { [String(localized: "Grade", bundle: .core), $0].accessibilityJoined() } ?? ""
     }
