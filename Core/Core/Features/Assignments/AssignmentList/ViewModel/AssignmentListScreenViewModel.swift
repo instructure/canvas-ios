@@ -204,7 +204,7 @@ public class AssignmentListScreenViewModel: ObservableObject {
         var sections: [AssignmentListSection] = []
         let allAssignments: [Assignment] = assignmentGroups
             .compactMap { $0 }
-            .sorted { $0.dueAtOrCheckpointsDueAt ?? Date.distantFuture < $1.dueAtOrCheckpointsDueAt ?? Date.distantFuture }
+            .sorted { $0.dueAtForSorting < $1.dueAtForSorting }
         let filteredAssignments = isTeacher
             ? filterAssignmentsTeacher(allAssignments)
             : filterAssignmentsStudent(allAssignments)

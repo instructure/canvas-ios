@@ -255,7 +255,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
         assignments: [Assignment]
     ) -> [GradeListData.AssignmentSections] {
         let orderedAssignments = assignments.sorted {
-            $0.dueAtSortNilsAtBottom ?? Date.distantFuture < $1.dueAtSortNilsAtBottom ?? Date.distantFuture
+            $0.dueAtForSorting < $1.dueAtForSorting
         }
         var assignmentSections: [GradeListData.AssignmentSections] = []
         orderedAssignments.forEach { assignment in
@@ -282,7 +282,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
         assignments: [Assignment]
     ) -> [GradeListData.AssignmentSections] {
         let orderedAssignments = assignments.sorted {
-            $0.dueAtSortNilsAtBottom ?? Date.distantFuture < $1.dueAtSortNilsAtBottom ?? Date.distantFuture
+            $0.dueAtForSorting < $1.dueAtForSorting
         }
 
         var assignmentSections: [GradeListData.AssignmentSections] = []
@@ -306,7 +306,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
         orderedAssignments.forEach { assignment in
             let entry = GradeListAssignment(assignment: assignment, userID: userID)
-            if let dueAt = assignment.dueAtSortNilsAtBottom {
+            let dueAt = assignment.dueAtForSorting
                 if let lockAt = assignment.lockAt {
                     if lockAt >= now, dueAt <= now {
                         overdueAssignments.assignments.append(entry)
@@ -320,9 +320,6 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 } else if dueAt > now {
                     upcomingAssignments.assignments.append(entry)
                 }
-            } else {
-                upcomingAssignments.assignments.append(entry)
-            }
         }
 
         if !overdueAssignments.assignments.isEmpty {
