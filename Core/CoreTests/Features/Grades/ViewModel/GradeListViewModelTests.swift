@@ -172,7 +172,7 @@ class GradeListViewModelTests: CoreTestCase {
         testee.navigateToFilter(viewController: viewController)
         wait(for: [router.showExpectation], timeout: 1)
         // Then
-        XCTAssertTrue(router.presented is CoreHostingController<GradeFilterView>)
+        XCTAssertTrue(router.presented is CoreHostingController<GradeFilterScreen>)
     }
 }
 

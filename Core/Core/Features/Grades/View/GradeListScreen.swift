@@ -19,7 +19,7 @@
 import Combine
 import SwiftUI
 
-public struct GradeListView: View, ScreenViewTrackable {
+public struct GradeListScreen: View, ScreenViewTrackable {
     private enum AccessibilityFocusArea: Hashable, Equatable {
         case list, editor
     }
@@ -247,7 +247,7 @@ extension GradingPeriod: Identifiable {}
 #if DEBUG
 struct GradeListViewPreview: PreviewProvider {
     static var previews: some View {
-        GradeListView(
+        GradeListScreen(
             viewModel: .init(
                 interactor: GradeListInteractorPreview(),
                 gradeFilterInteractor: GradeFilterInteractorLive(
