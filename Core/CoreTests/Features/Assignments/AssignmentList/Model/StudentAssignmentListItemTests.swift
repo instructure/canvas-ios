@@ -132,6 +132,7 @@ final class StudentAssignmentListItemTests: CoreTestCase {
         ))
         // THEN
         XCTAssertEqual(testee.score, "42 / 100")
+        XCTAssertEqual(testee.scoreA11yLabel, "Grade, 42 out of 100")
 
         // WHEN has pointsPossible, has no score
         testee = makeListItem(.make(
@@ -140,6 +141,7 @@ final class StudentAssignmentListItemTests: CoreTestCase {
         ))
         // THEN
         XCTAssertEqual(testee.score, "- / 100")
+        XCTAssertEqual(testee.scoreA11yLabel, "Grade, - out of 100")
 
         // WHEN has no pointsPossible, has score
         testee = makeListItem(.make(
@@ -148,6 +150,7 @@ final class StudentAssignmentListItemTests: CoreTestCase {
         ))
         // THEN
         XCTAssertEqual(testee.score, nil)
+        XCTAssertEqual(testee.scoreA11yLabel, nil)
 
         // WHEN excused
         testee = makeListItem(.make(
@@ -156,6 +159,7 @@ final class StudentAssignmentListItemTests: CoreTestCase {
         ))
         // THEN
         XCTAssertEqual(testee.score, nil)
+        XCTAssertEqual(testee.scoreA11yLabel, nil)
     }
 
     func test_score_withSubAssignments_shouldIgnoreSubAssignmentValues() {
@@ -334,6 +338,43 @@ final class StudentAssignmentListItemTests: CoreTestCase {
         XCTAssertEqual(testee.subItems?[1].score, "- / 21")
         XCTAssertEqual(testee.subItems?[2].score, nil)
         XCTAssertEqual(testee.subItems?[3].score, nil)
+
+        XCTAssertEqual(testee.subItems?[0].scoreA11yLabel, "Grade, 7 out of 20")
+        XCTAssertEqual(testee.subItems?[1].scoreA11yLabel, "Grade, - out of 21")
+        XCTAssertEqual(testee.subItems?[2].scoreA11yLabel, nil)
+        XCTAssertEqual(testee.subItems?[3].scoreA11yLabel, nil)
+    }
+
+    // MARK: - Submission for UserId
+
+    func test_submission_whenUserIdIsNil_shouldBeFirstSubmission() {
+        testee = makeListItem(
+            .make(
+                submissions: [
+                    .make(excused: false),
+                    .make(excused: true, user_id: "42"),
+                    .make(excused: false, user_id: "7")
+                ]
+            ),
+            userId: nil
+        )
+
+        XCTAssertEqual(testee.submissionStatus, .init(status: .submitted))
+    }
+
+    func test_submission_whenUserIdIsSet_shouldBeSubmissionMatchingUserId() {
+        testee = makeListItem(
+            .make(
+                submissions: [
+                    .make(excused: false),
+                    .make(excused: true, user_id: "42"),
+                    .make(excused: false, user_id: "7")
+                ]
+            ),
+            userId: "42"
+        )
+
+        XCTAssertEqual(testee.submissionStatus, .init(status: .excused))
     }
 
     // MARK: - Private helpers

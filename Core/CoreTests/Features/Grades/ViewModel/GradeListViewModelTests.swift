@@ -153,7 +153,7 @@ class GradeListViewModelTests: CoreTestCase {
             scheduler: .immediate
         )
         testee.didSelectAssignment.accept((Assignment.make().htmlURL, WeakViewController()))
-        XCTAssertEqual(router.calls[0].0, URLComponents(string: "/courses//assignments/1"))
+        XCTAssertEqual(router.calls[0].0, URLComponents(string: "/courses/1/assignments/1"))
         XCTAssertEqual(router.calls[0].2, RouteOptions.detail)
     }
 
