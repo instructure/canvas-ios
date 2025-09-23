@@ -30,7 +30,7 @@ class StudentAnnotationSubmissionViewerViewModelTests: TeacherTestCase {
         let submission = Submission(context: databaseClient)
         submission.id = "123"
         submission.attempt = 6
-        testee = StudentAnnotationSubmissionViewerViewModel(submission: submission)
+        testee = StudentAnnotationSubmissionViewerViewModel(submission: submission, env: environment)
     }
 
     func testSessionDefaultValue() {

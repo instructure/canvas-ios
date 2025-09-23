@@ -25,10 +25,12 @@ class StudentAnnotationSubmissionViewerViewModel: ObservableObject {
 
     private var isInitialLoadStarted = false
     private let request: CanvaDocsSessionRequest
+    private let env: AppEnvironment
 
-    public init(submission: Submission) {
+    public init(submission: Submission, env: AppEnvironment) {
         submissionId = submission.id
         request = CanvaDocsSessionRequest(submissionId: submission.id, attempt: "\(submission.attempt)")
+        self.env = env
     }
 
     public func viewDidAppear() {
@@ -44,7 +46,7 @@ class StudentAnnotationSubmissionViewerViewModel: ObservableObject {
     }
 
     private func initializeAnnotationSession() {
-        AppEnvironment.shared.api.makeRequest(request) { [weak self] session, _, error in
+        env.api.makeRequest(request) { [weak self] session, _, error in
             var result: Result<URL, Error>?
 
             if let session = session?.canvadocs_session_url?.rawValue {

@@ -141,7 +141,7 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
             assignment: assignment,
             latestSubmission: submission,
             contextColor: contextColor,
-            studentAnnotationViewModel: .init(submission: submission),
+            studentAnnotationViewModel: .init(submission: submission, env: environment),
             gradeViewModel: .init(
                 assignment: assignment,
                 submission: submission,
@@ -179,7 +179,8 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
                 userId: submission.userID,
                 interactor: customGradebookColumnsInteractor,
                 scheduler: .immediate
-            )
+            ),
+            env: environment
         )
     }
 }

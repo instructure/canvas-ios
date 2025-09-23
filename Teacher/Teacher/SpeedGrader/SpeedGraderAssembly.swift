@@ -89,7 +89,7 @@ enum SpeedGraderAssembly {
             assignment: assignment,
             latestSubmission: submission,
             contextColor: contextColor,
-            studentAnnotationViewModel: .init(submission: submission),
+            studentAnnotationViewModel: .init(submission: submission, env: env),
             gradeViewModel: .init(
                 assignment: assignment,
                 submission: submission,
@@ -123,7 +123,8 @@ enum SpeedGraderAssembly {
             studentNotesViewModel: .init(
                 userId: submission.userID,
                 interactor: customGradebookColumnsInteractor
-            )
+            ),
+            env: env
         )
     }
 

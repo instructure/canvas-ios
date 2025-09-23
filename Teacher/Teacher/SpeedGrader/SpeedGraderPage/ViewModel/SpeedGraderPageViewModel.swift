@@ -58,6 +58,7 @@ class SpeedGraderPageViewModel: ObservableObject {
 
     // MARK: - Private properties
 
+    private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
     init(
@@ -70,7 +71,8 @@ class SpeedGraderPageViewModel: ObservableObject {
         commentListViewModel: SubmissionCommentListViewModel,
         rubricsViewModel: RubricsViewModel,
         submissionWordCountViewModel: SubmissionWordCountViewModel,
-        studentNotesViewModel: StudentNotesViewModel
+        studentNotesViewModel: StudentNotesViewModel,
+        env: AppEnvironment
     ) {
         self.assignment = assignment
         self.submission = latestSubmission
@@ -83,6 +85,7 @@ class SpeedGraderPageViewModel: ObservableObject {
         self.rubricsViewModel = rubricsViewModel
         self.submissionWordCountViewModel = submissionWordCountViewModel
         self.studentNotesViewModel = studentNotesViewModel
+        self.env = env
 
         contextColor.assign(to: &$contextColor)
 
@@ -128,7 +131,7 @@ class SpeedGraderPageViewModel: ObservableObject {
             didSelectFile(nil)
         }
 
-        studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selectedAttempt)
+        studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selectedAttempt, env: env)
         gradeStatusViewModel.didChangeAttempt.send(attemptNumber)
         submissionWordCountViewModel.didChangeAttempt.send(attemptNumber)
     }
