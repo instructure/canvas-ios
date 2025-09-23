@@ -324,7 +324,7 @@ public class AssignmentListScreenViewModel: ObservableObject {
         if isTeacher {
             .teacher(.init(assignment: assignment))
         } else {
-            .student(.init(assignment: assignment))
+            .student(.init(assignment: assignment, userId: nil))
         }
     }
 

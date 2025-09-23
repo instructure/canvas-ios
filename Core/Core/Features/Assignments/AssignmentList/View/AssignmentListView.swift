@@ -23,15 +23,18 @@ struct AssignmentListView: View {
     private let sections: [AssignmentListSection]
     private let identifierGroup: String
     private let navigateToDetailsAction: (URL?) -> Void
+    private let whatIfModel: GradeListWhatIfModel?
 
     init(
         sections: [AssignmentListSection],
         identifierGroup: String,
-        navigateToDetailsAction: @escaping (URL?) -> Void
+        navigateToDetailsAction: @escaping (URL?) -> Void,
+        whatIfModel: GradeListWhatIfModel? = nil
     ) {
         self.sections = sections
         self.identifierGroup = identifierGroup
         self.navigateToDetailsAction = navigateToDetailsAction
+        self.whatIfModel = whatIfModel
     }
 
     var body: some View {
@@ -50,6 +53,8 @@ struct AssignmentListView: View {
                     studentCell(model: model, isLastItem: section.rows.last == row)
                 case .teacher(let model):
                     teacherCell(model: model, isLastItem: section.rows.last == row)
+                case .gradeListRow(let model):
+                    gradeListCell(model: model, isLastItem: section.rows.last == row)
                 }
             }
         }
@@ -98,6 +103,37 @@ struct AssignmentListView: View {
         } else {
             TeacherAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
                 .identifier(identifier)
+        }
+    }
+
+    @ViewBuilder
+    private func gradeListCell(model: StudentAssignmentListItem, isLastItem: Bool) -> some View {
+        let routeAction = { navigateToDetailsAction(model.route) }
+        let identifier = "\(identifierGroup).\(model.id)"
+
+        if let subItems = model.subItems {
+            InstUI.CollapsibleListRow(
+                cell: GradeListItemCell(
+                    model: model,
+                    whatIfModel: whatIfModel,
+                    isLastItem: nil,
+                    action: routeAction
+                ).identifier(identifier),
+                isInitiallyExpanded: false
+            ) {
+                ForEach(subItems) { subItem in
+                    StudentAssignmentListSubItemCell(model: subItem, action: routeAction)
+                        .identifier(identifier, subItem.tag)
+                }
+            }
+            InstUI.Divider(isLast: isLastItem)
+        } else {
+            GradeListItemCell(
+                model: model,
+                whatIfModel: whatIfModel,
+                isLastItem: isLastItem,
+                action: routeAction
+            ).identifier(identifier)
         }
     }
 }

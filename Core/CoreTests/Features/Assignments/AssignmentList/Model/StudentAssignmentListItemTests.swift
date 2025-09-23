@@ -338,9 +338,13 @@ final class StudentAssignmentListItemTests: CoreTestCase {
 
     // MARK: - Private helpers
 
-    private func makeListItem(_ apiModel: APIAssignment) -> StudentAssignmentListItem {
+    private func makeListItem(
+        _ apiModel: APIAssignment,
+        userId: String? = nil
+    ) -> StudentAssignmentListItem {
         StudentAssignmentListItem(
             assignment: .make(from: apiModel, in: databaseClient),
+            userId: userId,
             dueDateTextsProvider: dueDateTextsProvider
         )
     }

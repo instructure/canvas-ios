@@ -152,7 +152,7 @@ class GradeListViewModelTests: CoreTestCase {
             env: env,
             scheduler: .immediate
         )
-        testee.didSelectAssignment.accept((WeakViewController(), Assignment.make().id))
+        testee.didSelectAssignment.accept((Assignment.make().htmlURL, WeakViewController()))
         XCTAssertEqual(router.calls[0].0, URLComponents(string: "/courses//assignments/1"))
         XCTAssertEqual(router.calls[0].2, RouteOptions.detail)
     }
@@ -289,9 +289,9 @@ private let gradeListData = GradeListData(
     courseName: "",
     courseColor: nil,
     assignmentSections: [
-        GradeListData.AssignmentSections(id: "1", title: "First group", assignments: [.init(assignment: .make(), userID: "")]),
-        GradeListData.AssignmentSections(id: "2", title: "Second group", assignments: [.init(assignment: .make(), userID: "")]),
-        GradeListData.AssignmentSections(id: "3", title: "Third group", assignments: [.init(assignment: .make(), userID: "")])
+        AssignmentListSection(id: "1", title: "First group", rows: [.gradeListRow(.init(assignment: .make(), userId: ""))]),
+        AssignmentListSection(id: "2", title: "Second group", rows: [.gradeListRow(.init(assignment: .make(), userId: ""))]),
+        AssignmentListSection(id: "3", title: "Third group", rows: [.gradeListRow(.init(assignment: .make(), userId: ""))])
     ],
     isGradingPeriodHidden: false,
     gradingPeriods: [.make()],

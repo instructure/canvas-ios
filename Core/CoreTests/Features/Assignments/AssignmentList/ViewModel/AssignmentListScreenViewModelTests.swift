@@ -353,6 +353,8 @@ private extension AssignmentListSection.Row {
             model.title
         case .teacher(let model):
             model.title
+        case .gradeListRow(let model):
+            model.title
         }
     }
 }
