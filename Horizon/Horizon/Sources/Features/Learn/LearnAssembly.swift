@@ -58,6 +58,7 @@ struct LearnAssembly {
             getCoursesInteractor: makeGetCoursesInteractor(),
             learnCoursesInteractor: GetLearnCoursesInteractorLive(),
             programInteractor: ProgramInteractorLive(programCourseInteractor: ProgramCourseInteractorLive()),
+            courseToolsInteractor: CourseToolsInteractorLive(),
             courseID: courseID,
             enrollmentID: enrollmentID,
             programID: programID,
