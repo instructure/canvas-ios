@@ -37,6 +37,7 @@ const client = new JiraClient({
   host: 'instructure.atlassian.net',
   username: process.env.JIRA_USERNAME,
   password: process.env.JIRA_API_TOKEN,
+  apiVersion: '3',
 })
 
 const getJSON = (url) => new Promise((resolve, reject) => {
