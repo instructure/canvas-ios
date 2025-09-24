@@ -114,7 +114,7 @@ exports.commands = {
         project = "MBL" AND
         fixVersion IN ("${fixVersionName}") AND
         status = Closed AND
-        NOT (labels = "${releasedLabel}")
+        (labels IS EMPTY OR labels NOT IN ("${releasedLabel}"))
       `, {
         startAt,
         maxResults: 10,
