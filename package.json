@@ -30,7 +30,7 @@
     "format-message-parse": "^5.1.2",
     "format-message-print": "^5.1.2",
     "highlight.js": "^9.13.1",
-    "jira-client": "^6.16.0",
+    "jira-client": "^8.2.2",
     "jsdom": "^15.1.0",
     "mkdirp": "^1.0.4",
     "pdfkit": "^0.9.1",
