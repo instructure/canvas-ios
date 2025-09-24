@@ -112,7 +112,7 @@ exports.commands = {
     do {
       let results = await client.searchJira(`
         project = "MBL" AND
-        fixVersion = "${fixVersionName}" AND
+        fixVersion IN ("${fixVersionName}") AND
         status = Closed AND
         NOT (labels = "${releasedLabel}")
       `, {
