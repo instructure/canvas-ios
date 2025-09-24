@@ -59,7 +59,7 @@ public enum GradeListAssembly {
             ),
             env: env
         )
-        let viewController = CoreHostingController(GradeListView(viewModel: viewModel), env: env)
+        let viewController = CoreHostingController(GradeListScreen(viewModel: viewModel), env: env)
         viewController.setDefaultViewRoute("/empty")
         return viewController
     }
@@ -73,7 +73,7 @@ public enum GradeListAssembly {
             dependency: dependency,
             gradeFilterInteractor: gradeFilterInteractor
         )
-        let view = GradeFilterView(viewModel: viewModel)
+        let view = GradeFilterScreen(viewModel: viewModel)
         let viewController = CoreHostingController(view, env: env)
         return viewController
     }

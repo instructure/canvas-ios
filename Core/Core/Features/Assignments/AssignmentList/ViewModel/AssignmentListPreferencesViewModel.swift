@@ -189,7 +189,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         let filterOptionsStudent: [AssignmentFilterOptionStudent]
         let filterOptionTeacher: AssignmentFilterOptionsTeacher?
         let statusFilterOptionTeacher: AssignmentStatusFilterOptionsTeacher?
-        let sortingOption: AssignmentListViewModel.AssignmentArrangementOptions?
+        let sortingOption: AssignmentListScreenViewModel.GroupingOptions?
         let gradingPeriodId: String?
     }
 
@@ -206,7 +206,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
     // Sort Mode
     let sortModeOptions: SingleSelectionOptions
-    private let sortModes: [AssignmentListViewModel.AssignmentArrangementOptions]
+    private let sortModes: [AssignmentListScreenViewModel.GroupingOptions]
 
     // Grading Periods
     let gradingPeriodOptions: SingleSelectionOptions
@@ -229,8 +229,8 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         initialFilterOptionsStudent: [AssignmentFilterOptionStudent],
         initialStatusFilterOptionTeacher: AssignmentStatusFilterOptionsTeacher,
         initialFilterOptionTeacher: AssignmentFilterOptionsTeacher,
-        sortingOptions: [AssignmentListViewModel.AssignmentArrangementOptions],
-        initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions,
+        sortingOptions: [AssignmentListScreenViewModel.GroupingOptions],
+        initialSortingOption: AssignmentListScreenViewModel.GroupingOptions,
         gradingPeriods: [GradingPeriod],
         initialGradingPeriod: GradingPeriod?,
         courseName: String,
@@ -371,7 +371,7 @@ private extension AssignmentStatusFilterOptionsTeacher {
     }
 }
 
-private extension AssignmentListViewModel.AssignmentArrangementOptions {
+private extension AssignmentListScreenViewModel.GroupingOptions {
     private var title: String {
         switch self {
         case .dueDate:

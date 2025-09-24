@@ -40,7 +40,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var discussionTopic: DiscussionTopic?
     @NSManaged public var dueAt: Date?
     @NSManaged public var dueAtOrCheckpointsDueAt: Date?
-    @NSManaged public var dueAtSortNilsAtBottom: Date?
+    @NSManaged public var dueAtForSorting: Date
     @NSManaged public var externalToolContentID: String?
     @NSManaged public var freeFormCriterionCommentsOnRubric: Bool
     @NSManaged public var gradedIndividually: Bool
@@ -172,11 +172,6 @@ public class Assignment: NSManagedObject {
         allDates.count > 1
     }
 
-    @objc public var assignmentGroupSectionName: String? {
-        guard let assignmentGroup = assignmentGroup else { return nil }
-        return assignmentGroup.name
-    }
-
     public var isMasteryPathAssignment: Bool { masteryPathAssignment != nil }
 
     public var hasRubrics: Bool { rubric?.isNotEmpty ?? false }
@@ -220,7 +215,6 @@ public class Assignment: NSManagedObject {
         courseID = item.course_id.value
         details = item.description
         dueAt = item.due_at
-        dueAtSortNilsAtBottom = item.due_at ?? Date.distantFuture
         externalToolContentID = item.external_tool_tag_attributes?.content_id?.rawValue
         gradedIndividually = item.grade_group_students_individually ?? true
         gradingStandardId = item.grading_standard_id?.value
@@ -289,6 +283,7 @@ public class Assignment: NSManagedObject {
             self.assignmentGroup = assignmentGroup
         } else {
             assignmentGroup = nil
+            assignmentGroupPosition = .max
         }
 
         if updateSubmission {
@@ -324,6 +319,8 @@ public class Assignment: NSManagedObject {
         }
 
         updateCheckpoints(from: item, requiredReplyCount: requiredReplyCount, in: client)
+
+        dueAtForSorting = dueAtOrCheckpointsDueAt ?? .distantFuture
     }
 
     private func updateCheckpoints(from item: APIAssignment, requiredReplyCount: Int?, in moContext: NSManagedObjectContext) {

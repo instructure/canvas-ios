@@ -38,9 +38,8 @@ class GradeFormatterTests: CoreTestCase {
             points_possible: 11,
             submission: .make(grade: "complete", score: 1)
         ))
-        XCTAssertEqual(GradeFormatter.string(from: assignment), "Complete / 11")
-        XCTAssertEqual(GradeFormatter.a11yString(from: assignment), "Complete out of 11")
-        XCTAssertEqual(GradeFormatter.string(from: assignment, style: .short), "Complete")
+        XCTAssertEqual(GradeFormatter.string(from: assignment, submission: assignment.submission, style: .medium), "Complete / 11")
+        XCTAssertEqual(GradeFormatter.string(from: assignment, submission: assignment.submission, style: .short), "Complete")
     }
 
     func testFromAssignmentScoresHidden() {
@@ -50,32 +49,8 @@ class GradeFormatterTests: CoreTestCase {
             submission: .make(grade: "complete", score: 1)
         ))
         Course.make(from: .make(settings: .make(restrict_quantitative_data: true)))
-        XCTAssertEqual(GradeFormatter.string(from: assignment), "Complete")
-        XCTAssertEqual(GradeFormatter.a11yString(from: assignment), "Complete")
-        XCTAssertEqual(GradeFormatter.string(from: assignment, style: .short), "Complete")
-    }
-
-    func testFromAssignmentMultipleSubmissions() {
-        let assignment = Assignment.make(from: .make(
-            grading_type: .pass_fail,
-            points_possible: 10,
-            submissions: [.make(grade: "complete", score: 1, user_id: "1"), .make(grade: "incomplete", score: 0, user_id: "2")]
-        ))
-        XCTAssertEqual(GradeFormatter.string(from: assignment, userID: "2", style: .medium), "Incomplete / 10")
-        XCTAssertEqual(GradeFormatter.a11yString(from: assignment, userID: "2", style: .medium), "Incomplete out of 10")
-        XCTAssertEqual(GradeFormatter.string(from: assignment, userID: "2", style: .short), "Incomplete")
-    }
-
-    func testFromAssignmentMultipleSubmissionsScoresHidden() {
-        let assignment = Assignment.make(from: .make(
-            grading_type: .pass_fail,
-            points_possible: 10,
-            submissions: [.make(grade: "complete", score: 1, user_id: "1"), .make(grade: "incomplete", score: 0, user_id: "2")]
-        ))
-        Course.make(from: .make(settings: .make(restrict_quantitative_data: true)))
-        XCTAssertEqual(GradeFormatter.string(from: assignment, userID: "2", style: .medium), "Incomplete")
-        XCTAssertEqual(GradeFormatter.a11yString(from: assignment, userID: "2", style: .medium), "Incomplete")
-        XCTAssertEqual(GradeFormatter.string(from: assignment, userID: "2", style: .short), "Incomplete")
+        XCTAssertEqual(GradeFormatter.string(from: assignment, submission: assignment.submission, style: .medium), "Complete")
+        XCTAssertEqual(GradeFormatter.string(from: assignment, submission: assignment.submission, style: .short), "Complete")
     }
 
     func testDecimals() {
@@ -579,5 +554,23 @@ class GradeFormatterTests: CoreTestCase {
 
         // Should always return nil for not graded type
         XCTAssertEqual(GradeFormatter.finalGradeWithoutMetric(for: submission, gradingType: gradingType), nil)
+    }
+}
+
+// MARK: - Private helpers
+
+private extension GradeFormatter {
+    func a11yString(from submission: Submission?) -> String? {
+        GradeFormatter.a11yString(from: string(from: submission))
+    }
+
+    func string(from submission: Submission?) -> String? {
+        string(
+            isExcused: submission?.excused == true,
+            score: submission?.score,
+            normalizedScore: submission?.normalizedScore,
+            grade: submission?.grade,
+            gradingScheme: submission?.assignment?.gradingScheme
+        )
     }
 }

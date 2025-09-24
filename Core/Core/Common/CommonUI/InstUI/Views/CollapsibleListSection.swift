@@ -33,10 +33,12 @@ extension InstUI {
 
         private let headerAccessibilityLabel: String
         private let listLevelAccessibilityLabel: String?
+        private let headerIdentifier: String?
 
         public init(
             title: String,
             customAccessibilityLabel: String? = nil,
+            headerIdentifier: String? = nil,
             itemCount: Int?,
             paddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
             accessoryIconSize: CGFloat = 18,
@@ -46,6 +48,7 @@ extension InstUI {
             self.init(
                 label: Text(title),
                 accessibilityLabel: customAccessibilityLabel ?? title,
+                headerIdentifier: headerIdentifier,
                 itemCount: itemCount,
                 paddingSet: paddingSet,
                 accessoryIconSize: accessoryIconSize,
@@ -57,6 +60,7 @@ extension InstUI {
         public init(
             label: Label,
             accessibilityLabel: String,
+            headerIdentifier: String? = nil,
             itemCount: Int?,
             paddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
             accessoryIconSize: CGFloat = 18,
@@ -77,6 +81,8 @@ extension InstUI {
             ].accessibilityJoined()
 
             self.listLevelAccessibilityLabel = itemCount.map(String.format(accessibilityListCount:))
+
+            self.headerIdentifier = headerIdentifier
         }
 
         // MARK: - Body
@@ -131,6 +137,7 @@ extension InstUI {
             .accessibilityValue(expandedState.a11yValue)
             .accessibilityHint(expandedState.a11yHint)
             .accessibilityAddTraits([.isHeader])
+            .identifier(headerIdentifier)
         }
     }
 }

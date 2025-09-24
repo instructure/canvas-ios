@@ -48,7 +48,7 @@ public class CourseDetailsHelperParent: BaseHelper {
     public static var totalGradeLabel: XCUIElement { app.find(id: "CourseTotalGrade") }
 
     public static func assignmentCell(assignment: DSAssignment) -> XCUIElement {
-        return app.find(id: "GradeListCell.\(assignment.id)")
+        return app.find(id: "GradeList.Items.\(assignment.id)")
     }
 
     public static func letterGradeLabelOfAssignmentCell(assignment: DSAssignment, letterGrade: String) -> XCUIElement {

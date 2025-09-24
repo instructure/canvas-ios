@@ -53,7 +53,7 @@ public final class GradeListViewModel: ObservableObject {
 
     // MARK: - Input
     let pullToRefreshDidTrigger = PassthroughRelay<RefreshCompletion?>()
-    let didSelectAssignment = PassthroughRelay<(WeakViewController, assignmentId: String)>()
+    let didSelectAssignment = PassthroughRelay<(URL?, WeakViewController)>()
     let didSelectGradingPeriod = PassthroughRelay<String?>()
     let confirmRevertAlertViewModel = ConfirmationAlertViewModel(
         title: String(localized: "Revert to Official Score?", bundle: .core),
@@ -135,8 +135,9 @@ public final class GradeListViewModel: ObservableObject {
 
         didSelectAssignment
             .receive(on: scheduler)
-            .sink { [weak router] vc, assignmentId in
-                router?.route(to: "/courses/\(interactor.courseID)/assignments/\(assignmentId)", from: vc, options: .detail)
+            .sink { url, controller in
+                guard let url else { return }
+                env.router.route(to: url, from: controller, options: .detail)
             }
             .store(in: &subscriptions)
 

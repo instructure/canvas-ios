@@ -80,7 +80,7 @@ public class GetAssignmentsByGroup: UseCase {
             order: [
                 .init(key: #keyPath(Assignment.assignmentGroup.position), ascending: true),
                 .init(key: #keyPath(Assignment.assignmentGroup.name), ascending: true, naturally: true),
-                .init(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true),
+                .init(key: #keyPath(Assignment.dueAtForSorting), ascending: true),
                 .init(key: #keyPath(Assignment.position), ascending: true),
                 .init(key: #keyPath(Assignment.name), ascending: true, naturally: true)
             ],

@@ -27,11 +27,13 @@ struct AssignmentListSection: Equatable, Identifiable {
     enum Row: Equatable, Identifiable {
         case student(StudentAssignmentListItem)
         case teacher(TeacherAssignmentListItem)
+        case gradeListRow(StudentAssignmentListItem)
 
         var id: String {
             switch self {
             case .student(let row): row.id
             case .teacher(let row): row.id
+            case .gradeListRow(let row): row.id
             }
         }
     }

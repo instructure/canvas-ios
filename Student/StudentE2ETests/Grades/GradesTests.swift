@@ -303,9 +303,11 @@ class GradesTests: E2ETestCase {
         XCTAssertEqual(totalGradeLabel.label, "Total grade is \(expectedTotalGrade)")
 
         let filterButton = GradesHelper.filterButton.waitUntil(.visible)
-        let upcomingAssignmentsLabel = GradesHelper.upcomingAssignmentsSectionTitle(numberOfItems: 2).waitUntil(.visible)
-        XCTAssertTrue(filterButton.isVisible)
-        XCTAssertTrue(upcomingAssignmentsLabel.isVisible)
+        XCTAssertVisible(filterButton)
+
+        let upcomingSection = GradesHelper.sectionHeader(id: "upcomingAssignments").waitUntil(.visible)
+        XCTAssertVisible(upcomingSection)
+        XCTAssertEqual(upcomingSection.label, GradesHelper.sectionLabel(title: "Upcoming Assignments", numberOfItems: 2))
 
         filterButton.hit()
         let sortByGroupSwitch = GradesHelper.Filter.sortByGroupSwitch.waitUntil(.visible)
@@ -321,10 +323,12 @@ class GradesTests: E2ETestCase {
 
         saveButton.hit()
 
-        let labelOfAG1 = GradesHelper.labelOfAssignmentGroup(testAG1, numberOfItems: 1).waitUntil(.visible)
-        let labelOfAG2 = GradesHelper.labelOfAssignmentGroup(testAG2, numberOfItems: 1).waitUntil(.visible)
-        XCTAssertTrue(labelOfAG1.isVisible)
-        XCTAssertTrue(labelOfAG2.isVisible)
+        let ag1Section = GradesHelper.sectionHeader(id: testAG1.id).waitUntil(.visible)
+        XCTAssertVisible(ag1Section)
+        XCTAssertEqual(ag1Section.label, GradesHelper.sectionLabel(title: testAG1.name, numberOfItems: 1))
+        let ag2Section = GradesHelper.sectionHeader(id: testAG2.id).waitUntil(.visible)
+        XCTAssertVisible(ag2Section)
+        XCTAssertEqual(ag2Section.label, GradesHelper.sectionLabel(title: testAG2.name, numberOfItems: 1))
 
         let assignmentCellOfTestAG1 = GradesHelper.cell(assignment: assignment1).waitUntil(.visible)
         let assignmentCellOfTestAG2 = GradesHelper.cell(assignment: assignment2).waitUntil(.visible)
