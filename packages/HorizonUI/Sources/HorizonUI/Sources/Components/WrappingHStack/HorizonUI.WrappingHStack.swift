@@ -178,7 +178,7 @@ public extension HorizonUI {
                 if isSpacer {
                     currentX += spacerWidth
                 } else {
-                    let yPosition = currentY + (line.height - size.height) / 2
+                    let yPosition = calculateYPosition(currentY: currentY, lineHeight: line.height, itemHeight: size.height)
                     subview.place(
                         at: CGPoint(x: currentX, y: yPosition),
                         proposal: ProposedViewSize(width: size.width, height: size.height)
@@ -199,7 +199,7 @@ public extension HorizonUI {
                     currentX += spacing
                 }
 
-                let yPosition = currentY + (line.height - size.height) / 2
+                let yPosition = calculateYPosition(currentY: currentY, lineHeight: line.height, itemHeight: size.height)
                 subview.place(
                     at: CGPoint(x: currentX, y: yPosition),
                     proposal: ProposedViewSize(width: size.width, height: size.height)
@@ -207,6 +207,19 @@ public extension HorizonUI {
 
                 currentX += size.width
                 isFirst = false
+            }
+        }
+
+        private func calculateYPosition(currentY: CGFloat, lineHeight: CGFloat, itemHeight: CGFloat) -> CGFloat {
+            switch alignment {
+            case .top:
+                return currentY
+            case .bottom:
+                return currentY + lineHeight - itemHeight
+            case .center:
+                return currentY + (lineHeight - itemHeight) / 2
+            default:
+                return currentY + (lineHeight - itemHeight) / 2
             }
         }
 
