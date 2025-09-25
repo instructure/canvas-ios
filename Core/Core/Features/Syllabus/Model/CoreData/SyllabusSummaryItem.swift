@@ -19,7 +19,7 @@
 import CoreData
 import UIKit
 
-public final class SyllabusSummaryItem: NSManagedObject {
+public final class CDSyllabusSummaryItem: NSManagedObject {
 
     @NSManaged public var id: String
     @NSManaged public var typeRaw: String
@@ -41,8 +41,8 @@ public final class SyllabusSummaryItem: NSManagedObject {
     }
 
     @discardableResult
-    public static func save(_ item: APIPlannable, in client: NSManagedObjectContext) -> SyllabusSummaryItem {
-        let model: SyllabusSummaryItem = client.first(where: #keyPath(SyllabusSummaryItem.id), equals: item.plannable_id.value) ?? client.insert()
+    public static func save(_ item: APIPlannable, in client: NSManagedObjectContext) -> CDSyllabusSummaryItem {
+        let model: CDSyllabusSummaryItem = client.first(where: #keyPath(CDSyllabusSummaryItem.id), equals: item.plannable_id.value) ?? client.insert()
         model.id = item.plannable_id.value
         model.type = .plannable(item.plannableType)
         model.title = item.plannable?.title
@@ -58,8 +58,8 @@ public final class SyllabusSummaryItem: NSManagedObject {
     }
 
     @discardableResult
-    public static func save(_ item: APICalendarEvent, in client: NSManagedObjectContext) -> SyllabusSummaryItem {
-        let model: SyllabusSummaryItem = client.first(where: #keyPath(SyllabusSummaryItem.id), equals: item.id.value) ?? client.insert()
+    public static func save(_ item: APICalendarEvent, in client: NSManagedObjectContext) -> CDSyllabusSummaryItem {
+        let model: CDSyllabusSummaryItem = client.first(where: #keyPath(CDSyllabusSummaryItem.id), equals: item.id.value) ?? client.insert()
         model.id = item.id.value
         model.type = .calendarEvent(item.type)
         model.title = item.sub_assignment?.discussion_topic?.title ?? item.title
@@ -115,14 +115,12 @@ public enum SyllabusSummaryItemType: RawRepresentable {
 
 // MARK: - UI Helpers
 
-extension SyllabusSummaryItem {
+extension CDSyllabusSummaryItem {
 
     public var icon: UIImage {
         switch type {
-        case .plannable(let type) where type == .sub_assignment:
-            isDiscussionCheckpointStep ? .discussionLine : type.icon
         case .plannable(let type):
-            type.icon
+            type.icon(isDiscussionCheckpointStep: isDiscussionCheckpointStep)
         case .calendarEvent(let type):
             type == .assignment ? .assignmentLine : .calendarMonthLine
         }

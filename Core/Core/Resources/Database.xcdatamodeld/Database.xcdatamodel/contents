@@ -487,6 +487,16 @@
         <attribute name="userId" attributeType="String"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="subAssignmentSubmissions" inverseEntity="Submission"/>
     </entity>
+    <entity name="CDSyllabusSummaryItem" representedClassName=".CDSyllabusSummaryItem" syncable="YES">
+        <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="hasDate" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="htmlURL" optional="YES" attributeType="URI"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isDiscussionCheckpointStep" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="typeRaw" attributeType="String"/>
+    </entity>
     <entity name="CDUserGroup" representedClassName="Core.CDUserGroup" syncable="YES">
         <attribute name="id" attributeType="String"/>
         <attribute name="isDifferentiationTag" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -1366,16 +1376,6 @@
     <entity name="Syllabus" representedClassName="Core.Syllabus" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="syllabus" inverseEntity="Assignment"/>
-    </entity>
-    <entity name="SyllabusSummaryItem" representedClassName=".SyllabusSummaryItem" syncable="YES">
-        <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="hasDate" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="htmlURL" optional="YES" attributeType="URI"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="isDiscussionCheckpointStep" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
-        <attribute name="typeRaw" attributeType="String"/>
     </entity>
     <entity name="Tab" representedClassName="Core.Tab" syncable="YES">
         <attribute name="contextRaw" attributeType="String"/>

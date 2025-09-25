@@ -20,7 +20,7 @@ import CoreData
 import Combine
 
 public class GetSyllabusSummary: UseCase {
-    public typealias Model = SyllabusSummaryItem
+    public typealias Model = CDSyllabusSummaryItem
     public struct Response: Codable, Equatable {
         static let empty = Response(calendarEvents: [], plannables: [])
 
@@ -41,12 +41,12 @@ public class GetSyllabusSummary: UseCase {
 
     public var scope: Scope {
         let predicate = NSPredicate(
-            key: #keyPath(SyllabusSummaryItem.canvasContextIDRaw),
+            key: #keyPath(CDSyllabusSummaryItem.canvasContextIDRaw),
             equals: context.canvasContextID
         )
-        let hasDate = NSSortDescriptor(key: #keyPath(SyllabusSummaryItem.hasDate), ascending: false)
-        let date = NSSortDescriptor(key: #keyPath(SyllabusSummaryItem.date), ascending: true)
-        let title = NSSortDescriptor(key: #keyPath(SyllabusSummaryItem.title), naturally: true)
+        let hasDate = NSSortDescriptor(key: #keyPath(CDSyllabusSummaryItem.hasDate), ascending: false)
+        let date = NSSortDescriptor(key: #keyPath(CDSyllabusSummaryItem.date), ascending: true)
+        let title = NSSortDescriptor(key: #keyPath(CDSyllabusSummaryItem.title), naturally: true)
         return Scope(predicate: predicate, order: [hasDate, date, title])
     }
 
@@ -97,11 +97,11 @@ public class GetSyllabusSummary: UseCase {
     public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
 
         response?.plannables.forEach { plannable in
-            SyllabusSummaryItem.save(plannable, in: client)
+            CDSyllabusSummaryItem.save(plannable, in: client)
         }
 
         response?.calendarEvents.forEach { event in
-            SyllabusSummaryItem.save(event, in: client)
+            CDSyllabusSummaryItem.save(event, in: client)
         }
     }
 }
