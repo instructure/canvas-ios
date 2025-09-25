@@ -21,8 +21,8 @@ import XCTest
 @testable import Parent
 import TestsFoundation
 
-class AssignmentDetailsViewControllerTests: ParentTestCase {
-    lazy var controller = AssignmentDetailsViewController.create(
+class ParentAssignmentDetailsViewControllerTests: ParentTestCase {
+    lazy var controller = ParentAssignmentDetailsViewController.create(
         studentID: "1",
         courseID: "1",
         assignmentID: "1",
@@ -140,7 +140,7 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
 
     func testUsesSubmissionInteractorForSubmissionPresentation() {
         let submissionURLInteractorMock = ParentSubmissionURLInteractorMock()
-        let testee = AssignmentDetailsViewController.create(
+        let testee = ParentAssignmentDetailsViewController.create(
             studentID: "1",
             courseID: "1",
             assignmentID: "1",

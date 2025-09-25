@@ -22,7 +22,7 @@ import Core
 import SafariServices
 import SwiftUI
 
-class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate {
+class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate {
     @IBOutlet weak var composeButton: FloatingButton!
     @IBOutlet weak var dateHeadingLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -74,7 +74,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current(),
         submissionURLInteractor: ParentSubmissionURLInteractor = ParentSubmissionURLInteractorLive(),
         env: AppEnvironment
-    ) -> AssignmentDetailsViewController {
+    ) -> ParentAssignmentDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.courseID = courseID

@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Assignment Details View Controller-->
+        <!--Parent Assignment Details View Controller-->
         <scene sceneID="WJV-J4-ngV">
             <objects>
-                <viewController storyboardIdentifier="AssignmentDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rwe-K5-TpS" customClass="AssignmentDetailsViewController" customModule="Parent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ParentAssignmentDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rwe-K5-TpS" customClass="ParentAssignmentDetailsViewController" customModule="Parent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MEz-4e-l28">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
