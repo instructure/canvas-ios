@@ -20,7 +20,7 @@ import Core
 import UIKit
 
 @IBDesignable
-class AssignmentDetailsSectionContainerView: UIView {
+class StudentAssignmentDetailsSectionContainerView: UIView {
     @IBOutlet weak var header: DynamicLabel!
     @IBOutlet weak var subHeader: DynamicLabel!
     @IBOutlet var contentView: UIView!

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Assignment Details View Controller-->
+        <!--Student Assignment Details View Controller-->
         <scene sceneID="NZn-Ab-Vcd">
             <objects>
-                <viewController storyboardIdentifier="AssignmentDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dvz-Jp-ehK" customClass="AssignmentDetailsViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StudentAssignmentDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dvz-Jp-ehK" customClass="StudentAssignmentDetailsViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vDv-xP-3aC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="3000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -463,7 +463,7 @@
                                                             <constraint firstAttribute="height" priority="750" constant="144" id="inZ-8R-6xv"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s8P-wF-IX6" customClass="AssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s8P-wF-IX6" customClass="StudentAssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="1274.5" width="375" height="267"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="AssingmentDetails.dueSection"/>
                                                     </view>
@@ -551,14 +551,14 @@
                                                             <constraint firstItem="XDe-60-j5s" firstAttribute="leading" secondItem="U3Y-Im-VWs" secondAttribute="leading" id="zde-5x-kMg"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Plt-HB-bKp" customClass="AssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Plt-HB-bKp" customClass="StudentAssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="1808.5" width="375" height="267"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="AssingmentDetails.submissionTypesSection"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="headerText" value="Submission Types"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hil-LN-kZQ" customClass="AssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hil-LN-kZQ" customClass="StudentAssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="2075.5" width="375" height="267.5"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="AssingmentDetails.fileTypesSection"/>
                                                         <userDefinedRuntimeAttributes>

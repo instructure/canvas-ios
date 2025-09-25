@@ -22,7 +22,7 @@ import XCTest
 import SafariServices
 import TestsFoundation
 
-class AssignmentDetailsPresenterTests: StudentTestCase {
+class StudentAssignmentDetailsPresenterTests: StudentTestCase {
     var resultingError: NSError?
     var resultingAssignment: Assignment?
     var resultingQuiz: Quiz?
@@ -34,7 +34,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     var resultingAttemptNumber: String?
     var resultingGradeCellSubmission: Submission?
 
-    var presenter: AssignmentDetailsPresenter! {
+    var presenter: StudentAssignmentDetailsPresenter! {
         didSet {
             (presenter.submissions as! TestStore).overrideRequested = true
         }
@@ -43,7 +43,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     var resultingButtonTitle: String?
     var navigationController: UINavigationController?
     var onUpdate: (() -> Void)?
-    var viewController: AssignmentDetailsViewController!
+    var viewController: StudentAssignmentDetailsViewController!
 
     class MockButton: SubmissionButtonPresenter {
         var submitted = false
@@ -61,7 +61,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     override func setUp() {
         super.setUp()
         env.mockStore = true
-        presenter = AssignmentDetailsPresenter(
+        presenter = StudentAssignmentDetailsPresenter(
             env: env,
             view: mockView,
             courseID: "1",
@@ -69,7 +69,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
             fragment: "target"
         )
         presenter.submissionButtonPresenter = mockButton
-        viewController = AssignmentDetailsViewController
+        viewController = StudentAssignmentDetailsViewController
             .create(courseID: "1", assignmentID: "1", env: env)
         viewController.presenter = presenter
         resultingAttemptPickerActiveState = nil
@@ -148,7 +148,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         Assignment.make(from: .make(html_url: expected))
 
-        presenter = AssignmentDetailsPresenter(env: env, view: mockView, courseID: "1", assignmentID: "1", fragment: nil)
+        presenter = StudentAssignmentDetailsPresenter(env: env, view: mockView, courseID: "1", assignmentID: "1", fragment: nil)
         presenter.assignments.eventHandler()
 
         XCTAssertEqual(resultingBaseURL, expected)
@@ -161,7 +161,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         Assignment.make(from: .make(html_url: url))
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1#fragment")!
 
-        presenter = AssignmentDetailsPresenter(env: env, view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
+        presenter = StudentAssignmentDetailsPresenter(env: env, view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.assignments.eventHandler()
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
@@ -173,7 +173,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         let fragment = ""
         Assignment.make(from: .make(html_url: expected))
-        presenter = AssignmentDetailsPresenter(env: env, view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
+        presenter = StudentAssignmentDetailsPresenter(env: env, view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.assignments.eventHandler()
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
@@ -631,8 +631,8 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     }
 }
 
-private class MockView: UIViewController, AssignmentDetailsViewProtocol {
-    weak var test: AssignmentDetailsPresenterTests?
+private class MockView: UIViewController, StudentAssignmentDetailsViewProtocol {
+    weak var test: StudentAssignmentDetailsPresenterTests?
 
     var accessibilityFocusAfterAttemptSelection: UIView? {
         nil

@@ -22,15 +22,15 @@ import XCTest
 @testable import TestsFoundation
 @testable import Core
 
-class AssignmentDetailsViewControllerTests: StudentTestCase {
+class StudentAssignmentDetailsViewControllerTests: StudentTestCase {
     var courseID = "1"
     var assignmentID = "1"
-    var viewController: AssignmentDetailsViewController!
+    var viewController: StudentAssignmentDetailsViewController!
     var prevSpeed: Float = 1
 
     override func setUp() {
         super.setUp()
-        viewController = AssignmentDetailsViewController
+        viewController = StudentAssignmentDetailsViewController
             .create(courseID: courseID, assignmentID: assignmentID, env: env)
         prevSpeed = AppEnvironment.shared.window?.layer.speed ?? 1
         AppEnvironment.shared.window?.layer.speed = 100

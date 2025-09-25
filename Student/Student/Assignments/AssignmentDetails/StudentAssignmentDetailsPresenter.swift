@@ -31,7 +31,7 @@ enum OnlineUploadState {
     case staged, uploading, failed, completed, reSubmissionFailed
 }
 
-protocol AssignmentDetailsViewProtocol: SubmissionButtonViewProtocol {
+protocol StudentAssignmentDetailsViewProtocol: SubmissionButtonViewProtocol {
     var accessibilityFocusAfterAttemptSelection: UIView? { get }
 
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?)
@@ -44,7 +44,7 @@ protocol AssignmentDetailsViewProtocol: SubmissionButtonViewProtocol {
     func updateAttemptInfo(attemptNumber: String)
 }
 
-class AssignmentDetailsPresenter {
+class StudentAssignmentDetailsPresenter {
 
     var pageViewEventName: String {
         return "/courses/\(courseID)/assignments/\(assignmentID)"
@@ -87,7 +87,7 @@ class AssignmentDetailsPresenter {
     var quizzes: Store<GetQuiz>?
 
     let env: AppEnvironment
-    weak var view: AssignmentDetailsViewProtocol?
+    weak var view: StudentAssignmentDetailsViewProtocol?
     let courseID: String
     let assignmentID: String
     var userID: String = ""
@@ -146,7 +146,7 @@ class AssignmentDetailsPresenter {
         }
     }
 
-    init(env: AppEnvironment, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
+    init(env: AppEnvironment, view: StudentAssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
         self.env = env
         self.view = view
         self.courseID = courseID

@@ -20,7 +20,7 @@ import Core
 import SwiftUI
 import UIKit
 
-class AssignmentDetailsViewController: ScreenViewTrackableViewController, AssignmentDetailsViewProtocol {
+class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController, StudentAssignmentDetailsViewProtocol {
     @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var pointsLabel: UILabel?
     @IBOutlet weak var statusIconView: UIImageView?
@@ -79,9 +79,9 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     @IBOutlet weak var lockedSection: UIView?
     @IBOutlet weak var gradeSection: UIStackView?
     @IBOutlet weak var gradeSectionBottomSpacer: UIView?
-    @IBOutlet weak var fileTypesSection: AssignmentDetailsSectionContainerView?
-    @IBOutlet weak var submissionTypesSection: AssignmentDetailsSectionContainerView?
-    @IBOutlet weak var dueSection: AssignmentDetailsSectionContainerView?
+    @IBOutlet weak var fileTypesSection: StudentAssignmentDetailsSectionContainerView?
+    @IBOutlet weak var submissionTypesSection: StudentAssignmentDetailsSectionContainerView?
+    @IBOutlet weak var dueSection: StudentAssignmentDetailsSectionContainerView?
     /** This is shown when there are no submissions on the assignment but we still want the user to reach rubrics. */
     @IBOutlet weak var submissionRubricButton: UIButton? {
         didSet {
@@ -138,7 +138,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     )
     var refreshControl: CircleRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
-    var presenter: AssignmentDetailsPresenter?
+    var presenter: StudentAssignmentDetailsPresenter?
 
     var accessibilityFocusAfterAttemptSelection: UIView? {
         attemptPicker
@@ -158,13 +158,13 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         fragment: String? = nil,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(),
         env: AppEnvironment
-    ) -> AssignmentDetailsViewController {
+    ) -> StudentAssignmentDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID.localID
         controller.courseID = courseID.localID
         controller.fragment = fragment
         controller.env = env
-        controller.presenter = AssignmentDetailsPresenter(
+        controller.presenter = StudentAssignmentDetailsPresenter(
             env: env,
             view: controller,
             courseID: courseID.localID,
@@ -586,7 +586,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
 // MARK: - Link Handling
 
-extension AssignmentDetailsViewController: CoreWebViewLinkDelegate {
+extension StudentAssignmentDetailsViewController: CoreWebViewLinkDelegate {
     public func handleLink(_ url: URL) -> Bool {
         guard let presenter = presenter else { return false }
         return presenter.route(to: url, from: self)
@@ -594,7 +594,7 @@ extension AssignmentDetailsViewController: CoreWebViewLinkDelegate {
 }
 
 // MARK: - Events
-extension AssignmentDetailsViewController {
+extension StudentAssignmentDetailsViewController {
     @IBAction func actionSubmitAssignment(_ sender: UIButton) {
         presenter?.submit(button: sender)
     }
