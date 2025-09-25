@@ -20,13 +20,15 @@ import CoreData
 import Combine
 
 public class GetSyllabusSummary: UseCase {
-    public typealias Model = CDSyllabusSummaryItem
+    public typealias Model = Plannable
     public struct Response: Codable, Equatable {
         static let empty = Response(calendarEvents: [], plannables: [])
 
         var calendarEvents: [APICalendarEvent]
         var plannables: [APIPlannable]
     }
+
+    private static let useCaseID = PlannableUseCaseID.syllabusSummary
 
     private let context: Context
     private var subscription: AnyCancellable?
@@ -40,14 +42,22 @@ public class GetSyllabusSummary: UseCase {
     }
 
     public var scope: Scope {
-        let predicate = NSPredicate(
-            key: #keyPath(CDSyllabusSummaryItem.canvasContextIDRaw),
-            equals: context.canvasContextID
-        )
-        let hasDate = NSSortDescriptor(key: #keyPath(CDSyllabusSummaryItem.hasDate), ascending: false)
-        let date = NSSortDescriptor(key: #keyPath(CDSyllabusSummaryItem.date), ascending: true)
-        let title = NSSortDescriptor(key: #keyPath(CDSyllabusSummaryItem.title), naturally: true)
-        return Scope(predicate: predicate, order: [hasDate, date, title])
+
+        let predicate = NSCompoundPredicate(type: .and, subpredicates: [
+            NSPredicate(
+                key: #keyPath(Plannable.canvasContextIDRaw),
+                equals: context.canvasContextID
+            ),
+            NSPredicate(key: #keyPath(Plannable.originUseCaseIDRaw), equals: Self.useCaseID.rawValue)
+        ])
+
+        let order = [
+            NSSortDescriptor(key: #keyPath(Plannable.hasDate), ascending: false),
+            NSSortDescriptor(key: #keyPath(Plannable.date), ascending: true),
+            NSSortDescriptor(key: #keyPath(Plannable.title), naturally: true)
+        ]
+
+        return Scope(predicate: predicate, order: order)
     }
 
     var assignmentsRequest: GetCalendarEventsRequest {
@@ -97,11 +107,18 @@ public class GetSyllabusSummary: UseCase {
     public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
 
         response?.plannables.forEach { plannable in
-            CDSyllabusSummaryItem.save(plannable, in: client)
+            Plannable
+                .save(plannable, userId: nil, useCase: Self.useCaseID, in: client)
         }
 
         response?.calendarEvents.forEach { event in
-            CDSyllabusSummaryItem.save(event, in: client)
+            Plannable
+                .save(event, userId: nil, useCase: Self.useCaseID, in: client)
         }
+    }
+
+    public func reset(context: NSManagedObjectContext) {
+        let all: [Plannable] = context.fetch(scope: scope)
+        context.delete(all)
     }
 }

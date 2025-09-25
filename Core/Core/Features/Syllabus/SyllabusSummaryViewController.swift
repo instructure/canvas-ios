@@ -154,7 +154,7 @@ class SyllabusSummaryItemCell: UITableViewCell {
         backgroundColor = .backgroundLightest
     }
 
-    func update(_ item: CDSyllabusSummaryItem?, indexPath: IndexPath, color: UIColor?) {
+    func update(_ item: Plannable?, indexPath: IndexPath, color: UIColor?) {
         backgroundColor = .backgroundLightest
         itemNameLabel?.setText(item?.title, style: .textCellTitle)
         iconImageView?.image = item?.icon

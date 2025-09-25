@@ -25,16 +25,23 @@ public enum PlannableType: String, Codable {
     case other
 }
 
+public enum PlannableUseCaseID: String, Codable {
+    case plannables
+    case syllabusSummary
+}
+
 public final class Plannable: NSManagedObject {
     public typealias JSON = APIPlannable
 
     @NSManaged public var id: String
     @NSManaged public var typeRaw: String
+    @NSManaged public var originUseCaseIDRaw: String?
     @NSManaged public var title: String?
     @NSManaged public var htmlURL: URL?
     @NSManaged public var canvasContextIDRaw: String?
     @NSManaged public var contextName: String?
     @NSManaged public var date: Date?
+    @NSManaged public var hasDate: Bool
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var userID: String?
     @NSManaged public var details: String?
@@ -53,24 +60,31 @@ public final class Plannable: NSManagedObject {
         set { typeRaw = newValue.rawValue }
     }
 
+    public var originUseCaseID: PlannableUseCaseID? {
+        get { return originUseCaseIDRaw.flatMap({ PlannableUseCaseID(rawValue: $0) }) }
+        set { originUseCaseIDRaw = newValue?.rawValue }
+    }
+
     public var context: Context? {
         get { return Context(canvasContextID: canvasContextIDRaw ?? "") }
         set { canvasContextIDRaw = newValue?.canvasContextID }
     }
 
     @discardableResult
-    public static func save(_ item: APIPlannable, userId: String?, in client: NSManagedObjectContext) -> Plannable {
-        let model: Plannable = client.first(where: #keyPath(Plannable.id), equals: item.plannable_id.value) ?? client.insert()
+    public static func save(_ item: APIPlannable, userId: String?, useCase: PlannableUseCaseID? = nil, in client: NSManagedObjectContext) -> Plannable {
+        let model: Plannable = client.first(scope: .planner(id: item.plannable_id.value, useCase: useCase)) ?? client.insert()
         model.id = item.plannable_id.value
         model.plannableType = item.plannableType
         model.htmlURL = item.html_url?.rawValue
         model.contextName = item.context_name
         model.title = item.plannable?.title
         model.date = item.plannable_date
+        model.hasDate = true
         model.pointsPossible = item.plannable?.points_possible
         model.details = item.plannable?.details
         model.context = item.context
         model.userID = userId
+        model.originUseCaseID = useCase
         model.discussionCheckpointStep = .init(
             tag: item.plannable?.sub_assignment_tag,
             requiredReplyCount: item.details?.reply_to_entry_required_count
@@ -79,24 +93,26 @@ public final class Plannable: NSManagedObject {
     }
 
     @discardableResult
-    public static func save(_ item: APIPlannerNote, contextName: String?, in client: NSManagedObjectContext) -> Plannable {
-        let model: Plannable = client.first(where: #keyPath(Plannable.id), equals: item.id) ?? client.insert()
+    public static func save(_ item: APIPlannerNote, contextName: String?, useCase: PlannableUseCaseID? = nil, in client: NSManagedObjectContext) -> Plannable {
+        let model: Plannable = client.first(scope: .planner(id: item.id, useCase: useCase)) ?? client.insert()
         model.id = item.id
         model.plannableType = .planner_note
         model.htmlURL = nil
         model.contextName = contextName
         model.title = item.title
         model.date = item.todo_date
+        model.hasDate = true
         model.pointsPossible = nil
         model.details = item.details
         model.context = Context(.course, id: item.course_id) ?? Context(.user, id: item.user_id)
         model.userID = item.user_id
+        model.originUseCaseID = useCase
         return model
     }
 
     @discardableResult
-    public static func save(_ item: APICalendarEvent, userId: String?, in client: NSManagedObjectContext) -> Plannable {
-        let model: Plannable = client.first(where: #keyPath(Plannable.id), equals: item.id.value) ?? client.insert()
+    public static func save(_ item: APICalendarEvent, userId: String?, useCase: PlannableUseCaseID? = nil, in client: NSManagedObjectContext) -> Plannable {
+        let model: Plannable = client.first(scope: .planner(id: item.id.value, useCase: useCase)) ?? client.insert()
         model.id = item.id.value
         model.plannableType = {
             switch item.type {
@@ -110,9 +126,11 @@ public final class Plannable: NSManagedObject {
         model.context = Context(canvasContextID: item.context_code)
         model.contextName = item.context_name
         model.date = item.start_at
+        model.hasDate = item.start_at != nil
         model.pointsPossible = item.assignment?.points_possible
         model.details = item.description
         model.userID = userId
+        model.originUseCaseID = useCase
         model.discussionCheckpointStep = .init(
             tag: item.sub_assignment?.sub_assignment_tag,
             requiredReplyCount: item.sub_assignment?.discussion_topic?.reply_to_entry_required_count
@@ -121,38 +139,54 @@ public final class Plannable: NSManagedObject {
     }
 }
 
-extension PlannableType {
+extension Scope {
 
-    public func icon(isDiscussionCheckpointStep isDCP: Bool) -> UIImage {
-        switch self {
-        case .assignment:
-            return .assignmentLine
-        case .quiz:
-            return .quizLine
-        case .discussion_topic:
-            return .discussionLine
-        case .announcement:
-            return .announcementLine
-        case .wiki_page:
-            return .documentLine
-        case .planner_note:
-            return .noteLine
-        case .calendar_event:
-            return .calendarMonthLine
-        case .assessment_request:
-            return .peerReviewLine
-        case .sub_assignment:
-            return isDCP ? .discussionLine : .assignmentLine
-        case .other:
-            return .warningLine
+    public static func planner(id: String, useCase: PlannableUseCaseID? = nil) -> Self {
+        var subpredicates = [
+            NSPredicate(key: #keyPath(Plannable.id), equals: id)
+        ]
+
+        if let useCase {
+            subpredicates.append(
+                NSPredicate(key: #keyPath(Plannable.originUseCaseIDRaw), equals: useCase.rawValue)
+            )
+        } else {
+            subpredicates.append(
+                NSPredicate(format: "%K == nil", #keyPath(Plannable.originUseCaseIDRaw))
+            )
         }
+
+        let predicate = NSCompoundPredicate(type: .and, subpredicates: subpredicates)
+        let order = [NSSortDescriptor(keyPath: \Plannable.date, ascending: false)]
+        return Scope(predicate: predicate, order: order)
     }
 }
 
 extension Plannable {
 
     public var icon: UIImage {
-        return plannableType.icon(isDiscussionCheckpointStep: discussionCheckpointStep != nil)
+        switch plannableType {
+        case .assignment:
+            .assignmentLine
+        case .quiz:
+            .quizLine
+        case .discussion_topic:
+            .discussionLine
+        case .sub_assignment:
+            discussionCheckpointStep != nil ? .discussionLine : .assignmentLine
+        case .announcement:
+            .announcementLine
+        case .wiki_page:
+            .documentLine
+        case .planner_note:
+            .noteLine
+        case .calendar_event:
+            .calendarMonthLine
+        case .assessment_request:
+            .peerReviewLine
+        case .other:
+            .warningLine
+        }
     }
 
     public var color: UIColor {
@@ -186,5 +220,10 @@ extension Plannable {
         } else {
             return String(localized: "To Do", bundle: .core)
         }
+    }
+
+    public var dateFormatted: String? {
+        guard let date else { return nil }
+        return DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short)
     }
 }
