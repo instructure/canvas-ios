@@ -27,6 +27,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     @State private var isShowingGradingPeriodPicker = false
+    @State private var isSplitViewControllerCollapsed: Bool = true
 
     public init(viewModel: AssignmentListViewModel) {
         self.viewModel = viewModel
@@ -61,8 +62,14 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             }
         )
         .navigationBarStyle(.color(viewModel.courseColor))
-        .onAppear(perform: viewModel.viewDidAppear)
+		.onAppear {
+			viewModel.viewDidAppear()
+			isSplitViewControllerCollapsed = controller.value.splitViewController?.isCollapsed ?? true
+		}
         .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
+		.onReceive(NotificationCenter.default.publisher(for: UIViewController.showDetailTargetDidChangeNotification)) { _ in
+            isSplitViewControllerCollapsed = controller.value.splitViewController?.isCollapsed ?? true
+        }
     }
 
     private var gradingPeriodTitle: some View {
@@ -138,11 +145,13 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     private func sectionView(with section: AssignmentListSection) -> some View {
         InstUI.CollapsibleListSection(title: section.title, itemCount: section.rows.count) {
             ForEach(section.rows) { row in
-                switch row {
+				switch row {
                 case .student(let model):
                     studentCell(model: model, isLastItem: section.rows.last == row)
+						.selected(when: !isSplitViewControllerCollapsed && viewModel.selectedAssignmentID == model.id)
                 case .teacher(let model):
                     teacherCell(model: model, isLastItem: section.rows.last == row)
+						.selected(when: !isSplitViewControllerCollapsed && viewModel.selectedAssignmentID == model.id)
                 }
             }
         }
@@ -150,35 +159,35 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func studentCell(model: StudentAssignmentListItem, isLastItem: Bool) -> some View {
-        let routeAction = { navigateToDetails(at: model.route) }
+		let routeAction = { navigateToDetails(at: model.route, id: model.id) }
         let identifier = "AssignmentList.\(model.id)"
 
-        if let subItems = model.subItems {
-            InstUI.CollapsibleListRow(
-                cell: StudentAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
-                    .identifier(identifier),
-                isInitiallyExpanded: false
-            ) {
-                ForEach(subItems) { subItem in
-                    StudentAssignmentListSubItemCell(model: subItem, action: routeAction)
-                        .identifier(identifier, subItem.tag)
-                }
-            }
-            InstUI.Divider(isLast: isLastItem)
-        } else {
-            StudentAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
-                .identifier(identifier)
-        }
+		if let subItems = model.subItems {
+			InstUI.CollapsibleListRow(
+				cell: StudentAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
+					.identifier(identifier),
+				isInitiallyExpanded: false
+			) {
+				ForEach(subItems) { subItem in
+					StudentAssignmentListSubItemCell(model: subItem, action: routeAction)
+						.identifier(identifier, subItem.tag)
+				}
+			}
+			InstUI.Divider(isLast: isLastItem)
+		} else {
+			StudentAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
+				.identifier(identifier)
+		}
     }
 
     @ViewBuilder
     private func teacherCell(model: TeacherAssignmentListItem, isLastItem: Bool) -> some View {
-        let routeAction = { navigateToDetails(at: model.route) }
+		let routeAction = { navigateToDetails(at: model.route, id: model.id) }
         let identifier = "AssignmentList.\(model.id)"
 
         if let subItems = model.subItems {
             InstUI.CollapsibleListRow(
-                cell: TeacherAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
+				cell: TeacherAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
                     .identifier(identifier),
                 isInitiallyExpanded: false
             ) {
@@ -189,13 +198,13 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             }
             InstUI.Divider(isLast: isLastItem)
         } else {
-            TeacherAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
+			TeacherAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
                 .identifier(identifier)
         }
     }
 
-    private func navigateToDetails(at url: URL?) {
-        viewModel.didSelectAssignment.send((url, controller))
+	private func navigateToDetails(at url: URL?, id: String) {
+        viewModel.didSelectAssignment.send((url, id, controller))
     }
 
     private func setupDefaultSplitDetailView(_ routeUrl: String) {
