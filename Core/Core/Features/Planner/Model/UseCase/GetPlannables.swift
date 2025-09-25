@@ -55,25 +55,34 @@ public class GetPlannables: UseCase {
     }
 
     public var scope: Scope {
-        var predicate = NSPredicate(format: "%@ <= %K AND %K < %@",
-            startDate as NSDate, #keyPath(Plannable.date),
-            #keyPath(Plannable.date), endDate as NSDate
-        )
+        var subPredicates = [
+            NSPredicate(
+                format: "%@ <= %K AND %K < %@",
+                startDate as NSDate, #keyPath(Plannable.date),
+                #keyPath(Plannable.date), endDate as NSDate
+            ),
+            NSPredicate(format: "%K == nil", #keyPath(Plannable.originUseCaseIDRaw))
+        ]
+
         if let userID = userID {
-            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                NSPredicate(key: #keyPath(Plannable.userID), equals: userID),
-                predicate
-            ])
+            subPredicates.append(
+                NSPredicate(key: #keyPath(Plannable.userID), equals: userID)
+            )
         }
+
         let order = [
             NSSortDescriptor(key: #keyPath(Plannable.date), ascending: true),
             NSSortDescriptor(key: #keyPath(Plannable.title), ascending: true, naturally: true)
         ]
-        return Scope(predicate: predicate, order: order)
+
+        return Scope(
+            predicate: NSCompoundPredicate(type: .and, subpredicates: subPredicates),
+            order: order
+        )
     }
 
     public func reset(context: NSManagedObjectContext) {
-        let all: [Plannable] = context.fetch(scope.predicate)
+        let all: [Plannable] = context.fetch(scope: scope)
         context.delete(all)
     }
 
