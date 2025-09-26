@@ -30,4 +30,16 @@ final class AssignmentDueDateTextsProviderMock: AssignmentDueDateTextsProvider {
         formattedDueDatesInput = assignment
         return formattedDueDatesResult
     }
+
+    // MARK: - dueDateItems
+
+    var dueDateItemsCallsCount: Int = 0
+    var dueDateItemsInput: Assignment?
+    var dueDateItemsResult: [AssignmentDateListItem] = []
+
+    func dueDateItems(for assignment: Assignment) -> [AssignmentDateListItem] {
+        dueDateItemsCallsCount += 1
+        dueDateItemsInput = assignment
+        return dueDateItemsResult
+    }
 }

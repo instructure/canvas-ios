@@ -52,7 +52,7 @@ class StudentAssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertEqual(viewController.submitAssignmentButton.alpha, 1.0)
         XCTAssertEqual(viewController.scrollView?.contentInset, .zero)
         XCTAssertEqual(viewController.scrollView?.verticalScrollIndicatorInsets, .zero)
-        XCTAssertEqual(viewController.dueSection?.header.text, "Due")
+        XCTAssertEqual(viewController.dueSection1?.header.text, "Due")
         XCTAssertEqual(viewController.submissionTypesSection?.header.text, "Submission Types")
         XCTAssertEqual(viewController.fileTypesSection?.header.text, "File Types")
         XCTAssertEqual(viewController.attemptsHeadingLabel.text, "Attempts")

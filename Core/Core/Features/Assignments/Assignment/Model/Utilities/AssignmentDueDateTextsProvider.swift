@@ -23,10 +23,17 @@ public protocol AssignmentDueDateTextsProvider {
     /// Return an array of formatted due dates, or only a single item
     /// if any of the dates is a special case which overrules them.
     func formattedDueDates(for assignment: Assignment) -> [String]
+
+    func dueDateItems(for assignment: Assignment) -> [AssignmentDateListItem]
 }
 
 extension AssignmentDueDateTextsProvider where Self == AssignmentDueDateTextsProviderLive {
     public static var live: AssignmentDueDateTextsProviderLive { .init() }
+}
+
+public struct AssignmentDateListItem: Equatable {
+    public let title: String?
+    public let date: String
 }
 
 public struct AssignmentDueDateTextsProviderLive: AssignmentDueDateTextsProvider {
@@ -55,6 +62,36 @@ public struct AssignmentDueDateTextsProviderLive: AssignmentDueDateTextsProvider
                     hasOverrides: isTeacher && assignment.hasOverrides
                 )
             ]
+        }
+    }
+
+    public func dueDateItems(for assignment: Assignment) -> [AssignmentDateListItem] {
+        if hasOverrides(assignment: assignment) {
+            return [.init(title: nil, date: DueDateFormatter.multipleDueDatesText)]
+        }
+
+        if assignment.hasSubAssignments {
+            return assignment.checkpoints.map {
+                let title = String(localized: "\($0.title) due", bundle: .core, comment: "Header before a due date. Example: 'Some task due'")
+                let date = DueDateFormatter.formatWithoutPrefix($0.dueDate)
+                return .init(title: title, date: date)
+            }
+        } else {
+            let title = String(localized: "Due", bundle: .core)
+            let date = DueDateFormatter.formatWithoutPrefix(assignment.dueAt)
+            return [.init(title: title, date: date)]
+        }
+    }
+
+    private func hasOverrides(assignment: Assignment) -> Bool {
+        guard AppEnvironment.shared.app == .teacher else { return false }
+
+        if assignment.hasSubAssignments {
+            return assignment.checkpoints.contains {
+                $0.overrides.isNotEmpty
+            }
+        } else {
+            return assignment.hasOverrides
         }
     }
 }

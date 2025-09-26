@@ -81,7 +81,8 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     @IBOutlet weak var gradeSectionBottomSpacer: UIView?
     @IBOutlet weak var fileTypesSection: StudentAssignmentDetailsSectionContainerView?
     @IBOutlet weak var submissionTypesSection: StudentAssignmentDetailsSectionContainerView?
-    @IBOutlet weak var dueSection: StudentAssignmentDetailsSectionContainerView?
+    @IBOutlet weak var dueSection1: StudentAssignmentDetailsSectionContainerView?
+    @IBOutlet weak var dueSection2: StudentAssignmentDetailsSectionContainerView?
     /** This is shown when there are no submissions on the assignment but we still want the user to reach rubrics. */
     @IBOutlet weak var submissionRubricButton: UIButton? {
         didSet {
@@ -149,6 +150,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     private let isLeftToRightLayout: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight
     private weak var gradeBorderLayer: CAShapeLayer?
     private var offlineModeInteractor: OfflineModeInteractor?
+    private var dateTextsProvider: AssignmentDueDateTextsProvider?
     private var gradeSectionBoundsObservation: NSKeyValueObservation?
     private lazy var remindersInteractor = AssignmentRemindersInteractorLive(notificationCenter: UNUserNotificationCenter.current())
 
@@ -157,6 +159,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         assignmentID: String,
         fragment: String? = nil,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(),
+        dateTextsProvider: AssignmentDueDateTextsProvider = .live,
         env: AppEnvironment
     ) -> StudentAssignmentDetailsViewController {
         let controller = loadFromStoryboard()
@@ -172,6 +175,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
             fragment: fragment
         )
         controller.offlineModeInteractor = offlineModeInteractor
+        controller.dateTextsProvider = dateTextsProvider
         return controller
     }
 
@@ -197,12 +201,14 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         showSubmitAssignmentButton(title: nil)
 
         // Accessibility
-        dueSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.due"
+        dueSection1?.subHeader.accessibilityIdentifier = "AssignmentDetails.due"
+        dueSection2?.subHeader.accessibilityIdentifier = "AssignmentDetails.due2"
         fileTypesSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.allowedExtensions"
         submissionTypesSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.submissionTypes"
 
         // Localization
-        dueSection?.header.text = String(localized: "Due", bundle: .student)
+        updateDueSection(dueSection1, with: nil)
+        updateDueSection(dueSection2, with: nil)
         submissionTypesSection?.header.text = String(localized: "Submission Types", bundle: .student)
         fileTypesSection?.header.text = String(localized: "File Types", bundle: .student)
         gradeHeadingLabel?.text = String(localized: "Grade", bundle: .student)
@@ -415,9 +421,9 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         statusLabel?.isHidden = assignment.submissionStatusIsHidden
         statusLabel?.textColor = displayProperties.color
         statusLabel?.text = displayProperties.text
-        dueSection?.subHeader.text = assignment.dueAt.flatMap {
-            $0.dateTimeString
-        } ?? String(localized: "No Due Date", bundle: .student)
+
+        updateDueDateSections(assignment: assignment)
+
         submissionTypesSection?.subHeader.text = assignment.submissionTypeText
         fileTypesSection?.subHeader.text = assignment.fileTypeText
         fileTypesSection?.isHidden = !assignment.hasFileTypes
@@ -447,7 +453,6 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         guard let presenter = presenter else { return }
 
         lockedIconContainerView.isHidden = presenter.lockedIconContainerViewIsHidden()
-        dueSection?.isHidden = presenter.dueSectionIsHidden()
         lockedSection?.isHidden = presenter.lockedSectionIsHidden()
         fileTypesSection?.isHidden = presenter.fileTypesSectionIsHidden()
         submissionTypesSection?.isHidden = presenter.submissionTypesSectionIsHidden()
@@ -543,10 +548,49 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         }
     }
 
+    private func updateDueDateSections(assignment: Assignment) {
+        guard let dateTextsProvider,
+              let presenter,
+              !presenter.dueSectionIsHidden()
+        else {
+            updateDueSection(dueSection1, with: nil)
+            updateDueSection(dueSection2, with: nil)
+            return
+        }
+
+        let items = dateTextsProvider.dueDateItems(for: assignment)
+
+        switch items.count {
+        case 0:
+            // should never happen
+            updateDueSection(dueSection1, with: nil)
+            updateDueSection(dueSection2, with: nil)
+        case 1:
+            updateDueSection(dueSection1, with: items[0])
+            updateDueSection(dueSection2, with: nil)
+        default:
+            // Displaying only first 2 sections, since we have a set number of sections.
+            // There shouldn't be more anyway. SwiftUI implenentation shall handle this properly.
+            updateDueSection(dueSection1, with: items[0])
+            updateDueSection(dueSection2, with: items[1])
+        }
+    }
+
+    private func updateDueSection(
+        _ dueSection: StudentAssignmentDetailsSectionContainerView?,
+        with item: AssignmentDateListItem?
+    ) {
+        guard let dueSection else { return }
+
+        dueSection.header.text = item?.title
+        dueSection.subHeader.text = item?.date
+        dueSection.isHidden = item == nil
+    }
+
     private func embedReminderSection() {
-        guard let dueSection,
-              let parentStackView = dueSection.superview as? UIStackView,
-              let dueSectionIndex = parentStackView.subviews.firstIndex(of: dueSection)
+        guard let dueSection1,
+              let parentStackView = dueSection1.superview as? UIStackView,
+              let dueSectionIndex = parentStackView.subviews.firstIndex(of: dueSection1)
         else {
             return
         }
