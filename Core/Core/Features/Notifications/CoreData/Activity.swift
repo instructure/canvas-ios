@@ -36,6 +36,8 @@ public final class Activity: NSManagedObject, WriteableModel {
     @NSManaged public var contextType: String?
     @NSManaged public var courseId: String?
     @NSManaged public var readState: Bool
+    @NSManaged public var announcementId: String?
+    @NSManaged public var assignmentURL: URL?
 
     public var context: Context? {
         get { return Context(canvasContextID: canvasContextIDRaw ?? "") }
@@ -61,6 +63,8 @@ public final class Activity: NSManagedObject, WriteableModel {
         model.notificationCategory = item.notification_category
         model.contextType = item.context_type
         model.readState = item.read_state ?? true
+        model.announcementId = item.announcement_id
+        model.assignmentURL = item.assignment?.html_url
         if let score = item.score {
             model.score = String(score)
         }
