@@ -24,17 +24,20 @@ import Combine
 class TodoInteractorLiveTests: CoreTestCase {
 
     private var testee: TodoInteractorLive!
+    private static let mockDate = Date.make(year: 2025, month: 1, day: 15, hour: 12)
 
     // MARK: - Setup and teardown
 
     override func setUp() {
         super.setUp()
+        Clock.mockNow(Self.mockDate)
         environment.currentSession = LoginSession.make(userID: "1")
         testee = TodoInteractorLive(env: environment)
     }
 
     override func tearDown() {
         testee = nil
+        Clock.reset()
         super.tearDown()
     }
 
@@ -120,8 +123,8 @@ class TodoInteractorLiveTests: CoreTestCase {
         api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), expectation: coursesAPICallExpectation, value: courses)
         api.mock(GetPlannablesRequest(
             userID: nil,
-            startDate: Date.now,
-            endDate: Date.distantFuture,
+            startDate: Clock.now.addDays(-28),
+            endDate: Clock.now.addDays(28),
             contextCodes: makeContextCodes(courseIds: ["1"])
         ), expectation: plannablesAPICallExpectation, value: plannables)
 
@@ -169,17 +172,16 @@ class TodoInteractorLiveTests: CoreTestCase {
         }
     }
 
-    func testCustomDateRange() {
+    func testRefreshUsesDefaultDateRange() {
         // Given
-        let startDate = Clock.now.addDays(-1)
-        let endDate = Clock.now.addDays(7)
         let courses = [makeCourse(id: "1", name: "Course 1")]
         let plannables = [makePlannable(courseId: "1", plannableId: "p1", type: "assignment", title: "Assignment 1")]
+        let expectedStartDate = Clock.now.addDays(-28)
+        let expectedEndDate = Clock.now.addDays(28)
 
         // When
-        testee = TodoInteractorLive(startDate: startDate, endDate: endDate, env: environment)
         mockCourses(courses)
-        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]), startDate: startDate, endDate: endDate)
+        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]), startDate: expectedStartDate, endDate: expectedEndDate)
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
@@ -216,8 +218,8 @@ class TodoInteractorLiveTests: CoreTestCase {
     private func mockPlannables(_ plannables: [APIPlannable], contextCodes: [String]) {
         api.mock(GetPlannablesRequest(
             userID: nil,
-            startDate: Date.now,
-            endDate: Date.distantFuture,
+            startDate: Clock.now.addDays(-28),
+            endDate: Clock.now.addDays(28),
             contextCodes: contextCodes
         ), value: plannables)
     }

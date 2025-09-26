@@ -30,20 +30,19 @@ public final class TodoInteractorLive: TodoInteractor {
     }
 
     private let todosSubject = CurrentValueSubject<[TodoItem], Never>([])
-    private let startDate: Date
-    private let endDate: Date
     private let env: AppEnvironment
 
     private var subscriptions = Set<AnyCancellable>()
 
-    init(startDate: Date = .now, endDate: Date = .distantFuture, env: AppEnvironment) {
-        self.startDate = startDate
-        self.endDate = endDate
+    init(env: AppEnvironment) {
         self.env = env
     }
 
     public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetCourses())
+        let startDate = Clock.now.addDays(-28)
+        let endDate = Clock.now.addDays(28)
+
+        return ReactiveStore(useCase: GetCourses())
             .getEntities(ignoreCache: ignoreCache)
             .map {
                 var contextCodes: [String] = $0.filter(\.isPublished).map(\.canvasContextID)
@@ -53,11 +52,11 @@ public final class TodoInteractorLive: TodoInteractor {
                 return contextCodes
             }
             .flatMap { codes in
-                return ReactiveStore(useCase: GetPlannables(startDate: self.startDate, endDate: self.endDate, contextCodes: codes))
+                return ReactiveStore(useCase: GetPlannables(startDate: startDate, endDate: endDate, contextCodes: codes))
                     .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
                     .map { $0.compactMap(TodoItem.init) }
             }
-            .map { [weak todosSubject] todos in
+            .map { [weak todosSubject] (todos: [TodoItem]) in
                 TabBarBadgeCounts.todoListCount = UInt(todos.count)
                 todosSubject?.value = todos
                 return ()
