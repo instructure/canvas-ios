@@ -43,6 +43,7 @@ struct HNotificationView: View {
                     contentView
                         .padding(.vertical, .huiSpaces.space16)
                 }
+                .accessibilityLabel("Notifications list")
             }
             .overlay { loaderView }
             .toolbar(.hidden)
@@ -66,6 +67,7 @@ struct HNotificationView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     .padding(.huiSpaces.space24)
                     .padding(.top, .huiSpaces.space24)
+                    .accessibilityLabel("No notification activity yet")
             } else {
                 ForEach(viewModel.notifications) { activity in
                     Button {
@@ -83,6 +85,7 @@ struct HNotificationView: View {
                         )
                     }
                     .padding(.horizontal, .huiSpaces.space24)
+                    .accessibilityHint("Double tap to view details")
                 }
                 .animation(.linear, value: viewModel.notifications.count)
             }
@@ -106,6 +109,7 @@ struct HNotificationView: View {
         .padding(.bottom, .huiSpaces.space16)
         .padding(.horizontal, .huiSpaces.space16)
         .background(Color.huiColors.surface.pagePrimary)
+        .accessibilityElement(children: .contain)
     }
 
     @ViewBuilder
@@ -115,6 +119,7 @@ struct HNotificationView: View {
                 Color.huiColors.surface.pageSecondary
                     .ignoresSafeArea()
                 HorizonUI.Spinner(size: .small, showBackground: true)
+                    .accessibilityLabel("Loading notifications")
             }
         }
     }
@@ -135,6 +140,8 @@ struct HNotificationView: View {
                     radius: HorizonUI.CornerRadius.level6.attributes.radius
                 )
         }
+        .accessibilityLabel("See More")
+        .accessibilityHint("Double tap to load more notifications")
     }
 }
 

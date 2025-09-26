@@ -30,11 +30,14 @@ struct HNotificationCardView: View {
         VStack(alignment: .leading, spacing: .huiSpaces.space8) {
             HStack {
                 HorizonUI.StatusChip(title: type.title, style: type.style)
+                    .accessibilityLabel("\(type.title) notification type")
                 Spacer()
                 if !isRead {
                     Circle()
                         .fill(Color.huiColors.surface.institution)
                         .frame(width: 8, height: 8)
+                        .accessibilityLabel("Unread indicator")
+                        .accessibilityHidden(false)
                 }
             }
             if let courseName {
@@ -42,15 +45,18 @@ struct HNotificationCardView: View {
                     .multilineTextAlignment(.leading)
                     .huiTypography(.p3)
                     .foregroundStyle(Color.huiColors.text.timestamp)
+                    .accessibilityLabel("Course: \(courseName)")
             }
             Text(title)
                 .huiTypography(.p1)
                 .multilineTextAlignment(.leading)
                 .foregroundStyle(Color.huiColors.text.body)
+                .accessibilityLabel("Title: \(title)")
 
             Text(date)
                 .huiTypography(.p3)
                 .foregroundStyle(Color.huiColors.text.timestamp)
+                .accessibilityLabel("Date: \(date)")
         }
         .padding(.huiSpaces.space16)
         .huiCornerRadius(level: .level2)
@@ -59,6 +65,7 @@ struct HNotificationCardView: View {
             color: Color.huiColors.lineAndBorders.lineStroke,
             radius: HorizonUI.CornerRadius.level2.attributes.radius
         )
+        .accessibilityElement(children: .combine)
     }
 }
 
