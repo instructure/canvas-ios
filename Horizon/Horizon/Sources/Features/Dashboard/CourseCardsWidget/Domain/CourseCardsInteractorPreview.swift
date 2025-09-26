@@ -18,27 +18,48 @@
 
 import Combine
 
-final class DashboardInteractorPreview: DashboardInteractor {
-    func getAndObserveCoursesWithoutModules(ignoreCache _: Bool) -> AnyPublisher<[HCourse], Never> {
+final class CourseCardsInteractorPreview: CourseCardsInteractor {
+    func getAndObserveCoursesWithoutModules(ignoreCache _: Bool) -> AnyPublisher<[HCourse], Error> {
         Just(
-            [.init(
+            [HCourse(
                 id: "11",
-                name: "AI Introductions",
+                name: "Nursing Fundamentals",
                 state: "active",
                 enrollmentID: "222",
                 progress: 0.2,
-                learningObjectCardModel: nil
+                currentLearningObject: nil
+            ),
+            HCourse(
+                id: "22",
+                name: "Mathematics 101",
+                state: "active",
+                enrollmentID: "222",
+                progress: 0.2,
+                currentLearningObject: nil
+            ),
+            HCourse(
+                id: "33",
+                name: "Introduction to the Human Mind",
+                state: "active",
+                enrollmentID: "222",
+                progress: 0.2,
+                currentLearningObject: nil
+            ),
+            HCourse(
+                id: "44",
+                name: "Bioengineering Basics",
+                state: "active",
+                enrollmentID: "222",
+                progress: 0.2,
+                currentLearningObject: nil
             )]
         )
+        .setFailureType(to: Error.self)
         .eraseToAnyPublisher()
     }
 
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
         Just(())
             .eraseToAnyPublisher()
-    }
-
-    func getUnreadInboxMessageCount() -> AnyPublisher<Int, Never> {
-        Just(5).eraseToAnyPublisher()
     }
 }

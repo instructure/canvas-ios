@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,25 +17,19 @@
 //
 
 import Core
-import Foundation
 
-final class DashboardAssembly {
-    static func makeDashboardInteractor() -> DashboardInteractor {
-        DashboardInteractorLive()
+enum CourseCardsAssembly {
+    static func makeCourseCardsInteractor() -> CourseCardsInteractor {
+        CourseCardsInteractorLive()
     }
 
-    static func makeGetUserInteractor() -> GetUserInteractor {
-        GetUserInteractorLive()
-    }
-
-    static func makeView() -> DashboardView {
+    static func makeView() -> CourseCardsView {
         let onTapProgram: (ProgramSwitcherModel?, WeakViewController) -> Void = { program, viewController in
             AppEnvironment.shared.switchToLearnTab(with: program, from: viewController)
         }
-      return DashboardView(
+        return CourseCardsView(
             viewModel: .init(
-                dashboardInteractor: makeDashboardInteractor(),
-                notificationInteractor: NotificationAssembly.makeInteractor(),
+                courseCardsInteractor: makeCourseCardsInteractor(),
                 programInteractor: ProgramInteractorLive(programCourseInteractor: ProgramCourseInteractorLive()),
                 router: AppEnvironment.shared.router,
                 onTapProgram: onTapProgram
@@ -44,15 +38,15 @@ final class DashboardAssembly {
     }
 
     #if DEBUG
-    static func makePreview() -> DashboardView {
-        let dashboardInteractorPreview = DashboardInteractorPreview()
-        let viewModel = DashboardViewModel(
-            dashboardInteractor: dashboardInteractorPreview,
-            notificationInteractor: NotificationInteractorPreview(),
-            programInteractor: ProgramInteractorPreview(),
-            router: AppEnvironment.shared.router
-        ) { _, _ in }
-        return DashboardView(viewModel: viewModel)
-    }
+        static func makePreview() -> CourseCardsView {
+            CourseCardsView(
+                viewModel: .init(
+                    courseCardsInteractor: CourseCardsInteractorPreview(),
+                    programInteractor: ProgramInteractorPreview(),
+                    router: AppEnvironment.shared.router,
+                    onTapProgram: { _, _ in }
+                )
+            )
+        }
     #endif
 }

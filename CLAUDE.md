@@ -1,4 +1,4 @@
-# GitHub Copilot Preferences
+# CLAUDE
 
 ## Project Context
 

@@ -47,14 +47,19 @@ public extension HorizonUI {
 
             let (lines, totalHeight) = calculateLayout(subviews: subviews, maxWidth: maxWidth)
 
+            let finalWidth: CGFloat
             if lines.count == 1 && lines.first?.hasSpacers == true {
-                return CGSize(width: maxWidth, height: totalHeight)
+                finalWidth = maxWidth.isFinite ? maxWidth : (lines.first?.contentWidth ?? 0)
             } else if lines.count == 1 {
-                return CGSize(width: lines.first?.contentWidth ?? 0, height: totalHeight)
+                finalWidth = lines.first?.contentWidth ?? 0
             } else {
-                let maxLineWidth = lines.map { $0.contentWidth }.max() ?? 0
-                return CGSize(width: maxLineWidth, height: totalHeight)
+                finalWidth = lines.map { $0.contentWidth }.max() ?? 0
             }
+
+            return CGSize(
+                width: finalWidth.isFinite ? finalWidth : 0,
+                height: totalHeight.isFinite ? totalHeight : 0
+            )
         }
 
         public func placeSubviews(
@@ -88,18 +93,24 @@ public extension HorizonUI {
             var currentLineWidth: CGFloat = 0
             var currentLineHeight: CGFloat = 0
 
+            let effectiveMaxWidth = maxWidth.isFinite ? maxWidth : 10000
             let subviewSizes = subviews.map { subview in
-                subview.sizeThatFits(ProposedViewSize(width: maxWidth, height: nil))
+                let size = subview.sizeThatFits(ProposedViewSize(width: effectiveMaxWidth, height: nil))
+                return CGSize(
+                    width: size.width.isFinite ? size.width : 0,
+                    height: size.height.isFinite ? size.height : 0
+                )
             }
 
             let regularItems = subviews.enumerated().compactMap { index, subview in
                 isSpacer(subview) ? nil : (subview, subviewSizes[index])
             }
+            // Calculate width based on actual items that will be placed (non-spacers)
             let singleLineWidth = regularItems.reduce(0) { $0 + $1.1.width } +
                 CGFloat(max(0, regularItems.count - 1)) * spacing
             let hasSpacers = subviews.contains { isSpacer($0) }
 
-            if singleLineWidth <= maxWidth {
+            if singleLineWidth <= effectiveMaxWidth {
                 // Single line
                 let items = subviews.enumerated().map { index, subview in
                     (subview, subviewSizes[index], isSpacer(subview))
@@ -108,7 +119,7 @@ public extension HorizonUI {
                 let line = Line(
                     items: items,
                     height: lineHeight,
-                    contentWidth: hasSpacers ? maxWidth : singleLineWidth,
+                    contentWidth: hasSpacers ? effectiveMaxWidth : singleLineWidth,
                     hasSpacers: hasSpacers
                 )
                 return ([line], lineHeight)
@@ -121,7 +132,7 @@ public extension HorizonUI {
                     let spacingToAdd = currentLineWidth > 0 ? spacing : 0
                     let neededWidth = currentLineWidth + spacingToAdd + size.width
 
-                    if neededWidth > maxWidth, currentLineWidth > 0 {
+                    if neededWidth > effectiveMaxWidth, currentLineWidth > 0 {
                         let line = Line(
                             items: currentLineItems,
                             height: currentLineHeight,
@@ -163,50 +174,72 @@ public extension HorizonUI {
             let regularItems = line.items.filter { !$0.2 }
             let spacerCount = line.items.filter { $0.2 }.count
 
-            guard spacerCount > 0, !regularItems.isEmpty else {
+            guard spacerCount > 0, !regularItems.isEmpty, bounds.width.isFinite, bounds.width > 0 else {
                 placeRegularLine(line: line, bounds: bounds, currentY: currentY)
                 return
             }
 
             let totalRegularWidth = regularItems.reduce(0) { $0 + $1.1.width }
-            let availableSpacerWidth = bounds.width - totalRegularWidth
-            let spacerWidth = availableSpacerWidth / CGFloat(spacerCount)
+            // Account for specified spacing between regular items
+            let regularSpacingCount = max(0, regularItems.count - 1)
+            let totalSpacingWidth = CGFloat(regularSpacingCount) * spacing
+            let availableSpacerWidth = bounds.width - totalRegularWidth - totalSpacingWidth
+
+            guard availableSpacerWidth.isFinite else {
+                placeRegularLine(line: line, bounds: bounds, currentY: currentY)
+                return
+            }
+            let spacerWidth = max(0, availableSpacerWidth / CGFloat(spacerCount))
 
             var currentX = bounds.minX
+            var placedAnyRegularItem = false
 
             for (subview, size, isSpacer) in line.items {
                 if isSpacer {
                     currentX += spacerWidth
                 } else {
+                    // Add spacing before regular items (except the first one)
+                    if placedAnyRegularItem {
+                        currentX += spacing
+                    }
+
+                    guard currentX.isFinite, size.width.isFinite, size.height.isFinite else { continue }
                     let yPosition = calculateYPosition(currentY: currentY, lineHeight: line.height, itemHeight: size.height)
+                    guard yPosition.isFinite else { continue }
                     subview.place(
                         at: CGPoint(x: currentX, y: yPosition),
                         proposal: ProposedViewSize(width: size.width, height: size.height)
                     )
                     currentX += size.width
+                    placedAnyRegularItem = true
                 }
             }
         }
 
         private func placeRegularLine(line: Line, bounds: CGRect, currentY: CGFloat) {
+            guard bounds.width.isFinite, bounds.width > 0 else { return }
+
             var currentX = bounds.minX
-            var isFirst = true
+            var placedAnyItem = false
 
             for (subview, size, isSpacer) in line.items {
                 if isSpacer { continue }
 
-                if !isFirst {
+                // Add spacing before items (except the first placed item)
+                if placedAnyItem {
                     currentX += spacing
                 }
 
+                guard currentX.isFinite, size.width.isFinite, size.height.isFinite else { continue }
                 let yPosition = calculateYPosition(currentY: currentY, lineHeight: line.height, itemHeight: size.height)
+                guard yPosition.isFinite else { continue }
                 subview.place(
                     at: CGPoint(x: currentX, y: yPosition),
                     proposal: ProposedViewSize(width: size.width, height: size.height)
                 )
 
                 currentX += size.width
-                isFirst = false
+                placedAnyItem = true
             }
         }
 
@@ -226,7 +259,8 @@ public extension HorizonUI {
         private func isSpacer(_ subview: LayoutSubview) -> Bool {
             let flexibleWidth = subview.sizeThatFits(ProposedViewSize(width: 1000, height: nil)).width
             let constrainedWidth = subview.sizeThatFits(ProposedViewSize(width: 100, height: nil)).width
-            return flexibleWidth > constrainedWidth * 2
+            // More strict spacer detection - require significant difference and minimum flexible width
+            return flexibleWidth > constrainedWidth * 3 && flexibleWidth > 50
         }
 
         private struct Line {
