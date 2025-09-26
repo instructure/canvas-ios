@@ -28,16 +28,16 @@ final class TodoInteractorMock: TodoInteractor {
     var refreshCalled = false
     var refreshCallCount = 0
     var lastIgnoreCache = false
-    var refreshResult: Result<Bool, Error> = .success(false)
+    var refreshResult: Result<Void, Error> = .success(())
 
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
         refreshCalled = true
         refreshCallCount += 1
         lastIgnoreCache = ignoreCache
 
         switch refreshResult {
-        case .success(let isEmpty):
-            return Just(isEmpty)
+        case .success:
+            return Just(())
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         case .failure(let error):

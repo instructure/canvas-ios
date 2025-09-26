@@ -20,9 +20,8 @@ import Foundation
 import Combine
 
 public protocol TodoInteractor {
-    typealias IsEmptyState = Bool
     var todos: AnyPublisher<[TodoItem], Never> { get }
-    func refresh(ignoreCache: Bool) -> AnyPublisher<IsEmptyState, Error>
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
 }
 
 public final class TodoInteractorLive: TodoInteractor {
@@ -43,7 +42,7 @@ public final class TodoInteractorLive: TodoInteractor {
         self.env = env
     }
 
-    public func refresh(ignoreCache: Bool) -> AnyPublisher<IsEmptyState, Error> {
+    public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCourses())
             .getEntities(ignoreCache: ignoreCache)
             .map {
@@ -58,9 +57,9 @@ public final class TodoInteractorLive: TodoInteractor {
                     .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
                     .map { $0.compactMap(TodoItem.init) }
             }
-            .map { [weak self] in
-                self?.todosSubject.value = $0
-                return $0.isEmpty
+            .map { [weak self] (todos: [TodoItem]) in
+                self?.todosSubject.value = todos
+                return ()
             }
             .eraseToAnyPublisher()
     }
@@ -76,8 +75,8 @@ public final class TodoInteractorPreview: TodoInteractor {
         self.todos = Publishers.typedJust(todos)
     }
 
-    public func refresh(ignoreCache: Bool) -> AnyPublisher<IsEmptyState, Error> {
-        Publishers.typedJust(false)
+    public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+        Publishers.typedJust(())
     }
 }
 

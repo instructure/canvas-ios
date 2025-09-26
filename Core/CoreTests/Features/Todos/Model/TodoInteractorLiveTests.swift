@@ -63,9 +63,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1", "2"]))
 
         // Then
-        XCTAssertFirstValueAndCompletion(testee.refresh(ignoreCache: false)) { isEmpty in
-            XCTAssertFalse(isEmpty)
-        }
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertFirstValue(testee.todos) { todos in
             XCTAssertEqual(todos.count, 2)
             XCTAssertEqual(todos[0].title, "Assignment 1")
@@ -79,7 +77,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         mockPlannables([], contextCodes: makeUserContextCodes())
 
         // Then
-        XCTAssertCompletableSingleOutputEquals(testee.refresh(ignoreCache: false), true)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertFirstValue(testee.todos) { todos in
             XCTAssertEqual(todos, [])
         }
@@ -100,9 +98,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]))
 
         // Then
-        XCTAssertFirstValueAndCompletion(testee.refresh(ignoreCache: false)) { isEmpty in
-            XCTAssertFalse(isEmpty)
-        }
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertFirstValue(testee.todos) { todos in
             XCTAssertEqual(todos.count, 1)
             XCTAssertEqual(todos[0].title, "Assignment 1")
@@ -130,14 +126,10 @@ class TodoInteractorLiveTests: CoreTestCase {
         ), expectation: plannablesAPICallExpectation, value: plannables)
 
         // Then - First call with ignoreCache: false
-        XCTAssertFirstValueAndCompletion(testee.refresh(ignoreCache: false)) { isEmpty in
-            XCTAssertFalse(isEmpty)
-        }
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
 
         // Then - Second call with ignoreCache: true should trigger API calls again
-        XCTAssertFirstValueAndCompletion(testee.refresh(ignoreCache: true)) { isEmpty in
-            XCTAssertFalse(isEmpty)
-        }
+        XCTAssertFinish(testee.refresh(ignoreCache: true))
 
         wait(for: [coursesAPICallExpectation, plannablesAPICallExpectation], timeout: 1.0)
 
@@ -159,9 +151,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]))
 
         // Then
-        XCTAssertFirstValueAndCompletion(testee.refresh(ignoreCache: false)) { isEmpty in
-            XCTAssertFalse(isEmpty)
-        }
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertFirstValue(testee.todos) { todos in
             XCTAssertEqual(todos.count, 1)
             XCTAssertEqual(todos[0].title, "Assignment 2")
@@ -192,9 +182,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]), startDate: startDate, endDate: endDate)
 
         // Then
-        XCTAssertFirstValueAndCompletion(testee.refresh(ignoreCache: false)) { isEmpty in
-            XCTAssertFalse(isEmpty)
-        }
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertFirstValue(testee.todos) { todos in
             XCTAssertEqual(todos.count, 1)
         }

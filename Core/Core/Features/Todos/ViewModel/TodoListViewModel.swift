@@ -32,7 +32,7 @@ public class TodoListViewModel: ObservableObject {
         self.interactor = interactor
         self.env = env
 
-        self.interactor.todos
+        interactor.todos
             .assign(to: \.items, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
@@ -44,8 +44,9 @@ public class TodoListViewModel: ObservableObject {
             .sinkFailureOrValue { [weak self] _ in
                 self?.state = .error
                 completion()
-            } receiveValue: { [weak self] isEmpty in
-                self?.state = isEmpty ? .empty : .data
+            } receiveValue: { [weak self] _ in
+                let isListEmpty = self?.items.isEmpty == true
+                self?.state = isListEmpty ? .empty : .data
                 completion()
             }
             .store(in: &subscriptions)
