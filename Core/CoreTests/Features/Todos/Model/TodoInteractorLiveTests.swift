@@ -188,6 +188,25 @@ class TodoInteractorLiveTests: CoreTestCase {
         }
     }
 
+    func testRefreshUpdatesTabBarBadgeCount() {
+        // Given
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let plannables = [
+            makePlannable(courseId: "1", plannableId: "p1", type: "assignment", title: "Assignment 1"),
+            makePlannable(courseId: "1", plannableId: "p2", type: "quiz", title: "Quiz 1"),
+            makePlannable(courseId: "1", plannableId: "p3", type: "discussion", title: "Discussion 1")
+        ]
+        TabBarBadgeCounts.todoListCount = 0
+
+        // When
+        mockCourses(courses)
+        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]))
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
+
+        // Then
+        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 3)
+    }
+
     // MARK: - Helpers
 
     private func mockCourses(_ courses: [APICourse]) {

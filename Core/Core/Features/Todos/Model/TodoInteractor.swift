@@ -57,8 +57,9 @@ public final class TodoInteractorLive: TodoInteractor {
                     .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
                     .map { $0.compactMap(TodoItem.init) }
             }
-            .map { [weak self] (todos: [TodoItem]) in
-                self?.todosSubject.value = todos
+            .map { [weak todosSubject] todos in
+                TabBarBadgeCounts.todoListCount = UInt(todos.count)
+                todosSubject?.value = todos
                 return ()
             }
             .eraseToAnyPublisher()
