@@ -20,7 +20,7 @@ import XCTest
 @testable import Core
 import TestsFoundation
 
-final class AssignmentDueDateTextsProviderTests: CoreTestCase {
+final class AssignmentDateTextsProviderTests: CoreTestCase {
 
     private static let testData = (
         dueDate1: Date.make(year: 2025, month: 9, day: 15),
@@ -30,7 +30,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
     )
     private lazy var testData = Self.testData
 
-    private var testee: AssignmentDueDateTextsProviderLive!
+    private var testee: AssignmentDateTextsProviderLive!
 
     override func setUp() {
         super.setUp()
@@ -53,7 +53,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
             lock_at: testData.lockDate,
             has_sub_assignments: false
         ))
-        var dueDates = testee.formattedDueDates(for: assignment)
+        var dueDates = testee.summarizedDueDates(for: assignment)
         // THEN
         XCTAssertEqual(dueDates.count, 1)
         XCTAssertEqual(dueDates.first, DueDateFormatter.dateText(testData.dueDate1))
@@ -65,7 +65,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
             lock_at: testData.lockDate,
             has_sub_assignments: false
         ))
-        dueDates = testee.formattedDueDates(for: assignment)
+        dueDates = testee.summarizedDueDates(for: assignment)
         // THEN
         XCTAssertEqual(dueDates.count, 1)
         XCTAssertEqual(dueDates.first, DueDateFormatter.availabilityClosedText)
@@ -76,7 +76,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
             has_overrides: true,
             has_sub_assignments: false
         ))
-        dueDates = testee.formattedDueDates(for: assignment)
+        dueDates = testee.summarizedDueDates(for: assignment)
         // THEN
         XCTAssertEqual(dueDates.count, 1)
         XCTAssertEqual(dueDates.first, DueDateFormatter.dateText(testData.dueDate1))
@@ -92,7 +92,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
                 .make(tag: "tag2", due_at: nil)
             ]
         ))
-        var dueDates = testee.formattedDueDates(for: assignment)
+        var dueDates = testee.summarizedDueDates(for: assignment)
         // THEN
         XCTAssertEqual(dueDates.count, 2)
         XCTAssertEqual(dueDates.first, DueDateFormatter.dateText(testData.dueDate2))
@@ -107,7 +107,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
                 .make(tag: "tag2", due_at: nil)
             ]
         ))
-        dueDates = testee.formattedDueDates(for: assignment)
+        dueDates = testee.summarizedDueDates(for: assignment)
         // THEN
         XCTAssertEqual(dueDates.count, 2)
         XCTAssertEqual(dueDates.first, DueDateFormatter.noDueDateText)
@@ -126,7 +126,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
                 .make(tag: "tag2", due_at: testData.dueDate3, lock_at: testData.lockDate)
             ]
         ))
-        let dueDates = testee.formattedDueDates(for: assignment)
+        let dueDates = testee.summarizedDueDates(for: assignment)
 
         XCTAssertEqual(dueDates.count, 2)
         XCTAssertEqual(dueDates.first, DueDateFormatter.dateText(testData.dueDate2))
@@ -144,7 +144,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
                 .make(tag: "tag2", due_at: testData.dueDate3, lock_at: testData.lockDate)
             ]
         ))
-        let dueDates = testee.formattedDueDates(for: assignment)
+        let dueDates = testee.summarizedDueDates(for: assignment)
 
         XCTAssertEqual(dueDates.count, 1)
         XCTAssertEqual(dueDates.first, DueDateFormatter.availabilityClosedText)
@@ -161,7 +161,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
                 .make(tag: "tag2", due_at: testData.dueDate3, overrides: [.make()])
             ]
         ))
-        let dueDates = testee.formattedDueDates(for: assignment)
+        let dueDates = testee.summarizedDueDates(for: assignment)
 
         XCTAssertEqual(dueDates.count, 1)
         XCTAssertEqual(dueDates.first, DueDateFormatter.availabilityClosedText)
@@ -179,7 +179,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
             lock_at: testData.lockDate,
             has_sub_assignments: false
         ))
-        var dueDates = testee.formattedDueDates(for: assignment)
+        var dueDates = testee.summarizedDueDates(for: assignment)
         // THEN
         XCTAssertEqual(dueDates.count, 1)
         XCTAssertEqual(dueDates.first, DueDateFormatter.dateText(testData.dueDate1))
@@ -191,7 +191,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
             lock_at: testData.lockDate,
             has_sub_assignments: false
         ))
-        dueDates = testee.formattedDueDates(for: assignment)
+        dueDates = testee.summarizedDueDates(for: assignment)
         // THEN
         XCTAssertEqual(dueDates.count, 1)
         XCTAssertEqual(dueDates.first, DueDateFormatter.availabilityClosedText)
@@ -202,7 +202,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
             has_overrides: true,
             has_sub_assignments: false
         ))
-        dueDates = testee.formattedDueDates(for: assignment)
+        dueDates = testee.summarizedDueDates(for: assignment)
         // THEN
         XCTAssertEqual(dueDates.count, 1)
         XCTAssertEqual(dueDates.first, DueDateFormatter.multipleDueDatesText)
@@ -220,7 +220,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
                 .make(tag: "tag2", due_at: nil)
             ]
         ))
-        var dueDates = testee.formattedDueDates(for: assignment)
+        var dueDates = testee.summarizedDueDates(for: assignment)
         // THEN
         XCTAssertEqual(dueDates.count, 2)
         XCTAssertEqual(dueDates.first, DueDateFormatter.dateText(testData.dueDate2))
@@ -235,7 +235,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
                 .make(tag: "tag2", due_at: nil)
             ]
         ))
-        dueDates = testee.formattedDueDates(for: assignment)
+        dueDates = testee.summarizedDueDates(for: assignment)
         // THEN
         XCTAssertEqual(dueDates.count, 2)
         XCTAssertEqual(dueDates.first, DueDateFormatter.noDueDateText)
@@ -255,7 +255,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
                 .make(tag: "tag2", due_at: testData.dueDate3, lock_at: testData.lockDate)
             ]
         ))
-        let dueDates = testee.formattedDueDates(for: assignment)
+        let dueDates = testee.summarizedDueDates(for: assignment)
 
         XCTAssertEqual(dueDates.count, 2)
         XCTAssertEqual(dueDates.first, DueDateFormatter.dateText(testData.dueDate2))
@@ -274,7 +274,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
                 .make(tag: "tag2", due_at: testData.dueDate3, lock_at: testData.lockDate)
             ]
         ))
-        let dueDates = testee.formattedDueDates(for: assignment)
+        let dueDates = testee.summarizedDueDates(for: assignment)
 
         XCTAssertEqual(dueDates.count, 1)
         XCTAssertEqual(dueDates.first, DueDateFormatter.availabilityClosedText)
@@ -291,7 +291,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
                 .make(tag: "tag2", due_at: testData.dueDate3, overrides: [.make()])
             ]
         ))
-        let dueDates = testee.formattedDueDates(for: assignment)
+        let dueDates = testee.summarizedDueDates(for: assignment)
 
         XCTAssertEqual(dueDates.count, 1)
         XCTAssertEqual(dueDates.first, DueDateFormatter.multipleDueDatesText)
@@ -310,7 +310,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
             lock_at: testData.lockDate,
             has_sub_assignments: false
         ))
-        let dueDates = testee.formattedDueDates(for: assignment)
+        let dueDates = testee.summarizedDueDates(for: assignment)
         // THEN
         XCTAssertEqual(dueDates.count, 1)
         XCTAssertEqual(dueDates.first, DueDateFormatter.multipleDueDatesText)
@@ -328,7 +328,7 @@ final class AssignmentDueDateTextsProviderTests: CoreTestCase {
                 .make(tag: "tag2", due_at: testData.dueDate3, overrides: [.make()])
             ]
         ))
-        let dueDates = testee.formattedDueDates(for: assignment)
+        let dueDates = testee.summarizedDueDates(for: assignment)
 
         XCTAssertEqual(dueDates.count, 1)
         XCTAssertEqual(dueDates.first, DueDateFormatter.multipleDueDatesText)

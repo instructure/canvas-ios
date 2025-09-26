@@ -150,7 +150,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     private let isLeftToRightLayout: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight
     private weak var gradeBorderLayer: CAShapeLayer?
     private var offlineModeInteractor: OfflineModeInteractor?
-    private var dateTextsProvider: AssignmentDueDateTextsProvider?
+    private var dateTextsProvider: AssignmentDateTextsProvider?
     private var gradeSectionBoundsObservation: NSKeyValueObservation?
     private lazy var remindersInteractor = AssignmentRemindersInteractorLive(notificationCenter: UNUserNotificationCenter.current())
 
@@ -159,7 +159,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         assignmentID: String,
         fragment: String? = nil,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(),
-        dateTextsProvider: AssignmentDueDateTextsProvider = .live,
+        dateTextsProvider: AssignmentDateTextsProvider = .live,
         env: AppEnvironment
     ) -> StudentAssignmentDetailsViewController {
         let controller = loadFromStoryboard()

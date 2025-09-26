@@ -18,29 +18,32 @@
 
 import Foundation
 
-public protocol AssignmentDueDateTextsProvider {
+public protocol AssignmentDateTextsProvider {
 
-    /// Return an array of formatted due dates, or only a single item
-    /// if any of the dates is a special case which overrules them.
-    func formattedDueDates(for assignment: Assignment) -> [String]
+    /// If `assignment` has sub-assignments, this returns the formatted due date for each sub-assignment,
+    /// or only a single item if any of the dates is a special case which overrules them.
+    /// If `assignment` has no sub-assignments, this returns the formatted due date.
+    /// This method formats dates adding the "Due" prefix.
+    func summarizedDueDates(for assignment: Assignment) -> [String]
 
+    /// Returns items which contain a title & formatted due date pair.
+    /// If `assignment` has sub-assignments, this returns an item for each sub-assignment.
+    /// In this case each title is the sub-assignments title and the "due" suffix.
+    /// If `assignment` has no sub-assignments, this return a single item with the title "Due".
+    /// If `assignment` or it's sub-assignments have overrides, the returned item's title is `nil`.
+    /// This method formats dates without adding the "Due" prefix.
     func dueDateItems(for assignment: Assignment) -> [AssignmentDateListItem]
 }
 
-extension AssignmentDueDateTextsProvider where Self == AssignmentDueDateTextsProviderLive {
-    public static var live: AssignmentDueDateTextsProviderLive { .init() }
+extension AssignmentDateTextsProvider where Self == AssignmentDateTextsProviderLive {
+    public static var live: AssignmentDateTextsProviderLive { .init() }
 }
 
-public struct AssignmentDateListItem: Equatable {
-    public let title: String?
-    public let date: String
-}
-
-public struct AssignmentDueDateTextsProviderLive: AssignmentDueDateTextsProvider {
+public struct AssignmentDateTextsProviderLive: AssignmentDateTextsProvider {
 
     public init() {}
 
-    public func formattedDueDates(for assignment: Assignment) -> [String] {
+    public func summarizedDueDates(for assignment: Assignment) -> [String] {
         let isTeacher = AppEnvironment.shared.app == .teacher
 
         if assignment.hasSubAssignments {
@@ -94,4 +97,9 @@ public struct AssignmentDueDateTextsProviderLive: AssignmentDueDateTextsProvider
             return assignment.hasOverrides
         }
     }
+}
+
+public struct AssignmentDateListItem: Equatable {
+    public let title: String?
+    public let date: String
 }

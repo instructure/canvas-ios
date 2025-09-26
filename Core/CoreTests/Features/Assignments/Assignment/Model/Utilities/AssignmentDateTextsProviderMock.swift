@@ -19,16 +19,18 @@
 import Foundation
 import Core
 
-final class AssignmentDueDateTextsProviderMock: AssignmentDueDateTextsProvider {
+final class AssignmentDateTextsProviderMock: AssignmentDateTextsProvider {
 
-    var formattedDueDatesCallsCount: Int = 0
-    var formattedDueDatesInput: Assignment?
-    var formattedDueDatesResult: [String] = []
+    // MARK: - summarizedDueDates
 
-    public func formattedDueDates(for assignment: Assignment) -> [String] {
-        formattedDueDatesCallsCount += 1
-        formattedDueDatesInput = assignment
-        return formattedDueDatesResult
+    var summarizedDueDatesCallsCount: Int = 0
+    var summarizedDueDatesInput: Assignment?
+    var summarizedDueDatesResult: [String] = []
+
+    func summarizedDueDates(for assignment: Assignment) -> [String] {
+        summarizedDueDatesCallsCount += 1
+        summarizedDueDatesInput = assignment
+        return summarizedDueDatesResult
     }
 
     // MARK: - dueDateItems
