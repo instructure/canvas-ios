@@ -22,20 +22,11 @@ import UIKit
 struct NotificationAssembly {
 
     static func makeView() -> UIViewController {
-        let environment = AppEnvironment.shared
-        let showTabBarAndNavigationBar: (Bool) -> Void = { isVisible in
-            environment.tabBar(isVisible: isVisible)
-            environment.navigationBar(isVisible: isVisible)
-        }
-
         let viewModel = HNotificationViewModel(
             interactor: makeInteractor(),
             router: AppEnvironment.shared.router
         )
-        let view = HNotificationView(
-            viewModel: viewModel,
-            onShowNavigationBarAndTabBar: showTabBarAndNavigationBar
-        )
+        let view = HNotificationView(viewModel: viewModel)
         return CoreHostingController(view)
     }
 
@@ -55,7 +46,7 @@ struct NotificationAssembly {
             interactor: interactor,
             router: AppEnvironment.shared.router
         )
-        let view = HNotificationView(viewModel: viewModel, onShowNavigationBarAndTabBar: { _ in })
+        let view = HNotificationView(viewModel: viewModel)
         return view
     }
 #endif

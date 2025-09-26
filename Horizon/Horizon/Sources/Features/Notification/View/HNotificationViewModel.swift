@@ -26,9 +26,7 @@ final class HNotificationViewModel {
 
     private(set) var notifications: [NotificationModel] = []
     private(set) var isLoaderVisible: Bool = true
-    private(set) var isFooterVisible: Bool = false
-    private(set) var isNextButtonEnabled: Bool = false
-    private(set) var isPreviousButtonEnabled: Bool = false
+    private(set) var isSeeMoreButtonVisible: Bool = false
 
     // MARK: - Private Properties
 
@@ -37,8 +35,7 @@ final class HNotificationViewModel {
     private var totalPages = 0
     private var currentPage = 0 {
         didSet {
-            isPreviousButtonEnabled = currentPage > 0
-            isNextButtonEnabled = currentPage < totalPages - 1
+            isSeeMoreButtonVisible = currentPage < totalPages - 1
         }
     }
     // MARK: - Dependencies
@@ -59,14 +56,9 @@ final class HNotificationViewModel {
 
     // MARK: - Input Actions
 
-    func goNext() {
+    func seeMore() {
         currentPage += 1
-        notifications = paginatedNotifications[safe: currentPage] ?? []
-    }
-
-    func goPrevious() {
-        currentPage -= 1
-        notifications = paginatedNotifications[safe: currentPage] ?? []
+        notifications.append(contentsOf: paginatedNotifications[safe: currentPage] ?? [])
     }
 
     @MainActor
@@ -85,13 +77,29 @@ final class HNotificationViewModel {
         notification: NotificationModel,
         viewController: WeakViewController
     ) {
-        let view = LearnAssembly.makeCourseDetailsViewController(
-            courseID: notification.courseID,
-            enrollmentID: notification.enrollmentID,
-            shoudHideTabBar: true,
-            selectedTab: notification.isScoreAnnouncement ? .scores : .myProgress
-        )
-        router.show(view, from: viewController)
+        switch notification.type {
+        case .score, .scoreChanged, .dueDate:
+            let url = (notification.type == .dueDate)
+            ? notification.htmlURL
+            : notification.assignmentURL
+            if let url {
+                router.route(to: url, from: viewController)
+            } else {
+                let view = LearnAssembly.makeCourseDetailsViewController(
+                    courseID: notification.courseID,
+                    enrollmentID: notification.enrollmentID,
+                    shoudHideTabBar: true,
+                    selectedTab: notification.isScoreAnnouncement ? .scores : .myProgress
+                )
+                router.show(view, from: viewController)
+            }
+
+        case .announcement:
+            let vc = HorizonMessageDetailsAssembly.makeViewController(
+                announcementID: notification.announcementId ?? ""
+            )
+            router.show(vc, from: viewController)
+        }
     }
 
     // MARK: - Private Functions
@@ -106,7 +114,6 @@ final class HNotificationViewModel {
 
     private func handleResponse(notifications: [NotificationModel]) {
         paginatedNotifications = notifications.chunked(into: 10)
-        isFooterVisible = paginatedNotifications.count > 1
         totalPages = paginatedNotifications.count
         self.notifications = paginatedNotifications.first ?? []
         currentPage = 0
@@ -115,12 +122,6 @@ final class HNotificationViewModel {
 }
 
 extension Array {
-    func chunked(into size: Int) -> [[Element]] {
-        stride(from: 0, to: self.count, by: size).map {
-            Array(self[$0..<Swift.min($0 + size, self.count)])
-        }
-    }
-
     subscript(safe index: Int) -> Element? {
         return indices.contains(index) ? self[index] : nil
     }

@@ -29,41 +29,36 @@ struct HNotificationView: View {
     // MARK: - Dependencies
 
     private let viewModel: HNotificationViewModel
-    private let onShowNavigationBarAndTabBar: (Bool) -> Void
 
-    init(
-        viewModel: HNotificationViewModel,
-        onShowNavigationBarAndTabBar: @escaping (Bool) -> Void
-    ) {
+    init(viewModel: HNotificationViewModel) {
         self.viewModel = viewModel
-        self.onShowNavigationBarAndTabBar = onShowNavigationBarAndTabBar
     }
 
     var body: some View {
-        VStack(spacing: .zero) {
-            contentView
-
-            Divider()
-                .hidden(viewModel.notifications.isEmpty)
-                .hidden(!viewModel.isFooterVisible)
-            footerView
-                .padding(.top, .huiSpaces.space16)
-                .frame(maxWidth: .infinity)
-                .background(Color.huiColors.surface.pageSecondary)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.huiColors.surface.pagePrimary)
-        .overlay { loaderView }
-        .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
-        .onWillDisappear { onShowNavigationBarAndTabBar(true) }
-        .onWillAppear { onShowNavigationBarAndTabBar(false) }
-        .refreshable {
-            await viewModel.refresh()
+       ZStack {
+           Color.huiColors.surface.pagePrimary
+               .ignoresSafeArea()
+            VStack(spacing: .huiSpaces.space8) {
+                ScrollView(showsIndicators: false) {
+                    contentView
+                        .padding(.vertical, .huiSpaces.space16)
+                }
+            }
+            .overlay { loaderView }
+            .toolbar(.hidden)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.huiColors.surface.pageSecondary)
+            .huiCornerRadius(level: .level4, corners: [.topLeft, .topRight])
+            .padding(.top, .huiSpaces.space16)
+            .refreshable {
+                await viewModel.refresh()
+            }
+            .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         }
     }
 
     private var contentView: some View {
-        VStack {
+        VStack(spacing: .huiSpaces.space8) {
             if viewModel.notifications.isEmpty {
                 Text("No notification activity yet.", bundle: .horizon)
                     .foregroundStyle(Color.huiColors.text.body)
@@ -71,60 +66,31 @@ struct HNotificationView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     .padding(.huiSpaces.space24)
                     .padding(.top, .huiSpaces.space24)
-                Spacer()
             } else {
-                ScrollView(showsIndicators: false) {
-                    ForEach(viewModel.notifications) { activity in
-                        Button {
-                            viewModel.navigeteToCourseDetails(
-                                notification: activity,
-                                viewController: viewController
-                            )
-                        } label: {
-                            notificationRow(notification: activity)
-                        }
-                        Divider()
-                            .hidden(activity == viewModel.notifications.last)
+                ForEach(viewModel.notifications) { activity in
+                    Button {
+                        viewModel.navigeteToCourseDetails(
+                            notification: activity,
+                            viewController: viewController
+                        )
+                    } label: {
+                        HNotificationCardView(
+                            type: activity.type,
+                            courseName: activity.courseName,
+                            title: activity.title,
+                            date: activity.dateFormatted,
+                            isRead: activity.isRead
+                        )
                     }
-                    .animation(.linear, value: viewModel.notifications)
+                    .padding(.horizontal, .huiSpaces.space24)
                 }
-                .padding(.top, .huiSpaces.space16)
+                .animation(.linear, value: viewModel.notifications.count)
+            }
+            if viewModel.isSeeMoreButtonVisible {
+                seeMoreButton
+                    .padding(.horizontal, .huiSpaces.space24)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.huiColors.surface.pageSecondary)
-        .huiCornerRadius(level: .level4, corners: [.topLeft, .topRight])
-        .padding(.top, .huiSpaces.space16)
-    }
-
-    private func notificationRow(notification: NotificationModel) -> some View {
-        VStack(spacing: .huiSpaces.space4) {
-            Text(notification.category)
-                .foregroundStyle(Color.huiColors.text.timestamp)
-                .huiTypography(.labelSmall)
-                .multilineTextAlignment(.leading)
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-            HStack(alignment: .top) {
-                Text(notification.title)
-                    .huiTypography(notification.isRead ? .p1 : .labelLargeBold)
-                    .foregroundStyle(Color.huiColors.text.body)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                if !notification.isRead {
-                    Circle()
-                        .fill(Color.huiColors.surface.institution)
-                        .frame(width: 8, height: 8)
-                }
-            }
-
-            Text(notification.date)
-                .foregroundStyle(Color.huiColors.text.timestamp)
-                .huiTypography(.labelSmall)
-                .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .padding(.vertical, .huiSpaces.space16)
-        .padding(.horizontal, .huiSpaces.space24)
     }
 
     private var navigationBar: some View {
@@ -153,22 +119,22 @@ struct HNotificationView: View {
         }
     }
 
-    private var footerView: some View {
-        HStack(spacing: .huiSpaces.space8) {
-            if viewModel.isFooterVisible {
-                HorizonUI.IconButton(Image.huiIcons.chevronLeft, type: .black) {
-                    viewModel.goPrevious()
-                }
-                .disabled(!viewModel.isPreviousButtonEnabled)
-
-                HorizonUI.IconButton(Image.huiIcons.chevronRight, type: .black) {
-                    viewModel.goNext()
-                }
-                .disabled(!viewModel.isNextButtonEnabled)
-            }
+    private var seeMoreButton: some View {
+        Button {
+            viewModel.seeMore()
+        } label: {
+            Text("See More", bundle: .horizon)
+                .huiTypography(.buttonTextMedium)
+                .foregroundStyle(Color.huiColors.text.title)
+                .frame(maxWidth: .infinity)
+                .frame(height: 32)
+                .huiCornerRadius(level: .level6)
+                .huiBorder(
+                    level: .level1,
+                    color: Color.huiColors.lineAndBorders.lineStroke,
+                    radius: HorizonUI.CornerRadius.level6.attributes.radius
+                )
         }
-        .hidden(viewModel.notifications.isEmpty)
-        .padding(.top, .huiSpaces.space10)
     }
 }
 

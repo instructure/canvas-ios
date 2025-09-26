@@ -31,6 +31,9 @@ struct HActivity: Identifiable, Equatable {
     let notificationCategory: String?
     let courseId: String?
     let isRead: Bool
+    let announcementId: String?
+    let assignmentURL: URL?
+    let htmlURL: URL?
 
     init(
         id: String,
@@ -43,7 +46,10 @@ struct HActivity: Identifiable, Equatable {
         contextType: String? = nil,
         notificationCategory: String? = nil,
         courseId: String? = nil,
-        isRead: Bool = true
+        isRead: Bool = true,
+        announcementId: String? = nil,
+        assignmentURL: URL? = nil,
+        htmlURL: URL? = nil
     ) {
         self.id = id
         self.title = title
@@ -56,6 +62,9 @@ struct HActivity: Identifiable, Equatable {
         self.notificationCategory = notificationCategory
         self.courseId = courseId
         self.isRead = isRead
+        self.announcementId = announcementId
+        self.assignmentURL = assignmentURL
+        self.htmlURL = htmlURL
     }
 
     init(from entity: Activity) {
@@ -70,6 +79,9 @@ struct HActivity: Identifiable, Equatable {
         self.notificationCategory = entity.notificationCategory
         self.courseId = entity.courseId
         self.isRead = entity.readState
+        self.announcementId = entity.announcementId
+        self.assignmentURL = entity.assignmentURL
+        self.htmlURL = entity.htmlURL
     }
 
     var dateFormatted: String {
