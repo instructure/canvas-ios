@@ -41,20 +41,24 @@ public final class TodoInteractorLive: TodoInteractor {
     public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
         let startDate = Clock.now.addDays(-28)
         let endDate = Clock.now.addDays(28)
+        let currentUserID = env.currentSession?.userID
 
-        return ReactiveStore(useCase: GetCourses())
+        return ReactiveStore(useCase: GetCourses(), environment: env)
             .getEntities(ignoreCache: ignoreCache)
             .map {
                 var contextCodes: [String] = $0.filter(\.isPublished).map(\.canvasContextID)
-                if let userContextCode = Context(.user, id: self.env.currentSession?.userID)?.canvasContextID {
+                if let userContextCode = Context(.user, id: currentUserID)?.canvasContextID {
                     contextCodes.append(userContextCode)
                 }
                 return contextCodes
             }
-            .flatMap { codes in
-                return ReactiveStore(useCase: GetPlannables(startDate: startDate, endDate: endDate, contextCodes: codes))
-                    .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
-                    .map { $0.compactMap(TodoItem.init) }
+            .flatMap { [env] codes in
+                ReactiveStore(
+                    useCase: GetPlannables(startDate: startDate, endDate: endDate, contextCodes: codes),
+                    environment: env
+                )
+                .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
+                .map { $0.compactMap(TodoItem.init) }
             }
             .map { [weak todosSubject] (todos: [TodoItem]) in
                 TabBarBadgeCounts.todoListCount = UInt(todos.count)
