@@ -74,13 +74,15 @@ public struct TodoItem: Identifiable, Equatable {
 
     // MARK: Preview & Testing
 
+    #if DEBUG
+
     public static func make(
-        id: String = "",
+        id: String = "1",
         type: PlannableType = .assignment,
         date: Date = Clock.now,
-        title: String = "",
+        title: String = "Calculate how far the Millennium Falcon actually traveled in less than 12 parsecs",
         subtitle: String? = nil,
-        contextName: String = "",
+        contextName: String = "Math II.",
         htmlURL: URL? = nil,
         color: Color = .red,
         icon: Image = .assignmentLine
@@ -98,4 +100,6 @@ public struct TodoItem: Identifiable, Equatable {
             icon: icon
         )
     }
+
+    #endif
 }
