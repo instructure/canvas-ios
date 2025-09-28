@@ -81,8 +81,11 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     @IBOutlet weak var gradeSectionBottomSpacer: UIView?
     @IBOutlet weak var fileTypesSection: StudentAssignmentDetailsSectionContainerView?
     @IBOutlet weak var submissionTypesSection: StudentAssignmentDetailsSectionContainerView?
+
     @IBOutlet weak var dueSection1: StudentAssignmentDetailsSectionContainerView?
     @IBOutlet weak var dueSection2: StudentAssignmentDetailsSectionContainerView?
+    @IBOutlet weak var dueSectionsBottomDivider: UIView?
+
     /** This is shown when there are no submissions on the assignment but we still want the user to reach rubrics. */
     @IBOutlet weak var submissionRubricButton: UIButton? {
         didSet {
@@ -152,7 +155,8 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     private var offlineModeInteractor: OfflineModeInteractor?
     private var dateTextsProvider: AssignmentDateTextsProvider?
     private var gradeSectionBoundsObservation: NSKeyValueObservation?
-    private lazy var remindersInteractor = AssignmentRemindersInteractorLive(notificationCenter: UNUserNotificationCenter.current())
+    private lazy var dueDate1RemindersInteractor = AssignmentRemindersInteractorLive(notificationCenter: UNUserNotificationCenter.current())
+    private lazy var dueDate2RemindersInteractor = AssignmentRemindersInteractorLive(notificationCenter: UNUserNotificationCenter.current())
 
     static func create(
         courseID: String,
@@ -246,7 +250,8 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         fileSubmissionButton?.makeUnavailableInOfflineMode()
         submissionButton?.makeUnavailableInOfflineMode()
 
-        embedReminderSection()
+        embedReminderSection(after: dueSection1, interactor: dueDate1RemindersInteractor)
+        embedReminderSection(after: dueSection2, interactor: dueDate2RemindersInteractor)
 
         let border = CAShapeLayer()
         border.strokeColor = UIColor.borderDark.cgColor
@@ -477,12 +482,6 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
 
         updateQuizSettings(quiz)
 
-        remindersInteractor.contextDidUpdate.send(.init(courseId: courseID,
-                                                        assignmentId: assignmentID,
-                                                        userId: env.currentSession?.userID ?? "",
-                                                        assignmentName: assignment.name,
-                                                        dueDate: assignment.dueAt ?? .distantPast))
-
         scrollView?.isHidden = false
         loadingView.stopAnimating()
         refreshControl?.endRefreshing()
@@ -555,6 +554,9 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         else {
             updateDueSection(dueSection1, with: nil)
             updateDueSection(dueSection2, with: nil)
+            clearRemindersInteractor(dueDate1RemindersInteractor)
+            clearRemindersInteractor(dueDate2RemindersInteractor)
+            dueSectionsBottomDivider?.isHidden = true
             return
         }
 
@@ -565,14 +567,33 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
             // should never happen
             updateDueSection(dueSection1, with: nil)
             updateDueSection(dueSection2, with: nil)
+            dueSectionsBottomDivider?.isHidden = true
         case 1:
             updateDueSection(dueSection1, with: items[0])
             updateDueSection(dueSection2, with: nil)
+            dueSectionsBottomDivider?.isHidden = false
         default:
             // Displaying only first 2 sections, since we have a set number of sections.
             // There shouldn't be more anyway. SwiftUI implenentation shall handle this properly.
             updateDueSection(dueSection1, with: items[0])
             updateDueSection(dueSection2, with: items[1])
+            dueSectionsBottomDivider?.isHidden = false
+        }
+
+        if assignment.hasSubAssignments {
+            let checkpoints = assignment.checkpoints
+            if checkpoints.count > 1 {
+                updateRemindersInteractor(dueDate1RemindersInteractor, with: checkpoints[0])
+                updateRemindersInteractor(dueDate2RemindersInteractor, with: checkpoints[1])
+                dueSectionsBottomDivider?.isHidden = dueDate2RemindersInteractor.isRemindersSectionVisible.value
+            } else {
+                clearRemindersInteractor(dueDate1RemindersInteractor)
+                clearRemindersInteractor(dueDate2RemindersInteractor)
+            }
+        } else {
+            updateRemindersInteractor(dueDate1RemindersInteractor, with: assignment)
+            dueSectionsBottomDivider?.isHidden = dueDate1RemindersInteractor.isRemindersSectionVisible.value
+            clearRemindersInteractor(dueDate2RemindersInteractor)
         }
     }
 
@@ -587,15 +608,60 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         dueSection.isHidden = item == nil
     }
 
-    private func embedReminderSection() {
-        guard let dueSection1,
-              let parentStackView = dueSection1.superview as? UIStackView,
-              let dueSectionIndex = parentStackView.subviews.firstIndex(of: dueSection1)
+    private func updateRemindersInteractor(
+        _ interactor: AssignmentRemindersInteractor,
+        with assignment: Assignment
+    ) {
+        interactor.contextDidUpdate.send(
+            .init(
+                courseId: courseID,
+                assignmentId: assignment.id,
+                userId: env.currentSession?.userID ?? "",
+                assignmentName: assignment.name,
+                dueDate: assignment.dueAt ?? .distantPast
+            )
+        )
+    }
+
+    private func updateRemindersInteractor(
+        _ interactor: AssignmentRemindersInteractor,
+        with checkpoint: CDAssignmentCheckpoint
+    ) {
+        interactor.contextDidUpdate.send(
+            .init(
+                courseId: courseID,
+                assignmentId: checkpoint.assignmentId,
+                userId: env.currentSession?.userID ?? "",
+                assignmentName: "\(checkpoint.assignmentName) - \(checkpoint.title)",
+                dueDate: checkpoint.dueDate ?? .distantPast
+            )
+        )
+    }
+
+    private func clearRemindersInteractor(_ interactor: AssignmentRemindersInteractor) {
+        interactor.contextDidUpdate.send(
+            .init(
+                courseId: courseID,
+                assignmentId: assignmentID,
+                userId: env.currentSession?.userID ?? "",
+                assignmentName: "",
+                dueDate: .distantPast
+            )
+        )
+    }
+
+    private func embedReminderSection(
+        after dueSection: StudentAssignmentDetailsSectionContainerView?,
+        interactor: AssignmentRemindersInteractor
+    ) {
+        guard let dueSection,
+              let parentStackView = dueSection.superview as? UIStackView,
+              let dueSectionIndex = parentStackView.arrangedSubviews.firstIndex(of: dueSection)
         else {
             return
         }
 
-        let reminderSection = AssignmentRemindersAssembly.makeRemindersSectionController(interactor: remindersInteractor)
+        let reminderSection = AssignmentRemindersAssembly.makeRemindersSectionController(interactor: interactor)
         addChild(reminderSection)
         parentStackView.insertArrangedSubview(reminderSection.view, at: dueSectionIndex + 1)
         NSLayoutConstraint.activate([
