@@ -26,7 +26,6 @@ public enum PlannableType: String, Codable {
 }
 
 public enum PlannableUseCaseID: String, Codable {
-    case plannables
     case syllabusSummary
 }
 
@@ -72,7 +71,7 @@ public final class Plannable: NSManagedObject {
 
     @discardableResult
     public static func save(_ item: APIPlannable, userId: String?, useCase: PlannableUseCaseID? = nil, in client: NSManagedObjectContext) -> Plannable {
-        let model: Plannable = client.first(scope: .planner(id: item.plannable_id.value, useCase: useCase)) ?? client.insert()
+        let model: Plannable = client.first(scope: .plannable(id: item.plannable_id.value, useCase: useCase)) ?? client.insert()
         model.id = item.plannable_id.value
         model.plannableType = item.plannableType
         model.htmlURL = item.html_url?.rawValue
@@ -94,7 +93,7 @@ public final class Plannable: NSManagedObject {
 
     @discardableResult
     public static func save(_ item: APIPlannerNote, contextName: String?, useCase: PlannableUseCaseID? = nil, in client: NSManagedObjectContext) -> Plannable {
-        let model: Plannable = client.first(scope: .planner(id: item.id, useCase: useCase)) ?? client.insert()
+        let model: Plannable = client.first(scope: .plannable(id: item.id, useCase: useCase)) ?? client.insert()
         model.id = item.id
         model.plannableType = .planner_note
         model.htmlURL = nil
@@ -112,7 +111,7 @@ public final class Plannable: NSManagedObject {
 
     @discardableResult
     public static func save(_ item: APICalendarEvent, userId: String?, useCase: PlannableUseCaseID? = nil, in client: NSManagedObjectContext) -> Plannable {
-        let model: Plannable = client.first(scope: .planner(id: item.id.value, useCase: useCase)) ?? client.insert()
+        let model: Plannable = client.first(scope: .plannable(id: item.id.value, useCase: useCase)) ?? client.insert()
         model.id = item.id.value
         model.plannableType = {
             switch item.type {
@@ -141,20 +140,14 @@ public final class Plannable: NSManagedObject {
 
 extension Scope {
 
-    public static func planner(id: String, useCase: PlannableUseCaseID? = nil) -> Self {
+    public static func plannable(id: String, useCase: PlannableUseCaseID? = nil) -> Self {
         var subpredicates = [
             NSPredicate(key: #keyPath(Plannable.id), equals: id)
         ]
 
-        if let useCase {
-            subpredicates.append(
-                NSPredicate(key: #keyPath(Plannable.originUseCaseIDRaw), equals: useCase.rawValue)
-            )
-        } else {
-            subpredicates.append(
-                NSPredicate(format: "%K == nil", #keyPath(Plannable.originUseCaseIDRaw))
-            )
-        }
+        subpredicates.append(
+            NSPredicate(\Plannable.originUseCaseIDRaw, equals: useCase?.rawValue)
+        )
 
         let predicate = NSCompoundPredicate(type: .and, subpredicates: subpredicates)
         let order = [NSSortDescriptor(keyPath: \Plannable.date, ascending: false)]

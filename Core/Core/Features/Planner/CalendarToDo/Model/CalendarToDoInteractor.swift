@@ -43,7 +43,7 @@ public protocol CalendarToDoInteractor: AnyObject {
 final class CalendarToDoInteractorLive: CalendarToDoInteractor {
 
     func getToDo(id: String) -> AnyPublisher<Plannable, Error> {
-        let scope = Scope.planner(id: id)
+        let scope = Scope.plannable(id: id)
         let useCase = LocalUseCase<Plannable>(scope: scope)
         return ReactiveStore(useCase: useCase)
             .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
