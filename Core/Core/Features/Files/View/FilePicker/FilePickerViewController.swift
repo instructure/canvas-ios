@@ -20,6 +20,7 @@ import Combine
 import UIKit
 import MobileCoreServices
 import VisionKit
+import PDFKit
 import UniformTypeIdentifiers
 
 public enum FilePickerSource: Int, CaseIterable {
@@ -377,10 +378,31 @@ extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
 extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
     public func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
         controller.dismiss(animated: true)
+
+        let usePdf = utis.contains(where: { $0.isPdf }) && !utis.contains(where: { $0.isImage })
+
+        var pdfDocument: PDFDocument?
+        if usePdf {
+            pdfDocument = PDFDocument()
+        }
+
         for i in 0..<scan.pageCount {
             do {
                 let image = scan.imageOfPage(at: i)
-                add(try image.write())
+                if let pdfDocument {
+                    if let pdfPage = PDFPage(image: image) {
+                         pdfDocument.insert(pdfPage, at: pdfDocument.pageCount)
+                     }
+                } else {
+                    add(try image.write())
+                }
+            } catch {
+                showError(error)
+            }
+        }
+        if let pdfDocument {
+            do {
+                add(try pdfDocument.write())
             } catch {
                 showError(error)
             }

@@ -131,6 +131,9 @@ public struct UTI: Equatable, Hashable {
     public var isImage: Bool {
         return uttype?.conforms(to: .image) ?? false
     }
+    public var isPdf: Bool {
+        return uttype?.conforms(to: .pdf) ?? false
+    }
 
     public var isAudio: Bool {
         return uttype?.conforms(to: .audio) ?? false
