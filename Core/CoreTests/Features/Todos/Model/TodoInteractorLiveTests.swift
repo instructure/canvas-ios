@@ -37,15 +37,14 @@ class TodoInteractorLiveTests: CoreTestCase {
 
     override func tearDown() {
         testee = nil
-        Clock.reset()
         super.tearDown()
     }
 
     // MARK: - Tests
 
     func testInitialTodosIsEmpty() {
-        XCTAssertFirstValue(testee.todos) { todos in
-            XCTAssertEqual(todos, [])
+        XCTAssertFirstValue(testee.todoGroups) { todoGroups in
+            XCTAssertEqual(todoGroups, [])
         }
     }
 
@@ -67,10 +66,19 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
-        XCTAssertFirstValue(testee.todos) { todos in
-            XCTAssertEqual(todos.count, 2)
-            XCTAssertEqual(todos[0].title, "Assignment 1")
-            XCTAssertEqual(todos[1].title, "Quiz 1")
+        XCTAssertFirstValue(testee.todoGroups) { todoGroups in
+            // Should have 2 groups (one for each day since plannables are on different days)
+            XCTAssertEqual(todoGroups.count, 2)
+
+            // Check first group (today)
+            let firstGroup = todoGroups[0]
+            XCTAssertEqual(firstGroup.items.count, 1)
+            XCTAssertEqual(firstGroup.items[0].title, "Assignment 1")
+
+            // Check second group (tomorrow)
+            let secondGroup = todoGroups[1]
+            XCTAssertEqual(secondGroup.items.count, 1)
+            XCTAssertEqual(secondGroup.items[0].title, "Quiz 1")
         }
     }
 
@@ -81,7 +89,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
-        XCTAssertFirstValue(testee.todos) { todos in
+        XCTAssertFirstValue(testee.todoGroups) { todos in
             XCTAssertEqual(todos, [])
         }
     }
@@ -102,9 +110,10 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
-        XCTAssertFirstValue(testee.todos) { todos in
-            XCTAssertEqual(todos.count, 1)
-            XCTAssertEqual(todos[0].title, "Assignment 1")
+        XCTAssertFirstValue(testee.todoGroups) { todoGroups in
+            XCTAssertEqual(todoGroups.count, 1)
+            XCTAssertEqual(todoGroups[0].items.count, 1)
+            XCTAssertEqual(todoGroups[0].items[0].title, "Assignment 1")
         }
     }
 
@@ -136,9 +145,9 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         wait(for: [coursesAPICallExpectation, plannablesAPICallExpectation], timeout: 1.0)
 
-        XCTAssertFirstValue(testee.todos) { todos in
+        XCTAssertFirstValue(testee.todoGroups) { todos in
             XCTAssertEqual(todos.count, 1)
-            XCTAssertEqual(todos[0].title, "Assignment 1")
+            XCTAssertEqual(todos[0].items[0].title, "Assignment 1")
         }
     }
 
@@ -155,9 +164,9 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
-        XCTAssertFirstValue(testee.todos) { todos in
+        XCTAssertFirstValue(testee.todoGroups) { todos in
             XCTAssertEqual(todos.count, 1)
-            XCTAssertEqual(todos[0].title, "Assignment 2")
+            XCTAssertEqual(todos[0].items[0].title, "Assignment 2")
         }
     }
 
@@ -167,7 +176,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // Then
         XCTAssertFailure(testee.refresh(ignoreCache: false))
-        XCTAssertFirstValue(testee.todos) { todos in
+        XCTAssertFirstValue(testee.todoGroups) { todos in
             XCTAssertEqual(todos, [])
         }
     }
@@ -185,7 +194,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
-        XCTAssertFirstValue(testee.todos) { todos in
+        XCTAssertFirstValue(testee.todoGroups) { todos in
             XCTAssertEqual(todos.count, 1)
         }
     }

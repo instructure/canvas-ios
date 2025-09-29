@@ -39,7 +39,6 @@ struct TodoListItemCell: View {
             }
             .accessibilityElement(children: .combine)
         }
-        .padding(.vertical, 8)
     }
 }
 

@@ -21,7 +21,7 @@ import Combine
 import CombineExt
 
 public class TodoListViewModel: ObservableObject {
-    @Published var items: [TodoItem] = []
+    @Published var items: [TodoGroup] = []
     @Published var state: InstUI.ScreenState = .loading
 
     private let interactor: TodoInteractor
@@ -32,7 +32,7 @@ public class TodoListViewModel: ObservableObject {
         self.interactor = interactor
         self.env = env
 
-        interactor.todos
+        interactor.todoGroups
             .assign(to: \.items, on: self, ownership: .weak)
             .store(in: &subscriptions)
 

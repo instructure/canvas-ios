@@ -179,6 +179,15 @@ public extension Date {
     }()
 
     /**
+     This date formatter displays abbreviated weekday names. E.g.: Mon, Wed, Sat.
+     */
+    private static var weekdayFormatterAbbreviated: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("EEE")
+        return formatter
+    }()
+
+    /**
      This date formatter displays the full month name and the day of the month. E.g.: September 6.
      */
     private static var dayInMonthFormatter: DateFormatter = {
@@ -274,6 +283,13 @@ public extension Date {
      */
     var weekdayName: String {
         Date.weekdayFormatter.string(from: self)
+    }
+
+    /**
+     E.g.: Mon, Wed, Sat
+     */
+    var weekdayNameAbbreviated: String {
+        Date.weekdayFormatterAbbreviated.string(from: self)
     }
 
     /**

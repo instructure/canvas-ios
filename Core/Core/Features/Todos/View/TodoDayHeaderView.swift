@@ -1,0 +1,81 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import SwiftUI
+
+struct TodoDayHeaderView: View {
+    let group: TodoGroup
+    let tintColor: Color
+    let circleSize: CGFloat
+    let circleOpacity: CGFloat
+
+    init(group: TodoGroup) {
+        self.group = group
+        self.tintColor = group.isToday ? Color.accentColor : .textDark
+        self.circleSize = group.isToday ? 32 : 0
+        self.circleOpacity = group.isToday ? 1 : 0
+    }
+
+    var body: some View {
+        Button {
+
+        } label: {
+            VStack(spacing: 0) {
+                Text(group.weekdayAbbreviation)
+                    .font(.regular12, lineHeight: .fit)
+                Text(group.dayNumber)
+                    .font(group.isToday ? .bold12 : .regular12, lineHeight: .fit)
+                    .frame(minWidth: circleSize, minHeight: circleSize)
+                    .background(Circle().stroke(tintColor).opacity(circleOpacity))
+                    .padding(.top, group.isToday ? 0 : -2)
+            }
+            .padding(.top, 8)
+            .frame(width: 64, alignment: .center)
+            .frame(minHeight: 48, alignment: .top)
+            .foregroundStyle(tintColor)
+            .contentShape(Rectangle())
+        }
+        .background(Color.backgroundLightest)
+        .buttonStyle(.plain)
+    }
+}
+
+#if DEBUG
+
+#Preview {
+    let today = Calendar.current.startOfDay(for: Date())
+    let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+    let todayGroup = TodoGroup(
+        date: today,
+        items: [.makeShortText(id: "1")]
+    )
+    let tomorrowGroup = TodoGroup(
+        date: tomorrow,
+        items: [.makeShortText(id: "1")]
+    )
+
+    HStack(spacing: 0) {
+        TodoDayHeaderView(group: todayGroup)
+        TodoDayHeaderView(group: tomorrowGroup)
+    }
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .background(Color.backgroundDarkest)
+    .tint(.course1)
+}
+
+#endif

@@ -34,20 +34,38 @@ public struct TodoListScreen: View {
                 viewModel.refresh(completion: completion, ignoreCache: true)
             }
         ) { _ in
-            LazyVStack(spacing: 0) {
-                ForEach(viewModel.items) { item in
-                    TodoListItemCell(
-                        item: item,
-                        onTap: viewModel.didTapItem
-                    )
-                    .padding(.leading, 64)
-                    let isLastItem = (viewModel.items.last == item)
-                    InstUI.Divider().padding(.leading, isLastItem ? 0 : 64)
+            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                ForEach(viewModel.items) { group in
+                    groupView(for: group)
                 }
-                .paddingStyle(.horizontal, .standard)
             }
+            .paddingStyle(.horizontal, .standard)
         }
+        .clipped()
         .navigationBarItems(leading: profileMenuButton)
+    }
+
+    @ViewBuilder
+    private func groupView(for group: TodoGroup) -> some View {
+        Section {
+            ForEach(group.items) { item in
+                TodoListItemCell(
+                    item: item,
+                    onTap: viewModel.didTapItem
+                )
+                .padding(.vertical, 8)
+                .padding(.leading, 64)
+
+                let isLastItemInGroup = (group.items.last == item)
+                InstUI.Divider().padding(.leading, isLastItemInGroup ? 0 : 64)
+            }
+        } header: {
+            TodoDayHeaderView(group: group)
+                // move day badge to the left
+                .frame(maxWidth: .infinity, alignment: .leading)
+                // squeeze height to 0 so day badge goes next to cell
+                .frame(height: 0, alignment: .top)
+        }
     }
 
     private var profileMenuButton: some View {

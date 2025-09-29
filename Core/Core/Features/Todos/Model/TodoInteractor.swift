@@ -20,16 +20,16 @@ import Foundation
 import Combine
 
 public protocol TodoInteractor {
-    var todos: AnyPublisher<[TodoItem], Never> { get }
+    var todoGroups: AnyPublisher<[TodoGroup], Never> { get }
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
 }
 
 public final class TodoInteractorLive: TodoInteractor {
-    public var todos: AnyPublisher<[TodoItem], Never> {
-        todosSubject.eraseToAnyPublisher()
+    public var todoGroups: AnyPublisher<[TodoGroup], Never> {
+        todoGroupsSubject.eraseToAnyPublisher()
     }
 
-    private let todosSubject = CurrentValueSubject<[TodoItem], Never>([])
+    private let todoGroupsSubject = CurrentValueSubject<[TodoGroup], Never>([])
     private let env: AppEnvironment
 
     private var subscriptions = Set<AnyCancellable>()
@@ -60,23 +60,59 @@ public final class TodoInteractorLive: TodoInteractor {
                 .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
                 .map { $0.compactMap(TodoItem.init) }
             }
-            .map { [weak todosSubject] (todos: [TodoItem]) in
+            .map { [weak todoGroupsSubject] (todos: [TodoItem]) in
                 TabBarBadgeCounts.todoListCount = UInt(todos.count)
-                todosSubject?.value = todos
+
+                // Group todos by day
+                let groupedTodos = Self.groupTodosByDay(todos)
+                todoGroupsSubject?.value = groupedTodos
                 return ()
             }
             .eraseToAnyPublisher()
+    }
+
+    private static func groupTodosByDay(_ todos: [TodoItem]) -> [TodoGroup] {
+        // Group todos by day using existing Canvas extension
+        let groupedDict = Dictionary(grouping: todos) { todo in
+            todo.date.startOfDay()
+        }
+
+        // Convert to TodoGroup array and sort by date
+        return groupedDict.map { (date, items) in
+            TodoGroup(date: date, items: items.sorted { $0.date < $1.date })
+        }
+        .sorted { $0.date < $1.date }
     }
 }
 
 #if DEBUG
 
 public final class TodoInteractorPreview: TodoInteractor {
-    public let todos: AnyPublisher<[TodoItem], Never>
+    public let todoGroups: AnyPublisher<[TodoGroup], Never>
 
-    public init(todos: [TodoItem] = []) {
-        let todos: [TodoItem] = todos.isEmpty ? [.makeShortText(id: "1"), .makeLongText(id: "2")] : todos
-        self.todos = Publishers.typedJust(todos)
+    public init(todoGroups: [TodoGroup] = []) {
+        if todoGroups.isNotEmpty {
+            self.todoGroups = Publishers.typedJust(todoGroups)
+            return
+        }
+
+        let today = Calendar.current.startOfDay(for: Date())
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today) ?? today
+
+        let todayGroup = TodoGroup(
+            date: today,
+            items: [
+                .makeShortText(id: "3")
+            ]
+        )
+        let tomorrowGroup = TodoGroup(
+            date: tomorrow,
+            items: [
+                .makeShortText(id: "1"),
+                .makeLongText(id: "2")
+            ]
+        )
+        self.todoGroups = Publishers.typedJust([todayGroup, tomorrowGroup])
     }
 
     public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
