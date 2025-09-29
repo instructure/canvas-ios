@@ -93,7 +93,6 @@ final class HNotificationViewModel {
                 )
                 router.show(view, from: viewController)
             }
-
         case .announcement:
             let vc = HorizonMessageDetailsAssembly.makeViewController(
                 announcementID: notification.announcementId ?? ""
