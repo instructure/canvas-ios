@@ -34,12 +34,17 @@ public struct TodoListScreen: View {
                 viewModel.refresh(completion: completion, ignoreCache: true)
             }
         ) { _ in
-            ForEach(viewModel.items) { item in
-                TodoListItemCell(
-                    item: item,
-                    onTap: viewModel.didTapItem,
-                    isLastItem: viewModel.items.last == item
-                )
+            LazyVStack(spacing: 0) {
+                ForEach(viewModel.items) { item in
+                    TodoListItemCell(
+                        item: item,
+                        onTap: viewModel.didTapItem
+                    )
+                    .padding(.leading, 64)
+                    let isLastItem = (viewModel.items.last == item)
+                    InstUI.Divider().padding(.leading, isLastItem ? 0 : 64)
+                }
+                .paddingStyle(.horizontal, .standard)
             }
         }
         .navigationBarItems(leading: profileMenuButton)

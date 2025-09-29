@@ -82,12 +82,59 @@ public struct TodoItem: Identifiable, Equatable {
         date: Date = Clock.now,
         title: String = "Calculate how far the Millennium Falcon actually traveled in less than 12 parsecs",
         subtitle: String? = "This is a longer subtitle that should be truncated in compact mode",
-        contextName: String = "FORC 101 or something longer to even show it in two lines ",
+        contextName: String = "FORC 101 or something longer to even show it in two lines",
         htmlURL: URL? = nil,
         color: Color = .red,
         icon: Image = .assignmentLine
     ) -> TodoItem {
+        TodoItem(
+            id: id,
+            type: type,
+            date: date,
+            title: title,
+            subtitle: subtitle,
+            contextName: contextName,
+            htmlURL: htmlURL,
+            color: color,
+            icon: icon
+        )
+    }
 
+    public static func makeShortText(
+        id: String = "1",
+        type: PlannableType = .assignment,
+        date: Date = Clock.now,
+        title: String = "Quiz 1",
+        subtitle: String? = "Due today",
+        contextName: String = "Math 101",
+        htmlURL: URL? = nil,
+        color: Color = .blue,
+        icon: Image = .quizLine
+    ) -> TodoItem {
+        TodoItem(
+            id: id,
+            type: type,
+            date: date,
+            title: title,
+            subtitle: subtitle,
+            contextName: contextName,
+            htmlURL: htmlURL,
+            color: color,
+            icon: icon
+        )
+    }
+
+    public static func makeLongText(
+        id: String = "1",
+        type: PlannableType = .assignment,
+        date: Date = Clock.now,
+        title: String = "Complete comprehensive reading assignment covering advanced mathematical concepts and theoretical applications",
+        subtitle: String? = "Read chapters 5-7 including all exercises, supplementary materials, and prepare detailed notes for the upcoming examination period",
+        contextName: String = "Advanced Mathematics and Theoretical Applications - Professor Johnson",
+        htmlURL: URL? = nil,
+        color: Color = .green,
+        icon: Image = .assignmentLine
+    ) -> TodoItem {
         TodoItem(
             id: id,
             type: type,

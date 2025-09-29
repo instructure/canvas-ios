@@ -75,7 +75,7 @@ public final class TodoInteractorPreview: TodoInteractor {
     public let todos: AnyPublisher<[TodoItem], Never>
 
     public init(todos: [TodoItem] = []) {
-        let todos: [TodoItem] = todos.isEmpty ? [.make(id: "1"), .make(id: "2")] : todos
+        let todos: [TodoItem] = todos.isEmpty ? [.makeShortText(id: "1"), .makeLongText(id: "2")] : todos
         self.todos = Publishers.typedJust(todos)
     }
 

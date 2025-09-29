@@ -42,6 +42,7 @@ public struct TodoItemContentView: View {
             timeSection
         }
         .background(Color.backgroundLightest)
+        .multilineTextAlignment(.leading)
     }
 
     private var contextSection: some View {

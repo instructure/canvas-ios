@@ -24,52 +24,33 @@ struct TodoListItemCell: View {
 
     let item: TodoItem
     let onTap: (_ item: TodoItem, _ viewController: WeakViewController) -> Void
-    let isLastItem: Bool
 
     var body: some View {
         VStack(spacing: 0) {
             Button {
                 onTap(item, viewController)
             } label: {
-                HStack(alignment: .top, spacing: 0) {
-                    item.icon
-                        .scaledIcon()
-                        .foregroundStyle(item.color)
-                        .paddingStyle(.trailing, .cellIconText)
+                HStack(spacing: 0) {
+                    TodoItemContentView(item: item, isCompactLayout: false)
+                    InstUI.DisclosureIndicator()
+                        .paddingStyle(.leading, .cellAccessoryPadding)
                         .accessibilityHidden(true)
-
-                    HStack(alignment: .center) {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(item.contextName)
-                                .font(.regular14)
-                                .foregroundStyle(item.color)
-
-                            Text(item.title)
-                                .font(.regular16)
-                                .foregroundStyle(.textDarkest)
-
-                            if let subtitle = item.subtitle {
-                                Text(subtitle)
-                                    .font(.regular14)
-                                    .foregroundStyle(.textDark)
-                            }
-
-                            Text(item.date.dateTimeStringShort)
-                                .font(.regular14)
-                                .foregroundStyle(.textDark)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                        InstUI.DisclosureIndicator()
-                            .paddingStyle(.leading, .cellAccessoryPadding)
-                            .accessibilityHidden(true)
-                    }
-                    .multilineTextAlignment(.leading)
                 }
-                .paddingStyle(set: .iconCell)
             }
             .accessibilityElement(children: .combine)
-            InstUI.Divider(isLastItem ? .full : .padded)
         }
+        .padding(.vertical, 8)
     }
 }
+
+#if DEBUG
+
+#Preview {
+    VStack(spacing: 0) {
+        TodoListItemCell(item: .makeShortText(), onTap: { _, _ in })
+        TodoListItemCell(item: .makeLongText(), onTap: { _, _ in })
+    }
+    .background(Color.backgroundLightest)
+}
+
+#endif
