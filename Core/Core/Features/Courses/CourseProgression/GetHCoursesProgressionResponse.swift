@@ -132,3 +132,61 @@ public struct GetHCoursesProgressionResponse: Codable {
         public let isNewQuiz: Bool?
     }
 }
+
+#if DEBUG
+extension GetHCoursesProgressionResponse {
+    static func make(
+        enrollments: [EnrollmentModel] = [.make()]
+    ) -> GetHCoursesProgressionResponse {
+        return GetHCoursesProgressionResponse(
+            data: DataModel(
+                user: LegacyNodeModel(
+                    enrollments: enrollments
+                )
+            )
+        )
+    }
+}
+
+extension GetHCoursesProgressionResponse.EnrollmentModel {
+    static func make(
+        id: String = "enroll_1",
+        state: String = "active",
+        course: GetHCoursesProgressionResponse.CourseModel = .make()
+    ) -> GetHCoursesProgressionResponse.EnrollmentModel {
+        return GetHCoursesProgressionResponse.EnrollmentModel(
+            state: state,
+            id: id,
+            course: course
+        )
+    }
+}
+
+extension GetHCoursesProgressionResponse.CourseModel {
+    static func make(
+        id: String = "1",
+        name: String = "Test Course",
+        account: GetHCoursesProgressionResponse.AccountModel? = .make(),
+        imageUrl: String? = nil,
+        syllabusBody: String? = nil,
+        usersConnection: GetHCoursesProgressionResponse.UsersConnection? = nil,
+        modulesConnection: GetHCoursesProgressionResponse.ModulesConnection? = nil
+    ) -> GetHCoursesProgressionResponse.CourseModel {
+        return GetHCoursesProgressionResponse.CourseModel(
+            id: id,
+            name: name,
+            account: account,
+            imageUrl: imageUrl,
+            syllabusBody: syllabusBody,
+            usersConnection: usersConnection,
+            modulesConnection: modulesConnection
+        )
+    }
+}
+
+extension GetHCoursesProgressionResponse.AccountModel {
+    static func make(name: String = "Default Account") -> GetHCoursesProgressionResponse.AccountModel {
+        return GetHCoursesProgressionResponse.AccountModel(name: name)
+    }
+}
+#endif

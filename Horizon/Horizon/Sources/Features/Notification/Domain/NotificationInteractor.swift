@@ -70,7 +70,7 @@ final class NotificationInteractorLive: NotificationInteractor {
     }
 
     private func fetchNotifications(ignoreCache: Bool) -> AnyPublisher<[HActivity], Never> {
-        ReactiveStore(useCase: GetActivities(onlyActiveCourses: false))
+        ReactiveStore(useCase: GetActivities(onlyActiveCourses: true))
             .getEntities(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0)}

@@ -73,7 +73,7 @@ final class HNotificationViewModel {
         }
     }
 
-    func navigeteToCourseDetails(
+    func navigeteToDetails(
         notification: NotificationModel,
         viewController: WeakViewController
     ) {

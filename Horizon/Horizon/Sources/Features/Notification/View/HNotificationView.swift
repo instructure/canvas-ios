@@ -71,7 +71,7 @@ struct HNotificationView: View {
             } else {
                 ForEach(viewModel.notifications) { activity in
                     Button {
-                        viewModel.navigeteToCourseDetails(
+                        viewModel.navigeteToDetails(
                             notification: activity,
                             viewController: viewController
                         )
