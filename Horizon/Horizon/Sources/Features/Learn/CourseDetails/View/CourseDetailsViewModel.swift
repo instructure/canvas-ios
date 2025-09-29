@@ -141,7 +141,23 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
     }
 
     func openSafari(url: URL, viewController: WeakViewController) {
-        EmbeddedExternalTools.presentSafari(url: url, from: viewController, router: router)
+        let tools = LTITools(
+            context: nil,
+            id: nil,
+            url: url,
+            isQuizLTI: false,
+            assignmentID: nil,
+            env: AppEnvironment.shared,
+        )
+
+        isLoaderVisible = true
+        tools.getSessionlessLaunch { [weak self] value in
+            guard let self, let url = value?.url  else {
+                return
+            }
+            self.isLoaderVisible = false
+            EmbeddedExternalTools.presentSafari(url: url, from: viewController, router: router)
+        }
     }
 
     // MARK: - Private Functions
