@@ -29947,7 +29947,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hópur"
+            "value" : "Verkefnaflokkur"
           }
         },
         "it" : {
@@ -30204,7 +30204,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hópur %lld"
+            "value" : "Verkefnaflokkur %lld"
           }
         },
         "it" : {
@@ -32736,6 +32736,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lancer l’outil externe"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seol Uirlis Sheachtrach"
           }
         },
         "hi" : {
@@ -40152,6 +40158,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ouvrir le questionnaire"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oscail an Quiz"
           }
         },
         "hi" : {
