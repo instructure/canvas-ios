@@ -24,9 +24,15 @@ public struct TodoItemContentView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
 
     public let item: TodoItem
+    public let isCompactLayout: Bool
 
-    public init(item: TodoItem) {
+    /// Initializes a TodoItemContentView
+    /// - Parameters:
+    ///   - item: The TodoItem to display
+    ///   - isCompactLayout: If true, text will be limited to single lines with truncation. If false, text can wrap to multiple lines for full display.
+    public init(item: TodoItem, isCompactLayout: Bool) {
         self.item = item
+        self.isCompactLayout = isCompactLayout
     }
 
     public var body: some View {
@@ -35,6 +41,7 @@ public struct TodoItemContentView: View {
             titleSection
             timeSection
         }
+        .background(Color.backgroundLightest)
     }
 
     private var contextSection: some View {
@@ -43,12 +50,14 @@ public struct TodoItemContentView: View {
                 .scaledIcon(size: 16)
                 .foregroundStyle(item.color)
                 .accessibilityHidden(true)
-            InstUI.Divider().frame(maxHeight: 16 * uiScale)
+                .frame(maxHeight: .infinity, alignment: .top)
+            InstUI.Divider()
             Text(item.contextName)
                 .foregroundStyle(item.color)
                 .font(.regular12, lineHeight: .fit)
-                .lineLimit(1)
+                .lineLimit(isCompactLayout ? 1 : nil)
         }
+        .fixedSize(horizontal: false, vertical: true)
     }
 
     private var titleSection: some View {
@@ -56,12 +65,12 @@ public struct TodoItemContentView: View {
             Text(item.title)
                 .font(.semibold14, lineHeight: .fit)
                 .foregroundStyle(.textDarkest)
-                .lineLimit(1)
+                .lineLimit(isCompactLayout ? 1 : nil)
             if let subtitle = item.subtitle {
                 Text(subtitle)
                     .font(.regular12, lineHeight: .fit)
                     .foregroundStyle(.textDark)
-                    .lineLimit(1)
+                    .lineLimit(isCompactLayout ? 1 : nil)
             }
         }
     }
@@ -70,16 +79,20 @@ public struct TodoItemContentView: View {
         Text(item.date.dateTimeStringShort)
             .font(.regular12)
             .foregroundStyle(.textDark)
-            .lineLimit(1)
+            .lineLimit(isCompactLayout ? 1 : nil)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
 #if DEBUG
 
-#Preview {
-    TodoItemContentView(item: .make())
-    TodoItemContentView(item: .make(subtitle: "This is a subtitle"))
+#Preview(traits: .fixedLayout(width: 300, height: 400)) {
+    VStack {
+        TodoItemContentView(item: .make(), isCompactLayout: true)
+        TodoItemContentView(item: .make(), isCompactLayout: false)
+    }
+    .frame(maxHeight: .infinity)
+    .background(Color.backgroundDarkest)
 }
 
 #endif

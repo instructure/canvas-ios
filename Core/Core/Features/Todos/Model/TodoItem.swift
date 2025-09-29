@@ -81,8 +81,8 @@ public struct TodoItem: Identifiable, Equatable {
         type: PlannableType = .assignment,
         date: Date = Clock.now,
         title: String = "Calculate how far the Millennium Falcon actually traveled in less than 12 parsecs",
-        subtitle: String? = nil,
-        contextName: String = "Math II.",
+        subtitle: String? = "This is a longer subtitle that should be truncated in compact mode",
+        contextName: String = "FORC 101 or something longer to even show it in two lines ",
         htmlURL: URL? = nil,
         color: Color = .red,
         icon: Image = .assignmentLine

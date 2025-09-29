@@ -27,7 +27,7 @@ struct TodoItemView: View {
 
     var body: some View {
         Link(destination: item.route) {
-            TodoItemContentView(item: item)
+            TodoItemContentView(item: item, isCompactLayout: true)
         }
     }
 }
