@@ -29,7 +29,7 @@ public struct TodoItemContentView: View {
     /// Initializes a TodoItemContentView
     /// - Parameters:
     ///   - item: The TodoItemViewModel to display
-    ///   - isCompactLayout: If true, text will be limited to single lines with truncation. If false, text can wrap to multiple lines for full display.
+    ///   - isCompactLayout: If true, text will be limited to single lines with truncation and font sizes become smaller for better widget presentation.
     public init(item: TodoItemViewModel, isCompactLayout: Bool) {
         self.item = item
         self.isCompactLayout = isCompactLayout
@@ -52,10 +52,11 @@ public struct TodoItemContentView: View {
                 .foregroundStyle(item.color)
                 .accessibilityHidden(true)
                 .frame(maxHeight: .infinity, alignment: .top)
+                .padding(.top, isCompactLayout ? 0 : 2)
             InstUI.Divider()
             Text(item.contextName)
                 .foregroundStyle(item.color)
-                .font(.regular12, lineHeight: .fit)
+                .font(isCompactLayout ? .regular12 : .regular14, lineHeight: .fit)
                 .lineLimit(isCompactLayout ? 1 : nil)
         }
         .fixedSize(horizontal: false, vertical: true)
@@ -64,12 +65,12 @@ public struct TodoItemContentView: View {
     private var titleSection: some View {
         VStack(alignment: .leading) {
             Text(item.title)
-                .font(.semibold14, lineHeight: .fit)
+                .font(isCompactLayout ? .semibold14 : .regular16, lineHeight: .fit)
                 .foregroundStyle(.textDarkest)
                 .lineLimit(isCompactLayout ? 1 : nil)
             if let subtitle = item.subtitle {
                 Text(subtitle)
-                    .font(.regular12, lineHeight: .fit)
+                    .font(isCompactLayout ? .regular12 : .regular14, lineHeight: .fit)
                     .foregroundStyle(.textDark)
                     .lineLimit(isCompactLayout ? 1 : nil)
             }
@@ -78,7 +79,7 @@ public struct TodoItemContentView: View {
 
     private var timeSection: some View {
         Text(item.date.dateTimeStringShort)
-            .font(.regular12)
+            .font(isCompactLayout ? .regular12 : .regular14)
             .foregroundStyle(.textDark)
             .lineLimit(isCompactLayout ? 1 : nil)
             .frame(maxWidth: .infinity, alignment: .leading)

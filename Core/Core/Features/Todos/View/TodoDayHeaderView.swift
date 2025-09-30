@@ -24,15 +24,11 @@ struct TodoDayHeaderView: View {
     let group: TodoGroupViewModel
     let onTap: (TodoGroupViewModel) -> Void
     let tintColor: Color
-    let circleSize: CGFloat
-    let circleOpacity: CGFloat
 
     init(group: TodoGroupViewModel, onTap: @escaping (TodoGroupViewModel) -> Void) {
         self.group = group
         self.onTap = onTap
         self.tintColor = group.isToday ? Color.accentColor : .textDark
-        self.circleSize = group.isToday ? 32 : 0
-        self.circleOpacity = group.isToday ? 1 : 0
     }
 
     var body: some View {
@@ -42,15 +38,19 @@ struct TodoDayHeaderView: View {
             VStack(spacing: 0) {
                 Text(group.weekdayAbbreviation)
                     .font(.regular12, lineHeight: .fit)
-                Text(group.dayNumber)
-                    .font(group.isToday ? .bold12 : .regular12, lineHeight: .fit)
-                    .frame(minWidth: circleSize, minHeight: circleSize)
-                    .background(Circle().stroke(tintColor).opacity(circleOpacity))
-                    .padding(.top, group.isToday ? 0 : -2)
+                ZStack {
+                    Circle()
+                        .stroke(tintColor)
+                        .frame(width: 32, height: 32)
+                        .hidden(!group.isToday)
+                    Text(group.dayNumber)
+                        .font(group.isToday ? .bold12 : .regular12, lineHeight: .fit)
+                        .padding(.top, group.isToday ? 0 : -14)
+                }
             }
             .padding(.top, 8)
+            .padding(.bottom, 9) // to maximize hit area
             .frame(width: 64, alignment: .center)
-            .frame(minHeight: 48, alignment: .top)
             .foregroundStyle(tintColor)
             .contentShape(Rectangle())
         }
