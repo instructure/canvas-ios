@@ -54,16 +54,19 @@ public struct TodoListScreen: View {
                     onTap: viewModel.didTapItem
                 )
                 .padding(.vertical, 8)
-                .padding(.leading, 64)
+                .padding(.leading, 48)
 
                 let isLastItemInGroup = (group.items.last == item)
-                InstUI.Divider().padding(.leading, isLastItemInGroup ? 0 : 64)
+                InstUI.Divider().padding(.leading, isLastItemInGroup ? 0 : 48)
             }
         } header: {
             TodoDayHeaderView(group: group)
-                // move day badge to the left
+                // To provide a large enough hit area, the badge needs to include padding
+                // but the screen already has a padding so we need to negate that here.
+                .padding(.leading, -InstUI.Styles.Padding.standard.rawValue)
+                // Move day badge to the left of the screen.
                 .frame(maxWidth: .infinity, alignment: .leading)
-                // squeeze height to 0 so day badge goes next to cell
+                // Squeeze height to 0 so day badge goes next to cell.
                 .frame(height: 0, alignment: .top)
         }
     }

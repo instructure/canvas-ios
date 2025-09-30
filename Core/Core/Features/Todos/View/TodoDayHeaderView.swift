@@ -19,6 +19,8 @@
 import SwiftUI
 
 struct TodoDayHeaderView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     let group: TodoGroup
     let tintColor: Color
     let circleSize: CGFloat
