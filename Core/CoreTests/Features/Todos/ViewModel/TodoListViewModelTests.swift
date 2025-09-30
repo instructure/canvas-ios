@@ -221,7 +221,7 @@ class TodoListViewModelTests: CoreTestCase {
 
         // When - with empty todos
         interactor.refreshResult = .success(())
-        interactor.todoGroupsSubject.send([TodoGroupViewModel(date: Date(), items: [])])
+        interactor.todoGroupsSubject.send([])
         testee.refresh(completion: {}, ignoreCache: false)
 
         // Then
@@ -247,5 +247,17 @@ class TodoListViewModelTests: CoreTestCase {
 
         // Then
         XCTAssertEqual(interactor.refreshCallCount, 3)
+    }
+
+    func testOpenProfile() {
+        // Given
+        let viewController = WeakViewController()
+
+        // When
+        testee.openProfile(viewController)
+
+        // Then
+        XCTAssert(router.lastRoutedTo("/profile"))
+        XCTAssertEqual(router.calls.last?.2.isModal, true)
     }
 }

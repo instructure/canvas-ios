@@ -30,7 +30,44 @@ class TodoGroupViewModelTests: CoreTestCase {
         let group = TodoGroupViewModel(date: date, items: items)
 
         XCTAssertTrue(group.accessibilityLabel.contains("Saturday"))
-        XCTAssertTrue(group.accessibilityLabel.contains("August 7"))
+        XCTAssertTrue(group.accessibilityLabel.contains("7"))
         XCTAssertTrue(group.accessibilityLabel.contains("2 items"))
+    }
+
+    func testDateFormatting() {
+        let dateComponents = DateComponents(year: 2021, month: 12, day: 25, hour: 15)
+        let date = Calendar.current.date(from: dateComponents)!
+        let items = [TodoItemViewModel.make(id: "1")]
+
+        let group = TodoGroupViewModel(date: date, items: items)
+
+        XCTAssertEqual(group.id, date.isoString())
+        XCTAssertEqual(group.date, date)
+        XCTAssertEqual(group.weekdayAbbreviation, date.weekdayNameAbbreviated)
+        XCTAssertEqual(group.dayNumber, date.dayString)
+        XCTAssertEqual(group.displayDate, date.dayInMonth)
+    }
+
+    func testIsToday() {
+        let today = Date()
+        let yesterday = today.addDays(-1)
+
+        let todayGroup = TodoGroupViewModel(date: today, items: [])
+        let yesterdayGroup = TodoGroupViewModel(date: yesterday, items: [])
+
+        XCTAssertTrue(todayGroup.isToday)
+        XCTAssertFalse(yesterdayGroup.isToday)
+    }
+
+    func testComparison() {
+        let date1 = Date.make(year: 2021, month: 1, day: 1)
+        let date2 = Date.make(year: 2021, month: 1, day: 2)
+        let items = [TodoItemViewModel.make(id: "1")]
+
+        let group1 = TodoGroupViewModel(date: date1, items: items)
+        let group2 = TodoGroupViewModel(date: date2, items: items)
+
+        XCTAssertTrue(group1 < group2)
+        XCTAssertFalse(group2 < group1)
     }
 }

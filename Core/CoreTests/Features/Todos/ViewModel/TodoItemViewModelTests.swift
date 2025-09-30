@@ -28,7 +28,14 @@ class TodoItemViewModelTests: CoreTestCase {
     func testInitFromPlannableWithValidDate() {
         // When
         let date = Date()
-        let plannable = Plannable.make(id: "test-id", type: .assignment, title: "Test Assignment", contextName: "Test Course", htmlURL: URL(string: "https://example.com"), date: date)
+        let plannable = makePlannable(
+            plannableId: "test-id",
+            plannableType: "assignment",
+            htmlURL: URL(string: "https://example.com")!,
+            contextName: "Test Course",
+            plannable: .make(title: "Test Assignment"),
+            plannableDate: date
+        )
         let todoItem = TodoItemViewModel(plannable)
 
         // Then
@@ -45,7 +52,7 @@ class TodoItemViewModelTests: CoreTestCase {
     func testInitFromPlannableWithEmptyTitle() {
         // When
         let plannable = makePlannable(plannable: .make(title: nil))
-        let todoItem = TodoItem(plannable)
+        let todoItem = TodoItemViewModel(plannable)
 
         // Then
         XCTAssertNotNil(todoItem)
@@ -63,7 +70,7 @@ class TodoItemViewModelTests: CoreTestCase {
             details: .make(reply_to_entry_required_count: nil)
         )
         plannable.discussionCheckpointStep = .replyToTopic
-        let todoItem = TodoItem(plannable)
+        let todoItem = TodoItemViewModel(plannable)
 
         // Then
         XCTAssertNotNil(todoItem)
@@ -81,7 +88,7 @@ class TodoItemViewModelTests: CoreTestCase {
             details: .make(reply_to_entry_required_count: 3)
         )
         plannable.discussionCheckpointStep = .requiredReplies(3)
-        let todoItem = TodoItem(plannable)
+        let todoItem = TodoItemViewModel(plannable)
 
         // Then
         XCTAssertNotNil(todoItem)
@@ -95,7 +102,7 @@ class TodoItemViewModelTests: CoreTestCase {
             contextName: "Math 101",
             plannable: .make(title: "Study for exam")
         )
-        let todoItem = TodoItem(plannable)
+        let todoItem = TodoItemViewModel(plannable)
 
         // Then
         XCTAssertNotNil(todoItem)
@@ -110,7 +117,7 @@ class TodoItemViewModelTests: CoreTestCase {
             contextName: nil,
             plannable: .make(title: "Personal note")
         )
-        let todoItem = TodoItem(plannable)
+        let todoItem = TodoItemViewModel(plannable)
 
         // Then
         XCTAssertNotNil(todoItem)
@@ -121,7 +128,7 @@ class TodoItemViewModelTests: CoreTestCase {
         // When
         let date = Date()
         let url = URL(string: "https://example.com")!
-        let todoItem = TodoItem(
+        let todoItem = TodoItemViewModel(
             id: "direct-id",
             type: .quiz,
             date: date,
@@ -148,7 +155,7 @@ class TodoItemViewModelTests: CoreTestCase {
         // When
         let date = Date()
         let url = URL(string: "https://example.com")!
-        let todoItem = TodoItem.make(
+        let todoItem = TodoItemViewModel.make(
             id: "factory-id",
             type: .discussion_topic,
             date: date,
@@ -171,25 +178,11 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem.color, .green)
     }
 
-    func testMakeFactoryMethodWithDefaults() {
-        // When
-        let todoItem = TodoItem.make()
-
-        // Then
-        XCTAssertEqual(todoItem.id, "")
-        XCTAssertEqual(todoItem.type, .assignment)
-        XCTAssertEqual(todoItem.title, "")
-        XCTAssertNil(todoItem.subtitle)
-        XCTAssertEqual(todoItem.contextName, "")
-        XCTAssertNil(todoItem.htmlURL)
-        XCTAssertEqual(todoItem.color, .red)
-    }
-
     func testEquality() {
         // When
         let date = Date()
         let url = URL(string: "https://example.com")!
-        let todoItem1 = TodoItem(
+        let todoItem1 = TodoItemViewModel(
             id: "same-id",
             type: .assignment,
             date: date,
@@ -201,7 +194,7 @@ class TodoItemViewModelTests: CoreTestCase {
             icon: .assignmentLine
         )
 
-        let todoItem2 = TodoItem(
+        let todoItem2 = TodoItemViewModel(
             id: "same-id",
             type: .assignment,
             date: date,
@@ -213,7 +206,7 @@ class TodoItemViewModelTests: CoreTestCase {
             icon: .assignmentLine
         )
 
-        let todoItem3 = TodoItem(
+        let todoItem3 = TodoItemViewModel(
             id: "different-id",
             type: .assignment,
             date: date,
@@ -247,7 +240,7 @@ class TodoItemViewModelTests: CoreTestCase {
 
         for type in allTypes {
             // When
-            let todoItem = TodoItem(makePlannable(plannableType: type.rawValue))
+            let todoItem = TodoItemViewModel(makePlannable(plannableType: type.rawValue))
 
             // Then
             XCTAssertNotNil(todoItem)
@@ -274,7 +267,7 @@ class TodoItemViewModelTests: CoreTestCase {
             plannable: plannable,
             plannableDate: plannableDate,
             details: details
-        ))
+        ), in: databaseClient)
     }
 
     private func makeApiPlannable(

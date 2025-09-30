@@ -58,7 +58,6 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
         color: Color,
         icon: Image
     ) {
-
         self.id = id
         self.type = type
         self.date = date
