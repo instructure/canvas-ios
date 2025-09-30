@@ -20,14 +20,14 @@
 import TestsFoundation
 import XCTest
 
-class TodoGroupTests: CoreTestCase {
+class TodoGroupViewModelTests: CoreTestCase {
 
     func testAccessibilityLabel() {
         let dateComponents = DateComponents(year: 2021, month: 8, day: 7, hour: 12)
         let date = Calendar.current.date(from: dateComponents)!
-        let items = [TodoItem.make(id: "1"), TodoItem.make(id: "2")]
+        let items = [TodoItemViewModel.make(id: "1"), TodoItemViewModel.make(id: "2")]
         
-        let group = TodoGroup(date: date, items: items)
+        let group = TodoGroupViewModel(date: date, items: items)
         
         XCTAssertTrue(group.accessibilityLabel.contains("Saturday"))
         XCTAssertTrue(group.accessibilityLabel.contains("August 7"))

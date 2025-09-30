@@ -20,16 +20,16 @@ import Foundation
 import Combine
 
 public protocol TodoInteractor {
-    var todoGroups: AnyPublisher<[TodoGroup], Never> { get }
+    var todoGroups: AnyPublisher<[TodoGroupViewModel], Never> { get }
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
 }
 
 public final class TodoInteractorLive: TodoInteractor {
-    public var todoGroups: AnyPublisher<[TodoGroup], Never> {
+    public var todoGroups: AnyPublisher<[TodoGroupViewModel], Never> {
         todoGroupsSubject.eraseToAnyPublisher()
     }
 
-    private let todoGroupsSubject = CurrentValueSubject<[TodoGroup], Never>([])
+    private let todoGroupsSubject = CurrentValueSubject<[TodoGroupViewModel], Never>([])
     private let env: AppEnvironment
 
     private var subscriptions = Set<AnyCancellable>()
@@ -58,9 +58,9 @@ public final class TodoInteractorLive: TodoInteractor {
                     environment: env
                 )
                 .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
-                .map { $0.compactMap(TodoItem.init) }
+                .map { $0.compactMap(TodoItemViewModel.init) }
             }
-            .map { [weak todoGroupsSubject] (todos: [TodoItem]) in
+            .map { [weak todoGroupsSubject] (todos: [TodoItemViewModel]) in
                 TabBarBadgeCounts.todoListCount = UInt(todos.count)
 
                 // Group todos by day
@@ -71,7 +71,7 @@ public final class TodoInteractorLive: TodoInteractor {
             .eraseToAnyPublisher()
     }
 
-    private static func groupTodosByDay(_ todos: [TodoItem]) -> [TodoGroup] {
+    private static func groupTodosByDay(_ todos: [TodoItemViewModel]) -> [TodoGroupViewModel] {
         // Group todos by day using existing Canvas extension
         let groupedDict = Dictionary(grouping: todos) { todo in
             todo.date.startOfDay()
@@ -79,7 +79,7 @@ public final class TodoInteractorLive: TodoInteractor {
 
         // Convert to TodoGroup array and sort by date
         return groupedDict.map { (date, items) in
-            TodoGroup(date: date, items: items.sorted { $0.date < $1.date })
+            TodoGroupViewModel(date: date, items: items.sorted { $0.date < $1.date })
         }
         .sorted { $0.date < $1.date }
     }
@@ -99,13 +99,13 @@ public final class TodoInteractorPreview: TodoInteractor {
         let today = Calendar.current.startOfDay(for: Date())
         let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today) ?? today
 
-        let todayGroup = TodoGroup(
+        let todayGroup = TodoGroupViewModel(
             date: today,
             items: [
                 .makeShortText(id: "3")
             ]
         )
-        let tomorrowGroup = TodoGroup(
+        let tomorrowGroup = TodoGroupViewModel(
             date: tomorrow,
             items: [
                 .makeShortText(id: "1"),

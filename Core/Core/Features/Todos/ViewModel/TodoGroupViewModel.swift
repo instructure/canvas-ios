@@ -18,17 +18,17 @@
 
 import Foundation
 
-public struct TodoGroup: Identifiable, Equatable {
+public struct TodoGroupViewModel: Identifiable, Equatable {
     public let id: String
     public let date: Date
-    public let items: [TodoItem]
+    public let items: [TodoItemViewModel]
     public let weekdayAbbreviation: String
     public let dayNumber: String
     public let isToday: Bool
     public let displayDate: String
     public let accessibilityLabel: String
 
-    public init(date: Date, items: [TodoItem]) {
+    public init(date: Date, items: [TodoItemViewModel]) {
         self.id = date.isoString()
         self.date = date
         self.items = items

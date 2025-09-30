@@ -22,7 +22,7 @@ import CombineExt
 import UIKit
 
 public class TodoListViewModel: ObservableObject {
-    @Published var items: [TodoGroup] = []
+    @Published var items: [TodoGroupViewModel] = []
     @Published var state: InstUI.ScreenState = .loading
 
     private let interactor: TodoInteractor
@@ -53,7 +53,7 @@ public class TodoListViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    func didTapItem(_ item: TodoItem, _ viewController: WeakViewController) {
+    func didTapItem(_ item: TodoItemViewModel, _ viewController: WeakViewController) {
         switch item.type {
         case .planner_note:
             let vc = PlannerAssembly.makeToDoDetailsViewController(plannableId: item.id)
@@ -73,7 +73,7 @@ public class TodoListViewModel: ObservableObject {
         env.router.route(to: "/profile", from: viewController, options: .modal())
     }
 
-    func didTapDayHeader(_ group: TodoGroup, viewController: WeakViewController) {
+    func didTapDayHeader(_ group: TodoGroupViewModel, viewController: WeakViewController) {
         let tabController = viewController.value.tabBarController
         tabController?.selectedIndex = 1 // Switch to Calendar tab
         let splitController = tabController?.selectedViewController as? UISplitViewController

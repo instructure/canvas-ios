@@ -21,13 +21,13 @@ import SwiftUI
 struct TodoDayHeaderView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    let group: TodoGroup
-    let onTap: (TodoGroup) -> Void
+    let group: TodoGroupViewModel
+    let onTap: (TodoGroupViewModel) -> Void
     let tintColor: Color
     let circleSize: CGFloat
     let circleOpacity: CGFloat
 
-    init(group: TodoGroup, onTap: @escaping (TodoGroup) -> Void) {
+    init(group: TodoGroupViewModel, onTap: @escaping (TodoGroupViewModel) -> Void) {
         self.group = group
         self.onTap = onTap
         self.tintColor = group.isToday ? Color.accentColor : .textDark
@@ -66,11 +66,11 @@ struct TodoDayHeaderView: View {
 #Preview {
     let today = Calendar.current.startOfDay(for: Date())
     let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
-    let todayGroup = TodoGroup(
+    let todayGroup = TodoGroupViewModel(
         date: today,
         items: [.makeShortText(id: "1")]
     )
-    let tomorrowGroup = TodoGroup(
+    let tomorrowGroup = TodoGroupViewModel(
         date: tomorrow,
         items: [.makeShortText(id: "1")]
     )

@@ -46,7 +46,7 @@ public struct TodoListScreen: View {
     }
 
     @ViewBuilder
-    private func groupView(for group: TodoGroup) -> some View {
+    private func groupView(for group: TodoGroupViewModel) -> some View {
         Section {
             ForEach(group.items) { item in
                 TodoListItemCell(

@@ -22,8 +22,8 @@ struct TodoListItemCell: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.viewController) private var viewController
 
-    let item: TodoItem
-    let onTap: (_ item: TodoItem, _ viewController: WeakViewController) -> Void
+    let item: TodoItemViewModel
+    let onTap: (_ item: TodoItemViewModel, _ viewController: WeakViewController) -> Void
 
     var body: some View {
         VStack(spacing: 0) {

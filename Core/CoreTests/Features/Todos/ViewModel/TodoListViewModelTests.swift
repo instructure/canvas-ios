@@ -55,10 +55,10 @@ class TodoListViewModelTests: CoreTestCase {
     func testItemsUpdateFromInteractor() {
         // Given
         let testItems = [
-            TodoItem.make(id: "1", title: "Test Item 1"),
-            TodoItem.make(id: "2", title: "Test Item 2")
+            TodoItemViewModel.make(id: "1", title: "Test Item 1"),
+            TodoItemViewModel.make(id: "2", title: "Test Item 2")
         ]
-        let testGroups = [TodoGroup(date: Date(), items: testItems)]
+        let testGroups = [TodoGroupViewModel(date: Date(), items: testItems)]
 
         // When
         interactor.todoGroupsSubject.send(testGroups)
@@ -108,7 +108,7 @@ class TodoListViewModelTests: CoreTestCase {
         // Given
         let expectation = expectation(description: "Refresh completion called")
         interactor.refreshResult = .success(())
-        interactor.todoGroupsSubject.send([TodoGroup(date: Date(), items: [TodoItem.make(id: "1", title: "Test Item")])])
+        interactor.todoGroupsSubject.send([TodoGroupViewModel(date: Date(), items: [TodoItemViewModel.make(id: "1", title: "Test Item")])])
 
         // When
         testee.refresh(completion: {
@@ -153,8 +153,8 @@ class TodoListViewModelTests: CoreTestCase {
 
     func testDidTapItemPlannerNote() {
         // Given
-        let todo = TodoItem.make(id: "123", type: .planner_note)
-        interactor.todoGroupsSubject.send([TodoGroup(date: Date(), items: [todo])])
+        let todo = TodoItemViewModel.make(id: "123", type: .planner_note)
+        interactor.todoGroupsSubject.send([TodoGroupViewModel(date: Date(), items: [todo])])
 
         // When
         testee.didTapItem(todo, WeakViewController())
@@ -166,12 +166,12 @@ class TodoListViewModelTests: CoreTestCase {
 
     func testDidTapItemCalendarEvent() {
         // Given
-        let todo = TodoItem.make(
+        let todo = TodoItemViewModel.make(
             id: "456",
             type: .calendar_event,
             htmlURL: URL(string: "https://canvas.instructure.com/calendar")
         )
-        interactor.todoGroupsSubject.send([TodoGroup(date: Date(), items: [todo])])
+        interactor.todoGroupsSubject.send([TodoGroupViewModel(date: Date(), items: [todo])])
 
         // When
         testee.didTapItem(todo, WeakViewController())
@@ -183,11 +183,11 @@ class TodoListViewModelTests: CoreTestCase {
 
     func testDidTapItemOtherTypeWithURL() {
         // Given
-        let todo = TodoItem.make(
+        let todo = TodoItemViewModel.make(
             id: "789",
             type: .assignment,
             htmlURL: URL(string: "https://canvas.instructure.com/courses/1/assignments/789"))
-        interactor.todoGroupsSubject.send([TodoGroup(date: Date(), items: [todo])])
+        interactor.todoGroupsSubject.send([TodoGroupViewModel(date: Date(), items: [todo])])
 
         // When
         testee.didTapItem(todo, WeakViewController())
@@ -198,8 +198,8 @@ class TodoListViewModelTests: CoreTestCase {
 
     func testDidTapItemOtherTypeWithoutURL() {
         // Given
-        let todo = TodoItem.make(id: "999", type: .assignment, htmlURL: nil as URL?)
-        interactor.todoGroupsSubject.send([TodoGroup(date: Date(), items: [todo])])
+        let todo = TodoItemViewModel.make(id: "999", type: .assignment, htmlURL: nil as URL?)
+        interactor.todoGroupsSubject.send([TodoGroupViewModel(date: Date(), items: [todo])])
 
         // When
         testee.didTapItem(todo, WeakViewController())
@@ -213,7 +213,7 @@ class TodoListViewModelTests: CoreTestCase {
 
         // When - with non-empty todos
         interactor.refreshResult = .success(())
-        interactor.todoGroupsSubject.send([TodoGroup(date: Date(), items: [TodoItem.make(id: "1", title: "Test")])])
+        interactor.todoGroupsSubject.send([TodoGroupViewModel(date: Date(), items: [TodoItemViewModel.make(id: "1", title: "Test")])])
         testee.refresh(completion: {}, ignoreCache: false)
 
         // Then
@@ -221,7 +221,7 @@ class TodoListViewModelTests: CoreTestCase {
 
         // When - with empty todos
         interactor.refreshResult = .success(())
-        interactor.todoGroupsSubject.send([TodoGroup(date: Date(), items: [])])
+        interactor.todoGroupsSubject.send([TodoGroupViewModel(date: Date(), items: [])])
         testee.refresh(completion: {}, ignoreCache: false)
 
         // Then

@@ -20,11 +20,11 @@
 import Combine
 
 final class TodoInteractorMock: TodoInteractor {
-    var todoGroups: AnyPublisher<[TodoGroup], Never> {
+    var todoGroups: AnyPublisher<[TodoGroupViewModel], Never> {
         todoGroupsSubject.eraseToAnyPublisher()
     }
 
-    let todoGroupsSubject = CurrentValueSubject<[TodoGroup], Never>([])
+    let todoGroupsSubject = CurrentValueSubject<[TodoGroupViewModel], Never>([])
     var refreshCalled = false
     var refreshCallCount = 0
     var lastIgnoreCache = false

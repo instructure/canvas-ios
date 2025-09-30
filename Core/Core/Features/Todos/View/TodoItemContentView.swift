@@ -18,19 +18,19 @@
 
 import SwiftUI
 
-/// A reusable view component that displays the visual content of a TodoItem.
+/// A reusable view component that displays the visual content of a TodoItemViewModel.
 /// This component is used on the Todo List screen and on the Todo widget.
 public struct TodoItemContentView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
 
-    public let item: TodoItem
+    public let item: TodoItemViewModel
     public let isCompactLayout: Bool
 
     /// Initializes a TodoItemContentView
     /// - Parameters:
-    ///   - item: The TodoItem to display
+    ///   - item: The TodoItemViewModel to display
     ///   - isCompactLayout: If true, text will be limited to single lines with truncation. If false, text can wrap to multiple lines for full display.
-    public init(item: TodoItem, isCompactLayout: Bool) {
+    public init(item: TodoItemViewModel, isCompactLayout: Bool) {
         self.item = item
         self.isCompactLayout = isCompactLayout
     }

@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct TodoItem: Identifiable, Equatable {
+public struct TodoItemViewModel: Identifiable, Equatable {
     public let id: String
     public let type: PlannableType
     public let date: Date
@@ -86,8 +86,8 @@ public struct TodoItem: Identifiable, Equatable {
         htmlURL: URL? = nil,
         color: Color = .red,
         icon: Image = .assignmentLine
-    ) -> TodoItem {
-        TodoItem(
+    ) -> TodoItemViewModel {
+        TodoItemViewModel(
             id: id,
             type: type,
             date: date,
@@ -110,8 +110,8 @@ public struct TodoItem: Identifiable, Equatable {
         htmlURL: URL? = nil,
         color: Color = .blue,
         icon: Image = .quizLine
-    ) -> TodoItem {
-        TodoItem(
+    ) -> TodoItemViewModel {
+        TodoItemViewModel(
             id: id,
             type: type,
             date: date,
@@ -134,8 +134,8 @@ public struct TodoItem: Identifiable, Equatable {
         htmlURL: URL? = nil,
         color: Color = .green,
         icon: Image = .assignmentLine
-    ) -> TodoItem {
-        TodoItem(
+    ) -> TodoItemViewModel {
+        TodoItemViewModel(
             id: id,
             type: type,
             date: date,

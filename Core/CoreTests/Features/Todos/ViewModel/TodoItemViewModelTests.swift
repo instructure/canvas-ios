@@ -21,15 +21,15 @@ import XCTest
 import TestsFoundation
 import SwiftUI
 
-class TodoItemTests: CoreTestCase {
+class TodoItemViewModelTests: CoreTestCase {
 
     // MARK: - Tests
 
     func testInitFromPlannableWithValidDate() {
         // When
         let date = Date()
-        let plannable = makePlannable(contextName: "Test Course", plannableDate: date)
-        let todoItem = TodoItem(plannable)
+        let plannable = Plannable.make(id: "test-id", type: .assignment, title: "Test Assignment", contextName: "Test Course", htmlURL: URL(string: "https://example.com"), date: date)
+        let todoItem = TodoItemViewModel(plannable)
 
         // Then
         XCTAssertNotNil(todoItem)
