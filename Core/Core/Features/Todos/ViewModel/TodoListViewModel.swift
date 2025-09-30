@@ -24,6 +24,13 @@ import UIKit
 public class TodoListViewModel: ObservableObject {
     @Published var items: [TodoGroupViewModel] = []
     @Published var state: InstUI.ScreenState = .loading
+    let screenConfig = InstUI.BaseScreenConfig(
+        emptyPandaConfig: .init(
+            scene: VacationPanda(),
+            title: String(localized: "No To Dos for now!", bundle: .core),
+            subtitle: String(localized: "It looks like a great time to rest, relax, and recharge.", bundle: .core)
+        )
+    )
 
     private let interactor: TodoInteractor
     private let env: AppEnvironment

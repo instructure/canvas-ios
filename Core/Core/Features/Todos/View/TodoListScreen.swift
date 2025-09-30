@@ -30,6 +30,7 @@ public struct TodoListScreen: View {
     public var body: some View {
         InstUI.BaseScreen(
             state: viewModel.state,
+            config: viewModel.screenConfig,
             refreshAction: { completion in
                 viewModel.refresh(completion: completion, ignoreCache: true)
             }
@@ -63,7 +64,7 @@ public struct TodoListScreen: View {
             TodoDayHeaderView(group: group) { group in
                 viewModel.didTapDayHeader(group, viewController: viewController)
             }
-            // To provide a large enough hit area, the badge needs to include padding
+            // To provide a large enough hit area, the header needs to include padding
             // but the screen already has a padding so we need to negate that here.
             .padding(.leading, -InstUI.Styles.Padding.standard.rawValue)
             // Move day badge to the left of the screen.
@@ -95,6 +96,11 @@ public struct TodoListScreen: View {
 
 #Preview {
     let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(), env: PreviewEnvironment())
+    TodoListScreen(viewModel: viewModel)
+}
+
+#Preview("Empty State") {
+    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(todoGroups: []), env: PreviewEnvironment())
     TodoListScreen(viewModel: viewModel)
 }
 

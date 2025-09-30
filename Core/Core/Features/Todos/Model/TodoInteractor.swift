@@ -90,8 +90,8 @@ public final class TodoInteractorLive: TodoInteractor {
 public final class TodoInteractorPreview: TodoInteractor {
     public let todoGroups: AnyPublisher<[TodoGroupViewModel], Never>
 
-    public init(todoGroups: [TodoGroupViewModel] = []) {
-        if todoGroups.isNotEmpty {
+    public init(todoGroups: [TodoGroupViewModel]? = nil) {
+        if let todoGroups {
             self.todoGroups = Publishers.typedJust(todoGroups)
             return
         }
