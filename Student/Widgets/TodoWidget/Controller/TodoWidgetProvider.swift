@@ -105,7 +105,7 @@ class TodoWidgetProvider: TimelineProvider {
                     .filter {
                         $0.plannableType != .announcement && $0.plannableType != .assessment_request
                     }
-                    .compactMap(TodoItem.init)
+                    .compactMap(TodoItemViewModel.init)
 
                 let model = TodoModel(items: todoItems)
                 let entry = TodoWidgetEntry(data: model, date: Clock.now)

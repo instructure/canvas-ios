@@ -25,12 +25,12 @@ class TodoModel: WidgetModel {
         Self.make()
     }
 
-    let items: [TodoItem]
+    let items: [TodoItemViewModel]
     let error: TodoError?
 
     init(
         isLoggedIn: Bool = true,
-        items: [TodoItem] = [],
+        items: [TodoItemViewModel] = [],
         error: TodoError? = nil
     ) {
         self.items = items
@@ -66,7 +66,7 @@ extension TodoModel {
 
     static func make(count: Int = 5) -> TodoModel {
         let items = [
-            TodoItem.make(
+            TodoItemViewModel.make(
                 id: "1",
                 type: .assignment,
                 date: Date.now, title: "Important Assignment",
@@ -74,7 +74,7 @@ extension TodoModel {
                 color: .orange,
                 icon: .assignmentLine
             ),
-            TodoItem.make(
+            TodoItemViewModel.make(
                 id: "2",
                 type: .discussion_topic,
                 date: Date.now,
@@ -83,7 +83,7 @@ extension TodoModel {
                 color: .orange,
                 icon: .discussionLine
             ),
-            TodoItem.make(
+            TodoItemViewModel.make(
                 id: "3",
                 type: .calendar_event,
                 date: Date.now,
@@ -92,10 +92,10 @@ extension TodoModel {
                 color: .orange,
                 icon: .calendarMonthLine
             ),
-            TodoItem.make(id: "4", type: .planner_note, date: Date.now.addDays(3), title: "Don't forget", icon: .noteLine),
-            TodoItem.make(id: "5", type: .quiz, date: Date.now.addDays(3), title: "Quiz About Life", icon: .quizLine),
-            TodoItem.make(id: "6", type: .assignment, date: Date.now.addDays(3), title: "Another Assignment", icon: .assignmentLine),
-            TodoItem.make(id: "7", type: .wiki_page, date: Date.now.addDays(3), title: "Some Page", icon: .documentLine)
+            TodoItemViewModel.make(id: "4", type: .planner_note, date: Date.now.addDays(3), title: "Don't forget", icon: .noteLine),
+            TodoItemViewModel.make(id: "5", type: .quiz, date: Date.now.addDays(3), title: "Quiz About Life", icon: .quizLine),
+            TodoItemViewModel.make(id: "6", type: .assignment, date: Date.now.addDays(3), title: "Another Assignment", icon: .assignmentLine),
+            TodoItemViewModel.make(id: "7", type: .wiki_page, date: Date.now.addDays(3), title: "Some Page", icon: .documentLine)
         ]
         return TodoModel(items: Array(items.prefix(count)))
     }

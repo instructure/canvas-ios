@@ -26,9 +26,9 @@ class TodoGroupViewModelTests: CoreTestCase {
         let dateComponents = DateComponents(year: 2021, month: 8, day: 7, hour: 12)
         let date = Calendar.current.date(from: dateComponents)!
         let items = [TodoItemViewModel.make(id: "1"), TodoItemViewModel.make(id: "2")]
-        
+
         let group = TodoGroupViewModel(date: date, items: items)
-        
+
         XCTAssertTrue(group.accessibilityLabel.contains("Saturday"))
         XCTAssertTrue(group.accessibilityLabel.contains("August 7"))
         XCTAssertTrue(group.accessibilityLabel.contains("2 items"))

@@ -23,7 +23,7 @@ import Core
 struct TodoItemView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
 
-    var item: TodoItem
+    var item: TodoItemViewModel
 
     var body: some View {
         Link(destination: item.route) {
