@@ -22,12 +22,14 @@ struct TodoDayHeaderView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     let group: TodoGroup
+    let onTap: (TodoGroup) -> Void
     let tintColor: Color
     let circleSize: CGFloat
     let circleOpacity: CGFloat
 
-    init(group: TodoGroup) {
+    init(group: TodoGroup, onTap: @escaping (TodoGroup) -> Void) {
         self.group = group
+        self.onTap = onTap
         self.tintColor = group.isToday ? Color.accentColor : .textDark
         self.circleSize = group.isToday ? 32 : 0
         self.circleOpacity = group.isToday ? 1 : 0
@@ -35,7 +37,7 @@ struct TodoDayHeaderView: View {
 
     var body: some View {
         Button {
-
+            onTap(group)
         } label: {
             VStack(spacing: 0) {
                 Text(group.weekdayAbbreviation)
@@ -72,8 +74,8 @@ struct TodoDayHeaderView: View {
     )
 
     HStack(spacing: 0) {
-        TodoDayHeaderView(group: todayGroup)
-        TodoDayHeaderView(group: tomorrowGroup)
+        TodoDayHeaderView(group: todayGroup) { _ in }
+        TodoDayHeaderView(group: tomorrowGroup) { _ in }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background(Color.backgroundDarkest)

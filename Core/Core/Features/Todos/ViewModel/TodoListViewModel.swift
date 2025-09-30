@@ -19,6 +19,7 @@
 import Foundation
 import Combine
 import CombineExt
+import UIKit
 
 public class TodoListViewModel: ObservableObject {
     @Published var items: [TodoGroup] = []
@@ -70,5 +71,16 @@ public class TodoListViewModel: ObservableObject {
 
     func openProfile(_ viewController: WeakViewController) {
         env.router.route(to: "/profile", from: viewController, options: .modal())
+    }
+
+    func didTapDayHeader(_ group: TodoGroup, viewController: WeakViewController) {
+        let tabController = viewController.value.tabBarController
+        tabController?.selectedIndex = 1 // Switch to Calendar tab
+        let splitController = tabController?.selectedViewController as? UISplitViewController
+        splitController?.resetToRoot()
+        let plannerController = splitController?.masterTopViewController as? PlannerViewController
+        plannerController?.onAppearOnce {
+            plannerController?.selectDate(group.date)
+        }
     }
 }

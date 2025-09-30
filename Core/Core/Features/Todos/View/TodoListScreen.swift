@@ -60,14 +60,16 @@ public struct TodoListScreen: View {
                 InstUI.Divider().padding(.leading, isLastItemInGroup ? 0 : 48)
             }
         } header: {
-            TodoDayHeaderView(group: group)
-                // To provide a large enough hit area, the badge needs to include padding
-                // but the screen already has a padding so we need to negate that here.
-                .padding(.leading, -InstUI.Styles.Padding.standard.rawValue)
-                // Move day badge to the left of the screen.
-                .frame(maxWidth: .infinity, alignment: .leading)
-                // Squeeze height to 0 so day badge goes next to cell.
-                .frame(height: 0, alignment: .top)
+            TodoDayHeaderView(group: group) { group in
+                viewModel.didTapDayHeader(group, viewController: viewController)
+            }
+            // To provide a large enough hit area, the badge needs to include padding
+            // but the screen already has a padding so we need to negate that here.
+            .padding(.leading, -InstUI.Styles.Padding.standard.rawValue)
+            // Move day badge to the left of the screen.
+            .frame(maxWidth: .infinity, alignment: .leading)
+            // Squeeze height to 0 so day badge goes next to cell.
+            .frame(height: 0, alignment: .top)
         }
     }
 
