@@ -56,6 +56,8 @@ struct TodoDayHeaderView: View {
         }
         .background(Color.backgroundLightest)
         .buttonStyle(.plain)
+        .accessibilityLabel(group.accessibilityLabel)
+        .accessibilityAddTraits(.isHeader)
     }
 }
 

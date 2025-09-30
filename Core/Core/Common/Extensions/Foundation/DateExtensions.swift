@@ -299,6 +299,9 @@ public extension Date {
         Date.dayInMonthFormatter.string(from: self)
     }
 
+    /**
+     E.g.: 6
+     */
     var dayString: String {
         Date.dayFormatter.string(from: self)
     }

@@ -26,6 +26,7 @@ public struct TodoGroup: Identifiable, Equatable {
     public let dayNumber: String
     public let isToday: Bool
     public let displayDate: String
+    public let accessibilityLabel: String
 
     public init(date: Date, items: [TodoItem]) {
         self.id = date.isoString()
@@ -35,5 +36,10 @@ public struct TodoGroup: Identifiable, Equatable {
         self.dayNumber = date.dayString
         self.isToday = Cal.currentCalendar.isDateInToday(date)
         self.displayDate = date.dayInMonth
+        self.accessibilityLabel = [
+            date.weekdayName,
+            date.dayString,
+            String.format(numberOfItems: items.count)
+        ].joined(separator: ", ")
     }
 }
