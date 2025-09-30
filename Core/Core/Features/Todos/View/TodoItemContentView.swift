@@ -78,7 +78,7 @@ public struct TodoItemContentView: View {
     }
 
     private var timeSection: some View {
-        Text(item.date.dateTimeStringShort)
+        Text(item.dateText)
             .font(isCompactLayout ? .regular12 : .regular14)
             .foregroundStyle(.textDark)
             .lineLimit(isCompactLayout ? 1 : nil)

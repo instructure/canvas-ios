@@ -43,6 +43,7 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem?.id, "test-id")
         XCTAssertEqual(todoItem?.type, .assignment)
         XCTAssertEqual(todoItem?.date, date)
+        XCTAssertEqual(todoItem?.dateText, date.timeOnlyString)
         XCTAssertEqual(todoItem?.title, "Test Assignment")
         XCTAssertNil(todoItem?.subtitle)
         XCTAssertEqual(todoItem?.contextName, "Test Course")
@@ -144,6 +145,7 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem.id, "direct-id")
         XCTAssertEqual(todoItem.type, .quiz)
         XCTAssertEqual(todoItem.date, date)
+        XCTAssertEqual(todoItem.dateText, date.timeOnlyString)
         XCTAssertEqual(todoItem.title, "Direct Quiz")
         XCTAssertEqual(todoItem.subtitle, "Test subtitle")
         XCTAssertEqual(todoItem.contextName, "Direct Course")
@@ -246,6 +248,28 @@ class TodoItemViewModelTests: CoreTestCase {
             XCTAssertNotNil(todoItem)
             XCTAssertEqual(todoItem?.type, type)
         }
+    }
+
+    func testDateTextProperty() {
+        // Given
+        let specificDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+        
+        // When
+        let todoItem = TodoItemViewModel(
+            id: "datetest-id",
+            type: .assignment,
+            date: specificDate,
+            title: "Date Test Assignment",
+            subtitle: nil,
+            contextName: "Test Course",
+            htmlURL: nil,
+            color: .blue,
+            icon: .assignmentLine
+        )
+        
+        // Then
+        XCTAssertEqual(todoItem.dateText, specificDate.timeOnlyString)
+        XCTAssertEqual(todoItem.date, specificDate)
     }
 
     // MARK: - Helpers

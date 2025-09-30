@@ -22,6 +22,7 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
     public let id: String
     public let type: PlannableType
     public let date: Date
+    public let dateText: String
 
     public let title: String
     public let subtitle: String?
@@ -37,6 +38,7 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
         self.id = plannable.id
         self.type = plannable.plannableType
         self.date = date
+        self.dateText = date.timeOnlyString
 
         self.title = plannable.title ?? ""
         self.subtitle = plannable.discussionCheckpointStep?.text
@@ -61,6 +63,7 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
         self.id = id
         self.type = type
         self.date = date
+        self.dateText = date.timeOnlyString
 
         self.title = title
         self.subtitle = subtitle
