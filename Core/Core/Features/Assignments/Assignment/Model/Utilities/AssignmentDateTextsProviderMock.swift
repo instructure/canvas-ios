@@ -17,7 +17,8 @@
 //
 
 import Foundation
-import Core
+
+#if DEBUG
 
 final class AssignmentDateTextsProviderMock: AssignmentDateTextsProvider {
 
@@ -45,3 +46,5 @@ final class AssignmentDateTextsProviderMock: AssignmentDateTextsProvider {
         return dueDateItemsResult
     }
 }
+
+#endif

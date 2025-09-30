@@ -43,9 +43,9 @@ final class AssignmentDateTextsProviderTests: CoreTestCase {
         super.tearDown()
     }
 
-    // MARK: - Due dates for not Teacher app
+    // MARK: - Summarized Due Dates for not Teacher app
 
-    func test_dueDates_withNoSubAssignments_shouldHaveSingleItem() {
+    func test_summarizedDueDates_withNoSubAssignments_shouldHaveSingleItem() {
         // WHEN available
         Clock.mockNow(testData.lockDate.addDays(-1))
         var assignment = makeAssignment(.make(
@@ -82,7 +82,7 @@ final class AssignmentDateTextsProviderTests: CoreTestCase {
         XCTAssertEqual(dueDates.first, DueDateFormatter.dateText(testData.dueDate1))
     }
 
-    func test_dueDates_withSubAssignmentsAndNoDueDate_shouldHaveMultipleItems() {
+    func test_summarizedDueDates_withSubAssignmentsAndNoDueDate_shouldHaveMultipleItems() {
         // WHEN one is nil
         var assignment = makeAssignment(.make(
             due_at: testData.dueDate1,
@@ -114,7 +114,7 @@ final class AssignmentDateTextsProviderTests: CoreTestCase {
         XCTAssertEqual(dueDates.last, DueDateFormatter.noDueDateText)
     }
 
-    func test_dueDates_withSubAssignmentsAndBeforeLockDate_shouldHaveMultipleItems() {
+    func test_summarizedDueDates_withSubAssignmentsAndBeforeLockDate_shouldHaveMultipleItems() {
         Clock.mockNow(testData.lockDate.addDays(-1))
 
         let assignment = makeAssignment(.make(
@@ -133,7 +133,7 @@ final class AssignmentDateTextsProviderTests: CoreTestCase {
         XCTAssertEqual(dueDates.last, DueDateFormatter.dateText(testData.dueDate3))
     }
 
-    func test_dueDates_withSubAssignmentsAndAfterLockDate_shouldHaveSingleClosedItem() {
+    func test_summarizedDueDates_withSubAssignmentsAndAfterLockDate_shouldHaveSingleClosedItem() {
         Clock.mockNow(testData.lockDate.addDays(1))
 
         let assignment = makeAssignment(.make(
@@ -150,7 +150,7 @@ final class AssignmentDateTextsProviderTests: CoreTestCase {
         XCTAssertEqual(dueDates.first, DueDateFormatter.availabilityClosedText)
     }
 
-    func test_dueDatesForStudent_withSubAssignmentsAndOverrides_shouldIgnoreOverrides() {
+    func test_summarizedDueDatesForStudent_withSubAssignmentsAndOverrides_shouldIgnoreOverrides() {
         Clock.mockNow(testData.lockDate.addDays(1))
 
         let assignment = makeAssignment(.make(
@@ -167,9 +167,9 @@ final class AssignmentDateTextsProviderTests: CoreTestCase {
         XCTAssertEqual(dueDates.first, DueDateFormatter.availabilityClosedText)
     }
 
-    // MARK: - Due dates for Teacher app
+    // MARK: - Summarized Due Dates for Teacher app
 
-    func test_dueDatesForTeacher_withNoSubAssignments_shouldHaveSingleItem() {
+    func test_summarizedDueDatesForTeacher_withNoSubAssignments_shouldHaveSingleItem() {
         environment.app = .teacher
 
         // WHEN available
@@ -208,7 +208,7 @@ final class AssignmentDateTextsProviderTests: CoreTestCase {
         XCTAssertEqual(dueDates.first, DueDateFormatter.multipleDueDatesText)
     }
 
-    func test_dueDatesForTeacher_withSubAssignmentsAndNoDueDate_shouldHaveMultipleItems() {
+    func test_summarizedDueDatesForTeacher_withSubAssignmentsAndNoDueDate_shouldHaveMultipleItems() {
         environment.app = .teacher
 
         // WHEN one is nil
@@ -242,7 +242,7 @@ final class AssignmentDateTextsProviderTests: CoreTestCase {
         XCTAssertEqual(dueDates.last, DueDateFormatter.noDueDateText)
     }
 
-    func test_dueDatesForTeacher_withSubAssignmentsAndBeforeLockDate_shouldHaveMultipleItems() {
+    func test_summarizedDueDatesForTeacher_withSubAssignmentsAndBeforeLockDate_shouldHaveMultipleItems() {
         environment.app = .teacher
         Clock.mockNow(testData.lockDate.addDays(-1))
 
@@ -262,7 +262,7 @@ final class AssignmentDateTextsProviderTests: CoreTestCase {
         XCTAssertEqual(dueDates.last, DueDateFormatter.dateText(testData.dueDate3))
     }
 
-    func test_dueDatesForTeacher_withSubAssignmentsAndAfterLockDate_shouldHaveSingleClosedItem() {
+    func test_summarizedDueDatesForTeacher_withSubAssignmentsAndAfterLockDate_shouldHaveSingleClosedItem() {
         environment.app = .teacher
         Clock.mockNow(testData.lockDate.addDays(1))
 
@@ -280,7 +280,7 @@ final class AssignmentDateTextsProviderTests: CoreTestCase {
         XCTAssertEqual(dueDates.first, DueDateFormatter.availabilityClosedText)
     }
 
-    func test_dueDatesForTeacher_withSubAssignmentsAndOverrides_shouldHaveSingleItem() {
+    func test_summarizedDueDatesForTeacher_withSubAssignmentsAndOverrides_shouldHaveSingleItem() {
         environment.app = .teacher
 
         let assignment = makeAssignment(.make(
@@ -299,7 +299,7 @@ final class AssignmentDateTextsProviderTests: CoreTestCase {
 
     // MARK: - Special case priority
 
-    func test_dueDatesForTeacher_withNoSubAssignmentsAndLockedAndHasOverrides_shouldHaveMultipleCase() {
+    func test_summarizedDueDatesForTeacher_withNoSubAssignmentsAndLockedAndHasOverrides_shouldHaveMultipleCase() {
         Clock.mockNow(testData.lockDate.addDays(1))
         environment.app = .teacher
 
@@ -316,7 +316,7 @@ final class AssignmentDateTextsProviderTests: CoreTestCase {
         XCTAssertEqual(dueDates.first, DueDateFormatter.multipleDueDatesText)
     }
 
-    func test_dueDatesForTeacher_withSubAssignmentsAndLockedAndHasOverrides_shouldHaveMultipleCase() {
+    func test_summarizedDueDatesForTeacher_withSubAssignmentsAndLockedAndHasOverrides_shouldHaveMultipleCase() {
         Clock.mockNow(testData.lockDate.addDays(1))
         environment.app = .teacher
 
@@ -332,6 +332,214 @@ final class AssignmentDateTextsProviderTests: CoreTestCase {
 
         XCTAssertEqual(dueDates.count, 1)
         XCTAssertEqual(dueDates.first, DueDateFormatter.multipleDueDatesText)
+    }
+
+    // MARK: - Due Date Items - hasOverrides logic
+
+    func test_dueDateItems_withNoSubAssignmentsAndNoOverrides_shouldReturnSingleDueDate() {
+        let assignment = makeAssignment(.make(
+            due_at: testData.dueDate1,
+            has_overrides: false,
+            has_sub_assignments: false
+        ))
+        let items = testee.dueDateItems(for: assignment)
+
+        XCTAssertEqual(items.count, 1)
+        XCTAssertEqual(items.first?.title, "Due")
+        XCTAssertEqual(items.first?.date, DueDateFormatter.dateTextWithoutDue(testData.dueDate1))
+    }
+
+    func test_dueDateItems_withSubAssignmentsAndNoOverrides_shouldReturnBothDueDates() {
+        let assignment = makeAssignment(.make(
+            due_at: testData.dueDate1,
+            has_sub_assignments: true,
+            checkpoints: [
+                .make(tag: "tag1", name: "Task 1", due_at: testData.dueDate2),
+                .make(tag: "tag2", name: "Task 2", due_at: testData.dueDate3)
+            ]
+        ))
+        let items = testee.dueDateItems(for: assignment)
+
+        XCTAssertEqual(items.count, 2)
+        XCTAssertEqual(items[0].title, "Task 1 due")
+        XCTAssertEqual(items[0].date, DueDateFormatter.dateTextWithoutDue(testData.dueDate2))
+        XCTAssertEqual(items[1].title, "Task 2 due")
+        XCTAssertEqual(items[1].date, DueDateFormatter.dateTextWithoutDue(testData.dueDate3))
+    }
+
+    func test_dueDateItemsForStudent_withOverrides_shouldReturnSingleDueDate() {
+        environment.app = .student
+        let assignment = makeAssignment(.make(
+            due_at: testData.dueDate1,
+            has_overrides: true,
+            has_sub_assignments: false
+        ))
+        let items = testee.dueDateItems(for: assignment)
+
+        XCTAssertEqual(items.count, 1)
+        XCTAssertEqual(items.first?.title, "Due")
+        XCTAssertEqual(items.first?.date, DueDateFormatter.dateTextWithoutDue(testData.dueDate1))
+    }
+
+    func test_dueDateItemsForStudent_withSubAssignmentOverrides_shouldReturnBothDueDates() {
+        environment.app = .student
+        let assignment = makeAssignment(.make(
+            due_at: testData.dueDate1,
+            has_sub_assignments: true,
+            checkpoints: [
+                .make(tag: "tag1", name: "Task 1", due_at: testData.dueDate2, overrides: [.make()]),
+                .make(tag: "tag2", name: "Task 2", due_at: testData.dueDate3)
+            ]
+        ))
+        let items = testee.dueDateItems(for: assignment)
+
+        XCTAssertEqual(items.count, 2)
+        XCTAssertEqual(items[0].title, "Task 1 due")
+        XCTAssertEqual(items[0].date, DueDateFormatter.dateTextWithoutDue(testData.dueDate2))
+        XCTAssertEqual(items[1].title, "Task 2 due")
+        XCTAssertEqual(items[1].date, DueDateFormatter.dateTextWithoutDue(testData.dueDate3))
+    }
+
+    func test_dueDateItemsForTeacher_withOverrides_shouldReturnSingleItemWithNilTitle() {
+        environment.app = .teacher
+        let assignment = makeAssignment(.make(
+            due_at: testData.dueDate1,
+            has_overrides: true,
+            has_sub_assignments: false
+        ))
+        let items = testee.dueDateItems(for: assignment)
+
+        XCTAssertEqual(items.count, 1)
+        XCTAssertNil(items.first?.title)
+        XCTAssertEqual(items.first?.date, DueDateFormatter.multipleDueDatesText)
+    }
+
+    func test_dueDateItemsForTeacher_withSubAssignmentOverrides_shouldReturnSingleItemWithNilTitle() {
+        environment.app = .teacher
+        let assignment = makeAssignment(.make(
+            due_at: testData.dueDate1,
+            has_sub_assignments: true,
+            checkpoints: [
+                .make(tag: "tag1", name: "Task 1", due_at: testData.dueDate2, overrides: [.make()]),
+                .make(tag: "tag2", name: "Task 2", due_at: testData.dueDate3)
+            ]
+        ))
+        let items = testee.dueDateItems(for: assignment)
+
+        XCTAssertEqual(items.count, 1)
+        XCTAssertNil(items.first?.title)
+        XCTAssertEqual(items.first?.date, DueDateFormatter.multipleDueDatesText)
+    }
+
+    // MARK: - Due Date Items - lockDate not affecting due date display
+
+    func test_dueDateItems_withNoSubAssignmentsAndPassedLockDate_shouldNotDisplayClosedText() {
+        Clock.mockNow(testData.lockDate.addDays(1))
+        let assignment = makeAssignment(.make(
+            due_at: testData.dueDate1,
+            lock_at: testData.lockDate,
+            has_sub_assignments: false
+        ))
+        let items = testee.dueDateItems(for: assignment)
+
+        XCTAssertEqual(items.count, 1)
+        XCTAssertEqual(items.first?.title, "Due")
+        XCTAssertEqual(items.first?.date, DueDateFormatter.dateTextWithoutDue(testData.dueDate1))
+    }
+
+    func test_dueDateItems_withSubAssignmentsAndPassedLockDate_shouldNotDisplayClosedText() {
+        Clock.mockNow(testData.lockDate.addDays(1))
+        let assignment = makeAssignment(.make(
+            due_at: testData.dueDate1,
+            has_sub_assignments: true,
+            checkpoints: [
+                .make(tag: "tag1", name: "Task 1", due_at: testData.dueDate2, lock_at: testData.lockDate),
+                .make(tag: "tag2", name: "Task 2", due_at: testData.dueDate3, lock_at: testData.lockDate)
+            ]
+        ))
+        let items = testee.dueDateItems(for: assignment)
+
+        XCTAssertEqual(items.count, 2)
+        XCTAssertEqual(items[0].title, "Task 1 due")
+        XCTAssertEqual(items[0].date, DueDateFormatter.dateTextWithoutDue(testData.dueDate2))
+        XCTAssertEqual(items[1].title, "Task 2 due")
+        XCTAssertEqual(items[1].date, DueDateFormatter.dateTextWithoutDue(testData.dueDate3))
+    }
+
+    // MARK: - Due Date Items - general logic
+
+    func test_dueDateItems_withNoSubAssignmentsAndNilDueDate_shouldReturnSingleNoDueDate() {
+        let assignment = makeAssignment(.make(
+            due_at: nil,
+            has_sub_assignments: false
+        ))
+        let items = testee.dueDateItems(for: assignment)
+
+        XCTAssertEqual(items.count, 1)
+        XCTAssertEqual(items.first?.title, "Due")
+        XCTAssertEqual(items.first?.date, DueDateFormatter.noDueDateText)
+    }
+
+    func test_dueDateItems_withNoSubAssignmentsAndDueDate_shouldReturnSingleDueDate() {
+        let assignment = makeAssignment(.make(
+            due_at: testData.dueDate1,
+            has_sub_assignments: false
+        ))
+        let items = testee.dueDateItems(for: assignment)
+
+        XCTAssertEqual(items.count, 1)
+        XCTAssertEqual(items.first?.title, "Due")
+        XCTAssertEqual(items.first?.date, DueDateFormatter.dateTextWithoutDue(testData.dueDate1))
+    }
+
+    func test_dueDateItems_withSubAssignmentsAndNilDueDates_shouldReturnMultipleItemsWithNoDueDateText() {
+        let assignment = makeAssignment(.make(
+            due_at: testData.dueDate1,
+            has_sub_assignments: true,
+            checkpoints: [
+                .make(tag: "tag1", name: "Task 1", due_at: nil),
+                .make(tag: "tag2", name: "Task 2", due_at: nil)
+            ]
+        ))
+        let items = testee.dueDateItems(for: assignment)
+
+        XCTAssertEqual(items.count, 2)
+        XCTAssertEqual(items[0].title, "Task 1 due")
+        XCTAssertEqual(items[0].date, DueDateFormatter.noDueDateText)
+        XCTAssertEqual(items[1].title, "Task 2 due")
+        XCTAssertEqual(items[1].date, DueDateFormatter.noDueDateText)
+    }
+
+    func test_dueDateItems_withSubAssignmentsAndDueDates_shouldReturnMultipleItems() {
+        let assignment = makeAssignment(.make(
+            due_at: testData.dueDate1,
+            has_sub_assignments: true,
+            checkpoints: [
+                .make(tag: "tag1", name: "Task 1", due_at: testData.dueDate2),
+                .make(tag: "tag2", name: "Task 2", due_at: nil),
+                .make(tag: "tag3", name: "Task 3", due_at: testData.dueDate3)
+            ]
+        ))
+        let items = testee.dueDateItems(for: assignment)
+
+        XCTAssertEqual(items.count, 3)
+        XCTAssertEqual(items[0].title, "Task 1 due")
+        XCTAssertEqual(items[0].date, DueDateFormatter.dateTextWithoutDue(testData.dueDate2))
+        XCTAssertEqual(items[1].title, "Task 2 due")
+        XCTAssertEqual(items[1].date, DueDateFormatter.noDueDateText)
+        XCTAssertEqual(items[2].title, "Task 3 due")
+        XCTAssertEqual(items[2].date, DueDateFormatter.dateTextWithoutDue(testData.dueDate3))
+    }
+
+    func test_dueDateItems_withSubAssignmentsButNoCheckpoints_shouldReturnNoItems() {
+        let assignment = makeAssignment(.make(
+            due_at: testData.dueDate1,
+            has_sub_assignments: true,
+            checkpoints: []
+        ))
+        let items = testee.dueDateItems(for: assignment)
+
+        XCTAssertEqual(items.count, 0)
     }
 
     // MARK: - Private helpers

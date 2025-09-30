@@ -27,16 +27,24 @@ class StudentAssignmentDetailsViewControllerTests: StudentTestCase {
     var assignmentID = "1"
     var viewController: StudentAssignmentDetailsViewController!
     var prevSpeed: Float = 1
+    private var dateTextsProvider: AssignmentDateTextsProviderMock!
 
     override func setUp() {
         super.setUp()
-        viewController = StudentAssignmentDetailsViewController
-            .create(courseID: courseID, assignmentID: assignmentID, env: env)
+        dateTextsProvider = .init()
+        viewController = StudentAssignmentDetailsViewController.create(
+            courseID: courseID,
+            assignmentID: assignmentID,
+            dateTextsProvider: dateTextsProvider,
+            env: env
+        )
         prevSpeed = AppEnvironment.shared.window?.layer.speed ?? 1
         AppEnvironment.shared.window?.layer.speed = 100
     }
 
     override func tearDown() {
+        viewController = nil
+        dateTextsProvider = nil
         AppEnvironment.shared.window?.layer.speed = prevSpeed
         super.tearDown()
     }
@@ -52,7 +60,6 @@ class StudentAssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertEqual(viewController.submitAssignmentButton.alpha, 1.0)
         XCTAssertEqual(viewController.scrollView?.contentInset, .zero)
         XCTAssertEqual(viewController.scrollView?.verticalScrollIndicatorInsets, .zero)
-        XCTAssertEqual(viewController.dueSection1?.header.text, "Due")
         XCTAssertEqual(viewController.submissionTypesSection?.header.text, "Submission Types")
         XCTAssertEqual(viewController.fileTypesSection?.header.text, "File Types")
         XCTAssertEqual(viewController.attemptsHeadingLabel.text, "Attempts")
@@ -453,7 +460,65 @@ class StudentAssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertTrue(viewController.gradeStatisticGraphView!.isHidden)
     }
 
-    func setupFileForSubmittedLabel(removeID: Bool = false, taskID: String? = nil, uploadError: String? = nil, apiAssignment: APIAssignment? = nil) {
+    // MARK: - Due dates
+
+    func test_updateDueDates_shouldCallDateTextsProvider() {
+        let assignment = makeAssignment(id: assignmentID)
+        load()
+
+        viewController.update(assignment: assignment, quiz: nil, submission: nil, baseURL: nil)
+
+        XCTAssertEqual(dateTextsProvider.dueDateItemsCallsCount, 1)
+        XCTAssertEqual(dateTextsProvider.dueDateItemsInput?.id, assignmentID)
+    }
+
+    func test_updateDueDates_whenProviderReturnsOneDueDate_shouldPopulateFirstDueDateSectionOnly() {
+        dateTextsProvider.dueDateItemsResult = [
+            .init(title: "title 1", date: "date 1")
+        ]
+        let assignment = makeAssignment(id: assignmentID)
+        load()
+
+        viewController.update(assignment: assignment, quiz: nil, submission: nil, baseURL: nil)
+
+        XCTAssertEqual(viewController.dueSection1?.header.text, "title 1")
+        XCTAssertEqual(viewController.dueSection1?.subHeader.text, "date 1")
+        XCTAssertEqual(viewController.dueSection2?.header.text, nil)
+        XCTAssertEqual(viewController.dueSection2?.subHeader.text, nil)
+    }
+
+    func test_updateDueDates_whenProviderReturnsTwoDueDates_shouldPopulateBothDueDateSections() {
+        dateTextsProvider.dueDateItemsResult = [
+            .init(title: "title 1", date: "date 1"),
+            .init(title: "title 2", date: "date 2")
+        ]
+        let assignment = makeAssignment(id: assignmentID)
+        load()
+
+        viewController.update(assignment: assignment, quiz: nil, submission: nil, baseURL: nil)
+
+        XCTAssertEqual(viewController.dueSection1?.header.text, "title 1")
+        XCTAssertEqual(viewController.dueSection1?.subHeader.text, "date 1")
+        XCTAssertEqual(viewController.dueSection2?.header.text, "title 2")
+        XCTAssertEqual(viewController.dueSection2?.subHeader.text, "date 2")
+    }
+
+    func test_updateDueDates_whenProviderReturnsNoDueDates_shouldNotPopulateDueDateSections() {
+        dateTextsProvider.dueDateItemsResult = []
+        let assignment = makeAssignment(id: assignmentID)
+        load()
+
+        viewController.update(assignment: assignment, quiz: nil, submission: nil, baseURL: nil)
+
+        XCTAssertEqual(viewController.dueSection1?.header.text, nil)
+        XCTAssertEqual(viewController.dueSection1?.subHeader.text, nil)
+        XCTAssertEqual(viewController.dueSection2?.header.text, nil)
+        XCTAssertEqual(viewController.dueSection2?.subHeader.text, nil)
+    }
+
+    // MARK: - Private helpers
+
+    private func setupFileForSubmittedLabel(removeID: Bool = false, taskID: String? = nil, uploadError: String? = nil, apiAssignment: APIAssignment? = nil) {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)
         let assignment = apiAssignment ?? APIAssignment.make(
@@ -473,8 +538,15 @@ class StudentAssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertEqual(viewController.presenter?.onlineUpload.count, 1)
     }
 
-    func mockCourse() {
+    private func mockCourse() {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)
+    }
+
+    private func makeAssignment(id: String) -> Assignment {
+        Assignment.make(
+            from: .make(id: ID(id)),
+            in: databaseClient
+        )
     }
 }
