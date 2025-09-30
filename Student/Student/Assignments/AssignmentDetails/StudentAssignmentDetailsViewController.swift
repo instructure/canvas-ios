@@ -631,6 +631,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
             .init(
                 courseId: courseID,
                 assignmentId: checkpoint.assignmentId,
+                subAssignmentTag: checkpoint.tag,
                 userId: env.currentSession?.userID ?? "",
                 assignmentName: "\(checkpoint.assignmentName) - \(checkpoint.title)",
                 dueDate: checkpoint.dueDate ?? .distantPast
