@@ -79,9 +79,9 @@ public final class TodoInteractorLive: TodoInteractor {
 
         // Convert to TodoGroup array and sort by date
         return groupedDict.map { (date, items) in
-            TodoGroupViewModel(date: date, items: items.sorted { $0.date < $1.date })
+            TodoGroupViewModel(date: date, items: items.sorted())
         }
-        .sorted { $0.date < $1.date }
+        .sorted()
     }
 }
 

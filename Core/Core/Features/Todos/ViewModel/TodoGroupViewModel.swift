@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct TodoGroupViewModel: Identifiable, Equatable {
+public struct TodoGroupViewModel: Identifiable, Equatable, Comparable {
     public let id: String
     public let date: Date
     public let items: [TodoItemViewModel]
@@ -41,5 +41,11 @@ public struct TodoGroupViewModel: Identifiable, Equatable {
             date.dayString,
             String.format(numberOfItems: items.count)
         ].joined(separator: ", ")
+    }
+
+    // MARK: - Comparable
+
+    public static func < (lhs: TodoGroupViewModel, rhs: TodoGroupViewModel) -> Bool {
+        lhs.date < rhs.date
     }
 }

@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct TodoItemViewModel: Identifiable, Equatable {
+public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
     public let id: String
     public let type: PlannableType
     public let date: Date
@@ -70,6 +70,12 @@ public struct TodoItemViewModel: Identifiable, Equatable {
 
         self.color = color
         self.icon = icon
+    }
+
+    // MARK: - Comparable
+
+    public static func < (lhs: TodoItemViewModel, rhs: TodoItemViewModel) -> Bool {
+        lhs.date < rhs.date
     }
 
     // MARK: Preview & Testing
