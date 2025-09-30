@@ -35,12 +35,12 @@ class InboxCoursePickerInteractorLiveTests: CoreTestCase {
     func testPopulatesListItems() {
         XCTAssertEqual(testee.state.value, .data)
 
-        XCTAssertEqual(testee.moreCourses.value.count, 2)
+        XCTAssertEqual(testee.moreCourses.value.count, 3)
         XCTAssertEqual(testee.favoriteCourses.value.count, 1)
         XCTAssertEqual(testee.groups.value.count, 1)
 
-        XCTAssertEqual(testee.moreCourses.value.first?.name, "Course 1")
-        XCTAssertEqual(testee.favoriteCourses.value.first?.name, "Course 3 (favorite)")
+        XCTAssertEqual(testee.moreCourses.value.last?.name, "Course 4")
+        XCTAssertEqual(testee.favoriteCourses.value.first?.name, "Course 5 (favorite)")
         XCTAssertEqual(testee.groups.value.first?.name, "Group 1")
     }
 
@@ -48,7 +48,29 @@ class InboxCoursePickerInteractorLiveTests: CoreTestCase {
         let courses: [APICourse] = [
             .make(id: "1", name: "Course 1"),
             .make(id: "2", name: "Course 2"),
-            .make(id: 3, name: "Course 3 (favorite)", is_favorite: true)
+            .make(
+                id: "3",
+                name: "Concluded Course",
+                term: .make(
+                    id: "t1",
+                    name: "Past",
+                    start_at: Clock.now.addMonths(-3),
+                    end_at: Clock.now.addMonths(-1)
+                )
+            ),
+            .make(id: "4", name: "Course 4"),
+            .make(id: "5", name: "Course 5 (favorite)", is_favorite: true),
+            .make(
+                id: "6",
+                name: "Concluded Course",
+                term: .make(
+                    id: "t1",
+                    name: "Past",
+                    start_at: Clock.now.addMonths(-3),
+                    end_at: Clock.now.addMonths(-1)
+                ),
+                is_favorite: true
+            )
         ]
 
         let groups: [APIGroup] = [

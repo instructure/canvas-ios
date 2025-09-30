@@ -49,14 +49,9 @@ class InboxCoursePickerViewModel: ObservableObject {
         setupOutputBindings()
     }
 
-    public func onSelect(selected: Course, onInvalidated: () -> Void = {}) {
-        if selected.isPastEnrollment {
-            selectedRecipientContext = nil
-            onInvalidated()
-        } else {
-            let context = RecipientContext(course: selected)
-            onSelect(selected: context)
-        }
+    public func onSelect(selected: Course) {
+        let context = RecipientContext(course: selected)
+        onSelect(selected: context)
     }
 
     public func onSelect(selected: Group) {

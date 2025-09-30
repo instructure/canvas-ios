@@ -54,42 +54,6 @@ class InboxCoursePickerViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.selectedRecipientContext?.context.id, context.id)
     }
 
-    func testConcludedCourseSelection() {
-        var invalidations = 0
-        let invalidationBlock = { invalidations += 1}
-
-        // Pre-selection
-        let active = Course.make(
-            from: .make(id: "a1", name: "Active Course"),
-            in: environment.database.viewContext
-        )
-
-        testee.onSelect(selected: active, onInvalidated: invalidationBlock)
-
-        XCTAssertEqual(invalidations, 0)
-        XCTAssertEqual(testee.selectedRecipientContext?.context.id, active.id)
-
-        // Concluded Course
-        let concluded = Course.make(
-            from: .make(
-                id: "c2",
-                name: "Concluded Course",
-                term: .make(
-                    id: "t2",
-                    name: "Past",
-                    start_at: Clock.now.addMonths(-3),
-                    end_at: Clock.now.addMonths(-1)
-                )
-            ),
-            in: environment.database.viewContext
-        )
-
-        testee.onSelect(selected: concluded, onInvalidated: invalidationBlock)
-
-        XCTAssertEqual(invalidations, 1)
-        XCTAssertNil(testee.selectedRecipientContext)
-    }
-
     func testGroupSelection() {
         let context = testee.groups.first!
         testee.onSelect(selected: context)
