@@ -39,7 +39,7 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
         environment = env
 
         enrollmentsStore
-            .getEntities()
+            .getEntities(loadAllPages: true)
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] enrollmentList in
                 self?.enrollments.send(enrollmentList)
             })
@@ -73,6 +73,22 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
 
     func refresh() -> AnyPublisher<[Void], Never> {
         coursesStore.forceRefresh().combineLatest(with: enrollmentsStore.forceRefresh())
+            .map { [weak self] _ in
+                guard let self else { return [()] }
+
+                coursesStore
+                    .getEntities()
+                    .subscribe(courses)
+                    .store(in: &subscriptions)
+
+                enrollmentsStore
+                    .getEntities()
+                    .subscribe(enrollments)
+                    .store(in: &subscriptions)
+
+                return [()]
+            }
+            .eraseToAnyPublisher()
     }
 
     func getCourseURL(courseId: String) -> String {
