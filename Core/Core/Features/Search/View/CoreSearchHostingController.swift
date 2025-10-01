@@ -140,7 +140,7 @@ public class CoreSearchHostingController<
 
         super.init(SearchHostingBaseView(content: content, searchContext: searchContext))
 
-        if let contextColor = attributes.accentColor {
+		if #unavailable(iOS 26), let contextColor = attributes.accentColor {
             navigationBarStyle = .color(contextColor)
         }
     }

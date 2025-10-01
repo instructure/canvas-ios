@@ -18,12 +18,12 @@
 
 import SwiftUI
 
-@available(iOS, introduced: 26, message: "Legacy version exists")
-struct CourseDetailsHeaderView: View {
-    @ObservedObject private var viewModel: CourseDetailsHeaderViewModel
+@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+struct LegacyCourseDetailsHeaderView: View {
+    @ObservedObject private var viewModel: LegacyCourseDetailsHeaderViewModel
     private let width: CGFloat
 
-    public init(viewModel: CourseDetailsHeaderViewModel, width: CGFloat) {
+    public init(viewModel: LegacyCourseDetailsHeaderViewModel, width: CGFloat) {
         self.viewModel = viewModel
         self.width = width
     }
@@ -60,20 +60,21 @@ struct CourseDetailsHeaderView: View {
         }
         .frame(height: viewModel.height)
         .clipped()
+        .offset(x: 0, y: viewModel.verticalOffset)
     }
 }
 
 #if DEBUG
-@available(iOS, introduced: 26, message: "Legacy version exists")
-struct CourseDetailsHeaderView_Previews: PreviewProvider {
+
+struct LegacyCourseDetailsHeaderView_Previews: PreviewProvider {
     private static let env = AppEnvironment.shared
     private static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
         let course = Course.save(.make(term: .make()), in: context)
-        let viewModel = CourseDetailsHeaderViewModel()
+        let viewModel = LegacyCourseDetailsHeaderViewModel()
         viewModel.courseUpdated(course)
-        return CourseDetailsHeaderView(viewModel: viewModel, width: 400)
+        return LegacyCourseDetailsHeaderView(viewModel: viewModel, width: 400)
     }
 }
 
