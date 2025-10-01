@@ -66,36 +66,83 @@ extension TodoModel {
 
     static func make(count: Int = 5) -> TodoModel {
         let items = [
-            TodoItemViewModel.make(
+            TodoItemViewModel(
                 id: "1",
                 type: .assignment,
-                date: Date.now, title: "Important Assignment",
-                contextName: "Student",
-                color: .orange,
+                date: Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: Date.now)!,
+                title: String(localized: "Research Paper Draft"),
+                subtitle: nil,
+                contextName: String(localized: "Introduction to Psychology"),
+                htmlURL: nil,
+                color: .course3,
                 icon: .assignmentLine
             ),
-            TodoItemViewModel.make(
+            TodoItemViewModel(
                 id: "2",
                 type: .discussion_topic,
-                date: Date.now,
-                title: "Discussion About Everything",
-                contextName: "Student",
-                color: .orange,
+                date: Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date.now)!,
+                title: String(localized: "Chapter 5 Discussion"),
+                subtitle: nil,
+                contextName: String(localized: "Modern Literature"),
+                htmlURL: nil,
+                color: .course8,
                 icon: .discussionLine
             ),
-            TodoItemViewModel.make(
+            TodoItemViewModel(
                 id: "3",
                 type: .calendar_event,
-                date: Date.now,
-                title: "Huge Event",
-                contextName: "Student",
-                color: .orange,
+                date: Calendar.current.date(bySettingHour: 15, minute: 0, second: 0, of: Date.now)!,
+                title: String(localized: "Guest Lecture Series"),
+                subtitle: nil,
+                contextName: String(localized: "Biology 101"),
+                htmlURL: nil,
+                color: .course5,
                 icon: .calendarMonthLine
             ),
-            TodoItemViewModel.make(id: "4", type: .planner_note, date: Date.now.addDays(3), title: "Don't forget", icon: .noteLine),
-            TodoItemViewModel.make(id: "5", type: .quiz, date: Date.now.addDays(3), title: "Quiz About Life", icon: .quizLine),
-            TodoItemViewModel.make(id: "6", type: .assignment, date: Date.now.addDays(3), title: "Another Assignment", icon: .assignmentLine),
-            TodoItemViewModel.make(id: "7", type: .wiki_page, date: Date.now.addDays(3), title: "Some Page", icon: .documentLine)
+            TodoItemViewModel(
+                id: "4",
+                type: .planner_note,
+                date: Calendar.current.date(bySettingHour: 10, minute: 0, second: 0, of: Date.now.addDays(3))!,
+                title: String(localized: "Review study materials"),
+                subtitle: nil,
+                contextName: String(localized: "To Do"),
+                htmlURL: nil,
+                color: .course11,
+                icon: .noteLine
+            ),
+            TodoItemViewModel(
+                id: "5",
+                type: .quiz,
+                date: Calendar.current.date(bySettingHour: 14, minute: 0, second: 0, of: Date.now.addDays(3))!,
+                title: String(localized: "Unit 3 Quiz"),
+                subtitle: nil,
+                contextName: String(localized: "Introduction to Psychology"),
+                htmlURL: nil,
+                color: .course3,
+                icon: .quizLine
+            ),
+            TodoItemViewModel(
+                id: "6",
+                type: .assignment,
+                date: Calendar.current.date(bySettingHour: 16, minute: 0, second: 0, of: Date.now.addDays(3))!,
+                title: String(localized: "Lab Report Submission"),
+                subtitle: nil,
+                contextName: String(localized: "Chemistry Lab"),
+                htmlURL: nil,
+                color: .course12,
+                icon: .assignmentLine
+            ),
+            TodoItemViewModel(
+                id: "7",
+                type: .wiki_page,
+                date: Calendar.current.date(bySettingHour: 18, minute: 0, second: 0, of: Date.now.addDays(3))!,
+                title: String(localized: "Course Syllabus"),
+                subtitle: nil,
+                contextName: String(localized: "History 202"),
+                htmlURL: nil,
+                color: .course6,
+                icon: .documentLine
+            )
         ]
         return TodoModel(items: Array(items.prefix(count)))
     }
