@@ -45,20 +45,27 @@ public final class TodoInteractorLive: TodoInteractor {
 
         return ReactiveStore(useCase: GetCourses(), environment: env)
             .getEntities(ignoreCache: ignoreCache)
-            .map {
-                var contextCodes: [String] = $0.filter(\.isPublished).map(\.canvasContextID)
+            .map { courses in
+                var contextCodes: [String] = courses.filter(\.isPublished).map(\.canvasContextID)
                 if let userContextCode = Context(.user, id: currentUserID)?.canvasContextID {
                     contextCodes.append(userContextCode)
                 }
-                return contextCodes
+                return (contextCodes, courses)
             }
-            .flatMap { [env] codes in
+            .flatMap { [env] (courseContextCodes, courses: [Course]) in
                 ReactiveStore(
-                    useCase: GetPlannables(startDate: startDate, endDate: endDate, contextCodes: codes),
+                    useCase: GetPlannables(startDate: startDate, endDate: endDate, contextCodes: courseContextCodes),
                     environment: env
                 )
                 .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
-                .map { $0.compactMap(TodoItemViewModel.init) }
+                .map { plannables in
+                    return plannables.compactMap { plannable in
+                        let course = courses.first { course in
+                            course.canvasContextID == plannable.canvasContextIDRaw
+                        }
+                        return TodoItemViewModel(plannable, course: course)
+                    }
+                }
             }
             .map { [weak todoGroupsSubject] (todos: [TodoItemViewModel]) in
                 TabBarBadgeCounts.todoListCount = UInt(todos.count)

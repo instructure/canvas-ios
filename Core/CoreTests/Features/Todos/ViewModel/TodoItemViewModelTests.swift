@@ -253,7 +253,7 @@ class TodoItemViewModelTests: CoreTestCase {
     func testDateTextProperty() {
         // Given
         let specificDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
-        
+
         // When
         let todoItem = TodoItemViewModel(
             id: "datetest-id",
@@ -266,7 +266,7 @@ class TodoItemViewModelTests: CoreTestCase {
             color: .blue,
             icon: .assignmentLine
         )
-        
+
         // Then
         XCTAssertEqual(todoItem.dateText, specificDate.timeOnlyString)
         XCTAssertEqual(todoItem.date, specificDate)

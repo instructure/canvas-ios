@@ -32,7 +32,7 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
     public let color: Color
     public let icon: Image
 
-    public init?(_ plannable: Plannable) {
+    public init?(_ plannable: Plannable, course: Course? = nil) {
         guard let date = plannable.date else { return nil }
 
         self.id = plannable.id
@@ -42,11 +42,39 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
 
         self.title = plannable.title ?? ""
         self.subtitle = plannable.discussionCheckpointStep?.text
-        self.contextName = plannable.contextNameUserFacing ?? ""
+
+        // Use course-based contextName if course is provided, otherwise use plannable context
+        self.contextName = Self.contextName(
+            isCourseNameNickname: course?.hasNickName ?? false,
+            courseName: course?.name,
+            courseCode: course?.courseCode,
+            fallback: plannable.contextNameUserFacing ?? ""
+        )
+
         self.htmlURL = plannable.htmlURL
 
         self.color = plannable.color.asColor
         self.icon = Image(uiImage: plannable.icon)
+    }
+
+    /// Helper function to determine the context name for a Todo item.
+    /// - Parameters:
+    ///   - isCourseNameNickname: Whether the course name is a user-given nickname.
+    ///   - courseName: The course name (which may be a nickname if isCourseNameNickname is true).
+    ///   - courseCode: The course code.
+    ///   - fallback: Fallback value if no course data is available.
+    /// - Returns: The appropriate context name.
+    public static func contextName(
+        isCourseNameNickname: Bool,
+        courseName: String?,
+        courseCode: String?,
+        fallback: String = ""
+    ) -> String {
+        if isCourseNameNickname {
+            return courseName ?? fallback
+        } else {
+            return courseCode ?? courseName ?? fallback
+        }
     }
 
     public init(
