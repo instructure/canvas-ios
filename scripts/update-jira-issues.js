@@ -109,6 +109,7 @@ exports.commands = {
 
     let nextPageToken = null
     let totalCount = 0
+    let isLast = false
     do {
       let results = await searchJira(`
         project = "MBL" AND
@@ -120,6 +121,11 @@ exports.commands = {
         maxResults: 10,
         fields: [ 'id', 'key', 'labels', 'summary' ],
       })
+
+      if (!results.issues || results.issues.length === 0) {
+        console.log('No more issues found, ending pagination')
+        break
+      }
 
       await Promise.all(results.issues.map(issue => {
         const labels = [ { add: releasedLabel } ]
@@ -139,8 +145,9 @@ exports.commands = {
       }))
 
       totalCount += results.issues.length
-      nextPageToken = results.nextPageToken
-    } while (!results.isLast && nextPageToken)
+      nextPageToken = results.nextPageToken || null
+      isLast = results.isLast !== false
+    } while (!isLast && nextPageToken)
     return totalCount
   },
 }
