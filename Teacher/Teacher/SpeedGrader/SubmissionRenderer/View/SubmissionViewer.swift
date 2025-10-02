@@ -179,7 +179,7 @@ struct SubmissionViewer: View {
             in: environment.database.viewContext
         ),
         fileID: nil,
-        studentAnnotationViewModel: .init(submission: .save(.make(), in: environment.database.viewContext)),
+        studentAnnotationViewModel: .init(submission: .save(.make(), in: environment.database.viewContext), env: environment),
         handleRefresh: { }
     )
 }

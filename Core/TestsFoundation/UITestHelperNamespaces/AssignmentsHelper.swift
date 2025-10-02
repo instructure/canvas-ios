@@ -26,7 +26,7 @@ public class AssignmentsHelper: BaseHelper {
     }
 
     public static func assignmentButton(assignment: DSAssignment) -> XCUIElement {
-        return app.find(id: "AssignmentList.\(assignment.id)")
+        return app.find(id: "AssignmentList.Items.\(assignment.id)")
     }
 
     public static func pointsOutOf(actualScore: String, maxScore: String) -> XCUIElement {
@@ -109,7 +109,7 @@ public class AssignmentsHelper: BaseHelper {
         public static var submittedText: XCUIElement { app.find(id: "AssignmentDetails.submittedText") }
         public static var viewAllSubmissionsButton: XCUIElement { app.find(id: "AssignmentDetails.viewAllSubmissionsButton") }
         public static var oneNeedsGradingButton: XCUIElement { app.find(label: "Needs Grading", type: .button) }
-        public static var notSubmittedButton: XCUIElement { viewAllSubmissionsButton.find(labelContaining: "Not Submitted", type: .button) }
+        public static var notSubmittedButton: XCUIElement { app.find(label: "Not Submitted", type: .button) }
         public static var viewSubmissionButton: XCUIElement { app.find(id: "AssignmentDetails.viewSubmissionButton") }
         public static var published: XCUIElement { app.find(id: "AssignmentDetails.published") }
         public static var unpublished: XCUIElement { app.find(id: "AssignmentDetails.unpublished") }

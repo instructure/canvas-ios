@@ -78,6 +78,7 @@ struct StudentAssignmentListSubItemCell: View {
         Text(score)
             .font(.semibold16)
             .applyTint()
+            .accessibilityLabel(model.scoreA11yLabel)
     }
 }
 

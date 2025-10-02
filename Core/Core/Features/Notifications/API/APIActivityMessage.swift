@@ -29,7 +29,7 @@ public struct APIActivityMessage: Codable {
 
 #if DEBUG
 extension APIActivityMessage {
-    public static func make (
+    public static func make(
         id: ID = "",
         created_at: Date = .now,
         body: String? = nil,
