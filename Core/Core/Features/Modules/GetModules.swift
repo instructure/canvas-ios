@@ -27,6 +27,7 @@ public class GetModules: UseCase {
             let items: [APIModuleItem]
         }
         let sections: [Section]
+        let discussionCheckpointsData: [String: GetModuleItemDiscussionCheckpointsDataResponse.Data]
     }
 
     public let courseID: String
@@ -62,16 +63,14 @@ public class GetModules: UseCase {
                 return
             }
             var sections: [Response.Section] = []
-            var urlResponse: URLResponse?
             let loadGroup = DispatchGroup()
             loadGroup.enter()
             for module in modules {
                 loadGroup.enter()
                 let request = GetModuleItemsRequest(courseID: courseID, moduleID: module.id.value, include: [.content_details, .mastery_paths])
-                environment.api.exhaust(request) { items, response, error in
+                environment.api.exhaust(request) { items, urlResponse, error in
                     defer { loadGroup.leave() }
-                    urlResponse = response
-                    guard let items = items, error == nil else {
+                    guard let items, error == nil else {
                         completionHandler(nil, urlResponse, error)
                         return
                     }
@@ -80,7 +79,18 @@ public class GetModules: UseCase {
             }
             loadGroup.leave()
             loadGroup.notify(queue: .main) {
-                completionHandler(Response(sections: sections), urlResponse, nil)
+                let request = GetModuleItemDiscussionCheckpointsDataRequest(courseId: courseID)
+                environment.api.makeRequest(request) { response, urlResponse, error in
+                    guard let response, error == nil else {
+                        completionHandler(nil, urlResponse, error)
+                        return
+                    }
+                    let useCaseResponse = Response(
+                        sections: sections,
+                        discussionCheckpointsData: response.dataPerModuleItemId
+                    )
+                    completionHandler(useCaseResponse, urlResponse, nil)
+                }
             }
         }
     }
@@ -92,6 +102,18 @@ public class GetModules: UseCase {
             for item in section.items {
                 let item = ModuleItem.save(item, forCourse: courseID, in: client)
                 module.items.append(item)
+
+                // always clear existing checkpoints
+                item.discussionCheckpoints.forEach { client.delete($0) }
+                // save & add checkpoints
+                if let discussionCheckpointsData = response.discussionCheckpointsData[item.id] {
+                    item.discussionCheckpoints = CDModuleItemDiscussionCheckpoint.save(
+                        checkpointsData: discussionCheckpointsData,
+                        moduleItemId: item.id,
+                        in: client
+                    )
+                }
+
                 if let masteryPath = item.masteryPathItem {
                     module.items.append(masteryPath)
                 }
