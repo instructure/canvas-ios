@@ -77,12 +77,12 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
                 guard let self else { return [()] }
 
                 coursesStore
-                    .getEntities()
+                    .getEntitiesFromDatabase()
                     .subscribe(courses)
                     .store(in: &subscriptions)
 
                 enrollmentsStore
-                    .getEntities()
+                    .getEntitiesFromDatabase()
                     .subscribe(enrollments)
                     .store(in: &subscriptions)
 
