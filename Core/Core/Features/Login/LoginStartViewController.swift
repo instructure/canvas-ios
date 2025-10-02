@@ -354,32 +354,9 @@ class LoginStartViewController: UIViewController {
     }
 
     func launchQRScanner() {
-
-        #if targetEnvironment(simulator)
-
-        let alert = UIAlertController(
-            title: "QR code scan",
-            message: "Paste QR code scan result here",
-            preferredStyle: .alert
-        )
-
-        alert.addTextField()
-
-        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel) { _ in })
-        alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
-            guard let qrCode = alert.textFields?[0].text else { return }
-            self.logIn(withCode: qrCode)
-        })
-
-        present(alert, animated: true)
-
-        #else
-
         let scanner = ScannerViewController()
         scanner.delegate = self
         self.env.router.show(scanner, from: self, options: .modal(.fullScreen), analyticsRoute: "/login/qr")
-
-        #endif
     }
 
     func logIn(withCode code: String) {
