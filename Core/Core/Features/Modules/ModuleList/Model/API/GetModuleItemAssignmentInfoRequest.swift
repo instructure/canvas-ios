@@ -31,6 +31,6 @@ struct GetModuleItemAssignmentInfoRequest: APIRequestable {
 
     var path: String {
         let context = Context(.course, id: courseId)
-        return "\(context.pathComponent)/modules/items/assignment_info"
+        return "/\(context.pathComponent)/modules/items/assignment_info"
     }
 }
