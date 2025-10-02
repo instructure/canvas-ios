@@ -43,8 +43,8 @@ public protocol CalendarToDoInteractor: AnyObject {
 final class CalendarToDoInteractorLive: CalendarToDoInteractor {
 
     func getToDo(id: String) -> AnyPublisher<Plannable, Error> {
-        let predicate = NSPredicate(key: #keyPath(Plannable.id), equals: id)
-        let useCase = LocalUseCase<Plannable>(scope: Scope(predicate: predicate, order: []))
+        let scope = Scope.plannable(id: id)
+        let useCase = LocalUseCase<Plannable>(scope: scope)
         return ReactiveStore(useCase: useCase)
             .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
             .compactMap { $0.first }
