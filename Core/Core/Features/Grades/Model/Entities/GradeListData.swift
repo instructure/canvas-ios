@@ -23,36 +23,20 @@ public struct GradeListData: Identifiable, Equatable {
     var userID: String?
     public var courseName: String?
     public var courseColor: UIColor?
-    var assignmentSections: [AssignmentSections] = []
+    var assignmentSections: [AssignmentListSection] = []
     var isGradingPeriodHidden: Bool = true
     var gradingPeriods: [GradingPeriod] = []
     var currentGradingPeriod: GradingPeriod?
     public var totalGradeText: String?
     var currentGradingPeriodID: String?
+}
 
-    struct AssignmentSections: Identifiable, Equatable {
-        let id: String
-        let title: String
-        private(set) var accessibilityLabel: String = ""
-        var assignments: [GradeListAssignment] {
-            didSet {
-                accessibilityLabel = makeAccessibilityLabel()
-            }
-        }
+struct GradeListWhatIfModel: Equatable {
+    let isEnabled: Bool
+    let editScoreAction: () -> Void
+    let revertScoreAction: (String) -> Void
 
-        init(
-            id: String,
-            title: String,
-            assignments: [GradeListAssignment]
-        ) {
-            self.id = id
-            self.title = title
-            self.assignments = assignments
-            self.accessibilityLabel = makeAccessibilityLabel()
-        }
-
-        private func makeAccessibilityLabel() -> String {
-            "\(title), \(String.format(numberOfItems: assignments.count))"
-        }
+    static func == (lhs: GradeListWhatIfModel, rhs: GradeListWhatIfModel) -> Bool {
+        lhs.isEnabled == rhs.isEnabled
     }
 }

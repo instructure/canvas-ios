@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2021-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,19 +18,22 @@
 
 import SwiftUI
 
-struct StudentAssignmentListItemCell: View {
+struct GradeListItemCell: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private let model: StudentAssignmentListItem
+    private let whatIfModel: GradeListWhatIfModel?
     private let isLastItem: Bool?
     private let action: () -> Void
 
     init(
         model: StudentAssignmentListItem,
+        whatIfModel: GradeListWhatIfModel?,
         isLastItem: Bool?,
         action: @escaping () -> Void
     ) {
         self.model = model
+        self.whatIfModel = whatIfModel
         self.isLastItem = isLastItem
         self.action = action
     }
@@ -45,6 +48,11 @@ struct StudentAssignmentListItemCell: View {
                 titleLabel
                 dueDateLabels
                 scoreAndStatusLine
+            },
+            accessory: {
+                if whatIfModel?.isEnabled ?? false {
+                    editWhatIfScoreButton
+                }
             },
             isLastItem: isLastItem,
             action: action
@@ -91,6 +99,39 @@ struct StudentAssignmentListItemCell: View {
     private var submissionStatusLabel: some View {
         SubmissionStatusLabel(model: model.submissionStatus)
     }
+
+    private var editWhatIfScoreButton: some View {
+        Button {
+            whatIfModel?.editScoreAction()
+        } label: {
+            Image.editLine
+                .scaledIcon(size: 20)
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityAction(named: Text("Edit What-if score", bundle: .core)) {
+            whatIfModel?.editScoreAction()
+        }
+        .accessibilityAction(named: Text("Revert to official score", bundle: .core)) {
+            whatIfModel?.revertScoreAction(model.id)
+        }
+    }
+
+    // WhatIf feature is not supported as of now.
+    // Keeping this here to keep an example of the now unused implementation.
+    // It's supposed to work by calling `.onSwipe(trailing: revertWhatIfScoreSwipeButton)` inside the button's label.
+    // But it does not work. This may be removed or salvaged later.
+    private var revertWhatIfScoreSwipeButton: [SwipeModel] {
+        guard let whatIfModel, whatIfModel.isEnabled else { return [] }
+
+        return [
+            SwipeModel(
+                id: model.id,
+                image: { Image.replyLine },
+                action: { whatIfModel.revertScoreAction(model.id) },
+                style: .init(background: .backgroundDark)
+            )
+        ]
+    }
 }
 
 // MARK: - Preview
@@ -100,6 +141,7 @@ struct StudentAssignmentListItemCell: View {
 #Preview {
     PreviewContainer {
         let date = Date.now.dateTimeString
+        let whatIfModel = GradeListWhatIfModel(isEnabled: true, editScoreAction: {}, revertScoreAction: { _ in })
         let rows: [StudentAssignmentListItem] = [
             .make(
                 id: "1",
@@ -135,8 +177,10 @@ struct StudentAssignmentListItemCell: View {
         ]
 
         ForEach(rows) { row in
-            StudentAssignmentListItemCell(model: row, isLastItem: rows.last == row) { }
+            GradeListItemCell(model: row, whatIfModel: nil, isLastItem: rows.last == row) { }
         }
+        GradeListItemCell(model: rows[0], whatIfModel: whatIfModel, isLastItem: false) { }
+        GradeListItemCell(model: rows[3], whatIfModel: whatIfModel, isLastItem: true) { }
     }
     .tint(.course10)
 }

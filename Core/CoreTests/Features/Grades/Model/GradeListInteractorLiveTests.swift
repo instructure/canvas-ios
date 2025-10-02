@@ -201,11 +201,11 @@ class GradeListInteractorLiveTests: CoreTestCase {
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.assignmentSections.count, 3)
                     XCTAssertEqual(data.assignmentSections[0].title, "Overdue Assignments")
-                    XCTAssertEqual(data.assignmentSections[0].assignments[0].id, "3")
+                    XCTAssertEqual(data.assignmentSections[0].rows[0].id, "3")
                     XCTAssertEqual(data.assignmentSections[1].title, "Upcoming Assignments")
-                    XCTAssertEqual(data.assignmentSections[1].assignments[0].id, "2")
+                    XCTAssertEqual(data.assignmentSections[1].rows[0].id, "2")
                     XCTAssertEqual(data.assignmentSections[2].title, "Past Assignments")
-                    XCTAssertEqual(data.assignmentSections[2].assignments[0].id, "1")
+                    XCTAssertEqual(data.assignmentSections[2].rows[0].id, "1")
 
                     expectation.fulfill()
                 }
@@ -218,11 +218,15 @@ class GradeListInteractorLiveTests: CoreTestCase {
 
     func testGroupArrangement() {
         let assignmentGroups: [APIAssignmentGroup] = [
-            .make(id: "1", name: "Group A", assignments: [.make(assignment_group_id: "1", id: "1")]),
-            .make(id: "2", name: "Group B", assignments: [.make(assignment_group_id: "2", id: "2")]),
-            .make(id: "3", name: "Group C", assignments: [
+            .make(id: "1", name: "Group A", position: 1, assignments: [
+                .make(assignment_group_id: "1", id: "1")
+            ]),
+            .make(id: "3", name: "Group C", position: 3, assignments: [
                 .make(assignment_group_id: "3", id: "3"),
                 .make(assignment_group_id: "3", id: "4")
+            ]),
+            .make(id: "7", name: "Group in second position", position: 2, assignments: [
+                .make(assignment_group_id: "7", id: "2")
             ])
         ]
         let assignmentsRequest = GetAssignmentGroupsRequest(
@@ -238,11 +242,11 @@ class GradeListInteractorLiveTests: CoreTestCase {
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.assignmentSections.count, 3)
                     XCTAssertEqual(data.assignmentSections[0].title, "Group A")
-                    XCTAssertEqual(data.assignmentSections[0].assignments.count, 1)
-                    XCTAssertEqual(data.assignmentSections[1].title, "Group B")
-                    XCTAssertEqual(data.assignmentSections[1].assignments.count, 1)
+                    XCTAssertEqual(data.assignmentSections[0].rows.count, 1)
+                    XCTAssertEqual(data.assignmentSections[1].title, "Group in second position")
+                    XCTAssertEqual(data.assignmentSections[1].rows.count, 1)
                     XCTAssertEqual(data.assignmentSections[2].title, "Group C")
-                    XCTAssertEqual(data.assignmentSections[2].assignments.count, 2)
+                    XCTAssertEqual(data.assignmentSections[2].rows.count, 2)
                     expectation.fulfill()
                 }
         drainMainQueue()

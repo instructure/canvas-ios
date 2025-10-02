@@ -26,7 +26,7 @@ public class AssignmentsHelper: BaseHelper {
     }
 
     public static func assignmentButton(assignment: DSAssignment) -> XCUIElement {
-        return app.find(id: "AssignmentList.\(assignment.id)")
+        return app.find(id: "AssignmentList.Items.\(assignment.id)")
     }
 
     public static func pointsOutOf(actualScore: String, maxScore: String) -> XCUIElement {

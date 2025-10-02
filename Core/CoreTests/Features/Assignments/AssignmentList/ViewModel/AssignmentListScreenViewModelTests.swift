@@ -20,7 +20,7 @@ import TestsFoundation
 @testable import Core
 import XCTest
 
-class AssignmentListViewModelTests: CoreTestCase {
+class AssignmentListScreenViewModelTests: CoreTestCase {
 
     func testInitialState() {
         api.mock(
@@ -31,7 +31,7 @@ class AssignmentListViewModelTests: CoreTestCase {
             ]
         )
 
-        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
+        let testee = AssignmentListScreenViewModel(env: environment, context: .course("1"))
 
         XCTAssertEqual(testee.defaultSortingOption, .dueDate)
         XCTAssertNil(testee.courseName)
@@ -49,7 +49,7 @@ class AssignmentListViewModelTests: CoreTestCase {
             in: databaseClient
         )
         api.mock(GetCourse(courseID: "1"), value: .make(name: "Test Course"))
-        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
+        let testee = AssignmentListScreenViewModel(env: environment, context: .course("1"))
 
         testee.viewDidAppear()
 
@@ -81,7 +81,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         )
         api.mock(assignmentGroupRequest, value: [])
 
-        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
+        let testee = AssignmentListScreenViewModel(env: environment, context: .course("1"))
 
         testee.viewDidAppear()
 
@@ -112,7 +112,7 @@ class AssignmentListViewModelTests: CoreTestCase {
 
         api.mock(assignmentGroupRequest, value: assignmentGroups)
 
-        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
+        let testee = AssignmentListScreenViewModel(env: environment, context: .course("1"))
         testee.filterOptionsDidUpdate(sortingOption: .groupName, gradingPeriodId: nil)
         testee.viewDidAppear()
 
@@ -171,7 +171,7 @@ class AssignmentListViewModelTests: CoreTestCase {
 
         api.mock(assignmentGroupRequest, value: assignmentGroups)
 
-        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
+        let testee = AssignmentListScreenViewModel(env: environment, context: .course("1"))
         testee.selectedSortingOption = .dueDate
         testee.viewDidAppear()
 
@@ -233,7 +233,7 @@ class AssignmentListViewModelTests: CoreTestCase {
 
         api.mock(assignmentGroupRequest, value: assignmentGroups)
 
-        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
+        let testee = AssignmentListScreenViewModel(env: environment, context: .course("1"))
         testee.filterOptionsDidUpdate(sortingOption: .assignmentType, gradingPeriodId: nil)
         testee.viewDidAppear()
 
@@ -291,7 +291,7 @@ class AssignmentListViewModelTests: CoreTestCase {
             perPage: 100
         )
         api.mock(assignmentGroupRequest, value: assignmentGroups)
-        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
+        let testee = AssignmentListScreenViewModel(env: environment, context: .course("1"))
 
         testee.viewDidAppear()
 
@@ -308,7 +308,7 @@ class AssignmentListViewModelTests: CoreTestCase {
             ]
         )
         let gradingPeriods = environment.subscribe(GetGradingPeriods(courseID: "1"))
-        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
+        let testee = AssignmentListScreenViewModel(env: environment, context: .course("1"))
         testee.viewDidAppear()
         XCTAssertEqual(testee.selectedGradingPeriodId, gradingPeriods[1]?.id)
 
@@ -324,7 +324,7 @@ class AssignmentListViewModelTests: CoreTestCase {
                 .make(id: "2", title: "GP2", start_date: .now.addMonths(-3), end_date: .now.addMonths(3))
             ]
         )
-        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
+        let testee = AssignmentListScreenViewModel(env: environment, context: .course("1"))
         testee.viewDidAppear()
         XCTAssertEqual(testee.selectedSortingOption, .dueDate)
         XCTAssertEqual(testee.selectedGradingPeriodId, "2")
@@ -352,6 +352,8 @@ private extension AssignmentListSection.Row {
         case .student(let model):
             model.title
         case .teacher(let model):
+            model.title
+        case .gradeListRow(let model):
             model.title
         }
     }
