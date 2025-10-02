@@ -46,6 +46,9 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
     lazy var modules = env.subscribe(GetModules(courseID: courseID)) { [weak self] in
         self?.update()
     }
+    lazy var assignmentInfos = env.subscribe(GetModuleItemAssignmentInfos(courseId: courseID)) { [weak self] in
+        self?.update()
+    }
     lazy var tabs = env.subscribe(GetContextTabs(context: .course(courseID))) { [weak self] in
         self?.update()
     }
@@ -103,6 +106,7 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         courses.refresh()
         colors.refresh()
         modules.refresh()
+        assignmentInfos.refresh()
         tabs.refresh()
     }
 
@@ -115,10 +119,11 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
     }
 
     private func update() {
-        let pending = modules.pending || tabs.pending || courses.pending
+        let pending = modules.pending || assignmentInfos.pending || tabs.pending || courses.pending
         spinnerView.isHidden = !pending || refreshControl.isRefreshing
-        emptyView.isHidden = modules.pending || !modules.isEmpty || modules.error != nil || isPageDisabled
-        errorView.isHidden = pending || (modules.error == nil && !isPageDisabled)
+        emptyView.isHidden = modules.pending || assignmentInfos.pending || !modules.isEmpty || modules.error != nil || assignmentInfos.error != nil || isPageDisabled
+        errorView.isHidden = pending || ((modules.error == nil || assignmentInfos.error == nil) && !isPageDisabled)
+
         if isPageDisabled {
             errorView.messageLabel.text = String(localized: "This page has been disabled for this course.", bundle: .core)
             errorView.retryButton.isHidden = true
@@ -181,7 +186,9 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
 
     @objc private func refresh() {
         modules.refresh(force: true) { [weak self] _ in
-            self?.refreshControl.endRefreshing()
+            self?.assignmentInfos.refresh(force: true) { _ in
+                self?.refreshControl.endRefreshing()
+            }
         }
         tabs.refresh(force: true)
         courses.refresh(force: true)
@@ -280,8 +287,16 @@ extension ModuleListViewController: UITableViewDataSource {
             return tableView.dequeue(for: indexPath) as EmptyCell
         }
         let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
-        if let item = module?.items[indexPath.row] {
-            cell.update(item, indexPath: indexPath, color: color, publishInteractor: publishInteractor, host: self)
+        if let item = module?.items[indexPath.row],
+           let assignmentInfo = assignmentInfos.first(where: { $0.moduleItemId == item.id }) {
+            cell.update(
+                item,
+                assignmentInfo: assignmentInfo,
+                indexPath: indexPath,
+                color: color,
+                publishInteractor: publishInteractor,
+                host: self
+            )
         }
         return cell
     }

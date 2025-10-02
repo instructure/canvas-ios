@@ -54,6 +54,7 @@ class ModuleItemCell: UITableViewCell {
 
     func update(
         _ item: ModuleItem,
+        assignmentInfo: CDModuleItemAssignmentInfo,
         indexPath: IndexPath,
         color: UIColor?,
         publishInteractor: ModulePublishInteractor,
@@ -91,7 +92,7 @@ class ModuleItemCell: UITableViewCell {
 
         indentConstraint.constant = CGFloat(item.indent) * ModuleItemCell.IndentMultiplier
 
-        updateDueLabel(item)
+        updateDueLabel(item, assignmentInfo: assignmentInfo)
 
         accessibilityTraits = .button
         accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row)"
@@ -108,7 +109,7 @@ class ModuleItemCell: UITableViewCell {
         subscribeToPublishStateUpdates(item, publishInteractor: publishInteractor, host: host)
     }
 
-    private func updateDueLabel(_ item: ModuleItem) {
+    private func updateDueLabel(_ item: ModuleItem, assignmentInfo: CDModuleItemAssignmentInfo) {
         let dueAt = item.dueAt.flatMap { DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .none) }
         let points: String? = item.pointsPossible.flatMap {
             if item.hideQuantitativeData {
