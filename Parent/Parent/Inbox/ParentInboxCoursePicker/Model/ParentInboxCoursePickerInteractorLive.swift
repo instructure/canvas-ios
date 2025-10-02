@@ -46,6 +46,34 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
             environment: env
         )
 
+        setupObservations()
+        startLoading()
+    }
+
+    private func setupObservations() {
+        Publishers
+            .CombineLatest(courses.dropFirst(), enrollments.dropFirst()) // Drop the initial values
+            .map { (courseList, enrollmentList) in
+                return enrollmentList.compactMap { enrollment -> StudentContextItem? in
+                    let course = courseList.first(where: { $0.canvasContextID == enrollment.canvasContextID })
+                    guard let course, let studentId = enrollment.observedUserId, let studentName = enrollment.observedUserDisplayName else { return nil }
+                    return StudentContextItem(studentId: studentId, studentDisplayName: studentName, course: course)
+                }
+            }
+            .sink(
+                receiveCompletion: { [weak self] _ in
+                    self?.state.send(.error)
+                },
+                receiveValue: { [weak self] items in
+                    self?.state.send(items.isEmpty ? .empty : .data)
+                    self?.studentContextItems.send(items.removingDuplicates())
+                }
+            )
+            .store(in: &subscriptions)
+    }
+
+    private func startLoading() {
+
         enrollmentsStore
             .getEntities(loadAllPages: true)
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] enrollmentList in
@@ -59,44 +87,28 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
                 self?.courses.send(courseList)
             })
             .store(in: &subscriptions)
-
-        Publishers
-            .CombineLatest(courses.dropFirst(), enrollments.dropFirst()) // Drop the initial values
-            .map { (courseList, enrollmentList) in
-                return enrollmentList.compactMap { enrollment -> StudentContextItem? in
-                    let course = courseList.first(where: { $0.canvasContextID == enrollment.canvasContextID })
-                    guard let course, let studentId = enrollment.observedUserId, let studentName = enrollment.observedUserDisplayName else { return nil }
-                    return StudentContextItem(studentId: studentId, studentDisplayName: studentName, course: course)
-                }
-            }
-            .sink(receiveCompletion: { [weak self] _ in
-                self?.state.send(.error)
-            },
-            receiveValue: { [weak self] items in
-                self?.state.send(items.isEmpty ? .empty : .data)
-                self?.studentContextItems.send(items.removingDuplicates())
-            })
-            .store(in: &subscriptions)
     }
 
-    func refresh() -> AnyPublisher<[Void], Never> {
-        coursesStore.forceRefresh().combineLatest(with: enrollmentsStore.forceRefresh())
-            .map { [weak self] _ in
-                guard let self else { return [()] }
+    func refresh() {
+        state.send(.loading)
 
-                coursesStore
-                    .getEntitiesFromDatabase()
-                    .subscribe(courses)
-                    .store(in: &subscriptions)
+        let coursesRefreshed = coursesStore.getEntities(ignoreCache: true, loadAllPages: true)
+        let enrollmentsRefreshed = enrollmentsStore.getEntities(ignoreCache: true, loadAllPages: true)
 
-                enrollmentsStore
-                    .getEntitiesFromDatabase()
-                    .subscribe(enrollments)
-                    .store(in: &subscriptions)
+        return Publishers
+            .CombineLatest(coursesRefreshed, enrollmentsRefreshed)
+            .sinkFailureOrValue(
+                receiveFailure: { [weak self] _ in
+                    self?.state.send(.error)
+                },
+                receiveValue: { [weak self] (coursesList, enrollmentsList) in
+                    guard let self else { return }
 
-                return [()]
-            }
-            .eraseToAnyPublisher()
+                    courses.send(coursesList)
+                    enrollments.send(enrollmentsList)
+                }
+            )
+            .store(in: &subscriptions)
     }
 
     func getCourseURL(courseId: String) -> String {
