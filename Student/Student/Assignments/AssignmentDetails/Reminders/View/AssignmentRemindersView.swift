@@ -32,14 +32,14 @@ public struct AssignmentRemindersView: View {
     public var body: some View {
         if viewModel.isReminderSectionVisible {
             VStack(alignment: .leading, spacing: 0) {
-                divider
+                InstUI.Divider(.padded)
                     .animation(.none, value: viewModel.reminders)
                 header
                     .animation(.none, value: viewModel.reminders)
                     .padding(.horizontal, 16)
                 reminderItemList
                     .padding(.horizontal, 16)
-                divider
+                InstUI.Divider()
                     .padding(.bottom, 24) // To look nice when embedded into assignment details
                     .animation(.none, value: viewModel.reminders)
             }
@@ -108,10 +108,6 @@ public struct AssignmentRemindersView: View {
             viewModel.newReminderDidTap(view: viewController.value)
         }
         .geometryGroup()
-    }
-
-    private var divider: some View {
-        Color.borderMedium.frame(height: 0.5)
     }
 }
 

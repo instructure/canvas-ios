@@ -46,7 +46,7 @@ struct TeacherAssignmentListItem: Equatable, Identifiable {
 
     init(
         assignment: Assignment,
-        dueDateTextsProvider: AssignmentDueDateTextsProvider = .live
+        dateTextsProvider: AssignmentDateTextsProvider = .live
     ) {
         let hasSubAssignments = assignment.hasSubAssignments
 
@@ -55,7 +55,7 @@ struct TeacherAssignmentListItem: Equatable, Identifiable {
         self.icon = assignment.icon.asImage
         self.isPublished = assignment.published
 
-        self.dueDates = dueDateTextsProvider.formattedDueDates(for: assignment)
+        self.dueDates = dateTextsProvider.summarizedDueDates(for: assignment)
 
         let canBeGraded = assignment.gradingType != .not_graded
         self.needsGrading = canBeGraded ? String.format(needsGrading: assignment.needsGradingCount) : nil

@@ -21,7 +21,11 @@ import UserNotifications
 
 extension UNNotificationContent {
     enum AssignmentReminderKeys: String {
-        case courseId, assignmentId, userId, triggerTimeText
+        case courseId
+        case assignmentId
+        case subAssignmentTag
+        case userId
+        case triggerTimeText
     }
 
     static func assignmentReminder(context: AssignmentReminderContext, beforeTime: DateComponents) -> UNNotificationContent {
@@ -36,6 +40,7 @@ extension UNNotificationContent {
         result.userInfo = [
             AssignmentReminderKeys.courseId.rawValue: context.courseId,
             AssignmentReminderKeys.assignmentId.rawValue: context.assignmentId,
+            AssignmentReminderKeys.subAssignmentTag.rawValue: context.subAssignmentTag,
             AssignmentReminderKeys.userId.rawValue: context.userId,
             AssignmentReminderKeys.triggerTimeText.rawValue: AssignmentReminderTimeFormatter().string(from: beforeTime) ?? "",
             UNNotificationContent.RouteURLKey: "courses/\(context.courseId)/assignments/\(context.assignmentId)"
