@@ -86,6 +86,10 @@ public func stylePSPDFKit() {
     let styleManager = SDK.shared.styleManager
     styleManager.setupDefaultStylesIfNeeded()
 
+    // This is necessary to solve an issue with different styles applied to annotation
+    // toolbar shown in different contexts (File Details & SpeedGrader/DocViewer)
+    AnnotationToolbar.appearance().tintColor = nil
+
     let highlightPresets = DocViewerHighlightColor.allCases.map { return ColorPreset(color: $0.color) }
     let inkPresets = DocViewerAnnotationColor.allCases.map { return ColorPreset(color: $0.color) }
     let textColorPresets = DocViewerAnnotationColor.allCases.map { return ColorPreset(color: $0.color, fill: .textLightest.variantForLightMode, alpha: 1) }
