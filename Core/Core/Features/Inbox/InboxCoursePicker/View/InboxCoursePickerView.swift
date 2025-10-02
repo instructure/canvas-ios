@@ -125,7 +125,14 @@ public struct InboxCoursePickerView: View {
         let accessibilityLabel = isSelected(course) ? Text("Selected: \(courseName)", bundle: .core) : Text(courseName)
         return VStack(spacing: 0) {
             Button {
-                viewModel.onSelect(selected: course, in: self)
+                viewModel.onSelect(selected: course, onInvalidated: {
+                    snackBarViewModel.showSnack(
+                        String(
+                            localized: "Course concluded. Unable to send messages!",
+                            bundle: .core
+                        )
+                    )
+                })
             } label: {
                 HStack {
                     Circle()
