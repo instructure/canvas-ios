@@ -36,6 +36,8 @@ struct TodoListItemCell: View {
                         .paddingStyle(.leading, .cellAccessoryPadding)
                         .accessibilityHidden(true)
                 }
+                .padding(.vertical, 8)
+                .background(.backgroundLightest)
             }
             .accessibilityElement(children: .combine)
         }

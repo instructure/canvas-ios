@@ -41,7 +41,6 @@ public struct TodoItemContentView: View {
             titleSection
             timeSection
         }
-        .background(Color.backgroundLightest)
         .multilineTextAlignment(.leading)
     }
 

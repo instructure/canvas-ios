@@ -36,9 +36,11 @@ public struct TodoListScreen: View {
             }
         ) { _ in
             LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                InstUI.Divider()
                 ForEach(viewModel.items) { group in
                     groupView(for: group)
                 }
+                InstUI.Divider()
             }
             .paddingStyle(.horizontal, .standard)
         }
@@ -54,23 +56,33 @@ public struct TodoListScreen: View {
                     item: item,
                     onTap: viewModel.didTapItem
                 )
-                .padding(.vertical, 8)
                 .padding(.leading, 48)
 
                 let isLastItemInGroup = (group.items.last == item)
-                InstUI.Divider().padding(.leading, isLastItemInGroup ? 0 : 48)
+
+                if !isLastItemInGroup {
+                    InstUI.Divider().padding(.leading, 48)
+                }
             }
         } header: {
-            TodoDayHeaderView(group: group) { group in
-                viewModel.didTapDayHeader(group, viewController: viewController)
+            VStack(spacing: 0) {
+                let isFirstSection = (viewModel.items.first == group)
+
+                if !isFirstSection {
+                    InstUI.Divider()
+                }
+
+                TodoDayHeaderView(group: group) { group in
+                    viewModel.didTapDayHeader(group, viewController: viewController)
+                }
+                // To provide a large enough hit area, the header needs to include padding
+                // but the screen already has a padding so we need to negate that here.
+                .padding(.leading, -InstUI.Styles.Padding.standard.rawValue)
+                // Move day badge to the left of the screen.
+                .frame(maxWidth: .infinity, alignment: .leading)
+                // Squeeze height to 0 so day badge goes next to cell.
+                .frame(height: 0, alignment: .top)
             }
-            // To provide a large enough hit area, the header needs to include padding
-            // but the screen already has a padding so we need to negate that here.
-            .padding(.leading, -InstUI.Styles.Padding.standard.rawValue)
-            // Move day badge to the left of the screen.
-            .frame(maxWidth: .infinity, alignment: .leading)
-            // Squeeze height to 0 so day badge goes next to cell.
-            .frame(height: 0, alignment: .top)
         }
     }
 
