@@ -87,6 +87,7 @@ public class ReactiveStore<U: UseCase> {
                 Self.fetchEntitiesFromCache(
                     useCase: useCase,
                     fetchRequest: request,
+                    loadAllPages: loadAllPages,
                     context: context,
                     environment: environment
                 )
@@ -135,6 +136,7 @@ public class ReactiveStore<U: UseCase> {
     private static func fetchEntitiesFromCache<T: NSManagedObject>(
         useCase: U,
         fetchRequest: NSFetchRequest<T>,
+        loadAllPages: Bool,
         context: NSManagedObjectContext,
         environment: AppEnvironment
     ) -> AnyPublisher<[T], Error> {
@@ -145,7 +147,7 @@ public class ReactiveStore<U: UseCase> {
                 if hasExpired {
                     return Self.fetchEntitiesFromAPI(
                         useCase: useCase,
-                        loadAllPages: false,
+                        loadAllPages: loadAllPages,
                         fetchRequest: fetchRequest,
                         context: context,
                         environment: environment

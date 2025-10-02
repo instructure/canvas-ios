@@ -26,5 +26,5 @@ protocol ParentInboxCoursePickerInteractor {
     var studentContextItems: CurrentValueSubject<[StudentContextItem], Never> { get }
 
     func getCourseURL(courseId: String) -> String
-    func refresh() -> AnyPublisher<[Void], Never>
+    func refresh()
 }

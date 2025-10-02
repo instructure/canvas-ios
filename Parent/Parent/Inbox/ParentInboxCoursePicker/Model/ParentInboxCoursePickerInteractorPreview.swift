@@ -25,9 +25,7 @@ class ParentInboxCoursePickerInteractorPreview: ParentInboxCoursePickerInteracto
     var state = CurrentValueSubject<StoreState, Never>(.data)
     var studentContextItems: CurrentValueSubject<[StudentContextItem], Never>
 
-    func refresh() -> AnyPublisher<[Void], Never> {
-        Future<[Void], Never> {_ in }.eraseToAnyPublisher()
-    }
+    func refresh() {}
 
     func getCourseURL(courseId: String) -> String {
         return "https://instructure.com/courses/\(courseId)"

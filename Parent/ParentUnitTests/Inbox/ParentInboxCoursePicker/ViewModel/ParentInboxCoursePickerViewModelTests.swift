@@ -64,9 +64,8 @@ private class ParentInboxCoursePickerInteractorMock: ParentInboxCoursePickerInte
         return "https://instructure.com/courses/\(courseId)"
     }
 
-    func refresh() -> AnyPublisher<[Void], Never> {
+    func refresh() {
         isRefreshCalled = true
-        return Future<[Void], Never> { _ in }.eraseToAnyPublisher()
     }
 
     init(env: AppEnvironment) {
