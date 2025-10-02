@@ -44,7 +44,16 @@ class GetModulesTests: CoreTestCase {
     }
 
     func testWrite() {
-        useCase.write(response: .init(sections: [.init(module: .make(id: "1"), items: [.make(module_id: "1")])]), urlResponse: nil, to: databaseClient)
+        useCase.write(
+            response: .init(
+                sections: [
+                    .init(module: .make(id: "1"), items: [.make(module_id: "1")])
+                ],
+                discussionCheckpointsData: [:]
+            ),
+            urlResponse: nil,
+            to: databaseClient
+        )
         let module: Module = databaseClient.fetch().first!
         XCTAssertEqual(module.id, "1")
         XCTAssertEqual(module.courseID, "1")
