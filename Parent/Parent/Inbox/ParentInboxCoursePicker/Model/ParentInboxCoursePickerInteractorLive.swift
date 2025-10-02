@@ -34,9 +34,17 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
     private let environment: AppEnvironment
 
     init(env: AppEnvironment) {
-        enrollmentsStore = ReactiveStore(useCase: GetObservedEnrollments(observerID: env.currentSession?.userID ?? ""))
-        coursesStore = ReactiveStore(useCase: GetCourses())
         environment = env
+
+        enrollmentsStore = ReactiveStore(
+            useCase: GetObservedEnrollments(observerID: env.currentSession?.userID ?? ""),
+            environment: env
+        )
+
+        coursesStore = ReactiveStore(
+            useCase: GetCourses(),
+            environment: env
+        )
 
         enrollmentsStore
             .getEntities(loadAllPages: true)
