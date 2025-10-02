@@ -20,7 +20,7 @@ import SwiftUI
 
 public struct InboxCoursePickerView: View {
     @ObservedObject private var viewModel: InboxCoursePickerViewModel
-    @StateObject private var snackBarViewModel = SnackBarViewModel()
+    @StateObject var snackBarViewModel = SnackBarViewModel()
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
@@ -125,14 +125,7 @@ public struct InboxCoursePickerView: View {
         let accessibilityLabel = isSelected(course) ? Text("Selected: \(courseName)", bundle: .core) : Text(courseName)
         return VStack(spacing: 0) {
             Button {
-                viewModel.onSelect(selected: course, onInvalidated: {
-                    snackBarViewModel.showSnack(
-                        String(
-                            localized: "Course concluded. Unable to send messages!",
-                            bundle: .core
-                        )
-                    )
-                })
+                viewModel.onSelect(selected: course, in: self)
             } label: {
                 HStack {
                     Circle()
@@ -149,10 +142,8 @@ public struct InboxCoursePickerView: View {
                         .frame(width: 24, height: 24)
                         .padding(.horizontal, 12)
                         .hidden(!isSelected(course))
-
                 }
-                .foregroundStyle(Color.textDarkest)
-                .opacity(course.isPastEnrollment ? 0.6 : 1)
+                .foregroundStyle(course.isPastEnrollment ? Color.disabledGray : Color.textDarkest)
             }
             .padding(.vertical, 16)
             .accessibilityLabel(accessibilityLabel)

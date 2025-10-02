@@ -49,10 +49,15 @@ class InboxCoursePickerViewModel: ObservableObject {
         setupOutputBindings()
     }
 
-    public func onSelect(selected: Course, onInvalidated: () -> Void = {}) {
+    public func onSelect(selected: Course, in view: InboxCoursePickerView) {
         if selected.isPastEnrollment {
             selectedRecipientContext = nil
-            onInvalidated()
+            view.snackBarViewModel.showSnack(
+                String(
+                    localized: "Course concluded. Unable to send messages!",
+                    bundle: .core
+                )
+            )
         } else {
             let context = RecipientContext(course: selected)
             onSelect(selected: context)
