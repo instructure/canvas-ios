@@ -22,6 +22,7 @@ targets:
       - package: FirebaseCrashlytics
       - package: FirebaseRemoteConfig
       - package: FirebaseRemoteConfigSwift
+      - package: HorizonUI
       - target: Core/Core
       - target: SubmitAssignment
       - target: Widgets
@@ -53,6 +54,8 @@ schemes:
       targets:
         - Core/CoreTests
         - StudentUnitTests
+        # - Horizon/HorizonUnitTests
+        - Horizon/HorizonSnapshotTests
         - name: Core/CoreTester
           skipped: true
       gatherCoverageData: true

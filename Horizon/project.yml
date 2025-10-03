@@ -23,6 +23,7 @@ sources:
 include:
   - Horizon/horizon.yml
   - HorizonUnitTests/horizon-unit-tests.yml
+  - HorizonSnapshotTests/horizon-snapshot-tests.yml
 projectReferences:
   Core:
     path: ../Core/Core.xcodeproj
@@ -47,3 +48,6 @@ packages:
   FirebaseRemoteConfigSwift:
     url: https://github.com/firebase/firebase-ios-sdk.git
     exactVersion: 10.23.1
+  SnapshotTesting:
+    url: https://github.com/pointfreeco/swift-snapshot-testing
+    from: 1.17.0

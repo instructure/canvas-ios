@@ -1,5 +1,5 @@
 {
-  "originHash" : "102d90cdfa1716b86d908a5b9c78094cc7e8ac6573d7ecb6e8ea7a20d67852e4",
+  "originHash" : "c022cd8664be9568a8623bb5812c6ce5dc677371c88aac481da73b744cd3905e",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -159,8 +159,26 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",
       "state" : {
-        "revision" : "102a647b573f60f73afdce5613a51d71349fe507",
-        "version" : "1.30.0"
+        "revision" : "2547102afd04fe49f1b286090f13ebce07284980",
+        "version" : "1.31.1"
+      }
+    },
+    {
+      "identity" : "swift-snapshot-testing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-snapshot-testing",
+      "state" : {
+        "revision" : "2e6a85b73fc14e27d7542165ae73b1a10516ca9a",
+        "version" : "1.17.7"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax",
+      "state" : {
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
       }
     },
     {

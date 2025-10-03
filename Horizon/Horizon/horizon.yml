@@ -34,3 +34,7 @@ schemes:
     build:
       targets:
         Horizon: all
+    test:
+      targets:
+        - HorizonSnapshotTests
+        - HorizonUnitTests
