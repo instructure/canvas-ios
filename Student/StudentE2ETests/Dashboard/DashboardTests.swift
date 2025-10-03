@@ -49,7 +49,7 @@ class DashboardTests: E2ETestCase {
 
         navBarBackButton.hit()
         app.pullToRefresh()
-        XCTAssertTrue(courseCard2.waitUntil(.visible).isVisible)
+        XCTAssertVisible(courseCard2.waitUntil(.visible))
         XCTAssertTrue(courseCard1.waitUntil(.vanish).isVanished)
     }
 

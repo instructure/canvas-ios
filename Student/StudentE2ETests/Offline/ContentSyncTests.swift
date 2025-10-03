@@ -542,10 +542,10 @@ class OfflineContentSyncTests: OfflineE2ETestCase {
         // MARK: Tap on the 'Submission & Rubric' and 'Submit Assignment' buttons and check if the offline mode dialog displayed and dismiss the dialog by hit the 'OK' button on it
         submissionButton.hit()
 
-        XCTAssertTrue(Offline.offlineModeAlert.isVisible)
-        XCTAssertTrue(Offline.offlineModeAlertTitleText.isVisible)
+        XCTAssertVisible(Offline.offlineModeAlert)
+        XCTAssertVisible(Offline.offlineModeAlertTitleText)
         XCTAssertEqual(Offline.offlineModeAlertTitleText.label, "Offline mode")
-        XCTAssertTrue(Offline.offlineModeAlertMessageText.isVisible)
+        XCTAssertVisible(Offline.offlineModeAlertMessageText)
         XCTAssertEqual(Offline.offlineModeAlertMessageText.label, "This item is not available offline.")
         XCTAssertTrue(Offline.offlineModeAlertOkButton.isVisible && Offline.offlineModeAlertOkButton.isHittable)
 
@@ -554,10 +554,10 @@ class OfflineContentSyncTests: OfflineE2ETestCase {
 
         submitAssignmentButton.hit()
 
-        XCTAssertTrue(Offline.offlineModeAlert.isVisible)
-        XCTAssertTrue(Offline.offlineModeAlertTitleText.isVisible)
+        XCTAssertVisible(Offline.offlineModeAlert)
+        XCTAssertVisible(Offline.offlineModeAlertTitleText)
         XCTAssertEqual(Offline.offlineModeAlertTitleText.label, "Offline mode")
-        XCTAssertTrue(Offline.offlineModeAlertMessageText.isVisible)
+        XCTAssertVisible(Offline.offlineModeAlertMessageText)
         XCTAssertEqual(Offline.offlineModeAlertMessageText.label, "This item is not available offline.")
         XCTAssertTrue(Offline.offlineModeAlertOkButton.isVisible && Offline.offlineModeAlertOkButton.isHittable)
         Offline.offlineModeAlertOkButton.hit()

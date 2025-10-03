@@ -77,7 +77,7 @@ class SpeedGraderTests: E2ETestCase {
             XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.late.waitUntil(.visible))
             XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.missing.waitUntil(.visible))
             XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.none.waitUntil(.visible))
-            XCTAssertTrue(SpeedGraderHelper.GradeStatusButtons.none.isSelected)
+            XCTAssertSelected(SpeedGraderHelper.GradeStatusButtons.none)
         }
 
         XCTContext.runActivity(named: "Update days late value") { _ in

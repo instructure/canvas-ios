@@ -71,10 +71,10 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Select "Dark Theme", check selection, select "Light Theme", check selection
         dark.hit()
-        XCTAssertTrue(dark.waitUntil(.selected).isSelected)
+        XCTAssertSelected(dark.waitUntil(.selected))
 
         light.hit()
-        XCTAssertTrue(light.waitUntil(.selected).isSelected)
+        XCTAssertSelected(light.waitUntil(.selected))
     }
 
     func testAbout() {

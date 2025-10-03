@@ -112,7 +112,7 @@ class SyllabusTests: E2ETestCase {
         doneButton.hit()
         XCTAssertTrue(syllabusTab.waitUntil(.vanish).isVanished)
         XCTAssertTrue(summaryTab.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(syllabusBodyLabel.waitUntil(.visible).isVisible)
+        XCTAssertVisible(syllabusBodyLabel.waitUntil(.visible))
         XCTAssertEqual(syllabusBodyLabel.waitUntil(.label(expected: newContent)).label, newContent)
     }
 }

@@ -75,7 +75,7 @@ class CoursesTests: E2ETestCase {
         // MARK: Details of Course 2
         backButton.hit()
         courseCard2.hit()
-        XCTAssertTrue(totalGradeLabel.waitUntil(.visible).isVisible)
+        XCTAssertVisible(totalGradeLabel.waitUntil(.visible))
         XCTAssertEqual(totalGradeLabel.label, "Total grade is N/A")
     }
 }

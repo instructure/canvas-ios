@@ -84,7 +84,7 @@ class ProfileTests: E2ETestCase {
         XCTAssertVisible(chooseButton)
 
         chooseButton.hit()
-        XCTAssertTrue(userAvatar.waitUntil(.visible).isVisible)
+        XCTAssertVisible(userAvatar.waitUntil(.visible))
     }
 
     func testShortNameIsDisplayed() {
