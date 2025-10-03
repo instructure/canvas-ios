@@ -44,7 +44,7 @@ custom_rules:
   prefer_helper_assertions:
     name: "Prefer Helper Assertions"
     message: "Use XCTAssertVisible/XCTAssertNotVisible for .isVisible or XCTAssertSelected/XCTAssertNotSelected for .isSelected instead of XCTAssertTrue/XCTAssertFalse"
-    regex: 'XCTAssert(True|False)\s*\(\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*\.\s*(isVisible|isSelected)(?:\s*,|\s*\))'
+    regex: 'XCTAssert(?:True|False)\s*\(.*\.is(?:Visible|Selected)\s*(?:,.*?)?\)'
     included:
       - ".*E2ETests/.*\\.swift"
     match_kinds:
