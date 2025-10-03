@@ -347,19 +347,20 @@ final class StudentAssignmentListItemTests: CoreTestCase {
 
     // MARK: - Submission for UserId
 
-    func test_submission_whenUserIdIsNil_shouldBeFirstSubmission() {
+    func test_submission_whenUserIdIsNilAndThereIsOnlyOneSubmission_shouldBeFirstAndOnlySubmission() {
         testee = makeListItem(
             .make(
                 submissions: [
-                    .make(excused: false),
-                    .make(excused: true, user_id: "42"),
-                    .make(excused: false, user_id: "7")
+                    // We are testing with only one submission, because `Assignment.submissions`
+                    // is a `Set` and testing `first` on it would be flaky.
+                    // This matches assumed behavior, because Student app expects only one submission per assignment.
+                    .make(excused: true, user_id: "42")
                 ]
             ),
             userId: nil
         )
 
-        XCTAssertEqual(testee.submissionStatus, .init(status: .submitted))
+        XCTAssertEqual(testee.submissionStatus, .init(status: .excused))
     }
 
     func test_submission_whenUserIdIsSet_shouldBeSubmissionMatchingUserId() {
