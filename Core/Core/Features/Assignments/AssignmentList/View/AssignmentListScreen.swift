@@ -23,12 +23,12 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.appEnvironment) private var env
 
-    @ObservedObject private var viewModel: AssignmentListViewModel
+    @ObservedObject private var viewModel: AssignmentListScreenViewModel
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     @State private var isShowingGradingPeriodPicker = false
 
-    public init(viewModel: AssignmentListViewModel) {
+    public init(viewModel: AssignmentListScreenViewModel) {
         self.viewModel = viewModel
         screenViewTrackingParameters = ScreenViewTrackingParameters(
             eventName: "/courses/\(viewModel.courseID)/assignments"
@@ -123,79 +123,20 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
 
     private var assignmentList: some View {
         ScrollView {
-            LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
+            VStack(spacing: 0) {
                 InstUI.TopDivider()
-                ForEach(viewModel.sections) { section in
-                    sectionView(with: section)
-                }
+                AssignmentListView(
+                    sections: viewModel.sections,
+                    identifierGroup: "AssignmentList",
+                    navigateToDetailsAction: {
+                        viewModel.didSelectAssignment.send(($0, controller))
+                    }
+                )
             }
         }
         .refreshable {
             await viewModel.refresh()
         }
-    }
-
-    private func sectionView(with section: AssignmentListSection) -> some View {
-        InstUI.CollapsibleListSection(title: section.title, itemCount: section.rows.count) {
-            ForEach(section.rows) { row in
-                switch row {
-                case .student(let model):
-                    studentCell(model: model, isLastItem: section.rows.last == row)
-                case .teacher(let model):
-                    teacherCell(model: model, isLastItem: section.rows.last == row)
-                }
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func studentCell(model: StudentAssignmentListItem, isLastItem: Bool) -> some View {
-        let routeAction = { navigateToDetails(at: model.route) }
-        let identifier = "AssignmentList.\(model.id)"
-
-        if let subItems = model.subItems {
-            InstUI.CollapsibleListRow(
-                cell: StudentAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
-                    .identifier(identifier),
-                isInitiallyExpanded: false
-            ) {
-                ForEach(subItems) { subItem in
-                    StudentAssignmentListSubItemCell(model: subItem, action: routeAction)
-                        .identifier(identifier, subItem.tag)
-                }
-            }
-            InstUI.Divider(isLast: isLastItem)
-        } else {
-            StudentAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
-                .identifier(identifier)
-        }
-    }
-
-    @ViewBuilder
-    private func teacherCell(model: TeacherAssignmentListItem, isLastItem: Bool) -> some View {
-        let routeAction = { navigateToDetails(at: model.route) }
-        let identifier = "AssignmentList.\(model.id)"
-
-        if let subItems = model.subItems {
-            InstUI.CollapsibleListRow(
-                cell: TeacherAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
-                    .identifier(identifier),
-                isInitiallyExpanded: false
-            ) {
-                ForEach(subItems) { subItem in
-                    TeacherAssignmentListSubItemCell(model: subItem, action: routeAction)
-                        .identifier(identifier, subItem.tag)
-                }
-            }
-            InstUI.Divider(isLast: isLastItem)
-        } else {
-            TeacherAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
-                .identifier(identifier)
-        }
-    }
-
-    private func navigateToDetails(at url: URL?) {
-        viewModel.didSelectAssignment.send((url, controller))
     }
 
     private func setupDefaultSplitDetailView(_ routeUrl: String) {
@@ -252,18 +193,15 @@ private func createSections() -> [AssignmentListSection] {
 
 #Preview("Data State") {
     let sections = createSections()
-    let viewModel = AssignmentListViewModel(state: .data, sections: sections)
-    AssignmentListScreen(viewModel: viewModel)
+    AssignmentListScreen(viewModel: .init(state: .data, sections: sections))
 }
 
 #Preview("Empty State") {
-    let emptyModel = AssignmentListViewModel(state: .empty)
-    AssignmentListScreen(viewModel: emptyModel)
+    AssignmentListScreen(viewModel: .init(state: .empty))
 }
 
 #Preview("Loading State") {
-    let loadingModel = AssignmentListViewModel(state: .loading)
-    AssignmentListScreen(viewModel: loadingModel)
+    AssignmentListScreen(viewModel: .init(state: .loading))
 }
 
 #endif

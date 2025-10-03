@@ -39,15 +39,14 @@
         <attribute name="anonymousSubmissions" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="assignmentGroupID" optional="YES" attributeType="String"/>
         <attribute name="assignmentGroupPosition" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="assignmentGroupSectionName" optional="YES" transient="YES" attributeType="String"/>
         <attribute name="cacheKey" optional="YES" attributeType="String"/>
         <attribute name="canSubmit" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="canUnpublish" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="courseID" attributeType="String"/>
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dueAtForSorting" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dueAtOrCheckpointsDueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="dueAtSortNilsAtBottom" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="externalToolContentID" optional="YES" attributeType="String"/>
         <attribute name="externalToolTagAttributeURL" optional="YES" attributeType="URI"/>
         <attribute name="freeFormCriterionCommentsOnRubric" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

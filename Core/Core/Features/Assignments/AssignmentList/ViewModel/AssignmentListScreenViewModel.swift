@@ -22,9 +22,9 @@ import SwiftUI
 
 // MARK: - ViewModel
 
-public class AssignmentListViewModel: ObservableObject {
+public class AssignmentListScreenViewModel: ObservableObject {
 
-    public enum AssignmentArrangementOptions: String, CaseIterable {
+    public enum GroupingOptions: String, CaseIterable {
         static let studentCases: [Self] = [.dueDate, .groupName]
         static let teacherCases: [Self] = [.assignmentGroup, .assignmentType]
 
@@ -44,11 +44,11 @@ public class AssignmentListViewModel: ObservableObject {
 
     public var isFilterIconSolid: Bool = false
     public var defaultGradingPeriodId: String?
-    public let defaultSortingOption: AssignmentArrangementOptions
+    public let defaultSortingOption: GroupingOptions
     public var selectedGradingPeriodId: String?
     public var selectedGradingPeriodTitle: String? { gradingPeriods.filter({ $0.id == selectedGradingPeriodId }).first?.title }
     public var wasCurrentPeriodPreselected: Bool = false
-    public var selectedSortingOption: AssignmentArrangementOptions
+    public var selectedSortingOption: GroupingOptions
 
     // MARK: - Inputs
 
@@ -57,7 +57,7 @@ public class AssignmentListViewModel: ObservableObject {
     // MARK: - Private properties
 
     private let isTeacher: Bool
-    private let sortingOptions: [AssignmentArrangementOptions]
+    private let sortingOptions: [GroupingOptions]
     private var initialFilterOptionsStudent: [AssignmentFilterOptionStudent] = AssignmentFilterOptionStudent.allCases
     private var selectedFilterOptionsStudent: [AssignmentFilterOptionStudent] = AssignmentFilterOptionStudent.allCases
 
@@ -111,7 +111,7 @@ public class AssignmentListViewModel: ObservableObject {
         self.env = env
         self.userDefaults = userDefaults ?? env.userDefaults
         self.isTeacher = env.app == .teacher
-        self.sortingOptions = isTeacher ? AssignmentArrangementOptions.teacherCases : AssignmentArrangementOptions.studentCases
+        self.sortingOptions = isTeacher ? GroupingOptions.teacherCases : GroupingOptions.studentCases
         self.defaultSortingOption = isTeacher ? .assignmentGroup : .dueDate
         self.selectedSortingOption = defaultSortingOption
         self.courseID = context.id
@@ -161,7 +161,7 @@ public class AssignmentListViewModel: ObservableObject {
         filterOptionsStudent: [AssignmentFilterOptionStudent]? = nil,
         filterOptionTeacher: AssignmentFilterOptionsTeacher? = nil,
         statusFilterOptionTeacher: AssignmentStatusFilterOptionsTeacher? = nil,
-        sortingOption: AssignmentArrangementOptions? = nil,
+        sortingOption: GroupingOptions? = nil,
         gradingPeriodId: String?
     ) {
         if gradingPeriodId == selectedGradingPeriodId
@@ -204,7 +204,7 @@ public class AssignmentListViewModel: ObservableObject {
         var sections: [AssignmentListSection] = []
         let allAssignments: [Assignment] = assignmentGroups
             .compactMap { $0 }
-            .sorted { $0.dueAtOrCheckpointsDueAt ?? Date.distantFuture < $1.dueAtOrCheckpointsDueAt ?? Date.distantFuture }
+            .sorted { $0.dueAtForSorting < $1.dueAtForSorting }
         let filteredAssignments = isTeacher
             ? filterAssignmentsTeacher(allAssignments)
             : filterAssignmentsStudent(allAssignments)
@@ -324,7 +324,7 @@ public class AssignmentListViewModel: ObservableObject {
         if isTeacher {
             .teacher(.init(assignment: assignment))
         } else {
-            .student(.init(assignment: assignment))
+            .student(.init(assignment: assignment, userId: nil))
         }
     }
 
@@ -401,7 +401,7 @@ public class AssignmentListViewModel: ObservableObject {
         }
 
         if let savedGroupByOptionId = userDefaults.assignmentListGroupBySettingByCourseId?[courseID],
-           let savedGroupByOption = AssignmentArrangementOptions(rawValue: savedGroupByOptionId) {
+           let savedGroupByOption = GroupingOptions(rawValue: savedGroupByOptionId) {
             selectedSortingOption = savedGroupByOption
         }
     }
@@ -449,13 +449,13 @@ public class AssignmentListViewModel: ObservableObject {
         self.defaultSortingOption = AppEnvironment.shared.app == .teacher ? .assignmentType : .dueDate
         self.selectedSortingOption = AppEnvironment.shared.app == .teacher ? .assignmentType : .dueDate
         self.isTeacher = AppEnvironment.shared.app == .teacher
-        self.sortingOptions = AppEnvironment.shared.app == .teacher ? AssignmentArrangementOptions.teacherCases : AssignmentArrangementOptions.studentCases
+        self.sortingOptions = AppEnvironment.shared.app == .teacher ? GroupingOptions.teacherCases : GroupingOptions.studentCases
     }
 
 #endif
 }
 
-extension AssignmentListViewModel: Refreshable {
+extension AssignmentListScreenViewModel: Refreshable {
 
     @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {

@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct GradeFilterView: View {
+public struct GradeFilterScreen: View {
     // MARK: - Properties
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.viewController) private var viewController
@@ -91,7 +91,7 @@ public struct GradeFilterView: View {
 
 #if DEBUG
 #Preview {
-    GradeFilterView(
+    GradeFilterScreen(
         viewModel: GradeFilterViewModel(
             dependency: .init(
                 router: AppEnvironment.shared.router,

@@ -40,7 +40,7 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
             initialFilterOptionsStudent: AssignmentFilterOptionStudent.allCases,
             initialStatusFilterOptionTeacher: .allAssignments,
             initialFilterOptionTeacher: .allAssignments,
-            sortingOptions: AssignmentListViewModel.AssignmentArrangementOptions.allCases,
+            sortingOptions: AssignmentListScreenViewModel.GroupingOptions.allCases,
             initialSortingOption: .dueDate,
             gradingPeriods: gradingPeriods,
             initialGradingPeriod: gradingPeriods.last,
@@ -63,8 +63,8 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.teacherPublishStatusFilterOptions.all.map(\.id), AssignmentStatusFilterOptionsTeacher.allCases.map(\.rawValue))
         XCTAssertEqual(testee.teacherPublishStatusFilterOptions.selected.value?.id, AssignmentStatusFilterOptionsTeacher.allAssignments.rawValue)
 
-        XCTAssertEqual(testee.sortModeOptions.all.map(\.id), AssignmentListViewModel.AssignmentArrangementOptions.allCases.map(\.rawValue))
-        XCTAssertEqual(testee.sortModeOptions.selected.value?.id, AssignmentListViewModel.AssignmentArrangementOptions.dueDate.rawValue)
+        XCTAssertEqual(testee.sortModeOptions.all.map(\.id), AssignmentListScreenViewModel.GroupingOptions.allCases.map(\.rawValue))
+        XCTAssertEqual(testee.sortModeOptions.selected.value?.id, AssignmentListScreenViewModel.GroupingOptions.dueDate.rawValue)
 
         XCTAssertEqual(testee.gradingPeriodOptions.all.count, 5)
         XCTAssertEqual(testee.gradingPeriodOptions.all.first?.title.contains("All"), true)
