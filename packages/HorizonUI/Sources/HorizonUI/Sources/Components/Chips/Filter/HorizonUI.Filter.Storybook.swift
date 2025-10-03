@@ -34,9 +34,9 @@ extension HorizonUI.FilterChip {
         }
 
         private var selectedChip: some View {
-           VStack {
-               Text("Selected Chip")
-                   .frame(maxWidth: .infinity, alignment: .leading)
+            VStack {
+                Text("Selected Chip")
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {
                     HorizonUI.FilterChip(style: .selected(title: "Career APP"), state: .focused)
                     HorizonUI.FilterChip(style: .selected(title: "Career APP"), state: .default)
@@ -65,7 +65,7 @@ extension HorizonUI.FilterChip {
                     style: .menu(
                         .darkOutline(
                             selectedItem: nil,
-                            items: HorizonUI.DropdownMenuItem.mock,
+                            items: dropdownMenuItemMock,
                             headerAlignment: .leading,
                             showCheckmark: true,
                             placeHolder: "Please select"
@@ -83,7 +83,7 @@ extension HorizonUI.FilterChip {
                     style: .menu(
                         .grayOutline(
                             selectedItem: nil,
-                            items: HorizonUI.DropdownMenuItem.mock,
+                            items: dropdownMenuItemMock,
                             headerAlignment: .center,
                             showCheckmark: false,
                             placeHolder: "Please select"
@@ -101,7 +101,7 @@ extension HorizonUI.FilterChip {
                     style: .menu(
                         .ghost(
                             selectedItem: nil,
-                            items: HorizonUI.DropdownMenuItem.mock,
+                            items: dropdownMenuItemMock,
                             headerAlignment: .trailing,
                             showCheckmark: true,
                             placeHolder: "Please select"
@@ -110,6 +110,13 @@ extension HorizonUI.FilterChip {
                 )
             }
         }
+
+        private let dropdownMenuItemMock: [HorizonUI.DropdownMenuItem] = [
+            .init(id: "1", name: "Option 1"),
+            .init(id: "2", name: "Option 2"),
+            .init(id: "3", name: "Option 3"),
+            .init(id: "4", name: "Option 4")
+        ]
     }
 }
 

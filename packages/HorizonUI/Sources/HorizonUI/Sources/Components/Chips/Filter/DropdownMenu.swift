@@ -212,7 +212,7 @@ public extension HorizonUI {
         }
     }
 
-     struct DropdownMenuItem: Identifiable, Equatable {
+    struct DropdownMenuItem: Identifiable, Equatable {
         public let id: String
         let name: String
 
@@ -220,14 +220,5 @@ public extension HorizonUI {
             self.id = id
             self.name = name
         }
-
-#if DEBUG
-        @MainActor static let mock: [DropdownMenuItem] = [
-            .init(id: "1", name: "Option 1"),
-            .init(id: "2", name: "Option 2"),
-            .init(id: "3", name: "Option 3"),
-            .init(id: "4", name: "Option 4")
-        ]
-#endif
     }
 }
