@@ -34,20 +34,20 @@ class K5Tests: K5E2ETestCase {
         // MARK: Get the user logged in, check elements of Homeroom
         logInDSUser(student)
         let welcomeMessage = Helper.Homeroom.welcomeMessage(student: student).waitUntil(.visible)
-        XCTAssertTrue(welcomeMessage.isVisible)
+        XCTAssertVisible(welcomeMessage)
 
         let mySubjectsLabel = Helper.Homeroom.mySubjects.waitUntil(.visible)
-        XCTAssertTrue(mySubjectsLabel.isVisible)
+        XCTAssertVisible(mySubjectsLabel)
 
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         let homeroomButton = Helper.homeroom.waitUntil(.visible)
         let scheduleButton = Helper.schedule.waitUntil(.visible)
         let gradesButton = Helper.grades.waitUntil(.visible)
         let resourcesButton = Helper.resources.waitUntil(.visible)
         XCTAssertTrue(homeroomButton.waitUntil(.hittable).isHittable)
-        XCTAssertTrue(homeroomButton.isSelected)
+        XCTAssertSelected(homeroomButton)
         XCTAssertTrue(scheduleButton.waitUntil(.hittable).isHittable)
 
         scheduleButton.actionUntilElementCondition(action: .swipeLeft(.onElement), element: resourcesButton, condition: .hittable)
@@ -68,7 +68,7 @@ class K5Tests: K5E2ETestCase {
         // MARK: Get the user logged in, navigate to Schedule, check elements
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         let scheduleButton = Helper.schedule.waitUntil(.visible)
         scheduleButton.hit()
@@ -95,7 +95,7 @@ class K5Tests: K5E2ETestCase {
         // MARK: Get the user logged in, navigate to Grades, check elements
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         let gradesButton = Helper.grades.waitUntil(.visible)
         Helper.schedule.actionUntilElementCondition(action: .swipeLeft(.onElement), element: gradesButton, condition: .hittable)
@@ -103,17 +103,17 @@ class K5Tests: K5E2ETestCase {
         XCTAssertTrue(gradesButton.waitUntil(.selected).isSelected)
 
         let selectGradingPeriodButton = Helper.Grades.selectGradingPeriodButton.waitUntil(.visible)
-        XCTAssertTrue(selectGradingPeriodButton.isVisible)
+        XCTAssertVisible(selectGradingPeriodButton)
         XCTAssertHasSuffix(selectGradingPeriodButton.label, "Closed")
 
         selectGradingPeriodButton.hit()
         let currentGradingPeriodButton = Helper.Grades.currentGradingPeriodButton.waitUntil(.visible)
-        XCTAssertTrue(currentGradingPeriodButton.isVisible)
+        XCTAssertVisible(currentGradingPeriodButton)
 
         currentGradingPeriodButton.hit()
 
         let courseProgressCard = Helper.Grades.courseProgressCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseProgressCard.isVisible)
+        XCTAssertVisible(courseProgressCard)
         XCTAssertHasSuffix(courseProgressCard.label, "100%")
 
         courseProgressCard.hit()
@@ -123,18 +123,18 @@ class K5Tests: K5E2ETestCase {
         courseGradesButton.hit()
 
         let totalGrade = GradesHelper.totalGrade.waitUntil(.visible)
-        XCTAssertTrue(totalGrade.isVisible)
+        XCTAssertVisible(totalGrade)
         XCTAssertEqual(totalGrade.label, "Total grade is 100%")
 
         let assignmentGrade = GradesHelper.cell(assignment: assignment).waitUntil(.visible)
-        XCTAssertTrue(assignmentGrade.isVisible)
+        XCTAssertVisible(assignmentGrade)
 
         let assignmentGradeOutOf = GradesHelper.gradeOutOf(
                 assignment: assignment,
                 actualPoints: String(assignment.points_possible!),
                 maxPoints: String(assignment.points_possible!),
                 letterGrade: "A").waitUntil(.visible)
-        XCTAssertTrue(assignmentGradeOutOf.isVisible)
+        XCTAssertVisible(assignmentGradeOutOf)
     }
 
     func testK5CourseDetails() {
@@ -154,7 +154,7 @@ class K5Tests: K5E2ETestCase {
         // MARK: Get the user logged in, navigate to course details
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         courseCard.hit()
 
@@ -213,10 +213,10 @@ class K5Tests: K5E2ETestCase {
         // MARK: Get the user logged in, check course card for missing assignments
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         let courseCardAssigmentMissingButton = DashboardHelper.courseCardAssignmentMissingButton(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCardAssigmentMissingButton.isVisible)
+        XCTAssertVisible(courseCardAssigmentMissingButton)
         XCTAssertEqualIgnoringCase(courseCardAssigmentMissingButton.label, "\(assignmentsCount) missing")
     }
 
@@ -236,8 +236,8 @@ class K5Tests: K5E2ETestCase {
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         let invitedCourseCard = DashboardHelper.courseCard(course: invitedCourse).waitUntil(.vanish)
         let courseInvitationAcceptButton = DashboardHelper.CourseInvitations.acceptButton(enrollment: enrollment).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
         XCTAssertTrue(invitedCourseCard.isVanished)
-        XCTAssertTrue(courseInvitationAcceptButton.isVisible)
+        XCTAssertVisible(courseInvitationAcceptButton)
     }
 }

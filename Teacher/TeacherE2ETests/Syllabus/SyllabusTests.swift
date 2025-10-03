@@ -36,17 +36,17 @@ class SyllabusTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Syllabus, check "Syllabus" tab
         logInDSUser(teacher)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         Helper.navigateToSyllabus(course: course)
         let navBar = Helper.navBar(course: course).waitUntil(.visible)
         let syllabusTab = Helper.syllabusTab.waitUntil(.visible)
         let summaryTab = Helper.summaryTab.waitUntil(.visible)
         let syllabusBodyLabel = Helper.syllabusBody.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(syllabusTab.isVisible)
-        XCTAssertTrue(summaryTab.isVisible)
-        XCTAssertTrue(syllabusBodyLabel.isVisible)
+        XCTAssertVisible(navBar)
+        XCTAssertVisible(syllabusTab)
+        XCTAssertVisible(summaryTab)
+        XCTAssertVisible(syllabusBodyLabel)
         XCTAssertEqual(syllabusBodyLabel.label, course.syllabus_body!)
 
         // MARK: Check "Summary" tab
@@ -55,11 +55,11 @@ class SyllabusTests: E2ETestCase {
         let summaryAssignmentTitle = Helper.summaryAssignmentTitle(assignment: assignment).waitUntil(.visible)
         let summaryCalendarEventItem = Helper.summaryCalendarEventCell(calendarEvent: calendarEvent).waitUntil(.visible)
         let summaryCalendarEventTitle = Helper.summaryCalendarEventTitle(calendarEvent: calendarEvent).waitUntil(.visible)
-        XCTAssertTrue(summaryAssignmentItem.isVisible)
-        XCTAssertTrue(summaryAssignmentTitle.isVisible)
+        XCTAssertVisible(summaryAssignmentItem)
+        XCTAssertVisible(summaryAssignmentTitle)
         XCTAssertEqual(summaryAssignmentTitle.label, assignment.name)
-        XCTAssertTrue(summaryCalendarEventItem.isVisible)
-        XCTAssertTrue(summaryCalendarEventTitle.isVisible)
+        XCTAssertVisible(summaryCalendarEventItem)
+        XCTAssertVisible(summaryCalendarEventTitle)
         XCTAssertEqual(summaryCalendarEventTitle.label, calendarEvent.title)
     }
 
@@ -73,7 +73,7 @@ class SyllabusTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Syllabus
         logInDSUser(teacher)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         Helper.navigateToSyllabus(course: course)
         let syllabusTab = Helper.syllabusTab.waitUntil(.visible)
@@ -84,10 +84,10 @@ class SyllabusTests: E2ETestCase {
         Helper.syllabusBody.pullToRefresh()
 
         let editButton = Helper.editButton.waitUntil(.visible)
-        XCTAssertTrue(syllabusTab.isVisible)
-        XCTAssertTrue(summaryTab.isVisible)
-        XCTAssertTrue(syllabusBodyLabel.isVisible)
-        XCTAssertTrue(editButton.isVisible)
+        XCTAssertVisible(syllabusTab)
+        XCTAssertVisible(summaryTab)
+        XCTAssertVisible(syllabusBodyLabel)
+        XCTAssertVisible(editButton)
 
         // MARK: Check elements of Syllabus Editor
         editButton.hit()
@@ -95,10 +95,10 @@ class SyllabusTests: E2ETestCase {
         let doneButton = EditorHelper.done.waitUntil(.visible)
         let contentField = EditorHelper.content.waitUntil(.visible)
         let summaryToggle = EditorHelper.showSummary.waitUntil(.visible)
-        XCTAssertTrue(cancelButton.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
-        XCTAssertTrue(contentField.isVisible)
-        XCTAssertTrue(summaryToggle.isVisible)
+        XCTAssertVisible(cancelButton)
+        XCTAssertVisible(doneButton)
+        XCTAssertVisible(contentField)
+        XCTAssertVisible(summaryToggle)
         XCTAssertEqual(summaryToggle.stringValue, "on")
 
         // MARK: Edit syllabus

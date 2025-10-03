@@ -29,18 +29,18 @@ class AssignmentReminderTests: E2ETestCase {
         // MARK: Enabling notifications for Canvas Student app
         SettingsAppHelper.app.launch()
         let canvasStudentButton = SettingsAppHelper.canvasStudentButton.waitUntil(.visible)
-        XCTAssertTrue(canvasStudentButton.isVisible)
+        XCTAssertVisible(canvasStudentButton)
 
         canvasStudentButton.actionUntilElementCondition(action: .swipeUp(.customApp(SettingsAppHelper.app)), condition: .hittable)
         XCTAssertTrue(canvasStudentButton.isHittable)
 
         canvasStudentButton.hit()
         let notificationsButton = SettingsAppHelper.CanvasStudent.notificationsButton.waitUntil(.visible)
-        XCTAssertTrue(notificationsButton.isVisible)
+        XCTAssertVisible(notificationsButton)
 
         notificationsButton.hit()
         let notificationToggle = SettingsAppHelper.CanvasStudent.Notifications.notificationsToggle.waitUntil(.visible)
-        XCTAssertTrue(notificationToggle.isVisible)
+        XCTAssertVisible(notificationToggle)
 
         if notificationToggle.stringValue == "off" {
             notificationToggle.hit()
@@ -62,24 +62,24 @@ class AssignmentReminderTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
-        XCTAssertTrue(assignmentButton.isVisible)
+        XCTAssertVisible(assignmentButton)
         XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
-        XCTAssertTrue(dueLabel.isVisible)
+        XCTAssertVisible(dueLabel)
 
         let reminderLabel = DetailsHelper.reminder.waitUntil(.visible)
-        XCTAssertTrue(reminderLabel.isVisible)
+        XCTAssertVisible(reminderLabel)
 
         let addReminderButton = DetailsHelper.addReminder.waitUntil(.visible)
-        XCTAssertTrue(addReminderButton.isVisible)
+        XCTAssertVisible(addReminderButton)
 
         // MARK: Tap "Add reminder" button, check elements
         addReminderButton.hit()
@@ -91,14 +91,14 @@ class AssignmentReminderTests: E2ETestCase {
         let oneWeekButton = ReminderHelper.oneWeekButton.waitUntil(.visible)
         let customButton = ReminderHelper.customButton.waitUntil(.visible)
         let doneButton = ReminderHelper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(fiveMinButton.isVisible)
-        XCTAssertTrue(fifteenMinButton.isVisible)
-        XCTAssertTrue(thirtyMinButton.isVisible)
-        XCTAssertTrue(oneHourButton.isVisible)
-        XCTAssertTrue(oneDayButton.isVisible)
-        XCTAssertTrue(oneWeekButton.isVisible)
-        XCTAssertTrue(customButton.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertVisible(fiveMinButton)
+        XCTAssertVisible(fifteenMinButton)
+        XCTAssertVisible(thirtyMinButton)
+        XCTAssertVisible(oneHourButton)
+        XCTAssertVisible(oneDayButton)
+        XCTAssertVisible(oneWeekButton)
+        XCTAssertVisible(customButton)
+        XCTAssertVisible(doneButton)
         XCTAssertTrue(doneButton.isDisabled)
 
         // MARK: Choose "1 Week Before", check warning message
@@ -107,9 +107,9 @@ class AssignmentReminderTests: E2ETestCase {
         let okButton = ReminderHelper.okButton.waitUntil(.visible)
         let reminderCreationFailed = ReminderHelper.reminderCreationFailed.waitUntil(.visible)
         let chooseFutureTime = ReminderHelper.chooseFutureTime.waitUntil(.visible)
-        XCTAssertTrue(okButton.isVisible)
-        XCTAssertTrue(reminderCreationFailed.isVisible)
-        XCTAssertTrue(chooseFutureTime.isVisible)
+        XCTAssertVisible(okButton)
+        XCTAssertVisible(reminderCreationFailed)
+        XCTAssertVisible(chooseFutureTime)
 
         // MARK: Choose "5 Minutes Before", check detail screen
         okButton.hit()
@@ -124,7 +124,7 @@ class AssignmentReminderTests: E2ETestCase {
         // MARK: Close app, wait for the reminder
         XCUIDevice.shared.press(.home)
         let notificationBanner = ReminderHelper.notificationBanner.waitUntil(.visible, timeout: 90)
-        XCTAssertTrue(notificationBanner.isVisible)
+        XCTAssertVisible(notificationBanner)
         XCTAssertContains(notificationBanner.label, "This assignment is due in 5 minutes")
     }
 
@@ -140,24 +140,24 @@ class AssignmentReminderTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
-        XCTAssertTrue(assignmentButton.isVisible)
+        XCTAssertVisible(assignmentButton)
         XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
-        XCTAssertTrue(dueLabel.isVisible)
+        XCTAssertVisible(dueLabel)
 
         let reminderLabel = DetailsHelper.reminder.waitUntil(.visible)
-        XCTAssertTrue(reminderLabel.isVisible)
+        XCTAssertVisible(reminderLabel)
 
         let addReminderButton = DetailsHelper.addReminder.waitUntil(.visible)
-        XCTAssertTrue(addReminderButton.isVisible)
+        XCTAssertVisible(addReminderButton)
 
         // MARK: Tap "Add reminder" button, check elements
         addReminderButton.hit()
@@ -169,22 +169,22 @@ class AssignmentReminderTests: E2ETestCase {
         let oneWeekButton = ReminderHelper.oneWeekButton.waitUntil(.visible)
         let customButton = ReminderHelper.customButton.waitUntil(.visible)
         let doneButton = ReminderHelper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(fiveMinButton.isVisible)
-        XCTAssertTrue(fifteenMinButton.isVisible)
-        XCTAssertTrue(thirtyMinButton.isVisible)
-        XCTAssertTrue(oneHourButton.isVisible)
-        XCTAssertTrue(oneDayButton.isVisible)
-        XCTAssertTrue(oneWeekButton.isVisible)
-        XCTAssertTrue(customButton.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertVisible(fiveMinButton)
+        XCTAssertVisible(fifteenMinButton)
+        XCTAssertVisible(thirtyMinButton)
+        XCTAssertVisible(oneHourButton)
+        XCTAssertVisible(oneDayButton)
+        XCTAssertVisible(oneWeekButton)
+        XCTAssertVisible(customButton)
+        XCTAssertVisible(doneButton)
         XCTAssertTrue(doneButton.isDisabled)
 
         // MARK: Choose "Custom", set it to remind 3 hours before
         customButton.hit()
         let numberPicker = ReminderHelper.numberPickerWheel.waitUntil(.visible)
         let timeUnitPicker = ReminderHelper.timeUnitPickerWheel.waitUntil(.visible)
-        XCTAssertTrue(numberPicker.isVisible)
-        XCTAssertTrue(timeUnitPicker.isVisible)
+        XCTAssertVisible(numberPicker)
+        XCTAssertVisible(timeUnitPicker)
         XCTAssertEqual(numberPicker.stringValue, "1")
         XCTAssertEqual(timeUnitPicker.stringValue, "Minutes Before")
 
@@ -200,7 +200,7 @@ class AssignmentReminderTests: E2ETestCase {
         // MARK: Close app, wait for the reminder
         XCUIDevice.shared.press(.home)
         let notificationBanner = ReminderHelper.notificationBanner.waitUntil(.visible, timeout: 90)
-        XCTAssertTrue(notificationBanner.isVisible)
+        XCTAssertVisible(notificationBanner)
         XCTAssertContains(notificationBanner.label, "This assignment is due in 3 hours")
     }
 
@@ -216,24 +216,24 @@ class AssignmentReminderTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
-        XCTAssertTrue(assignmentButton.isVisible)
+        XCTAssertVisible(assignmentButton)
         XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
-        XCTAssertTrue(dueLabel.isVisible)
+        XCTAssertVisible(dueLabel)
 
         let reminderLabel = DetailsHelper.reminder.waitUntil(.visible)
-        XCTAssertTrue(reminderLabel.isVisible)
+        XCTAssertVisible(reminderLabel)
 
         let addReminderButton = DetailsHelper.addReminder.waitUntil(.visible)
-        XCTAssertTrue(addReminderButton.isVisible)
+        XCTAssertVisible(addReminderButton)
 
         // MARK: Tap "Add reminder" button, check elements
         addReminderButton.hit()
@@ -245,14 +245,14 @@ class AssignmentReminderTests: E2ETestCase {
         let oneWeekButton = ReminderHelper.oneWeekButton.waitUntil(.visible)
         let customButton = ReminderHelper.customButton.waitUntil(.visible)
         let doneButton = ReminderHelper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(fiveMinButton.isVisible)
-        XCTAssertTrue(fifteenMinButton.isVisible)
-        XCTAssertTrue(thirtyMinButton.isVisible)
-        XCTAssertTrue(oneHourButton.isVisible)
-        XCTAssertTrue(oneDayButton.isVisible)
-        XCTAssertTrue(oneWeekButton.isVisible)
-        XCTAssertTrue(customButton.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertVisible(fiveMinButton)
+        XCTAssertVisible(fifteenMinButton)
+        XCTAssertVisible(thirtyMinButton)
+        XCTAssertVisible(oneHourButton)
+        XCTAssertVisible(oneDayButton)
+        XCTAssertVisible(oneWeekButton)
+        XCTAssertVisible(customButton)
+        XCTAssertVisible(doneButton)
         XCTAssertTrue(doneButton.isDisabled)
 
         // MARK: Choose "5 Minutes Before", check detail screen
@@ -263,22 +263,22 @@ class AssignmentReminderTests: E2ETestCase {
         doneButton.hit()
         reminderLabel.waitUntil(.visible)
         let fiveMinutesBeforeLabel = app.find(label: "5 minutes before", type: .staticText).waitUntil(.visible)
-        XCTAssertTrue(reminderLabel.isVisible)
-        XCTAssertTrue(fiveMinutesBeforeLabel.isVisible)
+        XCTAssertVisible(reminderLabel)
+        XCTAssertVisible(fiveMinutesBeforeLabel)
 
         // MARK: Tap remove button, check if removal was successful
         let removeReminderButton = DetailsHelper.removeReminder.waitUntil(.visible)
-        XCTAssertTrue(removeReminderButton.isVisible)
+        XCTAssertVisible(removeReminderButton)
 
         removeReminderButton.hit()
         let removalLabel = DetailsHelper.removalLabel.waitUntil(.visible)
         let removalAreYouSureLabel = DetailsHelper.removalAreYouSureLabel.waitUntil(.visible)
         let noButton = DetailsHelper.noButton.waitUntil(.visible)
         let yesButton = DetailsHelper.yesButton.waitUntil(.visible)
-        XCTAssertTrue(removalLabel.isVisible)
-        XCTAssertTrue(removalAreYouSureLabel.isVisible)
-        XCTAssertTrue(noButton.isVisible)
-        XCTAssertTrue(yesButton.isVisible)
+        XCTAssertVisible(removalLabel)
+        XCTAssertVisible(removalAreYouSureLabel)
+        XCTAssertVisible(noButton)
+        XCTAssertVisible(yesButton)
 
         yesButton.hit()
         fiveMinutesBeforeLabel.waitUntil(.visible, timeout: 5)
@@ -297,24 +297,24 @@ class AssignmentReminderTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
-        XCTAssertTrue(assignmentButton.isVisible)
+        XCTAssertVisible(assignmentButton)
         XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
-        XCTAssertTrue(dueLabel.isVisible)
+        XCTAssertVisible(dueLabel)
 
         let reminderLabel = DetailsHelper.reminder.waitUntil(.visible)
-        XCTAssertTrue(reminderLabel.isVisible)
+        XCTAssertVisible(reminderLabel)
 
         let addReminderButton = DetailsHelper.addReminder.waitUntil(.visible)
-        XCTAssertTrue(addReminderButton.isVisible)
+        XCTAssertVisible(addReminderButton)
 
         // MARK: Tap "Add reminder" button, check elements
         addReminderButton.hit()
@@ -326,14 +326,14 @@ class AssignmentReminderTests: E2ETestCase {
         let oneWeekButton = ReminderHelper.oneWeekButton.waitUntil(.visible)
         let customButton = ReminderHelper.customButton.waitUntil(.visible)
         let doneButton = ReminderHelper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(fiveMinButton.isVisible)
-        XCTAssertTrue(fifteenMinButton.isVisible)
-        XCTAssertTrue(thirtyMinButton.isVisible)
-        XCTAssertTrue(oneHourButton.isVisible)
-        XCTAssertTrue(oneDayButton.isVisible)
-        XCTAssertTrue(oneWeekButton.isVisible)
-        XCTAssertTrue(customButton.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertVisible(fiveMinButton)
+        XCTAssertVisible(fifteenMinButton)
+        XCTAssertVisible(thirtyMinButton)
+        XCTAssertVisible(oneHourButton)
+        XCTAssertVisible(oneDayButton)
+        XCTAssertVisible(oneWeekButton)
+        XCTAssertVisible(customButton)
+        XCTAssertVisible(doneButton)
         XCTAssertTrue(doneButton.isDisabled)
 
         // MARK: Choose "5 Minutes Before", check detail screen
@@ -344,8 +344,8 @@ class AssignmentReminderTests: E2ETestCase {
         doneButton.hit()
         reminderLabel.waitUntil(.visible)
         let fiveMinutesBeforeLabel = app.find(label: "5 minutes before", type: .staticText).waitUntil(.visible)
-        XCTAssertTrue(reminderLabel.isVisible)
-        XCTAssertTrue(fiveMinutesBeforeLabel.isVisible)
+        XCTAssertVisible(reminderLabel)
+        XCTAssertVisible(fiveMinutesBeforeLabel)
         XCTAssertTrue(addReminderButton.waitUntil(.visible).isVisible)
 
         // MARK: Tap "Add reminder" button again, choose custom
@@ -355,8 +355,8 @@ class AssignmentReminderTests: E2ETestCase {
         customButton.hit()
         let numberPicker = ReminderHelper.numberPickerWheel.waitUntil(.visible)
         let timeUnitPicker = ReminderHelper.timeUnitPickerWheel.waitUntil(.visible)
-        XCTAssertTrue(numberPicker.isVisible)
-        XCTAssertTrue(timeUnitPicker.isVisible)
+        XCTAssertVisible(numberPicker)
+        XCTAssertVisible(timeUnitPicker)
         XCTAssertEqual(numberPicker.stringValue, "1")
         XCTAssertEqual(timeUnitPicker.stringValue, "Minutes Before")
 
@@ -371,8 +371,8 @@ class AssignmentReminderTests: E2ETestCase {
         let okButton = ReminderHelper.okButton.waitUntil(.visible)
         let reminderCreationFailed = ReminderHelper.reminderCreationFailed.waitUntil(.visible)
         let youHaveAlreadySet = ReminderHelper.youHaveAlreadySet.waitUntil(.visible)
-        XCTAssertTrue(okButton.isVisible)
-        XCTAssertTrue(reminderCreationFailed.isVisible)
-        XCTAssertTrue(youHaveAlreadySet.isVisible)
+        XCTAssertVisible(okButton)
+        XCTAssertVisible(reminderCreationFailed)
+        XCTAssertVisible(youHaveAlreadySet)
     }
 }

@@ -36,28 +36,28 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Check menu items of Settings
         let landingPage = Helper.menuItem(item: .landingPage).waitUntil(.visible)
-        XCTAssertTrue(landingPage.isVisible)
+        XCTAssertVisible(landingPage)
 
         let appearance = Helper.menuItem(item: .appearance).waitUntil(.visible)
-        XCTAssertTrue(appearance.isVisible)
+        XCTAssertVisible(appearance)
 
         let pairWithObserver = Helper.menuItem(item: .pairWithObserver).waitUntil(.visible)
-        XCTAssertTrue(pairWithObserver.isVisible)
+        XCTAssertVisible(pairWithObserver)
 
         let subscribeToCalendarFeed = Helper.menuItem(item: .subscribeToCalendarFeed).waitUntil(.visible)
-        XCTAssertTrue(subscribeToCalendarFeed.isVisible)
+        XCTAssertVisible(subscribeToCalendarFeed)
 
         let about = Helper.menuItem(item: .about).waitUntil(.visible)
-        XCTAssertTrue(about.isVisible)
+        XCTAssertVisible(about)
 
         let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitUntil(.visible)
-        XCTAssertTrue(privacyPolicy.isVisible)
+        XCTAssertVisible(privacyPolicy)
 
         let offlineSync = Helper.menuItem(item: .synchronization).waitUntil(.visible)
-        XCTAssertTrue(offlineSync.isVisible)
+        XCTAssertVisible(offlineSync)
 
         let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(.visible)
-        XCTAssertTrue(termsOfUse.isVisible)
+        XCTAssertVisible(termsOfUse)
     }
 
     func testLandingPageSetting() {
@@ -71,11 +71,11 @@ class SettingsTests: E2ETestCase {
         Helper.navigateToSettings()
 
         let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertVisible(doneButton)
 
         // MARK: Select "Landing Page", check elements
         let landingPage = Helper.menuItem(item: .landingPage).waitUntil(.visible)
-        XCTAssertTrue(landingPage.isVisible)
+        XCTAssertVisible(landingPage)
 
         landingPage.hit()
 
@@ -86,13 +86,13 @@ class SettingsTests: E2ETestCase {
         let notifications = SubSettingsHelper.landingPageMenuItem(item: .notifications).waitUntil(.visible)
         let inbox = SubSettingsHelper.landingPageMenuItem(item: .inbox).waitUntil(.visible)
         let backButton = SubSettingsHelper.backButton.waitUntil(.visible)
-        XCTAssertTrue(landingPageNavBar.isVisible)
-        XCTAssertTrue(dashboard.isVisible)
-        XCTAssertTrue(calendar.isVisible)
-        XCTAssertTrue(toDo.isVisible)
-        XCTAssertTrue(notifications.isVisible)
-        XCTAssertTrue(inbox.isVisible)
-        XCTAssertTrue(backButton.isVisible)
+        XCTAssertVisible(landingPageNavBar)
+        XCTAssertVisible(dashboard)
+        XCTAssertVisible(calendar)
+        XCTAssertVisible(toDo)
+        XCTAssertVisible(notifications)
+        XCTAssertVisible(inbox)
+        XCTAssertVisible(backButton)
 
         // MARK: Select "Inbox", logout, login, check landing page
         inbox.hit()
@@ -103,7 +103,7 @@ class SettingsTests: E2ETestCase {
         logOut()
         logInDSUser(student)
         let inboxNewMessageButton = InboxHelper.newMessageButton.waitUntil(.visible)
-        XCTAssertTrue(inboxNewMessageButton.isVisible)
+        XCTAssertVisible(inboxNewMessageButton)
     }
 
     func testAppearanceSetting() {
@@ -118,17 +118,17 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Select "Appearance", check elements
         let appearance = Helper.menuItem(item: .appearance).waitUntil(.visible)
-        XCTAssertTrue(appearance.isVisible)
+        XCTAssertVisible(appearance)
 
         appearance.hit()
         let appearanceNavBar = SubSettingsHelper.appearanceNavBar.waitUntil(.visible)
         let system = SubSettingsHelper.appearanceMenuItem(item: .system).waitUntil(.visible)
         let light = SubSettingsHelper.appearanceMenuItem(item: .light).waitUntil(.visible)
         let dark = SubSettingsHelper.appearanceMenuItem(item: .dark).waitUntil(.visible)
-        XCTAssertTrue(appearanceNavBar.isVisible)
-        XCTAssertTrue(system.isVisible)
-        XCTAssertTrue(light.isVisible)
-        XCTAssertTrue(dark.isVisible)
+        XCTAssertVisible(appearanceNavBar)
+        XCTAssertVisible(system)
+        XCTAssertVisible(light)
+        XCTAssertVisible(dark)
 
         // MARK: Select "Dark Theme", check selection, select "Light Theme", check selection
         dark.hit()
@@ -150,21 +150,21 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Select "Pair with Observer", check elements
         let pairWithObserver = Helper.menuItem(item: .pairWithObserver).waitUntil(.visible)
-        XCTAssertTrue(pairWithObserver.isVisible)
+        XCTAssertVisible(pairWithObserver)
 
         pairWithObserver.hit()
 
         let pairWithObserverNavBar = SubSettingsHelper.pairWithObserverNavBar.waitUntil(.visible)
-        XCTAssertTrue(pairWithObserverNavBar.isVisible)
+        XCTAssertVisible(pairWithObserverNavBar)
 
         let doneButton = SubSettingsHelper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertVisible(doneButton)
 
         let shareButton = SubSettingsHelper.shareButton.waitUntil(.visible)
-        XCTAssertTrue(shareButton.isVisible)
+        XCTAssertVisible(shareButton)
 
         let QRCodeImage = SubSettingsHelper.QRCodeImage.waitUntil(.visible)
-        XCTAssertTrue(QRCodeImage.isVisible)
+        XCTAssertVisible(QRCodeImage)
     }
 
     func testSubscribeToCalendarFeed() {
@@ -179,7 +179,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Select "Subscribe to Calendar Feed", check if Calendar app opens
         let subscribeToCalendarFeed = Helper.menuItem(item: .subscribeToCalendarFeed).waitUntil(.visible)
-        XCTAssertTrue(subscribeToCalendarFeed.isVisible)
+        XCTAssertVisible(subscribeToCalendarFeed)
 
         subscribeToCalendarFeed.hit()
         CalendarAppHelper.calendarApp.activate()
@@ -194,10 +194,10 @@ class SettingsTests: E2ETestCase {
         }
 
         let calendarNavBar = CalendarAppHelper.navBar.waitUntil(.visible)
-        XCTAssertTrue(calendarNavBar.isVisible)
+        XCTAssertVisible(calendarNavBar)
 
         let subscriptionUrlElement = CalendarAppHelper.subscriptionUrl.waitUntil(.visible)
-        XCTAssertTrue(subscriptionUrlElement.isVisible)
+        XCTAssertVisible(subscriptionUrlElement)
         XCTAssertContains(subscriptionUrlElement.stringValue, user.host)
     }
 
@@ -213,31 +213,31 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Select About, check elements
         let about = Helper.menuItem(item: .about).waitUntil(.visible)
-        XCTAssertTrue(about.isVisible)
+        XCTAssertVisible(about)
 
         about.hit()
 
         let aboutView = AboutHelper.aboutView.waitUntil(.visible)
-        XCTAssertTrue(aboutView.isVisible)
+        XCTAssertVisible(aboutView)
 
         let appLabel = AboutHelper.appLabel.waitUntil(.visible)
-        XCTAssertTrue(appLabel.isVisible)
+        XCTAssertVisible(appLabel)
         XCTAssertEqual(appLabel.label, "Canvas")
 
         let domainLabel = AboutHelper.domainLabel.waitUntil(.visible)
-        XCTAssertTrue(domainLabel.isVisible)
+        XCTAssertVisible(domainLabel)
         XCTAssertEqual(domainLabel.label, "https://\(user.host)")
 
         let loginIdLabel = AboutHelper.loginIdLabel.waitUntil(.visible)
-        XCTAssertTrue(loginIdLabel.isVisible)
+        XCTAssertVisible(loginIdLabel)
         XCTAssertEqual(loginIdLabel.label, student.id)
 
         let emailLabel = AboutHelper.emailLabel.waitUntil(.visible)
-        XCTAssertTrue(emailLabel.isVisible)
+        XCTAssertVisible(emailLabel)
         XCTAssertEqual(emailLabel.label, "-")
 
         let versionLabel = AboutHelper.versionLabel.waitUntil(.visible)
-        XCTAssertTrue(versionLabel.isVisible)
+        XCTAssertVisible(versionLabel)
     }
 
     func testPrivacyPolicy() {
@@ -252,7 +252,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Select "Privacy Policy", check if Safari app opens
         let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitUntil(.visible)
-        XCTAssertTrue(privacyPolicy.isVisible)
+        XCTAssertVisible(privacyPolicy)
 
         privacyPolicy.hit()
         XCTAssertTrue(SafariAppHelper.safariApp.wait(for: .runningForeground, timeout: 15))
@@ -274,10 +274,10 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Select "Terms of Use", check elements
         let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(.visible)
-        XCTAssertTrue(termsOfUse.isVisible)
+        XCTAssertVisible(termsOfUse)
 
         termsOfUse.hit()
         let termsOfUseNavBar = SubSettingsHelper.termsOfUseNavBar.waitUntil(.visible)
-        XCTAssertTrue(termsOfUseNavBar.isVisible)
+        XCTAssertVisible(termsOfUseNavBar)
     }
 }

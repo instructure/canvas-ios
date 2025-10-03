@@ -35,16 +35,16 @@ class CourseDetailsTests: E2ETestCase {
         // MARK: Get the user logged in and navigate to the course
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Check course details
         courseCard.hit()
         let titleLabel = CourseDetailsHelper.titleLabel.waitUntil(.visible)
-        XCTAssertTrue(titleLabel.isVisible)
+        XCTAssertVisible(titleLabel)
         XCTAssertEqual(titleLabel.label, course.name)
 
         let subtitleLabel = CourseDetailsHelper.subtitleLabel.waitUntil(.visible)
-        XCTAssertTrue(subtitleLabel.isVisible)
+        XCTAssertVisible(subtitleLabel)
         XCTAssertEqual(subtitleLabel.label, "Default Term")
 
         let homeButton = CourseDetailsHelper.cell(type: .home).waitUntil(.visible)
@@ -96,19 +96,19 @@ class CourseDetailsTests: E2ETestCase {
         // MARK: Get the user logged in and navigate to the course
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Check course home, default setting should be modules
         courseCard.hit()
         let homeButton = CourseDetailsHelper.cell(type: .home).waitUntil(.visible)
-        XCTAssertTrue(homeButton.isVisible)
+        XCTAssertVisible(homeButton)
         XCTAssertContains(homeButton.label, "Course Modules")
 
         homeButton.hit()
         let moduleElement = ModulesHelper.moduleLabel(moduleIndex: 0).waitUntil(.visible)
         let backButton = ModulesHelper.backButton.waitUntil(.visible)
-        XCTAssertTrue(moduleElement.isVisible)
-        XCTAssertTrue(backButton.isVisible)
+        XCTAssertVisible(moduleElement)
+        XCTAssertVisible(backButton)
 
         // MARK: Update course default view to syllabus
         seeder.updateCourseWithDefaultView(course: course, default_view: .syllabus)
@@ -118,7 +118,7 @@ class CourseDetailsTests: E2ETestCase {
 
         homeButton.hit()
         let syllabusBodyElement = SyllabusHelper.syllabusBody.waitUntil(.visible)
-        XCTAssertTrue(syllabusBodyElement.isVisible)
+        XCTAssertVisible(syllabusBodyElement)
         XCTAssertTrue(backButton.waitUntil(.visible).isVisible)
 
         // MARK: Update course default view to wiki (front page)
@@ -129,7 +129,7 @@ class CourseDetailsTests: E2ETestCase {
 
         homeButton.hit()
         let pageTitleElement = PagesHelper.titleByText(text: frontPage.title).waitUntil(.visible)
-        XCTAssertTrue(pageTitleElement.isVisible)
+        XCTAssertVisible(pageTitleElement)
         XCTAssertTrue(backButton.waitUntil(.visible).isVisible)
 
         // MARK: Update course default view to assignments
@@ -140,7 +140,7 @@ class CourseDetailsTests: E2ETestCase {
 
         homeButton.hit()
         let assignmentElement = AssignmentsHelper.assignmentButton(assignment: assignment).waitUntil(.visible)
-        XCTAssertTrue(assignmentElement.isVisible)
+        XCTAssertVisible(assignmentElement)
         XCTAssertTrue(backButton.waitUntil(.visible).isVisible)
 
         // MARK: Update course default view to feed (notifications)
@@ -151,7 +151,7 @@ class CourseDetailsTests: E2ETestCase {
 
         homeButton.hit()
         let noAlertsImageElement = app.find(id: "PandaNoAlerts", type: .image).waitUntil(.visible)
-        XCTAssertTrue(noAlertsImageElement.isVisible)
+        XCTAssertVisible(noAlertsImageElement)
         XCTAssertTrue(backButton.waitUntil(.visible).isVisible)
     }
 }

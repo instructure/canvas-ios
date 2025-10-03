@@ -32,11 +32,11 @@ class FeatureFlagOfflineTests: OfflineE2ETestCase {
         // MARK: Get the user logged in, open "Course Options", open "Manage Offline Content"
         logInDSUser(student)
         let courseOptionsButton = DashboardHelper.courseOptionsButton(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseOptionsButton.isVisible)
+        XCTAssertVisible(courseOptionsButton)
 
         courseOptionsButton.hit()
         let manageOfflineContentButton = DashboardHelper.Options.manageOfflineContentButton.waitUntil(.visible)
-        XCTAssertTrue(manageOfflineContentButton.isVisible)
+        XCTAssertVisible(manageOfflineContentButton)
 
         manageOfflineContentButton.hit()
 
@@ -45,9 +45,9 @@ class FeatureFlagOfflineTests: OfflineE2ETestCase {
         let unselectedTickerOfCourseButton = DashboardHelper.Options.OfflineContent.unselectedTickerOfCourseButton(course: course)
             .waitUntil(.visible)
         let syncButton = DashboardHelper.Options.OfflineContent.syncButton.waitUntil(.visible)
-        XCTAssertTrue(courseButton.isVisible)
-        XCTAssertTrue(unselectedTickerOfCourseButton.isVisible)
-        XCTAssertTrue(syncButton.isVisible)
+        XCTAssertVisible(courseButton)
+        XCTAssertVisible(unselectedTickerOfCourseButton)
+        XCTAssertVisible(syncButton)
 
         unselectedTickerOfCourseButton.hit()
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
@@ -57,41 +57,41 @@ class FeatureFlagOfflineTests: OfflineE2ETestCase {
         let alertSyncButton = DashboardHelper.Options.OfflineContent.alertSyncButton.waitUntil(.visible)
         let alertSyncOfflineContentLabel = DashboardHelper.Options.OfflineContent.alertSyncOfflineContentLabel.waitUntil(.visible)
         let alertCancelButton = DashboardHelper.Options.OfflineContent.alertCancelButton.waitUntil(.visible)
-        XCTAssertTrue(alertSyncOfflineContentLabel.isVisible)
-        XCTAssertTrue(alertCancelButton.isVisible)
-        XCTAssertTrue(alertSyncButton.isVisible)
+        XCTAssertVisible(alertSyncOfflineContentLabel)
+        XCTAssertVisible(alertCancelButton)
+        XCTAssertVisible(alertSyncButton)
 
         alertSyncButton.hit()
         let successNotification = SpringboardAppHelper.successNotification.waitUntil(.visible, timeout: 30)
-        XCTAssertTrue(successNotification.isVisible)
+        XCTAssertVisible(successNotification)
 
         // MARK: Go offline, check contents
         let isOffline = setNetworkStateOffline()
         XCTAssertTrue(isOffline)
 
         let offlineLineImage = DashboardHelper.offlineLine.waitUntil(.visible)
-        XCTAssertTrue(offlineLineImage.isVisible)
+        XCTAssertVisible(offlineLineImage)
 
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         courseCard.hit()
         let announcementsButton = CourseDetailsHelper.cell(type: .announcements).waitUntil(.visible, timeout: 60)
         let discussionButton = CourseDetailsHelper.cell(type: .discussions).waitUntil(.visible)
-        XCTAssertTrue(announcementsButton.isVisible)
-        XCTAssertTrue(discussionButton.isVisible)
+        XCTAssertVisible(announcementsButton)
+        XCTAssertVisible(discussionButton)
 
         announcementsButton.hit()
         let announcementItem = AnnouncementsHelper.cell(index: 0).waitUntil(.visible)
-        XCTAssertTrue(announcementItem.isVisible)
+        XCTAssertVisible(announcementItem)
 
         announcementItem.hit()
         let announcementTitleItem = AnnouncementsHelper.Details.title.waitUntil(.visible)
         let announcementBodyItem = AnnouncementsHelper.Details.message.waitUntil(.visible)
         let backButton = AnnouncementsHelper.backButton.waitUntil(.visible)
-        XCTAssertTrue(announcementTitleItem.isVisible)
-        XCTAssertTrue(announcementBodyItem.isVisible)
-        XCTAssertTrue(backButton.isVisible)
+        XCTAssertVisible(announcementTitleItem)
+        XCTAssertVisible(announcementBodyItem)
+        XCTAssertVisible(backButton)
 
         backButton.hit()
         XCTAssertTrue(announcementItem.waitUntil(.visible).isVisible)
@@ -102,12 +102,12 @@ class FeatureFlagOfflineTests: OfflineE2ETestCase {
 
         discussionButton.hit()
         let discussionItem = DiscussionsHelper.discussionButton(discussion: discussion).waitUntil(.visible)
-        XCTAssertTrue(discussionItem.isVisible)
+        XCTAssertVisible(discussionItem)
 
         discussionItem.hit()
         let discussionTitleItem = DiscussionsHelper.Details.titleLabel.waitUntil(.visible)
         let discussionBodyItem = DiscussionsHelper.Details.messageLabel.waitUntil(.visible)
-        XCTAssertTrue(discussionTitleItem.isVisible)
-        XCTAssertTrue(discussionBodyItem.isVisible)
+        XCTAssertVisible(discussionTitleItem)
+        XCTAssertVisible(discussionBodyItem)
     }
 }

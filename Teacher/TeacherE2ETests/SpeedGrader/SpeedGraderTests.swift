@@ -121,29 +121,29 @@ class SpeedGraderTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Assignments
         logInDSUser(teacher)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         AssignmentsHelper.navigateToAssignments(course: course)
         let assignmentItem = AssignmentsHelper.assignmentButton(assignment: assignment).waitUntil(.visible)
         let oneNeedsGradingLabel = AssignmentsHelper.oneNeedsGradingLabel(assignmentItem: assignmentItem).waitUntil(.visible)
-        XCTAssertTrue(assignmentItem.isVisible)
-        XCTAssertTrue(oneNeedsGradingLabel.isVisible)
+        XCTAssertVisible(assignmentItem)
+        XCTAssertVisible(oneNeedsGradingLabel)
 
         // MARK: Check Assignment Details
         assignmentItem.hit()
         let viewAllSubmissionsButton = DetailsHelper.viewAllSubmissionsButton.waitUntil(.visible)
         let needsGradingButton = DetailsHelper.oneNeedsGradingButton.waitUntil(.visible)
-        XCTAssertTrue(viewAllSubmissionsButton.isVisible)
-        XCTAssertTrue(needsGradingButton.isVisible)
+        XCTAssertVisible(viewAllSubmissionsButton)
+        XCTAssertVisible(needsGradingButton)
         XCTAssertEqual(needsGradingButton.stringValue, "1 item")
 
         needsGradingButton.hit()
         let submissionsNavBar = SubmissionsHelper.navBar.waitUntil(.visible)
         let needsGradingLabel = SubmissionsHelper.needsGradingLabel.waitUntil(.visible)
         let submissionItem = SubmissionsHelper.cell(student: student).waitUntil(.visible)
-        XCTAssertTrue(submissionsNavBar.isVisible)
-        XCTAssertTrue(needsGradingLabel.isVisible)
-        XCTAssertTrue(submissionItem.isVisible)
+        XCTAssertVisible(submissionsNavBar)
+        XCTAssertVisible(needsGradingLabel)
+        XCTAssertVisible(submissionItem)
 
         // MARK: Grade the submitted assignment
         submissionItem.hit()
@@ -152,20 +152,20 @@ class SpeedGraderTests: E2ETestCase {
         let speedGraderDoneButton = SpeedGraderHelper.doneButton.waitUntil(.visible)
         let speedGraderDrawerGripper = SpeedGraderHelper.drawerGripper.waitUntil(.visible)
         let speedGraderGradeSlider = SpeedGraderHelper.gradeSlider.waitUntil(.visible, timeout: 5)
-        XCTAssertTrue(speedGraderUserButton.isVisible)
-        XCTAssertTrue(speedGraderPostPolicyButton.isVisible)
-        XCTAssertTrue(speedGraderDoneButton.isVisible)
+        XCTAssertVisible(speedGraderUserButton)
+        XCTAssertVisible(speedGraderPostPolicyButton)
+        XCTAssertVisible(speedGraderDoneButton)
 
         if speedGraderGradeSlider.isVanished {
-            XCTAssertTrue(speedGraderDrawerGripper.isVisible)
+            XCTAssertVisible(speedGraderDrawerGripper)
             speedGraderDrawerGripper.swipeUp()
             sleep(1)
-            XCTAssertTrue(speedGraderDrawerGripper.isVisible)
+            XCTAssertVisible(speedGraderDrawerGripper)
             speedGraderDrawerGripper.swipeUp()
         }
 
         speedGraderGradeSlider.waitUntil(.visible)
-        XCTAssertTrue(speedGraderGradeSlider.isVisible)
+        XCTAssertVisible(speedGraderGradeSlider)
         XCTAssertEqual(speedGraderGradeSlider.stringValue, "0 points")
 
         speedGraderGradeSlider.swipeRight(velocity: .slow)
@@ -176,14 +176,14 @@ class SpeedGraderTests: E2ETestCase {
         submissionItem.waitUntil(.vanish)
         let backButton = SubmissionsHelper.backButton.waitUntil(.visible, timeout: 5)
         XCTAssertTrue(submissionItem.isVanished)
-        XCTAssertTrue(backButton.isVisible)
+        XCTAssertVisible(backButton)
 
         // MARK: Check if the submission got graded
         backButton.hit()
         viewAllSubmissionsButton.waitUntil(.visible)
         let oneGradedLabel = DetailsHelper.oneGradedButton.waitUntil(.visible)
-        XCTAssertTrue(viewAllSubmissionsButton.isVisible)
-        XCTAssertTrue(oneGradedLabel.isVisible)
+        XCTAssertVisible(viewAllSubmissionsButton)
+        XCTAssertVisible(oneGradedLabel)
     }
 
     func testEditGrade() {
@@ -201,20 +201,20 @@ class SpeedGraderTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Assignments
         logInDSUser(teacher)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         AssignmentsHelper.navigateToAssignments(course: course)
         let assignmentItem = AssignmentsHelper.assignmentButton(assignment: assignment).waitUntil(.visible)
-        XCTAssertTrue(assignmentItem.isVisible)
+        XCTAssertVisible(assignmentItem)
 
         assignmentItem.hit()
         let viewAllSubmissionsButton = DetailsHelper.viewAllSubmissionsButton.waitUntil(.visible)
         let gradedButton = DetailsHelper.oneGradedButton.waitUntil(.visible)
         let editButton = DetailsHelper.editButton.waitUntil(.visible)
-        XCTAssertTrue(viewAllSubmissionsButton.isVisible)
-        XCTAssertTrue(gradedButton.isVisible)
+        XCTAssertVisible(viewAllSubmissionsButton)
+        XCTAssertVisible(gradedButton)
         XCTAssertEqual(gradedButton.stringValue, "1 item")
-        XCTAssertTrue(editButton.isVisible)
+        XCTAssertVisible(editButton)
 
         // MARK: Edit the assignment with new score
         editButton.hit()
@@ -222,9 +222,9 @@ class SpeedGraderTests: E2ETestCase {
         let pointsField = EditorHelper.pointsField.waitUntil(.visible)
         titleField.waitUntil(.value(expected: assignment.name))
         pointsField.waitUntil(.value(expected: score))
-        XCTAssertTrue(titleField.isVisible)
+        XCTAssertVisible(titleField)
         XCTAssertEqual(titleField.stringValue, assignment.name)
-        XCTAssertTrue(pointsField.isVisible)
+        XCTAssertVisible(pointsField)
         XCTAssertEqual(pointsField.stringValue, score)
 
         let newScore = "0"
@@ -234,13 +234,13 @@ class SpeedGraderTests: E2ETestCase {
         XCTAssertEqual(pointsField.stringValue, newScore)
 
         let doneButton = EditorHelper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertVisible(doneButton)
 
         // MARK: Check new score
         doneButton.hit()
         let pointsLabel = DetailsHelper.points.waitUntil(.visible)
         pointsLabel.waitUntil(.label(expected: "\(newScore) pts"))
-        XCTAssertTrue(pointsLabel.isVisible)
+        XCTAssertVisible(pointsLabel)
         XCTAssertEqual(pointsLabel.label, "\(newScore) pts")
     }
 }

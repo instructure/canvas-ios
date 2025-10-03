@@ -115,7 +115,7 @@ class GradingPeriodsTests: E2ETestCase {
 
         XCTContext.runActivity(named: "Filter to second grading period") { _ in
             filterButton.waitUntil(.visible)
-            XCTAssertTrue(filterButton.isVisible)
+            XCTAssertVisible(filterButton)
             filterButton.hit()
 
             XCTAssertTrue(allOption.waitUntil(.visible).isVisible)
