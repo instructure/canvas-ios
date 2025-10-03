@@ -142,7 +142,14 @@ public extension UIFont {
 
     static func applicationFontName(weight: UIFont.Weight, isItalic: Bool = false) -> String {
         let isK5Font = AppEnvironment.shared.k5.isK5Enabled
-        let font = isK5Font ? "BalsamiqSans" : "Lato"
+        let font: String
+        if isK5Font {
+            font = "BalsamiqSans"
+        } else if AppEnvironment.shared.app == .horizon {
+            font = "Figtree"
+        } else {
+            font = "Lato"
+        }
         var suffix = ""
 
         if isK5Font {
