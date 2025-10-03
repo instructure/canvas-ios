@@ -30,19 +30,60 @@ public struct TodoListScreen: View {
     public var body: some View {
         InstUI.BaseScreen(
             state: viewModel.state,
+            config: viewModel.screenConfig,
             refreshAction: { completion in
                 viewModel.refresh(completion: completion, ignoreCache: true)
             }
         ) { _ in
-            ForEach(viewModel.items) { item in
+            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                InstUI.Divider()
+                ForEach(viewModel.items) { group in
+                    groupView(for: group)
+                }
+                InstUI.Divider()
+            }
+            .paddingStyle(.horizontal, .standard)
+        }
+        .clipped()
+        .navigationBarItems(leading: profileMenuButton)
+    }
+
+    @ViewBuilder
+    private func groupView(for group: TodoGroupViewModel) -> some View {
+        Section {
+            ForEach(group.items) { item in
                 TodoListItemCell(
                     item: item,
-                    onTap: viewModel.didTapItem,
-                    isLastItem: viewModel.items.last == item
+                    onTap: viewModel.didTapItem
                 )
+                .padding(.leading, 48)
+
+                let isLastItemInGroup = (group.items.last == item)
+
+                if !isLastItemInGroup {
+                    InstUI.Divider().padding(.leading, 48)
+                }
+            }
+        } header: {
+            VStack(spacing: 0) {
+                let isFirstSection = (viewModel.items.first == group)
+
+                if !isFirstSection {
+                    InstUI.Divider()
+                }
+
+                TodoDayHeaderView(group: group) { group in
+                    viewModel.didTapDayHeader(group, viewController: viewController)
+                }
+                // To provide a large enough hit area, the header needs to include padding
+                // but the screen already has a padding so we need to negate that here.
+                .padding(.leading, -InstUI.Styles.Padding.standard.rawValue)
+                // Move day badge to the left of the screen.
+                .frame(maxWidth: .infinity, alignment: .leading)
+                // Squeeze height to 0 so day badge goes next to cell.
+                .frame(height: 0, alignment: .top)
             }
         }
-        .navigationBarItems(leading: profileMenuButton)
     }
 
     private var profileMenuButton: some View {
@@ -67,6 +108,11 @@ public struct TodoListScreen: View {
 
 #Preview {
     let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(), env: PreviewEnvironment())
+    TodoListScreen(viewModel: viewModel)
+}
+
+#Preview("Empty State") {
+    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(todoGroups: []), env: PreviewEnvironment())
     TodoListScreen(viewModel: viewModel)
 }
 
