@@ -18,23 +18,28 @@
 
 import XCTest
 @testable import Core
+import TestsFoundation
 
 final class AssignmentListSectionTests: CoreTestCase {
 
     private static let testData = (
         sectionId: "some sectionId",
         row1Id: "some row1Id",
-        row2Id: "some row2Id"
+        row2Id: "some row2Id",
+        row3Id: "some row3Id"
     )
     private lazy var testData = Self.testData
 
-    func test_rowId() {
+    func test_rowId() throws {
         let section = AssignmentListSection(id: testData.sectionId, title: "", rows: [
             .student(.make(id: testData.row1Id)),
-            .teacher(.make(id: testData.row2Id))
+            .teacher(.make(id: testData.row2Id)),
+            .gradeListRow(.make(id: testData.row3Id))
         ])
 
-        XCTAssertEqual(section.rows.first?.id, testData.row1Id)
-        XCTAssertEqual(section.rows.last?.id, testData.row2Id)
+        guard section.rows.count == 3 else { throw InvalidCountError() }
+        XCTAssertEqual(section.rows[0].id, testData.row1Id)
+        XCTAssertEqual(section.rows[1].id, testData.row2Id)
+        XCTAssertEqual(section.rows[2].id, testData.row3Id)
     }
 }
