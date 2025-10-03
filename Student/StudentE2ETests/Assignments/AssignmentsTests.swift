@@ -103,7 +103,7 @@ class AssignmentsTests: E2ETestCase {
         app.pullToRefresh()
         XCTAssertEqual(statusLabel.waitUntil(.visible).label, "Submitted")
 
-        XCTAssertTrue(submitAssignmentButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(submitAssignmentButton.waitUntil(.visible))
         XCTAssertEqual(submitAssignmentButton.label, "Resubmit Assignment")
     }
 
@@ -371,7 +371,7 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Check adding a comment
         commentTextView.writeText(text: "Test Comment")
-        XCTAssertTrue(addCommentButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(addCommentButton.waitUntil(.visible))
         XCTAssertTrue(addCommentButton.isEnabled)
 
         addCommentButton.hit()
@@ -397,7 +397,7 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertEqual(rubricRatingTitle.label, rubric.data[0].ratings[0].description)
 
         rubricRatingZero.hit()
-        XCTAssertTrue(rubricRatingTitle.waitUntil(.visible).isVisible)
+        XCTAssertVisible(rubricRatingTitle.waitUntil(.visible))
         XCTAssertEqual(rubricRatingTitle.label, rubric.data[0].ratings[1].description)
 
         rubricDescriptionButton.hit()

@@ -150,7 +150,7 @@ class GradesTests: E2ETestCase {
 
         let secondAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[1]).waitUntil(.visible, timeout: 5)
         if secondAssignment.isVanished { GradesHelper.backButton.hit() }
-        XCTAssertTrue(secondAssignment.waitUntil(.visible).isVisible)
+        XCTAssertVisible(secondAssignment.waitUntil(.visible))
 
         secondAssignment.hit()
         AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
@@ -193,7 +193,7 @@ class GradesTests: E2ETestCase {
 
         let secondAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[1]).waitUntil(.visible, timeout: 5)
         if secondAssignment.isVanished { GradesHelper.backButton.hit() }
-        XCTAssertTrue(secondAssignment.waitUntil(.visible).isVisible)
+        XCTAssertVisible(secondAssignment.waitUntil(.visible))
 
         secondAssignment.hit()
         AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
@@ -202,7 +202,7 @@ class GradesTests: E2ETestCase {
 
         let thirdAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[2]).waitUntil(.visible, timeout: 5)
         if thirdAssignment.isVanished { GradesHelper.backButton.hit() }
-        XCTAssertTrue(thirdAssignment.waitUntil(.visible).isVisible)
+        XCTAssertVisible(thirdAssignment.waitUntil(.visible))
 
         thirdAssignment.hit()
         AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
@@ -211,7 +211,7 @@ class GradesTests: E2ETestCase {
 
         let fourthAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[3]).waitUntil(.visible, timeout: 5)
         if fourthAssignment.isVanished { GradesHelper.backButton.hit() }
-        XCTAssertTrue(fourthAssignment.waitUntil(.visible).isVisible)
+        XCTAssertVisible(fourthAssignment.waitUntil(.visible))
 
         fourthAssignment.hit()
         AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)

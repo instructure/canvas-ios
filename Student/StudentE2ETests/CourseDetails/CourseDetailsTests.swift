@@ -113,45 +113,45 @@ class CourseDetailsTests: E2ETestCase {
         // MARK: Update course default view to syllabus
         seeder.updateCourseWithDefaultView(course: course, default_view: .syllabus)
         backButton.hit()
-        XCTAssertTrue(homeButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(homeButton.waitUntil(.visible))
         XCTAssertContains(homeButton.label, "Syllabus")
 
         homeButton.hit()
         let syllabusBodyElement = SyllabusHelper.syllabusBody.waitUntil(.visible)
         XCTAssertVisible(syllabusBodyElement)
-        XCTAssertTrue(backButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(backButton.waitUntil(.visible))
 
         // MARK: Update course default view to wiki (front page)
         seeder.updateCourseWithDefaultView(course: course, default_view: .wiki)
         backButton.hit()
-        XCTAssertTrue(homeButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(homeButton.waitUntil(.visible))
         XCTAssertContains(homeButton.label, "Front Page")
 
         homeButton.hit()
         let pageTitleElement = PagesHelper.titleByText(text: frontPage.title).waitUntil(.visible)
         XCTAssertVisible(pageTitleElement)
-        XCTAssertTrue(backButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(backButton.waitUntil(.visible))
 
         // MARK: Update course default view to assignments
         seeder.updateCourseWithDefaultView(course: course, default_view: .assignments)
         backButton.hit()
-        XCTAssertTrue(homeButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(homeButton.waitUntil(.visible))
         XCTAssertContains(homeButton.label, "Assignments")
 
         homeButton.hit()
         let assignmentElement = AssignmentsHelper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertVisible(assignmentElement)
-        XCTAssertTrue(backButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(backButton.waitUntil(.visible))
 
         // MARK: Update course default view to feed (notifications)
         seeder.updateCourseWithDefaultView(course: course, default_view: .feed)
         backButton.hit()
-        XCTAssertTrue(homeButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(homeButton.waitUntil(.visible))
         XCTAssertContains(homeButton.label, "Recent Activity")
 
         homeButton.hit()
         let noAlertsImageElement = app.find(id: "PandaNoAlerts", type: .image).waitUntil(.visible)
         XCTAssertVisible(noAlertsImageElement)
-        XCTAssertTrue(backButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(backButton.waitUntil(.visible))
     }
 }

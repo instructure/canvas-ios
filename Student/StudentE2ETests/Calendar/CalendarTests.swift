@@ -48,7 +48,7 @@ class CalendarTests: E2ETestCase {
         XCTAssertVisible(eventDateButton)
 
         eventDateButton.hit()
-        XCTAssertTrue(eventDateButton.waitUntil(.selected).isSelected)
+        XCTAssertSelected(eventDateButton.waitUntil(.selected))
 
         let eventItem = Helper.itemCell(for: event).waitUntil(.visible)
         XCTAssertVisible(eventItem)
@@ -79,7 +79,7 @@ class CalendarTests: E2ETestCase {
         XCTAssertVisible(eventDateButton)
 
         eventDateButton.hit()
-        XCTAssertTrue(eventDateButton.waitUntil(.selected).isSelected)
+        XCTAssertSelected(eventDateButton.waitUntil(.selected))
 
         // MARK: Tap on the event item and check the details
         let eventItem = Helper.itemCell(for: event).waitUntil(.visible)
@@ -333,11 +333,11 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(courseItem.isUnselected)
 
         courseItem.hit()
-        XCTAssertTrue(courseItem.waitUntil(.selected).isSelected)
+        XCTAssertSelected(courseItem.waitUntil(.selected))
 
         backButton.hit()
-        XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
-        XCTAssertTrue(timePicker.waitUntil(.visible).isVisible)
+        XCTAssertVisible(datePicker.waitUntil(.visible))
+        XCTAssertVisible(timePicker.waitUntil(.visible))
 
         timePicker.hit()
         let hourWheel = Helper.EditToDo.DateSelector.hourWheel.waitUntil(.visible)
@@ -356,13 +356,13 @@ class CalendarTests: E2ETestCase {
         let newHourWheelValue = "\(newHourValue) o’clock"
         XCTAssertEqual(hourWheel.waitUntil(.value(expected: newHourWheelValue)).stringValue, newHourWheelValue)
         XCTAssertEqual(meridiemWheel.waitUntil(.value(expected: meridiemWheelValue)).stringValue, meridiemWheelValue)
-        XCTAssertTrue(titleInput.waitUntil(.visible).isVisible)
+        XCTAssertVisible(titleInput.waitUntil(.visible))
 
         titleInput.forceTap()
-        XCTAssertTrue(detailsInput.waitUntil(.visible).isVisible)
+        XCTAssertVisible(detailsInput.waitUntil(.visible))
 
         detailsInput.writeText(text: description)
-        XCTAssertTrue(addButton2.waitUntil(.visible).isVisible)
+        XCTAssertVisible(addButton2.waitUntil(.visible))
 
         // MARK: Check result
         addButton2.hit()
@@ -409,8 +409,8 @@ class CalendarTests: E2ETestCase {
         XCTAssertSelected(userItem)
 
         backButton.hit()
-        XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
-        XCTAssertTrue(timePicker.waitUntil(.visible).isVisible)
+        XCTAssertVisible(datePicker.waitUntil(.visible))
+        XCTAssertVisible(timePicker.waitUntil(.visible))
 
         timePicker.hit()
         let hourWheel = Helper.EditToDo.DateSelector.hourWheel.waitUntil(.visible)
@@ -429,13 +429,13 @@ class CalendarTests: E2ETestCase {
         let newHourWheelValue = "\(newHourValue) o’clock"
         XCTAssertEqual(hourWheel.waitUntil(.value(expected: newHourWheelValue)).stringValue, newHourWheelValue)
         XCTAssertEqual(meridiemWheel.waitUntil(.value(expected: meridiemWheelValue)).stringValue, meridiemWheelValue)
-        XCTAssertTrue(titleInput.waitUntil(.visible).isVisible)
+        XCTAssertVisible(titleInput.waitUntil(.visible))
 
         titleInput.forceTap()
-        XCTAssertTrue(detailsInput.waitUntil(.visible).isVisible)
+        XCTAssertVisible(detailsInput.waitUntil(.visible))
 
         detailsInput.writeText(text: description)
-        XCTAssertTrue(addButton2.waitUntil(.visible).isVisible)
+        XCTAssertVisible(addButton2.waitUntil(.visible))
 
         // MARK: Check result
         addButton2.hit()
@@ -489,13 +489,13 @@ class CalendarTests: E2ETestCase {
         let saveButton = Helper.EditToDo.saveButton.waitUntil(.visible)
         XCTAssertVisible(saveButton)
         XCTAssertTrue(saveButton.isDisabled)
-        XCTAssertTrue(titleInput.waitUntil(.visible).isVisible)
+        XCTAssertVisible(titleInput.waitUntil(.visible))
 
-        XCTAssertTrue(Helper.EditToDo.cancelButton.waitUntil(.visible).isVisible)
-        XCTAssertTrue(Helper.EditToDo.calendarSelector.waitUntil(.visible).isVisible)
-        XCTAssertTrue(Helper.EditToDo.datePicker.waitUntil(.visible).isVisible)
-        XCTAssertTrue(Helper.EditToDo.timePicker.waitUntil(.visible).isVisible)
-        XCTAssertTrue(Helper.EditToDo.detailsInput.waitUntil(.visible).isVisible)
+        XCTAssertVisible(Helper.EditToDo.cancelButton.waitUntil(.visible))
+        XCTAssertVisible(Helper.EditToDo.calendarSelector.waitUntil(.visible))
+        XCTAssertVisible(Helper.EditToDo.datePicker.waitUntil(.visible))
+        XCTAssertVisible(Helper.EditToDo.timePicker.waitUntil(.visible))
+        XCTAssertVisible(Helper.EditToDo.detailsInput.waitUntil(.visible))
 
         // MARK: Edit the title, Save
         titleInput.cutText()

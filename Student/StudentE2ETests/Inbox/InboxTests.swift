@@ -71,7 +71,7 @@ class InboxTests: E2ETestCase {
         XCTAssertVisible(courseItem)
 
         courseItem.hit()
-        XCTAssertTrue(addRecipientButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(addRecipientButton.waitUntil(.visible))
 
         // MARK: Add "student2" as recipient
         addRecipientButton.hit()
@@ -99,7 +99,7 @@ class InboxTests: E2ETestCase {
         bodyInput.writeText(text: "Sample Message of \(student1.name)")
 
         // MARK: Tap "Send" button
-        XCTAssertTrue(sendButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(sendButton.waitUntil(.visible))
         XCTAssertTrue(sendButton.isEnabled)
 
         sendButton.hit()
@@ -167,7 +167,7 @@ class InboxTests: E2ETestCase {
         XCTAssertVisible(starredOption)
         XCTAssertVisible(sentOption)
         XCTAssertVisible(archivedOption)
-        XCTAssertTrue(cancelButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(cancelButton.waitUntil(.visible))
     }
 
     func testMessageDetails() {

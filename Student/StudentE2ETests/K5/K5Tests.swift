@@ -72,7 +72,7 @@ class K5Tests: K5E2ETestCase {
 
         let scheduleButton = Helper.schedule.waitUntil(.visible)
         scheduleButton.hit()
-        XCTAssertTrue(scheduleButton.waitUntil(.selected).isSelected)
+        XCTAssertSelected(scheduleButton.waitUntil(.selected))
 
         let assignmentItemButton = ScheduleHelper.assignmentItemButton(assignment: todaysAssignment).waitUntil(.hittable)
         XCTAssertTrue(assignmentItemButton.isHittable)
@@ -100,7 +100,7 @@ class K5Tests: K5E2ETestCase {
         let gradesButton = Helper.grades.waitUntil(.visible)
         Helper.schedule.actionUntilElementCondition(action: .swipeLeft(.onElement), element: gradesButton, condition: .hittable)
         gradesButton.hit()
-        XCTAssertTrue(gradesButton.waitUntil(.selected).isSelected)
+        XCTAssertSelected(gradesButton.waitUntil(.selected))
 
         let selectGradingPeriodButton = Helper.Grades.selectGradingPeriodButton.waitUntil(.visible)
         XCTAssertVisible(selectGradingPeriodButton)

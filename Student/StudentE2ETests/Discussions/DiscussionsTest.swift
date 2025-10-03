@@ -107,7 +107,7 @@ class DiscussionsTests: E2ETestCase {
         // MARK: Reply to thread
         let replyToPostText = "Text replying to reply of discussion"
         replyToPostButton.hit()
-        XCTAssertTrue(textInput.waitUntil(.visible).isVisible)
+        XCTAssertVisible(textInput.waitUntil(.visible))
         let threadReplyButton = DetailsHelper.Reply.replyButton.waitUntil(.visible)
         XCTAssertVisible(threadReplyButton)
 

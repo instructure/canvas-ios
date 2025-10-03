@@ -148,25 +148,25 @@ class QuizzesTests: E2ETestCase {
         let timeLimitToggleImage = timeLimit.firstImage?.waitUntil(.visible)
         XCTAssertNotNil(timeLimitToggleImage)
         timeLimitToggleImage!.hit()
-        XCTAssertTrue(length.waitUntil(.visible).isVisible)
+        XCTAssertVisible(length.waitUntil(.visible))
 
         allowMultipleAttempts.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
         let allowMultipleAttemptsImage = allowMultipleAttempts.firstImage?.waitUntil(.visible)
         XCTAssertNotNil(allowMultipleAttemptsImage)
         allowMultipleAttemptsImage!.hit()
-        XCTAssertTrue(allowedAttempts.waitUntil(.visible).isVisible)
-        XCTAssertTrue(scoreToKeep.waitUntil(.visible).isVisible)
+        XCTAssertVisible(allowedAttempts.waitUntil(.visible))
+        XCTAssertVisible(scoreToKeep.waitUntil(.visible))
 
         showOneQuestionAtATime.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
         let showOneQuestionAtATimeImage = showOneQuestionAtATime.firstImage?.waitUntil(.visible)
         XCTAssertNotNil(showOneQuestionAtATimeImage)
         showOneQuestionAtATimeImage!.hit()
-        XCTAssertTrue(lockQuestions.waitUntil(.visible).isVisible)
+        XCTAssertVisible(lockQuestions.waitUntil(.visible))
 
         requireAccessCode.actionUntilElementCondition(action: .swipeUp(.onApp, velocity: .slow), condition: .hittable)
         let requireAccessCodeImage = requireAccessCode.firstImage?.waitUntil(.visible)
         XCTAssertNotNil(requireAccessCodeImage)
         requireAccessCodeImage!.hit()
-        XCTAssertTrue(accessCode.waitUntil(.visible).isVisible)
+        XCTAssertVisible(accessCode.waitUntil(.visible))
     }
 }

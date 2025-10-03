@@ -47,7 +47,7 @@ class OfflineTests: OfflineE2ETestCase {
         offlineLine = DashboardHelper.offlineLine.waitUntil(.vanish)
         XCTAssertTrue(isOnline)
         XCTAssertTrue(offlineLine.isVanished)
-        XCTAssertTrue(profileButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(profileButton.waitUntil(.visible))
 
         profileButton.hit()
         XCTAssertTrue(offlineLabel.waitUntil(.vanish).isVanished)
@@ -165,12 +165,12 @@ class OfflineTests: OfflineE2ETestCase {
         unselectedTickerOfCourseButton.hit()
         XCTAssertContains(courseButton.waitUntil(.labelContaining(expected: "Selected")).label, "Selected")
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(selectedTickerOfCourseButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(selectedTickerOfCourseButton.waitUntil(.visible))
         XCTAssertTrue(syncButton.waitUntil(.enabled).isEnabled)
 
         selectedTickerOfCourseButton.hit()
         XCTAssertContains(courseButton.waitUntil(.labelContaining(expected: "Deselected")).label, "Deselected")
-        XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(unselectedTickerOfCourseButton.waitUntil(.visible))
         XCTAssertTrue(selectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
 
         courseButton.hit()
@@ -318,7 +318,7 @@ class OfflineTests: OfflineE2ETestCase {
         pagesButton.hit()
 
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(partiallySelectedTickerOfCourseButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(partiallySelectedTickerOfCourseButton.waitUntil(.visible))
 
         // MARK: Tap "Sync" button
         syncButton.hit()
@@ -368,8 +368,8 @@ class OfflineTests: OfflineE2ETestCase {
 
         // MARK: Check syllabus is not available
         syllabusButton.hit()
-        XCTAssertTrue(notAvailableOfflineLabel.waitUntil(.visible).isVisible)
-        XCTAssertTrue(okButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(notAvailableOfflineLabel.waitUntil(.visible))
+        XCTAssertVisible(okButton.waitUntil(.visible))
 
         // MARK: Check page
         okButton.hit()

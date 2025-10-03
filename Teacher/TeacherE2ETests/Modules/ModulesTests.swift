@@ -163,19 +163,19 @@ class ModulesTests: E2ETestCase {
 
         // MARK: Tap "Done" button, check result
         doneButton.hit()
-        XCTAssertTrue(module1NameLabel.waitUntil(.visible).isVisible)
+        XCTAssertVisible(module1NameLabel.waitUntil(.visible))
         XCTAssertContains(module1NameLabel.label, module1.name)
         XCTAssertContains(module1NameLabel.waitUntil(.visible).label, "published")
-        XCTAssertTrue(module1AssignmentItem.waitUntil(.visible).isVisible)
+        XCTAssertVisible(module1AssignmentItem.waitUntil(.visible))
         XCTAssertContains(module1AssignmentItem.label, module1Assignment.title)
         XCTAssertContains(module1AssignmentItem.label, "published")
-        XCTAssertTrue(module2NameLabel.waitUntil(.visible).isVisible)
+        XCTAssertVisible(module2NameLabel.waitUntil(.visible))
         XCTAssertContains(module2NameLabel.label, module2.name)
         XCTAssertContains(module2NameLabel.label, "published")
-        XCTAssertTrue(module2AssignmentItem.waitUntil(.visible).isVisible)
+        XCTAssertVisible(module2AssignmentItem.waitUntil(.visible))
         XCTAssertContains(module2AssignmentItem.label, module2Assignment.title)
         XCTAssertContains(module2AssignmentItem.label, "published")
-        XCTAssertTrue(publishOptionsButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(publishOptionsButton.waitUntil(.visible))
     }
 
     func testBulkPublishModulesOnly() {
@@ -255,19 +255,19 @@ class ModulesTests: E2ETestCase {
 
         // MARK: Tap "Done" button, check result
         doneButton.hit()
-        XCTAssertTrue(module1NameLabel.waitUntil(.visible).isVisible)
+        XCTAssertVisible(module1NameLabel.waitUntil(.visible))
         XCTAssertContains(module1NameLabel.label, module1.name)
         XCTAssertContains(module1NameLabel.waitUntil(.visible).label, "published")
-        XCTAssertTrue(module1AssignmentItem.waitUntil(.visible).isVisible)
+        XCTAssertVisible(module1AssignmentItem.waitUntil(.visible))
         XCTAssertContains(module1AssignmentItem.label, module1Assignment.title)
         XCTAssertContains(module1AssignmentItem.label, "unpublished")
-        XCTAssertTrue(module2NameLabel.waitUntil(.visible).isVisible)
+        XCTAssertVisible(module2NameLabel.waitUntil(.visible))
         XCTAssertContains(module2NameLabel.label, module2.name)
         XCTAssertContains(module2NameLabel.label, "published")
-        XCTAssertTrue(module2AssignmentItem.waitUntil(.visible).isVisible)
+        XCTAssertVisible(module2AssignmentItem.waitUntil(.visible))
         XCTAssertContains(module2AssignmentItem.label, module2Assignment.title)
         XCTAssertContains(module2AssignmentItem.label, "unpublished")
-        XCTAssertTrue(publishOptionsButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(publishOptionsButton.waitUntil(.visible))
     }
 
     func testBulkUnpublishAllModulesAndItems() {
@@ -350,18 +350,18 @@ class ModulesTests: E2ETestCase {
 
         // MARK: Tap "Done" button, check result
         doneButton.hit()
-        XCTAssertTrue(module1NameLabel.waitUntil(.visible).isVisible)
+        XCTAssertVisible(module1NameLabel.waitUntil(.visible))
         XCTAssertContains(module1NameLabel.label, module1.name)
         XCTAssertContains(module1NameLabel.waitUntil(.visible).label, "unpublished")
-        XCTAssertTrue(module1AssignmentItem.waitUntil(.visible).isVisible)
+        XCTAssertVisible(module1AssignmentItem.waitUntil(.visible))
         XCTAssertContains(module1AssignmentItem.label, module1Assignment.title)
         XCTAssertContains(module1AssignmentItem.label, "unpublished")
-        XCTAssertTrue(module2NameLabel.waitUntil(.visible).isVisible)
+        XCTAssertVisible(module2NameLabel.waitUntil(.visible))
         XCTAssertContains(module2NameLabel.label, module2.name)
         XCTAssertContains(module2NameLabel.label, "unpublished")
-        XCTAssertTrue(module2AssignmentItem.waitUntil(.visible).isVisible)
+        XCTAssertVisible(module2AssignmentItem.waitUntil(.visible))
         XCTAssertContains(module2AssignmentItem.label, module2Assignment.title)
         XCTAssertContains(module2AssignmentItem.label, "unpublished")
-        XCTAssertTrue(publishOptionsButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(publishOptionsButton.waitUntil(.visible))
     }
 }
