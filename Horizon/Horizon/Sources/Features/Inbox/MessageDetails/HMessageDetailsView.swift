@@ -48,8 +48,20 @@ struct HMessageDetailsView: View {
             replyArea
         }
         .background(HorizonUI.colors.surface.pagePrimary)
+        .overlay { loaderView }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationBarHidden(true)
+    }
+
+    @ViewBuilder
+    private var loaderView: some View {
+        if model.isLoaderVisible {
+            ZStack {
+                Color.huiColors.surface.pageSecondary
+                    .ignoresSafeArea()
+                HorizonUI.Spinner(size: .small, showBackground: true)
+            }
+        }
     }
 
     private var messages: some View {

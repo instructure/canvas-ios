@@ -50,6 +50,7 @@ class HMessageDetailsViewModel {
         isSending ? 1.0 : 0.0
     }
     private(set) var messages: [HMessageViewModel] = []
+    private(set) var isLoaderVisible: Bool = false
     var isReplayAreaVisible: Bool = true
     private(set) var headerTitle: String = ""
 
@@ -199,8 +200,10 @@ class HMessageDetailsViewModel {
 
     // MARK: - Private Methods
     private func listenForAnnouncements() {
-        announcementsInteractor?.messages.sink { [weak self] messages in
+        isLoaderVisible = true
+        announcementsInteractor?.messages.dropFirst().sink { [weak self] messages in
             let announcements = messages ?? []
+            self?.isLoaderVisible = false
             self?.headerTitle = announcements.first(where: { $0.id == self?.announcementID })?.title ?? String(localized: "Announcement", bundle: .horizon)
             self?.messages = announcements
                 .filter { $0.id == self?.announcementID }
