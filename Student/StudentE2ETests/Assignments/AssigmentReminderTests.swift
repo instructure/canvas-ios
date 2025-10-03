@@ -113,13 +113,13 @@ class AssignmentReminderTests: E2ETestCase {
 
         // MARK: Choose "5 Minutes Before", check detail screen
         okButton.hit()
-        XCTAssertTrue(fiveMinButton.waitUntil(.visible).isVisible)
-        XCTAssertTrue(doneButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(fiveMinButton.waitUntil(.visible))
+        XCTAssertVisible(doneButton.waitUntil(.visible))
 
         fiveMinButton.hit()
         doneButton.hit()
-        XCTAssertTrue(reminderLabel.waitUntil(.visible).isVisible)
-        XCTAssertTrue(app.find(label: "5 minutes before", type: .staticText).waitUntil(.visible).isVisible)
+        XCTAssertVisible(reminderLabel.waitUntil(.visible))
+        XCTAssertVisible(app.find(label: "5 minutes before", type: .staticText).waitUntil(.visible))
 
         // MARK: Close app, wait for the reminder
         XCUIDevice.shared.press(.home)
@@ -194,8 +194,8 @@ class AssignmentReminderTests: E2ETestCase {
         XCTAssertEqual(timeUnitPicker.stringValue, "Hours Before")
 
         doneButton.hit()
-        XCTAssertTrue(reminderLabel.waitUntil(.visible).isVisible)
-        XCTAssertTrue(app.find(label: "3 hours before", type: .staticText).waitUntil(.visible).isVisible)
+        XCTAssertVisible(reminderLabel.waitUntil(.visible))
+        XCTAssertVisible(app.find(label: "3 hours before", type: .staticText).waitUntil(.visible))
 
         // MARK: Close app, wait for the reminder
         XCUIDevice.shared.press(.home)
@@ -256,8 +256,8 @@ class AssignmentReminderTests: E2ETestCase {
         XCTAssertTrue(doneButton.isDisabled)
 
         // MARK: Choose "5 Minutes Before", check detail screen
-        XCTAssertTrue(fiveMinButton.waitUntil(.visible).isVisible)
-        XCTAssertTrue(doneButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(fiveMinButton.waitUntil(.visible))
+        XCTAssertVisible(doneButton.waitUntil(.visible))
 
         fiveMinButton.hit()
         doneButton.hit()
@@ -337,8 +337,8 @@ class AssignmentReminderTests: E2ETestCase {
         XCTAssertTrue(doneButton.isDisabled)
 
         // MARK: Choose "5 Minutes Before", check detail screen
-        XCTAssertTrue(fiveMinButton.waitUntil(.visible).isVisible)
-        XCTAssertTrue(doneButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(fiveMinButton.waitUntil(.visible))
+        XCTAssertVisible(doneButton.waitUntil(.visible))
 
         fiveMinButton.hit()
         doneButton.hit()
@@ -346,11 +346,11 @@ class AssignmentReminderTests: E2ETestCase {
         let fiveMinutesBeforeLabel = app.find(label: "5 minutes before", type: .staticText).waitUntil(.visible)
         XCTAssertVisible(reminderLabel)
         XCTAssertVisible(fiveMinutesBeforeLabel)
-        XCTAssertTrue(addReminderButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(addReminderButton.waitUntil(.visible))
 
         // MARK: Tap "Add reminder" button again, choose custom
         addReminderButton.hit()
-        XCTAssertTrue(customButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(customButton.waitUntil(.visible))
 
         customButton.hit()
         let numberPicker = ReminderHelper.numberPickerWheel.waitUntil(.visible)

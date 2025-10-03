@@ -200,7 +200,7 @@ class LoginTests: E2ETestCase {
         XCTAssertVisible(changeUserButton)
 
         changeUserButton.hit()
-        XCTAssertTrue(LoginHelper.Start.findSchoolButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(LoginHelper.Start.findSchoolButton.waitUntil(.visible))
 
         // MARK: Check visibility of "Previous Login" cell
         let previousLoginCell = LoginHelper.Start.previousLoginCell(dsUser: teacher1).waitUntil(.visible)

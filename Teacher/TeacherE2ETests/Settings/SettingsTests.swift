@@ -78,7 +78,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Select "Inbox", logout, log back in, check landing page
         inbox.hit()
-        XCTAssertTrue(inbox.waitUntil(.visible).isVisible)
+        XCTAssertVisible(inbox.waitUntil(.visible))
 
         backButton.hit()
         doneButton.hit()
@@ -114,10 +114,10 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Select "Dark Theme", check selection, select "Light Theme", check selection
         dark.hit()
-        XCTAssertTrue(dark.waitUntil(.selected).isSelected)
+        XCTAssertSelected(dark.waitUntil(.selected))
 
         light.hit()
-        XCTAssertTrue(light.waitUntil(.selected).isSelected)
+        XCTAssertSelected(light.waitUntil(.selected))
     }
 
     func testAbout() {

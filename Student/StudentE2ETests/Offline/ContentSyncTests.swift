@@ -63,7 +63,7 @@ class OfflineContentSyncTests: OfflineE2ETestCase {
         discussionsButton.hit()
 
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(partiallySelectedTickerOfCourseButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(partiallySelectedTickerOfCourseButton.waitUntil(.visible))
 
         // MARK: Tap "Sync" button
         syncButton.hit()
@@ -155,7 +155,7 @@ class OfflineContentSyncTests: OfflineE2ETestCase {
         pagesButton.hit()
 
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(partiallySelectedTickerOfCourseButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(partiallySelectedTickerOfCourseButton.waitUntil(.visible))
 
         // MARK: Tap "Sync" button
         syncButton.hit()
@@ -187,8 +187,8 @@ class OfflineContentSyncTests: OfflineE2ETestCase {
 
         // MARK: Open the page, check title and body
         pageItem.hit()
-        XCTAssertTrue(app.find(labelContaining: page.title).waitUntil(.visible).isVisible)
-        XCTAssertTrue(app.find(labelContaining: page.body).waitUntil(.visible).isVisible)
+        XCTAssertVisible(app.find(labelContaining: page.title).waitUntil(.visible))
+        XCTAssertVisible(app.find(labelContaining: page.body).waitUntil(.visible))
     }
 
     func testGradesSync() {
@@ -234,7 +234,7 @@ class OfflineContentSyncTests: OfflineE2ETestCase {
         gradesButton.hit()
 
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(partiallySelectedTickerOfCourseButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(partiallySelectedTickerOfCourseButton.waitUntil(.visible))
 
         // MARK: Tap "Sync" button
         syncButton.hit()
@@ -313,7 +313,7 @@ class OfflineContentSyncTests: OfflineE2ETestCase {
         peopleButton.hit()
 
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(partiallySelectedTickerOfCourseButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(partiallySelectedTickerOfCourseButton.waitUntil(.visible))
 
         // MARK: Tap "Sync" button
         syncButton.hit()
@@ -393,7 +393,7 @@ class OfflineContentSyncTests: OfflineE2ETestCase {
         syllabusButton.hit()
 
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(partiallySelectedTickerOfCourseButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(partiallySelectedTickerOfCourseButton.waitUntil(.visible))
 
         // MARK: Tap "Sync" button
         syncButton.hit()
@@ -469,7 +469,7 @@ class OfflineContentSyncTests: OfflineE2ETestCase {
         assignmentsButton.hit()
 
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(partiallySelectedTickerOfCourseButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(partiallySelectedTickerOfCourseButton.waitUntil(.visible))
 
         // MARK: Tap "Sync" button
         syncButton.hit()

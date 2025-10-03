@@ -57,7 +57,7 @@ class HelpTests: E2ETestCase {
         XCTAssertVisible(reportAProblemButton)
 
         reportAProblemButton.hit()
-        XCTAssertTrue(app.find(label: "Report a Problem").waitUntil(.visible).isVisible)
+        XCTAssertVisible(app.find(label: "Report a Problem").waitUntil(.visible))
 
         // MARK: Check "Ask the Community" button
         app.find(label: "Cancel").hit()

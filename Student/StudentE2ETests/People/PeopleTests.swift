@@ -197,8 +197,8 @@ class PeopleTests: E2ETestCase {
         filterButton.hit()
         teachersButton.hit()
         XCTAssertTrue(person3.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(person1RoleLabel.waitUntil(.visible).isVisible)
-        XCTAssertTrue(person2RoleLabel.waitUntil(.visible).isVisible)
+        XCTAssertVisible(person1RoleLabel.waitUntil(.visible))
+        XCTAssertVisible(person2RoleLabel.waitUntil(.visible))
         XCTAssertEqual(person1RoleLabel.waitUntil(.label(expected: teacherLabel)).label, teacherLabel)
         XCTAssertEqual(person2RoleLabel.waitUntil(.label(expected: teacherLabel)).label, teacherLabel)
 

@@ -94,11 +94,11 @@ class FeatureFlagOfflineTests: OfflineE2ETestCase {
         XCTAssertVisible(backButton)
 
         backButton.hit()
-        XCTAssertTrue(announcementItem.waitUntil(.visible).isVisible)
-        XCTAssertTrue(backButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(announcementItem.waitUntil(.visible))
+        XCTAssertVisible(backButton.waitUntil(.visible))
 
         backButton.hit()
-        XCTAssertTrue(discussionButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(discussionButton.waitUntil(.visible))
 
         discussionButton.hit()
         let discussionItem = DiscussionsHelper.discussionButton(discussion: discussion).waitUntil(.visible)
