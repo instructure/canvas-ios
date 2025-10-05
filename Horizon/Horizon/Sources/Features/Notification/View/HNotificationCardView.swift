@@ -34,7 +34,7 @@ struct HNotificationCardView: View {
                 Spacer()
                 if !isRead {
                     Circle()
-                        .fill(Color.huiColors.surface.institution)
+                        .fill(Color.huiColors.surface.inversePrimary)
                         .frame(width: 8, height: 8)
                         .accessibilityLabel("Unread indicator")
                         .accessibilityHidden(false)

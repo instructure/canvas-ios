@@ -107,7 +107,7 @@ struct HNotificationView: View {
                 .foregroundStyle(Color.huiColors.text.title)
         }
         .padding(.bottom, .huiSpaces.space16)
-        .padding(.horizontal, .huiSpaces.space16)
+        .padding(.horizontal, .huiSpaces.space24)
         .background(Color.huiColors.surface.pagePrimary)
         .accessibilityElement(children: .contain)
     }
@@ -125,22 +125,15 @@ struct HNotificationView: View {
     }
 
     private var seeMoreButton: some View {
-        Button {
+        HorizonUI.PrimaryButton(
+            String(localized: "Show more", bundle: .horizon),
+            type: .grayOutline,
+            isSmall: true,
+            fillsWidth: true
+        ) {
             viewModel.seeMore()
-        } label: {
-            Text("See More", bundle: .horizon)
-                .huiTypography(.buttonTextMedium)
-                .foregroundStyle(Color.huiColors.text.title)
-                .frame(maxWidth: .infinity)
-                .frame(height: 32)
-                .huiCornerRadius(level: .level6)
-                .huiBorder(
-                    level: .level1,
-                    color: Color.huiColors.lineAndBorders.lineStroke,
-                    radius: HorizonUI.CornerRadius.level6.attributes.radius
-                )
         }
-        .accessibilityLabel("See More")
+        .accessibilityLabel("Show more")
         .accessibilityHint("Double tap to load more notifications")
     }
 }
