@@ -21,7 +21,7 @@ import Combine
 
 #if DEBUG
 final class NotificationInteractorPreview: NotificationInteractor {
-    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never> {
+    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Error> {
         Just([
             .init(
                 id: "1",
@@ -38,6 +38,7 @@ final class NotificationInteractorPreview: NotificationInteractor {
 
             )
         ])
+        .setFailureType(to: Error.self)
         .eraseToAnyPublisher()
     }
 

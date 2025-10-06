@@ -27,6 +27,11 @@ final class HNotificationViewModel {
     private(set) var notifications: [NotificationModel] = []
     private(set) var isLoaderVisible: Bool = true
     private(set) var isSeeMoreButtonVisible: Bool = false
+    private(set) var errorMessage = ""
+
+    // MARK: - Inputs / Outputs
+
+    var isErrorVisiable: Bool = false
 
     // MARK: - Private Properties
 
@@ -51,7 +56,7 @@ final class HNotificationViewModel {
     ) {
         self.interactor = interactor
         self.router = router
-        fetchNotifications()
+        fetchNotifications(ignoreCache: false)
     }
 
     // MARK: - Input Actions
@@ -64,16 +69,13 @@ final class HNotificationViewModel {
     @MainActor
     func refresh() async {
         await withCheckedContinuation { continuation in
-            interactor.getNotifications(ignoreCache: true)
-                .sink { [weak self] notifications in
-                    continuation.resume()
-                    self?.handleResponse(notifications: notifications)
-                }
-                .store(in: &subscriptions)
+            fetchNotifications(ignoreCache: true) {
+                continuation.resume()
+            }
         }
     }
 
-    func navigeteToDetails(
+    func navigateToDetails(
         notification: NotificationModel,
         viewController: WeakViewController
     ) {
@@ -103,9 +105,18 @@ final class HNotificationViewModel {
 
     // MARK: - Private Functions
 
-    private func fetchNotifications() {
-        interactor.getNotifications(ignoreCache: false)
-            .sink { [weak self] notifications in
+    private func fetchNotifications(
+        ignoreCache: Bool,
+        completion: (() -> Void)? = nil
+    ) {
+        interactor
+            .getNotifications(ignoreCache: ignoreCache)
+            .sinkFailureOrValue { [weak self] error in
+                completion?()
+                self?.isErrorVisiable = true
+                self?.errorMessage = error.localizedDescription
+            } receiveValue: { [weak self] notifications in
+                completion?()
                 self?.handleResponse(notifications: notifications)
             }
             .store(in: &subscriptions)

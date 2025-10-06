@@ -21,6 +21,11 @@ import Combine
 import Foundation
 
 final class NotificationInteractorMock: NotificationInteractor {
+    private let shouldReturnError: Bool
+
+    init(shouldReturnError: Bool = false) {
+        self.shouldReturnError = shouldReturnError
+    }
     private let mocks: [NotificationModel] = [
         NotificationModel(
             id: "1",
@@ -177,9 +182,16 @@ final class NotificationInteractorMock: NotificationInteractor {
             htmlURL: URL(string: "https://course/11/html")
         )
     ]
-    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never> {
-        return Just(mocks)
-            .eraseToAnyPublisher()
+
+    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Error> {
+        if shouldReturnError {
+            return Fail(error: NSError(domain: "NotificationInteractorMock", code: 1, userInfo: [NSLocalizedDescriptionKey: "Mock error"]))
+                .eraseToAnyPublisher()
+        } else {
+            return Just(mocks)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
     }
 
     func getUnreadNotificationCount() -> AnyPublisher<Int, Never> {

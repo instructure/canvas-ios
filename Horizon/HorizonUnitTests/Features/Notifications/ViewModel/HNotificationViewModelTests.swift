@@ -34,6 +34,20 @@ final class HNotificationViewModelTests: HorizonTestCase {
         XCTAssertEqual(testee.notifications[2].type, .dueDate)
     }
 
+    func testRefreshShowError() async {
+        // Given
+        let testee = HNotificationViewModel(
+            interactor: NotificationInteractorMock(shouldReturnError: true),
+            router: router
+        )
+        // When
+        _ = await testee.refresh()
+        // Then
+        XCTAssertEqual(testee.notifications.count, 0)
+        XCTAssertTrue(testee.isErrorVisiable)
+
+    }
+
     func testRefreshSeeMore() async {
         // Given
         let testee = HNotificationViewModel(interactor: NotificationInteractorMock(), router: router)
@@ -65,7 +79,7 @@ final class HNotificationViewModelTests: HorizonTestCase {
             htmlURL: nil
         )
         // When
-        testee.navigeteToDetails(notification: notification, viewController: viewController)
+        testee.navigateToDetails(notification: notification, viewController: viewController)
         // Then
         XCTAssertEqual(router.calls.last?.0, URLComponents(string: "https://horizon.cd.instructure.com/courses/477/assignments/43973"))
         XCTAssertEqual(router.calls.last?.1, sourceView)
@@ -93,7 +107,7 @@ final class HNotificationViewModelTests: HorizonTestCase {
             htmlURL: URL(string: "https://horizon.cd.instructure.com/courses/477/assignments/43973")
         )
         // When
-        testee.navigeteToDetails(notification: notification, viewController: viewController)
+        testee.navigateToDetails(notification: notification, viewController: viewController)
         // Then
         XCTAssertEqual(router.calls.last?.0, URLComponents(string: "https://horizon.cd.instructure.com/courses/477/assignments/43973"))
         XCTAssertEqual(router.calls.last?.1, sourceView)
@@ -121,7 +135,7 @@ final class HNotificationViewModelTests: HorizonTestCase {
             htmlURL: nil
         )
         // When
-        testee.navigeteToDetails(notification: notification, viewController: viewController)
+        testee.navigateToDetails(notification: notification, viewController: viewController)
         // Then
         let courseDetailsView = router.lastViewController as? CoreHostingController<Horizon.CourseDetailsView>
         XCTAssertNotNil(courseDetailsView)
@@ -148,7 +162,7 @@ final class HNotificationViewModelTests: HorizonTestCase {
             htmlURL: nil
         )
         // When
-        testee.navigeteToDetails(notification: notification, viewController: viewController)
+        testee.navigateToDetails(notification: notification, viewController: viewController)
         // Then
         let messageDetailsView = router.lastViewController as? CoreHostingController<Horizon.HMessageDetailsView>
         XCTAssertNotNil(messageDetailsView)

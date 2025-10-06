@@ -21,7 +21,7 @@ import Combine
 import Core
 
 protocol NotificationInteractor {
-    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never>
+    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Error>
     func getUnreadNotificationCount() -> AnyPublisher<Int, Never>
 }
 
@@ -41,11 +41,17 @@ final class NotificationInteractorLive: NotificationInteractor {
         self.formatter = formatter
     }
 
-    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never> {
-        Publishers.Zip3(
-            fetchNotifications(ignoreCache: ignoreCache),
-            fetchCourses(),
-            fetchGlobalNotifications(ignoreCache: ignoreCache)
+    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Error> {
+        let notificationsPublisher = fetchNotifications(ignoreCache: ignoreCache)
+        let coursesPublisher = fetchCourses()
+            .setFailureType(to: Error.self)
+        let globalNotificationsPublisher = fetchGlobalNotifications(ignoreCache: ignoreCache)
+            .setFailureType(to: Error.self)
+
+        return Publishers.Zip3(
+            notificationsPublisher,
+            coursesPublisher,
+            globalNotificationsPublisher
         )
         .map { [weak self] activities, courses, globalNotifications -> [NotificationModel] in
             var localNotifications = self?.formatter.formatNotifications(activities, courses: courses) ?? []
@@ -56,26 +62,31 @@ final class NotificationInteractorLive: NotificationInteractor {
     }
 
     func getUnreadNotificationCount() -> AnyPublisher<Int, Never> {
-        Publishers.Zip(fetchNotifications(ignoreCache: true), fetchCourses())
-            .map { [weak self] activities, courses -> [NotificationModel] in
-                self?.formatter.formatNotifications(activities, courses: courses) ?? []
+        let notificationsPublisher = fetchNotifications(ignoreCache: true)
+            .replaceError(with: [])
+        let coursesPublisher = fetchCourses()
+
+        return Publishers.Zip(
+            notificationsPublisher,
+            coursesPublisher
+        )
+        .map { [weak self] activities, courses -> [NotificationModel] in
+            self?.formatter.formatNotifications(activities, courses: courses) ?? []
+        }
+        .map { notifications in
+            notifications.reduce(0) { count, notification in
+                notification.isRead ? count : count + 1
             }
-            .map { notifications in
-                notifications.reduce(0) { count, notification in
-                    notification.isRead ? count : count + 1
-                }
-            }
-            .replaceError(with: 0)
-            .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
     }
 
-    private func fetchNotifications(ignoreCache: Bool) -> AnyPublisher<[HActivity], Never> {
+    private func fetchNotifications(ignoreCache: Bool) -> AnyPublisher<[HActivity], Error> {
         ReactiveStore(useCase: GetActivities(onlyActiveCourses: true))
             .getEntities(ignoreCache: ignoreCache)
-            .replaceError(with: [])
-            .flatMap { Publishers.Sequence(sequence: $0)}
-            .map { HActivity(from: $0) }
-            .collect()
+            .map { activities in
+                activities.map { HActivity(from: $0) }
+            }
             .eraseToAnyPublisher()
     }
 

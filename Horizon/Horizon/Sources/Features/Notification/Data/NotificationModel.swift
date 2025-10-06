@@ -73,21 +73,9 @@ struct NotificationModel: Identifiable {
         case calendar.isDateInYesterday(date):
             return String(localized: "Yesterday", bundle: .horizon)
         case calendar.isDate(date, equalTo: now, toGranularity: .weekOfYear):
-            return Self.weekdayFormatter.string(from: date)
+            return Date.weekdayFormatter.string(from: date)
         default:
-            return Self.fallbackFormatter.string(from: date)
+            return date.formatted(format: "MMM d, yyyy")
         }
     }
-
-    private static let weekdayFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE" // Monday, Tuesday...
-        return formatter
-    }()
-
-    private static let fallbackFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, yyyy" // Sep 24, 2025
-        return formatter
-    }()
 }

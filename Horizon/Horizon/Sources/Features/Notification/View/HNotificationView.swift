@@ -28,7 +28,7 @@ struct HNotificationView: View {
 
     // MARK: - Dependencies
 
-    private let viewModel: HNotificationViewModel
+    @State private var viewModel: HNotificationViewModel
 
     init(viewModel: HNotificationViewModel) {
         self.viewModel = viewModel
@@ -71,7 +71,7 @@ struct HNotificationView: View {
             } else {
                 ForEach(viewModel.notifications) { activity in
                     Button {
-                        viewModel.navigeteToDetails(
+                        viewModel.navigateToDetails(
                             notification: activity,
                             viewController: viewController
                         )
@@ -94,6 +94,13 @@ struct HNotificationView: View {
                     .padding(.horizontal, .huiSpaces.space24)
             }
         }
+        .huiToast(
+            viewModel: .init(
+                text: viewModel.errorMessage,
+                style: .error
+            ),
+            isPresented: $viewModel.isErrorVisiable
+        )
     }
 
     private var navigationBar: some View {
