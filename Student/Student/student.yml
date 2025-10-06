@@ -54,7 +54,7 @@ schemes:
       targets:
         - Core/CoreTests
         - StudentUnitTests
-        # - Horizon/HorizonUnitTests
+        - Horizon/HorizonUnitTests
         - Horizon/HorizonSnapshotTests
         - name: Core/CoreTester
           skipped: true
