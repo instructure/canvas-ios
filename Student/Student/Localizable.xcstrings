@@ -20664,7 +20664,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Setja í safn"
+            "value" : "Safn"
           }
         },
         "it" : {
@@ -69998,13 +69998,13 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bloquejat"
+            "value" : "S’ha bloquejat"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wedi Cloi"
+            "value" : "Wedi cloi"
           }
         },
         "da" : {
