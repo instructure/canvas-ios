@@ -82,11 +82,10 @@ struct IntroBlock: View {
                     .foregroundStyle(foregroundColor)
             }
             if isOverdue {
-                HorizonUI.Pill(
-                    title: String(localized: "Overdue", bundle: .horizon),
-                    style: .outline(.init(borderColor: foregroundColor, textColor: foregroundColor, iconColor: foregroundColor)),
-                    isUppercased: true,
-                    icon: nil
+                HorizonUI.StatusChip(
+                    title: String(localized: "Overdue", bundle: .horizon).uppercased(),
+                    style: .white,
+                    isFilled: false
                 )
             }
         }

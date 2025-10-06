@@ -47,11 +47,9 @@ struct ScoresAssignmentsView: View {
                         let submissionStatus = assignment.status
                         HStack(spacing: .huiSpaces.space4) {
                             Text("Status: ", bundle: .horizon)
-                            HorizonUI.Pill(
+                            HorizonUI.StatusChip(
                                 title: submissionStatus.text,
-                                style: submissionStatus == .missing ? .outline(.danger) : .outline(.institution),
-                                isUppercased: false,
-                                icon: nil
+                                style: submissionStatus == .missing ? .red : .sky
                             )
                         }
                         Text("Result: \(assignment.pointsResult)", bundle: .horizon)
