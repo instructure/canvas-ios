@@ -199,5 +199,5 @@ public extension URLComponents {
 }
 
 public extension CharacterSet {
-    static let urlSafe = CharacterSet(charactersIn: ":/?&=#%._").union(.alphanumerics)
+    static let urlSafe = CharacterSet(charactersIn: ":/?&=#%._-").union(.alphanumerics)
 }
