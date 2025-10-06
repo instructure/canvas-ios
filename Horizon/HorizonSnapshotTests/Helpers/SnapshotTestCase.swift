@@ -17,16 +17,15 @@
 //
 
 @testable import Core
+import CoreData
+@testable import Horizon
+import HorizonUI
 import SnapshotTesting
 import SwiftUI
 import TestsFoundation
 import XCTest
-@testable import Horizon
-import CoreData
-import HorizonUI
 
 class HorizonSnapshotTestCase: XCTestCase {
-
     struct Device {
         let name: String
         let config: ViewImageConfig
@@ -40,7 +39,6 @@ class HorizonSnapshotTestCase: XCTestCase {
             name: "iPhoneSE",
             config: .iPhoneSe
         )
-
     }
 
     static let defaultDevices = [
@@ -56,7 +54,7 @@ class HorizonSnapshotTestCase: XCTestCase {
     func snapshotDirectory(file: StaticString = #file) -> String? {
         let testFilePath = "\(file)"
         if let featureRange = testFilePath.range(of: "/Features/") {
-            if let lastSlash = testFilePath.range(of: "/", options: .backwards, range: featureRange.upperBound..<testFilePath.endIndex) {
+            if let lastSlash = testFilePath.range(of: "/", options: .backwards, range: featureRange.upperBound ..< testFilePath.endIndex) {
                 let basePath = testFilePath[..<lastSlash.lowerBound]
                 return "\(basePath)/__Snapshots__"
             }
@@ -175,10 +173,11 @@ class HorizonSnapshotTestCase: XCTestCase {
         default: return "default"
         }
     }
-    
+
     var database: NSPersistentContainer {
         return TestsFoundation.singleSharedTestDatabase
     }
+
     var databaseClient: NSManagedObjectContext {
         return database.viewContext
     }
