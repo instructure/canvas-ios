@@ -45,7 +45,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     var assignmentID = ""
     var courseID = ""
     private(set) var env: AppEnvironment = .shared
-    var studentID = ""
+    var studentID: StudentID = .init("")
     private var minDate = Clock.now
     private var maxDate = Clock.now
     private var userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
@@ -58,7 +58,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     lazy var course = env.subscribe(GetCourse(courseID: courseID)) {  [weak self] in
         self?.update()
     }
-    lazy var student = env.subscribe(GetSearchRecipients(context: .course(courseID), userID: studentID)) { [weak self] in
+    lazy var student = env.subscribe(GetSearchRecipients(context: .course(courseID), userID: studentID.raw)) { [weak self] in
         self?.update()
     }
     lazy var teachers = env.subscribe(GetSearchRecipients(context: .course(courseID), qualifier: .teachers)) { [weak self] in
@@ -78,7 +78,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.courseID = courseID
-        controller.studentID = studentID
+        controller.studentID = StudentID(studentID)
         controller.userNotificationCenter = userNotificationCenter
         controller.submissionURLInteractor = submissionURLInteractor
         controller.env = env
@@ -189,7 +189,11 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
 
     func update() {
         guard let assignment = assignment.first else { return }
-        let submission = assignment.submissions?.first(where: { $0.userID == studentID })
+
+        let submissions = assignment.submissions ?? []
+        let gUserID = studentID.sameForm(as: submissions.first?.userID)
+
+        let submission = submissions.first(where: { $0.userID == gUserID })
         let displayProperties = submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
         title = course.first?.name ?? String(localized: "Assignment Details", bundle: .parent)
 
@@ -220,7 +224,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
 
     func reminderDateChanged(selectedDate: Date?) {
         guard let selectedDate = selectedDate, let assignment = assignment.first else { return }
-        localNotifications.setReminder(for: assignment, at: selectedDate, studentID: studentID) { error in performUIUpdate { [self] in
+        localNotifications.setReminder(for: assignment, at: selectedDate, studentID: studentID.raw) { error in performUIUpdate { [self] in
             if error == nil {
                 reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
                 self.selectedDate = selectedDate
@@ -306,15 +310,18 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             return
         }
 
+        let observedUserID = studentID.value(for: env)
         let submissionURL = submissionURLInteractor.submissionURL(
             assignmentHtmlURL: assignmentHtmlURL,
-            observedUserID: studentID,
+            observedUserID: observedUserID,
             isAssignmentEnhancementsEnabled: featuresStore.isFeatureFlagEnabled(.assignmentEnhancements)
         )
 
         let interactor = ParentSubmissionInteractorLive(
             assignmentHtmlURL: submissionURL,
-            observedUserID: studentID
+            observedUserID: observedUserID,
+            loginSession: env.currentSession,
+            api: env.api
         )
         let viewModel = ParentSubmissionViewModel(interactor: interactor, router: router)
         let submissionsViewController = ParentSubmissionViewController(viewModel: viewModel)
@@ -323,5 +330,27 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             from: self,
             options: .modal(.overFullScreen)
         )
+    }
+}
+
+struct StudentID {
+
+    let raw: String
+    init(_ value: String) {
+        self.raw = value
+    }
+
+    func sameForm(as otherUserID: String?) -> String {
+        raw.asGlobalID(of: otherUserID?.shardID)
+    }
+
+    func value(for env: AppEnvironment) -> String {
+        env.isRoot ? raw : raw.asGlobalID(of: env.sessionShardID)
+    }
+}
+
+extension ColorScheme {
+    static func observee(_ studentID: StudentID) -> ColorScheme {
+        observee(studentID.raw)
     }
 }

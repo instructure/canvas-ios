@@ -72,24 +72,24 @@ let router = Router(routes: [
         return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID, env: env)
     },
 
-    RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { _, params, _ in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { _, params, _, env in
         guard let courseID = params["courseID"],
               let assignmentID = params["assignmentID"],
               let studentID = params["userID"]
         else { return nil }
-        return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID, env: .shared)
+        return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID, env: env)
     },
 
-    RouteHandler("/courses/:courseID/grades") { _, params, _ in
+    RouteHandler("/courses/:courseID/grades") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
         guard let studentID = currentStudentID else { return nil }
-        return CourseDetailsViewController.create(courseID: courseID, studentID: studentID)
+        return CourseDetailsViewController.create(courseID: courseID, studentID: studentID, env: env)
     },
 
-    RouteHandler("/courses/:courseID/grades/:userID") { _, params, _ in
+    RouteHandler("/courses/:courseID/grades/:userID") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
         guard let studentID = params["userID"] else { return nil }
-        return CourseDetailsViewController.create(courseID: courseID, studentID: studentID)
+        return CourseDetailsViewController.create(courseID: courseID, studentID: studentID, env: env)
     },
 
     RouteHandler("/:context/:contextID/calendar_events/:eventID") { _, params, _ in
@@ -175,7 +175,7 @@ let router = Router(routes: [
     RouteHandler("/:context/:contextID/wiki/:url") {
         pageViewController(url: $0, params: $1, userInfo: $2, env: $3)
     }
-])
+], courseTabUrlInteractor: .init())
 
 private func pageViewController(url: URLComponents, params: [String: String], userInfo: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
