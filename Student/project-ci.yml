@@ -30,6 +30,11 @@ projectReferences:
   Horizon:
     path: ../Horizon/Horizon.xcodeproj
 packages:
+  # Local
+  HorizonUI:
+    path: ../packages/HorizonUI
+
+  # Remote
   Pendo:
     url: https://github.com/pendo-io/pendo-mobile-sdk
     exactVersion: 3.7.5
