@@ -71,6 +71,8 @@ open class CoreWebView: WKWebView {
     private var env: AppEnvironment = .shared
     private var subscriptions = Set<AnyCancellable>()
 
+    private weak var progressIndicator: CircleProgressView?
+
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
@@ -188,6 +190,33 @@ open class CoreWebView: WKWebView {
         }
 
         registerForTraitChanges()
+        addProgressIndicator()
+        showProgressIndicator()
+    }
+
+    private func addProgressIndicator() {
+        let progressView = CircleProgressView()
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(progressView)
+        NSLayoutConstraint.activate([
+            progressView.widthAnchor.constraint(equalToConstant: 40),
+            progressView.heightAnchor.constraint(equalToConstant: 40),
+            progressView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            progressView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ])
+        self.progressIndicator = progressView
+    }
+
+    private func showProgressIndicator() {
+        progressIndicator?.startAnimating()
+    }
+
+    private func hideProgressIndicator() {
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.progressIndicator?.alpha = 0
+        } completion: { [weak self] _ in
+            self?.progressIndicator?.stopAnimating()
+        }
     }
 
     @discardableResult
@@ -548,7 +577,7 @@ extension CoreWebView: WKNavigationDelegate {
         if let fragment = url?.fragment {
             scrollIntoView(fragment: fragment)
         }
-
+        hideProgressIndicator()
         features.forEach { $0.webView(webView, didFinish: navigation) }
     }
 
@@ -557,6 +586,7 @@ extension CoreWebView: WKNavigationDelegate {
         didFail navigation: WKNavigation!,
         withError error: any Error
     ) {
+        hideProgressIndicator()
         checkFileLoadNavigationAndExecuteCallback(navigation: navigation, error: error)
     }
 
@@ -565,6 +595,7 @@ extension CoreWebView: WKNavigationDelegate {
         didFailProvisionalNavigation navigation: WKNavigation!,
         withError error: any Error
     ) {
+        hideProgressIndicator()
         checkFileLoadNavigationAndExecuteCallback(navigation: navigation, error: error)
     }
 
