@@ -38,15 +38,15 @@ class APIPageTests: XCTestCase {
     }
 
     func testGetPageRequest() {
-        XCTAssertEqual(GetPageRequest(context: courseContext, url: "course-page").path, "courses/42/pages/course%2Dpage")
-        XCTAssertEqual(GetPageRequest(context: groupContext, url: "group-page").path, "groups/42/pages/group%2Dpage")
-        XCTAssertEqual(GetPageRequest(context: courseContext, url: "2-|-textbook-chapters-unit-3").path, "courses/42/pages/2%2D%7C%2Dtextbook%2Dchapters%2Dunit%2D3")
+        XCTAssertEqual(GetPageRequest(context: courseContext, url: "course-page").path, "courses/42/pages/course-page")
+        XCTAssertEqual(GetPageRequest(context: groupContext, url: "group-page").path, "groups/42/pages/group-page")
+        XCTAssertEqual(GetPageRequest(context: courseContext, url: "2-|-textbook-chapters-unit-3").path, "courses/42/pages/2-%7C-textbook-chapters-unit-3")
     }
 
     func testDeletePageRequest() {
-        XCTAssertEqual(DeletePageRequest(context: courseContext, url: "course-page").path, "courses/42/pages/course%2Dpage")
-        XCTAssertEqual(DeletePageRequest(context: courseContext, url: "2-|-textbook-chapters-unit-3").path, "courses/42/pages/2%2D%7C%2Dtextbook%2Dchapters%2Dunit%2D3")
-        XCTAssertEqual(DeletePageRequest(context: groupContext, url: "group-page").path, "groups/42/pages/group%2Dpage")
+        XCTAssertEqual(DeletePageRequest(context: courseContext, url: "course-page").path, "courses/42/pages/course-page")
+        XCTAssertEqual(DeletePageRequest(context: courseContext, url: "2-|-textbook-chapters-unit-3").path, "courses/42/pages/2-%7C-textbook-chapters-unit-3")
+        XCTAssertEqual(DeletePageRequest(context: groupContext, url: "group-page").path, "groups/42/pages/group-page")
         XCTAssertEqual(DeletePageRequest(context: courseContext, url: "course-page").method, APIMethod.delete)
     }
 }
