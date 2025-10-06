@@ -13332,13 +13332,13 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bloquejat"
+            "value" : "S’ha bloquejat"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wedi Cloi"
+            "value" : "Wedi cloi"
           }
         },
         "da" : {
