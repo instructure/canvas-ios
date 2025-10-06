@@ -278,6 +278,13 @@
         <attribute name="overviewDescription" optional="YES" attributeType="String"/>
         <attribute name="state" attributeType="String"/>
     </entity>
+    <entity name="CDHCourseTools" representedClassName="Core.CDHCourseTools" syncable="YES">
+        <attribute name="courseContextsCodes" attributeType="String"/>
+        <attribute name="iconURL" optional="YES" attributeType="URI"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+    </entity>
     <entity name="CDHLearnCourse" representedClassName="Core.CDHLearnCourse" syncable="YES">
         <attribute name="enrollmentId" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
