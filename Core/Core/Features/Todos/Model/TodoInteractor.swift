@@ -59,10 +59,9 @@ public final class TodoInteractorLive: TodoInteractor {
                 )
                 .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
                 .map { plannables in
+                    let coursesByCanvasContextIds = Dictionary(uniqueKeysWithValues: courses.map { ($0.canvasContextID, $0) })
                     return plannables.compactMap { plannable in
-                        let course = courses.first { course in
-                            course.canvasContextID == plannable.canvasContextIDRaw
-                        }
+                        let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
                         return TodoItemViewModel(plannable, course: course)
                     }
                 }
