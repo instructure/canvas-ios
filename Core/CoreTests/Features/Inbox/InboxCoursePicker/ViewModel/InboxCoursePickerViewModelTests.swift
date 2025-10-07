@@ -55,18 +55,15 @@ class InboxCoursePickerViewModelTests: CoreTestCase {
     }
 
     func testConcludedCourseSelection() {
-        var invalidations = 0
-        let invalidationBlock = { invalidations += 1}
-
         // Pre-selection
         let active = Course.make(
             from: .make(id: "a1", name: "Active Course"),
             in: environment.database.viewContext
         )
 
-        testee.onSelect(selected: active, onInvalidated: invalidationBlock)
+        testee.onSelect(selected: active)
 
-        XCTAssertEqual(invalidations, 0)
+        XCTAssertNil(testee.snackbarViewModel.visibleSnack)
         XCTAssertEqual(testee.selectedRecipientContext?.context.id, active.id)
 
         // Concluded Course
@@ -84,9 +81,9 @@ class InboxCoursePickerViewModelTests: CoreTestCase {
             in: environment.database.viewContext
         )
 
-        testee.onSelect(selected: concluded, onInvalidated: invalidationBlock)
+        testee.onSelect(selected: concluded)
 
-        XCTAssertEqual(invalidations, 1)
+        XCTAssertEqual(testee.snackbarViewModel.visibleSnack, "Course concluded. Unable to send messages!")
         XCTAssertNil(testee.selectedRecipientContext)
     }
 
