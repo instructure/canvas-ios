@@ -56,7 +56,6 @@ final class CourseCardsInteractorLive: CourseCardsInteractor {
                 let shouldIgnoreCache = param.object != nil ? true : ignoreCache
                 return ReactiveStore(useCase: GetHCoursesProgressionUseCase(userId: unownedSelf.userId, horizonCourses: true))
                     .getEntities(ignoreCache: shouldIgnoreCache)
-//                    .replaceError(with: [])
                     .flatMap {
                         $0.publisher
                             .map { HCourse(from: $0, modules: nil) }

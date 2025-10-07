@@ -1,0 +1,279 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import CombineSchedulers
+@testable import Core
+@testable import Horizon
+import XCTest
+
+final class CourseCardsViewModelTests: HorizonTestCase {
+    private var courseCardsInteractor: CourseCardsInteractorMock!
+    private var programInteractor: ProgramInteractorMock!
+    private var onTapProgramCalled = false
+    private var onTapProgramModel: ProgramSwitcherModel?
+
+    override func setUp() {
+        super.setUp()
+        courseCardsInteractor = CourseCardsInteractorMock()
+        programInteractor = ProgramInteractorMock()
+        onTapProgramCalled = false
+        onTapProgramModel = nil
+    }
+
+    override func tearDown() {
+        courseCardsInteractor = nil
+        programInteractor = nil
+        super.tearDown()
+    }
+
+    // MARK: - Initialization Tests
+
+    func testInitializationFetchesCourses() {
+        // Given
+        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+
+        // When
+        let testee = createVM()
+
+        // Then
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.courses.count, 3)
+    }
+
+    // MARK: - Success Cases
+
+    func testFetchCoursesSuccessWithActiveCourses() {
+        // Given
+        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+
+        // When
+        let testee = createVM()
+
+        // Then
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.courses.count, 3)
+        XCTAssertEqual(testee.courses[0].id, "course-1")
+        XCTAssertEqual(testee.courses[0].name, "iOS Development 101")
+        XCTAssertEqual(testee.courses[0].progress, 0.75)
+        XCTAssertNotNil(testee.courses[0].currentLearningObject)
+    }
+
+    func testFetchCoursesSuccessWithEmptyResult() {
+        // Given
+        courseCardsInteractor.coursesToReturn = []
+
+        // When
+        let testee = createVM()
+
+        // Then
+        XCTAssertEqual(testee.state, .empty)
+        XCTAssertEqual(testee.courses.count, 0)
+    }
+
+    func testFetchCoursesFiltersOnlyActiveCourses() {
+        // Given
+        courseCardsInteractor.coursesToReturn = HCourseStubs.mixedStateCourses
+
+        // When
+        let testee = createVM()
+
+        // Then
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.courses.count, 3)
+        XCTAssertTrue(testee.courses.allSatisfy { $0.state == HCourse.EnrollmentState.active.rawValue })
+    }
+
+    func testFetchCoursesAttachesProgramsToCourses() {
+        // Given
+        let program = Program(
+            id: "program-1",
+            name: "iOS Developer Track",
+            variant: "Full-Time",
+            description: "Complete iOS development program",
+            date: "2025-09-01",
+            courseCompletionCount: 1,
+            courses: [
+                ProgramCourse(
+                    id: "course-1",
+                    isSelfEnrolled: true,
+                    isRequired: true,
+                    status: "ENROLLED",
+                    progressID: "progress-1",
+                    completionPercent: 75.0
+                )
+            ]
+        )
+
+        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        programInteractor.programsToReturn = [program]
+
+        // When
+        let testee = createVM()
+
+        // Then
+        XCTAssertEqual(testee.courses.count, 3)
+        XCTAssertEqual(testee.courses[0].programs.count, 1)
+        XCTAssertEqual(testee.courses[0].programs[0].id, "program-1")
+        XCTAssertEqual(testee.courses[1].programs.count, 0)
+    }
+
+    // MARK: - Error Cases
+
+    func testFetchCoursesFailureShowsError() {
+        // Given
+        courseCardsInteractor.shouldFail = true
+
+        // When
+        let testee = createVM()
+
+        // Then
+        XCTAssertEqual(testee.state, .error)
+    }
+
+    func testFetchProgramsFailureShowsError() {
+        // Given
+        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        programInteractor.shouldFail = true
+
+        // When
+        let testee = createVM()
+
+        // Then
+        XCTAssertEqual(testee.state, .error)
+    }
+
+    // MARK: - Reload Tests
+
+    func testReloadFetchesCoursesAgain() {
+        // Given
+        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        let testee = createVM()
+        XCTAssertEqual(testee.courses.count, 3)
+
+        // When
+        courseCardsInteractor.coursesToReturn = [HCourseStubs.activeCourses[0]]
+
+        // Then
+        testee.reload(completion: nil)
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.courses.count, 1)
+        XCTAssertEqual(testee.courses[0].id, "course-1")
+    }
+
+    // MARK: - Navigation Tests
+
+    func testNavigateToItemSequence() {
+        // Given
+        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        let testee = createVM()
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+        let url = URL(string: "https://example.com/courses/1/modules/items/1")!
+        let learningObject = HCourse.LearningObjectCard(
+            moduleTitle: "Module 1",
+            learningObjectName: "Assignment 1",
+            learningObjectID: "item-1",
+            type: .assignment,
+            dueDate: nil,
+            url: url,
+            estimatedTime: "30 mins",
+            isNewQuiz: false
+        )
+
+        // When
+        testee.navigateToItemSequence(
+            url: url,
+            learningObject: learningObject,
+            viewController: viewController
+        )
+
+        // Then
+        XCTAssertEqual(router.calls.count, 1)
+        XCTAssertEqual(router.calls[0].0?.url, url)
+    }
+
+    func testNavigateToCourseDetails() {
+        // Given
+        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        let testee = createVM()
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+
+        // When
+        testee.navigateToCourseDetails(
+            id: "course-1",
+            enrollmentID: "enrollment-1",
+            programID: "program-1",
+            viewController: viewController
+        )
+
+        // Then
+        let courseDetailsView = router.lastViewController as? CoreHostingController<Horizon.CourseDetailsView>
+        XCTAssertNotNil(courseDetailsView)
+    }
+
+    func testNavigateToCourseDetailsWithoutProgramID() {
+        // Given
+        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        let testee = createVM()
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+
+        // When
+        testee.navigateToCourseDetails(
+            id: "course-1",
+            enrollmentID: "enrollment-1",
+            programID: nil,
+            viewController: viewController
+        )
+
+        // Then
+        let courseDetailsView = router.lastViewController as? CoreHostingController<Horizon.CourseDetailsView>
+        XCTAssertNotNil(courseDetailsView)
+    }
+
+    func testNavigateProgram() {
+        // Given
+        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        let testee = createVM()
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+
+        // When
+        testee.navigateProgram(id: "program-1", viewController: viewController)
+
+        // Then
+        XCTAssertTrue(onTapProgramCalled)
+        XCTAssertEqual(onTapProgramModel?.id, "program-1")
+    }
+
+    // MARK: - Helper Methods
+
+    private func createVM() -> CourseCardsViewModel {
+        CourseCardsViewModel(
+            courseCardsInteractor: courseCardsInteractor,
+            programInteractor: programInteractor,
+            router: router,
+            onTapProgram: { [weak self] model, _ in
+                self?.onTapProgramCalled = true
+                self?.onTapProgramModel = model
+            },
+            scheduler: .immediate
+        )
+    }
+}

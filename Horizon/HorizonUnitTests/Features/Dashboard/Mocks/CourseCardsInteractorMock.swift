@@ -20,43 +20,22 @@ import Combine
 @testable import Horizon
 import Foundation
 
-final class ProgramInteractorMock: ProgramInteractor {
+final class CourseCardsInteractorMock: CourseCardsInteractor {
     var shouldFail = false
     var error: Error = URLError(.badServerResponse)
-    var programsToReturn: [Program] = HProgramStubs.programs
-
-    func getPrograms(ignoreCache: Bool) -> AnyPublisher<[Program], Never> {
-        return Just(programsToReturn)
-            .eraseToAnyPublisher()
-    }
-
-    func getProgramsWithObserving(ignoreCache: Bool) -> AnyPublisher<[Horizon.Program], Error> {
+    var coursesToReturn: [HCourse] = []
+    
+    func getAndObserveCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Error> {
         if shouldFail {
             return Fail(error: error).eraseToAnyPublisher()
         } else {
-            return Just(programsToReturn)
+            return Just(coursesToReturn)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
     }
-
-    func getProgramsWithCourses(ignoreCache: Bool) -> AnyPublisher<[Program], Error> {
-        if shouldFail {
-            return Fail(error: error).eraseToAnyPublisher()
-        } else {
-            return Just(HProgramStubs.programs)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        }
-    }
-
-    func enrollInProgram(progressID: String) -> AnyPublisher<[Program], Error> {
-        if shouldFail {
-            return Fail(error: error).eraseToAnyPublisher()
-        } else {
-            return Just([HProgramStubs.program])
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        }
+    
+    func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
+        return Just(()).eraseToAnyPublisher()
     }
 }
