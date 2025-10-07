@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-
 import SwiftUI
 
 extension EnvironmentValues {
@@ -25,7 +24,23 @@ extension EnvironmentValues {
 
 extension View {
 	/// This View Modifier sets the `isSelected` Environment Value on a view.
+	/// If the Split View Controller is collapsed, it always sets it to `false`.
 	func selected(when condition: Bool) -> some View {
-		self.environment(\.isItemSelected, condition)
+		modifier(SelectionModifier(isSelected: condition))
+	}
+
+	/// This View Modifier sets the `isSelected` Environment Value on a view to `false`.
+	func selectionIndicatorDisabled() -> some View {
+		self.environment(\.isItemSelected, false)
+	}
+}
+
+struct SelectionModifier: ViewModifier {
+	@Environment(\.viewController) private var controller
+	let isSelected: Bool
+
+	func body(content: Content) -> some View {
+		content
+			.environment(\.isItemSelected, controller.value.splitViewController?.isCollapsed == false && isSelected)
 	}
 }

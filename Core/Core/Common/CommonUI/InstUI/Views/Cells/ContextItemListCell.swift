@@ -22,7 +22,6 @@ extension InstUI {
 
     public struct ContextItemListCell<Icon: View, Labels: View, Accessory: View>: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-		@Environment(\.isItemSelected) private var isSelected
 
         private let icon: Icon
         private let labels: Labels
@@ -69,8 +68,7 @@ extension InstUI {
                     .contentShape(Rectangle())
                 }
                 .background(.backgroundLightest)
-                .buttonStyle(.tintedContextButton(isHighlighted: isSelected))
-				.animation(.default.speed(1.8), value: isSelected)
+                .buttonStyle(.tintedContextButton)
 
                 if let isLastItem {
                     InstUI.Divider(isLast: isLastItem)

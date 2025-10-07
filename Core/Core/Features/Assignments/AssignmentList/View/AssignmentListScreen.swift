@@ -27,7 +27,6 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     @State private var isShowingGradingPeriodPicker = false
-    @State private var isSplitViewControllerCollapsed: Bool = true
 
     public init(viewModel: AssignmentListScreenViewModel) {
         self.viewModel = viewModel
@@ -64,12 +63,12 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
         .navigationBarStyle(.color(viewModel.courseColor))
 		.onAppear {
 			viewModel.viewDidAppear()
-			isSplitViewControllerCollapsed = controller.value.splitViewController?.isCollapsed ?? true
+//			isSplitViewControllerCollapsed = controller.value.splitViewController?.isCollapsed ?? true
 		}
         .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
-		.onReceive(NotificationCenter.default.publisher(for: UIViewController.showDetailTargetDidChangeNotification)) { _ in
-            isSplitViewControllerCollapsed = controller.value.splitViewController?.isCollapsed ?? true
-        }
+//		.onReceive(NotificationCenter.default.publisher(for: UIViewController.showDetailTargetDidChangeNotification)) { _ in
+//            isSplitViewControllerCollapsed = controller.value.splitViewController?.isCollapsed ?? true
+//        }
     }
 
     private var gradingPeriodTitle: some View {
@@ -135,9 +134,10 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
                 AssignmentListView(
                     sections: viewModel.sections,
                     identifierGroup: "AssignmentList",
-                    navigateToDetailsAction: {
-                        viewModel.didSelectAssignment.send(($0, controller))
-                    }
+                    navigateToDetailsAction: { url, id in
+						viewModel.didSelectAssignment.send((url, id, controller))
+                    },
+					selectedAssignmentID: viewModel.selectedAssignmentID
                 )
             }
         }
