@@ -30,7 +30,7 @@ public class InboxViewModel: ObservableObject {
     @Published public var isShowingScopeSelector = false
     @Published public var isShowingCourseSelector = false
     @Published public var isShowMenuButton: Bool = true
-	@Published public var selectedMessageID: String? = nil
+	@Published public var selectedMessageID: String?
     public let snackBarViewModel = SnackBarViewModel()
     public let scopes = InboxMessageScope.allCases
     public let emptyState = (scene: SpacePanda() as PandaScene,
