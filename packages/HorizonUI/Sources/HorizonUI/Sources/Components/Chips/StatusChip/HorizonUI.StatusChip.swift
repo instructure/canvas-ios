@@ -70,7 +70,7 @@ public extension HorizonUI {
                     .foregroundStyle(style.forgroundColor(isFilled: isFilled))
                     .huiTypography(.p2)
             }
-            .padding(.horizontal, .huiSpaces.space8)
+            .padding(.horizontal, isFilled ? .huiSpaces.space8 : .zero)
             .padding(.vertical, .huiSpaces.space2)
             .background(isFilled ? style.backgroundColor : Color.clear)
             .clipShape(.rect(cornerRadius: cornerRadius.attributes.radius))

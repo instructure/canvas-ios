@@ -61,59 +61,34 @@ extension HorizonUI.ModuleContainer {
         }
 
         private var notStartedView: some View {
-            HorizonUI.Pill(
+            HorizonUI.StatusChip(
                 title: status.title,
-                style: .inline(.init(textColor: Color.huiColors.surface.institution)),
-                isSmall: false,
-                isUppercased: false,
-                icon: nil
+                style: .institution,
+                isFilled: false
             )
         }
 
         private var inProgressView: some View {
-            HorizonUI.Pill(
+            HorizonUI.StatusChip(
                 title: status.title,
-                style: .outline(
-                    .init(
-                        borderColor: .huiColors.surface.institution,
-                        textColor: .huiColors.surface.institution,
-                        iconColor: .huiColors.surface.institution
-                    )
-                ),
-                isSmall: false,
-                isUppercased: false,
-                icon: nil
+                style: .institution,
+                isFilled: false
             )
         }
 
         private var completedView: some View {
-            HorizonUI.Pill(
+            HorizonUI.StatusChip(
                 title: status.title,
-                style: .solid(
-                    .init(
-                        backgroundColor: .huiColors.surface.institution,
-                        textColor: .huiColors.text.surfaceColored,
-                        iconColor: .huiColors.text.surfaceColored
-                    )
-                ),
-                isSmall: false,
-                isUppercased: false,
-                icon: nil
+                style: .institution,
             )
         }
 
         private var lockedView: some View {
-            HorizonUI.Pill(
+            HorizonUI.StatusChip(
                 title: status.title,
-                style: .inline(
-                    .init(
-                        textColor: .huiColors.surface.institution,
-                        iconColor: .huiColors.surface.institution
-                    )
-                ),
-                isSmall: false,
-                isUppercased: false,
-                icon: Image.huiIcons.lock
+                style: .institution,
+                icon: Image.huiIcons.lock,
+                isFilled: false
             )
         }
     }
