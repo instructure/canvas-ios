@@ -81,6 +81,7 @@ class CourseCardsViewModel {
         ignoreCache: Bool = false,
         completion: (() -> Void)? = nil
     ) {
+        state = .loading
         getDashboardCoursesCancellable?.cancel()
         refreshCompletedModuleItemCancellable?.cancel()
 
@@ -106,7 +107,9 @@ class CourseCardsViewModel {
 
                     self?.courses = attachedCourses
                     self?.unenrolledPrograms = filteredPrograms
-
+                    
+                    let invitedCourses = items.filter { $0.state == HCourse.EnrollmentState.invited.rawValue }
+                    
                     if attachedCourses.isEmpty {
                         self?.state = .empty
                     } else if let course = items.first, course.id != "mock-course-id" {
@@ -135,7 +138,12 @@ class CourseCardsViewModel {
 
     // MARK: - Inputs
 
-    func retry() {}
+    func reload(completion: (() -> Void)?) {
+        getCourses(
+            ignoreCache: true,
+            completion: completion
+        )
+    }
 
     func navigateToItemSequence(
         url: URL,
@@ -189,8 +197,8 @@ class CourseCardsViewModel {
 //                    self?.isAlertPresented = true
 //                }
 //            }, receiveValue: { [weak self] _ in
-    ////                self?.reload(completion: {})
-    ////                self?.declineInvitation(course: course)
+//    //                self?.reload(completion: {})
+//    //                self?.declineInvitation(course: course)
 //            })
 //            .store(in: &subscriptions)
 //    }

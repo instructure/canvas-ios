@@ -55,6 +55,10 @@ struct CourseCardsView: View {
         }
         .isSkeletonLoadActive(viewModel.state == .loading)
     }
+    
+    func reload(completion: @escaping () -> ()) {
+        viewModel.reload(completion: completion)
+    }
 
     private var dataView: some View {
         VStack(alignment: .center, spacing: .huiSpaces.space8) {
@@ -114,13 +118,13 @@ struct CourseCardsView: View {
 
     private var errorView: some View {
         CourseCardErrorView {
-            viewModel.retry()
+            viewModel.reload(completion: nil)
         }
-        .padding(.horizontal, 24)
+        .padding(.horizontal, .huiSpaces.space24)
     }
 
     private var emptyView: some View {
         CourseCardsEmptyView()
-            .padding(.horizontal, 24)
+            .padding(.horizontal, .huiSpaces.space24)
     }
 }

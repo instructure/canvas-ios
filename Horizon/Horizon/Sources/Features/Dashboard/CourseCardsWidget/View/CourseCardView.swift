@@ -366,7 +366,5 @@ struct CourseCardView: View {
             }
         }
         .background(Color.huiColors.surface.pagePrimary)
-
     }
 #endif
-
