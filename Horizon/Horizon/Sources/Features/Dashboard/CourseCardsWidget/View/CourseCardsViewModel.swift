@@ -107,9 +107,10 @@ class CourseCardsViewModel {
 
                     self?.courses = attachedCourses
                     self?.unenrolledPrograms = filteredPrograms
-                    
+
                     let invitedCourses = items.filter { $0.state == HCourse.EnrollmentState.invited.rawValue }
-                    
+                    self?.acceptInvitation(courses: invitedCourses)
+
                     if attachedCourses.isEmpty {
                         self?.state = .empty
                     } else if let course = items.first, course.id != "mock-course-id" {
@@ -134,6 +135,24 @@ class CourseCardsViewModel {
             updateCourse.programs = matchedPrograms
             return updateCourse
         }
+    }
+
+    private func acceptInvitation(courses: [HCourse]) {
+        Publishers.Sequence(sequence: courses)
+            .flatMap { course in
+                ReactiveStore(
+                    useCase: HandleCourseInvitation(
+                        courseID: course.id,
+                        enrollmentID: course.enrollmentID,
+                        isAccepted: true
+                    )
+                )
+                .getEntities()
+                .replaceError(with: [])
+            }
+            .collect()
+            .sink()
+            .store(in: &subscriptions)
     }
 
     // MARK: - Inputs
@@ -180,28 +199,6 @@ class CourseCardsViewModel {
     func navigateProgram(id: String, viewController: WeakViewController) {
         onTapProgram(.init(id: id), viewController)
     }
-
-//    func acceptInvitation(course: InvitedCourse) {
-//        state = .loading
-//        let useCase = HandleCourseInvitation(
-//            courseID: course.id,
-//            enrollmentID: course.enrollmentID,
-//            isAccepted: true
-//        )
-//        ReactiveStore(useCase: useCase)
-//            .getEntities()
-//            .sink(receiveCompletion: { [weak self] completion in
-//                if case let .failure(error) = completion {
-//                    self?.state = .data
-//                    self?.errorMessage = error.localizedDescription
-//                    self?.isAlertPresented = true
-//                }
-//            }, receiveValue: { [weak self] _ in
-//    //                self?.reload(completion: {})
-//    //                self?.declineInvitation(course: course)
-//            })
-//            .store(in: &subscriptions)
-//    }
 }
 
 extension CourseCardsViewModel {
