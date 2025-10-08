@@ -43,7 +43,7 @@ struct HNotificationView: View {
             VStack(spacing: .huiSpaces.space8) {
                 ScrollView(showsIndicators: false) {
                     contentView
-                        .padding(.vertical, .huiSpaces.space16)
+                        .padding(.vertical, .huiSpaces.space24)
                 }
                 .accessibilityLabel("Notifications list")
                 .onAppear {
@@ -126,6 +126,7 @@ struct HNotificationView: View {
         }
         .padding(.bottom, .huiSpaces.space16)
         .padding(.horizontal, .huiSpaces.space24)
+        .padding(.top, .huiSpaces.space8)
         .background(Color.huiColors.surface.pagePrimary)
         .accessibilityElement(children: .contain)
     }
