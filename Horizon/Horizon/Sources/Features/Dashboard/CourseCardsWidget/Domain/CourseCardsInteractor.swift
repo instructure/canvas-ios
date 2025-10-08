@@ -66,8 +66,15 @@ final class CourseCardsInteractorLive: CourseCardsInteractor {
             }
             .eraseToAnyPublisher()
             .map { courses in
-                courses.sorted {
-                    ($0.currentLearningObject != nil) && ($1.currentLearningObject == nil)
+                courses.sorted { course1, course2 in
+                    let isCompleted1 = course1.currentLearningObject == nil
+                    let isCompleted2 = course2.currentLearningObject == nil
+
+                    if isCompleted1 != isCompleted2 {
+                        return !isCompleted1
+                    }
+
+                    return course1.progress > course2.progress
                 }
             }
             .receive(on: scheduler)
