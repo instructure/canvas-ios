@@ -42,5 +42,8 @@ struct HorizonBackButton: View {
         .disabled(onBack == nil)
         .opacity(onBack == nil ? 0 : 1)
         .huiElevation(level: .level4)
+        .accessibilityLabel(Text("Back", bundle: .horizon))
+        .accessibilityAddTraits(.isButton)
+        .accessibilityHidden(onBack == nil)
     }
 }

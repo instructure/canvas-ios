@@ -25,6 +25,8 @@ struct HNotificationView: View {
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.viewController) private var viewController
+    @State private var lastFocusedNotificationID: String?
+    @AccessibilityFocusState private var focusedNotificationID: String?
 
     // MARK: - Dependencies
 
@@ -35,15 +37,22 @@ struct HNotificationView: View {
     }
 
     var body: some View {
-       ZStack {
-           Color.huiColors.surface.pagePrimary
-               .ignoresSafeArea()
+        ZStack {
+            Color.huiColors.surface.pagePrimary
+                .ignoresSafeArea()
             VStack(spacing: .huiSpaces.space8) {
                 ScrollView(showsIndicators: false) {
                     contentView
                         .padding(.vertical, .huiSpaces.space16)
                 }
                 .accessibilityLabel("Notifications list")
+                .onAppear {
+                    if let lastFocused = lastFocusedNotificationID {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            focusedNotificationID = lastFocused
+                        }
+                    }
+                }
             }
             .overlay { loaderView }
             .toolbar(.hidden)
@@ -71,6 +80,7 @@ struct HNotificationView: View {
             } else {
                 ForEach(viewModel.notifications) { activity in
                     Button {
+                        lastFocusedNotificationID = activity.id
                         viewModel.navigateToDetails(
                             notification: activity,
                             viewController: viewController
@@ -86,6 +96,7 @@ struct HNotificationView: View {
                     }
                     .padding(.horizontal, .huiSpaces.space24)
                     .accessibilityHint("Double tap to view details")
+                    .accessibilityFocused($focusedNotificationID, equals: activity.id)
                 }
                 .animation(.linear, value: viewModel.notifications.count)
             }
