@@ -67,6 +67,32 @@ class PlannableTests: CoreTestCase {
         XCTAssertEqual(plannable.context?.courseId, TestConstants.courseId)
         XCTAssertEqual(plannable.userID, "another userId")
         XCTAssertEqual(plannable.discussionCheckpointStep, .requiredReplies(42))
+        XCTAssertNil(plannable.plannerOverrideId)
+        XCTAssertFalse(plannable.isMarkedComplete)
+        XCTAssertFalse(plannable.isSubmitted)
+    }
+
+    func testSaveAPIPlannableWithMarkedComplete() {
+        let apiPlannable = APIPlannable.make(
+            planner_override: .make(id: "override-123", marked_complete: true),
+            plannable_id: ID(TestConstants.plannableId)
+        )
+
+        let plannable = Plannable.save(apiPlannable, userId: nil, in: databaseClient)
+
+        XCTAssertEqual(plannable.plannerOverrideId, "override-123")
+        XCTAssertTrue(plannable.isMarkedComplete)
+    }
+
+    func testSaveAPIPlannableWithSubmitted() {
+        let apiPlannable = APIPlannable.make(
+            plannable_id: ID(TestConstants.plannableId),
+            submissions: .make(submitted: true)
+        )
+
+        let plannable = Plannable.save(apiPlannable, userId: nil, in: databaseClient)
+
+        XCTAssertTrue(plannable.isSubmitted)
     }
 
     func testSaveAPIPlannerNote() {
