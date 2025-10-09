@@ -31,8 +31,8 @@ class K5ScheduleItemInfoTests: CoreTestCase {
     }
 
     func testScheduleSubjectName() {
-        XCTAssertEqual(APIPlannable.make(plannable_type: "calendar_event").k5ScheduleSubject(courseInfoByCourseIDs: [:]).name, String(localized: "To Do", bundle: .core))
-        XCTAssertEqual(APIPlannable.make(plannable_type: "other", context_name: nil).k5ScheduleSubject(courseInfoByCourseIDs: [:]).name, String(localized: "To Do", bundle: .core))
+        XCTAssertEqual(APIPlannable.make(plannable_type: "calendar_event").k5ScheduleSubject(courseInfoByCourseIDs: [:]).name, String(localized: "To-do", bundle: .core))
+        XCTAssertEqual(APIPlannable.make(plannable_type: "other", context_name: nil).k5ScheduleSubject(courseInfoByCourseIDs: [:]).name, String(localized: "To-do", bundle: .core))
         XCTAssertEqual(APIPlannable.make(plannable_type: "other", context_name: "testName").k5ScheduleSubject(courseInfoByCourseIDs: [:]).name, "testName")
     }
 

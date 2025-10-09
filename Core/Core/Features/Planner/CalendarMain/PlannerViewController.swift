@@ -158,7 +158,7 @@ public class PlannerViewController: VisibilityObservedViewController {
 
     private func makeAddMenu() -> UIMenu {
         var actions: [UIAction] = [
-            UIAction(title: String(localized: "Add To Do", bundle: .core), image: .noteLine) { [weak self] _ in
+            UIAction(title: String(localized: "Add To-do", bundle: .core), image: .noteLine) { [weak self] _ in
                 self?.addToDo()
             }
         ]

@@ -87,9 +87,9 @@ public extension APIPlannable {
     func k5ScheduleSubject(courseInfoByCourseIDs: [String: (color: Color, image: URL?, isHomeroom: Bool, shouldHideQuantitativeData: Bool)]) -> K5ScheduleSubject {
         let name: String = {
             if plannableType == .calendar_event {
-                return String(localized: "To Do", bundle: .core)
+                return String(localized: "To-do", bundle: .core)
             } else {
-                return context_name ?? String(localized: "To Do", bundle: .core)
+                return context_name ?? String(localized: "To-do", bundle: .core)
             }
         }()
         let color: Color = {
