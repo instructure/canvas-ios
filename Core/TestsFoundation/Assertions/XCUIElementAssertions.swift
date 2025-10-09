@@ -26,6 +26,14 @@ public func XCTAssertVisible(
     XCTAssertTrue(element.isVisible, "Element is not visible: \(element.debugDescription)", file: file, line: line)
 }
 
+public func XCTAssertNotVisible(
+    _ element: XCUIElement,
+    file: StaticString = #filePath,
+    line: UInt = #line
+) {
+    XCTAssertFalse(element.isVisible, "Element is visible: \(element.debugDescription)", file: file, line: line)
+}
+
 public func XCTAssertSelected(
     _ element: XCUIElement,
     file: StaticString = #filePath,

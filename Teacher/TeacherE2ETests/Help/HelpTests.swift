@@ -29,12 +29,12 @@ class HelpTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(teacher)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to Help page, Check "Search the Canvas Guides" button
         HelpHelper.navigateToHelpPage()
         let searchTheCanvasGuidesButton = HelpHelper.searchTheCanvasGuides.waitUntil(.visible)
-        XCTAssertTrue(searchTheCanvasGuidesButton.isVisible)
+        XCTAssertVisible(searchTheCanvasGuidesButton)
 
         searchTheCanvasGuidesButton.hit()
         HelpHelper.openInSafariButton.hit()
@@ -44,7 +44,7 @@ class HelpTests: E2ETestCase {
         // MARK: Check "Conference Guides for Remote Classrooms" button
         HelpHelper.returnToHelpPage(teacher: true)
         let conferenceGuidesButton = HelpHelper.conferenceGuides.waitUntil(.visible)
-        XCTAssertTrue(conferenceGuidesButton.isVisible)
+        XCTAssertVisible(conferenceGuidesButton)
 
         conferenceGuidesButton.hit()
         HelpHelper.openInSafariButton.hit()
@@ -54,16 +54,16 @@ class HelpTests: E2ETestCase {
         // MARK: Check "Report a Problem" button
         HelpHelper.returnToHelpPage(teacher: true)
         let reportAProblemButton = HelpHelper.reportAProblem.waitUntil(.visible)
-        XCTAssertTrue(reportAProblemButton.isVisible)
+        XCTAssertVisible(reportAProblemButton)
 
         reportAProblemButton.hit()
-        XCTAssertTrue(app.find(label: "Report a Problem").waitUntil(.visible).isVisible)
+        XCTAssertVisible(app.find(label: "Report a Problem").waitUntil(.visible))
 
         // MARK: Check "Ask the Community" button
         app.find(label: "Cancel").hit()
         HelpHelper.navigateToHelpPage()
         let askTheCommunityButton = HelpHelper.askTheCommunity.waitUntil(.visible)
-        XCTAssertTrue(askTheCommunityButton.isVisible)
+        XCTAssertVisible(askTheCommunityButton)
 
         askTheCommunityButton.hit()
         HelpHelper.openInSafariButton.hit()
@@ -73,7 +73,7 @@ class HelpTests: E2ETestCase {
         // MARK: Check "Submit a Feature Idea" button
         HelpHelper.returnToHelpPage(teacher: true)
         let submitAFeatureButton = HelpHelper.submitAFeatureIdea.waitUntil(.visible)
-        XCTAssertTrue(submitAFeatureButton.isVisible)
+        XCTAssertVisible(submitAFeatureButton)
 
         submitAFeatureButton.hit()
         HelpHelper.openInSafariButton.hit()
@@ -83,7 +83,7 @@ class HelpTests: E2ETestCase {
         // MARK: Check "Training Services Portal" button
         HelpHelper.returnToHelpPage(teacher: true)
         let trainingServicesButton = HelpHelper.trainingServices.waitUntil(.visible)
-        XCTAssertTrue(trainingServicesButton.isVisible)
+        XCTAssertVisible(trainingServicesButton)
 
         trainingServicesButton.hit()
         HelpHelper.openInSafariButton.hit()

@@ -34,22 +34,22 @@ class PagesTests: E2ETestCase {
         // MARK: Get the user logged in and check the course card
         logInDSUser(teacher)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Check pages button
         courseCard.hit()
         let pagesButton = CourseDetailsHelper.cell(type: .pages).waitUntil(.visible)
-        XCTAssertTrue(pagesButton.isVisible)
+        XCTAssertVisible(pagesButton)
 
         // MARK: Check front page button
         pagesButton.hit()
         let frontPageButton = Helper.frontPage.waitUntil(.visible)
-        XCTAssertTrue(frontPageButton.isVisible)
+        XCTAssertVisible(frontPageButton)
 
         // MARK: Check title of front page
         frontPageButton.hit()
         let frontPageTitle = Helper.titleByText(text: frontPage.title).waitUntil(.visible)
-        XCTAssertTrue(frontPageTitle.isVisible)
+        XCTAssertVisible(frontPageTitle)
     }
 
     func testDeepLinks() {
@@ -75,36 +75,36 @@ class PagesTests: E2ETestCase {
         seeder.enrollTeacher(teacher, in: course)
         logInDSUser(teacher)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to front page of course
         Helper.navigateToFrontPage(course: course)
 
         // MARK: Check deep link to assignment
         let assignmentDeepLink = app.find(labelContaining: assignment.name).waitUntil(.visible)
-        XCTAssertTrue(assignmentDeepLink.isVisible)
+        XCTAssertVisible(assignmentDeepLink)
 
         assignmentDeepLink.hit()
         let assignmentDetailsNameLabel = AssignmentsHelper.Details.name.waitUntil(.visible)
-        XCTAssertTrue(assignmentDetailsNameLabel.isVisible)
+        XCTAssertVisible(assignmentDetailsNameLabel)
 
         // MARK: Check deep link to discussion
         AssignmentsHelper.Details.backButton.hit()
         let discussionDeepLink = app.find(labelContaining: discussion.title).waitUntil(.visible)
-        XCTAssertTrue(discussionDeepLink.isVisible)
+        XCTAssertVisible(discussionDeepLink)
 
         discussionDeepLink.hit()
         let discussionDetailsTitle = DiscussionsHelper.NewDetails.discussionTitle(discussion: discussion).waitUntil(.visible)
-        XCTAssertTrue(discussionDetailsTitle.isVisible)
+        XCTAssertVisible(discussionDetailsTitle)
 
         // MARK: Check deep link to announcement
         DiscussionsHelper.Details.backButton.hit()
         let announcementDeepLink = app.find(labelContaining: announcement.title).waitUntil(.visible)
-        XCTAssertTrue(announcementDeepLink.isVisible)
+        XCTAssertVisible(announcementDeepLink)
 
         announcementDeepLink.hit()
         let announcementDetailsTitle = DiscussionsHelper.NewDetails.discussionTitle(discussion: announcement).waitUntil(.visible)
-        XCTAssertTrue(announcementDetailsTitle.isVisible)
+        XCTAssertVisible(announcementDetailsTitle)
     }
 
     func testAddPage() {
@@ -118,22 +118,22 @@ class PagesTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(teacher)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to Pages, Add new page
         Helper.navigateToPages(course: course)
         let addButton = Helper.add.waitUntil(.visible)
-        XCTAssertTrue(addButton.isVisible)
+        XCTAssertVisible(addButton)
 
         addButton.hit()
         let titleField = EditorHelper.title.waitUntil(.visible)
         let contentField = EditorHelper.content.waitUntil(.visible)
         let publishedToggle = EditorHelper.published.waitUntil(.visible)
         let doneButton = EditorHelper.done.waitUntil(.visible)
-        XCTAssertTrue(titleField.isVisible)
-        XCTAssertTrue(contentField.isVisible)
-        XCTAssertTrue(publishedToggle.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertVisible(titleField)
+        XCTAssertVisible(contentField)
+        XCTAssertVisible(publishedToggle)
+        XCTAssertVisible(doneButton)
 
         titleField.writeText(text: newPageTitle)
         contentField.writeText(text: newPageContent)
@@ -142,7 +142,7 @@ class PagesTests: E2ETestCase {
 
         // MARK: Check if new page got added
         let newPageItem = Helper.page(index: 0).waitUntil(.visible)
-        XCTAssertTrue(newPageItem.isVisible)
+        XCTAssertVisible(newPageItem)
         XCTAssertEqual(newPageItem.label, newPageTitle)
     }
 
@@ -160,24 +160,24 @@ class PagesTests: E2ETestCase {
         seeder.enrollTeacher(teacher, in: course)
         logInDSUser(teacher)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to front page of course
         Helper.navigateToFrontPage(course: course)
         let optionsButton = DetailsHelper.options.waitUntil(.visible)
-        XCTAssertTrue(optionsButton.isVisible)
+        XCTAssertVisible(optionsButton)
 
         optionsButton.hit()
         let editButton = DetailsHelper.editButton.waitUntil(.visible)
-        XCTAssertTrue(editButton.isVisible)
+        XCTAssertVisible(editButton)
 
         editButton.hit()
         let titleField = EditorHelper.title.waitUntil(.visible)
         let contentField = EditorHelper.content.waitUntil(.visible)
         let doneButton = EditorHelper.done.waitUntil(.visible)
-        XCTAssertTrue(titleField.isVisible)
-        XCTAssertTrue(contentField.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertVisible(titleField)
+        XCTAssertVisible(contentField)
+        XCTAssertVisible(doneButton)
 
         titleField.cutText()
         titleField.writeText(text: newTitle)
@@ -185,6 +185,6 @@ class PagesTests: E2ETestCase {
 
         // MARK: Check if edited page is updated
         let pageTitle = Helper.titleByText(text: newTitle).waitUntil(.visible)
-        XCTAssertTrue(pageTitle.isVisible)
+        XCTAssertVisible(pageTitle)
     }
 }
