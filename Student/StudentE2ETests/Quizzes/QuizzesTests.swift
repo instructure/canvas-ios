@@ -34,70 +34,70 @@ class QuizzesTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(student)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         // MARK: Navigate to quizzes, check Quiz labels
         Helper.navigateToQuizzes(course: course)
         let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
+        XCTAssertVisible(navBar)
 
         let quizCell = Helper.cell(index: 0).waitUntil(.visible)
-        XCTAssertTrue(quizCell.isVisible)
+        XCTAssertVisible(quizCell)
 
         let titleLabel = Helper.titleLabel(cell: quizCell).waitUntil(.visible)
-        XCTAssertTrue(titleLabel.isVisible)
+        XCTAssertVisible(titleLabel)
         XCTAssertEqual(titleLabel.label, quiz.title)
 
         let dueDateLabel = Helper.dueDateLabel(cell: quizCell).waitUntil(.visible)
-        XCTAssertTrue(dueDateLabel.isVisible)
+        XCTAssertVisible(dueDateLabel)
         XCTAssertEqual(dueDateLabel.label, "No Due Date")
 
         let pointsLabel = Helper.pointsLabel(cell: quizCell).waitUntil(.visible)
-        XCTAssertTrue(pointsLabel.isVisible)
+        XCTAssertVisible(pointsLabel)
         XCTAssertEqual(pointsLabel.label, "\(Int(quiz.points_possible!)) pts")
 
         let questionsLabel = Helper.questionsLabel(cell: quizCell).waitUntil(.visible)
-        XCTAssertTrue(questionsLabel.isVisible)
+        XCTAssertVisible(questionsLabel)
         XCTAssertEqual(questionsLabel.label, "\(quiz.question_count) Questions")
 
         // MARK: Check Quiz details
         quizCell.hit()
         let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
+        XCTAssertVisible(detailsNavBar)
 
         let detailsTitleLabel = DetailsHelper.nameLabel.waitUntil(.visible)
-        XCTAssertTrue(detailsTitleLabel.isVisible)
+        XCTAssertVisible(detailsTitleLabel)
         XCTAssertEqual(detailsTitleLabel.label, quiz.title)
 
         let detailsPointsLabel = DetailsHelper.pointsLabel.waitUntil(.visible)
-        XCTAssertTrue(detailsPointsLabel.isVisible)
+        XCTAssertVisible(detailsPointsLabel)
         XCTAssertEqual(detailsPointsLabel.label, "\(Int(quiz.points_possible!)) pts")
 
         let detailsStatusLabel = DetailsHelper.statusLabel.waitUntil(.visible)
-        XCTAssertTrue(detailsStatusLabel.isVisible)
+        XCTAssertVisible(detailsStatusLabel)
         XCTAssertEqual(detailsStatusLabel.label, "Not Submitted")
 
         let detailsDueDateLabel = DetailsHelper.dueLabel.waitUntil(.visible)
-        XCTAssertTrue(detailsDueDateLabel.isVisible)
+        XCTAssertVisible(detailsDueDateLabel)
         XCTAssertEqual(detailsDueDateLabel.label, "No Due Date")
 
         let detailsQuestionsLabel = DetailsHelper.questionsLabel.waitUntil(.visible)
-        XCTAssertTrue(detailsQuestionsLabel.isVisible)
+        XCTAssertVisible(detailsQuestionsLabel)
         XCTAssertEqual(detailsQuestionsLabel.label, String(quiz.question_count))
 
         let detailsTimeLimitLabel = DetailsHelper.timeLimitLabel.waitUntil(.visible)
-        XCTAssertTrue(detailsTimeLimitLabel.isVisible)
+        XCTAssertVisible(detailsTimeLimitLabel)
         XCTAssertEqual(detailsTimeLimitLabel.label, "None")
 
         let detailsAllowedAttemptsLabel = DetailsHelper.attemptsLabel.waitUntil(.visible)
-        XCTAssertTrue(detailsAllowedAttemptsLabel.isVisible)
+        XCTAssertVisible(detailsAllowedAttemptsLabel)
         XCTAssertEqual(detailsAllowedAttemptsLabel.label, String(quiz.allowed_attempts!))
 
         let detailsDescriptionLabel = DetailsHelper.descriptionLabel(quiz: quiz).waitUntil(.visible)
-        XCTAssertTrue(detailsDescriptionLabel.isVisible)
+        XCTAssertVisible(detailsDescriptionLabel)
 
         let detailsTakeQuizButton = DetailsHelper.takeQuizButton.waitUntil(.visible)
-        XCTAssertTrue(detailsTakeQuizButton.isVisible)
+        XCTAssertVisible(detailsTakeQuizButton)
     }
 
     func testTakeQuiz() {
@@ -110,49 +110,49 @@ class QuizzesTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(student)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         // MARK: Navigate to quizzes, open quiz and tap "Take Quiz" button
         Helper.navigateToQuizzes(course: course)
         let quizCell = Helper.cell(index: 0).waitUntil(.visible)
-        XCTAssertTrue(quizCell.isVisible)
+        XCTAssertVisible(quizCell)
 
         quizCell.hit()
         var detailsTakeQuizButton = DetailsHelper.takeQuizButton.waitUntil(.visible)
-        XCTAssertTrue(detailsTakeQuizButton.isVisible)
+        XCTAssertVisible(detailsTakeQuizButton)
 
         detailsTakeQuizButton.hit()
 
         // MARK: Check "Take Quiz" screen, tick the correct answers, submit quiz
         let takeQuizNavBar = TakeQuizHelper.navBar.waitUntil(.visible)
-        XCTAssertTrue(takeQuizNavBar.isVisible)
+        XCTAssertVisible(takeQuizNavBar)
 
         var takeQuizExitButton = TakeQuizHelper.exitButton.waitUntil(.visible)
-        XCTAssertTrue(takeQuizExitButton.isVisible)
+        XCTAssertVisible(takeQuizExitButton)
 
         let takeQuizTakeTheQuizButton = TakeQuizHelper.takeTheQuizButton.waitUntil(.visible)
-        XCTAssertTrue(takeQuizTakeTheQuizButton.isVisible)
+        XCTAssertVisible(takeQuizTakeTheQuizButton)
 
         takeQuizTakeTheQuizButton.hit()
         TakeQuizHelper.answerFirstQuestion()
         TakeQuizHelper.answerSecondQuestion()
         let takeQuizSubmitQuizButton = TakeQuizHelper.submitQuizButton.waitUntil(.visible)
         XCTAssertTrue(takeQuizSubmitQuizButton.actionUntilElementCondition(action: .swipeUp(), condition: .visible))
-        XCTAssertTrue(takeQuizSubmitQuizButton.isVisible)
+        XCTAssertVisible(takeQuizSubmitQuizButton)
 
         takeQuizSubmitQuizButton.hit()
         takeQuizExitButton = TakeQuizHelper.exitButton.waitUntil(.visible)
-        XCTAssertTrue(takeQuizExitButton.isVisible)
+        XCTAssertVisible(takeQuizExitButton)
 
         takeQuizExitButton.hit()
         let detailsStatusLabel = DetailsHelper.statusLabel.waitUntil(.visible)
-        XCTAssertTrue(detailsStatusLabel.isVisible)
+        XCTAssertVisible(detailsStatusLabel)
 
         detailsStatusLabel.actionUntilElementCondition(action: .pullToRefresh, condition: .labelHasPrefix(expected: "Submitted"))
         XCTAssertHasPrefix(detailsStatusLabel.label, "Submitted")
 
         detailsTakeQuizButton = DetailsHelper.takeQuizButton.waitUntil(.visible)
-        XCTAssertTrue(detailsTakeQuizButton.isVisible)
+        XCTAssertVisible(detailsTakeQuizButton)
         XCTAssertEqual(detailsTakeQuizButton.label, "View Results")
     }
 
@@ -174,26 +174,26 @@ class QuizzesTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(student)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         // MARK: Navigate to quizzes, open quiz and tap "Launch External Tool" button
         Helper.navigateToQuizzes(course: course)
         let quizCell = Helper.cell(index: 0).waitUntil(.visible)
         let titleLabel = Helper.titleLabel(cell: quizCell).waitUntil(.visible)
-        XCTAssertTrue(quizCell.isVisible)
+        XCTAssertVisible(quizCell)
         XCTAssertEqual(titleLabel.label, quiz.title)
 
         quizCell.hit()
         let launchExternalToolButton = AssignmentsHelper.Details.submitAssignmentButton.waitUntil(.visible)
-        XCTAssertTrue(launchExternalToolButton.isVisible)
+        XCTAssertVisible(launchExternalToolButton)
 
         // MARK: Check if the external tool gets launched
         launchExternalToolButton.hit()
         let url = app.find(id: "URL", type: .button).waitUntil(.visible)
         url.waitUntil(.value(expected: "mobileqa.quiz-lti-iad-prod.instructure.com", strict: false))
         let externalTitleLabel = app.find(label: quiz.title, type: .staticText).waitUntil(.visible)
-        XCTAssertTrue(url.isVisible)
+        XCTAssertVisible(url)
         XCTAssertContains(url.stringValue, "mobileqa.quiz-lti-iad-prod.instructure.com")
-        XCTAssertTrue(externalTitleLabel.isVisible)
+        XCTAssertVisible(externalTitleLabel)
     }
 }

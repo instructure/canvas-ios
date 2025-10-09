@@ -35,26 +35,26 @@ class AnnouncementsTests: E2ETestCase {
         let announcements = Helper.createAnnouncements(course: course, count: 2)
         logInDSUser(teacher)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to Announcement page and check the order of the announcements
         AnnouncementsHelper.navigateToAnnouncementsPage(course: course)
 
         let firstAnnouncement = AnnouncementsHelper.cell(index: 0).waitUntil(.visible)
-        XCTAssertTrue(firstAnnouncement.isVisible)
+        XCTAssertVisible(firstAnnouncement)
         XCTAssertContains(firstAnnouncement.label, announcements[1].title)
 
         let secondAnnouncement = AnnouncementsHelper.cell(index: 1).waitUntil(.visible)
-        XCTAssertTrue(secondAnnouncement.isVisible)
+        XCTAssertVisible(secondAnnouncement)
         XCTAssertContains(secondAnnouncement.label, announcements[0].title)
 
         // MARK: Check title and message
         firstAnnouncement.hit()
         let announcementTitle = DetailsHelper.discussionTitle(discussion: announcements[1]).waitUntil(.visible)
         let announcementMessage = DetailsHelper.discussionBody(discussion: announcements[1]).waitUntil(.visible)
-        XCTAssertTrue(announcementTitle.isVisible)
+        XCTAssertVisible(announcementTitle)
         XCTAssertContains(announcementTitle.label, announcements[1].title)
-        XCTAssertTrue(announcementMessage.isVisible)
+        XCTAssertVisible(announcementMessage)
         XCTAssertEqual(announcementMessage.label, announcements[1].message)
     }
 
@@ -70,15 +70,15 @@ class AnnouncementsTests: E2ETestCase {
 
         // MARK: Check visibility of the course and the announcement notification title
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         let announcementTitle = Helper.notificationTitle(announcement: globalAnnouncement)
         announcementTitle.actionUntilElementCondition(action: .pullToRefresh, condition: .visible, timeout: 60, gracePeriod: 3)
-        XCTAssertTrue(announcementTitle.isVisible)
+        XCTAssertVisible(announcementTitle)
 
         // MARK: Check visibility toggle and dismiss button of the announcement notificaiton
         let toggleButton = AccountNotifications.toggleButton(notification: globalAnnouncement).waitUntil(.visible)
-        XCTAssertTrue(toggleButton.isVisible)
+        XCTAssertVisible(toggleButton)
         XCTAssertEqual(toggleButton.label, "\(globalAnnouncement.subject), Tap to view announcement")
         var dismissButton = AccountNotifications.dismissButton(notification: globalAnnouncement).waitUntil(.vanish)
         XCTAssertTrue(dismissButton.isVanished)
@@ -87,12 +87,12 @@ class AnnouncementsTests: E2ETestCase {
         toggleButton.hit()
         dismissButton = dismissButton.waitUntil(.visible)
         XCTAssertEqual(toggleButton.label, "Hide content for \(globalAnnouncement.subject)")
-        XCTAssertTrue(dismissButton.isVisible)
+        XCTAssertVisible(dismissButton)
         XCTAssertEqual(dismissButton.label, "Dismiss \(globalAnnouncement.subject)")
 
         // MARK: Check the message of the announcement
         let announcementMessage = Helper.notificationMessage(announcement: globalAnnouncement).waitUntil(.visible)
-        XCTAssertTrue(announcementMessage.isVisible)
+        XCTAssertVisible(announcementMessage)
         XCTAssertEqual(announcementMessage.label, globalAnnouncement.message)
 
         // MARK: Tap dismiss button and check the visibility
@@ -114,10 +114,10 @@ class AnnouncementsTests: E2ETestCase {
 
         XCTContext.runActivity(named: "Navigate to new announcement screen") { _ in
             let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-            XCTAssertTrue(courseCard.isVisible)
+            XCTAssertVisible(courseCard)
             AnnouncementsHelper.navigateToAnnouncementsPage(course: course)
             let createButton = AnnouncementsHelper.createAnnouncementButton.waitUntil(.visible)
-            XCTAssertTrue(createButton.isVisible)
+            XCTAssertVisible(createButton)
             createButton.hit()
         }
 
@@ -133,11 +133,11 @@ class AnnouncementsTests: E2ETestCase {
             titleField.waitUntil(.visible)
             descriptionField.waitUntil(.visible)
             publishButton.waitUntil(.visible)
-            XCTAssertTrue(cancelButton.isVisible)
-            XCTAssertTrue(attachmentButton.isVisible)
-            XCTAssertTrue(titleField.isVisible)
-            XCTAssertTrue(descriptionField.isVisible)
-            XCTAssertTrue(publishButton.isVisible)
+            XCTAssertVisible(cancelButton)
+            XCTAssertVisible(attachmentButton)
+            XCTAssertVisible(titleField)
+            XCTAssertVisible(descriptionField)
+            XCTAssertVisible(publishButton)
         }
 
         XCTContext.runActivity(named: "Save new announcement") { _ in
@@ -148,7 +148,7 @@ class AnnouncementsTests: E2ETestCase {
 
         XCTContext.runActivity(named: "Check if new announcement is pushed") { _ in
             let backButton = DiscussionsHelper.Details.backButton.waitUntil(.visible)
-            XCTAssertTrue(backButton.isVisible)
+            XCTAssertVisible(backButton)
         }
     }
 }
