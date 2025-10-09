@@ -16,14 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import HorizonUI
+import SwiftUI
 
 struct PaginationIndicatorView: View {
-    
     @Binding var currentIndex: Int?
     let count: Int
-    
+
     var body: some View {
         HStack(spacing: .huiSpaces.space4) {
             ForEach(0 ..< count, id: \.self) { index in
@@ -36,5 +35,4 @@ struct PaginationIndicatorView: View {
         .animation(.easeInOut(duration: 0.3), value: currentIndex)
         .padding(.horizontal, .huiSpaces.space24)
     }
-
 }

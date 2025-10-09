@@ -84,4 +84,3 @@ public struct SkeletonAsyncImage<Content: View, Placeholder: View>: View {
         .accessibilityHidden(true)
     }
 }
-
