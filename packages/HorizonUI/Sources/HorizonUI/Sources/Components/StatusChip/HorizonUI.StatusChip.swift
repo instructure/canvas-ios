@@ -62,12 +62,12 @@ public extension HorizonUI {
 
                 if let label = label {
                     Text(label)
-                        .foregroundStyle(style.forgroundColor(isFilled: isFilled))
+                        .foregroundStyle(style.foregroundColor(isFilled: isFilled))
                         .huiTypography(.labelMediumBold)
                 }
 
                 Text(title)
-                    .foregroundStyle(style.forgroundColor(isFilled: isFilled))
+                    .foregroundStyle(style.foregroundColor(isFilled: isFilled))
                     .huiTypography(.p2)
             }
             .padding(.horizontal, .huiSpaces.space8)
