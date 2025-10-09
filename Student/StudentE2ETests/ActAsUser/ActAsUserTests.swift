@@ -31,18 +31,18 @@ class ActAsUserTests: E2ETestCase {
         logInDSUser(admin)
 
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         profileButton.hit()
         let userNameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
         XCTAssertEqual(userNameLabel.label, admin.name)
 
         var actAsUserButton = ProfileHelper.actAsUserButton.waitUntil(.visible)
-        XCTAssertTrue(actAsUserButton.isVisible)
+        XCTAssertVisible(actAsUserButton)
 
         actAsUserButton.hit()
         let userIDField = ActAsUserHelper.userIDField.waitUntil(.visible)
-        XCTAssertTrue(userIDField.isVisible)
+        XCTAssertVisible(userIDField)
 
         userIDField.writeText(text: student.id)
         let domainField = ActAsUserHelper.domainField.waitUntil(.visible)
@@ -52,26 +52,26 @@ class ActAsUserTests: E2ETestCase {
         }
         actAsUserButton = ActAsUserHelper.actAsUserButton
         actAsUserButton.actionUntilElementCondition(action: .swipeUp(), condition: .visible)
-        XCTAssertTrue(actAsUserButton.isVisible)
+        XCTAssertVisible(actAsUserButton)
 
         actAsUserButton.hit()
         DashboardHelper.courseCard(course: course).waitUntil(.visible)
         profileButton.hit()
         userNameLabel.waitUntil(.visible)
-        XCTAssertTrue(userNameLabel.isVisible)
+        XCTAssertVisible(userNameLabel)
         XCTAssertEqual(userNameLabel.label, student.name)
 
         let endActAsUserButton = ActAsUserHelper.endActAsUserButton.waitUntil(.visible)
-        XCTAssertTrue(endActAsUserButton.isVisible)
+        XCTAssertVisible(endActAsUserButton)
 
         endActAsUserButton.hit()
         ActAsUserHelper.okAlertButton.hit()
         app.find(label: "No Courses", type: .staticText).waitUntil(.visible)
-        XCTAssertFalse(endActAsUserButton.waitUntil(.vanish).isVisible)
+        XCTAssertNotVisible(endActAsUserButton.waitUntil(.vanish))
 
         profileButton.hit()
         userNameLabel.waitUntil(.visible)
-        XCTAssertTrue(userNameLabel.isVisible)
+        XCTAssertVisible(userNameLabel)
         XCTAssertEqual(userNameLabel.label, admin.name)
     }
 }

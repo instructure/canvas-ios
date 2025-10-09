@@ -29,14 +29,14 @@ class HelpTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to Help page
         HelpHelper.navigateToHelpPage()
 
         // MARK: Check "Search the Canvas Guides" button
         let searchTheCanvasGuidesButton = HelpHelper.searchTheCanvasGuides.waitUntil(.visible)
-        XCTAssertTrue(searchTheCanvasGuidesButton.isVisible)
+        XCTAssertVisible(searchTheCanvasGuidesButton)
         searchTheCanvasGuidesButton.hit()
         var browserURL = SafariAppHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas/ct-p/canvas"))
@@ -44,7 +44,7 @@ class HelpTests: E2ETestCase {
 
         // MARK: Check "CUSTOM LINK" button
         let customLinkButton = HelpHelper.customLink.waitUntil(.visible)
-        XCTAssertTrue(customLinkButton.isVisible)
+        XCTAssertVisible(customLinkButton)
         customLinkButton.hit()
         browserURL = SafariAppHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://www.instructure.com"))
@@ -52,32 +52,32 @@ class HelpTests: E2ETestCase {
 
         // MARK: Check "Ask Your Instructor a Question" button
         let askYourInstructorButton = HelpHelper.askYourInstructor.waitUntil(.visible)
-        XCTAssertTrue(askYourInstructorButton.isVisible)
+        XCTAssertVisible(askYourInstructorButton)
 
         askYourInstructorButton.hit()
         let sendButton = InboxHelper.Composer.sendButton.waitUntil(.visible)
         let cancelButton = InboxHelper.Composer.cancelButton.waitUntil(.visible)
-        XCTAssertTrue(sendButton.isVisible)
-        XCTAssertTrue(cancelButton.isVisible)
+        XCTAssertVisible(sendButton)
+        XCTAssertVisible(cancelButton)
 
         // MARK: Check "Report a Problem" button
         cancelButton.hit()
         InboxHelper.handleCancelAlert()
         HelpHelper.navigateToHelpPage()
         let reportAProblemButton = HelpHelper.reportAProblem.waitUntil(.visible)
-        XCTAssertTrue(reportAProblemButton.isVisible)
+        XCTAssertVisible(reportAProblemButton)
 
         reportAProblemButton.hit()
         let dismissButton = InboxHelper.Composer.dismissButton.waitUntil(.visible)
         let reportAProblemLabel = app.find(label: "Report a Problem").waitUntil(.visible)
-        XCTAssertTrue(reportAProblemLabel.isVisible)
-        XCTAssertTrue(dismissButton.isVisible)
+        XCTAssertVisible(reportAProblemLabel)
+        XCTAssertVisible(dismissButton)
 
         // MARK: Check "Submit a Feature Idea" button
         dismissButton.hit()
         HelpHelper.navigateToHelpPage()
         let submitAFeatureButton = HelpHelper.submitAFeatureIdea.waitUntil(.visible)
-        XCTAssertTrue(submitAFeatureButton.isVisible)
+        XCTAssertVisible(submitAFeatureButton)
 
         submitAFeatureButton.hit()
         browserURL = SafariAppHelper.browserURL

@@ -29,7 +29,7 @@ class ProfileTests: E2ETestCase {
         // MARK: Get the user logged in, check Profile
         logInDSUser(parent)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         profileButton.hit()
         let userAvatar = ProfileHelper.avatar.waitUntil(.visible)
@@ -40,14 +40,14 @@ class ProfileTests: E2ETestCase {
         let helpButton = ProfileHelper.helpButton.waitUntil(.visible)
         let changeUserButton = ProfileHelper.changeUserButton.waitUntil(.visible)
         let logOutButton = ProfileHelper.logOutButton.waitUntil(.visible)
-        XCTAssertTrue(userAvatar.isVisible)
-        XCTAssertTrue(userNameLabel.isVisible)
+        XCTAssertVisible(userAvatar)
+        XCTAssertVisible(userNameLabel)
         XCTAssertEqual(userNameLabel.label, parent.name)
-        XCTAssertTrue(inboxButton.isVisible)
-        XCTAssertTrue(manageStudentsButton.isVisible)
-        XCTAssertTrue(settingsButton.isVisible)
-        XCTAssertTrue(helpButton.isVisible)
-        XCTAssertTrue(changeUserButton.isVisible)
-        XCTAssertTrue(logOutButton.isVisible)
+        XCTAssertVisible(inboxButton)
+        XCTAssertVisible(manageStudentsButton)
+        XCTAssertVisible(settingsButton)
+        XCTAssertVisible(helpButton)
+        XCTAssertVisible(changeUserButton)
+        XCTAssertVisible(logOutButton)
     }
 }

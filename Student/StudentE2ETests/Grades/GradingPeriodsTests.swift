@@ -77,12 +77,12 @@ class GradingPeriodsTests: E2ETestCase {
                 }
             }
 
-            XCTAssertTrue(allOption.waitUntil(.visible).isVisible)
-            XCTAssertTrue(firstGPButton.waitUntil(.visible).isVisible)
-            XCTAssertTrue(secondGPButton.waitUntil(.visible).isVisible)
-            XCTAssertTrue(sortByGroupSwitch.waitUntil(.visible).isVisible)
-            XCTAssertTrue(sortByDateSwitch.waitUntil(.visible).isVisible)
-            XCTAssertTrue(saveButton.waitUntil(.visible).isVisible)
+            XCTAssertVisible(allOption.waitUntil(.visible))
+            XCTAssertVisible(firstGPButton.waitUntil(.visible))
+            XCTAssertVisible(secondGPButton.waitUntil(.visible))
+            XCTAssertVisible(sortByGroupSwitch.waitUntil(.visible))
+            XCTAssertVisible(sortByDateSwitch.waitUntil(.visible))
+            XCTAssertVisible(saveButton.waitUntil(.visible))
             XCTAssertTrue(saveButton.waitUntil(.visible).isDisabled)
         }
 
@@ -97,8 +97,8 @@ class GradingPeriodsTests: E2ETestCase {
         let assignment2Cell = Helper.cell(assignment: assignment2)
 
         XCTContext.runActivity(named: "Check if assignment list isn't filtered") { _ in
-            XCTAssertTrue(assignment1Cell.waitUntil(.visible).isVisible)
-            XCTAssertTrue(assignment2Cell.waitUntil(.visible).isVisible)
+            XCTAssertVisible(assignment1Cell.waitUntil(.visible))
+            XCTAssertVisible(assignment2Cell.waitUntil(.visible))
         }
 
         XCTContext.runActivity(named: "Filter to first grading period") { _ in
@@ -109,19 +109,19 @@ class GradingPeriodsTests: E2ETestCase {
         }
 
         XCTContext.runActivity(named: "Check if assignment list is filtered") { _ in
-            XCTAssertTrue(assignment1Cell.waitUntil(.visible).isVisible)
+            XCTAssertVisible(assignment1Cell.waitUntil(.visible))
             XCTAssertTrue(assignment2Cell.waitUntil(.vanish).isVanished)
         }
 
         XCTContext.runActivity(named: "Filter to second grading period") { _ in
             filterButton.waitUntil(.visible)
-            XCTAssertTrue(filterButton.isVisible)
+            XCTAssertVisible(filterButton)
             filterButton.hit()
 
-            XCTAssertTrue(allOption.waitUntil(.visible).isVisible)
-            XCTAssertTrue(firstGPButton.waitUntil(.visible).isVisible)
-            XCTAssertTrue(secondGPButton.waitUntil(.visible).isVisible)
-            XCTAssertTrue(saveButton.waitUntil(.visible).isVisible)
+            XCTAssertVisible(allOption.waitUntil(.visible))
+            XCTAssertVisible(firstGPButton.waitUntil(.visible))
+            XCTAssertVisible(secondGPButton.waitUntil(.visible))
+            XCTAssertVisible(saveButton.waitUntil(.visible))
             XCTAssertTrue(saveButton.waitUntil(.visible).isDisabled)
 
             secondGPButton.hit()
@@ -132,7 +132,7 @@ class GradingPeriodsTests: E2ETestCase {
 
         XCTContext.runActivity(named: "Check if assignment list is filtered") { _ in
             XCTAssertTrue(assignment1Cell.waitUntil(.vanish).isVanished)
-            XCTAssertTrue(assignment2Cell.waitUntil(.visible).isVisible)
+            XCTAssertVisible(assignment2Cell.waitUntil(.visible))
         }
     }
 }
