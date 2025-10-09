@@ -26,6 +26,6 @@ struct TodoList {
 
 struct TodoDay: Identifiable {
     let date: Date
-    let items: [TodoItem]
+    let items: [TodoItemViewModel]
     var id: Double { date.timeIntervalSince1970 }
 }
