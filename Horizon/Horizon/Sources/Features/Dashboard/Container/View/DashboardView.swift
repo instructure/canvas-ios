@@ -36,12 +36,12 @@ struct DashboardView: View {
             state: .data,
             config: .init(
                 refreshable: true,
-                loaderBackgroundColor: .huiColors.surface.pagePrimary,
+                loaderBackgroundColor: .huiColors.surface.pagePrimary
             ),
             refreshAction: refreshWidgets
         ) { _ in
-            VStack {
-                topView
+            VStack(spacing: .zero) {
+                navigationBarHelperView
                 courseCardsView
             }
         }
@@ -68,8 +68,8 @@ struct DashboardView: View {
     func refreshWidgets(completion: @escaping () -> Void) {
         courseCardsView.reload(completion: completion)
     }
-    
-    private var topView: some View {
+
+    private var navigationBarHelperView: some View {
         Color.clear
             .frame(height: 16)
             .readingFrame { frame in
