@@ -106,7 +106,7 @@ public class EmbeddedWebPageContainerViewModel: ObservableObject {
 
     public func webView(
         _ webView: WKWebView,
-        didStartProvisionalNavigation navigation: WKNavigation!
+        didStartProvisionalNavigation navigation: WKNavigation?
     ) {
         webPageModel.webView(
             webView,

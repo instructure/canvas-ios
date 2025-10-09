@@ -24,7 +24,7 @@ public protocol EmbeddedWebPageViewModel {
     var navigationBarTitle: String { get }
 
     func leadingNavigationButton(host: UIViewController) -> InstUI.NavigationBarButton?
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!)
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation?)
 }
 
 public extension EmbeddedWebPageViewModel {
@@ -35,6 +35,6 @@ public extension EmbeddedWebPageViewModel {
 
     func webView(
         _ webView: WKWebView,
-        didStartProvisionalNavigation navigation: WKNavigation!
+        didStartProvisionalNavigation navigation: WKNavigation?
     ) {}
 }

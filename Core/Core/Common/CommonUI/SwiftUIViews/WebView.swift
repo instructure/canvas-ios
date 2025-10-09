@@ -24,7 +24,7 @@ public struct WebView: UIViewRepresentable {
     private var handleLink: ((URL) -> Bool)?
     private var handleSize: ((CGFloat) -> Void)?
     private var handleNavigationFinished: (() -> Void)?
-    private var handleProvisionalNavigationStarted: ((CoreWebView, WKNavigation) -> Void)?
+	private var handleProvisionalNavigationStarted: ((CoreWebView, WKNavigation?) -> Void)?
     private let source: Source?
     private var canToggleTheme: Bool = false
     private var reloadTrigger: AnyPublisher<Void, Never>?
@@ -99,7 +99,7 @@ public struct WebView: UIViewRepresentable {
     }
 
     public func onProvisionalNavigationStarted(
-        _ handleProvisionalNavigationStarted: ((CoreWebView, WKNavigation) -> Void)?
+        _ handleProvisionalNavigationStarted: ((CoreWebView, WKNavigation?) -> Void)?
     ) -> Self {
         var modified = self
         modified.handleProvisionalNavigationStarted = handleProvisionalNavigationStarted
