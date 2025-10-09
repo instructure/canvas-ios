@@ -42,21 +42,23 @@ struct CourseCardView: View {
         .accessibilityLabel(model.accessibilityDescription)
         .accessibilityHint(model.accessiblityHintString)
         .accessibilityActions {
-            Button("View course") {
-                onCourseTap(model.id)
-            }
-
-            ForEach(model.programs) { program in
-                Button {
-                    onProgramTap?(program.id)
-                } label: {
-                    Text(model.viewProgramAccessibilityString(program.name))
+            if model.id != "mock-course-id" {
+                Button("View course") {
+                    onCourseTap(model.id)
                 }
-            }
 
-            if model.hasCurrentLearningObject {
-                Button("Continue learning") {
-                    onLearningObjectTap?(model.id, model.currentLearningObject?.url)
+                ForEach(model.programs) { program in
+                    Button {
+                        onProgramTap?(program.id)
+                    } label: {
+                        Text(model.viewProgramAccessibilityString(program.name))
+                    }
+                }
+
+                if model.hasCurrentLearningObject {
+                    Button("Continue learning") {
+                        onLearningObjectTap?(model.id, model.currentLearningObject?.url)
+                    }
                 }
             }
         }
@@ -196,51 +198,33 @@ struct CourseCardView: View {
     private func learningObjectMetadata(for learningObject: CourseCardModel.LearningObjectInfo) -> some View {
         HorizonUI.WrappingHStack(spacing: .huiSpaces.space8) {
             if let type = learningObject.type {
-                HorizonUI.Pill(
+                HorizonUI.StatusChip(
                     title: type.rawValue,
-                    style: .solid(
-                        .init(
-                            backgroundColor: Color.huiColors.surface.pageSecondary,
-                            textColor: Color.huiColors.text.body,
-                            iconColor: Color.huiColors.icon.default
-                        )
-                    ),
-                    isSmall: true,
-                    icon: type.getIcon(isAssessment: false)
+                    style: .white,
+                    icon: type.getIcon(isAssessment: false),
+                    isFilled: true
                 )
                 .skeletonLoadable()
                 .accessibilityHidden(true)
             }
 
             if let dueDate = learningObject.dueDate {
-                HorizonUI.Pill(
+                HorizonUI.StatusChip(
                     title: dueDate,
-                    style: .solid(
-                        .init(
-                            backgroundColor: Color.huiColors.surface.pageSecondary,
-                            textColor: Color.huiColors.text.body,
-                            iconColor: Color.huiColors.icon.default
-                        )
-                    ),
-                    isSmall: true,
-                    icon: .huiIcons.calendarToday
+                    style: .white,
+                    icon: .huiIcons.calendarToday,
+                    isFilled: true
                 )
                 .skeletonLoadable()
                 .accessibilityHidden(true)
             }
 
             if let duration = learningObject.estimatedDuration {
-                HorizonUI.Pill(
+                HorizonUI.StatusChip(
                     title: duration,
-                    style: .solid(
-                        .init(
-                            backgroundColor: Color.huiColors.surface.pageSecondary,
-                            textColor: Color.huiColors.text.body,
-                            iconColor: Color.huiColors.icon.default
-                        )
-                    ),
-                    isSmall: true,
-                    icon: .huiIcons.schedule
+                    style: .white,
+                    icon: .huiIcons.schedule,
+                    isFilled: true
                 )
                 .skeletonLoadable()
                 .accessibilityHidden(true)

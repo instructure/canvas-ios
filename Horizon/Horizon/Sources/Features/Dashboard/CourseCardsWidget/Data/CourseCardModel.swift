@@ -60,6 +60,10 @@ struct CourseCardModel: Identifiable, Equatable {
     }
 
     var accessibilityDescription: String {
+        if id == "mock-course-id" {
+            return String(localized: "Courses are loading", bundle: .horizon)
+        }
+        
         var description = String.localizedStringWithFormat(
             String(localized: "Course: %@. ", bundle: .horizon),
             name
