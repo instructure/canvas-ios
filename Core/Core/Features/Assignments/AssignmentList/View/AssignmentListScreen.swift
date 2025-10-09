@@ -61,8 +61,14 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             }
         )
         .navigationBarStyle(.color(viewModel.courseColor))
-        .onAppear(perform: viewModel.viewDidAppear)
+		.onAppear {
+			viewModel.viewDidAppear()
+//			isSplitViewControllerCollapsed = controller.value.splitViewController?.isCollapsed ?? true
+		}
         .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
+//		.onReceive(NotificationCenter.default.publisher(for: UIViewController.showDetailTargetDidChangeNotification)) { _ in
+//            isSplitViewControllerCollapsed = controller.value.splitViewController?.isCollapsed ?? true
+//        }
     }
 
     private var gradingPeriodTitle: some View {
@@ -128,9 +134,10 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
                 AssignmentListView(
                     sections: viewModel.sections,
                     identifierGroup: "AssignmentList",
-                    navigateToDetailsAction: {
-                        viewModel.didSelectAssignment.send(($0, controller))
-                    }
+                    navigateToDetailsAction: { url, id in
+						viewModel.didSelectAssignment.send((url, id, controller))
+                    },
+					selectedAssignmentID: viewModel.selectedAssignmentID
                 )
             }
         }
