@@ -21,7 +21,7 @@ import SafariServices
 /**
  This helper opens LTI launch urls that are not Canvas LTI launch urls in Safari.
  */
-enum EmbeddedExternalTools {
+public enum EmbeddedExternalTools {
     private static let externalToolChecks: [(URL) -> Bool] = [ {
             $0.host?.contains("sharepoint.com") == true &&
             $0.path.contains("embed")
@@ -54,5 +54,14 @@ enum EmbeddedExternalTools {
         }
 
         return true
+    }
+
+    public static func presentSafari(
+        url: URL,
+        from view: WeakViewController,
+        router: Router
+    ) {
+        let safariModal = SFSafariViewController(url: url)
+        router.show(safariModal, from: view, options: .modal(.overFullScreen))
     }
 }

@@ -34,19 +34,19 @@ class CalendarTests: E2ETestCase {
         logInDSUser(parent)
 
         let calendarTab = CalendarHelper.TabBar.calendarTab.waitUntil(.visible)
-        XCTAssertTrue(calendarTab.isVisible)
+        XCTAssertVisible(calendarTab)
 
         // MARK: Navigate to Calendar, check events
         calendarTab.hit()
         let todaysEventCell = CalendarHelper.itemCell(for: calendarEvents.todays!).waitUntil(.visible)
         var titleOfEventCell = todaysEventCell.find(label: calendarEvents.todays!.title, type: .staticText).waitUntil(.visible)
-        XCTAssertTrue(todaysEventCell.isVisible)
-        XCTAssertTrue(titleOfEventCell.isVisible)
+        XCTAssertVisible(todaysEventCell)
+        XCTAssertVisible(titleOfEventCell)
 
         let tomorrowsEventCell = CalendarHelper.navigateToItemCell(for: calendarEvents.tomorrows!)
         titleOfEventCell = tomorrowsEventCell.find(label: calendarEvents.tomorrows!.title, type: .staticText).waitUntil(.visible)
-        XCTAssertTrue(tomorrowsEventCell.isVisible)
-        XCTAssertTrue(titleOfEventCell.isVisible)
+        XCTAssertVisible(tomorrowsEventCell)
+        XCTAssertVisible(titleOfEventCell)
 
         // MARK: Check event details
         tomorrowsEventCell.hit()
@@ -55,10 +55,10 @@ class CalendarTests: E2ETestCase {
         let locationNameLabel = CalendarHelper.EventDetails.locationNameLabel(event: calendarEvents.tomorrows!).waitUntil(.visible)
         let locationAddressLabel = CalendarHelper.EventDetails.locationAddressLabel(event: calendarEvents.tomorrows!).waitUntil(.visible)
         let descriptionLabel = CalendarHelper.EventDetails.descriptionLabel(event: calendarEvents.tomorrows!).waitUntil(.visible)
-        XCTAssertTrue(titleLabel.isVisible)
-        XCTAssertTrue(dateLabel.isVisible)
-        XCTAssertTrue(locationNameLabel.isVisible)
-        XCTAssertTrue(locationAddressLabel.isVisible)
-        XCTAssertTrue(descriptionLabel.isVisible)
+        XCTAssertVisible(titleLabel)
+        XCTAssertVisible(dateLabel)
+        XCTAssertVisible(locationNameLabel)
+        XCTAssertVisible(locationAddressLabel)
+        XCTAssertVisible(descriptionLabel)
     }
 }

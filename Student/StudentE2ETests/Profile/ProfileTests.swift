@@ -29,7 +29,7 @@ class ProfileTests: E2ETestCase {
         // MARK: Get the user logged in, check Profile
         logInDSUser(student)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         profileButton.hit()
         let userAvatar = ProfileHelper.avatar.waitUntil(.visible)
@@ -42,17 +42,17 @@ class ProfileTests: E2ETestCase {
         let helpButton = ProfileHelper.helpButton.waitUntil(.visible)
         let changeUserButton = ProfileHelper.changeUserButton.waitUntil(.visible)
         let logOutButton = ProfileHelper.logOutButton.waitUntil(.visible)
-        XCTAssertTrue(userAvatar.isVisible)
-        XCTAssertTrue(userNameLabel.isVisible)
+        XCTAssertVisible(userAvatar)
+        XCTAssertVisible(userNameLabel)
         XCTAssertEqual(userNameLabel.label, student.name)
-        XCTAssertTrue(filesButton.isVisible)
-        XCTAssertTrue(studioButton.isVisible)
-        XCTAssertTrue(settingsButton.isVisible)
-        XCTAssertTrue(networkButton.isVisible)
-        XCTAssertTrue(developerButton.isVisible)
-        XCTAssertTrue(helpButton.isVisible)
-        XCTAssertTrue(changeUserButton.isVisible)
-        XCTAssertTrue(logOutButton.isVisible)
+        XCTAssertVisible(filesButton)
+        XCTAssertVisible(studioButton)
+        XCTAssertVisible(settingsButton)
+        XCTAssertVisible(networkButton)
+        XCTAssertVisible(developerButton)
+        XCTAssertVisible(helpButton)
+        XCTAssertVisible(changeUserButton)
+        XCTAssertVisible(logOutButton)
     }
 
     func testProfilePictureChange() {
@@ -64,27 +64,27 @@ class ProfileTests: E2ETestCase {
         // MARK: Get the user logged in, check Profile
         logInDSUser(student)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         profileButton.hit()
         let userAvatar = ProfileHelper.avatar.waitUntil(.visible)
-        XCTAssertTrue(userAvatar.isVisible)
+        XCTAssertVisible(userAvatar)
 
         // MARK: Change profile picture
         userAvatar.hit()
         let choosePhotoButton = ProfileHelper.ChangePicture.choosePhotoButton.waitUntil(.visible)
-        XCTAssertTrue(choosePhotoButton.isVisible)
+        XCTAssertVisible(choosePhotoButton)
 
         choosePhotoButton.hit()
         let firstPhoto = ProfileHelper.ChangePicture.firstPhoto.waitUntil(.visible)
-        XCTAssertTrue(firstPhoto.isVisible)
+        XCTAssertVisible(firstPhoto)
 
         firstPhoto.hit()
         let chooseButton = ProfileHelper.ChangePicture.chooseButton.waitUntil(.visible)
-        XCTAssertTrue(chooseButton.isVisible)
+        XCTAssertVisible(chooseButton)
 
         chooseButton.hit()
-        XCTAssertTrue(userAvatar.waitUntil(.visible).isVisible)
+        XCTAssertVisible(userAvatar.waitUntil(.visible))
     }
 
     func testShortNameIsDisplayed() {
@@ -97,12 +97,12 @@ class ProfileTests: E2ETestCase {
         // MARK: Get the user logged in, check Profile
         logInDSUser(student)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         // MARK: Check username
         profileButton.hit()
         let userNameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
-        XCTAssertTrue(userNameLabel.isVisible)
+        XCTAssertVisible(userNameLabel)
         XCTAssertEqual(userNameLabel.label, shortName)
     }
 }

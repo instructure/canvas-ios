@@ -33,9 +33,26 @@ public enum AssignmentReminderError: Error, Equatable {
 public struct AssignmentReminderContext {
     let courseId: String
     let assignmentId: String
+    let subAssignmentTag: String
     let userId: String
     let assignmentName: String
     let dueDate: Date
+
+    init(
+        courseId: String,
+        assignmentId: String,
+        subAssignmentTag: String? = nil,
+        userId: String,
+        assignmentName: String,
+        dueDate: Date
+    ) {
+        self.courseId = courseId
+        self.assignmentId = assignmentId
+        self.subAssignmentTag = subAssignmentTag ?? ""
+        self.userId = userId
+        self.assignmentName = assignmentName
+        self.dueDate = dueDate
+    }
 }
 
 public protocol AssignmentRemindersInteractor: AnyObject {
@@ -241,6 +258,7 @@ private extension UserNotificationCenterProtocol {
             .map {
                 $0.filter(courseId: context.courseId,
                           assignmentId: context.assignmentId,
+                          subAssignmentTag: context.subAssignmentTag.nilIfEmpty,
                           userId: context.userId)
             }
             .eraseToAnyPublisher()

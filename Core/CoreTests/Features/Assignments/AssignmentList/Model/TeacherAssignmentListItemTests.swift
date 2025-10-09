@@ -38,16 +38,16 @@ final class TeacherAssignmentListItemTests: CoreTestCase {
     private lazy var testData = Self.testData
 
     private var testee: TeacherAssignmentListItem!
-    private var dueDateTextsProvider: AssignmentDueDateTextsProviderMock!
+    private var dateTextsProvider: AssignmentDateTextsProviderMock!
 
     override func setUp() {
         super.setUp()
-        dueDateTextsProvider = .init()
+        dateTextsProvider = .init()
     }
 
     override func tearDown() {
         testee = nil
-        dueDateTextsProvider = nil
+        dateTextsProvider = nil
         Clock.reset()
         super.tearDown()
     }
@@ -89,14 +89,14 @@ final class TeacherAssignmentListItemTests: CoreTestCase {
 
     // MARK: - Due dates
 
-    func test_dueDates_shouldCallDueDateTextsProviderAndUseItsResult() {
-        dueDateTextsProvider.formattedDueDatesResult = ["dd1", "dd2"]
+    func test_dueDates_shouldCallDateTextsProviderAndUseItsResult() {
+        dateTextsProvider.summarizedDueDatesResult = ["dd1", "dd2"]
         testee = makeListItem(.make(
             id: ID(testData.assignmentId)
         ))
 
-        XCTAssertEqual(dueDateTextsProvider.formattedDueDatesCallsCount, 1)
-        XCTAssertEqual(dueDateTextsProvider.formattedDueDatesInput?.id, testData.assignmentId)
+        XCTAssertEqual(dateTextsProvider.summarizedDueDatesCallsCount, 1)
+        XCTAssertEqual(dateTextsProvider.summarizedDueDatesInput?.id, testData.assignmentId)
         XCTAssertEqual(testee.dueDates.count, 2)
         XCTAssertEqual(testee.dueDates.first, "dd1")
         XCTAssertEqual(testee.dueDates.last, "dd2")
@@ -262,7 +262,7 @@ final class TeacherAssignmentListItemTests: CoreTestCase {
     private func makeListItem(_ apiModel: APIAssignment) -> TeacherAssignmentListItem {
         TeacherAssignmentListItem(
             assignment: .make(from: apiModel, in: databaseClient),
-            dueDateTextsProvider: dueDateTextsProvider
+            dateTextsProvider: dateTextsProvider
         )
     }
 }

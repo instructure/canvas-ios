@@ -20664,7 +20664,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Setja í safn"
+            "value" : "Safn"
           }
         },
         "it" : {
@@ -47705,6 +47705,7 @@
       }
     },
     "Due" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -69998,13 +69999,13 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bloquejat"
+            "value" : "S’ha bloquejat"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wedi Cloi"
+            "value" : "Wedi cloi"
           }
         },
         "da" : {
@@ -81301,6 +81302,7 @@
     },
     "No Due Date" : {
       "comment" : "Label shown for a to do that doesn't have a due date",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

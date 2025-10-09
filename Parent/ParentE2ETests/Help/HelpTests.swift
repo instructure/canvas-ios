@@ -29,16 +29,16 @@ class HelpTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(parent)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         profileButton.hit()
         let helpButton = ProfileHelper.helpButton.waitUntil(.visible)
-        XCTAssertTrue(helpButton.isVisible)
+        XCTAssertVisible(helpButton)
 
         // MARK: Navigate to Help, check "Search the Canvas Guides" button
         helpButton.hit()
         let searchTheCanvasGuidesButton = HelpHelper.searchTheCanvasGuides.waitUntil(.visible)
-        XCTAssertTrue(searchTheCanvasGuidesButton.isVisible)
+        XCTAssertVisible(searchTheCanvasGuidesButton)
 
         searchTheCanvasGuidesButton.hit()
         HelpHelper.openInSafariButton.hit()
@@ -48,16 +48,16 @@ class HelpTests: E2ETestCase {
         // MARK: Check "Report a Problem" button
         HelpHelper.returnToHelpPage(teacher: true)
         let reportAProblemButton = HelpHelper.reportAProblem.waitUntil(.visible)
-        XCTAssertTrue(reportAProblemButton.isVisible)
+        XCTAssertVisible(reportAProblemButton)
 
         reportAProblemButton.hit()
-        XCTAssertTrue(app.find(label: "Report a Problem").waitUntil(.visible).isVisible)
+        XCTAssertVisible(app.find(label: "Report a Problem").waitUntil(.visible))
 
         // MARK: Check "Submit a Feature Idea" button
         app.find(label: "Cancel").hit()
         HelpHelper.navigateToHelpPage()
         let submitAFeatureButton = HelpHelper.submitAFeatureIdea.waitUntil(.visible)
-        XCTAssertTrue(submitAFeatureButton.isVisible)
+        XCTAssertVisible(submitAFeatureButton)
 
         submitAFeatureButton.hit()
         HelpHelper.openInSafariButton.hit()
