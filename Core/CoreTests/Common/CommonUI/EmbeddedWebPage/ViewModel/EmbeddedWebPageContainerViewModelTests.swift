@@ -139,7 +139,7 @@ private class MockWebPageViewModel: EmbeddedWebPageViewModel {
 
     func webView(
         _ webView: WKWebView,
-        didStartProvisionalNavigation navigation: WKNavigation!
+        didStartProvisionalNavigation navigation: WKNavigation?
     ) {
         didCallProvisionalNavigationStartCallback = true
     }
