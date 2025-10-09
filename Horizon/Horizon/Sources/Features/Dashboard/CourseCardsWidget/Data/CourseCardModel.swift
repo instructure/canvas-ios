@@ -43,7 +43,8 @@ struct CourseCardModel: Identifiable, Equatable {
 
     var progressPercentage: String {
         let percentage = Int(progress.rounded())
-        return "\(percentage)% complete"
+        let format = String(localized: "%d%% complete", bundle: .horizon)
+        return String.localizedStringWithFormat(format, percentage)
     }
 
     var hasPrograms: Bool {
@@ -57,20 +58,82 @@ struct CourseCardModel: Identifiable, Equatable {
     var hasCurrentLearningObject: Bool {
         currentLearningObject != nil
     }
+
+    var accessibilityDescription: String {
+        var description = String.localizedStringWithFormat(
+            String(localized: "Course: %@. ", bundle: .horizon),
+            name
+        )
+
+        if programs.isNotEmpty {
+            let programsSeparated = programs.map(\.name).joined(separator: ", ")
+            if programsSeparated.isNotEmpty {
+                description += String.localizedStringWithFormat(
+                    String(localized: "Part of %@. ", bundle: .horizon),
+                    programsSeparated
+                )
+            }
+        }
+
+        description += String.localizedStringWithFormat(
+            String(localized: "Progress: %d percent complete. ", bundle: .horizon),
+            Int(progress.rounded())
+        )
+        if let learningObject = currentLearningObject {
+            description += String.localizedStringWithFormat(
+                String(localized: "Current learning object: %@. ", bundle: .horizon),
+                learningObject.name
+            )
+            if let type = learningObject.type {
+                description += String.localizedStringWithFormat(
+                    String(localized: "Type: %@. ", bundle: .horizon),
+                    type.rawValue
+                )
+            }
+            if let dueDate = learningObject.dueDate {
+                description += String.localizedStringWithFormat(
+                    String(localized: "Due at %@. ", bundle: .horizon),
+                    dueDate
+                )
+            }
+            if let estimatedDuration = learningObject.estimatedDuration {
+                description += String.localizedStringWithFormat(
+                    String(localized: "Estimated duration: %@. ", bundle: .horizon),
+                    estimatedDuration
+                )
+            }
+        }
+
+        return description
+    }
+
+    var accessiblityHintString: String {
+        if hasCurrentLearningObject {
+            String(localized: "Double tap to continue learning", bundle: .horizon)
+        } else {
+            String(localized: "Double tap to open course", bundle: .horizon)
+        }
+    }
+    
+    func viewProgramAccessibilityString(_ programName: String) -> String {
+        String.localizedStringWithFormat(
+            String(localized: "View %@", bundle: .horizon),
+            programName)
+    }
 }
 
 extension CourseCardModel {
     init(from course: HCourse) {
-        self.id = course.id
-        self.name = course.name
+        id = course.id
+        name = course.name
         if let imageUrlString = course.imageUrl, let imageUrl = URL(string: imageUrlString) {
-            self.imageURL = imageUrl
+            imageURL = imageUrl
         } else {
-            self.imageURL = nil
+            imageURL = nil
         }
-        self.progress = course.progress
-        self.lastActivityAt = nil
-        self.programs = course.programs.map { program in
+        progress = course.progress
+        lastActivityAt = nil
+        programs = course.programs.map { program in
             ProgramInfo(id: program.id, name: program.name)
         }
 
@@ -84,7 +147,7 @@ extension CourseCardModel {
                 url: currentLearningObject.url
             )
         } else {
-            self.currentLearningObject = nil
+            currentLearningObject = nil
         }
     }
 }

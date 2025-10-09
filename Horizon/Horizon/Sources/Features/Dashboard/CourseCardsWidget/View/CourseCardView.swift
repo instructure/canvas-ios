@@ -36,26 +36,24 @@ struct CourseCardView: View {
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
         .onTapGesture {
-            onCourseTap(model.id)
+            onCardTapGesture()
         }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(accessibilityDescription)
-        .accessibilityHint(String(localized: "Double tap to open course", bundle: .horizon))
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(model.accessibilityDescription)
+        .accessibilityHint(model.accessiblityHintString)
         .accessibilityActions {
+            Button("View course") {
+                onCourseTap(model.id)
+            }
+
             ForEach(model.programs) { program in
                 Button {
                     onProgramTap?(program.id)
                 } label: {
-                    Text("View \(program.name)")
+                    Text(model.viewProgramAccessibilityString(program.name))
                 }
             }
-       
-            Button {
-                onCourseTap(model.id)
-            } label: {
-                Text("View course")
-            }
-            
+
             if model.hasCurrentLearningObject {
                 Button("Continue learning") {
                     onLearningObjectTap?(model.id, model.currentLearningObject?.url)
@@ -63,6 +61,14 @@ struct CourseCardView: View {
             }
         }
         .id(model.id)
+    }
+
+    private func onCardTapGesture() {
+        if model.hasCurrentLearningObject {
+            onLearningObjectTap?(model.id, model.currentLearningObject?.url)
+        } else {
+            onCourseTap(model.id)
+        }
     }
 
     private var courseImageSection: some View {
@@ -181,6 +187,7 @@ struct CourseCardView: View {
                     .fill(Color.huiColors.surface.institution.opacity(0.1))
                 )
             }
+            .accessibilityHidden(true)
             .accessibilityRemoveTraits(.isButton)
             .buttonStyle(.plain)
         }
@@ -202,6 +209,7 @@ struct CourseCardView: View {
                     icon: type.getIcon(isAssessment: false)
                 )
                 .skeletonLoadable()
+                .accessibilityHidden(true)
             }
 
             if let dueDate = learningObject.dueDate {
@@ -218,6 +226,7 @@ struct CourseCardView: View {
                     icon: .huiIcons.calendarToday
                 )
                 .skeletonLoadable()
+                .accessibilityHidden(true)
             }
 
             if let duration = learningObject.estimatedDuration {
@@ -234,36 +243,10 @@ struct CourseCardView: View {
                     icon: .huiIcons.schedule
                 )
                 .skeletonLoadable()
+                .accessibilityHidden(true)
             }
             Spacer()
         }
-    }
-
-    private var accessibilityDescription: String {
-        var description = String(localized: "Course: \(model.name).", bundle: .horizon)
-
-        if model.programs.isNotEmpty {
-            let programsSeparated = model.programs.map(\.name).joined(separator: ", ")
-            if programsSeparated.isNotEmpty {
-                description += String(localized: " Part of \(programsSeparated).", bundle: .horizon)
-            }
-        }
-
-        description += String(localized: " Progress: \(model.progressPercentage).", bundle: .horizon)
-        if let learningObject = model.currentLearningObject {
-            description += String(localized: " Current learning object: \(learningObject.name).", bundle: .horizon)
-            if let type = learningObject.type {
-                description += String(localized: " Type: \(type.rawValue).", bundle: .horizon)
-            }
-            if let dueDate = learningObject.dueDate {
-                description += String(localized: " Due at \(dueDate). ", bundle: .horizon)
-            }
-            if let estimatedDuration = learningObject.estimatedDuration {
-                description += String(localized: " Estimated duration: \(estimatedDuration). ", bundle: .horizon)
-            }
-        }
-
-        return description
     }
 }
 

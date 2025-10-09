@@ -1,24 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    " Current learning object: %@." : {
-
-    },
-    " Due at %@. " : {
-
-    },
-    " Estimated duration: %@. " : {
-
-    },
-    " Part of %@." : {
-
-    },
-    " Progress: %@." : {
-
-    },
-    " Type: %@." : {
-
-    },
     "-" : {
       "localizations" : {
         "ar" : {
@@ -1055,6 +1037,9 @@
         }
       }
     },
+    "%d%% complete" : {
+
+    },
     "%lld Attempts Allowed" : {
       "comment" : "The number of attempts allowed for this assignment.",
       "localizations" : {
@@ -2049,9 +2034,6 @@
           }
         }
       }
-    },
-    "%lld%% complete" : {
-
     },
     "Abu Dhabi (+04:00/+04:00)" : {
       "localizations" : {
@@ -23326,7 +23308,7 @@
         }
       }
     },
-    "Course: %@." : {
+    "Course: %@. " : {
 
     },
     "Create message" : {
@@ -23840,6 +23822,9 @@
           }
         }
       }
+    },
+    "Current learning object: %@. " : {
+
     },
     "Darwin (+09:30)" : {
       "localizations" : {
@@ -25377,6 +25362,9 @@
         }
       }
     },
+    "Double tap to continue learning" : {
+
+    },
     "Double tap to open course" : {
 
     },
@@ -26147,6 +26135,9 @@
           }
         }
       }
+    },
+    "Due at %@. " : {
+
     },
     "Due Date" : {
       "localizations" : {
@@ -29993,6 +29984,9 @@
           }
         }
       }
+    },
+    "Estimated duration: %@. " : {
+
     },
     "Excused" : {
       "localizations" : {
@@ -58681,6 +58675,9 @@
     "Part of" : {
 
     },
+    "Part of %@. " : {
+
+    },
     "Perth (+08:00)" : {
       "localizations" : {
         "ar" : {
@@ -60733,6 +60730,9 @@
       }
     },
     "Program overview" : {
+
+    },
+    "Progress: %d percent complete. " : {
 
     },
     "Puerto Rico (-04:00)" : {
@@ -80710,6 +80710,9 @@
           }
         }
       }
+    },
+    "Type: %@. " : {
+
     },
     "Ulaanbaatar (+08:00/+08:00)" : {
       "localizations" : {
