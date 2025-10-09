@@ -17,28 +17,25 @@
 //
 
 import Combine
+@testable import Horizon
+import Foundation
 
-final class DashboardInteractorPreview: DashboardInteractor {
-    func getAndObserveCoursesWithoutModules(ignoreCache _: Bool) -> AnyPublisher<[HCourse], Never> {
-        Just(
-            [.init(
-                id: "11",
-                name: "AI Introductions",
-                state: "active",
-                enrollmentID: "222",
-                progress: 0.2,
-                learningObjectCardModel: nil
-            )]
-        )
-        .eraseToAnyPublisher()
+final class CourseCardsInteractorMock: CourseCardsInteractor {
+    var shouldFail = false
+    var error: Error = URLError(.badServerResponse)
+    var coursesToReturn: [HCourse] = []
+    
+    func getAndObserveCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Error> {
+        if shouldFail {
+            return Fail(error: error).eraseToAnyPublisher()
+        } else {
+            return Just(coursesToReturn)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
     }
-
+    
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
-        Just(())
-            .eraseToAnyPublisher()
-    }
-
-    func getUnreadInboxMessageCount() -> AnyPublisher<Int, Never> {
-        Just(5).eraseToAnyPublisher()
+        return Just(()).eraseToAnyPublisher()
     }
 }

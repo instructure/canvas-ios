@@ -16,10 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import SwiftUI
+import HorizonUI
 
-struct InvitedCourse: Identifiable, Equatable {
-    let id: String
-    let name: String
-    let enrollmentID: String
+struct PaginationIndicatorView: View {
+    
+    @Binding var currentIndex: Int?
+    let count: Int
+    
+    var body: some View {
+        HStack(spacing: .huiSpaces.space4) {
+            ForEach(0 ..< count, id: \.self) { index in
+                Circle()
+                    .fill(index == (currentIndex ?? 0) ? Color.huiColors.icon.medium : Color.clear)
+                    .stroke(Color.huiColors.icon.medium, lineWidth: 1)
+                    .frame(width: 8, height: 8)
+            }
+        }
+        .animation(.easeInOut(duration: 0.3), value: currentIndex)
+        .padding(.horizontal, .huiSpaces.space24)
+    }
+
 }

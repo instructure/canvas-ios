@@ -53,4 +53,20 @@ extension Publisher {
         )
         .eraseToAnyPublisher()
     }
+    
+    public func asyncPublisher() async throws -> Output {
+        try await withCheckedThrowingContinuation { continuation in
+            var cancellable: AnyCancellable?
+            cancellable = self.first()
+                .sink(receiveCompletion: { completion in
+                    if case let .failure(error) = completion {
+                        continuation.resume(throwing: error)
+                    }
+                    cancellable?.cancel()
+                }, receiveValue: { value in
+                    continuation.resume(returning: value)
+                    cancellable?.cancel()
+                })
+        }
+    }
 }

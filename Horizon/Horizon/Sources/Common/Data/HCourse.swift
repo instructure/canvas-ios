@@ -45,7 +45,8 @@ struct HCourse: Identifiable {
     let modules: [HModule]
     let progress: Double
     let overviewDescription: String
-    let learningObjectCardModel: LearningObjectCard? // upcoming module item details
+    let imageUrl: String?
+    let currentLearningObject: LearningObjectCard? // upcoming module item details
     var programs: [Program] = []
 
     init(
@@ -58,7 +59,9 @@ struct HCourse: Identifiable {
         modules: [HModule] = [],
         progress: Double = 0,
         overviewDescription: String? = nil,
-        learningObjectCardModel: LearningObjectCard? = nil
+        imageUrl: String? = nil,
+        currentLearningObject: LearningObjectCard? = nil,
+        programs: [Program] = []
     ) {
         self.id = id
         self.name = name
@@ -69,7 +72,9 @@ struct HCourse: Identifiable {
         self.modules = modules
         self.progress = progress
         self.overviewDescription = overviewDescription ?? ""
-        self.learningObjectCardModel = learningObjectCardModel
+        self.imageUrl = imageUrl
+        self.currentLearningObject = currentLearningObject
+        self.programs = programs
     }
 
     init(from entity: CDHCourse, modules: [HModule]?) {
@@ -82,9 +87,10 @@ struct HCourse: Identifiable {
         self.modules = modules ?? []
         self.progress = entity.completionPercentage
         self.overviewDescription = entity.overviewDescription ?? ""
+        self.imageUrl = entity.imageUrl
 
         if entity.nextModuleID != nil, entity.nextModuleItemID != name {
-            self.learningObjectCardModel = LearningObjectCard(
+            self.currentLearningObject = LearningObjectCard(
                 moduleTitle: entity.nextModuleName ?? "",
                 learningObjectName: entity.nextModuleItemName ?? "",
                 learningObjectID: entity.nextModuleItemID ?? "",
@@ -95,7 +101,7 @@ struct HCourse: Identifiable {
                 isNewQuiz: entity.nextModuleItemIsNewQuiz
             )
         } else {
-            self.learningObjectCardModel = nil
+            self.currentLearningObject = nil
         }
     }
 }

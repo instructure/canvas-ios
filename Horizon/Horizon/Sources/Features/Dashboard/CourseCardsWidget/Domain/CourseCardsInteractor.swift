@@ -21,13 +21,12 @@ import CombineSchedulers
 import Core
 import Foundation
 
-protocol DashboardInteractor {
-    func getAndObserveCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
+protocol CourseCardsInteractor {
+    func getAndObserveCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Error>
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never>
-    func getUnreadInboxMessageCount() -> AnyPublisher<Int, Never>
 }
 
-final class DashboardInteractorLive: DashboardInteractor {
+final class CourseCardsInteractorLive: CourseCardsInteractor {
     // MARK: - Properties
 
     private let userId: String
@@ -46,28 +45,36 @@ final class DashboardInteractorLive: DashboardInteractor {
 
     /// Fetches all courses from graphQL but doesn't fetch modules from the REST api.
     /// In addition, it keeps listening for `moduleItemRequirementCompleted` notifications and makes a new request to graphQL whenever it receives one.
-    func getAndObserveCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
+    func getAndObserveCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Error> {
         unowned let unownedSelf = self
 
         return NotificationCenter.default
             .publisher(for: .moduleItemRequirementCompleted)
             .prepend(.init(name: .moduleItemRequirementCompleted))
             .delay(for: .milliseconds(500), scheduler: scheduler)
-            .flatMapLatest {
-                let shouldIgnoreCache = $0.object != nil ? true : ignoreCache
+            .flatMap { param -> AnyPublisher<[HCourse], Error> in
+                let shouldIgnoreCache = param.object != nil ? true : ignoreCache
                 return ReactiveStore(useCase: GetHCoursesProgressionUseCase(userId: unownedSelf.userId, horizonCourses: true))
                     .getEntities(ignoreCache: shouldIgnoreCache)
-                    .replaceError(with: [])
                     .flatMap {
                         $0.publisher
                             .map { HCourse(from: $0, modules: nil) }
                             .compactMap { $0 }
                             .collect()
                     }
+                    .eraseToAnyPublisher()
             }
+            .eraseToAnyPublisher()
             .map { courses in
-                courses.sorted {
-                    ($0.learningObjectCardModel != nil) && ($1.learningObjectCardModel == nil)
+                courses.sorted { course1, course2 in
+                    let isCompleted1 = course1.currentLearningObject == nil
+                    let isCompleted2 = course2.currentLearningObject == nil
+
+                    if isCompleted1 != isCompleted2 {
+                        return !isCompleted1
+                    }
+
+                    return course1.progress > course2.progress
                 }
             }
             .receive(on: scheduler)
@@ -101,19 +108,5 @@ final class DashboardInteractorLive: DashboardInteractor {
             .replaceError(with: ([], []))
             .map { _ in () }
             .eraseToAnyPublisher()
-    }
-
-    func getUnreadInboxMessageCount() -> AnyPublisher<Int, Never> {
-        ReactiveStore(
-            useCase: GetInboxMessageList(currentUserId: userId)
-        )
-        .getEntities(ignoreCache: true)
-        .map { messages in
-            messages.reduce(0) { count, message in
-                message.state == .unread ? count + 1 : count
-            }
-        }
-        .replaceError(with: 0)
-        .eraseToAnyPublisher()
     }
 }
