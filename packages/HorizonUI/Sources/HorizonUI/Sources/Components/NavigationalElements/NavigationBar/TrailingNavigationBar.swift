@@ -83,7 +83,6 @@ extension HorizonUI.NavigationBar {
                     }
                 }
                 .dropShadow()
-
                 ZStack(alignment: .topTrailing) {
                     HorizonUI.IconButton(
                         Image.huiIcons.mail,
