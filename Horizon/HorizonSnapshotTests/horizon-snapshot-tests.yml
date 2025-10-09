@@ -1,0 +1,18 @@
+---
+targets:
+  HorizonSnapshotTests:
+    type: bundle.unit-test
+    platform: iOS
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: false
+      ENABLE_TESTABILITY: true
+      GENERATE_INFOPLIST_FILE: true
+    sources:
+      - path: ./
+        excludes:
+          - ".swiftlint.yml"
+    dependencies:
+      - target: Horizon
+      - target: Core/TestsFoundation
+      - package: SnapshotTesting
+      - package: HorizonUI
