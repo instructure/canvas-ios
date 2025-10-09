@@ -26,6 +26,7 @@ class InboxCoursePickerViewModel: ObservableObject {
     @Published public private(set) var moreCourses: [Course] = []
     @Published public private(set) var groups: [Group] = []
     @Published public private(set) var state: StoreState = .loading
+    public let snackbarViewModel = SnackBarViewModel()
 
     // MARK: - Input / Output
     @Published public var selectedRecipientContext: RecipientContext?
@@ -50,8 +51,13 @@ class InboxCoursePickerViewModel: ObservableObject {
     }
 
     public func onSelect(selected: Course) {
-        let context = RecipientContext(course: selected)
-        onSelect(selected: context)
+        if selected.isPastEnrollment {
+            selectedRecipientContext = nil
+            snackbarViewModel.showSnack(String(localized: "Course concluded. Unable to send messages!", bundle: .core))
+        } else {
+            let context = RecipientContext(course: selected)
+            onSelect(selected: context)
+        }
     }
 
     public func onSelect(selected: Group) {
