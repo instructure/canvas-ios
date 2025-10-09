@@ -25,10 +25,12 @@ struct DashboardView: View {
     @Environment(\.viewController) private var viewController
     @State private var isShowHeader: Bool = true
     @State private var courseCardsView: CourseCardsView
+    @State private var skillCardsView: SkillCardsView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
         courseCardsView = CourseCardsAssembly.makeView()
+        skillCardsView = SkillCardsAssembly.makeView()
     }
 
     var body: some View {
@@ -43,7 +45,11 @@ struct DashboardView: View {
             VStack(spacing: .zero) {
                 navigationBarHelperView
                 courseCardsView
+                skillCardsView
+                    .padding(.horizontal, .huiSpaces.space24)
+                    .padding(.top, .huiSpaces.space16)
             }
+            .padding(.bottom, .huiSpaces.space24)
         }
         .safeAreaInset(edge: .top, spacing: .zero) {
             if isShowHeader {
@@ -67,6 +73,7 @@ struct DashboardView: View {
 
     func refreshWidgets(completion: @escaping () -> Void) {
         courseCardsView.reload(completion: completion)
+        skillCardsView.reload()
     }
 
     private var navigationBarHelperView: some View {

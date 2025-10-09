@@ -19,35 +19,34 @@
 import HorizonUI
 import SwiftUI
 
-struct SkillsHighlightCard: View {
-    struct Skill: Identifiable {
-        let id: String
-        let title: String
-        let status: String
-    }
+struct SkillCardView: View {
+    let skill: SkillCardModel
 
-    let skill: Skill
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: .huiSpaces.space16)
-                .fill(Color.huiColors.primitives.green12.opacity(ProficiencyLevel(rawValue: skill.status)?.opacity ?? 1))
+                .fill(
+                    Color.huiColors.primitives.green12.opacity(
+                        ProficiencyLevel(rawValue: skill.status)?.opacity ?? 1)
+                )
+                .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: .huiSpaces.space8) {
-                Text(skill.title.capitalized)
+                Text(skill.title)
                     .huiTypography(.p2)
                     .lineLimit(1)
                     .foregroundStyle(Color.huiColors.text.body)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                HorizonUI.StatusChip(title: skill.status, style: .white)
+                    .skeletonLoadable()
+                HorizonUI.StatusChip(title: skill.status.capitalized, style: .white)
+                    .skeletonLoadable()
             }
             .padding(.huiSpaces.space24)
         }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(Text("\(skill.title), \(skill.status)"))
     }
 }
 
 #Preview {
-    SkillsHighlightCard(
+    SkillCardView(
         skill: .init(
             id: "1",
             title: "Dolor sit skill name",

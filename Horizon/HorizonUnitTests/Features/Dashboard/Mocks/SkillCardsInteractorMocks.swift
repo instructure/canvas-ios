@@ -16,20 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+@testable import Horizon
 import Foundation
 
-enum ProficiencyLevel: String {
-    case proficient
-    case advanced
-    case expert
-    case beginner
+final class SkillCardsInteractorMocks: SkillCardsInteractor {
+    var shouldFail = false
+    var error: Error = URLError(.badServerResponse)
+    var skillsToReturn: [SkillCardModel]? = nil
+    var lastIgnoreCache: Bool? = nil
 
-    var opacity: Double {
-        switch self {
-        case .proficient: 0.6
-        case .advanced: 0.8
-        case .expert: 1
-        case .beginner: 0.4
+    func getSkills(ignoreCache: Bool) -> AnyPublisher<[SkillCardModel], Error> {
+        lastIgnoreCache = ignoreCache
+        if shouldFail {
+            return Fail(error: error).eraseToAnyPublisher()
+        } else {
+            let skills = skillsToReturn ?? HSkillStubs.skills
+            return Just(skills)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
         }
     }
 }

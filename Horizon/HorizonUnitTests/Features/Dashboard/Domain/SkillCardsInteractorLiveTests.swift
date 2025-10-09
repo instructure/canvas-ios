@@ -1,0 +1,68 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+@testable import Horizon
+@testable import Core
+import XCTest
+
+final class SkillCardsInteractorLiveTests: HorizonTestCase {
+
+    func testGetSkills() {
+        // Given
+        let useCase = GetHSkillsUseCase(journey: DomainServiceMock(result: .success(api)))
+        let testee = SkillCardsInteractorLive(skillUseCase: useCase)
+
+        // When
+        api.mock(
+            DomainService.JWTTokenRequest(domainServiceOption: .journey),
+            value: DomainService.JWTTokenRequest.Result(token: HSkillStubs.token)
+        )
+        api.mock(GetHSkillRequest(), value: HSkillStubs.response)
+
+        // Then
+        XCTAssertFirstValueAndCompletion(testee.getSkills(ignoreCache: true)) { skills in
+            XCTAssertEqual(skills.count, 5)
+            XCTAssertEqual(skills[0].id, "1")
+            XCTAssertEqual(skills[0].title, "Skill 1")
+            XCTAssertEqual(skills[0].status, "expert")
+
+            XCTAssertEqual(skills[1].id, "6")
+            XCTAssertEqual(skills[1].title, "Skill 6")
+            XCTAssertEqual(skills[1].status, "advanced")
+
+            XCTAssertEqual(skills[2].id, "2")
+            XCTAssertEqual(skills[2].title, "Skill 2")
+            XCTAssertEqual(skills[2].status, "proficient")
+
+            XCTAssertEqual(skills[3].id, "4")
+            XCTAssertEqual(skills[3].title, "Skill 4")
+            XCTAssertEqual(skills[3].status, "proficient")
+        }
+    }
+
+//    func testGetSkillsErrorState() {
+//        // Given
+//        let useCase = GetHSkillsUseCase(journey: DomainServiceMock(result: .failure(DomainService.Issue.unableToGetToken)))
+//        let testee = DashboardInteractorLive(userId: "122", skillUseCase: useCase, scheduler: .immediate)
+//
+//        // Then
+//        XCTAssertFirstValueAndCompletion(testee.getSkills(ignoreCache: true)) { state in
+//            XCTAssertEqual(state, .error)
+//        }
+//    }
+}
