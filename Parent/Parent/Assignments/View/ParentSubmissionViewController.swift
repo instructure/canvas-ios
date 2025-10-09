@@ -25,6 +25,7 @@ class ParentSubmissionViewController: UINavigationController {
     private let viewModel: ParentSubmissionViewModel
     private unowned let webView: WKWebView
     private weak var loadingIndicator: CircleProgressView?
+    private weak var downloadAlert: UIAlertController?
 
     public init(viewModel: ParentSubmissionViewModel) {
         self.viewModel = viewModel
@@ -49,6 +50,24 @@ class ParentSubmissionViewController: UINavigationController {
             .hideLoadingIndicator
             .sink { [weak self] _ in
                 self?.hideLoadingIndicator()
+            }
+            .store(in: &subscriptions)
+
+        viewModel
+            .fileDownloadViewAction
+            .sink { [weak self] action in
+                switch action {
+                case .showDownloadAlert:
+                    self?.showDownloadAlert()
+                case .showShareSheet(let url):
+                    self?.dismissDownloadAlert {
+                        self?.showShareSheet(for: url)
+                    }
+                case .showErrorAlert:
+                    self?.dismissDownloadAlert {
+                        self?.showDownloadErrorAlert()
+                    }
+                }
             }
             .store(in: &subscriptions)
     }
@@ -91,10 +110,90 @@ class ParentSubmissionViewController: UINavigationController {
     }
 }
 
+// MARK: - CoreWebViewLinkDelegate
+
 extension ParentSubmissionViewController: CoreWebViewLinkDelegate {
 
     func handleLink(_ url: URL) -> Bool {
-        // Open all links inside the web view
         false
+    }
+
+    func coreWebView(_ webView: Core.CoreWebView, didStartDownloadAttachment attachment: CoreWebAttachment) {
+        viewModel.fileDownloadEvent.send(.started)
+    }
+
+    func coreWebView(_ webView: Core.CoreWebView, didFinishAttachmentDownload attachment: CoreWebAttachment) {
+        viewModel.fileDownloadEvent.send(.completed(url: attachment.url))
+    }
+
+    func coreWebView(_ webView: Core.CoreWebView, didFailAttachmentDownload attachment: CoreWebAttachment, with error: any Error) {
+        viewModel.fileDownloadEvent.send(.failed(error: error))
+    }
+}
+
+// MARK: - Download Alert
+
+extension ParentSubmissionViewController {
+
+    private func showDownloadAlert() {
+        let alert = UIAlertController(
+            title: String(localized: "Downloading", bundle: .parent),
+            message: String(localized: "Please wait...", bundle: .parent),
+            preferredStyle: .alert
+        )
+
+        alert.addAction(
+            UIAlertAction(
+                title: String(localized: "Cancel", bundle: .parent),
+                style: .cancel,
+                handler: { [weak webView] _ in
+                    webView?.stopLoading()
+                }
+            )
+        )
+
+        downloadAlert = alert
+        viewModel.router.show(alert, from: self, options: .modal())
+    }
+
+    private func dismissDownloadAlert(completion: @escaping () -> Void) {
+        guard let downloadAlert else {
+            completion()
+            return
+        }
+
+        downloadAlert.dismiss(animated: true) {
+            completion()
+        }
+        self.downloadAlert = nil
+    }
+
+    private func showDownloadErrorAlert() {
+        let alert = UIAlertController(
+            title: String(localized: "Download Failed", bundle: .parent),
+            message: String(localized: "There was an error downloading the file. Please try again.", bundle: .parent),
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: String(localized: "OK", bundle: .parent),
+                style: .default
+            )
+        )
+        viewModel.router.show(alert, from: self, options: .modal())
+    }
+
+    private func showShareSheet(for url: URL) {
+        let shareSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        if let popover = shareSheet.popoverPresentationController {
+            popover.sourceView = view
+            popover.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0)
+            popover.permittedArrowDirections = []
+        }
+        let routeOptions = RouteOptions.modal(
+            .pageSheet,
+            isDismissable: true
+        )
+        viewModel.router.show(shareSheet, from: self, options: routeOptions)
     }
 }
