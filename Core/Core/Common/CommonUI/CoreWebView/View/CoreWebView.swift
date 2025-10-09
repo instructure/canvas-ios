@@ -19,7 +19,6 @@
 @preconcurrency import WebKit
 import Combine
 import UIKit
-import SafariServices
 
 @IBDesignable
 open class CoreWebView: WKWebView {
@@ -516,18 +515,6 @@ extension CoreWebView: WKNavigationDelegate {
                                         router: env.router) {
             return decisionHandler(.cancel)
         }
-
-//        if action.request.url?.host?.hasSuffix("inscloudgate.net") == true,
-//           action.request.url?.path.contains("/download/") == true,
-//           let viewController = linkDelegate?.routeLinksFrom {
-//            let safariVC = SFSafariViewController(url: action.request.url!)
-//            let routeOptions = RouteOptions.modal(
-//                .fullScreen,
-//                isDismissable: false
-//            )
-//            env.router.show(safariVC, from: viewController, options: routeOptions)
-//            return decisionHandler(.cancel)
-//        }
 
         // Handle file links that are directly pointing to the canvas content server
         if action.isCanvasUserContentLinkTap, let url = action.request.url, let viewController = linkDelegate?.routeLinksFrom {

@@ -115,6 +115,7 @@ class ParentSubmissionViewController: UINavigationController {
 extension ParentSubmissionViewController: CoreWebViewLinkDelegate {
 
     func handleLink(_ url: URL) -> Bool {
+        // Open all links inside the web view
         false
     }
 
