@@ -52,6 +52,13 @@ struct DashboardView: View {
 
                     } else {
                         topView
+                        if viewModel.unenrolledPrograms.isNotEmpty {
+                            ProgramOverviewListView(programs: viewModel.unenrolledPrograms) { program in
+                                viewModel.navigateProgram(id: program.id, viewController: viewController)
+                            }
+                            .padding(.bottom, .huiSpaces.space24)
+                            .padding(.horizontal, .huiSpaces.space24)
+                        }
                         contentView(courses: viewModel.courses)
                     }
                 }
@@ -76,6 +83,9 @@ struct DashboardView: View {
         .alert(isPresented: $viewModel.isAlertPresented) {
             Alert(title: Text("Something went wrong", bundle: .horizon), message: Text(viewModel.errorMessage))
         }
+        .onAppear {
+            viewModel.reloadUnreadBadges()
+        }
     }
 
     private var topView: some View {
@@ -89,12 +99,19 @@ struct DashboardView: View {
     private func contentView(courses: [HCourse]) -> some View {
         ForEach(courses) { course in
             VStack(alignment: .leading, spacing: .zero) {
+                if course.programs.isNotEmpty {
+                    ProgramNameListView(programs: course.programs) { program in
+                        viewModel.navigateProgram(id: program.id, viewController: viewController)
+                    }
+                    .padding(.bottom, .huiSpaces.space12)
+                }
                 courseProgressionView(course: course)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         viewModel.navigateToCourseDetails(
                             id: course.id,
                             enrollmentID: course.enrollmentID,
+                            programID: course.programs.first?.id,
                             viewController: viewController
                         )
                     }
@@ -167,13 +184,19 @@ struct DashboardView: View {
         HStack(spacing: .zero) {
             InstitutionLogo()
             Spacer()
-            HorizonUI.NavigationBar.Trailing {
-                viewModel.notebookDidTap(viewController: viewController)
-            } onNotificationDidTap: {
-                viewModel.notificationsDidTap(viewController: viewController)
-            } onMailDidTap: {
-                viewModel.mailDidTap(viewController: viewController)
-            }
+            HorizonUI.NavigationBar.Trailing(
+                hasUnreadNotification: viewModel.hasUnreadNotification,
+                hasUnreadInboxMessage: viewModel.hasUnreadInboxMessage,
+                onNotebookDidTap: {
+                    viewModel.notebookDidTap(viewController: viewController)
+                },
+                onNotificationDidTap: {
+                    viewModel.notificationsDidTap(viewController: viewController)
+                },
+                onMailDidTap: {
+                    viewModel.mailDidTap(viewController: viewController)
+                }
+            )
         }
         .padding(.horizontal, .huiSpaces.space24)
         .padding(.top, .huiSpaces.space10)
@@ -191,7 +214,8 @@ struct DashboardView: View {
                         dismissAfter: nil,
                         confirmActionButton: .init(
                             title: String(localized: "Accept", bundle: .horizon),
-                            action: {  viewModel.acceptInvitation(course: course) })
+                            action: { viewModel.acceptInvitation(course: course) }
+                        )
                     )) { viewModel.declineInvitation(course: course) }
                 .padding(.bottom, .huiSpaces.space12)
         }

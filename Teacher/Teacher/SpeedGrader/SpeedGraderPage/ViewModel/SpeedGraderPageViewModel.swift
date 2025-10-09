@@ -52,13 +52,13 @@ class SpeedGraderPageViewModel: ObservableObject {
     let submissionWordCountViewModel: SubmissionWordCountViewModel
     let studentNotesViewModel: StudentNotesViewModel
     let rubricsViewModel: RubricsViewModel
-    let redesignedRubricsViewModel: RedesignedRubricsViewModel
     let gradeViewModel: SpeedGraderSubmissionGradesViewModel
 
     // MARK: - Inputs
 
     // MARK: - Private properties
 
+    private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
     init(
@@ -70,9 +70,9 @@ class SpeedGraderPageViewModel: ObservableObject {
         gradeStatusViewModel: GradeStatusViewModel,
         commentListViewModel: SubmissionCommentListViewModel,
         rubricsViewModel: RubricsViewModel,
-        redesignedRubricsViewModel: RedesignedRubricsViewModel,
         submissionWordCountViewModel: SubmissionWordCountViewModel,
-        studentNotesViewModel: StudentNotesViewModel
+        studentNotesViewModel: StudentNotesViewModel,
+        env: AppEnvironment
     ) {
         self.assignment = assignment
         self.submission = latestSubmission
@@ -83,9 +83,9 @@ class SpeedGraderPageViewModel: ObservableObject {
         self.gradeStatusViewModel = gradeStatusViewModel
         self.commentListViewModel = commentListViewModel
         self.rubricsViewModel = rubricsViewModel
-        self.redesignedRubricsViewModel = redesignedRubricsViewModel
         self.submissionWordCountViewModel = submissionWordCountViewModel
         self.studentNotesViewModel = studentNotesViewModel
+        self.env = env
 
         contextColor.assign(to: &$contextColor)
 
@@ -131,7 +131,7 @@ class SpeedGraderPageViewModel: ObservableObject {
             didSelectFile(nil)
         }
 
-        studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selectedAttempt)
+        studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selectedAttempt, env: env)
         gradeStatusViewModel.didChangeAttempt.send(attemptNumber)
         submissionWordCountViewModel.didChangeAttempt.send(attemptNumber)
     }

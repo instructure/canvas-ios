@@ -27,7 +27,8 @@ enum SpeedGraderAssembly {
         context: Context,
         assignmentId: String,
         userId: String?,
-        filter: [GetSubmissions.Filter],
+        filter: GetSubmissions.Filter?,
+        sortMode: GetSubmissions.SortMode,
         env: AppEnvironment
     ) -> UIViewController {
         let normalizedUserId = SpeedGraderUserIdNormalization.normalizeUserId(userId)
@@ -43,6 +44,7 @@ enum SpeedGraderAssembly {
             assignmentID: assignmentId,
             userID: normalizedUserId,
             filter: filter,
+            sortMode: sortMode,
             gradeStatusInteractor: gradeStatusInteractor,
             submissionWordCountInteractor: submissionWordCountInteractor,
             customGradebookColumnsInteractor: customGradebookColumnsInteractor,
@@ -87,7 +89,7 @@ enum SpeedGraderAssembly {
             assignment: assignment,
             latestSubmission: submission,
             contextColor: contextColor,
-            studentAnnotationViewModel: .init(submission: submission),
+            studentAnnotationViewModel: .init(submission: submission, env: env),
             gradeViewModel: .init(
                 assignment: assignment,
                 submission: submission,
@@ -113,12 +115,6 @@ enum SpeedGraderAssembly {
                 interactor: rubricGradingInteractor,
                 router: env.router
             ),
-            redesignedRubricsViewModel: .init(
-                assignment: assignment,
-                submission: submission,
-                interactor: rubricGradingInteractor,
-                router: env.router
-            ),
             submissionWordCountViewModel: .init(
                 userId: submission.userID,
                 attempt: submission.attempt,
@@ -127,7 +123,8 @@ enum SpeedGraderAssembly {
             studentNotesViewModel: .init(
                 userId: submission.userID,
                 interactor: customGradebookColumnsInteractor
-            )
+            ),
+            env: env
         )
     }
 

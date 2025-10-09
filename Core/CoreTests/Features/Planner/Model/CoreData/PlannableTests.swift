@@ -35,26 +35,26 @@ class PlannableTests: CoreTestCase {
     }
 
     func testSaveAPIPlannable() {
-        let apiPlannable = APIPlannable(
+        let apiPlannable = APIPlannable.make(
             course_id: ID(TestConstants.courseId),
             group_id: ID(TestConstants.groupId),
             user_id: ID(TestConstants.userId),
             context_type: "Course",
-            planner_override: nil,
             plannable_id: ID(TestConstants.plannableId),
             plannable_type: PlannableType.assignment.rawValue,
-            html_url: APIURL(rawValue: TestConstants.htmlUrl),
+            html_url: TestConstants.htmlUrl,
             context_name: TestConstants.contextName,
-            plannable: .init(
+            plannable: .make(
+                title: TestConstants.plannableTitle,
                 details: TestConstants.plannableDetails,
                 points_possible: TestConstants.pointsPossible,
-                title: TestConstants.plannableTitle
+                sub_assignment_tag: "reply_to_entry"
             ),
             plannable_date: TestConstants.plannableDate,
-            submissions: nil
+            details: .make(reply_to_entry_required_count: 42)
         )
 
-        let plannable = Plannable.save(apiPlannable, userID: "another userId", in: databaseClient)
+        let plannable = Plannable.save(apiPlannable, userId: "another userId", in: databaseClient)
 
         XCTAssertEqual(plannable.id, TestConstants.plannableId)
         XCTAssertEqual(plannable.plannableType, .assignment)
@@ -66,6 +66,7 @@ class PlannableTests: CoreTestCase {
         XCTAssertEqual(plannable.details, TestConstants.plannableDetails)
         XCTAssertEqual(plannable.context?.courseId, TestConstants.courseId)
         XCTAssertEqual(plannable.userID, "another userId")
+        XCTAssertEqual(plannable.discussionCheckpointStep, .requiredReplies(42))
     }
 
     func testSaveAPIPlannerNote() {
@@ -114,30 +115,37 @@ class PlannableTests: CoreTestCase {
 
     func testIcon() {
         var p = Plannable.make(from: .make(plannable_type: "assignment"))
-        XCTAssertEqual(p.icon(), UIImage.assignmentLine)
+        XCTAssertEqual(p.icon, UIImage.assignmentLine)
 
         p = Plannable.make(from: .make(plannable_type: "quiz"))
-        XCTAssertEqual(p.icon(), UIImage.quizLine)
+        XCTAssertEqual(p.icon, UIImage.quizLine)
 
         p = Plannable.make(from: .make(plannable_type: "discussion_topic"))
-        XCTAssertEqual(p.icon(), UIImage.discussionLine)
+        XCTAssertEqual(p.icon, UIImage.discussionLine)
+
+        p = Plannable.make(from: .make(plannable_type: "sub_assignment"))
+        XCTAssertEqual(p.icon, UIImage.assignmentLine)
+
+        p = Plannable.make(from: .make(plannable_type: "sub_assignment"))
+        p.discussionCheckpointStep = .replyToTopic
+        XCTAssertEqual(p.icon, UIImage.discussionLine)
 
         p = Plannable.make(from: .make(plannable_type: "wiki_page"))
-        XCTAssertEqual(p.icon(), UIImage.documentLine)
+        XCTAssertEqual(p.icon, UIImage.documentLine)
 
         p = Plannable.make(from: .make(plannable_type: "planner_note"))
-        XCTAssertEqual(p.icon(), UIImage.noteLine)
+        XCTAssertEqual(p.icon, UIImage.noteLine)
 
         p = Plannable.make(from: .make(plannable_type: "other"))
-        XCTAssertEqual(p.icon(), UIImage.warningLine)
+        XCTAssertEqual(p.icon, UIImage.warningLine)
 
         p = Plannable.make(from: .make(plannable_type: "announcement"))
-        XCTAssertEqual(p.icon(), UIImage.announcementLine)
+        XCTAssertEqual(p.icon, UIImage.announcementLine)
 
         p = Plannable.make(from: .make(plannable_type: "calendar_event"))
-        XCTAssertEqual(p.icon(), UIImage.calendarMonthLine)
+        XCTAssertEqual(p.icon, UIImage.calendarMonthLine)
         p = Plannable.make(from: .make(plannable_type: "assessment_request"))
-        XCTAssertEqual(p.icon(), UIImage.peerReviewLine)
+        XCTAssertEqual(p.icon, UIImage.peerReviewLine)
     }
 
     func testColor() {

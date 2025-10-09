@@ -81,18 +81,19 @@ public struct CalendarToDoDetailsScreen: View {
 
 #Preview {
     let plannable = Plannable.save(
-        APIPlannable.make(plannable: .init(
-                details: """
-                        The Assignment Details page displays the assignment title, points possible, submission\
-                        status, and due date [1]. You can also view the assignment's submission types [2],\
-                        as well as acceptable file types for file uploads if restricted by your instructor [3].
-                        """,
-                title: "Submit Creative Machines and Innovative Instrumentation - ASTR 21400"
+        APIPlannable.make(plannable: .make(
+            title: "Submit Creative Machines and Innovative Instrumentation - ASTR 21400",
+            details: """
+                    The Assignment Details page displays the assignment title, points possible, submission\
+                    status, and due date [1]. You can also view the assignment's submission types [2],\
+                    as well as acceptable file types for file uploads if restricted by your instructor [3].
+                    """
             )
         ),
-        userID: "",
+        userId: "",
         in: PreviewEnvironment().database.viewContext
     )
+
     return PlannerAssembly.makeToDoDetailsScreenPreview(plannable: plannable)
 }
 

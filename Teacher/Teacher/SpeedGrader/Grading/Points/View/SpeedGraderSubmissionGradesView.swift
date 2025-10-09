@@ -40,7 +40,6 @@ struct SpeedGraderSubmissionGradesView: View {
     @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
     @ObservedObject var commentListViewModel: SubmissionCommentListViewModel
     @ObservedObject var rubricsViewModel: RubricsViewModel
-    @ObservedObject var redesignedRubricsViewModel: RedesignedRubricsViewModel
 
     private enum FocusedInput: Hashable {
         case gradeRow
@@ -61,16 +60,12 @@ struct SpeedGraderSubmissionGradesView: View {
                         title: String(localized: "Moderated Grading Unsupported", bundle: .teacher)
                     )
                 )
-            ) { geometry in
+            ) { _ in
                 VStack(spacing: 0) {
                     gradingSection()
                     commentsSection(scrollViewProxy: scrollViewProxy)
                     if assignment.rubric?.isEmpty == false {
-                        rubricsSection(geometry: geometry)
-                    }
-
-                    if ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled {
-                        Spacer().frame(height: 16)
+                        rubricsSection()
                     }
                 }
             }
@@ -320,9 +315,17 @@ struct SpeedGraderSubmissionGradesView: View {
 
     private func sliderButton(score: Double, isPercent: Bool) -> some View {
         Button(
-            action: { updateGrade(score) },
+            action: { updateGrade(score, isPercent: isPercent) },
             label: {
-                Text(score)
+                let label = {
+                    if isPercent {
+                        return Text(verbatim: GradeFormatter.percentFormatter.string(from: NSNumber(value: score/100)) ?? "\(score)%")
+                    } else {
+                        return Text(score)
+                    }
+                }()
+
+                label
                     .foregroundStyle(.tint)
                     .font(.semibold14)
                     .frame(height: 30)
@@ -335,13 +338,22 @@ struct SpeedGraderSubmissionGradesView: View {
         )
     }
 
-    func updateGrade(excused: Bool? = nil, noMark: Bool? = false, _ grade: Double? = nil) {
+    func updateGrade(
+        excused: Bool? = nil,
+        noMark: Bool? = false,
+        _ grade: Double? = nil,
+        isPercent: Bool = false
+    ) {
         if excused == true {
             gradeViewModel.excuseStudent()
         } else if noMark == true {
             gradeViewModel.removeGrade()
-        } else if let grade = grade {
-            gradeViewModel.setPointsGrade(grade)
+        } else if let grade {
+            if isPercent {
+                gradeViewModel.setPercentGrade(grade)
+            } else {
+                gradeViewModel.setPointsGrade(grade)
+            }
         }
     }
 
@@ -407,6 +419,10 @@ struct SpeedGraderSubmissionGradesView: View {
     @ViewBuilder
     private var comments: some View {
         let commentCount = commentListViewModel.commentCount
+        let a11yLabel = [
+            String(localized: "Comments", bundle: .core),
+            String.format(numberOfItems: commentCount)
+        ].joined(separator: ", ")
         let header = HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
             Image.discussionLine
                 .scaledIcon()
@@ -416,11 +432,6 @@ struct SpeedGraderSubmissionGradesView: View {
             Text("Comments (\(commentCount))", bundle: .teacher)
                 .foregroundStyle(.textDarkest)
                 .font(.semibold16)
-                .accessibilityLabel([
-                    String(localized: "Comments", bundle: .core),
-                    String.format(numberOfItems: commentCount)
-                ].joined(separator: ", "))
-                .accessibilityAddTraits(.isHeader)
         }
         let content = SubmissionCommentListView(
             viewModel: commentListViewModel,
@@ -432,20 +443,21 @@ struct SpeedGraderSubmissionGradesView: View {
             InstUI.Divider()
 
             if assignment.hasRubrics {
-                DisclosureGroup {
-                    content
-                } label: {
-                    header
-                }
-                .disclosureGroupStyle(InstUI.SectionDisclosureStyle(headerConfig: .init(
+                InstUI.CollapsibleListSection(
+                    label: header,
+                    accessibilityLabel: a11yLabel,
+                    itemCount: nil,
                     paddingSet: .iconCell,
                     accessoryIconSize: 24,
-                    hasDividerBelowHeader: true
-                )))
+                    isInitiallyExpanded: false,
+                    content: { content }
+                )
             } else {
                 header
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .paddingStyle(set: .iconCell)
+                    .accessibilityLabel(a11yLabel)
+                    .accessibilityAddTraits(.isHeader)
 
                 InstUI.Divider()
 
@@ -458,38 +470,8 @@ struct SpeedGraderSubmissionGradesView: View {
     // MARK: - Rubrics
 
     @ViewBuilder
-    private func rubricsSection(geometry: GeometryProxy) -> some View {
-
-        if ExperimentalFeature.hideRedesignedRubricsGradingList.isEnabled {
-
-            VStack(spacing: 0) {
-                RubricsView(
-                    currentScore: rubricsViewModel.totalRubricScore,
-                    containerFrameInGlobal: geometry.frame(in: .global),
-                    viewModel: rubricsViewModel
-                )
-
-                if rubricsViewModel.commentingOnCriterionID != nil {
-                    commentEditor()
-                }
-            }
-
-        } else {
-            RedesignedRubricsView(viewModel: redesignedRubricsViewModel)
-        }
-    }
-
-    private func commentEditor() -> some View {
-        OldCommentEditorView(
-            text: $rubricsViewModel.criterionComment,
-            shouldShowCommentLibrary: false,
-            showCommentLibrary: .constant(false),
-            action: rubricsViewModel.saveComment,
-            containerHeight: containerHeight,
-            contextColor: Color(Brand.shared.primary)
-        )
-        .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
-        .background(Color.backgroundLight)
+    private func rubricsSection() -> some View {
+        RubricsView(viewModel: rubricsViewModel)
     }
 }
 

@@ -118,6 +118,7 @@ public extension HorizonUI.Colors {
 
         // MARK: - Honey
 
+        public let honey12 = Color(hexString: "#F5E9CA")
         public let honey30 = Color(hexString: "#C08A00")
         public let honey35 = Color(hexString: "#B07E00")
         public let honey40 = Color(hexString: "#A57600")
@@ -165,6 +166,8 @@ public extension HorizonUI.Colors {
         public let sea110 = Color(hexString: "#004349")
 
         // MARK: - Sky
+
+        public let sky12 = Color(hexString: "#DDECF3")
         public let sky30 = Color(hexString: "#4E9CC0")
         public let sky35 = Color(hexString: "#3890B8")
         public let sky40 = Color(hexString: "#2887B2")
@@ -172,6 +175,7 @@ public extension HorizonUI.Colors {
         public let sky50 = Color(hexString: "#1777A2")
         public let sky57 = Color(hexString: "#156D94")
         public let sky70 = Color(hexString: "#135F81")
+        public let sky82 = Color(hexString: "#0F4E6A")
         public let sky90 = Color(hexString: "#0F4E6A")
         public let sky110 = Color(hexString: "#0D4058")
 
@@ -189,6 +193,7 @@ public extension HorizonUI.Colors {
 
         // MARK: - Violet
 
+        public let violet12 = Color(hexString: "#F1E6F5")
         public let violet30 = Color(hexString: "#B57FCC")
         public let violet35 = Color(hexString: "#AC6FC6")
         public let violet40 = Color(hexString: "#9E58BD")
@@ -201,6 +206,7 @@ public extension HorizonUI.Colors {
 
         // MARK: - Plum
 
+        public let plum12 = Color(hexString: "#F7E5F0")
         public let plum30 = Color(hexString: "#D473B1")
         public let plum35 = Color(hexString: "#CE60A7")
         public let plum40 = Color(hexString: "#CA529F")
@@ -222,5 +228,10 @@ public extension HorizonUI.Colors {
         public let stone70 = Color(hexString: "#585858")
         public let stone90 = Color(hexString: "#494949")
         public let stone110 = Color(hexString: "#3C3C3C")
+
+        // MARK: - Gum
+
+        public let gum12 = Color(hexString: "#FCE4ED")
+        public let gum90 = Color(hexString: "#910D38")
     }
 }

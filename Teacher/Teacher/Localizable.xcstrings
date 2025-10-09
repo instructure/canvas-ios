@@ -87,6 +87,12 @@
             "value" : "\"%@\" no es una nota correcta."
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "”%@” ei ole kelvollinen arvosana"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -121,6 +127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "\"%@\" bukan nilai yang valid"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ er ekki gild einkunn."
           }
         },
         "it" : {
@@ -246,7 +258,261 @@
       }
     },
     "%@ maximum" : {
-      "comment" : "Example: '10 points maximum'"
+      "comment" : "Example: '10 points maximum'",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ الحد الأقصى "
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ màxim"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ uchafswm "
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maksimum"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maksimum"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Maximum"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maximum"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maximum"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maximum"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maximum"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maximum"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maximum"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ máximo"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ máximo"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maks."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maximum"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maximum"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ uasmhéid"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ अधिकतम"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maksimòm"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maksimum"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ hámark "
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ massimo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@最大"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ mōrahi"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maksimum"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maksimalt "
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maksimalt"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maximum"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ maksymalnie"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ máximo"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ máximo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ максимум"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ največ "
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ högst "
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ högst"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ สูงสุด "
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ tối đa"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@最多"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@最多"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@最大"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@最大"
+          }
+        }
+      }
     },
     "%@ to %@" : {
       "comment" : "'100% to 94%', or '400 to 230'",
@@ -341,6 +607,12 @@
             "value" : "%1$@ hasta %2$@"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ - %2$@"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -375,6 +647,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ kepada %2$@"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ til %2$@"
           }
         },
         "it" : {
@@ -757,6 +1035,7 @@
       }
     },
     "%g out of %g" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2357,6 +2636,12 @@
             "value" : "< %1$@ a %2$@"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "< %1$@ asti %2$@"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2391,6 +2676,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "< %1$@ ke %2$@"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "< %1$@ til %2$@"
           }
         },
         "it" : {
@@ -3028,6 +3319,7 @@
       }
     },
     "Add Comment" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3284,6 +3576,7 @@
       }
     },
     "Add custom grade" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4820,6 +5113,7 @@
       }
     },
     "All submissions" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -5432,7 +5726,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dates de la tâche"
+            "value" : "Dates du travail"
           }
         },
         "ga" : {
@@ -5688,7 +5982,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Détails de la tâche"
+            "value" : "Détails du travail"
           }
         },
         "ga" : {
@@ -8042,7 +8336,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whakakore"
+            "value" : "Whakakore "
           }
         },
         "ms" : {
@@ -12334,6 +12628,12 @@
             "value" : "Comentarios (%lld)"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kommentit (%lld)"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12368,6 +12668,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Komentar (%lld)"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Athugasemdir (%lld)"
           }
         },
         "it" : {
@@ -13262,6 +13568,7 @@
       }
     },
     "Customize Grade" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -14627,6 +14934,12 @@
             "value" : "Detalles"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisätiedot"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14661,6 +14974,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Detail"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upplýsingar"
           }
         },
         "it" : {
@@ -14781,6 +15100,262 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "詳細資料"
+          }
+        }
+      }
+    },
+    "Differentiation Tags" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "علامات التمايز"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etiquetes de diferenciació"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagiau Gwahaniaethol"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Differentierede tags"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Differentierede tags"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Differenzierungs-Tags"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Differentiation Tags"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Differentiation Tags"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Differentiation Tags"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Differentiation Tags"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Differentiation Tags"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Differentiation Tags"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etiquetas diferenciadas"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etiquetas de diferenciación"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eriytysmerkit"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Balises de différenciation"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Étiquettes différenciées"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clibeanna Difreáilte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विभेदन टैग"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etikèt Diferansyasyon"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tag Diferensiasi"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aðgreind merki"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tag di differenziazione"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "差別化タグ"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tohu Rerekētanga"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tag Terbeza"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Differensieringstagger"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Differensieringstagger"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Differentiatietags"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagi zróżnicowania"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etiquetas de diferenciação"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tags de diferenciação"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Теги дифференциации"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diferenciacijske oznake"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Differentieringstaggar"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Differentieringstaggar"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "แท็กเฉพาะ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thẻ Phân Biệt"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "差异化标记"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "差异化标记"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "差異化標籤"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "差異化標籤"
           }
         }
       }
@@ -15226,7 +15801,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Feito"
+            "value" : "Concluído"
           }
         },
         "pt-BR" : {
@@ -17346,7 +17921,260 @@
       }
     },
     "Due date was on %@" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كان تاريخ الاستحقاق في %@"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La data de lliurament va ser el %@"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Y dyddiad cau oedd %@"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afleveringsdatoen var den %@"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afleveringsdatoen var den %@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fälligkeitsdatum war am %@"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Due date was on %@"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Due date was on %@"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Due date was on %@"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Due date was on %@"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Due date was on %@"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Due date was on %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La fecha de entrega fue el %@"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La fecha de entrega era el %@"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Määräpäivä oli %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La date limite était le %@"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La date d’échéance était le %@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bhí an dáta dlite ar an %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नियत तिथि यह थी: %@"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delè a te %@"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batas waktu telah ditetapkan %@"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skiladagur var %@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La data di scadenza era %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "期限日は.でした%@"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ko te ra tika %@"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarikh siap adalah pada %@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forfallsdatoen var %@"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forfallsdatoen var %@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De inleverdatum was op %@"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termin wypadał w %@"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A data de vencimento era %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A data de entrega era %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Срок сдачи был %@"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rok je bil %@"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inlämningsdatumet var %@"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inlämningsdatumet var %@"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "วันครบกำหนดคือ  %@"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đến hạn vào ngày %@"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "截止日期为%@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "截止日期为%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "截止日期為%@"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "截止日期為%@"
+          }
+        }
+      }
     },
     "Due date was on %@." : {
       "extractionState" : "stale",
@@ -18374,7 +19202,260 @@
       }
     },
     "Edit rubric note" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحرير ملاحظة مقياس التقييم"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editeu la nota de la rúbrica"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Golygu nodyn cyfarwyddyd sgorio"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rediger rubriknote"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rediger vurderingskriterier note"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notiz zum Bewertungsschema bearbeiten"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit rubric note"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit rubric note"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit rubric note"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit rubric note"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit rubric note"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit rubric note"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar nota de la rúbrica"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar nota de rúbrica"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muokkaa rubriikkihuomautustasi"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifier la note de la rubrique"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Éditer la note de grille de notation"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuir nóta rúibrice in eagar"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रुब्रिक नोट संपादित करें"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifye nòt ribrik"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit catatan rubrik"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Breyta athugasemd matskvarða"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifica nota rubrica"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ルーブリックのメモを編集する"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Whakatika rubric note"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit nota rubrik"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rediger vurderingsveiledningsnotat"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rediger vurderingskriterier notat"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rubrieknotitie bewerken"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edytuj notatkę do kryteriów oceny"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar nota da rubrica"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar nota da rubrica"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактировать примечание к рубрике"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uredi opombo k ocenjevalnemu vodniku"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redigera versionsinformationen"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redigera versionsinformationen"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "แก้ไขหมายเหตุเกณฑ์การให้คะแนน"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chỉnh sửa ghi chú bảng đánh giá theo tiêu chí"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "编辑评价量规备注"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "编辑评价量规备注"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯評分標準說明"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯評分標準說明"
+          }
+        }
+      }
     },
     "Enter days late" : {
       "localizations" : {
@@ -22228,6 +23309,7 @@
       }
     },
     "Filter" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -22484,6 +23566,7 @@
       }
     },
     "Filter (%d)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -22991,6 +24074,262 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "篩選條件"
+          }
+        }
+      }
+    },
+    "Filter by Section" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التصفية حسب القسم"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtreu-ho per secció"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hidlo yn ôl Adran"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrer efter sektion"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrer efter sektion"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach Abschnitt filtern"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter by Section"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter by Section"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter by Section"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter by Section"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter by Section"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter by Section"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrar por sección"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrar por sección"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suodata osan mukaan"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrer par section"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrer par section"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scag de réir Grúpa"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुभाग के अनुसार फ़िल्टर करें"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtre pa Seksyon"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter menurut Bagian"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sía eftir vali"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtra per Sezione"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "セクションで分類する"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tātari mā te Wāhanga"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapis mengikut Seksyen"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrer etter seksjon"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrer etter seksjon"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filteren op sectie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtruj wg sekcji"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrar por secção"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrar por seção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фильтр по разделу"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtriraj po razdelku"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrera efter sektion"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrera efter sektion"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "กรองจากกลุ่มย่อย"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lọc theo Phần"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按班次筛选"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按班次筛选"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "依部分篩選"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "依部分篩選"
           }
         }
       }
@@ -24363,6 +25702,12 @@
             "value" : "Nota y rúbrica"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arvosana ja rubriikki"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24372,7 +25717,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Note et rubrique"
+            "value" : "Note et grille de notation"
           }
         },
         "ga" : {
@@ -24397,6 +25742,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nilai & Rubrik"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einkunn og matskvarði"
           }
         },
         "it" : {
@@ -24522,6 +25873,7 @@
       }
     },
     "Grade post policy" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -29101,7 +30453,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hópur"
+            "value" : "Verkefnaflokkur"
           }
         },
         "it" : {
@@ -29227,6 +30579,7 @@
       }
     },
     "Group %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -29357,7 +30710,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hópur %lld"
+            "value" : "Verkefnaflokkur %lld"
           }
         },
         "it" : {
@@ -29583,7 +30936,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aidez vos élèves à cette tâche par l’ajout d’instructions."
+            "value" : "Aidez vos élèves à ce travail par l’ajout d’instructions."
           }
         },
         "ga" : {
@@ -29824,6 +31177,12 @@
             "value" : "Oculto"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Piilotettu"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29858,6 +31217,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tersembunyi"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falið"
           }
         },
         "it" : {
@@ -30837,6 +32202,12 @@
             "value" : "Nota no válida"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Virheellinen arvosana"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30871,6 +32242,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nilai Tidak Valid"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ógild einkunn"
           }
         },
         "it" : {
@@ -31328,7 +32705,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atrasado"
+            "value" : "Con atraso"
           }
         },
         "es-ES" : {
@@ -31400,7 +32777,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tūreiti"
+            "value" : "Tōmuri"
           }
         },
         "ms" : {
@@ -31430,7 +32807,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Późno"
+            "value" : "Po terminie"
           }
         },
         "pt" : {
@@ -31478,7 +32855,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trễ"
+            "value" : "Muộn"
           }
         },
         "zh" : {
@@ -31496,13 +32873,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "逾期"
+            "value" : "遲交"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "逾期"
+            "value" : "遲交"
           }
         }
       }
@@ -31593,6 +32970,12 @@
             "value" : "Sanción por entrega con retraso"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rangaistus myöhästymisestä"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31627,6 +33010,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Penalti Terlambat:"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viðurlög vegna of seinna skila:"
           }
         },
         "it" : {
@@ -31747,6 +33136,262 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "逾期懲罰"
+          }
+        }
+      }
+    },
+    "Launch External Tool" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تشغيل الأداة الخارجية"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicieu l'eina externa"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lansio Adnodd Allanol"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start eksternt værktøj"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start eksternt værktøj"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Externes Tool starten"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Launch External Tool"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Launch External Tool"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Launch External Tool"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Launch External Tool"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Launch External Tool"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Launch External Tool"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iniciar la herramienta externa"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iniciar la herramienta externa"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Käynnistä ulkoinen työkalu"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lancer l’outil externe"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lancer l’outil externe"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seol Uirlis Sheachtrach"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बाहरी उपकरण लॉन्च करें"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lanse Zouti Eksteryè"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Luncurkan Alat Eksternal"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota ytra verkfæri"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avvia strumento esterno"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外部ツールを起動する"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neke Taputapu Waho"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lancarkan Alat Luar"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne eksternt verktøy"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne eksternt verktøy"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extern hulpmiddel lanceren"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uruchom narzędzie zewnętrzne"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lançar Ferramenta Externa"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Executar ferramenta externa"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запуск внешнего инструмента"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaženi zunanje orodje"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starta externt verktyg"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starta externt verktyg"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เรียกใช้ชุดเครื่องมือจากภายนอก"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khởi Chạy Công Cụ Ngoài"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启动外部工具"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启动外部工具"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "啟動外部工具"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "啟動外部工具"
           }
         }
       }
@@ -34825,7 +36470,260 @@
       }
     },
     "No due date was set" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لم يتم تعيين تاريخ استحقاق"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No s’ha establert cap data de lliurament"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heb bennu ‘dyddiad erbyn’"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen afleveringsdato blev angivet"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen afleveringsdato blev angivet"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es wurde kein Fälligkeitsdatum festgelegt"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No due date was set"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No due date was set"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No due date was set"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No due date was set"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No due date was set"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No due date was set"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se estableció ninguna fecha de entrega"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay fecha de entrega establecida"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Määräpäivää ei ole määritetty"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune date limite n’a été configurée"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune date d’échéance n’a été fixée"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níor socraíodh aon dáta dlite"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई नियत तिथि सेट नहीं की गई"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pa gen delè ki defini"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batas waktu tidak ditetapkan"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enginn skiladagur ákveðinn"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessuna data di scadenza impostata"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "期限が設定されていません"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karekau he ra i whakaritea"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiada tarikh siap ditetapkan"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen forfallsdato ble angitt"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen forfallsdato ble angitt"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er was geen inleverdatum ingesteld"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brak ustawionego terminu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi definida uma data de vencimento"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhuma data de entrega foi definida"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не выбрана дата сдачи"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rok ni bil določen"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inget inlämningsdatum har angetts"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inget inlämningsdatum har angetts"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ไม่ได้ระบุวันครบกำหนดไว้"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không có ngày đến hạn nào được thiết lập"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未设置截止日期"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未设置截止日期"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未設定截止日期"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未設定截止日期"
+          }
+        }
+      }
     },
     "No due date was set." : {
       "extractionState" : "stale",
@@ -36621,7 +38519,260 @@
       }
     },
     "Note" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الملاحظة"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nodyn"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bemærk"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bemærk"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anmerkung"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Huomautus"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remarque"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabhair faoi deara"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ध्यान दें"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nòt"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Athugasemd"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "注"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note a"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merknad"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merknad"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opmerking"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uwaga"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Observação"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Примечание"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opomba"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anteckning"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anteckning"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "หมายเหตุ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ghi chú"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "注"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "注"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "注釋"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "注釋"
+          }
+        }
+      }
     },
     "OK" : {
       "localizations" : {
@@ -38417,6 +40568,262 @@
         }
       }
     },
+    "Open the Quiz" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فتح الاختبار الموجز"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obriu la prova"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agor y Cwis"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åbn testen"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åbn quizzen"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quiz öffnen"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the Quiz"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the Quiz"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the Quiz"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the Quiz"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the Quiz"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the Quiz"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir el examen"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir la prueba"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avaa testi"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le quiz"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le questionnaire"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oscail an Quiz"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रश्नोत्तरी खोलें"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvri Quiz la"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Kuis"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opnaðu prófið"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri il quiz"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "小テストを開く"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Whakatuwheratia te Patapatai"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Kuiz"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne quizen"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne quizen"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open de toets"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz quiz"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir o Questionário"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir o teste"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть тест"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odpri kviz"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öppna quizet"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öppna quizet"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เปิดแบบทดสอบ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mở bài Kiểm Tra"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开测验"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开测验"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟測驗"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟測驗"
+          }
+        }
+      }
+    },
     "Others" : {
       "localizations" : {
         "ar" : {
@@ -38674,9 +41081,264 @@
       }
     },
     "out of %@" : {
-      "comment" : "Example: 'out of 10 points'"
+      "comment" : "Example: 'out of 10 points'",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "من إجمالي %@"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de %@"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "allan o %@"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ud af %@"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ud af %@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "von insgesamt %@"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "out of %@"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "out of %@"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "out of %@"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "out of %@"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "out of %@"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "out of %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de %@"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de %@"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "/ %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sur %@"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sur %@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "out of %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "में से %@"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sou %@"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dari %@"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "af %@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "su %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中%@"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i waho i te %@"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "daripada %@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ut av %@"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ut av %@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "van de %@"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z %@"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "из %@"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "od %@"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "av %@"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "av %@"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "จาก %@"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "trên tổng số %@"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "共%@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "共%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "滿分為%@"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "滿分為%@"
+          }
+        }
+      }
     },
     "out_of_g_pts" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -40981,6 +43643,262 @@
         }
       }
     },
+    "Precise filtering" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التصفية الدقيقة"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtratge precís"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hidlo manwl gywir"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Præcis filtrering"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Præcis filtrering"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Präzises Filtern"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precise filtering"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precise filtering"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precise filtering"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precise filtering"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precise filtering"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precise filtering"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrado preciso"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrado preciso"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Täsmällinen suodatus"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrage de précision"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrage précis"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scagadh beacht"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सटीक फ़िल्टरिंग"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtraj ak presizyon"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pemfilteran presisi"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nákvæm síun"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtraggio preciso"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正確なフィルタリング"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Te tātari tika"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penapisan Tepat"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Presis filtrering"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Presis filtrering"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nauwkeurige filtering"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokładnie filtrowanie"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtragem precisa"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtragem precisa"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Точная фильтрация"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Natančno filtriranje"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precis filtrering"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precis filtrering"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "คัดกรองอย่างแม่นยำ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lọc chính xác"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "精确筛选"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "精确筛选"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "精確篩選"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "精確篩選"
+          }
+        }
+      }
+    },
     "Present" : {
       "localizations" : {
         "ar" : {
@@ -42519,6 +45437,7 @@
       }
     },
     "Reset" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -42860,6 +45779,12 @@
             "value" : "Restablecer estado"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Palauta tila "
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42894,6 +45819,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Atur Ulang Status"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Endurstilla stöðu"
           }
         },
         "it" : {
@@ -43167,7 +46098,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ngana anō"
+            "value" : "Ngana ano"
           }
         },
         "ms" : {
@@ -43375,7 +46306,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rubrique"
+            "value" : "Grille de notation"
           }
         },
         "ga" : {
@@ -43531,10 +46462,516 @@
       }
     },
     "Rubric Note" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملاحظة مقياس التقييم"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota de la rúbrica"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nodyn Cyfarwyddyd Sgorio"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rubriknote"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vurderingskriterier note"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notiz zum Bewertungsschema"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rubric Note"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rubric Note"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rubric Note"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rubric Note"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rubric Note"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rubric Note"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota de la rúbrica"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota de rúbrica"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rubriikkihuomautus"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note de rubrique"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note de la grille de notation"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nóta Rúibrice"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रुब्रिक नोट"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nòt Ribrik"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan Rubrik"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Athugasemd matskvarða"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nora rubrica"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ルーブリックのメモ"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rubric Note"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota Rubrik"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vurderingsveiledningsnotat"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vurderingskriterier notat"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rubrieknotitie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notatka do kryteriów oceny"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota da rubrica"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota da rubrica"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Примечание к рубрике"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opomba k ocenjevalnemu vodniku"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matrisanteckning"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matrisanteckning"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "หมายเหตุเกณฑ์การให้คะแนน"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ghi Chú Bảng Đánh Giá Theo Tiêu Chí"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "评价量规备注"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "评价量规备注"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "評分標準說明"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "評分標準說明"
+          }
+        }
+      }
     },
     "Saving" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جارٍ الحفظ"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S'està desant"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wrthi’n cadw"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemmer"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemmer"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird gespeichert"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardando"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardando"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tallennetaan"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegarde"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrement en cours"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ag Sábháil"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सहेजा जा रहा है"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anrejistreman"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sedang menyimpan"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vistar"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvataggio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E tiaki ana"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menyimpan"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagrer"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagrer"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opslaan"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zapisywanie"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A guardar"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvando"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выполняется сохранение"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shranjevanje"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sparar"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sparar"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "กำลังบันทึก"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đang lưu"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在保存"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在保存"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在儲存"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在儲存"
+          }
+        }
+      }
     },
     "Saving days late." : {
       "localizations" : {
@@ -44049,9 +47486,263 @@
       }
     },
     "Score" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الدرجة"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puntuació"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sgôr"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resultat"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resultat"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punktestand"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puntaje"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puntuación"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pistemäärä"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scór"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अंक"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nòt"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skor"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einkunn"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punteggio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スコア"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tohu"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skor"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resultat"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resultat"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wynik"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pontuação"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pontuação"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оценка"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rezultat"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resultat"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resultat"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "คะแนน"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Điểm"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "评分"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "评分"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分數"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分數"
+          }
+        }
+      }
     },
     "Scored above..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -44308,6 +47999,7 @@
       }
     },
     "Scored below..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -44559,6 +48251,518 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "得分低於..."
+          }
+        }
+      }
+    },
+    "Scored Less than" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أحرز درجة أقل من"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La puntuació ha estat inferior a"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wedi cael sgôr sy'n Llai na"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scorede mindre end"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scorede mindre end"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punktzahl weniger als"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scored Less than"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scored Less than"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scored Less than"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scored Less than"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scored Less than"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scored Less than"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obtuvo menos de"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puntuación inferior a"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sai vähemmän pisteitä kuin"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A obtenu moins de"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Moins de"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scóráladh Níos Lú ná"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस से कम अंक मिले:"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fè Mwens Pase"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nilai Kurang dari"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lægri einkunn en"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punteggio ottenuto inferiore a"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "... 未満のスコア"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "He iti iho te kaute"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mendapat Skor Kurang daripada"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fikk resultat lavere enn"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fikk resultat lavere enn"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lager gescoord dan"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wynik punktowy poniżej"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pontuação inferior a"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pontuou menos que"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Полученная оценка ниже"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosegel rezultat, manjši od"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fick mindre än"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fick mindre än"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ทำคะแนนได้น้อยกว่า"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đạt Điểm Dưới"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分数低于"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分数低于"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "得分低於"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "得分低於"
+          }
+        }
+      }
+    },
+    "Scored More than" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أحرز درجة أعلى من"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La puntuació ha estat superior a"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wedi cael sgôr sy'n Fwy na"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scorede mere end"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scorede mere end"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punktzahl mehr als"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scored More than"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scored More than"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scored More than"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scored More than"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scored More than"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scored More than"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obtuvo más de"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puntuación superior a"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sai enemmän pisteitä kuin"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A obtenu plus de"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus de"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scóráladh Níos Mó ná"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस से ज़्यादा अंक मिले:"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fè Plis Pase"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nilai Lebih dari"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hærri einkunn en"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punteggio ottenuto superiore a"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "...を上回るスコア"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I piro Neke atu i te"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mendapat Skor Lebih daripada"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fikk resultat høyere enn"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fikk resultat høyere enn"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoger gescoord dan"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wynik punktowy powyżej"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pontuação superior a"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pontuou mais que"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Полученная оценка выше"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosegel rezultat, večji od"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fick mer än"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fick mer än"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ทำคะแนนได้มากกว่า"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đạt Điểm Trên"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分数高于"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分数高于"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "得分高於"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "得分高於"
           }
         }
       }
@@ -45161,6 +49365,12 @@
             "value" : "Seleccionar nota"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valitse arvioija"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45195,6 +49405,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pilih Nilai"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velja einkunn"
           }
         },
         "it" : {
@@ -46088,7 +50304,260 @@
       }
     },
     "Send rubric note" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إرسال ملاحظة مقياس التقييم"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envieu la nota de la rúbrica"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anfon nodyn cyfarwyddyd sgorio"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send rubriknote"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send vurderingskriterier note"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notiz zum Bewertungsschema senden"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send rubric note"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send rubric note"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send rubric note"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send rubric note"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send rubric note"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send rubric note"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enviar nota de la rúbrica"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enviar nota de rúbrica"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muokkaa rubriikkihuomautustasi"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envoyer la note du barème"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envoyer la note sur les grilles de notation"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seol nóta rúibrice"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रुब्रिक नोट भेजें"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voye nòt ribrik"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim catatan rubrik"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senda athugasemd matskvarða"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invia nota rubrica"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ルーブリックのメモを送信する"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tukuna rubric note"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hantar nota rubrik"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send vurderingsveiledningsnotat"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send vurderingskriterier notat"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verstuur een rubrieknotitie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prześlij notatkę do kryteriów oceny"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enviar nota da rubrica"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enviar nota da rubrica"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправить примечание к рубрике"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pošlji opombo k ocenjevalnemu vodniku"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skicka versionsinformationen"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skicka versionsinformationen"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ส่งหมายเหตุเกณฑ์การให้คะแนน"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gửi ghi chú bảng đánh giá theo tiêu chí"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "发送评价量规备注"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "发送评价量规备注"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "傳送評分標準說明"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "傳送評分標準說明"
+          }
+        }
+      }
     },
     "Similarity Score" : {
       "localizations" : {
@@ -46342,6 +50811,262 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "相似性分數"
+          }
+        }
+      }
+    },
+    "Sort by" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الفزر حسب"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordena per"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trefnu yn ôl"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorter efter"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorter efter"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortieren nach"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordenar por"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordenar por"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lajitteluperuste"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trier par"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trier par"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sórtáil de réir"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस के आधार पर क्रमबद्ध करें:"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klase pa"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortir menurut"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Raða eftir"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordina per"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "並べ替え基準"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kōmaka i te"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isih mengikut"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorter etter"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorter etter"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorteren op"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortuj wg"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Classificar por"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordenar por"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортировать по"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Razvrsti glede na"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortera efter"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortera efter"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "จัดเรียงจาก"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sắp xếp theo"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序依據"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序依據"
           }
         }
       }
@@ -46830,6 +51555,262 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trạng Thái"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "状态"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "状态"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "狀態"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "狀態"
+          }
+        }
+      }
+    },
+    "Statuses" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الحالات"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estats"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statws"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statusser"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statusser"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zustände …"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statuses"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statuses"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statuses"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statuses"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statuses"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statuses"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estados"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estados"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilat"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statuts"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statuts"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stádais"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्थितियां"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estati"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stöður"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stati"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ステータス"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ngā tūnga"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statuser"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statuser"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statussen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statusy"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estado"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Статусы"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statusi"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statusar"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statusar"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "สถานะ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Các Trạng Thái"
           }
         },
         "zh" : {
@@ -47457,6 +52438,12 @@
             "value" : "Notas del estudiante"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opiskelijan muistiinpanot"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47491,6 +52478,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Catatan Siswa"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Athugasemdir nemanda"
           }
         },
         "it" : {
@@ -47615,7 +52608,264 @@
         }
       }
     },
+    "Students without Differentiation tags" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طلاب دون علامات تمايز"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estudiants sense etiquetes de diferenciació"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myfyrwyr heb dagiau Gwahaniaethol"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Studerende uden differentierede tags"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elever uden differentierede tags"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Studierende ohne Differenzierungs-Tags"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Students without Differentiation tags"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Students without Differentiation tags"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Students without Differentiation tags"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Students without Differentiation tags"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Students without Differentiation tags"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Students without Differentiation tags"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estudiantes sin etiquetas de diferenciación"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estudiantes sin etiquetas de diferenciación"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opiskelijat ilman eriyttämistunnisteita"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Élèves sans balises de différenciation"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Élèves sans étiquettes de différenciation"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mic léinn nach bhfuil clibeanna Difreála orthu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बिना विभेदन टैग वाले छात्र"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elèv san Etikèt Diferansyasyon"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siswa tanpa tag Diferensiasi"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nemendur án aðgreindra merkja"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Studenti senza tag di differenziazione"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "差別化タグなしの受講者"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ko nga akonga kaore he tohu rereke"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pelajar tanpa tag Terbeza"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Studenter uten differensieringstagger"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elever uten differensieringstagger"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cursisten zonder differentiatietags"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uczestnicy bez tagów zróżnicowania"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alunos sem etiquetas de diferenciação"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alunos sem tags de diferenciação"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Учащиеся без тегов дифференциации"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Študenti brez diferenciacijskih oznak"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Studenter utan differentieringstaggar"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elever utan differentieringstaggar"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ผู้เรียนที่ไม่มีแท็กเฉพาะ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sinh viên không có Thẻ phân biệt"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无差异化标记的学生"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无差异化标记的学生"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有差異化標籤的學生"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有差異化標籤的學生"
+          }
+        }
+      }
+    },
     "Submission Filter" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -50277,7 +55527,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cette tâche ne permet pas d’envoi."
+            "value" : "Ce travail ne permet pas d’envoi."
           }
         },
         "ga" : {
@@ -50533,7 +55783,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cette tâche permet uniquement des envois sur support papier."
+            "value" : "Ce travail permet uniquement des envois sur support papier."
           }
         },
         "ga" : {
@@ -50689,6 +55939,7 @@
       }
     },
     "This criterion will not impact the score." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -51045,7 +56296,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ce groupe n’a pas d’envoi pour cette tâche."
+            "value" : "Ce groupe n’a pas d’envoi pour ce travail."
           }
         },
         "ga" : {
@@ -51301,7 +56552,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cet étudiant n’a pas d’envoi pour cette tâche."
+            "value" : "Cet étudiant n’a pas d’envoi pour ce travail."
           }
         },
         "ga" : {
@@ -51557,7 +56808,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les réponses de cet étudiant sont masquées du fait que cette tâche est anonyme."
+            "value" : "Les réponses de cet étudiant sont masquées du fait que ce travail est anonyme."
           }
         },
         "ga" : {
@@ -54532,6 +59783,7 @@
       }
     },
     "View Long Description" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -55393,6 +60645,12 @@
             "value" : "No tenemos más información sobre este estudiante y actividad"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meillä ei ole lisätietoja tästä opiskelijasta ja tehtävästä."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55427,6 +60685,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kami tidak memiliki detail lebih lanjut untuk Siswa dan Tugas ini"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Við höfum ekki frekari upplýsingar um þennan nemanda og verkefni"
           }
         },
         "it" : {
@@ -55637,6 +60901,12 @@
             "value" : "Recuento de palabras"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sanamäärä"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55671,6 +60941,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jumlah Kata"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orðafjöldi"
           }
         },
         "it" : {
@@ -55881,6 +61157,12 @@
             "value" : "Escribe el porcentaje aquí"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirjoita prosenttiosuus tähän"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55915,6 +61197,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tuliskan persentase di sini"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrifaðu prósentu hér"
           }
         },
         "it" : {
@@ -56125,6 +61413,12 @@
             "value" : "Escribe la puntuación aquí"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirjoita pistemäärä tähän"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -56159,6 +61453,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tuliskan skor di sini"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrifaðu einkunn hér"
           }
         },
         "it" : {

@@ -35,7 +35,8 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     let customGradebookColumnsInteractor: CustomGradebookColumnsInteractor
 
     private let env: AppEnvironment
-    private let filter: [GetSubmissions.Filter]
+    private let filter: GetSubmissions.Filter?
+    private let sortMode: GetSubmissions.SortMode
     private var subscriptions = Set<AnyCancellable>()
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
 
@@ -43,7 +44,8 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         context: Context,
         assignmentID: String,
         userID: String,
-        filter: [GetSubmissions.Filter],
+        filter: GetSubmissions.Filter?,
+        sortMode: GetSubmissions.SortMode,
         gradeStatusInteractor: GradeStatusInteractor,
         submissionWordCountInteractor: SubmissionWordCountInteractor,
         customGradebookColumnsInteractor: CustomGradebookColumnsInteractor,
@@ -54,6 +56,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         self.assignmentID = assignmentID
         self.userID = userID
         self.filter = filter
+        self.sortMode = sortMode
         self.gradeStatusInteractor = gradeStatusInteractor
         self.submissionWordCountInteractor = submissionWordCountInteractor
         self.customGradebookColumnsInteractor = customGradebookColumnsInteractor
@@ -89,7 +92,8 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                 }
                 let gradingStandardInteractor = GradingStandardInteractorLive(
                     courseId: assignment.courseID,
-                    gradingStandardId: assignment.gradingStandardId
+                    gradingStandardId: assignment.gradingStandardId,
+                    env: env
                 )
                 return Publishers.CombineLatest4(
                     loadEnrollments(),
@@ -109,7 +113,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                 guard let self else { return }
 
                 let submissions = fetchedSubmissions
-                    .sorted(using: .submissionsSortComparator)
+                    .sorted(using: .submissionsComparator(mode: sortMode))
 
                 if submissions.isEmpty {
                     state.send(.error(.submissionNotFound))

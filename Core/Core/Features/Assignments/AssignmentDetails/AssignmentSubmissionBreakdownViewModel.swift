@@ -63,7 +63,7 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
             ),
             environment: env)
         submissionsStore = ReactiveStore(
-            useCase: GetSubmissions(context: .course(courseID), assignmentID: assignmentID, filter: []),
+            useCase: GetSubmissions(context: .course(courseID), assignmentID: assignmentID),
             environment: env
         )
     }
@@ -77,7 +77,7 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
             .getEntities(
                 ignoreCache: true,
                 loadAllPages: true,
-                keepObservingDatabaseChanges: true,
+                keepObservingDatabaseChanges: true
             )
             .ignoreFailure()
 
@@ -89,19 +89,33 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     }
 
     public func routeToAll(router: Router, viewController: WeakViewController) {
-        router.route(to: submissionsPath, from: viewController)
+        router.route(
+            to: submissionsPath,
+            from: viewController
+        )
     }
 
+    private typealias SubmissionsFilter = GetSubmissions.Filter
+
     public func routeToGraded(router: Router, viewController: WeakViewController) {
-        router.route(to: "\(submissionsPath)?filter=graded", from: viewController)
+        router.route(
+            to: submissionsPath.asURLPathWithQuery(SubmissionsFilter.status(.graded).query),
+            from: viewController
+        )
     }
 
     public func routeToUngraded(router: Router, viewController: WeakViewController) {
-        router.route(to: "\(submissionsPath)?filter=needs_grading", from: viewController)
+        router.route(
+            to: submissionsPath.asURLPathWithQuery(SubmissionsFilter.status(.submitted).query),
+            from: viewController
+        )
     }
 
     public func routeToUnsubmitted(router: Router, viewController: WeakViewController) {
-        router.route(to: "\(submissionsPath)?filter=not_submitted", from: viewController)
+        router.route(
+            to: submissionsPath.asURLPathWithQuery(SubmissionsFilter.status(.notSubmitted).query),
+            from: viewController
+        )
     }
 
     private func update() {

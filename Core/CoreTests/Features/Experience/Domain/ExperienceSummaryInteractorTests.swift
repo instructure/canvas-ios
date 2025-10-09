@@ -30,6 +30,7 @@ class ExperienceSummaryInteractorLiveTests: CoreTestCase {
         super.setUp()
         scheduler = DispatchQueue.test
         cancellables = []
+        environment.userDefaults?.appExperience = nil
     }
 
     override func tearDown() {
@@ -72,6 +73,26 @@ class ExperienceSummaryInteractorLiveTests: CoreTestCase {
                 receiveValue: { experience in
                     XCTAssertEqual(experience, .academic)
                     XCTAssertEqual(self.environment.userDefaults?.appExperience, .academic)
+                    expectation.fulfill()
+                }
+            )
+            .store(in: &cancellables)
+
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testGetExperienceSummaryFromAPIError() {
+        let testee = ExperienceSummaryInteractorLive(environment: environment, scheduler: scheduler.eraseToAnyScheduler())
+        let useCase = GetExperienceSummaryUseCase()
+        api.mock(useCase.request, error: NSError.instructureError("Error"))
+
+        let expectation = expectation(description: "Experience received")
+        testee.getExperienceSummary()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { experience in
+                    XCTAssertEqual(experience, .academic)
+                    XCTAssertEqual(self.environment.userDefaults?.appExperience, nil)
                     expectation.fulfill()
                 }
             )

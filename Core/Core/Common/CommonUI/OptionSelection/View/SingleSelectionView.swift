@@ -108,6 +108,8 @@ public struct SingleSelectionView: View {
         case .radioButton:
             InstUI.RadioButtonCell(
                 title: item.title,
+                headerTitle: item.headerTitle,
+                subtitle: item.subtitle,
                 value: item,
                 selectedValue: selectionBinding,
                 dividerStyle: viewModel.dividerStyle(for: item)
@@ -116,6 +118,7 @@ public struct SingleSelectionView: View {
         case .trailingCheckmark:
             InstUI.TrailingCheckmarkCell(
                 title: item.title,
+                headerTitle: item.headerTitle,
                 subtitle: item.subtitle,
                 value: item,
                 selectedValue: selectionBinding,
@@ -155,7 +158,7 @@ public struct SingleSelectionView: View {
         SingleSelectionView(
             title: "Radio group with colors",
             allOptions: [
-                .make(id: "A", title: "Option A", color: .textDanger),
+                .make(id: "A", title: "Option A", headerTitle: "Header", subtitle: "Subtitle", color: .textDanger),
                 .make(id: "B", title: "Option B", color: .textSuccess),
                 .make(id: "C", title: "Option C", color: .textInfo)
             ],
@@ -165,7 +168,7 @@ public struct SingleSelectionView: View {
         SingleSelectionView(
             title: "Item picker",
             allOptions: [
-                .make(id: "A", title: "Option A", color: .textDanger),
+                .make(id: "A", title: "Option A", headerTitle: "Header", subtitle: "Subtitle", color: .textDanger),
                 .make(id: "B", title: "Option B", color: .textSuccess),
                 .make(id: "C", title: "Option C", color: .textInfo)
             ],

@@ -53,7 +53,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
     func getCourseWithModules(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never> {
         unowned let unownedSelf = self
 
-        return ReactiveStore(useCase: GetHCoursesProgressionUseCase(userId: userId, courseId: id, horizonCourses: true))
+        return ReactiveStore(useCase: GetHCoursesProgressionUseCase(userId: userId, courseId: id, horizonCourses: nil))
             .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .flatMap { unownedSelf.fetchModules(dashboardCourses: $0, ignoreCache: ignoreCache) }

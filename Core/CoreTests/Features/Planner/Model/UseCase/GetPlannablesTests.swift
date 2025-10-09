@@ -39,28 +39,64 @@ class GetPlannablesTests: CoreTestCase {
     func testScope() {
         let first = Plannable.make(from: .make(
             plannable_id: "1",
-            plannable: APIPlannable.plannable(details: "", title: "a"),
+            plannable: .make(title: "a"),
             plannable_date: start
         ))
         let second = Plannable.make(from: .make(
             plannable_id: "2",
-            plannable: APIPlannable.plannable(details: "", title: "b"),
+            plannable: .make(title: "b"),
             plannable_date: start
         ))
         let third = Plannable.make(from: .make(
             plannable_id: "3",
-            plannable: APIPlannable.plannable(details: "", title: "c"),
+            plannable: .make(title: "c"),
             plannable_date: start.addMinutes(1)
         ))
         let other = Plannable.make(from: .make(
             plannable_id: "4",
-            plannable: APIPlannable.plannable(details: "", title: "d"),
+            plannable: .make(title: "d"),
             plannable_date: end.addDays(1)
         ))
         XCTAssertTrue([first, second, third].allSatisfy(useCase.scope.predicate.evaluate(with:)))
         XCTAssertFalse(useCase.scope.predicate.evaluate(with: other))
         let plannables: [Plannable] = databaseClient.fetch(scope: useCase.scope)
         XCTAssertEqual(plannables, [first, second, third])
+    }
+
+    func testScopeBasedOnUseCase() {
+        let first = Plannable.make(from: .make(
+            plannable_id: "1",
+            plannable: .make(title: "One"),
+            plannable_date: start
+        ))
+
+        first.originUseCaseID = .syllabusSummary
+
+        let second = Plannable.make(from: .make(
+            plannable_id: "2",
+            plannable: .make(title: "Two"),
+            plannable_date: start.addMinutes(1)
+        ))
+
+        let third = Plannable.make(from: .make(
+            plannable_id: "3",
+            plannable: .make(title: "Three"),
+            plannable_date: start.addMinutes(2)
+        ))
+
+        third.originUseCaseID = .syllabusSummary
+
+        let fourth = Plannable.make(from: .make(
+            plannable_id: "4",
+            plannable: .make(title: "Four"),
+            plannable_date: start.addMinutes(3)
+        ))
+
+        XCTAssertFalse([first, third].allSatisfy(useCase.scope.predicate.evaluate(with:)))
+        XCTAssertTrue([second, fourth].allSatisfy(useCase.scope.predicate.evaluate(with:)))
+
+        let plannables: [Plannable] = databaseClient.fetch(scope: useCase.scope)
+        XCTAssertEqual(plannables, [second, fourth])
     }
 
     func testScopeWithUserID() {
@@ -132,6 +168,15 @@ class GetPlannablesTests: CoreTestCase {
             allEvents: false,
             userID: userID
         ), value: [.make(id: "2", type: .assignment)])
+        api.mock(GetCalendarEventsRequest(
+            contexts: [Context(.course, id: "1")],
+            startDate: start,
+            endDate: end,
+            type: .sub_assignment,
+            include: [.submission],
+            allEvents: false,
+            userID: userID
+        ), value: [])
         let expectation = XCTestExpectation(description: "callback")
         useCase.makeRequest(environment: environment) { response, _, _ in
             XCTAssertEqual(response?.calendarEvents?[0].type, .event)
@@ -174,6 +219,16 @@ class GetPlannablesTests: CoreTestCase {
             allEvents: false,
             userID: userID
         ), value: [.make(id: "2", type: .assignment)])
+
+        api.mock(GetCalendarEventsRequest(
+            contexts: [Context(.course, id: "1")],
+            startDate: start,
+            endDate: end,
+            type: .sub_assignment,
+            include: [.submission],
+            allEvents: false,
+            userID: userID
+        ), value: [])
 
         /// Planner Notes
         api.mock(GetPlannerNotesRequest(
@@ -254,6 +309,16 @@ class GetPlannablesTests: CoreTestCase {
             response: .httpFailure(statusCode: 400),
             error: URLError(.badServerResponse)
         )
+
+        api.mock(GetCalendarEventsRequest(
+            contexts: [Context(.course, id: "1")],
+            startDate: start,
+            endDate: end,
+            type: .sub_assignment,
+            include: [.submission],
+            allEvents: false,
+            userID: userID
+        ), value: [])
 
         /// Planner Notes
         api.mock(GetPlannerNotesRequest(

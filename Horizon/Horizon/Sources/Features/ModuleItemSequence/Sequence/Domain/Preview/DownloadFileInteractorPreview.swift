@@ -30,6 +30,10 @@ class DownloadFileInteractorPreview: DownloadFileInteractor {
     }
 
     func download(fileID: String) -> AnyPublisher<URL, Error> {
+        download(fileID: fileID, courseID: nil)
+    }
+
+    func download(fileID: String, courseID: String?) -> AnyPublisher<URL, Error> {
         Just(URL(string: "https://github.com/instructure/canvas-ios")!)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()

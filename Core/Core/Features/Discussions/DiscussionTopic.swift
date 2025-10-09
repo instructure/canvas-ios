@@ -63,6 +63,18 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     @NSManaged public var title: String?
     @NSManaged public var unreadCount: Int
 
+    // Checkpoints
+    @NSManaged public var isCheckpointed: Bool
+    @NSManaged private var requiredReplyCountRaw: NSNumber?
+    public var requiredReplyCount: Int? {
+        get { requiredReplyCountRaw?.intValue } set { requiredReplyCountRaw = .init(newValue) }
+    }
+    @NSManaged public var hasSubAssignments: Bool
+    @NSManaged private var checkpointsRaw: NSOrderedSet
+    public var checkpoints: [CDAssignmentCheckpoint] {
+        get { checkpointsRaw.typedArray() ?? [] } set { checkpointsRaw = .init(newValue) }
+    }
+
     public var context: Context? {
         get { canvasContextID.flatMap { Context(canvasContextID: $0) } }
         set { canvasContextID = newValue?.canvasContextID }
@@ -91,7 +103,13 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
         model.anonymousState = item.anonymous_state
         if let assignment = item.assignment?.values.first {
             model.assignment = nil // sever relationship first so assignment doesn't delete me
-            model.assignment = Assignment.save(assignment, in: context, updateSubmission: false, updateScoreStatistics: false)
+            model.assignment = Assignment.save(
+                assignment,
+                in: context,
+                updateSubmission: false,
+                updateScoreStatistics: false,
+                requiredReplyCount: item.reply_to_entry_required_count
+            )
         } else {
             model.assignment = item.assignment_id.flatMap { context.first(where: (\Assignment.id).string, equals: $0.value) }
         }
@@ -154,6 +172,38 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
         model.subscribed = item.subscribed == true
         model.title = item.title
         model.unreadCount = item.unread_count ?? 0
+
+        model.updateCheckpoints(from: item, in: context)
         return model
+    }
+
+    private func updateCheckpoints(from item: APIDiscussionTopic, in moContext: NSManagedObjectContext) {
+        if let isCheckpointed = item.is_checkpointed {
+            self.isCheckpointed = isCheckpointed
+            // else CoreData can default to `false`
+        }
+
+        if let requiredReplyCount = item.reply_to_entry_required_count {
+            self.requiredReplyCount = requiredReplyCount
+        }
+
+        if let hasSubAssignments = item.has_sub_assignments {
+            self.hasSubAssignments = hasSubAssignments
+            // else CoreData can default to `false`
+        }
+
+        if let checkpoints = item.checkpoints,
+           let assignment = item.assignment?.values.first {
+            self.checkpoints = checkpoints
+                .map {
+                    CDAssignmentCheckpoint.save(
+                        $0,
+                        requiredReplyCount: item.reply_to_entry_required_count,
+                        assignmentId: assignment.id.value,
+                        in: moContext
+                    )
+                }
+                .sorted(by: <)
+        }
     }
 }

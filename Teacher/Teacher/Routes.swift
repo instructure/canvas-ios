@@ -123,7 +123,7 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/assignments") { url, _, _, env in
         guard let context = Context(path: url.path) else { return nil }
-        let viewModel = AssignmentListViewModel(env: env, context: context)
+        let viewModel = AssignmentListScreenViewModel(env: env, context: context)
         return CoreHostingController(AssignmentListScreen(viewModel: viewModel), env: env)
     },
 
@@ -137,17 +137,10 @@ let router = Router(routes: [
     RouteHandler("/courses/:courseID/assignments/:assignmentID") { _, params, _, env in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
 
-        if ExperimentalFeature.hideRedesignedSubmissionList.isEnabled {
-            return CoreHostingController(
-                AssignmentDetailsView(env: env, courseID: courseID, assignmentID: assignmentID),
-                env: env
-            )
-        } else {
-            return CoreHostingController(
-                TeacherAssignmentDetailsScreen(env: env, courseID: courseID, assignmentID: assignmentID),
-                env: env
-            )
-        }
+        return CoreHostingController(
+            TeacherAssignmentDetailsScreen(env: env, courseID: courseID, assignmentID: assignmentID),
+            env: env
+        )
     },
     RouteHandler("/courses/:courseID/assignments/:assignmentID/edit") { _, params, _, env in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
@@ -169,15 +162,12 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions") { url, params, _, env in
         guard let context = Context(path: url.path), let assignmentID = params["assignmentID"] else { return nil }
-        let filter = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
-            GetSubmissions.Filter(rawValue: $0)
-        } ?? []
-
+        let filter = GetSubmissions.Filter(urlComponents: url)
         return SubmissionListAssembly.makeViewController(
             env: env,
             context: context,
             assignmentID: assignmentID,
-            filter: filter
+            filter: filter.nilIfEmpty
         )
     },
 
@@ -192,6 +182,7 @@ let router = Router(routes: [
             assignmentId: assignmentId,
             userId: url.queryValue(for: "student_id"),
             filter: [],
+            sortMode: .studentSortableName,
             env: env
         )
     },
@@ -203,17 +194,18 @@ let router = Router(routes: [
             let userId = params["userID"]
         else { return nil }
 
-        let filter = url
-            .queryValue(for: "filter")?
-            .components(separatedBy: ",")
-            .compactMap {
-                GetSubmissions.Filter(rawValue: $0)
-            } ?? []
+        let filter = GetSubmissions.Filter(urlComponents: url).nilIfEmpty
+
+        let sortMode = url
+            .queryValue(for: "sort")
+            .flatMap({ GetSubmissions.SortMode(rawValue: $0) }) ?? .studentSortableName
+
         return SpeedGraderAssembly.makeSpeedGraderViewController(
             context: context,
             assignmentId: assignmentId,
             userId: userId,
             filter: filter,
+            sortMode: sortMode,
             env: env
         )
     },
@@ -298,10 +290,10 @@ let router = Router(routes: [
         return ModuleListViewController.create(env: env, courseID: courseID, moduleID: moduleID)
     },
 
-    RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
+            env: env,
             courseID: courseID,
             assetType: .moduleItem,
             assetID: itemID,
@@ -309,10 +301,10 @@ let router = Router(routes: [
         )
     },
 
-    RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
+            env: env,
             courseID: courseID,
             assetType: .moduleItem,
             assetID: itemID,
@@ -320,10 +312,10 @@ let router = Router(routes: [
         )
     },
 
-    RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
+            env: env,
             courseID: courseID,
             assetType: .moduleItem,
             assetID: itemID,
@@ -335,9 +327,9 @@ let router = Router(routes: [
         guard let context = Context(path: url.path) else { return nil }
         return AppEnvironment.shared.router.match("\(context.pathComponent)/pages/front_page")
     },
-    RouteHandler("/:context/:contextID/pages") { url, _, _ in
+    RouteHandler("/:context/:contextID/pages") { url, _, _, env in
         guard let context = Context(path: url.path) else { return nil }
-        return PageListViewController.create(context: context, app: .teacher)
+        return PageListViewController.create(context: context, app: .teacher, env: env)
     },
 
     RouteHandler("/:context/:contextID/pages/new") { url, _, _ in
@@ -532,9 +524,13 @@ private func fileEditor(url: URLComponents, params: [String: String], userInfo: 
     return CoreHostingController(FileEditorView(context: Context(path: url.path), fileID: fileID))
 }
 
-private func syllabus(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+private func syllabus(url: URLComponents, params: [String: String], userInfo: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard let courseID = params["courseID"] else { return nil }
-    return SyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
+    return SyllabusTabViewController.create(
+        context: Context(path: url.path),
+        courseID: ID.expandTildeID(courseID),
+        env: env
+    )
 }
 
 private func courseDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

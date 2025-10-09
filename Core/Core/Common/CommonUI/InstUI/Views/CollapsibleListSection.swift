@@ -20,66 +20,124 @@ import SwiftUI
 
 extension InstUI {
 
-    public struct CollapsibleListSection<Content: View>: View {
+    public struct CollapsibleListSection<Label: View, Content: View>: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-        private let title: String
-        private let itemCount: Int?
+        private let label: Label
+        private let paddingSet: InstUI.Styles.PaddingSet
+        private let accessoryIconSize: CGFloat
         private let content: () -> Content
 
-        @State private var isExpandedState: Bool
-        private var isExpandedBinding: Binding<Bool>?
-        private var isExpanded: Binding<Bool> {
-            isExpandedBinding ?? $isExpandedState
-        }
+        @State private var isExpanded: Bool
+        @State private var expandedState: CollapseButtonExpandedState
+
+        private let headerAccessibilityLabel: String
+        private let listLevelAccessibilityLabel: String?
+        private let headerIdentifier: String?
 
         public init(
             title: String,
+            customAccessibilityLabel: String? = nil,
+            headerIdentifier: String? = nil,
             itemCount: Int?,
-            isExpanded: Binding<Bool>? = nil,
+            paddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
+            accessoryIconSize: CGFloat = 18,
+            isInitiallyExpanded: Bool = true,
+            content: @escaping () -> Content
+        ) where Label == Text {
+            self.init(
+                label: Text(title),
+                accessibilityLabel: customAccessibilityLabel ?? title,
+                headerIdentifier: headerIdentifier,
+                itemCount: itemCount,
+                paddingSet: paddingSet,
+                accessoryIconSize: accessoryIconSize,
+                isInitiallyExpanded: isInitiallyExpanded,
+                content: content
+            )
+        }
+
+        public init(
+            label: Label,
+            accessibilityLabel: String,
+            headerIdentifier: String? = nil,
+            itemCount: Int?,
+            paddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
+            accessoryIconSize: CGFloat = 18,
             isInitiallyExpanded: Bool = true,
             content: @escaping () -> Content
         ) {
-            self.title = title
-            self.itemCount = itemCount
+            self.label = label
+            self.paddingSet = paddingSet
+            self.accessoryIconSize = accessoryIconSize
             self.content = content
-            self.isExpandedState = isInitiallyExpanded
-            self.isExpandedBinding = isExpanded
+
+            self.isExpanded = isInitiallyExpanded
+            self.expandedState = .init(isExpanded: isInitiallyExpanded)
+
+            self.headerAccessibilityLabel = [
+                accessibilityLabel,
+                String.format(numberOfItems: itemCount)
+            ].accessibilityJoined()
+
+            self.listLevelAccessibilityLabel = itemCount.map(String.format(accessibilityListCount:))
+
+            self.headerIdentifier = headerIdentifier
         }
 
         // MARK: - Body
 
         public var body: some View {
-            DisclosureGroup(
-                isExpanded: isExpanded,
+            // Using `Section` instead of `DisclosureGroup` to support pinning the header.
+            // The downside is that a11y must be handled manually, approximating the `DisclosureGroup` behavior.
+            Section(
+                isExpanded: $isExpanded,
                 content: {
                     content()
                         .accessibilityElement(children: .contain)
                         .accessibilityLabel(listLevelAccessibilityLabel)
                 },
-                label: {
-                    Text(title)
-                        .textStyle(.sectionHeader)
-                        .accessibilityLabel(headerAccessibilityLabel)
+                header: {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Button(
+                            action: {
+                                withAnimation(.smooth(duration: 0.3)) {
+                                    isExpanded.toggle()
+                                }
+                            },
+                            label: {
+                                header()
+                                    .paddingStyle(set: paddingSet)
+                                    .contentShape(Rectangle())
+                            }
+                        )
+                        .buttonStyle(.plain)
+
+                        InstUI.Divider()
+                    }
                 }
             )
-            .disclosureGroupStyle(
-                SectionDisclosureStyle(headerConfig: .init(
-                    paddingSet: .sectionHeader,
-                    accessoryIconSize: 18,
-                    hasDividerBelowHeader: true
-                ))
-            )
+            .background(.backgroundLightest) // to stop collapsing views above showing through
+            .onChange(of: isExpanded) {
+                expandedState = .init(isExpanded: isExpanded)
+            }
         }
 
-        private var headerAccessibilityLabel: String {
-            [title, String.format(numberOfItems: itemCount)]
-                .joined(separator: ", ")
-        }
+        private func header() -> some View {
+            HStack(alignment: .center, spacing: 0) {
+                label
+                    .textStyle(.sectionHeader)
+                    .frame(maxWidth: .infinity, alignment: .leading)
 
-        private var listLevelAccessibilityLabel: String? {
-            guard let itemCount else { return nil }
-            return String.format(accessibilityListCount: itemCount)
+                CollapseButtonIcon(size: accessoryIconSize, isExpanded: $isExpanded)
+                    .paddingStyle(.leading, .cellAccessoryPadding)
+            }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(headerAccessibilityLabel)
+            .accessibilityValue(expandedState.a11yValue)
+            .accessibilityHint(expandedState.a11yHint)
+            .accessibilityAddTraits([.isHeader])
+            .identifier(headerIdentifier)
         }
     }
 }

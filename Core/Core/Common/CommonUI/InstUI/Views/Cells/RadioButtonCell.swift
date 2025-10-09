@@ -25,6 +25,8 @@ extension InstUI {
 
         @Binding private var selectedValue: Value?
         private let title: String
+        private let headerTitle: String?
+        private let subtitle: String?
         private let value: Value?
         private let dividerStyle: InstUI.Divider.Style
 
@@ -33,11 +35,15 @@ extension InstUI {
         ///   - selectedValue: This binding holds the currently selected value belonging to the radio button group. The value is equatable so this cell can decide when to display the selected state.
         public init(
             title: String,
+            headerTitle: String? = nil,
+            subtitle: String? = nil,
             value: Value?,
             selectedValue: Binding<Value?>,
             dividerStyle: InstUI.Divider.Style = .full
         ) {
             self.title = title
+            self.headerTitle = headerTitle
+            self.subtitle = subtitle
             self.value = value
             self._selectedValue = selectedValue
             self.dividerStyle = dividerStyle
@@ -55,10 +61,24 @@ extension InstUI {
                         .paddingStyle(.trailing, .cellIconText)
                         .animation(.default, value: selectedValue)
 
-                        Text(title)
-                            .textStyle(.cellLabel)
-                            .multilineTextAlignment(.leading)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        VStack(spacing: 2) {
+                            if let headerTitle {
+                                Text(headerTitle)
+                                    .textStyle(.cellLabelSubtitle)
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            Text(title)
+                                .textStyle(.cellLabel)
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            if let subtitle {
+                                Text(subtitle)
+                                    .textStyle(.cellLabelSubtitle)
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                        }
                     }
                     .paddingStyle(set: .iconCell)
                 }
@@ -74,7 +94,7 @@ extension InstUI {
         // The closing "." is needed to make VoiceOver read "Button" the same as with the trait.
         private var accessibilityLabel: String {
             let radioButton = String(localized: "Radio Button", bundle: .core, comment: "UI element type read out in VoiceOver.")
-            return "\(title), \(radioButton)."
+            return [headerTitle, title, subtitle, "\(radioButton)."].accessibilityJoined()
         }
     }
 }
@@ -92,7 +112,21 @@ extension InstUI {
         )
         InstUI.RadioButtonCell(
             title: "Value 2",
+            subtitle: "Subtitle",
             value: 2,
+            selectedValue: $selectedValue
+        )
+        InstUI.RadioButtonCell(
+            title: "Value 3",
+            headerTitle: "Header Title",
+            subtitle: "Subtitle",
+            value: 3,
+            selectedValue: $selectedValue
+        )
+        InstUI.RadioButtonCell(
+            title: "Value 4",
+            headerTitle: "Header Title",
+            value: 4,
             selectedValue: $selectedValue
         )
     }

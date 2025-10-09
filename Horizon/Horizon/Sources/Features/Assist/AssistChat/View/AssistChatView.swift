@@ -164,7 +164,7 @@ struct AssistChatView: View {
 #Preview {
     AssistChatView(
         viewModel: .init(
-            chatBotInteractor: AssistChatInteractorPreview(),
+            assistChatInteractor: AssistChatInteractorPreview(),
             router: AppEnvironment.shared.router
         )
     )

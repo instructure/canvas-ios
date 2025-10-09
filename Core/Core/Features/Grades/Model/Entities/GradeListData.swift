@@ -23,16 +23,20 @@ public struct GradeListData: Identifiable, Equatable {
     var userID: String?
     public var courseName: String?
     public var courseColor: UIColor?
-    var assignmentSections: [AssignmentSections] = []
+    var assignmentSections: [AssignmentListSection] = []
     var isGradingPeriodHidden: Bool = true
     var gradingPeriods: [GradingPeriod] = []
     var currentGradingPeriod: GradingPeriod?
     public var totalGradeText: String?
     var currentGradingPeriodID: String?
+}
 
-    struct AssignmentSections: Identifiable, Equatable {
-        var id: String
-        let title: String
-        var assignments: [Assignment]
+struct GradeListWhatIfModel: Equatable {
+    let isEnabled: Bool
+    let editScoreAction: () -> Void
+    let revertScoreAction: (String) -> Void
+
+    static func == (lhs: GradeListWhatIfModel, rhs: GradeListWhatIfModel) -> Bool {
+        lhs.isEnabled == rhs.isEnabled
     }
 }

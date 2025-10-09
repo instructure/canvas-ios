@@ -126,12 +126,19 @@ public struct WebView: UIViewRepresentable {
     public func makeUIView(context: Self.Context) -> UIView {
         let webViewContainer = UIView()
         let webView = CoreWebView(features: features, configuration: configuration)
+        let coordinator = context.coordinator
+
+        webView.resetEnvironment(env) { [weak coordinator] in
+            coordinator?.setWebViewAsReadyForLoading()
+        }
+
         webViewContainer.addSubview(webView)
         if canToggleTheme {
             webView.pinWithThemeSwitchButton(inside: webViewContainer)
         } else {
             webView.pin(inside: webViewContainer)
         }
+
         webView.autoresizesHeight = true
         webView.scrollView.isScrollEnabled = isScrollEnabled
         webView.scrollView.showsVerticalScrollIndicator = false
@@ -150,20 +157,7 @@ public struct WebView: UIViewRepresentable {
         context.coordinator.reload(webView: webView, on: reloadTrigger)
 
         if context.coordinator.loaded != source {
-            context.coordinator.loaded = source
-            switch source {
-            case .html(let html):
-                webView.loadFileURL(
-                    URL.Directories.documents,
-                    allowingReadAccessTo: URL.Directories.documents
-                ) { _ in
-                    webView.loadHTMLString(html, baseURL: baseURL)
-                }
-            case .request(let request):
-                webView.load(request)
-            case nil:
-                break
-            }
+            context.coordinator.load(source, baseURL: baseURL, in: webView)
         }
     }
 
@@ -195,9 +189,11 @@ extension WebView {
     }
 
     public class Coordinator: CoreWebViewLinkDelegate, CoreWebViewSizeDelegate {
-        var loaded: Source?
+        private(set) var loaded: Source?
+        private var isWebViewReadyForLoading: Bool = false
         private let view: WebView
         private var reloadObserver: AnyCancellable?
+        private var pendingTask: (() -> Void)?
 
         init(view: WebView) {
             self.view = view
@@ -210,6 +206,40 @@ extension WebView {
             reloadObserver?.cancel()
             reloadObserver = trigger?.sink {
                 webView.reload()
+            }
+        }
+
+        fileprivate func setWebViewAsReadyForLoading() {
+            isWebViewReadyForLoading = true
+            pendingTask?()
+            pendingTask = nil
+        }
+
+        fileprivate func load(_ source: Source?, baseURL: URL?, in webView: CoreWebView) {
+            let loadingTask = { [weak self, weak webView] in
+                guard let self, let webView else { return }
+
+                loaded = source
+
+                switch source {
+                case .html(let html):
+                    webView.loadFileURL(
+                        URL.Directories.documents,
+                        allowingReadAccessTo: URL.Directories.documents
+                    ) { _ in
+                        webView.loadHTMLString(html, baseURL: baseURL)
+                    }
+                case .request(let request):
+                    webView.load(request)
+                case nil:
+                    break
+                }
+            }
+
+            if isWebViewReadyForLoading {
+                loadingTask()
+            } else {
+                pendingTask = loadingTask
             }
         }
 

@@ -223,7 +223,7 @@ private extension TeacherAssignmentDetailsScreen {
                 .font(.regular14)
                 .foregroundColor(.textDark)
                 .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
-            WebView(html: html, baseURL: URL.Directories.documents, canToggleTheme: true)
+            WebView(html: html, baseURL: env.currentSession?.baseURL, canToggleTheme: true)
                 .frameToFit()
         } else {
             Section(label: Text("Description", bundle: .teacher)) {
@@ -348,5 +348,18 @@ extension TeacherAssignmentDetailsScreen {
         }
 
         return items
+    }
+}
+
+// MARK: - Helpers
+
+private extension Assignment {
+
+    var openLtiButtonTitle: String {
+        if isQuizLTI {
+            String(localized: "Open the Quiz", bundle: .teacher)
+        } else {
+            String(localized: "Launch External Tool", bundle: .teacher)
+        }
     }
 }

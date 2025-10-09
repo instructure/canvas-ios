@@ -22,6 +22,7 @@ sources:
   - path: ../packages
 include:
   - Horizon/horizon.yml
+  - HorizonUnitTests/horizon-unit-tests.yml
 projectReferences:
   Core:
     path: ../Core/Core.xcodeproj
@@ -36,7 +37,7 @@ packages:
     exactVersion: 3.7.5
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
-    exactVersion: 13.9.1
+    exactVersion: 14.2.0
   FirebaseCrashlytics:
     url: https://github.com/firebase/firebase-ios-sdk.git
     exactVersion: 10.23.1

@@ -21,134 +21,172 @@ import SwiftUI
 
 struct RubricCriterionView: View {
     @Environment(\.viewController) var controller
-    private let containerFrameInGlobal: CGRect
     @ObservedObject var viewModel: RubricCriterionViewModel
 
-    init(
-        containerFrameInGlobal: CGRect,
-        viewModel: RubricCriterionViewModel
-    ) {
-        self.containerFrameInGlobal = containerFrameInGlobal
+    @State private var isExpanded: Bool
+
+    init(viewModel: RubricCriterionViewModel) {
         self.viewModel = viewModel
+
+        let expanded = viewModel.hideRubricPoints && viewModel.userRatingId == nil
+        self._isExpanded = .init(initialValue: expanded)
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack { Spacer() }
-            Text(viewModel.description)
-                .font(.semibold16).foregroundColor(.textDarkest)
-            if viewModel.shouldShowRubricNotUsedForScoringMessage {
-                Text("This criterion will not impact the score.", bundle: .teacher)
-                    .font(.regular12).foregroundColor(.textDark)
-                    .padding(.top, 2)
+            Button(
+                action: {
+                    withAnimation { isExpanded.toggle() }
+                },
+                label: {
+                    HStack {
+                        Text(viewModel.title)
+                            .font(.semibold16)
+                            .foregroundColor(.textDarkest)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, 16)
+
+                        Image
+                            .chevronDown
+                            .scaledIcon(size: 24)
+                            .foregroundStyle(Color.textDark)
+                            .padding(12)
+                            .rotationEffect(isExpanded ? .degrees(180) : .zero)
+                    }
+                    .contentShape(Rectangle())
+                }
+            )
+            .buttonStyle(.plain)
+            .accessibilityAddTraits(.isHeader)
+            .accessibilityHint(
+                isExpanded
+                    ? String(localized: "Expanded", bundle: .teacher)
+                    : String(localized: "Collapsed", bundle: .teacher)
+            )
+
+            if isExpanded {
+
+                if viewModel.longDescription.isNotEmpty {
+
+                    Text(viewModel.longDescription)
+                        .font(.regular14)
+                        .foregroundColor(.textDarkest)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 16)
+                }
             }
 
-            FlowStack(spacing: UIOffset(horizontal: 8, vertical: 8)) { leading, top in
-                preDefinedRubricRatingButtons(leading: leading, top: top)
-                RubricCustomRatingView(viewModel: viewModel.customRatingViewModel, leading: leading, top: top)
-            }
-            .padding(.top, 8)
+            if viewModel.shouldShowRubricRatings {
 
-            let showAdd = viewModel.shouldShowAddFreeFormCommentButton
-            let showLong = viewModel.shouldShowLongDescriptionButton
-            if showAdd || showLong {
-                addButtons(
-                    showAdd: showAdd,
-                    showLong: showLong
-                )
+                if viewModel.hideRubricPoints {
+                    RubricTextRatingsListView(isExpanded: $isExpanded, viewModel: viewModel)
+                } else {
+                    RubricPointsRatingsListView(isExpanded: $isExpanded, viewModel: viewModel)
+                }
             }
 
-            if let comment = viewModel.userComment {
-                freeFormRubricCommentBubbleWithEditButton(comment, criteriaID: viewModel.criterionId)
+            if shouldShowPointsScoreInput {
+                RubricScoreInputView(viewModel: viewModel)
+            }
+
+            RubricNoteView(comment: viewModel.userComment) { newComment in
+                viewModel.updateComment(newComment)
             }
         }
+        .elevation(.cardLarge, background: Color.backgroundLightest)
     }
 
-    @ViewBuilder
-    private func preDefinedRubricRatingButtons(
-        leading: @escaping (ViewDimensions) -> CGFloat,
-        top: @escaping (ViewDimensions) -> CGFloat
-    ) -> some View {
+    private var shouldShowPointsScoreInput: Bool {
         if viewModel.shouldShowRubricRatings {
-            ForEach(viewModel.ratingViewModels) { ratingViewModel in
-                RubricRatingView(viewModel: ratingViewModel, leading: leading, top: top, containerFrameInGlobal: containerFrameInGlobal)
-            }
+            return viewModel.hideRubricPoints == false
+        } else {
+            return viewModel.hideRubricPoints == false && isExpanded == false
         }
-    }
-
-    private func addButtons(
-        showAdd: Bool,
-        showLong: Bool
-    ) -> some View {
-        HStack(spacing: 6) {
-            if showAdd {
-                Button(
-                    action: {
-                        withAnimation(.default) {
-                            viewModel.didTapAddCommentButton()
-                        }
-                    },
-                    label: {
-                        Text("Add Comment", bundle: .teacher)
-                            .font(.medium14)
-                    }
-                )
-                .identifier(viewModel.addCommentButtonA11yID)
-            }
-            if showAdd, showLong {
-                Text(verbatim: "•")
-                    .font(.regular12)
-                    .foregroundColor(.textDark)
-            }
-            if showLong {
-                Button(
-                    action: {
-                        viewModel.didTapShowLongDescriptionButton()
-                    },
-                    label: {
-                        Text("View Long Description", bundle: .teacher)
-                            .font(.medium14)
-                    }
-                )
-            }
-        }
-        .padding(.top, 8)
-    }
-
-    private func freeFormRubricCommentBubbleWithEditButton(_ comment: String, criteriaID: String) -> some View {
-        HStack {
-            Text(comment)
-                .font(.regular14)
-                .foregroundColor(.textDarkest)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8)
-                .background(CommentBackground()
-                    .fill(Color.backgroundLight)
-                )
-            Spacer()
-            Button(action: { withAnimation(.default) {
-                viewModel.rubricComment = comment
-                viewModel.rubricCommentID = criteriaID
-            } }, label: {
-                Text("Edit", bundle: .teacher)
-                    .font(.medium14).foregroundColor(.accentColor)
-            })
-        }
-        .padding(.top, 8)
     }
 }
 
-private struct CommentBackground: Shape {
-    func path(in rect: CGRect) -> Path { Path { path in
-        let r: CGFloat = 12
-        path.move(to: CGPoint(x: 0, y: -5))
-        path.addLine(to: CGPoint(x: 0, y: rect.maxY - r))
-        path.addArc(tangent1End: CGPoint(x: 0, y: rect.maxY), tangent2End: CGPoint(x: r, y: rect.maxY), radius: r)
-        path.addLine(to: CGPoint(x: rect.maxX - r, y: rect.maxY))
-        path.addArc(tangent1End: CGPoint(x: rect.maxX, y: rect.maxY), tangent2End: CGPoint(x: rect.maxX, y: rect.maxY - r), radius: r)
-        path.addLine(to: CGPoint(x: rect.maxX, y: r))
-        path.addArc(tangent1End: CGPoint(x: rect.maxX, y: 0), tangent2End: CGPoint(x: rect.maxX - r, y: 0), radius: r)
-        path.addLine(to: CGPoint(x: 20, y: 0))
-        path.addRelativeArc(center: CGPoint(x: 20, y: -24), radius: 24, startAngle: .radians(0.5 * .pi), delta: .degrees(56))
-    } }
+#if DEBUG
+
+#Preview {
+
+    let env = PreviewEnvironment()
+    let context = env.database.viewContext
+    let assignment = Assignment(context: context)
+        .with { assignment in
+            assignment.id = "234"
+            assignment.hideRubricPoints = true
+            assignment.freeFormCriterionCommentsOnRubric = false
+            assignment.rubric = [
+                CDRubricCriterion(context: context).with({ cret in
+                    cret.points = 12
+                    cret.shortDescription = "Effective Use of Space"
+                    cret.longDescription = "Great use of space to show depth with use of foreground, middleground, and background."
+                    cret.id = "1"
+                    cret.assignmentID = "234"
+                    cret.ratings = [
+                        CDRubricRating(context: context).with({ rating in
+                            rating.id = "11"
+                            rating.points = 2
+                            rating.shortDescription = "Poor"
+                            rating.longDescription = "Comprehensive, insightful, and relevant. Information is completely accurate."
+                        }),
+                        CDRubricRating(context: context).with({ rating in
+                            rating.id = "22"
+                            rating.points = 3
+                            rating.shortDescription = "Good"
+                            rating.longDescription = "Comprehensive, insightful, and relevant. Information is completely accurate."
+                        }),
+                        CDRubricRating(context: context).with({ rating in
+                            rating.id = "33"
+                            rating.points = 4
+                            rating.shortDescription = "Very Good"
+                            rating.longDescription = "Comprehensive, insightful, and relevant. Information is completely accurate."
+                        }),
+                        CDRubricRating(context: context).with({ rating in
+                            rating.id = "44"
+                            rating.points = 5
+                            rating.shortDescription = "Excellent"
+                            rating.longDescription = "Comprehensive, insightful, and relevant. Information is completely accurate."
+                        })
+                    ]
+                })
+            ]
+        }
+
+    let submission = Submission(context: env.database.viewContext).with { sub in
+        sub.assignment = assignment
+    }
+
+    let interactor = RubricGradingInteractorPreview()
+
+    let model = {
+
+        let model = RubricsViewModel(
+            assignment: assignment,
+            submission: submission,
+            interactor: interactor,
+            router: env.router
+        ).criterionViewModels.first!
+
+        model.ratingViewModels.last?.isSelected = true
+        model.userComment = "Content is perfectly placed, highly relevant, and enhances clarity. Shows strong understanding of audience and purpose."
+        model.userRatingBubble = .init(
+            title: "Excellent",
+            subtitle: "Comprehensive, insightful, and relevant. Information is completely accurate."
+        )
+
+        return model
+    }()
+
+    VStack {
+        RubricCriterionView(
+            viewModel: model
+        )
+    }
+    .padding(16)
+    .background(Color.backgroundLight)
+    .environment(\.appEnvironment, env)
 }
+
+#endif

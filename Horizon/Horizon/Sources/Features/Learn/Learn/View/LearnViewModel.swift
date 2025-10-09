@@ -16,70 +16,245 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import Combine
+import CombineSchedulers
 import Observation
+import Foundation
 
 @Observable
-final class LearnViewModel {
-    // MARK: - Outputs
+final class LearnViewModel: ProgramSwitcherMapper {
 
-    private(set) var isLoaderVisible: Bool = false
-    private(set) var errorMessage = ""
+    enum State {
+        case programs
+        case courseDetails
+        case empty
+    }
+    // MARK: - Outputs (State)
+
+    private(set) var state: State = .empty
     private(set) var courseDetailsViewModel: CourseDetailsViewModel?
+    private(set) var isLoaderVisible = true
+    private(set) var isLoadingEnrollButton = false
+    private(set) var hasError = false
+    private(set) var toastMessage = ""
 
-    // MARK: - Input / Outputs
+    private(set) var programs: [Program] = []
+    private(set) var currentProgram: Program?
+    private(set) var selectedProgram: ProgramSwitcherModel?
+    private(set) var dropdownMenuPrograms: [ProgramSwitcherModel] = []
 
-    var isAlertPresented = false
+    // MARK: - Inputs
 
-    // MARK: - Private variables
+    var onSelectProgram: (ProgramSwitcherModel?) -> Void = { _ in }
+
+    // MARK: - Inputs / Ouputs
+
+    var toastIsPresented = false
+    var shouldShowProgress: Bool {
+        currentProgram?.isOptionalProgram == false
+    }
+
+    // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
+    private var courses: [LearnCourse] = []
 
     // MARK: - Dependencies
 
-    private let interactor: GetLearnCoursesInteractor
+    private let interactor: ProgramInteractor
+    private let learnCoursesInteractor: GetLearnCoursesInteractor
+    private let router: Router
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
-
-    init(interactor: GetLearnCoursesInteractor) {
-        self.interactor = interactor
-    }
-
-    func fetchCourses(
-        ignoreCache: Bool = false,
-        isShowLoader: Bool = true,
-        completionHandler: (() -> Void)? = nil
+    init(
+        interactor: ProgramInteractor,
+        learnCoursesInteractor: GetLearnCoursesInteractor,
+        router: Router,
+        programID: String? = nil,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
-        isLoaderVisible = isShowLoader
-        interactor.getFirstCourse(ignoreCache: ignoreCache)
-            .sink(
-                receiveCompletion: { [weak self] completion in
-                    self?.isLoaderVisible = false
-                    completionHandler?()
+        self.interactor = interactor
+        self.learnCoursesInteractor = learnCoursesInteractor
+        self.router = router
+        self.scheduler = scheduler
+        selectedProgram = programID != nil  ? .init(id: programID) : nil
+        configureSelectionHandler()
 
-                    if case .failure(let failure) = completion {
-                        self?.errorMessage = failure.localizedDescription
-                        self?.isAlertPresented = true
-                    }
-                },
-                receiveValue: { [weak self] course in
-                    guard let self, let course else {
-                        return
-                    }
-                    courseDetailsViewModel = LearnAssembly.makeViewModel(
-                        courseID: course.id,
-                        enrollmentID: course.enrollmentId
-                    )
-                }
-            )
-            .store(in: &subscriptions)
+        NotificationCenter.default.addObserver(
+            forName: .moduleItemRequirementCompleted,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            if self?.programs.isNotEmpty == true {
+                self?.fetchPrograms(ignoreCache: true)
+            }
+        }
     }
 
-    func refreshCourses() async {
+    private func configureSelectionHandler() {
+        onSelectProgram = { [weak self] selectedProgram in
+            guard let self, self.selectedProgram != selectedProgram else { return }
+            self.selectedProgram = selectedProgram
+            self.updateCurrentProgram(by: selectedProgram?.id)
+        }
+    }
+
+    func updateProgram(_ program: ProgramSwitcherModel?) {
+        selectedProgram = dropdownMenuPrograms.isEmpty ? program : dropdownMenuPrograms.first(where: { $0.id ==  program?.id })
+        updateCurrentProgram(by: selectedProgram?.id)
+        // We call fetchPrograms in case the learner has courses but no programs.
+        // This handles the scenario when the learner pulls to refresh after enrolling
+        // in a program, so they can see it immediately.
+        if dropdownMenuPrograms.allSatisfy({ $0.id == nil }) {
+            fetchPrograms()
+        }
+    }
+
+    func refreshPrograms() async {
+        await fetchPrograms(ignoreCache: true)
+    }
+
+    func fetchPrograms(ignoreCache: Bool = false) async {
         await withCheckedContinuation { continuation in
-            fetchCourses(ignoreCache: true, isShowLoader: false) {
+            fetchPrograms(ignoreCache: ignoreCache) {
                 continuation.resume()
             }
         }
+    }
+
+    func fetchPrograms(
+        ignoreCache: Bool = false,
+        completionHandler: (() -> Void)? = nil
+    ) {
+        interactor
+            .getProgramsWithCourses(ignoreCache: ignoreCache)
+            .zip(
+                learnCoursesInteractor
+                    .getCourses(ignoreCache: ignoreCache)
+                    .setFailureType(to: Error.self)
+            )
+            .receive(on: scheduler)
+            .sink { [weak self] completion in
+                if case .failure(let error) = completion {
+                    self?.handleError(error)
+                }
+                completionHandler?()
+            } receiveValue: { [weak self] programs, courses in
+                self?.courses = courses
+                self?.handleProgramsLoaded(programs)
+                self?.dropdownMenuPrograms = self?.mapPrograms(programs: programs, courses: courses) ?? []
+                self?.setState(programs: programs, courses: courses)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func setState(programs: [Program], courses: [LearnCourse]) {
+        if programs.isNotEmpty {
+            state = .programs
+        } else if let firtCourse = courses.first {
+            courseDetailsViewModel = LearnAssembly.makeViewModel(
+                courseID: firtCourse.id,
+                enrollmentID: firtCourse.enrollmentId
+            )
+            state = .courseDetails
+        } else {
+            state = .empty
+        }
+    }
+
+    // MARK: - Actions
+
+    func navigateToCourseDetails(
+        courseID: String,
+        programID: String? = nil,
+        isEnrolled: Bool,
+        viewController: WeakViewController
+    ) {
+        guard isEnrolled, let enrollemtID = courses.first(where: { $0.id == courseID })?.enrollmentId  else { return }
+        router.show(
+                LearnAssembly.makeCourseDetailsViewController(
+                    courseID: courseID,
+                    enrollmentID: enrollemtID,
+                    programID: programID
+                ),
+                from: viewController
+            )
+    }
+
+    func enrollInProgram(course: ProgramCourse) {
+        // Need to fetch learn courses again to get the updated enrollment IDs
+        isLoadingEnrollButton = true
+        interactor.enrollInProgram(progressID: course.progressID)
+            .flatMap { [weak self] programs -> AnyPublisher<([Program], [LearnCourse]), Error> in
+                guard let self else {
+                    return Empty().eraseToAnyPublisher()
+                }
+                return self.learnCoursesInteractor
+                    .getCourses(ignoreCache: true)
+                    .setFailureType(to: Error.self)
+                    .map { courses in (programs, courses) }
+                    .eraseToAnyPublisher()
+            }
+            .receive(on: scheduler)
+            .sinkFailureOrValue { [weak self] error in
+                self?.handleError(error)
+            } receiveValue: { [weak self] programs, courses in
+                guard let self else { return }
+                self.courses = courses
+                handleProgramsLoaded(programs)
+                let message = String(localized: "You’ve been enrolled in Course", bundle: .horizon)
+                    .appending(" ")
+                    .appending(course.name)
+                self.showToast(message)
+            }
+            .store(in: &subscriptions)
+    }
+
+    func didTapBackButton(viewController: WeakViewController) {
+        router.dismiss(viewController)
+    }
+
+    // MARK: - Helpers
+
+    private func handleProgramsLoaded(_ programs: [Program]) {
+        self.programs = programs
+
+        if let first = programs.first {
+            if selectedProgram == nil {
+                currentProgram = applyIndexing(to: first)
+                selectedProgram = mapProgram(program: first)
+            } else if let existing = programs.first(where: { $0.id == selectedProgram?.id }) {
+                currentProgram = applyIndexing(to: existing)
+                selectedProgram = mapProgram(program: currentProgram)
+            }
+        }
+
+        hasError = false
+        isLoaderVisible = false
+    }
+
+    private func updateCurrentProgram(by id: String?) {
+        guard let id, let program = programs.first(where: { $0.id == id }) else { return }
+        currentProgram = applyIndexing(to: program)
+    }
+
+    private func applyIndexing(to program: Program) -> Program {
+        var program = program
+        program.courses = program.courses.applyIndex()
+        return program
+    }
+
+    private func handleError(_ error: Error) {
+        hasError = true
+        showToast(error.localizedDescription)
+    }
+
+    private func showToast(_ message: String) {
+        isLoadingEnrollButton = false
+        isLoaderVisible = false
+        toastMessage = message
+        toastIsPresented = true
     }
 }

@@ -26,7 +26,7 @@ public class AssignmentsHelper: BaseHelper {
     }
 
     public static func assignmentButton(assignment: DSAssignment) -> XCUIElement {
-        return app.find(id: "AssignmentList.\(assignment.id)")
+        return app.find(id: "AssignmentList.Items.\(assignment.id)")
     }
 
     public static func pointsOutOf(actualScore: String, maxScore: String) -> XCUIElement {
@@ -109,7 +109,7 @@ public class AssignmentsHelper: BaseHelper {
         public static var submittedText: XCUIElement { app.find(id: "AssignmentDetails.submittedText") }
         public static var viewAllSubmissionsButton: XCUIElement { app.find(id: "AssignmentDetails.viewAllSubmissionsButton") }
         public static var oneNeedsGradingButton: XCUIElement { app.find(label: "Needs Grading", type: .button) }
-        public static var notSubmittedButton: XCUIElement { viewAllSubmissionsButton.find(labelContaining: "Not Submitted", type: .button) }
+        public static var notSubmittedButton: XCUIElement { app.find(label: "Not Submitted", type: .button) }
         public static var viewSubmissionButton: XCUIElement { app.find(id: "AssignmentDetails.viewSubmissionButton") }
         public static var published: XCUIElement { app.find(id: "AssignmentDetails.published") }
         public static var unpublished: XCUIElement { app.find(id: "AssignmentDetails.unpublished") }
@@ -241,10 +241,10 @@ public class AssignmentsHelper: BaseHelper {
             }
         }
 
-        // Teacher
-        public struct Submissions {
+        public struct TeacherSubmissionsList {
             public static var needsGradingLabel: XCUIElement { app.find(labelContaining: "Needs Grading") }
             public static var backButton: XCUIElement { app.find(label: "Back", type: .button) }
+            public static var filterButton: XCUIElement { app.find(label: "Filter", type: .button) }
 
             public static func cell(student: DSUser) -> XCUIElement {
                 return app.find(id: "SubmissionListCell.\(student.id)")
@@ -252,6 +252,35 @@ public class AssignmentsHelper: BaseHelper {
 
             public static var navBar: XCUIElement {
                 return app.find(idStartingWith: "Submissions", type: .navigationBar)
+            }
+
+            public struct Filter {
+                public static func navBar(assignment: DSAssignment) -> XCUIElement {
+                    return app.find(label: "Submission List Preferences, \(assignment.name)")
+                }
+
+                public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
+                public static var doneButton: XCUIElement { app.find(label: "Done", type: .button) }
+
+                public struct StatusOptions {
+                    public static var notSubmitted: XCUIElement { app.find(id: "SubmissionsFilter.statusOptions.not_submitted") }
+                    public static var submitted: XCUIElement { app.find(id: "SubmissionsFilter.statusOptions.submitted") }
+                    public static var graded: XCUIElement { app.find(id: "SubmissionsFilter.statusOptions.graded") }
+                    public static var late: XCUIElement { app.find(id: "SubmissionsFilter.statusOptions.late") }
+                    public static var missing: XCUIElement { app.find(id: "SubmissionsFilter.statusOptions.missing") }
+                }
+
+                public struct PreciseFiltering {
+                    public static var scoredMoreThanField: XCUIElement { app.find(label: "Scored More than", type: .textField) }
+                    public static var scoredLessThanField: XCUIElement { app.find(label: "Scored Less than", type: .textField) }
+                }
+
+                public struct SortBy {
+                    public static var studentSortableName: XCUIElement { app.find(id: "SubmissionsFilter.sortByOptions.studentSortableName") }
+                    public static var studentName: XCUIElement { app.find(id: "SubmissionsFilter.sortByOptions.studentName") }
+                    public static var submissionDate: XCUIElement { app.find(id: "SubmissionsFilter.sortByOptions.submissionDate") }
+                    public static var submissionStatus: XCUIElement { app.find(id: "SubmissionsFilter.sortByOptions.submissionStatus") }
+                }
             }
         }
 

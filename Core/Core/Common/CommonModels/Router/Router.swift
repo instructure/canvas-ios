@@ -127,7 +127,12 @@ open class Router {
     }
     open func match(_ url: URLComponents, userInfo: [String: Any]? = nil) -> UIViewController? {
         let url = cleanURL(url)
-        let env = AppEnvironment.resolved(for: url)
+        let env = AppEnvironment
+            .resolved(
+                for: url,
+                courseShardID: courseTabUrlInteractor?.courseShardID(for: url)
+            )
+
         for route in handlers {
             if let params = route.match(url) {
                 return route.factory(url, params, userInfo, env)
@@ -167,7 +172,11 @@ open class Router {
     open func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         let url = cleanURL(url)
         let isExternalUrl = isExternalWebsiteURL(url)
-        let env = AppEnvironment.resolved(for: url)
+        let env = AppEnvironment
+            .resolved(
+                for: url,
+                courseShardID: courseTabUrlInteractor?.courseShardID(for: url)
+            )
 
         if isExternalUrl, !url.originIsNotification, let url = url.url {
             RemoteLogger.shared.logBreadcrumb(route: "/external_url")
@@ -303,11 +312,11 @@ open class Router {
         }
     }
 
-    open func popToRoot(from: UIViewController) {
+    open func popToRoot(from: UIViewController, animated: Bool = true) {
         guard let navController = from.navigationController else {
             return
         }
-        navController.popToRootViewController(animated: true)
+        navController.popToRootViewController(animated: animated)
     }
 
     open func dismiss(_ view: UIViewController, completion: (() -> Void)? = nil) {

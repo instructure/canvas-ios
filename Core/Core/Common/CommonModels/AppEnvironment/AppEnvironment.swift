@@ -53,7 +53,7 @@ open class AppEnvironment {
         }
     }
     public var lastLoginAccount: APIAccountResult?
-    public let k5 = K5State()
+    public private(set) var k5 = K5State()
     public weak var loginDelegate: LoginDelegate?
     public var userDidLogin: (() -> Void)?
 
@@ -70,6 +70,12 @@ open class AppEnvironment {
 
     open var root: AppEnvironment { self }
     public var isRoot: Bool { root === self }
+
+    public var sessionShardID: String? { currentSession?.accessToken?.shardID }
+
+    // This can be different from `sessionShardID` for cross-shard setup.
+    // See `AppEnvironmentOverride` impl. for it.
+    public var courseShardID: String? { sessionShardID }
 
     /**
      - parameters:
@@ -213,6 +219,24 @@ open class AppEnvironment {
         } else {
             currentTabBar?.tabBar.isHidden = !isVisible
         }
+    }
+
+    public func switchToTab(at index: Int) {
+        (window?.rootViewController as? UITabBarController)?.selectedIndex = index
+    }
+
+    public func getTabHostingController<T: View>(
+        at index: Int,
+        of type: T.Type
+    ) -> CoreHostingController<T>? {
+        guard
+            let tabBar = window?.rootViewController as? UITabBarController,
+            let nav = tabBar.viewControllers?[index] as? UINavigationController,
+            let host = nav.viewControllers.first as? CoreHostingController<T>
+        else {
+            return nil
+        }
+        return host
     }
 
     public func navigationBar(isVisible: Bool) {

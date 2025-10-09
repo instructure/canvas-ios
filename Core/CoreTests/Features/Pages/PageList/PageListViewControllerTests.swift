@@ -20,7 +20,7 @@ import XCTest
 @testable import Core
 
 class PageListViewControllerTests: CoreTestCase {
-    lazy var controller = PageListViewController.create(context: .course("42"), app: .teacher)
+    lazy var controller = PageListViewController.create(context: .course("42"), app: .teacher, env: environment)
 
     override func setUp() {
         super.setUp()

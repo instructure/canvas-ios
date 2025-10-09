@@ -102,7 +102,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajouter une tâche à accomplir"
+            "value" : "Ajouter un travail à accomplir"
           }
         },
         "ga" : {
@@ -1174,7 +1174,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "発表"
+            "value" : "アナウンス"
           }
         },
         "mi" : {
@@ -1240,13 +1240,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Meddelanden"
+            "value" : "Anslag"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Meddelanden"
+            "value" : "Meddelande"
           }
         },
         "th" : {
@@ -1258,7 +1258,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Thông Báo Chung"
+            "value" : "Thông báo chung"
           }
         },
         "zh" : {
@@ -1389,7 +1389,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notes de la tâche"
+            "value" : "Notes du travail"
           }
         },
         "ga" : {
@@ -1645,7 +1645,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Baser sur les tâches notées"
+            "value" : "Baser sur les travaux notés"
           }
         },
         "ga" : {
@@ -2672,7 +2672,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Widget de tâche à accomplir dans Canvas"
+            "value" : "Widget de travail à accomplir dans Canvas"
           }
         },
         "ga" : {
@@ -3697,7 +3697,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Taper à 2 reprises pour afficher la liste complète des tâches à accomplir"
+            "value" : "Taper à 2 reprises pour afficher la liste complète des travaux à accomplir"
           }
         },
         "ga" : {
@@ -8574,7 +8574,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On dirait que vous êtes disponible pour les 4 prochaines semaines.  Voulez-vous ajouter des tâches à accomplir?"
+            "value" : "On dirait que vous êtes disponible pour les 4 prochaines semaines.  Voulez-vous ajouter des travaux à accomplir?"
           }
         },
         "ga" : {
@@ -14470,7 +14470,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pour voir vos tâches à accomplir, connectez-vous à votre compte dans l’application.  Cela ne prendra qu’une seconde!"
+            "value" : "Pour voir vos travaux à accomplir, connectez-vous à votre compte dans l’application.  Cela ne prendra qu’une seconde!"
           }
         },
         "ga" : {
@@ -16525,7 +16525,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voir les dernières notes issues des tâches et vos cours favoris."
+            "value" : "Voir les dernières notes issues des travaux et vos cours favoris."
           }
         },
         "ga" : {
@@ -16782,7 +16782,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Affichez vos tâches à accomplir."
+            "value" : "Affichez vos travaux à accomplir."
           }
         },
         "ga" : {
@@ -17550,7 +17550,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nous avons des difficultés à afficher vos tâches pour le moment.  Veuillez réessayer dans un instant ou rendez-vous à l’application."
+            "value" : "Nous avons des difficultés à afficher vos travaux pour le moment.  Veuillez réessayer dans un instant ou rendez-vous à l’application."
           }
         },
         "ga" : {

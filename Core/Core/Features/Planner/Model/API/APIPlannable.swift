@@ -28,40 +28,56 @@ public struct APIPlannable: Codable, Equatable {
     let plannable_type: String
     let html_url: APIURL?
     let context_name: String?
-    let plannable: plannable?
+    let plannable: APIPlannable.Plannable?
     public let plannable_date: Date
-    let submissions: TypeSafeCodable<Submissions, Bool>?
+    let submissions: TypeSafeCodable<APIPlannable.Submissions, Bool>?
+    public let details: APIPlannable.Details?
 
-    //  swiftlint:disable:next type_name
-    public struct plannable: Codable, Equatable {
-        let all_day: Bool?
-        let course_id: String?
-        let details: String?
-        let end_at: Date?
-        let points_possible: Double?
-        let start_at: Date?
-        let title: String?
-        let user_id: String?
+    public var plannableType: PlannableType {
+        .init(rawValue: plannable_type) ?? .other
+    }
 
-        public init(
-            all_day: Bool? = nil,
-            course_id: String? = nil,
-            details: String? = nil,
-            end_at: Date? = nil,
-            points_possible: Double? = nil,
-            start_at: Date? = nil,
-            title: String? = nil,
-            user_id: String? = nil
-        ) {
-            self.all_day = all_day
-            self.course_id = course_id
-            self.details = details
-            self.end_at = end_at
-            self.points_possible = points_possible
-            self.start_at = start_at
-            self.title = title
-            self.user_id = user_id
+    public var context: Context? {
+        if let context = contextFromContextType() {
+            return context
         }
+        if plannableType == .planner_note {
+            // Notes have no 'context_type', but have IDs in the inner 'plannable' object
+            return contextFromInnerPlannableObject()
+        }
+        return nil
+    }
+
+    private func contextFromContextType() -> Context? {
+        guard let raw = context_type, let type = ContextType(rawValue: raw.lowercased()) else {
+            return nil
+        }
+        return switch type {
+        case .course: Context(.course, id: course_id?.rawValue)
+        case .group: Context(.group, id: group_id?.rawValue)
+        case .user: Context(.user, id: user_id?.rawValue)
+        default: nil
+        }
+    }
+
+    private func contextFromInnerPlannableObject() -> Context? {
+        // order matters: 'course_id' has precedence over 'user_id'
+        return Context(.course, id: self.plannable?.course_id)
+            ?? Context(.user, id: self.plannable?.user_id)
+    }
+}
+
+extension APIPlannable {
+    public struct Plannable: Codable, Equatable {
+        let title: String?
+        let details: String?
+        let all_day: Bool?
+        let start_at: Date?
+        let end_at: Date?
+        let course_id: String?
+        let user_id: String?
+        let points_possible: Double?
+        let sub_assignment_tag: String?
     }
 
     public struct Submissions: Codable, Equatable {
@@ -73,6 +89,10 @@ public struct APIPlannable: Codable, Equatable {
         let needs_grading: Bool?
         let has_feedback: Bool?
         let redo_request: Bool?
+    }
+
+    public struct Details: Codable, Equatable {
+        public let reply_to_entry_required_count: Int?
     }
 }
 
@@ -102,9 +122,10 @@ extension APIPlannable {
         plannable_type: String = "Assignment",
         html_url: URL? = URL(string: "http://localhost")!,
         context_name: String? = "Assignment Grades",
-        plannable: APIPlannable.plannable? = APIPlannable.plannable(details: "description", title: "assignment a"),
+        plannable: APIPlannable.Plannable? = .make(title: "assignment a", details: "description"),
         plannable_date: Date = Clock.now,
-        submissions: Submissions? = nil
+        submissions: Submissions? = nil,
+        details: APIPlannable.Details? = nil
     ) -> APIPlannable {
         return APIPlannable(
             course_id: course_id,
@@ -118,7 +139,34 @@ extension APIPlannable {
             context_name: context_name,
             plannable: plannable,
             plannable_date: plannable_date,
-            submissions: TypeSafeCodable(value1: submissions, value2: nil)
+            submissions: TypeSafeCodable(value1: submissions, value2: nil),
+            details: details
+        )
+    }
+}
+
+extension APIPlannable.Plannable {
+    public static func make(
+        title: String? = nil,
+        details: String? = nil,
+        all_day: Bool? = nil,
+        start_at: Date? = nil,
+        end_at: Date? = nil,
+        course_id: String? = nil,
+        user_id: String? = nil,
+        points_possible: Double? = nil,
+        sub_assignment_tag: String? = nil
+    ) -> APIPlannable.Plannable {
+        .init(
+            title: title,
+            details: details,
+            all_day: all_day,
+            start_at: start_at,
+            end_at: end_at,
+            course_id: course_id,
+            user_id: user_id,
+            points_possible: points_possible,
+            sub_assignment_tag: sub_assignment_tag
         )
     }
 }
@@ -143,6 +191,16 @@ extension APIPlannable.Submissions {
             needs_grading: needs_grading,
             has_feedback: has_feedback,
             redo_request: redo_request)
+    }
+}
+
+extension APIPlannable.Details {
+    public static func make(
+        reply_to_entry_required_count: Int? = nil
+    ) -> APIPlannable.Details {
+        .init(
+            reply_to_entry_required_count: reply_to_entry_required_count
+        )
     }
 }
 

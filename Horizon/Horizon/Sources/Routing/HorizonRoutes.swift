@@ -124,9 +124,9 @@ public enum HorizonRoutes {
 
     private static var pageRoutes: [RouteHandler] {
         [
-            RouteHandler("/:context/:contextID/pages") { url, _, _ in
+            RouteHandler("/:context/:contextID/pages") { url, _, _, env in
                 guard let context = Context(path: url.path) else { return nil }
-                return PageListViewController.create(context: context, app: .student)
+                return PageListViewController.create(context: context, app: .student, env: env)
             },
             RouteHandler("/:context/:contextID/pages/:url", factory: pageViewController)
         ]
@@ -181,7 +181,8 @@ public enum HorizonRoutes {
                         url: url
                     )
                 }
-                return StudentQuizDetailsViewController.create(courseID: courseID, quizID: quizID)
+                return StudentQuizDetailsViewController
+                    .create(courseID: courseID, quizID: quizID, env: env)
             }
         ]
     }
@@ -191,7 +192,12 @@ public enum HorizonRoutes {
             RouteHandler("/courses/:courseID/assignments/:assignmentID") { url, params, _, env in
                 guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
                 if assignmentID == "syllabus" {
-                    return SyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
+                    return SyllabusTabViewController
+                        .create(
+                            context: Context(path: url.path),
+                            courseID: ID.expandTildeID(courseID),
+                            env: env
+                        )
                 }
                 if !url.originIsModuleItemDetails {
                     return ModuleItemSequenceAssembly.makeItemSequenceView(
@@ -313,57 +319,42 @@ public enum HorizonRoutes {
     }
 
     private static var aiRoutes: [RouteHandler] {
-        [
-            RouteHandler("/assistant") { url, _, _ in
+                [
+                    RouteHandler("/assistant") { url, _, _ in
+                        let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
+                        return AssistAssembly.makeAssistChatView(
+                            courseID: routingParams?.courseID,
+                            pageURL: routingParams?.pageURL,
+                            fileID: routingParams?.fileID,
+                            textSelection: routingParams?.textSelection
+                        )
+                    },
+                    RouteHandler("/assistant/flashcards") { url, _, userInfo in
+                        let flashCards = userInfo?["flashCards"] as? [AssistFlashCardModel] ?? []
+                        let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
+                        return CoreHostingController(
+                            AssistAssembly.makeAIFlashCardView(
+                                courseID: routingParams?.courseID,
+                                fileID: routingParams?.fileID,
+                                pageURL: routingParams?.pageURL,
+                                flashCards: flashCards
+                            )
+                        )
+                    },
+                    RouteHandler("/assistant/quiz") { url, _, userInfo in
+                        let quizzes = userInfo?["quizzes"] as? [AssistQuizModel]
+                        let routingParams = url.queryItems.map { AssistAssembly.RoutingParams(from: $0) }
+                        let quizView = AssistAssembly.makeAIQuizView(
+                            courseID: routingParams?.courseID,
+                            fileID: routingParams?.fileID,
+                            pageURL: routingParams?.pageURL,
+                            quizzes: quizzes ?? []
+                        )
 
-                let queryItems = url.queryItems ?? []
-
-                let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
-                let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
-                let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
-                let textSelection = queryItems.first { $0.name == "textSelection" }?.value
-                return AssistAssembly.makeAssistChatView(
-                    courseId: courseId,
-                    pageUrl: pageUrl,
-                    fileId: fileId,
-                    textSelection: textSelection
-                )
-            },
-            RouteHandler("/assistant/flashcards") { url, _, userInfo in
-                let flashCards = userInfo?["flashCards"] as? [AssistFlashCardModel] ?? []
-                let queryItems = url.queryItems ?? []
-                let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
-                let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
-                let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
-                return CoreHostingController(
-                    AssistAssembly.makeAIFlashCardView(
-                        courseId: courseId,
-                        fileId: fileId,
-                        pageUrl: pageUrl,
-                        flashCards: flashCards
-                    )
-                )
-            },
-            RouteHandler("/assistant/quiz") { url, _, userInfo in
-                let queryItems = url.queryItems ?? []
-
-                let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
-                let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
-                let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
-
-                let quizzes = userInfo?["quizzes"] as? [AssistQuizModel]
-
-                let quizView = AssistAssembly.makeAIQuizView(
-                    courseId: courseId,
-                    fileId: fileId,
-                    pageUrl: pageUrl,
-                    quizzes: quizzes ?? []
-                )
-
-                return CoreHostingController(quizView)
+                        return CoreHostingController(quizView)
+                    }
+                ]
             }
-        ]
-    }
 
     private static var notificationSettings: [RouteHandler] {
         [

@@ -27,6 +27,7 @@ struct PlannerListRowView: View {
             VStack(alignment: .leading) {
                 courseCodeText.style(.textCellTopLabel)
                 Text(item.title ?? "").style(.textCellTitle)
+                // TODO: add subtitle for Discussion Checkpoints
                 Text(item.dueDateText ?? "").style(.textCellSupportingText)
                 if let pointsText = item.pointsText {
                     Text(pointsText).style(.textCellSupportingText)
@@ -91,23 +92,25 @@ extension Plannable {
     var iconImage: Image {
         switch plannableType {
         case .assignment:
-            return Image.assignmentLine
+            .assignmentLine
         case .quiz:
-            return Image.quizLine
+            .quizLine
         case .discussion_topic:
-            return Image.discussionLine
+            .discussionLine
+        case .sub_assignment:
+            discussionCheckpointStep != nil ? .discussionLine : .assignmentLine
         case .announcement:
-            return Image.announcementLine
+            .announcementLine
         case .wiki_page:
-            return Image.documentLine
+            .documentLine
         case .planner_note:
-            return Image.noteLine
+            .noteLine
         case .calendar_event:
-            return Image.calendarMonthLine
+            .calendarMonthLine
         case .assessment_request:
-            return Image.peerReviewLine
+            .peerReviewLine
         case .other:
-            return Image.warningLine
+            .warningLine
         }
     }
 }

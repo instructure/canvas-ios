@@ -140,7 +140,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
         )
         let assignmentListStore = ReactiveStore(
             useCase: GetAssignmentsByGroup(
-                courseID: courseID.localID,
+                courseID: courseID,
                 gradingPeriodID: gradingPeriodID,
                 gradedOnly: true,
                 userID: filterAssignmentsToUserID ? userID : nil
@@ -169,17 +169,13 @@ public final class GradeListInteractorLive: GradeListInteractor {
             let gradingPeriods = courseAndGradingPeriods.1
             let courseEnrollment = course.enrollmentForGrades(userId: userID, includingCompleted: true)
             let isGradingPeriodHidden = courseEnrollment?.multipleGradingPeriodsEnabled == false
-            let assignmentSections: [GradeListData.AssignmentSections]
 
+            let assignmentSections: [AssignmentListSection]
             switch arrangeBy {
             case .dueDate:
-                assignmentSections = arrangeAssignmentsByDueDate(
-                    assignments: assignments
-                )
+                assignmentSections = groupAssignmentsByDueDate(assignments)
             case .groupName:
-                assignmentSections = arrangeAssignmentsByGroupNames(
-                    assignments: assignments
-                )
+                assignmentSections = groupAssignmentsByAssignmentGroups(assignments)
             }
 
             return calculateTotalGrade(
@@ -251,89 +247,96 @@ public final class GradeListInteractorLive: GradeListInteractor {
         return gradingPeriods.filter { $0.id == id }.first
     }
 
-    private func arrangeAssignmentsByGroupNames(
-        assignments: [Assignment]
-    ) -> [GradeListData.AssignmentSections] {
-        let orderedAssignments = assignments.sorted {
-            $0.dueAtSortNilsAtBottom ?? Date.distantFuture < $1.dueAtSortNilsAtBottom ?? Date.distantFuture
-        }
-        var assignmentSections: [GradeListData.AssignmentSections] = []
-        orderedAssignments.forEach { assignment in
-            if let index = assignmentSections.firstIndex(where: { section in
-                section.id == assignment.assignmentGroupID ?? ""
-            }) {
-                assignmentSections[index].assignments.append(assignment)
+    private func groupAssignmentsByAssignmentGroups(_ assignments: [Assignment]) -> [AssignmentListSection] {
+        let allAssignments = assignments
+            .sorted {
+                switch ($0.assignmentGroupPosition, $1.assignmentGroupPosition) {
+                case let (lhsPosition, rhsPosition) where lhsPosition < rhsPosition:
+                    true
+                case let (lhsPosition, rhsPosition) where lhsPosition == rhsPosition:
+                    $0.dueAtForSorting < $1.dueAtForSorting
+                default:
+                    false
+                }
+            }
+
+        var assignmentsByGroup: [String: [Assignment]] = [:]
+        var groupIds: [String] = []
+        allAssignments.forEach { assignment in
+            let groupId = assignment.assignmentGroupID ?? ""
+            if assignmentsByGroup.keys.contains(groupId) {
+                assignmentsByGroup[groupId]?.append(assignment)
             } else {
-                assignmentSections.append(
-                    GradeListData.AssignmentSections(
-                        id: assignment.assignmentGroupID ?? UUID.string,
-                        title: assignment.assignmentGroupSectionName ?? "",
-                        assignments: [assignment]
-                    )
-                )
+                assignmentsByGroup[groupId] = [assignment]
+                groupIds.append(groupId)
             }
         }
-        return assignmentSections
+
+        return groupIds.compactMap { groupId in
+            guard let assignments = assignmentsByGroup[groupId] else { return nil }
+            return AssignmentListSection(
+                id: groupId,
+                title: assignments.first?.assignmentGroup?.name ?? "",
+                rows: assignments.map { row(for: $0) }
+            )
+        }
     }
 
-    private func arrangeAssignmentsByDueDate(
-        assignments: [Assignment]
-    ) -> [GradeListData.AssignmentSections] {
-        let orderedAssignments = assignments.sorted {
-            $0.dueAtSortNilsAtBottom ?? Date.distantFuture < $1.dueAtSortNilsAtBottom ?? Date.distantFuture
-        }
+    private func groupAssignmentsByDueDate(_ assignments: [Assignment]) -> [AssignmentListSection] {
+        let allAssignments = assignments
+            .sorted {
+                $0.dueAtForSorting < $1.dueAtForSorting
+            }
 
-        var assignmentSections: [GradeListData.AssignmentSections] = []
-        var overdueAssignments = GradeListData.AssignmentSections(
-            id: "overdueAssignments",
-            title: String(localized: "Overdue Assignments", bundle: .core),
-            assignments: []
-        )
-        var upcomingAssignments = GradeListData.AssignmentSections(
-            id: "upcomingAssignments",
-            title: String(localized: "Upcoming Assignments", bundle: .core),
-            assignments: []
-        )
-        var pastAssignments = GradeListData.AssignmentSections(
-            id: "pastAssignments",
-            title: String(localized: "Past Assignments", bundle: .core),
-            assignments: []
-        )
-
+        var overdueAssignments: [Assignment] = []
+        var upcomingAssignments: [Assignment] = []
+        var pastAssignments: [Assignment] = []
         let now = Clock.now
-
-        orderedAssignments.forEach { assignment in
-            if let dueAt = assignment.dueAtSortNilsAtBottom {
-                if let lockAt = assignment.lockAt {
-                    if lockAt >= now, dueAt <= now {
-                        overdueAssignments.assignments.append(assignment)
-                    } else if lockAt > now, dueAt > now {
-                        upcomingAssignments.assignments.append(assignment)
-                    } else {
-                        pastAssignments.assignments.append(assignment)
-                    }
-                } else if dueAt <= now {
-                    overdueAssignments.assignments.append(assignment)
-                } else if dueAt > now {
-                    upcomingAssignments.assignments.append(assignment)
+        allAssignments.forEach { assignment in
+            let dueAt = assignment.dueAtForSorting
+            if let lockAt = assignment.lockAt {
+                if lockAt >= now, dueAt <= now {
+                    overdueAssignments.append(assignment)
+                } else if lockAt > now, dueAt > now {
+                    upcomingAssignments.append(assignment)
+                } else {
+                    pastAssignments.append(assignment)
                 }
-            } else {
-                upcomingAssignments.assignments.append(assignment)
+            } else if dueAt <= now {
+                overdueAssignments.append(assignment)
+            } else if dueAt > now {
+                upcomingAssignments.append(assignment)
             }
         }
 
-        if !overdueAssignments.assignments.isEmpty {
-            assignmentSections.append(overdueAssignments)
+        var sections: [AssignmentListSection] = []
+        if overdueAssignments.isNotEmpty {
+            sections.append(.init(
+                id: "overdueAssignments",
+                title: String(localized: "Overdue Assignments", bundle: .core),
+                rows: overdueAssignments.map { row(for: $0) }
+            ))
+        }
+        if upcomingAssignments.isNotEmpty {
+            sections.append(.init(
+                id: "upcomingAssignments",
+                title: String(localized: "Upcoming Assignments", bundle: .core),
+                rows: upcomingAssignments.map { row(for: $0) }
+            ))
+        }
+        if pastAssignments.isNotEmpty {
+            sections.append(.init(
+                id: "pastAssignments",
+                title: String(localized: "Past Assignments", bundle: .core),
+                rows: pastAssignments.map { row(for: $0) }
+            ))
         }
 
-        if !upcomingAssignments.assignments.isEmpty {
-            assignmentSections.append(upcomingAssignments)
-        }
+        return sections
+    }
 
-        if !pastAssignments.assignments.isEmpty {
-            assignmentSections.append(pastAssignments)
-        }
-        return assignmentSections
+    private func row(for assignment: Assignment) -> AssignmentListSection.Row {
+        .gradeListRow(.init(assignment: assignment, userId: userID))
     }
 
     private func calculateTotalGrade(

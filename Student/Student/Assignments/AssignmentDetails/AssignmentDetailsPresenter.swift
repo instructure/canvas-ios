@@ -54,7 +54,12 @@ class AssignmentDetailsPresenter {
         self?.updateArc()
     }
 
-    private let includes: [GetAssignmentRequest.GetAssignmentInclude] = [.submission, .score_statistics]
+    private let includes: [GetAssignmentRequest.Include] = [
+        .submission,
+        .score_statistics,
+        .checkpoints,
+        .sub_assignment_submissions
+    ]
 
     lazy var assignments = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: includes)) { [weak self] in
         self?.update()
@@ -149,7 +154,7 @@ class AssignmentDetailsPresenter {
         self.fragment = fragment
         self.submissionButtonPresenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: assignmentID)
         if let session = env.currentSession {
-            self.userID = session.userID.localID
+            self.userID = session.userID.asGlobalID(of: env.sessionShardID)
         }
         subscribeToSuccessfulSubmissionNotification(assignmentID: assignmentID)
     }
@@ -178,7 +183,7 @@ class AssignmentDetailsPresenter {
         guard quizzes?.pending != true else { return }
         let baseURL = fragmentHash.flatMap { URL(string: $0, relativeTo: assignment.htmlURL) } ?? assignment.htmlURL
         if let submission = assignment.submission {
-            userID = submission.userID
+            userID = submission.userID.asGlobalID(of: env.sessionShardID)
         }
         if assignments.requested && !assignments.pending && fileCleanupPending {
             fileCleanupPending = false

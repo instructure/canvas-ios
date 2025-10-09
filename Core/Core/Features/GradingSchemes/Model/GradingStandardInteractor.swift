@@ -28,10 +28,10 @@ public final class GradingStandardInteractorLive: GradingStandardInteractor {
     private let gradingStandardId: String?
     private let env: AppEnvironment
 
-    public init(courseId: String, gradingStandardId: String? = nil, env: AppEnvironment? = nil) {
+    public init(courseId: String, gradingStandardId: String? = nil, env: AppEnvironment) {
         self.courseId = courseId
         self.gradingStandardId = gradingStandardId
-        self.env = env ?? AppEnvironment.shared
+        self.env = env
     }
 
     public var gradingScheme: AnyPublisher<GradingScheme?, Error> {

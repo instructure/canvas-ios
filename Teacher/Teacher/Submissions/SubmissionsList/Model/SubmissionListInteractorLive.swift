@@ -30,16 +30,24 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
     private var customStatusesStore: ReactiveStore<GetCustomGradeStatuses>
     private var courseStore: ReactiveStore<GetCourse>
+    private var courseSectionsStore: ReactiveStore<GetCourseSections>
+    private var enrollmentsStore: ReactiveStore<GetEnrollments>
+
     private var assignmentStore: ReactiveStore<GetAssignment>
     private var submissionsStore: ReactiveStore<GetSubmissions>?
+    private var userGroupsStore: ReactiveStore<GetUserGroups>
 
     private var submissionsSubject = PassthroughSubject<[Submission], Never>()
-    private var filtersSubject: CurrentValueSubject<[GetSubmissions.Filter], Never>
+    private var differentiationTagsSubject: CurrentValueSubject<[CDUserGroup], Never>
+    private var preferencesSubject: CurrentValueSubject<SubmissionListPreferences, Never>
 
-    init(context: Context, assignmentID: String, filters: [GetSubmissions.Filter], env: AppEnvironment) {
+    init(context: Context, assignmentID: String, filter: GetSubmissions.Filter?, env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
-        self.filtersSubject = CurrentValueSubject<[GetSubmissions.Filter], Never>(filters)
+        self.preferencesSubject = CurrentValueSubject<SubmissionListPreferences, Never>(
+            SubmissionListPreferences(filter: filter, sortMode: .studentSortableName)
+        )
+        self.differentiationTagsSubject = CurrentValueSubject<[CDUserGroup], Never>([])
         self.env = env
 
         customStatusesStore = ReactiveStore(
@@ -52,14 +60,29 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             environment: env
         )
 
+        courseSectionsStore = ReactiveStore(
+            useCase: GetCourseSections(courseID: context.id),
+            environment: env
+        )
+
+        enrollmentsStore = ReactiveStore(
+            useCase: GetEnrollments(context: context),
+            environment: env
+        )
+
         assignmentStore = ReactiveStore(
             useCase: GetAssignment(courseID: context.id, assignmentID: assignmentID),
             environment: env
         )
 
-        filtersSubject
-            .sink { [weak self] filters in
-                self?.setupSubmissionsStore(filters)
+        userGroupsStore = ReactiveStore(
+            useCase: GetUserGroups(courseId: context.id, filterToDifferentiationTags: true),
+            environment: env
+        )
+
+        preferencesSubject
+            .sink { [weak self] pref in
+                self?.setupSubmissionsStore(pref)
             }
             .store(in: &subscriptions)
 
@@ -68,11 +91,25 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .getEntities()
             .sink()
             .store(in: &subscriptions)
+
+        /// Load differentiation tags
+        userGroupsStore
+            .getEntities(keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
+            .sink { [weak differentiationTagsSubject] in
+                differentiationTagsSubject?.send($0)
+            }
+            .store(in: &subscriptions)
     }
 
-    private func setupSubmissionsStore(_ filters: [GetSubmissions.Filter] = []) {
+    private func setupSubmissionsStore(_ pref: SubmissionListPreferences) {
         submissionsStore = ReactiveStore(
-            useCase: GetSubmissions(context: context, assignmentID: assignmentID, filter: filters),
+            useCase: GetSubmissions(
+                context: context,
+                assignmentID: assignmentID,
+                filter: pref.filter,
+                sortMode: pref.sortMode
+            ),
             environment: env
         )
 
@@ -95,10 +132,26 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     }
 
     var course: AnyPublisher<Course?, Never> {
-        courseStore
+        let course = courseStore
             .getEntities(keepObservingDatabaseChanges: true)
             .map { $0.first }
             .replaceError(with: nil)
+
+        let enrollments = enrollmentsStore
+            .getEntities()
+            .mapToVoid()
+            .replaceError(with: ())
+
+        return Publishers
+            .CombineLatest(course, enrollments)
+            .map { $0.0 }
+            .eraseToAnyPublisher()
+    }
+
+    var courseSections: AnyPublisher<[CourseSection], Never> {
+        courseSectionsStore
+            .getEntities(keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
             .eraseToAnyPublisher()
     }
 
@@ -146,21 +199,32 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .eraseToAnyPublisher()
     }
 
+    var differentiationTags: AnyPublisher<[CDUserGroup], Never> {
+        differentiationTagsSubject.eraseToAnyPublisher()
+    }
+
     func refresh() -> AnyPublisher<Void, Never> {
-        return Publishers.Last(
-            upstream:
-                Publishers.Merge4(
-                    customStatusesStore.forceRefresh(),
-                    courseStore.forceRefresh(),
-                    assignmentStore.forceRefresh(),
-                    submissionsStore?.forceRefresh() ?? Empty<Void, Never>().eraseToAnyPublisher()
-                )
+        return Publishers.CombineLatest(
+            Publishers.CombineLatest3(
+                customStatusesStore.forceRefresh(),
+                courseStore.forceRefresh(),
+                courseSectionsStore.forceRefresh(),
+            )
+            .mapToVoid(),
+            Publishers.CombineLatest4(
+                enrollmentsStore.forceRefresh(),
+                assignmentStore.forceRefresh(),
+                userGroupsStore.forceRefresh(),
+                submissionsStore?.forceRefresh() ?? Just<Void>(()).eraseToAnyPublisher()
+            )
+            .mapToVoid()
         )
+        .mapToVoid()
         .eraseToAnyPublisher()
     }
 
-    func applyFilters(_ filters: [GetSubmissions.Filter]) {
-        filtersSubject.send(filters)
+    func applyPreferences(_ pref: SubmissionListPreferences) {
+        preferencesSubject.send(pref)
     }
 }
 

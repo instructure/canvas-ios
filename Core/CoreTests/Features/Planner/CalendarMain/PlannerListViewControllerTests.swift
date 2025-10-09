@@ -55,13 +55,13 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         let date = Clock.now
         ContextColor.make()
         let assignment = APIPlannable.make(
-            plannable: .init(points_possible: 1, title: "assignment a"),
+            plannable: .make(title: "assignment a", points_possible: 1),
             plannable_date: date
         )
         let note = APIPlannable.make(
             course_id: nil, context_type: nil,
             plannable_id: "2", plannable_type: "planner_note",
-            plannable: .init(details: "deets", title: "note"),
+            plannable: .make(title: "note", details: "deets"),
             plannable_date: date.addMinutes(60)
         )
         api.mock(getPlannablesRequest(from: start, to: end), value: [ assignment, note ])
@@ -73,6 +73,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         let index0 = IndexPath(row: 0, section: 0)
         let cell = controller.tableView.cellForRow(at: index0) as? PlannerListCell
         XCTAssertEqual(cell?.title.text, "assignment a")
+        XCTAssertEqual(cell?.subtitle.text, nil)
         XCTAssertEqual(cell?.courseCode.text, "Assignment Grades")
         XCTAssertEqual(cell?.courseCode.textColor.hexString, UIColor.red.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(cell?.dueDate.text, DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short) )
@@ -82,6 +83,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         let index1 = IndexPath(row: 1, section: 0)
         let cell1 = controller.tableView.cellForRow(at: index1) as? PlannerListCell
         XCTAssertEqual(cell1?.title.text, "note")
+        XCTAssertEqual(cell1?.subtitle.text, nil)
         XCTAssertEqual(cell1?.points.text, nil)
         XCTAssertEqual(cell1?.pointsDivider.isHidden, true)
 
@@ -94,6 +96,22 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
 
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
         XCTAssertTrue(willRefresh)
+    }
+
+    func test_discussionCheckpointCell() {
+        let date = Clock.now
+        ContextColor.make()
+        let discussionCheckpoint = APIPlannable.make(
+            plannable: .make(title: "dcp", sub_assignment_tag: "reply_to_topic" ),
+            plannable_date: date.addMinutes(120)
+        )
+        api.mock(getPlannablesRequest(from: start, to: end), value: [discussionCheckpoint])
+        controller.view.layoutIfNeeded()
+
+        let index2 = IndexPath(row: 0, section: 0)
+        let cell2 = controller.tableView.cellForRow(at: index2) as? PlannerListCell
+        XCTAssertEqual(cell2?.title.text, "dcp")
+        XCTAssertEqual(cell2?.subtitle.text, "Reply to topic")
     }
 
     func testLayoutParentApp() {
@@ -124,6 +142,15 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
             allEvents: false,
             userID: userID
         ), value: [.make(id: "2", title: "Assignment", start_at: Clock.now, type: .assignment)])
+        api.mock(GetCalendarEventsRequest(
+            contexts: [Context(.course, id: "1")],
+            startDate: start,
+            endDate: end,
+            type: .sub_assignment,
+            include: [.submission],
+            allEvents: false,
+            userID: userID
+        ), value: [])
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.tableView.dataSource?.tableView(controller.tableView, numberOfRowsInSection: 0), 2)
         let index0 = IndexPath(row: 0, section: 0)
@@ -140,7 +167,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         let note = APIPlannable.make(
             plannable_id: "2",
             plannable_type: "planner_note",
-            plannable: APIPlannable.plannable(details: "hello world", title: "to do title"),
+            plannable: .make(title: "to do title", details: "hello world"),
             plannable_date: date
         )
         api.mock(getPlannablesRequest(from: start, to: end), value: [note])

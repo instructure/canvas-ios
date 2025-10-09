@@ -35,11 +35,29 @@ public extension Array {
         }
         return self[index]
     }
-
-    var nilIfEmpty: Self? { isEmpty ? nil : self }
 }
 
 public extension Array where Element: Equatable {
+
+    /// Appends element only if it's not already included in the array.
+    mutating func appendUnique(_ element: Element) {
+        if contains(element) {
+            return
+        }
+
+        append(element)
+    }
+
+    /// Returns an array appending the element only if it's not already included in the array.
+    func appendingUnique(_ element: Element) -> Self {
+        if contains(element) {
+            return self
+        }
+
+        var result = self
+        result.append(element)
+        return result
+    }
 
     /// Appends element if not included in the array, otherwise it will remove
     /// all occurrences of it.
@@ -64,5 +82,13 @@ public extension Array where Element: Equatable {
 public extension Array where Element: Encodable {
     var jsonData: Data? {
         try? JSONEncoder().encode(self)
+    }
+}
+
+public extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        stride(from: 0, to: self.count, by: size).map {
+            Array(self[$0..<Swift.min($0 + size, self.count)])
+        }
     }
 }

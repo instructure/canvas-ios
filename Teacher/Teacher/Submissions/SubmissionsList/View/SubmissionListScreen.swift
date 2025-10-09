@@ -75,10 +75,10 @@ struct SubmissionListScreen: View {
                     }
                 } header: {
                     SectionHeaderView(title: section.kind.title, isCollapsed: $section.isCollapsed)
-                        .accessibilityLabel([
-                            section.kind.title,
-                            String.format(numberOfItems: section.items.count)
-                        ].joined(separator: ", "))
+                        .accessibilityLabel(
+                            [section.kind.title, String.format(numberOfItems: section.items.count)]
+                                .joined(separator: ", ")
+                        )
                         .accessibilityHint(
                             section.isCollapsed
                                 ? String(localized: "Collapsed", bundle: .teacher)
@@ -98,7 +98,7 @@ struct SubmissionListScreen: View {
                 .NavigationBarButton
                 .filterIcon(
                     isBackgroundContextColor: true,
-                    isSolid: viewModel.filterMode != .all,
+                    isSolid: viewModel.isFilterActive,
                     action: {
                         viewModel.showFilterScreen(from: controller)
                     }

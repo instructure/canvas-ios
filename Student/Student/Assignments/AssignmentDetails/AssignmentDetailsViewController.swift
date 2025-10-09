@@ -260,7 +260,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         gradeSectionBoundsObservation = gradeSection?.observe(\.bounds) { [weak self] gradeSection, _ in
             self?.updateGradeBorder(using: gradeSection)
         }
-        presenter?.viewIsReady()
 
         // updateSubmissionLabels is also called from the update method that is triggered by CoreData
         // but during a file resubmission flow the presenter's onlineUploadState is updated after
@@ -268,6 +267,10 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         presenter?.didChangeOnlineUploadState = { [weak self] state in
             guard let state else { return }
             self?.updateSubmissionLabels(state: state)
+        }
+
+        webView.resetEnvironment(env) { [weak self] in
+            self?.presenter?.viewIsReady()
         }
     }
 
@@ -451,7 +454,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         var showGradeSection = assignment.submission?.needsGrading == true ||
             (assignment.submission?.isGraded == true && assignment.gradingType != .not_graded ) ||
             presenter.onlineUploadState != nil
-        let gradeText = GradeFormatter.string(from: assignment, style: .short)
+        let gradeText = GradeFormatter.string(from: assignment, submission: submission, style: .short)
         if assignment.hideQuantitativeData, (gradeText ?? "").isEmpty == true {
             showGradeSection = false
         }

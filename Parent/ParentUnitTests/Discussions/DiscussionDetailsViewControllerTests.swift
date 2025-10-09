@@ -22,7 +22,7 @@ import XCTest
 import TestsFoundation
 
 class DiscussionDetailsViewControllerTests: ParentTestCase {
-    lazy var controller = DiscussionDetailsViewController.create(studentID: "1", courseID: "1", topicID: "1")
+    lazy var controller = DiscussionDetailsViewController.create(studentID: "1", courseID: "1", topicID: "1", env: env)
 
     override func setUp() {
         super.setUp()

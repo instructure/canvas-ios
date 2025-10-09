@@ -48,7 +48,7 @@ final class AssistFlashCardViewModel {
 
     // MARK: - Private Propertites
 
-    private var chatHistory: [AssistChatMessage] = []
+    private var history: [AssistChatMessage] = []
     private var paginatedFlashCards: [[AssistFlashCardModel]] = [[]]
     private var currentPage = 0
 
@@ -126,13 +126,8 @@ final class AssistFlashCardViewModel {
             isLoaderVisible = true
             currentPage = 0
             chatBotInteractor.publish(
-                action: .chip(
-                    option: AssistChipOption(
-                        chip: String(localized: "Generate Flash Cards", bundle: .horizon),
-                        prompt: "Generate Flash Cards"
-                    ),
-                    history: chatHistory
-                )
+                prompt: "Generate Flash Cards",
+                history: history
             )
             return
         }
@@ -142,8 +137,8 @@ final class AssistFlashCardViewModel {
     }
 
     private func onMessage(_ response: AssistChatResponse) {
-        chatHistory = response.chatHistory
-        guard let flashCardModels =  response.chatHistory.last?.flashCards?.flashCardModels else {
+        history = response.history
+        guard let flashCardModels =  response.history.last?.flashCards?.flashCardModels else {
             return
         }
         currentCardIndex = 0

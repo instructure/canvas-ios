@@ -3,7 +3,6 @@
   "strings" : {
     "CFBundleDisplayName" : {
       "comment" : "Bundle display name",
-      "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -279,7 +278,6 @@
     },
     "CFBundleSpokenName" : {
       "comment" : "Accessibility Bundle Name",
-      "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -650,7 +648,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
+            "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de travail."
           }
         },
         "ga" : {
@@ -1178,7 +1176,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Joindre des enregistrements audio aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
+            "value" : "Joindre des enregistrements audio aux messages et aux publications de discussion ou les joindre dans les envois de travail."
           }
         },
         "ga" : {
@@ -1442,7 +1440,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
+            "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de travail."
           }
         },
         "ga" : {
@@ -1706,7 +1704,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
+            "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de travail."
           }
         },
         "ga" : {

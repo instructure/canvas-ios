@@ -152,8 +152,8 @@ class GradeListViewModelTests: CoreTestCase {
             env: env,
             scheduler: .immediate
         )
-        testee.didSelectAssignment.accept((WeakViewController(), Assignment.make()))
-        XCTAssertEqual(router.calls[0].0, URLComponents(string: "/courses//assignments/1"))
+        testee.didSelectAssignment.accept((Assignment.make().htmlURL, WeakViewController()))
+        XCTAssertEqual(router.calls[0].0, URLComponents(string: "/courses/1/assignments/1"))
         XCTAssertEqual(router.calls[0].2, RouteOptions.detail)
     }
 
@@ -172,7 +172,7 @@ class GradeListViewModelTests: CoreTestCase {
         testee.navigateToFilter(viewController: viewController)
         wait(for: [router.showExpectation], timeout: 1)
         // Then
-        XCTAssertTrue(router.presented is CoreHostingController<GradeFilterView>)
+        XCTAssertTrue(router.presented is CoreHostingController<GradeFilterScreen>)
     }
 }
 
@@ -289,9 +289,9 @@ private let gradeListData = GradeListData(
     courseName: "",
     courseColor: nil,
     assignmentSections: [
-        GradeListData.AssignmentSections(id: "1", title: "First group", assignments: [.make()]),
-        GradeListData.AssignmentSections(id: "2", title: "Second group", assignments: [.make()]),
-        GradeListData.AssignmentSections(id: "3", title: "Third group", assignments: [.make()])
+        AssignmentListSection(id: "1", title: "First group", rows: [.gradeListRow(.init(assignment: .make(), userId: ""))]),
+        AssignmentListSection(id: "2", title: "Second group", rows: [.gradeListRow(.init(assignment: .make(), userId: ""))]),
+        AssignmentListSection(id: "3", title: "Third group", rows: [.gradeListRow(.init(assignment: .make(), userId: ""))])
     ],
     isGradingPeriodHidden: false,
     gradingPeriods: [.make()],

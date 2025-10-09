@@ -227,7 +227,7 @@ class AssignmentsTests: E2ETestCase {
         // MARK: Check Locked Assignment
         let lockedAssignmentButton = Helper.assignmentButton(assignment: lockedAssignment).waitUntil(.visible)
         XCTAssertTrue(lockedAssignmentButton.isVisible)
-        XCTAssertContains(lockedAssignmentButton.label, "Availability: Closed")
+        XCTAssertContains(lockedAssignmentButton.label, "Closed For Submission")
 
         lockedAssignmentButton.hit()
         let lockSectionElement = DetailsHelper.lockSection.waitUntil(.visible)

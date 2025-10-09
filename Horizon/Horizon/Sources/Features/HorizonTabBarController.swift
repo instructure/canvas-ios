@@ -30,8 +30,8 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
         if let selectedViewController = viewControllers?[selectedIndex],
            let selectedNavigationController = selectedViewController as? UINavigationController,
            let learnHostingController = selectedNavigationController.viewControllers.last as? CoreHostingController<LearnView>,
-           let courseDetailsViewModel = learnHostingController.rootView.content.viewModel.courseDetailsViewModel {
-           courseID = courseDetailsViewModel.course.id
+           let course = learnHostingController.rootView.content.viewModel.currentProgram?.courses.first {
+           courseID = course.id
         }
         return courseID
     }
@@ -48,7 +48,7 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
             dashboardTab(),
             learnTab(),
             chatBotTab(),
-            careerTab(),
+            skillspaceTab(),
             accountTab()
         ]
         tabBar.tintColor = .textDarkest
@@ -63,7 +63,7 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
     // MARK: - Functions
 
     private func presentChatBot() {
-        let vc = AssistAssembly.makeAssistChatView(courseId: learnTabCourseID)
+        let vc = AssistAssembly.makeAssistChatView(courseID: learnTabCourseID)
         vc.modalPresentationStyle = .pageSheet
         router.show(vc, from: self, options: .modal(isDismissable: false))
     }
@@ -84,9 +84,9 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
         vc.navigationBar.standardAppearance = appearance
         vc.navigationBar.scrollEdgeAppearance = appearance
 
-        vc.tabBarItem.title = String(localized: "Home", bundle: .horizon)
-        vc.tabBarItem.image = getHorizonImage(name: "home")
-        vc.tabBarItem.selectedImage = getHorizonImage(name: "home_filled")
+        vc.tabBarItem.title = HorizonTabBarType.dashboard.title
+        vc.tabBarItem.image = HorizonTabBarType.dashboard.image
+        vc.tabBarItem.selectedImage = HorizonTabBarType.dashboard.selectedImage
         return vc
     }
 
@@ -94,30 +94,30 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
         let vc = CoreNavigationController(
             rootViewController: LearnAssembly.makeLearnView()
         )
-        vc.tabBarItem.title = String(localized: "Learn", bundle: .horizon)
-        vc.tabBarItem.image = getHorizonImage(name: "book_2")
-        vc.tabBarItem.selectedImage = getHorizonImage(name: "book_2_filled")
+        vc.tabBarItem.title = HorizonTabBarType.learn.title
+        vc.tabBarItem.image = HorizonTabBarType.learn.image
+        vc.tabBarItem.selectedImage = HorizonTabBarType.learn.selectedImage
         return vc
     }
 
     private func chatBotTab() -> UIViewController {
         if shouldPresentChatBot {
             let vc = UIViewController()
-            vc.tabBarItem.image = UIImage(resource: .chatBot)
+            vc.tabBarItem.image = HorizonTabBarType.chatBot.image
             return vc
         } else {
             return .init()
         }
     }
 
-    private func careerTab() -> UIViewController {
+    private func skillspaceTab() -> UIViewController {
         let vc = CoreNavigationController(
             rootViewController: SkillSpaceAssembly.makeView()
         )
         vc.navigationBar.prefersLargeTitles = false
-        vc.tabBarItem.title = String(localized: "Skillspace", bundle: .horizon)
-        vc.tabBarItem.image = getHorizonImage(name: "hub")
-        vc.tabBarItem.selectedImage = getHorizonImage(name: "hub_filled")
+        vc.tabBarItem.title = HorizonTabBarType.skillspace.title
+        vc.tabBarItem.image = HorizonTabBarType.skillspace.image
+        vc.tabBarItem.selectedImage = HorizonTabBarType.skillspace.selectedImage
         return vc
     }
 
@@ -125,14 +125,10 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
         let vc = CoreNavigationController(
             rootViewController: CoreHostingController(AccountAssembly.makeView())
         )
-        vc.tabBarItem.title = String(localized: "Account", bundle: .horizon)
-        vc.tabBarItem.image = getHorizonImage(name: "account_circle")
-        vc.tabBarItem.selectedImage = getHorizonImage(name: "account_circle_filled")
+        vc.tabBarItem.title = HorizonTabBarType.account.title
+        vc.tabBarItem.image = HorizonTabBarType.account.image
+        vc.tabBarItem.selectedImage = HorizonTabBarType.account.selectedImage
         return vc
-    }
-
-    private func getHorizonImage(name: String) -> UIImage? {
-        UIImage(named: name, in: Bundle.horizonUI, with: nil)
     }
 }
 

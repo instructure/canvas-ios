@@ -26,18 +26,17 @@ public class GradesHelper: BaseHelper {
     public static var basedOnGradedSwitch: XCUIElement { app.find(id: "BasedOnGradedToggle", type: .toggle) }
     public static var emptyView: XCUIElement { app.find(id: "GradeList.emptyView") }
 
-    public static func upcomingAssignmentsSectionTitle(numberOfItems: Int) -> XCUIElement {
-        let itemCountLabel = String.format(numberOfItems: numberOfItems)
-        return app.find(label: "Upcoming Assignments, \(itemCountLabel)", type: .staticText)
+    public static func sectionHeader(id: String) -> XCUIElement {
+        app.find(id: "GradeList.Sections.\(id)")
     }
 
-    public static func labelOfAssignmentGroup(_ assignmentGroup: DSAssignmentGroup, numberOfItems: Int) -> XCUIElement {
+    public static func sectionLabel(title: String, numberOfItems: Int) -> String {
         let itemCountLabel = String.format(numberOfItems: numberOfItems)
-        return app.find(label: "\(assignmentGroup.name), \(itemCountLabel)", type: .staticText)
+        return "\(title), \(itemCountLabel)"
     }
 
     public static func cell(assignment: DSAssignment? = nil, assignmentId: String? = nil) -> XCUIElement {
-        return app.find(id: "GradeListCell.\(assignment?.id ?? assignmentId!)")
+        return app.find(id: "GradeList.Items.\(assignment?.id ?? assignmentId!)")
     }
 
     public static func gradedLabel(assignmentCell: XCUIElement) -> XCUIElement {
@@ -53,7 +52,7 @@ public class GradesHelper: BaseHelper {
                                   actualPoints: String,
                                   maxPoints: String,
                                   letterGrade: String = "") -> XCUIElement {
-        let assignment = app.find(id: "GradeListCell.\(assignment?.id ?? assignmentId!)")
+        let assignment = app.find(id: "GradeList.Items.\(assignment?.id ?? assignmentId!)")
         let lgSuffix = letterGrade == "" ? "" : " (\(letterGrade))"
         return assignment.find(label: "Grade, \(actualPoints) out of \(maxPoints)\(lgSuffix)")
     }
@@ -88,7 +87,7 @@ public class GradesHelper: BaseHelper {
     /// Assumes the screen is already loaded
     public static func refreshGradesScreen() {
         XCTContext.runActivity(named: "Refresh Grades screen") { _ in
-            let firstCell = app.find(idStartingWith: "GradeListCell").waitUntil(.visible, timeout: 1, gracePeriod: 0.5)
+            let firstCell = app.find(idStartingWith: "GradeList.Items").waitUntil(.visible, timeout: 1, gracePeriod: 0.5)
             if firstCell.isVisible {
                 firstCell.pullToRefresh()
                 return

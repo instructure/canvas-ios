@@ -19,83 +19,96 @@
 import SwiftUI
 import Core
 
-enum SubmissionFilterMode: String, CaseIterable {
-    case all
-    case needsGrading
-    case notSubmitted
-    case graded
-
-    var title: String {
-        switch self {
-        case .all:
-            String(localized: "All Submissions", bundle: .teacher)
-        case .needsGrading:
-            String(localized: "Needs Grading", bundle: .teacher)
-        case .notSubmitted:
-            String(localized: "Not Submitted", bundle: .teacher)
-        case .graded:
-            String(localized: "Graded", bundle: .teacher)
-        }
-    }
-
-    var filters: [GetSubmissions.Filter] {
-        switch self {
-        case .all:
-            return []
-        case .needsGrading:
-            return [.needsGrading]
-        case .notSubmitted:
-            return [.notSubmitted]
-        case .graded:
-            return [.graded]
-        }
-    }
-}
-
 struct SubmissionsFilterScreen: View {
 
     @Environment(\.viewController) private var controller
 
-    @ObservedObject private var viewModel: SubmissionListViewModel
-    private let filterOptions: SingleSelectionOptions
-    private let courseColor: Color
+    private let viewModel: SubmissionsFilterViewModel
 
-    init(viewModel: SubmissionListViewModel) {
-        self.viewModel = viewModel
-
-        courseColor = viewModel.course.flatMap { Color(uiColor: $0.color) } ?? Color(Brand.shared.primary)
-        let initialMode = viewModel.filterMode
-
-        self.filterOptions = SingleSelectionOptions(
-            all: SubmissionFilterMode.allCases.map {
-                OptionItem(id: $0.rawValue, title: $0.title)
-            },
-            initial: OptionItem(id: initialMode.rawValue, title: initialMode.title)
-        )
+    init(listViewModel: SubmissionListViewModel) {
+        self.viewModel = SubmissionsFilterViewModel(listViewModel: listViewModel)
     }
 
     var body: some View {
-        VStack {
-            SingleSelectionView(
-                title: String(localized: "Submission Filter", bundle: .teacher),
-                identifierGroup: "SubmissionsFilter.filterOptions",
-                options: filterOptions
-            )
-            .tint(courseColor)
-            Spacer()
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                InstUI.TopDivider()
+
+                MultiSelectionView(
+                    title: String(localized: "Statuses", bundle: .teacher),
+                    identifierGroup: "SubmissionsFilter.statusOptions",
+                    options: viewModel.statusFilterOptions
+                )
+
+                if viewModel.isScoreBasedFilteringEnabled {
+                    Section {
+                        VStack(alignment: .leading, spacing: 0) {
+                            GradeInputTextFieldCell(
+                                title: String(localized: "Scored More than", bundle: .teacher),
+                                inputType: .points,
+                                pointsPossibleText: viewModel.pointsPossibleText,
+                                pointsPossibleAccessibilityText: viewModel.pointsPossibleAccessibilityText,
+                                isExcused: false,
+                                text: viewModel.scoredMoreFilterValue.binding,
+                                isSaving: .init(false)
+                            )
+                            InstUI.Divider(.padded)
+                            GradeInputTextFieldCell(
+                                title: String(localized: "Scored Less than", bundle: .teacher),
+                                inputType: .points,
+                                pointsPossibleText: viewModel.pointsPossibleText,
+                                pointsPossibleAccessibilityText: viewModel.pointsPossibleAccessibilityText,
+                                isExcused: false,
+                                text: viewModel.scoredLessFilterValue.binding,
+                                isSaving: .init(false)
+                            )
+                            InstUI.Divider()
+                        }
+                    } header: {
+                        InstUI.ListSectionHeader(
+                            title: String(localized: "Precise filtering", bundle: .teacher),
+                            itemCount: 2
+                        )
+                    }
+                }
+
+                if let sectionOptions = viewModel.sectionFilterOptions {
+                    MultiSelectionView(
+                        title: String(localized: "Filter by Section", bundle: .teacher),
+                        identifierGroup: "SubmissionsFilter.sectionOptions",
+                        options: sectionOptions
+                    )
+                }
+
+                if viewModel.differentiationTagFilterOptions.all.isNotEmpty {
+                    MultiSelectionView(
+                        title: String(localized: "Differentiation Tags", bundle: .teacher),
+                        identifierGroup: "SubmissionsFilter.diffTagOptions",
+                        options: viewModel.differentiationTagFilterOptions
+                    )
+                }
+
+                SingleSelectionView(
+                    title: String(localized: "Sort by", bundle: .teacher),
+                    identifierGroup: "SubmissionsFilter.sortByOptions",
+                    options: viewModel.sortModeOptions
+                )
+            }
+            .tint(viewModel.courseColor)
         }
         .background(Color.backgroundLightest)
         .toolbar {
+
             ToolbarItem(placement: .topBarTrailing) {
                 Button(
                     action: {
-                        viewModel.filterMode = selectedFilterMode
+                        viewModel.saveSelection()
                         controller.value.dismiss(animated: true)
                     },
                     label: {
                         Text("Done", bundle: .teacher)
                             .font(.semibold16)
-                            .foregroundColor(color)
+                            .foregroundColor(viewModel.courseColor)
                     }
                 )
             }
@@ -106,27 +119,23 @@ struct SubmissionsFilterScreen: View {
                     label: {
                         Text("Cancel", bundle: .teacher)
                             .font(.regular16)
-                            .foregroundColor(color)
+                            .foregroundColor(viewModel.courseColor)
                     }
                 )
             }
         }
         .navigationBarTitleView(
             title: String(localized: "Submission List Preferences", bundle: .teacher),
-            subtitle: viewModel.assignment?.name
+            subtitle: viewModel.assignmentName
         )
         .navigationBarStyle(.modal)
     }
-
-    private var selectedFilterMode: SubmissionFilterMode {
-        guard
-            let modeID = filterOptions.selected.value?.id,
-            let mode = SubmissionFilterMode(rawValue: modeID)
-        else { return .all }
-        return mode
-    }
-
-    private var color: Color {
-        viewModel.course.flatMap { Color(uiColor: $0.color) } ?? .accentColor
-    }
 }
+
+#if DEBUG
+
+#Preview {
+    SubmissionListAssembly.makeFilterScreenPreview()
+}
+
+#endif

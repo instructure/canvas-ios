@@ -19,92 +19,6 @@
 import CoreData
 import Combine
 
-public protocol PlannableItem {
-    var plannableID: String { get }
-    var plannableType: PlannableType { get }
-    var htmlURL: URL? { get }
-    var context: Context? { get }
-    var contextName: String? { get }
-    var plannableTitle: String? { get }
-    var date: Date? { get }
-    var pointsPossible: Double? { get }
-    var details: String? { get }
-    var isHidden: Bool { get }
-}
-
-extension APIPlannable: PlannableItem {
-    public var plannableID: String { plannable_id.value }
-    public var plannableType: PlannableType { PlannableType(rawValue: plannable_type) ?? .other }
-    public var htmlURL: URL? { html_url?.rawValue }
-    public var plannableTitle: String? { self.plannable?.title }
-    public var date: Date? { plannable_date }
-    public var pointsPossible: Double? { self.plannable?.points_possible }
-    public var details: String? { self.plannable?.details }
-    public var contextName: String? { context_name }
-    public var isHidden: Bool { false }
-
-    public var context: Context? {
-        if let context = contextFromContextType() {
-            return context
-        }
-        if plannableType == .planner_note {
-            // Notes have no 'context_type', but have IDs in the inner 'plannable' object
-            return contextFromInnerPlannableObject()
-        }
-        return nil
-    }
-
-    private func contextFromContextType() -> Context? {
-        guard let raw = context_type, let type = ContextType(rawValue: raw.lowercased()) else {
-            return nil
-        }
-        return switch type {
-        case .course: Context(.course, id: course_id?.rawValue)
-        case .group: Context(.group, id: group_id?.rawValue)
-        case .user: Context(.user, id: user_id?.rawValue)
-        default: nil
-        }
-    }
-
-    private func contextFromInnerPlannableObject() -> Context? {
-        // order matters: 'course_id' has precedence over 'user_id'
-        return Context(.course, id: self.plannable?.course_id)
-            ?? Context(.user, id: self.plannable?.user_id)
-    }
-}
-
-extension APICalendarEvent: PlannableItem {
-    public var plannableID: String { id.value }
-    public var plannableType: PlannableType {
-        if case .assignment = type { return .assignment }
-        return .calendar_event
-    }
-    public var plannableTitle: String? { title }
-    public var htmlURL: URL? { html_url }
-    public var context: Context? { Context(canvasContextID: context_code) }
-    public var contextName: String? { nil }
-    public var date: Date? { start_at }
-    public var pointsPossible: Double? { assignment?.points_possible }
-    public var details: String? { description }
-    public var isHidden: Bool { hidden == true }
-}
-
-extension APIPlannerNote: PlannableItem {
-    public var plannableID: String { id }
-    public var plannableType: PlannableType { .planner_note }
-    public var htmlURL: URL? { nil }
-
-    public var context: Context? {
-        Context(.course, id: course_id) ?? Context(.user, id: user_id)
-    }
-
-    public var contextName: String? { nil }
-    public var plannableTitle: String? { title }
-    public var date: Date? { todo_date }
-    public var pointsPossible: Double? { nil }
-    public var isHidden: Bool { false }
-}
-
 public class GetPlannables: UseCase {
     public typealias Model = Plannable
 
@@ -141,25 +55,34 @@ public class GetPlannables: UseCase {
     }
 
     public var scope: Scope {
-        var predicate = NSPredicate(format: "%@ <= %K AND %K < %@",
-            startDate as NSDate, #keyPath(Plannable.date),
-            #keyPath(Plannable.date), endDate as NSDate
-        )
+        var subPredicates = [
+            NSPredicate(
+                format: "%@ <= %K AND %K < %@",
+                startDate as NSDate, #keyPath(Plannable.date),
+                #keyPath(Plannable.date), endDate as NSDate
+            ),
+            NSPredicate(format: "%K == nil", #keyPath(Plannable.originUseCaseIDRaw))
+        ]
+
         if let userID = userID {
-            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                NSPredicate(key: #keyPath(Plannable.userID), equals: userID),
-                predicate
-            ])
+            subPredicates.append(
+                NSPredicate(key: #keyPath(Plannable.userID), equals: userID)
+            )
         }
+
         let order = [
             NSSortDescriptor(key: #keyPath(Plannable.date), ascending: true),
             NSSortDescriptor(key: #keyPath(Plannable.title), ascending: true, naturally: true)
         ]
-        return Scope(predicate: predicate, order: order)
+
+        return Scope(
+            predicate: NSCompoundPredicate(type: .and, subpredicates: subPredicates),
+            order: order
+        )
     }
 
     public func reset(context: NSManagedObjectContext) {
-        let all: [Plannable] = context.fetch(scope.predicate)
+        let all: [Plannable] = context.fetch(scope: scope)
         context.delete(all)
     }
 
@@ -198,12 +121,20 @@ public class GetPlannables: UseCase {
     }
 
     public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        var items: [PlannableItem] = response?.plannables ?? []
-        items.append(contentsOf: response?.calendarEvents ?? [])
-        items.append(contentsOf: response?.plannerNotes ?? [])
+        let plannableItems: [APIPlannable] = response?.plannables ?? []
+        let calendarEventItems: [APICalendarEvent] = response?.calendarEvents ?? []
+        let plannerNoteItems: [APIPlannerNote] = response?.plannerNotes ?? []
 
-        for item in items where item.plannableType != .announcement && !item.isHidden {
-            Plannable.save(item, userID: userID, in: client)
+        for item in plannableItems where item.plannableType != .announcement {
+            Plannable.save(item, userId: userID, in: client)
+        }
+
+        for item in calendarEventItems where item.hidden != true {
+            Plannable.save(item, userId: userID, in: client)
+        }
+
+        for item in plannerNoteItems {
+            Plannable.save(item, contextName: nil, in: client)
         }
     }
 }

@@ -76,7 +76,7 @@ public struct LoginSession: Codable, Hashable {
         clientID: String? = nil,
         clientSecret: String? = nil,
         canvasRegion: String? = nil,
-        isFakeStudent: Bool = false,
+        isFakeStudent: Bool = false
     ) {
         self.accessToken = accessToken
         // remove trailing slash
@@ -126,7 +126,8 @@ public struct LoginSession: Codable, Hashable {
             userName: userName,
             userEmail: userEmail,
             clientID: clientID,
-            clientSecret: clientSecret
+            clientSecret: clientSecret,
+            canvasRegion: canvasRegion
         )
     }
 
@@ -150,7 +151,8 @@ public struct LoginSession: Codable, Hashable {
             userName: userName,
             userEmail: userEmail,
             clientID: clientID,
-            clientSecret: clientSecret
+            clientSecret: clientSecret,
+            canvasRegion: canvasRegion
         )
     }
 

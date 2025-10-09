@@ -23,7 +23,7 @@ import TestsFoundation
 
 class SyllabusSummaryViewControllerTests: CoreTestCase {
     let courseID = "1"
-    lazy var controller = SyllabusSummaryViewController.create(courseID: courseID)
+    lazy var controller = SyllabusSummaryViewController.create(courseID: courseID, env: environment)
 
     func testLayout() {
         let date = DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 12).date!
@@ -38,14 +38,14 @@ class SyllabusSummaryViewControllerTests: CoreTestCase {
         let event = APICalendarEvent.make(
             id: "2",
             title: "event",
-            start_at: date.addDays(1),
+            start_at: date.addMinutes(1),
             type: .event,
             context_code: "course_\(courseID)"
         )
         let hiddenEvent = APICalendarEvent.make(
             id: "3",
             title: "event",
-            start_at: date.addDays(1),
+            start_at: date.addMinutes(2),
             type: .event,
             context_code: "course_\(courseID)",
             hidden: true
@@ -57,15 +57,36 @@ class SyllabusSummaryViewControllerTests: CoreTestCase {
             type: .assignment,
             context_code: "course_\(courseID)"
         )
-        api.mock(controller.assignments, value: [assignment, nilDate])
-        api.mock(controller.events, value: [event, hiddenEvent])
+
+        let page = APIPlannable.make(
+            course_id: .init(courseID),
+            context_type: "course",
+            plannable_id: "5",
+            plannable_type: "wiki_page",
+            plannable: .make(title: "Random Page"),
+            plannable_date: date.addMinutes(3)
+        )
+
+        let discussion = APIPlannable.make(
+            course_id: .init(courseID),
+            context_type: "course",
+            plannable_id: "6",
+            plannable_type: "discussion_topic",
+            plannable: .make(title: "Discussion"),
+            plannable_date: date.addMinutes(4)
+        )
+
+        api.mock(controller.summary.useCase.assignmentsRequest, value: [assignment, nilDate])
+        api.mock(controller.summary.useCase.eventsRequest, value: [event, hiddenEvent])
+        api.mock(controller.summary.useCase.ungradedItemsRequest, value: [page, discussion])
+
         api.mock(controller.course, value: .make(id: ID(courseID)))
 
         controller.view.layoutIfNeeded()
         let tableView = controller.tableView!
 
         waitUntil(1, shouldFail: true) {
-            controller.tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0) == 3
+            controller.tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0) == 5
         }
 
         let assignmentCell = cell(at: IndexPath(row: 0, section: 0))
@@ -76,9 +97,19 @@ class SyllabusSummaryViewControllerTests: CoreTestCase {
         let eventCell = cell(at: IndexPath(row: 1, section: 0))
         XCTAssertEqual(eventCell.itemNameLabel.text, "event")
         XCTAssertEqual(eventCell.iconImageView?.image, .calendarMonthLine)
-        XCTAssertEqual(eventCell.dateLabel.text, date.addDays(1).dateTimeString)
+        XCTAssertEqual(eventCell.dateLabel.text, date.addMinutes(1).dateTimeString)
 
-        let nilDateCell = cell(at: IndexPath(row: 2, section: 0))
+        let pageCell = cell(at: IndexPath(row: 2, section: 0))
+        XCTAssertEqual(pageCell.itemNameLabel.text, "Random Page")
+        XCTAssertEqual(pageCell.iconImageView?.image, .documentLine)
+        XCTAssertEqual(pageCell.dateLabel.text, date.addMinutes(3).dateTimeString)
+
+        let discussionCell = cell(at: IndexPath(row: 3, section: 0))
+        XCTAssertEqual(discussionCell.itemNameLabel.text, "Discussion")
+        XCTAssertEqual(discussionCell.iconImageView?.image, .discussionLine)
+        XCTAssertEqual(discussionCell.dateLabel.text, date.addMinutes(4).dateTimeString)
+
+        let nilDateCell = cell(at: IndexPath(row: 4, section: 0))
         XCTAssertEqual(nilDateCell.itemNameLabel.text, "nil date")
         XCTAssertEqual(nilDateCell.iconImageView?.image, .assignmentLine)
         XCTAssertEqual(nilDateCell.dateLabel.text, "No Due Date")

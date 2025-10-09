@@ -44,7 +44,7 @@ final class GetLearnCoursesInteractorLive: GetLearnCoursesInteractor {
     }
 
     func getFirstCourse(ignoreCache: Bool) -> AnyPublisher<LearnCourse?, any Error> {
-        ReactiveStore(useCase: GetHLearnCoursesUseCase(userId: userId))
+        ReactiveStore(useCase: GetHLearnCoursesUseCase(userId: userId, horizonCourses: ignoreCache))
             .getEntities(ignoreCache: ignoreCache)
             .map { $0.first }
             .map { LearnCourse(from: $0) }
@@ -52,11 +52,12 @@ final class GetLearnCoursesInteractorLive: GetLearnCoursesInteractor {
     }
 
     func getCourses(ignoreCache: Bool) -> AnyPublisher<[LearnCourse], Never> {
-        ReactiveStore(useCase: GetHLearnCoursesUseCase(userId: userId))
-            .getEntities()
+        ReactiveStore(useCase: GetHLearnCoursesUseCase(userId: userId, horizonCourses: nil))
+            .getEntities(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap {
                 $0.publisher
+                    .filter { $0.state == HCourse.EnrollmentState.active.rawValue }
                     .map { LearnCourse(from: $0) }
                     .compactMap { $0 }
                     .collect()

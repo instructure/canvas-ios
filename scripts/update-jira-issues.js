@@ -37,6 +37,7 @@ const client = new JiraClient({
   host: 'instructure.atlassian.net',
   username: process.env.JIRA_USERNAME,
   password: process.env.JIRA_API_TOKEN,
+  apiVersion: '3',
 })
 
 const getJSON = (url) => new Promise((resolve, reject) => {
@@ -106,19 +107,25 @@ exports.commands = {
     const releasedLabel = `released-appstore-${app.toLowerCase()}`
     console.log(`Adding label "${releasedLabel}" to closed MBL issues with fix version "${fixVersionName}"`)
 
-    let startAt = 0
-    let total = 0
+    let nextPageToken = null
+    let totalCount = 0
+    let isLast = false
     do {
-      let results = await client.searchJira(`
+      let results = await searchJira(`
         project = "MBL" AND
-        fixVersion = "${fixVersionName}" AND
+        fixVersion IN ("${fixVersionName}") AND
         status = Closed AND
-        NOT (labels = "${releasedLabel}")
+        (labels IS EMPTY OR labels NOT IN ("${releasedLabel}"))
       `, {
-        startAt,
+        nextPageToken,
         maxResults: 10,
         fields: [ 'id', 'key', 'labels', 'summary' ],
       })
+
+      if (!results.issues || results.issues.length === 0) {
+        console.log('No more issues found, ending pagination')
+        break
+      }
 
       await Promise.all(results.issues.map(issue => {
         const labels = [ { add: releasedLabel } ]
@@ -137,10 +144,11 @@ exports.commands = {
         return client.updateIssue(issue.id, { update: { labels } })
       }))
 
-      startAt += results.issues.length
-      total = results.total
-    } while (startAt < total)
-    return total
+      totalCount += results.issues.length
+      nextPageToken = results.nextPageToken || null
+      isLast = results.isLast !== false
+    } while (!isLast && nextPageToken)
+    return totalCount
   },
 }
 
@@ -162,5 +170,50 @@ if (require.main === module) {
   exports.commands[command](...args).catch((error) => {
     console.error(error)
     return process.exit(2)
+  })
+}
+
+const searchJira = async (jql, options = {}) => {
+  const jiraAuth = Buffer.from(`${process.env.JIRA_USERNAME}:${process.env.JIRA_API_TOKEN}`).toString('base64')
+
+  const params = new URLSearchParams({
+    jql: jql.replace(/\s+/g, ' ').trim(),
+    maxResults: options.maxResults || 50,
+  })
+  if (options.nextPageToken) {
+    params.append('nextPageToken', options.nextPageToken)
+  }
+  if (options.fields) {
+    params.append('fields', options.fields.join(','))
+  }
+
+  return new Promise((resolve, reject) => {
+    const requestOptions = {
+      hostname: client.host,
+      path: `/rest/api/3/search/jql?${params.toString()}`,
+      method: 'GET',
+      headers: {
+        'Authorization': `Basic ${jiraAuth}`,
+        'Accept': 'application/json',
+      },
+    }
+
+    const req = https.request(requestOptions, (response) => {
+      let data = ''
+      response.on('data', (chunk) => {
+        data += chunk.toString()
+      })
+      response.on('end', () => {
+        if (response.statusCode >= 400) {
+          reject(new Error(data))
+        } else {
+          try { resolve(JSON.parse(data)) }
+          catch (error) { reject(error) }
+        }
+      })
+    })
+
+    req.on('error', reject)
+    req.end()
   })
 }

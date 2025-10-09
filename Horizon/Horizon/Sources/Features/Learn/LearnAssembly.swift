@@ -27,6 +27,7 @@ struct LearnAssembly {
     static func makeCourseDetailsViewController(
         courseID: String,
         enrollmentID: String,
+        programID: String? = nil,
         course: HCourse? = nil,
         shoudHideTabBar: Bool = false,
         selectedTab: CourseDetailsTabs? = nil
@@ -36,6 +37,7 @@ struct LearnAssembly {
                 viewModel: makeViewModel(
                     courseID: courseID,
                     enrollmentID: enrollmentID,
+                    programID: programID,
                     course: course,
                     selectedTab: selectedTab
                 ),
@@ -47,6 +49,7 @@ struct LearnAssembly {
     static func makeViewModel(
         courseID: String,
         enrollmentID: String,
+        programID: String? = nil,
         course: HCourse? = nil,
         selectedTab: CourseDetailsTabs? = nil
     ) -> CourseDetailsViewModel {
@@ -54,8 +57,11 @@ struct LearnAssembly {
             router: AppEnvironment.shared.router,
             getCoursesInteractor: makeGetCoursesInteractor(),
             learnCoursesInteractor: GetLearnCoursesInteractorLive(),
+            programInteractor: ProgramInteractorLive(programCourseInteractor: ProgramCourseInteractorLive()),
+            courseToolsInteractor: CourseToolsInteractorLive(),
             courseID: courseID,
             enrollmentID: enrollmentID,
+            programID: programID,
             course: course,
             selectedTab: selectedTab
         ) { newCourseID, newEnrollmentID in
@@ -66,11 +72,13 @@ struct LearnAssembly {
     static func makeCourseDetailsView(
         courseID: String,
         enrollmentID: String,
+        programID: String? = nil,
         course: HCourse? = nil
     ) -> CourseDetailsView {
         let viewModel = makeViewModel(
             courseID: courseID,
             enrollmentID: enrollmentID,
+            programID: programID,
             course: course
         )
         return makeCourseDetailsView(
@@ -82,26 +90,54 @@ struct LearnAssembly {
     static func makeCourseDetailsView(
         viewModel: CourseDetailsViewModel,
         isBackButtonVisible: Bool = true,
-        shoudHideTabBar: Bool = false,
+        shoudHideTabBar: Bool = false
     ) -> CourseDetailsView {
         let environment = AppEnvironment.shared
         let showTabBarAndNavigationBar: (Bool) -> Void = { isVisible in
             environment.tabBar(isVisible: shoudHideTabBar ? isVisible : true)
             environment.navigationBar(isVisible: shoudHideTabBar ? isVisible : false)
         }
+        let onSwitchToLearnTab: (ProgramSwitcherModel?, WeakViewController) -> Void = { program, viewController in
+            environment.switchToLearnTab(with: program, from: viewController)
+        }
        return CourseDetailsView(
             viewModel: viewModel,
             isBackButtonVisible: isBackButtonVisible,
             shouldHideTabBar: shoudHideTabBar,
-            onShowNavigationBarAndTabBar: showTabBarAndNavigationBar
+            onShowNavigationBarAndTabBar: showTabBarAndNavigationBar,
+            onSwitchToLearnTab: onSwitchToLearnTab
         )
     }
 
-    static func makeLearnView() -> UIViewController {
+    static func makeLearnView(programID: String? = nil) -> UIViewController {
+        let programCourseInteractor = ProgramCourseInteractorLive()
+        let interactor = ProgramInteractorLive(programCourseInteractor: programCourseInteractor)
+        let router = AppEnvironment.shared.router
         let viewModel = LearnViewModel(
-            interactor: GetLearnCoursesInteractorLive()
+            interactor: interactor,
+            learnCoursesInteractor: GetLearnCoursesInteractorLive(),
+            router: router,
+            programID: programID
         )
         let view = LearnView(viewModel: viewModel)
         return CoreHostingController(view)
+    }
+}
+
+extension AppEnvironment {
+     func switchToLearnTab(
+        with program: ProgramSwitcherModel?,
+        from viewController: WeakViewController
+    ) {
+        guard let learnHost = getTabHostingController(at: HorizonTabBarType.learn.index, of: LearnView.self) else {
+            return
+        }
+
+        switchToTab(at: HorizonTabBarType.learn.index)
+        learnHost.rootView.content.viewModel.updateProgram(program)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak router = self.router] in
+            router?.popToRoot(from: viewController.value, animated: false)
+        }
     }
 }

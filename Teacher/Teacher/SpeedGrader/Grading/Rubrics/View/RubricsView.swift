@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -20,43 +20,168 @@ import Core
 import SwiftUI
 
 struct RubricsView: View {
-    let currentScore: Double
-    let containerFrameInGlobal: CGRect
     @ObservedObject var viewModel: RubricsViewModel
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Rubric", bundle: .teacher)
-                    .font(.heavy24).foregroundColor(.textDarkest)
-                    .accessibilityAddTraits(.isHeader)
-                Text("\(currentScore, specifier: "%g") out of \(viewModel.maximumRubricPoints, specifier: "%g")", bundle: .teacher)
-                    .font(.medium14).foregroundColor(.textDark)
-            }
-            Spacer()
+        VStack {
+            InstUI.Divider()
 
-            if viewModel.isSaving {
-                ProgressView()
-                    .progressViewStyle(.indeterminateCircle(size: 24))
-            }
-        }
-        .padding(.horizontal, 16).padding(.vertical, 12)
+            Text("Rubric", bundle: .teacher)
+                .font(.semibold16)
+                .foregroundColor(.textDarkest)
+                .accessibilityAddTraits(.isHeader)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .paddingStyle(set: .standardCell)
 
-        VStack(spacing: 12) {
-            ForEach(viewModel.criterionViewModels) { viewModel in
-                RubricCriterionView(
-                    containerFrameInGlobal: containerFrameInGlobal,
-                    viewModel: viewModel
-                )
+            VStack(spacing: 16) {
+                ForEach(viewModel.criterionViewModels) { viewModel in
+                    RubricCriterionView(
+                        viewModel: viewModel
+                    )
+                }
             }
+            .padding(.horizontal, 16)
+            .onAppear {
+                viewModel.controller = controller
+            }
+
+            Spacer().frame(height: 32)
+
+            InstUI.Divider()
         }
-        .multilineTextAlignment(.leading)
-        .padding(.horizontal, 16)
-        .onAppear {
-            viewModel.controller = controller
-        }
+        .background(Color.backgroundLight)
     }
 }
+
+#if DEBUG
+
+#Preview {
+    let env = PreviewEnvironment()
+    let context = env.database.viewContext
+    let assignment = Assignment(context: context)
+        .with { assignment in
+
+            assignment.id = "234"
+            assignment.rubricPointsPossible = 10
+            assignment.rubric = [
+                CDRubricCriterion(context: context).with({ cret in
+                    cret.points = 10
+                    cret.shortDescription = "Effective Use of Space"
+                    cret.assignmentID = "234"
+                    cret.ratings = [
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 2
+                        }),
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 3
+                        }),
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 4
+                        }),
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 56
+                        })
+                    ]
+                }),
+                CDRubricCriterion(context: context).with({ cret in
+                    cret.points = 10
+                    cret.shortDescription = "Rubric default empty"
+                    cret.assignmentID = "234"
+                    cret.criterionUseRange = true
+                    cret.ratings = [
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 2
+                            rating.shortDescription = "Good"
+                        }),
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 3
+                            rating.shortDescription = "Very good"
+                        }),
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 4
+                            rating.shortDescription = "Excellent"
+                        })
+                    ]
+                }),
+                CDRubricCriterion(context: context).with({ cret in
+                    cret.points = 10
+                    cret.shortDescription = "Content Placing"
+                    cret.longDescription = "Long Effective Use of Space"
+                    cret.assignmentID = "234"
+                    cret.ratings = [
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 2
+                            rating.shortDescription = "33 33333"
+                            rating.longDescription = "Excellent"
+                        }),
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 3
+                            rating.shortDescription = "34-23"
+                        }),
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 4
+                            rating.shortDescription = "34-23"
+                        }),
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 56
+                            rating.shortDescription = "34-23"
+                        })
+                    ]
+                }),
+                CDRubricCriterion(context: context).with({ cret in
+                    cret.points = 10
+                    cret.shortDescription = "Score attribution"
+                    cret.assignmentID = "234"
+                    cret.ratings = [
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 2
+                        }),
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 3
+                        }),
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 4
+                        }),
+                        CDRubricRating(context: context).with({ rating in
+                            rating.points = 56
+                        })
+                    ]
+                })
+            ]
+        }
+
+    let submission = Submission(context: env.database.viewContext)
+
+    let model = {
+        let rubrics = RubricsViewModel(
+            assignment: assignment,
+            submission: submission,
+            interactor: RubricGradingInteractorPreview(),
+            router: env.router
+        )
+
+        rubrics.criterionViewModels[1].userComment = "Content is perfectly placed, highly relevant, and enhances clarity. Shows strong understanding of audience and purpose."
+
+        return rubrics
+    }()
+
+    InstUI.BaseScreen(
+        state: .data,
+        config: .init(
+            refreshable: false,
+            emptyPandaConfig: .init(
+                scene: SpacePanda(),
+                title: String(localized: "Moderated Grading Unsupported", bundle: .teacher)
+            )
+        )
+    ) { _ in
+        RubricsView(viewModel: model)
+            .padding(.bottom, 16)
+    }
+    .environment(\.appEnvironment, env)
+}
+
+#endif
