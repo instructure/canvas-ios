@@ -23,6 +23,14 @@ struct SkillCardModel: Identifiable, Equatable {
     let title: String
     let status: String
 
+    var accessibilityTitle: String {
+        String.localizedStringWithFormat(String(localized: "Skill name is %@", bundle: .horizon), title)
+    }
+
+    var accessibilityStatus: String {
+        String.localizedStringWithFormat(String(localized: "Proficiency level is %@", bundle: .horizon), status)
+    }
+
     static let loadingModel = SkillCardModel(
         id: UUID().uuidString,
         title: "Loading...",

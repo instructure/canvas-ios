@@ -37,8 +37,6 @@ struct SkillsErrorView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, .huiSpaces.space4)
                 .padding(.bottom, .huiSpaces.space16)
-                .accessibilityElement(children: .combine)
-                .accessibilityLabel(Text("\(errorTitle) \(errorDescription)"))
 
             HorizonUI.PrimaryButton(
                 String(localized: "Retry", bundle: .horizon),

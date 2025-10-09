@@ -36,9 +36,11 @@ struct SkillCardView: View {
                     .lineLimit(1)
                     .foregroundStyle(Color.huiColors.text.body)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityLabel(skill.accessibilityTitle)
                     .skeletonLoadable()
                 HorizonUI.StatusChip(title: skill.status.capitalized, style: .white)
                     .skeletonLoadable()
+                    .accessibilityLabel(skill.accessibilityStatus)
             }
             .padding(.huiSpaces.space24)
         }

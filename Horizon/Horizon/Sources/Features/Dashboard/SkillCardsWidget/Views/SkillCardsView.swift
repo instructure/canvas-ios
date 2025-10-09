@@ -45,6 +45,7 @@ struct SkillCardsView: View {
                     } label: {
                         SkillCardView(skill: skill)
                     }
+                    .accessibilityHint(String(localized: "Double tap to open skillspace", bundle: .horizon))
                 }
             case .empty:
                 SkillsEmptyView()
