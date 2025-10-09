@@ -40,15 +40,22 @@ struct CourseCardView: View {
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilityDescription)
-        .accessibilityHint("Double tap to open course")
-        .accessibilityIdentifier("CourseCard.\(model.id)")
+        .accessibilityHint(String(localized: "Double tap to open course", bundle: .horizon))
         .accessibilityActions {
-            if let primaryProgram = model.primaryProgram {
-                Button("View \(primaryProgram.name) program") {
-                    onProgramTap?(primaryProgram.id)
+            ForEach(model.programs) { program in
+                Button {
+                    onProgramTap?(program.id)
+                } label: {
+                    Text("View \(program.name)")
                 }
             }
-
+       
+            Button {
+                onCourseTap(model.id)
+            } label: {
+                Text("View course")
+            }
+            
             if model.hasCurrentLearningObject {
                 Button("Continue learning") {
                     onLearningObjectTap?(model.id, model.currentLearningObject?.url)
@@ -78,6 +85,7 @@ struct CourseCardView: View {
         .skeletonLoadable()
         .frame(height: imageHeight)
         .padding(.bottom, .huiSpaces.space16)
+        .accessibilityHidden(true)
     }
 
     private var courseContentSection: some View {
@@ -173,6 +181,7 @@ struct CourseCardView: View {
                     .fill(Color.huiColors.surface.institution.opacity(0.1))
                 )
             }
+            .accessibilityRemoveTraits(.isButton)
             .buttonStyle(.plain)
         }
     }
@@ -231,17 +240,26 @@ struct CourseCardView: View {
     }
 
     private var accessibilityDescription: String {
-        var description = "Course: \(model.name). Progress: \(model.progressPercentage)."
+        var description = String(localized: "Course: \(model.name).", bundle: .horizon)
 
-        if let program = model.primaryProgram {
-            description += " Part of \(program.name)."
+        if model.programs.isNotEmpty {
+            let programsSeparated = model.programs.map(\.name).joined(separator: ", ")
+            if programsSeparated.isNotEmpty {
+                description += String(localized: " Part of \(programsSeparated).", bundle: .horizon)
+            }
         }
 
+        description += String(localized: " Progress: \(model.progressPercentage).", bundle: .horizon)
         if let learningObject = model.currentLearningObject {
-            description += " Current learning object: \(learningObject.name)."
-
+            description += String(localized: " Current learning object: \(learningObject.name).", bundle: .horizon)
+            if let type = learningObject.type {
+                description += String(localized: " Type: \(type.rawValue).", bundle: .horizon)
+            }
             if let dueDate = learningObject.dueDate {
-                description += " Due \(dueDate)."
+                description += String(localized: " Due at \(dueDate). ", bundle: .horizon)
+            }
+            if let estimatedDuration = learningObject.estimatedDuration {
+                description += String(localized: " Estimated duration: \(estimatedDuration). ", bundle: .horizon)
             }
         }
 

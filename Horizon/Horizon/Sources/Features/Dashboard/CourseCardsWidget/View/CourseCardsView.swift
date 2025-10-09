@@ -55,8 +55,8 @@ struct CourseCardsView: View {
         }
         .isSkeletonLoadActive(viewModel.state == .loading)
     }
-    
-    func reload(completion: @escaping () -> ()) {
+
+    func reload(completion: @escaping () -> Void) {
         viewModel.reload(completion: completion)
     }
 

@@ -1,6 +1,24 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    " Current learning object: %@." : {
+
+    },
+    " Due at %@. " : {
+
+    },
+    " Estimated duration: %@. " : {
+
+    },
+    " Part of %@." : {
+
+    },
+    " Progress: %@." : {
+
+    },
+    " Type: %@." : {
+
+    },
     "-" : {
       "localizations" : {
         "ar" : {
@@ -23307,6 +23325,9 @@
           }
         }
       }
+    },
+    "Course: %@." : {
+
     },
     "Create message" : {
       "localizations" : {
@@ -83251,7 +83272,10 @@
         }
       }
     },
-    "View %@ program" : {
+    "View %@" : {
+
+    },
+    "View course" : {
 
     },
     "View submission" : {
