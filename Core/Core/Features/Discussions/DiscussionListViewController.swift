@@ -55,18 +55,18 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     }
 
     private var offlineModeInteractor: OfflineModeInteractor?
-    private var dueDateTextsProvider: AssignmentDueDateTextsProvider?
+    private var dateTextsProvider: AssignmentDateTextsProvider?
 
     public static func create(
         context: Context,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(),
-        dueDateTextsProvider: AssignmentDueDateTextsProvider = .live,
+        dateTextsProvider: AssignmentDateTextsProvider = .live,
         env: AppEnvironment
     ) -> DiscussionListViewController {
         let controller = loadFromStoryboard()
         controller.context = context.local
         controller.offlineModeInteractor = offlineModeInteractor
-        controller.dueDateTextsProvider = dueDateTextsProvider
+        controller.dateTextsProvider = dateTextsProvider
         controller.env = env
         return controller
     }
@@ -230,7 +230,7 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
             topic: topic,
             isTeacher: course?.first?.hasTeacherEnrollment == true,
             color: color,
-            dueDateTextsProvider: dueDateTextsProvider
+            dateTextsProvider: dateTextsProvider
         )
         if topic?.anonymousState != nil && offlineModeInteractor?.isOfflineModeEnabled() == true {
             cell.selectionStyle = .none
@@ -317,7 +317,7 @@ class DiscussionListCell: UITableViewCell {
         topic: DiscussionTopic?,
         isTeacher: Bool,
         color: UIColor?,
-        dueDateTextsProvider: AssignmentDueDateTextsProvider?
+        dateTextsProvider: AssignmentDateTextsProvider?
     ) {
         accessibilityIdentifier = "DiscussionListCell.\(topic?.id ?? "")"
         iconImageView.icon = topic?.assignmentID == nil ? .discussionLine : .assignmentLine
@@ -331,7 +331,7 @@ class DiscussionListCell: UITableViewCell {
 
         titleLabel.setText(topic?.title, style: .textCellTitle)
 
-        updateDueDateLabels(assignment: topic?.assignment, dueDateTextsProvider: dueDateTextsProvider)
+        updateDueDateLabels(assignment: topic?.assignment, dateTextsProvider: dateTextsProvider)
 
         let lastPostText = topic?.lastReplyAt.map {
             String.localizedStringWithFormat(String(localized: "Last post %@", bundle: .core), $0.dateTimeString)
@@ -361,7 +361,7 @@ class DiscussionListCell: UITableViewCell {
 
     private func updateDueDateLabels(
         assignment: Assignment?,
-        dueDateTextsProvider: AssignmentDueDateTextsProvider?
+        dateTextsProvider: AssignmentDateTextsProvider?
     ) {
         guard let assignment else {
             updateDateLabel(dueDateLabel1, text: nil)
@@ -369,7 +369,7 @@ class DiscussionListCell: UITableViewCell {
             return
         }
 
-        let dueDateTexts = dueDateTextsProvider?.formattedDueDates(for: assignment) ?? []
+        let dueDateTexts = dateTextsProvider?.summarizedDueDates(for: assignment) ?? []
 
         switch dueDateTexts.count {
         case 0:
