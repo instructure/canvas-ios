@@ -107,4 +107,28 @@ class GroupListInteractorLiveTests: CoreTestCase {
             )
             .store(in: &subscriptions)
     }
+
+    func test_getGroups_shouldFilterOutConcludedOrNotAccessibleGroups() {
+        api.mock(
+            GetAllCoursesGroupListUseCase(),
+            value: [
+                .make(id: "1", name: "active-accessible", concluded: false, can_access: true),
+                .make(id: "2", name: "active-not-accessible", concluded: false, can_access: false),
+                .make(id: "3", name: "concluded-accessible", concluded: true, can_access: true),
+                .make(id: "4", name: "concluded-not-accessible", concluded: true, can_access: false),
+                .make(id: "5", name: "another-active-accessible", concluded: false, can_access: true)
+            ]
+        )
+        testee = GroupListInteractorLive(shouldListGroups: true)
+
+        testee.getGroups()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { list in
+                    XCTAssertEqual(list.map { $0.id }, ["1", "5"])
+                    XCTAssertEqual(list.map { $0.name }, ["active-accessible", "another-active-accessible"])
+                }
+            )
+            .store(in: &subscriptions)
+    }
 }
