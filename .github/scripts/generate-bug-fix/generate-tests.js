@@ -5,9 +5,31 @@ const fs = require('fs');
 const path = require('path');
 
 const fixCode = process.env.FIX_CODE || process.argv[2];
-const affectedFiles = JSON.parse(process.env.AFFECTED_FILES || process.argv[3]);
+
+if (!process.env.AFFECTED_FILES) {
+  console.error('❌ AFFECTED_FILES environment variable is not set');
+  console.error('Available env vars:', Object.keys(process.env).filter(k => k.includes('AFFECTED')));
+  process.exit(1);
+}
+
+let affectedFiles;
+try {
+  affectedFiles = JSON.parse(process.env.AFFECTED_FILES);
+} catch (error) {
+  console.error('❌ Failed to parse AFFECTED_FILES as JSON');
+  console.error('AFFECTED_FILES content:', process.env.AFFECTED_FILES);
+  console.error('Parse error:', error.message);
+  process.exit(1);
+}
+
+if (!Array.isArray(affectedFiles) || affectedFiles.length === 0) {
+  console.error('❌ AFFECTED_FILES must be a non-empty array');
+  console.error('Got:', affectedFiles);
+  process.exit(1);
+}
 
 const mainFile = affectedFiles[0];
+console.log(`Generating tests for main file: ${mainFile}`);
 const { execSync } = require('child_process');
 
 function findTestDirectory(sourceFile) {
