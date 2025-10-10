@@ -67,7 +67,23 @@ final class DashboardInteractorLive: DashboardInteractor {
             }
             .map { courses in
                 courses.sorted {
-                    ($0.learningObjectCardModel != nil) && ($1.learningObjectCardModel == nil)
+                    // First, prioritize Horizon courses (those with learningObjectCardModel)
+                    let lhs = $0.learningObjectCardModel != nil
+                    let rhs = $1.learningObjectCardModel != nil
+                    
+                    if lhs != rhs {
+                        return lhs
+                    }
+                    
+                    // Then sort by position if available
+                    if let lhsPosition = $0.position, let rhsPosition = $1.position {
+                        if lhsPosition != rhsPosition {
+                            return lhsPosition < rhsPosition
+                        }
+                    }
+                    
+                    // Finally, sort by name for stable ordering
+                    return $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
                 }
             }
             .receive(on: scheduler)
@@ -77,43 +93,23 @@ final class DashboardInteractorLive: DashboardInteractor {
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
         NotificationCenter.default
             .publisher(for: .moduleItemRequirementCompleted)
-            .compactMap { $0.object as? ModuleItemAttributes }
-            .flatMap {
-                Publishers.Zip(
-                    ReactiveStore(
-                        useCase: GetModuleItem(
-                            courseID: $0.courseID,
-                            moduleID: $0.moduleID,
-                            itemID: $0.itemID
-                        )
-                    )
-                    .getEntities(ignoreCache: true),
-
-                    ReactiveStore(
-                        useCase: GetModule(
-                            courseID: $0.courseID,
-                            moduleID: $0.moduleID
-                        )
-                    )
+            .delay(for: .milliseconds(500), scheduler: scheduler)
+            .flatMapLatest { _ in
+                ReactiveStore(useCase: GetHCoursesProgressionUseCase(userId: self.userId, horizonCourses: true))
                     .getEntities(ignoreCache: true)
-                )
+                    .replaceError(with: [])
+                    .map { _ in () }
             }
-            .replaceError(with: ([], []))
-            .map { _ in () }
+            .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 
     func getUnreadInboxMessageCount() -> AnyPublisher<Int, Never> {
-        ReactiveStore(
-            useCase: GetInboxMessageList(currentUserId: userId)
-        )
-        .getEntities(ignoreCache: true)
-        .map { messages in
-            messages.reduce(0) { count, message in
-                message.state == .unread ? count + 1 : count
-            }
-        }
-        .replaceError(with: 0)
-        .eraseToAnyPublisher()
+        ReactiveStore(useCase: GetConversationUnreadCountUseCase())
+            .getEntities(ignoreCache: false)
+            .replaceError(with: [])
+            .map { $0.first?.count ?? 0 }
+            .receive(on: scheduler)
+            .eraseToAnyPublisher()
     }
 }
