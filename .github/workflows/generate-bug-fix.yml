@@ -173,21 +173,37 @@ jobs:
           echo "Changed files:"
           echo "$CHANGED_FILES"
 
-          # Lint only changed files
-          echo "$CHANGED_FILES" | xargs swiftlint lint --strict || {
-            echo "⚠️ SwiftLint found issues in changed files. Attempting auto-fix..."
-            echo "$CHANGED_FILES" | xargs swiftlint --fix --quiet
+          # First, attempt to auto-fix issues
+          echo "Attempting SwiftLint auto-fix..."
+          echo "$CHANGED_FILES" | xargs swiftlint --fix --quiet
 
-            if [[ -n $(git status -s) ]]; then
-              echo "✓ SwiftLint auto-fixed some issues"
-              git add .
-              git commit -m "style: apply SwiftLint auto-fixes
+          # Commit auto-fixes if any
+          if [[ -n $(git status -s) ]]; then
+            echo "✓ SwiftLint auto-fixed some issues"
+            git add .
+            git commit -m "style: apply SwiftLint auto-fixes
 
-              Applied SwiftLint auto-fixes to Claude-generated code.
+            Applied SwiftLint auto-fixes to Claude-generated code.
 
-              Co-Authored-By: Claude <noreply@anthropic.com>" || true
-            fi
-          }
+            Co-Authored-By: Claude <noreply@anthropic.com>" || true
+          else
+            echo "No auto-fixable issues found"
+          fi
+
+          # Now lint to check for remaining issues
+          echo "Running SwiftLint to check for remaining issues..."
+          if ! echo "$CHANGED_FILES" | xargs swiftlint lint --strict; then
+            echo ""
+            echo "❌ SwiftLint found issues that could not be auto-fixed."
+            echo "The generated code does not meet SwiftLint standards."
+            echo ""
+            echo "Possible solutions:"
+            echo "1. Re-run the workflow (Claude may generate better code)"
+            echo "2. Manually fix the issues in the created branch"
+            echo "3. Review the CLAUDE.md file to ensure it has correct SwiftLint guidance"
+            exit 1
+          fi
+          echo "✓ All SwiftLint checks passed"
 
       - name: Build Project
         run: |
