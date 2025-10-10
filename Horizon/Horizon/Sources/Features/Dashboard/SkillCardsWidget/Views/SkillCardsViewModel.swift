@@ -1,0 +1,73 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import CombineSchedulers
+import Combine
+import Observation
+import Foundation
+
+@Observable
+final class SkillCardsViewModel {
+    enum ViewState: Equatable {
+        case data(skills: [SkillCardModel])
+        case empty
+        case error
+        case loading
+    }
+
+    // MARK: - Outputs
+
+    private(set) var state: ViewState = .loading
+
+    // MARK: - Private variables
+
+    private var subscriptions = Set<AnyCancellable>()
+    private let scheduler: AnySchedulerOf<DispatchQueue>
+
+    // MARK: - Dependencies
+
+    private let interactor: SkillCardsInteractor
+
+    // MARK: - Init
+
+    init(
+        interactor: SkillCardsInteractor,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
+        self.interactor = interactor
+        self.scheduler = scheduler
+        getSkills()
+    }
+
+    func getSkills(ignoreCache: Bool = false) {
+        state = .loading
+        interactor
+            .getSkills(ignoreCache: ignoreCache)
+            .receive(on: scheduler)
+            .sinkFailureOrValue { [weak self] _ in
+                self?.state = .error
+            } receiveValue: { [weak self] skills in
+                if skills.isEmpty {
+                    self?.state = .empty
+                } else {
+                    self?.state = .data(skills: skills)
+                }
+            }
+            .store(in: &subscriptions)
+    }
+}
