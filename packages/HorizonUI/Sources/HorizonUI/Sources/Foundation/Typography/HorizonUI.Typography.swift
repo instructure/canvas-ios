@@ -57,6 +57,10 @@ public extension HorizonUI {
                 }
             }
 
+            public var fontSize: CGFloat {
+                HorizonUI.fonts.uiFont(font: font).pointSize
+            }
+
             public var letterSpacing: CGFloat {
                 switch self {
                 case .labelSmallBold: return 0.25
@@ -81,10 +85,11 @@ public extension HorizonUI {
         }
 
         public func body(content: Content) -> some View {
+            let lineHeight = name.fontSize * name.lineHeightMultiple
+            let lineSpacing = lineHeight - name.fontSize
             content
                 .font(name.font)
-                // TODO: Research line height implementation
-//                .lineSpacing(name.lineSpacing)
+                .lineSpacing(lineSpacing)
                 .tracking(name.letterSpacing)
         }
     }
