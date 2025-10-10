@@ -1,8 +1,6 @@
-name: Jira iOS Bug Analysis
+name: Generate Bug Fix Suggestion
 
 on:
-  repository_dispatch:
-    types: [jira-ios-bug-created]
   workflow_dispatch:
     inputs:
       issue_key:
@@ -11,8 +9,8 @@ on:
         type: string
 
 jobs:
-  analyze-bug:
-    runs-on: ubuntu-latest
+  generate-fix:
+    runs-on: macos-latest
 
     steps:
       - name: Checkout repository
@@ -23,21 +21,15 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Fetch Jira Issue Details
+      - name: Fetch Jira Issue and Analysis
         id: jira-fetch
         env:
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
           JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            ISSUE_KEY="${{ inputs.issue_key }}"
-          else
-            ISSUE_KEY="${{ github.event.client_payload.issue_key }}"
-          fi
-
+          ISSUE_KEY="${{ inputs.issue_key }}"
           echo "Fetching Jira issue: $ISSUE_KEY"
-          echo "Jira URL: $JIRA_BASE_URL/rest/api/3/issue/$ISSUE_KEY"
 
           AUTH_STRING="${JIRA_EMAIL}:${JIRA_API_TOKEN}"
           AUTH_HEADER="Authorization: Basic $(printf '%s' "$AUTH_STRING" | base64 -w 0)"
@@ -50,11 +42,8 @@ jobs:
           HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
           RESPONSE_BODY=$(echo "$RESPONSE" | sed '$d')
 
-          echo "HTTP Status Code: $HTTP_CODE"
-
           if [ "$HTTP_CODE" != "200" ]; then
             echo "Error: Failed to fetch Jira issue. HTTP $HTTP_CODE"
-            echo "Response: $RESPONSE_BODY"
             exit 1
           fi
 
@@ -64,27 +53,43 @@ jobs:
 
           echo "issue_key=$ISSUE_KEY" >> $GITHUB_OUTPUT
 
-      - name: Analyze Bug with Claude
-        id: claude-analysis
+      - name: Extract Bug Information
+        id: extract-info
+        run: |
+          node .github/scripts/extract-bug-info.js \
+            '${{ steps.jira-fetch.outputs.jira_response }}'
+
+      - name: Read Affected Files
+        id: read-files
+        run: |
+          node .github/scripts/read-affected-files.js \
+            '${{ steps.extract-info.outputs.affected_files }}'
+
+      - name: Generate Fix with Claude
+        id: generate-fix
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          node .github/scripts/analyze-bug.js \
-            '${{ steps.jira-fetch.outputs.jira_response }}'
+          node .github/scripts/generate-fix.js \
+            '${{ steps.jira-fetch.outputs.jira_response }}' \
+            '${{ steps.read-files.outputs.file_contents }}'
 
-      - name: Search Codebase for Context
-        id: code-search
+      - name: Generate or Update Tests
+        id: generate-tests
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          node .github/scripts/search-code-context.js \
-            '${{ steps.jira-fetch.outputs.jira_response }}'
+          node .github/scripts/generate-tests.js \
+            '${{ steps.generate-fix.outputs.fix_code }}' \
+            '${{ steps.extract-info.outputs.affected_files }}'
 
-      - name: Post Analysis to Jira
+      - name: Post Fix Suggestion to Jira
         env:
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
           JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
           ISSUE_KEY: ${{ steps.jira-fetch.outputs.issue_key }}
-          ANALYSIS_TEXT: ${{ steps.claude-analysis.outputs.analysis }}
-          CODE_CONTEXT: ${{ steps.code-search.outputs.context }}
+          FIX_SUGGESTION: ${{ steps.generate-fix.outputs.fix_code }}
+          TEST_CODE: ${{ steps.generate-tests.outputs.test_code }}
         run: |
-          node .github/scripts/post-to-jira.js
+          node .github/scripts/post-fix-to-jira.js
