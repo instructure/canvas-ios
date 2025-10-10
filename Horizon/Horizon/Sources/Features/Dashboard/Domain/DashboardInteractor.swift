@@ -66,54 +66,36 @@ final class DashboardInteractorLive: DashboardInteractor {
                     }
             }
             .map { courses in
-                courses.sorted {
-                    ($0.learningObjectCardModel != nil) && ($1.learningObjectCardModel == nil)
+                courses.sorted { course1, course2 in
+                    let completion1 = course1.learningObjectCardModel?.completionPercentage ?? 0
+                    let completion2 = course2.learningObjectCardModel?.completionPercentage ?? 0
+                    let isCompleted1 = completion1 >= 1.0
+                    let isCompleted2 = completion2 >= 1.0
+
+                    if isCompleted1 == isCompleted2 {
+                        return completion1 > completion2
+                    }
+                    return !isCompleted1
                 }
             }
             .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 
+    /// It fetches the details, including the modules from the REST API, of the courses that have already been obtained from GraphQL in the previous method
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
-        NotificationCenter.default
+        return NotificationCenter.default
             .publisher(for: .moduleItemRequirementCompleted)
-            .compactMap { $0.object as? ModuleItemAttributes }
-            .flatMap {
-                Publishers.Zip(
-                    ReactiveStore(
-                        useCase: GetModuleItem(
-                            courseID: $0.courseID,
-                            moduleID: $0.moduleID,
-                            itemID: $0.itemID
-                        )
-                    )
-                    .getEntities(ignoreCache: true),
-
-                    ReactiveStore(
-                        useCase: GetModule(
-                            courseID: $0.courseID,
-                            moduleID: $0.moduleID
-                        )
-                    )
-                    .getEntities(ignoreCache: true)
-                )
-            }
-            .replaceError(with: ([], []))
-            .map { _ in () }
+            .map { _ in }
             .eraseToAnyPublisher()
     }
 
     func getUnreadInboxMessageCount() -> AnyPublisher<Int, Never> {
-        ReactiveStore(
-            useCase: GetInboxMessageList(currentUserId: userId)
-        )
-        .getEntities(ignoreCache: true)
-        .map { messages in
-            messages.reduce(0) { count, message in
-                message.state == .unread ? count + 1 : count
-            }
-        }
-        .replaceError(with: 0)
-        .eraseToAnyPublisher()
+        let useCase = GetHorizonConversationsUnreadCount()
+        return ReactiveStore(useCase: useCase)
+            .getEntities(ignoreCache: true)
+            .replaceError(with: [])
+            .compactMap { $0.first?.count }
+            .eraseToAnyPublisher()
     }
 }
