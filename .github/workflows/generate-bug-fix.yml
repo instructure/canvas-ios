@@ -14,7 +14,7 @@ on:
         default: false
 
 jobs:
-  apply-fix:
+  generate-bug-fix:
     runs-on: macos-latest
 
     steps:
@@ -116,9 +116,13 @@ jobs:
         run: |
           node .github/scripts/generate-bug-fix/apply-tests.js
 
+      - name: Provision CI Environment
+        run: |
+          make provision-ci
+
       - name: Sync Xcode Project
         run: |
-          make sync
+          make sync-ci
 
       - name: Run SwiftLint
         continue-on-error: true
