@@ -22,7 +22,7 @@ import Foundation
 import Observation
 
 @Observable
-final class DashboardViewModel {
+class DashboardViewModel {
     // MARK: - Outputs
 
     private(set) var state: InstUI.ScreenState = .loading
