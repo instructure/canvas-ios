@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LegacySectionHeaderView" customModule="Core" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="22"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUM-gA-Y6U">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="22"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lzF-jU-snW" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="uql-FP-NhA"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfo-l2-elR" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                    <rect key="frame" x="16" y="24" width="382" height="17"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                    <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jU3-ct-e2S" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="21" width="414" height="1"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="hwB-i5-0r9"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Zfo-l2-elR" secondAttribute="bottom" constant="4" id="05I-vS-LV4"/>
+                <constraint firstItem="Zfo-l2-elR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="4" id="87h-8l-9Zh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Zfo-l2-elR" secondAttribute="trailing" constant="16" id="9j0-pb-iLs"/>
+                <constraint firstItem="lzF-jU-snW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Cqp-aZ-tSN"/>
+                <constraint firstAttribute="bottom" secondItem="NUM-gA-Y6U" secondAttribute="bottom" id="Evs-Qy-TNH"/>
+                <constraint firstItem="lzF-jU-snW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="GgD-XO-gaW"/>
+                <constraint firstAttribute="trailing" secondItem="jU3-ct-e2S" secondAttribute="trailing" id="Nmm-l6-v94"/>
+                <constraint firstItem="NUM-gA-Y6U" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fcg-YY-5we"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lzF-jU-snW" secondAttribute="trailing" id="fiu-gX-8ec"/>
+                <constraint firstItem="jU3-ct-e2S" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="koS-uf-RnR"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="jU3-ct-e2S" secondAttribute="bottom" id="oeN-IV-Uw1"/>
+                <constraint firstItem="NUM-gA-Y6U" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="riw-Rg-WYH"/>
+                <constraint firstItem="Zfo-l2-elR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="wTK-JF-fWs"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NUM-gA-Y6U" secondAttribute="trailing" id="yD7-hF-dEp"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bgView" destination="NUM-gA-Y6U" id="O9U-Dy-c5w"/>
+                <outlet property="titleLabel" destination="Zfo-l2-elR" id="29R-1H-CeD"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="153"/>
+        </view>
+    </objects>
+</document>

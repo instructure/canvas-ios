@@ -67,7 +67,7 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
         tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
-        tableView.registerHeaderFooterView(SectionHeaderView.self)
+        tableView.registerHeaderFooterView(LegacySectionHeaderView.self)
         tableView.separatorColor = .borderMedium
 
         colors.refresh()
@@ -128,7 +128,7 @@ extension ConferenceListViewController: UITableViewDataSource, UITableViewDelega
     }
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
+        let view = tableView.dequeueHeaderFooter(LegacySectionHeaderView.self)
         view.titleLabel?.text = conferences[IndexPath(row: 0, section: section)]?.isConcluded == true
             ? String(localized: "Concluded Conferences", bundle: .core)
             : String(localized: "New Conferences", bundle: .core)

@@ -120,7 +120,7 @@ extension QuizListViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let typeRaw = quizzes.sections?[section].name, let type = QuizType(rawValue: typeRaw) else { return nil }
-        return SectionHeaderView.create(title: type.sectionTitle, section: section)
+        return LegacySectionHeaderView.create(title: type.sectionTitle, section: section)
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

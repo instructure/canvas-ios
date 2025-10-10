@@ -18,11 +18,17 @@
 
 import UIKit
 
-@available(iOS, introduced: 26, message: "Legacy version exists")
-public class SectionHeaderView: UITableViewHeaderFooterView {
+@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+public class LegacySectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak public var titleLabel: UILabel!
+    @IBOutlet weak var bgView: UIView!
 
-    public static func create(title: String, section: Int) -> SectionHeaderView {
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+		bgView.backgroundColor = .backgroundLight
+    }
+
+    public static func create(title: String, section: Int) -> LegacySectionHeaderView {
         let view = loadFromXib()
         view.titleLabel.text = title
         return view
