@@ -160,15 +160,32 @@ jobs:
 
       - name: Run SwiftLint
         run: |
-          echo "Running SwiftLint..."
-          swiftlint lint --strict || {
-            echo "⚠️ SwiftLint found issues. Attempting auto-fix..."
-            swiftlint --fix --quiet
-            git diff --name-only
+          echo "Running SwiftLint on changed files..."
+
+          # Get list of changed Swift files
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACM | grep '\.swift$' || true)
+
+          if [[ -z "$CHANGED_FILES" ]]; then
+            echo "No Swift files changed, skipping SwiftLint"
+            exit 0
+          fi
+
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+
+          # Lint only changed files
+          echo "$CHANGED_FILES" | xargs swiftlint lint --strict || {
+            echo "⚠️ SwiftLint found issues in changed files. Attempting auto-fix..."
+            echo "$CHANGED_FILES" | xargs swiftlint --fix --quiet
+
             if [[ -n $(git status -s) ]]; then
               echo "✓ SwiftLint auto-fixed some issues"
               git add .
-              git commit -m "style: apply SwiftLint auto-fixes" || true
+              git commit -m "style: apply SwiftLint auto-fixes
+
+Applied SwiftLint auto-fixes to Claude-generated code.
+
+Co-Authored-By: Claude <noreply@anthropic.com>" || true
             fi
           }
 
