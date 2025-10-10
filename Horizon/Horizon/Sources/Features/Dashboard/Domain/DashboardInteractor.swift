@@ -66,8 +66,35 @@ final class DashboardInteractorLive: DashboardInteractor {
                     }
             }
             .map { courses in
-                courses.sorted {
-                    ($0.learningObjectCardModel != nil) && ($1.learningObjectCardModel == nil)
+                courses.sorted { course1, course2 in
+                    let card1 = course1.learningObjectCardModel
+                    let card2 = course2.learningObjectCardModel
+
+                    // Courses without cards go to the end
+                    if card1 == nil && card2 == nil {
+                        return false
+                    }
+                    if card1 == nil {
+                        return false
+                    }
+                    if card2 == nil {
+                        return true
+                    }
+
+                    guard let card1 = card1, let card2 = card2 else {
+                        return false
+                    }
+
+                    // Completed courses go to the end
+                    if card1.isCompleted && !card2.isCompleted {
+                        return false
+                    }
+                    if !card1.isCompleted && card2.isCompleted {
+                        return true
+                    }
+
+                    // If both completed or both incomplete, sort by completion percentage descending
+                    return card1.completionPercentage > card2.completionPercentage
                 }
             }
             .receive(on: scheduler)
@@ -77,43 +104,27 @@ final class DashboardInteractorLive: DashboardInteractor {
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
         NotificationCenter.default
             .publisher(for: .moduleItemRequirementCompleted)
-            .compactMap { $0.object as? ModuleItemAttributes }
-            .flatMap {
-                Publishers.Zip(
-                    ReactiveStore(
-                        useCase: GetModuleItem(
-                            courseID: $0.courseID,
-                            moduleID: $0.moduleID,
-                            itemID: $0.itemID
-                        )
-                    )
-                    .getEntities(ignoreCache: true),
-
-                    ReactiveStore(
-                        useCase: GetModule(
-                            courseID: $0.courseID,
-                            moduleID: $0.moduleID
-                        )
-                    )
+            .delay(for: .milliseconds(500), scheduler: scheduler)
+            .flatMapLatest {
+                guard let courseId = $0.object as? String else {
+                    return Just(()).eraseToAnyPublisher()
+                }
+                return ReactiveStore(useCase: GetModules(courseID: courseId))
                     .getEntities(ignoreCache: true)
-                )
+                    .replaceError(with: [])
+                    .map { _ in () }
+                    .eraseToAnyPublisher()
             }
-            .replaceError(with: ([], []))
-            .map { _ in () }
+            .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 
     func getUnreadInboxMessageCount() -> AnyPublisher<Int, Never> {
-        ReactiveStore(
-            useCase: GetInboxMessageList(currentUserId: userId)
-        )
-        .getEntities(ignoreCache: true)
-        .map { messages in
-            messages.reduce(0) { count, message in
-                message.state == .unread ? count + 1 : count
-            }
-        }
-        .replaceError(with: 0)
-        .eraseToAnyPublisher()
+        ReactiveStore(useCase: GetConversationsUnreadCount())
+            .getEntities(ignoreCache: true)
+            .map { $0.first?.count ?? 0 }
+            .replaceError(with: 0)
+            .receive(on: scheduler)
+            .eraseToAnyPublisher()
     }
 }
