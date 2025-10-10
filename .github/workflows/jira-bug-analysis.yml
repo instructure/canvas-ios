@@ -37,9 +37,13 @@ jobs:
           fi
 
           echo "Fetching Jira issue: $ISSUE_KEY"
+          echo "Jira URL: $JIRA_BASE_URL/rest/api/3/issue/$ISSUE_KEY"
+
+          AUTH_STRING="${JIRA_EMAIL}:${JIRA_API_TOKEN}"
+          AUTH_HEADER="Authorization: Basic $(printf '%s' "$AUTH_STRING" | base64 -w 0)"
 
           RESPONSE=$(curl -s -w "\n%{http_code}" -X GET \
-            -H "Authorization: Basic $(echo -n $JIRA_EMAIL:$JIRA_API_TOKEN | base64)" \
+            -H "$AUTH_HEADER" \
             -H "Content-Type: application/json" \
             "$JIRA_BASE_URL/rest/api/3/issue/$ISSUE_KEY")
 
