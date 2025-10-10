@@ -18,6 +18,7 @@
 
 import UIKit
 
+@available(iOS, deprecated: 26)
 public protocol ColoredNavViewProtocol: AnyObject {
     var color: UIColor? { get set }
     var navigationController: UINavigationController? { get }

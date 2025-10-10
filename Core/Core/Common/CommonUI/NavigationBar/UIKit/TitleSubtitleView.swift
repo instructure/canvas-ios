@@ -52,17 +52,19 @@ public class TitleSubtitleView: UIView {
     }
 
     public static func create() -> Self {
-        let view = loadFromXib()
-        view.titleLabel.text = ""
-        view.subtitleLabel.text = ""
-        view.titleLabel.font = .scaledNamedFont(.semibold16)
-        view.subtitleLabel.font = .scaledNamedFont(.regular14)
-        view.titleLabel.accessibilityElementsHidden = true
-        view.subtitleLabel.accessibilityElementsHidden = true
-        view.accessibilityTraits = [.header]
-        view.showsLargeContentViewer = true
-        view.addInteraction(UILargeContentViewerInteraction())
-        return view
+		guard #available(iOS 26, *) else { return Self() }
+
+		let view = loadFromXib()
+		view.titleLabel.text = ""
+		view.subtitleLabel.text = ""
+		view.titleLabel.font = .scaledNamedFont(.semibold16)
+		view.subtitleLabel.font = .scaledNamedFont(.regular14)
+		view.titleLabel.accessibilityElementsHidden = true
+		view.subtitleLabel.accessibilityElementsHidden = true
+		view.accessibilityTraits = [.header]
+		view.showsLargeContentViewer = true
+		view.addInteraction(UILargeContentViewerInteraction())
+		return view
     }
 
     public func recreate() -> TitleSubtitleView {
