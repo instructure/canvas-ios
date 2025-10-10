@@ -5,9 +5,51 @@ const fs = require('fs');
 
 const jiraIssue = JSON.parse(process.env.JIRA_RESPONSE || process.argv[2]);
 const fileContents = JSON.parse(process.env.FILE_CONTENTS || process.argv[3]);
+const jiraCommentsRaw = process.env.JIRA_COMMENTS;
 
 const summary = jiraIssue.fields.summary || '';
 const description = jiraIssue.fields.description?.content?.[0]?.content?.[0]?.text || '';
+
+function extractComments(commentsJson) {
+  if (!commentsJson) return '';
+
+  try {
+    const commentsData = JSON.parse(commentsJson);
+    const comments = commentsData.comments || [];
+
+    const relevantComments = comments
+      .map(comment => {
+        const author = comment.author?.displayName || 'Unknown';
+        const body = extractCommentText(comment.body);
+        return `${author}: ${body}`;
+      })
+      .join('\n\n');
+
+    return relevantComments ? `\nPREVIOUS ANALYSIS AND COMMENTS:\n${relevantComments}\n` : '';
+  } catch (error) {
+    return '';
+  }
+}
+
+function extractCommentText(body) {
+  if (!body || !body.content) return '';
+
+  let text = '';
+  for (const block of body.content) {
+    if (block.type === 'paragraph' && block.content) {
+      for (const item of block.content) {
+        if (item.type === 'text') {
+          text += item.text + ' ';
+        }
+      }
+    } else if (block.type === 'heading' && block.content) {
+      text += '\n' + block.content.map(c => c.text).join('') + '\n';
+    }
+  }
+  return text.trim();
+}
+
+const commentsContext = extractComments(jiraCommentsRaw);
 
 const filesContext = Object.entries(fileContents)
   .filter(([_, content]) => content)
@@ -23,6 +65,7 @@ const prompt = `You are fixing a bug in the Canvas Student iOS app (Career exper
 BUG REPORT:
 Summary: ${summary}
 Description: ${description}
+${commentsContext}
 
 CURRENT CODE:
 ${filesContext}
