@@ -119,17 +119,25 @@ jobs:
       - name: Provision CI Environment
         run: |
           make provision-ci
+          brew install swiftlint
 
       - name: Sync Xcode Project
         run: |
           make sync-ci
 
       - name: Run SwiftLint
-        continue-on-error: true
         run: |
-          if command -v swiftlint &> /dev/null; then
-            swiftlint lint --strict --quiet || echo "SwiftLint found issues"
-          fi
+          echo "Running SwiftLint..."
+          swiftlint lint --strict || {
+            echo "⚠️ SwiftLint found issues. Attempting auto-fix..."
+            swiftlint --fix --quiet
+            git diff --name-only
+            if [[ -n $(git status -s) ]]; then
+              echo "✓ SwiftLint auto-fixed some issues"
+              git add .
+              git commit -m "style: apply SwiftLint auto-fixes" || true
+            fi
+          }
 
       - name: Build Project
         run: |
@@ -180,6 +188,7 @@ jobs:
           TEST_CODE: ${{ steps.generate-tests.outputs.test_code }}
           SKIP_TESTS: ${{ inputs.skip_tests }}
           AFFECTED_FILES: ${{ steps.extract-info.outputs.affected_files }}
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
         run: |
           node .github/scripts/generate-bug-fix/create-pr.js
 
