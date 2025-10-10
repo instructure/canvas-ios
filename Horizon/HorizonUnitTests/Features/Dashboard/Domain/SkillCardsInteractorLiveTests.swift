@@ -54,15 +54,4 @@ final class SkillCardsInteractorLiveTests: HorizonTestCase {
             XCTAssertEqual(skills[3].status, "proficient")
         }
     }
-
-//    func testGetSkillsErrorState() {
-//        // Given
-//        let useCase = GetHSkillsUseCase(journey: DomainServiceMock(result: .failure(DomainService.Issue.unableToGetToken)))
-//        let testee = DashboardInteractorLive(userId: "122", skillUseCase: useCase, scheduler: .immediate)
-//
-//        // Then
-//        XCTAssertFirstValueAndCompletion(testee.getSkills(ignoreCache: true)) { state in
-//            XCTAssertEqual(state, .error)
-//        }
-//    }
 }
