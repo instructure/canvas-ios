@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const affectedFiles = JSON.parse(process.argv[2]);
+const affectedFiles = JSON.parse(process.env.AFFECTED_FILES || process.argv[2]);
 
 const fileContents = {};
 

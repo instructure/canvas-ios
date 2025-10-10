@@ -55,33 +55,35 @@ jobs:
 
       - name: Extract Bug Information
         id: extract-info
+        env:
+          JIRA_RESPONSE: ${{ steps.jira-fetch.outputs.jira_response }}
         run: |
-          node .github/scripts/extract-bug-info.js \
-            '${{ steps.jira-fetch.outputs.jira_response }}'
+          node .github/scripts/extract-bug-info.js
 
       - name: Read Affected Files
         id: read-files
+        env:
+          AFFECTED_FILES: ${{ steps.extract-info.outputs.affected_files }}
         run: |
-          node .github/scripts/read-affected-files.js \
-            '${{ steps.extract-info.outputs.affected_files }}'
+          node .github/scripts/read-affected-files.js
 
       - name: Generate Fix with Claude
         id: generate-fix
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          JIRA_RESPONSE: ${{ steps.jira-fetch.outputs.jira_response }}
+          FILE_CONTENTS: ${{ steps.read-files.outputs.file_contents }}
         run: |
-          node .github/scripts/generate-fix.js \
-            '${{ steps.jira-fetch.outputs.jira_response }}' \
-            '${{ steps.read-files.outputs.file_contents }}'
+          node .github/scripts/generate-fix.js
 
       - name: Generate or Update Tests
         id: generate-tests
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FIX_CODE: ${{ steps.generate-fix.outputs.fix_code }}
+          AFFECTED_FILES: ${{ steps.extract-info.outputs.affected_files }}
         run: |
-          node .github/scripts/generate-tests.js \
-            '${{ steps.generate-fix.outputs.fix_code }}' \
-            '${{ steps.extract-info.outputs.affected_files }}'
+          node .github/scripts/generate-tests.js
 
       - name: Post Fix Suggestion to Jira
         env:

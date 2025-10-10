@@ -3,8 +3,8 @@
 const https = require('https');
 const fs = require('fs');
 
-const jiraIssue = JSON.parse(process.argv[2]);
-const fileContents = JSON.parse(process.argv[3]);
+const jiraIssue = JSON.parse(process.env.JIRA_RESPONSE || process.argv[2]);
+const fileContents = JSON.parse(process.env.FILE_CONTENTS || process.argv[3]);
 
 const summary = jiraIssue.fields.summary || '';
 const description = jiraIssue.fields.description?.content?.[0]?.content?.[0]?.text || '';

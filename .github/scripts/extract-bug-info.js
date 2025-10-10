@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 
-const jiraIssue = JSON.parse(process.argv[2]);
+const jiraIssue = JSON.parse(process.env.JIRA_RESPONSE || process.argv[2]);
 
 const summary = jiraIssue.fields.summary || '';
 
@@ -49,12 +49,6 @@ const affectedFiles = [
   'Horizon/Horizon/Sources/Features/Dashboard/View/DashboardViewModel.swift',
   'Horizon/Horizon/Sources/Common/Data/HCourse.swift'
 ];
-
-const bugInfo = {
-  summary,
-  description,
-  affectedFiles
-};
 
 fs.appendFileSync(process.env.GITHUB_OUTPUT, `affected_files<<EOF\n${JSON.stringify(affectedFiles)}\nEOF\n`);
 fs.appendFileSync(process.env.GITHUB_OUTPUT, `bug_summary<<EOF\n${summary}\nEOF\n`);

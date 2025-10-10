@@ -4,8 +4,8 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-const fixCode = process.argv[2];
-const affectedFiles = JSON.parse(process.argv[3]);
+const fixCode = process.env.FIX_CODE || process.argv[2];
+const affectedFiles = JSON.parse(process.env.AFFECTED_FILES || process.argv[3]);
 
 const mainFile = affectedFiles[0];
 const testFilePath = mainFile
