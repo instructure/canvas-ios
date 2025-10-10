@@ -23,16 +23,14 @@ import Foundation
 final class SkillCardsInteractorMocks: SkillCardsInteractor {
     var shouldFail = false
     var error: Error = URLError(.badServerResponse)
-    var skillsToReturn: [SkillCardModel]? = nil
-    var lastIgnoreCache: Bool? = nil
+    var lastIgnoreCache: Bool?
 
     func getSkills(ignoreCache: Bool) -> AnyPublisher<[SkillCardModel], Error> {
         lastIgnoreCache = ignoreCache
         if shouldFail {
             return Fail(error: error).eraseToAnyPublisher()
         } else {
-            let skills = skillsToReturn ?? HSkillStubs.skills
-            return Just(skills)
+            return Just(HSkillStubs.skills)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
