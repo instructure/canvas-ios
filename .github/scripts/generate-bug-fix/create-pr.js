@@ -26,9 +26,14 @@ Write a 2-3 sentence summary explaining HOW the bug was fixed. Focus on:
 - What the actual code change does (e.g., "updated sorting logic to...", "added null check for...")
 - Keep it simple and readable for code reviewers
 
+IMPORTANT FORMATTING:
+- Use backticks for ALL code references (class names, function names, properties, etc.)
+- Example: "Updated \`DashboardViewModel\` to add null check in \`loadCourses()\` method"
+- Example: "Modified \`CourseCardView\` to handle nil \`enrollmentState\` property"
+
 Do NOT just repeat the bug description. Explain the solution.
 
-Output only the summary text, no markdown, no preamble.`;
+Output only the summary text with proper markdown backticks for code elements.`;
 
   return new Promise((resolve, reject) => {
     const requestBody = JSON.stringify({

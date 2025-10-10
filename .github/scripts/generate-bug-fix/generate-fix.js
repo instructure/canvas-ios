@@ -10,6 +10,18 @@ const jiraCommentsRaw = process.env.JIRA_COMMENTS;
 const summary = jiraIssue.fields.summary || '';
 const description = jiraIssue.fields.description?.content?.[0]?.content?.[0]?.text || '';
 
+// Read project conventions from CLAUDE.MD
+let projectConventions = '';
+try {
+  const claudeMdPath = 'CLAUDE.md';
+  if (fs.existsSync(claudeMdPath)) {
+    projectConventions = fs.readFileSync(claudeMdPath, 'utf-8');
+    console.log('✓ Loaded project conventions from CLAUDE.md');
+  }
+} catch (error) {
+  console.log('⚠️ Could not read CLAUDE.md, proceeding without project conventions');
+}
+
 function extractComments(commentsJson) {
   if (!commentsJson) return '';
 
@@ -62,7 +74,7 @@ const filesContext = Object.entries(fileContents)
 
 const prompt = `You are fixing a bug in the Canvas Student iOS app (Career experience - Horizon module).
 
-BUG REPORT:
+${projectConventions ? `PROJECT CONVENTIONS AND GUIDELINES:\n${projectConventions}\n\n` : ''}BUG REPORT:
 Summary: ${summary}
 Description: ${description}
 ${commentsContext}
@@ -72,6 +84,7 @@ ${filesContext}
 
 TASK:
 Generate a fix for this bug. Analyze the code, identify the root cause, and provide the corrected code.
+${projectConventions ? 'IMPORTANT: Follow all project conventions and code style preferences listed above.' : ''}
 
 OUTPUT FORMAT - YOU MUST FOLLOW THIS EXACTLY:
 

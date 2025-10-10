@@ -6,6 +6,18 @@ const path = require('path');
 
 const fixCode = process.env.FIX_CODE || process.argv[2];
 
+// Read project conventions from CLAUDE.MD
+let projectConventions = '';
+try {
+  const claudeMdPath = 'CLAUDE.md';
+  if (fs.existsSync(claudeMdPath)) {
+    projectConventions = fs.readFileSync(claudeMdPath, 'utf-8');
+    console.log('✓ Loaded project conventions from CLAUDE.md');
+  }
+} catch (error) {
+  console.log('⚠️ Could not read CLAUDE.md, proceeding without project conventions');
+}
+
 if (!process.env.AFFECTED_FILES) {
   console.error('❌ AFFECTED_FILES environment variable is not set');
   console.error('Available env vars:', Object.keys(process.env).filter(k => k.includes('AFFECTED')));
@@ -71,7 +83,7 @@ if (fs.existsSync(testFilePath)) {
 
 const prompt = `You are writing unit tests for a bug fix in the Canvas Student iOS app.
 
-BUG FIX CODE:
+${projectConventions ? `PROJECT CONVENTIONS AND GUIDELINES:\n${projectConventions}\n\n` : ''}BUG FIX CODE:
 ${fixCode}
 
 ${existingTestContent ? `EXISTING TEST FILE:\n${existingTestContent}\n\n` : ''}
@@ -85,6 +97,7 @@ Test Requirements:
 3. Follow existing test patterns in the project
 4. Use XCTest framework
 5. Mock dependencies if needed
+${projectConventions ? '6. Follow all project conventions and code style preferences listed above' : ''}
 
 OUTPUT FORMAT:
 TEST_FILE_START: ${testFilePath}
