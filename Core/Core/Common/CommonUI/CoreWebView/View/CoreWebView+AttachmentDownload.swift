@@ -39,8 +39,8 @@ extension CoreWebView {
 // MARK: - Model
 
 public struct CoreWebAttachment: Equatable {
-    let url: URL
-    let contentType: String?
+    public let url: URL
+    public let contentType: String?
 
     fileprivate init(url: URL, contentType: String?) {
         self.url = url

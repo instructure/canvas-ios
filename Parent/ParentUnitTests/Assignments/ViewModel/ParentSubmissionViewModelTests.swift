@@ -86,6 +86,81 @@ class ParentSubmissionViewModelTests: ParentTestCase {
         wait(for: [didHideLoadingIndicator], timeout: 1)
         subscription.cancel()
     }
+
+    func testFileDownloadStartedEmitsShowDownloadAlertAction() {
+        let testee = ParentSubmissionViewModel(
+            interactor: mockInteractor,
+            router: router
+        )
+        let expectation = expectation(description: "fileDownloadViewAction")
+        var receivedAction: ParentSubmissionViewModel.FileDownloadViewAction?
+
+        let subscription = testee.fileDownloadViewAction
+            .sink { action in
+                receivedAction = action
+                expectation.fulfill()
+            }
+
+        // WHEN
+        testee.fileDownloadEvent.send(.started)
+
+        // THEN
+        wait(for: [expectation], timeout: 1)
+        XCTAssertEqual(receivedAction, .showDownloadAlert)
+        subscription.cancel()
+    }
+
+    func testFileDownloadCompletedEmitsShowShareSheetAction() {
+        let testee = ParentSubmissionViewModel(
+            interactor: mockInteractor,
+            router: router
+        )
+        let testURL = URL(string: "file:///test.pdf")!
+        let expectation = expectation(description: "fileDownloadViewAction")
+        var receivedAction: ParentSubmissionViewModel.FileDownloadViewAction?
+
+        let subscription = testee.fileDownloadViewAction
+            .sink { action in
+                receivedAction = action
+                expectation.fulfill()
+            }
+
+        // WHEN
+        testee.fileDownloadEvent.send(.completed(url: testURL))
+
+        // THEN
+        wait(for: [expectation], timeout: 1)
+        if case .showShareSheet(let url) = receivedAction {
+            XCTAssertEqual(url, testURL)
+        } else {
+            XCTFail("Expected .showShareSheet action")
+        }
+        subscription.cancel()
+    }
+
+    func testFileDownloadFailedEmitsShowErrorAlertAction() {
+        let testee = ParentSubmissionViewModel(
+            interactor: mockInteractor,
+            router: router
+        )
+        let testError = NSError(domain: "test", code: 1)
+        let expectation = expectation(description: "fileDownloadViewAction")
+        var receivedAction: ParentSubmissionViewModel.FileDownloadViewAction?
+
+        let subscription = testee.fileDownloadViewAction
+            .sink { action in
+                receivedAction = action
+                expectation.fulfill()
+            }
+
+        // WHEN
+        testee.fileDownloadEvent.send(.failed(error: testError))
+
+        // THEN
+        wait(for: [expectation], timeout: 1)
+        XCTAssertEqual(receivedAction, .showErrorAlert)
+        subscription.cancel()
+    }
 }
 
 private class MockParentSubmissionInteractor: ParentSubmissionInteractor {
