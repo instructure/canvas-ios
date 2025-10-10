@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const { execSync } = require('child_process');
+const https = require('https');
 const fs = require('fs');
 
 const issueKey = process.env.ISSUE_KEY;
@@ -9,55 +10,75 @@ const bugDescription = process.env.BUG_DESCRIPTION;
 const fixCode = process.env.FIX_CODE;
 const skipTests = process.env.SKIP_TESTS === 'true';
 const jiraBaseUrl = process.env.JIRA_BASE_URL || 'https://instructure.atlassian.net';
+const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
 
-function extractClassNames(fixCode) {
-  const classRegex = /(?:class|struct|enum)\s+(\w+)/g;
-  const classes = new Set();
-  let match;
+async function generateFixSummaryWithClaude(fixCode, bugSummary, bugDescription) {
+  const prompt = `You are writing a summary for a pull request that fixes a bug.
 
-  while ((match = classRegex.exec(fixCode)) !== null) {
-    classes.add(match[1]);
-  }
+BUG: ${bugSummary}
+DESCRIPTION: ${bugDescription}
 
-  return Array.from(classes);
+CODE CHANGES (partial):
+${fixCode.substring(0, 2000)}
+
+Write a 2-3 sentence summary explaining HOW the bug was fixed. Focus on:
+- What classes/components were modified
+- What the actual code change does (e.g., "updated sorting logic to...", "added null check for...")
+- Keep it simple and readable for code reviewers
+
+Do NOT just repeat the bug description. Explain the solution.
+
+Output only the summary text, no markdown, no preamble.`;
+
+  return new Promise((resolve, reject) => {
+    const requestBody = JSON.stringify({
+      model: 'claude-sonnet-4-5-20250929',
+      max_tokens: 300,
+      messages: [{ role: 'user', content: prompt }]
+    });
+
+    const options = {
+      hostname: 'api.anthropic.com',
+      path: '/v1/messages',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': anthropicApiKey,
+        'anthropic-version': '2023-06-01',
+        'Content-Length': Buffer.byteLength(requestBody)
+      }
+    };
+
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', (chunk) => { data += chunk; });
+      res.on('end', () => {
+        try {
+          const response = JSON.parse(data);
+          const summary = response.content[0].text.trim();
+          resolve(summary);
+        } catch (error) {
+          console.error('Error parsing Claude response:', error);
+          resolve('This fix addresses the reported issue by modifying the affected components and adding test coverage to prevent regression.');
+        }
+      });
+    });
+
+    req.on('error', (error) => {
+      console.error('Error calling Claude API:', error);
+      resolve('This fix addresses the reported issue by modifying the affected components and adding test coverage to prevent regression.');
+    });
+
+    req.write(requestBody);
+    req.end();
+  });
 }
 
-function generateFixSummary(fixCode, bugSummary) {
-  const classes = extractClassNames(fixCode);
-  const classNames = classes.length > 0 ? classes.join(', ') : 'the affected components';
-
-  const hasSort = /\.sorted|sort\(/i.test(fixCode);
-  const hasNullCheck = /if let|guard let|??\s/i.test(fixCode);
-  const hasFilter = /\.filter/i.test(fixCode);
-  const hasMap = /\.map/i.test(fixCode);
-
-  let summary = `This fix addresses the issue in ${classNames}. `;
-
-  if (hasSort) {
-    summary += 'The sorting logic was updated to provide stable, predictable ordering. ';
-  }
-  if (hasNullCheck) {
-    summary += 'Added proper null safety checks to handle edge cases. ';
-  }
-  if (hasFilter) {
-    summary += 'Improved filtering logic to correctly process data. ';
-  }
-  if (hasMap) {
-    summary += 'Updated data transformation to maintain consistency. ';
-  }
-
-  if (!hasSort && !hasNullCheck && !hasFilter && !hasMap) {
-    summary += 'The code was modified to address the root cause identified in the bug report. ';
-  }
-
-  summary += 'Tests were added to prevent regression.';
-
-  return summary;
-}
-
-function generatePRBody() {
+async function generatePRBody() {
   const jiraUrl = `${jiraBaseUrl}/browse/${issueKey}`;
-  const fixSummary = generateFixSummary(fixCode, bugSummary);
+
+  console.log('Generating fix summary with Claude...');
+  const fixSummary = await generateFixSummaryWithClaude(fixCode, bugSummary, bugDescription);
 
   let body = `## Automated Bug Fix
 
@@ -69,22 +90,12 @@ ${bugSummary}
 ### How It Was Fixed
 ${fixSummary}
 
-### Testing
-- ${skipTests ? '⏭️ Tests skipped (build-only mode)' : '✅ Tests passed'}
-- ✅ Build successful
-- ✅ SwiftLint checks completed
-
 ### Review Checklist
 - [ ] Review the code changes for correctness
 - [ ] Verify test coverage is adequate
 - [ ] Test manually if needed (especially UI changes)
 - [ ] Confirm the fix addresses the root cause
 - [ ] Update Jira ticket status after merge
-
-### Related
-- **Jira:** [${issueKey}](${jiraUrl})
-- **Type:** Bug Fix
-- **AI Generated:** Yes
 
 ---
 
@@ -95,9 +106,9 @@ Co-Authored-By: Claude <noreply@anthropic.com>`;
   return body;
 }
 
-function createPullRequest() {
+async function createPullRequest() {
   const title = `fix: ${issueKey} - ${bugSummary}`;
-  const body = generatePRBody();
+  const body = await generatePRBody();
 
   const bodyFile = '/tmp/pr-body.md';
   fs.writeFileSync(bodyFile, body);
@@ -119,4 +130,7 @@ function createPullRequest() {
   }
 }
 
-createPullRequest();
+createPullRequest().catch(error => {
+  console.error('Fatal error:', error);
+  process.exit(1);
+});

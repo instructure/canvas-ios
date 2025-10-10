@@ -251,6 +251,7 @@ jobs:
       - name: Create Pull Request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ISSUE_KEY: ${{ steps.jira-fetch.outputs.issue_key }}
           BUG_SUMMARY: ${{ steps.extract-info.outputs.bug_summary }}
           BUG_DESCRIPTION: ${{ steps.extract-info.outputs.bug_description }}
