@@ -183,9 +183,9 @@ jobs:
               git add .
               git commit -m "style: apply SwiftLint auto-fixes
 
-Applied SwiftLint auto-fixes to Claude-generated code.
+              Applied SwiftLint auto-fixes to Claude-generated code.
 
-Co-Authored-By: Claude <noreply@anthropic.com>" || true
+              Co-Authored-By: Claude <noreply@anthropic.com>" || true
             fi
           }
 
