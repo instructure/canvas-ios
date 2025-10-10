@@ -84,34 +84,7 @@ jobs:
           JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
         run: |
-          ISSUE_KEY="${{ steps.jira-fetch.outputs.issue_key }}"
-          ANALYSIS="${{ steps.claude-analysis.outputs.analysis }}"
-          CODE_CONTEXT="${{ steps.code-search.outputs.context }}"
-
-          COMMENT_BODY=$(cat <<EOF
-          {
-            "body": {
-              "type": "doc",
-              "version": 1,
-              "content": [
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "🤖 Automated Initial Analysis\n\n$ANALYSIS\n\n---\n\nCode Context:\n$CODE_CONTEXT",
-                      "marks": []
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-          EOF
-          )
-
-          curl -X POST \
-            -H "Authorization: Basic $(echo -n $JIRA_EMAIL:$JIRA_API_TOKEN | base64)" \
-            -H "Content-Type: application/json" \
-            -d "$COMMENT_BODY" \
-            "$JIRA_BASE_URL/rest/api/3/issue/$ISSUE_KEY/comment"
+          node .github/scripts/post-to-jira.js \
+            "${{ steps.jira-fetch.outputs.issue_key }}" \
+            "${{ steps.claude-analysis.outputs.analysis }}" \
+            "${{ steps.code-search.outputs.context }}"
