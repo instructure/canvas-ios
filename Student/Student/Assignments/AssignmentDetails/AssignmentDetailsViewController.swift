@@ -182,8 +182,13 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         view.backgroundColor = .backgroundLightest
 
         // Navigation Bar
-        navigationItem.titleView = titleSubtitleView
-        titleSubtitleView.title = String(localized: "Assignment Details", bundle: .student)
+		if #available(iOS 26, *) {
+			navigationItem.titleView = nil
+			navigationItem.title = String(localized: "Assignment Details", bundle: .student)
+		} else {
+			navigationItem.titleView = titleSubtitleView
+			titleSubtitleView.title = String(localized: "Assignment Details", bundle: .student)
+		}
 
         // Loading
         scrollView?.isHidden = true
@@ -276,7 +281,9 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.useContextColor(presenter?.courses.first?.color)
+		if #unavailable(iOS 26) {
+			navigationController?.navigationBar.useContextColor(presenter?.courses.first?.color)
+		}
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -298,9 +305,14 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         presenter?.viewFileSubmission()
     }
 
+	@available(iOS, deprecated: 26)
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?) {
-        titleSubtitleView.subtitle = subtitle
-        navigationController?.navigationBar.useContextColor(backgroundColor)
+		if #available(iOS 26, *) {
+			navigationItem.subtitle = subtitle
+		} else {
+			titleSubtitleView.subtitle = subtitle
+			navigationController?.navigationBar.useContextColor(backgroundColor)
+		}
     }
 
     func updateGradeCell(_ assignment: Assignment, submission: Submission?) {

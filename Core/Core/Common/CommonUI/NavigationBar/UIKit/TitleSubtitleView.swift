@@ -18,6 +18,7 @@
 
 import UIKit
 
+@available(iOS, deprecated: 26)
 public class TitleSubtitleView: UIView {
     @IBOutlet public weak var titleLabel: UILabel!
     @IBOutlet public weak var subtitleLabel: UILabel!
