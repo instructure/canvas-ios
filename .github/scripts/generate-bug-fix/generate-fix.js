@@ -30,20 +30,33 @@ ${filesContext}
 TASK:
 Generate a fix for this bug. Analyze the code, identify the root cause, and provide the corrected code.
 
-OUTPUT FORMAT:
-For each file that needs changes, output:
+OUTPUT FORMAT - YOU MUST FOLLOW THIS EXACTLY:
 
-FILE_START: [exact file path]
-[complete fixed file content - do not use ... or truncate]
+FILE_START: [exact file path from above]
+[complete fixed file content - include ALL code, do not truncate]
 FILE_END
 
-IMPORTANT:
-- Provide the COMPLETE file content, not just changes
-- Maintain all existing imports, comments, and structure
-- Follow Swift style guidelines
-- Add brief inline comments explaining the fix
-- Only include files that need changes
-- If the fix is simple (few lines), explain the change first
+FILE_START: [next file path if needed]
+[complete fixed file content]
+FILE_END
+
+CRITICAL RULES:
+1. Start your response immediately with "FILE_START:" - NO explanation before it
+2. Use exact format: "FILE_START: path/to/file.swift" (with colon and space)
+3. End each file with "FILE_END" on its own line
+4. Include the COMPLETE file - every import, every line, every closing brace
+5. Do NOT use "..." or truncate anything
+6. Only include files that actually need changes
+
+Example:
+FILE_START: Horizon/Horizon/Sources/File.swift
+import UIKit
+// Rest of complete file...
+// Fixed: Added null check here
+if let value = optionalValue {
+    // use value
+}
+FILE_END
 
 Keep the fix focused on the root cause. Don't refactor unrelated code.`;
 

@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const fixCode = process.env.FIX_CODE;
-const affectedFiles = JSON.parse(process.env.AFFECTED_FILES);
+const affectedFiles = process.env.AFFECTED_FILES ? JSON.parse(process.env.AFFECTED_FILES) : [];
 
 function extractFileChanges(text) {
   const changes = {};
@@ -23,8 +23,19 @@ function extractFileChanges(text) {
 const fileChanges = extractFileChanges(fixCode);
 
 if (Object.keys(fileChanges).length === 0) {
-  console.log('⚠️ No file changes found in fix code');
-  console.log('This might be a manual fix or the format is unexpected');
+  console.error('❌ No file changes found in fix code');
+  console.error('');
+  console.error('Expected format:');
+  console.error('FILE_START: path/to/file.swift');
+  console.error('[file content]');
+  console.error('FILE_END');
+  console.error('');
+  console.error('Fix code preview (first 500 chars):');
+  console.error(fixCode.substring(0, 500));
+  console.error('...');
+  console.error('');
+  console.error('❌ Claude did not follow the output format.');
+  console.error('The fix needs to be applied manually or workflow needs to be re-run.');
   process.exit(1);
 }
 

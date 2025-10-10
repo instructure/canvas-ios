@@ -106,6 +106,7 @@ jobs:
       - name: Apply Fix
         env:
           FIX_CODE: ${{ steps.generate-fix.outputs.fix_code }}
+          AFFECTED_FILES: ${{ steps.extract-info.outputs.affected_files }}
         run: |
           node .github/scripts/generate-bug-fix/apply-fix.js
 
