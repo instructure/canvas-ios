@@ -36,13 +36,26 @@ jobs:
             ISSUE_KEY="${{ github.event.client_payload.issue_key }}"
           fi
 
-          RESPONSE=$(curl -s -X GET \
+          echo "Fetching Jira issue: $ISSUE_KEY"
+
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X GET \
             -H "Authorization: Basic $(echo -n $JIRA_EMAIL:$JIRA_API_TOKEN | base64)" \
             -H "Content-Type: application/json" \
             "$JIRA_BASE_URL/rest/api/3/issue/$ISSUE_KEY")
 
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          RESPONSE_BODY=$(echo "$RESPONSE" | sed '$d')
+
+          echo "HTTP Status Code: $HTTP_CODE"
+
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "Error: Failed to fetch Jira issue. HTTP $HTTP_CODE"
+            echo "Response: $RESPONSE_BODY"
+            exit 1
+          fi
+
           echo "jira_response<<EOF" >> $GITHUB_OUTPUT
-          echo "$RESPONSE" >> $GITHUB_OUTPUT
+          echo "$RESPONSE_BODY" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
           echo "issue_key=$ISSUE_KEY" >> $GITHUB_OUTPUT
