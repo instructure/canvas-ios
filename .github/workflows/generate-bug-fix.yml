@@ -63,6 +63,7 @@ jobs:
       - name: Extract Bug Information
         id: extract-info
         env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           JIRA_RESPONSE: ${{ steps.jira-fetch.outputs.jira_response }}
         run: |
           node .github/scripts/generate-bug-fix/extract-bug-info.js
