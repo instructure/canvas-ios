@@ -59,7 +59,6 @@ struct HNotificationView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.huiColors.surface.pageSecondary)
             .huiCornerRadius(level: .level4, corners: [.topLeft, .topRight])
-            .padding(.top, .huiSpaces.space16)
             .refreshable {
                 await viewModel.refresh()
             }
