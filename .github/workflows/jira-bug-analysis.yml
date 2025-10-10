@@ -69,13 +69,13 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          node .github/scripts/analyze-bug.js \
+          node .github/scripts/jira-bug-analysis/analyze-bug.js \
             '${{ steps.jira-fetch.outputs.jira_response }}'
 
       - name: Search Codebase for Context
         id: code-search
         run: |
-          node .github/scripts/search-code-context.js \
+          node .github/scripts/jira-bug-analysis/search-code-context.js \
             '${{ steps.jira-fetch.outputs.jira_response }}'
 
       - name: Post Analysis to Jira
@@ -87,4 +87,4 @@ jobs:
           ANALYSIS_TEXT: ${{ steps.claude-analysis.outputs.analysis }}
           CODE_CONTEXT: ${{ steps.code-search.outputs.context }}
         run: |
-          node .github/scripts/post-to-jira.js
+          node .github/scripts/jira-bug-analysis/post-to-jira.js

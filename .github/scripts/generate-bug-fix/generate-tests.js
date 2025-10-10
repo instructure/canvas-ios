@@ -8,10 +8,36 @@ const fixCode = process.env.FIX_CODE || process.argv[2];
 const affectedFiles = JSON.parse(process.env.AFFECTED_FILES || process.argv[3]);
 
 const mainFile = affectedFiles[0];
-const testFilePath = mainFile
-  .replace('/Sources/', '/Tests/')
-  .replace('.swift', 'Tests.swift')
-  .replace('Horizon/Horizon/', 'Horizon/');
+const { execSync } = require('child_process');
+
+function findTestDirectory(sourceFile) {
+  const dir = path.dirname(sourceFile);
+  const projectRoot = dir.split('/')[0];
+
+  try {
+    const testDirs = execSync(
+      `find ${projectRoot} -type d -name "*Test*" 2>/dev/null | head -5`,
+      { encoding: 'utf-8' }
+    ).trim().split('\n').filter(Boolean);
+
+    if (testDirs.length > 0) {
+      return testDirs[0];
+    }
+  } catch (error) {
+  }
+
+  return `${projectRoot}/Tests`;
+}
+
+function getTestFilePath(filePath) {
+  const fileName = path.basename(filePath, '.swift');
+  const testFileName = `${fileName}Tests.swift`;
+  const testDir = findTestDirectory(filePath);
+
+  return path.join(testDir, testFileName);
+}
+
+const testFilePath = getTestFilePath(mainFile);
 
 let existingTestContent = '';
 if (fs.existsSync(testFilePath)) {
