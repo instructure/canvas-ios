@@ -16,10 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Foundation
+@testable import Horizon
 
-struct InvitedCourse: Identifiable, Equatable {
-    let id: String
-    let name: String
-    let enrollmentID: String
+final class CourseCardsInteractorMock: CourseCardsInteractor {
+    var shouldFail = false
+    var error: Error = URLError(.badServerResponse)
+    var coursesToReturn: [HCourse] = []
+
+    func getAndObserveCoursesWithoutModules(ignoreCache _: Bool) -> AnyPublisher<[HCourse], Error> {
+        if shouldFail {
+            return Fail(error: error).eraseToAnyPublisher()
+        } else {
+            return Just(coursesToReturn)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+    }
+
+    func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
+        return Just(()).eraseToAnyPublisher()
+    }
 }

@@ -17,28 +17,36 @@
 //
 
 import Combine
+import Core
+import Foundation
 
-final class DashboardInteractorPreview: DashboardInteractor {
-    func getAndObserveCoursesWithoutModules(ignoreCache _: Bool) -> AnyPublisher<[HCourse], Never> {
-        Just(
-            [.init(
-                id: "11",
-                name: "AI Introductions",
-                state: "active",
-                enrollmentID: "222",
-                progress: 0.2,
-                learningObjectCardModel: nil
-            )]
-        )
-        .eraseToAnyPublisher()
-    }
+protocol DashboardInteractor {
+    func getUnreadInboxMessageCount() -> AnyPublisher<Int, Never>
+}
 
-    func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
-        Just(())
-            .eraseToAnyPublisher()
+final class DashboardInteractorLive: DashboardInteractor {
+    // MARK: - Properties
+
+    private let userId: String
+    private var subscriptions = Set<AnyCancellable>()
+
+    // MARK: - Init
+
+    init(userId: String = AppEnvironment.shared.currentSession?.userID ?? "") {
+        self.userId = userId
     }
 
     func getUnreadInboxMessageCount() -> AnyPublisher<Int, Never> {
-        Just(5).eraseToAnyPublisher()
+        ReactiveStore(
+            useCase: GetInboxMessageList(currentUserId: userId)
+        )
+        .getEntities(ignoreCache: true)
+        .map { messages in
+            messages.reduce(0) { count, message in
+                message.state == .unread ? count + 1 : count
+            }
+        }
+        .replaceError(with: 0)
+        .eraseToAnyPublisher()
     }
 }

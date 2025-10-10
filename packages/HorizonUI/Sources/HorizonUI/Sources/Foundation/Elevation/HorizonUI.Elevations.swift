@@ -110,6 +110,7 @@ extension View {
                                 y: level.attributes.y
                             )
                             .padding(-spreadModifier)
+                            .accessibilityHidden(true)
                     } else {
                         self
                             .shadow(
@@ -118,6 +119,7 @@ extension View {
                                 x: level.attributes.x,
                                 y: level.attributes.y
                             )
+                            .accessibilityHidden(true)
                     }
                 }
             )
