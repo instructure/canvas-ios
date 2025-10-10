@@ -435,7 +435,7 @@ public extension ButtonStyle where Self == HorizonUI.ButtonStyles {
                             .disabled(true)
                         Button("Link Button") {}
                             .buttonStyle(HorizonUI.ButtonStyles.textLink(type))
-                        Button("\(type) Button") {}
+                        Button("\(String(describing: type)) Button") { }
                             .buttonStyle(HorizonUI.ButtonStyles.primary(type))
                     }
                 }

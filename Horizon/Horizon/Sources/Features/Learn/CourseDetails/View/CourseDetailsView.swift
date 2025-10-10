@@ -28,7 +28,11 @@ struct CourseDetailsView: View {
 
     private var tabs: [CourseDetailsTabs] {
         let showingOverview = !viewModel.overviewDescription.isEmpty
-        return (showingOverview ? [.overview] : []) + [.myProgress, .scores, .notebook]
+        var tabs: [CourseDetailsTabs] = (showingOverview ? [.overview] : []) + [.myProgress, .scores, .notebook]
+        if viewModel.courseTools.isNotEmpty {
+            tabs.append(.tools)
+        }
+        return tabs
     }
     // MARK: - Dependencies
 
@@ -220,6 +224,12 @@ private struct ContentView: View {
             NotebookAssembly.makeView(courseID: viewModel.course.id)
                 .padding(.bottom, .huiSpaces.space24)
                 .id(viewModel.course.id)
+        case .tools:
+            ListCourseToolsView(items: viewModel.courseTools) { url in
+                viewModel.openSafari(url: url, viewController: viewController)
+            }
+            .padding(.bottom, .huiSpaces.space24)
+            .id(viewModel.course.id)
         }
     }
 

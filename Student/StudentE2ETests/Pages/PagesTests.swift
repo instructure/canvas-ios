@@ -30,22 +30,22 @@ class PagesTests: E2ETestCase {
         // MARK: Get the user logged in and check the course card
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Check pages button
         courseCard.hit()
         let pagesButton = CourseDetailsHelper.cell(type: .pages).waitUntil(.visible)
-        XCTAssertTrue(pagesButton.isVisible)
+        XCTAssertVisible(pagesButton)
 
         // MARK: Check front page button
         pagesButton.hit()
         let frontPageButton = PagesHelper.frontPage.waitUntil(.visible)
-        XCTAssertTrue(frontPageButton.isVisible)
+        XCTAssertVisible(frontPageButton)
 
         // MARK: Check title of front page
         frontPageButton.hit()
         let frontPageTitle = app.find(labelContaining: frontPage.title).waitUntil(.visible)
-        XCTAssertTrue(frontPageTitle.isVisible)
+        XCTAssertVisible(frontPageTitle)
     }
 
     func testDeepLinks() {
@@ -71,35 +71,35 @@ class PagesTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to the front page of the course
         PagesHelper.navigateToFrontPage(course: course)
 
         // MARK: Check deep link to the assignment
         let assignmentDeepLink = app.find(labelContaining: assignment.name).waitUntil(.visible)
-        XCTAssertTrue(assignmentDeepLink.isVisible)
+        XCTAssertVisible(assignmentDeepLink)
 
         assignmentDeepLink.hit()
         let assignmentDetailsNameLabel = AssignmentsHelper.Details.name.waitUntil(.visible)
-        XCTAssertTrue(assignmentDetailsNameLabel.isVisible)
+        XCTAssertVisible(assignmentDetailsNameLabel)
 
         // MARK: Check deep link to discussion
         AssignmentsHelper.Details.backButton.hit()
         let discussionDeepLink = app.find(labelContaining: discussion.title).waitUntil(.visible)
-        XCTAssertTrue(discussionDeepLink.isVisible)
+        XCTAssertVisible(discussionDeepLink)
 
         discussionDeepLink.hit()
         let discussionDetailsTitle = DiscussionsHelper.NewDetails.discussionTitle(discussion: discussion).waitUntil(.visible)
-        XCTAssertTrue(discussionDetailsTitle.isVisible)
+        XCTAssertVisible(discussionDetailsTitle)
 
         // MARK: Check deep link to announcement
         DiscussionsHelper.Details.backButton.hit()
         let announcementDeepLink = app.find(labelContaining: announcement.title).waitUntil(.visible)
-        XCTAssertTrue(announcementDeepLink.isVisible)
+        XCTAssertVisible(announcementDeepLink)
 
         announcementDeepLink.hit()
         let announcementDetailsTitle = DiscussionsHelper.NewDetails.discussionTitle(discussion: announcement).waitUntil(.visible)
-        XCTAssertTrue(announcementDetailsTitle.isVisible)
+        XCTAssertVisible(announcementDetailsTitle)
     }
 }

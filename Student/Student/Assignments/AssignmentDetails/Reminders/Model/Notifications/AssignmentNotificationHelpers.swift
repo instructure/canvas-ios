@@ -22,6 +22,7 @@ public extension Sequence where Element == UNNotificationRequest {
 
     func filter(courseId: String? = nil,
                 assignmentId: String? = nil,
+                subAssignmentTag: String? = nil,
                 userId: String) -> [UNNotificationRequest] {
         typealias Keys = UNMutableNotificationContent.AssignmentReminderKeys
         return filter {
@@ -35,7 +36,11 @@ public extension Sequence where Element == UNNotificationRequest {
                 guard let assignmentId else { return true }
                 return userInfo[Keys.assignmentId.rawValue] as? String == assignmentId
             }()
-            return hasCourseId && hasAssignmentId && hasUserId
+            let hasSubAssignmentTag = {
+                guard let subAssignmentTag else { return true }
+                return userInfo[Keys.subAssignmentTag.rawValue] as? String == subAssignmentTag
+            }()
+            return hasCourseId && hasAssignmentId && hasSubAssignmentTag && hasUserId
         }
     }
 

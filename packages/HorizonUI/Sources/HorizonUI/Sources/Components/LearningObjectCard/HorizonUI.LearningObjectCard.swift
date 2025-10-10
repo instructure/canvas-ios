@@ -53,12 +53,10 @@ public extension HorizonUI {
         public var body: some View {
             HorizonUI.Card {
                 if let status {
-                    HorizonUI.Pill(
-                        title: status,
-                        style: .outline(.default),
-                        isSmall: false,
-                        isUppercased: true,
-                        icon: nil
+                    HorizonUI.StatusChip(
+                        title: status.uppercased(),
+                        style: .white,
+                        isFilled: false
                     )
                 }
 
@@ -92,32 +90,29 @@ public extension HorizonUI {
         private func setCoursePropertiesView() -> some View {
             VStack(alignment: .leading, spacing: .huiSpaces.space8) {
                 if let duration {
-                    HorizonUI.Pill(
+                    HorizonUI.StatusChip(
                         title: duration,
-                        style: .inline(.init(textColor: .huiColors.text.body, iconColor: .huiColors.surface.institution)),
-                        isSmall: true,
-                        isUppercased: false,
-                        icon: Image.huiIcons.schedule
+                        style: .institution,
+                        icon: Image.huiIcons.schedule,
+                        isFilled: false
                     )
                 }
 
                 if let type {
-                    HorizonUI.Pill(
+                    HorizonUI.StatusChip(
                         title: type,
-                        style: .inline(.init(textColor: .huiColors.text.body, iconColor: .huiColors.surface.institution)),
-                        isSmall: true,
-                        isUppercased: false,
-                        icon: icon ?? Image.huiIcons.textSnippet
+                        style: .institution,
+                        icon: icon ?? Image.huiIcons.textSnippet,
+                        isFilled: false
                     )
                 }
 
                 if let dueDate {
-                    HorizonUI.Pill(
+                    HorizonUI.StatusChip(
                         title: "Due \(dueDate)",
-                        style: .inline(.init(textColor: .huiColors.text.body, iconColor: .huiColors.surface.institution)),
-                        isSmall: true,
-                        isUppercased: false,
-                        icon: Image.huiIcons.calendarToday
+                        style: .institution,
+                        icon: Image.huiIcons.calendarToday,
+                        isFilled: false
                     )
                 }
             }

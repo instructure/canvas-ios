@@ -31,8 +31,8 @@ class RoutesTests: ParentTestCase {
         XCTAssert(Parent.router.match("/calendar?event_id=1") is Parent.CalendarEventDetailsViewController)
         XCTAssert(Parent.router.match("/calendar_events/1") is Parent.CalendarEventDetailsViewController)
         XCTAssert(Parent.router.match("/users/1/calendar_events/1") is Parent.CalendarEventDetailsViewController)
-        XCTAssert(Parent.router.match("/courses/1/assignments/1") is AssignmentDetailsViewController)
-        XCTAssert(Parent.router.match("/courses/1/assignments/1/submissions/1") is AssignmentDetailsViewController)
+        XCTAssert(Parent.router.match("/courses/1/assignments/1") is ParentAssignmentDetailsViewController)
+        XCTAssert(Parent.router.match("/courses/1/assignments/1/submissions/1") is ParentAssignmentDetailsViewController)
 
         XCTAssert(Parent.router.match("/files/1") is FileDetailsViewController)
         XCTAssert(Parent.router.match("/files/2/download") is FileDetailsViewController)
