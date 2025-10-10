@@ -47,10 +47,12 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 				VStack(spacing: 0) {
 					switch viewModel.state {
 					case .empty(let title, let message):
-						imageHeader(geometry: geometry)
+						CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
+							.ignoresSafeArea(.container)
 						errorView(title: title, message: message)
 					case .loading:
-						imageHeader(geometry: geometry)
+						CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
+							.ignoresSafeArea(.container)
 						loadingView
 					case .data(let tabViewModels):
 						tabList(tabViewModels, geometry: geometry)
@@ -74,10 +76,10 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 				VStack(spacing: 0) {
 					switch viewModel.state {
 					case .empty(let title, let message):
-						legacyImageHeader(geometry: geometry)
+						imageHeader(geometry: geometry)
 						errorView(title: title, message: message)
 					case .loading:
-						legacyImageHeader(geometry: geometry)
+						imageHeader(geometry: geometry)
 						loadingView
 					case .data(let tabViewModels):
 						legacyTabList(tabViewModels, geometry: geometry)
@@ -196,7 +198,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 	private func tabList(_ tabViewModels: [CourseDetailsCellViewModel], geometry: GeometryProxy) -> some View {
 		ScrollView {
 			VStack(spacing: 0) {
-				imageHeader(geometry: geometry)
+				CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
 				if viewModel.showHome {
 					homeView
 					Divider()
@@ -211,6 +213,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 			.listRowSeparator(.hidden)
 			.background(Color.backgroundLightest)
 		}
+		.ignoresSafeArea(.container)
 		.scrollIndicators(.hidden)
 		.listStyle(.plain)
 		.scrollContentBackground(.hidden)
@@ -222,7 +225,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
     private func legacyTabList(_ tabViewModels: [CourseDetailsCellViewModel], geometry: GeometryProxy) -> some View {
         ZStack(alignment: .top) {
-            legacyImageHeader(geometry: geometry)
+            imageHeader(geometry: geometry)
             ScrollView {
                 VStack(spacing: 0) {
                     if viewModel.showHome {
@@ -254,14 +257,8 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
     }
 
 	@ViewBuilder
-	@available(iOS, introduced: 26, message: "Legacy version exists")
-	private func imageHeader(geometry: GeometryProxy) -> some View {
-		CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
-	}
-
-	@ViewBuilder
-	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
-    private func legacyImageHeader(geometry: GeometryProxy) -> some View {
+	@available(iOS, deprecated: 26)
+    private func imageHeader(geometry: GeometryProxy) -> some View {
         if legacyHeaderViewModel.shouldShowHeader(in: geometry.size) {
             LegacyCourseDetailsHeaderView(viewModel: legacyHeaderViewModel, width: geometry.size.width)
         }

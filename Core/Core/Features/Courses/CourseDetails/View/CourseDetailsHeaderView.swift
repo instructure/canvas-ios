@@ -29,7 +29,7 @@ struct CourseDetailsHeaderView: View {
     }
 
     public var body: some View {
-        ZStack {
+		ZStack(alignment: .bottom) {
             Color(viewModel.courseColor)
                 .frame(width: width, height: viewModel.height)
             if let url = viewModel.imageURL {

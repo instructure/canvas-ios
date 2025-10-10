@@ -36,33 +36,60 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        VStack(spacing: 0) {
-            switch viewModel.state {
-            case .empty, .error:
-                gradingPeriodTitle
-                emptyPanda
-            case .loading:
-                loadingView
-            case .data:
-                gradingPeriodTitle
-                assignmentList
-            }
-        }
-        .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
-        .tint(viewModel.courseColor?.asColor)
-        .navigationBarTitleView(
-            title: String(localized: "Assignments", bundle: .core),
-            subtitle: viewModel.courseName
-        )
-        .navigationBarGenericBackButton()
-        .navBarItems(
-            trailing: .filterIcon(isBackgroundContextColor: true, isSolid: viewModel.isFilterIconSolid) {
-                viewModel.navigateToPreferences(viewController: controller)
-            }
-        )
-        .navigationBarStyle(.color(viewModel.courseColor))
-        .onAppear(perform: viewModel.viewDidAppear)
-        .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
+		if #available(iOS 26, *) {
+			VStack(spacing: 0) {
+				switch viewModel.state {
+				case .empty, .error:
+					gradingPeriodTitle
+					emptyPanda
+				case .loading:
+					loadingView
+				case .data:
+					assignmentList
+				}
+			}
+			.navigationTitle(.init("Assignments", bundle: .core))
+			.navigationSubtitle(viewModel.courseName ??  "")
+			.background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+			.tint(viewModel.courseColor?.asColor)
+			.toolbar {
+				ToolbarItem(placement: .topBarTrailing) {
+					InstUI.NavigationBarButton.filterIcon(isSolid: viewModel.isFilterIconSolid) {
+						viewModel.navigateToPreferences(viewController: controller)
+					}
+				}
+			}
+			.onAppear(perform: viewModel.viewDidAppear)
+			.onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
+		} else {
+			VStack(spacing: 0) {
+				switch viewModel.state {
+				case .empty, .error:
+					gradingPeriodTitle
+					emptyPanda
+				case .loading:
+					loadingView
+				case .data:
+					gradingPeriodTitle
+					legacyAssignmentList
+				}
+			}
+			.background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+			.tint(viewModel.courseColor?.asColor)
+			.navigationBarTitleView(
+				title: String(localized: "Assignments", bundle: .core),
+				subtitle: viewModel.courseName
+			)
+			.navigationBarGenericBackButton()
+			.navBarItems(
+				trailing: .filterIcon(isBackgroundContextColor: true, isSolid: viewModel.isFilterIconSolid) {
+					viewModel.navigateToPreferences(viewController: controller)
+				}
+			)
+			.navigationBarStyle(.color(viewModel.courseColor))
+			.onAppear(perform: viewModel.viewDidAppear)
+			.onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
+		}
     }
 
     private var gradingPeriodTitle: some View {
@@ -121,10 +148,11 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
         Spacer()
     }
 
+	@available(iOS, introduced: 26, message: "Legacy version exists")
     private var assignmentList: some View {
         ScrollView {
-            LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
-                InstUI.TopDivider()
+            LazyVStack(spacing: 0) {
+				gradingPeriodTitle
                 ForEach(viewModel.sections) { section in
                     sectionView(with: section)
                 }
@@ -134,6 +162,21 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             await viewModel.refresh()
         }
     }
+
+	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+	private var legacyAssignmentList: some View {
+		ScrollView {
+			LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
+				InstUI.TopDivider()
+				ForEach(viewModel.sections) { section in
+					sectionView(with: section)
+				}
+			}
+		}
+		.refreshable {
+			await viewModel.refresh()
+		}
+	}
 
     private func sectionView(with section: AssignmentListSection) -> some View {
         InstUI.CollapsibleListSection(title: section.title, itemCount: section.rows.count) {
