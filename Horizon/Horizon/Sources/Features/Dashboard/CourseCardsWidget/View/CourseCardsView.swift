@@ -26,6 +26,7 @@ struct CourseCardsView: View {
 
     @State private var currentCourseIndex: Int? = 0
     @State private var bounceScale: CGFloat = 1.0
+    @State private var scrollViewID = UUID()
 
     init(viewModel: CourseCardsViewModel) {
         self.viewModel = viewModel
@@ -47,6 +48,8 @@ struct CourseCardsView: View {
         .animation(.interpolatingSpring(stiffness: 300, damping: 15), value: bounceScale)
         .onChange(of: viewModel.state) { oldValue, newValue in
             if oldValue == .loading && newValue == .data {
+                currentCourseIndex = nil
+                scrollViewID = UUID()
                 bounceScale = 1.03
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     bounceScale = 1.0
@@ -108,6 +111,7 @@ struct CourseCardsView: View {
                 .scrollTargetBehavior(.viewAligned)
                 .scrollClipDisabled()
                 .scrollPosition(id: $currentCourseIndex)
+                .id(scrollViewID)
             }
 
             if viewModel.courses.count > 1 {

@@ -42,17 +42,17 @@ class InboxTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Inbox
         logInDSUser(parent)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         profileButton.hit()
         let inboxButton = ProfileHelper.inboxButton.waitUntil(.visible)
-        XCTAssertTrue(inboxButton.isVisible)
+        XCTAssertVisible(inboxButton)
 
         inboxButton.hit()
 
         // MARK: Tap on the "New Message" button
         let newMessageButton = Helper.newMessageButton.waitUntil(.visible)
-        XCTAssertTrue(newMessageButton.isVisible)
+        XCTAssertVisible(newMessageButton)
 
         newMessageButton.hit()
         let studentContextButton = ParentCoursePicker.studentContext(courseName: course.name, studentDisplayName: student.name)
@@ -60,25 +60,25 @@ class InboxTests: E2ETestCase {
 
         // MARK: Check visibility of elements
         let cancelButton = ComposeHelper.cancelButton.waitUntil(.visible)
-        XCTAssertTrue(cancelButton.isVisible)
+        XCTAssertVisible(cancelButton)
 
         let attachButton = ComposeHelper.addAttachmentButton.waitUntil(.visible)
-        XCTAssertTrue(attachButton.isVisible)
+        XCTAssertVisible(attachButton)
 
         var sendButton = ComposeHelper.sendButton.waitUntil(.visible)
-        XCTAssertTrue(sendButton.isVisible)
+        XCTAssertVisible(sendButton)
 
         let selectedRecipient = ComposeHelper.recipientPillById(recipient: teacher).waitUntil(.visible)
-        XCTAssertTrue(selectedRecipient.isVisible)
+        XCTAssertVisible(selectedRecipient)
 
         let recipientsButton = ComposeHelper.addRecipientButton.waitUntil(.visible)
-        XCTAssertTrue(recipientsButton.isVisible)
+        XCTAssertVisible(recipientsButton)
 
         let subjectInput = ComposeHelper.subjectInput.waitUntil(.visible)
-        XCTAssertTrue(subjectInput.isVisible)
+        XCTAssertVisible(subjectInput)
 
         let messageInput = ComposeHelper.bodyInput.waitUntil(.visible)
-        XCTAssertTrue(messageInput.isVisible)
+        XCTAssertVisible(messageInput)
 
         // MARK: Fill "Subject" and "Message" inputs
         subjectInput.hit()
@@ -89,23 +89,23 @@ class InboxTests: E2ETestCase {
 
         // MARK: Tap "Send" button
         sendButton = sendButton.waitUntil(.visible)
-        XCTAssertTrue(sendButton.isVisible)
+        XCTAssertVisible(sendButton)
         XCTAssertTrue(sendButton.isEnabled)
 
         sendButton.hit()
 
         // MARK: Check message in "Sent" filter tab
         let filterByTypeButton = Helper.filterByTypeButton.waitUntil(.visible)
-        XCTAssertTrue(filterByTypeButton.isVisible)
+        XCTAssertVisible(filterByTypeButton)
 
         filterByTypeButton.hit()
         let filterBySentButton = FilterHelper.sent.waitUntil(.visible)
-        XCTAssertTrue(filterBySentButton.isVisible)
+        XCTAssertVisible(filterBySentButton)
 
         filterBySentButton.hit()
 
         let conversation = Helper.conversationBySubject(subject: subject).waitUntil(.visible)
-        XCTAssertTrue(conversation.isVisible)
+        XCTAssertVisible(conversation)
     }
 
     func testMessageDetails() {
@@ -119,26 +119,26 @@ class InboxTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Inbox
         logInDSUser(parent)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         profileButton.hit()
         let inboxButton = ProfileHelper.inboxButton.waitUntil(.visible)
-        XCTAssertTrue(inboxButton.isVisible)
+        XCTAssertVisible(inboxButton)
 
         inboxButton.hit()
 
         // MARK: Check message item
         let messageButton = Helper.conversation(conversation: conversation).waitUntil(.visible)
-        XCTAssertTrue(messageButton.isVisible)
+        XCTAssertVisible(messageButton)
         XCTAssertContains(messageButton.label, conversation.subject)
 
         messageButton.hit()
 
         // MARK: Check message details
         let subjectLabel = DetailsHelper.subjectLabel.waitUntil(.visible)
-        XCTAssertTrue(subjectLabel.isVisible)
+        XCTAssertVisible(subjectLabel)
 
         let messageLabel = DetailsHelper.bodyLabel.waitUntil(.visible)
-        XCTAssertTrue(messageLabel.isVisible)
+        XCTAssertVisible(messageLabel)
     }
 }

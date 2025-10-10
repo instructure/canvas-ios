@@ -35,21 +35,21 @@ class ChangeUserTests: E2ETestCase {
         // MARK: Get parent1 logged in, change user to parent2
         logInDSUser(parent1)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         profileButton.hit()
         let changeUserButton = ProfileHelper.changeUserButton.waitUntil(.visible)
         let usernameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
-        XCTAssertTrue(changeUserButton.isVisible)
-        XCTAssertTrue(usernameLabel.isVisible)
+        XCTAssertVisible(changeUserButton)
+        XCTAssertVisible(usernameLabel)
         XCTAssertEqual(usernameLabel.label, parent1.name)
 
         changeUserButton.hit()
         logInDSUser(parent2)
-        XCTAssertTrue(profileButton.waitUntil(.visible).isVisible)
+        XCTAssertVisible(profileButton.waitUntil(.visible))
 
         profileButton.hit()
-        XCTAssertTrue(usernameLabel.waitUntil(.visible).isVisible)
+        XCTAssertVisible(usernameLabel.waitUntil(.visible))
         XCTAssertEqual(usernameLabel.label, parent2.name)
     }
 }

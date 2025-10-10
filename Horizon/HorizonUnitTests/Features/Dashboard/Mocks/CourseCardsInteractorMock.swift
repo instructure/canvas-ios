@@ -17,15 +17,15 @@
 //
 
 import Combine
-@testable import Horizon
 import Foundation
+@testable import Horizon
 
 final class CourseCardsInteractorMock: CourseCardsInteractor {
     var shouldFail = false
     var error: Error = URLError(.badServerResponse)
     var coursesToReturn: [HCourse] = []
-    
-    func getAndObserveCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Error> {
+
+    func getAndObserveCoursesWithoutModules(ignoreCache _: Bool) -> AnyPublisher<[HCourse], Error> {
         if shouldFail {
             return Fail(error: error).eraseToAnyPublisher()
         } else {
@@ -34,7 +34,7 @@ final class CourseCardsInteractorMock: CourseCardsInteractor {
                 .eraseToAnyPublisher()
         }
     }
-    
+
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
         return Just(()).eraseToAnyPublisher()
     }

@@ -19,7 +19,7 @@
 import Core
 import Foundation
 
-final class DashboardAssembly {
+enum DashboardAssembly {
     static func makeDashboardInteractor() -> DashboardInteractor {
         DashboardInteractorLive()
     }
@@ -29,27 +29,24 @@ final class DashboardAssembly {
     }
 
     static func makeView() -> DashboardView {
-        let onTapProgram: (ProgramSwitcherModel?, WeakViewController) -> Void = { program, viewController in
-            AppEnvironment.shared.switchToLearnTab(with: program, from: viewController)
-        }
-      return DashboardView(
+        DashboardView(
             viewModel: .init(
                 dashboardInteractor: makeDashboardInteractor(),
                 notificationInteractor: NotificationAssembly.makeInteractor(),
-                router: AppEnvironment.shared.router,
+                router: AppEnvironment.shared.router
             )
         )
     }
 
     #if DEBUG
-    static func makePreview() -> DashboardView {
-        let dashboardInteractorPreview = DashboardInteractorPreview()
-        let viewModel = DashboardViewModel(
-            dashboardInteractor: dashboardInteractorPreview,
-            notificationInteractor: NotificationInteractorPreview(),
-            router: AppEnvironment.shared.router
-        )
-        return DashboardView(viewModel: viewModel)
-    }
+        static func makePreview() -> DashboardView {
+            let dashboardInteractorPreview = DashboardInteractorPreview()
+            let viewModel = DashboardViewModel(
+                dashboardInteractor: dashboardInteractorPreview,
+                notificationInteractor: NotificationInteractorPreview(),
+                router: AppEnvironment.shared.router
+            )
+            return DashboardView(viewModel: viewModel)
+        }
     #endif
 }

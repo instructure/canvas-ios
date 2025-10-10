@@ -21,7 +21,6 @@ import CombineSchedulers
 import Core
 import Foundation
 import Observation
-import SwiftUI
 
 @Observable
 class CourseCardsViewModel {
@@ -67,7 +66,7 @@ class CourseCardsViewModel {
         self.onTapProgram = onTapProgram
         self.scheduler = scheduler
 
-        getCourses(ignoreCache: true)
+        getCourses()
     }
 
     deinit {

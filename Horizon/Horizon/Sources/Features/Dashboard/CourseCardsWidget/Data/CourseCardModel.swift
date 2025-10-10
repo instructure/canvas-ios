@@ -63,7 +63,7 @@ struct CourseCardModel: Identifiable, Equatable {
         if id == "mock-course-id" {
             return String(localized: "Courses are loading", bundle: .horizon)
         }
-        
+
         var description = String.localizedStringWithFormat(
             String(localized: "Course: %@. ", bundle: .horizon),
             name
@@ -118,11 +118,12 @@ struct CourseCardModel: Identifiable, Equatable {
             String(localized: "Double tap to open course", bundle: .horizon)
         }
     }
-    
+
     func viewProgramAccessibilityString(_ programName: String) -> String {
         String.localizedStringWithFormat(
             String(localized: "View %@", bundle: .horizon),
-            programName)
+            programName
+        )
     }
 }
 

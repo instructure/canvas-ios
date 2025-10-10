@@ -93,6 +93,9 @@ struct CourseCardView: View {
         .skeletonLoadable()
         .frame(height: imageHeight)
         .padding(.bottom, .huiSpaces.space16)
+        .onTapGesture {
+            onCourseTap(model.id)
+        }
         .accessibilityHidden(true)
     }
 
