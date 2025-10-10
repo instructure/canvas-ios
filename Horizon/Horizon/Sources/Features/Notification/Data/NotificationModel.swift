@@ -16,13 +16,66 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct NotificationModel: Identifiable, Equatable {
+import Core
+import Foundation
+
+struct NotificationModel: Identifiable {
     let id: String
-    let category: String
     let title: String
-    let date: String
+    let date: Date?
     let isRead: Bool
+    let courseName: String?
     let courseID: String
     let enrollmentID: String
     let isScoreAnnouncement: Bool
+    let type: NotificationType
+    let announcementId: String?
+    let assignmentURL: URL?
+    let htmlURL: URL?
+
+    init(
+        id: String,
+        title: String,
+        date: Date?,
+        isRead: Bool,
+        courseName: String? = nil,
+        courseID: String = "",
+        enrollmentID: String = "''",
+        isScoreAnnouncement: Bool = false,
+        type: NotificationType,
+        announcementId: String? = nil,
+        assignmentURL: URL? = nil,
+        htmlURL: URL? = nil
+    ) {
+        self.id = id
+        self.title = title
+        self.date = date
+        self.isRead = isRead
+        self.courseName = courseName
+        self.courseID = courseID
+        self.enrollmentID = enrollmentID
+        self.isScoreAnnouncement = isScoreAnnouncement
+        self.type = type
+        self.announcementId = announcementId
+        self.assignmentURL = assignmentURL
+        self.htmlURL = htmlURL
+    }
+
+    var dateFormatted: String {
+        guard let date else { return "" }
+
+        let calendar = Calendar.current
+        let now = Date()
+
+        switch true {
+        case calendar.isDateInToday(date):
+            return String(localized: "Today", bundle: .horizon)
+        case calendar.isDateInYesterday(date):
+            return String(localized: "Yesterday", bundle: .horizon)
+        case calendar.isDate(date, equalTo: now, toGranularity: .weekOfYear):
+            return Date.weekdayFormatter.string(from: date)
+        default:
+            return date.formatted(format: "MMM d, yyyy")
+        }
+    }
 }
