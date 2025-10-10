@@ -83,8 +83,8 @@ jobs:
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
           JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          ISSUE_KEY: ${{ steps.jira-fetch.outputs.issue_key }}
+          ANALYSIS_TEXT: ${{ steps.claude-analysis.outputs.analysis }}
+          CODE_CONTEXT: ${{ steps.code-search.outputs.context }}
         run: |
-          node .github/scripts/post-to-jira.js \
-            "${{ steps.jira-fetch.outputs.issue_key }}" \
-            "${{ steps.claude-analysis.outputs.analysis }}" \
-            "${{ steps.code-search.outputs.context }}"
+          node .github/scripts/post-to-jira.js

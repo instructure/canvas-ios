@@ -78,22 +78,34 @@ Bug Report:
 - Type: ${issueType}
 - Priority: ${priority}
 
-Provide a CONCISE analysis with these sections:
+Provide a CONCISE analysis with these sections. Use plain text formatting without markdown symbols:
 
-**1. Severity:** Critical/High/Medium/Low with brief justification
+SEVERITY: [Critical/High/Medium/Low]
+JUSTIFICATION: [One sentence]
 
-**2. Affected Component:** Identify the primary area (e.g., Dashboard, Course Cards, Networking, Authentication)
+AFFECTED COMPONENT: [Primary area - e.g., Dashboard, Course Cards, etc.]
 
-**3. Potential Root Cause:** Most likely cause category (UI Logic, Data Sorting, API Response, State Management, etc.)
+ROOT CAUSE: [Most likely cause]
+DETAILS: [Brief explanation]
 
-**4. Recommended Fix:** Specific implementation approach to resolve the issue
+RECOMMENDED FIX:
+[Brief description of the fix approach]
 
-**5. Triage Notes:**
-- Key files to investigate (e.g., Horizon/Dashboard/CourseCardsView.swift)
-- Suggested next steps for developer
-- Any missing information needed
+CODE_START
+// Actual Swift code example here
+courses.sorted { c1, c2 in
+    // sorting logic
+}
+CODE_END
 
-Keep the response focused and actionable. Format as markdown for Jira comments.`;
+IMPORTANT: Always include CODE_START and CODE_END markers with Swift code between them, even if it's a simple example.
+
+TRIAGE NOTES:
+FILES: [List 3-5 most relevant Swift files, comma-separated]
+NEXT STEPS: [2-3 concrete actions]
+MISSING INFO: [What else is needed, if anything]
+
+Keep concise and actionable. No markdown formatting symbols.`;
 
 const requestBody = JSON.stringify({
   model: 'claude-sonnet-4-5-20250929',

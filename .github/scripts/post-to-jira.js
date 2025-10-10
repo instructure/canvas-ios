@@ -2,105 +2,195 @@
 
 const https = require('https');
 
-const issueKey = process.argv[2];
-const analysis = process.argv[3];
-const codeContext = process.argv[4];
+const issueKey = process.env.ISSUE_KEY || process.argv[2];
+const analysis = process.env.ANALYSIS_TEXT || process.argv[3];
+const codeContext = process.env.CODE_CONTEXT || process.argv[4];
 
-function markdownToADF(markdown) {
+function parseAnalysisToADF(text) {
   const content = [];
-  const lines = markdown.split('\n');
-  let i = 0;
 
-  while (i < lines.length) {
-    const line = lines[i];
+  const severityMatch = text.match(/SEVERITY:\s*(.+?)[\n\r]/);
+  const justificationMatch = text.match(/JUSTIFICATION:\s*(.+?)[\n\r]/);
+  const componentMatch = text.match(/AFFECTED COMPONENT:\s*(.+?)[\n\r]/);
+  const rootCauseMatch = text.match(/ROOT CAUSE:\s*(.+?)[\n\r]/);
+  const detailsMatch = text.match(/DETAILS:\s*(.+?)[\n\r]/);
+  const codeMatch = text.match(/CODE_START\s+([\s\S]+?)\s+CODE_END/);
+  const filesMatch = text.match(/FILES:\s*(.+?)[\n\r]/);
+  const nextStepsMatch = text.match(/NEXT STEPS:\s*(.+?)[\n\r]/);
+  const missingInfoMatch = text.match(/MISSING INFO:\s*(.+?)[\n\r]/);
 
-    if (line.startsWith('```')) {
-      const codeLines = [];
-      i++;
-      while (i < lines.length && !lines[i].startsWith('```')) {
-        codeLines.push(lines[i]);
-        i++;
-      }
-      if (codeLines.length > 0) {
-        content.push({
-          type: 'codeBlock',
-          attrs: { language: 'swift' },
-          content: [{ type: 'text', text: codeLines.join('\n') }]
-        });
-      }
-      i++;
-    } else if (line.startsWith('## ')) {
-      content.push({
-        type: 'heading',
-        attrs: { level: 2 },
-        content: [{ type: 'text', text: line.replace(/^## /, '') }]
-      });
-      i++;
-    } else if (line.startsWith('# ')) {
-      content.push({
-        type: 'heading',
-        attrs: { level: 1 },
-        content: [{ type: 'text', text: line.replace(/^# /, '') }]
-      });
-      i++;
-    } else if (line.startsWith('- ') || line.startsWith('• ')) {
-      const listItems = [];
-      while (i < lines.length && (lines[i].startsWith('- ') || lines[i].startsWith('• '))) {
-        const itemText = lines[i].replace(/^[•-] /, '');
-        if (itemText.trim()) {
-          listItems.push({
-            type: 'listItem',
-            content: [{
-              type: 'paragraph',
-              content: parseBoldText(itemText)
-            }]
-          });
-        }
-        i++;
-      }
-      if (listItems.length > 0) {
-        content.push({
-          type: 'bulletList',
-          content: listItems
-        });
-      }
-    } else if (line.trim()) {
+  content.push({
+    type: 'heading',
+    attrs: { level: 2 },
+    content: [{ type: 'text', text: '1. Severity' }]
+  });
+
+  if (severityMatch && justificationMatch) {
+    content.push({
+      type: 'paragraph',
+      content: [
+        { type: 'text', text: severityMatch[1].trim(), marks: [{ type: 'strong' }] },
+        { type: 'text', text: ' - ' + justificationMatch[1].trim() }
+      ]
+    });
+  }
+
+  content.push({
+    type: 'heading',
+    attrs: { level: 2 },
+    content: [{ type: 'text', text: '2. Affected Component' }]
+  });
+
+  if (componentMatch) {
+    content.push({
+      type: 'paragraph',
+      content: [{ type: 'text', text: componentMatch[1].trim() }]
+    });
+  }
+
+  content.push({
+    type: 'heading',
+    attrs: { level: 2 },
+    content: [{ type: 'text', text: '3. Root Cause' }]
+  });
+
+  if (rootCauseMatch) {
+    content.push({
+      type: 'paragraph',
+      content: [{ type: 'text', text: rootCauseMatch[1].trim(), marks: [{ type: 'strong' }] }]
+    });
+  }
+
+  if (detailsMatch) {
+    content.push({
+      type: 'paragraph',
+      content: [{ type: 'text', text: detailsMatch[1].trim() }]
+    });
+  }
+
+  content.push({
+    type: 'heading',
+    attrs: { level: 2 },
+    content: [{ type: 'text', text: '4. Recommended Fix' }]
+  });
+
+  const fixSection = text.match(/RECOMMENDED FIX:\s*([\s\S]+?)(?=TRIAGE NOTES:|$)/);
+  if (fixSection) {
+    const fixText = fixSection[1];
+    const descriptionBeforeCode = fixText.split('CODE_START')[0].trim();
+
+    if (descriptionBeforeCode && !descriptionBeforeCode.includes('[Brief description')) {
       content.push({
         type: 'paragraph',
-        content: parseBoldText(line)
+        content: [{ type: 'text', text: descriptionBeforeCode }]
       });
-      i++;
-    } else {
-      i++;
     }
+  }
+
+  if (codeMatch) {
+    content.push({
+      type: 'codeBlock',
+      attrs: { language: 'swift' },
+      content: [{ type: 'text', text: codeMatch[1].trim() }]
+    });
+  } else {
+    content.push({
+      type: 'paragraph',
+      content: [{ type: 'text', text: 'See triage notes for implementation guidance.' }]
+    });
+  }
+
+  content.push({
+    type: 'heading',
+    attrs: { level: 2 },
+    content: [{ type: 'text', text: '5. Triage Notes' }]
+  });
+
+  if (filesMatch) {
+    const files = filesMatch[1].split(',').map(f => f.trim()).filter(f => f);
+    if (files.length > 0) {
+      content.push({
+        type: 'paragraph',
+        content: [{ type: 'text', text: 'Key files to investigate:', marks: [{ type: 'strong' }] }]
+      });
+      content.push({
+        type: 'bulletList',
+        content: files.slice(0, 5).map(file => ({
+          type: 'listItem',
+          content: [{
+            type: 'paragraph',
+            content: [{ type: 'text', text: file }]
+          }]
+        }))
+      });
+    }
+  }
+
+  if (nextStepsMatch) {
+    content.push({
+      type: 'paragraph',
+      content: [{ type: 'text', text: 'Next steps:', marks: [{ type: 'strong' }] }]
+    });
+    content.push({
+      type: 'paragraph',
+      content: [{ type: 'text', text: nextStepsMatch[1].trim() }]
+    });
+  }
+
+  if (missingInfoMatch && missingInfoMatch[1].trim().toLowerCase() !== 'none') {
+    content.push({
+      type: 'paragraph',
+      content: [{ type: 'text', text: 'Missing information:', marks: [{ type: 'strong' }] }]
+    });
+    content.push({
+      type: 'paragraph',
+      content: [{ type: 'text', text: missingInfoMatch[1].trim() }]
+    });
   }
 
   return content;
 }
 
-function parseBoldText(text) {
-  const parts = [];
-  const regex = /\*\*(.+?)\*\*/g;
-  let lastIndex = 0;
-  let match;
+function parseCodeContext(text) {
+  const content = [];
+  const lines = text.split('\n').filter(l => l.trim() && !l.includes('Related components:'));
 
-  while ((match = regex.exec(text)) !== null) {
-    if (match.index > lastIndex) {
-      parts.push({ type: 'text', text: text.substring(lastIndex, match.index) });
+  const groups = {};
+  for (const line of lines) {
+    const match = line.match(/Files related to "(.+?)":/);
+    if (match) {
+      const keyword = match[1];
+      groups[keyword] = [];
+    } else if (line.trim().startsWith('-')) {
+      const lastKey = Object.keys(groups)[Object.keys(groups).length - 1];
+      if (lastKey && groups[lastKey].length < 3) {
+        groups[lastKey].push(line.trim().substring(1).trim());
+      }
     }
-    parts.push({
-      type: 'text',
-      text: match[1],
-      marks: [{ type: 'strong' }]
-    });
-    lastIndex = regex.lastIndex;
   }
 
-  if (lastIndex < text.length) {
-    parts.push({ type: 'text', text: text.substring(lastIndex) });
+  const relevantGroups = ['course', 'dashboard', 'card'].filter(k => groups[k]);
+
+  for (const keyword of relevantGroups) {
+    if (groups[keyword] && groups[keyword].length > 0) {
+      content.push({
+        type: 'paragraph',
+        content: [{ type: 'text', text: `Files related to "${keyword}":`, marks: [{ type: 'strong' }] }]
+      });
+      content.push({
+        type: 'bulletList',
+        content: groups[keyword].map(file => ({
+          type: 'listItem',
+          content: [{
+            type: 'paragraph',
+            content: [{ type: 'text', text: file }]
+          }]
+        }))
+      });
+    }
   }
 
-  return parts.length > 0 ? parts : [{ type: 'text', text }];
+  return content;
 }
 
 const fullContent = [
@@ -111,17 +201,18 @@ const fullContent = [
       { type: 'text', text: 'Automated Initial Analysis', marks: [{ type: 'strong' }] }
     ]
   },
-  ...markdownToADF(analysis),
-  {
-    type: 'rule'
-  },
-  {
+  ...parseAnalysisToADF(analysis)
+];
+
+if (codeContext && codeContext.trim()) {
+  fullContent.push({ type: 'rule' });
+  fullContent.push({
     type: 'heading',
     attrs: { level: 3 },
     content: [{ type: 'text', text: 'Code Context' }]
-  },
-  ...markdownToADF(codeContext)
-];
+  });
+  fullContent.push(...parseCodeContext(codeContext));
+}
 
 const requestBody = JSON.stringify({
   body: {
