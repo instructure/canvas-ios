@@ -57478,6 +57478,7 @@
     },
     "To Do" : {
       "comment" : "Tab title, max character count is 14",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -57732,6 +57733,9 @@
           }
         }
       }
+    },
+    "To-do" : {
+      "comment" : "Tab title, max character count is 14"
     },
     "Unknown Error" : {
       "localizations" : {

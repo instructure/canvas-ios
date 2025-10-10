@@ -14627,7 +14627,6 @@
     },
     "To-do" : {
       "comment" : "Name of the to-do widget",
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -14885,6 +14884,7 @@
     },
     "To-Do" : {
       "comment" : "Name of the to-do widget",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

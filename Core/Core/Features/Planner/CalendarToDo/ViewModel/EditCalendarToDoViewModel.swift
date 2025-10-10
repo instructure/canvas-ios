@@ -28,9 +28,9 @@ final class EditCalendarToDoViewModel: ObservableObject {
         var successMessage: String {
             switch self {
             case .add:
-                String(localized: "To Do added successfully", bundle: .core)
+                String(localized: "To-do added successfully", bundle: .core)
             case .edit:
-                String(localized: "To Do saved successfully", bundle: .core)
+                String(localized: "To-do saved successfully", bundle: .core)
             }
         }
     }
@@ -53,8 +53,8 @@ final class EditCalendarToDoViewModel: ObservableObject {
 
     lazy var pageTitle: String = {
         switch mode {
-        case .add: String(localized: "New To Do", bundle: .core)
-        case .edit: String(localized: "Edit To Do", bundle: .core)
+        case .add: String(localized: "New To-do", bundle: .core)
+        case .edit: String(localized: "Edit To-do", bundle: .core)
         }
     }()
 
@@ -75,8 +75,8 @@ final class EditCalendarToDoViewModel: ObservableObject {
             }(),
             message: {
                 switch mode {
-                case .add: String(localized: "We couldn't add your To Do at this time. You can try it again.", bundle: .core)
-                case .edit: String(localized: "We couldn't save your To Do at this time. You can try it again.", bundle: .core)
+                case .add: String(localized: "We couldn't add your To-do at this time. You can try it again.", bundle: .core)
+                case .edit: String(localized: "We couldn't save your To-do at this time. You can try it again.", bundle: .core)
                 }
             }(),
             buttonTitle: String(localized: "OK", bundle: .core)

@@ -100,7 +100,7 @@ class TodoItemTests: CoreTestCase {
         // Then
         XCTAssertNotNil(todoItem)
         XCTAssertEqual(todoItem?.type, .planner_note)
-        XCTAssertEqual(todoItem?.contextName, "Math 101 To Do")
+        XCTAssertEqual(todoItem?.contextName, "Math 101 To-do")
     }
 
     func testInitFromPlannableWithPlannerNoteNoContextName() {
@@ -114,7 +114,7 @@ class TodoItemTests: CoreTestCase {
 
         // Then
         XCTAssertNotNil(todoItem)
-        XCTAssertEqual(todoItem?.contextName, "To Do")
+        XCTAssertEqual(todoItem?.contextName, "To-do")
     }
 
     func testDirectInit() {

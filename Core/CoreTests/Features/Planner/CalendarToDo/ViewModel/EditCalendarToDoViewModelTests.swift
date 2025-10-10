@@ -241,20 +241,20 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
     func testAddModeStrings() {
         let testee = makeAddViewModel()
 
-        XCTAssertEqual(testee.pageTitle, String(localized: "New To Do", bundle: .core))
+        XCTAssertEqual(testee.pageTitle, String(localized: "New To-do", bundle: .core))
         XCTAssertEqual(testee.saveButtonTitle, String(localized: "Add", bundle: .core))
         XCTAssertEqual(testee.saveErrorAlert.title, String(localized: "Creation not completed", bundle: .core))
-        XCTAssertEqual(testee.saveErrorAlert.message, String(localized: "We couldn't add your To Do at this time. You can try it again.", bundle: .core))
+        XCTAssertEqual(testee.saveErrorAlert.message, String(localized: "We couldn't add your To-do at this time. You can try it again.", bundle: .core))
         XCTAssertEqual(testee.saveErrorAlert.buttonTitle, String(localized: "OK", bundle: .core))
     }
 
     func testEditModeStrings() {
         let testee = makeEditViewModel(makePlannable())
 
-        XCTAssertEqual(testee.pageTitle, String(localized: "Edit To Do", bundle: .core))
+        XCTAssertEqual(testee.pageTitle, String(localized: "Edit To-do", bundle: .core))
         XCTAssertEqual(testee.saveButtonTitle, String(localized: "Save", bundle: .core))
         XCTAssertEqual(testee.saveErrorAlert.title, String(localized: "Saving not completed", bundle: .core))
-        XCTAssertEqual(testee.saveErrorAlert.message, String(localized: "We couldn't save your To Do at this time. You can try it again.", bundle: .core))
+        XCTAssertEqual(testee.saveErrorAlert.message, String(localized: "We couldn't save your To-do at this time. You can try it again.", bundle: .core))
         XCTAssertEqual(testee.saveErrorAlert.buttonTitle, String(localized: "OK", bundle: .core))
     }
 

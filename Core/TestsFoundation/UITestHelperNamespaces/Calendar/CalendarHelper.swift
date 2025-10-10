@@ -253,7 +253,7 @@ extension CalendarHelper {
             public static var deleteButton: XCUIElement { app.find(label: "Delete", type: .button) }
 
             public struct Delete {
-                public static var deleteTodoText: XCUIElement { app.find(label: "Delete To Do?", type: .staticText) }
+                public static var deleteTodoText: XCUIElement { app.find(label: "Delete To-do?", type: .staticText) }
                 public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
                 public static var deleteButton: XCUIElement { app.find(label: "Delete", type: .button) }
             }

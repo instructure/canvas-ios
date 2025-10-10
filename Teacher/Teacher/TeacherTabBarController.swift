@@ -97,7 +97,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
 
     func toDoTab() -> UIViewController {
         let todo = CoreNavigationController(rootViewController: TodoListViewController.create())
-        todo.tabBarItem.title = String(localized: "To Do", bundle: .teacher, comment: "Tab title, max character count is 14")
+        todo.tabBarItem.title = String(localized: "To-do", bundle: .teacher, comment: "Tab title, max character count is 14")
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
         todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"

@@ -23,7 +23,7 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
 
     // MARK: - Output
 
-    public let navigationTitle = String(localized: "To Do", bundle: .core)
+    public let navigationTitle = String(localized: "To-do", bundle: .core)
     public let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
     @Published private(set) var state: InstUI.ScreenState = .data
@@ -39,8 +39,8 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
     }
 
     public let deleteConfirmationAlert = ConfirmationAlertViewModel(
-        title: String(localized: "Delete To Do?", bundle: .core),
-        message: String(localized: "This will permanently delete your To Do item.", bundle: .core),
+        title: String(localized: "Delete To-do?", bundle: .core),
+        message: String(localized: "This will permanently delete your To-do item.", bundle: .core),
         cancelButtonTitle: String(localized: "Cancel", bundle: .core),
         confirmButtonTitle: String(localized: "Delete", bundle: .core),
         isDestructive: true

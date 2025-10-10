@@ -209,9 +209,9 @@ extension Plannable {
         }
 
         if let contextName {
-            return String(localized: "\(contextName) To Do", bundle: .core, comment: "<CourseName> To Do")
+            return String(localized: "\(contextName) To-do", bundle: .core, comment: "<CourseName> To-do")
         } else {
-            return String(localized: "To Do", bundle: .core)
+            return String(localized: "To-do", bundle: .core)
         }
     }
 
