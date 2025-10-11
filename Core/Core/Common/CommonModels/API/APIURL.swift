@@ -63,6 +63,10 @@ extension KeyedDecodingContainer {
         }
         return nil
     }
+
+    public func decodeIfPresent(_ type: APIURL.Type, forKey key: Self.Key) throws -> APIURL? {
+        try decodeURLIfPresent(forKey: key)
+    }
 }
 
 #if DEBUG

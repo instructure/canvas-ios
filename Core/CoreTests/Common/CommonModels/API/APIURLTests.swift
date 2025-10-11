@@ -46,40 +46,52 @@ class APIURLTests: CoreTestCase {
         XCTAssertThrowsError(try decoder.decode(APIURL.self, from: try encoder.encode(true)))
     }
 
-    func testDecodeURLIfPresent() throws {
-        var json: [String: Any?] = ["maybeURL": ""]
-        var data = try JSONSerialization.data(withJSONObject: json, options: [])
-        var model = try decoder.decode(TestCodable.self, from: data)
-        XCTAssertNil(model.maybeURL)
-
-        json["maybeURL"] = "https://canvas.instructure.com"
-        data = try JSONSerialization.data(withJSONObject: json, options: [])
-        model = try decoder.decode(TestCodable.self, from: data)
-        XCTAssertEqual(model.maybeURL?.rawValue, URL(string: "https://canvas.instructure.com")!)
-
-        json["maybeURL"] = nil
-        data = try JSONSerialization.data(withJSONObject: json, options: [])
-        model = try decoder.decode(TestCodable.self, from: data)
-        XCTAssertNil(model.maybeURL)
+    func testOptionalAPIURLWithEmptyString() throws {
+        let json: [String: Any?] = ["avatar_url": ""]
+        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+        let model = try decoder.decode(MockAPIResponse.self, from: data)
+        XCTAssertNil(model.avatar_url)
     }
 
-    func testDecodeWithXMLEscapedString() throws {
-        let json: [String: Any?] = ["maybeURL": "https://learningmate.com/api/ltilaunch?custom_productId=bc1bc5be&amp;custom_resourceid=a6936184&amp;type=a5a3abc0"]
+    func testOptionalAPIURLWithValidURL() throws {
+        let json: [String: Any?] = ["avatar_url": "https://canvas.instructure.com/avatar.png"]
         let data = try JSONSerialization.data(withJSONObject: json, options: [])
-        let model = try decoder.decode(TestCodable.self, from: data)
-        XCTAssertEqual(model.maybeURL?.rawValue, URL(string: "https://learningmate.com/api/ltilaunch?custom_productId=bc1bc5be&custom_resourceid=a6936184&type=a5a3abc0")!)
+        let model = try decoder.decode(MockAPIResponse.self, from: data)
+        XCTAssertEqual(model.avatar_url?.rawValue, URL(string: "https://canvas.instructure.com/avatar.png")!)
+    }
+
+    func testOptionalAPIURLWithNullValue() throws {
+        let json: [String: Any?] = ["avatar_url": nil]
+        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+        let model = try decoder.decode(MockAPIResponse.self, from: data)
+        XCTAssertNil(model.avatar_url)
+    }
+
+    func testOptionalAPIURLWithRelativeURL() throws {
+        let json: [String: Any?] = ["avatar_url": "/images/avatar.png"]
+        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+        let model = try decoder.decode(MockAPIResponse.self, from: data)
+        XCTAssertEqual(
+            model.avatar_url?.rawValue,
+            URL(string: "/images/avatar.png", relativeTo: currentSession.baseURL)
+        )
+    }
+
+    func testOptionalAPIURLWithXMLEscapedString() throws {
+        let json: [String: Any?] = ["avatar_url": "https://example.com/path?param=value&amp;other=test"]
+        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+        let model = try decoder.decode(MockAPIResponse.self, from: data)
+        XCTAssertEqual(model.avatar_url?.rawValue, URL(string: "https://example.com/path?param=value&other=test")!)
+    }
+
+    func testOptionalAPIURLWithUnsafeCharacters() throws {
+        let json: [String: Any?] = ["avatar_url": "https://example.com/path{ }`|\\^"]
+        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+        let model = try decoder.decode(MockAPIResponse.self, from: data)
+        XCTAssertEqual(model.avatar_url?.rawValue, URL(string: "https://example.com/path%7B%20%7D%60%7C%5C%5E")!)
     }
 }
 
-private class TestCodable: Codable {
-    let maybeURL: APIURL?
-
-    enum CodingKeys: String, CodingKey {
-        case maybeURL
-    }
-
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        maybeURL = try container.decodeURLIfPresent(forKey: .maybeURL)
-    }
+private struct MockAPIResponse: Codable {
+    let avatar_url: APIURL?
 }
