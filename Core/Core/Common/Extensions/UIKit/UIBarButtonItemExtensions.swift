@@ -24,6 +24,7 @@ public extension UIBarButtonItem {
         let attributes = [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular17)]
         let appearance = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self])
         appearance.setTitleTextAttributes(attributes, for: .normal)
+        appearance.setTitleTextAttributes(attributes, for: .disabled)
     }
 
     static func back(actionHandler: @escaping () -> Void) -> UIBarButtonItem {
