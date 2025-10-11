@@ -134,4 +134,73 @@ enum HCourseStubs {
     static var mixedStateCourses: [HCourse] {
         activeCourses + invitedCourses
     }
+
+    static var course: HCourse {
+        HCourse(
+            id: "1",
+            name: "Course 1",
+            institutionName: "Career 1",
+            state: "Active",
+            enrollmentID: "12",
+            enrollments: [],
+            modules: [],
+            progress: 0.2,
+            overviewDescription: "",
+            currentLearningObject: nil
+        )
+    }
+
+    static var courses: [HCourse] {
+        [
+            HCourseStubs.course,
+            HCourse(
+                id: "2",
+                name: "Introduction to Computer Science",
+                institutionName: "Tech University",
+                state: "Active",
+                enrollmentID: "123",
+                enrollments: [],
+                modules: [],
+                progress: 0.2,
+                overviewDescription: "Learn the fundamentals of programming and computer science.",
+                currentLearningObject: nil
+            ),
+            HCourse(
+                id: "3",
+                name: "Modern World History",
+                institutionName: "Career Academy",
+                state: "Active",
+                enrollmentID: "1233",
+                enrollments: [],
+                modules: [],
+                progress: 0.85,
+                overviewDescription: "Explore key historical events from the 18th century to the present.",
+                currentLearningObject: nil
+            ),
+            HCourse(
+                id: "4",
+                name: "Business Management 101",
+                institutionName: "Global Business School",
+                state: "Completed",
+                enrollmentID: "4567",
+                enrollments: [],
+                modules: [],
+                progress: 1.0,
+                overviewDescription: "An introduction to essential business and management principles.",
+                currentLearningObject: nil
+            ),
+            HCourse(
+                id: "5",
+                name: "Art & Design Fundamentals",
+                institutionName: "Creative Institute",
+                state: "Invited",
+                enrollmentID: "7890",
+                enrollments: [],
+                modules: [],
+                progress: 0.0,
+                overviewDescription: "A foundation course in art, design, and creative expression.",
+                currentLearningObject: nil
+            )
+        ]
+    }
 }
