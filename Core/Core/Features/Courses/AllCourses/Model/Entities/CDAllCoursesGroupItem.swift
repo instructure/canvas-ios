@@ -54,8 +54,7 @@ public final class CDAllCoursesGroupItem: NSManagedObject, WriteableModel {
 
         model.courseID = item.course_id?.value
         if let id = model.courseID, let course: Course = context.first(where: #keyPath(Course.id), equals: id) {
-            model.courseID = item.course_id?.value
-            model.courseID = course.name
+            model.courseName = course.name
             model.courseTermName = course.termName
             model.courseRoles = course.roles
         }

@@ -64,7 +64,7 @@ public class GroupListInteractorLive: GroupListInteractor {
             .filter(with: searchQuery)
             .map { groups in
                 groups
-                    .filter { $0.isAccessible }
+                    .filter { $0.isAccessible && !$0.concluded }
                     .map { AllCoursesGroupItem(from: $0) }
             }
             .eraseToAnyPublisher()
