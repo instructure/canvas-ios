@@ -38,8 +38,8 @@ struct SkillCardsView: View {
         VStack(spacing: .huiSpaces.space16) {
             SkillHeaderView()
             switch viewModel.state {
-            case .data(let skills):
-                ForEach(skills) { skill in
+            case .data:
+                ForEach(viewModel.skills) { skill in
                     Button {
                         onTap()
                     } label: {

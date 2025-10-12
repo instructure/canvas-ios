@@ -19,10 +19,13 @@
 import Core
 
 struct SkillCardsAssembly {
-    static func makeView() -> SkillCardsView {
-        let onTapSkillSpace: () -> Void = { AppEnvironment.shared.switchToSkillSpaceTab() }
+    static func makeViewModel() -> SkillCardsViewModel {
         let interactor = SkillCardsInteractorLive()
-        let viewModel = SkillCardsViewModel(interactor: interactor)
+        return SkillCardsViewModel(interactor: interactor)
+    }
+
+    static func makeView(viewModel: SkillCardsViewModel) -> SkillCardsView {
+        let onTapSkillSpace: () -> Void = { AppEnvironment.shared.switchToSkillSpaceTab() }
         return SkillCardsView(viewModel: viewModel, onTap: onTapSkillSpace)
     }
 #if DEBUG

@@ -24,7 +24,7 @@ import Foundation
 @Observable
 final class SkillCardsViewModel {
     enum ViewState: Equatable {
-        case data(skills: [SkillCardModel])
+        case data
         case empty
         case error
         case loading
@@ -33,6 +33,8 @@ final class SkillCardsViewModel {
     // MARK: - Outputs
 
     private(set) var state: ViewState = .loading
+    private(set) var skills: [SkillCardModel] = []
+    private(set) var countSkills: Int = 0
 
     // MARK: - Private variables
 
@@ -62,10 +64,12 @@ final class SkillCardsViewModel {
             .sinkFailureOrValue { [weak self] _ in
                 self?.state = .error
             } receiveValue: { [weak self] skills in
+                self?.countSkills = skills.count
                 if skills.isEmpty {
                     self?.state = .empty
                 } else {
-                    self?.state = .data(skills: skills)
+                    self?.skills = Array(skills.prefix(5))
+                    self?.state = .data
                 }
             }
             .store(in: &subscriptions)
