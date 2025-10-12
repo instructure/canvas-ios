@@ -36,7 +36,7 @@ final class SkillCardsInteractorLiveTests: HorizonTestCase {
 
         // Then
         XCTAssertFirstValueAndCompletion(testee.getSkills(ignoreCache: true)) { skills in
-            XCTAssertEqual(skills.count, 5)
+            XCTAssertEqual(skills.count, 6)
             XCTAssertEqual(skills[0].id, "1")
             XCTAssertEqual(skills[0].title, "Skill 1")
             XCTAssertEqual(skills[0].status, "expert")

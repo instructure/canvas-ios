@@ -49,7 +49,6 @@ final class SkillCardsInteractorLive: SkillCardsInteractor {
                     }
                     return lhsIndex < rhsIndex
                 }
-                .prefix(5)
                 return sortedSkills.map {
                     SkillCardModel(id: $0.id, title: $0.name, status: $0.proficiencyLevel)
                 }

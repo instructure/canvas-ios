@@ -28,6 +28,7 @@ class DashboardViewModel {
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var hasUnreadNotification = false
     private(set) var hasUnreadInboxMessage = false
+    private(set) var skillViewModel = SkillCardsAssembly.makeViewModel()
 
     // MARK: - Dependencies
 

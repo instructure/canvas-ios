@@ -44,7 +44,7 @@ final class SkillCardsViewModelTests: HorizonTestCase {
         let testee = createVM()
 
         // Then
-        XCTAssertEqual(testee.state, .data(skills: HSkillStubs.skills))
+        XCTAssertEqual(testee.skills.count, 5)
     }
 
     // MARK: - Success Cases
@@ -57,14 +57,10 @@ final class SkillCardsViewModelTests: HorizonTestCase {
         let testee = createVM()
 
         // Then
-        if case let .data(skills) = testee.state {
-            XCTAssertEqual(skills.count, 6)
-            XCTAssertEqual(skills[0].id, "1")
-            XCTAssertEqual(skills[0].title, "Skill 1")
-            XCTAssertEqual(skills[0].status, "expert")
-        } else {
-            XCTFail("Expected .data state but got \(testee.state)")
-        }
+        XCTAssertEqual(testee.skills.count, 5)
+        XCTAssertEqual(testee.skills[0].id, "1")
+        XCTAssertEqual(testee.skills[0].title, "Skill 1")
+        XCTAssertEqual(testee.skills[0].status, "expert")
     }
 
     func testFetchSkillsSuccessWithEmptyResult() {

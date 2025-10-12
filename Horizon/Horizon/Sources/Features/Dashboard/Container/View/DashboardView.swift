@@ -25,12 +25,10 @@ struct DashboardView: View {
     @Environment(\.viewController) private var viewController
     @State private var isShowHeader: Bool = true
     @State private var courseCardsView: CourseCardsView
-    @State private var skillCardsView: SkillCardsView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
         courseCardsView = CourseCardsAssembly.makeView()
-        skillCardsView = SkillCardsAssembly.makeView()
     }
 
     var body: some View {
@@ -45,7 +43,8 @@ struct DashboardView: View {
             VStack(spacing: .zero) {
                 navigationBarHelperView
                 courseCardsView
-                skillCardsView
+                cards
+                SkillCardsAssembly.makeView(viewModel: viewModel.skillViewModel)
                     .padding(.horizontal, .huiSpaces.space24)
                     .padding(.top, .huiSpaces.space16)
             }
@@ -73,7 +72,7 @@ struct DashboardView: View {
 
     func refreshWidgets(completion: @escaping () -> Void) {
         courseCardsView.reload(completion: completion)
-        skillCardsView.reload()
+        viewModel.skillViewModel.getSkills(ignoreCache: true)
     }
 
     private var navigationBarHelperView: some View {
@@ -106,6 +105,20 @@ struct DashboardView: View {
         .padding(.top, .huiSpaces.space10)
         .padding(.bottom, .huiSpaces.space4)
         .background(Color.huiColors.surface.pagePrimary)
+    }
+
+    private var cards: some View {
+        ScrollView(.horizontal) {
+            HStack(spacing: .huiSpaces.space12) {
+                SkillCardCountView(viewModel: viewModel.skillViewModel)
+            }
+            .padding(.vertical, .huiSpaces.space2)
+            .padding(.bottom, .huiSpaces.space2)
+            .padding(.horizontal, .huiSpaces.space24)
+        }
+        .scrollIndicators(.hidden)
+        .scrollBounceBehavior(.basedOnSize)
+        .padding(.top, .huiSpaces.space40)
     }
 }
 
