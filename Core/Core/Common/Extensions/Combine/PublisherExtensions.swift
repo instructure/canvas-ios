@@ -16,13 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import Combine
 import CombineExt
 import CoreData
+import Foundation
 
 extension Publisher {
-
     /// Sinks the publisher and ignores both completion and value events.
     public func sink() -> AnyCancellable {
         sink { _ in } receiveValue: { _ in }
@@ -34,7 +33,7 @@ extension Publisher {
     ) -> AnyCancellable {
         sink(
             receiveCompletion: { completion in
-                if case .failure(let error) = completion {
+                if case let .failure(error) = completion {
                     receiveFailure(error)
                 }
             },
@@ -52,5 +51,21 @@ extension Publisher {
             }
         )
         .eraseToAnyPublisher()
+    }
+
+    public func asyncPublisher() async throws -> Output {
+        try await withCheckedThrowingContinuation { continuation in
+            var cancellable: AnyCancellable?
+            cancellable = self.first()
+                .sink(receiveCompletion: { completion in
+                    if case let .failure(error) = completion {
+                        continuation.resume(throwing: error)
+                    }
+                    cancellable?.cancel()
+                }, receiveValue: { value in
+                    continuation.resume(returning: value)
+                    cancellable?.cancel()
+                })
+        }
     }
 }

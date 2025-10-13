@@ -16,10 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 
-struct InvitedCourse: Identifiable, Equatable {
-    let id: String
-    let name: String
-    let enrollmentID: String
+final class DashboardInteractorPreview: DashboardInteractor {
+    func getUnreadInboxMessageCount() -> AnyPublisher<Int, Never> {
+        Just(5).eraseToAnyPublisher()
+    }
 }
