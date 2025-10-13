@@ -28,7 +28,7 @@ class DashboardViewModel {
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var hasUnreadNotification = false
     private(set) var hasUnreadInboxMessage = false
-    
+
     // MARK: - Dependencies
 
     private let dashboardInteractor: DashboardInteractor
