@@ -172,7 +172,7 @@ public extension Date {
     /**
      This date formatter displays only the name of the weekday. E.g.: Monday, Saturday.
      */
-    private static var weekdayFormatter: DateFormatter = {
+    static var weekdayFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("EEEE")
         return formatter

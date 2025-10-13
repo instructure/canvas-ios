@@ -9,6 +9,8 @@
         <attribute name="subject" attributeType="String"/>
     </entity>
     <entity name="Activity" representedClassName=".Activity" syncable="YES">
+        <attribute name="announcementId" optional="YES" attributeType="String"/>
+        <attribute name="assignmentURL" optional="YES" attributeType="URI"/>
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="contextType" optional="YES" attributeType="String"/>
         <attribute name="courseId" optional="YES" attributeType="String"/>
