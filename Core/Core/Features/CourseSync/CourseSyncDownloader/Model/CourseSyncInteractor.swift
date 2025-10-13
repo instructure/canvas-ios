@@ -145,7 +145,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             let courseIDs = entries.map { $0.syncID }
             return studioMediaInteractor.getContent(courseIDs: courseIDs)
         }
-        downloadSubscription = backgroundActivity
+        let downloadContentContainingStudioMedia: AnyPublisher<Void, Never> = backgroundActivity
             .start { unownedSelf.handleSyncInterruptByOS() }
             .receive(on: scheduler)
             .flatMap { [brandThemeInteractor] (_: Void) -> AnyPublisher<Void, Never> in
@@ -157,12 +157,11 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .flatMap { (_: Void) -> AnyPublisher<Void, Never> in
                 unownedSelf.syncEntries(entriesWithInitialLoadingState)
             }
-            .flatMap { (_: Void) -> AnyPublisher<Void, Never> in
-                syncStudioMedia()
-            }
-            .flatMap { (_: Void) -> AnyPublisher<Void, Never> in
-                sendFinishedNotification()
-            }
+            .eraseToAnyPublisher()
+
+        downloadSubscription = downloadContentContainingStudioMedia
+            .flatMap(syncStudioMedia)
+            .flatMap(sendFinishedNotification)
             .flatMap { (_: Void) -> Future<Void, Never> in
                 unownedSelf.backgroundActivity.stop()
             }
