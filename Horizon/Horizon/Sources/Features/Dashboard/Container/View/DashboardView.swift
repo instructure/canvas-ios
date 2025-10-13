@@ -24,11 +24,13 @@ struct DashboardView: View {
     @Bindable private var viewModel: DashboardViewModel
     @Environment(\.viewController) private var viewController
     @State private var isShowHeader: Bool = true
-    @State private var courseCardsView: CourseCardsView
+    @State private var widgetReloadHandlers: [WidgetReloadHandler] = []
+
+    private let courseCardsView: CourseCardsView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
-        courseCardsView = CourseCardsAssembly.makeView()
+        self.courseCardsView = CourseCardsAssembly.makeView()
     }
 
     var body: some View {
@@ -45,6 +47,7 @@ struct DashboardView: View {
                 courseCardsView
             }
         }
+        .captureWidgetReloadHandlers($widgetReloadHandlers)
         .safeAreaInset(edge: .top, spacing: .zero) {
             if isShowHeader {
                 navigationBar
@@ -66,7 +69,8 @@ struct DashboardView: View {
     }
 
     func refreshWidgets(completion: @escaping () -> Void) {
-        courseCardsView.reload(completion: completion)
+        widgetReloadHandlers.forEach { $0.handler { } }
+        completion()
     }
 
     private var navigationBarHelperView: some View {

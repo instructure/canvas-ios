@@ -29,7 +29,7 @@ struct CourseCardsView: View {
     @State private var scrollViewID = UUID()
 
     init(viewModel: CourseCardsViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = State(initialValue: viewModel)
     }
 
     var body: some View {
@@ -57,10 +57,9 @@ struct CourseCardsView: View {
             }
         }
         .isSkeletonLoadActive(viewModel.state == .loading)
-    }
-
-    func reload(completion: @escaping () -> Void) {
-        viewModel.reload(completion: completion)
+        .onWidgetReload { completion in
+            viewModel.reload(completion: completion)
+        }
     }
 
     private var dataView: some View {
@@ -68,7 +67,7 @@ struct CourseCardsView: View {
             SingleAxisGeometryReader(initialSize: 300) { size in
                 ScrollView(.horizontal) {
                     HStack(alignment: .top, spacing: .huiSpaces.space12) {
-                        ForEach(Array(viewModel.courses.enumerated()), id: \.offset) { index, course in
+                        ForEach(Array(viewModel.courses.enumerated()), id: \.element.id) { index, course in
                             CourseCardView(
                                 model: CourseCardModel(from: course),
                                 onCourseTap: { courseId in

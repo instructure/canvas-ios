@@ -23,30 +23,30 @@ enum CourseCardsAssembly {
         CourseCardsInteractorLive()
     }
 
-    static func makeView() -> CourseCardsView {
+    static func makeViewModel() -> CourseCardsViewModel {
         let onTapProgram: (ProgramSwitcherModel?, WeakViewController) -> Void = { program, viewController in
             AppEnvironment.shared.switchToLearnTab(with: program, from: viewController)
         }
-        return CourseCardsView(
-            viewModel: .init(
-                courseCardsInteractor: makeCourseCardsInteractor(),
-                programInteractor: ProgramInteractorLive(programCourseInteractor: ProgramCourseInteractorLive()),
-                router: AppEnvironment.shared.router,
-                onTapProgram: onTapProgram
-            )
+        return CourseCardsViewModel(
+            courseCardsInteractor: makeCourseCardsInteractor(),
+            programInteractor: ProgramInteractorLive(programCourseInteractor: ProgramCourseInteractorLive()),
+            router: AppEnvironment.shared.router,
+            onTapProgram: onTapProgram
         )
+    }
+
+    static func makeView() -> CourseCardsView {
+        CourseCardsView(viewModel: makeViewModel())
     }
 
     #if DEBUG
         static func makePreview() -> CourseCardsView {
-            CourseCardsView(
-                viewModel: .init(
-                    courseCardsInteractor: CourseCardsInteractorPreview(),
-                    programInteractor: ProgramInteractorPreview(),
-                    router: AppEnvironment.shared.router,
-                    onTapProgram: { _, _ in }
-                )
-            )
+            CourseCardsView(viewModel: CourseCardsViewModel(
+                courseCardsInteractor: CourseCardsInteractorPreview(),
+                programInteractor: ProgramInteractorPreview(),
+                router: AppEnvironment.shared.router,
+                onTapProgram: { _, _ in }
+            ))
         }
     #endif
 }
