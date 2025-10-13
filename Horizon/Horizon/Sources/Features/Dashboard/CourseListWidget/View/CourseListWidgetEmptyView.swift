@@ -19,7 +19,7 @@
 import HorizonUI
 import SwiftUI
 
-struct CourseCardsEmptyView: View {
+struct CourseListWidgetEmptyView: View {
     var body: some View {
         Text("You aren’t currently enrolled in a course.")
             .huiTypography(.h4)
@@ -36,7 +36,7 @@ struct CourseCardsEmptyView: View {
 #if DEBUG
     #Preview {
         VStack {
-            CourseCardsEmptyView()
+            CourseListWidgetEmptyView()
                 .padding()
             Spacer()
         }

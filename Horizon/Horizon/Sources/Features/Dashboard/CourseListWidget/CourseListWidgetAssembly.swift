@@ -18,31 +18,31 @@
 
 import Core
 
-enum CourseCardsAssembly {
-    static func makeCourseCardsInteractor() -> CourseCardsInteractor {
-        CourseCardsInteractorLive()
+enum CourseListWidgetAssembly {
+    static func makeCourseListWidgetInteractor() -> CourseListWidgetInteractor {
+        CourseListWidgetInteractorLive()
     }
 
-    static func makeViewModel() -> CourseCardsViewModel {
+    static func makeViewModel() -> CourseListWidgetViewModel {
         let onTapProgram: (ProgramSwitcherModel?, WeakViewController) -> Void = { program, viewController in
             AppEnvironment.shared.switchToLearnTab(with: program, from: viewController)
         }
-        return CourseCardsViewModel(
-            courseCardsInteractor: makeCourseCardsInteractor(),
+        return CourseListWidgetViewModel(
+            courseCardsInteractor: makeCourseListWidgetInteractor(),
             programInteractor: ProgramInteractorLive(programCourseInteractor: ProgramCourseInteractorLive()),
             router: AppEnvironment.shared.router,
             onTapProgram: onTapProgram
         )
     }
 
-    static func makeView() -> CourseCardsView {
-        CourseCardsView(viewModel: makeViewModel())
+    static func makeView() -> CourseListWidgetView {
+        CourseListWidgetView(viewModel: makeViewModel())
     }
 
     #if DEBUG
-        static func makePreview() -> CourseCardsView {
-            CourseCardsView(viewModel: CourseCardsViewModel(
-                courseCardsInteractor: CourseCardsInteractorPreview(),
+        static func makePreview() -> CourseListWidgetView {
+            CourseListWidgetView(viewModel: CourseListWidgetViewModel(
+                courseCardsInteractor: CourseListWidgetInteractorPreview(),
                 programInteractor: ProgramInteractorPreview(),
                 router: AppEnvironment.shared.router,
                 onTapProgram: { _, _ in }

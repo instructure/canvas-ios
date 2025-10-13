@@ -20,7 +20,7 @@ import Combine
 import Foundation
 @testable import Horizon
 
-final class CourseCardsInteractorMock: CourseCardsInteractor {
+final class CourseListWidgetInteractorMock: CourseListWidgetInteractor {
     var shouldFail = false
     var error: Error = URLError(.badServerResponse)
     var coursesToReturn: [HCourse] = []

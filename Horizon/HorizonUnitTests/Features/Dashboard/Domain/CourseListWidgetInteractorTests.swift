@@ -22,12 +22,12 @@ import CombineSchedulers
 @testable import Horizon
 import XCTest
 
-final class CourseCardsInteractorTests: HorizonTestCase {
-    private var testee: CourseCardsInteractorLive!
+final class CourseListWidgetInteractorTests: HorizonTestCase {
+    private var testee: CourseListWidgetInteractorLive!
 
     override func setUp() {
         super.setUp()
-        testee = CourseCardsInteractorLive(
+        testee = CourseListWidgetInteractorLive(
             userId: "test-user-123",
             scheduler: .immediate
         )

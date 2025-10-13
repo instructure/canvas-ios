@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct CourseCardModel: Identifiable, Equatable {
+struct CourseListWidgetModel: Identifiable, Equatable {
     let id: String
     let name: String
     let imageURL: URL?
@@ -127,7 +127,7 @@ struct CourseCardModel: Identifiable, Equatable {
     }
 }
 
-extension CourseCardModel {
+extension CourseListWidgetModel {
     init(from course: HCourse) {
         id = course.id
         name = course.name

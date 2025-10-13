@@ -19,7 +19,7 @@
 import HorizonUI
 import SwiftUI
 
-struct CourseCardErrorView: View {
+struct CourseListWidgetErrorView: View {
     let onRetry: () -> Void
 
     var body: some View {
@@ -55,7 +55,7 @@ struct CourseCardErrorView: View {
 #if DEBUG
     #Preview {
         VStack {
-            CourseCardErrorView(onRetry: {})
+            CourseListWidgetErrorView(onRetry: {})
                 .padding()
             Spacer()
         }

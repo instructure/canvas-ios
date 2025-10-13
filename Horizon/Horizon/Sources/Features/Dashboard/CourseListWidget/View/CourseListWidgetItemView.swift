@@ -19,8 +19,8 @@
 import HorizonUI
 import SwiftUI
 
-struct CourseCardView: View {
-    let model: CourseCardModel
+struct CourseListWidgetItemView: View {
+    let model: CourseListWidgetModel
     let onCourseTap: (String) -> Void
     let onProgramTap: ((String) -> Void)?
     let onLearningObjectTap: ((String, URL?) -> Void)?
@@ -198,7 +198,7 @@ struct CourseCardView: View {
         }
     }
 
-    private func learningObjectMetadata(for learningObject: CourseCardModel.LearningObjectInfo) -> some View {
+    private func learningObjectMetadata(for learningObject: CourseListWidgetModel.LearningObjectInfo) -> some View {
         HorizonUI.WrappingHStack(spacing: .huiSpaces.space8) {
             if let type = learningObject.type {
                 HorizonUI.StatusChip(
@@ -241,15 +241,15 @@ struct CourseCardView: View {
     #Preview {
         ScrollView {
             VStack {
-                CourseCardView(
-                    model: CourseCardModel(
+                CourseListWidgetItemView(
+                    model: CourseListWidgetModel(
                         id: "1",
                         name: "Lo2rem Ipsum Course Name Here",
                         imageURL: nil,
                         progress: 0,
                         lastActivityAt: nil,
                         programs: [],
-                        currentLearningObject: CourseCardModel.LearningObjectInfo(
+                        currentLearningObject: CourseListWidgetModel.LearningObjectInfo(
                             name: "Adipiscing Elit Learning Object Name Here",
                             moduleTitle: "Module Title",
                             type: .assessment,
@@ -265,15 +265,15 @@ struct CourseCardView: View {
                 .padding()
                 .isSkeletonLoadActive(true)
 
-                CourseCardView(
-                    model: CourseCardModel(
+                CourseListWidgetItemView(
+                    model: CourseListWidgetModel(
                         id: "1",
                         name: "Lo2rem Ipsum Course Name Here Dolor",
                         imageURL: nil,
                         progress: 25.0,
                         lastActivityAt: nil,
                         programs: [],
-                        currentLearningObject: CourseCardModel.LearningObjectInfo(
+                        currentLearningObject: CourseListWidgetModel.LearningObjectInfo(
                             name: "Adipiscing Elit Learning Object Name Here",
                             moduleTitle: "Module Title",
                             type: .assignment,
@@ -287,20 +287,20 @@ struct CourseCardView: View {
                     onLearningObjectTap: { _, _ in }
                 )
                 .padding()
-                CourseCardView(
-                    model: CourseCardModel(
+                CourseListWidgetItemView(
+                    model: CourseListWidgetModel(
                         id: "1",
                         name: "Lo2rem Ipsum Course Name Here Dolor Sit Amet Adipising Elit So",
                         imageURL: nil,
                         progress: 25.0,
                         lastActivityAt: nil,
                         programs: [
-                            CourseCardModel.ProgramInfo(id: "1", name: "Program Name Here"),
-                            CourseCardModel.ProgramInfo(id: "2", name: "Another Program"),
-                            CourseCardModel.ProgramInfo(id: "3", name: "And an other one")
+                            CourseListWidgetModel.ProgramInfo(id: "1", name: "Program Name Here"),
+                            CourseListWidgetModel.ProgramInfo(id: "2", name: "Another Program"),
+                            CourseListWidgetModel.ProgramInfo(id: "3", name: "And an other one")
 
                         ],
-                        currentLearningObject: CourseCardModel.LearningObjectInfo(
+                        currentLearningObject: CourseListWidgetModel.LearningObjectInfo(
                             name: "Adipiscing Elit Learning Object Name Here",
                             moduleTitle: "Module Title",
                             type: .page,
@@ -314,15 +314,15 @@ struct CourseCardView: View {
                     onLearningObjectTap: { _, _ in }
                 )
                 .padding()
-                CourseCardView(
-                    model: CourseCardModel(
+                CourseListWidgetItemView(
+                    model: CourseListWidgetModel(
                         id: "1",
                         name: "Lo2rem Ipsum Course Name Here",
                         imageURL: nil,
                         progress: 0,
                         lastActivityAt: nil,
                         programs: [],
-                        currentLearningObject: CourseCardModel.LearningObjectInfo(
+                        currentLearningObject: CourseListWidgetModel.LearningObjectInfo(
                             name: "Adipiscing Elit Learning Object Name Here",
                             moduleTitle: "Module Title",
                             type: .assessment,
@@ -336,8 +336,8 @@ struct CourseCardView: View {
                     onLearningObjectTap: { _, _ in }
                 )
                 .padding()
-                CourseCardView(
-                    model: CourseCardModel(
+                CourseListWidgetItemView(
+                    model: CourseListWidgetModel(
                         id: "1",
                         name: "Lo2rem Ipsum Course Name Here",
                         imageURL: nil,

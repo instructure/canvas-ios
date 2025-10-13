@@ -20,8 +20,8 @@ import HorizonUI
 import SwiftUI
 
 struct ProgramNameListView: View {
-    let programs: [CourseCardModel.ProgramInfo]
-    let onSelect: (CourseCardModel.ProgramInfo) -> Void
+    let programs: [CourseListWidgetModel.ProgramInfo]
+    let onSelect: (CourseListWidgetModel.ProgramInfo) -> Void
 
     var body: some View {
         HorizonUI.WrappingHStack(spacing: .huiSpaces.space4) {
@@ -57,31 +57,31 @@ struct ProgramNameListView: View {
 #Preview {
     ProgramNameListView(
         programs: [
-            CourseCardModel.ProgramInfo(
+            CourseListWidgetModel.ProgramInfo(
                 id: "1",
                 name: "Program 1"
             ),
-            CourseCardModel.ProgramInfo(
+            CourseListWidgetModel.ProgramInfo(
                 id: "2",
                 name: "Program 2"
             ),
-            CourseCardModel.ProgramInfo(
+            CourseListWidgetModel.ProgramInfo(
                 id: "3",
                 name: " Program 3 "
             ),
-            CourseCardModel.ProgramInfo(
+            CourseListWidgetModel.ProgramInfo(
                 id: "4",
                 name: "Test Program 4"
             ),
-            CourseCardModel.ProgramInfo(
+            CourseListWidgetModel.ProgramInfo(
                 id: "5",
                 name: "Test Program 4"
             ),
-            CourseCardModel.ProgramInfo(
+            CourseListWidgetModel.ProgramInfo(
                 id: "6",
                 name: "Test Program 4"
             ),
-            CourseCardModel.ProgramInfo(
+            CourseListWidgetModel.ProgramInfo(
                 id: "7",
                 name: "Test Program 4"
             )

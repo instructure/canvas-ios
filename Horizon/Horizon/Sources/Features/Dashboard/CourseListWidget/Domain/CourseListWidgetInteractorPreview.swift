@@ -18,7 +18,7 @@
 
 import Combine
 
-final class CourseCardsInteractorPreview: CourseCardsInteractor {
+final class CourseListWidgetInteractorPreview: CourseListWidgetInteractor {
     func getAndObserveCoursesWithoutModules(ignoreCache _: Bool) -> AnyPublisher<[HCourse], Error> {
         Just(
             [HCourse(

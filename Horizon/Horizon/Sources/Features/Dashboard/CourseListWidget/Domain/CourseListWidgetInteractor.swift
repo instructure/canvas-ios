@@ -21,12 +21,12 @@ import CombineSchedulers
 import Core
 import Foundation
 
-protocol CourseCardsInteractor {
+protocol CourseListWidgetInteractor {
     func getAndObserveCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Error>
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never>
 }
 
-final class CourseCardsInteractorLive: CourseCardsInteractor {
+final class CourseListWidgetInteractorLive: CourseListWidgetInteractor {
     // MARK: - Properties
 
     private let userId: String

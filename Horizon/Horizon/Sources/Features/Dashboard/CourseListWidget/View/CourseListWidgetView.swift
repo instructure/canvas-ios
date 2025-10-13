@@ -20,15 +20,15 @@ import Core
 import HorizonUI
 import SwiftUI
 
-struct CourseCardsView: View {
-    @State private var viewModel: CourseCardsViewModel
+struct CourseListWidgetView: View {
+    @State private var viewModel: CourseListWidgetViewModel
     @Environment(\.viewController) private var viewController
 
     @State private var currentCourseIndex: Int? = 0
     @State private var bounceScale: CGFloat = 1.0
     @State private var scrollViewID = UUID()
 
-    init(viewModel: CourseCardsViewModel) {
+    init(viewModel: CourseListWidgetViewModel) {
         self._viewModel = State(initialValue: viewModel)
     }
 
@@ -68,8 +68,8 @@ struct CourseCardsView: View {
                 ScrollView(.horizontal) {
                     HStack(alignment: .top, spacing: .huiSpaces.space12) {
                         ForEach(Array(viewModel.courses.enumerated()), id: \.element.id) { index, course in
-                            CourseCardView(
-                                model: CourseCardModel(from: course),
+                            CourseListWidgetItemView(
+                                model: CourseListWidgetModel(from: course),
                                 onCourseTap: { courseId in
                                     viewModel.navigateToCourseDetails(
                                         id: courseId,
@@ -120,14 +120,14 @@ struct CourseCardsView: View {
     }
 
     private var errorView: some View {
-        CourseCardErrorView {
+        CourseListWidgetErrorView {
             viewModel.reload(completion: nil)
         }
         .padding(.horizontal, .huiSpaces.space24)
     }
 
     private var emptyView: some View {
-        CourseCardsEmptyView()
+        CourseListWidgetEmptyView()
             .padding(.horizontal, .huiSpaces.space24)
     }
 }

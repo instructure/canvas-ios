@@ -23,7 +23,7 @@ import Foundation
 import Observation
 
 @Observable
-class CourseCardsViewModel {
+class CourseListWidgetViewModel {
     enum ViewState {
         case data
         case empty
@@ -39,7 +39,7 @@ class CourseCardsViewModel {
 
     // MARK: - Dependencies
 
-    private let courseCardsInteractor: CourseCardsInteractor
+    private let courseListWidgetInteractor: CourseListWidgetInteractor
     private let programInteractor: ProgramInteractor
     private let router: Router
     private let onTapProgram: (ProgramSwitcherModel?, WeakViewController) -> Void
@@ -54,13 +54,13 @@ class CourseCardsViewModel {
     // MARK: - Init
 
     init(
-        courseCardsInteractor: CourseCardsInteractor,
+        courseCardsInteractor: CourseListWidgetInteractor,
         programInteractor: ProgramInteractor,
         router: Router,
         onTapProgram: @escaping (ProgramSwitcherModel?, WeakViewController) -> Void,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
-        self.courseCardsInteractor = courseCardsInteractor
+        self.courseListWidgetInteractor = courseCardsInteractor
         self.programInteractor = programInteractor
         self.router = router
         self.onTapProgram = onTapProgram
@@ -84,7 +84,7 @@ class CourseCardsViewModel {
         getDashboardCoursesCancellable?.cancel()
         refreshCompletedModuleItemCancellable?.cancel()
 
-        getDashboardCoursesCancellable = courseCardsInteractor.getAndObserveCoursesWithoutModules(ignoreCache: ignoreCache)
+        getDashboardCoursesCancellable = courseListWidgetInteractor.getAndObserveCoursesWithoutModules(ignoreCache: ignoreCache)
             .prepend(Self.coursesMock) // Prepends a mock course object so skeleton loading is possible
             .combineLatest(
                 programInteractor.getProgramsWithObserving(ignoreCache: ignoreCache).prepend(Self.programsMock)
@@ -120,7 +120,7 @@ class CourseCardsViewModel {
                 }
             )
 
-        refreshCompletedModuleItemCancellable = courseCardsInteractor.refreshModuleItemsUponCompletions()
+        refreshCompletedModuleItemCancellable = courseListWidgetInteractor.refreshModuleItemsUponCompletions()
             .sink()
     }
 
@@ -200,7 +200,7 @@ class CourseCardsViewModel {
     }
 }
 
-extension CourseCardsViewModel {
+extension CourseListWidgetViewModel {
     fileprivate static let coursesMock = [
         HCourse(
             id: "mock-course-id",

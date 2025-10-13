@@ -26,11 +26,11 @@ struct DashboardView: View {
     @State private var isShowHeader: Bool = true
     @State private var widgetReloadHandlers: [WidgetReloadHandler] = []
 
-    private let courseCardsView: CourseCardsView
+    private let courseCardsView: CourseListWidgetView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
-        self.courseCardsView = CourseCardsAssembly.makeView()
+        self.courseCardsView = CourseListWidgetAssembly.makeView()
     }
 
     var body: some View {

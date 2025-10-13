@@ -21,22 +21,22 @@ import CombineSchedulers
 @testable import Horizon
 import XCTest
 
-final class CourseCardsViewModelTests: HorizonTestCase {
-    private var courseCardsInteractor: CourseCardsInteractorMock!
+final class CourseListWidgetViewModelTests: HorizonTestCase {
+    private var courseListWidgetInteractor: CourseListWidgetInteractorMock!
     private var programInteractor: ProgramInteractorMock!
     private var onTapProgramCalled = false
     private var onTapProgramModel: ProgramSwitcherModel?
 
     override func setUp() {
         super.setUp()
-        courseCardsInteractor = CourseCardsInteractorMock()
+        courseListWidgetInteractor = CourseListWidgetInteractorMock()
         programInteractor = ProgramInteractorMock()
         onTapProgramCalled = false
         onTapProgramModel = nil
     }
 
     override func tearDown() {
-        courseCardsInteractor = nil
+        courseListWidgetInteractor = nil
         programInteractor = nil
         super.tearDown()
     }
@@ -45,7 +45,7 @@ final class CourseCardsViewModelTests: HorizonTestCase {
 
     func testInitializationFetchesCourses() {
         // Given
-        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        courseListWidgetInteractor.coursesToReturn = HCourseStubs.activeCourses
 
         // When
         let testee = createVM()
@@ -59,7 +59,7 @@ final class CourseCardsViewModelTests: HorizonTestCase {
 
     func testFetchCoursesSuccessWithActiveCourses() {
         // Given
-        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        courseListWidgetInteractor.coursesToReturn = HCourseStubs.activeCourses
 
         // When
         let testee = createVM()
@@ -75,7 +75,7 @@ final class CourseCardsViewModelTests: HorizonTestCase {
 
     func testFetchCoursesSuccessWithEmptyResult() {
         // Given
-        courseCardsInteractor.coursesToReturn = []
+        courseListWidgetInteractor.coursesToReturn = []
 
         // When
         let testee = createVM()
@@ -87,7 +87,7 @@ final class CourseCardsViewModelTests: HorizonTestCase {
 
     func testFetchCoursesFiltersOnlyActiveCourses() {
         // Given
-        courseCardsInteractor.coursesToReturn = HCourseStubs.mixedStateCourses
+        courseListWidgetInteractor.coursesToReturn = HCourseStubs.mixedStateCourses
 
         // When
         let testee = createVM()
@@ -119,7 +119,7 @@ final class CourseCardsViewModelTests: HorizonTestCase {
             ]
         )
 
-        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        courseListWidgetInteractor.coursesToReturn = HCourseStubs.activeCourses
         programInteractor.programsToReturn = [program]
 
         // When
@@ -136,7 +136,7 @@ final class CourseCardsViewModelTests: HorizonTestCase {
 
     func testFetchCoursesFailureShowsError() {
         // Given
-        courseCardsInteractor.shouldFail = true
+        courseListWidgetInteractor.shouldFail = true
 
         // When
         let testee = createVM()
@@ -147,7 +147,7 @@ final class CourseCardsViewModelTests: HorizonTestCase {
 
     func testFetchProgramsFailureShowsError() {
         // Given
-        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        courseListWidgetInteractor.coursesToReturn = HCourseStubs.activeCourses
         programInteractor.shouldFail = true
 
         // When
@@ -161,12 +161,12 @@ final class CourseCardsViewModelTests: HorizonTestCase {
 
     func testReloadFetchesCoursesAgain() {
         // Given
-        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        courseListWidgetInteractor.coursesToReturn = HCourseStubs.activeCourses
         let testee = createVM()
         XCTAssertEqual(testee.courses.count, 3)
 
         // When
-        courseCardsInteractor.coursesToReturn = [HCourseStubs.activeCourses[0]]
+        courseListWidgetInteractor.coursesToReturn = [HCourseStubs.activeCourses[0]]
 
         // Then
         testee.reload(completion: nil)
@@ -179,7 +179,7 @@ final class CourseCardsViewModelTests: HorizonTestCase {
 
     func testNavigateToItemSequence() {
         // Given
-        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        courseListWidgetInteractor.coursesToReturn = HCourseStubs.activeCourses
         let testee = createVM()
         let sourceView = UIViewController()
         let viewController = WeakViewController(sourceView)
@@ -209,7 +209,7 @@ final class CourseCardsViewModelTests: HorizonTestCase {
 
     func testNavigateToCourseDetails() {
         // Given
-        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        courseListWidgetInteractor.coursesToReturn = HCourseStubs.activeCourses
         let testee = createVM()
         let sourceView = UIViewController()
         let viewController = WeakViewController(sourceView)
@@ -229,7 +229,7 @@ final class CourseCardsViewModelTests: HorizonTestCase {
 
     func testNavigateToCourseDetailsWithoutProgramID() {
         // Given
-        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        courseListWidgetInteractor.coursesToReturn = HCourseStubs.activeCourses
         let testee = createVM()
         let sourceView = UIViewController()
         let viewController = WeakViewController(sourceView)
@@ -249,7 +249,7 @@ final class CourseCardsViewModelTests: HorizonTestCase {
 
     func testNavigateProgram() {
         // Given
-        courseCardsInteractor.coursesToReturn = HCourseStubs.activeCourses
+        courseListWidgetInteractor.coursesToReturn = HCourseStubs.activeCourses
         let testee = createVM()
         let sourceView = UIViewController()
         let viewController = WeakViewController(sourceView)
@@ -264,9 +264,9 @@ final class CourseCardsViewModelTests: HorizonTestCase {
 
     // MARK: - Helper Methods
 
-    private func createVM() -> CourseCardsViewModel {
-        CourseCardsViewModel(
-            courseCardsInteractor: courseCardsInteractor,
+    private func createVM() -> CourseListWidgetViewModel {
+        CourseListWidgetViewModel(
+            courseCardsInteractor: courseListWidgetInteractor,
             programInteractor: programInteractor,
             router: router,
             onTapProgram: { [weak self] model, _ in
