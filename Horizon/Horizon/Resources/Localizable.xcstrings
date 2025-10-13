@@ -258,6 +258,7 @@
       }
     },
     "'s score is now available" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -514,6 +515,7 @@
       }
     },
     "'s score weight was changed  " : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -7151,6 +7153,7 @@
       }
     },
     "Announcement from" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -10223,6 +10226,7 @@
       }
     },
     "Assignment Scored" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -13550,6 +13554,9 @@
           }
         }
       }
+    },
+    "Back" : {
+
     },
     "Baghdad (+03:00/+03:00)" : {
       "localizations" : {
@@ -26632,7 +26639,13 @@
     "Double tap to continue learning" : {
 
     },
+    "Double tap to load more notifications" : {
+
+    },
     "Double tap to open course" : {
+
+    },
+    "Double tap to view details" : {
 
     },
     "Download File" : {
@@ -27406,6 +27419,9 @@
     "Due at %@. " : {
 
     },
+    "Due date" : {
+
+    },
     "Due Date" : {
       "localizations" : {
         "ar" : {
@@ -27663,6 +27679,7 @@
       }
     },
     "Due Date Changed" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -40467,6 +40484,7 @@
       }
     },
     "is due on " : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -70440,6 +70458,9 @@
         }
       }
     },
+    "Score changed" : {
+
+    },
     "Scores" : {
       "localizations" : {
         "ar" : {
@@ -70697,6 +70718,7 @@
       }
     },
     "Scoring Weight Changed" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -72487,6 +72509,9 @@
           }
         }
       }
+    },
+    "Show more" : {
+
     },
     "Singapore (+08:00/+08:00)" : {
       "localizations" : {
@@ -82473,6 +82498,9 @@
         }
       }
     },
+    "Today" : {
+
+    },
     "Tokelau Is. (+13:00/+13:00)" : {
       "localizations" : {
         "ar" : {
@@ -84270,6 +84298,7 @@
       }
     },
     "Unknown date" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -90167,6 +90196,9 @@
           }
         }
       }
+    },
+    "Yesterday" : {
+
     },
     "You" : {
       "localizations" : {
