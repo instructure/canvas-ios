@@ -19,7 +19,7 @@
 #if DEBUG
 import Combine
 
-final class SkillCardsInteractorPreview: SkillCardsInteractor {
+final class SkillCardsInteractorPreview: SkillWidgetInteractor {
     func getSkills(ignoreCache: Bool) -> AnyPublisher<[SkillCardModel], Error> {
         Just(
             [

@@ -24,16 +24,20 @@ struct DashboardView: View {
     @Bindable private var viewModel: DashboardViewModel
     @Environment(\.viewController) private var viewController
     @State private var isShowHeader: Bool = true
-    @State private var courseCardsView: CourseCardsView
-    private var skillCardsView: SkillCardsView
-    private var skillCardCountView: SkillCardCountView
+    @State private var widgetReloadHandlers: [WidgetReloadHandler] = []
+
+    // MARK: - Widgets
+
+    private let courseCardsView: CourseListWidgetView
+    private let skillCardsView: SkillListWidgetView
+    private let skillCardCountView: SkillCountWidgetView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
-        courseCardsView = CourseCardsAssembly.makeView()
-        let skillViewModel = SkillCardsAssembly.makeViewModel()
-        skillCardsView = SkillCardsAssembly.makeView(viewModel: skillViewModel)
-        skillCardCountView = SkillCardCountView(viewModel: skillViewModel)
+        self.courseCardsView = CourseListWidgetAssembly.makeView()
+        let skillViewModel = SkillWidgetAssembly.makeViewModel()
+        skillCardsView = SkillWidgetAssembly.makeView(viewModel: skillViewModel)
+        skillCardCountView = SkillCountWidgetView(viewModel: skillViewModel)
     }
 
     var body: some View {
@@ -55,6 +59,7 @@ struct DashboardView: View {
             }
             .padding(.bottom, .huiSpaces.space24)
         }
+        .captureWidgetReloadHandlers($widgetReloadHandlers)
         .safeAreaInset(edge: .top, spacing: .zero) {
             if isShowHeader {
                 navigationBar
@@ -76,8 +81,8 @@ struct DashboardView: View {
     }
 
     func refreshWidgets(completion: @escaping () -> Void) {
-        courseCardsView.reload(completion: completion)
-        skillCardsView.reload()
+        widgetReloadHandlers.forEach { $0.handler { } }
+        completion()
     }
 
     private var navigationBarHelperView: some View {
@@ -128,7 +133,7 @@ struct DashboardView: View {
 }
 
 #if DEBUG
-    #Preview {
-        DashboardAssembly.makePreview()
-    }
+#Preview {
+    DashboardAssembly.makePreview()
+}
 #endif

@@ -25,7 +25,7 @@ final class SkillCardsInteractorLiveTests: HorizonTestCase {
     func testGetSkills() {
         // Given
         let useCase = GetHSkillsUseCase(journey: DomainServiceMock(result: .success(api)))
-        let testee = SkillCardsInteractorLive(skillUseCase: useCase)
+        let testee = SkillWidgetInteractorLive(skillUseCase: useCase)
 
         // When
         api.mock(

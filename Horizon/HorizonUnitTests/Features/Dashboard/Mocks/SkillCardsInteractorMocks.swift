@@ -20,7 +20,7 @@ import Combine
 @testable import Horizon
 import Foundation
 
-final class SkillCardsInteractorMocks: SkillCardsInteractor {
+final class SkillCardsInteractorMocks: SkillWidgetInteractor {
     var shouldFail = false
     var error: Error = URLError(.badServerResponse)
     var lastIgnoreCache: Bool?
