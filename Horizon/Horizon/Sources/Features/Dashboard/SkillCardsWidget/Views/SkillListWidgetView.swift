@@ -66,12 +66,8 @@ struct SkillListWidgetView: View {
         .huiElevation(level: .level4)
         .isSkeletonLoadActive(viewModel.state == .loading)
         .onWidgetReload { completion in
-            viewModel.getSkills(ignoreCache: true)
+            viewModel.getSkills(ignoreCache: true, completion: completion)
         }
-    }
-
-    func reload() {
-        viewModel.getSkills(ignoreCache: true)
     }
 }
 

@@ -28,16 +28,16 @@ struct DashboardView: View {
 
     // MARK: - Widgets
 
-    private let courseCardsView: CourseListWidgetView
-    private let skillCardsView: SkillListWidgetView
-    private let skillCardCountView: SkillCountWidgetView
+    private let courseWidgetView: CourseListWidgetView
+    private let skillWidgetView: SkillListWidgetView
+    private let skillWidgetCountView: SkillCountWidgetView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
-        self.courseCardsView = CourseListWidgetAssembly.makeView()
+        self.courseWidgetView = CourseListWidgetAssembly.makeView()
         let skillViewModel = SkillWidgetAssembly.makeViewModel()
-        skillCardsView = SkillWidgetAssembly.makeView(viewModel: skillViewModel)
-        skillCardCountView = SkillCountWidgetView(viewModel: skillViewModel)
+        skillWidgetView = SkillWidgetAssembly.makeView(viewModel: skillViewModel)
+        skillWidgetCountView = SkillCountWidgetView(viewModel: skillViewModel)
     }
 
     var body: some View {
@@ -51,9 +51,9 @@ struct DashboardView: View {
         ) { _ in
             VStack(spacing: .zero) {
                 navigationBarHelperView
-                courseCardsView
+                courseWidgetView
                 cards
-                skillCardsView
+                skillWidgetView
                     .padding(.horizontal, .huiSpaces.space24)
                     .padding(.top, .huiSpaces.space16)
             }
@@ -120,7 +120,7 @@ struct DashboardView: View {
     private var cards: some View {
         ScrollView(.horizontal) {
             HStack(spacing: .huiSpaces.space12) {
-                skillCardCountView
+                skillWidgetCountView
             }
             .padding(.vertical, .huiSpaces.space2)
             .padding(.bottom, .huiSpaces.space2)

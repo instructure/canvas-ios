@@ -56,14 +56,16 @@ final class SkillListWidgetViewModel {
         getSkills()
     }
 
-    func getSkills(ignoreCache: Bool = false) {
+    func getSkills(ignoreCache: Bool = false, completion: (() -> Void)? = nil) {
         state = .loading
         interactor
             .getSkills(ignoreCache: ignoreCache)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] _ in
                 self?.state = .error
+                completion?()
             } receiveValue: { [weak self] skills in
+                completion?()
                 self?.countSkills = skills.count
                 if skills.isEmpty {
                     self?.state = .empty
