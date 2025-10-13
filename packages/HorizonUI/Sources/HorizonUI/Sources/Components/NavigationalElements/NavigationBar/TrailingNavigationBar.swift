@@ -66,12 +66,20 @@ extension HorizonUI.NavigationBar {
                     ) {
                         onNotificationDidTap()
                     }
-
+                    .accessibilityLabel(
+                        Text(
+                            hasUnreadNotification
+                            ? String(localized: "Notifications, unread notifications available")
+                            : String(localized: "Notifications")
+                        )
+                    )
+                    .accessibilityAddTraits(.isButton)
                     if hasUnreadNotification {
                         HorizonUI.Badge(
                             type: .solidColor,
                             style: .custom(backgroundColor: .huiColors.surface.inversePrimary, foregroundColor: .clear)
                         )
+                        .accessibilityHidden(true)
                     }
                 }
                 .dropShadow()
