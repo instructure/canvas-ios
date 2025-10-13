@@ -157,7 +157,5 @@ struct HNotificationView: View {
 }
 
 #if DEBUG
-#Preview {
-    NotificationAssembly.makePreview()
-}
+#Preview { NotificationAssembly.makePreview() }
 #endif

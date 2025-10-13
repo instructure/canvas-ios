@@ -24,7 +24,7 @@ final class NotificationFormatterTests: HorizonTestCase {
     func testFormatNotifications() {
         // Given
         let notifications: [HActivity] = HActivityStub.activities
-        let courses: [HCourse] = HCourseStubs.courses
+        let courses: [HCourse] = HCourseStub.courses
         let testee = NotificationFormatterLive()
         // When
        let result = testee.formatNotifications(notifications, courses: courses)

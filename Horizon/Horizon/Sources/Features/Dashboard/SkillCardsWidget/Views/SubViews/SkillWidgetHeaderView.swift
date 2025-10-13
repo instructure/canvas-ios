@@ -22,7 +22,7 @@ import SwiftUI
 struct SkillWidgetHeaderView: View {
     var body: some View {
         HStack {
-            Text("Skill Highlights", bundle: .horizon)
+            Text("Skill highlights", bundle: .horizon)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .huiTypography(.labelMediumBold)
                 .foregroundStyle(Color.huiColors.text.timestamp)
