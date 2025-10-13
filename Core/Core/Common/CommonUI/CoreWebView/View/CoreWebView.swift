@@ -851,7 +851,7 @@ private extension CoreWebView {
     func presetMediaStreamingUserAgent(given content: String) {
         let isVideoStreaming = content.contains("<video") && content.contains("/media_download?entryId=")
         if isVideoStreaming {
-            customUserAgent = "AppleCoreMedia/"
+            customUserAgent = UserAgent.coreMedia.description
         } else {
             customUserAgent = nil
         }

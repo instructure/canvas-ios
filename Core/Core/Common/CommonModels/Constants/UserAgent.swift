@@ -23,6 +23,7 @@ public enum UserAgent: CustomStringConvertible {
     case safari
     case desktopSafari
     case safariLTI
+    case coreMedia
 
     public func productNameForBundle(_ id: String?) -> String {
         switch id {
@@ -50,6 +51,8 @@ public enum UserAgent: CustomStringConvertible {
             return "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15"
         case .safariLTI:
             return "Version/\(version) Safari/604.1"
+        case .coreMedia:
+            return "AppleCoreMedia/"
         }
     }
 }
