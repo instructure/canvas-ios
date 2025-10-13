@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct InboxCoursePickerView: View {
     @ObservedObject private var viewModel: InboxCoursePickerViewModel
+
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     init(viewModel: InboxCoursePickerViewModel) {
@@ -44,6 +45,7 @@ public struct InboxCoursePickerView: View {
         .frame(maxWidth: .infinity)
         .navigationBarStyle(.modal)
         .background(Color.backgroundLightest)
+        .snackBar(viewModel: viewModel.snackbarViewModel)
     }
 
     @ViewBuilder
@@ -139,9 +141,8 @@ public struct InboxCoursePickerView: View {
                         .frame(width: 24, height: 24)
                         .padding(.horizontal, 12)
                         .hidden(!isSelected(course))
-
                 }
-                .foregroundStyle(Color.textDarkest)
+                .foregroundStyle(course.isPastEnrollment ? Color.disabledGray : Color.textDarkest)
             }
             .padding(.vertical, 16)
             .accessibilityLabel(accessibilityLabel)
