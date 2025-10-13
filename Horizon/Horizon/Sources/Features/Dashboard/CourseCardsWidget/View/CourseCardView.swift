@@ -74,7 +74,7 @@ struct CourseCardView: View {
     }
 
     private var courseImageSection: some View {
-        SkeletonAsyncImage(
+        SkeletonRemoteImage(
             url: model.imageURL,
             topLeading: 32,
             topTrailing: 32,
