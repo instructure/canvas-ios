@@ -108,9 +108,11 @@ private struct SkillCountView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     HStack {
         SkillCardCountView(viewModel: .init(interactor: SkillCardsInteractorPreview()))
         SkillCardCountView(viewModel: .init(interactor: SkillCardsInteractorPreview()))
     }
 }
+#endif
