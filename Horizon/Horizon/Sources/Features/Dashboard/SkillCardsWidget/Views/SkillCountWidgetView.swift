@@ -92,12 +92,11 @@ private struct SkillCountView: View {
     }
 
     private var countSkillsView: some View {
-        HStack(spacing: .huiSpaces.space10) {
+        HStack(spacing: .huiSpaces.space8) {
             Text(count.description)
-                .huiTypography(.h1)
+                .huiTypography(.labelSemibold)
                 .foregroundStyle(Color.huiColors.text.body)
                 .skeletonLoadable()
-            Spacer()
             Text("earned", bundle: .horizon)
                 .huiTypography(.labelMediumBold)
                 .foregroundStyle(Color.huiColors.text.body)
