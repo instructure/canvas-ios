@@ -67,7 +67,35 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
     }
 
     public func getContent(courseIDs: [CourseSyncID]) -> AnyPublisher<Void, Never> {
-        return Publishers
+        let groupMediaByStudioDirectory: ([CourseMediaData]) -> AnyPublisher<CourseMediaData, Never> = { allCoursesMedia in
+            let mediaListByStudioDirectory: [URL: [CourseMediaData]] = Dictionary(
+                grouping: allCoursesMedia,
+                by: { $0.studioDirectory }
+            )
+            return Publishers.Sequence(sequence: mediaListByStudioDirectory)
+                .map { (studioDirectory, mediaList) -> CourseMediaData in
+                    var group = CourseMediaData(studioDirectory: studioDirectory)
+                    mediaList.forEach { courseMedia in
+                        group.iframes.merge(courseMedia.iframes) { $0 + $1 }
+                        group.mediaItems.append(contentsOf: courseMedia.mediaItems)
+                    }
+                    return group
+                }
+                .eraseToAnyPublisher()
+        }
+
+        let removeNoLongerNeededVideos: (CourseMediaData) -> AnyPublisher<CourseMediaData, Error> = { [cleanupInteractor] mediaData in
+            cleanupInteractor
+                .removeNoLongerNeededVideos(
+                    allMediaItemsOnAPI: mediaData.mediaItems,
+                    mediaLTIIDsUsedInOfflineMode: mediaData.idsToDownload,
+                    offlineStudioDirectory: mediaData.studioDirectory
+                )
+                .map { mediaData }
+                .eraseToAnyPublisher()
+        }
+
+        let collectCourseMedia = Publishers
             .Sequence(sequence: courseIDs)
             .receive(on: scheduler)
             .flatMap { [weak self] courseSyncID -> AnyPublisher<CourseMediaData, Error> in
@@ -77,31 +105,10 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                 return getCourseMedia(courseSyncID: courseSyncID)
             }
             .collect()
-            .flatMap { (allCoursesMedia: [CourseMediaData]) -> AnyPublisher<CourseMediaData, Never> in
-                let mediaListByStudioDirectory: [URL: [CourseMediaData]] = Dictionary(
-                    grouping: allCoursesMedia,
-                    by: { $0.studioDirectory }
-                )
-                return Publishers.Sequence(sequence: mediaListByStudioDirectory)
-                    .map { (studioDirectory, mediaList) in
-                        var group = CourseMediaData(studioDirectory: studioDirectory)
-                        mediaList.forEach { courseMedia in
-                            group.iframes.merge(courseMedia.iframes) { $0 + $1 }
-                            group.mediaItems.append(contentsOf: courseMedia.mediaItems)
-                        }
-                        return group
-                    }
-                    .eraseToAnyPublisher()
-            }
-            .flatMap { [cleanupInteractor] mediaData in
-                return cleanupInteractor
-                    .removeNoLongerNeededVideos(
-                        allMediaItemsOnAPI: mediaData.mediaItems,
-                        mediaLTIIDsUsedInOfflineMode: mediaData.idsToDownload,
-                        offlineStudioDirectory: mediaData.studioDirectory
-                    )
-                    .map { mediaData }
-            }
+
+        return collectCourseMedia
+            .flatMap(groupMediaByStudioDirectory)
+            .flatMap(removeNoLongerNeededVideos)
             .flatMap { [weak self] mediaData in
                 guard let self else { return Publishers.noInstanceFailure(output: Void.self) }
                 return self.downloadMediaTweakingIFrameReferences(mediaData)
