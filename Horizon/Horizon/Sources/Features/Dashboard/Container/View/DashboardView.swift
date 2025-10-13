@@ -24,11 +24,20 @@ struct DashboardView: View {
     @Bindable private var viewModel: DashboardViewModel
     @Environment(\.viewController) private var viewController
     @State private var isShowHeader: Bool = true
-    @State private var courseCardsView: CourseCardsView
+    @State private var widgetReloadHandlers: [WidgetReloadHandler] = []
+
+    // MARK: - Widgets
+
+    private let courseWidgetView: CourseListWidgetView
+    private let skillWidgetView: SkillListWidgetView
+    private let skillWidgetCountView: SkillCountWidgetView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
-        courseCardsView = CourseCardsAssembly.makeView()
+        self.courseWidgetView = CourseListWidgetAssembly.makeView()
+        let skillViewModel = SkillWidgetAssembly.makeViewModel()
+        skillWidgetView = SkillWidgetAssembly.makeView(viewModel: skillViewModel)
+        skillWidgetCountView = SkillCountWidgetView(viewModel: skillViewModel)
     }
 
     var body: some View {
@@ -42,14 +51,15 @@ struct DashboardView: View {
         ) { _ in
             VStack(spacing: .zero) {
                 navigationBarHelperView
-                courseCardsView
+                courseWidgetView
                 cards
-                SkillCardsAssembly.makeView(viewModel: viewModel.skillViewModel)
+                skillWidgetView
                     .padding(.horizontal, .huiSpaces.space24)
                     .padding(.top, .huiSpaces.space16)
             }
             .padding(.bottom, .huiSpaces.space24)
         }
+        .captureWidgetReloadHandlers($widgetReloadHandlers)
         .safeAreaInset(edge: .top, spacing: .zero) {
             if isShowHeader {
                 navigationBar
@@ -71,8 +81,8 @@ struct DashboardView: View {
     }
 
     func refreshWidgets(completion: @escaping () -> Void) {
-        courseCardsView.reload(completion: completion)
-        viewModel.skillViewModel.getSkills(ignoreCache: true)
+        widgetReloadHandlers.forEach { $0.handler { } }
+        completion()
     }
 
     private var navigationBarHelperView: some View {
@@ -110,7 +120,7 @@ struct DashboardView: View {
     private var cards: some View {
         ScrollView(.horizontal) {
             HStack(spacing: .huiSpaces.space12) {
-                SkillCardCountView(viewModel: viewModel.skillViewModel)
+                skillWidgetCountView
             }
             .padding(.vertical, .huiSpaces.space2)
             .padding(.bottom, .huiSpaces.space2)
@@ -123,7 +133,7 @@ struct DashboardView: View {
 }
 
 #if DEBUG
-    #Preview {
-        DashboardAssembly.makePreview()
-    }
+#Preview {
+    DashboardAssembly.makePreview()
+}
 #endif

@@ -113,8 +113,8 @@ final class SkillCardsViewModelTests: HorizonTestCase {
 
     // MARK: - Helper Methods
 
-    private func createVM() -> SkillCardsViewModel {
-        SkillCardsViewModel(
+    private func createVM() -> SkillListWidgetViewModel {
+        SkillListWidgetViewModel(
             interactor: skillCardsInteractor,
             scheduler: .immediate
         )
