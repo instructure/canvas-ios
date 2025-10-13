@@ -25,10 +25,15 @@ struct DashboardView: View {
     @Environment(\.viewController) private var viewController
     @State private var isShowHeader: Bool = true
     @State private var courseCardsView: CourseCardsView
+    private var skillCardsView: SkillCardsView
+    private var skillCardCountView: SkillCardCountView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
         courseCardsView = CourseCardsAssembly.makeView()
+        let skillViewModel = SkillCardsAssembly.makeViewModel()
+        skillCardsView = SkillCardsAssembly.makeView(viewModel: skillViewModel)
+        skillCardCountView = SkillCardCountView(viewModel: skillViewModel)
     }
 
     var body: some View {
@@ -44,7 +49,7 @@ struct DashboardView: View {
                 navigationBarHelperView
                 courseCardsView
                 cards
-                SkillCardsAssembly.makeView(viewModel: viewModel.skillViewModel)
+                skillCardsView
                     .padding(.horizontal, .huiSpaces.space24)
                     .padding(.top, .huiSpaces.space16)
             }
@@ -72,7 +77,7 @@ struct DashboardView: View {
 
     func refreshWidgets(completion: @escaping () -> Void) {
         courseCardsView.reload(completion: completion)
-        viewModel.skillViewModel.getSkills(ignoreCache: true)
+        skillCardsView.reload()
     }
 
     private var navigationBarHelperView: some View {
@@ -110,7 +115,7 @@ struct DashboardView: View {
     private var cards: some View {
         ScrollView(.horizontal) {
             HStack(spacing: .huiSpaces.space12) {
-                SkillCardCountView(viewModel: viewModel.skillViewModel)
+                skillCardCountView
             }
             .padding(.vertical, .huiSpaces.space2)
             .padding(.bottom, .huiSpaces.space2)
