@@ -58,11 +58,8 @@ struct SkillsHighlightsWidgetView: View {
             }
         }
         .padding(.huiSpaces.space24)
-        .background {
-            RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level4.attributes.radius)
-                .fill(Color.huiColors.primitives.white10)
-                .accessibilityHidden(true)
-        }
+        .background(Color.huiColors.surface.pageSecondary)
+        .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
         .isSkeletonLoadActive(viewModel.state == .loading)
         .padding(.horizontal, .huiSpaces.space24)
