@@ -31,10 +31,12 @@ struct DashboardView: View {
     private let courseWidgetView: CourseListWidgetView
     private let skillWidgetView: SkillListWidgetView
     private let skillWidgetCountView: SkillCountWidgetView
+    private let announcementListWidgetView: AnnouncementsListWidgetView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
         self.courseWidgetView = CourseListWidgetAssembly.makeView()
+        self.announcementListWidgetView = AnnouncementsWidgetAssembly.makeView()
         let skillViewModel = SkillWidgetAssembly.makeViewModel()
         skillWidgetView = SkillWidgetAssembly.makeView(viewModel: skillViewModel)
         skillWidgetCountView = SkillCountWidgetView(viewModel: skillViewModel)
@@ -51,6 +53,7 @@ struct DashboardView: View {
         ) { _ in
             VStack(spacing: .zero) {
                 navigationBarHelperView
+                announcementListWidgetView
                 courseWidgetView
                 cards
                 skillWidgetView
