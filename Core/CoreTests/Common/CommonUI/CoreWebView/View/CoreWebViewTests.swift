@@ -21,7 +21,6 @@ import WebKit
 @testable import Core
 import TestsFoundation
 
-
 class CoreWebViewTests: CoreTestCase {
     class LinkDelegate: CoreWebViewLinkDelegate {
         let handle: (URL) -> Bool
