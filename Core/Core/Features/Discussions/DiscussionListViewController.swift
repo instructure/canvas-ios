@@ -75,7 +75,7 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
         super.viewDidLoad()
 
 		if #available(iOS 26, *) {
-			navigationItem.title = String(localized: "Discussion", bundle: .core)
+			navigationItem.title = String(localized: "Discussions", bundle: .core)
 		} else {
 			setupTitleViewInNavbar(title: String(localized: "Discussions", bundle: .core))
 		}
