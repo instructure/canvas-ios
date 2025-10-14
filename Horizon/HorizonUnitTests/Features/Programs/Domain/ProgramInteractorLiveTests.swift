@@ -34,7 +34,7 @@ final class ProgramInteractorLiveTests: HorizonTestCase {
         )
         api.mock(GetHProgramsRequest(), value: HProgramStubs.response)
         // Then
-        XCTAssertFirstValueAndCompletion(testee.getPrograms(ignoreCache: true)) { programs in
+        XCTAssertSingleOutputAndFinish(testee.getPrograms(ignoreCache: true)) { programs in
             let firstProgram = programs.first(where: { $0.id == "d3aaa471-1eb6-4ae7-817a-f0582ea0f806" })
             let courses = firstProgram?.courses ?? []
             XCTAssertTrue(firstProgram?.isLinear ?? false)
@@ -58,7 +58,7 @@ final class ProgramInteractorLiveTests: HorizonTestCase {
         )
         api.mock(GetHProgramsRequest(), value: HProgramStubs.response)
         // Then
-        XCTAssertFirstValueAndCompletion(testee.getProgramsWithCourses(ignoreCache: true)) { programs in
+        XCTAssertSingleOutputAndFinish(testee.getProgramsWithCourses(ignoreCache: true)) { programs in
             let firstProgram = programs[0]
             let courses = firstProgram.courses
             XCTAssertTrue(firstProgram.isLinear)
@@ -92,7 +92,7 @@ final class ProgramInteractorLiveTests: HorizonTestCase {
         )
         api.mock(GetHProgramsRequest(), value: HProgramStubs.response)
         // Then
-        XCTAssertFirstValueAndCompletion(testee.getProgramsWithCourses(ignoreCache: true)) { programs in
+        XCTAssertSingleOutputAndFinish(testee.getProgramsWithCourses(ignoreCache: true)) { programs in
             let firstProgram = programs[0]
             XCTAssertFalse(firstProgram.isLinear)
             XCTAssertEqual(firstProgram.date, "01/08/2025 - 10/10/2025")
