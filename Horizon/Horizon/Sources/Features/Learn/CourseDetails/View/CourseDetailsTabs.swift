@@ -21,6 +21,7 @@ enum CourseDetailsTabs: Int, CaseIterable, Identifiable {
     case myProgress
     case scores
     case notebook
+    case tools
     //  case quickLinks
 
     var localizedString: String {
@@ -35,6 +36,8 @@ enum CourseDetailsTabs: Int, CaseIterable, Identifiable {
             return String(localized: "Notes", bundle: .horizon)
         // case .quickLinks:
             // return String(localized: "Quick Links", bundle: .horizon)
+        case .tools:
+            return String(localized: "Tools", bundle: .horizon)
         }
     }
 

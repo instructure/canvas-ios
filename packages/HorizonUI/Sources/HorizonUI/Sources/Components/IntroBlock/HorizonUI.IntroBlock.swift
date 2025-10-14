@@ -82,11 +82,10 @@ public extension HorizonUI {
                         .foregroundStyle(foregroundColor)
                 }
                 if isOverdue {
-                    HorizonUI.Pill(
-                        title: String(localized: "Overdue"),
-                        style: .outline(.init(borderColor: foregroundColor, textColor: foregroundColor, iconColor: foregroundColor)),
-                        isUppercased: true,
-                        icon: nil
+                    HorizonUI.StatusChip(
+                        title: String(localized: "Overdue").uppercased(),
+                        style: .white,
+                        isFilled: false
                     )
                 }
             }

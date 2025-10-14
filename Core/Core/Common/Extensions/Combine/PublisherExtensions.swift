@@ -19,7 +19,6 @@
 import Foundation
 import Combine
 import CombineExt
-import CoreData
 
 extension Publisher {
 
@@ -34,7 +33,7 @@ extension Publisher {
     ) -> AnyCancellable {
         sink(
             receiveCompletion: { completion in
-                if case .failure(let error) = completion {
+                if let error = completion.error {
                     receiveFailure(error)
                 }
             },

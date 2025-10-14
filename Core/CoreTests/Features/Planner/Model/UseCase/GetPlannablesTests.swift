@@ -63,6 +63,42 @@ class GetPlannablesTests: CoreTestCase {
         XCTAssertEqual(plannables, [first, second, third])
     }
 
+    func testScopeBasedOnUseCase() {
+        let first = Plannable.make(from: .make(
+            plannable_id: "1",
+            plannable: .make(title: "One"),
+            plannable_date: start
+        ))
+
+        first.originUseCaseID = .syllabusSummary
+
+        let second = Plannable.make(from: .make(
+            plannable_id: "2",
+            plannable: .make(title: "Two"),
+            plannable_date: start.addMinutes(1)
+        ))
+
+        let third = Plannable.make(from: .make(
+            plannable_id: "3",
+            plannable: .make(title: "Three"),
+            plannable_date: start.addMinutes(2)
+        ))
+
+        third.originUseCaseID = .syllabusSummary
+
+        let fourth = Plannable.make(from: .make(
+            plannable_id: "4",
+            plannable: .make(title: "Four"),
+            plannable_date: start.addMinutes(3)
+        ))
+
+        XCTAssertFalse([first, third].allSatisfy(useCase.scope.predicate.evaluate(with:)))
+        XCTAssertTrue([second, fourth].allSatisfy(useCase.scope.predicate.evaluate(with:)))
+
+        let plannables: [Plannable] = databaseClient.fetch(scope: useCase.scope)
+        XCTAssertEqual(plannables, [second, fourth])
+    }
+
     func testScopeWithUserID() {
         let yes = Plannable.make(from: .make(plannable_id: "1"), userID: "1")
         Plannable.make(from: .make(plannable_id: "2"), userID: nil)

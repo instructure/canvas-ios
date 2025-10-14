@@ -44,13 +44,13 @@ class AccountSettingsTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertVisible(navBar)
+        XCTAssertVisible(doneButton)
 
         // MARK: Check if "Pair with Observer" is not available
         let pairWithObserver = Helper.menuItem(item: .pairWithObserver).waitUntil(.visible, timeout: 5)

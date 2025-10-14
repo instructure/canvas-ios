@@ -33,9 +33,26 @@ public enum AssignmentReminderError: Error, Equatable {
 public struct AssignmentReminderContext {
     let courseId: String
     let assignmentId: String
+    let subAssignmentTag: String
     let userId: String
     let assignmentName: String
     let dueDate: Date
+
+    init(
+        courseId: String,
+        assignmentId: String,
+        subAssignmentTag: String? = nil,
+        userId: String,
+        assignmentName: String,
+        dueDate: Date
+    ) {
+        self.courseId = courseId
+        self.assignmentId = assignmentId
+        self.subAssignmentTag = subAssignmentTag ?? ""
+        self.userId = userId
+        self.assignmentName = assignmentName
+        self.dueDate = dueDate
+    }
 }
 
 public protocol AssignmentRemindersInteractor: AnyObject {
@@ -171,13 +188,16 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
             return Just(NewReminderResult.failure(convertedError)).eraseToAnyPublisher()
         }
 
-        newReminderDidSelect
-            .flatMap { waitForAssignmentData($0) }
-            .flatMap { askForPermission($0) }
-            .flatMap { createNotificationTrigger($0) }
-            .flatMap { checkDuplicateReminders($0) }
-            .flatMap { scheduleNotification($0) }
-            .catch { unifyErrors($0) }
+        let pipeline: AnyPublisher<NewReminderResult, Never> = newReminderDidSelect
+            .flatMap(waitForAssignmentData)
+            .flatMap(askForPermission)
+            .flatMap(createNotificationTrigger)
+            .flatMap(checkDuplicateReminders)
+            .flatMap(scheduleNotification)
+            .catch(unifyErrors)
+            .eraseToAnyPublisher()
+
+        pipeline
             .sink(receiveCompletion: { [weak self] _ in
                 // On error the stream will complete, so we re-create it to process the next selection action
                 self?.scheduleNotificationOnTimeSelect()
@@ -241,6 +261,7 @@ private extension UserNotificationCenterProtocol {
             .map {
                 $0.filter(courseId: context.courseId,
                           assignmentId: context.assignmentId,
+                          subAssignmentTag: context.subAssignmentTag.nilIfEmpty,
                           userId: context.userId)
             }
             .eraseToAnyPublisher()
