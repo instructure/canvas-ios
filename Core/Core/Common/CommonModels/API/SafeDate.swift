@@ -27,6 +27,13 @@ import Foundation
 public struct SafeDate: Codable, Equatable {
     public var wrappedValue: Date?
 
+    private static let extendedFormatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return formatter
+    }()
+    private static let standardFormatter = ISO8601DateFormatter()
+
     public init(wrappedValue: Date?) {
         self.wrappedValue = wrappedValue
     }
@@ -54,16 +61,13 @@ public struct SafeDate: Codable, Equatable {
 
         // Try ISO8601 with fractional seconds first (for RN generated dates like "2019-06-02T18:07:28.000Z")
         // This must come BEFORE standard ISO8601 to avoid the extended formatter being too lenient
-        let extendedFormatter = ISO8601DateFormatter()
-        extendedFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        if let date = extendedFormatter.date(from: dateString) {
+        if let date = Self.extendedFormatter.date(from: dateString) {
             wrappedValue = date
             return
         }
 
         // Try standard ISO8601 format (e.g., "2025-01-15T10:30:00Z" or "-3033-05-31T07:51:58Z")
-        let standardFormatter = ISO8601DateFormatter()
-        if let date = standardFormatter.date(from: dateString) {
+        if let date = Self.standardFormatter.date(from: dateString) {
             wrappedValue = date
             return
         }
