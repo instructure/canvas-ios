@@ -568,6 +568,11 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
 
+        // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
+        if action.handleStudioImmersiveViewIfNeeded(from: linkDelegate?.routeLinksFrom, router: env.router) {
+            return decisionHandler(.cancel)
+        }
+
         // Forward decision to delegate
         if action.navigationType == .linkActivated, let url = action.request.url,
            linkDelegate?.handleLink(url) == true {
@@ -892,5 +897,26 @@ extension WKNavigationAction {
 
     var isCanvasUserContentLinkTap: Bool {
         navigationType == .linkActivated && request.url?.host()?.hasSuffix(".canvas-user-content.com") == true
+    }
+
+    var isStudioImmersiveViewLinkTap: Bool {
+        navigationType == .other &&
+        request.url?.path.contains("/media_attachments/") == true &&
+        request.url?.path.hasSuffix("/immersive_view") == true &&
+        sourceFrame.isMainFrame == false
+    }
+
+    func handleStudioImmersiveViewIfNeeded(from viewController: UIViewController?, router: Router) -> Bool {
+        guard isStudioImmersiveViewLinkTap,
+              var url = request.url,
+              let viewController
+        else {
+            return false
+        }
+
+        url.append(queryItems: [.init(name: "embedded", value: "true")])
+        let controller = StudioViewController(url: url)
+        router.show(controller, from: viewController, options: .modal(.overFullScreen))
+        return true
     }
 }
