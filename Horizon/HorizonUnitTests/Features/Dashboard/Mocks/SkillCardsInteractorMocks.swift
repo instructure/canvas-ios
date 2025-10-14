@@ -20,13 +20,13 @@ import Combine
 @testable import Horizon
 import Foundation
 
-final class SkillCardsInteractorMocks: SkillWidgetInteractor {
+final class SkillCardsInteractorMocks: SkillsWidgetInteractor {
     var shouldFail = false
     var error: Error = URLError(.badServerResponse)
     var lastIgnoreCache: Bool?
-    var skillsToReturn: [SkillCardModel]?
+    var skillsToReturn: [SkillWidgetModel]?
 
-    func getSkills(ignoreCache: Bool) -> AnyPublisher<[SkillCardModel], Error> {
+    func getSkills(ignoreCache: Bool) -> AnyPublisher<[SkillWidgetModel], Error> {
         lastIgnoreCache = ignoreCache
         if shouldFail {
             return Fail(error: error).eraseToAnyPublisher()

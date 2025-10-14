@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct SkillCardModel: Identifiable, Equatable {
+struct SkillWidgetModel: Identifiable, Equatable {
     let id: String
     let title: String
     let status: String
@@ -31,7 +31,7 @@ struct SkillCardModel: Identifiable, Equatable {
         String.localizedStringWithFormat(String(localized: "Proficiency level is %@", bundle: .horizon), status)
     }
 
-    static let loadingModel = SkillCardModel(
+    static let loadingModel = SkillWidgetModel(
         id: UUID().uuidString,
         title: "Loading...",
         status: "Loading..."

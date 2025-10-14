@@ -19,15 +19,15 @@
 import HorizonUI
 import SwiftUI
 
-struct SkillListWidgetView: View {
+struct SkillsHighlightsWidgetView: View {
     // MARK: - Dependencies
 
-    @State private var viewModel: SkillListWidgetViewModel
+    @State private var viewModel: SkillsHighlightsWidgetViewModel
     private let onTap: () -> Void
 
     // MARK: - Init
 
-    init(viewModel: SkillListWidgetViewModel,
+    init(viewModel: SkillsHighlightsWidgetViewModel,
          onTap: @escaping () -> Void
     ) {
         self.viewModel = viewModel
@@ -36,25 +36,25 @@ struct SkillListWidgetView: View {
 
     var body: some View {
         VStack(spacing: .huiSpaces.space16) {
-            SkillWidgetHeaderView()
+            SkillsHighlightsWidgetHeaderView()
             switch viewModel.state {
             case .data:
                 ForEach(viewModel.skills) { skill in
                     Button {
                         onTap()
                     } label: {
-                        SkillWidgetView(skill: skill)
+                        SkillHighlightWidgetView(skill: skill)
                     }
                     .accessibilityHint(String(localized: "Double tap to open skillspace", bundle: .horizon))
                 }
             case .empty:
-                SkillWidgetEmptyView()
+                SkillsHighlightsWidgetEmptyView()
             case .error:
-                SkillWidgetErrorView {
+                SkillsHighlightsWidgetErrorView {
                     viewModel.getSkills(ignoreCache: true)
                 }
             case .loading:
-                SkillWidgetView(skill: SkillCardModel.loadingModel)
+                SkillHighlightWidgetView(skill: SkillWidgetModel.loadingModel)
             }
         }
         .padding(.huiSpaces.space24)
@@ -65,6 +65,8 @@ struct SkillListWidgetView: View {
         }
         .huiElevation(level: .level4)
         .isSkeletonLoadActive(viewModel.state == .loading)
+        .padding(.horizontal, .huiSpaces.space24)
+        .padding(.top, .huiSpaces.space16)
         .onWidgetReload { completion in
             viewModel.getSkills(ignoreCache: true, completion: completion)
         }
@@ -73,6 +75,9 @@ struct SkillListWidgetView: View {
 
 #if DEBUG
 #Preview {
-    SkillWidgetAssembly.makePreview()
+   VStack {
+        SkillsHighlightsWidgetAssembly.makePreview(shouldReturnError: true)
+       SkillsHighlightsWidgetAssembly.makePreview(shouldReturnError: false)
+    }
 }
 #endif

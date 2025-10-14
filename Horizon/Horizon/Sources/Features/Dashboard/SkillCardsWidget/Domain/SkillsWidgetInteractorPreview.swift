@@ -19,17 +19,30 @@
 #if DEBUG
 import Combine
 
-final class SkillCardsInteractorPreview: SkillWidgetInteractor {
-    func getSkills(ignoreCache: Bool) -> AnyPublisher<[SkillCardModel], Error> {
-        Just(
-            [
+final class SkillsWidgetInteractorPreview: SkillsWidgetInteractor {
+    private let shouldReturnError: Bool
+
+    init(shouldReturnError: Bool = false) {
+        self.shouldReturnError = shouldReturnError
+    }
+
+    func getSkills(ignoreCache: Bool) -> AnyPublisher<[SkillWidgetModel], Error> {
+        if shouldReturnError {
+            return Fail(error: MockError.failed)
+                .eraseToAnyPublisher()
+        } else {
+            return Just([
                 .init(id: "1", title: "Skill 1", status: "expert"),
                 .init(id: "2", title: "Skill 2", status: "advanced"),
                 .init(id: "3", title: "Skill 3", status: "beginner")
-            ]
-        )
-        .setFailureType(to: Error.self)
-        .eraseToAnyPublisher()
+            ])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        }
+    }
+
+    enum MockError: Error {
+        case failed
     }
 }
 #endif

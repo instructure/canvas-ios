@@ -20,11 +20,11 @@ import Core
 import Combine
 import Foundation
 
-protocol SkillWidgetInteractor {
-    func getSkills(ignoreCache: Bool) -> AnyPublisher<[SkillCardModel], Error>
+protocol SkillsWidgetInteractor {
+    func getSkills(ignoreCache: Bool) -> AnyPublisher<[SkillWidgetModel], Error>
 }
 
-final class SkillWidgetInteractorLive: SkillWidgetInteractor {
+final class SkillsWidgetInteractorLive: SkillsWidgetInteractor {
     // MARK: - Dependencies
 
     private let skillUseCase: GetHSkillsUseCase
@@ -35,7 +35,7 @@ final class SkillWidgetInteractorLive: SkillWidgetInteractor {
         self.skillUseCase = skillUseCase
     }
 
-    func getSkills(ignoreCache: Bool) -> AnyPublisher<[SkillCardModel], Error> {
+    func getSkills(ignoreCache: Bool) -> AnyPublisher<[SkillWidgetModel], Error> {
         ReactiveStore(useCase: skillUseCase)
             .getEntities(ignoreCache: ignoreCache)
             .map { skills in
@@ -50,7 +50,7 @@ final class SkillWidgetInteractorLive: SkillWidgetInteractor {
                     return lhsIndex < rhsIndex
                 }
                 return sortedSkills.map {
-                    SkillCardModel(id: $0.id, title: $0.name, status: $0.proficiencyLevel)
+                    SkillWidgetModel(id: $0.id, title: $0.name, status: $0.proficiencyLevel)
                 }
             }
             .eraseToAnyPublisher()

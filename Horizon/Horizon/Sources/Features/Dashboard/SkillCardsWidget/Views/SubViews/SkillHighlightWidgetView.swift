@@ -19,8 +19,8 @@
 import HorizonUI
 import SwiftUI
 
-struct SkillWidgetView: View {
-    let skill: SkillCardModel
+struct SkillHighlightWidgetView: View {
+    let skill: SkillWidgetModel
 
     var body: some View {
         ZStack {
@@ -48,7 +48,7 @@ struct SkillWidgetView: View {
 }
 
 #Preview {
-    SkillWidgetView(
+    SkillHighlightWidgetView(
         skill: .init(
             id: "1",
             title: "Dolor sit skill name",

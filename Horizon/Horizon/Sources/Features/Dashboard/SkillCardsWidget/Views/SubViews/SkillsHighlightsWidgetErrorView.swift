@@ -19,7 +19,7 @@
 import HorizonUI
 import SwiftUI
 
-struct SkillWidgetErrorView: View {
+struct SkillsHighlightsWidgetErrorView: View {
     var onRetry: () -> Void
 
     var body: some View {
@@ -51,5 +51,5 @@ struct SkillWidgetErrorView: View {
 }
 
 #Preview {
-    SkillWidgetErrorView {}
+    SkillsHighlightsWidgetErrorView {}
 }

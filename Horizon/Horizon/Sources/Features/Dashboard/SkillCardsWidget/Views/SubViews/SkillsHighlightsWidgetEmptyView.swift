@@ -19,7 +19,7 @@
 import HorizonUI
 import SwiftUI
 
-struct SkillWidgetEmptyView: View {
+struct SkillsHighlightsWidgetEmptyView: View {
     var body: some View {
         VStack(spacing: .huiSpaces.space8) {
             Text("No data yet", bundle: .horizon)
@@ -42,5 +42,5 @@ struct SkillWidgetEmptyView: View {
 }
 
 #Preview {
-    SkillWidgetEmptyView()
+    SkillsHighlightsWidgetEmptyView()
 }

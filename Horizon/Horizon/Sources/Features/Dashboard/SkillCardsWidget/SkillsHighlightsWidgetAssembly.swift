@@ -18,21 +18,21 @@
 
 import Core
 
-struct SkillWidgetAssembly {
-    static func makeViewModel() -> SkillListWidgetViewModel {
-        let interactor = SkillWidgetInteractorLive()
-        return SkillListWidgetViewModel(interactor: interactor)
+struct SkillsHighlightsWidgetAssembly {
+    static func makeViewModel() -> SkillsHighlightsWidgetViewModel {
+        let interactor = SkillsWidgetInteractorLive()
+        return SkillsHighlightsWidgetViewModel(interactor: interactor)
     }
 
-    static func makeView(viewModel: SkillListWidgetViewModel) -> SkillListWidgetView {
+    static func makeView(viewModel: SkillsHighlightsWidgetViewModel) -> SkillsHighlightsWidgetView {
         let onTapSkillSpace: () -> Void = { AppEnvironment.shared.switchToSkillSpaceTab() }
-        return SkillListWidgetView(viewModel: viewModel, onTap: onTapSkillSpace)
+        return SkillsHighlightsWidgetView(viewModel: viewModel, onTap: onTapSkillSpace)
     }
 #if DEBUG
-    static func makePreview() -> SkillListWidgetView {
-        let interactor = SkillCardsInteractorPreview()
-        let viewModel = SkillListWidgetViewModel(interactor: interactor)
-        return SkillListWidgetView(viewModel: viewModel) {}
+    static func makePreview(shouldReturnError: Bool) -> SkillsHighlightsWidgetView {
+        let interactor = SkillsWidgetInteractorPreview(shouldReturnError: shouldReturnError)
+        let viewModel = SkillsHighlightsWidgetViewModel(interactor: interactor)
+        return SkillsHighlightsWidgetView(viewModel: viewModel) {}
     }
 #endif
 

@@ -19,7 +19,7 @@
 import HorizonUI
 import SwiftUI
 
-struct SkillWidgetHeaderView: View {
+struct SkillsHighlightsWidgetHeaderView: View {
     var body: some View {
         HStack {
             Text("Skill highlights", bundle: .horizon)
@@ -46,5 +46,5 @@ struct SkillWidgetHeaderView: View {
 }
 
 #Preview {
-    SkillWidgetHeaderView()
+    SkillsHighlightsWidgetHeaderView()
 }
