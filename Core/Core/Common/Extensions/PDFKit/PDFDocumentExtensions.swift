@@ -21,11 +21,12 @@ import PDFKit
 extension PDFDocument {
 
     @discardableResult
-    public func write(to url: URL? = nil, nameIt name: String? = nil) throws -> URL {
-        let directory = url ?? URL.Directories.temporary.appendingPathComponent("documents", isDirectory: true)
+    public func write(to url: URL? = nil, name: String? = nil) throws -> URL {
+        let directory = url ?? URL.Directories.temporary.appendingPathComponent("Documents", isDirectory: true)
         let name = name ?? String(Clock.now.timeIntervalSince1970)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
-        let url = directory.appendingPathComponent(name, isDirectory: false).appendingPathExtension("pdf")
+        var url = directory.appendingPathComponent(name, isDirectory: false)
+        url = url.pathExtension != "pdf" ? url.appendingPathExtension("pdf") : url
         guard let data = dataRepresentation() else {
             throw NSError.instructureError(String(localized: "Failed to save pdf", bundle: .core))
         }
