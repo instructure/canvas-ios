@@ -191,7 +191,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         guard let assignment = assignment.first else { return }
 
         let submissions = assignment.submissions ?? []
-        let gUserID = studentID.sameForm(as: submissions.first?.userID)
+        let gUserID = studentID.sameForm(as: submissions.first?.userID, in: env)
 
         let submission = submissions.first(where: { $0.userID == gUserID })
         let displayProperties = submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
@@ -340,8 +340,14 @@ struct StudentID {
         self.raw = value
     }
 
-    func sameForm(as otherUserID: String?) -> String {
-        raw.asGlobalID(of: otherUserID?.shardID)
+    func sameForm(as otherUserID: String?, in env: AppEnvironment) -> String {
+        guard let otherUserID else { return raw }
+
+        if otherUserID.hasShardID {
+            return raw.hasShardID ? raw : raw.asGlobalID(of: env.sessionShardID)
+        } else {
+            return raw.localID
+        }
     }
 
     func value(for env: AppEnvironment) -> String {

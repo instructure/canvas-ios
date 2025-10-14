@@ -39,6 +39,8 @@ public final class AppEnvironmentOverride: AppEnvironment {
     }()
 
     public override var root: AppEnvironment { base }
+
+    public override var sessionShardID: String? { base.sessionShardID }
     public override var courseShardID: String? { _courseShardID ?? sessionShardID }
 
     public override var app: AppEnvironment.App? {
@@ -89,6 +91,13 @@ public final class AppEnvironmentOverride: AppEnvironment {
         get {
             guard let cSession = base.currentSession else { return nil }
 
+            var userID = cSession.userID
+            if let userShardID = cSession.userID.shardID, userShardID == courseShardID {
+                userID = userID.localID // For Consortia user
+            } else {
+                userID = userID.asGlobalID(of: cSession.accessToken?.shardID) // For trusted accounts
+            }
+
             return LoginSession(
                 accessToken: cSession.accessToken,
                 baseURL: baseURL, // This is important to authenticate requests
@@ -98,7 +107,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
                 masquerader: nil,
                 refreshToken: cSession.refreshToken,
                 userAvatarURL: cSession.userAvatarURL,
-                userID: cSession.userID.localID,
+                userID: userID,
                 userName: cSession.userName,
                 userEmail: cSession.userEmail,
                 clientID: cSession.clientID,

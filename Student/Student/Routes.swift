@@ -297,7 +297,7 @@ let academicRouter = Router(routes: [
         guard let courseID = params["courseID"] else { return nil }
         return GradeListAssembly.makeGradeListViewController(
             env: env,
-            courseID: courseID,
+            courseID: courseID.localID,
             userID: env.currentSession?.userID
         )
     },
