@@ -61,9 +61,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             }
         )
         .navigationBarStyle(.color(viewModel.courseColor))
-		.onAppear {
-			viewModel.viewDidAppear()
-		}
+		.onAppear(perform: viewModel.viewDidAppear)
         .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
     }
 
