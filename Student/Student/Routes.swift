@@ -297,7 +297,7 @@ let academicRouter = Router(routes: [
         guard let courseID = params["courseID"] else { return nil }
         return GradeListAssembly.makeGradeListViewController(
             env: env,
-            courseID: courseID.localID,
+            courseID: courseID,
             userID: env.currentSession?.userID
         )
     },
@@ -311,16 +311,16 @@ let academicRouter = Router(routes: [
     RouteHandler("/courses/:courseID/modules/:moduleID") { _, params, _, env in
         guard let courseID = params["courseID"], let moduleID = params["moduleID"] else { return nil }
         return ModuleListViewController
-            .create(env: env, courseID: courseID.localID, moduleID: moduleID.localID)
+            .create(env: env, courseID: courseID, moduleID: moduleID)
     },
 
     RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
             env: env,
-            courseID: courseID.localID,
+            courseID: courseID,
             assetType: .moduleItem,
-            assetID: itemID.localID,
+            assetID: itemID,
             url: url
         )
     },
@@ -329,9 +329,9 @@ let academicRouter = Router(routes: [
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
             env: env,
-            courseID: courseID.localID,
+            courseID: courseID,
             assetType: .moduleItem,
-            assetID: itemID.localID,
+            assetID: itemID,
             url: url
         )
     },
@@ -340,9 +340,9 @@ let academicRouter = Router(routes: [
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
             env: env,
-            courseID: courseID.localID,
+            courseID: courseID,
             assetType: .moduleItem,
-            assetID: itemID.localID,
+            assetID: itemID,
             url: url
         )
     },
@@ -355,10 +355,10 @@ let academicRouter = Router(routes: [
         return PageListViewController.create(context: context, app: .student, env: env)
     },
 
-    RouteHandler("/:context/:contextID/wiki") { url, _, _ in
+    RouteHandler("/:context/:contextID/wiki") { url, _, _, env in
         var url = url
         url.path = url.path.replacingOccurrences(of: "wiki", with: "pages/front_page")
-        return AppEnvironment.shared.router.match(url)
+        return env.router.match(url)
     },
     RouteHandler("/:context/:contextID/front_page") { url, _, _, env in
         var url = url
@@ -366,19 +366,19 @@ let academicRouter = Router(routes: [
         return env.router.match(url)
     },
 
-    RouteHandler("/:context/:contextID/pages/new") { url, _, _ in
+    RouteHandler("/:context/:contextID/pages/new") { url, _, _, env in
         guard let context = Context(path: url.path) else { return nil }
-        return CoreHostingController(PageEditorView(context: context))
+        return CoreHostingController(PageEditorView(context: context), env: env)
     },
     RouteHandler("/:context/:contextID/pages/:url", factory: pageViewController),
     RouteHandler("/:context/:contextID/wiki/:url", factory: pageViewController),
-    RouteHandler("/:context/:contextID/pages/:url/edit") { url, params, _ in
+    RouteHandler("/:context/:contextID/pages/:url/edit") { url, params, _, env in
         guard let context = Context(path: url.path), let slug = params["url"] else { return nil }
-        return CoreHostingController(PageEditorView(context: context, url: slug))
+        return CoreHostingController(PageEditorView(context: context, url: slug), env: env)
     },
-    RouteHandler("/:context/:contextID/wiki/:url/edit") { url, params, _ in
+    RouteHandler("/:context/:contextID/wiki/:url/edit") { url, params, _, env in
         guard let context = Context(path: url.path), let slug = params["url"] else { return nil }
-        return CoreHostingController(PageEditorView(context: context, url: slug))
+        return CoreHostingController(PageEditorView(context: context, url: slug), env: env)
     },
 
     RouteHandler("/courses/:courseID/quizzes") { _, params, _, env in
@@ -524,18 +524,18 @@ private func fileDetails(url: URLComponents, params: [String: String], userInfo 
     if !url.originIsModuleItemDetails, !url.skipModuleItemSequence, let context = context, context.contextType == .course {
         return ModuleItemSequenceViewController.create(
             env: environment,
-            courseID: context.id.localID,
+            courseID: context.id,
             assetType: .file,
-            assetID: fileID.localID,
+            assetID: fileID,
             url: url
         )
     }
     return FileDetailsViewController
         .create(
-            context: context?.local,
-            fileID: fileID.localID,
+            context: context,
+            fileID: fileID,
             originURL: url,
-            assignmentID: assignmentID?.localID,
+            assignmentID: assignmentID,
             studentAccessInteractor: StudentAccessInteractorLive(env: environment),
             environment: environment
         )

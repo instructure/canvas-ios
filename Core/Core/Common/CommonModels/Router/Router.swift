@@ -130,7 +130,7 @@ open class Router {
         let env = AppEnvironment
             .resolved(
                 for: url,
-                courseShardID: courseTabUrlInteractor?.courseShardID(for: url)
+                courseShardID: courseTabUrlInteractor?.contextShardID(for: url)
             )
 
         for route in handlers {
@@ -175,7 +175,7 @@ open class Router {
         let env = AppEnvironment
             .resolved(
                 for: url,
-                courseShardID: courseTabUrlInteractor?.courseShardID(for: url)
+                courseShardID: courseTabUrlInteractor?.contextShardID(for: url)
             )
 
         if isExternalUrl, !url.originIsNotification, let url = url.url {
@@ -204,7 +204,9 @@ open class Router {
 
         for handler in handlers {
             if let params = handler.match(url) {
-                if let view = handler.factory(url, params, userInfo, env) {
+                let (newParams, newURL) = env.processParameters(params, url: url)
+
+                if let view = handler.factory(newURL, newParams, userInfo, env) {
                     show(view, from: from, options: options, analyticsRoute: handler.route.template)
                 }
 
@@ -365,6 +367,7 @@ open class Router {
     private func cleanURL(_ url: URLComponents) -> URLComponents {
         // URLComponents does all the encoding we care about except we often have + meaning space in query
         var url = url
+        url.path = url.path.hasPrefix("/") ? url.path : "/" + url.path
         url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
 
         if let apiHostOverride = courseTabUrlInteractor?.baseUrlHostOverride(for: url) {

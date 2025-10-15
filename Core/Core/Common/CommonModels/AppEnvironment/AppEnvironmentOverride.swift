@@ -118,6 +118,36 @@ public final class AppEnvironmentOverride: AppEnvironment {
         }
         set {}
     }
+
+    public override func processParameters(_ params: [String: String], url: URLComponents) -> ([String: String], URLComponents) {
+        var newParams: [String: String] = [:]
+        var newUrl = url
+
+        params.forEach { (key, value) in
+            // Localize IDs except for userID params
+            if key.lowercased() == "userID".lowercased() {
+                newParams[key] = value
+            } else if key.lowercased().hasSuffix("id") {
+                newParams[key] = value.localID
+                newUrl.path = url.path.replacingOccurrences(of: value, with: value.localID)
+            } else {
+                newParams[key] = value
+            }
+        }
+
+        // Fix query items
+        newUrl.queryItems = url.queryItems?.map({ item in
+            if ["courseID", "assignmentID", "assignment_id"].contains(item.name) {
+                var newItem = item
+                newItem.value = item.value?.localID
+                return newItem
+            }
+            
+            return item
+        })
+
+        return (newParams, newUrl)
+    }
 }
 
 extension AppEnvironment {

@@ -120,8 +120,12 @@ public final class CourseTabUrlInteractor {
     // MARK: - Enabled tab list
 
     private func updateEnabledTabs(with tabs: [Tab]) {
-        let courseTabs = tabs.filter { $0.context.contextType == .course }
-        let tabsPerCourse = Dictionary(grouping: courseTabs, by: { $0.context })
+        let contextTabs = tabs.filter {
+            $0.context.contextType == .course ||
+            $0.context.contextType == .group
+        }
+
+        let tabsPerCourse = Dictionary(grouping: contextTabs, by: { $0.context })
 
         let tabModelsPerCourse: [Context: [TabModel]] = tabsPerCourse.mapValues { tabArray in
             tabArray.compactMap { tab in
@@ -235,16 +239,21 @@ public final class CourseTabUrlInteractor {
 
     public func baseUrlHostOverride(for url: URLComponents) -> String? {
         guard let context = Context(path: url.path) else { return nil }
+
+        // Check if it is internal link in a course
+        guard !url.path.hasSuffix(context.pathComponent) else { return nil }
+
         return baseURLHostOverridesPerCourse.first(where: {
             return $0.key.isEquivalent(to: context)
         })?.value
     }
 
-    public func courseShardID(for url: URLComponents) -> String? {
+    public func contextShardID(for url: URLComponents) -> String? {
         let pathContext = Context(path: url.path)
 
         if let pathContext,
-           let shardID = pathContext.courseId?.shardID {
+           pathContext.contextType == .course || pathContext.contextType == .group,
+           let shardID = pathContext.id.shardID {
             return shardID
         }
 

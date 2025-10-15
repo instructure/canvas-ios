@@ -77,6 +77,10 @@ open class AppEnvironment {
     // See `AppEnvironmentOverride` impl. for it.
     public var courseShardID: String? { sessionShardID }
 
+    public func processParameters(_ params: [String: String], url: URLComponents) -> ([String: String], URLComponents) {
+        return (params, url)
+    }
+
     /**
      - parameters:
         - isSilent: If this parameter is true then the method won't trigger a widget refresh

@@ -234,7 +234,7 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let comment = presenter?.comments[indexPath.row / 2] else { return UITableViewCell() }
-        
+
         let isFromAuthor = currentUserID == comment.authorID
 
         if indexPath.row % 2 == 1 {

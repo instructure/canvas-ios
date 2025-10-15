@@ -129,9 +129,9 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/assignments/syllabus", factory: syllabus),
     RouteHandler("/courses/:courseID/syllabus", factory: syllabus),
-    RouteHandler("/courses/:courseID/syllabus/edit") { url, params, _ in
+    RouteHandler("/courses/:courseID/syllabus/edit") { url, params, _, env in
         guard let context = Context(path: url.path), let courseID = params["courseID"] else { return nil }
-        return CoreHostingController(SyllabusEditorView(context: context, courseID: courseID))
+        return CoreHostingController(SyllabusEditorView(context: context, courseID: courseID), env: env)
     },
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID") { _, params, _, env in
