@@ -166,7 +166,8 @@ class ParentSubmissionURLInteractorMock: ParentSubmissionURLInteractor {
     func submissionURL(
         assignmentHtmlURL: URL,
         observedUserID: String,
-        isAssignmentEnhancementsEnabled: Bool
+        isAssignmentEnhancementsEnabled: Bool,
+        isQuiz: Bool
     ) -> URL {
         isSubmissionURLCalled = true
         return .make("/submissionURL")
