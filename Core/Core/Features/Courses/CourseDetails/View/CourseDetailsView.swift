@@ -213,7 +213,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 			.listRowSeparator(.hidden)
 			.background(Color.backgroundLightest)
 		}
-		.ignoresSafeArea(.container)
+		.ignoresSafeArea(edges: .top)
 		.scrollIndicators(.hidden)
 		.listStyle(.plain)
 		.scrollContentBackground(.hidden)
