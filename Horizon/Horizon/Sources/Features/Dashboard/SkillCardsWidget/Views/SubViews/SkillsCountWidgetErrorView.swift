@@ -16,13 +16,32 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import HorizonUI
+import SwiftUI
 
 struct SkillsCountWidgetErrorView: View {
-    let onRetry: () -> Void
+    var onRetry: () -> Void
 
     var body: some View {
-        Text("Error happened.")
+        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
+            Text("We weren’t able to load this content. Please try again.")
+                .huiTypography(.p2)
+                .foregroundStyle(Color.huiColors.text.timestamp)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+            HorizonUI.PrimaryButton(
+                String(localized: "Refresh", bundle: .horizon),
+                type: .grayOutline,
+                isSmall: true,
+                trailing: Image.huiIcons.restartAlt
+            ) {
+                onRetry()
+            }
+        }
     }
+}
+
+#Preview {
+    SkillsCountWidgetErrorView(onRetry: {})
+        .padding(.horizontal, 24)
 }
