@@ -67,6 +67,16 @@ struct NavBarBackButtonModifier: ViewModifier {
 }
 
 extension View {
+	@available(iOS, introduced: 26)
+	@ViewBuilder
+	func optionalNavigationSubtitle(_ subtitle: String?) -> some View {
+		if let subtitle {
+			self.navigationSubtitle(subtitle)
+		} else {
+			self
+		}
+	}
+
     /// Sets the navigation bar's background color, title color & font, button color & font.
     /// - Warning: Make sure to call this method AFTER calling `navigationBarTitleView()` to affect it.
     /// - Parameters:

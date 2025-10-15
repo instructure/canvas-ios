@@ -28,7 +28,7 @@ struct GradeListHeaderView: View {
             HStack(alignment: .center) {
                 gradeDetailsView
                 if viewModel.isParentApp {
-                    GradeListFilterButton(viewModel: viewModel)
+                    LegacyGradeListFilterButton(viewModel: viewModel)
                         .paddingStyle(.leading, .standard)
                 }
             }

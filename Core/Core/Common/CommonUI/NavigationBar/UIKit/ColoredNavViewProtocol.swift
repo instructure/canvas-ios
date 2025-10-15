@@ -29,15 +29,21 @@ public protocol ColoredNavViewProtocol: AnyObject {
 }
 
 extension ColoredNavViewProtocol {
+	@available(iOS, deprecated: 26)
     public func setupTitleViewInNavbar(title: String) {
-        navigationItem.titleView = titleSubtitleView
-        titleSubtitleView.title = title
-        titleSubtitleView.accessibilityTraits = .header
+		if #unavailable(iOS 26) {
+			navigationItem.titleView = titleSubtitleView
+			titleSubtitleView.title = title
+			titleSubtitleView.accessibilityTraits = .header
+		}
     }
 
+	@available(iOS, deprecated: 26)
     public func updateNavBar(subtitle: String?, color: UIColor?) {
-        self.color = color
-        titleSubtitleView.subtitle = subtitle
-        navigationController?.navigationBar.useContextColor(color)
+		if #unavailable(iOS 26) {
+			self.color = color
+			titleSubtitleView.subtitle = subtitle
+			navigationController?.navigationBar.useContextColor(color)
+		}
     }
 }

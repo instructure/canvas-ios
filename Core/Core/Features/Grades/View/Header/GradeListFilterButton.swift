@@ -18,7 +18,27 @@
 
 import SwiftUI
 
+@available(iOS, introduced: 26, message: "Legacy version exists")
 struct GradeListFilterButton: View {
+	@Environment(\.viewController) var viewController
+	@ObservedObject var viewModel: GradeListViewModel
+
+	var body: some View {
+		Button {
+			viewModel.navigateToFilter(viewController: viewController)
+		} label: {
+			Image.filterLine
+				.size(24)
+				.offset(y: 2)
+		}
+		.accessibilityLabel(Text("Filter", bundle: .core))
+		.accessibilityHint(Text("Filter grades options", bundle: .core))
+		.accessibilityIdentifier("GradeList.filterButton")
+	}
+}
+
+@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+struct LegacyGradeListFilterButton: View {
     @Environment(\.viewController) var viewController
     @ObservedObject var viewModel: GradeListViewModel
 
