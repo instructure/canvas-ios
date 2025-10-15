@@ -73,7 +73,7 @@ struct SkillsCountWidgetView: View {
 
     private var errorView: some View {
         SkillsCountWidgetErrorView {
-//            viewModel.reload()
+            viewModel.getSkills(ignoreCache: true)
         }
     }
 }
