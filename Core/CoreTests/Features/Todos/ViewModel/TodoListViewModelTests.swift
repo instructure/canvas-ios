@@ -72,7 +72,7 @@ class TodoListViewModelTests: CoreTestCase {
     func testRefreshWithIgnoreCacheTrue() {
         // Given
         let expectation = expectation(description: "Refresh completion called")
-        interactor.refreshResult = .success(())
+        interactor.refreshResult = .success
 
         // When
         testee.refresh(completion: {
@@ -90,7 +90,7 @@ class TodoListViewModelTests: CoreTestCase {
     func testRefreshWithIgnoreCacheFalse() {
         // Given
         let expectation = expectation(description: "Refresh completion called")
-        interactor.refreshResult = .success(())
+        interactor.refreshResult = .success
 
         // When
         testee.refresh(completion: {
@@ -107,7 +107,7 @@ class TodoListViewModelTests: CoreTestCase {
     func testRefreshSuccessWithNonEmptyData() {
         // Given
         let expectation = expectation(description: "Refresh completion called")
-        interactor.refreshResult = .success(())
+        interactor.refreshResult = .success
         interactor.todoGroupsSubject.send([TodoGroupViewModel(date: Date(), items: [TodoItemViewModel.make(id: "1", title: "Test Item")])])
 
         // When
@@ -123,7 +123,7 @@ class TodoListViewModelTests: CoreTestCase {
     func testRefreshSuccessWithEmptyData() {
         // Given
         let expectation = expectation(description: "Refresh completion called")
-        interactor.refreshResult = .success(())
+        interactor.refreshResult = .success
         interactor.todoGroupsSubject.send([])
 
         // When
@@ -212,7 +212,7 @@ class TodoListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .empty)
 
         // When - with non-empty todos
-        interactor.refreshResult = .success(())
+        interactor.refreshResult = .success
         interactor.todoGroupsSubject.send([TodoGroupViewModel(date: Date(), items: [TodoItemViewModel.make(id: "1", title: "Test")])])
         testee.refresh(completion: {}, ignoreCache: false)
 
@@ -220,7 +220,7 @@ class TodoListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .data)
 
         // When - with empty todos
-        interactor.refreshResult = .success(())
+        interactor.refreshResult = .success
         interactor.todoGroupsSubject.send([])
         testee.refresh(completion: {}, ignoreCache: false)
 
@@ -238,7 +238,7 @@ class TodoListViewModelTests: CoreTestCase {
     func testMultipleRefreshCalls() {
         // Given
         interactor.refreshCallCount = 0
-        interactor.refreshResult = .success(())
+        interactor.refreshResult = .success
 
         // When
         testee.refresh(completion: {}, ignoreCache: false)

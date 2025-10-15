@@ -71,14 +71,14 @@ class TodoInteractorLiveTests: CoreTestCase {
             XCTAssertEqual(todoGroups.count, 2)
 
             // Check first group (today)
-            let firstGroup = todoGroups[0]
-            XCTAssertEqual(firstGroup.items.count, 1)
-            XCTAssertEqual(firstGroup.items[0].title, "Assignment 1")
+            let firstGroup = todoGroups.first
+            XCTAssertEqual(firstGroup?.items.count, 1)
+            XCTAssertEqual(firstGroup?.items.first?.title, "Assignment 1")
 
             // Check second group (tomorrow)
-            let secondGroup = todoGroups[1]
-            XCTAssertEqual(secondGroup.items.count, 1)
-            XCTAssertEqual(secondGroup.items[0].title, "Quiz 1")
+            let secondGroup = todoGroups.last
+            XCTAssertEqual(secondGroup?.items.count, 1)
+            XCTAssertEqual(secondGroup?.items.first?.title, "Quiz 1")
         }
     }
 
@@ -112,8 +112,8 @@ class TodoInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertFirstValue(testee.todoGroups) { todoGroups in
             XCTAssertEqual(todoGroups.count, 1)
-            XCTAssertEqual(todoGroups[0].items.count, 1)
-            XCTAssertEqual(todoGroups[0].items[0].title, "Assignment 1")
+            XCTAssertEqual(todoGroups.first?.items.count, 1)
+            XCTAssertEqual(todoGroups.first?.items.first?.title, "Assignment 1")
         }
     }
 
@@ -147,7 +147,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         XCTAssertFirstValue(testee.todoGroups) { todos in
             XCTAssertEqual(todos.count, 1)
-            XCTAssertEqual(todos[0].items[0].title, "Assignment 1")
+            XCTAssertEqual(todos.first?.items.first?.title, "Assignment 1")
         }
     }
 
@@ -166,7 +166,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertFirstValue(testee.todoGroups) { todos in
             XCTAssertEqual(todos.count, 1)
-            XCTAssertEqual(todos[0].items[0].title, "Assignment 2")
+            XCTAssertEqual(todos.first?.items.first?.title, "Assignment 2")
         }
     }
 

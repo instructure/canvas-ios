@@ -20,6 +20,7 @@ import SwiftUI
 
 struct TodoDayHeaderView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     let group: TodoGroupViewModel
     let onTap: (TodoGroupViewModel) -> Void
@@ -41,16 +42,16 @@ struct TodoDayHeaderView: View {
                 ZStack {
                     Circle()
                         .stroke(tintColor)
-                        .frame(width: 32, height: 32)
+                        .scaledFrame(size: 32, useIconScale: true)
                         .hidden(!group.isToday)
                     Text(group.dayNumber)
                         .font(group.isToday ? .bold12 : .regular12, lineHeight: .fit)
-                        .padding(.top, group.isToday ? 0 : -14)
+                        .padding(.top, group.isToday ? 0 : uiScale * -14)
                 }
             }
             .padding(.top, 8)
             .padding(.bottom, 9) // to maximize hit area
-            .frame(width: 64, alignment: .center)
+            .frame(width: Self.headerWidth(uiScale), alignment: .center)
             .foregroundStyle(tintColor)
             .contentShape(Rectangle())
         }
@@ -58,6 +59,21 @@ struct TodoDayHeaderView: View {
         .buttonStyle(.plain)
         .accessibilityLabel(group.accessibilityLabel)
         .accessibilityAddTraits(.isHeader)
+    }
+
+    static func headerWidth(_ uiScale: CGFloat) -> CGFloat {
+        64 * uiScale.todoHeaderWidthScale
+    }
+}
+
+private extension CGFloat {
+
+    var todoHeaderWidthScale: CGFloat {
+        if self > 1 {
+            return 1 + 0.2 * (self - 1)
+        } else {
+            return self
+        }
     }
 }
 

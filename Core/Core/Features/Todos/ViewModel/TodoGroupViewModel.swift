@@ -39,8 +39,8 @@ public struct TodoGroupViewModel: Identifiable, Equatable, Comparable {
         self.accessibilityLabel = [
             date.weekdayName,
             date.dayString,
-            String.format(numberOfItems: items.count)
-        ].joined(separator: ", ")
+            String.format(numberOfItems: items.count) as String
+        ].accessibilityJoined()
     }
 
     // MARK: - Comparable

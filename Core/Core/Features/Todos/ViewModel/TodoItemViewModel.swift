@@ -54,7 +54,7 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
         self.htmlURL = plannable.htmlURL
 
         self.color = plannable.color.asColor
-        self.icon = Image(uiImage: plannable.icon)
+        self.icon = plannable.icon.asImage
     }
 
     /// Helper function to determine the context name for a Todo item.

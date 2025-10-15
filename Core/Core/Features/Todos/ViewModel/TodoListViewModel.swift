@@ -27,7 +27,7 @@ public class TodoListViewModel: ObservableObject {
     let screenConfig = InstUI.BaseScreenConfig(
         emptyPandaConfig: .init(
             scene: VacationPanda(),
-            title: String(localized: "No To Dos for now!", bundle: .core),
+            title: String(localized: "No To-dos for now!", bundle: .core),
             subtitle: String(localized: "It looks like a great time to rest, relax, and recharge.", bundle: .core)
         )
     )

@@ -25,6 +25,7 @@ public struct TodoItemContentView: View {
 
     public let item: TodoItemViewModel
     public let isCompactLayout: Bool
+    private let verticalSpacing: CGFloat
 
     /// Initializes a TodoItemContentView
     /// - Parameters:
@@ -33,10 +34,11 @@ public struct TodoItemContentView: View {
     public init(item: TodoItemViewModel, isCompactLayout: Bool) {
         self.item = item
         self.isCompactLayout = isCompactLayout
+        self.verticalSpacing = isCompactLayout ? 0 : 2
     }
 
     public var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: verticalSpacing) {
             contextSection
             titleSection
             timeSection
@@ -45,24 +47,27 @@ public struct TodoItemContentView: View {
     }
 
     private var contextSection: some View {
-        HStack(spacing: 5) {
-            item.icon
-                .scaledIcon(size: 16)
-                .foregroundStyle(item.color)
-                .accessibilityHidden(true)
-                .frame(maxHeight: .infinity, alignment: .top)
-                .padding(.top, isCompactLayout ? 0 : 2)
-            InstUI.Divider()
-            Text(item.contextName)
-                .foregroundStyle(item.color)
-                .font(isCompactLayout ? .regular12 : .regular14, lineHeight: .fit)
-                .lineLimit(isCompactLayout ? 1 : nil)
-        }
+        InstUI.JoinedSubtitleLabels(
+            label1: {
+                item.icon
+                    .scaledIcon(size: 16)
+                    .foregroundStyle(item.color)
+                    .accessibilityHidden(true)
+                    .padding(.top, uiScale * (isCompactLayout ? 1 : 2))
+            },
+            label2: {
+                Text(item.contextName)
+                    .foregroundStyle(item.color)
+                    .font(isCompactLayout ? .regular12 : .regular14, lineHeight: .fit)
+                    .lineLimit(isCompactLayout ? 1 : nil)
+            },
+            alignment: .top
+        )
         .fixedSize(horizontal: false, vertical: true)
     }
 
     private var titleSection: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: verticalSpacing) {
             Text(item.title)
                 .font(isCompactLayout ? .semibold14 : .regular16, lineHeight: .fit)
                 .foregroundStyle(.textDarkest)
@@ -87,10 +92,12 @@ public struct TodoItemContentView: View {
 
 #if DEBUG
 
-#Preview(traits: .fixedLayout(width: 300, height: 400)) {
+#Preview(traits: .fixedLayout(width: 200, height: 400)) {
     VStack {
         TodoItemContentView(item: .make(), isCompactLayout: true)
+            .background(.backgroundLightest)
         TodoItemContentView(item: .make(), isCompactLayout: false)
+            .background(.backgroundLightest)
     }
     .frame(maxHeight: .infinity)
     .background(Color.backgroundDarkest)

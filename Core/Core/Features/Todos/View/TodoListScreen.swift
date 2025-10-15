@@ -22,6 +22,8 @@ public struct TodoListScreen: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ObservedObject var viewModel: TodoListViewModel
+    /// The sticky section header grows horizontally, so we need to increase paddings here not to let the header overlap the cell content.
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     public init(viewModel: TodoListViewModel) {
         self.viewModel = viewModel
@@ -36,13 +38,13 @@ public struct TodoListScreen: View {
             }
         ) { _ in
             LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                InstUI.Divider()
+                InstUI.TopDivider()
                 ForEach(viewModel.items) { group in
                     groupView(for: group)
                 }
+                .paddingStyle(.trailing, .standard)
                 InstUI.Divider()
             }
-            .paddingStyle(.horizontal, .standard)
         }
         .clipped()
         .navigationBarItems(leading: profileMenuButton)
@@ -51,17 +53,18 @@ public struct TodoListScreen: View {
     @ViewBuilder
     private func groupView(for group: TodoGroupViewModel) -> some View {
         Section {
+            let leadingPadding = TodoDayHeaderView.headerWidth(uiScale)
             ForEach(group.items) { item in
                 TodoListItemCell(
                     item: item,
                     onTap: viewModel.didTapItem
                 )
-                .padding(.leading, 48)
+                .padding(.leading, leadingPadding)
 
                 let isLastItemInGroup = (group.items.last == item)
 
                 if !isLastItemInGroup {
-                    InstUI.Divider().padding(.leading, 48)
+                    InstUI.Divider().padding(.leading, leadingPadding)
                 }
             }
         } header: {
@@ -69,15 +72,12 @@ public struct TodoListScreen: View {
                 let isFirstSection = (viewModel.items.first == group)
 
                 if !isFirstSection {
-                    InstUI.Divider()
+                    InstUI.Divider().paddingStyle(.leading, .standard)
                 }
 
                 TodoDayHeaderView(group: group) { group in
                     viewModel.didTapDayHeader(group, viewController: viewController)
                 }
-                // To provide a large enough hit area, the header needs to include padding
-                // but the screen already has a padding so we need to negate that here.
-                .padding(.leading, -InstUI.Styles.Padding.standard.rawValue)
                 // Move day badge to the left of the screen.
                 .frame(maxWidth: .infinity, alignment: .leading)
                 // Squeeze height to 0 so day badge goes next to cell.
