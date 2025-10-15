@@ -28,18 +28,18 @@ struct DashboardView: View {
 
     // MARK: - Widgets
 
-    private let courseWidgetView: CourseListWidgetView
-    private let skillWidgetView: SkillsHighlightsWidgetView
-    private let skillWidgetCountView: SkillsCountWidgetView
-    private let announcementListWidgetView: AnnouncementsListWidgetView
+    private let courseListWidgetView: CourseListWidgetView
+    private let skillsHighlightsWidgetView: SkillsHighlightsWidgetView
+    private let skillsCountWidgetView: SkillsCountWidgetView
+    private let announcementWidgetView: AnnouncementsListWidgetView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
-        self.courseWidgetView = CourseListWidgetAssembly.makeView()
-        self.announcementListWidgetView = AnnouncementsWidgetAssembly.makeView()
+        courseListWidgetView = CourseListWidgetAssembly.makeView()
         let skillViewModel = SkillsHighlightsWidgetAssembly.makeViewModel()
-        skillWidgetView = SkillsHighlightsWidgetAssembly.makeView(viewModel: skillViewModel)
-        skillWidgetCountView = SkillsCountWidgetView(viewModel: skillViewModel)
+        skillsHighlightsWidgetView = SkillsHighlightsWidgetAssembly.makeView(viewModel: skillViewModel)
+        skillsCountWidgetView = SkillsCountWidgetView(viewModel: skillViewModel)
+        announcementWidgetView = AnnouncementsWidgetAssembly.makeView()
     }
 
     var body: some View {
@@ -53,10 +53,10 @@ struct DashboardView: View {
         ) { _ in
             VStack(spacing: .zero) {
                 navigationBarHelperView
-                announcementListWidgetView
-                courseWidgetView
+                announcementWidgetView
+                courseListWidgetView
                 dataWidgetsView
-                skillWidgetView
+                skillsHighlightsWidgetView
             }
             .padding(.bottom, .huiSpaces.space24)
         }
@@ -82,7 +82,7 @@ struct DashboardView: View {
     }
 
     func refreshWidgets(completion: @escaping () -> Void) {
-        widgetReloadHandlers.forEach { $0.handler { } }
+        widgetReloadHandlers.forEach { $0.handler {} }
         completion()
     }
 
@@ -121,7 +121,7 @@ struct DashboardView: View {
     private var dataWidgetsView: some View {
         ScrollView(.horizontal) {
             HStack(spacing: .huiSpaces.space12) {
-                skillWidgetCountView
+                skillsCountWidgetView
             }
             .padding(.top, .huiSpaces.space2)
             .padding(.bottom, .huiSpaces.space4)
@@ -134,7 +134,7 @@ struct DashboardView: View {
 }
 
 #if DEBUG
-#Preview {
-    DashboardAssembly.makePreview()
-}
+    #Preview {
+        DashboardAssembly.makePreview()
+    }
 #endif

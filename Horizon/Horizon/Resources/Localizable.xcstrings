@@ -24068,9 +24068,6 @@
     "Congrats! You’ve completed your course. View your progress and scores on the Learn page." : {
 
     },
-    "Continue learning" : {
-
-    },
     "Conversation" : {
       "localizations" : {
         "ar" : {
@@ -26647,13 +26644,13 @@
         }
       }
     },
-    "Double tap to continue learning" : {
-
-    },
     "Double tap to load more notifications" : {
 
     },
     "Double tap to open course" : {
+
+    },
+    "Double tap to open learning object" : {
 
     },
     "Double tap to open skillspace" : {
@@ -58948,6 +58945,12 @@
         }
       }
     },
+    "Open %@" : {
+
+    },
+    "Open course" : {
+
+    },
     "Open in a New Tab" : {
       "localizations" : {
         "ar" : {
@@ -59203,6 +59206,9 @@
           }
         }
       }
+    },
+    "Open learning learning object" : {
+
     },
     "Optional" : {
       "localizations" : {
@@ -86407,12 +86413,6 @@
           }
         }
       }
-    },
-    "View %@" : {
-
-    },
-    "View course" : {
-
     },
     "View submission" : {
       "localizations" : {

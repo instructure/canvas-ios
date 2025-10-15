@@ -57,7 +57,7 @@ struct CourseListWidgetItemView: View {
         }
         .accessibilityActions {
             if model.id != "mock-course-id" {
-                Button("View course") {
+                Button("Open course") {
                     onCourseTap(model.id)
                 }
 
@@ -70,7 +70,7 @@ struct CourseListWidgetItemView: View {
                 }
 
                 if model.hasCurrentLearningObject {
-                    Button("Continue learning") {
+                    Button("Open learning learning object") {
                         onLearningObjectTap?(model.id, model.currentLearningObject?.url)
                     }
                 }

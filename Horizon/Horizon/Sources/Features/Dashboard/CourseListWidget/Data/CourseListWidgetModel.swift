@@ -113,7 +113,7 @@ struct CourseListWidgetModel: Identifiable, Equatable {
 
     var accessiblityHintString: String {
         if hasCurrentLearningObject {
-            String(localized: "Double tap to continue learning", bundle: .horizon)
+            String(localized: "Double tap to open learning object", bundle: .horizon)
         } else {
             String(localized: "Double tap to open course", bundle: .horizon)
         }
@@ -121,7 +121,7 @@ struct CourseListWidgetModel: Identifiable, Equatable {
 
     func viewProgramAccessibilityString(_ programName: String) -> String {
         String.localizedStringWithFormat(
-            String(localized: "View %@", bundle: .horizon),
+            String(localized: "Open %@", bundle: .horizon),
             programName
         )
     }
