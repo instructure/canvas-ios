@@ -381,30 +381,25 @@ extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
 
         let usePdf = utis.contains(where: { $0.isPdf }) && !utis.contains(where: { $0.isImage })
 
-        var pdfDocument: PDFDocument?
         if usePdf {
-            pdfDocument = PDFDocument()
-        }
+            let pdfDocument = PDFDocument()
 
-        for i in 0..<scan.pageCount {
-            do {
-                let image = scan.imageOfPage(at: i)
-                if let pdfDocument {
-                    if let pdfPage = PDFPage(image: image) {
-                         pdfDocument.insert(pdfPage, at: pdfDocument.pageCount)
-                     }
-                } else {
-                    add(try image.write())
-                }
-            } catch {
-                showError(error)
-            }
-        }
-        if let pdfDocument {
+            let pages = (0 ..< scan.pageCount).compactMap { PDFPage(image: scan.imageOfPage(at: $0)) }
+            pages.forEach { pdfDocument.insert($0, at: pdfDocument.pageCount) }
+
             do {
                 add(try pdfDocument.write())
             } catch {
                 showError(error)
+            }
+        } else {
+            for i in 0..<scan.pageCount {
+                do {
+                    let image = scan.imageOfPage(at: i)
+                    add(try image.write())
+                } catch {
+                    showError(error)
+                }
             }
         }
     }
