@@ -24,16 +24,18 @@ struct GradeListFilterButton: View {
 	@ObservedObject var viewModel: GradeListViewModel
 
 	var body: some View {
-		Button {
-			viewModel.navigateToFilter(viewController: viewController)
-		} label: {
-			Image.filterLine
-				.size(24)
-				.offset(y: 2)
+		if viewModel.state != .initialLoading {
+			Button {
+				viewModel.navigateToFilter(viewController: viewController)
+			} label: {
+				Image.filterLine
+					.size(24)
+					.offset(y: 2)
+			}
+			.accessibilityLabel(Text("Filter", bundle: .core))
+			.accessibilityHint(Text("Filter grades options", bundle: .core))
+			.accessibilityIdentifier("GradeList.filterButton")
 		}
-		.accessibilityLabel(Text("Filter", bundle: .core))
-		.accessibilityHint(Text("Filter grades options", bundle: .core))
-		.accessibilityIdentifier("GradeList.filterButton")
 	}
 }
 
