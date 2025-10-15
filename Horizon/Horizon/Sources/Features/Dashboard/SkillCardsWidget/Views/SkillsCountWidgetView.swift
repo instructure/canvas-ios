@@ -22,73 +22,29 @@ import SwiftUI
 struct SkillsCountWidgetView: View {
     let viewModel: SkillsHighlightsWidgetViewModel
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
+            SkillsCountWidgetHeaderView()
             switch viewModel.state {
             case .loading:
-                SkillCountView(count: 1)
-            case .data, .empty:
-                SkillCountView(count: viewModel.countSkills)
+                dataView(count: 1)
+            case .data:
+                dataView(count: viewModel.countSkills)
+            case .empty:
+                emptyView
             case .error:
-                EmptyView()
+                errorView
             }
-        }
-        .isSkeletonLoadActive(viewModel.state == .loading)
-        .fixedSize(horizontal: viewModel.countSkills != 0, vertical: false)
-    }
-}
-
-private struct SkillCountView: View {
-    let count: Int
-    var body: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
-            headerView
-            descriptionView
         }
         .padding(.huiSpaces.space24)
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
-    }
-
-    private var headerView: some View {
-        HStack {
-            Text("Skills", bundle: .horizon)
-                .foregroundStyle(Color.huiColors.text.dataPoint)
-                .huiTypography(.labelMediumBold)
-                .frame(alignment: .leading)
-                .skeletonLoadable()
-                .accessibilityAddTraits(.isHeader)
-            Spacer()
-
-            Image.huiIcons.hub
-                .resizable()
-                .frame(width: 16, height: 16)
-                .foregroundStyle(Color.huiColors.icon.default)
-                .padding(.huiSpaces.space8)
-                .background {
-                    Circle()
-                        .fill(Color.huiColors.primitives.green12)
-                }
-                .accessibilityHidden(true)
-                .skeletonLoadable()
-        }
+        .isSkeletonLoadActive(viewModel.state == .loading)
+        .fixedSize(horizontal: true, vertical: false)
     }
 
     @ViewBuilder
-    private var descriptionView: some View {
-        if count == 0 {
-            Text("This widget will update once data becomes available.", bundle: .horizon)
-                .huiTypography(.p2)
-                .foregroundStyle(Color.huiColors.text.timestamp)
-                .skeletonLoadable()
-                .multilineTextAlignment(.leading)
-                .frame(alignment: .trailing)
-        } else {
-            countSkillsView
-        }
-    }
-
-    private var countSkillsView: some View {
+    private func dataView(count: Int) -> some View {
         HStack(spacing: .huiSpaces.space8) {
             Text(count.description)
                 .huiTypography(.labelSemibold)
@@ -102,21 +58,32 @@ private struct SkillCountView: View {
         .accessibilityElement(children: .combine)
         .accessibilityLabel(Text(String.localizedStringWithFormat(String(localized: "%@ Skills earned", bundle: .horizon), count.description)))
     }
+
+    private var emptyView: some View {
+        SkillsCountWidgetEmptyView()
+    }
+
+    private var errorView: some View {
+        SkillsCountWidgetErrorView {
+//            viewModel.reload()
+        }
+    }
 }
 
 #if DEBUG
-#Preview {
-    HStack {
-        SkillsCountWidgetView(
-            viewModel: .init(
-                interactor: SkillsWidgetInteractorPreview(shouldReturnError: true)
+    #Preview {
+        HStack {
+            SkillsCountWidgetView(
+                viewModel: .init(
+                    interactor: SkillsWidgetInteractorPreview(shouldReturnError: true)
+                )
             )
-        )
-        SkillsCountWidgetView(
-            viewModel: .init(
-                interactor: SkillsWidgetInteractorPreview(shouldReturnError: false)
+            SkillsCountWidgetView(
+                viewModel: .init(
+                    interactor: SkillsWidgetInteractorPreview(shouldReturnError: false)
+                )
             )
-        )
+        }
+        .padding(.horizontal, 24)
     }
-}
 #endif

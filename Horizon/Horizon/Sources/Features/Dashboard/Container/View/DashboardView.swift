@@ -28,16 +28,16 @@ struct DashboardView: View {
 
     // MARK: - Widgets
 
-    private let courseWidgetView: CourseListWidgetView
-    private let skillWidgetView: SkillsHighlightsWidgetView
-    private let skillWidgetCountView: SkillsCountWidgetView
+    private let courseListWidgetView: CourseListWidgetView
+    private let skillsHighlightsWidgetView: SkillsHighlightsWidgetView
+    private let skillsCountWidgetView: SkillsCountWidgetView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
-        self.courseWidgetView = CourseListWidgetAssembly.makeView()
+        courseListWidgetView = CourseListWidgetAssembly.makeView()
         let skillViewModel = SkillsHighlightsWidgetAssembly.makeViewModel()
-        skillWidgetView = SkillsHighlightsWidgetAssembly.makeView(viewModel: skillViewModel)
-        skillWidgetCountView = SkillsCountWidgetView(viewModel: skillViewModel)
+        skillsHighlightsWidgetView = SkillsHighlightsWidgetAssembly.makeView(viewModel: skillViewModel)
+        skillsCountWidgetView = SkillsCountWidgetView(viewModel: skillViewModel)
     }
 
     var body: some View {
@@ -51,9 +51,9 @@ struct DashboardView: View {
         ) { _ in
             VStack(spacing: .zero) {
                 navigationBarHelperView
-                courseWidgetView
+                courseListWidgetView
                 dataWidgetsView
-                skillWidgetView
+                skillsHighlightsWidgetView
             }
             .padding(.bottom, .huiSpaces.space24)
         }
@@ -79,7 +79,7 @@ struct DashboardView: View {
     }
 
     func refreshWidgets(completion: @escaping () -> Void) {
-        widgetReloadHandlers.forEach { $0.handler { } }
+        widgetReloadHandlers.forEach { $0.handler {} }
         completion()
     }
 
@@ -118,7 +118,7 @@ struct DashboardView: View {
     private var dataWidgetsView: some View {
         ScrollView(.horizontal) {
             HStack(spacing: .huiSpaces.space12) {
-                skillWidgetCountView
+                skillsCountWidgetView
             }
             .padding(.top, .huiSpaces.space2)
             .padding(.bottom, .huiSpaces.space4)
@@ -131,7 +131,7 @@ struct DashboardView: View {
 }
 
 #if DEBUG
-#Preview {
-    DashboardAssembly.makePreview()
-}
+    #Preview {
+        DashboardAssembly.makePreview()
+    }
 #endif
