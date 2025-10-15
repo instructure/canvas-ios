@@ -52,9 +52,9 @@ public class TitleSubtitleView: UIView {
     }
 
     public static func create() -> Self {
-		guard #available(iOS 26, *) else { return Self() }
-
 		let view = loadFromXib()
+		guard #available(iOS 26, *) else { return view }
+
 		view.titleLabel.text = ""
 		view.subtitleLabel.text = ""
 		view.titleLabel.font = .scaledNamedFont(.semibold16)
