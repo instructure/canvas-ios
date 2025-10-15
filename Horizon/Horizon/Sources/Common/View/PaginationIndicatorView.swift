@@ -29,10 +29,14 @@ struct PaginationIndicatorView: View {
                 Circle()
                     .fill(index == (currentIndex ?? 0) ? Color.huiColors.icon.medium : Color.clear)
                     .stroke(Color.huiColors.icon.medium, lineWidth: 1)
-                    .frame(width: 8, height: 8)
+                    .frame(width: 10, height: 10)
+                    .padding(.vertical, .huiSpaces.space2)
             }
         }
         .animation(.easeInOut(duration: 0.3), value: currentIndex)
-        .padding(.horizontal, .huiSpaces.space24)
     }
+}
+
+#Preview {
+    PaginationIndicatorView(currentIndex: .constant(3), count: 4)
 }
