@@ -32,6 +32,8 @@ struct AnnouncementsListWidgetView: View {
             switch viewModel.state {
             case .loading:
                 AnnouncementWidgetView(announcement: NotificationModel.mock) { _ in }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(Text(String(localized: "Loading announcements", bundle: .horizon)))
             case .data(announcements: let announcements):
                 ForEach(announcements) { announcement in
                     AnnouncementWidgetView(announcement: announcement) { seletedAnnouncement in
