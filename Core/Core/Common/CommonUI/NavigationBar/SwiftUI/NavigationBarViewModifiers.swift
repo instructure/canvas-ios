@@ -77,6 +77,16 @@ extension View {
 		}
 	}
 
+	@available(iOS, introduced: 26)
+	@ViewBuilder
+	func optionalNavigationTitle(_ title: String?) -> some View {
+		if let title {
+			self.navigationTitle(title)
+		} else {
+			self
+		}
+	}
+
     /// Sets the navigation bar's background color, title color & font, button color & font.
     /// - Warning: Make sure to call this method AFTER calling `navigationBarTitleView()` to affect it.
     /// - Parameters:

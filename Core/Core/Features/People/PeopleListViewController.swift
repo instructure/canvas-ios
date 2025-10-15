@@ -46,12 +46,16 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
     lazy var customStatuses: Store<GetCustomGradeStatuses>? = {
         guard case .course = context.contextType else { return nil }
         return env.subscribe(GetCustomGradeStatuses(courseID: context.id)) { [weak self] in
-            self?.updateNavBar()
+			if #unavailable(iOS 26) {
+				self?.updateNavBar()
+			}
         }
     }()
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
-        self?.updateNavBar()
+		if #unavailable(iOS 26) {
+			self?.updateNavBar()
+		}
     }
     lazy var course = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.updateNavBar()
@@ -76,7 +80,12 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: String(localized: "People", bundle: .core))
+
+		if #available(iOS 26, *) {
+			navigationItem.title = String(localized: "People", bundle: .core)
+		} else {
+			setupTitleViewInNavbar(title: String(localized: "People", bundle: .core))
+		}
 
         emptyMessageLabel.text = String(localized: "We couldn’t find somebody like that.", bundle: .core)
         emptyTitleLabel.text = String(localized: "No Results", bundle: .core)
@@ -122,9 +131,11 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.async {
-            self.tableView.contentOffset.y = self.searchBar.frame.height
-        }
+		if #available(iOS 26, *) {
+			DispatchQueue.main.async {
+				self.tableView.contentOffset.y = self.searchBar.frame.height
+			}
+		}
     }
 
     func updateNavBar() {
@@ -136,7 +147,11 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
         }
         spinnerView.color = color
         refreshControl.color = color
-        updateNavBar(subtitle: name, color: color)
+		if #available(iOS 26, *) {
+			navigationItem.subtitle = name
+		} else {
+			updateNavBar(subtitle: name, color: color)
+		}
     }
 
     func update() {

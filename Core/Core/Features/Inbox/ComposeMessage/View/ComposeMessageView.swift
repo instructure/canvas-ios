@@ -46,110 +46,199 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        InstUI.BaseScreen(state: model.state, config: model.screenConfig) { geometry in
-            VStack(spacing: 0) {
-                headerView
-                    .background(
-                        GeometryReader { proxy in
-                            Color.clear
-                                .onAppear {
-                                    headerHeight = proxy.size.height
-                                    model.showSearchRecipientsView = false
-                                    focusedInput = nil
-                                }
-                        }
-                    )
-                separator
-                courseView
-                separator
-                ZStack(alignment: .topLeading) {
-                    VStack(spacing: 0) {
-                        propertiesView
-                        separator
+		if #available(iOS 26, *) {
+			InstUI.BaseScreen(state: model.state, config: model.screenConfig) { geometry in
+				baseScreenView(geometry)
+					.font(.regular12)
+					.foregroundColor(.textDarkest)
+					.background(
+						GeometryReader { reader in
+							Color
+								.backgroundLightest
+								.onTapGesture {
+									model.clearSearchedRecipients()
+									focusedInput = nil
+								}
+								.preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
+						}
+					)
+					.toolbar {
+						ToolbarItem(placement: .topBarLeading) {
+							cancelButton
+						}
 
-                        bodyView(geometry: geometry)
-                        attachmentsView
-                        if !model.includedMessages.isEmpty {
-                            includedMessages
-                        }
-                        // This Rectangle adds extra height to ensure smoother display of the list of recipients
-                        // without affecting the UI or any logic.
-                        Rectangle()
-                            .fill(Color.clear)
-                            .frame(height: 150)
-                            .allowsHitTesting(false)
-                    }
-                    if model.showSearchRecipientsView {
-                        RecipientFilterView(recipients: model.searchedRecipients) { selectedRecipient in
-                            model.showSearchRecipientsView = false
-                            model.textRecipientSearch = ""
-                            model.didSelectRecipient.accept(selectedRecipient)
-                        }
-                        .accessibilityHidden(true)
-                        .offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
-                        .padding(.horizontal, 35)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .animation(.smooth, value: model.showSearchRecipientsView)
-                    }
-
-                }
-            }
-            .font(.regular12)
-            .foregroundColor(.textDarkest)
-            .background(
-                GeometryReader { reader in
-                    Color
-                        .backgroundLightest
-                        .onTapGesture {
-                            model.clearSearchedRecipients()
-                            focusedInput = nil
-                        }
-                        .preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
-                }
-            )
-            .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
-            .navigationBarStyle(.modal)
-        }
-        .onPreferenceChange(ViewSizeKey.self) { offset in
-            model.showExtraSendButton = offset > headerHeight
-        }
-        .coordinateSpace(name: "scroll")
-        .background(Color.backgroundLightest)
-        .fileImporter(
-            isPresented: $model.isFilePickerVisible,
-            allowedContentTypes: [.item],
-            allowsMultipleSelection: false
-        ) { result in
-            switch result {
-            case .success(let urls):
-                model.addFiles(urls: urls)
-            case .failure:
-                break
-            }
-        }
-        .sheet(isPresented: $model.isImagePickerVisible) {
-            AttachmentPickerAssembly.makeImagePicker(onSelect: model.addFile)
-        }
-        .sheet(isPresented: $model.isTakePhotoVisible) {
-            AttachmentPickerAssembly.makeImageRecorder(onSelect: model.addFile)
-                .interactiveDismissDisabled()
-        }
-        .sheet(isPresented: $model.isAudioRecordVisible) {
-            AttachmentPickerAssembly.makeAudioRecorder(env: model.env, onSelect: model.addFile)
-                .interactiveDismissDisabled()
-        }
-        .confirmationAlert(
-            isPresented: $model.isShowingCancelDialog,
-            presenting: model.confirmAlert
-        )
-        .confirmationAlert(
-            isPresented: $model.isShowingErrorDialog,
-            presenting: model.errorAlert
-        )
+						ToolbarItem(placement: .topBarTrailing) {
+							extraSendButton
+						}
+					}
+			}
+			.onPreferenceChange(ViewSizeKey.self) { offset in
+				model.showExtraSendButton = offset > headerHeight
+			}
+			.coordinateSpace(name: "scroll")
+			.background(Color.backgroundLightest)
+			.fileImporter(
+				isPresented: $model.isFilePickerVisible,
+				allowedContentTypes: [.item],
+				allowsMultipleSelection: false
+			) { result in
+				switch result {
+				case .success(let urls):
+					model.addFiles(urls: urls)
+				case .failure:
+					break
+				}
+			}
+			.sheet(isPresented: $model.isImagePickerVisible) {
+				AttachmentPickerAssembly.makeImagePicker(onSelect: model.addFile)
+			}
+			.sheet(isPresented: $model.isTakePhotoVisible) {
+				AttachmentPickerAssembly.makeImageRecorder(onSelect: model.addFile)
+					.interactiveDismissDisabled()
+			}
+			.sheet(isPresented: $model.isAudioRecordVisible) {
+				AttachmentPickerAssembly.makeAudioRecorder(env: model.env, onSelect: model.addFile)
+					.interactiveDismissDisabled()
+			}
+			.confirmationAlert(
+				isPresented: $model.isShowingCancelDialog,
+				presenting: model.confirmAlert
+			)
+			.confirmationAlert(
+				isPresented: $model.isShowingErrorDialog,
+				presenting: model.errorAlert
+			)
+		} else {
+			InstUI.BaseScreen(state: model.state, config: model.screenConfig) { geometry in
+				baseScreenView(geometry)
+					.font(.regular12)
+					.foregroundColor(.textDarkest)
+					.background(
+						GeometryReader { reader in
+							Color
+								.backgroundLightest
+								.onTapGesture {
+									model.clearSearchedRecipients()
+									focusedInput = nil
+								}
+								.preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
+						}
+					)
+					.navigationBarItems(leading: legacyCancelButton, trailing: legacyExtraSendButton)
+					.navigationBarStyle(.modal)
+			}
+			.onPreferenceChange(ViewSizeKey.self) { offset in
+				model.showExtraSendButton = offset > headerHeight
+			}
+			.coordinateSpace(name: "scroll")
+			.background(Color.backgroundLightest)
+			.fileImporter(
+				isPresented: $model.isFilePickerVisible,
+				allowedContentTypes: [.item],
+				allowsMultipleSelection: false
+			) { result in
+				switch result {
+				case .success(let urls):
+					model.addFiles(urls: urls)
+				case .failure:
+					break
+				}
+			}
+			.sheet(isPresented: $model.isImagePickerVisible) {
+				AttachmentPickerAssembly.makeImagePicker(onSelect: model.addFile)
+			}
+			.sheet(isPresented: $model.isTakePhotoVisible) {
+				AttachmentPickerAssembly.makeImageRecorder(onSelect: model.addFile)
+					.interactiveDismissDisabled()
+			}
+			.sheet(isPresented: $model.isAudioRecordVisible) {
+				AttachmentPickerAssembly.makeAudioRecorder(env: model.env, onSelect: model.addFile)
+					.interactiveDismissDisabled()
+			}
+			.confirmationAlert(
+				isPresented: $model.isShowingCancelDialog,
+				presenting: model.confirmAlert
+			)
+			.confirmationAlert(
+				isPresented: $model.isShowingErrorDialog,
+				presenting: model.errorAlert
+			)
+		}
     }
 
+	@ViewBuilder
+	private func baseScreenView(_ geometry: GeometryProxy) -> some View {
+		VStack(spacing: 0) {
+			headerView
+				.background(
+					GeometryReader { proxy in
+						Color.clear
+							.onAppear {
+								headerHeight = proxy.size.height
+								model.showSearchRecipientsView = false
+								focusedInput = nil
+							}
+					}
+				)
+			separator
+			courseView
+			separator
+			ZStack(alignment: .topLeading) {
+				VStack(spacing: 0) {
+					propertiesView
+					separator
+
+					bodyView(geometry: geometry)
+					attachmentsView
+					if !model.includedMessages.isEmpty {
+						includedMessages
+					}
+					// This Rectangle adds extra height to ensure smoother display of the list of recipients
+					// without affecting the UI or any logic.
+					Rectangle()
+						.fill(Color.clear)
+						.frame(height: 150)
+						.allowsHitTesting(false)
+				}
+				if model.showSearchRecipientsView {
+					RecipientFilterView(recipients: model.searchedRecipients) { selectedRecipient in
+						model.showSearchRecipientsView = false
+						model.textRecipientSearch = ""
+						model.didSelectRecipient.accept(selectedRecipient)
+					}
+					.accessibilityHidden(true)
+					.offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
+					.padding(.horizontal, 35)
+					.fixedSize(horizontal: false, vertical: true)
+					.animation(.smooth, value: model.showSearchRecipientsView)
+				}
+
+			}
+		}
+	}
+
+	@available(iOS, introduced: 26, message: "Legacy version exists")
+	@ViewBuilder
+	private var extraSendButton: some View {
+		if model.showExtraSendButton {
+			Button {
+				model.didTapSend.accept(controller)
+			} label: {
+				Image.circleArrowUpLine
+					.resizable()
+					.frame(width: 32, height: 32)
+			}
+			.buttonStyle(.glassProminent)
+			.accessibility(label: Text("Send", bundle: .core))
+			.disabled(!model.sendButtonActive)
+			.frame(maxHeight: .infinity, alignment: .top)
+			.accessibilityIdentifier("ComposeMessage.send")
+		}
+	}
+
+	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
     @ViewBuilder
-    private var extraSendButton: some View {
+    private var legacyExtraSendButton: some View {
         if model.showExtraSendButton {
             sendButton
         } else {
@@ -162,7 +251,19 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .frame(height: 0.5)
     }
 
-    private var cancelButton: some View {
+	@available(iOS, introduced: 26, message: "Legacy version exists")
+	private var cancelButton: some View {
+		Button {
+			model.didTapCancel.accept(controller)
+		} label: {
+			Text("Cancel", bundle: .core)
+				.font(.regular16)
+				.accessibilityIdentifier("ComposeMessage.cancel")
+		}
+	}
+
+	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyCancelButton: some View {
         Button {
             model.didTapCancel.accept(controller)
         } label: {
