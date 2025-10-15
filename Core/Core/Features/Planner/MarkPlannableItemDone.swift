@@ -92,7 +92,7 @@ public struct MarkPlannableItemDone: UseCase {
             plannable_id: ID(plannableId),
             marked_complete: done
         )
-        environment.api.makeRequest(request) { (response: APINoContent?, urlResponse, error) in
+        environment.api.makeRequest(request) { (_: APINoContent?, urlResponse, error) in
             if error == nil {
                 completionHandler(updatedOverride, urlResponse, error)
             } else {

@@ -17,8 +17,15 @@
 //
 
 import SwiftUI
+import Combine
 
-public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
+public enum MarkDoneState: Equatable {
+    case notDone
+    case loading
+    case done
+}
+
+public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableObject {
     public let id: String
     public let type: PlannableType
     public let date: Date
@@ -31,6 +38,11 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
 
     public let color: Color
     public let icon: Image
+
+    public let plannableType: String
+    public let overrideId: String?
+
+    @Published public var markDoneState: MarkDoneState = .notDone
 
     public init?(_ plannable: Plannable, course: Course? = nil) {
         guard let date = plannable.date else { return nil }
@@ -55,6 +67,9 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
 
         self.color = plannable.color.asColor
         self.icon = plannable.icon.asImage
+
+        self.plannableType = plannable.typeRaw
+        self.overrideId = plannable.plannerOverrideId
     }
 
     /// Helper function to determine the context name for a Todo item.
@@ -86,7 +101,9 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
         contextName: String,
         htmlURL: URL?,
         color: Color,
-        icon: Image
+        icon: Image,
+        plannableType: String = "assignment",
+        overrideId: String? = nil
     ) {
         self.id = id
         self.type = type
@@ -100,6 +117,15 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
 
         self.color = color
         self.icon = icon
+
+        self.plannableType = plannableType
+        self.overrideId = overrideId
+    }
+
+    // MARK: - Equatable
+
+    public static func == (lhs: TodoItemViewModel, rhs: TodoItemViewModel) -> Bool {
+        lhs.id == rhs.id
     }
 
     // MARK: - Comparable
