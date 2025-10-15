@@ -16,24 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+@testable import Horizon
 import Foundation
 
-struct SkillCardModel: Identifiable, Equatable {
-    let id: String
-    let title: String
-    let status: String
+final class SkillsWidgetInteractorMocks: SkillsWidgetInteractor {
+    var shouldFail = false
+    var error: Error = URLError(.badServerResponse)
+    var lastIgnoreCache: Bool?
+    var skillsToReturn: [SkillWidgetModel]?
 
-    var accessibilityTitle: String {
-        String.localizedStringWithFormat(String(localized: "Skill name is %@", bundle: .horizon), title)
+    func getSkills(ignoreCache: Bool) -> AnyPublisher<[SkillWidgetModel], Error> {
+        lastIgnoreCache = ignoreCache
+        if shouldFail {
+            return Fail(error: error).eraseToAnyPublisher()
+        } else {
+            return Just(skillsToReturn ?? HSkillStubs.skills)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
     }
-
-    var accessibilityStatus: String {
-        String.localizedStringWithFormat(String(localized: "Proficiency level is %@", bundle: .horizon), status)
-    }
-
-    static let loadingModel = SkillCardModel(
-        id: UUID().uuidString,
-        title: "Loading...",
-        status: "Loading..."
-    )
 }
