@@ -16,27 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import HorizonUI
-import SwiftUI
+public struct GetHSkillResponse: Codable {
+    public let data: ResponseData?
 
-struct PaginationIndicatorView: View {
-    @Binding var currentIndex: Int?
-    let count: Int
-
-    var body: some View {
-        HStack(spacing: .huiSpaces.space4) {
-            ForEach(0 ..< count, id: \.self) { index in
-                Circle()
-                    .fill(index == (currentIndex ?? 0) ? Color.huiColors.icon.medium : Color.clear)
-                    .stroke(Color.huiColors.icon.medium, lineWidth: 1)
-                    .frame(width: 10, height: 10)
-                    .padding(.vertical, .huiSpaces.space2)
-            }
-        }
-        .animation(.easeInOut(duration: 0.3), value: currentIndex)
+    public struct ResponseData: Codable {
+        public let skills: [Skill]?
     }
-}
 
-#Preview {
-    PaginationIndicatorView(currentIndex: .constant(3), count: 4)
+    public struct Skill: Codable {
+        public let id, name: String?
+        public let proficiencyLevel: String?
+    }
 }

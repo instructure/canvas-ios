@@ -406,6 +406,11 @@
         <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHScoresCourse" inverseName="settings" inverseEntity="CDHScoresCourse"/>
     </entity>
+    <entity name="CDHSkill" representedClassName=".CDHSkill" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="proficiencyLevel" attributeType="String"/>
+    </entity>
     <entity name="CDHSubmission" representedClassName="Core.CDHSubmission" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
         <attribute name="attempt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

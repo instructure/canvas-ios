@@ -16,27 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import HorizonUI
-import SwiftUI
+@testable import Core
 
-struct PaginationIndicatorView: View {
-    @Binding var currentIndex: Int?
-    let count: Int
+enum SkillStubs {
+    static let skillsResponse = GetHSkillResponse.Skill(
+        id: "1",
+        name: "Test Skill",
+        proficiencyLevel: "expert"
+    )
 
-    var body: some View {
-        HStack(spacing: .huiSpaces.space4) {
-            ForEach(0 ..< count, id: \.self) { index in
-                Circle()
-                    .fill(index == (currentIndex ?? 0) ? Color.huiColors.icon.medium : Color.clear)
-                    .stroke(Color.huiColors.icon.medium, lineWidth: 1)
-                    .frame(width: 10, height: 10)
-                    .padding(.vertical, .huiSpaces.space2)
-            }
-        }
-        .animation(.easeInOut(duration: 0.3), value: currentIndex)
-    }
-}
-
-#Preview {
-    PaginationIndicatorView(currentIndex: .constant(3), count: 4)
+    static let skillsResponseWithNilValues = GetHSkillResponse.Skill(
+        id: "1",
+        name: nil,
+        proficiencyLevel: nil
+    )
 }

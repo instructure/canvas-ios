@@ -16,27 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import HorizonUI
-import SwiftUI
+import CoreData
 
-struct PaginationIndicatorView: View {
-    @Binding var currentIndex: Int?
-    let count: Int
+public final class CDHSkill: NSManagedObject {
+    @NSManaged public var id: String
+    @NSManaged public var name: String
+    @NSManaged public var proficiencyLevel: String
 
-    var body: some View {
-        HStack(spacing: .huiSpaces.space4) {
-            ForEach(0 ..< count, id: \.self) { index in
-                Circle()
-                    .fill(index == (currentIndex ?? 0) ? Color.huiColors.icon.medium : Color.clear)
-                    .stroke(Color.huiColors.icon.medium, lineWidth: 1)
-                    .frame(width: 10, height: 10)
-                    .padding(.vertical, .huiSpaces.space2)
-            }
-        }
-        .animation(.easeInOut(duration: 0.3), value: currentIndex)
+    @discardableResult
+    public static func save(
+        _ apiEntity: GetHSkillResponse.Skill,
+        in context: NSManagedObjectContext
+    ) -> CDHSkill {
+        let dbEntity: CDHSkill = context.first(
+            where: #keyPath(CDHSkill.id),
+            equals: apiEntity.id
+        ) ?? context.insert()
+
+        dbEntity.id = apiEntity.id.defaultToEmpty
+        dbEntity.name = apiEntity.name.defaultToEmpty
+        dbEntity.proficiencyLevel = apiEntity.proficiencyLevel.defaultToEmpty
+        return dbEntity
     }
-}
-
-#Preview {
-    PaginationIndicatorView(currentIndex: .constant(3), count: 4)
 }

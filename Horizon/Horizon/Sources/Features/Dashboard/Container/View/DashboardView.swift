@@ -26,11 +26,18 @@ struct DashboardView: View {
     @State private var isShowHeader: Bool = true
     @State private var widgetReloadHandlers: [WidgetReloadHandler] = []
 
-    private let courseCardsView: CourseListWidgetView
+    // MARK: - Widgets
+
+    private let courseWidgetView: CourseListWidgetView
+    private let skillWidgetView: SkillsHighlightsWidgetView
+    private let skillWidgetCountView: SkillsCountWidgetView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
-        self.courseCardsView = CourseListWidgetAssembly.makeView()
+        self.courseWidgetView = CourseListWidgetAssembly.makeView()
+        let skillViewModel = SkillsHighlightsWidgetAssembly.makeViewModel()
+        skillWidgetView = SkillsHighlightsWidgetAssembly.makeView(viewModel: skillViewModel)
+        skillWidgetCountView = SkillsCountWidgetView(viewModel: skillViewModel)
     }
 
     var body: some View {
@@ -44,8 +51,11 @@ struct DashboardView: View {
         ) { _ in
             VStack(spacing: .zero) {
                 navigationBarHelperView
-                courseCardsView
+                courseWidgetView
+                dataWidgetsView
+                skillWidgetView
             }
+            .padding(.bottom, .huiSpaces.space24)
         }
         .captureWidgetReloadHandlers($widgetReloadHandlers)
         .safeAreaInset(edge: .top, spacing: .zero) {
@@ -104,10 +114,24 @@ struct DashboardView: View {
         .padding(.bottom, .huiSpaces.space4)
         .background(Color.huiColors.surface.pagePrimary)
     }
+
+    private var dataWidgetsView: some View {
+        ScrollView(.horizontal) {
+            HStack(spacing: .huiSpaces.space12) {
+                skillWidgetCountView
+            }
+            .padding(.top, .huiSpaces.space2)
+            .padding(.bottom, .huiSpaces.space4)
+            .padding(.horizontal, .huiSpaces.space24)
+        }
+        .scrollIndicators(.hidden)
+        .scrollBounceBehavior(.basedOnSize)
+        .padding(.top, .huiSpaces.space40)
+    }
 }
 
 #if DEBUG
-    #Preview {
-        DashboardAssembly.makePreview()
-    }
+#Preview {
+    DashboardAssembly.makePreview()
+}
 #endif

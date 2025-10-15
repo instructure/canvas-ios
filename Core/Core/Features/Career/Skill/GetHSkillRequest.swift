@@ -16,27 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import HorizonUI
-import SwiftUI
+import Foundation
 
-struct PaginationIndicatorView: View {
-    @Binding var currentIndex: Int?
-    let count: Int
+public struct GetHSkillRequest: APIGraphQLRequestable {
+    public typealias Response = GetHSkillResponse
+    public typealias Variables = Input
+    public let variables: Input = .init()
+    public struct Input: Codable, Equatable { }
+    public var path: String { "/graphql" }
+    public var shouldAddNoVerifierQuery: Bool = false
 
-    var body: some View {
-        HStack(spacing: .huiSpaces.space4) {
-            ForEach(0 ..< count, id: \.self) { index in
-                Circle()
-                    .fill(index == (currentIndex ?? 0) ? Color.huiColors.icon.medium : Color.clear)
-                    .stroke(Color.huiColors.icon.medium, lineWidth: 1)
-                    .frame(width: 10, height: 10)
-                    .padding(.vertical, .huiSpaces.space2)
-            }
+    public var headers: [String: String?] = [
+        HttpHeader.accept: "application/json"
+    ]
+    public init() {}
+
+    public static let operationName: String = "Skills"
+    public static let query = """
+    query \(operationName) {
+        skills(completedOnly: true) {
+            id,
+            name,
+            proficiencyLevel
         }
-        .animation(.easeInOut(duration: 0.3), value: currentIndex)
     }
-}
-
-#Preview {
-    PaginationIndicatorView(currentIndex: .constant(3), count: 4)
+    """
 }

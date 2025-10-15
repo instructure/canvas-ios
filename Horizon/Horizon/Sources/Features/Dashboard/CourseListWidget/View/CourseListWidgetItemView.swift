@@ -28,19 +28,33 @@ struct CourseListWidgetItemView: View {
     private let imageHeight: CGFloat = 182
 
     var body: some View {
-        VStack(spacing: .zero) {
-            courseImageSection
-            courseContentSection
+        ZStack(alignment: .top) {
+            VStack(spacing: .zero) {
+                courseImageSection
+                courseContentSection
+            }
+            .onTapGesture {
+                onCardTapGesture()
+            }
+
+            Color.clear // This is needed to overwrite a11y VO automatic tap gesture mechanism. 
+                .frame(height: imageHeight)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    onCourseTap(model.id)
+                }
+                .allowsHitTesting(true)
+                .accessibilityHidden(true)
         }
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
-        .onTapGesture {
-            onCardTapGesture()
-        }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(model.accessibilityDescription)
         .accessibilityHint(model.accessiblityHintString)
+        .accessibilityAction {
+            onCardTapGesture()
+        }
         .accessibilityActions {
             if model.id != "mock-course-id" {
                 Button("View course") {
@@ -86,16 +100,19 @@ struct CourseListWidgetItemView: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(height: imageHeight)
                 .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
+                .accessibilityLabel("")
+                .accessibilityRemoveTraits(.isImage)
+                .accessibilityHidden(true)
         } placeholder: {
             Color.huiColors.primitives.grey14
                 .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
+                .accessibilityHidden(true)
         }
         .skeletonLoadable()
         .frame(height: imageHeight)
         .padding(.bottom, .huiSpaces.space16)
-        .onTapGesture {
-            onCourseTap(model.id)
-        }
+        .accessibilityLabel("")
+        .accessibilityRemoveTraits(.isImage)
         .accessibilityHidden(true)
     }
 
