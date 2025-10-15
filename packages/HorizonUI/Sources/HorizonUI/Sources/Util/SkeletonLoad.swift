@@ -36,18 +36,19 @@ extension View {
 }
 
 struct SkeletonLoad: ViewModifier {
-    @Environment(\.isSkeletonLoadActive) private var isActive
+    @Environment(\.isSkeletonLoadActive) private var isSkeletonLoadActive
 
-    let isActive2: Bool?
+    // Use this property if you don't want to rely on the environment value `isSkeletonLoadActive` set by the parent.
+    let isActive: Bool?
     let topLeading: CGFloat
     let topTrailing: CGFloat
     let bottomLeading: CGFloat
     let bottomTrailing: CGFloat
 
     func body(content: Content) -> some View {
-        if let isActive2, isActive2 {
+        if let isActive, isActive {
             redactedView(content)
-        } else if isActive {
+        } else if isSkeletonLoadActive {
             redactedView(content)
         } else {
             content
@@ -85,7 +86,7 @@ extension View {
     ) -> some View {
         modifier(
             SkeletonLoad(
-                isActive2: isActive,
+                isActive: isActive,
                 topLeading: topLeading,
                 topTrailing: topTrailing,
                 bottomLeading: bottomLeading,
