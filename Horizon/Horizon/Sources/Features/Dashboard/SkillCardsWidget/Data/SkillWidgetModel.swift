@@ -16,27 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import HorizonUI
-import SwiftUI
+import Foundation
 
-struct PaginationIndicatorView: View {
-    @Binding var currentIndex: Int?
-    let count: Int
+struct SkillWidgetModel: Identifiable, Equatable {
+    let id: String
+    let title: String
+    let status: String
 
-    var body: some View {
-        HStack(spacing: .huiSpaces.space4) {
-            ForEach(0 ..< count, id: \.self) { index in
-                Circle()
-                    .fill(index == (currentIndex ?? 0) ? Color.huiColors.icon.medium : Color.clear)
-                    .stroke(Color.huiColors.icon.medium, lineWidth: 1)
-                    .frame(width: 10, height: 10)
-                    .padding(.vertical, .huiSpaces.space2)
-            }
-        }
-        .animation(.easeInOut(duration: 0.3), value: currentIndex)
+    var accessibilityTitle: String {
+        String.localizedStringWithFormat(String(localized: "Skill name is %@", bundle: .horizon), title)
     }
-}
 
-#Preview {
-    PaginationIndicatorView(currentIndex: .constant(3), count: 4)
+    var accessibilityStatus: String {
+        String.localizedStringWithFormat(String(localized: "Proficiency level is %@", bundle: .horizon), status)
+    }
+
+    static let loadingModel = SkillWidgetModel(
+        id: UUID().uuidString,
+        title: "Loading...",
+        status: "Loading..."
+    )
 }

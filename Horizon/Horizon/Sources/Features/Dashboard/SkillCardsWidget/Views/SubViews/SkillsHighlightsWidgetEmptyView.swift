@@ -19,24 +19,28 @@
 import HorizonUI
 import SwiftUI
 
-struct PaginationIndicatorView: View {
-    @Binding var currentIndex: Int?
-    let count: Int
-
+struct SkillsHighlightsWidgetEmptyView: View {
     var body: some View {
-        HStack(spacing: .huiSpaces.space4) {
-            ForEach(0 ..< count, id: \.self) { index in
-                Circle()
-                    .fill(index == (currentIndex ?? 0) ? Color.huiColors.icon.medium : Color.clear)
-                    .stroke(Color.huiColors.icon.medium, lineWidth: 1)
-                    .frame(width: 10, height: 10)
-                    .padding(.vertical, .huiSpaces.space2)
-            }
+        VStack(spacing: .huiSpaces.space8) {
+            Text("No data yet", bundle: .horizon)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .huiTypography(.h4)
+                .foregroundStyle(Color.huiColors.text.body)
+            Text("This widget will update once data becomes available.", bundle: .horizon)
+                .huiTypography(.p2)
+                .foregroundStyle(Color.huiColors.text.timestamp)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .animation(.easeInOut(duration: 0.3), value: currentIndex)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(
+            Text(
+                "No data yet. This widget will update once data becomes available.",
+                bundle: .horizon
+            )
+        )
     }
 }
 
 #Preview {
-    PaginationIndicatorView(currentIndex: .constant(3), count: 4)
+    SkillsHighlightsWidgetEmptyView()
 }

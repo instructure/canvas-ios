@@ -19,8 +19,8 @@
 import HorizonUI
 import SwiftUI
 
-struct SkillCountWidgetView: View {
-    let viewModel: SkillListWidgetViewModel
+struct SkillsCountWidgetView: View {
+    let viewModel: SkillsHighlightsWidgetViewModel
     var body: some View {
         VStack {
             switch viewModel.state {
@@ -41,7 +41,7 @@ private struct SkillCountView: View {
     let count: Int
     var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space8) {
-            header
+            headerView
             descriptionView
         }
         .padding(.huiSpaces.space24)
@@ -50,7 +50,7 @@ private struct SkillCountView: View {
         .huiElevation(level: .level4)
     }
 
-    private var header: some View {
+    private var headerView: some View {
         HStack {
             Text("Skills", bundle: .horizon)
                 .foregroundStyle(Color.huiColors.text.dataPoint)
@@ -107,8 +107,16 @@ private struct SkillCountView: View {
 #if DEBUG
 #Preview {
     HStack {
-        SkillCountWidgetView(viewModel: .init(interactor: SkillCardsInteractorPreview()))
-        SkillCountWidgetView(viewModel: .init(interactor: SkillCardsInteractorPreview()))
+        SkillsCountWidgetView(
+            viewModel: .init(
+                interactor: SkillsWidgetInteractorPreview(shouldReturnError: true)
+            )
+        )
+        SkillsCountWidgetView(
+            viewModel: .init(
+                interactor: SkillsWidgetInteractorPreview(shouldReturnError: false)
+            )
+        )
     }
 }
 #endif

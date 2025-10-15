@@ -64,7 +64,7 @@ struct CourseListWidgetView: View {
     }
 
     private var dataView: some View {
-        VStack(alignment: .center, spacing: .huiSpaces.space8) {
+        VStack(alignment: .center, spacing: .huiSpaces.space12) {
             SingleAxisGeometryReader(initialSize: 300) { size in
                 ScrollView(.horizontal) {
                     HStack(alignment: .top, spacing: .huiSpaces.space12) {

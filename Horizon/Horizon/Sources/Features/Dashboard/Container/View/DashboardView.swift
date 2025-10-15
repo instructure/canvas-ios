@@ -29,17 +29,17 @@ struct DashboardView: View {
     // MARK: - Widgets
 
     private let courseWidgetView: CourseListWidgetView
-    private let skillWidgetView: SkillListWidgetView
-    private let skillWidgetCountView: SkillCountWidgetView
+    private let skillWidgetView: SkillsHighlightsWidgetView
+    private let skillWidgetCountView: SkillsCountWidgetView
     private let announcementListWidgetView: AnnouncementsListWidgetView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
         self.courseWidgetView = CourseListWidgetAssembly.makeView()
         self.announcementListWidgetView = AnnouncementsWidgetAssembly.makeView()
-        let skillViewModel = SkillWidgetAssembly.makeViewModel()
-        skillWidgetView = SkillWidgetAssembly.makeView(viewModel: skillViewModel)
-        skillWidgetCountView = SkillCountWidgetView(viewModel: skillViewModel)
+        let skillViewModel = SkillsHighlightsWidgetAssembly.makeViewModel()
+        skillWidgetView = SkillsHighlightsWidgetAssembly.makeView(viewModel: skillViewModel)
+        skillWidgetCountView = SkillsCountWidgetView(viewModel: skillViewModel)
     }
 
     var body: some View {
@@ -55,10 +55,8 @@ struct DashboardView: View {
                 navigationBarHelperView
                 announcementListWidgetView
                 courseWidgetView
-                cards
+                dataWidgetsView
                 skillWidgetView
-                    .padding(.horizontal, .huiSpaces.space24)
-                    .padding(.top, .huiSpaces.space16)
             }
             .padding(.bottom, .huiSpaces.space24)
         }
@@ -120,13 +118,13 @@ struct DashboardView: View {
         .background(Color.huiColors.surface.pagePrimary)
     }
 
-    private var cards: some View {
+    private var dataWidgetsView: some View {
         ScrollView(.horizontal) {
             HStack(spacing: .huiSpaces.space12) {
                 skillWidgetCountView
             }
-            .padding(.vertical, .huiSpaces.space2)
-            .padding(.bottom, .huiSpaces.space2)
+            .padding(.top, .huiSpaces.space2)
+            .padding(.bottom, .huiSpaces.space4)
             .padding(.horizontal, .huiSpaces.space24)
         }
         .scrollIndicators(.hidden)

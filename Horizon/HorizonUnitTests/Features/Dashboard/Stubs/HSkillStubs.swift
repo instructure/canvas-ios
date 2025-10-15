@@ -34,7 +34,7 @@ enum HSkillStubs {
         )
     )
 
-    static let skills: [SkillCardModel] = [
+    static let skills: [SkillWidgetModel] = [
         .init(id: "1", title: "Skill 1", status: "expert"),
         .init(id: "2", title: "Skill 2", status: "proficient"),
         .init(id: "3", title: "Skill 3", status: "beginner"),

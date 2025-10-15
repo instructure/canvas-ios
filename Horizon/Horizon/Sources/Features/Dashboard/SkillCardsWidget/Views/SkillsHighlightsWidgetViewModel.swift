@@ -22,7 +22,7 @@ import Observation
 import Foundation
 
 @Observable
-final class SkillListWidgetViewModel {
+final class SkillsHighlightsWidgetViewModel {
     enum ViewState: Equatable {
         case data
         case empty
@@ -33,7 +33,7 @@ final class SkillListWidgetViewModel {
     // MARK: - Outputs
 
     private(set) var state: ViewState = .loading
-    private(set) var skills: [SkillCardModel] = []
+    private(set) var skills: [SkillWidgetModel] = []
     private(set) var countSkills: Int = 0
 
     // MARK: - Private variables
@@ -43,12 +43,12 @@ final class SkillListWidgetViewModel {
 
     // MARK: - Dependencies
 
-    private let interactor: SkillWidgetInteractor
+    private let interactor: SkillsWidgetInteractor
 
     // MARK: - Init
 
     init(
-        interactor: SkillWidgetInteractor,
+        interactor: SkillsWidgetInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor

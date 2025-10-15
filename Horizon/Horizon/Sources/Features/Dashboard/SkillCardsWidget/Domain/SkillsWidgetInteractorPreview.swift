@@ -16,24 +16,33 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
 import Combine
-@testable import Horizon
-import Foundation
 
-final class SkillCardsInteractorMocks: SkillsWidgetInteractor {
-    var shouldFail = false
-    var error: Error = URLError(.badServerResponse)
-    var lastIgnoreCache: Bool?
-    var skillsToReturn: [SkillWidgetModel]?
+final class SkillsWidgetInteractorPreview: SkillsWidgetInteractor {
+    private let shouldReturnError: Bool
+
+    init(shouldReturnError: Bool = false) {
+        self.shouldReturnError = shouldReturnError
+    }
 
     func getSkills(ignoreCache: Bool) -> AnyPublisher<[SkillWidgetModel], Error> {
-        lastIgnoreCache = ignoreCache
-        if shouldFail {
-            return Fail(error: error).eraseToAnyPublisher()
-        } else {
-            return Just(skillsToReturn ?? HSkillStubs.skills)
-                .setFailureType(to: Error.self)
+        if shouldReturnError {
+            return Fail(error: MockError.failed)
                 .eraseToAnyPublisher()
+        } else {
+            return Just([
+                .init(id: "1", title: "Skill 1", status: "expert"),
+                .init(id: "2", title: "Skill 2", status: "advanced"),
+                .init(id: "3", title: "Skill 3", status: "beginner")
+            ])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
         }
     }
+
+    enum MockError: Error {
+        case failed
+    }
 }
+#endif

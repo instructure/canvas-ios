@@ -26,13 +26,15 @@ final class GetHSkillsUseCase: APIUseCase {
     public typealias Model = CDHSkill
     private var subscriptions = Set<AnyCancellable>()
     public var cacheKey: String? { "get-skills" }
-    public var request: GetHSkillRequest {
-        return GetHSkillRequest()
+    public var request: GetHSkillRequest { GetHSkillRequest() }
+
+    var scope: Scope {
+        let titleSortDescriptor = NSSortDescriptor(key: #keyPath(CDHSkill.name), ascending: true)
+        return Scope(predicate: .all, order: [titleSortDescriptor], sectionNameKeyPath: nil)
     }
 
     init(journey: DomainServiceProtocol = DomainService(.journey)) {
         self.journey = journey
-
     }
 
     public func write(
@@ -59,10 +61,5 @@ final class GetHSkillsUseCase: APIUseCase {
                 api.makeRequest(self.request, callback: completionHandler)
             })
             .store(in: &subscriptions)
-    }
-
-    var scope: Scope {
-        let titleSortDescriptor = NSSortDescriptor(key: #keyPath(CDHSkill.name), ascending: true)
-        return Scope(predicate: .all, order: [titleSortDescriptor], sectionNameKeyPath: nil)
     }
 }
