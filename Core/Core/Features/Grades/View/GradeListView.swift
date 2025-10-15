@@ -99,9 +99,7 @@ public struct GradeListView: View, ScreenViewTrackable {
 					viewModel.isShowingRevertDialog = true
 				}
 				ToolbarItem(placement: .primaryAction) {
-//					if viewModel.state != .initialLoading {
-						GradeListFilterButton(viewModel: viewModel)
-//					}
+					GradeListFilterButton(viewModel: viewModel)
 				}
 			}
 			.navigationBarStyle(.color(nil))
