@@ -48,8 +48,10 @@ struct SkeletonLoad: ViewModifier {
     func body(content: Content) -> some View {
         if let isActive, isActive {
             redactedView(content)
+                .disabled(true)
         } else if isSkeletonLoadActive {
             redactedView(content)
+                .disabled(true)
         } else {
             content
         }

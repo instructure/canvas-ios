@@ -37,11 +37,13 @@ struct CourseListWidgetItemView: View {
                 onCardTapGesture()
             }
 
-            Color.clear // This is needed to overwrite a11y VO automatic tap gesture mechanism. 
+            Color.clear // This is needed to overwrite a11y VO automatic tap gesture mechanism.
                 .frame(height: imageHeight)
                 .contentShape(Rectangle())
                 .onTapGesture {
-                    onCourseTap(model.id)
+                    if model.id != "mock-course-id" { // This is mock data for skeleton loading so we disable user interaction.
+                        onCourseTap(model.id)
+                    }
                 }
                 .allowsHitTesting(true)
                 .accessibilityHidden(true)
