@@ -57,7 +57,8 @@ public struct TodoListScreen: View {
             ForEach(group.items) { item in
                 TodoListItemCell(
                     item: item,
-                    onTap: viewModel.didTapItem
+                    onTap: viewModel.didTapItem,
+                    onMarkAsDone: { _ in }
                 )
                 .padding(.leading, leadingPadding)
 

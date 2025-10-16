@@ -22,8 +22,9 @@ struct TodoListItemCell: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.viewController) private var viewController
 
-    let item: TodoItemViewModel
+    @ObservedObject var item: TodoItemViewModel
     let onTap: (_ item: TodoItemViewModel, _ viewController: WeakViewController) -> Void
+    let onMarkAsDone: (_ item: TodoItemViewModel) -> Void
 
     var body: some View {
         VStack(spacing: 0) {
@@ -32,15 +33,51 @@ struct TodoListItemCell: View {
             } label: {
                 HStack(spacing: 0) {
                     TodoItemContentView(item: item, isCompactLayout: false)
-                    InstUI.DisclosureIndicator()
+
+                    checkboxButton
                         .paddingStyle(.leading, .cellAccessoryPadding)
-                        .accessibilityHidden(true)
                 }
                 .padding(.vertical, 8)
                 .background(.backgroundLightest)
             }
             .accessibilityElement(children: .combine)
+            .onSwipe(trailing: swipeActions)
         }
+    }
+
+    @ViewBuilder
+    private var checkboxButton: some View {
+        Button {
+            onMarkAsDone(item)
+        } label: {
+            switch item.markDoneState {
+            case .notDone:
+                InstUI.Checkbox(isSelected: false)
+            case .loading:
+                ProgressView()
+                    .tint(Color(Brand.shared.primary))
+            case .done:
+                InstUI.Checkbox(isSelected: true)
+            }
+        }
+        .buttonStyle(.plain)
+        .frame(width: 44, height: 44)
+        .tint(Color(Brand.shared.primary))
+    }
+
+    private var swipeActions: [SwipeModel] {
+        [
+            SwipeModel(
+                id: "done",
+                image: { Image.completeLine },
+                action: { onMarkAsDone(item) },
+                style: SwipeStyle(
+                    background: .backgroundSuccess,
+                    foregroundColor: .textLightest,
+                    slotWidth: 60
+                )
+            )
+        ]
     }
 }
 
@@ -48,8 +85,8 @@ struct TodoListItemCell: View {
 
 #Preview {
     VStack(spacing: 0) {
-        TodoListItemCell(item: .makeShortText(), onTap: { _, _ in })
-        TodoListItemCell(item: .makeLongText(), onTap: { _, _ in })
+        TodoListItemCell(item: .makeShortText(), onTap: { _, _ in }, onMarkAsDone: { _ in })
+        TodoListItemCell(item: .makeLongText(), onTap: { _, _ in }, onMarkAsDone: { _ in })
     }
     .background(Color.backgroundLightest)
 }
