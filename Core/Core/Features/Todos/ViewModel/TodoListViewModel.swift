@@ -20,7 +20,7 @@ import Foundation
 import Combine
 import CombineExt
 import CombineSchedulers
-import UIKit
+import SwiftUI
 
 public class TodoListViewModel: ObservableObject {
     @Published var items: [TodoGroupViewModel] = []
@@ -35,7 +35,7 @@ public class TodoListViewModel: ObservableObject {
     let snackBar = SnackBarViewModel()
 
     private let interactor: TodoInteractor
-    private let env: AppEnvironment
+    private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
     /// Tracks cancellable timers for items in the done state waiting to be removed after 3 seconds
@@ -43,11 +43,11 @@ public class TodoListViewModel: ObservableObject {
 
     init(
         interactor: TodoInteractor,
-        env: AppEnvironment,
+        router: Router,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
-        self.env = env
+        self.router = router
         self.scheduler = scheduler
 
         interactor.todoGroups
@@ -74,20 +74,20 @@ public class TodoListViewModel: ObservableObject {
         switch item.type {
         case .planner_note:
             let vc = PlannerAssembly.makeToDoDetailsViewController(plannableId: item.id)
-            env.router.show(vc, from: viewController, options: .detail)
+            router.show(vc, from: viewController, options: .detail)
         case .calendar_event:
             let vc = PlannerAssembly.makeEventDetailsViewController(eventId: item.id)
-            env.router.show(vc, from: viewController, options: .detail)
+            router.show(vc, from: viewController, options: .detail)
         default:
             guard let url = item.htmlURL else { return }
             let to = url.appendingOrigin("todo")
-            env.router.route(to: to, from: viewController, options: .detail)
+            router.route(to: to, from: viewController, options: .detail)
             return
         }
     }
 
     func openProfile(_ viewController: WeakViewController) {
-        env.router.route(to: "/profile", from: viewController, options: .modal())
+        router.route(to: "/profile", from: viewController, options: .modal())
     }
 
     func didTapDayHeader(_ group: TodoGroupViewModel, viewController: WeakViewController) {
@@ -102,6 +102,10 @@ public class TodoListViewModel: ObservableObject {
     }
 
     func markItemAsDone(_ item: TodoItemViewModel) {
+        if item.markDoneState == .loading {
+            return
+        }
+
         if item.markDoneState == .notDone {
             performMarkAsDone(item)
         } else if item.markDoneState == .done {
@@ -113,20 +117,13 @@ public class TodoListViewModel: ObservableObject {
         markDoneTimers[item.id]?.cancel()
         item.markDoneState = .loading
 
-        let useCase = MarkPlannableItemDone(
-            plannableId: item.id,
-            plannableType: item.plannableType,
-            overrideId: item.overrideId,
-            done: true
-        )
-
-        useCase.fetchWithFuture(environment: env)
+        interactor.markItemAsDone(item, done: true)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self, weak item] error in
                 guard let item else { return }
                 self?.handleMarkAsDoneError(item, error)
-            } receiveValue: { [weak item] _ in
-                guard let item else { return }
+            } receiveValue: { [weak self, weak item] _ in
+                guard let self, let item else { return }
                 self.handleMarkAsDoneSuccess(item)
             }
             .store(in: &subscriptions)
@@ -137,14 +134,7 @@ public class TodoListViewModel: ObservableObject {
         markDoneTimers.removeValue(forKey: item.id)
         item.markDoneState = .loading
 
-        let useCase = MarkPlannableItemDone(
-            plannableId: item.id,
-            plannableType: item.plannableType,
-            overrideId: item.overrideId,
-            done: false
-        )
-
-        useCase.fetchWithFuture(environment: env)
+        interactor.markItemAsDone(item, done: false)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self, weak item] error in
                 guard let item else { return }
@@ -152,6 +142,7 @@ public class TodoListViewModel: ObservableObject {
             } receiveValue: { [weak item] _ in
                 guard let item else { return }
                 item.markDoneState = .notDone
+                TabBarBadgeCounts.todoListCount += 1
             }
             .store(in: &subscriptions)
     }
@@ -159,10 +150,16 @@ public class TodoListViewModel: ObservableObject {
     private func handleMarkAsDoneSuccess(_ item: TodoItemViewModel) {
         item.markDoneState = .done
 
+        if TabBarBadgeCounts.todoListCount > 0 {
+            TabBarBadgeCounts.todoListCount -= 1
+        }
+
         let timer = Just(())
             .delay(for: .seconds(3), scheduler: scheduler)
             .sink { [weak self] in
-                self?.removeItem(item)
+                withAnimation {
+                    self?.removeItem(item)
+                }
                 self?.markDoneTimers.removeValue(forKey: item.id)
             }
 

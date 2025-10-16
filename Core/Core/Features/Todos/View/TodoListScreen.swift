@@ -62,6 +62,10 @@ public struct TodoListScreen: View {
                     onMarkAsDone: viewModel.markItemAsDone
                 )
                 .padding(.leading, leadingPadding)
+                .transition(.asymmetric(
+                    insertion: .identity,
+                    removal: .move(edge: .leading).combined(with: .opacity)
+                ))
 
                 let isLastItemInGroup = (group.items.last == item)
 
@@ -109,12 +113,14 @@ public struct TodoListScreen: View {
 #if DEBUG
 
 #Preview {
-    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(), env: PreviewEnvironment())
+    let env = PreviewEnvironment()
+    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(), router: env.router)
     TodoListScreen(viewModel: viewModel)
 }
 
 #Preview("Empty State") {
-    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(todoGroups: []), env: PreviewEnvironment())
+    let env = PreviewEnvironment()
+    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(todoGroups: []), router: env.router)
     TodoListScreen(viewModel: viewModel)
 }
 

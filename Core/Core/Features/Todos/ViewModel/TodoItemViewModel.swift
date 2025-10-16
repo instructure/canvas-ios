@@ -40,7 +40,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     public let icon: Image
 
     public let plannableType: String
-    public let overrideId: String?
+    public var overrideId: String?
 
     @Published public var markDoneState: MarkDoneState = .notDone
 

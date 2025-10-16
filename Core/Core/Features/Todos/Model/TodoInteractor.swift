@@ -22,6 +22,7 @@ import Combine
 public protocol TodoInteractor {
     var todoGroups: AnyPublisher<[TodoGroupViewModel], Never> { get }
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
+    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error>
 }
 
 public final class TodoInteractorLive: TodoInteractor {
@@ -79,6 +80,30 @@ public final class TodoInteractorLive: TodoInteractor {
             .eraseToAnyPublisher()
     }
 
+    public func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
+        let useCase = MarkPlannableItemDone(
+            plannableId: item.id,
+            plannableType: item.plannableType,
+            overrideId: item.overrideId,
+            done: done
+        )
+
+        return useCase.fetchWithFuture(environment: env)
+            .map { [weak self] _ in
+                self?.updateOverrideId(for: item)
+                return ()
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func updateOverrideId(for item: TodoItemViewModel) {
+        let scope = Scope.plannable(id: item.id)
+        if let plannable: Plannable = env.database.viewContext.fetch(scope: scope).first,
+           let overrideId = plannable.plannerOverrideId {
+            item.overrideId = overrideId
+        }
+    }
+
     private static func groupTodosByDay(_ todos: [TodoItemViewModel]) -> [TodoGroupViewModel] {
         // Group todos by day using existing Canvas extension
         let groupedDict = Dictionary(grouping: todos) { todo in
@@ -124,6 +149,10 @@ public final class TodoInteractorPreview: TodoInteractor {
     }
 
     public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+        Publishers.typedJust(())
+    }
+
+    public func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
         Publishers.typedJust(())
     }
 }
