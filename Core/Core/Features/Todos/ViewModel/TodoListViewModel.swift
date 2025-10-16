@@ -35,6 +35,8 @@ public class TodoListViewModel: ObservableObject {
     private let interactor: TodoInteractor
     private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
+    /// Tracks cancellable timers for items in the done state waiting to be removed after 3 seconds
+    private var markDoneTimers: [String: AnyCancellable] = [:]
 
     init(interactor: TodoInteractor, env: AppEnvironment) {
         self.interactor = interactor
@@ -88,6 +90,96 @@ public class TodoListViewModel: ObservableObject {
         let plannerController = splitController?.masterTopViewController as? PlannerViewController
         plannerController?.onAppearOnce {
             plannerController?.selectDate(group.date)
+        }
+    }
+
+    func markItemAsDone(_ item: TodoItemViewModel) {
+        if item.markDoneState == .notDone {
+            performMarkAsDone(item)
+        } else if item.markDoneState == .done {
+            performMarkAsUndone(item)
+        }
+    }
+
+    private func performMarkAsDone(_ item: TodoItemViewModel) {
+        markDoneTimers[item.id]?.cancel()
+        item.markDoneState = .loading
+
+        let useCase = MarkPlannableItemDone(
+            plannableId: item.id,
+            plannableType: item.plannableType,
+            overrideId: item.overrideId,
+            done: true
+        )
+
+        useCase.fetch(environment: env) { [weak self, weak item] _, _, error in
+            guard let self, let item else { return }
+
+            if let error {
+                self.handleMarkAsDoneError(item, error)
+            } else {
+                self.handleMarkAsDoneSuccess(item)
+            }
+        }
+    }
+
+    private func performMarkAsUndone(_ item: TodoItemViewModel) {
+        markDoneTimers[item.id]?.cancel()
+        markDoneTimers.removeValue(forKey: item.id)
+        item.markDoneState = .loading
+
+        let useCase = MarkPlannableItemDone(
+            plannableId: item.id,
+            plannableType: item.plannableType,
+            overrideId: item.overrideId,
+            done: false
+        )
+
+        useCase.fetch(environment: env) { [weak self, weak item] _, _, error in
+            guard let self, let item else { return }
+
+            if let error {
+                self.handleMarkAsUndoneError(item, error)
+            } else {
+                item.markDoneState = .notDone
+            }
+        }
+    }
+
+    private func handleMarkAsDoneSuccess(_ item: TodoItemViewModel) {
+        item.markDoneState = .done
+
+        let timer = Just(())
+            .delay(for: .seconds(3), scheduler: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.removeItem(item)
+                self?.markDoneTimers.removeValue(forKey: item.id)
+            }
+
+        markDoneTimers[item.id] = timer
+    }
+
+    private func handleMarkAsDoneError(_ item: TodoItemViewModel, _ error: Error) {
+        item.markDoneState = .notDone
+        // TODO: Show error snackbar in Phase 6
+        print("Error marking as done: \(error)")
+    }
+
+    private func handleMarkAsUndoneError(_ item: TodoItemViewModel, _ error: Error) {
+        item.markDoneState = .done
+        // TODO: Show error snackbar in Phase 6
+        print("Error marking as undone: \(error)")
+    }
+
+    private func removeItem(_ item: TodoItemViewModel) {
+        items = items.compactMap { group in
+            let filteredItems = group.items.filter { $0.id != item.id }
+            guard !filteredItems.isEmpty else { return nil }
+            return TodoGroupViewModel(date: group.date, items: filteredItems)
+        }
+
+        if items.isEmpty {
+            state = .empty
         }
     }
 }

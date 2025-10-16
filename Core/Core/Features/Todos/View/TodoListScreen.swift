@@ -58,7 +58,7 @@ public struct TodoListScreen: View {
                 TodoListItemCell(
                     item: item,
                     onTap: viewModel.didTapItem,
-                    onMarkAsDone: { _ in }
+                    onMarkAsDone: viewModel.markItemAsDone
                 )
                 .padding(.leading, leadingPadding)
 
