@@ -71,7 +71,12 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: String(localized: "Modules", bundle: .core))
+
+		if #available(iOS 26, *) {
+			navigationItem.title = String(localized: "Modules", bundle: .core)
+		} else {
+			setupTitleViewInNavbar(title: String(localized: "Modules", bundle: .core))
+		}
 
         collapsedIDs[courseID] = collapsedIDs[courseID] ?? []
         if let moduleID = moduleID {
@@ -111,7 +116,9 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: false)
         }
-        navigationController?.navigationBar.useContextColor(color)
+		if #unavailable(iOS 26) {
+			navigationController?.navigationBar.useContextColor(color)
+		}
     }
 
     private func update() {
@@ -175,7 +182,11 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
     }
 
     private func reloadCourse() {
-        updateNavBar(subtitle: courses.first?.name, color: courses.first?.color)
+		if #available(iOS 26, *) {
+			navigationItem.subtitle = courses.first?.name
+		} else {
+			updateNavBar(subtitle: courses.first?.name, color: courses.first?.color)
+		}
         view.tintColor = color
     }
 
