@@ -72,7 +72,7 @@ struct CourseListWidgetItemView: View {
                 }
 
                 if model.hasCurrentLearningObject {
-                    Button("Open learning learning object") {
+                    Button("Open learning object") {
                         onLearningObjectTap?(model.id, model.currentLearningObject?.url)
                     }
                 }
