@@ -69,12 +69,14 @@ public class TitleSubtitleView: UIView {
 
     public func recreate() -> TitleSubtitleView {
         let copy = TitleSubtitleView.create()
+		guard #available(iOS 26, *) else { return copy }
         copy.title = title
         copy.subtitle = subtitle
         return copy
     }
 
     public override func tintColorDidChange() {
+		guard #available(iOS 26, *) else { return }
         let title = (superview?.superview as? UINavigationBar)?.titleTextAttributes?[.foregroundColor] as? UIColor
         let color = title ?? tintColor
         titleLabel.textColor = color
