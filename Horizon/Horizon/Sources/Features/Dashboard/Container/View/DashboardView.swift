@@ -129,7 +129,7 @@ struct DashboardView: View {
         }
         .scrollIndicators(.hidden)
         .scrollBounceBehavior(.basedOnSize)
-        .padding(.top, .huiSpaces.space40)
+        .padding(.top, .huiSpaces.space24)
     }
 }
 
