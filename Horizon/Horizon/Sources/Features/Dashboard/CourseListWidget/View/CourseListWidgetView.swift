@@ -114,7 +114,7 @@ struct CourseListWidgetView: View {
                 .id(scrollViewID)
             }
 
-            if viewModel.courses.count > 1 {
+            if viewModel.courses.count > 4 {
                 PaginationIndicatorView(currentIndex: $currentCourseIndex, count: viewModel.courses.count)
             }
         }
