@@ -104,7 +104,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
                 expiresAt: cSession.expiresAt,
                 lastUsedAt: cSession.lastUsedAt,
                 locale: cSession.locale,
-                masquerader: nil,
+                masquerader: cSession.masquerader,
                 refreshToken: cSession.refreshToken,
                 userAvatarURL: cSession.userAvatarURL,
                 userID: userID,
@@ -142,7 +142,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
                 newItem.value = item.value?.localID
                 return newItem
             }
-            
+
             return item
         })
 

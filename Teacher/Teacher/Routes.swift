@@ -88,10 +88,10 @@ let router = Router(routes: [
     RouteHandler("/courses/:courseID", factory: courseDetails),
     RouteHandler("/courses/:courseID/tabs", factory: courseDetails),
 
-    RouteHandler("/courses/:courseID/settings") { url, _, _ in
+    RouteHandler("/courses/:courseID/settings") { url, _, _, env in
         guard let context = Context(path: url.path) else { return nil }
-        let viewModel = CourseSettingsViewModel(context: context)
-        return CoreHostingController(CourseSettingsView(viewModel: viewModel))
+        let viewModel = CourseSettingsViewModel(context: context, environment: env)
+        return CoreHostingController(CourseSettingsView(viewModel: viewModel), env: env)
     },
 
     RouteHandler("/:context/:contextID/announcements") { url, _, _, env in

@@ -170,15 +170,39 @@ public class GetUserCourses: CollectionUseCase {
 public class GetCourseSettings: APIUseCase {
     public typealias Model = CourseSettings
 
-    let courseID: String
+    private(set) var courseID: String
+    private var isRootCalling: Bool = false
+
+    public init(courseID: String) {
+        self.courseID = courseID
+    }
+
     public var cacheKey: String? { "courses/\(courseID)/settings" }
     public var request: GetCourseSettingsRequest {
         GetCourseSettingsRequest(courseID: courseID)
     }
-    public var scope: Scope { .where(#keyPath(CourseSettings.courseID), equals: courseID) }
 
-    public init(courseID: String) {
-        self.courseID = courseID
+    public var scope: Scope {
+        .where(#keyPath(CourseSettings.courseID), equals: courseID)
+    }
+
+    public func modified(for env: AppEnvironment) -> Self {
+        let modifiedCase = self
+
+        if env.isRoot == false {
+            modifiedCase.courseID = courseID.asGlobalID(of: env.courseShardID)
+            modifiedCase.isRootCalling = true
+        }
+
+        return modifiedCase
+    }
+
+    public func makeRequest(
+        environment: AppEnvironment,
+        completionHandler: @escaping (APICourseSettings?, URLResponse?, Error?) -> Void
+    ) {
+        let env = isRootCalling ? environment.root : environment
+        env.root.api.makeRequest(request, callback: completionHandler)
     }
 
     public func write(response: APICourseSettings?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
@@ -228,9 +252,15 @@ public class MarkFavoriteCourse: APIUseCase {
 struct UpdateCourse: APIUseCase {
     typealias Model = Course
 
-    let courseId: String
-    let request: PutCourseRequest
+    private(set) var courseId: String
+
+    let name: String?
+    let defaultView: CourseDefaultView?
+    let syllabusBody: String?
+    let syllabusSummary: Bool?
+
     let cacheKey: String? = nil
+    private var isRootCalling: Bool = false
 
     init(
         courseID: String,
@@ -240,7 +270,39 @@ struct UpdateCourse: APIUseCase {
         syllabusSummary: Bool? = nil
     ) {
         self.courseId = courseID
-        self.request = PutCourseRequest(courseID: courseID, courseName: name, defaultView: defaultView, syllabusBody: syllabusBody, syllabusSummary: syllabusSummary)
+        self.name = name
+        self.defaultView = defaultView
+        self.syllabusBody = syllabusBody
+        self.syllabusSummary = syllabusSummary
+    }
+
+    var request: PutCourseRequest {
+        PutCourseRequest(
+            courseID: courseId,
+            courseName: name,
+            defaultView: defaultView,
+            syllabusBody: syllabusBody,
+            syllabusSummary: syllabusSummary
+        )
+    }
+
+    func modified(for env: AppEnvironment) -> Self {
+        var modifiedCase = self
+
+        if env.isRoot == false {
+            modifiedCase.courseId = courseId.asGlobalID(of: env.courseShardID)
+            modifiedCase.isRootCalling = true
+        }
+
+        return modifiedCase
+    }
+
+    func makeRequest(
+        environment: AppEnvironment,
+        completionHandler: @escaping (APICourse?, URLResponse?, Error?) -> Void
+    ) {
+        let env = isRootCalling ? environment.root : environment
+        env.api.makeRequest(request, callback: completionHandler)
     }
 
     func write(response: APICourse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
