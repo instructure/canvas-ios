@@ -39,7 +39,7 @@ struct SkillsHighlightsWidgetErrorView: View {
                 .padding(.bottom, .huiSpaces.space16)
 
             HorizonUI.PrimaryButton(
-                String(localized: "Retry", bundle: .horizon),
+                String(localized: "Refresh", bundle: .horizon),
                 type: .grayOutline,
                 isSmall: true,
                 trailing: Image.huiIcons.restartAlt
