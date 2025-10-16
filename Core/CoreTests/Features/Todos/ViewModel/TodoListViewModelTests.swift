@@ -260,4 +260,167 @@ class TodoListViewModelTests: CoreTestCase {
         XCTAssert(router.lastRoutedTo("/profile"))
         XCTAssertEqual(router.calls.last?.2.isModal, true)
     }
+
+    func test_markItemAsDone_startsInNotDoneState() {
+        // GIVEN
+        let item = TodoItemViewModel.make(id: "1")
+
+        // THEN
+        XCTAssertEqual(item.markDoneState, .notDone)
+    }
+
+    func test_markItemAsDone_onSuccess_changesStateToDone() {
+        // GIVEN
+        Plannable.save(APIPlannable.make(plannable_id: ID("1")), userId: nil, in: databaseClient)
+        api.mock(CreatePlannerOverrideRequest(body: .init(plannable_type: "assignment", plannable_id: "1", marked_complete: true)), value: APIPlannerOverride.make(id: "override-1", marked_complete: true))
+        let item = TodoItemViewModel.make(id: "1", plannableType: "assignment")
+
+        // WHEN
+        testee.markItemAsDone(item)
+
+        // THEN
+        waitUntil(shouldFail: true) { item.markDoneState == .done }
+    }
+
+    func test_markItemAsDone_onError_changesStateBackToNotDone() {
+        // GIVEN
+        api.mock(UpdatePlannerOverrideRequest(overrideId: "override-1", body: .init(marked_complete: true)), error: NSError.internalError())
+        let item = TodoItemViewModel.make(id: "1", plannableType: "assignment", overrideId: "override-1")
+
+        // WHEN
+        testee.markItemAsDone(item)
+
+        // THEN
+        waitUntil(shouldFail: true) { item.markDoneState == .notDone }
+    }
+
+    func test_markItemAsDone_onError_showsSnackBar() {
+        // GIVEN
+        api.mock(UpdatePlannerOverrideRequest(overrideId: "override-1", body: .init(marked_complete: true)), error: NSError.internalError())
+        let item = TodoItemViewModel.make(id: "1", plannableType: "assignment", overrideId: "override-1")
+
+        // WHEN
+        testee.markItemAsDone(item)
+
+        // THEN
+        waitUntil(shouldFail: true) { testee.snackBar.visibleSnack != nil }
+    }
+
+    func test_markItemAsDone_removesItemAfterThreeSeconds() {
+        // GIVEN
+        Plannable.save(APIPlannable.make(plannable_id: ID("1")), userId: nil, in: databaseClient)
+        api.mock(CreatePlannerOverrideRequest(body: .init(plannable_type: "assignment", plannable_id: "1", marked_complete: true)), value: APIPlannerOverride.make(id: "override-1", marked_complete: true))
+        let item = TodoItemViewModel.make(id: "1", plannableType: "assignment")
+        let group = TodoGroupViewModel(date: Date(), items: [item])
+        testee.items = [group]
+
+        // WHEN
+        testee.markItemAsDone(item)
+
+        // THEN
+        waitUntil(shouldFail: true) { item.markDoneState == .done }
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.count, 1)
+
+        waitUntil(4, shouldFail: true) { testee.items.count == 0 }
+    }
+
+    func test_markItemAsDone_whileDone_marksAsUndone() {
+        // GIVEN
+        Plannable.save(APIPlannable.make(planner_override: .make(id: "override-1", marked_complete: true), plannable_id: ID("1")), userId: nil, in: databaseClient)
+        api.mock(UpdatePlannerOverrideRequest(overrideId: "override-1", body: .init(marked_complete: false)), value: APINoContent())
+        let item = TodoItemViewModel.make(id: "1", plannableType: "assignment", overrideId: "override-1")
+        item.markDoneState = .done
+
+        // WHEN
+        testee.markItemAsDone(item)
+
+        // THEN
+        waitUntil(shouldFail: true) { item.markDoneState == .notDone }
+    }
+
+    func test_markItemAsDone_undoBeforeRemoval_cancelsTimer() {
+        // GIVEN
+        Plannable.save(APIPlannable.make(plannable_id: ID("1")), userId: nil, in: databaseClient)
+        api.mock(CreatePlannerOverrideRequest(body: .init(plannable_type: "assignment", plannable_id: "1", marked_complete: true)), value: APIPlannerOverride.make(id: "override-1", marked_complete: true))
+        api.mock(UpdatePlannerOverrideRequest(overrideId: "override-1", body: .init(marked_complete: false)), value: APINoContent())
+        let item = TodoItemViewModel.make(id: "1", plannableType: "assignment", overrideId: "override-1")
+        let group = TodoGroupViewModel(date: Date(), items: [item])
+        testee.items = [group]
+
+        // WHEN
+        testee.markItemAsDone(item)
+        waitUntil(shouldFail: true) { item.markDoneState == .done }
+
+        testee.markItemAsDone(item)
+        waitUntil(shouldFail: true) { item.markDoneState == .notDone }
+
+        // THEN
+        waitUntil(4, shouldFail: true) { testee.items.count == 1 && testee.items.first?.items.count == 1 }
+    }
+
+    func test_markAsUndone_onError_changesStateBackToDone() {
+        // GIVEN
+        api.mock(UpdatePlannerOverrideRequest(overrideId: "override-1", body: .init(marked_complete: false)), error: NSError.internalError())
+        let item = TodoItemViewModel.make(id: "1", plannableType: "assignment", overrideId: "override-1")
+        item.markDoneState = .done
+
+        // WHEN
+        testee.markItemAsDone(item)
+
+        // THEN
+        waitUntil(shouldFail: true) { item.markDoneState == .done }
+    }
+
+    func test_markAsUndone_onError_showsSnackBar() {
+        // GIVEN
+        api.mock(UpdatePlannerOverrideRequest(overrideId: "override-1", body: .init(marked_complete: false)), error: NSError.internalError())
+        let item = TodoItemViewModel.make(id: "1", plannableType: "assignment", overrideId: "override-1")
+        item.markDoneState = .done
+
+        // WHEN
+        testee.markItemAsDone(item)
+
+        // THEN
+        waitUntil(shouldFail: true) { testee.snackBar.visibleSnack != nil }
+    }
+
+    func test_removeItem_removesEmptyGroups() {
+        // GIVEN
+        let item1 = TodoItemViewModel.make(id: "1", plannableType: "assignment")
+        let item2 = TodoItemViewModel.make(id: "2")
+        let group1 = TodoGroupViewModel(date: Date(), items: [item1])
+        let group2 = TodoGroupViewModel(date: Date().addingTimeInterval(86400), items: [item2])
+        testee.items = [group1, group2]
+        Plannable.save(APIPlannable.make(plannable_id: ID("1")), userId: nil, in: databaseClient)
+        api.mock(CreatePlannerOverrideRequest(body: .init(plannable_type: "assignment", plannable_id: "1", marked_complete: true)), value: APIPlannerOverride.make(id: "override-1", marked_complete: true))
+
+        // WHEN
+        testee.markItemAsDone(item1)
+        waitUntil(shouldFail: true) { item1.markDoneState == .done }
+
+        // THEN
+        waitUntil(4, shouldFail: true) {
+            testee.items.count == 1 && testee.items.first?.items.first?.id == "2"
+        }
+    }
+
+    func test_removeItem_setsStateToEmpty_whenLastItemRemoved() {
+        // GIVEN
+        Plannable.save(APIPlannable.make(plannable_id: ID("1")), userId: nil, in: databaseClient)
+        api.mock(CreatePlannerOverrideRequest(body: .init(plannable_type: "assignment", plannable_id: "1", marked_complete: true)), value: APIPlannerOverride.make(id: "override-1", marked_complete: true))
+        let item = TodoItemViewModel.make(id: "1", plannableType: "assignment")
+        let group = TodoGroupViewModel(date: Date(), items: [item])
+        testee.items = [group]
+        testee.state = .data
+
+        // WHEN
+        testee.markItemAsDone(item)
+        waitUntil(shouldFail: true) { item.markDoneState == .done }
+
+        // THEN
+        waitUntil(4, shouldFail: true) {
+            testee.items.count == 0 && testee.state == .empty
+        }
+    }
 }

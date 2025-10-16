@@ -147,7 +147,9 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         contextName: String = "FORC 101 or something longer to even show it in two lines",
         htmlURL: URL? = nil,
         color: Color = .red,
-        icon: Image = .assignmentLine
+        icon: Image = .assignmentLine,
+        plannableType: String = "assignment",
+        overrideId: String? = nil
     ) -> TodoItemViewModel {
         TodoItemViewModel(
             id: id,
@@ -158,7 +160,9 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
             contextName: contextName,
             htmlURL: htmlURL,
             color: color,
-            icon: icon
+            icon: icon,
+            plannableType: plannableType,
+            overrideId: overrideId
         )
     }
 
