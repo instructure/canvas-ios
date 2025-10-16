@@ -367,8 +367,11 @@ open class Router {
     private func cleanURL(_ url: URLComponents) -> URLComponents {
         // URLComponents does all the encoding we care about except we often have + meaning space in query
         var url = url
-        url.path = url.path.hasPrefix("/") ? url.path : "/" + url.path
         url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
+
+        if url.path.isNotEmpty, url.path.hasPrefix("/") == false {
+            url.path = "/" + url.path
+        }
 
         if let apiHostOverride = contextTabUrlInteractor?.baseUrlHostOverride(for: url) {
             url.host = apiHostOverride
