@@ -70,6 +70,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
 
         self.plannableType = plannable.typeRaw
         self.overrideId = plannable.plannerOverrideId
+        self.markDoneState = plannable.isMarkedComplete ? .done : .notDone
     }
 
     /// Helper function to determine the context name for a Todo item.
@@ -125,7 +126,15 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     // MARK: - Equatable
 
     public static func == (lhs: TodoItemViewModel, rhs: TodoItemViewModel) -> Bool {
-        lhs.id == rhs.id
+        lhs.id == rhs.id &&
+        lhs.type == rhs.type &&
+        lhs.date == rhs.date &&
+        lhs.title == rhs.title &&
+        lhs.subtitle == rhs.subtitle &&
+        lhs.contextName == rhs.contextName &&
+        lhs.htmlURL == rhs.htmlURL &&
+        lhs.color == rhs.color &&
+        lhs.markDoneState == rhs.markDoneState
     }
 
     // MARK: - Comparable

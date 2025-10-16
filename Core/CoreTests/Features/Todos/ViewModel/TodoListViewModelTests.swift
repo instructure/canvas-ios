@@ -20,18 +20,20 @@
 import TestsFoundation
 import XCTest
 import Combine
+import CombineSchedulers
 
 class TodoListViewModelTests: CoreTestCase {
 
     private var interactor: TodoInteractorMock!
     private var testee: TodoListViewModel!
+    private let testScheduler: TestSchedulerOf<DispatchQueue> = DispatchQueue.test
 
     // MARK: - Setup and teardown
 
     override func setUp() {
         super.setUp()
         interactor = .init()
-        testee = .init(interactor: interactor, env: environment)
+        testee = .init(interactor: interactor, env: environment, scheduler: testScheduler.eraseToAnyScheduler())
     }
 
     override func tearDown() {
@@ -277,9 +279,10 @@ class TodoListViewModelTests: CoreTestCase {
 
         // WHEN
         testee.markItemAsDone(item)
+        testScheduler.advance()
 
         // THEN
-        waitUntil(shouldFail: true) { item.markDoneState == .done }
+        XCTAssertEqual(item.markDoneState, .done)
     }
 
     func test_markItemAsDone_onError_changesStateBackToNotDone() {
@@ -289,9 +292,10 @@ class TodoListViewModelTests: CoreTestCase {
 
         // WHEN
         testee.markItemAsDone(item)
+        testScheduler.advance()
 
         // THEN
-        waitUntil(shouldFail: true) { item.markDoneState == .notDone }
+        XCTAssertEqual(item.markDoneState, .notDone)
     }
 
     func test_markItemAsDone_onError_showsSnackBar() {
@@ -301,9 +305,10 @@ class TodoListViewModelTests: CoreTestCase {
 
         // WHEN
         testee.markItemAsDone(item)
+        testScheduler.advance()
 
         // THEN
-        waitUntil(shouldFail: true) { testee.snackBar.visibleSnack != nil }
+        XCTAssertNotNil(testee.snackBar.visibleSnack)
     }
 
     func test_markItemAsDone_removesItemAfterThreeSeconds() {
@@ -316,13 +321,15 @@ class TodoListViewModelTests: CoreTestCase {
 
         // WHEN
         testee.markItemAsDone(item)
+        testScheduler.advance()
 
         // THEN
-        waitUntil(shouldFail: true) { item.markDoneState == .done }
+        XCTAssertEqual(item.markDoneState, .done)
         XCTAssertEqual(testee.items.count, 1)
         XCTAssertEqual(testee.items.first?.items.count, 1)
 
-        waitUntil(4, shouldFail: true) { testee.items.count == 0 }
+        testScheduler.advance(by: .seconds(3))
+        XCTAssertEqual(testee.items.count, 0)
     }
 
     func test_markItemAsDone_whileDone_marksAsUndone() {
@@ -334,9 +341,10 @@ class TodoListViewModelTests: CoreTestCase {
 
         // WHEN
         testee.markItemAsDone(item)
+        testScheduler.advance()
 
         // THEN
-        waitUntil(shouldFail: true) { item.markDoneState == .notDone }
+        XCTAssertEqual(item.markDoneState, .notDone)
     }
 
     func test_markItemAsDone_undoBeforeRemoval_cancelsTimer() {
@@ -350,13 +358,17 @@ class TodoListViewModelTests: CoreTestCase {
 
         // WHEN
         testee.markItemAsDone(item)
-        waitUntil(shouldFail: true) { item.markDoneState == .done }
+        testScheduler.advance()
+        XCTAssertEqual(item.markDoneState, .done)
 
         testee.markItemAsDone(item)
-        waitUntil(shouldFail: true) { item.markDoneState == .notDone }
+        testScheduler.advance()
+        XCTAssertEqual(item.markDoneState, .notDone)
 
         // THEN
-        waitUntil(4, shouldFail: true) { testee.items.count == 1 && testee.items.first?.items.count == 1 }
+        testScheduler.advance(by: .seconds(3))
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.count, 1)
     }
 
     func test_markAsUndone_onError_changesStateBackToDone() {
@@ -367,9 +379,10 @@ class TodoListViewModelTests: CoreTestCase {
 
         // WHEN
         testee.markItemAsDone(item)
+        testScheduler.advance()
 
         // THEN
-        waitUntil(shouldFail: true) { item.markDoneState == .done }
+        XCTAssertEqual(item.markDoneState, .done)
     }
 
     func test_markAsUndone_onError_showsSnackBar() {
@@ -380,9 +393,10 @@ class TodoListViewModelTests: CoreTestCase {
 
         // WHEN
         testee.markItemAsDone(item)
+        testScheduler.advance()
 
         // THEN
-        waitUntil(shouldFail: true) { testee.snackBar.visibleSnack != nil }
+        XCTAssertNotNil(testee.snackBar.visibleSnack)
     }
 
     func test_removeItem_removesEmptyGroups() {
@@ -397,12 +411,13 @@ class TodoListViewModelTests: CoreTestCase {
 
         // WHEN
         testee.markItemAsDone(item1)
-        waitUntil(shouldFail: true) { item1.markDoneState == .done }
+        testScheduler.advance()
+        XCTAssertEqual(item1.markDoneState, .done)
 
         // THEN
-        waitUntil(4, shouldFail: true) {
-            testee.items.count == 1 && testee.items.first?.items.first?.id == "2"
-        }
+        testScheduler.advance(by: .seconds(3))
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.first?.id, "2")
     }
 
     func test_removeItem_setsStateToEmpty_whenLastItemRemoved() {
@@ -416,11 +431,12 @@ class TodoListViewModelTests: CoreTestCase {
 
         // WHEN
         testee.markItemAsDone(item)
-        waitUntil(shouldFail: true) { item.markDoneState == .done }
+        testScheduler.advance()
+        XCTAssertEqual(item.markDoneState, .done)
 
         // THEN
-        waitUntil(4, shouldFail: true) {
-            testee.items.count == 0 && testee.state == .empty
-        }
+        testScheduler.advance(by: .seconds(3))
+        XCTAssertEqual(testee.items.count, 0)
+        XCTAssertEqual(testee.state, .empty)
     }
 }

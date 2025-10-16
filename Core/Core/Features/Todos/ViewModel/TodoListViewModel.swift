@@ -19,6 +19,7 @@
 import Foundation
 import Combine
 import CombineExt
+import CombineSchedulers
 import UIKit
 
 public class TodoListViewModel: ObservableObject {
@@ -35,13 +36,19 @@ public class TodoListViewModel: ObservableObject {
 
     private let interactor: TodoInteractor
     private let env: AppEnvironment
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
     /// Tracks cancellable timers for items in the done state waiting to be removed after 3 seconds
     private var markDoneTimers: [String: AnyCancellable] = [:]
 
-    init(interactor: TodoInteractor, env: AppEnvironment) {
+    init(
+        interactor: TodoInteractor,
+        env: AppEnvironment,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
         self.interactor = interactor
         self.env = env
+        self.scheduler = scheduler
 
         interactor.todoGroups
             .assign(to: \.items, on: self, ownership: .weak)
@@ -113,15 +120,16 @@ public class TodoListViewModel: ObservableObject {
             done: true
         )
 
-        useCase.fetch(environment: env) { [weak self, weak item] _, _, error in
-            guard let self, let item else { return }
-
-            if let error {
-                self.handleMarkAsDoneError(item, error)
-            } else {
+        useCase.fetchWithFuture(environment: env)
+            .receive(on: scheduler)
+            .sinkFailureOrValue { [weak self, weak item] error in
+                guard let item else { return }
+                self?.handleMarkAsDoneError(item, error)
+            } receiveValue: { [weak item] _ in
+                guard let item else { return }
                 self.handleMarkAsDoneSuccess(item)
             }
-        }
+            .store(in: &subscriptions)
     }
 
     private func performMarkAsUndone(_ item: TodoItemViewModel) {
@@ -136,22 +144,23 @@ public class TodoListViewModel: ObservableObject {
             done: false
         )
 
-        useCase.fetch(environment: env) { [weak self, weak item] _, _, error in
-            guard let self, let item else { return }
-
-            if let error {
-                self.handleMarkAsUndoneError(item, error)
-            } else {
+        useCase.fetchWithFuture(environment: env)
+            .receive(on: scheduler)
+            .sinkFailureOrValue { [weak self, weak item] error in
+                guard let item else { return }
+                self?.handleMarkAsUndoneError(item, error)
+            } receiveValue: { [weak item] _ in
+                guard let item else { return }
                 item.markDoneState = .notDone
             }
-        }
+            .store(in: &subscriptions)
     }
 
     private func handleMarkAsDoneSuccess(_ item: TodoItemViewModel) {
         item.markDoneState = .done
 
         let timer = Just(())
-            .delay(for: .seconds(3), scheduler: DispatchQueue.main)
+            .delay(for: .seconds(3), scheduler: scheduler)
             .sink { [weak self] in
                 self?.removeItem(item)
                 self?.markDoneTimers.removeValue(forKey: item.id)
