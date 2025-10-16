@@ -91,11 +91,18 @@ public final class AppEnvironmentOverride: AppEnvironment {
         get {
             guard let cSession = base.currentSession else { return nil }
 
-            var userID = cSession.userID
+            let userID: String
             if let userShardID = cSession.userID.shardID, userShardID == contextShardID {
-                userID = userID.localID // For Consortia user
+                // If user share the same shardID of the course/group, it means it belong to the
+                // same account hosting the course/group. Course/Group content APIs would always respond
+                // with local-form user ID
+                userID = cSession.userID.localID
             } else {
-                userID = userID.asGlobalID(of: cSession.accessToken?.shardID) // For trusted accounts
+                // If user doesn't share the same shardID of the course/group.
+                // Course/Group content APIs requires the global-form user ID to succeed.
+                // Examples: Course/group hosted in a trusted account, or in a cross-shard account
+                // which current user doesn't belong to.
+                userID = cSession.userID.asGlobalID(of: cSession.accessToken?.shardID)
             }
 
             return LoginSession(
@@ -119,7 +126,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
         set {}
     }
 
-    public override func processParameters(_ params: [String: String], url: URLComponents) -> ([String: String], URLComponents) {
+    public override func transformContentIDs(params: [String: String], url: URLComponents) -> ([String: String], URLComponents) {
         var newParams: [String: String] = [:]
         var newUrl = url
 
