@@ -168,4 +168,29 @@ final class HNotificationViewModelTests: HorizonTestCase {
         XCTAssertNotNil(messageDetailsView)
         wait(for: [router.showExpectation], timeout: 1)
     }
+
+    func testAccessibilityPropertiesWithValues() {
+        // Given
+        let model = NotificationModel(
+            id: "1",
+            title: "My Title",
+            date: Date.fromISO8601("2025-09-24T06:27:18Z"),
+            isRead: false,
+            courseName: "AI Introduction",
+            courseID: "1",
+            enrollmentID: "enrollment",
+            isScoreAnnouncement: false,
+            type: .announcement
+        )
+
+        // When
+        let courseAccessibility = model.accessibilityCourseName
+        let dateAccessibility = model.accessibilityDate
+        let titleAccessibility = model.accessibilityTitle
+
+        // Then
+        XCTAssertEqual(courseAccessibility, "Course AI Introduction")
+        XCTAssertEqual(dateAccessibility, "Date Sep 24, 2025")
+        XCTAssertEqual(titleAccessibility, "Title My Title")
+    }
 }

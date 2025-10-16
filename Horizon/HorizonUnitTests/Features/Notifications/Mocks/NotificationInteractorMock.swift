@@ -22,7 +22,7 @@ import Foundation
 
 final class NotificationInteractorMock: NotificationInteractor {
     private let shouldReturnError: Bool
-
+    var mockedNotifications: [NotificationModel]?
     init(shouldReturnError: Bool = false) {
         self.shouldReturnError = shouldReturnError
     }
@@ -188,7 +188,7 @@ final class NotificationInteractorMock: NotificationInteractor {
             return Fail(error: NSError(domain: "NotificationInteractorMock", code: 1, userInfo: [NSLocalizedDescriptionKey: "Mock error"]))
                 .eraseToAnyPublisher()
         } else {
-            return Just(mocks)
+            return Just(mockedNotifications ?? mocks)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }

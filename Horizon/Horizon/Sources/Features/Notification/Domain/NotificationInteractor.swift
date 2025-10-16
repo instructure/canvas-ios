@@ -112,7 +112,8 @@ final class NotificationInteractorLive: NotificationInteractor {
                     date: $0.startAt,
                     isRead: true,
                     type: .announcement,
-                    announcementId: $0.id
+                    announcementId: $0.id,
+                    isGlobalNotification: true
                 )
             }
             .collect()

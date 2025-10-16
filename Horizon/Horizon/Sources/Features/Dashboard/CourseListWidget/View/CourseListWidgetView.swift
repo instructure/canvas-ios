@@ -36,6 +36,7 @@ struct CourseListWidgetView: View {
         VStack(spacing: .zero) {
             switch viewModel.state {
             case .data, .loading:
+                programCardsView
                 dataView
             case .empty:
                 emptyView
@@ -113,9 +114,20 @@ struct CourseListWidgetView: View {
                 .id(scrollViewID)
             }
 
-            if viewModel.courses.count > 1 {
+            if viewModel.courses.count > 4 {
                 PaginationIndicatorView(currentIndex: $currentCourseIndex, count: viewModel.courses.count)
             }
+        }
+    }
+
+    @ViewBuilder
+    private var programCardsView: some View {
+        if viewModel.unenrolledPrograms.isNotEmpty, viewModel.state == .data {
+            UnenrolledProgramListWidgetView(programs: viewModel.unenrolledPrograms) { program in
+                viewModel.navigateProgram(id: program.id, viewController: viewController)
+            }
+            .padding(.horizontal, .huiSpaces.space24)
+            .padding(.bottom, .huiSpaces.space16)
         }
     }
 

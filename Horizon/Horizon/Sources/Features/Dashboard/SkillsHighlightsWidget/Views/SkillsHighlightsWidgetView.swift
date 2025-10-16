@@ -37,6 +37,7 @@ struct SkillsHighlightsWidgetView: View {
     var body: some View {
         VStack(spacing: .huiSpaces.space16) {
             SkillsHighlightsWidgetHeaderView()
+                .accessibilityHidden(viewModel.state == .loading)
             switch viewModel.state {
             case .data:
                 ForEach(viewModel.skills) { skill in
@@ -55,6 +56,8 @@ struct SkillsHighlightsWidgetView: View {
                 }
             case .loading:
                 SkillHighlightWidgetView(skill: SkillWidgetModel.loadingModel)
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(Text(String(localized: "Loading Skill highlights", bundle: .horizon)))
             }
         }
         .padding(.huiSpaces.space24)

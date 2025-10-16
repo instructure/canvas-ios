@@ -31,6 +31,7 @@ struct DashboardView: View {
     private let courseListWidgetView: CourseListWidgetView
     private let skillsHighlightsWidgetView: SkillsHighlightsWidgetView
     private let skillsCountWidgetView: SkillsCountWidgetView
+    private let announcementWidgetView: AnnouncementsListWidgetView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
@@ -38,6 +39,7 @@ struct DashboardView: View {
         let skillViewModel = SkillsHighlightsWidgetAssembly.makeViewModel()
         skillsHighlightsWidgetView = SkillsHighlightsWidgetAssembly.makeView(viewModel: skillViewModel)
         skillsCountWidgetView = SkillsCountWidgetView(viewModel: skillViewModel)
+        announcementWidgetView = AnnouncementsWidgetAssembly.makeView()
     }
 
     var body: some View {
@@ -51,6 +53,7 @@ struct DashboardView: View {
         ) { _ in
             VStack(spacing: .zero) {
                 navigationBarHelperView
+                announcementWidgetView
                 courseListWidgetView
                 dataWidgetsView
                 skillsHighlightsWidgetView
@@ -126,7 +129,7 @@ struct DashboardView: View {
         }
         .scrollIndicators(.hidden)
         .scrollBounceBehavior(.basedOnSize)
-        .padding(.top, .huiSpaces.space40)
+        .padding(.top, .huiSpaces.space24)
     }
 }
 

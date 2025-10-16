@@ -25,7 +25,6 @@ import Observation
 class DashboardViewModel {
     // MARK: - Outputs
 
-    private(set) var state: InstUI.ScreenState = .loading
     private(set) var hasUnreadNotification = false
     private(set) var hasUnreadInboxMessage = false
 
