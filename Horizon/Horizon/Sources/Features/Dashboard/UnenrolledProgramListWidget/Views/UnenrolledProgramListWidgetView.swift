@@ -26,7 +26,7 @@ struct UnenrolledProgramListWidgetView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
             ForEach(programs) { program in
-                UnenrolledProgramWidgetView(
+                UnenrolledProgramListItemWidgetView(
                     program: program,
                     onTap: onTap
                 )

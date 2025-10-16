@@ -19,7 +19,7 @@
 import HorizonUI
 import SwiftUI
 
-struct UnenrolledProgramWidgetView: View {
+struct UnenrolledProgramListItemWidgetView: View {
     let program: Program
     let onTap: (Program) -> Void
 
@@ -63,7 +63,7 @@ struct UnenrolledProgramWidgetView: View {
 }
 
 #Preview {
-    UnenrolledProgramWidgetView(
+    UnenrolledProgramListItemWidgetView(
         program: .init(
             id: "1",
             name: "Dolor Sit Amet Program",
