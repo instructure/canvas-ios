@@ -145,7 +145,7 @@ struct CourseListWidgetItemView: View {
     private var courseTitleAndProgressSection: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space12) {
             Text(model.name)
-                .huiTypography(.h3)
+                .huiTypography(.h4)
                 .foregroundStyle(Color.huiColors.text.title)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
