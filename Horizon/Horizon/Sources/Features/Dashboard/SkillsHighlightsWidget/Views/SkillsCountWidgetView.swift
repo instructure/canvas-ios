@@ -61,8 +61,8 @@ struct SkillsCountWidgetView: View {
         .accessibilityLabel(
             Text(
                 isLoading
-                ? String(localized: "Loading skills earned", bundle: .horizon)
-                : String.localizedStringWithFormat(String(localized: "%@ Skills earned",bundle: .horizon), count.description)
+                    ? String(localized: "Loading skills earned", bundle: .horizon)
+                    : String.localizedStringWithFormat(String(localized: "%@ Skills earned", bundle: .horizon), count.description)
             )
         )
     }
