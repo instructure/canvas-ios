@@ -37,7 +37,7 @@ public class GetCourse: APIUseCase {
         if env.isRoot == false {
             // Should always be used in global-form ID when this
             // use case is used in inner course details pages
-            modifiedCase.courseID = courseID.asGlobalID(of: env.courseShardID)
+            modifiedCase.courseID = courseID.asGlobalID(of: env.contextShardID)
             modifiedCase.isRootCalling = true
         }
 
@@ -190,7 +190,7 @@ public class GetCourseSettings: APIUseCase {
         let modifiedCase = self
 
         if env.isRoot == false {
-            modifiedCase.courseID = courseID.asGlobalID(of: env.courseShardID)
+            modifiedCase.courseID = courseID.asGlobalID(of: env.contextShardID)
             modifiedCase.isRootCalling = true
         }
 
@@ -290,7 +290,7 @@ struct UpdateCourse: APIUseCase {
         var modifiedCase = self
 
         if env.isRoot == false {
-            modifiedCase.courseId = courseId.asGlobalID(of: env.courseShardID)
+            modifiedCase.courseId = courseId.asGlobalID(of: env.contextShardID)
             modifiedCase.isRootCalling = true
         }
 
@@ -345,7 +345,7 @@ struct GetCourseWithGradingSchemeOnly: APIUseCase {
         var modifiedCase = self
 
         if env.isRoot == false {
-            let newCourseID = courseId.asGlobalID(of: env.courseShardID)
+            let newCourseID = courseId.asGlobalID(of: env.contextShardID)
             modifiedCase.courseId = newCourseID
             modifiedCase.request = Request(courseID: newCourseID, include: request.include)
         }

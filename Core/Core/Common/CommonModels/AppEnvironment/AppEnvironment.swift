@@ -74,8 +74,8 @@ open class AppEnvironment {
     public var sessionShardID: String? { currentSession?.accessToken?.shardID }
 
     // This can be different from `sessionShardID` for cross-shard setup.
-    // See `AppEnvironmentOverride` impl. for it.
-    public var courseShardID: String? { sessionShardID }
+    // See `AppEnvironmentOverride` impl. for it. Only applies to Courses & Groups.
+    public var contextShardID: String? { sessionShardID }
 
     public func processParameters(_ params: [String: String], url: URLComponents) -> ([String: String], URLComponents) {
         return (params, url)
@@ -97,8 +97,8 @@ open class AppEnvironment {
         currentSession = session
         currentSession?.migrateSavedAnnotatedPDFs()
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
-        router.courseTabUrlInteractor?.clearEnabledTabs()
-        router.courseTabUrlInteractor?.setupTabSubscription()
+        router.contextTabUrlInteractor?.clearEnabledTabs()
+        router.contextTabUrlInteractor?.setupTabSubscription()
 
         if isSilent {
             return
@@ -126,7 +126,7 @@ open class AppEnvironment {
         k5.userDidLogout()
         currentSession = nil
         userDefaults = nil
-        router.courseTabUrlInteractor?.cancelTabSubscription()
+        router.contextTabUrlInteractor?.cancelTabSubscription()
         refreshWidgets()
         deleteUserData(session: session)
         if AppEnvironment.shared.app == .horizon {

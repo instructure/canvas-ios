@@ -21,8 +21,8 @@ import Combine
 
 /// This interactor has two purposes
 /// - Provide info on hidden tabs for routing. When routing we shouldn't allow routes for disabled tabs.
-/// - Extract base URLs for courses. We use these base URLs for API calls in case a course is on a different host compared to the the one used to log in.
-public final class CourseTabUrlInteractor {
+/// - Extract base URLs for courses. We use these base URLs for API calls in case a course is on a different host compared to the the one used to log in. Only applies to Courses & Groups.
+public final class ContextTabUrlInteractor {
 
     public static let blockDisabledTabUserInfoKey = "shouldBlockDisabledCourseTabKey"
 
@@ -32,7 +32,7 @@ public final class CourseTabUrlInteractor {
         let apiBaseUrlHost: String?
     }
 
-    private var enabledTabsPerCourse: [Context: [String]] = [:]
+    private var enabledTabsPerContext: [Context: [String]] = [:]
     private var baseURLHostOverridesPerCourse: [Context: String] = [:]
     private var tabSubscription: AnyCancellable?
 
@@ -54,7 +54,7 @@ public final class CourseTabUrlInteractor {
     }
 
     public func clearEnabledTabs() {
-        enabledTabsPerCourse = [:]
+        enabledTabsPerContext = [:]
     }
 
     // MARK: - Allow / Block URL
@@ -69,7 +69,7 @@ public final class CourseTabUrlInteractor {
         }
 
         // if url doesn't match "/courses/:courseID/*" for the known courses -> it's not a tab, allow it
-        guard let context = Context(url: url), let enabledTabs = enabledTabsPerCourse[context] else {
+        guard let context = Context(url: url), let enabledTabs = enabledTabsPerContext[context] else {
             return true
         }
 
@@ -140,7 +140,7 @@ public final class CourseTabUrlInteractor {
 
         tabModelsPerCourse.forEach { context, tabs in
             let tabPaths = pathsForTabs(tabs, context: context)
-            enabledTabsPerCourse[context] = tabPaths
+            enabledTabsPerContext[context] = tabPaths
         }
 
         let defaultHost = AppEnvironment.shared.apiHost

@@ -175,7 +175,7 @@ let router = Router(routes: [
     RouteHandler("/:context/:contextID/wiki/:url") {
         pageViewController(url: $0, params: $1, userInfo: $2, env: $3)
     }
-], courseTabUrlInteractor: .init())
+], contextTabUrlInteractor: .init())
 
 private func pageViewController(url: URLComponents, params: [String: String], userInfo: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }

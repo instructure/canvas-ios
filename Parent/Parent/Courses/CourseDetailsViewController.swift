@@ -119,7 +119,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         else { return env }
 
         return AppEnvironment
-            .resolved(for: gradesTab.fullURL, courseShardID: shardID)
+            .resolved(for: gradesTab.fullURL, contextShardID: shardID)
     }
 
     func configureSyllabus() {

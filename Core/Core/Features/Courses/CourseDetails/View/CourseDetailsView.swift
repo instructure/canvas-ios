@@ -85,7 +85,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
                 selectionViewModel.cellTapped(at: 0)
                 env.router.route(
                     to: url,
-                    userInfo: [CourseTabUrlInteractor.blockDisabledTabUserInfoKey: false],
+                    userInfo: [ContextTabUrlInteractor.blockDisabledTabUserInfoKey: false],
                     from: controller,
                     options: .detail
                 )
@@ -196,7 +196,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
                 routeUrl.map {
                     .init(
                         url: $0,
-                        userInfo: [CourseTabUrlInteractor.blockDisabledTabUserInfoKey: false]
+                        userInfo: [ContextTabUrlInteractor.blockDisabledTabUserInfoKey: false]
                     )
                 }
             )

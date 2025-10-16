@@ -495,7 +495,7 @@ let academicRouter = Router(routes: [
     RouteHandler("/about") { _, _, _ in
         AboutAssembly.makeAboutViewController()
     }
-], courseTabUrlInteractor: .init())
+], contextTabUrlInteractor: .init())
 
 private func nativeFactory(url _: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let route = params["route"] else { return nil }
