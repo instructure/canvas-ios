@@ -60,10 +60,12 @@ public final class TodoInteractorLive: TodoInteractor {
                 .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
                 .map { plannables in
                     let coursesByCanvasContextIds = Dictionary(uniqueKeysWithValues: courses.map { ($0.canvasContextID, $0) })
-                    return plannables.compactMap { plannable in
-                        let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
-                        return TodoItemViewModel(plannable, course: course)
-                    }
+                    return plannables
+                        .filter { !$0.isMarkedComplete && !$0.isSubmitted }
+                        .compactMap { plannable in
+                            let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
+                            return TodoItemViewModel(plannable, course: course)
+                        }
                 }
             }
             .map { [weak todoGroupsSubject] (todos: [TodoItemViewModel]) in
