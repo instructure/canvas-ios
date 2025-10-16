@@ -63,6 +63,7 @@ struct TodoListItemCell: View {
         .buttonStyle(.plain)
         .frame(width: 44, height: 44)
         .tint(Color(Brand.shared.primary))
+        .identifier("to-do.list.\(item.id).checkbox")
     }
 
     private var swipeActions: [SwipeModel] {
