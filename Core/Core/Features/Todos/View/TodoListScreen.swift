@@ -48,6 +48,7 @@ public struct TodoListScreen: View {
         }
         .clipped()
         .navigationBarItems(leading: profileMenuButton)
+        .snackBar(viewModel: viewModel.snackBar)
     }
 
     @ViewBuilder

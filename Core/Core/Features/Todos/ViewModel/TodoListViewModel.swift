@@ -31,6 +31,7 @@ public class TodoListViewModel: ObservableObject {
             subtitle: String(localized: "It looks like a great time to rest, relax, and recharge.", bundle: .core)
         )
     )
+    let snackBar = SnackBarViewModel()
 
     private let interactor: TodoInteractor
     private let env: AppEnvironment
@@ -161,14 +162,12 @@ public class TodoListViewModel: ObservableObject {
 
     private func handleMarkAsDoneError(_ item: TodoItemViewModel, _ error: Error) {
         item.markDoneState = .notDone
-        // TODO: Show error snackbar in Phase 6
-        print("Error marking as done: \(error)")
+        snackBar.showSnack(String(localized: "Failed to mark item as done", bundle: .core))
     }
 
     private func handleMarkAsUndoneError(_ item: TodoItemViewModel, _ error: Error) {
         item.markDoneState = .done
-        // TODO: Show error snackbar in Phase 6
-        print("Error marking as undone: \(error)")
+        snackBar.showSnack(String(localized: "Failed to mark item as undone", bundle: .core))
     }
 
     private func removeItem(_ item: TodoItemViewModel) {
