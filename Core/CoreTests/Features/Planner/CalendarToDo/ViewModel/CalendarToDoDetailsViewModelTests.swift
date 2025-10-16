@@ -65,7 +65,7 @@ class CalendarToDoDetailsViewModelTests: CoreTestCase {
     // MARK: - Initial values
 
     func testProperties() {
-        XCTAssertEqual(testee.navigationTitle, String(localized: "To Do", bundle: .core))
+        XCTAssertEqual(testee.navigationTitle, String(localized: "To-do", bundle: .core))
     }
 
     func testGetToDo() {

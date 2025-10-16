@@ -50,7 +50,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
     init(
         assignment: Assignment,
         userId: String?,
-        dueDateTextsProvider: AssignmentDueDateTextsProvider = .live
+        dateTextsProvider: AssignmentDateTextsProvider = .live
     ) {
         let submission: Submission?
         if var userId {
@@ -66,7 +66,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
         self.title = assignment.name
         self.icon = assignment.icon.asImage
 
-        self.dueDates = dueDateTextsProvider.formattedDueDates(for: assignment)
+        self.dueDates = dateTextsProvider.summarizedDueDates(for: assignment)
 
         let status = submission?.status ?? .notSubmitted
         self.submissionStatus = .init(status: status)

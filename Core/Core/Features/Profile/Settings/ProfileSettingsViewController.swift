@@ -604,7 +604,7 @@ private enum LandingPage: String, OptionItemIdentifiable {
         case .calendar:
             return String(localized: "Calendar", bundle: .core)
         case .todo:
-            return String(localized: "To Do", bundle: .core)
+            return String(localized: "To-do", bundle: .core)
         case .notifications:
             return String(localized: "Notifications", bundle: .core)
         case .inbox:

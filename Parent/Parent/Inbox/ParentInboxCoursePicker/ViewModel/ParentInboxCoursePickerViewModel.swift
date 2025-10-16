@@ -71,7 +71,7 @@ public class ParentInboxCoursePickerViewModel: ObservableObject {
 
         didTapRefresh
             .sink { [weak self] in
-                _ = self?.interactor.refresh()
+                self?.interactor.refresh()
             }
             .store(in: &subscriptions)
     }

@@ -8711,6 +8711,12 @@
         }
       }
     },
+    "Download Failed" : {
+
+    },
+    "Downloading" : {
+
+    },
     "Due" : {
       "localizations" : {
         "ar" : {
@@ -13332,13 +13338,13 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bloquejat"
+            "value" : "S’ha bloquejat"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wedi Cloi"
+            "value" : "Wedi cloi"
           }
         },
         "da" : {
@@ -16904,6 +16910,9 @@
           }
         }
       }
+    },
+    "Please wait..." : {
+
     },
     "Preferences" : {
       "localizations" : {
@@ -22541,6 +22550,9 @@
           }
         }
       }
+    },
+    "There was an error downloading the file. Please try again." : {
+
     },
     "There was an error loading alerts. Pull to refresh to try again." : {
       "localizations" : {

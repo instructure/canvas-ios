@@ -21,19 +21,24 @@ import Combine
 
 #if DEBUG
 final class NotificationInteractorPreview: NotificationInteractor {
-    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never> {
+    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Error> {
         Just([
             .init(
                 id: "1",
-                category: "announcement from [Course]",
                 title: "[first two lines of the message......... there’s more.].",
-                date: "Mar 17",
+                date: Date(),
                 isRead: true,
+                courseName: "course Name",
                 courseID: "12",
                 enrollmentID: "1211",
-                isScoreAnnouncement: false
+                isScoreAnnouncement: false,
+                type: .announcement,
+                announcementId: "1",
+                assignmentURL: nil
+
             )
         ])
+        .setFailureType(to: Error.self)
         .eraseToAnyPublisher()
     }
 

@@ -32,30 +32,30 @@ class AddStudentTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Manage Students
         logInDSUser(parent)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         profileButton.hit()
         let manageStudentsButton = ProfileHelper.manageStudentsButton.waitUntil(.visible)
-        XCTAssertTrue(manageStudentsButton.isVisible)
+        XCTAssertVisible(manageStudentsButton)
 
         manageStudentsButton.hit()
         let addStudentButton = ManageStudentsHelper.addStudentButton.waitUntil(.visible)
-        XCTAssertTrue(addStudentButton.isVisible)
+        XCTAssertVisible(addStudentButton)
 
         // MARK: Add new student
         addStudentButton.hit()
         let qrCodeButton = ManageStudentsHelper.AddStudent.qrCodeButton.waitUntil(.visible)
         let pairingCodeButton = ManageStudentsHelper.AddStudent.pairingCodeButton.waitUntil(.visible)
-        XCTAssertTrue(qrCodeButton.isVisible)
-        XCTAssertTrue(pairingCodeButton.isVisible)
+        XCTAssertVisible(qrCodeButton)
+        XCTAssertVisible(pairingCodeButton)
 
         pairingCodeButton.hit()
         let pairingCodeInput = ManageStudentsHelper.AddStudent.pairingCodeInput.waitUntil(.visible)
         let cancelButton = ManageStudentsHelper.AddStudent.cancelButton.waitUntil(.visible)
         let addButton = ManageStudentsHelper.AddStudent.addButton.waitUntil(.visible)
-        XCTAssertTrue(pairingCodeInput.isVisible)
-        XCTAssertTrue(cancelButton.isVisible)
-        XCTAssertTrue(addButton.isVisible)
+        XCTAssertVisible(pairingCodeInput)
+        XCTAssertVisible(cancelButton)
+        XCTAssertVisible(addButton)
 
         pairingCodeInput.writeText(text: pairingCode.code)
         addButton.hit()
@@ -63,7 +63,7 @@ class AddStudentTests: E2ETestCase {
         // MARK: Check if student was added
         let studentCell = ManageStudentsHelper.studentCell(student: student).waitUntil(.visible)
         let nameLabelOfStudentCell = ManageStudentsHelper.nameLabelOfStudentCell(student: student).waitUntil(.visible)
-        XCTAssertTrue(studentCell.isVisible)
-        XCTAssertTrue(nameLabelOfStudentCell.isVisible)
+        XCTAssertVisible(studentCell)
+        XCTAssertVisible(nameLabelOfStudentCell)
     }
 }

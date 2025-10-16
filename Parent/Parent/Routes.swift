@@ -69,7 +69,7 @@ let router = Router(routes: [
         if assignmentID == "syllabus" {
             return SyllabusViewController.create(courseID: courseID, env: env)
         }
-        return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID, env: env)
+        return ParentAssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID, env: env)
     },
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { _, params, _, env in
@@ -77,7 +77,7 @@ let router = Router(routes: [
               let assignmentID = params["assignmentID"],
               let studentID = params["userID"]
         else { return nil }
-        return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID, env: env)
+        return ParentAssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID, env: env)
     },
 
     RouteHandler("/courses/:courseID/grades") { _, params, _, env in

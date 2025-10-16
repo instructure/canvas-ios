@@ -103,17 +103,11 @@ public extension HorizonUI {
                     spacing: .huiSpaces.space16,
                     lineSpacing: .huiSpaces.space4
                 ) {
-                    HorizonUI.Pill(
-                        title: type.name,
-                        style: .inline(
-                            .init(
-                                textColor: Color.huiColors.text.body,
-                                iconColor: Color.huiColors.surface.institution
-                            )
-                        ),
-                        isSmall: false,
-                        isUppercased: true,
-                        icon: type.icon
+                    HorizonUI.StatusChip(
+                        title: type.name.uppercased(),
+                        style: .institution,
+                        icon: type.icon,
+                        isFilled: false
                     )
                     .readingFrame { frame in
                         if pillHeight == nil {

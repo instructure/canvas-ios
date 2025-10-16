@@ -21,7 +21,7 @@ import Combine
 import Core
 
 protocol NotificationInteractor {
-    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never>
+    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Error>
     func getUnreadNotificationCount() -> AnyPublisher<Int, Never>
 }
 
@@ -41,32 +41,52 @@ final class NotificationInteractorLive: NotificationInteractor {
         self.formatter = formatter
     }
 
-    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never> {
-        Publishers.Zip(fetchNotifications(ignoreCache: ignoreCache), fetchCourses())
-            .map { [weak self] activities, courses -> [NotificationModel] in
-                self?.formatter.formatNotifications(activities, courses: courses) ?? []
-            }
-            .eraseToAnyPublisher()
+    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Error> {
+        let notificationsPublisher = fetchNotifications(ignoreCache: ignoreCache)
+        let coursesPublisher = fetchCourses()
+            .setFailureType(to: Error.self)
+        let globalNotificationsPublisher = fetchGlobalNotifications(ignoreCache: ignoreCache)
+            .setFailureType(to: Error.self)
+
+        return Publishers.Zip3(
+            notificationsPublisher,
+            coursesPublisher,
+            globalNotificationsPublisher
+        )
+        .map { [weak self] activities, courses, globalNotifications -> [NotificationModel] in
+            var localNotifications = self?.formatter.formatNotifications(activities, courses: courses) ?? []
+            localNotifications.append(contentsOf: globalNotifications)
+            return localNotifications.sorted { ($0.date ?? Date()) > ($1.date ?? Date()) }
+        }
+        .eraseToAnyPublisher()
     }
 
     func getUnreadNotificationCount() -> AnyPublisher<Int, Never> {
-        getNotifications(ignoreCache: true)
-            .map { notifications in
-                notifications.reduce(0) { count, notification in
-                    notification.isRead ? count : count + 1
-                }
+        let notificationsPublisher = fetchNotifications(ignoreCache: true)
+            .replaceError(with: [])
+        let coursesPublisher = fetchCourses()
+
+        return Publishers.Zip(
+            notificationsPublisher,
+            coursesPublisher
+        )
+        .map { [weak self] activities, courses -> [NotificationModel] in
+            self?.formatter.formatNotifications(activities, courses: courses) ?? []
+        }
+        .map { notifications in
+            notifications.reduce(0) { count, notification in
+                notification.isRead ? count : count + 1
             }
-            .replaceError(with: 0)
-            .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
     }
 
-    private func fetchNotifications(ignoreCache: Bool) -> AnyPublisher<[HActivity], Never> {
-        ReactiveStore(useCase: GetActivities(onlyActiveCourses: false))
+    private func fetchNotifications(ignoreCache: Bool) -> AnyPublisher<[HActivity], Error> {
+        ReactiveStore(useCase: GetActivities(onlyActiveCourses: true))
             .getEntities(ignoreCache: ignoreCache)
-            .replaceError(with: [])
-            .flatMap { Publishers.Sequence(sequence: $0)}
-            .map { HActivity(from: $0) }
-            .collect()
+            .map { activities in
+                activities.map { HActivity(from: $0) }
+            }
             .eraseToAnyPublisher()
     }
 
@@ -76,6 +96,25 @@ final class NotificationInteractorLive: NotificationInteractor {
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0)}
             .map { HCourse(from: $0, modules: []) }
+            .collect()
+            .eraseToAnyPublisher()
+    }
+
+    private func fetchGlobalNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never> {
+        ReactiveStore(useCase: GetAccountNotifications())
+            .getEntities(ignoreCache: ignoreCache)
+            .replaceError(with: [])
+            .flatMap { Publishers.Sequence(sequence: $0) }
+            .map {
+                NotificationModel(
+                    id: $0.id,
+                    title: $0.subject,
+                    date: $0.startAt,
+                    isRead: true,
+                    type: .announcement,
+                    announcementId: $0.id
+                )
+            }
             .collect()
             .eraseToAnyPublisher()
     }

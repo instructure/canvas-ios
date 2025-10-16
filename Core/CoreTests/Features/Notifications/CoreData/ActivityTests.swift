@@ -23,7 +23,8 @@ import TestsFoundation
 
 class ActivityTests: CoreTestCase {
     func testModel() {
-        let a = Activity.make(from: .make(course_id: "1"))
+        let url = URL(string: "/courses/1/assignments/1")
+        let a = Activity.make(from: .make(course_id: "1", assignment: .init(id: "12", html_url: url)))
         let all: [Activity] =  databaseClient.fetch()
         XCTAssertEqual(all.count, 1)
         let aa = try! XCTUnwrap( all.first )
@@ -33,5 +34,7 @@ class ActivityTests: CoreTestCase {
         XCTAssertEqual(a.htmlURL, aa.htmlURL)
         XCTAssertEqual(a.message, aa.message)
         XCTAssertEqual(a.title, aa.title)
+        XCTAssertEqual(a.assignmentURL, url)
+        XCTAssertEqual(a.announcementId, "123")
     }
 }
