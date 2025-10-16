@@ -33,8 +33,9 @@ extension UINavigationBar {
         }
     }
 
+	@available(iOS, deprecated: 26)
     public func useContextColor(_ color: UIColor?) {
-        guard let color else { return }
+		guard let color, #unavailable(iOS 26) else { return }
         let foreground = UIColor.textLightest
         let background = color
         titleTextAttributes = [.foregroundColor: foreground]
