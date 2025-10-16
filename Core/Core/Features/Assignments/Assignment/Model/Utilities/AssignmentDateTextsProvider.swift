@@ -29,7 +29,7 @@ public protocol AssignmentDateTextsProvider {
     /// Returns items which contain a title & formatted due date pair.
     /// If `assignment` has sub-assignments, this returns an item for each sub-assignment.
     /// In this case each title is the sub-assignments title and the "due" suffix.
-    /// If `assignment` has no sub-assignments, this return a single item with the title "Due".
+    /// If `assignment` has no sub-assignments, this returns a single item with the title "Due".
     /// If `assignment` or it's sub-assignments have overrides, the returned item's title is `nil`.
     /// This method formats dates without adding the "Due" prefix.
     func dueDateItems(for assignment: Assignment) -> [AssignmentDateListItem]
