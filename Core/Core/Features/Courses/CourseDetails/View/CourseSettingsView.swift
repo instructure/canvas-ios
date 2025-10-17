@@ -122,6 +122,6 @@ public struct CourseSettingsView: View, ScreenViewTrackable {
 
 struct CourseSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseSettingsView(viewModel: CourseSettingsViewModel(context: .course("1")))
+        CourseSettingsView(viewModel: CourseSettingsViewModel(context: .course("1"), environment: .shared))
     }
 }

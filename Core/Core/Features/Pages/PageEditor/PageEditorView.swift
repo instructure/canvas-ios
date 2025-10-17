@@ -160,7 +160,7 @@ public struct PageEditorView: View {
             return
         }
         let useCase = GetPage(context: context, url: url)
-        useCase.fetch { _, _, error in performUIUpdate {
+        useCase.fetch(environment: env) { _, _, error in performUIUpdate {
             let page: Page? = self.env.database.viewContext.fetch(scope: useCase.scope).first
             var editingRoles = RoleOption.public
             if page?.editingRoles.contains("teachers") == true { editingRoles = .teachers }
@@ -188,7 +188,7 @@ public struct PageEditorView: View {
             editing_roles: editingRoles.rawValue,
             published: published || isFrontPage,
             front_page: isFrontPage
-        ).fetch { result, _, error in performUIUpdate {
+        ).fetch(environment: env) { result, _, error in performUIUpdate {
             self.error = error
             self.isSaving = false
             if result != nil {

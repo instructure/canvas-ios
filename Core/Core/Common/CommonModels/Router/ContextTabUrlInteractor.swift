@@ -21,8 +21,8 @@ import Combine
 
 /// This interactor has two purposes
 /// - Provide info on hidden tabs for routing. When routing we shouldn't allow routes for disabled tabs.
-/// - Extract base URLs for courses. We use these base URLs for API calls in case a course is on a different host compared to the the one used to log in.
-public final class CourseTabUrlInteractor {
+/// - Extract base URLs for courses. We use these base URLs for API calls in case a course is on a different host compared to the the one used to log in. Only applies to Courses & Groups.
+public final class ContextTabUrlInteractor {
 
     public static let blockDisabledTabUserInfoKey = "shouldBlockDisabledCourseTabKey"
 
@@ -32,7 +32,7 @@ public final class CourseTabUrlInteractor {
         let apiBaseUrlHost: String?
     }
 
-    private var enabledTabsPerCourse: [Context: [String]] = [:]
+    private var enabledTabsPerContext: [Context: [String]] = [:]
     private var baseURLHostOverridesPerCourse: [Context: String] = [:]
     private var tabSubscription: AnyCancellable?
 
@@ -54,7 +54,7 @@ public final class CourseTabUrlInteractor {
     }
 
     public func clearEnabledTabs() {
-        enabledTabsPerCourse = [:]
+        enabledTabsPerContext = [:]
     }
 
     // MARK: - Allow / Block URL
@@ -69,7 +69,7 @@ public final class CourseTabUrlInteractor {
         }
 
         // if url doesn't match "/courses/:courseID/*" for the known courses -> it's not a tab, allow it
-        guard let context = Context(url: url), let enabledTabs = enabledTabsPerCourse[context] else {
+        guard let context = Context(url: url), let enabledTabs = enabledTabsPerContext[context] else {
             return true
         }
 
@@ -120,8 +120,12 @@ public final class CourseTabUrlInteractor {
     // MARK: - Enabled tab list
 
     private func updateEnabledTabs(with tabs: [Tab]) {
-        let courseTabs = tabs.filter { $0.context.contextType == .course }
-        let tabsPerCourse = Dictionary(grouping: courseTabs, by: { $0.context })
+        let contextTabs = tabs.filter {
+            $0.context.contextType == .course ||
+            $0.context.contextType == .group
+        }
+
+        let tabsPerCourse = Dictionary(grouping: contextTabs, by: { $0.context })
 
         let tabModelsPerCourse: [Context: [TabModel]] = tabsPerCourse.mapValues { tabArray in
             tabArray.compactMap { tab in
@@ -136,7 +140,7 @@ public final class CourseTabUrlInteractor {
 
         tabModelsPerCourse.forEach { context, tabs in
             let tabPaths = pathsForTabs(tabs, context: context)
-            enabledTabsPerCourse[context] = tabPaths
+            enabledTabsPerContext[context] = tabPaths
         }
 
         let defaultHost = AppEnvironment.shared.apiHost
@@ -235,16 +239,21 @@ public final class CourseTabUrlInteractor {
 
     public func baseUrlHostOverride(for url: URLComponents) -> String? {
         guard let context = Context(path: url.path) else { return nil }
+
+        // Check if it is internal link in a course
+        guard !url.path.hasSuffix(context.pathComponent) else { return nil }
+
         return baseURLHostOverridesPerCourse.first(where: {
             return $0.key.isEquivalent(to: context)
         })?.value
     }
 
-    public func courseShardID(for url: URLComponents) -> String? {
+    public func contextShardID(for url: URLComponents) -> String? {
         let pathContext = Context(path: url.path)
 
         if let pathContext,
-           let shardID = pathContext.courseId?.shardID {
+           pathContext.contextType == .course || pathContext.contextType == .group,
+           let shardID = pathContext.id.shardID {
             return shardID
         }
 
