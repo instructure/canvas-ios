@@ -27,7 +27,7 @@ public class GetModules: UseCase {
             let items: [APIModuleItem]
         }
         let sections: [Section]
-        let discussionCheckpointsData: [String: GetModuleItemDiscussionCheckpointsDataResponse.Data]
+        let discussionCheckpointsData: [String: APIModuleItemsDiscussionCheckpoints.Data]
     }
 
     public let courseID: String
@@ -79,7 +79,7 @@ public class GetModules: UseCase {
             }
             loadGroup.leave()
             loadGroup.notify(queue: .main) {
-                let request = GetModuleItemDiscussionCheckpointsDataRequest(courseId: courseID)
+                let request = GetModuleItemsDiscussionCheckpointsRequest(courseId: courseID)
                 environment.api.makeRequest(request) { response, urlResponse, error in
                     guard let response, error == nil else {
                         completionHandler(nil, urlResponse, error)
