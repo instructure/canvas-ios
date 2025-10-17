@@ -104,7 +104,7 @@ public extension HorizonUI.Chip {
             iconColor
         }
 
-        init(
+       public init(
             state: ChipState,
             foregroundColor: Color,
             backgroundNormal: Color,

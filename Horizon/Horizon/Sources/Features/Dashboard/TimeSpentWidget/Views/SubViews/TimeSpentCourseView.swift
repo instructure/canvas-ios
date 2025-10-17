@@ -19,13 +19,32 @@
 import HorizonUI
 import SwiftUI
 
-struct SkillsCountWidgetEmptyView: View {
+struct TimeSpentCourseView: View {
+    let name: String
+    let isSelected: Bool
+
     var body: some View {
-        Text("This widget will update once data becomes available.", bundle: .horizon)
-            .huiTypography(.p2)
-            .foregroundStyle(Color.huiColors.text.timestamp)
-            .skeletonLoadable()
-            .multilineTextAlignment(.leading)
-            .frame(alignment: .trailing)
+        HStack(spacing: .huiSpaces.space4) {
+            if isSelected {
+                Image.huiIcons.check
+                    .frame(width: 24, height: 24)
+            }
+            Text(name)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .multilineTextAlignment(.leading)
+                .frame(minHeight: 42)
+                .huiTypography(.buttonTextMedium)
+        }
+        .padding(.horizontal, .huiSpaces.space16)
+        .foregroundStyle(
+            isSelected
+            ? Color.huiColors.surface.pageSecondary
+            : Color.huiColors.text.body
+        )
+        .background(
+            isSelected
+            ? Color.huiColors.surface.inversePrimary
+            : Color.clear
+        )
     }
 }

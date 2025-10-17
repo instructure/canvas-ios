@@ -443,6 +443,11 @@
         <attribute name="enrollmentID" attributeType="String"/>
         <relationship name="assignmentGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHScoresAssignmentGroup" inverseName="relationship" inverseEntity="CDHScoresAssignmentGroup"/>
     </entity>
+    <entity name="CDHTimeSpentWidget" representedClassName=".CDHTimeSpentWidget" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="courseName" attributeType="String"/>
+        <attribute name="minutesPerDay" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="CDInboxEnrollment" representedClassName="Core.CDInboxEnrollment" syncable="YES">
         <attribute name="canvasContextID" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
