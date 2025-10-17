@@ -23,21 +23,16 @@ import CoreData
 public var singleSharedTestDatabase: NSPersistentContainer = resetSingleSharedTestDatabase()
 
 public func resetSingleSharedTestDatabase() -> NSPersistentContainer {
-    let bundle = Bundle.core
-    let modelURL = bundle.url(forResource: "Database", withExtension: "momd")!
-    let model = NSManagedObjectModel(contentsOf: modelURL)!
     NSPersistentContainer.registerCoreTransformers()
-    let container = TestDatabase(name: "Database", managedObjectModel: model)
+    let container = TestDatabase(name: "Database", managedObjectModel: .core)
     let description = NSPersistentStoreDescription()
     description.type = NSInMemoryStoreType
     description.shouldAddStoreAsynchronously = false
 
     container.persistentStoreDescriptions = [description]
     container.loadPersistentStores { (description, error) in
-        // Check if the data store is in memory
         precondition( description.type == NSInMemoryStoreType )
 
-        // Check if creating container wrong
         if let error = error {
             fatalError("Create an in-memory coordinator failed \(error)")
         }

@@ -23,10 +23,7 @@ import CoreData
 
 private var singleSharedPreviewDatabase: NSPersistentContainer  = resetSingleSharedPreviewDatabase()
 private func resetSingleSharedPreviewDatabase() -> NSPersistentContainer {
-    let bundle = Bundle.core
-    let modelURL = bundle.url(forResource: "Database", withExtension: "momd")!
-    let model = NSManagedObjectModel(contentsOf: modelURL)!
-    let container = NSPersistentContainer(name: "Database", managedObjectModel: model)
+    let container = NSPersistentContainer(name: "Database", managedObjectModel: .core)
     let description = NSPersistentStoreDescription()
     description.type = NSInMemoryStoreType
     description.shouldAddStoreAsynchronously = false
