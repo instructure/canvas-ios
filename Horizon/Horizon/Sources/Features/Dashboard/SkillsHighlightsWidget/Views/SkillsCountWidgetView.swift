@@ -68,11 +68,11 @@ struct SkillsCountWidgetView: View {
     }
 
     private var emptyView: some View {
-        SkillsCountWidgetEmptyView()
+        WidgetEmptyView()
     }
 
     private var errorView: some View {
-        SkillsCountWidgetErrorView {
+        WidgetErrorView {
             viewModel.getSkills(ignoreCache: true)
         }
     }

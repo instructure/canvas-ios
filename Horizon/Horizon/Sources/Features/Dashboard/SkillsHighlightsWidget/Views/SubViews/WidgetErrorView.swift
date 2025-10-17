@@ -19,12 +19,12 @@
 import HorizonUI
 import SwiftUI
 
-struct SkillsCountWidgetErrorView: View {
+struct WidgetErrorView: View {
     var onRetry: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space8) {
-            Text("We weren’t able to load this content. Please try again.")
+            Text("We weren’t able to load this content. \n Please try again.")
                 .huiTypography(.p2)
                 .foregroundStyle(Color.huiColors.text.timestamp)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -42,6 +42,6 @@ struct SkillsCountWidgetErrorView: View {
 }
 
 #Preview {
-    SkillsCountWidgetErrorView(onRetry: {})
+    WidgetErrorView(onRetry: {})
         .padding(.horizontal, 24)
 }
