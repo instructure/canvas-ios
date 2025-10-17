@@ -20,14 +20,14 @@ import UIKit
 
 extension UIWindow {
     public func updateInterfaceStyle(_ style: UIUserInterfaceStyle?) {
-        let style = style ?? .light
+        let style = style ?? .unspecified
         UIView.transition(with: self, duration: 0.3, options: .transitionCrossDissolve, animations: {
             self.overrideUserInterfaceStyle = style
         }, completion: nil)
     }
 
     public func updateInterfaceStyleWithoutTransition(_ style: UIUserInterfaceStyle?) {
-        let style = style ?? .light
+        let style = style ?? .unspecified
         overrideUserInterfaceStyle = style
     }
 }

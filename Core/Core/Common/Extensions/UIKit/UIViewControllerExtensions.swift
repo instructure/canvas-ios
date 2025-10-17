@@ -211,30 +211,6 @@ extension UIViewController {
         env.router.show(alert, from: self, options: .modal())
     }
 
-    public func showThemeSelectorAlert() {
-
-        // Don't show the theme selector popup for UI Tests
-        guard !ProcessInfo.isUITest else { return }
-
-        let alert = UIAlertController(title: String(localized: "Canvas is now available in dark theme", bundle: .core),
-                                      message: String(localized: "Choose your app appearance!\nYou can change it later in the settings menu.", bundle: .core),
-                                      preferredStyle: .alert)
-
-        alert.addAction(AlertAction(String(localized: "System settings", bundle: .core), style: .default) {_ in self.setStyle(style: .unspecified)})
-        alert.addAction(AlertAction(String(localized: "Light theme", bundle: .core), style: .default) {_ in self.setStyle(style: .light)})
-        alert.addAction(AlertAction(String(localized: "Dark theme", bundle: .core), style: .default) {_ in self.setStyle(style: .dark)})
-        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel) {_ in self.setStyle(style: .light)})
-        AppEnvironment.shared.router.show(alert, from: self, options: .modal())
-    }
-
-    private func setStyle(style: UIUserInterfaceStyle?) {
-        let env = AppEnvironment.shared
-        env.userDefaults?.interfaceStyle = style
-        if let window = env.window {
-            window.updateInterfaceStyle(style)
-        }
-    }
-
     /// Pauses media playback on all `WKWebView` instances in the view hierarchy.
     @objc
     public func pauseWebViewPlayback() {
