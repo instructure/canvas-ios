@@ -61,51 +61,22 @@ public struct APIDiscussionTopic: Codable, Equatable {
     public let checkpoints: [APIAssignmentCheckpoint]?
 }
 
-public struct APIDiscussionTopicChild: Codable, Equatable {
-    let id: ID
-    let group_id: ID
-}
+extension APIDiscussionTopic {
+    public struct APIDiscussionTopicChild: Codable, Equatable {
+        let id: ID
+        let group_id: ID
+    }
 
-public struct APIDiscussionParticipant: Codable, Equatable {
-    public let id: ID?
-    public let display_name: String?
-    public let avatar_image_url: APIURL?
-    public let html_url: URL?
-    public let pronouns: String?
-}
-
-public struct APIDiscussionEntry: Codable, Equatable {
-    let id: ID
-    let user_id: ID?
-    let editor_id: ID?
-    let parent_id: ID?
-    let created_at: Date?
-    let updated_at: Date?
-    var message: String?
-    let rating_sum: Int?
-    let replies: [APIDiscussionEntry]?
-    let attachment: APIFile?
-    let deleted: Bool?
-}
-
-public struct APIDiscussionPermissions: Codable, Equatable {
-    let attach: Bool?
-    let update: Bool?
-    let reply: Bool?
-    let delete: Bool?
-}
-
-// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.view
-public struct APIDiscussionView: Codable, Equatable {
-    let participants: [APIDiscussionParticipant]
-    let unread_entries: [ID]
-    var entry_ratings: [String: Int]
-    let forced_entries: [ID]
-    let view: [APIDiscussionEntry]
-    let new_entries: [APIDiscussionEntry]?
+    public struct APIDiscussionPermissions: Codable, Equatable {
+        let attach: Bool?
+        let update: Bool?
+        let reply: Bool?
+        let delete: Bool?
+    }
 }
 
 #if DEBUG
+
 extension APIDiscussionTopic {
     public static func make(
         allow_rating: Bool = false,
@@ -192,42 +163,14 @@ extension APIDiscussionTopic {
     }
 }
 
-extension APIDiscussionParticipant {
-    public static func make(
-        id: ID? = "1",
-        display_name: String? = "Bob",
-        avatar_image_url: URL? = nil,
-        html_url: URL? = URL(string: "/users/1"),
-        pronouns: String? = nil
-    ) -> APIDiscussionParticipant {
-        return APIDiscussionParticipant(
-            id: id,
-            display_name: display_name,
-            avatar_image_url: APIURL(rawValue: avatar_image_url),
-            html_url: html_url,
-            pronouns: pronouns
-        )
-    }
-
-    public static func make(from user: APIUser) -> APIDiscussionParticipant {
-        APIDiscussionParticipant.make(
-            id: user.id,
-            display_name: user.name,
-            avatar_image_url: user.avatar_url?.rawValue,
-            html_url: URL(string: "/users/\(user.id)"),
-            pronouns: user.pronouns
-        )
-    }
-}
-
-extension APIDiscussionPermissions {
+extension APIDiscussionTopic.APIDiscussionPermissions {
     public static func make(
         attach: Bool? = nil,
         update: Bool? = nil,
         reply: Bool? = nil,
         delete: Bool? = nil
-    ) -> APIDiscussionPermissions {
-        return APIDiscussionPermissions(
+    ) -> APIDiscussionTopic.APIDiscussionPermissions {
+        return APIDiscussionTopic.APIDiscussionPermissions(
             attach: attach,
             update: update,
             reply: reply,
@@ -236,71 +179,10 @@ extension APIDiscussionPermissions {
     }
 }
 
-extension APIDiscussionTopicChild {
-    public static func make(id: String = "1", group_id: String = "2") -> APIDiscussionTopicChild {
-        return APIDiscussionTopicChild(id: ID(id), group_id: ID(group_id))
+extension APIDiscussionTopic.APIDiscussionTopicChild {
+    public static func make(id: String = "1", group_id: String = "2") -> APIDiscussionTopic.APIDiscussionTopicChild {
+        return APIDiscussionTopic.APIDiscussionTopicChild(id: ID(id), group_id: ID(group_id))
     }
 }
 
-extension APIDiscussionView {
-    public static func make(
-        participants: [APIDiscussionParticipant] = [
-            .make(),
-            .make(id: 2, display_name: "Alice", html_url: URL(string: "/users/2"))
-        ],
-        unread_entries: [ID] = [1, 3, 5],
-        entry_ratings: [String: Int] = ["3": 1, "5": 1],
-        forced_entries: [ID] = [1],
-        view: [APIDiscussionEntry] = [
-            .make(id: 1, message: "m1", rating_sum: 1, replies: [
-                .make(id: 2, user_id: 2, parent_id: 1, message: "m2", rating_sum: 0, replies: [
-                    .make(id: 3, parent_id: 2, message: "m3", rating_sum: 3, replies: [
-                        .make(id: 4, parent_id: 3, message: "m4 (deep)")
-                    ])
-                ])
-            ]),
-            .make(id: 5, message: "m5", rating_sum: 1)
-        ],
-        new_entries: [APIDiscussionEntry]? = nil
-    ) -> APIDiscussionView {
-        return APIDiscussionView(
-            participants: participants,
-            unread_entries: unread_entries,
-            entry_ratings: entry_ratings,
-            forced_entries: forced_entries,
-            view: view,
-            new_entries: new_entries
-        )
-    }
-}
-
-extension APIDiscussionEntry {
-    public static func make(
-        id: ID = "1",
-        user_id: ID? = "1",
-        editor_id: ID? = nil,
-        parent_id: ID? = nil,
-        created_at: Date? = nil,
-        updated_at: Date = Date(timeIntervalSinceReferenceDate: 0),
-        message: String = "message",
-        rating_sum: Int? = nil,
-        replies: [APIDiscussionEntry]? = nil,
-        attachment: APIFile? = nil,
-        deleted: Bool? = nil
-    ) -> APIDiscussionEntry {
-        return APIDiscussionEntry(
-            id: id,
-            user_id: user_id,
-            editor_id: editor_id,
-            parent_id: parent_id,
-            created_at: created_at,
-            updated_at: updated_at,
-            message: message,
-            rating_sum: rating_sum,
-            replies: replies,
-            attachment: attachment,
-            deleted: deleted
-        )
-    }
-}
 #endif
