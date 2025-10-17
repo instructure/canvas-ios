@@ -24,7 +24,7 @@ public var singleSharedTestDatabase: NSPersistentContainer = resetSingleSharedTe
 
 public func resetSingleSharedTestDatabase() -> NSPersistentContainer {
     NSPersistentContainer.registerCoreTransformers()
-    let container = TestDatabase(name: "Database", managedObjectModel: sharedManagedObjectModel)
+    let container = TestDatabase(name: "Database", managedObjectModel: .core)
     let description = NSPersistentStoreDescription()
     description.type = NSInMemoryStoreType
     description.shouldAddStoreAsynchronously = false
@@ -62,8 +62,3 @@ class TestDatabase: NSPersistentContainer, @unchecked Sendable {
         }
     }
 }
-
-private let sharedManagedObjectModel: NSManagedObjectModel = {
-    let modelURL = Bundle.core.url(forResource: "Database", withExtension: "momd")!
-    return NSManagedObjectModel(contentsOf: modelURL)!
-}()

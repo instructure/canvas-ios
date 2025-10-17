@@ -19,6 +19,13 @@
 import Combine
 import CoreData
 
+extension NSManagedObjectModel {
+    static let core: NSManagedObjectModel = {
+        let modelFileURL = Bundle.core.url(forResource: "Database", withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelFileURL)!
+    }()
+}
+
 extension NSPersistentContainer {
 
     // MARK: - Public Static Interface
@@ -28,10 +35,8 @@ extension NSPersistentContainer {
     public static func create(appGroup: String? = Bundle.main.appGroupID(),
                               session: LoginSession? = nil)
     -> NSPersistentContainer {
-        let modelFileURL = Bundle.core.url(forResource: "Database", withExtension: "momd")!
-        let model = NSManagedObjectModel(contentsOf: modelFileURL)!
         registerCoreTransformers()
-        let container = NSPersistentContainer(name: "Database", managedObjectModel: model)
+        let container = NSPersistentContainer(name: "Database", managedObjectModel: .core)
 
         let dbUrl = {
             let url = URL.Directories.databaseURL(appGroup: appGroup, session: session)
