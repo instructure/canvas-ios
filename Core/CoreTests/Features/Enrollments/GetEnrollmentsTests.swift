@@ -88,8 +88,10 @@ class GetEnrollmentsTests: CoreTestCase {
 
     func test_modified_expandsUserIDForNonRootEnvironment() {
         let session = LoginSession.make(accessToken: "7053~token", baseURL: URL(string: "https://canvas.instructure.com")!)
-        let env = AppEnvironment()
-        env.userDidLogin(session: session)
+        environment.userDidLogin(session: session)
+
+        let overrideURL = URL(string: "https://override.instructure.com")!
+        let env = AppEnvironment.resolved(for: overrideURL, courseShardID: "7053")
 
         let testee = GetEnrollments(
             context: .course("123"),
