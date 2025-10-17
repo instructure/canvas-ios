@@ -54,9 +54,9 @@ extension HorizonUI.NavigationBar {
                         ) {
                             onNotebookDidTap()
                         }
+                        .accessibilityLabel(String(localized: "Notebook"))
                     }
                     .dropShadow()
-
                 }
 
                 ZStack(alignment: .topTrailing) {
@@ -69,11 +69,10 @@ extension HorizonUI.NavigationBar {
                     .accessibilityLabel(
                         Text(
                             hasUnreadNotification
-                            ? String(localized: "Notifications, unread notifications available")
-                            : String(localized: "Notifications")
+                                ? String(localized: "Notifications, unread notifications available")
+                                : String(localized: "Notifications")
                         )
                     )
-                    .accessibilityAddTraits(.isButton)
                     if hasUnreadNotification {
                         HorizonUI.Badge(
                             type: .solidColor,
@@ -91,12 +90,20 @@ extension HorizonUI.NavigationBar {
                     ) {
                         onMailDidTap()
                     }
+                    .accessibilityLabel(
+                        Text(
+                            hasUnreadNotification
+                                ? String(localized: "Inbox, unread messages available")
+                                : String(localized: "Inbox")
+                        )
+                    )
 
                     if hasUnreadInboxMessage {
                         HorizonUI.Badge(
                             type: .solidColor,
                             style: .custom(backgroundColor: .huiColors.surface.inversePrimary, foregroundColor: .clear)
                         )
+                        .accessibilityHidden(true)
                     }
                 }
                 .dropShadow()
@@ -115,8 +122,8 @@ extension HorizonUI.NavigationBar {
     )
 }
 
-fileprivate extension HorizonUI.NavigationBar.Trailing {
-    struct DropShadowModifire: ViewModifier {
+extension HorizonUI.NavigationBar.Trailing {
+    fileprivate struct DropShadowModifire: ViewModifier {
         func body(content: Content) -> some View {
             content
                 .foregroundStyle(Color.huiColors.icon.default)
@@ -131,12 +138,12 @@ fileprivate extension HorizonUI.NavigationBar.Trailing {
     }
 }
 
-fileprivate extension View {
-    func dropShadow() -> some View {
+extension View {
+    fileprivate func dropShadow() -> some View {
         modifier(HorizonUI.NavigationBar.Trailing.DropShadowModifire())
     }
 }
 
-public extension HorizonUI {
-    struct NavigationBar {}
+extension HorizonUI {
+    public struct NavigationBar {}
 }
