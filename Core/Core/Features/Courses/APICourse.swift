@@ -26,6 +26,7 @@ public struct APICourse: Codable, Equatable {
     // let integration_id: String?
     // let sis_import_id: String?
     let name: String?
+    let original_name: String?
     let course_code: String?
     /** Teacher assigned course color for K5 in hex format. */
     let course_color: String?
@@ -140,6 +141,7 @@ extension APICourse {
     public static func make(
         id: ID = "1",
         name: String? = "Course One",
+        original_name: String? = nil,
         course_code: String? = "C1",
         course_color: String? = nil,
         workflow_state: CourseWorkflowState? = nil,
@@ -176,6 +178,7 @@ extension APICourse {
         return APICourse(
             id: id,
             name: name,
+            original_name: original_name,
             course_code: course_code,
             course_color: course_color,
             workflow_state: workflow_state,

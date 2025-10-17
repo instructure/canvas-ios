@@ -631,6 +631,7 @@
         <attribute name="isPastEnrollment" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isPublished" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="originalName" optional="YES" attributeType="String"/>
         <attribute name="pointsBasedGradingScheme" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="roles" optional="YES" attributeType="String"/>
         <attribute name="scalingFactor" attributeType="Double" defaultValueString="1" usesScalarValueType="YES"/>

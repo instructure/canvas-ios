@@ -19,10 +19,18 @@
 import Foundation
 import Combine
 import CombineExt
+import UIKit
 
 public class TodoListViewModel: ObservableObject {
-    @Published var items: [TodoItem] = []
+    @Published var items: [TodoGroupViewModel] = []
     @Published var state: InstUI.ScreenState = .loading
+    let screenConfig = InstUI.BaseScreenConfig(
+        emptyPandaConfig: .init(
+            scene: VacationPanda(),
+            title: String(localized: "No To-dos for now!", bundle: .core),
+            subtitle: String(localized: "It looks like a great time to rest, relax, and recharge.", bundle: .core)
+        )
+    )
 
     private let interactor: TodoInteractor
     private let env: AppEnvironment
@@ -32,7 +40,7 @@ public class TodoListViewModel: ObservableObject {
         self.interactor = interactor
         self.env = env
 
-        self.interactor.todos
+        interactor.todoGroups
             .assign(to: \.items, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
@@ -44,14 +52,15 @@ public class TodoListViewModel: ObservableObject {
             .sinkFailureOrValue { [weak self] _ in
                 self?.state = .error
                 completion()
-            } receiveValue: { [weak self] isEmpty in
-                self?.state = isEmpty ? .empty : .data
+            } receiveValue: { [weak self] _ in
+                let isListEmpty = self?.items.isEmpty == true
+                self?.state = isListEmpty ? .empty : .data
                 completion()
             }
             .store(in: &subscriptions)
     }
 
-    func didTapItem(_ item: TodoItem, _ viewController: WeakViewController) {
+    func didTapItem(_ item: TodoItemViewModel, _ viewController: WeakViewController) {
         switch item.type {
         case .planner_note:
             let vc = PlannerAssembly.makeToDoDetailsViewController(plannableId: item.id)
@@ -69,5 +78,16 @@ public class TodoListViewModel: ObservableObject {
 
     func openProfile(_ viewController: WeakViewController) {
         env.router.route(to: "/profile", from: viewController, options: .modal())
+    }
+
+    func didTapDayHeader(_ group: TodoGroupViewModel, viewController: WeakViewController) {
+        let tabController = viewController.value.tabBarController
+        tabController?.selectedIndex = 1 // Switch to Calendar tab
+        let splitController = tabController?.selectedViewController as? UISplitViewController
+        splitController?.resetToRoot()
+        let plannerController = splitController?.masterTopViewController as? PlannerViewController
+        plannerController?.onAppearOnce {
+            plannerController?.selectDate(group.date)
+        }
     }
 }

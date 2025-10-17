@@ -20,64 +20,109 @@ import Foundation
 import Combine
 
 public protocol TodoInteractor {
-    typealias IsEmptyState = Bool
-    var todos: AnyPublisher<[TodoItem], Never> { get }
-    func refresh(ignoreCache: Bool) -> AnyPublisher<IsEmptyState, Error>
+    var todoGroups: AnyPublisher<[TodoGroupViewModel], Never> { get }
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
 }
 
 public final class TodoInteractorLive: TodoInteractor {
-    public var todos: AnyPublisher<[TodoItem], Never> {
-        todosSubject.eraseToAnyPublisher()
+    public var todoGroups: AnyPublisher<[TodoGroupViewModel], Never> {
+        todoGroupsSubject.eraseToAnyPublisher()
     }
 
-    private let todosSubject = CurrentValueSubject<[TodoItem], Never>([])
-    private let startDate: Date
-    private let endDate: Date
+    private let todoGroupsSubject = CurrentValueSubject<[TodoGroupViewModel], Never>([])
     private let env: AppEnvironment
 
     private var subscriptions = Set<AnyCancellable>()
 
-    init(startDate: Date = .now, endDate: Date = .distantFuture, env: AppEnvironment) {
-        self.startDate = startDate
-        self.endDate = endDate
+    init(env: AppEnvironment) {
         self.env = env
     }
 
-    public func refresh(ignoreCache: Bool) -> AnyPublisher<IsEmptyState, Error> {
-        ReactiveStore(useCase: GetCourses())
+    public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+        let startDate = Clock.now.addDays(-28)
+        let endDate = Clock.now.addDays(28)
+        let currentUserID = env.currentSession?.userID
+
+        return ReactiveStore(useCase: GetCourses(), environment: env)
             .getEntities(ignoreCache: ignoreCache)
-            .map {
-                var contextCodes: [String] = $0.filter(\.isPublished).map(\.canvasContextID)
-                if let userContextCode = Context(.user, id: self.env.currentSession?.userID)?.canvasContextID {
+            .map { courses in
+                var contextCodes: [String] = courses.filter(\.isPublished).map(\.canvasContextID)
+                if let userContextCode = Context(.user, id: currentUserID)?.canvasContextID {
                     contextCodes.append(userContextCode)
                 }
-                return contextCodes
+                return (contextCodes, courses)
             }
-            .flatMap { codes in
-                return ReactiveStore(useCase: GetPlannables(startDate: self.startDate, endDate: self.endDate, contextCodes: codes))
-                    .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
-                    .map { $0.compactMap(TodoItem.init) }
+            .flatMap { [env] (courseContextCodes, courses: [Course]) in
+                ReactiveStore(
+                    useCase: GetPlannables(startDate: startDate, endDate: endDate, contextCodes: courseContextCodes),
+                    environment: env
+                )
+                .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
+                .map { plannables in
+                    let coursesByCanvasContextIds = Dictionary(uniqueKeysWithValues: courses.map { ($0.canvasContextID, $0) })
+                    return plannables.compactMap { plannable in
+                        let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
+                        return TodoItemViewModel(plannable, course: course)
+                    }
+                }
             }
-            .map { [weak self] in
-                self?.todosSubject.value = $0
-                return $0.isEmpty
+            .map { [weak todoGroupsSubject] (todos: [TodoItemViewModel]) in
+                TabBarBadgeCounts.todoListCount = UInt(todos.count)
+
+                // Group todos by day
+                let groupedTodos = Self.groupTodosByDay(todos)
+                todoGroupsSubject?.value = groupedTodos
+                return ()
             }
             .eraseToAnyPublisher()
+    }
+
+    private static func groupTodosByDay(_ todos: [TodoItemViewModel]) -> [TodoGroupViewModel] {
+        // Group todos by day using existing Canvas extension
+        let groupedDict = Dictionary(grouping: todos) { todo in
+            todo.date.startOfDay()
+        }
+
+        // Convert to TodoGroup array and sort by date
+        return groupedDict.map { (date, items) in
+            TodoGroupViewModel(date: date, items: items.sorted())
+        }
+        .sorted()
     }
 }
 
 #if DEBUG
 
 public final class TodoInteractorPreview: TodoInteractor {
-    public let todos: AnyPublisher<[TodoItem], Never>
+    public let todoGroups: AnyPublisher<[TodoGroupViewModel], Never>
 
-    public init(todos: [TodoItem] = []) {
-        let todos: [TodoItem] = todos.isEmpty ? [.make(id: "1"), .make(id: "2")] : todos
-        self.todos = Publishers.typedJust(todos)
+    public init(todoGroups: [TodoGroupViewModel]? = nil) {
+        if let todoGroups {
+            self.todoGroups = Publishers.typedJust(todoGroups)
+            return
+        }
+
+        let today = Calendar.current.startOfDay(for: Date())
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today) ?? today
+
+        let todayGroup = TodoGroupViewModel(
+            date: today,
+            items: [
+                .makeShortText(id: "3")
+            ]
+        )
+        let tomorrowGroup = TodoGroupViewModel(
+            date: tomorrow,
+            items: [
+                .makeShortText(id: "1"),
+                .makeLongText(id: "2")
+            ]
+        )
+        self.todoGroups = Publishers.typedJust([todayGroup, tomorrowGroup])
     }
 
-    public func refresh(ignoreCache: Bool) -> AnyPublisher<IsEmptyState, Error> {
-        Publishers.typedJust(false)
+    public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+        Publishers.typedJust(())
     }
 }
 
