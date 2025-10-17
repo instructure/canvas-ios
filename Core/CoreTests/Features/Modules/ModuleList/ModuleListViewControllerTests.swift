@@ -260,7 +260,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1", items: nil)])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [.make(id: "1")], response: next)
         api.mock(GetNextRequest<[APIModuleItem]>(path: link), value: [.make(id: "2")])
-        api.mock(GetModuleItemDiscussionCheckpointsDataRequest(courseId: "1"), value: GetModuleItemDiscussionCheckpointsDataResponse(dataPerModuleItemId: [:]))
+        api.mock(GetModuleItemsDiscussionCheckpointsRequest(courseId: "1"), value: .init(dataPerModuleItemId: [:]))
         loadView()
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 2)
         XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ModuleItemCell)
@@ -268,7 +268,7 @@ class ModuleListViewControllerTests: CoreTestCase {
 
     func testLoadingFirstPage() {
         let task = api.mock(GetModulesRequest(courseID: "1", include: []), value: [])
-        api.mock(GetModuleItemDiscussionCheckpointsDataRequest(courseId: "1"), value: GetModuleItemDiscussionCheckpointsDataResponse(dataPerModuleItemId: [:]))
+        api.mock(GetModuleItemsDiscussionCheckpointsRequest(courseId: "1"), value: .init(dataPerModuleItemId: [:]))
         task.suspend()
         loadView()
         XCTAssertEqual(viewController.spinnerView.isHidden, false)
@@ -289,7 +289,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         api.mock(GetNextRequest<[APIModule]>(path: link), value: [two])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths]), value: [.make()])
-        api.mock(GetModuleItemDiscussionCheckpointsDataRequest(courseId: "1"), value: GetModuleItemDiscussionCheckpointsDataResponse(dataPerModuleItemId: [:]))
+        api.mock(GetModuleItemsDiscussionCheckpointsRequest(courseId: "1"), value: .init(dataPerModuleItemId: [:]))
         viewController.tableView.refreshControl?.sendActions(for: .valueChanged)
         drainMainQueue()
         XCTAssertEqual(viewController.tableView.numberOfSections, 2)
@@ -622,7 +622,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         courseId: String = "1",
         modules: [APIModule],
         moduleItems: [String: [APIModuleItem]] = [:],
-        discussionCheckpoints: [String: GetModuleItemDiscussionCheckpointsDataResponse.Data] = [:]
+        discussionCheckpoints: [String: APIModuleItemsDiscussionCheckpoints.Data] = [:]
     ) {
         api.mock(GetModulesRequest(courseID: courseId, include: []), value: modules)
 
@@ -635,7 +635,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         }
 
         api.mock(
-            GetModuleItemDiscussionCheckpointsDataRequest(courseId: courseId),
+            GetModuleItemsDiscussionCheckpointsRequest(courseId: courseId),
             value: .init(dataPerModuleItemId: discussionCheckpoints)
         )
     }

@@ -18,49 +18,8 @@
 
 import Foundation
 
-struct GetModuleItemDiscussionCheckpointsDataRequest: APIGraphQLRequestable {
-    typealias Response = GetModuleItemDiscussionCheckpointsDataResponse
-
-    let variables: Variables
-
-    init(courseId: String) {
-        variables = Variables(courseId: courseId)
-    }
-
-    static var query: String {
-        """
-        query GetModuleItemDiscussionCheckpointsData($courseId: ID!) {
-          course(id: $courseId) {
-            modulesConnection {
-              edges {
-                node {
-                  moduleItems {
-                    _id
-                    content {
-                      ... on Discussion {
-                        checkpoints {
-                          dueAt
-                          tag
-                          pointsPossible
-                        }
-                        replyToEntryRequiredCount
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-        """
-    }
-
-    struct Variables: Codable, Equatable {
-        let courseId: String
-    }
-}
-
-struct GetModuleItemDiscussionCheckpointsDataResponse: Codable, Equatable {
+// Contains DiscussionCheckpoint data for multiple ModuleItems.
+struct APIModuleItemsDiscussionCheckpoints: Codable, Equatable {
     typealias DiscussionCheckpoint = DataRaw.Course.ModulesConnection.Edge.Node.ModuleItem.Content.Checkpoint
 
     struct Data: Codable, Equatable {
@@ -128,7 +87,7 @@ struct GetModuleItemDiscussionCheckpointsDataResponse: Codable, Equatable {
 
 #if DEBUG
 
-extension GetModuleItemDiscussionCheckpointsDataResponse {
+extension APIModuleItemsDiscussionCheckpoints {
     init(dataPerModuleItemId: [String: Data]) {
         self.data = .init(
             course: .init(
@@ -154,9 +113,9 @@ extension GetModuleItemDiscussionCheckpointsDataResponse {
     }
 }
 
-extension GetModuleItemDiscussionCheckpointsDataResponse.Data {
+extension APIModuleItemsDiscussionCheckpoints.Data {
     static func make(
-        checkpoints: [GetModuleItemDiscussionCheckpointsDataResponse.DiscussionCheckpoint] = [],
+        checkpoints: [APIModuleItemsDiscussionCheckpoints.DiscussionCheckpoint] = [],
         replyToEntryRequiredCount: Int = 0
     ) -> Self {
         .init(
@@ -166,7 +125,7 @@ extension GetModuleItemDiscussionCheckpointsDataResponse.Data {
     }
 }
 
-extension GetModuleItemDiscussionCheckpointsDataResponse.DiscussionCheckpoint {
+extension APIModuleItemsDiscussionCheckpoints.DiscussionCheckpoint {
     static func make(
         tag: String = "",
         dueAt: Date? = nil,

@@ -19,6 +19,8 @@
 import Foundation
 import CoreData
 
+/// Stores DiscussionCheckpoint data for a ModuleItem's DiscussionCheckpoint,
+/// based on the item's `moduleItemId` and the checkpoints `tag`.
 final class CDModuleItemDiscussionCheckpoint: NSManagedObject {
 
     @NSManaged var moduleItemId: String
@@ -36,9 +38,10 @@ final class CDModuleItemDiscussionCheckpoint: NSManagedObject {
 
     @NSManaged var dueDate: Date?
 
+    /// Saves all checkpoints for a given `moduleItemId`.
     @discardableResult
     static func save(
-        checkpointsData: GetModuleItemDiscussionCheckpointsDataResponse.Data,
+        checkpointsData: APIModuleItemsDiscussionCheckpoints.Data,
         moduleItemId: String,
         in context: NSManagedObjectContext
     ) -> [CDModuleItemDiscussionCheckpoint] {
