@@ -48,12 +48,13 @@ public final class GradeListViewModel: ObservableObject {
     @Published private(set) var state: ViewState = .initialLoading
     @Published public var isWhatIfScoreModeOn = false
     @Published public var isWhatIfScoreFlagEnabled = false
+	@Published public var selectedAssignmentID: String?
     var courseID: String { interactor.courseID }
     var isParentApp: Bool { gradeFilterInteractor.isParentApp }
 
     // MARK: - Input
     let pullToRefreshDidTrigger = PassthroughRelay<RefreshCompletion?>()
-    let didSelectAssignment = PassthroughRelay<(URL?, WeakViewController)>()
+    let didSelectAssignment = PassthroughRelay<(URL?, String, WeakViewController)>()
     let didSelectGradingPeriod = PassthroughRelay<String?>()
     let confirmRevertAlertViewModel = ConfirmationAlertViewModel(
         title: String(localized: "Revert to Official Score?", bundle: .core),
@@ -135,8 +136,9 @@ public final class GradeListViewModel: ObservableObject {
 
         didSelectAssignment
             .receive(on: scheduler)
-            .sink { url, controller in
+            .sink { url, id, controller in
                 guard let url else { return }
+				self.selectedAssignmentID = id
                 env.router.route(to: url, from: controller, options: .detail)
             }
             .store(in: &subscriptions)

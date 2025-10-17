@@ -20,20 +20,16 @@ import SwiftUI
 
 /// In a pressed down state adds a narrow vertical line to the left of the button
 /// using the button's tint color, and changes the button's background to light gray.
+///
+/// To indicate selection, use the `.selected(when: Bool)` view modifier on one of the button's parent View.
 public struct TintedContextButton: ButtonStyle {
+	@Environment(\.isItemSelected) private var isSelected
     private let selectionBackgroundColor: Color = .backgroundLight
-    private let forceHighlight: Bool
-
-    /// - parameters:
-    ///    - isHighlighted: If true, then the button will show its highlighted state
-    ///                     even if it isn't pressed down. Useful to indicate selected state.
-    public init(isHighlighted: Bool = false) {
-        self.forceHighlight = isHighlighted
-    }
 
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .background(selectionIndicator(configuration.isPressed || forceHighlight))
+            .background(selectionIndicator(configuration.isPressed || isSelected))
+			.animation(.default.speed(2), value: isSelected)
     }
 
     private func selectionIndicator(_ isSelected: Bool) -> some View {
@@ -49,11 +45,7 @@ public struct TintedContextButton: ButtonStyle {
 
 public extension ButtonStyle where Self == TintedContextButton {
     static var tintedContextButton: Self {
-        TintedContextButton(isHighlighted: false)
-    }
-
-    static func tintedContextButton(isHighlighted: Bool) -> Self {
-        TintedContextButton(isHighlighted: isHighlighted)
+        TintedContextButton()
     }
 }
 
@@ -84,7 +76,8 @@ public extension ButtonStyle where Self == TintedContextButton {
             InstUI.LabelCell(label: Text("Button 3 - Always highlighted"))
                 .contentShape(Rectangle())
         }
-        .buttonStyle(.tintedContextButton(isHighlighted: true))
+        .buttonStyle(.tintedContextButton)
+		.selected(when: true)
         InstUI.Divider()
     }
     .tint(.red)

@@ -152,12 +152,15 @@ public struct GradeListScreen: View, ScreenViewTrackable {
         AssignmentListView(
             sections: gradeListData.assignmentSections,
             identifierGroup: "GradeList",
-            navigateToDetailsAction: { viewModel.didSelectAssignment.accept(($0, viewController)) },
+			navigateToDetailsAction: { url, id in
+				viewModel.didSelectAssignment.accept((url, id, viewController))
+			},
             whatIfModel: .init(
                 isEnabled: viewModel.isWhatIfScoreModeOn,
                 editScoreAction: { isScoreEditorPresented.toggle() },
                 revertScoreAction: { _ in viewModel.isShowingRevertDialog = true }
-            )
+            ),
+			selectedAssignmentID: viewModel.selectedAssignmentID
         )
         .accessibilityFocused($accessibilityFocus, equals: .list)
     }
