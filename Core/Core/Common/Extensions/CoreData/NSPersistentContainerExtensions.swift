@@ -33,9 +33,15 @@ extension NSPersistentContainer {
         registerCoreTransformers()
         let container = NSPersistentContainer(name: "Database", managedObjectModel: model)
 
-        let url = URL.Directories.databaseURL(appGroup: appGroup, session: session)
+        let dbUrl = {
+            let url = URL.Directories.databaseURL(appGroup: appGroup, session: session)
+            let parentDirectory = url.deletingLastPathComponent()
+            try? FileManager.default.createDirectory(at: parentDirectory, withIntermediateDirectories: true, attributes: nil)
+            return  url
+        }()
+
         container.persistentStoreDescriptions = [
-            NSPersistentStoreDescription(url: url)
+            NSPersistentStoreDescription(url: dbUrl)
         ]
 
         container.loadPersistentStores { _, error in
