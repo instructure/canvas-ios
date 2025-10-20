@@ -65,6 +65,20 @@ final class AnnouncementsListWidgetViewModel {
             announcementID: announcement.announcementId.defaultToEmpty
         )
         router.show(vc, from: viewController)
+        markAsRead(announcement: announcement)
+    }
+
+    private func markAsRead(announcement: NotificationModel) {
+        interactor.markNotificationAsRead(notification: announcement)
+            .replaceError(with: [])
+            .flatMap { Publishers.Sequence(sequence: $0) }
+            .filter { $0.type == .announcement && ($0.isRead == false )}
+            .receive(on: scheduler)
+            .collect()
+            .sink(receiveValue: { [weak self] notifications in
+                self?.state = .data(announcements: notifications)
+            })
+            .store(in: &subscriptions)
     }
 
     func fetchAnnouncements(ignoreCache: Bool, completion: (() -> Void)? = nil) {

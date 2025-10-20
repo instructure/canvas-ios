@@ -86,6 +86,19 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
         let messageDetailsVC = router.lastViewController as? CoreHostingController<HMessageDetailsView>
         XCTAssertNotNil(messageDetailsVC)
     }
+    func testMarkAsRead() {
+        // Given
+        let interactor = NotificationInteractorMock()
+        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
+        let viewController = WeakViewController(UIViewController())
+        let globalAnnouncement = NotificationModel(id: "3", type: .announcement, isRead: true, isGlobalNotification: true)
+        // When
+        testee.navigateToAnnouncement(announcement: globalAnnouncement, viewController: viewController)
+        // Then
+        if case .data(let announcements) = testee.state {
+            XCTAssertEqual(announcements.count, 1)
+        }
+    }
 }
 
 // MARK: - Mock Extensions
@@ -110,7 +123,8 @@ private extension NotificationModel {
             type: type,
             announcementId: announcementId,
             assignmentURL: nil,
-            htmlURL: nil
+            htmlURL: nil,
+            isGlobalNotification: isGlobalNotification
         )
     }
 }

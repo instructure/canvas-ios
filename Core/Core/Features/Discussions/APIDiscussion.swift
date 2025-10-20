@@ -541,15 +541,15 @@ struct GetDiscussionTopicsRequest: APIRequestable {
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.mark_topic_read
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.mark_topic_unread
-struct MarkDiscussionTopicReadRequest: APIRequestable {
-    typealias Response = APINoContent
+public struct MarkDiscussionTopicReadRequest: APIRequestable {
+    public typealias Response = APINoContent
 
     let context: Context
     let topicID: String
     let isRead: Bool
 
-    var method: APIMethod { isRead ? .put : .delete }
-    var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)/read" }
+    public var method: APIMethod { isRead ? .put : .delete }
+    public var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)/read" }
 }
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.mark_all_read
