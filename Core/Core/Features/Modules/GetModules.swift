@@ -80,7 +80,7 @@ public class GetModules: UseCase {
             loadGroup.leave()
             loadGroup.notify(queue: .main) {
                 let request = GetModuleItemsDiscussionCheckpointsRequest(courseId: courseID)
-                environment.api.makeRequest(request) { response, urlResponse, error in
+                environment.api.exhaust(request) { response, urlResponse, error in
                     guard let response, error == nil else {
                         completionHandler(nil, urlResponse, error)
                         return

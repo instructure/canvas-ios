@@ -19,20 +19,34 @@
 import Foundation
 
 /// Requests DiscussionCheckpoint data for all ModuleItems in a given course.
-struct GetModuleItemsDiscussionCheckpointsRequest: APIGraphQLRequestable {
+struct GetModuleItemsDiscussionCheckpointsRequest: APIGraphQLPagedRequestable {
     typealias Response = APIModuleItemsDiscussionCheckpoints
+
+    struct Variables: Codable, Equatable {
+        let courseId: String
+        let pageSize: Int
+        let cursor: String?
+    }
 
     let variables: Variables
 
-    init(courseId: String) {
-        variables = Variables(courseId: courseId)
+    init(courseId: String, pageSize: Int = 20, cursor: String? = nil) {
+        variables = Variables(
+            courseId: courseId,
+            pageSize: pageSize,
+            cursor: cursor
+        )
     }
 
     static var query: String {
         """
-        query GetModuleItemsDiscussionCheckpoints($courseId: ID!) {
+        query GetModuleItemsDiscussionCheckpoints($courseId: ID!, $pageSize: Int!, $cursor: String) {
           course(id: $courseId) {
-            modulesConnection {
+            modulesConnection(first: $pageSize, after: $cursor) {
+              pageInfo {
+                endCursor
+                hasNextPage
+              }
               edges {
                 node {
                   moduleItems {
@@ -56,7 +70,13 @@ struct GetModuleItemsDiscussionCheckpointsRequest: APIGraphQLRequestable {
         """
     }
 
-    struct Variables: Codable, Equatable {
-        let courseId: String
+    public func nextPageRequest(from response: APIModuleItemsDiscussionCheckpoints) -> Self? {
+        guard let pageInfo = response.pageInfo, pageInfo.hasNextPage else { return nil }
+
+        return .init(
+            courseId: variables.courseId,
+            pageSize: variables.pageSize,
+            cursor: pageInfo.endCursor
+        )
     }
 }

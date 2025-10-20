@@ -19,42 +19,32 @@
 import Foundation
 
 // Contains DiscussionCheckpoint data for multiple ModuleItems.
-struct APIModuleItemsDiscussionCheckpoints: Codable, Equatable {
-    typealias DiscussionCheckpoint = DataRaw.Course.ModulesConnection.Edge.Node.ModuleItem.Content.Checkpoint
+struct APIModuleItemsDiscussionCheckpoints: PagedResponse, Equatable {
 
-    struct Data: Codable, Equatable {
-        let checkpoints: [DiscussionCheckpoint]
-        let replyToEntryRequiredCount: Int
+    // MARK: - Paging
+
+    typealias Module = ResponseData.Course.ModulesConnection.Edge
+    typealias Page = [Module]
+
+    var pageInfo: APIPageInfo? {
+        data.course.modulesConnection.pageInfo
+    }
+    var page: [Module] {
+        data.course.modulesConnection.edges
     }
 
-    var dataPerModuleItemId: [String: Data] {
-        var result: [String: Data] = [:]
+    // MARK: - Response data
 
-        for edge in data.course.modulesConnection.edges {
-            for item in edge.node.moduleItems {
-                if let content = item.content,
-                   let checkpoints = content.checkpoints?.nilIfEmpty,
-                   let replyToEntryRequiredCount = content.replyToEntryRequiredCount {
-                    result[item._id] = Data(
-                        checkpoints: checkpoints,
-                        replyToEntryRequiredCount: replyToEntryRequiredCount
-                    )
-                }
-            }
-        }
+    let data: ResponseData
 
-        return result
-    }
-
-    let data: DataRaw
-
-    struct DataRaw: Codable, Equatable {
+    struct ResponseData: Codable, Equatable {
         let course: Course
 
         struct Course: Codable, Equatable {
             let modulesConnection: ModulesConnection
 
             struct ModulesConnection: Codable, Equatable {
+                let pageInfo: APIPageInfo?
                 let edges: [Edge]
 
                 struct Edge: Codable, Equatable {
@@ -85,13 +75,48 @@ struct APIModuleItemsDiscussionCheckpoints: Codable, Equatable {
     }
 }
 
+// MARK: - Output data
+
+extension APIModuleItemsDiscussionCheckpoints {
+    typealias DiscussionCheckpoint = ResponseData.Course.ModulesConnection.Edge.Node.ModuleItem.Content.Checkpoint
+
+    struct Data: Codable, Equatable {
+        let checkpoints: [DiscussionCheckpoint]
+        let replyToEntryRequiredCount: Int
+    }
+}
+
+extension APIModuleItemsDiscussionCheckpoints.Page {
+    var dataPerModuleItemId: [String: APIModuleItemsDiscussionCheckpoints.Data] {
+        var result: [String: APIModuleItemsDiscussionCheckpoints.Data] = [:]
+
+        for edge in self {
+            for item in edge.node.moduleItems {
+                if let content = item.content,
+                   let checkpoints = content.checkpoints?.nilIfEmpty,
+                   let replyToEntryRequiredCount = content.replyToEntryRequiredCount {
+                    result[item._id] = .init(
+                        checkpoints: checkpoints,
+                        replyToEntryRequiredCount: replyToEntryRequiredCount
+                    )
+                }
+            }
+        }
+
+        return result
+    }
+}
+
 #if DEBUG
+
+// MARK: - Make methods
 
 extension APIModuleItemsDiscussionCheckpoints {
     init(dataPerModuleItemId: [String: Data]) {
         self.data = .init(
             course: .init(
                 modulesConnection: .init(
+                    pageInfo: nil,
                     edges: [
                         .init(
                             node: .init(
