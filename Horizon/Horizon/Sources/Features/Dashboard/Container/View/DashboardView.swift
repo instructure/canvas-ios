@@ -21,10 +21,17 @@ import HorizonUI
 import SwiftUI
 
 struct DashboardView: View {
+    // MARK: - Dependencies
+
     @Bindable private var viewModel: DashboardViewModel
     @Environment(\.viewController) private var viewController
+
+    // MARK: - a11y
+
     @State private var isShowHeader: Bool = true
-    @State private var widgetReloadHandlers: [WidgetReloadHandler] = []
+    @State private var lastFocusedElement: DashboardFocusableElement?
+    @State private var restoreFocusTrigger: Bool = false
+    @AccessibilityFocusState private var accessibilityFocusedElement: DashboardFocusableElement?
 
     // MARK: - Widgets
 
@@ -32,6 +39,9 @@ struct DashboardView: View {
     private let skillsHighlightsWidgetView: SkillsHighlightsWidgetView
     private let skillsCountWidgetView: SkillsCountWidgetView
     private let announcementWidgetView: AnnouncementsListWidgetView
+    @State private var widgetReloadHandlers: [WidgetReloadHandler] = []
+
+    // MARK: - Init
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
@@ -59,6 +69,8 @@ struct DashboardView: View {
                 skillsHighlightsWidgetView
             }
             .padding(.bottom, .huiSpaces.space24)
+            .environment(\.dashboardLastFocusedElement, $lastFocusedElement)
+            .environment(\.dashboardRestoreFocusTrigger, restoreFocusTrigger)
         }
         .captureWidgetReloadHandlers($widgetReloadHandlers)
         .safeAreaInset(edge: .top, spacing: .zero) {
@@ -76,8 +88,14 @@ struct DashboardView: View {
         .scrollIndicators(.hidden, axes: .vertical)
         .background(Color.huiColors.surface.pagePrimary)
         .animation(.linear, value: isShowHeader)
-        .onAppear {
+        .onDidAppear {
             viewModel.reloadUnreadBadges()
+
+            if UIAccessibility.isVoiceOverRunning, lastFocusedElement != nil {
+                UIAccessibility.post(notification: .screenChanged, argument: nil)
+            }
+
+            restoreFocusTrigger.toggle()
         }
     }
 
@@ -98,24 +116,43 @@ struct DashboardView: View {
         HStack(spacing: .zero) {
             InstitutionLogo()
             Spacer()
-            HorizonUI.NavigationBar.Trailing(
-                hasUnreadNotification: viewModel.hasUnreadNotification,
-                hasUnreadInboxMessage: viewModel.hasUnreadInboxMessage,
-                onNotebookDidTap: {
-                    viewModel.notebookDidTap(viewController: viewController)
-                },
-                onNotificationDidTap: {
-                    viewModel.notificationsDidTap(viewController: viewController)
-                },
-                onMailDidTap: {
-                    viewModel.mailDidTap(viewController: viewController)
-                }
-            )
+            navigationBarButtons
         }
         .padding(.horizontal, .huiSpaces.space24)
         .padding(.top, .huiSpaces.space10)
         .padding(.bottom, .huiSpaces.space4)
         .background(Color.huiColors.surface.pagePrimary)
+    }
+
+    private var navigationBarButtons: some View {
+        HorizonUI.NavigationBar.Trailing(
+            hasUnreadNotification: viewModel.hasUnreadNotification,
+            hasUnreadInboxMessage: viewModel.hasUnreadInboxMessage,
+            onNotebookDidTap: {
+                lastFocusedElement = .notebookButton
+                viewModel.notebookDidTap(viewController: viewController)
+            },
+            onNotificationDidTap: {
+                lastFocusedElement = .notificationButton
+                viewModel.notificationsDidTap(viewController: viewController)
+            },
+            onMailDidTap: {
+                lastFocusedElement = .mailButton
+                viewModel.mailDidTap(viewController: viewController)
+            },
+            focusedButton: $accessibilityFocusedElement,
+            notebookFocusValue: .notebookButton,
+            notificationFocusValue: .notificationButton,
+            mailFocusValue: .mailButton
+        )
+        .onChange(of: restoreFocusTrigger) { _, _ in
+            if let lastFocused = lastFocusedElement,
+               [.notebookButton, .notificationButton, .mailButton].contains(lastFocused) {
+                DispatchQueue.main.async {
+                    accessibilityFocusedElement = lastFocused
+                }
+            }
+        }
     }
 
     private var dataWidgetsView: some View {

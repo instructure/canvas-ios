@@ -17,6 +17,7 @@
 //
 
 import Core
+import SwiftUI
 
 enum CourseListWidgetAssembly {
     static func makeCourseListWidgetInteractor() -> CourseListWidgetInteractor {
