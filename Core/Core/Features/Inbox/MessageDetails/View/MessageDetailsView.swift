@@ -28,32 +28,60 @@ public struct MessageDetailsView: View {
     }
 
     public var body: some View {
-        RefreshableScrollView {
-            switch model.state {
-            case .loading:
-                loadingIndicator
-            case .data:
-                detailsView
-            case .empty, .error:
-                VStack(alignment: .center, spacing: 0) {
-                    Text("There was an error loading the message. Pull to refresh to try again.", bundle: .core)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 12)
-                }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 24)
-            }
-        }
-        refreshAction: { onComplete in
-            model.refreshDidTrigger.send {
-                onComplete()
-            }
-        }
-        .background(Color.backgroundLightest)
-        .navigationBarTitleView(model.title)
-        .navigationBarItems(trailing: moreButton)
-        .navigationBarStyle(.global)
-        .snackBar(viewModel: model.snackBarViewModel)
+		if #available(iOS 26, *) {
+			RefreshableScrollView {
+				switch model.state {
+				case .loading:
+					loadingIndicator
+				case .data:
+					detailsView
+				case .empty, .error:
+					VStack(alignment: .center, spacing: 0) {
+						Text("There was an error loading the message. Pull to refresh to try again.", bundle: .core)
+							.multilineTextAlignment(.center)
+							.padding(.horizontal, 12)
+					}
+					.padding(.horizontal, 12)
+					.padding(.vertical, 24)
+				}
+			}
+			refreshAction: { onComplete in
+				model.refreshDidTrigger.send {
+					onComplete()
+				}
+			}
+			.background(Color.backgroundLightest)
+			.navigationTitle(model.title)
+			.snackBar(viewModel: model.snackBarViewModel)
+			.toolbar { moreButton }
+		} else {
+			RefreshableScrollView {
+				switch model.state {
+				case .loading:
+					loadingIndicator
+				case .data:
+					detailsView
+				case .empty, .error:
+					VStack(alignment: .center, spacing: 0) {
+						Text("There was an error loading the message. Pull to refresh to try again.", bundle: .core)
+							.multilineTextAlignment(.center)
+							.padding(.horizontal, 12)
+					}
+					.padding(.horizontal, 12)
+					.padding(.vertical, 24)
+				}
+			}
+			refreshAction: { onComplete in
+				model.refreshDidTrigger.send {
+					onComplete()
+				}
+			}
+			.background(Color.backgroundLightest)
+			.navigationBarTitleView(model.title)
+			.navigationBarItems(trailing: legacyMoreButton)
+			.navigationBarStyle(.global)
+			.snackBar(viewModel: model.snackBarViewModel)
+		}
     }
 
     private var loadingIndicator: some View {
@@ -89,7 +117,19 @@ public struct MessageDetailsView: View {
         .padding(.horizontal, 16)
     }
 
-    private var moreButton: some View {
+	@available(iOS, introduced: 26, message: "Legacy version exists")
+	private var moreButton: some View {
+		Button {
+			model.conversationMoreTapped(viewController: controller)
+		} label: {
+			Image.moreLine
+		}
+		.accessibilityIdentifier("MessageDetails.more")
+		.accessibility(label: Text("More options", bundle: .core))
+	}
+
+	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyMoreButton: some View {
         Button(action: {
             model.conversationMoreTapped(viewController: controller)
         }, label: {
@@ -151,7 +191,9 @@ struct MessageDetailsView_Previews: PreviewProvider {
     static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-        MessageDetailsAssembly.makePreview(env: env, subject: "Message Title", messages: .make(count: 5, body: InstUI.PreviewData.loremIpsumLong, in: context))
+		NavigationStack {
+			MessageDetailsAssembly.makePreview(env: env, subject: "Message Title", messages: .make(count: 5, body: InstUI.PreviewData.loremIpsumLong, in: context))
+		}
     }
 }
 
