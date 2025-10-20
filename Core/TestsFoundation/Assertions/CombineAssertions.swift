@@ -19,12 +19,14 @@
 import Combine
 import XCTest
 
-public extension XCTestCase {
-    /**
-     This method expects the given publisher to emit an expected single output then finish.
-     If the output doesn't match the expectation or there are multiple outputs or the publisher fails the assertion will fail.
-     */
-    func XCTAssertCompletableSingleOutputEquals<Output, Failure>(
+extension XCTestCase {
+
+    // MARK: - Assert Single Output and Finish
+
+    /// Expects `publisher` to emit a single output matching `expectedOutput`, then finish.
+    /// If the output doesn't match the expectation or the publisher fails: the assertion will fail.
+    /// If there are multiple outputs: it will crash with "multiple calls made to -[XCTestExpectation fulfill]"
+    public func XCTAssertSingleOutputEqualsAndFinish<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         _ expectedOutput: Output,
         timeout: TimeInterval = 1,
@@ -38,24 +40,26 @@ public extension XCTestCase {
         finishExpectation.expectedFulfillmentCount = 1
 
         let subscription = publisher
-            .sink(receiveCompletion: { completion in
-                if case .finished = completion {
-                    finishExpectation.fulfill()
+            .sink(
+                receiveCompletion: { completion in
+                    if completion.isFinished {
+                        finishExpectation.fulfill()
+                    }
+                },
+                receiveValue: { output in
+                    XCTAssertEqual(output, expectedOutput, messageSuffix, file: file, line: line)
+                    outputExpectation.fulfill()
                 }
-            }, receiveValue: { output in
-                XCTAssertEqual(output, expectedOutput, messageSuffix, file: file, line: line)
-                outputExpectation.fulfill()
-            })
+            )
 
         wait(for: [outputExpectation, finishExpectation], timeout: timeout)
         subscription.cancel()
     }
 
-    /**
-     This method asserts if the stream successfully completes and invokes a block with the stream's
-     first output so custom assertions can be made on the received value.
-     */
-    func XCTAssertFirstValueAndCompletion<Output, Failure>(
+    /// Expects `publisher` to emit a single output matching `assertions`, then finish.
+    /// If the provided assertion fails on the output or the publisher fails: the assertion will fail.
+    /// If there are multiple outputs: it will crash with: "multiple calls made to -[XCTestExpectation fulfill]"
+    public func XCTAssertSingleOutputAndFinish<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         timeout: TimeInterval = 1,
         assertions: @escaping (Output) -> Void
@@ -66,23 +70,28 @@ public extension XCTestCase {
         finishExpectation.expectedFulfillmentCount = 1
 
         let subscription = publisher
-            .sink(receiveCompletion: { completion in
-                if case .finished = completion {
-                    finishExpectation.fulfill()
+            .sink(
+                receiveCompletion: { completion in
+                    if completion.isFinished {
+                        finishExpectation.fulfill()
+                    }
+                },
+                receiveValue: { output in
+                    assertions(output)
+                    outputExpectation.fulfill()
                 }
-            }, receiveValue: { output in
-                assertions(output)
-                outputExpectation.fulfill()
-            })
+            )
 
         wait(for: [outputExpectation, finishExpectation], timeout: timeout)
         subscription.cancel()
     }
 
-    /**
-     This method asserts if the stream's next emitted value after the subscription equals the expected one.
-     */
-    func XCTAssertSingleOutputEquals<Output, Failure>(
+    // MARK: - Assert Single Output (ignore completion)
+
+    /// Expects `publisher` to emit a single output matching `expectedOutput`.
+    /// It ignores finish or failure events.
+    /// If there are multiple outputs: it will crash with: "multiple calls made to -[XCTestExpectation fulfill]"
+    public func XCTAssertSingleOutputEquals<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         _ expectedOutput: Output,
         timeout: TimeInterval = 1,
@@ -102,11 +111,14 @@ public extension XCTestCase {
                 }
             )
 
-        waitForExpectations(timeout: timeout)
+        wait(for: [outputExpectation], timeout: timeout)
         subscription.cancel()
     }
 
-    func XCTAssertFirstValue<Output, Failure>(
+    /// Expects `publisher` to emit a single output matching `assertions`.
+    /// It ignores finish or failure events.
+    /// If there are multiple outputs: it will crash with: "multiple calls made to -[XCTestExpectation fulfill]"
+    public func XCTAssertSingleOutput<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         timeout: TimeInterval = 1,
         assertions: @escaping (Output) -> Void
@@ -123,16 +135,54 @@ public extension XCTestCase {
                 }
             )
 
-        waitForExpectations(timeout: timeout)
+        wait(for: [outputExpectation], timeout: timeout)
         subscription.cancel()
     }
+
+    // MARK: - Assert First Output (ignore completion & further outputs)
+
+    /// Expects the first output of `publisher` to match `expectedOutput`.
+    /// It ignores finish or failure events, and also ignores further outputs.
+    public func XCTAssertFirstValueEquals<Output, Failure>(
+        _ publisher: any Publisher<Output, Failure>,
+        _ expectedOutput: Output,
+        timeout: TimeInterval = 1,
+        _ messageSuffix: String = "",
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) where Output: Equatable, Failure: Error {
+        XCTAssertSingleOutputEquals(
+            publisher.eraseToAnyPublisher().first(),
+            expectedOutput,
+            timeout: timeout,
+            messageSuffix,
+            file: file,
+            line: line
+        )
+    }
+
+    /// Expects the first output of `publisher` to match `assertions`.
+    /// It ignores finish or failure events, and also ignores further outputs.
+    public func XCTAssertFirstValue<Output, Failure>(
+        _ publisher: any Publisher<Output, Failure>,
+        timeout: TimeInterval = 1,
+        assertions: @escaping (Output) -> Void
+    ) where Failure: Error {
+        XCTAssertSingleOutput(
+            publisher.eraseToAnyPublisher().first(),
+            timeout: timeout,
+            assertions: assertions
+        )
+    }
+
+    // MARK: - Assert Finish
 
     /**
      This method expects the publisher to finish within the given timeout.
      Useful if you are not directly interested in the result of the publisher.
      If the publisher fails or the timeout is reached the assertion will fail.
      */
-    func XCTAssertFinish<Output, Failure>(
+    public func XCTAssertFinish<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         timeout: TimeInterval = 1,
         file: StaticString = #filePath,
@@ -142,20 +192,24 @@ public extension XCTestCase {
         finishExpectation.expectedFulfillmentCount = 1
 
         let subscription = publisher
-            .sink { completion in
-                finishExpectation.fulfill()
+            .sink(
+                receiveCompletion: { completion in
+                    finishExpectation.fulfill()
 
-                if case let .failure(error) = completion {
-                    XCTFail("Unexpected failure while waiting on finish event: \(error)", file: file, line: line)
-                }
-            } receiveValue: { _ in
-            }
+                    if let error = completion.error {
+                        XCTFail("Unexpected failure while waiting on finish event: \(error)", file: file, line: line)
+                    }
+                },
+                receiveValue: { _ in }
+            )
 
         wait(for: [finishExpectation], timeout: timeout)
         subscription.cancel()
     }
 
-    func XCTAssertFailure<Output, Failure>(
+    // MARK: - Assert Failure
+
+    public func XCTAssertFailure<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         assertOnOutput: Bool = true,
         timeout: TimeInterval = 1,
@@ -166,25 +220,28 @@ public extension XCTestCase {
         finishExpectation.expectedFulfillmentCount = 1
 
         let subscription = publisher
-            .sink { completion in
-                finishExpectation.fulfill()
+            .sink(
+                receiveCompletion: { completion in
+                    finishExpectation.fulfill()
 
-                if case .finished = completion {
-                    XCTFail("Unexpected finish event while waiting on failure.", file: file, line: line)
+                    if completion.isFinished {
+                        XCTFail("Unexpected finish event while waiting on failure.", file: file, line: line)
+                    }
+                },
+                receiveValue: { _ in
+                    if assertOnOutput {
+                        XCTFail("Received unexpected output from publisher.", file: file, line: line)
+                    }
                 }
-            } receiveValue: { _ in
-                if assertOnOutput {
-                    XCTFail("Received unexpected output from publisher.", file: file, line: line)
-                }
-            }
+            )
 
         wait(for: [finishExpectation], timeout: timeout)
         subscription.cancel()
     }
 
-    func XCTAssertFailureEquals<Output, Failure>(
+    public func XCTAssertFailureEquals<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
-        _ failure: Failure,
+        _ expectedError: Failure,
         assertOnOutput: Bool = true,
         timeout: TimeInterval = 1,
         _ messageSuffix: String = "",
@@ -195,26 +252,31 @@ public extension XCTestCase {
         finishExpectation.expectedFulfillmentCount = 1
 
         let subscription = publisher
-            .sink { completion in
-                finishExpectation.fulfill()
+            .sink(
+                receiveCompletion: { completion in
+                    finishExpectation.fulfill()
 
-                switch completion {
-                case .finished:
-                    XCTFail("Unexpected finish event while waiting on failure.", file: file, line: line)
-                case .failure(let error):
-                    XCTAssertEqual(failure, error, messageSuffix, file: file, line: line)
+                    switch completion {
+                    case .finished:
+                        XCTFail("Unexpected finish event while waiting on failure.", file: file, line: line)
+                    case .failure(let error):
+                        XCTAssertEqual(error, expectedError, messageSuffix, file: file, line: line)
+                    }
+                },
+                receiveValue: { _ in
+                    if assertOnOutput {
+                        XCTFail("Received unexpected output from publisher.", file: file, line: line)
+                    }
                 }
-            } receiveValue: { _ in
-                if assertOnOutput {
-                    XCTFail("Received unexpected output from publisher.", file: file, line: line)
-                }
-            }
+            )
 
         wait(for: [finishExpectation], timeout: timeout)
         subscription.cancel()
     }
 
-    func XCTAssertNoOutput<Output, Failure>(
+    // MARK: - Assert No Output
+
+    public func XCTAssertNoOutput<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         timeout: TimeInterval = 1
     ) where Failure: Error {
@@ -222,10 +284,12 @@ public extension XCTestCase {
         noValueExpectation.isInverted = true
 
         let subscription = publisher
-            .sink { _ in
-            } receiveValue: { _ in
-                noValueExpectation.fulfill()
-            }
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { _ in
+                    noValueExpectation.fulfill()
+                }
+            )
 
         wait(for: [noValueExpectation], timeout: timeout)
         subscription.cancel()

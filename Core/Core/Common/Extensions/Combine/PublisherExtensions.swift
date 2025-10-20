@@ -33,7 +33,7 @@ extension Publisher {
     ) -> AnyCancellable {
         sink(
             receiveCompletion: { completion in
-                if case let .failure(error) = completion {
+                if let error = completion.error {
                     receiveFailure(error)
                 }
             },

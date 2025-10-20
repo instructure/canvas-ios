@@ -53,7 +53,7 @@ public struct DiscussionCreateWebViewModel: EmbeddedWebPageViewModel {
 
     public func webView(
         _ webView: WKWebView,
-        didStartProvisionalNavigation navigation: WKNavigation!
+        didStartProvisionalNavigation navigation: WKNavigation?
     ) {
         guard let discussionTopicId = webView.url?.discussionTopicId else {
             return
