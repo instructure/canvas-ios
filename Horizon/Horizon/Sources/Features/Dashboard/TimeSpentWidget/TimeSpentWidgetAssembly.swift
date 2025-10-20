@@ -20,7 +20,7 @@ import Foundation
 
 enum TimeSpentWidgetAssembly {
     static func makeView() -> TimeSpentWidgetView {
-        let interactor = TimeSpentWidgetUseInteractorLive()
+        let interactor = TimeSpentWidgetInteractorLive()
         let viewModel = TimeSpentWidgetViewModel(
             interactor: interactor,
             learnCoursesInteractor: GetLearnCoursesInteractorLive()

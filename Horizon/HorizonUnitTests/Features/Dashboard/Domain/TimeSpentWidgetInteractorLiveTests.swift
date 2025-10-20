@@ -21,12 +21,12 @@
 import XCTest
 import Combine
 
-final class TimeSpentWidgetUseInteractorLiveTests: HorizonTestCase {
+final class TimeSpentWidgetInteractorLiveTests: HorizonTestCase {
 
     func testGetTimeSpent() {
         // Given
         let useCase = GetHTimeSpentWidgetUseCase(journey: DomainServiceMock(result: .success(api)))
-        let testee = TimeSpentWidgetUseInteractorLive(timeSpentUseCase: useCase)
+        let testee = TimeSpentWidgetInteractorLive(timeSpentUseCase: useCase)
 
         api.mock(
             DomainService.JWTTokenRequest(domainServiceOption: .journey),
@@ -55,7 +55,7 @@ final class TimeSpentWidgetUseInteractorLiveTests: HorizonTestCase {
             data: .init(widgetData: .init(data: [], lastModifiedDate: nil))
         )
         let useCase = GetHTimeSpentWidgetUseCase(journey: DomainServiceMock(result: .success(api)))
-        let testee = TimeSpentWidgetUseInteractorLive(timeSpentUseCase: useCase)
+        let testee = TimeSpentWidgetInteractorLive(timeSpentUseCase: useCase)
 
         api.mock(
             DomainService.JWTTokenRequest(domainServiceOption: .journey),

@@ -19,11 +19,11 @@
 import Core
 import Combine
 
-protocol TimeSpentWidgetUseInteractor {
+protocol TimeSpentWidgetInteractor {
     func getTimeSpent(ignoreCache: Bool) -> AnyPublisher<[TimeSpentWidgetModel], Error>
 }
 
-final class TimeSpentWidgetUseInteractorLive: TimeSpentWidgetUseInteractor {
+final class TimeSpentWidgetInteractorLive: TimeSpentWidgetInteractor {
     // MARK: - Dependencies
 
     private let timeSpentUseCase: GetHTimeSpentWidgetUseCase

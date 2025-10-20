@@ -20,7 +20,7 @@
 import Combine
 import Foundation
 
-class TimeSpentWidgetUseInteractorPreview: TimeSpentWidgetUseInteractor {
+class TimeSpentWidgetUseInteractorPreview: TimeSpentWidgetInteractor {
     let showError: Bool
     init(showError: Bool) {
         self.showError = showError

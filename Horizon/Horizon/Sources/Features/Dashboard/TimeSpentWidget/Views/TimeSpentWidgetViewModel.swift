@@ -70,11 +70,11 @@ final class TimeSpentWidgetViewModel {
 
     // MARK: - Dependencies
 
-    private let interactor: TimeSpentWidgetUseInteractor
+    private let interactor: TimeSpentWidgetInteractor
     private let learnCoursesInteractor: GetLearnCoursesInteractor
 
     init(
-        interactor: TimeSpentWidgetUseInteractor,
+        interactor: TimeSpentWidgetInteractor,
         learnCoursesInteractor: GetLearnCoursesInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
