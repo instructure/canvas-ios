@@ -34,9 +34,8 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
 
         // Then
         if case .data(let announcements) = testee.state {
-            XCTAssertEqual(announcements.count, 2)
+            XCTAssertEqual(announcements.count, 1)
             XCTAssertTrue(announcements.contains(where: { $0.id == "1" }))
-            XCTAssertTrue(announcements.contains(where: { $0.id == "3" }))
         } else {
             XCTFail("Expected state to be .data, but was \(testee.state)")
         }
@@ -111,8 +110,7 @@ private extension NotificationModel {
             type: type,
             announcementId: announcementId,
             assignmentURL: nil,
-            htmlURL: nil,
-            isGlobalNotification: isGlobalNotification
+            htmlURL: nil
         )
     }
 }

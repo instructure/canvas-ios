@@ -102,7 +102,7 @@ final class NotificationInteractorLive: NotificationInteractor {
 
     private func fetchGlobalNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never> {
         ReactiveStore(useCase: GetAccountNotifications())
-            .getEntities(ignoreCache: ignoreCache)
+            .getEntities(ignoreCache: true)
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0) }
             .map {
@@ -110,10 +110,9 @@ final class NotificationInteractorLive: NotificationInteractor {
                     id: $0.id,
                     title: $0.subject,
                     date: $0.startAt,
-                    isRead: true,
+                    isRead: $0.closed,
                     type: .announcement,
-                    announcementId: $0.id,
-                    isGlobalNotification: true
+                    announcementId: $0.id
                 )
             }
             .collect()

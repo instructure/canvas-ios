@@ -32,7 +32,6 @@ struct NotificationModel: Identifiable, Equatable {
     let announcementId: String?
     let assignmentURL: URL?
     let htmlURL: URL?
-    let isGlobalNotification: Bool
 
     init(
         id: String,
@@ -46,8 +45,7 @@ struct NotificationModel: Identifiable, Equatable {
         type: NotificationType,
         announcementId: String? = nil,
         assignmentURL: URL? = nil,
-        htmlURL: URL? = nil,
-        isGlobalNotification: Bool = false
+        htmlURL: URL? = nil
     ) {
         self.id = id
         self.title = title
@@ -61,7 +59,6 @@ struct NotificationModel: Identifiable, Equatable {
         self.announcementId = announcementId
         self.assignmentURL = assignmentURL
         self.htmlURL = htmlURL
-        self.isGlobalNotification = isGlobalNotification
     }
 
     var dateFormatted: String {

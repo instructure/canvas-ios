@@ -73,7 +73,7 @@ final class AnnouncementsListWidgetViewModel {
             .getNotifications(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0) }
-            .filter { $0.type == .announcement && ($0.isRead == false || $0.isGlobalNotification )}
+            .filter { $0.type == .announcement && ($0.isRead == false )}
             .collect()
             .receive(on: scheduler)
             .sink(receiveValue: { [weak self] notifications in
