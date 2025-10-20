@@ -59,21 +59,25 @@ struct DashboardNavigationBar: ViewModifier {
 
 	@ViewBuilder
 	@available(iOS, introduced: 26, message: "Legacy version exists")
-	private var navBarLogo: some View {
+	fileprivate var navBarLogo: some View {
 		if !isElevatedTabBar, let headerImage = Brand.shared.headerImage {
-			Image(uiImage: headerImage)
-				.resizable()
-				.aspectRatio(contentMode: .fit)
-				.frame(width: 44, height: 44)
-				.background(Brand.shared.headerImageBackground.asColor, in: Circle())
-				.shadow(radius: 6)
-				.accessibilityHidden(true)
+			ZStack {
+				Brand.shared.headerImageBackground.asColor
+
+				Image(uiImage: headerImage)
+					.resizable()
+					.aspectRatio(contentMode: .fit)
+					.accessibilityHidden(true)
+			}
+			.clipShape(RoundedRectangle(cornerRadius: 8))
+			.frame(width: 44, height: 44)
+			.shadow(radius: 8)
 		}
 	}
 
     @ViewBuilder
 	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
-    private var legacyNavBarLogo: some View {
+    fileprivate var legacyNavBarLogo: some View {
         if !isElevatedTabBar, let headerImage = Brand.shared.headerImage {
             ZStack {
                 Color(Brand.shared.headerImageBackground)

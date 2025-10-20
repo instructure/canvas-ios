@@ -46,7 +46,10 @@ extension UINavigationBar {
         applyAppearanceChanges(backgroundColor: background, foregroundColor: foreground)
     }
 
+	@available(iOS, deprecated: 26)
     public func useGlobalNavStyle(brand: Brand = Brand.shared) {
+		guard #unavailable(iOS 26) else { return }
+
         // TODO: Remove the isHorizon condition once horizon-specific logic is no longer needed.
         let isHorizon = AppEnvironment.shared.app == .horizon
         let background: UIColor = isHorizon ? .backgroundLightest : brand.navBackground

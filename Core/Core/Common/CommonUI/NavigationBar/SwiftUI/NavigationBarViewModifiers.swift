@@ -47,6 +47,7 @@ struct RightBarButtonItemModifier: ViewModifier {
     }
 }
 
+@available(iOS, deprecated: 26)
 struct GlobalNavigationBarModifier: ViewModifier {
     @Environment(\.viewController) var controller
 
@@ -56,6 +57,7 @@ struct GlobalNavigationBarModifier: ViewModifier {
     }
 }
 
+@available(iOS, deprecated: 26)
 struct NavBarBackButtonModifier: ViewModifier {
     @Environment(\.viewController) private var controller
 
@@ -95,6 +97,7 @@ extension View {
     ///       - `.modal` is primarily used on modal screens, but also on some screen which doesn't belong to a context, but not considered global.
     ///       - `.color()` is used on non-modal screens within a context (typically a course or group), and in some other cases.
     ///       - Use `.color(nil)` to keep the navigation bar's current context background color but ensure the proper title color is set.
+	@available(iOS, deprecated: 26)
     public func navigationBarStyle(_ style: NavigationBarStyle) -> some View {
         modifier(NavigationBarStyleModifier(style: style))
     }
@@ -104,6 +107,7 @@ extension View {
     /// - Parameters:
     ///     - title: The line is always displayed, even if this is empty. (This should not happen normally.)
     ///     - subtitle: The subtitle line is only displayed if this is not empty.
+	@available(iOS, deprecated: 26)
     public func navigationBarTitleView(title: String, subtitle: String?) -> some View {
         toolbar {
             ToolbarItem(placement: .principal) {
@@ -114,12 +118,14 @@ extension View {
 
     /// Sets the navigation bar's title, using the proper font. Please use this one instead of the native `navigationTitle()` method.
     /// - Warning: Make sure to call `navigationBarStyle()` _**AFTER**_ this method to set the proper text color.
+	@available(iOS, deprecated: 26)
     public func navigationBarTitleView(_ title: String) -> some View {
         navigationBarTitleView(title: title, subtitle: nil)
     }
 
     /// Sets the navigation bar's background color, button color to match the `Brand.shared` colors,
     /// sets the button font and sets the brand logo as the titleView.
+	@available(iOS, deprecated: 26)
     public func navigationBarGlobal() -> some View {
         modifier(GlobalNavigationBarModifier())
     }
