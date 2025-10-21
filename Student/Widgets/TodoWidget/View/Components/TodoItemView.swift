@@ -23,76 +23,21 @@ import Core
 struct TodoItemView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
 
-    var item: TodoItem
+    var item: TodoItemViewModel
 
     var body: some View {
         Link(destination: item.route) {
-            VStack(alignment: .leading, spacing: 0) {
-                contextSection
-                titleSection
-                timeSection
-            }
+            TodoItemContentView(item: item, isCompactLayout: true)
         }
-    }
-
-    private var contextSection: some View {
-        HStack(spacing: 5) {
-            item.icon
-                .scaledIcon(size: 16)
-                .foregroundStyle(item.color)
-                .accessibilityHidden(true)
-            InstUI.Divider().frame(maxHeight: 16 * uiScale)
-            Text(item.contextName)
-                .foregroundStyle(item.color)
-                .font(.regular12)
-                .lineLimit(1)
-        }
-    }
-
-    private var titleSection: some View {
-        VStack(alignment: .leading) {
-            Text(item.title)
-                .font(.semibold14)
-                .foregroundStyle(Color.textDarkest)
-                .lineLimit(1)
-            if let subtitle = item.subtitle {
-                Text(subtitle)
-                    .font(.regular12)
-                    .foregroundStyle(Color.textDark)
-                    .lineLimit(1)
-            }
-        }
-    }
-
-    private var timeSection: some View {
-        Text(item.date.formatted(.dateTime.hour().minute()))
-            .font(.regular12)
-            .foregroundStyle(Color.textDark)
-            .lineLimit(1)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .accessibilityLabel(timeAccessibilityLabel)
-    }
-
-    private var timeAccessibilityLabel: String {
-        let format = Date.FormatStyle
-            .dateTime
-            .year()
-            .month(.wide)
-            .day()
-            .hour()
-            .minute()
-        return item.date.formatted(format)
-    }
-
-    private var isToday: Bool {
-        return item.date.startOfDay() == Date.now.startOfDay()
     }
 }
 
 #if DEBUG
 
-#Preview {
-    TodoItemView(item: .make())
+#Preview("TodoWidgetData", as: .systemLarge) {
+    TodoWidget()
+} timeline: {
+    TodoWidgetEntry(data: TodoModel.make(), date: Date())
 }
 
 #endif
