@@ -37,6 +37,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
     override func tearDown() {
         testee = nil
+        Clock.reset()
         super.tearDown()
     }
 

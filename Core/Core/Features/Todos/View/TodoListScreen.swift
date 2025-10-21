@@ -42,7 +42,6 @@ public struct TodoListScreen: View {
                 ForEach(viewModel.items) { group in
                     groupView(for: group)
                 }
-                .paddingStyle(.trailing, .standard)
                 InstUI.Divider()
             }
         }
@@ -70,7 +69,9 @@ public struct TodoListScreen: View {
                 let isLastItemInGroup = (group.items.last == item)
 
                 if !isLastItemInGroup {
-                    InstUI.Divider().padding(.leading, leadingPadding)
+                    InstUI.Divider()
+                        .padding(.leading, leadingPadding)
+                        .paddingStyle(.trailing, .standard)
                 }
             }
         } header: {
@@ -78,7 +79,7 @@ public struct TodoListScreen: View {
                 let isFirstSection = (viewModel.items.first == group)
 
                 if !isFirstSection {
-                    InstUI.Divider().paddingStyle(.leading, .standard)
+                    InstUI.Divider().paddingStyle(.horizontal, .standard)
                 }
 
                 TodoDayHeaderView(group: group) { group in

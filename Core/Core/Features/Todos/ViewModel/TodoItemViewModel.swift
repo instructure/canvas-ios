@@ -73,26 +73,6 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         self.markDoneState = plannable.isMarkedComplete ? .done : .notDone
     }
 
-    /// Helper function to determine the context name for a Todo item.
-    /// - Parameters:
-    ///   - isCourseNameNickname: Whether the course name is a user-given nickname.
-    ///   - courseName: The course name (which may be a nickname if isCourseNameNickname is true).
-    ///   - courseCode: The course code.
-    ///   - fallback: Fallback value if no course data is available.
-    /// - Returns: The appropriate context name.
-    public static func contextName(
-        isCourseNameNickname: Bool,
-        courseName: String?,
-        courseCode: String?,
-        fallback: String = ""
-    ) -> String {
-        if isCourseNameNickname {
-            return courseName ?? fallback
-        } else {
-            return courseCode ?? courseName ?? fallback
-        }
-    }
-
     public init(
         id: String,
         type: PlannableType,
@@ -123,6 +103,26 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         self.overrideId = overrideId
     }
 
+    /// Helper function to determine the context name for a Todo item.
+    /// - Parameters:
+    ///   - isCourseNameNickname: Whether the course name is a user-given nickname.
+    ///   - courseName: The course name (which may be a nickname if isCourseNameNickname is true).
+    ///   - courseCode: The course code.
+    ///   - fallback: Fallback value if no course data is available.
+    /// - Returns: The appropriate context name.
+    public static func contextName(
+        isCourseNameNickname: Bool,
+        courseName: String?,
+        courseCode: String?,
+        fallback: String = ""
+    ) -> String {
+        if isCourseNameNickname {
+            return courseName ?? fallback
+        } else {
+            return courseCode ?? courseName ?? fallback
+        }
+    }
+
     // MARK: - Equatable
 
     public static func == (lhs: TodoItemViewModel, rhs: TodoItemViewModel) -> Bool {
@@ -142,10 +142,13 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     public static func < (lhs: TodoItemViewModel, rhs: TodoItemViewModel) -> Bool {
         lhs.date < rhs.date
     }
+}
 
-    // MARK: Preview & Testing
+#if DEBUG
 
-    #if DEBUG
+// MARK: Preview & Testing
+
+extension TodoItemViewModel {
 
     public static func make(
         id: String = "1",
@@ -222,6 +225,6 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
             icon: icon
         )
     }
-
-    #endif
 }
+
+#endif

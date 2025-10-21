@@ -38,11 +38,27 @@ struct TodoListItemCell: View {
                         .paddingStyle(.leading, .cellAccessoryPadding)
                 }
                 .padding(.vertical, 8)
-                .background(.backgroundLightest)
+
             }
+            .background(.backgroundLightest)
             .accessibilityElement(children: .combine)
-            .onSwipe(trailing: swipeActions)
+            .fullSwipeAction(
+                backgroundColor: .backgroundSuccess,
+                onSwipe: { onMarkAsDone(item) },
+                actionView: { swipeActionView }
+            )
         }
+    }
+
+    private var swipeActionView: some View {
+        HStack(spacing: 12) {
+            Text("Done", bundle: .core)
+                .font(.semibold16, lineHeight: .fit)
+            Image.checkLine
+                .scaledIcon(size: 24)
+        }
+        .paddingStyle(.horizontal, .standard)
+        .foregroundStyle(Color.textLightest)
     }
 
     @ViewBuilder
@@ -66,20 +82,6 @@ struct TodoListItemCell: View {
         .identifier("to-do.list.\(item.id).checkbox")
     }
 
-    private var swipeActions: [SwipeModel] {
-        [
-            SwipeModel(
-                id: "done",
-                image: { Image.completeLine },
-                action: { onMarkAsDone(item) },
-                style: SwipeStyle(
-                    background: .backgroundSuccess,
-                    foregroundColor: .textLightest,
-                    slotWidth: 60
-                )
-            )
-        ]
-    }
 }
 
 #if DEBUG
