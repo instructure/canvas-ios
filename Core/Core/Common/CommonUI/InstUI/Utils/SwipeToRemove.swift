@@ -19,23 +19,44 @@
 import SwiftUI
 
 public extension View {
-    func swipeToRemove<ActionView: View>(
+
+    /// Adds a swipe-to-remove gesture that reveals an action view when swiping left.
+    ///
+    /// The gesture requires swiping past a threshold to trigger the action.
+    /// Visual and haptic feedback is provided when the threshold is crossed.
+    /// Once the action is triggered, the view remains in the fully revealed position
+    /// and it's the caller's responsibility to remove the cell from the view hierarcy.
+    ///
+    /// - Parameters:
+    ///   - backgroundColor: The background color revealed behind the content during the swipe.
+    ///   - isSwiping: Optional binding that tracks whether a swipe gesture is currently active. Use this to disable scrolling or other gestures while swiping.
+    ///   - onSwipe: Closure called when the swipe action is completed.
+    ///   - label: The view displayed in the revealed area during the swipe.
+    func swipeToRemove<Label: View>(
         backgroundColor: Color,
+        isSwiping: Binding<Bool>? = nil,
         onSwipe: @escaping () -> Void,
-        @ViewBuilder actionView: @escaping () -> ActionView
+        @ViewBuilder label: @escaping () -> Label
     ) -> some View {
         modifier(SwipeToRemoveModifier(
             backgroundColor: backgroundColor,
+            isSwiping: isSwiping,
             onSwipe: onSwipe,
-            actionView: actionView
+            label: label
         ))
     }
 }
 
-private struct SwipeToRemoveModifier<ActionView: View>: ViewModifier {
+private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
     let backgroundColor: Color
+    let isSwiping: Binding<Bool>?
     let onSwipe: () -> Void
-    let actionView: () -> ActionView
+    let label: () -> Label
+
+    // MARK: - Gesture Properties
+    private let minimumDragDistance: CGFloat = 20
+    /// The ratio of cell width that must be swiped to trigger the action (0.8 = 80% of cell width).
+    private let actionThresholdRatio: CGFloat = 0.8
 
     // MARK: - Layout & Sizing
     @State private var cellContentOffset: CGFloat = 0
@@ -60,21 +81,22 @@ private struct SwipeToRemoveModifier<ActionView: View>: ViewModifier {
         }
         .onWidthChange { width in
             cellWidth = width
-            actionThreshold = cellWidth * 0.8
+            actionThreshold = cellWidth * actionThresholdRatio
         }
         .contentShape(Rectangle())
         // If this is a simple gesture and the cell is a button then swiping won't work
         .simultaneousGesture(
-            DragGesture()
+            DragGesture(minimumDistance: minimumDragDistance)
                 .onChanged(handleDragChanged)
-                .onEnded(handleDragEnded)
+                .onEnded(handleDragEnded),
+            isEnabled: !isActionInvoked
         )
     }
 
     private var swipeBackground: some View {
         backgroundColor
             .overlay(alignment: .trailing) {
-                actionView()
+                label()
                     .onWidthChange { width in
                         actionViewWidth = width
                         actionViewOffset = width
@@ -87,13 +109,12 @@ private struct SwipeToRemoveModifier<ActionView: View>: ViewModifier {
     // MARK: - Drag In Progress
 
     private func handleDragChanged(_ value: DragGesture.Value) {
-        if isActionInvoked { return }
-
         let translation = value.translation.width
 
         // We are only interested in swipes to the left
         guard translation < 0 else { return }
 
+        isSwiping?.wrappedValue = true
         hapticGenerator.prepare()
         cellContentOffset = max(translation, -cellWidth)
 
@@ -136,7 +157,7 @@ private struct SwipeToRemoveModifier<ActionView: View>: ViewModifier {
     // MARK: - Drag Finish
 
     private func handleDragEnded(_: DragGesture.Value) {
-        if isActionInvoked { return }
+        isSwiping?.wrappedValue = false
 
         if isActionThresholdReached {
             animateToOpenedState()

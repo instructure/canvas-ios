@@ -24,6 +24,7 @@ public struct TodoListScreen: View {
     @ObservedObject var viewModel: TodoListViewModel
     /// The sticky section header grows horizontally, so we need to increase paddings here not to let the header overlap the cell content.
     @ScaledMetric private var uiScale: CGFloat = 1
+    @State private var isCellSwiping = false
 
     public init(viewModel: TodoListViewModel) {
         self.viewModel = viewModel
@@ -46,6 +47,7 @@ public struct TodoListScreen: View {
             }
         }
         .clipped()
+        .scrollDisabled(isCellSwiping)
         .navigationBarItems(leading: profileMenuButton)
         .snackBar(viewModel: viewModel.snackBar)
     }
@@ -59,7 +61,8 @@ public struct TodoListScreen: View {
                     item: item,
                     onTap: viewModel.didTapItem,
                     onMarkAsDone: viewModel.markItemAsDone,
-                    onSwipeMarkAsDone: viewModel.markItemAsDoneWithOptimisticUI
+                    onSwipeMarkAsDone: viewModel.markItemAsDoneWithOptimisticUI,
+                    isSwiping: $isCellSwiping
                 )
                 .padding(.leading, leadingPadding)
                 .transition(.asymmetric(

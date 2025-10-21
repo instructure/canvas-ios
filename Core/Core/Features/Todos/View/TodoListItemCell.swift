@@ -26,6 +26,7 @@ struct TodoListItemCell: View {
     let onTap: (_ item: TodoItemViewModel, _ viewController: WeakViewController) -> Void
     let onMarkAsDone: (_ item: TodoItemViewModel) -> Void
     let onSwipeMarkAsDone: (_ item: TodoItemViewModel) -> Void
+    let isSwiping: Binding<Bool>?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -39,14 +40,15 @@ struct TodoListItemCell: View {
                         .paddingStyle(.leading, .cellAccessoryPadding)
                 }
                 .padding(.vertical, 8)
-
             }
+            .paddingStyle(.trailing, .standard)
             .background(.backgroundLightest)
             .accessibilityElement(children: .combine)
             .swipeToRemove(
                 backgroundColor: .backgroundSuccess,
+                isSwiping: isSwiping,
                 onSwipe: { onSwipeMarkAsDone(item) },
-                actionView: { swipeActionView }
+                label: { swipeActionView }
             )
         }
     }
@@ -89,8 +91,8 @@ struct TodoListItemCell: View {
 
 #Preview {
     VStack(spacing: 0) {
-        TodoListItemCell(item: .makeShortText(), onTap: { _, _ in }, onMarkAsDone: { _ in }, onSwipeMarkAsDone: { _ in })
-        TodoListItemCell(item: .makeLongText(), onTap: { _, _ in }, onMarkAsDone: { _ in }, onSwipeMarkAsDone: { _ in })
+        TodoListItemCell(item: .makeShortText(), onTap: { _, _ in }, onMarkAsDone: { _ in }, onSwipeMarkAsDone: { _ in }, isSwiping: nil)
+        TodoListItemCell(item: .makeLongText(), onTap: { _, _ in }, onMarkAsDone: { _ in }, onSwipeMarkAsDone: { _ in }, isSwiping: nil)
     }
     .background(Color.backgroundLightest)
 }
