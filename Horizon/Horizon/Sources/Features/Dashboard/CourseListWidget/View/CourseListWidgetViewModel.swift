@@ -221,7 +221,7 @@ extension CourseListWidgetViewModel {
 
     fileprivate static let programsMock = [
         Program(
-            id: "1",
+            id: "Test-ID",
             name: "This is a test program",
             variant: "",
             description: nil,

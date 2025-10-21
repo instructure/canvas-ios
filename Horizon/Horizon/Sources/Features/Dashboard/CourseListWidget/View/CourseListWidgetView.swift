@@ -122,7 +122,7 @@ struct CourseListWidgetView: View {
 
     @ViewBuilder
     private var programCardsView: some View {
-        if viewModel.unenrolledPrograms.isNotEmpty, viewModel.state == .data {
+        if viewModel.unenrolledPrograms.isNotEmpty, viewModel.state == .data, viewModel.unenrolledPrograms.first?.id != "Test-ID" {
             UnenrolledProgramListWidgetView(programs: viewModel.unenrolledPrograms) { program in
                 viewModel.navigateProgram(id: program.id, viewController: viewController)
             }

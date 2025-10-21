@@ -33,6 +33,7 @@ struct DashboardView: View {
     private let skillsCountWidgetView: SkillsCountWidgetView
     private let announcementWidgetView: AnnouncementsListWidgetView
     private let timeSpentWidgetView: TimeSpentWidgetView
+    private let completedWidgetView: CompletedWidgetView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
@@ -42,6 +43,7 @@ struct DashboardView: View {
         skillsCountWidgetView = SkillsCountWidgetView(viewModel: skillViewModel)
         announcementWidgetView = AnnouncementsWidgetAssembly.makeView()
         timeSpentWidgetView = TimeSpentWidgetAssembly.makeView()
+        completedWidgetView = CompletedWidgetAssembly.makeView()
     }
 
     var body: some View {
@@ -123,8 +125,9 @@ struct DashboardView: View {
     private var dataWidgetsView: some View {
         ScrollView(.horizontal) {
             HStack(alignment: .center, spacing: .huiSpaces.space12) {
-                skillsCountWidgetView
+                completedWidgetView
                 timeSpentWidgetView
+                skillsCountWidgetView
             }
             .padding(.top, .huiSpaces.space2)
             .padding(.bottom, .huiSpaces.space4)
