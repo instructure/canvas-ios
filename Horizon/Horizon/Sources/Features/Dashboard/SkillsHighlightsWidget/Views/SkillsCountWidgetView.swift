@@ -21,42 +21,69 @@ import SwiftUI
 
 struct SkillsCountWidgetView: View {
     let viewModel: SkillsHighlightsWidgetViewModel
+    @Environment(\.dashboardLastFocusedElement) private var lastFocusedElement
+    @Environment(\.dashboardRestoreFocusTrigger) private var restoreFocusTrigger
+    @AccessibilityFocusState private var isFocused: Bool
+
     var body: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
-            SkillsCountWidgetHeaderView()
-            switch viewModel.state {
-            case .loading:
-                dataView(count: 1)
-            case .data:
-                dataView(count: viewModel.countSkills)
-            case .empty:
-                emptyView
-            case .error:
-                errorView
+        Button {
+            lastFocusedElement.wrappedValue = .skillsCountWidget
+        } label: {
+            VStack(alignment: .leading, spacing: .huiSpaces.space8) {
+                SkillsCountWidgetHeaderView()
+                switch viewModel.state {
+                case .loading:
+                    dataView(count: 1, isLoading: true)
+                case .data:
+                    dataView(count: viewModel.countSkills)
+                case .empty:
+                    emptyView
+                case .error:
+                    errorView
+                }
+            }
+            .padding(.huiSpaces.space24)
+            .background(Color.huiColors.surface.pageSecondary)
+            .huiCornerRadius(level: .level5)
+            .huiElevation(level: .level4)
+            .isSkeletonLoadActive(viewModel.state == .loading)
+        }
+        .buttonStyle(.plain)
+        .fixedSize(horizontal: true, vertical: false)
+        .accessibilityFocused($isFocused)
+        .accessibilityHint(String(localized: "Double tap to open skillspace", bundle: .horizon))
+        .onChange(of: restoreFocusTrigger) { _, _ in
+            if let lastFocused = lastFocusedElement.wrappedValue,
+               case .skillsCountWidget = lastFocused {
+                DispatchQueue.main.async {
+                    isFocused = true
+                }
             }
         }
-        .padding(.huiSpaces.space24)
-        .background(Color.huiColors.surface.pageSecondary)
-        .huiCornerRadius(level: .level5)
-        .huiElevation(level: .level4)
-        .isSkeletonLoadActive(viewModel.state == .loading)
-        .fixedSize(horizontal: true, vertical: false)
     }
 
     @ViewBuilder
-    private func dataView(count: Int) -> some View {
+    private func dataView(count: Int, isLoading: Bool = false) -> some View {
         HStack(spacing: .huiSpaces.space8) {
             Text(count.description)
                 .huiTypography(.labelSemibold)
                 .foregroundStyle(Color.huiColors.text.body)
                 .skeletonLoadable()
+                .accessibilityHidden(isLoading)
             Text("earned", bundle: .horizon)
                 .huiTypography(.labelMediumBold)
                 .foregroundStyle(Color.huiColors.text.body)
                 .skeletonLoadable()
+                .accessibilityHidden(isLoading)
         }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(Text(String.localizedStringWithFormat(String(localized: "%@ Skills earned", bundle: .horizon), count.description)))
+        .accessibilityElement(children: isLoading ? .ignore : .combine)
+        .accessibilityLabel(
+            Text(
+                isLoading
+                    ? String(localized: "Loading skills earned", bundle: .horizon)
+                    : String.localizedStringWithFormat(String(localized: "%@ Skills earned", bundle: .horizon), count.description)
+            )
+        )
     }
 
     private var emptyView: some View {

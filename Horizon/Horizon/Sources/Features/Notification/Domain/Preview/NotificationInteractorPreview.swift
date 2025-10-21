@@ -36,6 +36,20 @@ final class NotificationInteractorPreview: NotificationInteractor {
                 announcementId: "1",
                 assignmentURL: nil
 
+            ),
+            .init(
+                id: "2",
+                title: "[first two lines of the message......... there’s more.].",
+                date: Date(),
+                isRead: false,
+                courseName: "course Name",
+                courseID: "12",
+                enrollmentID: "1211",
+                isScoreAnnouncement: false,
+                type: .announcement,
+                announcementId: "1",
+                assignmentURL: nil
+
             )
         ])
         .setFailureType(to: Error.self)

@@ -16,24 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-@testable import Horizon
-import Foundation
-
-final class SkillCardsInteractorMocks: SkillsWidgetInteractor {
-    var shouldFail = false
-    var error: Error = URLError(.badServerResponse)
-    var lastIgnoreCache: Bool?
-    var skillsToReturn: [SkillWidgetModel]?
-
-    func getSkills(ignoreCache: Bool) -> AnyPublisher<[SkillWidgetModel], Error> {
-        lastIgnoreCache = ignoreCache
-        if shouldFail {
-            return Fail(error: error).eraseToAnyPublisher()
-        } else {
-            return Just(skillsToReturn ?? HSkillStubs.skills)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        }
-    }
+enum DashboardFocusableElement: Hashable, Codable {
+    case announcement(id: String)
+    case programInvitation(id: String)
+    case course(id: String)
+    case skillsCountWidget
+    case skillHighlight(id: String)
+    case notebookButton
+    case notificationButton
+    case mailButton
 }

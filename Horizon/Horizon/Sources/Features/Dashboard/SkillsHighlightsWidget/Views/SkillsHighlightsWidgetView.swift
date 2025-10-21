@@ -23,13 +23,14 @@ struct SkillsHighlightsWidgetView: View {
     // MARK: - Dependencies
 
     @State private var viewModel: SkillsHighlightsWidgetViewModel
+    @Environment(\.dashboardLastFocusedElement) private var lastFocusedElement
+    @Environment(\.dashboardRestoreFocusTrigger) private var restoreFocusTrigger
     private let onTap: () -> Void
+    @AccessibilityFocusState private var focusedSkillID: String?
 
     // MARK: - Init
 
-    init(viewModel: SkillsHighlightsWidgetViewModel,
-         onTap: @escaping () -> Void
-    ) {
+    init(viewModel: SkillsHighlightsWidgetViewModel, onTap: @escaping () -> Void) {
         self.viewModel = viewModel
         self.onTap = onTap
     }
@@ -37,14 +38,17 @@ struct SkillsHighlightsWidgetView: View {
     var body: some View {
         VStack(spacing: .huiSpaces.space16) {
             SkillsHighlightsWidgetHeaderView()
+                .accessibilityHidden(viewModel.state == .loading)
             switch viewModel.state {
             case .data:
                 ForEach(viewModel.skills) { skill in
                     Button {
+                        lastFocusedElement.wrappedValue = .skillHighlight(id: skill.id)
                         onTap()
                     } label: {
                         SkillHighlightWidgetView(skill: skill)
                     }
+                    .accessibilityFocused($focusedSkillID, equals: skill.id)
                     .accessibilityHint(String(localized: "Double tap to open skillspace", bundle: .horizon))
                 }
             case .empty:
@@ -55,6 +59,8 @@ struct SkillsHighlightsWidgetView: View {
                 }
             case .loading:
                 SkillHighlightWidgetView(skill: SkillWidgetModel.loadingModel)
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(Text(String(localized: "Loading Skill highlights", bundle: .horizon)))
             }
         }
         .padding(.huiSpaces.space24)
@@ -67,14 +73,32 @@ struct SkillsHighlightsWidgetView: View {
         .onWidgetReload { completion in
             viewModel.getSkills(ignoreCache: true, completion: completion)
         }
+        .onChange(of: restoreFocusTrigger) { _, _ in
+            if let lastFocused = lastFocusedElement.wrappedValue,
+               case .skillHighlight(let id) = lastFocused {
+                DispatchQueue.main.async {
+                    focusedSkillID = id
+                }
+            }
+        }
     }
 }
 
 #if DEBUG
 #Preview {
-   VStack {
-        SkillsHighlightsWidgetAssembly.makePreview(shouldReturnError: true)
-       SkillsHighlightsWidgetAssembly.makePreview(shouldReturnError: false)
+    VStack {
+        SkillsHighlightsWidgetView(
+            viewModel: SkillsHighlightsWidgetViewModel(
+                interactor: SkillsWidgetInteractorPreview(shouldReturnError: true)
+            ),
+            onTap: {}
+        )
+        SkillsHighlightsWidgetView(
+            viewModel: SkillsHighlightsWidgetViewModel(
+                interactor: SkillsWidgetInteractorPreview(shouldReturnError: false)
+            ),
+            onTap: {}
+        )
     }
 }
 #endif

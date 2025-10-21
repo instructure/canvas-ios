@@ -20,7 +20,7 @@
 @testable import Core
 import XCTest
 
-final class SkillCardsInteractorLiveTests: HorizonTestCase {
+final class SkillsWidgetInteractorLiveTests: HorizonTestCase {
 
     func testGetSkills() {
         // Given

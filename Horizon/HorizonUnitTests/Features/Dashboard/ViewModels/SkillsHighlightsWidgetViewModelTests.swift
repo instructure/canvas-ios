@@ -21,12 +21,12 @@ import CombineSchedulers
 @testable import Horizon
 import XCTest
 
-final class SkillCardsViewModelTests: HorizonTestCase {
-    private var skillCardsInteractor: SkillCardsInteractorMocks!
+final class SkillsHighlightsWidgetViewModelTests: HorizonTestCase {
+    private var skillCardsInteractor: SkillsWidgetInteractorMocks!
 
     override func setUp() {
         super.setUp()
-        skillCardsInteractor = SkillCardsInteractorMocks()
+        skillCardsInteractor = SkillsWidgetInteractorMocks()
     }
 
     override func tearDown() {
