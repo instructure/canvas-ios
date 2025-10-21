@@ -25,8 +25,7 @@ public enum MarkDoneState: Equatable {
     case done
 }
 
-public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableObject {
-    public let id: String
+public class TodoItemViewModel: /*Identifiable,*/ Equatable, Comparable, ObservableObject {
     public let type: PlannableType
     public let date: Date
     public let dateText: String
@@ -39,6 +38,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     public let color: Color
     public let icon: Image
 
+    public let plannableId: String
     public let plannableType: String
     public var overrideId: String?
 
@@ -47,7 +47,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     public init?(_ plannable: Plannable, course: Course? = nil) {
         guard let date = plannable.date else { return nil }
 
-        self.id = plannable.id
+        self.plannableId = plannable.id
         self.type = plannable.plannableType
         self.date = date
         self.dateText = date.timeOnlyString
@@ -74,7 +74,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     }
 
     public init(
-        id: String,
+        plannableId: String,
         type: PlannableType,
         date: Date,
         title: String,
@@ -86,7 +86,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         plannableType: String = "assignment",
         overrideId: String? = nil
     ) {
-        self.id = id
+        self.plannableId = plannableId
         self.type = type
         self.date = date
         self.dateText = date.timeOnlyString
@@ -126,7 +126,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     // MARK: - Equatable
 
     public static func == (lhs: TodoItemViewModel, rhs: TodoItemViewModel) -> Bool {
-        lhs.id == rhs.id &&
+        lhs.plannableId == rhs.plannableId &&
         lhs.type == rhs.type &&
         lhs.date == rhs.date &&
         lhs.title == rhs.title &&
@@ -151,7 +151,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
 extension TodoItemViewModel {
 
     public static func make(
-        id: String = "1",
+        plannableId: String = "1",
         type: PlannableType = .assignment,
         date: Date = Clock.now,
         title: String = "Calculate how far the Millennium Falcon actually traveled in less than 12 parsecs",
@@ -164,7 +164,7 @@ extension TodoItemViewModel {
         overrideId: String? = nil
     ) -> TodoItemViewModel {
         TodoItemViewModel(
-            id: id,
+            plannableId: plannableId,
             type: type,
             date: date,
             title: title,
@@ -179,7 +179,7 @@ extension TodoItemViewModel {
     }
 
     public static func makeShortText(
-        id: String = "1",
+        plannableId: String = "1",
         type: PlannableType = .assignment,
         date: Date = Clock.now,
         title: String = "Quiz 1",
@@ -190,7 +190,7 @@ extension TodoItemViewModel {
         icon: Image = .quizLine
     ) -> TodoItemViewModel {
         TodoItemViewModel(
-            id: id,
+            plannableId: plannableId,
             type: type,
             date: date,
             title: title,
@@ -203,7 +203,7 @@ extension TodoItemViewModel {
     }
 
     public static func makeLongText(
-        id: String = "1",
+        plannableId: String = "1",
         type: PlannableType = .assignment,
         date: Date = Clock.now,
         title: String = "Complete comprehensive reading assignment covering advanced mathematical concepts and theoretical applications",
@@ -214,7 +214,7 @@ extension TodoItemViewModel {
         icon: Image = .assignmentLine
     ) -> TodoItemViewModel {
         TodoItemViewModel(
-            id: id,
+            plannableId: plannableId,
             type: type,
             date: date,
             title: title,

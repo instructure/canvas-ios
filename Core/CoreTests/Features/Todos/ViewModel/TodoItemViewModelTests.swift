@@ -40,7 +40,7 @@ class TodoItemViewModelTests: CoreTestCase {
 
         // Then
         XCTAssertNotNil(todoItem)
-        XCTAssertEqual(todoItem?.id, "test-id")
+        XCTAssertEqual(todoItem?.plannableId, "test-id")
         XCTAssertEqual(todoItem?.type, .assignment)
         XCTAssertEqual(todoItem?.date, date)
         XCTAssertEqual(todoItem?.dateText, date.timeOnlyString)
@@ -130,7 +130,7 @@ class TodoItemViewModelTests: CoreTestCase {
         let date = Date()
         let url = URL(string: "https://example.com")!
         let todoItem = TodoItemViewModel(
-            id: "direct-id",
+            plannableId: "direct-id",
             type: .quiz,
             date: date,
             title: "Direct Quiz",
@@ -142,7 +142,7 @@ class TodoItemViewModelTests: CoreTestCase {
         )
 
         // Then
-        XCTAssertEqual(todoItem.id, "direct-id")
+        XCTAssertEqual(todoItem.plannableId, "direct-id")
         XCTAssertEqual(todoItem.type, .quiz)
         XCTAssertEqual(todoItem.date, date)
         XCTAssertEqual(todoItem.dateText, date.timeOnlyString)
@@ -158,7 +158,7 @@ class TodoItemViewModelTests: CoreTestCase {
         let date = Date()
         let url = URL(string: "https://example.com")!
         let todoItem = TodoItemViewModel.make(
-            id: "factory-id",
+            plannableId: "factory-id",
             type: .discussion_topic,
             date: date,
             title: "Factory Discussion",
@@ -170,7 +170,7 @@ class TodoItemViewModelTests: CoreTestCase {
         )
 
         // Then
-        XCTAssertEqual(todoItem.id, "factory-id")
+        XCTAssertEqual(todoItem.plannableId, "factory-id")
         XCTAssertEqual(todoItem.type, .discussion_topic)
         XCTAssertEqual(todoItem.date, date)
         XCTAssertEqual(todoItem.title, "Factory Discussion")
@@ -185,7 +185,7 @@ class TodoItemViewModelTests: CoreTestCase {
         let date = Date()
         let url = URL(string: "https://example.com")!
         let todoItem1 = TodoItemViewModel(
-            id: "same-id",
+            plannableId: "same-id",
             type: .assignment,
             date: date,
             title: "Same Title",
@@ -197,7 +197,7 @@ class TodoItemViewModelTests: CoreTestCase {
         )
 
         let todoItem2 = TodoItemViewModel(
-            id: "same-id",
+            plannableId: "same-id",
             type: .assignment,
             date: date,
             title: "Same Title",
@@ -209,7 +209,7 @@ class TodoItemViewModelTests: CoreTestCase {
         )
 
         let todoItem3 = TodoItemViewModel(
-            id: "different-id",
+            plannableId: "different-id",
             type: .assignment,
             date: date,
             title: "Same Title",
@@ -256,7 +256,7 @@ class TodoItemViewModelTests: CoreTestCase {
 
         // When
         let todoItem = TodoItemViewModel(
-            id: "datetest-id",
+            plannableId: "datetest-id",
             type: .assignment,
             date: specificDate,
             title: "Date Test Assignment",

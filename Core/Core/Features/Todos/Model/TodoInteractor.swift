@@ -79,7 +79,7 @@ public final class TodoInteractorLive: TodoInteractor {
 
     public func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
         let useCase = MarkPlannableItemDone(
-            plannableId: item.id,
+            plannableId: item.plannableId,
             plannableType: item.plannableType,
             overrideId: item.overrideId,
             done: done
@@ -94,7 +94,7 @@ public final class TodoInteractorLive: TodoInteractor {
     }
 
     private func updateOverrideId(for item: TodoItemViewModel) {
-        let scope = Scope.plannable(id: item.id)
+        let scope = Scope.plannable(id: item.plannableId)
         if let plannable: Plannable = env.database.viewContext.fetch(scope: scope).first,
            let overrideId = plannable.plannerOverrideId {
             item.overrideId = overrideId
@@ -132,14 +132,14 @@ public final class TodoInteractorPreview: TodoInteractor {
         let todayGroup = TodoGroupViewModel(
             date: today,
             items: [
-                .makeShortText(id: "3")
+                .makeShortText(plannableId: "3")
             ]
         )
         let tomorrowGroup = TodoGroupViewModel(
             date: tomorrow,
             items: [
-                .makeShortText(id: "1"),
-                .makeLongText(id: "2")
+                .makeShortText(plannableId: "1"),
+                .makeLongText(plannableId: "2")
             ]
         )
         self.todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([todayGroup, tomorrowGroup])

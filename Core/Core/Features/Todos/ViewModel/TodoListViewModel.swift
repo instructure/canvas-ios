@@ -75,10 +75,10 @@ public class TodoListViewModel: ObservableObject {
     func didTapItem(_ item: TodoItemViewModel, _ viewController: WeakViewController) {
         switch item.type {
         case .planner_note:
-            let vc = PlannerAssembly.makeToDoDetailsViewController(plannableId: item.id)
+            let vc = PlannerAssembly.makeToDoDetailsViewController(plannableId: item.plannableId)
             router.show(vc, from: viewController, options: .detail)
         case .calendar_event:
-            let vc = PlannerAssembly.makeEventDetailsViewController(eventId: item.id)
+            let vc = PlannerAssembly.makeEventDetailsViewController(eventId: item.plannableId)
             router.show(vc, from: viewController, options: .detail)
         default:
             guard let url = item.htmlURL else { return }
@@ -116,13 +116,13 @@ public class TodoListViewModel: ObservableObject {
     }
 
     func markItemAsDoneWithOptimisticUI(_ item: TodoItemViewModel) {
-        optimisticallyRemovedIds.insert(item.id)
+        optimisticallyRemovedIds.insert(item.plannableId)
 
         withAnimation {
             removeItem(item)
         }
 
-        let itemId = item.id
+        let itemId = item.plannableId
 
         interactor.markItemAsDone(item, done: true)
             .receive(on: scheduler)
@@ -145,7 +145,7 @@ public class TodoListViewModel: ObservableObject {
     private func restoreItem(withId itemId: String) {
         guard let itemToRestore = interactor.todoGroups.value
             .flatMap({ $0.items })
-            .first(where: { $0.id == itemId }) else {
+            .first(where: { $0.plannableId == itemId }) else {
             return
         }
 
@@ -174,7 +174,7 @@ public class TodoListViewModel: ObservableObject {
     }
 
     private func performMarkAsDone(_ item: TodoItemViewModel) {
-        markDoneTimers[item.id]?.cancel()
+        markDoneTimers[item.plannableId]?.cancel()
         item.markDoneState = .loading
 
         interactor.markItemAsDone(item, done: true)
@@ -190,8 +190,8 @@ public class TodoListViewModel: ObservableObject {
     }
 
     private func performMarkAsUndone(_ item: TodoItemViewModel) {
-        markDoneTimers[item.id]?.cancel()
-        markDoneTimers.removeValue(forKey: item.id)
+        markDoneTimers[item.plannableId]?.cancel()
+        markDoneTimers.removeValue(forKey: item.plannableId)
         item.markDoneState = .loading
 
         interactor.markItemAsDone(item, done: false)
@@ -220,10 +220,10 @@ public class TodoListViewModel: ObservableObject {
                 withAnimation {
                     self?.removeItem(item)
                 }
-                self?.markDoneTimers.removeValue(forKey: item.id)
+                self?.markDoneTimers.removeValue(forKey: item.plannableId)
             }
 
-        markDoneTimers[item.id] = timer
+        markDoneTimers[item.plannableId] = timer
     }
 
     private func handleMarkAsDoneError(_ item: TodoItemViewModel, _ error: Error) {
@@ -238,7 +238,7 @@ public class TodoListViewModel: ObservableObject {
 
     private func removeItem(_ item: TodoItemViewModel) {
         items = items.compactMap { group in
-            let filteredItems = group.items.filter { $0.id != item.id }
+            let filteredItems = group.items.filter { $0.plannableId != item.plannableId }
             guard !filteredItems.isEmpty else { return nil }
             return TodoGroupViewModel(date: group.date, items: filteredItems)
         }
