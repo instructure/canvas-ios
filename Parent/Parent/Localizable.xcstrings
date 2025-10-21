@@ -8711,6 +8711,12 @@
         }
       }
     },
+    "Download Failed" : {
+
+    },
+    "Downloading" : {
+
+    },
     "Due" : {
       "localizations" : {
         "ar" : {
@@ -16905,6 +16911,9 @@
         }
       }
     },
+    "Please wait..." : {
+
+    },
     "Preferences" : {
       "localizations" : {
         "ar" : {
@@ -22541,6 +22550,9 @@
           }
         }
       }
+    },
+    "There was an error downloading the file. Please try again." : {
+
     },
     "There was an error loading alerts. Pull to refresh to try again." : {
       "localizations" : {
