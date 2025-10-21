@@ -80,9 +80,11 @@ public struct InboxView: View, ScreenViewTrackable {
     private var messagesList: some View {
         ForEach(model.messages) { message in
             VStack(spacing: 0) {
-                InboxMessageView(model: message, cellDidTap: { messageID in
+                InboxMessageView(model: message) { messageID in
                     model.messageDidTap.send((messageID: messageID, controller: controller))
-                })
+                }
+				.selected(when: model.selectedMessageID == message.id)
+
                 Color.borderMedium
                     .frame(height: 0.5)
                     .overlay(Color.backgroundLightest.frame(width: 64), alignment: .leading)
