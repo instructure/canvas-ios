@@ -54,7 +54,7 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
     let label: () -> Label
 
     // MARK: - Gesture Properties
-    private let minimumDragDistance: CGFloat = 20
+    private let minimumDragDistance: CGFloat = 10
     /// The ratio of cell width that must be swiped to trigger the action (0.8 = 80% of cell width).
     private let actionThresholdRatio: CGFloat = 0.8
 
@@ -109,14 +109,19 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
     // MARK: - Drag In Progress
 
     private func handleDragChanged(_ value: DragGesture.Value) {
-        let translation = value.translation.width
+        let horizontalTranslation = value.translation.width
 
-        // We are only interested in swipes to the left
-        guard translation < 0 else { return }
+        guard value.translation.isHorizontalSwipe else { return }
+
+        guard value.translation.isSwipingLeft else {
+            animateToClosedState()
+            return
+        }
 
         isSwiping?.wrappedValue = true
+
         hapticGenerator.prepare()
-        cellContentOffset = max(translation, -cellWidth)
+        cellContentOffset = max(horizontalTranslation, -cellWidth)
 
         handleActionThresholdCrossing()
         updateActionViewPosition()
