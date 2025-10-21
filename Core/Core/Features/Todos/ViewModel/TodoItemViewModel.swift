@@ -25,7 +25,9 @@ public enum MarkDoneState: Equatable {
     case done
 }
 
-public class TodoItemViewModel: /*Identifiable,*/ Equatable, Comparable, ObservableObject {
+public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableObject {
+    /// This is the view identity that might change. Don't use this for business logic.
+    public private(set) var id: String = UUID.string
     public let type: PlannableType
     public let date: Date
     public let dateText: String
@@ -101,6 +103,10 @@ public class TodoItemViewModel: /*Identifiable,*/ Equatable, Comparable, Observa
 
         self.plannableType = plannableType
         self.overrideId = overrideId
+    }
+
+    public func resetViewIdentity() {
+        id = UUID.string
     }
 
     /// Helper function to determine the context name for a Todo item.

@@ -148,6 +148,8 @@ public class TodoListViewModel: ObservableObject {
             .first(where: { $0.plannableId == itemId }) else {
             return
         }
+        // We need to reset the view's ID otherwise the previous state of the cell (swiped left) will be restored.
+        itemToRestore.resetViewIdentity()
 
         withAnimation {
             var updatedItems = items
