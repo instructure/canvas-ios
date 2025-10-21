@@ -54,7 +54,6 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
     let label: () -> Label
 
     // MARK: - Gesture Properties
-    private let minimumDragDistance: CGFloat = 10
     /// The ratio of cell width that must be swiped to trigger the action (0.8 = 80% of cell width).
     private let actionThresholdRatio: CGFloat = 0.8
 
@@ -71,6 +70,8 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
     @State private var isActionThresholdReached = false
     /// Becomes true after the action has been invoked to disable further drag gestures
     @State private var isActionInvoked = false
+    /// Set on first gesture update to determine if we should process this gesture
+    @State private var isStartedAsHorizontalGesture: Bool?
 
     private let hapticGenerator = UIImpactFeedbackGenerator(style: .medium)
 
@@ -86,7 +87,7 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
         .contentShape(Rectangle())
         // If this is a simple gesture and the cell is a button then swiping won't work
         .simultaneousGesture(
-            DragGesture(minimumDistance: minimumDragDistance)
+            DragGesture()
                 .onChanged(handleDragChanged)
                 .onEnded(handleDragEnded),
             isEnabled: !isActionInvoked
@@ -110,19 +111,18 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
     // MARK: - Drag In Progress
 
     private func handleDragChanged(_ value: DragGesture.Value) {
-        let horizontalTranslation = value.translation.width
-
-        guard value.translation.isHorizontalSwipe else { return }
-
-        guard value.translation.isSwipingLeft else {
-            animateToClosedState()
-            return
+        if isStartedAsHorizontalGesture == nil {
+            isStartedAsHorizontalGesture = value.translation.isHorizontalSwipe
         }
+
+        guard isStartedAsHorizontalGesture == true,
+              value.translation.isSwipingLeft
+        else { return }
 
         isSwiping?.wrappedValue = true
 
         hapticGenerator.prepare()
-        cellContentOffset = max(horizontalTranslation, -cellWidth)
+        cellContentOffset = max(value.translation.width, -cellWidth)
 
         handleActionThresholdCrossing()
         updateActionViewPosition()
@@ -163,6 +163,9 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
     // MARK: - Drag Finish
 
     private func handleDragEnded(_: DragGesture.Value) {
+        defer { isStartedAsHorizontalGesture = nil }
+        guard isStartedAsHorizontalGesture == true else { return }
+
         isSwiping?.wrappedValue = false
 
         if isActionThresholdReached {
