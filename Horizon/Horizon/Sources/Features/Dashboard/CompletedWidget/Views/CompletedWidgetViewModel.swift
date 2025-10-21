@@ -57,8 +57,7 @@ final class CompletedWidgetViewModel {
 
         getCompletedWidgets(ignoreCache: ignoreCache)
             .zip(
-                getCourses(ignoreCache: ignoreCache)
-                    .setFailureType(to: Error.self)
+                getCourses(ignoreCache: ignoreCache).setFailureType(to: Error.self)
             )
             .map { timesForCourses, learnCourses -> [CompletedWidgetModel] in
                 let courseIds = learnCourses.map(\.id)
