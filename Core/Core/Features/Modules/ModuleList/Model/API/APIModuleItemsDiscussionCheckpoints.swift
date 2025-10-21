@@ -55,7 +55,7 @@ struct APIModuleItemsDiscussionCheckpoints: PagedResponse, Equatable {
 
                         struct ModuleItem: Codable, Equatable {
                             let _id: String
-                            let content: Content?
+                            let content: Content
 
                             struct Content: Codable, Equatable {
                                 let checkpoints: [Checkpoint]?
@@ -92,9 +92,8 @@ extension APIModuleItemsDiscussionCheckpoints.Page {
 
         for edge in self {
             for item in edge.node.moduleItems {
-                if let content = item.content,
-                   let checkpoints = content.checkpoints?.nilIfEmpty,
-                   let replyToEntryRequiredCount = content.replyToEntryRequiredCount {
+                if let checkpoints = item.content.checkpoints?.nilIfEmpty,
+                   let replyToEntryRequiredCount = item.content.replyToEntryRequiredCount {
                     result[item._id] = .init(
                         checkpoints: checkpoints,
                         replyToEntryRequiredCount: replyToEntryRequiredCount
@@ -112,27 +111,60 @@ extension APIModuleItemsDiscussionCheckpoints.Page {
 // MARK: - Make methods
 
 extension APIModuleItemsDiscussionCheckpoints {
-    init(dataPerModuleItemId: [String: Data]) {
-        self.data = .init(
-            course: .init(
-                modulesConnection: .init(
-                    pageInfo: nil,
-                    edges: [
-                        .init(
-                            node: .init(
-                                moduleItems: dataPerModuleItemId.map {
-                                    .init(
-                                        _id: $0.key,
-                                        content: .init(
-                                            checkpoints: $0.value.checkpoints,
-                                            replyToEntryRequiredCount: $0.value.replyToEntryRequiredCount
-                                        )
-                                    )
-                                }
+    typealias ModuleItem = ResponseData.Course.ModulesConnection.Edge.Node.ModuleItem
+
+    static func make(
+        apiPageInfo: APIPageInfo? = nil,
+        moduleItems: [ModuleItem] = []
+    ) -> Self {
+        .init(
+            data: .init(
+                course: .init(
+                    modulesConnection: .init(
+                        pageInfo: apiPageInfo,
+                        edges: [
+                            .init(
+                                node: .init(
+                                    moduleItems: moduleItems
+                                )
                             )
-                        )
-                    ]
+                        ]
+                    )
                 )
+            )
+        )
+    }
+
+    static func make(
+        pageInfo: APIPageInfo? = nil,
+        dataPerModuleItemId: [String: Data] = [:]
+    ) -> Self {
+        .make(
+            apiPageInfo: pageInfo,
+            moduleItems: dataPerModuleItemId.map {
+                .init(
+                    _id: $0.key,
+                    content: .init(
+                        checkpoints: $0.value.checkpoints,
+                        replyToEntryRequiredCount: $0.value.replyToEntryRequiredCount
+                    )
+                )
+            }
+        )
+    }
+}
+
+extension APIModuleItemsDiscussionCheckpoints.ModuleItem {
+    static func make(
+        id: String = "",
+        checkpoints: [APIModuleItemsDiscussionCheckpoints.DiscussionCheckpoint]? = [],
+        replyToEntryRequiredCount: Int? = nil
+    ) -> Self {
+        .init(
+            _id: id,
+            content: .init(
+                checkpoints: checkpoints,
+                replyToEntryRequiredCount: replyToEntryRequiredCount
             )
         )
     }

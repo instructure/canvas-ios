@@ -66,14 +66,18 @@ final class CDModuleItemDiscussionCheckpoint: NSManagedObject {
 }
 
 extension CDModuleItemDiscussionCheckpoint: Comparable {
-    /// Compares by `discussionCheckpointStep`.
+    /// Compares by `discussionCheckpointStep`, moves `nil` to the end.
     /// It is assumed both sub-assignments belong to the same assignment, otherwise comparison is meaningless.
     public static func < (lhs: CDModuleItemDiscussionCheckpoint, rhs: CDModuleItemDiscussionCheckpoint) -> Bool {
-        guard let lhsStep = lhs.discussionCheckpointStep,
-              let rhsStep = rhs.discussionCheckpointStep else {
+        switch (lhs.discussionCheckpointStep, rhs.discussionCheckpointStep) {
+        case (nil, nil):
             return false
+        case (nil, _):
+            return false
+        case (_, nil):
+            return true // nil goes to the end
+        case (let lhsStep?, let rhsStep?):
+            return lhsStep < rhsStep
         }
-
-        return lhsStep < rhsStep
     }
 }

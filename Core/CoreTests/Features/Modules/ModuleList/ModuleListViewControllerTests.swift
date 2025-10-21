@@ -27,7 +27,8 @@ class ModuleListViewControllerTests: CoreTestCase {
 
     private static let testData = (
         date1: Date.make(year: 2019, month: 12, day: 25, hour: 14, minute: 24, second: 37),
-        placeholder: ""
+        date2: Date.make(year: 2021, month: 5, day: 6),
+        date3: Date.make(year: 2021, month: 11, day: 24)
     )
     private lazy var testData = Self.testData
 
@@ -82,27 +83,44 @@ class ModuleListViewControllerTests: CoreTestCase {
                         completion_requirement: .make(type: .must_submit, completed: true)
                     )
                 ]
+            ],
+            discussionCheckpoints: [
+                "2": .make(checkpoints: [
+                    .make(tag: "reply_to_topic", dueAt: testData.date2),
+                    .make(tag: "reply_to_entry", dueAt: testData.date3)
+                ]),
+                "3": .make(checkpoints: [
+                    .make(tag: "reply_to_topic", dueAt: nil),
+                    .make(tag: "reply_to_entry", dueAt: testData.date1)
+                ])
             ]
         )
         let nav = UINavigationController(rootViewController: viewController)
         loadView()
+
         let item1 = moduleItemCell(at: IndexPath(row: 0, section: 0))
         XCTAssertEqual(item1.nameLabel.text, "Item 1")
         XCTAssertEqual(item1.dueDateLabel1.text, testData.date1.dateTimeString)
+        XCTAssertEqual(item1.dueDateLabel2.text, nil)
         XCTAssertEqual(item1.miscSubtitleLabel.text, "10 pts | Score at least 8")
         XCTAssertFalse(item1.completedStatusView.isHidden)
         XCTAssertEqual(item1.completedStatusView.image, .emptyLine)
         let item2 = moduleItemCell(at: IndexPath(row: 1, section: 0))
+        XCTAssertEqual(item2.dueDateLabel1.text, testData.date2.dateTimeString)
+        XCTAssertEqual(item2.dueDateLabel2.text, testData.date3.dateTimeString)
         XCTAssertEqual(item2.miscSubtitleLabel.text, "10 pts")
         XCTAssertFalse(item2.isUserInteractionEnabled)
         XCTAssertFalse(item2.nameLabel.isEnabled)
         XCTAssertTrue(item2.completedStatusView.isHidden)
         let item3 = moduleItemCell(at: IndexPath(row: 2, section: 0))
+        XCTAssertEqual(item3.dueDateLabel1.text, DueDateFormatter.noDueDateText)
+        XCTAssertEqual(item3.dueDateLabel2.text, testData.date1.dateTimeString)
         XCTAssertEqual(item3.miscSubtitleLabel.text, "View")
         let item4 = moduleItemCell(at: IndexPath(row: 3, section: 0))
         XCTAssertEqual(item4.miscSubtitleLabel.text, "Submitted")
         XCTAssertFalse(item4.completedStatusView.isHidden)
         XCTAssertEqual(item4.completedStatusView.image, .checkLine)
+
         XCTAssertNotNil(nav.viewControllers.first)
         XCTAssertEqual(viewController.titleSubtitleView.title, "Modules")
         XCTAssertEqual(viewController.titleSubtitleView.subtitle, "Course 1")
@@ -260,7 +278,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1", items: nil)])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [.make(id: "1")], response: next)
         api.mock(GetNextRequest<[APIModuleItem]>(path: link), value: [.make(id: "2")])
-        api.mock(GetModuleItemsDiscussionCheckpointsRequest(courseId: "1"), value: .init(dataPerModuleItemId: [:]))
+        api.mock(GetModuleItemsDiscussionCheckpointsRequest(courseId: "1"), value: .make())
         loadView()
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 2)
         XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ModuleItemCell)
@@ -268,7 +286,7 @@ class ModuleListViewControllerTests: CoreTestCase {
 
     func testLoadingFirstPage() {
         let task = api.mock(GetModulesRequest(courseID: "1", include: []), value: [])
-        api.mock(GetModuleItemsDiscussionCheckpointsRequest(courseId: "1"), value: .init(dataPerModuleItemId: [:]))
+        api.mock(GetModuleItemsDiscussionCheckpointsRequest(courseId: "1"), value: .make())
         task.suspend()
         loadView()
         XCTAssertEqual(viewController.spinnerView.isHidden, false)
@@ -289,7 +307,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         api.mock(GetNextRequest<[APIModule]>(path: link), value: [two])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths]), value: [.make()])
-        api.mock(GetModuleItemsDiscussionCheckpointsRequest(courseId: "1"), value: .init(dataPerModuleItemId: [:]))
+        api.mock(GetModuleItemsDiscussionCheckpointsRequest(courseId: "1"), value: .make())
         viewController.tableView.refreshControl?.sendActions(for: .valueChanged)
         drainMainQueue()
         XCTAssertEqual(viewController.tableView.numberOfSections, 2)
@@ -636,7 +654,7 @@ class ModuleListViewControllerTests: CoreTestCase {
 
         api.mock(
             GetModuleItemsDiscussionCheckpointsRequest(courseId: courseId),
-            value: .init(dataPerModuleItemId: discussionCheckpoints)
+            value: .make(dataPerModuleItemId: discussionCheckpoints)
         )
     }
 
