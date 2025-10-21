@@ -205,6 +205,9 @@ public class TodoListViewModel: ObservableObject {
                 guard let item else { return }
                 item.markDoneState = .notDone
                 TabBarBadgeCounts.todoListCount += 1
+
+                let announcement = String(localized: "\(item.title), marked as not done", bundle: .core)
+                UIAccessibility.announce(announcement)
             }
             .store(in: &subscriptions)
     }
@@ -235,7 +238,7 @@ public class TodoListViewModel: ObservableObject {
 
     private func handleMarkAsUndoneError(_ item: TodoItemViewModel, _ error: Error) {
         item.markDoneState = .done
-        snackBar.showSnack(String(localized: "Failed to mark item as undone", bundle: .core))
+        snackBar.showSnack(String(localized: "Failed to mark item as not done", bundle: .core))
     }
 
     private func removeItem(_ item: TodoItemViewModel) {
@@ -248,5 +251,8 @@ public class TodoListViewModel: ObservableObject {
         if items.isEmpty {
             state = .empty
         }
+
+        let announcement = String(localized: "\(item.title), marked as done", bundle: .core)
+        UIAccessibility.announce(announcement)
     }
 }

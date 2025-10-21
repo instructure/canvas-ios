@@ -109,6 +109,17 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         id = UUID.string
     }
 
+    public var markAsDoneAccessibilityLabel: String? {
+        switch markDoneState {
+        case .notDone:
+            return String(localized: "Mark as done", bundle: .core)
+        case .loading:
+            return nil
+        case .done:
+            return String(localized: "Mark as not done", bundle: .core)
+        }
+    }
+
     /// Helper function to determine the context name for a Todo item.
     /// - Parameters:
     ///   - isCourseNameNickname: Whether the course name is a user-given nickname.

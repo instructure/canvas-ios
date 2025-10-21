@@ -104,6 +104,7 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
                     .offset(x: actionViewOffset)
             }
             .animation(.smooth, value: actionViewOffset)
+            .accessibilityHidden(true)
     }
 
     // MARK: - Drag In Progress

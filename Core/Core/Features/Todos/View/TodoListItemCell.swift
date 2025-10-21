@@ -38,12 +38,20 @@ struct TodoListItemCell: View {
 
                     checkboxButton
                         .paddingStyle(.leading, .cellAccessoryPadding)
+                        .accessibilityHidden(true)
                 }
                 .padding(.vertical, 8)
             }
             .paddingStyle(.trailing, .standard)
             .background(.backgroundLightest)
             .accessibilityElement(children: .combine)
+            .accessibilityActions {
+                if let label = item.markAsDoneAccessibilityLabel {
+                    Button(label) {
+                        onMarkAsDone(item)
+                    }
+                }
+            }
             .swipeToRemove(
                 backgroundColor: .backgroundSuccess,
                 isSwiping: isSwiping,
