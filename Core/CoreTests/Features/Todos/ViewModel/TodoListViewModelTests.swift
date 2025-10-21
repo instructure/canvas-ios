@@ -506,7 +506,7 @@ class TodoListViewModelTests: CoreTestCase {
         XCTAssertEqual(item.markDoneState, .done)
     }
 
-    // MARK: - Optimistic UI Tests
+    // MARK: - Swipe to done
 
     func test_markItemAsDoneWithOptimisticUI_removesItemImmediately() {
         // GIVEN

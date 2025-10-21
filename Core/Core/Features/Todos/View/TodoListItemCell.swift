@@ -30,21 +30,23 @@ struct TodoListItemCell: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Button {
-                onTap(item, viewController)
-            } label: {
-                HStack(spacing: 0) {
-                    TodoItemContentView(item: item, isCompactLayout: false)
+            HStack(spacing: 0) {
+                TodoItemContentView(item: item, isCompactLayout: false)
 
-                    checkboxButton
-                        .paddingStyle(.leading, .cellAccessoryPadding)
-                        .accessibilityHidden(true)
-                }
-                .padding(.vertical, 8)
+                checkboxButton
+                    .paddingStyle(.leading, .cellAccessoryPadding)
+                    .accessibilityHidden(true)
             }
+            .padding(.vertical, 8)
             .paddingStyle(.trailing, .standard)
             .background(.backgroundLightest)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                guard isSwiping?.wrappedValue != true else { return }
+                onTap(item, viewController)
+            }
             .accessibilityElement(children: .combine)
+            .accessibilityAddTraits(.isButton)
             .accessibilityActions {
                 if let label = item.markAsDoneAccessibilityLabel {
                     Button(label) {
@@ -74,9 +76,7 @@ struct TodoListItemCell: View {
 
     @ViewBuilder
     private var checkboxButton: some View {
-        Button {
-            onMarkAsDone(item)
-        } label: {
+        ZStack {
             switch item.markDoneState {
             case .notDone:
                 InstUI.Checkbox(isSelected: false)
@@ -87,9 +87,13 @@ struct TodoListItemCell: View {
                 InstUI.Checkbox(isSelected: true)
             }
         }
-        .buttonStyle(.plain)
         .frame(width: 44, height: 44)
         .tint(Color(Brand.shared.primary))
+        .contentShape(Rectangle())
+        .onTapGesture {
+            guard isSwiping?.wrappedValue != true else { return }
+            onMarkAsDone(item)
+        }
         .identifier("to-do.list.\(item.plannableId).checkbox")
     }
 
