@@ -20,17 +20,14 @@ import Foundation
 import Combine
 
 public protocol TodoInteractor {
-    var todoGroups: AnyPublisher<[TodoGroupViewModel], Never> { get }
+    var todoGroups: CurrentValueSubject<[TodoGroupViewModel], Never> { get }
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
     func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error>
 }
 
 public final class TodoInteractorLive: TodoInteractor {
-    public var todoGroups: AnyPublisher<[TodoGroupViewModel], Never> {
-        todoGroupsSubject.eraseToAnyPublisher()
-    }
+    public var todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([])
 
-    private let todoGroupsSubject = CurrentValueSubject<[TodoGroupViewModel], Never>([])
     private let env: AppEnvironment
 
     private var subscriptions = Set<AnyCancellable>()
@@ -69,12 +66,12 @@ public final class TodoInteractorLive: TodoInteractor {
                         }
                 }
             }
-            .map { [weak todoGroupsSubject] (todos: [TodoItemViewModel]) in
+            .map { [weak todoGroups] (todos: [TodoItemViewModel]) in
                 TabBarBadgeCounts.todoListCount = UInt(todos.count)
 
                 // Group todos by day
                 let groupedTodos = Self.groupTodosByDay(todos)
-                todoGroupsSubject?.value = groupedTodos
+                todoGroups?.value = groupedTodos
                 return ()
             }
             .eraseToAnyPublisher()
@@ -121,11 +118,11 @@ public final class TodoInteractorLive: TodoInteractor {
 #if DEBUG
 
 public final class TodoInteractorPreview: TodoInteractor {
-    public let todoGroups: AnyPublisher<[TodoGroupViewModel], Never>
+    public let todoGroups: CurrentValueSubject<[TodoGroupViewModel], Never>
 
     public init(todoGroups: [TodoGroupViewModel]? = nil) {
         if let todoGroups {
-            self.todoGroups = Publishers.typedJust(todoGroups)
+            self.todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>(todoGroups)
             return
         }
 
@@ -145,7 +142,7 @@ public final class TodoInteractorPreview: TodoInteractor {
                 .makeLongText(id: "2")
             ]
         )
-        self.todoGroups = Publishers.typedJust([todayGroup, tomorrowGroup])
+        self.todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([todayGroup, tomorrowGroup])
     }
 
     public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {

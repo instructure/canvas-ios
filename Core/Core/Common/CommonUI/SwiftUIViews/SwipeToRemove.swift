@@ -19,12 +19,12 @@
 import SwiftUI
 
 public extension View {
-    func fullSwipeAction<ActionView: View>(
+    func swipeToRemove<ActionView: View>(
         backgroundColor: Color,
         onSwipe: @escaping () -> Void,
         @ViewBuilder actionView: @escaping () -> ActionView
     ) -> some View {
-        modifier(FullSwipeActionModifier(
+        modifier(SwipeToRemoveModifier(
             backgroundColor: backgroundColor,
             onSwipe: onSwipe,
             actionView: actionView
@@ -32,19 +32,24 @@ public extension View {
     }
 }
 
-private struct FullSwipeActionModifier<ActionView: View>: ViewModifier {
+private struct SwipeToRemoveModifier<ActionView: View>: ViewModifier {
     let backgroundColor: Color
     let onSwipe: () -> Void
     let actionView: () -> ActionView
 
+    // MARK: - Layout & Sizing
     @State private var cellContentOffset: CGFloat = 0
     @State private var cellWidth: CGFloat = 0
     @State private var actionViewWidth: CGFloat = 0
     /// The point based horizontal offset that must be reached by the drag gesture to trigger the action.
     @State private var actionThreshold: CGFloat = 0
+    @State private var actionViewOffset: CGFloat = 0
+
+    // MARK: - Internal Logic States
     /// Becomes true, if dragging goes beyond `actionThreshold`. If grad is ended while this is true the swipe action will be performed.
     @State private var isActionThresholdReached = false
-    @State private var actionViewOffset: CGFloat = 0
+    /// Becomes true after the action has been invoked to disable further drag gestures
+    @State private var isActionInvoked = false
 
     private let hapticGenerator = UIImpactFeedbackGenerator(style: .medium)
 
@@ -82,6 +87,8 @@ private struct FullSwipeActionModifier<ActionView: View>: ViewModifier {
     // MARK: - Drag In Progress
 
     private func handleDragChanged(_ value: DragGesture.Value) {
+        if isActionInvoked { return }
+
         let translation = value.translation.width
 
         // We are only interested in swipes to the left
@@ -129,8 +136,12 @@ private struct FullSwipeActionModifier<ActionView: View>: ViewModifier {
     // MARK: - Drag Finish
 
     private func handleDragEnded(_: DragGesture.Value) {
+        if isActionInvoked { return }
+
         if isActionThresholdReached {
             animateToOpenedState()
+            isActionInvoked = true
+            onSwipe()
         } else {
             animateToClosedState()
         }

@@ -40,6 +40,8 @@ public class TodoListViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     /// Tracks cancellable timers for items in the done state waiting to be removed after 3 seconds
     private var markDoneTimers: [String: AnyCancellable] = [:]
+    /// Tracks item IDs that have been optimistically removed via swipe and are awaiting API response
+    private var optimisticallyRemovedIds: Set<String> = []
 
     init(
         interactor: TodoInteractor,
@@ -110,6 +112,64 @@ public class TodoListViewModel: ObservableObject {
             performMarkAsDone(item)
         } else if item.markDoneState == .done {
             performMarkAsUndone(item)
+        }
+    }
+
+    func markItemAsDoneWithOptimisticUI(_ item: TodoItemViewModel) {
+        optimisticallyRemovedIds.insert(item.id)
+
+        withAnimation {
+            removeItem(item)
+        }
+
+        let itemId = item.id
+
+        interactor.markItemAsDone(item, done: true)
+            .receive(on: scheduler)
+            .sinkFailureOrValue { [weak self] _ in
+                guard let self else { return }
+                self.restoreItem(withId: itemId)
+                self.optimisticallyRemovedIds.remove(itemId)
+                self.snackBar.showSnack(String(localized: "Failed to mark item as done", bundle: .core))
+            } receiveValue: { [weak self] _ in
+                guard let self else { return }
+                self.optimisticallyRemovedIds.remove(itemId)
+
+                if TabBarBadgeCounts.todoListCount > 0 {
+                    TabBarBadgeCounts.todoListCount -= 1
+                }
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func restoreItem(withId itemId: String) {
+        guard let itemToRestore = interactor.todoGroups.value
+            .flatMap({ $0.items })
+            .first(where: { $0.id == itemId }) else {
+            return
+        }
+
+        withAnimation {
+            var updatedItems = items
+            let groupDate = itemToRestore.date.startOfDay()
+
+            if let groupIndex = updatedItems.firstIndex(where: { $0.date == groupDate }) {
+                let group = updatedItems[groupIndex]
+                var groupItems = group.items
+                groupItems.append(itemToRestore)
+                groupItems.sort()
+                updatedItems[groupIndex] = TodoGroupViewModel(date: group.date, items: groupItems)
+            } else {
+                let newGroup = TodoGroupViewModel(date: groupDate, items: [itemToRestore])
+                updatedItems.append(newGroup)
+                updatedItems.sort()
+            }
+
+            items = updatedItems
+
+            if state == .empty {
+                state = .data
+            }
         }
     }
 

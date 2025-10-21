@@ -25,6 +25,7 @@ struct TodoListItemCell: View {
     @ObservedObject var item: TodoItemViewModel
     let onTap: (_ item: TodoItemViewModel, _ viewController: WeakViewController) -> Void
     let onMarkAsDone: (_ item: TodoItemViewModel) -> Void
+    let onSwipeMarkAsDone: (_ item: TodoItemViewModel) -> Void
 
     var body: some View {
         VStack(spacing: 0) {
@@ -42,9 +43,9 @@ struct TodoListItemCell: View {
             }
             .background(.backgroundLightest)
             .accessibilityElement(children: .combine)
-            .fullSwipeAction(
+            .swipeToRemove(
                 backgroundColor: .backgroundSuccess,
-                onSwipe: { onMarkAsDone(item) },
+                onSwipe: { onSwipeMarkAsDone(item) },
                 actionView: { swipeActionView }
             )
         }
@@ -88,8 +89,8 @@ struct TodoListItemCell: View {
 
 #Preview {
     VStack(spacing: 0) {
-        TodoListItemCell(item: .makeShortText(), onTap: { _, _ in }, onMarkAsDone: { _ in })
-        TodoListItemCell(item: .makeLongText(), onTap: { _, _ in }, onMarkAsDone: { _ in })
+        TodoListItemCell(item: .makeShortText(), onTap: { _, _ in }, onMarkAsDone: { _ in }, onSwipeMarkAsDone: { _ in })
+        TodoListItemCell(item: .makeLongText(), onTap: { _, _ in }, onMarkAsDone: { _ in }, onSwipeMarkAsDone: { _ in })
     }
     .background(Color.backgroundLightest)
 }

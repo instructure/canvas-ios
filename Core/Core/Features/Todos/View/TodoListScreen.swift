@@ -58,7 +58,8 @@ public struct TodoListScreen: View {
                 TodoListItemCell(
                     item: item,
                     onTap: viewModel.didTapItem,
-                    onMarkAsDone: viewModel.markItemAsDone
+                    onMarkAsDone: viewModel.markItemAsDone,
+                    onSwipeMarkAsDone: viewModel.markItemAsDoneWithOptimisticUI
                 )
                 .padding(.leading, leadingPadding)
                 .transition(.asymmetric(
