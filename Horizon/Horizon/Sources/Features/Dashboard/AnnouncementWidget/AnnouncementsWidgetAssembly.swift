@@ -17,10 +17,15 @@
 //
 
 import Core
+import SwiftUI
 
 enum AnnouncementsWidgetAssembly {
+    static func makeViewModel() -> AnnouncementsListWidgetViewModel {
+        AnnouncementsListWidgetViewModel(interactor: makeInteractor(), router: AppEnvironment.shared.router)
+    }
+
     static func makeView() -> AnnouncementsListWidgetView {
-        let viewModel = AnnouncementsListWidgetViewModel(interactor: makeInteractor(), router: AppEnvironment.shared.router)
+        let viewModel = makeViewModel()
         return AnnouncementsListWidgetView(viewModel: viewModel)
     }
 

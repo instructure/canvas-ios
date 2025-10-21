@@ -69,7 +69,7 @@ class ParentSubmissionInteractorTests: ParentTestCase {
 
         // THEN
         wait(for: [sessionRequested], timeout: 1)
-        XCTAssertFirstValue(
+        XCTAssertSingleOutput(
             mockWebView.configuration.websiteDataStore.httpCookieStore.getAllCookies(),
             timeout: 10,
             assertions: { cookies in

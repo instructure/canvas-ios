@@ -45,14 +45,9 @@ class GroupListInteractorLiveTests: CoreTestCase {
     }
 
     func testPopulatesListItems() {
-        testee.getGroups()
-            .sink(
-                receiveCompletion: { _ in },
-                receiveValue: { list in
-                    XCTAssertEqual(list.map { $0.id }, ["1", "2"])
-                }
-            )
-            .store(in: &subscriptions)
+        XCTAssertFirstValue(testee.getGroups()) { list in
+            XCTAssertEqual(list.map { $0.id }, ["1", "2"])
+        }
     }
 
     func testFilter() {
@@ -61,24 +56,15 @@ class GroupListInteractorLiveTests: CoreTestCase {
             .sink()
             .store(in: &subscriptions)
 
-        testee.getGroups()
-            .sink(receiveCompletion: { _ in }) { list in
-                XCTAssertEqual(list.map { $0.id }, ["1"])
-            }
-            .store(in: &subscriptions)
+        XCTAssertFirstValue(testee.getGroups()) { list in
+            XCTAssertEqual(list.map { $0.id }, ["1"])
+        }
     }
 
     func testRefresh() {
-        var list: [AllCoursesGroupItem] = []
-
-        testee.getGroups()
-            .sink { _ in } receiveValue: { val in
-                list = val
-            }
-            .store(in: &subscriptions)
-
-        drainMainQueue()
-        XCTAssertEqual(list.map { $0.id }, ["1", "2"])
+        XCTAssertFirstValue(testee.getGroups()) { list in
+            XCTAssertEqual(list.map { $0.id }, ["1", "2"])
+        }
 
         api.mock(
             GetAllCoursesGroupListUseCase(),
@@ -91,20 +77,35 @@ class GroupListInteractorLiveTests: CoreTestCase {
             .sink()
             .store(in: &subscriptions)
 
-        drainMainQueue()
-        XCTAssertEqual(list.map { $0.id }, ["3"])
+        XCTAssertFirstValue(testee.getGroups()) { list in
+            XCTAssertEqual(list.map { $0.id }, ["3"])
+        }
     }
 
     func testTeacherReturnsEmptyList() {
         environment.app = .teacher
         testee = GroupListInteractorLive(shouldListGroups: false)
-        testee.getGroups()
-            .sink(
-                receiveCompletion: { _ in },
-                receiveValue: { list in
-                    XCTAssertEqual(list.map { $0.id }, [])
-                }
-            )
-            .store(in: &subscriptions)
+
+        XCTAssertFirstValue(testee.getGroups()) { list in
+            XCTAssertEqual(list.map { $0.id }, [])
+        }
+    }
+
+    func test_getGroups_shouldFilterOutConcludedOrNotAccessibleGroups() {
+        api.mock(
+            GetAllCoursesGroupListUseCase(),
+            value: [
+                .make(id: "1", name: "active-accessible", concluded: false, can_access: true),
+                .make(id: "2", name: "active-not-accessible", concluded: false, can_access: false),
+                .make(id: "3", name: "concluded-accessible", concluded: true, can_access: true),
+                .make(id: "4", name: "concluded-not-accessible", concluded: true, can_access: false),
+                .make(id: "5", name: "another-active-accessible", concluded: false, can_access: true)
+            ]
+        )
+
+        XCTAssertFirstValue(testee.getGroups()) { list in
+            XCTAssertEqual(list.map { $0.id }, ["1", "5"])
+            XCTAssertEqual(list.map { $0.name }, ["active-accessible", "another-active-accessible"])
+        }
     }
 }

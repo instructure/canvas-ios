@@ -16,12 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import HorizonUI
 import SwiftUI
 
 struct AnnouncementsListWidgetView: View {
     @Environment(\.viewController) private var viewController
+    @Environment(\.dashboardLastFocusedElement) private var lastFocusedElement
+    @Environment(\.dashboardRestoreFocusTrigger) private var restoreFocusTrigger
     @State private var viewModel: AnnouncementsListWidgetViewModel
+    @AccessibilityFocusState private var focusedAnnouncementID: String?
 
     init(viewModel: AnnouncementsListWidgetViewModel) {
         self.viewModel = viewModel
@@ -31,31 +35,52 @@ struct AnnouncementsListWidgetView: View {
         VStack(spacing: .huiSpaces.space16) {
             switch viewModel.state {
             case .loading:
-                AnnouncementWidgetView(announcement: NotificationModel.mock) { _ in }
+                AnnouncementWidgetView(
+                    announcement: NotificationModel.mock,
+                    focusedAnnouncementID: $focusedAnnouncementID
+                ) { _ in }
                     .accessibilityElement(children: .ignore)
                     .accessibilityLabel(Text(String(localized: "Loading announcements", bundle: .horizon)))
-            case .data(announcements: let announcements):
+            case let .data(announcements: announcements):
                 ForEach(announcements) { announcement in
-                    AnnouncementWidgetView(announcement: announcement) { seletedAnnouncement in
-                        viewModel.navigateToAnnouncement(
-                            announcement: seletedAnnouncement,
-                            viewController: viewController
-                        )
-                    }
+                    AnnouncementWidgetView(
+                        announcement: announcement,
+                        focusedAnnouncementID: $focusedAnnouncementID,
+                        onTap: { seletedAnnouncement in
+                            lastFocusedElement.wrappedValue = .announcement(id: seletedAnnouncement.id)
+                            viewModel.navigateToAnnouncement(
+                                announcement: seletedAnnouncement,
+                                viewController: viewController
+                            )
+                        }
+                    )
                 }
             }
         }
         .padding(.bottom, .huiSpaces.space16)
         .padding(.horizontal, .huiSpaces.space24)
-        .isSkeletonLoadActive(viewModel.state == .loading )
+        .isSkeletonLoadActive(viewModel.state == .loading)
         .onWidgetReload { completion in
             viewModel.fetchAnnouncements(ignoreCache: true, completion: completion)
+        }
+        .onChange(of: restoreFocusTrigger) { _, _ in
+            if let lastFocused = lastFocusedElement.wrappedValue,
+               case let .announcement(id) = lastFocused {
+                DispatchQueue.main.async {
+                    focusedAnnouncementID = id
+                }
+            }
         }
     }
 }
 
 #if DEBUG
-#Preview {
-    AnnouncementsWidgetAssembly.makePreview()
-}
+    #Preview {
+        let interactor = NotificationInteractorPreview()
+        let viewModel = AnnouncementsListWidgetViewModel(
+            interactor: interactor,
+            router: AppEnvironment.shared.router
+        )
+        AnnouncementsListWidgetView(viewModel: viewModel)
+    }
 #endif

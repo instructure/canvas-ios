@@ -21,12 +21,29 @@ import Combine
 import WebKit
 
 class ParentSubmissionViewModel {
+
     // MARK: - Outputs
+    enum FileDownloadViewAction: Equatable {
+        case showDownloadAlert
+        case showShareSheet(url: URL)
+        case showErrorAlert
+    }
+
     public let hideLoadingIndicator = PassthroughSubject<Void, Never>()
+    public let fileDownloadViewAction = PassthroughSubject<FileDownloadViewAction, Never>()
+
+    // MARK: - Inputs
+    enum FileDownloadEvent {
+        case started
+        case completed(url: URL)
+        case failed(error: Error)
+    }
+
+    public let fileDownloadEvent = PassthroughSubject<FileDownloadEvent, Never>()
+    public let router: Router
 
     // MARK: - Private
     private let interactor: ParentSubmissionInteractor
-    private let router: Router
     private var subscriptions = Set<AnyCancellable>()
     private weak var viewController: UIViewController?
 
@@ -36,6 +53,12 @@ class ParentSubmissionViewModel {
     ) {
         self.interactor = interactor
         self.router = router
+
+        fileDownloadEvent
+            .sink { [weak self] event in
+                self?.handleFileDownloadEvent(event)
+            }
+            .store(in: &subscriptions)
     }
 
     public func viewDidLoad(
@@ -82,5 +105,17 @@ class ParentSubmissionViewModel {
             )
         )
         router.show(alert, from: viewController, options: .modal())
+    }
+
+    private func handleFileDownloadEvent(_ event: FileDownloadEvent) {
+        switch event {
+        case .started:
+            fileDownloadViewAction.send(.showDownloadAlert)
+        case .completed(let url):
+            fileDownloadViewAction.send(.showShareSheet(url: url))
+        case .failed(let error):
+            RemoteLogger.shared.logError(name: "[ParentSubmissionViewModel] File download failed", reason: error.localizedDescription)
+            fileDownloadViewAction.send(.showErrorAlert)
+        }
     }
 }

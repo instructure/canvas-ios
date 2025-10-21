@@ -21,15 +21,28 @@ import SwiftUI
 
 struct UnenrolledProgramListWidgetView: View {
     let programs: [Program]
+    @Environment(\.dashboardLastFocusedElement) private var lastFocusedElement
+    @Environment(\.dashboardRestoreFocusTrigger) private var restoreFocusTrigger
     let onTap: (Program) -> Void
+    @AccessibilityFocusState private var focusedProgramID: String?
 
     var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
             ForEach(programs) { program in
                 UnenrolledProgramListItemWidgetView(
                     program: program,
-                    onTap: onTap
+                    onTap: onTap,
+                    focusedProgramID: $focusedProgramID
                 )
+            }
+        }
+        .onChange(of: restoreFocusTrigger) { _, _ in
+            if let lastFocused = lastFocusedElement.wrappedValue,
+               case .programInvitation(let id) = lastFocused {
+                DispatchQueue.main.async {
+                    focusedProgramID = id
+
+                }
             }
         }
     }
@@ -37,8 +50,7 @@ struct UnenrolledProgramListWidgetView: View {
 
 #Preview {
     UnenrolledProgramListWidgetView(
-        programs:
-            [
+        programs: [
             .init(
                 id: "1",
                 name: "Dolor Sit Amet Program",
