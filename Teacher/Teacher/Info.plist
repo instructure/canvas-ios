@@ -83,7 +83,7 @@
 	<key>NSCrossWebsiteTrackingUsageDescription</key>
 	<string>Canvas uses cookies to load media embedded in rich content.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Help us find schools near you.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Attach audio recordings to submission comments.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

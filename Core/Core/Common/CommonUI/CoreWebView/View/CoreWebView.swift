@@ -41,8 +41,6 @@ open class CoreWebView: WKWebView {
         return try! String(contentsOf: url)
     }()
 
-    public static let processPool = WKProcessPool()
-
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
