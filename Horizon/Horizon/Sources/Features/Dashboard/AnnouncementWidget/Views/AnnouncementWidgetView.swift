@@ -21,7 +21,18 @@ import SwiftUI
 
 struct AnnouncementWidgetView: View {
     let announcement: NotificationModel
-    let onTap: ((NotificationModel) -> Void)
+    let onTap: (NotificationModel) -> Void
+    let focusedAnnouncementID: AccessibilityFocusState<String?>.Binding
+
+    init(
+        announcement: NotificationModel,
+        focusedAnnouncementID: AccessibilityFocusState<String?>.Binding,
+        onTap: @escaping ((NotificationModel) -> Void)
+    ) {
+        self.announcement = announcement
+        self.focusedAnnouncementID = focusedAnnouncementID
+        self.onTap = onTap
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space4) {
@@ -61,23 +72,30 @@ struct AnnouncementWidgetView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .skeletonLoadable()
 
-            HorizonUI.PrimaryButton(
-                    String(localized: "Go to announcement", bundle: .horizon),
-                    type: .darkOutline,
-                    isSmall: true
-                ) {
-                    onTap(announcement)
-            }
-            .skeletonLoadable()
+            buttonView
+                .skeletonLoadable()
         }
         .padding(.huiSpaces.space24)
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
     }
+
+    private var buttonView: some View {
+        HorizonUI.PrimaryButton(
+            String(localized: "Go to announcement", bundle: .horizon),
+            type: .darkOutline,
+            isSmall: true
+        ) {
+            onTap(announcement)
+        }
+        .accessibilityFocused(focusedAnnouncementID, equals: announcement.id)
+    }
 }
 
 #Preview {
+    @Previewable @AccessibilityFocusState var focusState: String?
+
     AnnouncementWidgetView(
         announcement: .init(
             id: "1",
@@ -86,6 +104,6 @@ struct AnnouncementWidgetView: View {
             isRead: true,
             courseName: "Course Name",
             type: .announcement
-        )
+        ), focusedAnnouncementID: $focusState
     ) { _ in }
 }

@@ -133,7 +133,7 @@ final class NotificationInteractorLive: NotificationInteractor {
     }
 
     private func markDiscussionTopicRead(courseID: String, topicID: String) -> AnyPublisher<[NotificationModel], Error> {
-        let useCase = HMarkDiscussionTopicReadUseCase(
+        let useCase = MarkDiscussionTopicRead(
             context: .course(courseID),
             topicID: topicID,
             isRead: true

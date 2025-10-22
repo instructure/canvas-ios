@@ -20,19 +20,42 @@ import HorizonUI
 import SwiftUI
 
 struct SkillsCountWidgetView: View {
-    let viewModel: SkillsHighlightsWidgetViewModel
+    @Environment(\.dashboardLastFocusedElement) private var lastFocusedElement
+    @Environment(\.dashboardRestoreFocusTrigger) private var restoreFocusTrigger
+    @AccessibilityFocusState private var isFocused: Bool
+
+    // MARK: - Dependencies
+
+    private let viewModel: SkillsHighlightsWidgetViewModel
+    private let onTap: () -> Void
+
+    // MARK: - Init
+
+    init(
+        viewModel: SkillsHighlightsWidgetViewModel,
+        onTap: @escaping () -> Void
+    ) {
+        self.viewModel = viewModel
+        self.onTap = onTap
+    }
+
     var body: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
-            SkillsCountWidgetHeaderView()
-            switch viewModel.state {
-            case .loading:
-                dataView(count: 1, isLoading: true)
-            case .data:
-                dataView(count: viewModel.countSkills)
-            case .empty:
-                emptyView
-            case .error:
-                errorView
+        Button {
+            onTap()
+            lastFocusedElement.wrappedValue = .skillsCountWidget
+        } label: {
+            VStack(alignment: .leading, spacing: .huiSpaces.space8) {
+                SkillsCountWidgetHeaderView()
+                switch viewModel.state {
+                case .loading:
+                    dataView(count: 1, isLoading: true)
+                case .data:
+                    dataView(count: viewModel.countSkills)
+                case .empty:
+                    emptyView
+                case .error:
+                    errorView
+                }
             }
         }
         .padding(.huiSpaces.space24)
@@ -40,7 +63,18 @@ struct SkillsCountWidgetView: View {
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
         .isSkeletonLoadActive(viewModel.state == .loading)
+        .buttonStyle(.plain)
         .fixedSize(horizontal: true, vertical: false)
+        .accessibilityFocused($isFocused)
+        .accessibilityHint(String(localized: "Double tap to open skillspace", bundle: .horizon))
+        .onChange(of: restoreFocusTrigger) { _, _ in
+            if let lastFocused = lastFocusedElement.wrappedValue,
+               case .skillsCountWidget = lastFocused {
+                DispatchQueue.main.async {
+                    isFocused = true
+                }
+            }
+        }
     }
 
     @ViewBuilder
@@ -68,11 +102,11 @@ struct SkillsCountWidgetView: View {
     }
 
     private var emptyView: some View {
-        SkillsCountWidgetEmptyView()
+        WidgetEmptyView()
     }
 
     private var errorView: some View {
-        SkillsCountWidgetErrorView {
+        WidgetErrorView {
             viewModel.getSkills(ignoreCache: true)
         }
     }
@@ -85,12 +119,12 @@ struct SkillsCountWidgetView: View {
                 viewModel: .init(
                     interactor: SkillsWidgetInteractorPreview(shouldReturnError: true)
                 )
-            )
+            ) {  }
             SkillsCountWidgetView(
                 viewModel: .init(
                     interactor: SkillsWidgetInteractorPreview(shouldReturnError: false)
                 )
-            )
+            ) {  }
         }
         .padding(.horizontal, 24)
     }

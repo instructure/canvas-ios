@@ -36,6 +36,7 @@ final class AnnouncementsListWidgetViewModel {
 
     private var subscriptions = Set<AnyCancellable>()
     private let scheduler: AnySchedulerOf<DispatchQueue>
+    private var isFirstLoading = true
 
     // MARK: - Dependencies
 
@@ -82,12 +83,17 @@ final class AnnouncementsListWidgetViewModel {
     }
 
     func fetchAnnouncements(ignoreCache: Bool, completion: (() -> Void)? = nil) {
-        state = .loading
+        if isFirstLoading {
+            state = .loading
+        } else if case .data(announcements: let announcements) = state, announcements.isNotEmpty {
+            state = .loading
+        }
+        isFirstLoading = false
         interactor
             .getNotifications(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0) }
-            .filter { $0.type == .announcement && ($0.isRead == false )}
+            .filter { $0.type == .announcement && ($0.isRead == false)}
             .collect()
             .receive(on: scheduler)
             .sink(receiveValue: { [weak self] notifications in

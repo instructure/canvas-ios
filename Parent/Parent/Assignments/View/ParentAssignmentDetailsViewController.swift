@@ -302,14 +302,17 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
     }
 
     @IBAction func submissionAndRubricButtonPressed(_ sender: Any) {
-        guard let assignmentHtmlURL = assignment.first?.htmlURL else {
+        guard let assignment = assignment.first,
+              let assignmentHtmlURL = assignment.htmlURL else {
             return
         }
 
+        let isQuiz = assignment.quizID != nil || assignment.isQuizLTI
         let submissionURL = submissionURLInteractor.submissionURL(
             assignmentHtmlURL: assignmentHtmlURL,
             observedUserID: studentID,
-            isAssignmentEnhancementsEnabled: featuresStore.isFeatureFlagEnabled(.assignmentEnhancements)
+            isAssignmentEnhancementsEnabled: featuresStore.isFeatureFlagEnabled(.assignmentEnhancements),
+            isQuiz: isQuiz
         )
 
         let interactor = ParentSubmissionInteractorLive(

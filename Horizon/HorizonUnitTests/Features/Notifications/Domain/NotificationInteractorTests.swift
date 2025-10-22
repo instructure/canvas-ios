@@ -38,7 +38,7 @@ final class NotificationInteractorTests: HorizonTestCase {
             value: GetHCoursesProgressionResponse.make()
         )
 
-        XCTAssertFirstValueAndCompletion(testee.getNotifications(ignoreCache: false)) { notifications in
+        XCTAssertSingleOutputAndFinish(testee.getNotifications(ignoreCache: false)) { notifications in
             // Then
             XCTAssertEqual(notifications.count, 3)
             XCTAssertEqual(notifications[0].type, .dueDate)
@@ -60,10 +60,8 @@ final class NotificationInteractorTests: HorizonTestCase {
             value: GetHCoursesProgressionResponse.make()
         )
 
-        XCTAssertFirstValueAndCompletion(testee.getUnreadNotificationCount()) { countOFUnreadNotifications in
-            // Then
-            XCTAssertEqual(countOFUnreadNotifications, 1)
-        }
+        // Then
+        XCTAssertSingleOutputEqualsAndFinish(testee.getUnreadNotificationCount(), 1)
     }
 
     func testMarkNotificationAsReadGloablAnnouncement() {
@@ -100,7 +98,7 @@ final class NotificationInteractorTests: HorizonTestCase {
             htmlURL: nil,
             isGlobalNotification: true
         )
-        XCTAssertFirstValueAndCompletion(testee.markNotificationAsRead(notification: notification)) { notifications in
+        XCTAssertSingleOutputAndFinish(testee.markNotificationAsRead(notification: notification)) { notifications in
             // Then
             XCTAssertEqual(notifications.count, 3)
         }
@@ -123,7 +121,7 @@ final class NotificationInteractorTests: HorizonTestCase {
             value: GetHCoursesProgressionResponse.make()
         )
 
-        api.mock(HMarkDiscussionTopicReadUseCase(context: .course("12"), topicID: "topicID-12", isRead: true), value: .init())
+        api.mock(MarkDiscussionTopicRead(context: .course("12"), topicID: "topicID-12", isRead: true), value: .init())
         let notification = NotificationModel(
             id: "12",
             title: "Title 1",
@@ -139,7 +137,7 @@ final class NotificationInteractorTests: HorizonTestCase {
             htmlURL: nil,
             isGlobalNotification: false
         )
-        XCTAssertFirstValueAndCompletion(testee.markNotificationAsRead(notification: notification)) { notifications in
+        XCTAssertSingleOutputAndFinish(testee.markNotificationAsRead(notification: notification)) { notifications in
             // Then
             XCTAssertEqual(notifications.count, 3)
         }

@@ -79,7 +79,7 @@ class WKWebViewExtensionsTests: CoreTestCase {
             timeout: 10
         )
 
-        XCTAssertFirstValueAndCompletion(
+        XCTAssertSingleOutputAndFinish(
             webView.evaluateJavaScript(js: "document.title"),
             timeout: 5
         ) { result in

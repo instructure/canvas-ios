@@ -23,13 +23,15 @@ import SwiftUI
 struct CourseListWidgetView: View {
     @State private var viewModel: CourseListWidgetViewModel
     @Environment(\.viewController) private var viewController
-
+    @Environment(\.dashboardLastFocusedElement) private var lastFocusedElement
+    @Environment(\.dashboardRestoreFocusTrigger) private var restoreFocusTrigger
+    @AccessibilityFocusState private var focusedCourseID: String?
     @State private var currentCourseIndex: Int? = 0
     @State private var bounceScale: CGFloat = 1.0
     @State private var scrollViewID = UUID()
 
     init(viewModel: CourseListWidgetViewModel) {
-        self._viewModel = State(initialValue: viewModel)
+        _viewModel = State(initialValue: viewModel)
     }
 
     var body: some View {
@@ -61,6 +63,14 @@ struct CourseListWidgetView: View {
         .onWidgetReload { completion in
             viewModel.reload(completion: completion)
         }
+        .onChange(of: restoreFocusTrigger) { _, _ in
+            if let lastFocused = lastFocusedElement.wrappedValue,
+               case let .course(id) = lastFocused {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    focusedCourseID = id
+                }
+            }
+        }
     }
 
     private var dataView: some View {
@@ -72,6 +82,7 @@ struct CourseListWidgetView: View {
                             CourseListWidgetItemView(
                                 model: CourseListWidgetModel(from: course),
                                 onCourseTap: { courseId in
+                                    lastFocusedElement.wrappedValue = .course(id: courseId)
                                     viewModel.navigateToCourseDetails(
                                         id: courseId,
                                         enrollmentID: course.enrollmentID,
@@ -80,12 +91,13 @@ struct CourseListWidgetView: View {
                                     )
                                 },
                                 onProgramTap: { programId in
+                                    lastFocusedElement.wrappedValue = .programInvitation(id: programId)
                                     viewModel.navigateProgram(id: programId, viewController: viewController)
-
                                 },
                                 onLearningObjectTap: { _, url in
                                     if let url = url,
                                        let currentLearningObject = course.currentLearningObject {
+                                        lastFocusedElement.wrappedValue = .course(id: course.id)
                                         viewModel.navigateToItemSequence(
                                             url: url,
                                             learningObject: currentLearningObject,
@@ -94,6 +106,7 @@ struct CourseListWidgetView: View {
                                     }
                                 }
                             )
+                            .accessibilityFocused($focusedCourseID, equals: course.id)
                             .frame(width: size - 48)
                             .scaleEffect(bounceScale)
                             .opacity(viewModel.state == .loading ? 0.6 : 1.0)
@@ -122,8 +135,9 @@ struct CourseListWidgetView: View {
 
     @ViewBuilder
     private var programCardsView: some View {
-        if viewModel.unenrolledPrograms.isNotEmpty, viewModel.state == .data {
+        if viewModel.isProgramWidgetVisible {
             UnenrolledProgramListWidgetView(programs: viewModel.unenrolledPrograms) { program in
+                lastFocusedElement.wrappedValue = .programInvitation(id: program.id)
                 viewModel.navigateProgram(id: program.id, viewController: viewController)
             }
             .padding(.horizontal, .huiSpaces.space24)
