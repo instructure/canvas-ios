@@ -64,14 +64,17 @@ public class GetModules: UseCase {
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
         let request = GetModulesRequest(courseID: courseID, include: includes)
-        environment.api.exhaust(request) { [courseID] modules, urlResponse, error in
+        environment.api.exhaust(request) { [courseID, shouldGetDiscussionCheckpoints] modules, urlResponse, error in
             guard let modules = modules, error == nil else {
                 completionHandler(nil, urlResponse, error)
                 return
             }
-            var sections: [Response.Section] = []
+
             let loadGroup = DispatchGroup()
             loadGroup.enter()
+
+            // get ModuleItems
+            var sections: [Response.Section] = []
             for module in modules {
                 loadGroup.enter()
                 let request = GetModuleItemsRequest(courseID: courseID, moduleID: module.id.value, include: [.content_details, .mastery_paths])
@@ -84,28 +87,29 @@ public class GetModules: UseCase {
                     sections.append(Response.Section(module: module, items: items))
                 }
             }
-            loadGroup.leave()
-            loadGroup.notify(queue: .main) { [weak self] in
-                if self?.shouldGetDiscussionCheckpoints ?? false {
-                    let request = GetModuleItemsDiscussionCheckpointsRequest(courseId: courseID)
-                    environment.api.exhaust(request) { response, urlResponse, error in
-                        guard let response, error == nil else {
-                            completionHandler(nil, urlResponse, error)
-                            return
-                        }
-                        let useCaseResponse = Response(
-                            sections: sections,
-                            discussionCheckpointsData: response.dataPerModuleItemId
-                        )
-                        completionHandler(useCaseResponse, urlResponse, nil)
+
+            // get DiscussionCheckpoints if needed
+            var discussionCheckpointsData: [String: APIModuleItemsDiscussionCheckpoints.Data] = [:]
+            if shouldGetDiscussionCheckpoints {
+                loadGroup.enter()
+                let request = GetModuleItemsDiscussionCheckpointsRequest(courseId: courseID)
+                environment.api.exhaust(request) { response, urlResponse, error in
+                    defer { loadGroup.leave() }
+                    guard let response, error == nil else {
+                        completionHandler(nil, urlResponse, error)
+                        return
                     }
-                } else {
-                    let useCaseResponse = Response(
-                        sections: sections,
-                        discussionCheckpointsData: [:]
-                    )
-                    completionHandler(useCaseResponse, urlResponse, nil)
+                    discussionCheckpointsData = response.dataPerModuleItemId
                 }
+            }
+
+            loadGroup.leave()
+            loadGroup.notify(queue: .main) {
+                let useCaseResponse = Response(
+                    sections: sections,
+                    discussionCheckpointsData: discussionCheckpointsData
+                )
+                completionHandler(useCaseResponse, urlResponse, nil)
             }
         }
     }
