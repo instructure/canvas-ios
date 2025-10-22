@@ -25,10 +25,7 @@ extension APIGraphQLRequestable {
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        let body = self.body as? GraphQLBody<Variables>
-        XCTAssertEqual(body?.query, expected.query, file: file, line: line)
-        XCTAssertEqual(body?.operationName, expected.operationName, file: file, line: line)
-        XCTAssertEqual(body?.variables, expected.variables, file: file, line: line)
+        XCTAssertEqual(body, expected, file: file, line: line)
     }
 }
 
