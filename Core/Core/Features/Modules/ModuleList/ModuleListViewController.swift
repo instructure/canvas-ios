@@ -43,7 +43,7 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
     lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.reloadCourse()
     }
-    lazy var modules = env.subscribe(GetModules(courseID: courseID)) { [weak self] in
+    lazy var modules = env.subscribe(GetModules(courseID: courseID, shouldGetDiscussionCheckpoints: true)) { [weak self] in
         self?.update()
     }
     lazy var tabs = env.subscribe(GetContextTabs(context: .course(courseID))) { [weak self] in

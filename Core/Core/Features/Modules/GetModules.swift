@@ -36,6 +36,8 @@ public class GetModules: UseCase {
         "\(Context(.course, id: courseID).pathComponent)/modules/items"
     }
 
+    private let shouldGetDiscussionCheckpoints: Bool
+
     public var scope: Scope {
         return Scope(
             predicate: NSPredicate(format: "%K == %@", #keyPath(Module.courseID), courseID),
@@ -45,8 +47,13 @@ public class GetModules: UseCase {
             ])
     }
 
-    public init(courseID: String, includes: [GetModulesRequest.Include] = []) {
+    public init(
+        courseID: String,
+        shouldGetDiscussionCheckpoints: Bool = false,
+        includes: [GetModulesRequest.Include] = []
+    ) {
         self.courseID = courseID
+        self.shouldGetDiscussionCheckpoints = shouldGetDiscussionCheckpoints
         self.includes = includes
     }
 
@@ -78,16 +85,24 @@ public class GetModules: UseCase {
                 }
             }
             loadGroup.leave()
-            loadGroup.notify(queue: .main) {
-                let request = GetModuleItemsDiscussionCheckpointsRequest(courseId: courseID)
-                environment.api.exhaust(request) { response, urlResponse, error in
-                    guard let response, error == nil else {
-                        completionHandler(nil, urlResponse, error)
-                        return
+            loadGroup.notify(queue: .main) { [weak self] in
+                if self?.shouldGetDiscussionCheckpoints ?? false {
+                    let request = GetModuleItemsDiscussionCheckpointsRequest(courseId: courseID)
+                    environment.api.exhaust(request) { response, urlResponse, error in
+                        guard let response, error == nil else {
+                            completionHandler(nil, urlResponse, error)
+                            return
+                        }
+                        let useCaseResponse = Response(
+                            sections: sections,
+                            discussionCheckpointsData: response.dataPerModuleItemId
+                        )
+                        completionHandler(useCaseResponse, urlResponse, nil)
                     }
+                } else {
                     let useCaseResponse = Response(
                         sections: sections,
-                        discussionCheckpointsData: response.dataPerModuleItemId
+                        discussionCheckpointsData: [:]
                     )
                     completionHandler(useCaseResponse, urlResponse, nil)
                 }
