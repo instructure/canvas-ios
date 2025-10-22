@@ -88,6 +88,8 @@ public final class TodoInteractorLive: TodoInteractor {
         return useCase.fetchWithFuture(environment: env)
             .map { [weak self] _ in
                 self?.updateOverrideId(for: item)
+                let eventName = done ? "todo_item_marked_done" : "todo_item_marked_undone"
+                Analytics.shared.logEvent(eventName)
                 return ()
             }
             .eraseToAnyPublisher()
