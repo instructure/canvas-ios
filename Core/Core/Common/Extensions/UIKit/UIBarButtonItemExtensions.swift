@@ -27,16 +27,28 @@ public extension UIBarButtonItem {
     }
 
     static func back(actionHandler: @escaping () -> Void) -> UIBarButtonItem {
-        let config = UIImage.SymbolConfiguration(weight: .semibold)
-        let backImage = UIImage(systemName: "chevron.backward", withConfiguration: config)
-        let barButton = UIBarButtonItemWithCompletion(
-            image: backImage,
-            landscapeImagePhone: backImage,
-            style: .plain,
-            actionHandler: actionHandler
-        )
-        barButton.imageInsets = .init(top: 0, left: -7.5, bottom: 0, right: 0)
-        barButton.landscapeImagePhoneInsets = .init(top: 0, left: -8, bottom: 0, right: 0)
-        return barButton
+        if #available(iOS 26, *) {
+            let backImage = UIImage(systemName: "chevron.backward")
+            let barButton = UIBarButtonItemWithCompletion(
+                image: backImage,
+                landscapeImagePhone: backImage,
+                style: .plain,
+                actionHandler: actionHandler
+            )
+            barButton.landscapeImagePhoneInsets = .init(top: 0, left: -8, bottom: 0, right: 0)
+            return barButton
+        } else {
+            let config = UIImage.SymbolConfiguration(weight: .semibold)
+            let backImage = UIImage(systemName: "chevron.backward", withConfiguration: config)
+            let barButton = UIBarButtonItemWithCompletion(
+                image: backImage,
+                landscapeImagePhone: backImage,
+                style: .plain,
+                actionHandler: actionHandler
+            )
+            barButton.imageInsets = .init(top: 0, left: -7.5, bottom: 0, right: 0)
+            barButton.landscapeImagePhoneInsets = .init(top: 0, left: -8, bottom: 0, right: 0)
+            return barButton
+        }
     }
 }
