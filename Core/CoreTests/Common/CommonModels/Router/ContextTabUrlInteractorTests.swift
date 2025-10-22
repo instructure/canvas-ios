@@ -20,9 +20,9 @@ import XCTest
 import TestsFoundation
 @testable import Core
 
-final class CourseTabUrlInteractorTests: CoreTestCase {
+final class ContextTabUrlInteractorTests: CoreTestCase {
 
-    private var testee: CourseTabUrlInteractor!
+    private var testee: ContextTabUrlInteractor!
 
     override func setUp() {
         super.setUp()
@@ -108,7 +108,7 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
 
         let isAllowedUrl = testee.isAllowedUrl(
             .make("/courses/42/stuff"),
-            userInfo: [CourseTabUrlInteractor.blockDisabledTabUserInfoKey: false]
+            userInfo: [ContextTabUrlInteractor.blockDisabledTabUserInfoKey: false]
         )
         XCTAssertEqual(isAllowedUrl, true)
 
@@ -120,7 +120,7 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
 
         let isAllowedUrl = testee.isAllowedUrl(
             .make("/courses/42/stuff"),
-            userInfo: [CourseTabUrlInteractor.blockDisabledTabUserInfoKey: true]
+            userInfo: [ContextTabUrlInteractor.blockDisabledTabUserInfoKey: true]
         )
         XCTAssertEqual(isAllowedUrl, false)
 
@@ -274,10 +274,10 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/stuff")), false)
     }
 
-    func test_setupEnabledTabs_whenTabIsNotCourse_shouldIgnore() {
-        saveTab(htmlUrl: "/groups/42/not-pages", context: .group("42"))
+    func test_setupEnabledTabs_whenTabIsNotCourseOrGroup_shouldIgnore() {
+        saveTab(htmlUrl: "/accounts/42/not-pages", context: .account("42"))
 
-        XCTAssertEqual(testee.isAllowedUrl(.make("/groups/42/pages")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/accounts/42/pages")), true)
     }
 
     func test_setupEnabledTabs_whenSyllabusIsEnabled_shouldEnableAlternativePaths() {
@@ -425,7 +425,7 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
 
     // MARK: - Course Shard ID
 
-    func test_courseShardID() {
+    func test_contextShardID() {
         saveTab(
             id: "324",
             htmlUrl: "/courses/324/pages",
@@ -451,14 +451,14 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
             context: .course("324")
         )
 
-        XCTAssertEqual(testee.courseShardID(for: .init(string: "/courses/324/pages")!), "12345")
-        XCTAssertEqual(testee.courseShardID(for: .init(string: "/courses/123/grades")!), "7643")
-        XCTAssertEqual(testee.courseShardID(for: .init(string: "/courses/435/people")!), "54321")
-        XCTAssertEqual(testee.courseShardID(for: .init(string: "/courses/98762~678/pages")!), "98762")
-        XCTAssertEqual(testee.courseShardID(for: .init(string: "https://example-03.instructure.com/pages/897")!), "54321")
-        XCTAssertEqual(testee.courseShardID(for: .init(string: "/courses/324/assignments")!), "12345")
+        XCTAssertEqual(testee.contextShardID(for: .init(string: "/courses/324/pages")!), "12345")
+        XCTAssertEqual(testee.contextShardID(for: .init(string: "/courses/123/grades")!), "7643")
+        XCTAssertEqual(testee.contextShardID(for: .init(string: "/courses/435/people")!), "54321")
+        XCTAssertEqual(testee.contextShardID(for: .init(string: "/courses/98762~678/pages")!), "98762")
+        XCTAssertEqual(testee.contextShardID(for: .init(string: "https://example-03.instructure.com/pages/897")!), "54321")
+        XCTAssertEqual(testee.contextShardID(for: .init(string: "/courses/324/assignments")!), "12345")
 
-        XCTAssertNil(testee.courseShardID(for: .init(string: "/courses/786/pages")!))
+        XCTAssertNil(testee.contextShardID(for: .init(string: "/courses/786/pages")!))
     }
 
     // MARK: - Private helpers
@@ -487,7 +487,7 @@ private extension URL {
     }
 }
 
-private extension CourseTabUrlInteractor {
+private extension ContextTabUrlInteractor {
     func isAllowedUrl(_ url: URL) -> Bool {
         isAllowedUrl(url, userInfo: nil)
     }

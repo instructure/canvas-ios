@@ -353,7 +353,7 @@ public struct FileEditorView: View {
     func loadCourseSettings() {
         guard isFile, let context = context, context.contextType == .course else { return }
         let useCase = GetCourseSettings(courseID: context.id)
-        useCase.fetch { _, _, _ in performUIUpdate {
+        useCase.modified(for: env).fetch(environment: env) { _, _, _ in performUIUpdate {
             let settings: CourseSettings? = self.env.database.viewContext.fetch(scope: useCase.scope).first
             self.usageRightsRequired = settings?.usageRightsRequired == true
         } }
