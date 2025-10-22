@@ -168,4 +168,77 @@ final class HNotificationViewModelTests: HorizonTestCase {
         XCTAssertNotNil(messageDetailsView)
         wait(for: [router.showExpectation], timeout: 1)
     }
+
+    func testAccessibilityPropertiesWithValues() {
+        // Given
+        let model = NotificationModel(
+            id: "1",
+            title: "My Title",
+            date: Date.fromISO8601("2025-09-24T06:27:18Z"),
+            isRead: false,
+            courseName: "AI Introduction",
+            courseID: "1",
+            enrollmentID: "enrollment",
+            isScoreAnnouncement: false,
+            type: .announcement
+        )
+
+        // When
+        let courseAccessibility = model.accessibilityCourseName
+        let dateAccessibility = model.accessibilityDate
+        let titleAccessibility = model.accessibilityTitle
+
+        // Then
+        XCTAssertEqual(courseAccessibility, "Course AI Introduction")
+        XCTAssertEqual(dateAccessibility, "Date Sep 24, 2025")
+        XCTAssertEqual(titleAccessibility, "Title My Title")
+    }
+
+    func testMarkNotificationAsReadSuccessResponse() {
+        let testee = HNotificationViewModel(interactor: NotificationInteractorMock(), router: router, scheduler: .immediate)
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+        let notification = NotificationModel(
+            id: "1",
+            title: "Title 1",
+            date: Date(),
+            isRead: false,
+            courseName: "Course 1",
+            courseID: "1",
+            enrollmentID: "enrollmentID-1",
+            isScoreAnnouncement: false,
+            type: .announcement,
+            announcementId: "announcementId-1",
+            assignmentURL: nil,
+            htmlURL: nil
+        )
+        // When
+        testee.navigateToDetails(notification: notification, viewController: viewController)
+        // Then
+        XCTAssertEqual(testee.notifications.count, 2)
+    }
+
+    func testMarkNotificationAsReadFailureResponse() {
+        let testee = HNotificationViewModel(interactor: NotificationInteractorMock(shouldReturnError: true), router: router, scheduler: .immediate)
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+        let notification = NotificationModel(
+            id: "1",
+            title: "Title 1",
+            date: Date(),
+            isRead: false,
+            courseName: "Course 1",
+            courseID: "1",
+            enrollmentID: "enrollmentID-1",
+            isScoreAnnouncement: false,
+            type: .announcement,
+            announcementId: "announcementId-1",
+            assignmentURL: nil,
+            htmlURL: nil
+        )
+        // When
+        testee.navigateToDetails(notification: notification, viewController: viewController)
+        // Then
+        XCTAssertTrue(testee.isErrorVisiable)
+    }
 }

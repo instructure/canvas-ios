@@ -104,7 +104,7 @@ enum HActivityStub {
         ]
     }
 }
-fileprivate extension Date {
+extension Date {
     static func fromISO8601(_ string: String) -> Date {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withInternetDateTime]

@@ -30,6 +30,7 @@ public extension HorizonUI {
             case p2
             case p3
             case tag
+            case labelSemibold
             case labelLargeBold
             case labelMediumBold
             case labelSmallBold
@@ -54,6 +55,7 @@ public extension HorizonUI {
                 case .labelSmall: return .huiFonts.figtreeRegular12
                 case .buttonTextLarge: return .huiFonts.figtreeRegular16
                 case .buttonTextMedium: return .huiFonts.figtreeRegular14
+                case .labelSemibold: return .huiFonts.manropeSB36
                 }
             }
 

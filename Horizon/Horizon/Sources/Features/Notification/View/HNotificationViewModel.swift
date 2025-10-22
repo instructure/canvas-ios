@@ -17,8 +17,10 @@
 //
 
 import Observation
+import CombineSchedulers
 import Core
 import Combine
+import Foundation
 
 @Observable
 final class HNotificationViewModel {
@@ -36,6 +38,7 @@ final class HNotificationViewModel {
     // MARK: - Private Properties
 
     private var subscriptions = Set<AnyCancellable>()
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     private var paginatedNotifications: [[NotificationModel]] = [[]]
     private var totalPages = 0
     private var currentPage = 0 {
@@ -52,10 +55,12 @@ final class HNotificationViewModel {
 
     init(
         interactor: NotificationInteractor,
-        router: Router
+        router: Router,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
         self.router = router
+        self.scheduler = scheduler
         fetchNotifications(ignoreCache: false)
     }
 
@@ -100,6 +105,17 @@ final class HNotificationViewModel {
                 announcementID: notification.announcementId ?? ""
             )
             router.show(vc, from: viewController)
+            interactor
+                .markNotificationAsRead(notification: notification)
+                .receive(on: scheduler)
+                .sinkFailureOrValue { [weak self] error in
+                    self?.isErrorVisiable = true
+                    self?.errorMessage = error.localizedDescription
+                } receiveValue: { [weak self] notifications in
+                    self?.handleResponse(notifications: notifications)
+                }
+                .store(in: &subscriptions)
+
         }
     }
 
@@ -111,6 +127,7 @@ final class HNotificationViewModel {
     ) {
         interactor
             .getNotifications(ignoreCache: ignoreCache)
+            .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
                 completion?()
                 self?.isErrorVisiable = true

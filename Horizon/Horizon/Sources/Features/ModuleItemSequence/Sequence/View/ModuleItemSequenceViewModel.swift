@@ -48,9 +48,9 @@ final class ModuleItemSequenceViewModel {
     var visibleButtons: [ModuleNavBarUtilityButtons] {
         var buttons: [ModuleNavBarUtilityButtons] = [.chatBot(navigateToTutor)]
         if isAssignmentOptionsButtonVisible, moduleItem?.isQuizLTI == false {
-          buttons.append(.assignmentMoreOptions(assignmentOptionsTapped, hasBadge: hasUnreadComments))
-        } else if moduleItem?.type?.assetType == .page && isNotebookDisabled == false {
-          buttons.append(.notebook(navigateToNotebook))
+            buttons.append(.assignmentMoreOptions(assignmentOptionsTapped, hasBadge: hasUnreadComments))
+        } else if moduleItem?.type?.assetType == .page, isNotebookDisabled == false {
+            buttons.append(.notebook(navigateToNotebook))
         }
         return buttons
     }
@@ -73,6 +73,7 @@ final class ModuleItemSequenceViewModel {
     var hasUnreadComments: Bool = false
 
     // MARK: - Dependencies
+
     private var error: String?
     private let moduleItemInteractor: ModuleItemSequenceInteractor
     private let moduleItemStateInteractor: ModuleItemStateInteractor
@@ -175,7 +176,7 @@ final class ModuleItemSequenceViewModel {
 
     private func fetchModuleItemSequence(
         assetId: String,
-        ignoreCache: Bool = false
+        ignoreCache _: Bool = false
     ) {
         isLoaderVisible = true
         moduleItemInteractor.fetchModuleItems(
@@ -204,10 +205,10 @@ final class ModuleItemSequenceViewModel {
     }
 
     private func navigateToNotebook(viewController: WeakViewController) {
-        guard case .page(let pageUrl) = moduleItem?.type else {
+        guard case let .page(pageUrl) = moduleItem?.type else {
             return
         }
-        router.route(to: "/notebook?courseID=\(self.courseID)&pageURL=\(pageUrl)", from: viewController)
+        router.route(to: "/notebook?courseID=\(courseID)&pageURL=\(pageUrl)", from: viewController)
     }
 
     private func navigateToTutor(viewController: WeakViewController) {
@@ -219,21 +220,16 @@ final class ModuleItemSequenceViewModel {
         var pageURL: String?
 
         switch moduleItem?.type {
-        case .file(let id):
-                fileID = id
-        case .page(let url):
-                pageURL = url
+        case let .file(id):
+            fileID = id
+        case let .page(url):
+            pageURL = url
         default:
             break
         }
         if case let .file(file) = moduleItem?.type {
             fileID = file
         }
-        let params = AssistAssembly.RoutingParams(
-            courseID: courseID,
-            fileID: fileID,
-            pageURL: pageURL
-        ).queryString
 
         let routingParams: AssistAssembly.RoutingParams = .init(
             courseID: courseID,
@@ -277,10 +273,10 @@ final class ModuleItemSequenceViewModel {
         isAssignmentOptionsButtonVisible = state?.isAssignment ?? false
         /// In some cases, the module sequence API returns an empty response for assignment type only.
         if state?.isExternalURL == true, item == nil {
-           let assignemtModuleItem = getAssignmentModuleItem()
-             if assignemtModuleItem.isAssignment {
+            let assignemtModuleItem = getAssignmentModuleItem()
+            if assignemtModuleItem.isAssignment {
                 isAssignmentAvailableInItemSequence = false
-                 state = assignemtModuleItem
+                state = assignemtModuleItem
             }
         }
         if case let .assignment(courseID, assignmentID, isMarkedAsDone, isCompletedItem, moduleID, itemID) = state {

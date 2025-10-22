@@ -47,6 +47,7 @@ public extension HorizonUI {
         private static let manropeB20: VariantAndSize = .init(variant: .manropeBold, size: 20)
 
         private static let manropeSB16: VariantAndSize = .init(variant: .manropeSemiBold, size: 16)
+        private static let manropeSB36: VariantAndSize = .init(variant: .manropeSemiBold, size: 36)
 
         private static let figtreeR16: VariantAndSize = .init(variant: .figtreeRegular, size: 16)
         private static let figtreeR14: VariantAndSize = .init(variant: .figtreeRegular, size: 14)
@@ -72,6 +73,7 @@ public extension HorizonUI {
         let manropeBold28: Font = HorizonUI.Fonts.manropeB28.scaledFont()
         let manropeBold24: Font = HorizonUI.Fonts.manropeB24.scaledFont()
         let manropeBold20: Font = HorizonUI.Fonts.manropeB20.scaledFont()
+        let manropeSB36: Font = HorizonUI.Fonts.manropeSB36.scaledFont()
 
         let manropeSemiBold16: Font = HorizonUI.Fonts.manropeSB16.scaledFont()
 

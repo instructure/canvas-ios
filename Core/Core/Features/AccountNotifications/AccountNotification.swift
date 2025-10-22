@@ -30,6 +30,7 @@ final public class AccountNotification: NSManagedObject, WriteableModel {
     @NSManaged public var message: String
     @NSManaged public var startAt: Date?
     @NSManaged public var subject: String
+    @NSManaged public var closed: Bool
 
     public var icon: AccountNotificationIcon {
         get { AccountNotificationIcon(rawValue: iconRaw) ?? .information }
@@ -45,6 +46,7 @@ final public class AccountNotification: NSManagedObject, WriteableModel {
         model.message = item.message
         model.startAt = item.start_at
         model.subject = item.subject
+        model.closed = item.closed.defaultToFalse
         return model
     }
 }

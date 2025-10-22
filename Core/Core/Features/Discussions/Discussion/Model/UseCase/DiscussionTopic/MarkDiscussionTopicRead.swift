@@ -19,19 +19,20 @@
 import Foundation
 import CoreData
 
-class MarkDiscussionTopicRead: APIUseCase {
-    var cacheKey: String? { nil }
+public class MarkDiscussionTopicRead: APIUseCase {
+    public typealias Model = AccountNotification
+    public var cacheKey: String? { nil }
     let context: Context
-    let request: MarkDiscussionTopicReadRequest
+    public let request: MarkDiscussionTopicReadRequest
     let topicID: String
 
-    init(context: Context, topicID: String, isRead: Bool) {
+    public init(context: Context, topicID: String, isRead: Bool) {
         self.context = context
         self.request = MarkDiscussionTopicReadRequest(context: context, topicID: topicID, isRead: isRead)
         self.topicID = topicID
     }
 
-    func write(response: APINoContent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public func write(response: APINoContent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         if context.contextType == .course {
             NotificationCenter.default.post(moduleItem: .discussion(topicID), completedRequirement: .view, courseID: context.id)
         }

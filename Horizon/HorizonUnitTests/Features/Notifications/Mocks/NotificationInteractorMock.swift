@@ -22,7 +22,7 @@ import Foundation
 
 final class NotificationInteractorMock: NotificationInteractor {
     private let shouldReturnError: Bool
-
+    var mockedNotifications: [NotificationModel]?
     init(shouldReturnError: Bool = false) {
         self.shouldReturnError = shouldReturnError
     }
@@ -188,7 +188,7 @@ final class NotificationInteractorMock: NotificationInteractor {
             return Fail(error: NSError(domain: "NotificationInteractorMock", code: 1, userInfo: [NSLocalizedDescriptionKey: "Mock error"]))
                 .eraseToAnyPublisher()
         } else {
-            return Just(mocks)
+            return Just(mockedNotifications ?? mocks)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
@@ -197,5 +197,47 @@ final class NotificationInteractorMock: NotificationInteractor {
     func getUnreadNotificationCount() -> AnyPublisher<Int, Never> {
         Just(3)
             .eraseToAnyPublisher()
+    }
+
+    func markNotificationAsRead(notification: NotificationModel) -> AnyPublisher<[NotificationModel], any Error> {
+        if shouldReturnError {
+            return Fail(error: NSError(domain: "NotificationInteractorMock", code: 1, userInfo: [NSLocalizedDescriptionKey: "Mock error"]))
+                .eraseToAnyPublisher()
+        } else {
+            return Just(
+                [
+                    NotificationModel(
+                        id: "10",
+                        title: "Title 10",
+                        date: Calendar.current.date(byAdding: .day, value: -9, to: Date()),
+                        isRead: false,
+                        courseName: "Course 10",
+                        courseID: "10",
+                        enrollmentID: "enrollmentID-10",
+                        isScoreAnnouncement: false,
+                        type: .announcement,
+                        announcementId: "announcementId-10",
+                        assignmentURL: URL(string: "https://course/10/assignment"),
+                        htmlURL: URL(string: "https://course/10/html")
+                    ),
+                    NotificationModel(
+                        id: "11",
+                        title: "Title 11",
+                        date: Calendar.current.date(byAdding: .day, value: -10, to: Date()),
+                        isRead: false,
+                        courseName: "Course 11",
+                        courseID: "11",
+                        enrollmentID: "enrollmentID-11",
+                        isScoreAnnouncement: true,
+                        type: .dueDate,
+                        announcementId: "announcementId-11",
+                        assignmentURL: URL(string: "https://course/11/assignment"),
+                        htmlURL: URL(string: "https://course/11/html")
+                    )
+                ]
+            )
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        }
     }
 }
