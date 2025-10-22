@@ -163,7 +163,7 @@ extension HorizonUI.NavigationBar.Trailing where FocusValue == Int {
     )
 }
 
-fileprivate struct DropShadowModifier: ViewModifier {
+private struct DropShadowModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .foregroundStyle(Color.huiColors.icon.default)
