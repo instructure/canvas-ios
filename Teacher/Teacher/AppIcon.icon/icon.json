@@ -20,8 +20,6 @@
               }
             }
           ],
-          "glass" : true,
-          "hidden" : false,
           "image-name" : "teachericon.svg",
           "name" : "teachericon"
         }
@@ -41,7 +39,7 @@
       "specular" : true,
       "translucency" : {
         "enabled" : true,
-        "value" : 0.1
+        "value" : 0.5
       }
     }
   ],
