@@ -34,6 +34,9 @@ struct DashboardNavigationBar: ViewModifier {
 						navBarLogo
 					}
 				}
+                .onChange(of: horizontalSizeClass, initial: true) { _, newValue in
+                    updateNavBarLogoVisibility(horizontalSizeClass: newValue)
+                }
 		} else if #available(iOS 18.0, *) {
             content
                 .toolbarBackgroundVisibility(.visible, for: .navigationBar)

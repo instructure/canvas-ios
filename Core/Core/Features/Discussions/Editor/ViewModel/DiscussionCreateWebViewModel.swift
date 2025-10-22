@@ -46,8 +46,14 @@ public struct DiscussionCreateWebViewModel: EmbeddedWebPageViewModel {
     }
 
     public func leadingNavigationButton(host: UIViewController) -> InstUI.NavigationBarButton? {
-        .cancel(isBackgroundContextColor: true) { [router] in
-            router.dismiss(host)
+        if #available(iOS 26, *) {
+            .cancel { [router] in
+                router.dismiss(host)
+            }
+        } else {
+            .cancel(isBackgroundContextColor: true) { [router] in
+                router.dismiss(host)
+            }
         }
     }
 
