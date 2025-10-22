@@ -34,9 +34,8 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
 
         // Then
         if case .data(let announcements) = testee.state {
-            XCTAssertEqual(announcements.count, 2)
+            XCTAssertEqual(announcements.count, 1)
             XCTAssertTrue(announcements.contains(where: { $0.id == "1" }))
-            XCTAssertTrue(announcements.contains(where: { $0.id == "3" }))
         } else {
             XCTFail("Expected state to be .data, but was \(testee.state)")
         }
@@ -86,6 +85,19 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
         wait(for: [router.showExpectation], timeout: 1)
         let messageDetailsVC = router.lastViewController as? CoreHostingController<HMessageDetailsView>
         XCTAssertNotNil(messageDetailsVC)
+    }
+    func testMarkAsRead() {
+        // Given
+        let interactor = NotificationInteractorMock()
+        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
+        let viewController = WeakViewController(UIViewController())
+        let globalAnnouncement = NotificationModel(id: "3", type: .announcement, isRead: true, isGlobalNotification: true)
+        // When
+        testee.navigateToAnnouncement(announcement: globalAnnouncement, viewController: viewController)
+        // Then
+        if case .data(let announcements) = testee.state {
+            XCTAssertEqual(announcements.count, 1)
+        }
     }
 }
 

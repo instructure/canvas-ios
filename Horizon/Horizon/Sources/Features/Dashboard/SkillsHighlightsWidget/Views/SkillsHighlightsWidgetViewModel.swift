@@ -70,7 +70,7 @@ final class SkillsHighlightsWidgetViewModel {
                 if skills.isEmpty {
                     self?.state = .empty
                 } else {
-                    self?.skills = Array(skills.prefix(5))
+                    self?.skills = Array(skills.prefix(3))
                     self?.state = .data
                 }
             }

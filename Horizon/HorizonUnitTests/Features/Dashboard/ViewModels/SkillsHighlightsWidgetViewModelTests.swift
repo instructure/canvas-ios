@@ -44,7 +44,7 @@ final class SkillsHighlightsWidgetViewModelTests: HorizonTestCase {
         let testee = createVM()
 
         // Then
-        XCTAssertEqual(testee.skills.count, 5)
+        XCTAssertEqual(testee.skills.count, 3)
     }
 
     // MARK: - Success Cases
@@ -57,7 +57,7 @@ final class SkillsHighlightsWidgetViewModelTests: HorizonTestCase {
         let testee = createVM()
 
         // Then
-        XCTAssertEqual(testee.skills.count, 5)
+        XCTAssertEqual(testee.skills.count, 3)
         XCTAssertEqual(testee.skills[0].id, "1")
         XCTAssertEqual(testee.skills[0].title, "Skill 1")
         XCTAssertEqual(testee.skills[0].status, "expert")
