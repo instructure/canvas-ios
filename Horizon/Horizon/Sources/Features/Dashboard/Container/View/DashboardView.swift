@@ -39,6 +39,7 @@ struct DashboardView: View {
     private let skillsHighlightsWidgetView: SkillsHighlightsWidgetView
     private let skillsCountWidgetView: SkillsCountWidgetView
     private let announcementWidgetView: AnnouncementsListWidgetView
+    private let timeSpentWidgetView: TimeSpentWidgetView
     @State private var widgetReloadHandlers: [WidgetReloadHandler] = []
 
     // MARK: - Init
@@ -48,8 +49,9 @@ struct DashboardView: View {
         courseListWidgetView = CourseListWidgetAssembly.makeView()
         let skillViewModel = SkillsHighlightsWidgetAssembly.makeViewModel()
         skillsHighlightsWidgetView = SkillsHighlightsWidgetAssembly.makeView(viewModel: skillViewModel)
-        skillsCountWidgetView = SkillsCountWidgetView(viewModel: skillViewModel)
+        skillsCountWidgetView = SkillsHighlightsWidgetAssembly.makeSkillsCountWidgetView(viewModel: skillViewModel)
         announcementWidgetView = AnnouncementsWidgetAssembly.makeView()
+        timeSpentWidgetView = TimeSpentWidgetAssembly.makeView()
     }
 
     var body: some View {
@@ -157,8 +159,9 @@ struct DashboardView: View {
 
     private var dataWidgetsView: some View {
         ScrollView(.horizontal) {
-            HStack(spacing: .huiSpaces.space12) {
+            HStack(alignment: .center, spacing: .huiSpaces.space12) {
                 skillsCountWidgetView
+                timeSpentWidgetView
             }
             .padding(.top, .huiSpaces.space2)
             .padding(.bottom, .huiSpaces.space4)

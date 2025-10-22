@@ -20,13 +20,28 @@ import HorizonUI
 import SwiftUI
 
 struct SkillsCountWidgetView: View {
-    let viewModel: SkillsHighlightsWidgetViewModel
     @Environment(\.dashboardLastFocusedElement) private var lastFocusedElement
     @Environment(\.dashboardRestoreFocusTrigger) private var restoreFocusTrigger
     @AccessibilityFocusState private var isFocused: Bool
 
+    // MARK: - Dependencies
+
+    private let viewModel: SkillsHighlightsWidgetViewModel
+    private let onTap: () -> Void
+
+    // MARK: - Init
+
+    init(
+        viewModel: SkillsHighlightsWidgetViewModel,
+        onTap: @escaping () -> Void
+    ) {
+        self.viewModel = viewModel
+        self.onTap = onTap
+    }
+
     var body: some View {
         Button {
+            onTap()
             lastFocusedElement.wrappedValue = .skillsCountWidget
         } label: {
             VStack(alignment: .leading, spacing: .huiSpaces.space8) {
@@ -42,12 +57,12 @@ struct SkillsCountWidgetView: View {
                     errorView
                 }
             }
-            .padding(.huiSpaces.space24)
-            .background(Color.huiColors.surface.pageSecondary)
-            .huiCornerRadius(level: .level5)
-            .huiElevation(level: .level4)
-            .isSkeletonLoadActive(viewModel.state == .loading)
         }
+        .padding(.huiSpaces.space24)
+        .background(Color.huiColors.surface.pageSecondary)
+        .huiCornerRadius(level: .level5)
+        .huiElevation(level: .level4)
+        .isSkeletonLoadActive(viewModel.state == .loading)
         .buttonStyle(.plain)
         .fixedSize(horizontal: true, vertical: false)
         .accessibilityFocused($isFocused)
@@ -87,11 +102,11 @@ struct SkillsCountWidgetView: View {
     }
 
     private var emptyView: some View {
-        SkillsCountWidgetEmptyView()
+        WidgetEmptyView()
     }
 
     private var errorView: some View {
-        SkillsCountWidgetErrorView {
+        WidgetErrorView {
             viewModel.getSkills(ignoreCache: true)
         }
     }
@@ -104,12 +119,12 @@ struct SkillsCountWidgetView: View {
                 viewModel: .init(
                     interactor: SkillsWidgetInteractorPreview(shouldReturnError: true)
                 )
-            )
+            ) {  }
             SkillsCountWidgetView(
                 viewModel: .init(
                     interactor: SkillsWidgetInteractorPreview(shouldReturnError: false)
                 )
-            )
+            ) {  }
         }
         .padding(.horizontal, 24)
     }

@@ -135,7 +135,7 @@ struct CourseListWidgetView: View {
 
     @ViewBuilder
     private var programCardsView: some View {
-        if viewModel.unenrolledPrograms.isNotEmpty, viewModel.state == .data {
+        if viewModel.isProgramWidgetVisible {
             UnenrolledProgramListWidgetView(programs: viewModel.unenrolledPrograms) { program in
                 lastFocusedElement.wrappedValue = .programInvitation(id: program.id)
                 viewModel.navigateProgram(id: program.id, viewController: viewController)

@@ -16,16 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import HorizonUI
-import SwiftUI
-
-struct SkillsCountWidgetEmptyView: View {
-    var body: some View {
-        Text("This widget will update once data becomes available.", bundle: .horizon)
-            .huiTypography(.p2)
-            .foregroundStyle(Color.huiColors.text.timestamp)
-            .skeletonLoadable()
-            .multilineTextAlignment(.leading)
-            .frame(alignment: .trailing)
-    }
+enum HViewState {
+    case data
+    case empty
+    case error
+    case loading
 }
