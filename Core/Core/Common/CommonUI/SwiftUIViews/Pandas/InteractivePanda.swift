@@ -64,17 +64,28 @@ public struct InteractivePanda: View {
     @ViewBuilder
     public var body: some View {
         VStack(spacing: 0) {
-            MotionScene { detector in
-                let noMovement = scene.isParallaxDisabled
-                let offset = scene.offset
-                let horizontalMultiplier = noMovement ? 0.0 : 40
-                let verticalMultiplier = noMovement ? 0.0 : 10
-                scene.background
-                    .motion(detector, horizontalMultiplier: -horizontalMultiplier, verticalMultiplier: -verticalMultiplier)
-                    .offset(offset.background)
-                scene.foreground
-                    .motion(detector, horizontalMultiplier: horizontalMultiplier, verticalMultiplier: verticalMultiplier)
-                    .offset(offset.foreground)
+
+            SwiftUI.Group {
+
+                if ProcessInfo.processInfo.isiOSAppOnMac {
+                    ZStack {
+                        scene.background.offset(scene.offset.background)
+                        scene.foreground.offset(scene.offset.foreground)
+                    }
+                } else {
+                    MotionScene { detector in
+                        let noMovement = scene.isParallaxDisabled
+                        let offset = scene.offset
+                        let horizontalMultiplier = noMovement ? 0.0 : 40
+                        let verticalMultiplier = noMovement ? 0.0 : 10
+                        scene.background
+                            .motion(detector, horizontalMultiplier: -horizontalMultiplier, verticalMultiplier: -verticalMultiplier)
+                            .offset(offset.background)
+                        scene.foreground
+                            .motion(detector, horizontalMultiplier: horizontalMultiplier, verticalMultiplier: verticalMultiplier)
+                            .offset(offset.foreground)
+                    }
+                }
             }
             .frame(height: scene.height)
             .padding(.bottom, 25)
