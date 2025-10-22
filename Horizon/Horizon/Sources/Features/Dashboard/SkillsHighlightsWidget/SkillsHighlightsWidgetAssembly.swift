@@ -17,6 +17,7 @@
 //
 
 import Core
+import SwiftUI
 
 struct SkillsHighlightsWidgetAssembly {
     static func makeViewModel() -> SkillsHighlightsWidgetViewModel {
@@ -28,6 +29,12 @@ struct SkillsHighlightsWidgetAssembly {
         let onTapSkillSpace: () -> Void = { AppEnvironment.shared.switchToSkillSpaceTab() }
         return SkillsHighlightsWidgetView(viewModel: viewModel, onTap: onTapSkillSpace)
     }
+
+    static func makeSkillsCountWidgetView(viewModel: SkillsHighlightsWidgetViewModel) -> SkillsCountWidgetView {
+        let onTapSkillSpace: () -> Void = { AppEnvironment.shared.switchToSkillSpaceTab() }
+        return SkillsCountWidgetView(viewModel: viewModel, onTap: onTapSkillSpace)
+    }
+
 #if DEBUG
     static func makePreview(shouldReturnError: Bool) -> SkillsHighlightsWidgetView {
         let interactor = SkillsWidgetInteractorPreview(shouldReturnError: shouldReturnError)
@@ -35,7 +42,6 @@ struct SkillsHighlightsWidgetAssembly {
         return SkillsHighlightsWidgetView(viewModel: viewModel) {}
     }
 #endif
-
 }
 
 extension AppEnvironment {

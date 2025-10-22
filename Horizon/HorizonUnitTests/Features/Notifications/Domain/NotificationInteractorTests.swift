@@ -38,7 +38,7 @@ final class NotificationInteractorTests: HorizonTestCase {
             value: GetHCoursesProgressionResponse.make()
         )
 
-        XCTAssertFirstValueAndCompletion(testee.getNotifications(ignoreCache: false)) { notifications in
+        XCTAssertSingleOutputAndFinish(testee.getNotifications(ignoreCache: false)) { notifications in
             // Then
             XCTAssertEqual(notifications.count, 3)
             XCTAssertEqual(notifications[0].type, .dueDate)
@@ -60,9 +60,7 @@ final class NotificationInteractorTests: HorizonTestCase {
             value: GetHCoursesProgressionResponse.make()
         )
 
-        XCTAssertFirstValueAndCompletion(testee.getUnreadNotificationCount()) { countOFUnreadNotifications in
-            // Then
-            XCTAssertEqual(countOFUnreadNotifications, 1)
-        }
+        // Then
+        XCTAssertSingleOutputEqualsAndFinish(testee.getUnreadNotificationCount(), 1)
     }
 }

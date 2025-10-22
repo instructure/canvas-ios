@@ -46,7 +46,6 @@ final class GetTimeSpentWidgetRequestTests: CoreTestCase {
         widgetData(
           widgetType: "time_spent_details",
           dataScope: "learner",
-          canvasAccountId: "1",
           timeSpan: {
             type: PAST_7_DAYS
           }

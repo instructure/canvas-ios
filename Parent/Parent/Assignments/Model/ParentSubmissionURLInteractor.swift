@@ -22,7 +22,8 @@ protocol ParentSubmissionURLInteractor {
     func submissionURL(
         assignmentHtmlURL: URL,
         observedUserID: String,
-        isAssignmentEnhancementsEnabled: Bool
+        isAssignmentEnhancementsEnabled: Bool,
+        isQuiz: Bool
     ) -> URL
 }
 
@@ -31,11 +32,12 @@ class ParentSubmissionURLInteractorLive: ParentSubmissionURLInteractor {
     func submissionURL(
         assignmentHtmlURL: URL,
         observedUserID: String,
-        isAssignmentEnhancementsEnabled: Bool
+        isAssignmentEnhancementsEnabled: Bool,
+        isQuiz: Bool
     ) -> URL {
         var assignmentHtmlURL = assignmentHtmlURL
 
-        if isAssignmentEnhancementsEnabled == false {
+        if !isAssignmentEnhancementsEnabled || isQuiz {
             assignmentHtmlURL.appendPathComponent("submissions/\(observedUserID)", conformingTo: .directory)
         }
 

@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Horizon
 @testable import Core
+@testable import Horizon
+import TestsFoundation
 import XCTest
 
 final class SkillsWidgetInteractorLiveTests: HorizonTestCase {
@@ -35,7 +36,7 @@ final class SkillsWidgetInteractorLiveTests: HorizonTestCase {
         api.mock(GetHSkillRequest(), value: HSkillStubs.response)
 
         // Then
-        XCTAssertFirstValueAndCompletion(testee.getSkills(ignoreCache: true)) { skills in
+        XCTAssertSingleOutputAndFinish(testee.getSkills(ignoreCache: true)) { skills in
             XCTAssertEqual(skills.count, 6)
             XCTAssertEqual(skills[0].id, "1")
             XCTAssertEqual(skills[0].title, "Skill 1")

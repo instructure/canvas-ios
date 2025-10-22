@@ -81,13 +81,13 @@ class GetBrandVariablesTest: CoreTestCase {
         }
 
         let didReceiveResultFromAPI = expectation(description: "didReceiveResultFromAPI")
-        XCTAssertFirstValueAndCompletion(ReactiveStore(useCase: GetBrandVariables()).getEntities()) { results in
+        XCTAssertSingleOutputAndFinish(ReactiveStore(useCase: GetBrandVariables()).getEntities()) { results in
             XCTAssertEqual(results.count, 1)
             didReceiveResultFromAPI.fulfill()
         }
 
         let didReceiveResultFromCache = expectation(description: "didReceiveResultFromCache")
-        XCTAssertFirstValueAndCompletion(ReactiveStore(useCase: GetBrandVariables()).getEntities()) { results in
+        XCTAssertSingleOutputAndFinish(ReactiveStore(useCase: GetBrandVariables()).getEntities()) { results in
             XCTAssertEqual(results.count, 1)
             didReceiveResultFromCache.fulfill()
         }

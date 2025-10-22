@@ -36,6 +36,9 @@ class CourseListWidgetViewModel {
     private(set) var state: ViewState = .loading
     private(set) var courses: [HCourse] = []
     private(set) var unenrolledPrograms: [Program] = []
+    var isProgramWidgetVisible: Bool {
+        unenrolledPrograms.isNotEmpty && unenrolledPrograms.first?.id != "mock-program-id"
+    }
 
     // MARK: - Dependencies
 
@@ -221,7 +224,7 @@ extension CourseListWidgetViewModel {
 
     fileprivate static let programsMock = [
         Program(
-            id: "Test-ID",
+            id: "mock-program-id",
             name: "This is a test program",
             variant: "",
             description: nil,

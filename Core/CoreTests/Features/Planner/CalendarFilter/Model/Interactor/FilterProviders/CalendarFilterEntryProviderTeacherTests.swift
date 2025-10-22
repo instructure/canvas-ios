@@ -44,7 +44,7 @@ class CalendarFilterEntryProviderTeacherTests: CoreTestCase {
         let testee = CalendarFilterEntryProviderTeacher(purpose: .viewing)
 
         // THEN
-        XCTAssertFirstValueAndCompletion(testee.make(ignoreCache: false)!) { filters in
+        XCTAssertSingleOutputAndFinish(testee.make(ignoreCache: false)!) { filters in
             let sortedFilters = filters.sorted()
             XCTAssertEqual(sortedFilters.count, 3)
             XCTAssertEqual(sortedFilters[0].context, .user("testTeacherId"))
@@ -90,7 +90,7 @@ class CalendarFilterEntryProviderTeacherTests: CoreTestCase {
         let testee = CalendarFilterEntryProviderTeacher(purpose: .creating)
 
         // THEN
-        XCTAssertFirstValueAndCompletion(testee.make(ignoreCache: false)!) { filters in
+        XCTAssertSingleOutputAndFinish(testee.make(ignoreCache: false)!) { filters in
             let sortedFilters = filters.sorted()
             XCTAssertEqual(sortedFilters.count, 4)
             XCTAssertEqual(sortedFilters[0].context, .user("testTeacherId"))

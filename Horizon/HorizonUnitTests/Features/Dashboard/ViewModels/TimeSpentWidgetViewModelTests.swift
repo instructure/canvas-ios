@@ -83,7 +83,7 @@ final class TimeSpentWidgetViewModelTests: HorizonTestCase {
     func testInitializationFailureSetsErrorState() {
         // Given failing interactor
         let learnCourses: [LearnCourse] = [LearnCourse(id: "1", name: "Intro", enrollmentId: "e1")]
-        let interactor = TimeSpentWidgetUseInteractorMock()
+        let interactor = TimeSpentWidgetInteractorMock()
         interactor.shouldFail = true
         let learnInteractor = GetLearnCoursesInteractorLocalMock()
         learnInteractor.coursesToReturn = learnCourses
@@ -100,7 +100,7 @@ final class TimeSpentWidgetViewModelTests: HorizonTestCase {
     }
 
     func testGetTimeSpentIgnoreCachePropagatesFlag() {
-        let interactor = TimeSpentWidgetUseInteractorMock()
+        let interactor = TimeSpentWidgetInteractorMock()
         interactor.timesToReturn = [TimeSpentWidgetModel(id: "1", courseName: "Intro", minutesPerDay: 10)]
         let learnInteractor = GetLearnCoursesInteractorLocalMock()
         learnInteractor.coursesToReturn = [LearnCourse(id: "1", name: "Intro", enrollmentId: "e1")]
@@ -161,7 +161,7 @@ final class TimeSpentWidgetViewModelTests: HorizonTestCase {
         learnCourses: [LearnCourse],
         shouldFail: Bool = false
     ) -> TimeSpentWidgetViewModel {
-        let interactor = TimeSpentWidgetUseInteractorMock()
+        let interactor = TimeSpentWidgetInteractorMock()
         interactor.timesToReturn = times
         interactor.shouldFail = shouldFail
         let learnInteractor = GetLearnCoursesInteractorLocalMock()

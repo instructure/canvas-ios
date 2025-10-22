@@ -22,22 +22,21 @@ import Foundation
 
 class TimeSpentWidgetUseInteractorPreview: TimeSpentWidgetInteractor {
     let showError: Bool
-    init(showError: Bool) {
+    let models: [TimeSpentWidgetModel]
+
+    init(
+        showError: Bool,
+        models: [TimeSpentWidgetModel]
+    ) {
         self.showError = showError
+        self.models = models
     }
+
     func getTimeSpent(ignoreCache: Bool) -> AnyPublisher<[TimeSpentWidgetModel], Error> {
         if showError {
             return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
         } else {
-            return Just(
-                [
-                    .init(id: "1", courseName: "Introduction to SwiftUI", minutesPerDay: 125),
-                    .init(id: "2", courseName: "Advanced iOS Development", minutesPerDay: 90),
-                    .init(id: "3", courseName: "UI/UX Design Principles", minutesPerDay: 45),
-                    .init(id: "4", courseName: "Networking with URLSession", minutesPerDay: 60),
-                    .init(id: "5", courseName: "Core Data Essentials", minutesPerDay: 30)
-                ]
-            )
+            return Just(models)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
         }

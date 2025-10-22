@@ -35,7 +35,7 @@ final class TimeSpentWidgetInteractorLiveTests: HorizonTestCase {
         api.mock(GetTimeSpentWidgetRequest(), value: HTimeSpentWidgetStubs.response)
 
         // When / Then
-        XCTAssertFirstValueAndCompletion(testee.getTimeSpent(ignoreCache: true)) { models in
+        XCTAssertSingleOutputAndFinish(testee.getTimeSpent(ignoreCache: true)) { models in
             // Expect 3 aggregated courses (C1 merged 10+5)
             XCTAssertEqual(models.count, 3)
             let dict = Dictionary(uniqueKeysWithValues: models.map { ($0.id, $0) })
@@ -64,7 +64,7 @@ final class TimeSpentWidgetInteractorLiveTests: HorizonTestCase {
         api.mock(GetTimeSpentWidgetRequest(), value: emptyResponse)
 
         // When / Then
-        XCTAssertFirstValueAndCompletion(testee.getTimeSpent(ignoreCache: true)) { models in
+        XCTAssertSingleOutputAndFinish(testee.getTimeSpent(ignoreCache: true)) { models in
             XCTAssertEqual(models.count, 0)
         }
     }

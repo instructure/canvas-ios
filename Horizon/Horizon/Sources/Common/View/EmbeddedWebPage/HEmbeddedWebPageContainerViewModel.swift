@@ -67,7 +67,7 @@ final class HEmbeddedWebPageContainerViewModel: EmbeddedWebPageNavigation {
         }
     }
 
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation?) {
         webPage.webView(
             webView,
             didStartProvisionalNavigation: navigation

@@ -27,7 +27,6 @@ struct TimeSpentWidgetHeader: View {
                 .huiTypography(.labelMediumBold)
                 .frame(alignment: .leading)
                 .skeletonLoadable()
-                .accessibilityLabel(Text("Courses time spent", bundle: .horizon))
 
             Spacer()
 

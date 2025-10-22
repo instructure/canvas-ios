@@ -57,7 +57,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
         api.mock(GetCalendarEventRequest(eventID: mockAPIEvent.id.rawValue),
                  value: mockAPIEvent)
 
-        XCTAssertFirstValueAndCompletion(testee.getCalendarEvent(id: mockAPIEvent.id.rawValue)) { (event, color) in
+        XCTAssertSingleOutputAndFinish(testee.getCalendarEvent(id: mockAPIEvent.id.rawValue)) { (event, color) in
             XCTAssertEqual(color.hexString, CourseColorsInteractorLive().courseColorFromAPIColor(mockAPIColor).hexString)
             XCTAssertEqual(event.id, mockAPIEvent.id.rawValue)
         }
@@ -81,7 +81,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
         api.mock(GetCalendarEventRequest(eventID: mockAPIEvent.id.rawValue),
                  value: mockAPIEvent)
 
-        XCTAssertFirstValueAndCompletion(testee.getCalendarEvent(id: mockAPIEvent.id.rawValue)) { (event, color) in
+        XCTAssertSingleOutputAndFinish(testee.getCalendarEvent(id: mockAPIEvent.id.rawValue)) { (event, color) in
             XCTAssertEqual(color, UIColor.textDark)
             XCTAssertEqual(event.id, mockAPIEvent.id.rawValue)
         }
@@ -94,7 +94,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
         let request = GetContextPermissionsRequest(context: context, permissions: [.manageCalendar])
         api.mock(request, value: .make(manage_calendar: true, manage_groups: false))
 
-        XCTAssertFirstValueAndCompletion(testee.getCanManageCalendarPermission(context: context, ignoreCache: false)) { permission in
+        XCTAssertSingleOutputAndFinish(testee.getCanManageCalendarPermission(context: context, ignoreCache: false)) { permission in
             XCTAssertEqual(permission, true)
         }
     }
@@ -104,7 +104,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
         let request = GetContextPermissionsRequest(context: context, permissions: [.manageCalendar])
         api.mock(request, value: .make(manage_calendar: false, manage_groups: true))
 
-        XCTAssertFirstValueAndCompletion(testee.getCanManageCalendarPermission(context: context, ignoreCache: false)) { permission in
+        XCTAssertSingleOutputAndFinish(testee.getCanManageCalendarPermission(context: context, ignoreCache: false)) { permission in
             XCTAssertEqual(permission, false)
         }
     }
@@ -114,7 +114,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
         let request = GetContextPermissionsRequest(context: context, permissions: [.manageCalendar])
         api.mock(request, value: .make(manage_calendar: nil))
 
-        XCTAssertFirstValueAndCompletion(testee.getCanManageCalendarPermission(context: context, ignoreCache: false)) { permission in
+        XCTAssertSingleOutputAndFinish(testee.getCanManageCalendarPermission(context: context, ignoreCache: false)) { permission in
             XCTAssertEqual(permission, false)
         }
     }

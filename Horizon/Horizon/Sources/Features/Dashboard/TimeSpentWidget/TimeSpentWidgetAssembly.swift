@@ -29,8 +29,11 @@ enum TimeSpentWidgetAssembly {
     }
 
     #if DEBUG
-    static func makePreview(showError: Bool) -> TimeSpentWidgetView {
-        let interactor = TimeSpentWidgetUseInteractorPreview(showError: showError)
+    static func makePreview(showError: Bool, models: [TimeSpentWidgetModel]) -> TimeSpentWidgetView {
+        let interactor = TimeSpentWidgetUseInteractorPreview(
+            showError: showError,
+            models: models
+        )
         let viewModel = TimeSpentWidgetViewModel(
             interactor: interactor,
             learnCoursesInteractor: GetLearnCoursesInteractorPreview()

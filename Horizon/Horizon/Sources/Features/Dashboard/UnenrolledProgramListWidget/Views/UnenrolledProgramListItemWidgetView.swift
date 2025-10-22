@@ -22,6 +22,17 @@ import SwiftUI
 struct UnenrolledProgramListItemWidgetView: View {
     let program: Program
     let onTap: (Program) -> Void
+    let focusedProgramID: AccessibilityFocusState<String?>.Binding
+
+    init(
+        program: Program,
+        onTap: @escaping (Program) -> Void,
+        focusedProgramID: AccessibilityFocusState<String?>.Binding
+    ) {
+        self.program = program
+        self.onTap = onTap
+        self.focusedProgramID = focusedProgramID
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
@@ -35,18 +46,23 @@ struct UnenrolledProgramListItemWidgetView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .multilineTextAlignment(.leading)
 
-            HorizonUI.PrimaryButton(
-                String(localized: "Program details", bundle: .horizon),
-                type: .black,
-                isSmall: true
-            ) {
-                onTap(program)
-            }
+            buttonView
         }
         .padding(.huiSpaces.space24)
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
+    }
+
+    private var buttonView: some View {
+        HorizonUI.PrimaryButton(
+            String(localized: "Program details", bundle: .horizon),
+            type: .black,
+            isSmall: true
+        ) {
+            onTap(program)
+        }
+        .accessibilityFocused(focusedProgramID, equals: program.id)
     }
 
     private var descriptionText: String {
@@ -63,6 +79,8 @@ struct UnenrolledProgramListItemWidgetView: View {
 }
 
 #Preview {
+    @Previewable @AccessibilityFocusState var focusState: String?
+
     UnenrolledProgramListItemWidgetView(
         program: .init(
             id: "1",
@@ -72,6 +90,8 @@ struct UnenrolledProgramListItemWidgetView: View {
             date: nil,
             courseCompletionCount: 10,
             courses: []
-        )
-    ) { _ in }
+        ),
+        onTap: { _ in },
+        focusedProgramID: $focusState
+    )
 }
