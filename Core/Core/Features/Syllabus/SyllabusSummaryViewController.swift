@@ -135,6 +135,7 @@ public class SyllabusSummaryViewController: UITableViewController {
 class SyllabusSummaryItemCell: UITableViewCell {
     @IBOutlet weak var dateLabel: DynamicLabel!
     @IBOutlet weak var itemNameLabel: DynamicLabel!
+    @IBOutlet weak var subtitleLabel: DynamicLabel!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var iconImageView: UIImageView!
 
@@ -157,9 +158,10 @@ class SyllabusSummaryItemCell: UITableViewCell {
     func update(_ item: Plannable?, indexPath: IndexPath, color: UIColor?) {
         backgroundColor = .backgroundLightest
         itemNameLabel?.setText(item?.title, style: .textCellTitle)
+        subtitleLabel.setText(item?.discussionCheckpointStep?.text, style: .textCellSupportingText)
         iconImageView?.image = item?.icon
         iconImageView?.tintColor = color
-        dateLabel?.setText(item?.dateFormatted ?? String(localized: "No Due Date", bundle: .core), style: .textCellSupportingText)
+        dateLabel?.setText(item?.dateFormatted ?? DueDateFormatter.noDueDateText, style: .textCellSupportingText)
         accessibilityIdentifier = "itemCell.\(item?.id ?? "")"
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
     }
