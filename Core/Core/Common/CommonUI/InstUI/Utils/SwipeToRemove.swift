@@ -192,3 +192,36 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
         }
     }
 }
+
+#if DEBUG
+
+#Preview {
+    ScrollView {
+        VStack(spacing: 0) {
+            ForEach(0..<5) { index in
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(verbatim: "Todo Item \(index + 1)")
+                        .font(.headline)
+                    Text(verbatim: "Swipe left to mark as done")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+                .background(.backgroundLightest)
+                .swipeToRemove(
+                    backgroundColor: .backgroundSuccess,
+                    onSwipe: {},
+                    label: {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.title)
+                            .foregroundStyle(.textLightest)
+                            .paddingStyle(.horizontal, .standard)
+                    }
+                )
+            }
+        }
+    }
+}
+
+#endif

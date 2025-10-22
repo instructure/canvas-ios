@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct TodoListScreen: View {
+struct TodoListScreen: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ObservedObject var viewModel: TodoListViewModel
@@ -26,11 +26,11 @@ public struct TodoListScreen: View {
     @ScaledMetric private var uiScale: CGFloat = 1
     @State private var isCellSwiping = false
 
-    public init(viewModel: TodoListViewModel) {
+    init(viewModel: TodoListViewModel) {
         self.viewModel = viewModel
     }
 
-    public var body: some View {
+    var body: some View {
         InstUI.BaseScreen(
             state: viewModel.state,
             config: viewModel.screenConfig,

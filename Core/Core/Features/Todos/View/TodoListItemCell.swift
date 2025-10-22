@@ -29,38 +29,36 @@ struct TodoListItemCell: View {
     let isSwiping: Binding<Bool>?
 
     var body: some View {
-        VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                TodoItemContentView(item: item, isCompactLayout: false)
+        HStack(spacing: 0) {
+            TodoItemContentView(item: item, isCompactLayout: false)
 
-                checkboxButton
-                    .paddingStyle(.leading, .cellAccessoryPadding)
-                    .accessibilityHidden(true)
-            }
-            .padding(.vertical, 8)
-            .paddingStyle(.trailing, .standard)
-            .background(.backgroundLightest)
-            .contentShape(Rectangle())
-            .onTapGesture {
-                guard isSwiping?.wrappedValue != true else { return }
-                onTap(item, viewController)
-            }
-            .accessibilityElement(children: .combine)
-            .accessibilityAddTraits(.isButton)
-            .accessibilityActions {
-                if let label = item.markAsDoneAccessibilityLabel {
-                    Button(label) {
-                        onMarkAsDone(item)
-                    }
+            checkboxButton
+                .paddingStyle(.leading, .cellAccessoryPadding)
+                .accessibilityHidden(true)
+        }
+        .padding(.vertical, 8)
+        .paddingStyle(.trailing, .standard)
+        .background(.backgroundLightest)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            guard isSwiping?.wrappedValue != true else { return }
+            onTap(item, viewController)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityActions {
+            if let label = item.markAsDoneAccessibilityLabel {
+                Button(label) {
+                    onMarkAsDone(item)
                 }
             }
-            .swipeToRemove(
-                backgroundColor: .backgroundSuccess,
-                isSwiping: isSwiping,
-                onSwipe: { onSwipeMarkAsDone(item) },
-                label: { swipeActionView }
-            )
         }
+        .swipeToRemove(
+            backgroundColor: .backgroundSuccess,
+            isSwiping: isSwiping,
+            onSwipe: { onSwipeMarkAsDone(item) },
+            label: { swipeActionView }
+        )
     }
 
     private var swipeActionView: some View {
