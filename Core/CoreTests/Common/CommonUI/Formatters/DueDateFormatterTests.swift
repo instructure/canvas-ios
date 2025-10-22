@@ -185,6 +185,13 @@ final class DueDateFormatterTests: CoreTestCase {
         )
     }
 
+    func test_absoluteDateTextWithoutDue_shouldReturnRelativeDateTimeString() {
+        XCTAssertEqual(
+            DueDateFormatter.absoluteDateTextWithoutDue(testData.date1),
+            testData.date1.dateTimeString
+        )
+    }
+
     func test_noDueDateText_shouldReturnLocalizedString() {
         XCTAssertEqual(DueDateFormatter.noDueDateText, "No Due Date")
     }

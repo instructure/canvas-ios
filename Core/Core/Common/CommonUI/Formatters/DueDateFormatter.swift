@@ -54,6 +54,10 @@ public enum DueDateFormatter {
         date.relativeDateTimeString
     }
 
+    public static func absoluteDateTextWithoutDue(_ date: Date) -> String {
+        date.dateTimeString
+    }
+
     public static let noDueDateText: String = String(localized: "No Due Date", bundle: .core)
 
     public static let availabilityClosedText: String = String(localized: "Closed For Submission", bundle: .core)
