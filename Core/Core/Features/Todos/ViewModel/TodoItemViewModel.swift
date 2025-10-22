@@ -19,13 +19,14 @@
 import SwiftUI
 import Combine
 
-public enum MarkDoneState: Equatable {
-    case notDone
-    case loading
-    case done
-}
-
 public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableObject {
+
+    public enum MarkDoneState: Equatable {
+        case notDone
+        case loading
+        case done
+    }
+
     /// This is the view identity that might change. Don't use this for business logic.
     public private(set) var id: String = UUID.string
     public let type: PlannableType
@@ -105,6 +106,10 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         self.overrideId = overrideId
     }
 
+    /// Resets the view identity to force SwiftUI to recreate the view.
+    /// This is necessary when an item is restored after being marked as done to ensure
+    /// the view is fully re-created. Without this, SwiftUI reuses the old
+    /// view instance where the swipe gesture is already in the fully swiped state.
     public func resetViewIdentity() {
         id = UUID.string
     }
