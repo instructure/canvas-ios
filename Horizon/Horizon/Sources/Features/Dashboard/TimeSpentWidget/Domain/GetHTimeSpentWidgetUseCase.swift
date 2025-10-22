@@ -23,9 +23,9 @@ import Foundation
 
 final class GetHTimeSpentWidgetUseCase: APIUseCase {
     private let journey: DomainServiceProtocol
-    public typealias Model = CDHTimeSpentWidget
+    public typealias Model = CDHTimeSpentWidgetModel
     private var subscriptions = Set<AnyCancellable>()
-    public var cacheKey: String? { "get-Time-Spent-Widge" }
+    public var cacheKey: String? { "get-time-spent-widget" }
     public var request: GetTimeSpentWidgetRequest { GetTimeSpentWidgetRequest() }
 
     init(journey: DomainServiceProtocol = DomainService(.journey)) {
@@ -55,7 +55,7 @@ final class GetHTimeSpentWidgetUseCase: APIUseCase {
             }
         }
         sumTimes.forEach { time in
-            CDHTimeSpentWidget.save(time.value, in: client)
+            CDHTimeSpentWidgetModel.save(time.value, in: client)
         }
     }
 

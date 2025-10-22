@@ -49,7 +49,7 @@ struct DashboardView: View {
         courseListWidgetView = CourseListWidgetAssembly.makeView()
         let skillViewModel = SkillsHighlightsWidgetAssembly.makeViewModel()
         skillsHighlightsWidgetView = SkillsHighlightsWidgetAssembly.makeView(viewModel: skillViewModel)
-        skillsCountWidgetView = SkillsCountWidgetView(viewModel: skillViewModel)
+        skillsCountWidgetView = SkillsHighlightsWidgetAssembly.makeSkillsCountWidgetView(viewModel: skillViewModel)
         announcementWidgetView = AnnouncementsWidgetAssembly.makeView()
         timeSpentWidgetView = TimeSpentWidgetAssembly.makeView()
     }

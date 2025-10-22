@@ -19,7 +19,7 @@
 import CoreData
 import Foundation
 
-public final class CDHTimeSpentWidget: NSManagedObject {
+public final class CDHTimeSpentWidgetModel: NSManagedObject {
     @NSManaged public var courseID: String
     @NSManaged public var courseName: String
     @NSManaged public var minutesPerDay: NSNumber
@@ -28,9 +28,9 @@ public final class CDHTimeSpentWidget: NSManagedObject {
     public static func save(
         _ apiEntity: GetTimeSpentWidgetResponse.TimeSpent,
         in context: NSManagedObjectContext
-    ) -> CDHTimeSpentWidget {
-        let dbEntity: CDHTimeSpentWidget = context.first(
-            where: #keyPath(CDHTimeSpentWidget.courseID),
+    ) -> CDHTimeSpentWidgetModel {
+        let dbEntity: CDHTimeSpentWidgetModel = context.first(
+            where: #keyPath(CDHTimeSpentWidgetModel.courseID),
             equals: apiEntity.courseID
         ) ?? context.insert()
 

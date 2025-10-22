@@ -20,7 +20,7 @@ import Combine
 @testable import Horizon
 import Foundation
 
-final class TimeSpentWidgetUseInteractorMock: TimeSpentWidgetInteractor {
+final class TimeSpentWidgetInteractorMock: TimeSpentWidgetInteractor {
     var timesToReturn: [TimeSpentWidgetModel] = []
     var shouldFail = false
     var lastIgnoreCache: Bool?

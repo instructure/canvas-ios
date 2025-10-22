@@ -132,6 +132,37 @@ final class CourseListWidgetViewModelTests: HorizonTestCase {
         XCTAssertEqual(testee.courses[1].programs.count, 0)
     }
 
+    func testIsProgramWidgetVisibleHideWhileLoadig() {
+        // Given
+        let program = Program(
+            id: "mock-program-id",
+            name: "iOS Developer Track",
+            variant: "Full-Time",
+            description: "Complete iOS development program",
+            date: "2025-09-01",
+            courseCompletionCount: 1,
+            courses: [
+                ProgramCourse(
+                    id: "course-1",
+                    isSelfEnrolled: true,
+                    isRequired: true,
+                    status: "NOT-ENROLLED",
+                    progressID: "progress-1",
+                    completionPercent: 75.0
+                )
+            ]
+        )
+
+        courseListWidgetInteractor.coursesToReturn = HCourseStubs.activeCourses
+        programInteractor.programsToReturn = [program]
+
+        // When
+        let testee = createVM()
+
+        // Then
+        XCTAssertFalse(testee.isProgramWidgetVisible)
+    }
+
     // MARK: - Error Cases
 
     func testFetchCoursesFailureShowsError() {

@@ -34,7 +34,7 @@ final class GetHTimeSpentWidgetUseCaseTests: HorizonTestCase {
     }
 
     func testCacheKey() {
-        XCTAssertEqual(testee.cacheKey, "get-Time-Spent-Widge")
+        XCTAssertEqual(testee.cacheKey, "get-time-spent-widget")
     }
 
     func testMakeRequestSuccess() {
@@ -87,7 +87,7 @@ final class GetHTimeSpentWidgetUseCaseTests: HorizonTestCase {
 
         // When
         testee.write(response: response, urlResponse: nil, to: databaseClient)
-        let stored: [CDHTimeSpentWidget] = databaseClient.fetch()
+        let stored: [CDHTimeSpentWidgetModel] = databaseClient.fetch()
         let course1 = stored.first { $0.courseID == "C1" }
         let course2 = stored.first { $0.courseID == "C2" }
         let course3 = stored.first { $0.courseID == "C3" }
@@ -104,7 +104,7 @@ final class GetHTimeSpentWidgetUseCaseTests: HorizonTestCase {
         testee.write(response: HTimeSpentWidgetStubs.response, urlResponse: nil, to: databaseClient)
 
         // When
-        let fetched: [CDHTimeSpentWidget] = databaseClient.fetch(scope: testee.scope)
+        let fetched: [CDHTimeSpentWidgetModel] = databaseClient.fetch(scope: testee.scope)
 
         // Then
         XCTAssertEqual(fetched.count, 3)

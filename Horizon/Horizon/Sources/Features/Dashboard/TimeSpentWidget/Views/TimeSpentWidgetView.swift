@@ -54,7 +54,7 @@ struct TimeSpentWidgetView: View {
         .accessibilityElement(children: viewModel.state == .loading ? .ignore : .contain)
         .accessibilityLabel(
             viewModel.state == .loading
-                            ? Text(String(localized: "Loading time spent for courses", bundle: .horizon))
+                            ? Text(String(localized: "Time Spent View is loading", bundle: .horizon))
                             : nil
         )
         .onWidgetReload { _ in
@@ -78,7 +78,7 @@ struct TimeSpentWidgetView: View {
            .accessibilityElement(children: .combine)
            .accessibilityLabel(Text(viewModel.accessibilityCourseTimeSpent))
             if viewModel.isListCoursesVisiable {
-                TimeSpentWidgetListCursesView(
+                TimeSpentWidgetCourseListView(
                     courses: viewModel.courses,
                     selectedCourse: viewModel.selectedCourse
                 ) { course in
@@ -101,9 +101,25 @@ struct TimeSpentWidgetView: View {
 
 #if DEBUG
 #Preview {
-    VStack {
-        TimeSpentWidgetAssembly.makePreview(showError: true)
-        TimeSpentWidgetAssembly.makePreview(showError: false)
+    VStack(alignment: .leading) {
+        TimeSpentWidgetAssembly
+            .makePreview(
+                showError: false,
+                models: [
+                    .init(id: "ID-1", courseName: "Introduction to SwiftUI", minutesPerDay: 125),
+                    .init(id: "ID-2", courseName: "Advanced iOS Development", minutesPerDay: 90),
+                    .init(id: "ID-3", courseName: "UI/UX Design Principles", minutesPerDay: 45),
+                    .init(id: "ID-4", courseName: "Networking with URLSession", minutesPerDay: 60)
+                ]
+            )
+        TimeSpentWidgetAssembly.makePreview(
+            showError: false,
+            models: [
+                .init(id: "ID-1", courseName: "Introduction to SwiftUI", minutesPerDay: 125)
+            ]
+        )
+        TimeSpentWidgetAssembly.makePreview(showError: false, models: [])
+        TimeSpentWidgetAssembly.makePreview(showError: true, models: [])
     }
 }
 #endif
