@@ -276,7 +276,12 @@ class TodoInteractorLiveTests: CoreTestCase {
             overrideId: "override-123",
             body: .init(marked_complete: false)
         )
-        api.mock(updateRequest, value: APINoContent())
+        api.mock(updateRequest, value: APIPlannerOverride.make(
+            id: "override-123",
+            plannable_type: "assignment",
+            plannable_id: ID("123"),
+            marked_complete: false
+        ))
 
         // When
         XCTAssertFinish(testee.markItemAsDone(item, done: false))
@@ -393,7 +398,12 @@ class TodoInteractorLiveTests: CoreTestCase {
             overrideId: "override-123",
             body: .init(marked_complete: false)
         )
-        api.mock(updateRequest, value: APINoContent())
+        api.mock(updateRequest, value: APIPlannerOverride.make(
+            id: "override-123",
+            plannable_type: "assignment",
+            plannable_id: ID("123"),
+            marked_complete: false
+        ))
 
         // When
         XCTAssertFinish(testee.markItemAsDone(item, done: false))
@@ -447,7 +457,12 @@ class TodoInteractorLiveTests: CoreTestCase {
             overrideId: "override-123",
             body: .init(marked_complete: false)
         )
-        api.mock(updateRequest, value: APINoContent())
+        api.mock(updateRequest, value: APIPlannerOverride.make(
+            id: "override-123",
+            plannable_type: "assignment",
+            plannable_id: ID("123"),
+            marked_complete: false
+        ))
 
         // When
         XCTAssertFinish(testee.markItemAsDone(item, done: false))

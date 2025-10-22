@@ -76,9 +76,7 @@ public struct MarkPlannableItemDone: UseCase {
                 marked_complete: done
             )
         )
-        environment.api.makeRequest(request) { (response: APIPlannerOverride?, urlResponse, error) in
-            completionHandler(response, urlResponse, error)
-        }
+        environment.api.makeRequest(request, callback: completionHandler)
     }
 
     private func updateExistingOverride(overrideId: String, environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
@@ -86,18 +84,6 @@ public struct MarkPlannableItemDone: UseCase {
             overrideId: overrideId,
             body: .init(marked_complete: done)
         )
-        let updatedOverride = APIPlannerOverride.make(
-            id: ID(overrideId),
-            plannable_type: plannableType,
-            plannable_id: ID(plannableId),
-            marked_complete: done
-        )
-        environment.api.makeRequest(request) { (_: APINoContent?, urlResponse, error) in
-            if error == nil {
-                completionHandler(updatedOverride, urlResponse, error)
-            } else {
-                completionHandler(nil, urlResponse, error)
-            }
-        }
+        environment.api.makeRequest(request, callback: completionHandler)
     }
 }

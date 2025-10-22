@@ -22,7 +22,7 @@ import CombineExt
 import CombineSchedulers
 import SwiftUI
 
-public class TodoListViewModel: ObservableObject {
+class TodoListViewModel: ObservableObject {
     @Published var items: [TodoGroupViewModel] = []
     @Published var state: InstUI.ScreenState = .loading
     let screenConfig = InstUI.BaseScreenConfig(
@@ -59,7 +59,9 @@ public class TodoListViewModel: ObservableObject {
         refresh(completion: { }, ignoreCache: false)
     }
 
-    public func refresh(completion: @escaping () -> Void, ignoreCache: Bool) {
+    // MARK: - User Actions
+
+    func refresh(completion: @escaping () -> Void, ignoreCache: Bool) {
         interactor.refresh(ignoreCache: ignoreCache)
             .sinkFailureOrValue { [weak self] _ in
                 self?.state = .error
@@ -142,6 +144,8 @@ public class TodoListViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
+    // MARK: - Private Methods
+
     private func restoreItem(withId itemId: String) {
         guard let itemToRestore = interactor.todoGroups.value
             .flatMap({ $0.items })
@@ -176,7 +180,7 @@ public class TodoListViewModel: ObservableObject {
     }
 
     private func performMarkAsDone(_ item: TodoItemViewModel) {
-        markDoneTimers[item.plannableId]?.cancel()
+        cancelDelayedRemove(for: item)
         item.markDoneState = .loading
 
         interactor.markItemAsDone(item, done: true)
@@ -192,8 +196,7 @@ public class TodoListViewModel: ObservableObject {
     }
 
     private func performMarkAsUndone(_ item: TodoItemViewModel) {
-        markDoneTimers[item.plannableId]?.cancel()
-        markDoneTimers.removeValue(forKey: item.plannableId)
+        cancelDelayedRemove(for: item)
         item.markDoneState = .loading
 
         interactor.markItemAsDone(item, done: false)
@@ -210,6 +213,11 @@ public class TodoListViewModel: ObservableObject {
                 UIAccessibility.announce(announcement)
             }
             .store(in: &subscriptions)
+    }
+
+    private func cancelDelayedRemove(for item: TodoItemViewModel) {
+        markDoneTimers[item.plannableId]?.cancel()
+        markDoneTimers.removeValue(forKey: item.plannableId)
     }
 
     private func handleMarkAsDoneSuccess(_ item: TodoItemViewModel) {

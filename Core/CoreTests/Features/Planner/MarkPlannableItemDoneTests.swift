@@ -90,7 +90,12 @@ class MarkPlannableItemDoneTests: CoreTestCase {
             overrideId: "override-123",
             body: .init(marked_complete: false)
         )
-        api.mock(updateRequest, value: APINoContent())
+        api.mock(updateRequest, value: APIPlannerOverride.make(
+            id: "override-123",
+            plannable_type: "assignment",
+            plannable_id: ID("123"),
+            marked_complete: false
+        ))
 
         let expectation = XCTestExpectation(description: "request completes")
         useCase.makeRequest(environment: environment) { response, _, error in
