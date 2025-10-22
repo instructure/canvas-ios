@@ -18,18 +18,19 @@
 
 import SwiftUI
 
-public struct TodoListScreen: View {
+struct TodoListScreen: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ObservedObject var viewModel: TodoListViewModel
     /// The sticky section header grows horizontally, so we need to increase paddings here not to let the header overlap the cell content.
     @ScaledMetric private var uiScale: CGFloat = 1
+    @State private var isCellSwiping = false
 
-    public init(viewModel: TodoListViewModel) {
+    init(viewModel: TodoListViewModel) {
         self.viewModel = viewModel
     }
 
-    public var body: some View {
+    var body: some View {
         InstUI.BaseScreen(
             state: viewModel.state,
             config: viewModel.screenConfig,
@@ -42,12 +43,13 @@ public struct TodoListScreen: View {
                 ForEach(viewModel.items) { group in
                     groupView(for: group)
                 }
-                .paddingStyle(.trailing, .standard)
                 InstUI.Divider()
             }
         }
         .clipped()
+        .scrollDisabled(isCellSwiping)
         .navigationBarItems(leading: profileMenuButton)
+        .snackBar(viewModel: viewModel.snackBar)
     }
 
     @ViewBuilder
@@ -57,14 +59,23 @@ public struct TodoListScreen: View {
             ForEach(group.items) { item in
                 TodoListItemCell(
                     item: item,
-                    onTap: viewModel.didTapItem
+                    onTap: viewModel.didTapItem,
+                    onMarkAsDone: viewModel.markItemAsDone,
+                    onSwipeMarkAsDone: viewModel.markItemAsDoneWithOptimisticUI,
+                    isSwiping: $isCellSwiping
                 )
                 .padding(.leading, leadingPadding)
+                .transition(.asymmetric(
+                    insertion: .identity,
+                    removal: .move(edge: .leading).combined(with: .opacity)
+                ))
 
                 let isLastItemInGroup = (group.items.last == item)
 
                 if !isLastItemInGroup {
-                    InstUI.Divider().padding(.leading, leadingPadding)
+                    InstUI.Divider()
+                        .padding(.leading, leadingPadding)
+                        .paddingStyle(.trailing, .standard)
                 }
             }
         } header: {
@@ -72,7 +83,7 @@ public struct TodoListScreen: View {
                 let isFirstSection = (viewModel.items.first == group)
 
                 if !isFirstSection {
-                    InstUI.Divider().paddingStyle(.leading, .standard)
+                    InstUI.Divider().paddingStyle(.horizontal, .standard)
                 }
 
                 TodoDayHeaderView(group: group) { group in
@@ -107,12 +118,14 @@ public struct TodoListScreen: View {
 #if DEBUG
 
 #Preview {
-    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(), env: PreviewEnvironment())
+    let env = PreviewEnvironment()
+    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(), router: env.router)
     TodoListScreen(viewModel: viewModel)
 }
 
 #Preview("Empty State") {
-    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(todoGroups: []), env: PreviewEnvironment())
+    let env = PreviewEnvironment()
+    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(todoGroups: []), router: env.router)
     TodoListScreen(viewModel: viewModel)
 }
 

@@ -27,4 +27,28 @@ class CGSizeExtensionsTests: CoreTestCase {
 
         XCTAssertFalse(CGSize(width: 1, height: 1).isZero)
     }
+
+    func test_isSwipingLeft() {
+        XCTAssertTrue(CGSize(width: -10, height: 0).isSwipingLeft)
+        XCTAssertTrue(CGSize(width: -1, height: 5).isSwipingLeft)
+        XCTAssertTrue(CGSize(width: -100, height: -50).isSwipingLeft)
+
+        XCTAssertFalse(CGSize(width: 0, height: 0).isSwipingLeft)
+        XCTAssertFalse(CGSize(width: 10, height: 0).isSwipingLeft)
+        XCTAssertFalse(CGSize(width: 5, height: -3).isSwipingLeft)
+    }
+
+    func test_isHorizontalSwipe() {
+        XCTAssertTrue(CGSize(width: 10, height: 5).isHorizontalSwipe)
+        XCTAssertTrue(CGSize(width: -10, height: 5).isHorizontalSwipe)
+        XCTAssertTrue(CGSize(width: 10, height: -5).isHorizontalSwipe)
+        XCTAssertTrue(CGSize(width: -10, height: -5).isHorizontalSwipe)
+        XCTAssertTrue(CGSize(width: 50, height: 0).isHorizontalSwipe)
+
+        XCTAssertFalse(CGSize(width: 5, height: 10).isHorizontalSwipe)
+        XCTAssertFalse(CGSize(width: -5, height: 10).isHorizontalSwipe)
+        XCTAssertFalse(CGSize(width: 5, height: -10).isHorizontalSwipe)
+        XCTAssertFalse(CGSize(width: 0, height: 50).isHorizontalSwipe)
+        XCTAssertFalse(CGSize(width: 0, height: 0).isHorizontalSwipe)
+    }
 }

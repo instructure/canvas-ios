@@ -18,6 +18,8 @@
 
 import Foundation
 
-public extension CGSize {
-    var isZero: Bool { self == .zero }
+extension CGSize {
+    public var isZero: Bool { self == .zero }
+    public var isSwipingLeft: Bool { width < 0 }
+    public var isHorizontalSwipe: Bool { abs(width) > abs(height) }
 }

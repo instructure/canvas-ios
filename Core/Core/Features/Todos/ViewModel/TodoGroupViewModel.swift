@@ -18,17 +18,17 @@
 
 import Foundation
 
-public struct TodoGroupViewModel: Identifiable, Equatable, Comparable {
-    public let id: String
-    public let date: Date
-    public let items: [TodoItemViewModel]
-    public let weekdayAbbreviation: String
-    public let dayNumber: String
-    public let isToday: Bool
-    public let displayDate: String
-    public let accessibilityLabel: String
+struct TodoGroupViewModel: Identifiable, Equatable, Comparable {
+    let id: String
+    let date: Date
+    let items: [TodoItemViewModel]
+    let weekdayAbbreviation: String
+    let dayNumber: String
+    let isToday: Bool
+    let displayDate: String
+    let accessibilityLabel: String
 
-    public init(date: Date, items: [TodoItemViewModel]) {
+    init(date: Date, items: [TodoItemViewModel]) {
         self.id = date.isoString()
         self.date = date
         self.items = items
@@ -45,7 +45,7 @@ public struct TodoGroupViewModel: Identifiable, Equatable, Comparable {
 
     // MARK: - Comparable
 
-    public static func < (lhs: TodoGroupViewModel, rhs: TodoGroupViewModel) -> Bool {
+    static func < (lhs: TodoGroupViewModel, rhs: TodoGroupViewModel) -> Bool {
         lhs.date < rhs.date
     }
 }

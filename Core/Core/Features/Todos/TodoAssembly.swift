@@ -21,7 +21,7 @@ import SwiftUI
 public struct TodoAssembly {
     public static func makeTodoListViewController(env: AppEnvironment) -> UIViewController {
         let interactor = TodoInteractorLive(env: env)
-        let model = TodoListViewModel(interactor: interactor, env: env)
+        let model = TodoListViewModel(interactor: interactor, router: env.router)
         let todoVC = CoreHostingController(TodoListScreen(viewModel: model))
         todoVC.navigationBarStyle = .global
         todoVC.navigationItem.titleView = Brand.shared.headerImageView()

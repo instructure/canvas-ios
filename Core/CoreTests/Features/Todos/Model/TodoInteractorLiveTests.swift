@@ -24,6 +24,7 @@ import Combine
 class TodoInteractorLiveTests: CoreTestCase {
 
     private var testee: TodoInteractorLive!
+    private var mockAnalyticsHandler: MockAnalyticsHandler!
     private static let mockDate = Date.make(year: 2025, month: 1, day: 15, hour: 12)
 
     // MARK: - Setup and teardown
@@ -32,11 +33,15 @@ class TodoInteractorLiveTests: CoreTestCase {
         super.setUp()
         Clock.mockNow(Self.mockDate)
         environment.currentSession = LoginSession.make(userID: "1")
+        mockAnalyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = mockAnalyticsHandler
         testee = TodoInteractorLive(env: environment)
     }
 
     override func tearDown() {
         testee = nil
+        Analytics.shared.handler = nil
+        Clock.reset()
         super.tearDown()
     }
 
@@ -216,6 +221,279 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // Then
         XCTAssertEqual(TabBarBadgeCounts.todoListCount, 3)
+    }
+
+    // MARK: - Mark Item as Done Tests
+
+    func testMarkItemAsDone_createsNewOverride_whenNoExistingOverride() {
+        // Given
+        let plannable = Plannable.save(
+            APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
+            userId: nil,
+            in: databaseClient
+        )
+        let item = TodoItemViewModel(plannable)!
+
+        let createRequest = CreatePlannerOverrideRequest(
+            body: .init(
+                plannable_type: "assignment",
+                plannable_id: "123",
+                marked_complete: true
+            )
+        )
+        let mockResponse = APIPlannerOverride.make(
+            id: "override-456",
+            plannable_type: "assignment",
+            plannable_id: ID("123"),
+            marked_complete: true
+        )
+        api.mock(createRequest, value: mockResponse)
+
+        // When
+        XCTAssertFinish(testee.markItemAsDone(item, done: true))
+
+        // Then
+        databaseClient.refresh()
+        XCTAssertEqual(plannable.isMarkedComplete, true)
+        XCTAssertEqual(plannable.plannerOverrideId, "override-456")
+        XCTAssertEqual(item.overrideId, "override-456")
+    }
+
+    func testMarkItemAsDone_updatesExistingOverride_whenOverrideExists() {
+        // Given
+        let plannable = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(id: "override-123", marked_complete: true),
+                plannable_id: ID("123"),
+                plannable_type: "assignment"
+            ),
+            userId: nil,
+            in: databaseClient
+        )
+        let item = TodoItemViewModel(plannable)!
+
+        let updateRequest = UpdatePlannerOverrideRequest(
+            overrideId: "override-123",
+            body: .init(marked_complete: false)
+        )
+        api.mock(updateRequest, value: APIPlannerOverride.make(
+            id: "override-123",
+            plannable_type: "assignment",
+            plannable_id: ID("123"),
+            marked_complete: false
+        ))
+
+        // When
+        XCTAssertFinish(testee.markItemAsDone(item, done: false))
+
+        // Then
+        databaseClient.refresh()
+        XCTAssertEqual(plannable.isMarkedComplete, false)
+        XCTAssertEqual(plannable.plannerOverrideId, "override-123")
+        XCTAssertEqual(item.overrideId, "override-123")
+    }
+
+    func testMarkItemAsDone_handlesError_whenAPICallFails() {
+        // Given
+        let plannable = Plannable.save(
+            APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
+            userId: nil,
+            in: databaseClient
+        )
+        let item = TodoItemViewModel(plannable)!
+
+        let createRequest = CreatePlannerOverrideRequest(
+            body: .init(
+                plannable_type: "assignment",
+                plannable_id: "123",
+                marked_complete: true
+            )
+        )
+        api.mock(createRequest, error: NSError.instructureError("Network error"))
+
+        // When
+        XCTAssertFailure(testee.markItemAsDone(item, done: true))
+
+        // Then
+        databaseClient.refresh()
+        XCTAssertEqual(plannable.isMarkedComplete, false)
+        XCTAssertNil(plannable.plannerOverrideId)
+        XCTAssertNil(item.overrideId)
+    }
+
+    func testMarkItemAsDone_updatesItemOverrideId_afterSuccessfulCreation() {
+        // Given
+        let plannable = Plannable.save(
+            APIPlannable.make(plannable_id: ID("123"), plannable_type: "quiz"),
+            userId: nil,
+            in: databaseClient
+        )
+        let item = TodoItemViewModel(plannable)!
+        XCTAssertNil(item.overrideId)
+
+        let createRequest = CreatePlannerOverrideRequest(
+            body: .init(
+                plannable_type: "quiz",
+                plannable_id: "123",
+                marked_complete: true
+            )
+        )
+        let mockResponse = APIPlannerOverride.make(
+            id: "new-override-789",
+            plannable_type: "quiz",
+            plannable_id: ID("123"),
+            marked_complete: true
+        )
+        api.mock(createRequest, value: mockResponse)
+
+        // When
+        XCTAssertFinish(testee.markItemAsDone(item, done: true))
+
+        // Then
+        XCTAssertEqual(item.overrideId, "new-override-789")
+    }
+
+    func testMarkItemAsDone_marksItemAsDone_withDoneTrue() {
+        // Given
+        let plannable = Plannable.save(
+            APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
+            userId: nil,
+            in: databaseClient
+        )
+        let item = TodoItemViewModel(plannable)!
+        XCTAssertFalse(plannable.isMarkedComplete)
+
+        let createRequest = CreatePlannerOverrideRequest(
+            body: .init(
+                plannable_type: "assignment",
+                plannable_id: "123",
+                marked_complete: true
+            )
+        )
+        api.mock(createRequest, value: APIPlannerOverride.make(id: "override-1", marked_complete: true))
+
+        // When
+        XCTAssertFinish(testee.markItemAsDone(item, done: true))
+
+        // Then
+        databaseClient.refresh()
+        XCTAssertTrue(plannable.isMarkedComplete)
+    }
+
+    func testMarkItemAsDone_marksItemAsUndone_withDoneFalse() {
+        // Given
+        let plannable = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(id: "override-123", marked_complete: true),
+                plannable_id: ID("123"),
+                plannable_type: "assignment"
+            ),
+            userId: nil,
+            in: databaseClient
+        )
+        let item = TodoItemViewModel(plannable)!
+        XCTAssertTrue(plannable.isMarkedComplete)
+
+        let updateRequest = UpdatePlannerOverrideRequest(
+            overrideId: "override-123",
+            body: .init(marked_complete: false)
+        )
+        api.mock(updateRequest, value: APIPlannerOverride.make(
+            id: "override-123",
+            plannable_type: "assignment",
+            plannable_id: ID("123"),
+            marked_complete: false
+        ))
+
+        // When
+        XCTAssertFinish(testee.markItemAsDone(item, done: false))
+
+        // Then
+        databaseClient.refresh()
+        XCTAssertFalse(plannable.isMarkedComplete)
+    }
+
+    // MARK: - Analytics Tests
+
+    func testMarkItemAsDone_logsAnalyticsEvent_whenMarkingAsDone() {
+        // Given
+        let plannable = Plannable.save(
+            APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
+            userId: nil,
+            in: databaseClient
+        )
+        let item = TodoItemViewModel(plannable)!
+
+        let createRequest = CreatePlannerOverrideRequest(
+            body: .init(
+                plannable_type: "assignment",
+                plannable_id: "123",
+                marked_complete: true
+            )
+        )
+        api.mock(createRequest, value: APIPlannerOverride.make(id: "override-1", marked_complete: true))
+
+        // When
+        XCTAssertFinish(testee.markItemAsDone(item, done: true))
+
+        // Then
+        XCTAssertEqual(mockAnalyticsHandler.lastEvent, "todo_item_marked_done")
+    }
+
+    func testMarkItemAsDone_logsAnalyticsEvent_whenMarkingAsUndone() {
+        // Given
+        let plannable = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(id: "override-123", marked_complete: true),
+                plannable_id: ID("123"),
+                plannable_type: "assignment"
+            ),
+            userId: nil,
+            in: databaseClient
+        )
+        let item = TodoItemViewModel(plannable)!
+
+        let updateRequest = UpdatePlannerOverrideRequest(
+            overrideId: "override-123",
+            body: .init(marked_complete: false)
+        )
+        api.mock(updateRequest, value: APIPlannerOverride.make(
+            id: "override-123",
+            plannable_type: "assignment",
+            plannable_id: ID("123"),
+            marked_complete: false
+        ))
+
+        // When
+        XCTAssertFinish(testee.markItemAsDone(item, done: false))
+
+        // Then
+        XCTAssertEqual(mockAnalyticsHandler.lastEvent, "todo_item_marked_undone")
+    }
+
+    func testMarkItemAsDone_doesNotLogAnalytics_whenAPICallFails() {
+        // Given
+        let plannable = Plannable.save(
+            APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
+            userId: nil,
+            in: databaseClient
+        )
+        let item = TodoItemViewModel(plannable)!
+
+        let createRequest = CreatePlannerOverrideRequest(
+            body: .init(
+                plannable_type: "assignment",
+                plannable_id: "123",
+                marked_complete: true
+            )
+        )
+        api.mock(createRequest, error: NSError.instructureError("Network error"))
+
+        // When
+        XCTAssertFailure(testee.markItemAsDone(item, done: true))
+
+        // Then
+        XCTAssertNil(mockAnalyticsHandler.lastEvent)
     }
 
     // MARK: - Helpers

@@ -22,34 +22,87 @@ struct TodoListItemCell: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.viewController) private var viewController
 
-    let item: TodoItemViewModel
+    @ObservedObject var item: TodoItemViewModel
     let onTap: (_ item: TodoItemViewModel, _ viewController: WeakViewController) -> Void
+    let onMarkAsDone: (_ item: TodoItemViewModel) -> Void
+    let onSwipeMarkAsDone: (_ item: TodoItemViewModel) -> Void
+    let isSwiping: Binding<Bool>?
 
     var body: some View {
-        VStack(spacing: 0) {
-            Button {
-                onTap(item, viewController)
-            } label: {
-                HStack(spacing: 0) {
-                    TodoItemContentView(item: item, isCompactLayout: false)
-                    InstUI.DisclosureIndicator()
-                        .paddingStyle(.leading, .cellAccessoryPadding)
-                        .accessibilityHidden(true)
-                }
-                .padding(.vertical, 8)
-                .background(.backgroundLightest)
-            }
-            .accessibilityElement(children: .combine)
+        HStack(spacing: 0) {
+            TodoItemContentView(item: item, isCompactLayout: false)
+
+            checkboxButton
+                .paddingStyle(.leading, .cellAccessoryPadding)
+                .accessibilityHidden(true)
         }
+        .padding(.vertical, 8)
+        .paddingStyle(.trailing, .standard)
+        .background(.backgroundLightest)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            guard isSwiping?.wrappedValue != true else { return }
+            onTap(item, viewController)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityActions {
+            if let label = item.markAsDoneAccessibilityLabel {
+                Button(label) {
+                    onMarkAsDone(item)
+                }
+            }
+        }
+        .swipeToRemove(
+            backgroundColor: .backgroundSuccess,
+            isSwiping: isSwiping,
+            onSwipe: { onSwipeMarkAsDone(item) },
+            label: { swipeActionView }
+        )
     }
+
+    private var swipeActionView: some View {
+        HStack(spacing: 12) {
+            Text("Done", bundle: .core)
+                .font(.semibold16, lineHeight: .fit)
+            Image.checkLine
+                .scaledIcon(size: 24)
+        }
+        .paddingStyle(.horizontal, .standard)
+        .foregroundStyle(Color.textLightest)
+    }
+
+    @ViewBuilder
+    private var checkboxButton: some View {
+        ZStack {
+            switch item.markDoneState {
+            case .notDone:
+                InstUI.Checkbox(isSelected: false)
+            case .loading:
+                ProgressView()
+                    .tint(Color(Brand.shared.primary))
+            case .done:
+                InstUI.Checkbox(isSelected: true)
+            }
+        }
+        .frame(width: 44, height: 44)
+        .tint(Color(Brand.shared.primary))
+        .contentShape(Rectangle())
+        .onTapGesture {
+            guard isSwiping?.wrappedValue != true else { return }
+            onMarkAsDone(item)
+        }
+        .identifier("to-do.list.\(item.plannableId).checkbox")
+    }
+
 }
 
 #if DEBUG
 
 #Preview {
     VStack(spacing: 0) {
-        TodoListItemCell(item: .makeShortText(), onTap: { _, _ in })
-        TodoListItemCell(item: .makeLongText(), onTap: { _, _ in })
+        TodoListItemCell(item: .makeShortText(), onTap: { _, _ in }, onMarkAsDone: { _ in }, onSwipeMarkAsDone: { _ in }, isSwiping: nil)
+        TodoListItemCell(item: .makeLongText(), onTap: { _, _ in }, onMarkAsDone: { _ in }, onSwipeMarkAsDone: { _ in }, isSwiping: nil)
     }
     .background(Color.backgroundLightest)
 }
