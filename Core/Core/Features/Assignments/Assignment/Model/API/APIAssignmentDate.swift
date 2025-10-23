@@ -23,9 +23,9 @@ public struct APIAssignmentDate: Codable, Equatable {
     let id: ID?
     let base: Bool?
     let title: String?
-    @SafeDate var due_at: Date?
-    @SafeDate var unlock_at: Date?
-    @SafeDate var lock_at: Date?
+    let due_at: Date?
+    let unlock_at: Date?
+    let lock_at: Date?
 }
 
 #if DEBUG

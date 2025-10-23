@@ -32,7 +32,7 @@ public struct APIAssignment: Codable, Equatable {
     let course: APICourse?
     let description: String?
     let discussion_topic: APIDiscussionTopic?
-    @SafeDate var due_at: Date?
+    let due_at: Date?
     let external_tool_tag_attributes: APIExternalToolTagAttributes?
     let grade_group_students_individually: Bool?
     let grading_standard_id: ID?
