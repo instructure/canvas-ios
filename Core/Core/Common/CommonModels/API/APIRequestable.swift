@@ -100,28 +100,35 @@ extension Array where Element == String {
 }
 
 public class APIJSONDecoder: JSONDecoder, @unchecked Sendable {
+    private static let standardFormatter = ISO8601DateFormatter()
+    private static let extendedFormatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return formatter
+    }()
+
     public override init() {
         super.init()
-        dateDecodingStrategy = .iso8601
-    }
-
-    // Can decode dates like "2019-06-02T18:07:28.000Z" that RN generates
-    public static var extendedPrecisionDecoder: APIJSONDecoder {
-        let decoder = APIJSONDecoder()
-        decoder.dateDecodingStrategy = .custom { decoder in
+        dateDecodingStrategy = .custom { decoder in
             let container = try decoder.singleValueContainer()
             let dateString = try container.decode(String.self)
-            let formatter = ISO8601DateFormatter()
-            formatter.formatOptions = [.withFractionalSeconds]
-            guard let date = formatter.date(from: dateString) else {
-                throw DecodingError.dataCorruptedError(
-                    in: container,
-                    debugDescription: "Expected date string to be ISO8601-formatted"
-                )
+
+            // Try ISO8601 with fractional seconds first (for RN generated dates like "2019-06-02T18:07:28.000Z")
+            // This must come BEFORE standard ISO8601 to avoid the extended formatter being too lenient
+            if let date = Self.extendedFormatter.date(from: dateString) {
+                return date
             }
-            return date
+
+            // Try standard ISO8601 format (e.g., "2025-01-15T10:30:00Z" or "-3033-05-31T07:51:58Z")
+            if let date = Self.standardFormatter.date(from: dateString) {
+                return date
+            }
+
+            throw DecodingError.dataCorruptedError(
+                in: container,
+                debugDescription: "Expected date string to be ISO8601-formatted"
+            )
         }
-        return decoder
     }
 }
 
