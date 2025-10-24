@@ -17,6 +17,7 @@
 //
 
 import XCTest
+import Combine
 @testable import Horizon
 @testable import Core
 
@@ -27,32 +28,42 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
         let interactor = NotificationInteractorMock(shouldReturnError: false)
         let unreadAnnouncement = NotificationModel(id: "1", type: .announcement, isRead: false)
         let readAnnouncement = NotificationModel(id: "2", type: .announcement, isRead: true)
-        let globalAnnouncement = NotificationModel(id: "3", type: .announcement, isRead: true, isGlobalNotification: true)
+        let globalAnnouncement = NotificationModel(id: "3", type: .announcement, isRead: false, isGlobalNotification: true)
         let otherNotification = NotificationModel(id: "4", type: .score, isRead: false)
-        interactor.mockedNotifications = [unreadAnnouncement, readAnnouncement, globalAnnouncement, otherNotification]
+        let expiredNotification = NotificationModel(
+            id: "4",
+            type: .announcement,
+            isRead: false,
+            date: Calendar.current.date(byAdding: .day, value: -16, to: Date())
+        )
+
+        interactor.mockedNotifications = [unreadAnnouncement, readAnnouncement, globalAnnouncement, otherNotification, expiredNotification, expiredNotification]
         let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
 
         // Then
-        if case .data(let announcements) = testee.state {
-            XCTAssertEqual(announcements.count, 1)
-            XCTAssertTrue(announcements.contains(where: { $0.id == "1" }))
-        } else {
-            XCTFail("Expected state to be .data, but was \(testee.state)")
-        }
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.announcements.count, 2)
+        XCTAssertTrue(testee.announcements.contains(where: { $0.id == "1" }))
+        XCTAssertTrue(testee.announcements.contains(where: { $0.id == "3" }))
+        XCTAssertEqual(testee.currentAnnouncement.id, "1")
+        XCTAssertEqual(testee.currentInex, 0)
+        XCTAssertFalse(testee.isPreviousButtonEnabled)
+        XCTAssertTrue(testee.isNextButtonEnabled)
+        XCTAssertTrue(testee.isNavigationButtonVisiable)
     }
 
-    func testFetchAnnouncements_whenEmpty_returnsEmptyData() {
+    func testFetchAnnouncementsWithEmptyResponse() {
         // Given
         let interactor = NotificationInteractorMock(shouldReturnError: false)
-        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
         interactor.mockedNotifications = []
+        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
 
         // Then
-        if case .data(let announcements) = testee.state {
-            XCTAssertTrue(announcements.isEmpty)
-        } else {
-            XCTFail("Expected state to be .data, but was \(testee.state)")
-        }
+        XCTAssertEqual(testee.state, .empty)
+        XCTAssertTrue(testee.announcements.isEmpty)
+        XCTAssertFalse(testee.isPreviousButtonEnabled)
+        XCTAssertFalse(testee.isNextButtonEnabled)
+        XCTAssertFalse(testee.isNavigationButtonVisiable)
     }
 
     func testFetchAnnouncementsOnErrorReturnsEmptyData() {
@@ -61,14 +72,157 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
         let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
 
         // Then
-        if case .data(let announcements) = testee.state {
-            XCTAssertTrue(announcements.isEmpty)
-        } else {
-            XCTFail("Expected state to be .data, but was \(testee.state)")
+        XCTAssertEqual(testee.state, .empty)
+        XCTAssertTrue(testee.announcements.isEmpty)
+        XCTAssertFalse(testee.isPreviousButtonEnabled)
+        XCTAssertFalse(testee.isNextButtonEnabled)
+    }
+
+    func testFetchAnnouncementsWithIgnoreCacheTrue() {
+        // Given
+        let interactor = NotificationInteractorMock(shouldReturnError: false)
+        let unreadAnnouncement = NotificationModel(id: "1", type: .announcement, isRead: false)
+        interactor.mockedNotifications = [unreadAnnouncement]
+        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
+
+        // When - force reload with new data
+        let updatedAnnouncement = NotificationModel(id: "2", type: .announcement, isRead: false)
+        interactor.mockedNotifications = [updatedAnnouncement]
+
+        // Initially in data state with first announcement
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.currentAnnouncement.id, "1")
+
+        var completionCalled = false
+        testee.fetchAnnouncements(ignoreCache: true) {
+            completionCalled = true
         }
+
+        // Then
+        XCTAssertTrue(completionCalled)
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.currentAnnouncement.id, "2")
     }
 
     // MARK: - Navigation
+
+    func testGoNextAnnouncement() {
+        // Given
+        let interactor = NotificationInteractorMock(shouldReturnError: false)
+        let announcement1 = NotificationModel(id: "1", type: .announcement, isRead: false)
+        let announcement2 = NotificationModel(id: "2", type: .announcement, isRead: false)
+        let announcement3 = NotificationModel(id: "3", type: .announcement, isRead: false)
+        interactor.mockedNotifications = [announcement1, announcement2, announcement3]
+        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
+
+        // Initially at first announcement
+        XCTAssertEqual(testee.currentAnnouncement.id, "1")
+        XCTAssertEqual(testee.currentInex, 0)
+        XCTAssertFalse(testee.isPreviousButtonEnabled)
+        XCTAssertTrue(testee.isNextButtonEnabled)
+
+        // When going to next announcement
+        testee.goNextAnnouncement()
+
+        // Then
+        XCTAssertEqual(testee.currentAnnouncement.id, "2")
+        XCTAssertEqual(testee.currentInex, 1)
+        XCTAssertTrue(testee.isPreviousButtonEnabled)
+        XCTAssertTrue(testee.isNextButtonEnabled)
+
+        // When going to last announcement
+        testee.goNextAnnouncement()
+
+        // Then
+        XCTAssertEqual(testee.currentAnnouncement.id, "3")
+        XCTAssertEqual(testee.currentInex, 2)
+        XCTAssertTrue(testee.isPreviousButtonEnabled)
+        XCTAssertFalse(testee.isNextButtonEnabled)
+
+        // When trying to go past the end
+        testee.goNextAnnouncement()
+
+        // Then - should stay at the last announcement
+        XCTAssertEqual(testee.currentAnnouncement.id, "3")
+        XCTAssertEqual(testee.currentInex, 2)
+        XCTAssertTrue(testee.isPreviousButtonEnabled)
+        XCTAssertFalse(testee.isNextButtonEnabled)
+    }
+
+    func testGoPreviousAnnouncement() {
+        // Given
+        let interactor = NotificationInteractorMock(shouldReturnError: false)
+        let announcement1 = NotificationModel(id: "1", type: .announcement, isRead: false)
+        let announcement2 = NotificationModel(id: "2", type: .announcement, isRead: false)
+        let announcement3 = NotificationModel(id: "3", type: .announcement, isRead: false)
+        interactor.mockedNotifications = [announcement1, announcement2, announcement3]
+        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
+
+        // Navigate to last announcement
+        testee.goNextAnnouncement()
+        testee.goNextAnnouncement()
+
+        // Verify we're at the last announcement
+        XCTAssertEqual(testee.currentAnnouncement.id, "3")
+        XCTAssertEqual(testee.currentInex, 2)
+        XCTAssertTrue(testee.isPreviousButtonEnabled)
+        XCTAssertFalse(testee.isNextButtonEnabled)
+
+        // When going to previous announcement
+        testee.goPreviousAnnouncement()
+
+        // Then
+        XCTAssertEqual(testee.currentAnnouncement.id, "2")
+        XCTAssertEqual(testee.currentInex, 1)
+        XCTAssertTrue(testee.isPreviousButtonEnabled)
+        XCTAssertTrue(testee.isNextButtonEnabled)
+
+        // When going to first announcement
+        testee.goPreviousAnnouncement()
+
+        // Then
+        XCTAssertEqual(testee.currentAnnouncement.id, "1")
+        XCTAssertEqual(testee.currentInex, 0)
+        XCTAssertFalse(testee.isPreviousButtonEnabled)
+        XCTAssertTrue(testee.isNextButtonEnabled)
+
+        // When trying to go before the beginning
+        testee.goPreviousAnnouncement()
+
+        // Then - should stay at the first announcement
+        XCTAssertEqual(testee.currentAnnouncement.id, "1")
+        XCTAssertEqual(testee.currentInex, 0)
+        XCTAssertFalse(testee.isPreviousButtonEnabled)
+        XCTAssertTrue(testee.isNextButtonEnabled)
+    }
+
+    func testNavigationWithEmptyAnnouncements() {
+        // Given
+        let interactor = NotificationInteractorMock(shouldReturnError: false)
+        interactor.mockedNotifications = []
+        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
+
+        // Initial state
+        XCTAssertEqual(testee.currentAnnouncement, NotificationModel.mock)
+        XCTAssertFalse(testee.isPreviousButtonEnabled)
+        XCTAssertFalse(testee.isNextButtonEnabled)
+
+        // When
+        testee.goNextAnnouncement()
+
+        // Then - no change
+        XCTAssertEqual(testee.currentAnnouncement, NotificationModel.mock)
+        XCTAssertFalse(testee.isPreviousButtonEnabled)
+        XCTAssertFalse(testee.isNextButtonEnabled)
+
+        // When
+        testee.goPreviousAnnouncement()
+
+        // Then - no change
+        XCTAssertEqual(testee.currentAnnouncement, NotificationModel.mock)
+        XCTAssertFalse(testee.isPreviousButtonEnabled)
+        XCTAssertFalse(testee.isNextButtonEnabled)
+    }
 
     func testNavigateToAnnouncementRoutesToMessageDetails() {
         // Given
@@ -86,6 +240,19 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
         let messageDetailsVC = router.lastViewController as? CoreHostingController<HMessageDetailsView>
         XCTAssertNotNil(messageDetailsVC)
     }
+
+    func testHiedNavigationButtonWithOneAnnouncement() {
+        // Given
+
+        let interactor = NotificationInteractorMock(shouldReturnError: false)
+        let announcement1 = NotificationModel(id: "1", type: .announcement, isRead: false)
+        interactor.mockedNotifications = [announcement1]
+        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
+
+        // Then
+        XCTAssertFalse(testee.isNavigationButtonVisiable)
+    }
+
     func testMarkAsRead() {
         // Given
         let interactor = NotificationInteractorMock()
@@ -95,9 +262,7 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
         // When
         testee.navigateToAnnouncement(announcement: globalAnnouncement, viewController: viewController)
         // Then
-        if case .data(let announcements) = testee.state {
-            XCTAssertEqual(announcements.count, 1)
-        }
+        XCTAssertEqual(testee.announcements.count, 1)
     }
 }
 
@@ -109,12 +274,13 @@ private extension NotificationModel {
         type: NotificationType,
         isRead: Bool = false,
         isGlobalNotification: Bool = false,
-        announcementId: String? = nil
+        announcementId: String? = nil,
+        date: Date? = Date()
     ) {
         self.init(
             id: id,
             title: "Title \(id)",
-            date: Date(),
+            date: date,
             isRead: isRead,
             courseName: "Course",
             courseID: "1",

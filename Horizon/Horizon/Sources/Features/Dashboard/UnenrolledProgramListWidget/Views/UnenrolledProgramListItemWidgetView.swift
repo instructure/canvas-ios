@@ -40,29 +40,30 @@ struct UnenrolledProgramListItemWidgetView: View {
                 title: String(localized: "Program", bundle: .horizon),
                 style: .gray
             )
+            .skeletonLoadable()
+
             Text(descriptionText)
             .foregroundStyle(Color.huiColors.text.body)
             .huiTypography(.p1)
             .frame(maxWidth: .infinity, alignment: .leading)
             .multilineTextAlignment(.leading)
+            .skeletonLoadable()
 
             buttonView
         }
-        .padding(.huiSpaces.space24)
-        .background(Color.huiColors.surface.pageSecondary)
-        .huiCornerRadius(level: .level5)
-        .huiElevation(level: .level4)
     }
 
     private var buttonView: some View {
         HorizonUI.PrimaryButton(
             String(localized: "Program details", bundle: .horizon),
             type: .black,
-            isSmall: true
+            isSmall: true,
+            fillsWidth: true
         ) {
             onTap(program)
         }
         .accessibilityFocused(focusedProgramID, equals: program.id)
+        .skeletonLoadable()
     }
 
     private var descriptionText: String {
