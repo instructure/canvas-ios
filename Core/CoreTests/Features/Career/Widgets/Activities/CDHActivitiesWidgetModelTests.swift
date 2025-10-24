@@ -19,12 +19,12 @@
 @testable import Core
 import XCTest
 
-final class CDHActivitiesWidgetTests: CoreTestCase {
+final class CDHActivitiesWidgetModelTests: CoreTestCase {
     func testSave() {
         // Given
         let apiEntity = makeActivitiesWidget(courseID: 42, courseName: "Course 42", moduleCountCompleted: 15)
         // When
-        let saved = CDHActivitiesWidget.save(apiEntity, in: databaseClient)
+        let saved = CDHActivitiesWidgetModel.save(apiEntity, in: databaseClient)
         // Then
         XCTAssertEqual(saved.courseID, "42")
         XCTAssertEqual(saved.courseName, "Course 42")
@@ -35,7 +35,7 @@ final class CDHActivitiesWidgetTests: CoreTestCase {
         // Given
         let apiEntity = makeActivitiesWidget(courseID: nil, courseName: nil, moduleCountCompleted: nil)
         // When
-        let saved = CDHActivitiesWidget.save(apiEntity, in: databaseClient)
+        let saved = CDHActivitiesWidgetModel.save(apiEntity, in: databaseClient)
         // Then
         XCTAssertEqual(saved.courseID, "0")
         XCTAssertEqual(saved.courseName, "")
@@ -45,11 +45,11 @@ final class CDHActivitiesWidgetTests: CoreTestCase {
     func testUpdateExistingEntity() {
         // Given
         let initial = makeActivitiesWidget(courseID: 99, courseName: "Old Name", moduleCountCompleted: 10)
-        let savedInitial = CDHActivitiesWidget.save(initial, in: databaseClient)
+        let savedInitial = CDHActivitiesWidgetModel.save(initial, in: databaseClient)
         XCTAssertEqual(savedInitial.courseName, "Old Name")
         // When
         let updated = makeActivitiesWidget(courseID: 99, courseName: "New Name", moduleCountCompleted: 25)
-        let savedUpdated = CDHActivitiesWidget.save(updated, in: databaseClient)
+        let savedUpdated = CDHActivitiesWidgetModel.save(updated, in: databaseClient)
         // Then
         XCTAssertEqual(savedUpdated.courseID, "99")
         XCTAssertEqual(savedUpdated.courseName, "New Name")

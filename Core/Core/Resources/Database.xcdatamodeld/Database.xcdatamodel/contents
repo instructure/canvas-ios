@@ -257,7 +257,7 @@
         <attribute name="scalingFactor" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
     </entity>
-    <entity name="CDHActivitiesWidget" representedClassName=".CDHActivitiesWidget" syncable="YES">
+    <entity name="CDHActivitiesWidgetModel" representedClassName=".CDHActivitiesWidgetModel" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <attribute name="courseName" attributeType="String"/>
         <attribute name="moduleCountCompleted" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>

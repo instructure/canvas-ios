@@ -49,10 +49,10 @@ final class CompletedWidgetViewModel {
         self.interactor = interactor
         self.learnCoursesInteractor = learnCoursesInteractor
         self.scheduler = scheduler
-        getCountCompletedModules()
+        getCompletedModulesCount()
     }
 
-    func getCountCompletedModules(ignoreCache: Bool = false) {
+    func getCompletedModulesCount(ignoreCache: Bool = false) {
         state = .loading
 
         getCompletedWidgets(ignoreCache: ignoreCache)

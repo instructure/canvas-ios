@@ -51,7 +51,7 @@ struct CompletedWidgetView: View {
                             : nil
         )
         .onWidgetReload { _ in
-            viewModel.getCountCompletedModules(ignoreCache: true)
+            viewModel.getCompletedModulesCount(ignoreCache: true)
         }
     }
 
@@ -85,7 +85,7 @@ struct CompletedWidgetView: View {
 
     private var errorView: some View {
         WidgetErrorView {
-            viewModel.getCountCompletedModules(ignoreCache: true)
+            viewModel.getCompletedModulesCount(ignoreCache: true)
         }
     }
 }

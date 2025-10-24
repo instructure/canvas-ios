@@ -18,7 +18,7 @@
 
 import CoreData
 
-public final class CDHActivitiesWidget: NSManagedObject {
+public final class CDHActivitiesWidgetModel: NSManagedObject {
     @NSManaged public var courseID: String
     @NSManaged public var courseName: String
     @NSManaged public var moduleCountCompleted: NSNumber
@@ -27,9 +27,9 @@ public final class CDHActivitiesWidget: NSManagedObject {
     public static func save(
         _ apiEntity: GetActivitiesWidgetResponse.Widget,
         in context: NSManagedObjectContext
-    ) -> CDHActivitiesWidget {
-        let dbEntity: CDHActivitiesWidget = context.first(
-            where: #keyPath(CDHActivitiesWidget.courseID),
+    ) -> CDHActivitiesWidgetModel {
+        let dbEntity: CDHActivitiesWidgetModel = context.first(
+            where: #keyPath(CDHActivitiesWidgetModel.courseID),
             equals: apiEntity.courseID
         ) ?? context.insert()
 

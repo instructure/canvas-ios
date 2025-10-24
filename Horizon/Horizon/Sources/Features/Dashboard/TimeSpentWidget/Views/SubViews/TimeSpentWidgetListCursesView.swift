@@ -20,7 +20,7 @@ import HorizonUI
 import SwiftUI
 
 struct TimeSpentWidgetListCursesView: View {
-    @State private var isListCoursesVisiable = false
+    @State private var isCourseListVisible = false
     let courses: [TimeSpentWidgetModel]
     @State var selectedCourse: TimeSpentWidgetModel?
     let onSelect: (TimeSpentWidgetModel?) -> Void
@@ -30,25 +30,25 @@ struct TimeSpentWidgetListCursesView: View {
             courseName: selectedCourse?.courseName ?? "",
             isSelected: selectedCourse != nil
         ) {
-            isListCoursesVisiable.toggle()
+            isCourseListVisible.toggle()
         }
         .accessibilityLabel(Text(selectedCourse?.titleAccessibilityButtonLabel ?? ""))
         .accessibilityHint(Text("Double tab to select a different course", bundle: .horizon))
-        .popover(isPresented: $isListCoursesVisiable, attachmentAnchor: .point(.center), arrowEdge: .top) {
-            listCoursesView
+        .popover(isPresented: $isCourseListVisible, attachmentAnchor: .point(.center), arrowEdge: .top) {
+            courseListView
                 .presentationCompactAdaptation(.none)
                 .presentationBackground(Color.huiColors.surface.cardPrimary)
         }
     }
 
-    private var listCoursesView: some View {
+    private var courseListView: some View {
         ScrollView {
             VStack(spacing: .zero) {
                 ForEach(courses) { course in
                     Button {
                         selectedCourse = course
                         onSelect(course)
-                        isListCoursesVisiable.toggle()
+                        isCourseListVisible.toggle()
                     } label: {
                         TimeSpentCourseView(
                             name: course.courseName,

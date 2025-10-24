@@ -23,7 +23,7 @@ import Foundation
 
 final class CompletedWidgetUseCase: APIUseCase {
     private let journey: DomainServiceProtocol
-    public typealias Model = CDHActivitiesWidget
+    public typealias Model = CDHActivitiesWidgetModel
     private var subscriptions = Set<AnyCancellable>()
     public var cacheKey: String? { "get-Completed-Widget" }
     public var request: GetActivitiesWidgetRequest { GetActivitiesWidgetRequest() }
@@ -41,7 +41,7 @@ final class CompletedWidgetUseCase: APIUseCase {
     ) {
         let activities = response?.data?.widgetData?.data ?? []
         activities.forEach { activity in
-            CDHActivitiesWidget.save(activity, in: client)
+            CDHActivitiesWidgetModel.save(activity, in: client)
         }
     }
 

@@ -40,10 +40,10 @@ struct DashboardView: View {
     private let skillsCountWidgetView: SkillsCountWidgetView
     private let announcementWidgetView: AnnouncementsListWidgetView
     private let timeSpentWidgetView: TimeSpentWidgetView
+    private let completedWidgetView: CompletedWidgetView
     @State private var widgetReloadHandlers: [WidgetReloadHandler] = []
 
     // MARK: - Init
-    private let completedWidgetView: CompletedWidgetView
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
@@ -53,7 +53,7 @@ struct DashboardView: View {
         skillsCountWidgetView = SkillsHighlightsWidgetAssembly.makeSkillsCountWidgetView(viewModel: skillViewModel)
         announcementWidgetView = AnnouncementsWidgetAssembly.makeView()
         timeSpentWidgetView = TimeSpentWidgetAssembly.makeView()
- completedWidgetView = CompletedWidgetAssembly.makeView()
+        completedWidgetView = CompletedWidgetAssembly.makeView()
     }
 
     var body: some View {
