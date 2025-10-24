@@ -154,5 +154,3 @@ struct AnnouncementsListWidgetView: View {
     AnnouncementsListWidgetView(viewModel: viewModel)
 }
 #endif
-
-
