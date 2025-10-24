@@ -142,33 +142,6 @@ final class HNotificationViewModelTests: HorizonTestCase {
         wait(for: [router.showExpectation], timeout: 1)
     }
 
-    func testNavigeteToDetailsRouteToInbox() {
-        // Given
-        let testee = HNotificationViewModel(interactor: NotificationInteractorMock(), router: router)
-        let sourceView = UIViewController()
-        let viewController = WeakViewController(sourceView)
-        let notification = NotificationModel(
-            id: "1",
-            title: "Title 1",
-            date: Date(),
-            isRead: false,
-            courseName: "Course 1",
-            courseID: "1",
-            enrollmentID: "enrollmentID-1",
-            isScoreAnnouncement: false,
-            type: .announcement,
-            announcementId: "announcementId-1",
-            assignmentURL: nil,
-            htmlURL: nil
-        )
-        // When
-        testee.navigateToDetails(notification: notification, viewController: viewController)
-        // Then
-        let messageDetailsView = router.lastViewController as? CoreHostingController<Horizon.HMessageDetailsView>
-        XCTAssertNotNil(messageDetailsView)
-        wait(for: [router.showExpectation], timeout: 1)
-    }
-
     func testAccessibilityPropertiesWithValues() {
         // Given
         let model = NotificationModel(
@@ -215,7 +188,7 @@ final class HNotificationViewModelTests: HorizonTestCase {
         // When
         testee.navigateToDetails(notification: notification, viewController: viewController)
         // Then
-        XCTAssertEqual(testee.notifications.count, 2)
+        XCTAssertEqual(testee.notifications.count, 10)
     }
 
     func testMarkNotificationAsReadFailureResponse() {

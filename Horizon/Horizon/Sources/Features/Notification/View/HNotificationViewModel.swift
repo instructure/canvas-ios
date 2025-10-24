@@ -101,21 +101,7 @@ final class HNotificationViewModel {
                 router.show(view, from: viewController)
             }
         case .announcement:
-            let vc = HorizonMessageDetailsAssembly.makeViewController(
-                announcementID: notification.announcementId ?? ""
-            )
-            router.show(vc, from: viewController)
-            interactor
-                .markNotificationAsRead(notification: notification)
-                .receive(on: scheduler)
-                .sinkFailureOrValue { [weak self] error in
-                    self?.isErrorVisiable = true
-                    self?.errorMessage = error.localizedDescription
-                } receiveValue: { [weak self] notifications in
-                    self?.handleResponse(notifications: notifications)
-                }
-                .store(in: &subscriptions)
-
+            break
         }
     }
 
@@ -127,7 +113,9 @@ final class HNotificationViewModel {
     ) {
         interactor
             .getNotifications(ignoreCache: ignoreCache)
-            .receive(on: scheduler)
+            .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
+            .filter { $0.type != .announcement }
+            .collect()
             .sinkFailureOrValue { [weak self] error in
                 completion?()
                 self?.isErrorVisiable = true

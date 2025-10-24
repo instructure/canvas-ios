@@ -74,6 +74,9 @@ final class NotificationInteractorLive: NotificationInteractor {
         .map { [weak self] activities, courses -> [NotificationModel] in
             self?.formatter.formatNotifications(activities, courses: courses) ?? []
         }
+        .flatMap { Publishers.Sequence(sequence: $0) }
+        .filter { $0.type != .announcement }
+        .collect()
         .map { notifications in
             notifications.reduce(0) { count, notification in
                 notification.isRead ? count : count + 1
