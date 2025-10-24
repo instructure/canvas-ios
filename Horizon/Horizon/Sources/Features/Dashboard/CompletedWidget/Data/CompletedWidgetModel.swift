@@ -16,9 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum HViewState: Equatable {
-    case data
-    case empty
-    case error
-    case loading
+import Foundation
+
+struct CompletedWidgetModel {
+    let courseID: String
+    let courseName: String
+    let moduleCountCompleted: Int
 }

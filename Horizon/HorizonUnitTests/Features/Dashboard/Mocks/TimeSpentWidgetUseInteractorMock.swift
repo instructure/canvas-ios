@@ -16,9 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum HViewState: Equatable {
-    case data
-    case empty
-    case error
-    case loading
+import Combine
+@testable import Horizon
+import Foundation
+
+final class TimeSpentWidgetUseInteractorMock: TimeSpentWidgetInteractor {
+    var timesToReturn: [TimeSpentWidgetModel] = []
+    var shouldFail = false
+    var lastIgnoreCache: Bool?
+
+    func getTimeSpent(ignoreCache: Bool) -> AnyPublisher<[TimeSpentWidgetModel], Error> {
+        lastIgnoreCache = ignoreCache
+        if shouldFail {
+            return Fail(error: NSError(domain: "test", code: -1)).eraseToAnyPublisher()
+        }
+        return Just(timesToReturn)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
 }

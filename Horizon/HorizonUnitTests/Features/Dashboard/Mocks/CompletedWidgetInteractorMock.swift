@@ -16,9 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum HViewState: Equatable {
-    case data
-    case empty
-    case error
-    case loading
+import Combine
+import Foundation
+@testable import Horizon
+
+final class CompletedWidgetInteractorMock: CompletedWidgetInteractor {
+    private let response: [CompletedWidgetModel]
+    private let hasError: Bool
+
+    init(response: [CompletedWidgetModel], hasError: Bool = false) {
+        self.response = response
+        self.hasError = hasError
+    }
+
+    func getCompletedWidgets(ignoreCache: Bool) -> AnyPublisher<[CompletedWidgetModel], Error> {
+        if hasError {
+            return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
+        } else {
+            return Just(response)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+    }
 }

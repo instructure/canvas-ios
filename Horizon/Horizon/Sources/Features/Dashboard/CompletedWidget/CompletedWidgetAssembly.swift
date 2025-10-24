@@ -16,9 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum HViewState: Equatable {
-    case data
-    case empty
-    case error
-    case loading
+import Foundation
+
+enum CompletedWidgetAssembly {
+    static func makeView() -> CompletedWidgetView {
+        let interactor = CompletedWidgetInteractorLive()
+        let viewModel = CompletedWidgetViewModel(
+            interactor: interactor,
+            learnCoursesInteractor: GetLearnCoursesInteractorLive()
+        )
+        return CompletedWidgetView(viewModel: viewModel)
+    }
+
+    #if DEBUG
+    static func makePreview(hasError: Bool) -> CompletedWidgetView {
+        let interactor = CompletedWidgetInteractorPreview(hasError: hasError)
+        let viewModel = CompletedWidgetViewModel(interactor: interactor, learnCoursesInteractor: GetLearnCoursesInteractorPreview())
+        return CompletedWidgetView(viewModel: viewModel)
+    }
+    #endif
 }

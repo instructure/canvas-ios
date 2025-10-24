@@ -16,9 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum HViewState: Equatable {
-    case data
-    case empty
-    case error
-    case loading
+@testable import Core
+@testable import Horizon
+
+enum CompletedWidgetModelStub {
+    static var listCompletedWidgetModels: [CompletedWidgetModel] {
+        [
+            .init(courseID: "ID-1", courseName: "Biology Basics", moduleCountCompleted: 5),
+            .init(courseID: "ID-2", courseName: "Chemistry 101", moduleCountCompleted: 3),
+            .init(courseID: "103", courseName: "Nursing Fundamentals", moduleCountCompleted: 8)
+        ]
+    }
 }
