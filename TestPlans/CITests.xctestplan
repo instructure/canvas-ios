@@ -58,7 +58,6 @@
   },
   "testTargets" : [
     {
-      "enabled" : false,
       "target" : {
         "containerPath" : "container:Student\/Student.xcodeproj",
         "identifier" : "4DF9E94388E5DAB2630B064B",
@@ -66,7 +65,6 @@
       }
     },
     {
-      "enabled" : false,
       "target" : {
         "containerPath" : "container:Core\/Core.xcodeproj",
         "identifier" : "73B1A2AD90A7970B7DB39CDC",
@@ -81,7 +79,6 @@
       }
     },
     {
-      "enabled" : false,
       "target" : {
         "containerPath" : "container:Parent\/Parent.xcodeproj",
         "identifier" : "41BA2B211CB47478407A6101",
