@@ -204,7 +204,7 @@ open class Router {
 
         for handler in handlers {
             if let params = handler.match(url) {
-                let (newParams, newURL) = env.transformContentIDs(params: params, url: url)
+                let (newParams, newURL) = env.transformContentIDsToLocalForm(params: params, url: url)
 
                 if let view = handler.factory(newURL, newParams, userInfo, env) {
                     show(view, from: from, options: options, analyticsRoute: handler.route.template)

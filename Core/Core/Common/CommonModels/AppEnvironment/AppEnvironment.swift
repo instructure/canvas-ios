@@ -77,7 +77,7 @@ open class AppEnvironment {
     // See `AppEnvironmentOverride` impl. for it. Only applies to Courses & Groups.
     public var contextShardID: String? { sessionShardID }
 
-    public func transformContentIDs(params: [String: String], url: URLComponents) -> ([String: String], URLComponents) {
+    public func transformContentIDsToLocalForm(params: [String: String], url: URLComponents) -> ([String: String], URLComponents) {
         return (params, url)
     }
 

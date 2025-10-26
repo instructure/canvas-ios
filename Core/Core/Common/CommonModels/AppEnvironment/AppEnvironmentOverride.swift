@@ -126,7 +126,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
         set {}
     }
 
-    public override func transformContentIDs(params: [String: String], url: URLComponents) -> ([String: String], URLComponents) {
+    public override func transformContentIDsToLocalForm(params: [String: String], url: URLComponents) -> ([String: String], URLComponents) {
         var newParams: [String: String] = [:]
         var newUrl = url
 
