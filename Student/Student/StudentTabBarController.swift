@@ -142,7 +142,10 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 
     func todoTab() -> UIViewController {
         let todo = CoreSplitViewController()
-        let todoController = TodoListViewController.create()
+        let todoController = {
+            let useNewTodo = ExperimentalFeature.newStudentToDoScreen.isEnabled
+            return useNewTodo ? TodoAssembly.makeTodoListViewController(env: .shared) : TodoListViewController.create()
+        }()
         todo.viewControllers = [
             CoreNavigationController(rootViewController: todoController),
             CoreNavigationController(rootViewController: EmptyViewController())

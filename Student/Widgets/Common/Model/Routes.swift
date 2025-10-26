@@ -31,7 +31,7 @@ extension Assignment {
     }
 }
 
-extension TodoItem {
+extension TodoItemViewModel {
     var route: URL {
         var url = switch type {
         case .calendar_event:

@@ -45,6 +45,8 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var isPastEnrollment: Bool
     @NSManaged public var isPublished: Bool
     @NSManaged public var name: String?
+    /** If `name` property contains the user given nickname, then this field contains the original teacher associated name. Nil otherwise. */
+    @NSManaged public var originalName: String?
     @NSManaged public var sections: Set<CourseSection>
     @NSManaged public var syllabusBody: String?
     @NSManaged public var termName: String?
@@ -77,6 +79,10 @@ final public class Course: NSManagedObject, WriteableModel {
         Context(.course, id: id).canvasContextID
     }
 
+    public var hasNickName: Bool {
+        originalName != nil
+    }
+
     public var color: UIColor {
         if AppEnvironment.shared.k5.isK5Enabled {
             return UIColor(hexString: courseColor)?.ensureContrast(against: .backgroundLightest) ?? .textDarkest
@@ -90,6 +96,7 @@ final public class Course: NSManagedObject, WriteableModel {
         let model: Course = context.first(where: #keyPath(Course.id), equals: item.id.value) ?? context.insert()
         model.id = item.id.value
         model.name = item.name
+        model.originalName = item.original_name
         model.isFavorite = item.is_favorite ?? false
         model.courseCode = item.course_code
         model.courseColor = item.course_color
