@@ -165,15 +165,13 @@ struct DashboardView: View {
                 completedWidgetView
                 timeSpentWidgetView
                 skillsCountWidgetView
-                timeSpentWidgetView
             }
-            .padding(.top, .huiSpaces.space2)
-            .padding(.bottom, .huiSpaces.space4)
+            .padding(.top, .huiSpaces.space12 - 4)
+            .padding(.bottom, .huiSpaces.space16)
             .padding(.horizontal, .huiSpaces.space24)
         }
         .scrollIndicators(.hidden)
         .scrollBounceBehavior(.basedOnSize)
-        .padding(.top, .huiSpaces.space24)
     }
 }
 
