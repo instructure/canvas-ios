@@ -24,13 +24,15 @@ import Foundation
 
 @Observable
 final class AnnouncementsListWidgetViewModel {
-    enum ViewState: Equatable {
-        case loading
-        case data(announcements: [NotificationModel])
-    }
     // MARK: - Outputs
 
-    private(set) var state: ViewState = .loading
+    private(set) var state: HViewState = .loading
+    private(set) var currentAnnouncement: NotificationModel = NotificationModel.mock
+    private(set) var isNextButtonEnabled = false
+    private(set) var isPreviousButtonEnabled = false
+    private(set) var isNavigationButtonVisiable = false
+    private(set) var announcements: [NotificationModel] = []
+    private(set) var currentInex = 0
 
     // MARK: - Private Properties
 
@@ -73,19 +75,20 @@ final class AnnouncementsListWidgetViewModel {
         interactor.markNotificationAsRead(notification: announcement)
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0) }
-            .filter { $0.type == .announcement && ($0.isRead == false )}
+            .filter { $0.type == .announcement && ($0.isRead == false ) && $0.isWithinTwoWeeksLimit }
             .receive(on: scheduler)
             .collect()
-            .sink(receiveValue: { [weak self] notifications in
-                self?.state = .data(announcements: notifications)
-            })
+            .sink { [weak self] notifications in
+                guard let self else { return }
+                self.handleResponse(notifications: notifications)
+            }
             .store(in: &subscriptions)
     }
 
     func fetchAnnouncements(ignoreCache: Bool, completion: (() -> Void)? = nil) {
         if isFirstLoading {
             state = .loading
-        } else if case .data(announcements: let announcements) = state, announcements.isNotEmpty {
+        } else if announcements.isNotEmpty {
             state = .loading
         }
         isFirstLoading = false
@@ -93,13 +96,50 @@ final class AnnouncementsListWidgetViewModel {
             .getNotifications(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0) }
-            .filter { $0.type == .announcement && ($0.isRead == false)}
+            .filter { $0.type == .announcement && ($0.isRead == false ) && $0.isWithinTwoWeeksLimit }
             .collect()
             .receive(on: scheduler)
-            .sink(receiveValue: { [weak self] notifications in
+            .sink { [weak self] notifications in
+                guard let self else { return }
+                self.handleResponse(notifications: notifications)
                 completion?()
-                self?.state = .data(announcements: notifications)
-            })
+            }
             .store(in: &subscriptions)
+    }
+
+    private func handleResponse(notifications: [NotificationModel]) {
+        state = notifications.isEmpty ? .empty : .data
+        announcements = notifications
+        currentInex = 0
+        isNavigationButtonVisiable = announcements.count > 1
+        if let firstAnnouncement = notifications.first {
+            currentAnnouncement = firstAnnouncement
+        }
+        updateButtonStates()
+    }
+
+    func goNextAnnouncement() {
+        guard announcements.isNotEmpty else { return }
+        currentInex = min(currentInex + 1, announcements.count - 1)
+        currentAnnouncement = announcements[currentInex]
+        updateButtonStates()
+    }
+
+    func goPreviousAnnouncement() {
+        guard announcements.isNotEmpty else { return }
+        currentInex = max(currentInex - 1, 0)
+        currentAnnouncement = announcements[currentInex]
+        updateButtonStates()
+    }
+
+    private func updateButtonStates() {
+        guard announcements.isNotEmpty else {
+            isNextButtonEnabled = false
+            isPreviousButtonEnabled = false
+            return
+        }
+
+        isNextButtonEnabled = currentInex < announcements.count - 1
+        isPreviousButtonEnabled = currentInex > 0
     }
 }

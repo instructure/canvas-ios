@@ -69,13 +69,12 @@ struct SkillsHighlightsWidgetView: View {
         .huiElevation(level: .level4)
         .isSkeletonLoadActive(viewModel.state == .loading)
         .padding(.horizontal, .huiSpaces.space24)
-        .padding(.top, .huiSpaces.space16)
         .onWidgetReload { completion in
             viewModel.getSkills(ignoreCache: true, completion: completion)
         }
         .onChange(of: restoreFocusTrigger) { _, _ in
             if let lastFocused = lastFocusedElement.wrappedValue,
-               case .skillHighlight(let id) = lastFocused {
+               case let .skillHighlight(id) = lastFocused {
                 DispatchQueue.main.async {
                     focusedSkillID = id
                 }

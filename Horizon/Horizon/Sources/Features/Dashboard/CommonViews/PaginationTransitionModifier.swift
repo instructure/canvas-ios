@@ -16,9 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum HViewState: Equatable {
-    case data
-    case empty
-    case error
-    case loading
+import SwiftUI
+
+struct PaginationTransitionModifier: ViewModifier {
+    let direction: Edge
+
+    func body(content: Content) -> some View {
+        content.transition(
+            .asymmetric(
+                insertion: .move(edge: direction)
+                    .combined(with: .opacity),
+                removal: .move(edge: direction == .leading ? .trailing : .leading)
+                    .combined(with: .opacity)
+            )
+        )
+    }
+}
+
+extension View {
+    func paginationTransition(_ direction: Edge) -> some View {
+        self.modifier(PaginationTransitionModifier(direction: direction))
+    }
 }

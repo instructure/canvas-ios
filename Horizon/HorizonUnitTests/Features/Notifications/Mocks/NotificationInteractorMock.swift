@@ -168,6 +168,20 @@ final class NotificationInteractorMock: NotificationInteractor {
             htmlURL: URL(string: "https://course/10/html")
         ),
         NotificationModel(
+            id: "13",
+            title: "Title 13",
+            date: Calendar.current.date(byAdding: .day, value: -9, to: Date()),
+            isRead: true,
+            courseName: "Course 13",
+            courseID: "13",
+            enrollmentID: "enrollmentID-13",
+            isScoreAnnouncement: false,
+            type: .scoreChanged,
+            announcementId: "announcementId-13",
+            assignmentURL: URL(string: "https://course/13/assignment"),
+            htmlURL: URL(string: "https://course/13/html")
+        ),
+        NotificationModel(
             id: "11",
             title: "Title 11",
             date: Calendar.current.date(byAdding: .day, value: -10, to: Date()),
@@ -180,6 +194,20 @@ final class NotificationInteractorMock: NotificationInteractor {
             announcementId: "announcementId-11",
             assignmentURL: URL(string: "https://course/11/assignment"),
             htmlURL: URL(string: "https://course/11/html")
+        ),
+        NotificationModel(
+            id: "12",
+            title: "Title 12",
+            date: Calendar.current.date(byAdding: .day, value: -10, to: Date()),
+            isRead: false,
+            courseName: "Course 12",
+            courseID: "11",
+            enrollmentID: "enrollmentID-12",
+            isScoreAnnouncement: true,
+            type: .dueDate,
+            announcementId: "announcementId-12",
+            assignmentURL: URL(string: "https://course/12/assignment"),
+            htmlURL: URL(string: "https://course/12/html")
         )
     ]
 

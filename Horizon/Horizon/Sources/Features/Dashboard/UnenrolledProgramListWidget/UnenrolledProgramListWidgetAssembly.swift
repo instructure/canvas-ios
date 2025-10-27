@@ -16,9 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum HViewState: Equatable {
-    case data
-    case empty
-    case error
-    case loading
+import Foundation
+
+enum UnenrolledProgramListWidgetAssembly {
+    static func makeViewModel(programs: [Program] = []) -> UnenrolledProgramListWidgetViewModel {
+        UnenrolledProgramListWidgetViewModel(programs: programs)
+    }
+
+    static func makeView(
+        viewModel: UnenrolledProgramListWidgetViewModel,
+        onTap: @escaping (Program) -> Void
+    ) -> UnenrolledProgramListWidgetView {
+        return UnenrolledProgramListWidgetView(viewModel: viewModel, onTap: onTap)
+    }
 }

@@ -102,4 +102,13 @@ struct NotificationModel: Identifiable, Equatable {
     var accessibilityTitle: String {
         String.localizedStringWithFormat(String(localized: "Title %@", bundle: .horizon), title)
     }
+
+    // Returns true if the notification's date is within the last 14 days.
+    // If date is nil, returns false.
+    var isWithinTwoWeeksLimit: Bool {
+        guard let date else { return false }
+        // Calculate the cutoff date (14 days ago)
+        let cutoff = Calendar.current.date(byAdding: .day, value: -14, to: Date()) ?? Date.distantPast
+        return date >= cutoff
+    }
 }
