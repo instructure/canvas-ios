@@ -75,17 +75,14 @@ struct AnnouncementWidgetView: View {
             buttonView
                 .skeletonLoadable()
         }
-        .padding(.huiSpaces.space24)
-        .background(Color.huiColors.surface.pageSecondary)
-        .huiCornerRadius(level: .level5)
-        .huiElevation(level: .level4)
     }
 
     private var buttonView: some View {
         HorizonUI.PrimaryButton(
             String(localized: "Go to announcement", bundle: .horizon),
             type: .darkOutline,
-            isSmall: true
+            isSmall: true,
+            fillsWidth: true
         ) {
             onTap(announcement)
         }
