@@ -24,7 +24,7 @@ final class CDHTimeSpentWidgetTests: CoreTestCase {
         // Given
         let apiEntity = makeTimeSpent(courseID: "42", courseName: "Course 42", minutesPerDay: 15)
         // When
-        let saved = CDHTimeSpentWidget.save(apiEntity, in: databaseClient)
+        let saved = CDHTimeSpentWidgetModel.save(apiEntity, in: databaseClient)
         // Then
         XCTAssertEqual(saved.courseID, "42")
         XCTAssertEqual(saved.courseName, "Course 42")
@@ -35,7 +35,7 @@ final class CDHTimeSpentWidgetTests: CoreTestCase {
         // Given
         let apiEntity = makeTimeSpent(courseID: nil, courseName: nil, minutesPerDay: nil)
         // When
-        let saved = CDHTimeSpentWidget.save(apiEntity, in: databaseClient)
+        let saved = CDHTimeSpentWidgetModel.save(apiEntity, in: databaseClient)
         // Then
         XCTAssertEqual(saved.courseID, "")
         XCTAssertEqual(saved.courseName, "")
@@ -45,11 +45,11 @@ final class CDHTimeSpentWidgetTests: CoreTestCase {
     func testUpdateExistingEntity() {
         // Given initial save
         let initial = makeTimeSpent(courseID: "99", courseName: "Old Name", minutesPerDay: 10)
-        let savedInitial = CDHTimeSpentWidget.save(initial, in: databaseClient)
+        let savedInitial = CDHTimeSpentWidgetModel.save(initial, in: databaseClient)
         XCTAssertEqual(savedInitial.courseName, "Old Name")
         // When saving again with same courseID but new values
         let updated = makeTimeSpent(courseID: "99", courseName: "New Name", minutesPerDay: 25)
-        let savedUpdated = CDHTimeSpentWidget.save(updated, in: databaseClient)
+        let savedUpdated = CDHTimeSpentWidgetModel.save(updated, in: databaseClient)
         // Then should update existing record (object identity preserved)
         XCTAssertEqual(savedUpdated.objectID, savedInitial.objectID)
         XCTAssertEqual(savedUpdated.courseID, "99")
