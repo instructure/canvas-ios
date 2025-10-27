@@ -27,7 +27,7 @@ final class UnenrolledProgramListWidgetViewModelTests: XCTestCase {
         XCTAssertEqual(testee.programs.count, 0)
         XCTAssertNil(testee.currentProgram)
         XCTAssertEqual(testee.currentInex, 0)
-        XCTAssertFalse(testee.isNavigationButtonVisiable)
+        XCTAssertFalse(testee.isNavigationButtonVisible)
         XCTAssertFalse(testee.isNextButtonEnabled)
         XCTAssertFalse(testee.isPreviousButtonEnabled)
     }
@@ -37,7 +37,7 @@ final class UnenrolledProgramListWidgetViewModelTests: XCTestCase {
         XCTAssertEqual(testee.programs.count, 1)
         XCTAssertEqual(testee.currentProgram?.id, "program-1")
         XCTAssertEqual(testee.currentInex, 0)
-        XCTAssertFalse(testee.isNavigationButtonVisiable)
+        XCTAssertFalse(testee.isNavigationButtonVisible)
         XCTAssertFalse(testee.isNextButtonEnabled)
         XCTAssertFalse(testee.isPreviousButtonEnabled)
     }
@@ -48,7 +48,7 @@ final class UnenrolledProgramListWidgetViewModelTests: XCTestCase {
         XCTAssertEqual(testee.programs.count, 3)
         XCTAssertEqual(testee.currentProgram?.id, "program-1")
         XCTAssertEqual(testee.currentInex, 0)
-        XCTAssertTrue(testee.isNavigationButtonVisiable)
+        XCTAssertTrue(testee.isNavigationButtonVisible)
         XCTAssertTrue(testee.isNextButtonEnabled)
         XCTAssertFalse(testee.isPreviousButtonEnabled)
     }
@@ -131,7 +131,7 @@ final class UnenrolledProgramListWidgetViewModelTests: XCTestCase {
         XCTAssertEqual(testee.currentProgram?.id, "program-10")
         XCTAssertTrue(testee.isNextButtonEnabled)
         XCTAssertFalse(testee.isPreviousButtonEnabled)
-        XCTAssertTrue(testee.isNavigationButtonVisiable)
+        XCTAssertTrue(testee.isNavigationButtonVisible)
     }
 
     func testUpdateProgramsToEmptyResetsToEmptyState() {
@@ -140,7 +140,7 @@ final class UnenrolledProgramListWidgetViewModelTests: XCTestCase {
         XCTAssertTrue(testee.programs.isEmpty)
         XCTAssertNil(testee.currentProgram)
         XCTAssertEqual(testee.currentInex, 0)
-        XCTAssertFalse(testee.isNavigationButtonVisiable)
+        XCTAssertFalse(testee.isNavigationButtonVisible)
         XCTAssertFalse(testee.isNextButtonEnabled)
         XCTAssertFalse(testee.isPreviousButtonEnabled)
     }
