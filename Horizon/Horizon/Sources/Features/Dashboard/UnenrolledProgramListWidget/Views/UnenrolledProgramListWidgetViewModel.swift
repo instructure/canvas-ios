@@ -26,7 +26,7 @@ final class UnenrolledProgramListWidgetViewModel {
     private(set) var currentInex: Int = 0
     private(set) var isNextButtonEnabled: Bool = false
     private(set) var isPreviousButtonEnabled: Bool = false
-    private(set) var isNavigationButtonVisiable: Bool = false
+    private(set) var isNavigationButtonVisible: Bool = false
 
     init(programs: [Program]) {
         self.programs = programs
@@ -55,7 +55,7 @@ final class UnenrolledProgramListWidgetViewModel {
     private func configureInitialState() {
         currentInex = 0
         currentProgram = programs.first
-        isNavigationButtonVisiable = programs.count > 1
+        isNavigationButtonVisible = programs.count > 1
         updateButtonStates()
     }
 
