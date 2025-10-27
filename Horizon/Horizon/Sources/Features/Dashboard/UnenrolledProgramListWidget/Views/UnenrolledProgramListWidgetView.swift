@@ -50,7 +50,7 @@ struct UnenrolledProgramListWidgetView: View {
                 )
                 .id(viewModel.currentProgram?.id)
                 .paginationTransition(transitionDirection)
-                if viewModel.isNavigationButtonVisiable {
+                if viewModel.isNavigationButtonVisible {
                     programNavigationButtons
                 }
             }
