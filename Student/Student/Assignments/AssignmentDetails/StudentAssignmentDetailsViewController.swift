@@ -82,9 +82,9 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     @IBOutlet weak var fileTypesSection: StudentAssignmentDetailsSectionContainerView?
     @IBOutlet weak var submissionTypesSection: StudentAssignmentDetailsSectionContainerView?
 
-    private var checkpointsCardHostingController: UIHostingController<StudentAssignmentCheckpointsCardView>?
-    private var checkpointsCardContainer: UIView?
-    private var checkpointsCardBottomSpacer: UIView?
+    private var subAssignmentsCardHostingController: UIHostingController<StudentSubAssignmentsCardView>?
+    private var subAssignmentsCardContainer: UIView?
+    private var subAssignmentsCardBottomSpacer: UIView?
 
     @IBOutlet weak var dueSection1: StudentAssignmentDetailsSectionContainerView?
     @IBOutlet weak var dueSection2: StudentAssignmentDetailsSectionContainerView?
@@ -256,7 +256,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
 
         embedReminderSection(after: dueSection1, interactor: dueDate1RemindersInteractor)
         embedReminderSection(after: dueSection2, interactor: dueDate2RemindersInteractor)
-        embedCheckpointsCard()
+        embedSubAssignmentsCard()
 
         let border = CAShapeLayer()
         border.strokeColor = UIColor.borderDark.cgColor
@@ -486,7 +486,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         centerLockedIconContainerView()
 
         updateQuizSettings(quiz)
-        updateCheckpointsCard(assignment: assignment, submission: submission)
+        updateSubAssignmentsCard(assignment: assignment, submission: submission)
 
         scrollView?.isHidden = false
         loadingView.stopAnimating()
@@ -533,38 +533,34 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         quizView?.isHidden = false
     }
 
-    func updateCheckpointsCard(assignment: Assignment, submission: Submission?) {
-        guard let checkpointsCardContainer else { return }
+    private func updateSubAssignmentsCard(assignment: Assignment, submission: Submission?) {
+        guard let subAssignmentsCardContainer else { return }
 
         let shouldShowCard = assignment.hasSubAssignments && !assignment.checkpoints.isEmpty
 
         if shouldShowCard {
-            let viewModel = StudentAssignmentCheckpointsViewModel(assignment: assignment, submission: submission)
-            let checkpointsView = StudentAssignmentCheckpointsCardView(viewModel: viewModel)
+            let cardView = StudentSubAssignmentsCardView(
+                viewModel: .init(assignment: assignment, submission: submission),
+                contextColor: presenter?.courses.first?.color.asColor
+            )
 
-            if let existingHostingController = checkpointsCardHostingController {
-                existingHostingController.rootView = checkpointsView
+            if let existingHostingController = subAssignmentsCardHostingController {
+                existingHostingController.rootView = cardView
             } else {
-                let hostingController = UIHostingController(rootView: checkpointsView)
+                let hostingController = UIHostingController(rootView: cardView)
                 hostingController.view.backgroundColor = .clear
-                hostingController.view.translatesAutoresizingMaskIntoConstraints = false
 
                 addChild(hostingController)
-                checkpointsCardContainer.addSubview(hostingController.view)
-                NSLayoutConstraint.activate([
-                    hostingController.view.topAnchor.constraint(equalTo: checkpointsCardContainer.topAnchor),
-                    hostingController.view.leadingAnchor.constraint(equalTo: checkpointsCardContainer.leadingAnchor),
-                    hostingController.view.trailingAnchor.constraint(equalTo: checkpointsCardContainer.trailingAnchor),
-                    hostingController.view.bottomAnchor.constraint(equalTo: checkpointsCardContainer.bottomAnchor)
-                ])
+                subAssignmentsCardContainer.addSubview(hostingController.view)
+                hostingController.view.pin(inside: subAssignmentsCardContainer)
                 hostingController.didMove(toParent: self)
-                checkpointsCardHostingController = hostingController
+                subAssignmentsCardHostingController = hostingController
             }
-            checkpointsCardContainer.isHidden = false
-            checkpointsCardBottomSpacer?.isHidden = false
+            subAssignmentsCardContainer.isHidden = false
+            subAssignmentsCardBottomSpacer?.isHidden = false
         } else {
-            checkpointsCardContainer.isHidden = true
-            checkpointsCardBottomSpacer?.isHidden = true
+            subAssignmentsCardContainer.isHidden = true
+            subAssignmentsCardBottomSpacer?.isHidden = true
         }
     }
 
@@ -713,7 +709,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         reminderSection.didMove(toParent: self)
     }
 
-    private func embedCheckpointsCard() {
+    private func embedSubAssignmentsCard() {
         guard let gradeSectionBottomSpacer,
               let parentStackView = gradeSectionBottomSpacer.superview as? UIStackView,
               let spacerIndex = parentStackView.arrangedSubviews.firstIndex(of: gradeSectionBottomSpacer)
@@ -738,8 +734,8 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
             bottomSpacer.heightAnchor.constraint(equalToConstant: 16)
         ])
 
-        checkpointsCardContainer = containerView
-        checkpointsCardBottomSpacer = bottomSpacer
+        subAssignmentsCardContainer = containerView
+        subAssignmentsCardBottomSpacer = bottomSpacer
     }
 
     private func updateGradeBorder(using gradeSection: UIStackView) {
