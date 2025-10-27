@@ -35,7 +35,7 @@ final class CompletedWidgetViewModelTests: HorizonTestCase {
         )
 
         // When
-        testee.getCountCompletedModules(ignoreCache: true)
+        testee.getCompletedModulesCount(ignoreCache: true)
 
         // Then
         XCTAssertEqual(testee.state, .data)
@@ -53,7 +53,7 @@ final class CompletedWidgetViewModelTests: HorizonTestCase {
         )
 
         // When
-        testee.getCountCompletedModules(ignoreCache: true)
+        testee.getCompletedModulesCount(ignoreCache: true)
 
         // Then
         XCTAssertEqual(testee.state, .empty)
@@ -72,7 +72,7 @@ final class CompletedWidgetViewModelTests: HorizonTestCase {
         )
 
         // When
-        testee.getCountCompletedModules(ignoreCache: true)
+        testee.getCompletedModulesCount(ignoreCache: true)
 
         // Then
         XCTAssertEqual(testee.state, .error)

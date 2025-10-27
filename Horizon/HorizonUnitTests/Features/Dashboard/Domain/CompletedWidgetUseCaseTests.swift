@@ -35,7 +35,7 @@ final class CompletedWidgetUseCaseTests: HorizonTestCase {
         api.mock(GetActivitiesWidgetRequest(), value: HActivitiesWidgetStubs.response)
 
         // When / Then
-        XCTAssertFirstValueAndCompletion(testee.getCompletedWidgets(ignoreCache: true)) { models in
+        XCTAssertSingleOutputAndFinish(testee.getCompletedWidgets(ignoreCache: true)) { models in
             XCTAssertEqual(models.count, 3)
             let dict = Dictionary(uniqueKeysWithValues: models.map { ($0.courseID, $0) })
 
@@ -68,7 +68,7 @@ final class CompletedWidgetUseCaseTests: HorizonTestCase {
         api.mock(GetActivitiesWidgetRequest(), value: emptyResponse)
 
         // When / Then
-        XCTAssertFirstValueAndCompletion(testee.getCompletedWidgets(ignoreCache: true)) { models in
+        XCTAssertSingleOutputAndFinish(testee.getCompletedWidgets(ignoreCache: true)) { models in
             XCTAssertEqual(models.count, 0)
         }
     }
