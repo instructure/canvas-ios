@@ -22,7 +22,7 @@ import SwiftUI
 
 struct CourseListWidgetView: View {
     @State private var viewModel: CourseListWidgetViewModel
-    private let unenrolledProgramsVeiwModel: UnenrolledProgramListWidgetViewModel
+    private let unenrolledProgramsViewModel: UnenrolledProgramListWidgetViewModel
     @Environment(\.viewController) private var viewController
     @Environment(\.dashboardLastFocusedElement) private var lastFocusedElement
     @Environment(\.dashboardRestoreFocusTrigger) private var restoreFocusTrigger
@@ -33,7 +33,7 @@ struct CourseListWidgetView: View {
 
     init(viewModel: CourseListWidgetViewModel) {
         _viewModel = State(initialValue: viewModel)
-        self.unenrolledProgramsVeiwModel = UnenrolledProgramListWidgetAssembly.makeViewModel()
+        self.unenrolledProgramsViewModel = UnenrolledProgramListWidgetAssembly.makeViewModel()
     }
 
     var body: some View {
@@ -123,7 +123,7 @@ struct CourseListWidgetView: View {
                     .padding(.horizontal, .huiSpaces.space24)
                 }
                 .onChange(of: viewModel.unenrolledPrograms.count) { _, _ in
-                    unenrolledProgramsVeiwModel.updatePrograms(viewModel.unenrolledPrograms)
+                    unenrolledProgramsViewModel.updatePrograms(viewModel.unenrolledPrograms)
                 }
                 .scrollIndicators(.hidden)
                 .scrollTargetBehavior(.viewAligned)
@@ -141,7 +141,7 @@ struct CourseListWidgetView: View {
     @ViewBuilder
     private var programCardsView: some View {
         if viewModel.isProgramWidgetVisible {
-            UnenrolledProgramListWidgetAssembly.makeView(viewModel: unenrolledProgramsVeiwModel) { program in
+            UnenrolledProgramListWidgetAssembly.makeView(viewModel: unenrolledProgramsViewModel) { program in
                 lastFocusedElement.wrappedValue = .programInvitation(id: program.id)
                 viewModel.navigateProgram(id: program.id, viewController: viewController)
             }

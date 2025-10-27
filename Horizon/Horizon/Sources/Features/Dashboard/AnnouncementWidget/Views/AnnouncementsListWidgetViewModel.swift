@@ -75,7 +75,7 @@ final class AnnouncementsListWidgetViewModel {
         interactor.markNotificationAsRead(notification: announcement)
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0) }
-            .filter { $0.type == .announcement && ($0.isRead == false ) && $0.isWithinTwoWeekLimit }
+            .filter { $0.type == .announcement && ($0.isRead == false ) && $0.isWithinTwoWeeksLimit }
             .receive(on: scheduler)
             .collect()
             .sink { [weak self] notifications in
@@ -96,7 +96,7 @@ final class AnnouncementsListWidgetViewModel {
             .getNotifications(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0) }
-            .filter { $0.type == .announcement && ($0.isRead == false ) && $0.isWithinTwoWeekLimit }
+            .filter { $0.type == .announcement && ($0.isRead == false ) && $0.isWithinTwoWeeksLimit }
             .collect()
             .receive(on: scheduler)
             .sink { [weak self] notifications in
