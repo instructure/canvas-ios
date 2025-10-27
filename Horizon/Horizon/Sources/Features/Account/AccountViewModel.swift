@@ -61,6 +61,7 @@ final class AccountViewModel {
 
         confirmLogoutViewModel.userConfirmation()
             .sink {
+                DomainJWTService.shared.clear()
                 sessionInteractor.logout()
             }
             .store(in: &subscriptions)

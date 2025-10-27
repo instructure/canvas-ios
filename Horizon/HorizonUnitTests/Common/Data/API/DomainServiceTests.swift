@@ -34,7 +34,7 @@ class DomainServiceTests: HorizonTestCase {
         // Given
         let baseURL = "https://example.com"
         let requestKey = "POST:https://canvas.instructure.com/api/v1/jwts?canvas_audience=false&no_verifiers=1&workflows%5B%5D=cedar"
-        let response = DomainService.JWTTokenRequest.Result(token: "")
+        let response = DomainJWTService.JWTTokenRequest.Result(token: "ZmFrZS1qd3QtdG9rZW4=")
         let responseData = try! JSONEncoder().encode(response)
         let apiMock = APIMock { _ in
             (responseData, nil, nil)
@@ -46,7 +46,7 @@ class DomainServiceTests: HorizonTestCase {
             .cedar,
             baseURL: baseURL,
             region: "us-west-1",
-            horizonApi: api
+            domainJWTService: DomainJWTService(horizonApi: api)
         )
         let domainServiceApi = try? await domainService.api().values.first { _ in true }
 
