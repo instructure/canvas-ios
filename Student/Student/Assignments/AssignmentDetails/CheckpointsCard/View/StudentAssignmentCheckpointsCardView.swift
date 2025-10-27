@@ -16,17 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
-public struct AssignmentCheckpointsCardView: View {
+struct StudentAssignmentCheckpointsCardView: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
-    public let viewModel: AssignmentCheckpointsViewModel
+    let viewModel: StudentAssignmentCheckpointsViewModel
 
-    public init(viewModel: AssignmentCheckpointsViewModel) {
+    init(viewModel: StudentAssignmentCheckpointsViewModel) {
         self.viewModel = viewModel
     }
 
-    public var body: some View {
+    var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ForEach(Array(viewModel.checkpointItems.enumerated()), id: \.element.id) { index, item in
                 if index > 0 {
@@ -41,7 +42,7 @@ public struct AssignmentCheckpointsCardView: View {
         .padding(.horizontal, 16)
     }
 
-    private func checkpointRow(_ item: AssignmentCheckpointsViewModel.CheckpointItem) -> some View {
+    private func checkpointRow(_ item: StudentAssignmentCheckpointsViewModel.CheckpointItem) -> some View {
         HStack(alignment: .center, spacing: 0) {
             VStack(alignment: .leading, spacing: 4) {
                 Text(item.title)
@@ -66,25 +67,25 @@ public struct AssignmentCheckpointsCardView: View {
 
 #if DEBUG
 
-struct AssignmentCheckpointsCardView_Previews: PreviewProvider {
+struct StudentAssignmentCheckpointsCardView_Previews: PreviewProvider {
     static var previews: some View {
-        let checkpoint1 = AssignmentCheckpointsViewModel.CheckpointItem(
+        let checkpoint1 = StudentAssignmentCheckpointsViewModel.CheckpointItem(
             id: "1",
             title: "Reply to topic",
             statusLabel: .init(status: .graded),
             score: "5/5"
         )
 
-        let checkpoint2 = AssignmentCheckpointsViewModel.CheckpointItem(
+        let checkpoint2 = StudentAssignmentCheckpointsViewModel.CheckpointItem(
             id: "2",
             title: "Additional replies (3)",
             statusLabel: .init(status: .graded),
             score: "2.5/5"
         )
 
-        let viewModel = AssignmentCheckpointsViewModel(checkpointItems: [checkpoint1, checkpoint2])
+        let viewModel = StudentAssignmentCheckpointsViewModel(checkpointItems: [checkpoint1, checkpoint2])
 
-        return AssignmentCheckpointsCardView(viewModel: viewModel)
+        return StudentAssignmentCheckpointsCardView(viewModel: viewModel)
             .background(Color.gray.opacity(0.1))
             .previewLayout(.sizeThatFits)
     }

@@ -16,37 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
 import SwiftUI
 
-public struct AssignmentCheckpointsViewModel {
+struct StudentAssignmentCheckpointsViewModel {
 
-    public struct CheckpointItem: Identifiable {
-        public let id: String
-        public let title: String
-        public let statusLabel: SubmissionStatusLabel.Model
-        public let score: String?
-
-        public init(
-            id: String,
-            title: String,
-            statusLabel: SubmissionStatusLabel.Model,
-            score: String?
-        ) {
-            self.id = id
-            self.title = title
-            self.statusLabel = statusLabel
-            self.score = score
-        }
+    struct CheckpointItem: Identifiable {
+        let id: String
+        let title: String
+        let statusLabel: SubmissionStatusLabel.Model
+        let score: String?
     }
 
-    public let checkpointItems: [CheckpointItem]
+    let checkpointItems: [CheckpointItem]
 
-    public init(checkpointItems: [CheckpointItem]) {
+    init(checkpointItems: [CheckpointItem]) {
         self.checkpointItems = checkpointItems
     }
 
-    public init(assignment: Assignment, submission: Submission?) {
+    init(assignment: Assignment, submission: Submission?) {
         guard assignment.hasSubAssignments else {
             self.checkpointItems = []
             return

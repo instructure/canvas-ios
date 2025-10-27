@@ -82,7 +82,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     @IBOutlet weak var fileTypesSection: StudentAssignmentDetailsSectionContainerView?
     @IBOutlet weak var submissionTypesSection: StudentAssignmentDetailsSectionContainerView?
 
-    private var checkpointsCardHostingController: UIHostingController<AssignmentCheckpointsCardView>?
+    private var checkpointsCardHostingController: UIHostingController<StudentAssignmentCheckpointsCardView>?
     private var checkpointsCardContainer: UIView?
     private var checkpointsCardBottomSpacer: UIView?
 
@@ -539,8 +539,8 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         let shouldShowCard = assignment.hasSubAssignments && !assignment.checkpoints.isEmpty
 
         if shouldShowCard {
-            let viewModel = AssignmentCheckpointsViewModel(assignment: assignment, submission: submission)
-            let checkpointsView = AssignmentCheckpointsCardView(viewModel: viewModel)
+            let viewModel = StudentAssignmentCheckpointsViewModel(assignment: assignment, submission: submission)
+            let checkpointsView = StudentAssignmentCheckpointsCardView(viewModel: viewModel)
 
             if let existingHostingController = checkpointsCardHostingController {
                 existingHostingController.rootView = checkpointsView
