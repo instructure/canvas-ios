@@ -29,8 +29,8 @@ final class CompletedWidgetUseCaseTests: HorizonTestCase {
         let testee = CompletedWidgetInteractorLive(completedWidget: useCase)
 
         api.mock(
-            DomainService.JWTTokenRequest(domainServiceOption: .journey),
-            value: DomainService.JWTTokenRequest.Result(token: HActivitiesWidgetStubs.token)
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            value: DomainJWTService.JWTTokenRequest.Result(token: HActivitiesWidgetStubs.token)
         )
         api.mock(GetActivitiesWidgetRequest(), value: HActivitiesWidgetStubs.response)
 
@@ -62,8 +62,8 @@ final class CompletedWidgetUseCaseTests: HorizonTestCase {
         let testee = CompletedWidgetInteractorLive(completedWidget: useCase)
 
         api.mock(
-            DomainService.JWTTokenRequest(domainServiceOption: .journey),
-            value: DomainService.JWTTokenRequest.Result(token: HActivitiesWidgetStubs.token)
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            value: DomainJWTService.JWTTokenRequest.Result(token: HActivitiesWidgetStubs.token)
         )
         api.mock(GetActivitiesWidgetRequest(), value: emptyResponse)
 
