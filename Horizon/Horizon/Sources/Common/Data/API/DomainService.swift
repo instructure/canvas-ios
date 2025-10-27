@@ -64,7 +64,6 @@ final class DomainService: DomainServiceProtocol {
         self.baseURL = baseURL
         self.region = region ?? "us-east-1"
         self.domainJWTService = domainJWTService
-//        domainJWTService.horizonApi.baseURL == AppEnvironment.shared.api.baseURL ? .shared : DomainJWTService(horizonApi: AppEnvironment.shared.api)
     }
 
     // MARK: - Public
