@@ -103,12 +103,14 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertEqual(item1.dueDateLabel1.text, testData.date1.dateTimeString)
         XCTAssertEqual(item1.dueDateLabel2.text, nil)
         XCTAssertEqual(item1.miscSubtitleLabel.text, "10 pts | Score at least 8")
+        XCTAssertContains(item1.accessibilityLabel, "10 points, Score at least 8")
         XCTAssertFalse(item1.completedStatusView.isHidden)
         XCTAssertEqual(item1.completedStatusView.image, .emptyLine)
         let item2 = moduleItemCell(at: IndexPath(row: 1, section: 0))
         XCTAssertEqual(item2.dueDateLabel1.text, testData.date2.dateTimeString)
         XCTAssertEqual(item2.dueDateLabel2.text, testData.date3.dateTimeString)
         XCTAssertEqual(item2.miscSubtitleLabel.text, "10 pts")
+        XCTAssertContains(item2.accessibilityLabel, "10 points")
         XCTAssertFalse(item2.isUserInteractionEnabled)
         XCTAssertFalse(item2.nameLabel.isEnabled)
         XCTAssertTrue(item2.completedStatusView.isHidden)
@@ -116,8 +118,10 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertEqual(item3.dueDateLabel1.text, DueDateFormatter.noDueDateText)
         XCTAssertEqual(item3.dueDateLabel2.text, testData.date1.dateTimeString)
         XCTAssertEqual(item3.miscSubtitleLabel.text, "View")
+        XCTAssertContains(item3.accessibilityLabel, "View")
         let item4 = moduleItemCell(at: IndexPath(row: 3, section: 0))
         XCTAssertEqual(item4.miscSubtitleLabel.text, "Submitted")
+        XCTAssertContains(item4.accessibilityLabel, "Submitted")
         XCTAssertFalse(item4.completedStatusView.isHidden)
         XCTAssertEqual(item4.completedStatusView.image, .checkLine)
 
@@ -382,6 +386,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         // Then
         let cell = moduleItemCell(at: IndexPath(row: 0, section: 0))
         XCTAssertTrue(cell.miscSubtitleLabel.isHidden)
+        XCTAssertNotContains(cell.accessibilityLabel, "10 points")
     }
 
     func testCellPointsLabelWhenQuantitativeDataDisabled() {
@@ -394,6 +399,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         // Then
         let cell = moduleItemCell(at: IndexPath(row: 0, section: 0))
         XCTAssertEqual(cell.miscSubtitleLabel.text, "10 pts")
+        XCTAssertContains(cell.accessibilityLabel, "10 points")
     }
 
     func testCellPointsLabelWhenQuantitativeDataNotSpecified() {
@@ -406,6 +412,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         // Then
         let cell = moduleItemCell(at: IndexPath(row: 0, section: 0))
         XCTAssertEqual(cell.miscSubtitleLabel.text, "10 pts")
+        XCTAssertContains(cell.accessibilityLabel, "10 points")
     }
 
     func testSelectItem() {
@@ -531,6 +538,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         let path = moduleItemCell(at: IndexPath(row: 1, section: 0))
         XCTAssertEqual(path.nameLabel.text, "Select a Path")
         XCTAssertEqual(path.miscSubtitleLabel.text, "1 Option")
+        XCTAssertContains(path.accessibilityLabel, "1 Option")
         XCTAssertEqual((path.accessoryView as? UIImageView)?.image, UIImage.masteryPathsLine)
         viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
         mockRequests(

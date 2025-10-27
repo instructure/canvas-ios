@@ -46,6 +46,8 @@ class ModuleItemCell: UITableViewCell {
     private var moduleId: String?
     private var courseId: String?
 
+    private var miscSubtitleA11yLabel: String?
+
     // MARK: - Update
 
     override func prepareForReuse() {
@@ -141,8 +143,10 @@ class ModuleItemCell: UITableViewCell {
     private func updateMiscSubtitleLabel(_ item: ModuleItem) {
         if let masteryPath = item.masteryPath, masteryPath.needsSelection, !masteryPath.locked {
             let format = String(localized: "d_options", bundle: .core)
-            miscSubtitleLabel.setText(String.localizedStringWithFormat(format, masteryPath.numberOfOptions), style: .textCellSupportingText)
+            let text = String.localizedStringWithFormat(format, masteryPath.numberOfOptions)
+            miscSubtitleLabel.setText(text, style: .textCellSupportingText)
             miscSubtitleLabel.textColor = tintColor
+            miscSubtitleA11yLabel = text
             accessoryView = UIImageView(image: .masteryPathsLine)
         } else {
             let points = item.hideQuantitativeData ? nil : String.format(pts: item.pointsPossible)
@@ -150,6 +154,9 @@ class ModuleItemCell: UITableViewCell {
             let text = [points, requirement].joined(separator: " | ").nilIfEmpty
             updateSubtitleLabel(miscSubtitleLabel, text: text)
             miscSubtitleLabel.textColor = .textDark
+            let a11yPoints = item.hideQuantitativeData ? nil : String.format(points: item.pointsPossible)
+            let a11yText = [a11yPoints, requirement].accessibilityJoined()
+            miscSubtitleA11yLabel = a11yText
             accessoryView = nil
         }
     }
@@ -184,7 +191,7 @@ class ModuleItemCell: UITableViewCell {
             a11yLabels.append(contentsOf: [
                 dueDateLabel1.text,
                 dueDateLabel2.text,
-                miscSubtitleLabel.text,
+                miscSubtitleA11yLabel,
                 item.isLocked ? String(localized: "locked", bundle: .core) : nil
             ])
         }
