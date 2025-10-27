@@ -20,8 +20,12 @@ import XCTest
 @testable import Core
 
 extension APIGraphQLRequestable {
-    func assertBodyEquals(_ expected: GraphQLBody<Variables>) {
-        XCTAssertEqual(body, expected)
+    func assertBodyEquals(
+        _ expected: GraphQLBody<Variables>,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        XCTAssertEqual(body, expected, file: file, line: line)
     }
 }
 
