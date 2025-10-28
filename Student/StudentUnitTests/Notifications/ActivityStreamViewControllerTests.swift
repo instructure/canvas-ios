@@ -68,32 +68,32 @@ class ActivityStreamViewControllerTests: StudentTestCase {
         XCTAssertEqual(cell?.courseCode.textColor.hexString, UIColor(hexString: "#f00")!.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(cell?.courseCode.text, "Code")
         XCTAssertEqual(cell?.titleLabel.text, "title")
-        XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell0)
+        XCTAssertEqual(cell?.dateLabel.text, expectedDateCell0)
         XCTAssertEqual(cell?.icon.image, UIImage.assignmentLine)
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ActivityCell
         XCTAssertNil(cell?.courseCode.text)
         XCTAssertEqual(cell?.titleLabel.text, "grouptitle")
-        XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell1)
+        XCTAssertEqual(cell?.dateLabel.text, expectedDateCell1)
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? ActivityCell
         XCTAssertEqual(cell?.courseCode.textColor.hexString, UIColor(hexString: "#0f0")!.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(cell?.courseCode.text, "Code2")
         XCTAssertEqual(cell?.titleLabel.text, "title2")
-        XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell2)
+        XCTAssertEqual(cell?.dateLabel.text, expectedDateCell2)
         XCTAssertEqual(cell?.icon.image, UIImage.assignmentLine)
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? ActivityCell
         XCTAssertEqual(cell?.titleLabel.text, "title3")
-        XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell3)
+        XCTAssertEqual(cell?.dateLabel.text, expectedDateCell3)
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? ActivityCell
         XCTAssertEqual(cell?.titleLabel.text, "title4")
-        XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell4)
+        XCTAssertEqual(cell?.dateLabel.text, expectedDateCell4)
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? ActivityCell
         XCTAssertEqual(cell?.titleLabel.text, "title5")
-        XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell5)
+        XCTAssertEqual(cell?.dateLabel.text, expectedDateCell5)
     }
 
     func testEmptyState() {
