@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct GetActivitiesWidgetRequest: APIGraphQLRequestable {
+public struct GetHActivitiesWidgetRequest: APIGraphQLRequestable {
     public typealias Response = GetActivitiesWidgetResponse
     public typealias Variables = Input
     public let variables: Input = .init()

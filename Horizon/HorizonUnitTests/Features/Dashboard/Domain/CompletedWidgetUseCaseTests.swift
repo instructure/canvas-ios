@@ -32,7 +32,7 @@ final class CompletedWidgetUseCaseTests: HorizonTestCase {
             DomainService.JWTTokenRequest(domainServiceOption: .journey),
             value: DomainService.JWTTokenRequest.Result(token: HActivitiesWidgetStubs.token)
         )
-        api.mock(GetActivitiesWidgetRequest(), value: HActivitiesWidgetStubs.response)
+        api.mock(GetHActivitiesWidgetRequest(), value: HActivitiesWidgetStubs.response)
 
         // When / Then
         XCTAssertSingleOutputAndFinish(testee.getCompletedWidgets(ignoreCache: true)) { models in
@@ -65,7 +65,7 @@ final class CompletedWidgetUseCaseTests: HorizonTestCase {
             DomainService.JWTTokenRequest(domainServiceOption: .journey),
             value: DomainService.JWTTokenRequest.Result(token: HActivitiesWidgetStubs.token)
         )
-        api.mock(GetActivitiesWidgetRequest(), value: emptyResponse)
+        api.mock(GetHActivitiesWidgetRequest(), value: emptyResponse)
 
         // When / Then
         XCTAssertSingleOutputAndFinish(testee.getCompletedWidgets(ignoreCache: true)) { models in

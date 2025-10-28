@@ -21,22 +21,22 @@ import XCTest
 
 final class GetActivitiesWidgetRequestTests: XCTestCase {
     func testPath() {
-        XCTAssertEqual(GetActivitiesWidgetRequest().path, "/graphql")
+        XCTAssertEqual(GetHActivitiesWidgetRequest().path, "/graphql")
     }
 
     func testHeader() {
-        let request = GetActivitiesWidgetRequest()
+        let request = GetHActivitiesWidgetRequest()
         XCTAssertEqual(request.headers.count, 1)
         XCTAssertEqual(request.headers[HttpHeader.accept]!, "application/json")
     }
 
     func testShouldAddNoVerifierQuery() {
-        let request = GetActivitiesWidgetRequest()
+        let request = GetHActivitiesWidgetRequest()
         XCTAssertFalse(request.shouldAddNoVerifierQuery)
     }
 
     func testOperationName() {
-        XCTAssertEqual(GetActivitiesWidgetRequest.operationName, "ActivitiesWidget")
+        XCTAssertEqual(GetHActivitiesWidgetRequest.operationName, "ActivitiesWidget")
     }
 
     func testQuery() {
@@ -54,11 +54,11 @@ final class GetActivitiesWidgetRequestTests: XCTestCase {
         }
       }
     """
-        XCTAssertEqual(GetActivitiesWidgetRequest.query, expected)
+        XCTAssertEqual(GetHActivitiesWidgetRequest.query, expected)
     }
 
     func testVariables() {
-        let request = GetActivitiesWidgetRequest()
+        let request = GetHActivitiesWidgetRequest()
         XCTAssertEqual(request.variables, .init())
     }
 }
