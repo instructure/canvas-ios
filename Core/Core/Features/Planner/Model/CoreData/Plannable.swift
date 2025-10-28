@@ -46,7 +46,7 @@ public final class Plannable: NSManagedObject {
     @NSManaged public var details: String?
     @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
     public var discussionCheckpointStep: DiscussionCheckpointStep? {
-        get { return discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(value: newValue) }
+        get { discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(newValue) }
     }
 
     public var pointsPossible: Double? {

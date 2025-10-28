@@ -24,7 +24,7 @@ import TestsFoundation
 class ActivityTests: CoreTestCase {
     func testModel() {
         let url = URL(string: "/courses/1/assignments/1")
-        let a = Activity.make(from: .make(course_id: "1", assignment: .init(id: "12", html_url: url)))
+        let a = Activity.make(from: .make(course_id: "1", assignment: .make(id: "12", html_url: url)))
         let all: [Activity] =  databaseClient.fetch()
         XCTAssertEqual(all.count, 1)
         let aa = try! XCTUnwrap( all.first )

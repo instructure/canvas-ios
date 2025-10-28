@@ -51,14 +51,23 @@ public struct APIActivity: Codable {
     var latestRelevantUpdate: Date {
         latest_messages?.max { $0.created_at < $1.created_at}?.created_at ?? updated_at
     }
+}
 
+extension APIActivity {
     public struct Assignment: Codable {
         let id: String?
         let html_url: URL?
+        let sub_assignment_tag: String?
+        let discussion_topic: DiscussionTopic?
+
+        public struct DiscussionTopic: Codable {
+            let reply_to_entry_required_count: Int?
+        }
     }
 }
 
 #if DEBUG
+
 extension APIActivity {
     public static func make(
         id: ID = "1",
@@ -79,7 +88,7 @@ extension APIActivity {
         announcement_id: String? = "123",
         assignment: APIActivity.Assignment? = nil
     ) -> APIActivity {
-        return APIActivity(
+        .init(
             id: id,
             title: title,
             message: message,
@@ -100,34 +109,21 @@ extension APIActivity {
         )
     }
 }
-#endif
 
-public struct GetActivitiesRequest: APIRequestable {
-    public typealias Response = [APIActivity]
-    let perPage: Int?
-    let onlyActiveCourses: Bool
-
-    public init(perPage: Int? = nil, onlyActiveCourses: Bool = true) {
-        self.perPage = perPage
-        self.onlyActiveCourses = onlyActiveCourses
-    }
-
-    public var path: String {
-        let context = Context(.user, id: "self")
-        return "\(context.pathComponent)/activity_stream"
-    }
-
-    public var query: [APIQueryItem] {
-        var items: [APIQueryItem] = []
-
-        if onlyActiveCourses {
-            items.append(.value("only_active_courses", "true"))
-        }
-
-        if let perPage = perPage {
-            items.append(.perPage(perPage))
-        }
-
-        return items
+extension APIActivity.Assignment {
+    public static func make(
+        id: String? = nil,
+        html_url: URL? = nil,
+        sub_assignment_tag: String? = nil,
+        discussion_topic: DiscussionTopic? = nil
+    ) -> APIActivity.Assignment {
+        .init(
+            id: id,
+            html_url: html_url,
+            sub_assignment_tag: sub_assignment_tag,
+            discussion_topic: discussion_topic
+        )
     }
 }
+
+#endif

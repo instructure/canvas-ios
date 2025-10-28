@@ -38,6 +38,10 @@ public final class Activity: NSManagedObject, WriteableModel {
     @NSManaged public var readState: Bool
     @NSManaged public var announcementId: String?
     @NSManaged public var assignmentURL: URL?
+    @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
+    public var discussionCheckpointStep: DiscussionCheckpointStep? {
+        get { discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(newValue) }
+    }
 
     public var context: Context? {
         get { return Context(canvasContextID: canvasContextIDRaw ?? "") }
@@ -53,6 +57,7 @@ public final class Activity: NSManagedObject, WriteableModel {
     public static func save(_ item: APIActivity, in client: NSManagedObjectContext) -> Activity {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(Activity.id), item.id.value)
         let model: Activity = client.fetch(predicate).first ?? client.insert()
+
         model.id = item.id.value
         model.createdAt = item.created_at
         model.message = item.message
@@ -65,10 +70,13 @@ public final class Activity: NSManagedObject, WriteableModel {
         model.readState = item.read_state ?? true
         model.announcementId = item.announcement_id
         model.assignmentURL = item.assignment?.html_url
+
         if let score = item.score {
             model.score = String(score)
         }
+
         model.updatedAt = item.latestRelevantUpdate
+
         if let rawValue = item.context_type, let contextType = ContextType(rawValue: rawValue.lowercased()) {
             var context: Context?
             switch contextType {
@@ -86,6 +94,12 @@ public final class Activity: NSManagedObject, WriteableModel {
 
             model.canvasContextIDRaw = context?.canvasContextID
         }
+
+        model.discussionCheckpointStep = .init(
+            tag: item.assignment?.sub_assignment_tag,
+            requiredReplyCount: item.assignment?.discussion_topic?.reply_to_entry_required_count
+        )
+
         return model
     }
 }
