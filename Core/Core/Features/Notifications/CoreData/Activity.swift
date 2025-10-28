@@ -28,6 +28,7 @@ public final class Activity: NSManagedObject, WriteableModel {
     @NSManaged public var message: String?
     @NSManaged public var title: String?
     @NSManaged public var typeRaw: String
+    @NSManaged public var isDiscussionSubmission: Bool
     @NSManaged public var htmlURL: URL?
     @NSManaged public var canvasContextIDRaw: String?
     @NSManaged public var score: String?
@@ -79,6 +80,7 @@ public final class Activity: NSManagedObject, WriteableModel {
         }
 
         model.typeRaw = item.type.rawValue
+        model.isDiscussionSubmission = item.type == .submission && item.assignment?.discussion_topic != nil
         model.grade = item.grade
         model.notificationCategory = item.notification_category
         model.contextType = item.context_type
@@ -126,7 +128,7 @@ extension Activity {
         case .announcement:     return .announcementLine
         case .conversation:     return .emailLine
         case .message:          return .assignmentLine
-        case .submission:       return .assignmentLine
+        case .submission:       return isDiscussionSubmission ? .discussionLine : .assignmentLine
         case .conference:       return .conferences
         case .collaboration:    return .collaborations
         case .assessmentRequest: return .quizLine

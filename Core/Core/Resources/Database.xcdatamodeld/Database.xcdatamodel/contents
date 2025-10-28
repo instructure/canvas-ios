@@ -19,6 +19,7 @@
         <attribute name="grade" optional="YES" attributeType="String"/>
         <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isDiscussionSubmission" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="message" optional="YES" attributeType="String"/>
         <attribute name="notificationCategory" optional="YES" attributeType="String"/>
         <attribute name="readState" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
