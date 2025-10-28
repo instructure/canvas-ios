@@ -61,6 +61,7 @@ extension APIActivity {
         let discussion_topic: DiscussionTopic?
 
         public struct DiscussionTopic: Codable {
+            let assignment_id: String?
             let reply_to_entry_required_count: Int?
         }
     }
@@ -122,6 +123,18 @@ extension APIActivity.Assignment {
             html_url: html_url,
             sub_assignment_tag: sub_assignment_tag,
             discussion_topic: discussion_topic
+        )
+    }
+}
+
+extension APIActivity.Assignment.DiscussionTopic {
+    public static func make(
+        assignment_id: String? = nil,
+        reply_to_entry_required_count: Int? = nil
+    ) -> APIActivity.Assignment.DiscussionTopic {
+        .init(
+            assignment_id: assignment_id,
+            reply_to_entry_required_count: reply_to_entry_required_count
         )
     }
 }

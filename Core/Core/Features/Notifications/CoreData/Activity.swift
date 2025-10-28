@@ -63,6 +63,21 @@ public final class Activity: NSManagedObject, WriteableModel {
         model.message = item.message
         model.title = item.title
         model.htmlURL = item.html_url
+
+        // Replacing the assignmentId in htmlUrl with the correct value for DCPs.
+        // For DCPs backend returns wrong id inside `html_url`.
+        // This is a temporary workaround to use the correct id.
+        // TODO: remove the workaround after EGG-2059
+        if let htmlUrl = item.html_url,
+           let assignmentIdFromAssignment = item.assignment?.id,
+           let assignmentIdFromDiscussionTopic = item.assignment?.discussion_topic?.assignment_id {
+            let urlString = htmlUrl.absoluteString.replacingOccurrences(
+                of: "assignments/\(assignmentIdFromAssignment)",
+                with: "assignments/\(assignmentIdFromDiscussionTopic)"
+            )
+            model.htmlURL = URL(string: urlString)
+        }
+
         model.typeRaw = item.type.rawValue
         model.grade = item.grade
         model.notificationCategory = item.notification_category
