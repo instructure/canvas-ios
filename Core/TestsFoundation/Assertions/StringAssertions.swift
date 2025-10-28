@@ -63,7 +63,7 @@ public func XCTAssertNotContains(
     line: UInt = #line
 ) {
     let logic = !(actual ?? "").contains(expectedSubstring)
-    let message = "\(actual?.testDescription) contains \(expectedSubstring.testDescription)"
+    let message = "\(actual.testDescription) contains \(expectedSubstring.testDescription)"
     XCTAssert(logic, message + messageSuffix, file: file, line: line)
 }
 
