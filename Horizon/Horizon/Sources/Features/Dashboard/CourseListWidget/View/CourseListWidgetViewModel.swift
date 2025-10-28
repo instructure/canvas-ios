@@ -113,7 +113,7 @@ class CourseListWidgetViewModel {
                     let invitedCourses = items.filter { $0.state == HCourse.EnrollmentState.invited.rawValue }
                     self?.acceptInvitation(courses: invitedCourses)
 
-                    if attachedCourses.isEmpty {
+                    if attachedCourses.isEmpty, filteredPrograms.isEmpty {
                         self?.state = .empty
                     } else if let course = items.first, course.id != "mock-course-id" {
                         self?.state = .data
