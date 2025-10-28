@@ -32,6 +32,7 @@ public class CreateSubmission: APIUseCase {
 
     private let submissionType: SubmissionType
     private let mediaCommentType: MediaCommentType?
+    private let mediaCommentSource: FilePickerSource?
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -47,6 +48,7 @@ public class CreateSubmission: APIUseCase {
         fileIDs: [String]? = nil,
         mediaCommentID: String? = nil,
         mediaCommentType: MediaCommentType? = nil,
+        mediaCommentSource: FilePickerSource? = nil,
         annotatableAttachmentID: String? = nil,
         moduleID: String? = nil,
         moduleItemID: String? = nil
@@ -58,6 +60,7 @@ public class CreateSubmission: APIUseCase {
         self.moduleItemID = moduleItemID
         self.submissionType = submissionType
         self.mediaCommentType = mediaCommentType
+        self.mediaCommentSource = mediaCommentSource
 
         let submission = CreateSubmissionRequest.Body.Submission(
             annotatable_attachment_id: annotatableAttachmentID,
@@ -143,7 +146,13 @@ public class CreateSubmission: APIUseCase {
     private func logAnalyticsEvent(phase: Analytics.SubmissionPhase, attempt: Int?, env: AppEnvironment?) {
         guard let phasedType = analyticsPhasedEventType else { return }
 
-        let mediaParams: [Analytics.SubmissionEvent.Param: Any]? = mediaCommentType.flatMap({ [.media_type: $0.rawValue] })
+        let mediaParams = mediaCommentType.flatMap({ mediaType in
+            var params: [Analytics.SubmissionEvent.Param: Any] = [.media_type: mediaType.rawValue]
+            if let source = mediaCommentSource {
+                params[.media_source] = source.analyticsValue
+            }
+            return params
+        })
 
         if let attempt {
 

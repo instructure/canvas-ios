@@ -106,8 +106,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
 
             if nonCompletedFiles.isEmpty {
                 // File upload was successful but submission failed, only submission should be retried.
-                if let file = files.first, case let .submission(courseID, assignmentID, comment)? = file.context {
-                    submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment)
+                if let file = files.first, case let .submission(courseID, assignmentID, comment, attempt)? = file.context {
+                    submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment, attempt: attempt)
                 }
             } else {
                 for file in nonCompletedFiles {
@@ -236,8 +236,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         Logger.shared.log()
         self.context.performAndWait {
             guard let file = self.file(taskID: task.taskID) else { return }
-            if error == nil, case let .submission(courseID, assignmentID, comment)? = file.context {
-                self.submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment)
+            if error == nil, case let .submission(courseID, assignmentID, comment, attempt)? = file.context {
+                self.submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment, attempt: attempt)
                 return
             }
             self.complete(file: file, error: error)
@@ -332,7 +332,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     /**
      If `file` received in parameter has any `batchID` associated, then this method also submits all files sharing the same `batchID`.
      */
-    private func submit(file: File, courseID: String, assignmentID: String, comment: String?) {
+    private func submit(file: File, courseID: String, assignmentID: String, comment: String?, attempt: Int?) {
         Logger.shared.log()
         guard let user = file.user else { return }
         var files = [file]
@@ -374,9 +374,10 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                                 }
                                 guard let file = try? self.context.existingObject(with: objectID) as? File else { return }
                                 guard let submission = response, error == nil else {
-                                    Analytics.shared.logEvent("submit_fileupload_failed", parameters: [
-                                        "error": error?.localizedDescription ?? "unknown"
-                                    ])
+                                    Analytics.shared.logSubmission(
+                                        .phase(.failed, .file_upload, attempt),
+                                        additionalParams: [.error: error?.localizedDescription ?? "unknown"]
+                                    )
                                     RemoteLogger.shared.logError(name: "File upload failed during submission", reason: error?.localizedDescription)
                                     self.complete(file: file, error: error)
                                     return
@@ -396,7 +397,11 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                                 if let userID = file.userID, let batchID = file.batchID {
                                     self.delete(userID: userID, batchID: batchID, in: self.context)
                                 }
-                                Analytics.shared.logEvent("submit_fileupload_succeeded")
+
+                                Analytics.shared.logSubmission(
+                                    .phase(.succeeded, .file_upload, attempt)
+                                )
+
                                 self.localNotifications.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
                             }
                         }
@@ -458,7 +463,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             try? context.save()
             if let error {
                 didUploadFile.send(.failure(error))
-                if case let .submission(courseID, assignmentID, _)? = file.context {
+                if case let .submission(courseID, assignmentID, _, _)? = file.context {
                     localNotifications.sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
                 } else {
                     localNotifications.sendFailedNotification()

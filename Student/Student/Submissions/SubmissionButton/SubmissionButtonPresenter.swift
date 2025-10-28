@@ -252,17 +252,24 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         if isMediaRecording {
             submitMediaRecording(controller)
         } else {
-            let context = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
+            let context = FileUploadContext
+                .submission(
+                    courseID: assignment.courseID,
+                    assignmentID: assignment.id,
+                    comment: nil,
+                    attempt: assignment.upcomingAttempt
+                )
             uploadManager.upload(batch: self.batchID, to: context)
         }
     }
 
     func submitMediaRecording(_ controller: FilePickerViewController) {
         guard let file = controller.files.first, let url = file.localFileURL, let uti = UTI(extension: url.pathExtension) else { return }
+        let mediaSource = controller.pickerSource(for: url)
         let mediaType: MediaCommentType = uti.isAudio ? .audio : .video
         let objectID = file.objectID
         env.router.dismiss(controller) { [weak self] in
-            self?.submitMediaType(mediaType, url: url, callback: { [weak self] error in
+            self?.submitMediaType(mediaType, source: mediaSource, url: url, callback: { [weak self] error in
                 guard let self else { return }
                 guard let file = try? uploadManager.viewContext.existingObject(with: objectID) as? File else { return }
                 uploadManager.complete(file: file, error: error)
@@ -290,37 +297,10 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
 }
 
 // MARK: - media_recording
-extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func cancel(_ controller: AudioRecorderViewController) {
-        env.router.dismiss(controller)
-    }
 
-    func send(_ controller: AudioRecorderViewController, url: URL) {
-        env.router.dismiss(controller) {
-            self.submitMediaType(.audio, url: url)
-        }
-    }
+extension SubmissionButtonPresenter {
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        env.router.dismiss(picker) {
-            do {
-                if let videoURL = info[.mediaURL] as? URL {
-                    let destination = URL
-                        .Directories
-                        .temporary
-                        .appendingPathComponent("videos", isDirectory: true)
-                        .appendingPathComponent(String(Clock.now.timeIntervalSince1970))
-                        .appendingPathExtension(videoURL.pathExtension)
-                    try videoURL.move(to: destination)
-                    self.submitMediaType(.video, url: destination)
-                }
-            } catch {
-                self.view?.showError(error)
-            }
-        }
-    }
-
-    func submitMediaType(_ type: MediaCommentType, url: URL, callback: @escaping (Error?) -> Void = { _ in }) {
+    func submitMediaType(_ type: MediaCommentType, source: FilePickerSource?, url: URL, callback: @escaping (Error?) -> Void = { _ in }) {
         guard let assignment = assignment, let userID = assignment.submission?.userID else { return }
         let env = self.env
         let mediaUploader = UploadMedia(type: type, url: url)
@@ -328,7 +308,7 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
         let reportError = { [weak self] (error: Error) in
             let failure = UIAlertController(title: String(localized: "Submission Failed", bundle: .student), message: error.localizedDescription, preferredStyle: .alert)
             failure.addAction(UIAlertAction(title: String(localized: "Retry", bundle: .student), style: .default) { _ in
-                self?.submitMediaType(type, url: url, callback: callback)
+                self?.submitMediaType(type, source: source, url: url, callback: callback)
             })
             failure.addAction(UIAlertAction(title: String(localized: "Cancel", bundle: .student), style: .cancel))
             self?.show(failure)
@@ -355,7 +335,8 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
                 userID: userID,
                 submissionType: .media_recording,
                 mediaCommentID: mediaID,
-                mediaCommentType: type
+                mediaCommentType: type,
+                mediaCommentSource: source
             ).fetch(environment: env) { _, _, error in doneUploading(error) }
         }
         let upload = { mediaUploader.fetch(createSubmission) }

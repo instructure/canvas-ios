@@ -38,7 +38,9 @@ extension Analytics {
     public enum SubmissionEvent {
         public enum Param: String {
             case attempt
+            case error
             case media_type
+            case media_source
         }
 
         case phase(SubmissionPhase, PhasedEventSubmissionType, Int?)
@@ -75,6 +77,23 @@ extension SubmissionType {
             return .annotation
         default:
             return nil
+        }
+    }
+}
+
+public extension FilePickerSource {
+    var analyticsValue: String {
+        switch self {
+        case .camera:
+            return "camera"
+        case .library:
+            return "library"
+        case .files:
+            return "files"
+        case .audio:
+            return "audio_recorder"
+        case .documentScan:
+            return "document_scanner"
         }
     }
 }
