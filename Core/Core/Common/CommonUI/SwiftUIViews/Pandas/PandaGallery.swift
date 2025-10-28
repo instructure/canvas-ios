@@ -32,6 +32,9 @@ public struct PandaGallery: View {
         case conferences
         case pages
         case success
+        case horizonError
+        case noResults
+        case vacation
     }
     @State private var selectedPanda: PandaType = PandaType.allCases.last!
 
@@ -76,6 +79,12 @@ public struct PandaGallery: View {
             scene = PagesPanda()
         case .success:
             scene = SuccessPanda()
+        case .horizonError:
+            scene = HorizonPanda()
+        case .noResults:
+            scene = NoResultsPanda()
+        case .vacation:
+            scene = VacationPanda()
         }
 
         return InteractivePanda(scene: scene, title: Text(verbatim: "Title Text"), subtitle: Text(verbatim: "Optional subtitle text here"))

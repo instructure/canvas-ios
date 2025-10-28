@@ -472,6 +472,23 @@
         <attribute name="useOutOfOffice" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="useSignature" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
+    <entity name="CDModuleItemAssignmentInfo" representedClassName="Core.CDModuleItemAssignmentInfo" syncable="YES">
+        <attribute name="moduleItemId" attributeType="String"/>
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isPastDue" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="pointsPossible" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="todoDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="subAssignments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="CDModuleItemAssignmentInfoSubAssignment" inverseName="assignmentInfo" inverseEntity="CDModuleItemAssignmentInfoSubAssignment"/>
+    </entity>
+    <entity name="CDModuleItemDiscussionCheckpoint" representedClassName="Core.CDModuleItemDiscussionCheckpoint" syncable="YES">
+        <attribute name="moduleItemId" attributeType="String"/>
+        <attribute name="tag" attributeType="String"/>
+        <attribute name="discussionCheckpointStepRaw" optional="YES" attributeType="Transformable" valueTransformerName="DiscussionCheckpointStepTransformer" customClassName="Core.DiscussionCheckpointStepWrapper"/>
+        <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="moduleItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem" inverseName="discussionCheckpointRaw" inverseEntity="ModuleItem"/>
+    </entity>
     <entity name="CDRubricCriterion" representedClassName="Core.CDRubricCriterion" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
         <attribute name="criterionUseRange" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -490,6 +507,14 @@
         <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="shortDescription" attributeType="String"/>
         <relationship name="rubric" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRubricCriterion" inverseName="ratingsRaw" inverseEntity="CDRubricCriterion"/>
+    </entity>
+    <entity name="CDModuleItemAssignmentInfoSubAssignment" representedClassName="Core.CDModuleItemAssignmentInfoSubAssignment" syncable="YES">
+        <attribute name="moduleItemId" attributeType="String"/>
+        <attribute name="discussionCheckpointStepRaw" optional="YES" attributeType="Transformable" valueTransformerName="DiscussionCheckpointStepTransformer" customClassName="Core.DiscussionCheckpointStepWrapper"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="pointsPossible" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="tag" attributeType="String"/>
+        <relationship name="assignmentInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDModuleItemAssignmentInfo" inverseName="subAssignments" inverseEntity="CDModuleItemAssignmentInfo"/>
     </entity>
     <entity name="CDSubAssignmentSubmission" representedClassName="Core.CDSubAssignmentSubmission" syncable="YES">
         <attribute name="customGradeStatusId" optional="YES" attributeType="String"/>
@@ -648,6 +673,7 @@
         <attribute name="isPastEnrollment" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isPublished" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="originalName" optional="YES" attributeType="String"/>
         <attribute name="pointsBasedGradingScheme" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="roles" optional="YES" attributeType="String"/>
         <attribute name="scalingFactor" attributeType="Double" defaultValueString="1" usesScalarValueType="YES"/>
@@ -1071,6 +1097,7 @@
         <attribute name="title" attributeType="String"/>
         <attribute name="typeRaw" optional="YES" attributeType="Binary"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
+        <relationship name="discussionCheckpointRaw" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="CDModuleItemDiscussionCheckpoint" inverseName="moduleItem" inverseEntity="CDModuleItemDiscussionCheckpoint"/>
         <relationship name="masteryPath" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPath" inverseName="moduleItem" inverseEntity="MasteryPath"/>
         <relationship name="masteryPathItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem" inverseName="moduleItem" inverseEntity="ModuleItem"/>
         <relationship name="module" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="itemsRaw" inverseEntity="Module"/>
