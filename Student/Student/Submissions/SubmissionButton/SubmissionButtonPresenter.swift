@@ -115,12 +115,14 @@ class SubmissionButtonPresenter: NSObject {
     }
 
     func submitType(_ type: SubmissionType, for assignment: Assignment, button: UIView) {
-        Analytics.shared.logEvent("assignment_submit_selected")
+        Analytics.shared.logSubmission(.start)
         guard let view = view as? UIViewController else { return }
         let courseID = assignment.courseID
+        let attempt = assignment.upcomingAttempt
+
         switch type {
         case .basic_lti_launch, .external_tool:
-            Analytics.shared.logEvent("assignment_launchlti_selected")
+            Analytics.shared.logSubmission(.lti)
             LTITools(
                 context: .course(courseID),
                 id: assignment.externalToolContentID,
@@ -130,14 +132,14 @@ class SubmissionButtonPresenter: NSObject {
                 env: env
             ).presentTool(from: view, animated: true)
         case .discussion_topic:
-            Analytics.shared.logEvent("assignment_detail_discussionlaunch")
+            Analytics.shared.logSubmission(.detail(.discussion))
             guard let url = assignment.discussionTopic?.htmlURL else { return }
             env.router.route(to: url, from: view)
         case .media_recording:
-            Analytics.shared.logEvent("submit_mediarecording_selected")
+            Analytics.shared.logSubmission(.phase(.selected, .media_recording, attempt))
             pickFiles(for: assignment, selectedSubmissionTypes: [type])
         case .online_text_entry:
-            Analytics.shared.logEvent("submit_textentry_selected")
+            Analytics.shared.logSubmission(.phase(.selected, .text_entry, attempt))
             guard let userID = assignment.submission?.userID else { return }
             env.router.show(TextSubmissionViewController.create(
                 env: env,
@@ -146,7 +148,7 @@ class SubmissionButtonPresenter: NSObject {
                 userID: userID
             ), from: view, options: .modal(isDismissable: false, embedInNav: true))
         case .online_quiz:
-            Analytics.shared.logEvent("assignment_detail_quizlaunch")
+            Analytics.shared.logSubmission(.detail(.quiz))
             guard let quizID = assignment.quizID else { return }
             env.router.show(StudentQuizWebViewController.create(
                 courseID: courseID,
@@ -154,10 +156,10 @@ class SubmissionButtonPresenter: NSObject {
                 env: env
             ), from: view, options: .modal(.fullScreen, isDismissable: false, embedInNav: true))
         case .online_upload:
-            Analytics.shared.logEvent("submit_fileupload_selected")
+            Analytics.shared.logSubmission(.phase(.selected, .file_upload, attempt))
             pickFiles(for: assignment, selectedSubmissionTypes: [type])
         case .online_url:
-            Analytics.shared.logEvent("submit_url_selected")
+            Analytics.shared.logSubmission(.phase(.selected, .url, attempt))
             guard let userID = assignment.submission?.userID else { return }
             env.router.show(UrlSubmissionViewController.create(
                 env: env,
@@ -166,6 +168,7 @@ class SubmissionButtonPresenter: NSObject {
                 userID: userID
             ), from: view, options: .modal(.formSheet, embedInNav: true))
         case .student_annotation:
+            Analytics.shared.logSubmission(.phase(.selected, .annotation, attempt))
             presentStudentAnnotation(assignment: assignment, view: view)
         case .none, .not_graded, .on_paper, .wiki_page:
             break
@@ -195,8 +198,10 @@ class SubmissionButtonPresenter: NSObject {
                                                                  courseColor: course.color,
                                                                  environment: env)
             let submissionView = StudentAnnotationSubmissionView(viewModel: viewModel)
+            let attempt = assignment.upcomingAttempt
 
             performUIUpdate {
+                Analytics.shared.logSubmission(.phase(.presented, .annotation, attempt))
                 let hostingView = CoreHostingController(submissionView, env: self.env)
                 self.env.router.show(hostingView, from: view, options: .modal(.fullScreen, isDismissable: false, embedInNav: true, addDoneButton: false))
             }
@@ -205,7 +210,7 @@ class SubmissionButtonPresenter: NSObject {
 
     // MARK: - arc
     func submitArc(assignment: Assignment) {
-        Analytics.shared.logEvent("submit_arc_selected")
+        Analytics.shared.logSubmission(.phase(.selected, .studio, assignment.upcomingAttempt))
         guard case let .some(arcID) = arcID, let userID = assignment.submission?.userID else { return }
         let arc = ArcSubmissionViewController.create(environment: env, courseID: assignment.courseID, assignmentID: assignment.id, userID: userID, arcID: arcID)
         let nav = UINavigationController(rootViewController: arc)
@@ -379,5 +384,13 @@ extension SubmissionButtonPresenter {
         animation.play { _ in
             animation.removeFromSuperview()
         }
+    }
+}
+
+// MARK: - Assignment's Helper
+
+private extension Assignment {
+    var upcomingAttempt: Int {
+        max(submission?.attempt ?? 0, 0) + 1
     }
 }
