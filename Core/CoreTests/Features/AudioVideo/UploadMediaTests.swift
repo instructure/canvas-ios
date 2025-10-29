@@ -86,19 +86,20 @@ class UploadMediaTests: CoreTestCase {
     func testCompleteUploadSuccess() {
         let context = Context(.course, id: "1")
         let expectation = XCTestExpectation(description: "callback was called")
-        let response = PostCompleteMediaUploadRequest.Response(media_object: .init(media_id: "10"))
+        let response = PostCompleteMediaUploadRequest.Response(media_object: .init(media_id: "10", attachment_id: "34"))
         api.mock(PostCompleteMediaUploadRequest(mediaID: "1", context: context, type: .audio), value: response)
         var error: Error?
-        var mediaID: String?
+        var entry: MediaEntry?
         let upload = UploadMedia(type: .audio, url: URL(string: "data:text/plain,abcde")!, context: context)
         upload.callback = {
-            mediaID = $0
+            entry = $0
             error = $1
             expectation.fulfill()
         }
         upload.completeUpload(mediaID: "10")
         wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(mediaID, "10")
+        XCTAssertEqual(entry?.mediaID, "10")
+        XCTAssertEqual(entry?.attachmentID, "34")
         XCTAssertNil(error)
     }
 
@@ -107,35 +108,36 @@ class UploadMediaTests: CoreTestCase {
         let expectation = XCTestExpectation(description: "callback was called")
         api.mock(PostCompleteMediaUploadRequest(mediaID: "1", context: context, type: .audio), error: NSError.internalError())
         var error: Error?
-        var mediaID: String?
+        var entry: MediaEntry?
         let upload = UploadMedia(type: .audio, url: URL(string: "data:text/plain,abcde")!, context: context)
         upload.callback = {
-            mediaID = $0
+            entry = $0
             error = $1
             expectation.fulfill()
         }
         upload.completeUpload(mediaID: "10")
         wait(for: [expectation], timeout: 1)
-        XCTAssertNil(mediaID)
+        XCTAssertNil(entry)
         XCTAssertNotNil(error)
     }
 
     func testCompleteUploadNoContext() {
         let context = Context(.course, id: "1")
         let expectation = XCTestExpectation(description: "callback was called")
-        let response = PostCompleteMediaUploadRequest.Response(media_object: .init(media_id: "1"))
+        let response = PostCompleteMediaUploadRequest.Response(media_object: .init(media_id: "1", attachment_id: "23"))
         api.mock(PostCompleteMediaUploadRequest(mediaID: "1", context: context, type: .audio), value: response)
         var error: Error?
-        var mediaID: String?
+        var entry: MediaEntry?
         let upload = UploadMedia(type: .audio, url: URL(string: "data:text/plain,abcde")!, context: nil)
         upload.callback = {
-            mediaID = $0
+            entry = $0
             error = $1
             expectation.fulfill()
         }
         upload.completeUpload(mediaID: "2")
         wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(mediaID, "2")
+        XCTAssertEqual(entry?.mediaID, "2")
+        XCTAssertNil(entry?.attachmentID)
         XCTAssertNil(error)
     }
 }
