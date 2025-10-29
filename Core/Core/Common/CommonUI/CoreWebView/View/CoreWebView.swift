@@ -194,7 +194,6 @@ open class CoreWebView: WKWebView {
     open override func loadHTMLString(_ string: String, baseURL: URL? = AppEnvironment.shared.currentSession?.baseURL) -> WKNavigation? {
         self.htmlString = string
         self.baseURL = baseURL
-        self.presetMediaStreamingUserAgent(given: string)
         return super.loadHTMLString(html(for: string), baseURL: baseURL)
     }
 
@@ -838,22 +837,6 @@ extension CoreWebView {
 
         } else {
             loadHTMLString(content ?? "", baseURL: originalBaseURL)
-        }
-    }
-}
-
-// MARK: Media Streaming
-
-private extension CoreWebView {
-
-    /// Call this if you expect the content to include `video` html for a streamable content. This is required
-    /// for Canvas API to redirect video src URL to an HLS stream rather than the default MDP one.
-    func presetMediaStreamingUserAgent(given content: String) {
-        let isVideoStreaming = content.contains("<video") && content.contains("/media_download?entryId=")
-        if isVideoStreaming {
-            customUserAgent = "AppleCoreMedia/"
-        } else {
-            customUserAgent = nil
         }
     }
 }
