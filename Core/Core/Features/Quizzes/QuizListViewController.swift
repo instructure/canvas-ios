@@ -104,9 +104,9 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
         errorView.isHidden = quizzes.state != .error
         let selected = tableView.indexPathForSelectedRow
         tableView.reloadData()
-		if splitViewController?.isCollapsed == false {
-			tableView.selectRow(at: selected, animated: false, scrollPosition: .none)
-		}
+        if splitViewController?.isCollapsed == false {
+            tableView.selectRow(at: selected, animated: false, scrollPosition: .none)
+        }
 
         if !selectedFirstQuiz, quizzes.state != .loading, let url = quizzes.first?.htmlURL {
             selectedFirstQuiz = true

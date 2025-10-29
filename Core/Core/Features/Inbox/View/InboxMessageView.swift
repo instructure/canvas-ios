@@ -22,7 +22,7 @@ public struct InboxMessageView: View {
     private var model: InboxMessageListItemViewModel
     private var cellDidTap: (String) -> Void
 
-	@Environment(\.isItemSelected) private var isSelected
+    @Environment(\.isItemSelected) private var isSelected
 
     public init(model: InboxMessageListItemViewModel, cellDidTap: @escaping (String) -> Void) {
         self.model = model
@@ -35,7 +35,7 @@ public struct InboxMessageView: View {
         } label: {
             cellContent
         }
-		.buttonStyle(.tintedContextButton)
+        .buttonStyle(.tintedContextButton)
         .accessibilityLabel(model.a11yLabel)
         .accessibilityIdentifier("Conversation.\(model.id)")
     }
@@ -78,8 +78,8 @@ public struct InboxMessageView: View {
         .padding(.bottom, 12)
         .padding(.leading, 15)
         .padding(.trailing, 16)
-		.background(isSelected ? .backgroundLight : .backgroundLightest)
-		.animation(.default.speed(2), value: isSelected)
+        .background(isSelected ? .backgroundLight : .backgroundLightest)
+        .animation(.default.speed(2), value: isSelected)
         .overlay(unreadDot)
         .contentShape(Rectangle())
     }

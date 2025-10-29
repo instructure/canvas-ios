@@ -83,7 +83,7 @@ public struct InboxView: View, ScreenViewTrackable {
                 InboxMessageView(model: message) { messageID in
                     model.messageDidTap.send((messageID: messageID, controller: controller))
                 }
-				.selected(when: model.selectedMessageID == message.id)
+                .selected(when: model.selectedMessageId == message.id)
 
                 Color.borderMedium
                     .frame(height: 0.5)

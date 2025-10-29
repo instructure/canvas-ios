@@ -48,7 +48,7 @@ public final class GradeListViewModel: ObservableObject {
     @Published private(set) var state: ViewState = .initialLoading
     @Published public var isWhatIfScoreModeOn = false
     @Published public var isWhatIfScoreFlagEnabled = false
-	@Published public var selectedAssignmentID: String?
+    @Published public var selectedAssignmentId: String?
     var courseID: String { interactor.courseID }
     var isParentApp: Bool { gradeFilterInteractor.isParentApp }
 
@@ -138,7 +138,7 @@ public final class GradeListViewModel: ObservableObject {
             .receive(on: scheduler)
             .sink { url, id, controller in
                 guard let url else { return }
-				self.selectedAssignmentID = id
+                self.selectedAssignmentId = id
                 env.router.route(to: url, from: controller, options: .detail)
             }
             .store(in: &subscriptions)

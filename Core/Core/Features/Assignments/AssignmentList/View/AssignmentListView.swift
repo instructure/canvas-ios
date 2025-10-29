@@ -22,22 +22,23 @@ struct AssignmentListView: View {
     private let sections: [AssignmentListSection]
     private let sectionIdentifierGroup: String
     private let itemIdentifierGroup: String
+    private let selectedAssignmentId: String?
     private let navigateToDetailsAction: (URL?, String) -> Void
     private let whatIfModel: GradeListWhatIfModel?
-	private let selectedAssignmentID: String?
 
     init(
         sections: [AssignmentListSection],
         identifierGroup: String,
+        selectedAssignmentId: String?,
         navigateToDetailsAction: @escaping (URL?, String) -> Void,
-        whatIfModel: GradeListWhatIfModel? = nil, selectedAssignmentID: String? = nil
+        whatIfModel: GradeListWhatIfModel? = nil
     ) {
         self.sections = sections
         self.sectionIdentifierGroup = "\(identifierGroup).Sections"
         self.itemIdentifierGroup = "\(identifierGroup).Items"
+        self.selectedAssignmentId = selectedAssignmentId
         self.navigateToDetailsAction = navigateToDetailsAction
         self.whatIfModel = whatIfModel
-		self.selectedAssignmentID = selectedAssignmentID
     }
 
     var body: some View {
@@ -58,13 +59,13 @@ struct AssignmentListView: View {
                 switch row {
                 case .student(let model):
                     studentCell(model: model, isLastItem: section.rows.last == row)
-						.selected(when: model.id == selectedAssignmentID)
+                        .selected(when: model.id == selectedAssignmentId)
                 case .teacher(let model):
                     teacherCell(model: model, isLastItem: section.rows.last == row)
-						.selected(when: model.id == selectedAssignmentID)
+                        .selected(when: model.id == selectedAssignmentId)
                 case .gradeListRow(let model):
                     gradeListCell(model: model, isLastItem: section.rows.last == row)
-						.selected(when: model.id == selectedAssignmentID)
+                        .selected(when: model.id == selectedAssignmentId)
                 }
             }
         }
@@ -72,20 +73,19 @@ struct AssignmentListView: View {
 
     @ViewBuilder
     private func studentCell(model: StudentAssignmentListItem, isLastItem: Bool) -> some View {
-		let routeAction = { navigateToDetailsAction(model.route, model.id) }
+        let routeAction = { navigateToDetailsAction(model.route, model.id) }
         let itemIdentifier = "\(itemIdentifierGroup).\(model.id)"
 
         if let subItems = model.subItems {
             InstUI.CollapsibleListRow(
                 cell: StudentAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
-					.selected(when: model.id == selectedAssignmentID)
                     .identifier(itemIdentifier),
                 isInitiallyExpanded: false
             ) {
                 ForEach(subItems) { subItem in
                     StudentAssignmentListSubItemCell(model: subItem, action: routeAction)
+                        .selectionIndicatorDisabled()
                         .identifier(itemIdentifier, subItem.tag)
-						.selectionIndicatorDisabled()
                 }
             }
             InstUI.Divider(isLast: isLastItem)
@@ -97,19 +97,18 @@ struct AssignmentListView: View {
 
     @ViewBuilder
     private func teacherCell(model: TeacherAssignmentListItem, isLastItem: Bool) -> some View {
-		let routeAction = { navigateToDetailsAction(model.route, model.id) }
+        let routeAction = { navigateToDetailsAction(model.route, model.id) }
         let itemIdentifier = "\(itemIdentifierGroup).\(model.id)"
 
         if let subItems = model.subItems {
             InstUI.CollapsibleListRow(
                 cell: TeacherAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
-					.selected(when: model.id == selectedAssignmentID)
                     .identifier(itemIdentifier),
                 isInitiallyExpanded: false
             ) {
                 ForEach(subItems) { subItem in
                     TeacherAssignmentListSubItemCell(model: subItem, action: routeAction)
-						.selectionIndicatorDisabled()
+                        .selectionIndicatorDisabled()
                         .identifier(itemIdentifier, subItem.tag)
                 }
             }
@@ -122,7 +121,7 @@ struct AssignmentListView: View {
 
     @ViewBuilder
     private func gradeListCell(model: StudentAssignmentListItem, isLastItem: Bool) -> some View {
-		let routeAction = { navigateToDetailsAction(model.route, model.id) }
+        let routeAction = { navigateToDetailsAction(model.route, model.id) }
         let itemIdentifier = "\(itemIdentifierGroup).\(model.id)"
 
         if let subItems = model.subItems {
@@ -133,12 +132,12 @@ struct AssignmentListView: View {
                     isLastItem: nil,
                     action: routeAction
                 )
-				.identifier(itemIdentifier),
+                .identifier(itemIdentifier),
                 isInitiallyExpanded: false
             ) {
                 ForEach(subItems) { subItem in
                     StudentAssignmentListSubItemCell(model: subItem, action: routeAction)
-						.selectionIndicatorDisabled()
+                        .selectionIndicatorDisabled()
                         .identifier(itemIdentifier, subItem.tag)
                 }
             }
@@ -150,7 +149,7 @@ struct AssignmentListView: View {
                 isLastItem: isLastItem,
                 action: routeAction
             )
-			.identifier(itemIdentifier)
+            .identifier(itemIdentifier)
         }
     }
 }

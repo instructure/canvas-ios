@@ -94,11 +94,11 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
         TabBarBadgeCounts.todoListCount = todos.reduce(into: UInt(0)) { badgeCount, todo in
             badgeCount += todo.needsGradingCount > 0 ? todo.needsGradingCount : 1
         }
-		let selected = tableView.indexPathForSelectedRow
+        let selected = tableView.indexPathForSelectedRow
         tableView.reloadData()
-		if splitViewController?.isCollapsed == false {
-			tableView.selectRow(at: selected, animated: false, scrollPosition: .none)
-		}
+        if splitViewController?.isCollapsed == false {
+            tableView.selectRow(at: selected, animated: false, scrollPosition: .none)
+        }
         announceVoiceoverState()
     }
 

@@ -61,7 +61,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             }
         )
         .navigationBarStyle(.color(viewModel.courseColor))
-		.onAppear(perform: viewModel.viewDidAppear)
+        .onAppear(perform: viewModel.viewDidAppear)
         .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
     }
 
@@ -128,10 +128,10 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
                 AssignmentListView(
                     sections: viewModel.sections,
                     identifierGroup: "AssignmentList",
+                    selectedAssignmentId: viewModel.selectedAssignmentId,
                     navigateToDetailsAction: { url, id in
-						viewModel.didSelectAssignment.send((url, id, controller))
-                    },
-					selectedAssignmentID: viewModel.selectedAssignmentID
+                        viewModel.didSelectAssignment.send((url, id, controller))
+                    }
                 )
             }
         }

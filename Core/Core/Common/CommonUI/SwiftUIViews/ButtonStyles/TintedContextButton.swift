@@ -23,13 +23,13 @@ import SwiftUI
 ///
 /// To indicate selection, use the `.selected(when: Bool)` view modifier on one of the button's parent View.
 public struct TintedContextButton: ButtonStyle {
-	@Environment(\.isItemSelected) private var isSelected
+    @Environment(\.isItemSelected) private var isSelected
     private let selectionBackgroundColor: Color = .backgroundLight
 
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .background(selectionIndicator(configuration.isPressed || isSelected))
-			.animation(.default.speed(2), value: isSelected)
+            .animation(.default.speed(2), value: isSelected)
     }
 
     private func selectionIndicator(_ isSelected: Bool) -> some View {
@@ -77,7 +77,7 @@ public extension ButtonStyle where Self == TintedContextButton {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.tintedContextButton)
-		.selected(when: true)
+        .selected(when: true)
         InstUI.Divider()
     }
     .tint(.red)

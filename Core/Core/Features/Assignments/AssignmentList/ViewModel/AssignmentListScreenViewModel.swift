@@ -41,7 +41,7 @@ public class AssignmentListScreenViewModel: ObservableObject {
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var courseName: String?
     @Published public private(set) var defaultDetailViewRoute = "/empty"
-	@Published public private(set) var selectedAssignmentID: String?
+    @Published public private(set) var selectedAssignmentId: String?
 
     public var isFilterIconSolid: Bool = false
     public var defaultGradingPeriodId: String?
@@ -126,7 +126,8 @@ public class AssignmentListScreenViewModel: ObservableObject {
             .receive(on: scheduler)
             .sink { url, id, controller in
                 guard let url else { return }
-				self.selectedAssignmentID = id
+
+                self.selectedAssignmentId = id
                 env.router.route(to: url, from: controller, options: .detail)
             }
             .store(in: &subscriptions)

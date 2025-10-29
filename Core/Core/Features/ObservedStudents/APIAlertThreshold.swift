@@ -29,11 +29,11 @@ public struct APIAlertThreshold: Codable, Equatable {
 #if DEBUG
 extension APIAlertThreshold {
     public static func make(
-    	id: String = "1",
-    	observer_id: String = "5",
-    	user_id: String = "1",
-    	alert_type: AlertThresholdType = .assignmentGradeHigh,
-    	threshold: UInt? = 100
+        id: String = "1",
+        observer_id: String = "5",
+        user_id: String = "1",
+        alert_type: AlertThresholdType = .assignmentGradeHigh,
+        threshold: UInt? = 100
     ) -> APIAlertThreshold {
         return APIAlertThreshold(
             id: ID(id),
