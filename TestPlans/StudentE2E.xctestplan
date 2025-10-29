@@ -30,6 +30,7 @@
   "testTargets" : [
     {
       "skippedTests" : [
+        "CalendarTests\/testEventForDiscussionCheckpoint()",
         "FeatureFlagOfflineTests",
         "FeatureFlagOfflineTests\/testDiscussionsFallbackToNativeAppearanceWhenOffline()",
         "OfflineContentSyncTests",

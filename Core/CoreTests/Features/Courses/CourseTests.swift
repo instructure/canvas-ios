@@ -309,4 +309,29 @@ class CourseTests: CoreTestCase {
         tabs7 = tabsForCourseId("7")
         XCTAssertEqual(tabs7.contains { $0.id == "grades" }, true)
     }
+
+    func testOriginalNameMapping() {
+        let originalName = "Original Course Name"
+        let apiCourse = APICourse.make(id: "1", original_name: originalName)
+        let course = Course.make(from: apiCourse)
+
+        XCTAssertEqual(course.originalName, originalName)
+
+        let apiCourseWithoutOriginalName = APICourse.make(id: "2", original_name: nil)
+        let courseWithoutOriginalName = Course.make(from: apiCourseWithoutOriginalName)
+
+        XCTAssertNil(courseWithoutOriginalName.originalName)
+    }
+
+    func testHasNickName() {
+        let apiCourseWithOriginalName = APICourse.make(id: "1", original_name: "Original Name")
+        let courseWithNickName = Course.make(from: apiCourseWithOriginalName)
+
+        XCTAssertTrue(courseWithNickName.hasNickName)
+
+        let apiCourseWithoutOriginalName = APICourse.make(id: "2", original_name: nil)
+        let courseWithoutNickName = Course.make(from: apiCourseWithoutOriginalName)
+
+        XCTAssertFalse(courseWithoutNickName.hasNickName)
+    }
 }

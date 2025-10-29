@@ -46,13 +46,16 @@ public class GetAccountNotification: APIUseCase {
     public var scope: Scope { .where(#keyPath(AccountNotification.id), equals: notificationID) }
 }
 
-struct DeleteAccountNotification: DeleteUseCase {
-    typealias Model = AccountNotification
-    typealias Response = APINoContent
+public struct DeleteAccountNotification: DeleteUseCase {
+    public typealias Model = AccountNotification
+    public typealias Response = APINoContent
 
     let id: String
+    public init(id: String) {
+        self.id = id
+    }
 
-    var cacheKey: String? { nil }
-    var request: DeleteAccountNotificationRequest { DeleteAccountNotificationRequest(id: id) }
-    var scope: Scope { .where(#keyPath(AccountNotification.id), equals: id) }
+    public var cacheKey: String? { nil }
+    public var request: DeleteAccountNotificationRequest { DeleteAccountNotificationRequest(id: id) }
+    public var scope: Scope { .where(#keyPath(AccountNotification.id), equals: id) }
 }

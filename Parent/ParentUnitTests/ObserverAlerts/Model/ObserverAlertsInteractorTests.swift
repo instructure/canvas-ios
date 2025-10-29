@@ -59,7 +59,7 @@ class ObserverAlertsInteractorTests: ParentTestCase {
         let resultPublisher = testee.refresh()
 
         // THEN
-        XCTAssertFirstValueAndCompletion(resultPublisher, timeout: 5) { (alerts, thresholds) in
+        XCTAssertSingleOutputAndFinish(resultPublisher, timeout: 5) { (alerts, thresholds) in
             XCTAssertEqual(alerts.count, 1)
             XCTAssertEqual(alerts.first?.id, "a1")
             XCTAssertEqual(thresholds.isEmpty, true)

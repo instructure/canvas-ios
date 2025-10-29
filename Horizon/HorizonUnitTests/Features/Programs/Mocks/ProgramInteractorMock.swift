@@ -23,15 +23,21 @@ import Foundation
 final class ProgramInteractorMock: ProgramInteractor {
     var shouldFail = false
     var error: Error = URLError(.badServerResponse)
+    var programsToReturn: [Program] = HProgramStubs.programs
 
     func getPrograms(ignoreCache: Bool) -> AnyPublisher<[Program], Never> {
-        return Just(HProgramStubs.programs)
+        return Just(programsToReturn)
             .eraseToAnyPublisher()
     }
 
-    func getProgramsWithObserving(ignoreCache: Bool) -> AnyPublisher<[Horizon.Program], Never> {
-        return Just(HProgramStubs.programs)
-            .eraseToAnyPublisher()
+    func getProgramsWithObserving(ignoreCache: Bool) -> AnyPublisher<[Horizon.Program], Error> {
+        if shouldFail {
+            return Fail(error: error).eraseToAnyPublisher()
+        } else {
+            return Just(programsToReturn)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
     }
 
     func getProgramsWithCourses(ignoreCache: Bool) -> AnyPublisher<[Program], Error> {

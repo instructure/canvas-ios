@@ -75,9 +75,7 @@ class GradeInteractorLiveTests: TeacherTestCase {
         let testee = makeInteractor()
 
         // THEN
-        XCTAssertFirstValue(testee.gradeState) { gradeState in
-            XCTAssertEqual(gradeState, initialGradeState)
-        }
+        XCTAssertSingleOutputEquals(testee.gradeState, initialGradeState)
         XCTAssertEqual(gradeStateInteractor.gradeStateCallsCount, 1)
         var gradeStateInput = try XCTUnwrap(gradeStateInteractor.gradeStateInput)
         XCTAssert(gradeStateInput == (submission, assignment, true, 100))
@@ -91,9 +89,7 @@ class GradeInteractorLiveTests: TeacherTestCase {
         try! databaseClient.save()
 
         // THEN
-        XCTAssertFirstValue(testee.gradeState) { gradeState in
-            XCTAssertEqual(gradeState, updatedGradeState)
-        }
+        XCTAssertSingleOutputEquals(testee.gradeState, updatedGradeState)
         XCTAssertEqual(gradeStateInteractor.gradeStateCallsCount, 4) // initial + rubric + rubric + submission
         gradeStateInput = try XCTUnwrap(gradeStateInteractor.gradeStateInput)
         XCTAssert(gradeStateInput == (submission, assignment, false, 200))

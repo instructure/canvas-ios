@@ -54,14 +54,14 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        title = String(localized: "To Do", bundle: .core)
+        title = String(localized: "To-do", bundle: .core)
         navigationItem.leftBarButtonItem = profileButton
         navigationItem.titleView = Brand.shared.headerImageView()
 
-        emptyDescLabel.text = String(localized: "Your to do list is empty. Time to recharge.", bundle: .core)
+        emptyDescLabel.text = String(localized: "Your To-do list is empty. Time to recharge.", bundle: .core)
         emptyTitleLabel.text = String(localized: "Well Done!", bundle: .core)
         emptyView.accessibilityLabel = "\(emptyTitleLabel.text!) \(emptyDescLabel.text!)"
-        errorView.messageLabel.text = String(localized: "There was an error loading items to do. Pull to refresh to try again.", bundle: .core)
+        errorView.messageLabel.text = String(localized: "There was an error loading To-do items. Pull to refresh to try again.", bundle: .core)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         profileButton.accessibilityLabel = String(localized: "Profile Menu", bundle: .core)

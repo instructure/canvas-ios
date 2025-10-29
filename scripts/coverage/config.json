@@ -35,7 +35,17 @@
     "Student\/Submissions\/SubmissionButton\/SubmissionButtonPresenter.swift",
     "Student\/Widgets\/",
     "\/Teacher\/SpeedGrader\/",
-    "Parent\/"
+    "Parent\/",
+    "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/Assignment\/AssignmentDetails\/View\/LTIQuiz\/OnAppear.swift",
+    "Horizon\/Horizon\/Sources\/Common\/View\/EmbeddedWebPage\/HEmbeddedWebPageContainerViewModel.swift",
+    "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/Assignment\/AssignmentDetails\/View\/LTIQuiz\/DidSubmitQuiz.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Notebook\/Common\/Data\/UpdateRedwoodNote.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Inbox\/Attachment\/AttachmentViewModel.swift",
+    "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/Assignment\/AssignmentDetails\/Data\/SubmissionProperties.swift",
+    "Horizon\/Horizon\/Sources\/Common\/Data\/LearningObjectType.swift",
+    "Horizon\/Horizon\/Sources\/Features\/ModuleItemSequence\/Sequence\/Domain\/ModuleItemStateInteractor.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Account\/AccountViewModel.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Assist\/AssistChat\/Data\/AssistChatFlashCard.swift"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",

@@ -22,27 +22,57 @@ import XCTest
 
 class ParentSubmissionURLInteractorTests: ParentTestCase {
 
-    func testSubmissionURLWhenAssignmentEnhancementEnabled() {
+    func testSubmissionURLWhenAssignmentEnhancementEnabledAndNotQuiz() {
         let testee = ParentSubmissionURLInteractorLive()
 
         // WHEN
         let result = testee.submissionURL(
             assignmentHtmlURL: .make("/test_assignment"),
             observedUserID: "testStudent",
-            isAssignmentEnhancementsEnabled: true)
+            isAssignmentEnhancementsEnabled: true,
+            isQuiz: false)
 
         // THEN
         XCTAssertEqual(result, .make("/test_assignment"))
     }
 
-    func testSubmissionURLWhenAssignmentEnhancementDisabled() {
+    func testSubmissionURLWhenAssignmentEnhancementEnabledAndIsQuiz() {
+        let testee = ParentSubmissionURLInteractorLive()
+
+        // WHEN
+        let result = testee.submissionURL(
+            assignmentHtmlURL: .make("/test_assignment"),
+            observedUserID: "testStudent",
+            isAssignmentEnhancementsEnabled: true,
+            isQuiz: true)
+
+        // THEN
+        XCTAssertEqual(result, .make("/test_assignment/submissions/testStudent/"))
+    }
+
+    func testSubmissionURLWhenAssignmentEnhancementDisabledAndNotQuiz() {
         let testee = ParentSubmissionURLInteractorLive()
 
         // WHEN
         let result = testee.submissionURL(
             assignmentHtmlURL: URL(string: "/test_assignment")!,
             observedUserID: "testStudent",
-            isAssignmentEnhancementsEnabled: false)
+            isAssignmentEnhancementsEnabled: false,
+            isQuiz: false)
+
+        // THEN
+        XCTAssertEqual(result, .make("/test_assignment/submissions/testStudent/"))
+    }
+
+    func testSubmissionURLWhenAssignmentEnhancementDisabledAndIsQuiz() {
+        let testee = ParentSubmissionURLInteractorLive()
+
+        // WHEN
+        let result = testee.submissionURL(
+            assignmentHtmlURL: URL(string: "/test_assignment")!,
+            observedUserID: "testStudent",
+            isAssignmentEnhancementsEnabled: false,
+            isQuiz: true)
 
         // THEN
         XCTAssertEqual(result, .make("/test_assignment/submissions/testStudent/"))

@@ -34,7 +34,7 @@ extension HorizonUI {
 
         // MARK: - Init
 
-        init(
+       public init(
             title: String,
             style: HorizonUI.Chip.Style,
             size: HorizonUI.Chip.Size,
@@ -61,7 +61,10 @@ extension HorizonUI {
                             .foregroundStyle(style.iconForeground())
                     }
                     Text(title)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
                     if let trallingIcon {
+                        Spacer()
                         trallingIcon
                             .resizable()
                             .frame(width: 12, height: 12)
@@ -79,6 +82,7 @@ extension HorizonUI {
             )
             .accessibilityFocused($isFocused)
             .padding(.huiSpaces.space2)
+
             .overlay {
                 if isFocused || style.state == .focused {
                     RoundedRectangle(cornerRadius: cornerRadius.attributes.radius)
