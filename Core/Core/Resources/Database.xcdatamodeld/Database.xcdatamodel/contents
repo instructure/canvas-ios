@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24G231" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24299" systemVersion="24G231" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
+        <attribute name="closed" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
@@ -256,6 +257,11 @@
         <attribute name="scalingFactor" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
     </entity>
+    <entity name="CDHActivitiesWidgetModel" representedClassName=".CDHActivitiesWidgetModel" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="courseName" attributeType="String"/>
+        <attribute name="moduleCountCompleted" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="CDHCommentAttachment" representedClassName="Core.CDHCommentAttachment" syncable="YES">
         <attribute name="displayName" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
@@ -266,6 +272,7 @@
         <attribute name="completionPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="courseID" attributeType="String"/>
         <attribute name="enrollmentID" attributeType="String"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String"/>
         <attribute name="institutionName" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="nextModuleID" optional="YES" attributeType="String"/>
@@ -405,6 +412,11 @@
         <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHScoresCourse" inverseName="settings" inverseEntity="CDHScoresCourse"/>
     </entity>
+    <entity name="CDHSkill" representedClassName=".CDHSkill" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="proficiencyLevel" attributeType="String"/>
+    </entity>
     <entity name="CDHSubmission" representedClassName="Core.CDHSubmission" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
         <attribute name="attempt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -436,6 +448,11 @@
     <entity name="CDHSubmissionScores" representedClassName="Core.CDHSubmissionScores" syncable="YES">
         <attribute name="enrollmentID" attributeType="String"/>
         <relationship name="assignmentGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHScoresAssignmentGroup" inverseName="relationship" inverseEntity="CDHScoresAssignmentGroup"/>
+    </entity>
+    <entity name="CDHTimeSpentWidgetModel" representedClassName=".CDHTimeSpentWidgetModel" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="courseName" attributeType="String"/>
+        <attribute name="minutesPerDay" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="CDInboxEnrollment" representedClassName="Core.CDInboxEnrollment" syncable="YES">
         <attribute name="canvasContextID" optional="YES" attributeType="String"/>
