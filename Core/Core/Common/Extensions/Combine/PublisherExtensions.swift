@@ -58,7 +58,7 @@ extension Publisher {
             var cancellable: AnyCancellable?
             cancellable = self.first()
                 .sink(receiveCompletion: { completion in
-                    if case let .failure(error) = completion {
+                    if let error = completion.error {
                         continuation.resume(throwing: error)
                     }
                     cancellable?.cancel()
