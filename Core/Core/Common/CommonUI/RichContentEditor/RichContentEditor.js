@@ -106,6 +106,7 @@ const editor = window.editor = {
             } else if (file.mediaEntryID) {
                 img.src = videoPreviewURL
                 img.dataset.media_comment_id = file.mediaEntryID
+                img.dataset.media_attachment_id = file.mediaAttachmentID
                 delete img.dataset.uploading
                 overlay.progressSVG.classList.add('is-hidden')
                 overlay.removeButton.classList.remove('is-hidden')
@@ -176,8 +177,9 @@ const editor = window.editor = {
         }
         for (let img of clone.querySelectorAll('[data-media_comment_id]')) {
             let mediaID = img.dataset.media_comment_id
+            let attachmentID = img.dataset.media_attachment_id
             if (editor.featureFlags.includes('rce_enhancements')) {
-                img.outerHTML = `<div id="media_object_${mediaID}" style="width: 768px; height: 432px;"><iframe src="/media_objects_iframe/${mediaID}" width="100%" height="100%"></iframe></div>`
+                img.outerHTML = `<div id="media_object_${mediaID}" style="width: 768px; height: 432px;"><iframe src="/media_attachments_iframe/${attachmentID}" width="100%" height="100%"></iframe></div>`
             } else {
                 img.outerHTML = `<a id="media_comment_${mediaID}" class="instructure_inline_media_comment video_comment" href="/media_objects/${mediaID}">this is a media comment</a>`
             }

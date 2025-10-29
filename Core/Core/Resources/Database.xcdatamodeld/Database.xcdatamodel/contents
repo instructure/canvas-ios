@@ -828,6 +828,7 @@
         <attribute name="locked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lockExplanation" optional="YES" attributeType="String"/>
+        <attribute name="mediaAttachmentID" optional="YES" attributeType="String"/>
         <attribute name="mediaEntryID" optional="YES" attributeType="String"/>
         <attribute name="mimeClass" optional="YES" attributeType="String"/>
         <attribute name="modifiedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
