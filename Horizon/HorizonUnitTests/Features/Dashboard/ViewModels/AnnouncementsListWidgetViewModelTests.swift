@@ -42,7 +42,7 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
 
         // Then
         XCTAssertEqual(testee.state, .data)
-        XCTAssertEqual(testee.announcements.count, 2)
+        XCTAssertEqual(testee.announcements.count, 4)
         XCTAssertTrue(testee.announcements.contains(where: { $0.id == "1" }))
         XCTAssertTrue(testee.announcements.contains(where: { $0.id == "3" }))
         XCTAssertEqual(testee.currentAnnouncement.id, "1")

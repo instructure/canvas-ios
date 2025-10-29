@@ -67,8 +67,9 @@ final class CompletedWidgetViewModel {
             .sinkFailureOrValue { [weak self] _ in
                 self?.state = .error
             } receiveValue: { [weak self] courses in
-                self?.state = courses.isEmpty ? .empty : .data
-                self?.totalCount = courses.reduce(0) { $0 + $1.moduleCountCompleted }
+                let totalCount = courses.reduce(0) { $0 + $1.moduleCountCompleted }
+                self?.totalCount = totalCount
+                self?.state = totalCount > 0 ? .data : .empty
             }
             .store(in: &subscriptions)
     }

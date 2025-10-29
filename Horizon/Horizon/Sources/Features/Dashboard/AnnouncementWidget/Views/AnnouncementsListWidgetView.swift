@@ -29,7 +29,7 @@ struct AnnouncementsListWidgetView: View {
     @State private var transitionDirection: Edge = .leading
 
     init(viewModel: AnnouncementsListWidgetViewModel) {
-        self.viewModel = viewModel
+        _viewModel = State(initialValue: viewModel)
     }
 
     var body: some View {
@@ -90,12 +90,15 @@ struct AnnouncementsListWidgetView: View {
 
     private var announcementNavigationButtons: some View {
         HStack {
-            HorizonUI.IconButton(Image.huiIcons.chevronLeft, type: .grayOutline) {
+            HorizonUI.IconButton(
+                Image.huiIcons.chevronLeft,
+                type: .grayOutline,
+                isSmall: true
+            ) {
                 transitionDirection = .leading
                 withAnimation(.spring(response: 0.45, dampingFraction: 0.8)) {
                     viewModel.goPreviousAnnouncement()
                 }
-
             }
             .disabled(!viewModel.isPreviousButtonEnabled)
             .opacity(viewModel.isPreviousButtonEnabled ? 1.0 : 0.5)
@@ -128,7 +131,11 @@ struct AnnouncementsListWidgetView: View {
 
             Spacer()
 
-            HorizonUI.IconButton(Image.huiIcons.chevronRight, type: .grayOutline) {
+            HorizonUI.IconButton(
+                Image.huiIcons.chevronRight,
+                type: .grayOutline,
+                isSmall: true
+            ) {
                 transitionDirection = .trailing
                 withAnimation(.spring(response: 0.45, dampingFraction: 0.8)) {
                     viewModel.goNextAnnouncement()

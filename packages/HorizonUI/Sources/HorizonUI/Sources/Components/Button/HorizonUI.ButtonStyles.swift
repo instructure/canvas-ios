@@ -114,6 +114,7 @@ public extension HorizonUI {
                     }
                 }
             }
+            .contentShape(.rect)
         }
 
         private func primaryButton(_ configuration: Configuration) -> some View {
@@ -142,6 +143,7 @@ public extension HorizonUI {
                     configuration: configuration
                 )
             )
+            .contentShape(.rect)
         }
     }
 }
