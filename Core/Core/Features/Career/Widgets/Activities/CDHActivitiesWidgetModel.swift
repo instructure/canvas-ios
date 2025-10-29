@@ -25,7 +25,7 @@ public final class CDHActivitiesWidgetModel: NSManagedObject {
 
     @discardableResult
     public static func save(
-        _ apiEntity: GetActivitiesWidgetResponse.Widget,
+        _ apiEntity: GetHActivitiesWidgetResponse.Widget,
         in context: NSManagedObjectContext
     ) -> CDHActivitiesWidgetModel {
         let dbEntity: CDHActivitiesWidgetModel = context.first(

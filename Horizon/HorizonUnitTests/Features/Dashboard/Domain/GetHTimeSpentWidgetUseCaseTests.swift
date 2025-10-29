@@ -45,7 +45,7 @@ final class GetHTimeSpentWidgetUseCaseTests: HorizonTestCase {
             DomainService.JWTTokenRequest(domainServiceOption: .journey),
             value: DomainService.JWTTokenRequest.Result(token: HTimeSpentWidgetStubs.token)
         )
-        api.mock(GetTimeSpentWidgetRequest(), value: HTimeSpentWidgetStubs.response)
+        api.mock(GetHTimeSpentWidgetRequest(), value: HTimeSpentWidgetStubs.response)
 
         // When / Then
         testee.makeRequest(environment: environment) { response, _, _ in
@@ -67,7 +67,7 @@ final class GetHTimeSpentWidgetUseCaseTests: HorizonTestCase {
             error: DomainService.Issue.unableToGetToken
         )
         api.mock(
-            GetTimeSpentWidgetRequest(),
+            GetHTimeSpentWidgetRequest(),
             value: HTimeSpentWidgetStubs.response,
             error: DomainService.Issue.unableToGetToken
         )

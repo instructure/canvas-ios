@@ -22,7 +22,7 @@ import Foundation
 enum HActivitiesWidgetStubs {
     static let token = "test-token"
 
-    static let response = GetActivitiesWidgetResponse(
+    static let response = GetHActivitiesWidgetResponse(
         data: .init(
             widgetData: .init(
                 data: [

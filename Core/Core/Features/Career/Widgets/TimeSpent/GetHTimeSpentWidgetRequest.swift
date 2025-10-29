@@ -18,8 +18,8 @@
 
 import Foundation
 
-public struct GetTimeSpentWidgetRequest: APIGraphQLRequestable {
-    public typealias Response = GetTimeSpentWidgetResponse
+public struct GetHTimeSpentWidgetRequest: APIGraphQLRequestable {
+    public typealias Response = GetHTimeSpentWidgetResponse
     public typealias Variables = Input
     public let variables: Input = .init()
     public struct Input: Codable, Equatable { }

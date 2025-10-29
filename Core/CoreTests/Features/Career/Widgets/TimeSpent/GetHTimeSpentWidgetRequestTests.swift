@@ -19,25 +19,25 @@
 @testable import Core
 import XCTest
 
-final class GetTimeSpentWidgetRequestTests: CoreTestCase {
+final class GetHTimeSpentWidgetRequestTests: CoreTestCase {
     func testPath() {
-        XCTAssertEqual(GetTimeSpentWidgetRequest().path, "/graphql")
+        XCTAssertEqual(GetHTimeSpentWidgetRequest().path, "/graphql")
     }
 
     func testHeader() {
-        let request = GetTimeSpentWidgetRequest()
+        let request = GetHTimeSpentWidgetRequest()
         // Headers stored as [String: String?]; mirror GetHSkillRequestTests pattern
         XCTAssertEqual(request.headers.count, 1)
         XCTAssertEqual(request.headers[HttpHeader.accept]!, "application/json")
     }
 
     func testShouldAddNoVerifierQuery() {
-        let request = GetTimeSpentWidgetRequest()
+        let request = GetHTimeSpentWidgetRequest()
         XCTAssertFalse(request.shouldAddNoVerifierQuery)
     }
 
     func testOperationName() {
-        XCTAssertEqual(GetTimeSpentWidgetRequest.operationName, "TimeSpentWidget")
+        XCTAssertEqual(GetHTimeSpentWidgetRequest.operationName, "TimeSpentWidget")
     }
 
     func testQuery() {
@@ -55,11 +55,11 @@ final class GetTimeSpentWidgetRequestTests: CoreTestCase {
         }
       }
     """
-        XCTAssertEqual(GetTimeSpentWidgetRequest.query, expected)
+        XCTAssertEqual(GetHTimeSpentWidgetRequest.query, expected)
     }
 
     func testVariables() {
-        let request = GetTimeSpentWidgetRequest()
+        let request = GetHTimeSpentWidgetRequest()
         XCTAssertEqual(request.variables, .init())
     }
 }

@@ -32,7 +32,7 @@ final class TimeSpentWidgetInteractorLiveTests: HorizonTestCase {
             DomainService.JWTTokenRequest(domainServiceOption: .journey),
             value: DomainService.JWTTokenRequest.Result(token: HTimeSpentWidgetStubs.token)
         )
-        api.mock(GetTimeSpentWidgetRequest(), value: HTimeSpentWidgetStubs.response)
+        api.mock(GetHTimeSpentWidgetRequest(), value: HTimeSpentWidgetStubs.response)
 
         // When / Then
         XCTAssertSingleOutputAndFinish(testee.getTimeSpent(ignoreCache: true)) { models in
@@ -51,7 +51,7 @@ final class TimeSpentWidgetInteractorLiveTests: HorizonTestCase {
 
     func testGetTimeSpentEmptyResponse() {
         // Given an empty response
-        let emptyResponse = GetTimeSpentWidgetResponse(
+        let emptyResponse = GetHTimeSpentWidgetResponse(
             data: .init(widgetData: .init(data: [], lastModifiedDate: nil))
         )
         let useCase = GetHTimeSpentWidgetUseCase(journey: DomainServiceMock(result: .success(api)))
@@ -61,7 +61,7 @@ final class TimeSpentWidgetInteractorLiveTests: HorizonTestCase {
             DomainService.JWTTokenRequest(domainServiceOption: .journey),
             value: DomainService.JWTTokenRequest.Result(token: HTimeSpentWidgetStubs.token)
         )
-        api.mock(GetTimeSpentWidgetRequest(), value: emptyResponse)
+        api.mock(GetHTimeSpentWidgetRequest(), value: emptyResponse)
 
         // When / Then
         XCTAssertSingleOutputAndFinish(testee.getTimeSpent(ignoreCache: true)) { models in

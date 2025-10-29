@@ -35,7 +35,7 @@ final class CompletedWidgetUseCase: APIUseCase {
     }
 
     public func write(
-        response: GetActivitiesWidgetResponse?,
+        response: GetHActivitiesWidgetResponse?,
         urlResponse _: URLResponse?,
         to client: NSManagedObjectContext
     ) {

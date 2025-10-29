@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct GetTimeSpentWidgetResponse: Codable {
+public struct GetHTimeSpentWidgetResponse: Codable {
    public let data: Response?
 
     public struct Response: Codable {

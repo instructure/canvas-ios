@@ -55,7 +55,7 @@ final class CompletedWidgetInteractorLiveTests: HorizonTestCase {
 
     func testGetCompletedWidgetsEmptyResponse() {
         // Given
-        let emptyResponse = GetActivitiesWidgetResponse(
+        let emptyResponse = GetHActivitiesWidgetResponse(
             data: .init(widgetData: .init(data: [], lastModifiedDate: nil))
         )
         let useCase = CompletedWidgetUseCase(journey: DomainServiceMock(result: .success(api)))

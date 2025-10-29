@@ -26,7 +26,7 @@ public final class CDHTimeSpentWidgetModel: NSManagedObject {
 
     @discardableResult
     public static func save(
-        _ apiEntity: GetTimeSpentWidgetResponse.TimeSpent,
+        _ apiEntity: GetHTimeSpentWidgetResponse.TimeSpent,
         in context: NSManagedObjectContext
     ) -> CDHTimeSpentWidgetModel {
         let dbEntity: CDHTimeSpentWidgetModel = context.first(

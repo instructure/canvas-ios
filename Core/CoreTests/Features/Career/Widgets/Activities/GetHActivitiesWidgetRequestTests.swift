@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-final class GetActivitiesWidgetRequestTests: XCTestCase {
+final class GetHActivitiesWidgetRequestTests: XCTestCase {
     func testPath() {
         XCTAssertEqual(GetHActivitiesWidgetRequest().path, "/graphql")
     }

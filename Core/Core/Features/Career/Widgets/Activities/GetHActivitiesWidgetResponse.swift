@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct GetActivitiesWidgetResponse: Codable {
+public struct GetHActivitiesWidgetResponse: Codable {
     public let data: Response?
 
     public struct Response: Codable {
