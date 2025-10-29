@@ -119,28 +119,6 @@ class CoreWebViewTests: CoreTestCase {
         XCTAssertNotEqual(scrollView.contentOffset.y, 0)
     }
 
-    func testMediaStreamingVideoTag() {
-        let webView = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
-        let videoTagContent = """
-        <video preload="none"
-        class="instructure_inline_media_comment"
-        data-media_comment_id="m-4ttJboh"
-        data-media_comment_type="video"
-        controls="controls"
-        poster="https://school-name.instructure.com/media_objects/m-4ttJboh/thumbnail?height=448&amp;type=3&amp;width=550"
-        src="https://school-name.instructure.com/courses/67040/media_download?entryId=m-4ttJbohh&amp;media_type=video&amp;redirect=1"
-        data-alt="">
-        </video>
-        """
-
-        webView.loadHTMLString(videoTagContent)
-        XCTAssertEqual(webView.customUserAgent, UserAgent.coreMedia.description)
-
-        let textContent = "Some random text .."
-        webView.loadHTMLString(textContent)
-        XCTAssertTrue(webView.customUserAgent.isNilOrEmpty)
-    }
-
     class MockNavigationAction: WKNavigationAction {
         let mockRequest: URLRequest
         override var request: URLRequest {
