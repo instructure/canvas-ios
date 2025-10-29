@@ -109,6 +109,14 @@ public class APIJSONDecoder: JSONDecoder, @unchecked Sendable {
 
     public override init() {
         super.init()
+
+        // Setting this as custom to handle more variations of ISO8601 dates, as the default `JSONDecoder`'s `.iso8601`
+        // strategy is strict and rejects certain valid ISO8601 dates (like negative years), causing the entire object to
+        // fail decoding. This custom strategy uses `ISO8601DateFormatter` directly, which is more lenient and allows such
+        // unlikely -but formatting-wise valid- dates to be parsed.
+        //
+        // To be even more tolerant when parsing date values, like fallback to `nil` in case of malformed values, use
+        // `SafeDate` property wrapper with optional date properties on your decodable model.
         dateDecodingStrategy = .custom { decoder in
             let container = try decoder.singleValueContainer()
             let dateString = try container.decode(String.self)
