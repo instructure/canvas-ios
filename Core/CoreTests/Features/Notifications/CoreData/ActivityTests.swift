@@ -37,4 +37,69 @@ class ActivityTests: CoreTestCase {
         XCTAssertEqual(a.assignmentURL, url)
         XCTAssertEqual(a.announcementId, "123")
     }
+
+    // MARK: - Save - isDiscussionSubmission
+
+    func test_saveIsDiscussionSubmission_whenTypeIsSubmissionAndHasDiscussionTopic_shouldBeTrue() {
+        let testee = saveActivity(.make(
+            type: .submission,
+            assignment: .make(discussion_topic: .make())
+        ))
+
+        XCTAssertEqual(testee.isDiscussionSubmission, true)
+    }
+
+    func test_saveIsDiscussionSubmission_whenTypeIsSubmissionAndHasNoDiscussionTopic_shouldBeFalse() {
+        let testee = saveActivity(.make(
+            type: .submission,
+            assignment: .make(discussion_topic: nil)
+        ))
+
+        XCTAssertEqual(testee.isDiscussionSubmission, false)
+    }
+
+    func test_saveIsDiscussionSubmission_whenTypeIsNotSubmissionAndHasDiscussionTopic_shouldBeFalse() {
+        let testee = saveActivity(.make(
+            type: .message,
+            assignment: .make(discussion_topic: .make())
+        ))
+
+        XCTAssertEqual(testee.isDiscussionSubmission, false)
+    }
+
+    // MARK: - Save - discussionCheckpointStep
+
+    func test_save_shouldSetDiscussionCheckpointStep() {
+        let activities = [
+            saveActivity(id: "0", sub_assignment_tag: "reply_to_topic"),
+            saveActivity(id: "1", sub_assignment_tag: "reply_to_entry"),
+            saveActivity(id: "2", sub_assignment_tag: "some_unknown_tag"),
+            saveActivity(id: "3", sub_assignment_tag: nil)
+        ]
+
+        XCTAssertEqual(activities.count, 4)
+
+        let steps = activities.map { $0.discussionCheckpointStep }
+        XCTAssertEqual(steps, [.replyToTopic, .requiredReplies(0), nil, nil])
+    }
+
+    // MARK: - Private helpers
+
+    private func saveActivity(_ apiActivity: APIActivity) -> Activity {
+        Activity.save(apiActivity, in: databaseClient)
+    }
+
+    private func saveActivity(id: String, sub_assignment_tag: String?) -> Activity {
+        saveActivity(
+            .make(
+                id: ID(id),
+                assignment: .make(
+                    sub_assignment_tag: sub_assignment_tag,
+                    discussion_topic: .make(
+                        reply_to_entry_required_count: 0
+                    )
+                )
+            )
+        )
+    }
 }
