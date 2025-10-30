@@ -26,7 +26,7 @@ final class GetHTimeSpentWidgetUseCase: APIUseCase {
     public typealias Model = CDHTimeSpentWidgetModel
     private var subscriptions = Set<AnyCancellable>()
     public var cacheKey: String? { "get-time-spent-widget" }
-    public var request: GetTimeSpentWidgetRequest { GetTimeSpentWidgetRequest() }
+    public var request: GetHTimeSpentWidgetRequest { GetHTimeSpentWidgetRequest() }
 
     init(journey: DomainServiceProtocol = DomainService(.journey)) {
         self.journey = journey
@@ -35,12 +35,12 @@ final class GetHTimeSpentWidgetUseCase: APIUseCase {
     var scope: Scope { .all }
 
     public func write(
-        response: GetTimeSpentWidgetResponse?,
+        response: GetHTimeSpentWidgetResponse?,
         urlResponse _: URLResponse?,
         to client: NSManagedObjectContext
     ) {
         let times = response?.data?.widgetData?.data ?? []
-        var sumTimes: [String: GetTimeSpentWidgetResponse.TimeSpent] = [:]
+        var sumTimes: [String: GetHTimeSpentWidgetResponse.TimeSpent] = [:]
 
         times.forEach { time in
             guard let courseID = time.courseID, !courseID.isEmpty else { return }

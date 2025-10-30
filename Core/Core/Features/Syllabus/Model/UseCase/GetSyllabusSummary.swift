@@ -21,6 +21,7 @@ import Combine
 
 public class GetSyllabusSummary: UseCase {
     public typealias Model = Plannable
+
     public struct Response: Codable, Equatable {
         static let empty = Response(calendarEvents: [], plannables: [])
 
@@ -31,10 +32,24 @@ public class GetSyllabusSummary: UseCase {
     private static let useCaseID = PlannableUseCaseID.syllabusSummary
 
     private let context: Context
+
+    internal let assignmentsRequest: GetCalendarEventsRequest
+    internal let subAssignmentsRequest: GetCalendarEventsRequest
+    internal let eventsRequest: GetCalendarEventsRequest
+    internal let ungradedItemsRequest: GetPlannablesRequest
+
     private var subscription: AnyCancellable?
 
     public init(context: Context) {
         self.context = context
+
+        self.assignmentsRequest = GetCalendarEventsRequest(contexts: [context], type: .assignment, allEvents: true)
+        self.subAssignmentsRequest = GetCalendarEventsRequest(contexts: [context], type: .sub_assignment, allEvents: true)
+        self.eventsRequest = GetCalendarEventsRequest(contexts: [context], type: .event, allEvents: true)
+        self.ungradedItemsRequest = GetPlannablesRequest(
+            contextCodes: [context].map(\.canvasContextID),
+            filter: "all_ungraded_todo_items"
+        )
     }
 
     public var cacheKey: String? {
@@ -42,7 +57,6 @@ public class GetSyllabusSummary: UseCase {
     }
 
     public var scope: Scope {
-
         let predicate = NSCompoundPredicate(type: .and, subpredicates: [
             NSPredicate(
                 key: #keyPath(Plannable.canvasContextIDRaw),
@@ -60,35 +74,25 @@ public class GetSyllabusSummary: UseCase {
         return Scope(predicate: predicate, order: order)
     }
 
-    var assignmentsRequest: GetCalendarEventsRequest {
-        GetCalendarEventsRequest(contexts: [context], type: .assignment, allEvents: true)
-    }
-
-    var eventsRequest: GetCalendarEventsRequest {
-        GetCalendarEventsRequest(contexts: [context], type: .event, allEvents: true)
-    }
-
-    var ungradedItemsRequest: GetPlannablesRequest {
-        GetPlannablesRequest(
-            contextCodes: [context].map(\.canvasContextID),
-            filter: "all_ungraded_todo_items"
-        )
-    }
-
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
         let api = environment.api
         let assignments = api.makeRequest(assignmentsRequest)
+        let subAssignments = api.makeRequest(subAssignmentsRequest)
         let events = api.makeRequest(eventsRequest)
         let ungradedItems = api.makeRequest(ungradedItemsRequest)
 
         subscription?.cancel()
         subscription = Publishers
             .CombineLatest(
-                Publishers.CombineLatest(
+                // calendar events
+                Publishers.CombineLatest3(
                     assignments.compactMap(\.body),
+                    subAssignments.compactMap(\.body),
                     events.compactMap(\.body)
                 )
-                .map({ $0.0 + $0.1 }),
+                .map { $0.0 + $0.1 + $0.2 },
+
+                // planner items
                 ungradedItems.compactMap(\.body)
             )
             .map { (events, plannables) in
@@ -105,7 +109,6 @@ public class GetSyllabusSummary: UseCase {
     }
 
     public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-
         response?.plannables.forEach { plannable in
             Plannable
                 .save(plannable, userId: nil, useCase: Self.useCaseID, in: client)

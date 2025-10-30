@@ -29,10 +29,10 @@ final class CompletedWidgetInteractorLiveTests: HorizonTestCase {
         let testee = CompletedWidgetInteractorLive(completedWidget: useCase)
 
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
-            value: DomainJWTService.JWTTokenRequest.Result(token: HActivitiesWidgetStubs.token)
+            DomainService.JWTTokenRequest(domainServiceOption: .journey),
+            value: DomainService.JWTTokenRequest.Result(token: HActivitiesWidgetStubs.token)
         )
-        api.mock(GetActivitiesWidgetRequest(), value: HActivitiesWidgetStubs.response)
+        api.mock(GetHActivitiesWidgetRequest(), value: HActivitiesWidgetStubs.response)
 
         // When / Then
         XCTAssertSingleOutputAndFinish(testee.getCompletedWidgets(ignoreCache: true)) { models in
@@ -55,17 +55,17 @@ final class CompletedWidgetInteractorLiveTests: HorizonTestCase {
 
     func testGetCompletedWidgetsEmptyResponse() {
         // Given
-        let emptyResponse = GetActivitiesWidgetResponse(
+        let emptyResponse = GetHActivitiesWidgetResponse(
             data: .init(widgetData: .init(data: [], lastModifiedDate: nil))
         )
         let useCase = CompletedWidgetUseCase(journey: DomainServiceMock(result: .success(api)))
         let testee = CompletedWidgetInteractorLive(completedWidget: useCase)
 
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
-            value: DomainJWTService.JWTTokenRequest.Result(token: HActivitiesWidgetStubs.token)
+            DomainService.JWTTokenRequest(domainServiceOption: .journey),
+            value: DomainService.JWTTokenRequest.Result(token: HActivitiesWidgetStubs.token)
         )
-        api.mock(GetActivitiesWidgetRequest(), value: emptyResponse)
+        api.mock(GetHActivitiesWidgetRequest(), value: emptyResponse)
 
         // When / Then
         XCTAssertSingleOutputAndFinish(testee.getCompletedWidgets(ignoreCache: true)) { models in

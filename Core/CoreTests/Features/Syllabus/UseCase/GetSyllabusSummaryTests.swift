@@ -37,7 +37,6 @@ class GetSyllabusSummaryTests: CoreTestCase {
     }
 
     func testFetchingData() {
-
         let exp = expectation(description: "fetch completion")
         useCase.fetch(environment: environment, force: true) { _, _, _ in
             exp.fulfill()
@@ -62,7 +61,7 @@ class GetSyllabusSummaryTests: CoreTestCase {
         let plannables = useCase.fetchFromDatabase(environment: environment)
         let receivedIDs = plannables.map(\.id)
 
-        XCTAssertEqual(receivedIDs, ["1", "2", "6", "7", "5"])
+        XCTAssertEqual(receivedIDs, ["1", "2", "6", "7", "8", "5"])
     }
 
     func testMakingRequests() {
@@ -76,12 +75,13 @@ class GetSyllabusSummaryTests: CoreTestCase {
 
         wait(for: [exp])
 
-        XCTAssertEqual(response?.calendarEvents.map({ $0.id }), ["1", "5", "2"])
+        XCTAssertEqual(response?.calendarEvents.map({ $0.id }), ["1", "5", "8", "2"])
         XCTAssertEqual(response?.plannables.map({ $0.plannable_id.value }), ["6", "7"])
     }
 
-    func mockApiData() {
+    // MARK: - Private helpers
 
+    private func mockApiData() {
         let date = Date()
 
         api.mock(useCase.assignmentsRequest, value: [
@@ -98,6 +98,17 @@ class GetSyllabusSummaryTests: CoreTestCase {
                 title: "nil date",
                 start_at: nil,
                 type: .assignment,
+                context_code: context.canvasContextID
+            )
+        ])
+
+        api.mock(useCase.subAssignmentsRequest, value: [
+            .make(
+                id: "8",
+                html_url: URL(string: "https://canvas.instructure.com/assignments/8")!,
+                title: "subassignment",
+                start_at: date.addMinutes(8),
+                type: .sub_assignment,
                 context_code: context.canvasContextID
             )
         ])

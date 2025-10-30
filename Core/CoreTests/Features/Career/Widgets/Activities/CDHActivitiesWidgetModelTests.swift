@@ -60,7 +60,7 @@ final class CDHActivitiesWidgetModelTests: CoreTestCase {
         courseID: Int?,
         courseName: String?,
         moduleCountCompleted: Int?
-    ) -> GetActivitiesWidgetResponse.Widget {
+    ) -> GetHActivitiesWidgetResponse.Widget {
         return .init(
             courseID: courseID,
             courseName: courseName,

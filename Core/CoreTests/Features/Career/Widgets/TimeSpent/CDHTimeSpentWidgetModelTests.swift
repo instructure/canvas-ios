@@ -61,8 +61,8 @@ final class CDHTimeSpentWidgetModelTests: CoreTestCase {
         courseID: String?,
         courseName: String?,
         minutesPerDay: Int?
-    ) -> GetTimeSpentWidgetResponse.TimeSpent {
-        return GetTimeSpentWidgetResponse.TimeSpent(
+    ) -> GetHTimeSpentWidgetResponse.TimeSpent {
+        return GetHTimeSpentWidgetResponse.TimeSpent(
             date: nil,
             userID: nil,
             userUUID: nil,

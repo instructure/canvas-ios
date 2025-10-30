@@ -26,7 +26,7 @@ final class CompletedWidgetUseCase: APIUseCase {
     public typealias Model = CDHActivitiesWidgetModel
     private var subscriptions = Set<AnyCancellable>()
     public var cacheKey: String? { "get-Completed-Widget" }
-    public var request: GetActivitiesWidgetRequest { GetActivitiesWidgetRequest() }
+    public var request: GetHActivitiesWidgetRequest { GetHActivitiesWidgetRequest() }
 
     var scope: Scope { .all }
 
@@ -35,7 +35,7 @@ final class CompletedWidgetUseCase: APIUseCase {
     }
 
     public func write(
-        response: GetActivitiesWidgetResponse?,
+        response: GetHActivitiesWidgetResponse?,
         urlResponse _: URLResponse?,
         to client: NSManagedObjectContext
     ) {

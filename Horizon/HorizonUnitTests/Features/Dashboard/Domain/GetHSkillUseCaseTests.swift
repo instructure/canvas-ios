@@ -42,7 +42,7 @@ final class GetHSkillUseCaseTests: HorizonTestCase {
         testee = GetHSkillsUseCase(journey: DomainServiceMock(result: .success(api)))
         // When
         let expection = expectation(description: "Wait for completion")
-        api.mock(DomainJWTService.JWTTokenRequest(domainServiceOption: .journey), value: DomainJWTService.JWTTokenRequest.Result(token: HSkillStubs.token))
+        api.mock(DomainService.JWTTokenRequest(domainServiceOption: .journey), value: DomainService.JWTTokenRequest.Result(token: HSkillStubs.token))
         api.mock(GetHSkillRequest(), value: HSkillStubs.response)
 
         // Then
@@ -55,22 +55,22 @@ final class GetHSkillUseCaseTests: HorizonTestCase {
 
     func testMakeRequestFail() {
         // Given
-        let daomainService = DomainServiceMock(result: .failure(DomainJWTService.Issue.unableToGetToken))
+        let daomainService = DomainServiceMock(result: .failure(DomainService.Issue.unableToGetToken))
         testee = GetHSkillsUseCase(journey: daomainService)
         // When
         let expection = expectation(description: "Wait for completion")
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
-                value: DomainJWTService.JWTTokenRequest.Result(token: HSkillStubs.token),
-               error: DomainJWTService.Issue.unableToGetToken
+            DomainService.JWTTokenRequest(domainServiceOption: .journey),
+                value: DomainService.JWTTokenRequest.Result(token: HSkillStubs.token),
+               error: DomainService.Issue.unableToGetToken
             )
-        api.mock(GetHSkillRequest(), value: HSkillStubs.response, error: DomainJWTService.Issue.unableToGetToken)
+        api.mock(GetHSkillRequest(), value: HSkillStubs.response, error: DomainService.Issue.unableToGetToken)
 
         // Then
         testee.makeRequest(environment: environment) { response, _, error in
             expection.fulfill()
             XCTAssertNil(response?.data)
-            XCTAssertEqual(error?.localizedDescription, DomainJWTService.Issue.unableToGetToken.localizedDescription)
+            XCTAssertEqual(error?.localizedDescription, DomainService.Issue.unableToGetToken.localizedDescription)
         }
         wait(for: [expection], timeout: 0.2)
     }

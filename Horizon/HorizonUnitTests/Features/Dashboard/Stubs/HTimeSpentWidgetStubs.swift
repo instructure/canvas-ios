@@ -21,7 +21,7 @@
 
 enum HTimeSpentWidgetStubs {
     static let token = "test_token_time"
-    static let response = GetTimeSpentWidgetResponse(
+    static let response = GetHTimeSpentWidgetResponse(
         data: .init(
             widgetData: .init(
                 data: [
