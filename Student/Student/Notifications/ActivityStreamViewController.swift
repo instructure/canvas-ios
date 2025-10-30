@@ -118,11 +118,7 @@ class ActivityStreamViewController: ScreenViewTrackableViewController {
     func update() {
         guard !isDataLoading() else { return }
         tableView.refreshControl?.endRefreshing()
-        let selected = tableView.indexPathForSelectedRow
         tableView.reloadData()
-        if splitViewController?.isCollapsed == false {
-            tableView.selectRow(at: selected, animated: false, scrollPosition: .none)
-        }
         emptyStateContainer.isHidden = !activities.isEmpty
     }
 
