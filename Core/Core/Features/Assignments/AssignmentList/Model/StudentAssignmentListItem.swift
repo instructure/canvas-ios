@@ -53,8 +53,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
         dateTextsProvider: AssignmentDateTextsProvider = .live
     ) {
         let submission: Submission?
-        if var userId {
-            userId = userId.asGlobalID(of: assignment.submissions?.first?.userID.shardID)
+        if let userId {
             submission = assignment.submissions?.first { $0.userID == userId }
         } else {
             submission = assignment.submission

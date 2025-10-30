@@ -100,7 +100,8 @@ open class Router {
     public typealias FallbackHandler = (URLComponents, [String: Any]?, UIViewController, RouteOptions) -> Void
     public static let DefaultRouteOptions: RouteOptions = .push
 
-    public let contextTabUrlInteractor: ContextTabUrlInteractor?
+    public let contextBaseUrlInteractor: ContextBaseUrlInteractor
+    public let courseTabUrlInteractor: CourseTabUrlInteractor?
 
     public var count: Int { handlers.count }
 
@@ -110,11 +111,13 @@ open class Router {
     public init(
         routes: [RouteHandler],
         fallback: @escaping FallbackHandler = { url, _, _, _ in open(url: url) },
-        contextTabUrlInteractor: ContextTabUrlInteractor? = nil
+        contextBaseUrlInteractor: ContextBaseUrlInteractor = .init(),
+        courseTabUrlInteractor: CourseTabUrlInteractor? = nil
     ) {
         self.handlers = routes
         self.fallback = fallback
-        self.contextTabUrlInteractor = contextTabUrlInteractor
+        self.contextBaseUrlInteractor = contextBaseUrlInteractor
+        self.courseTabUrlInteractor = courseTabUrlInteractor
     }
 
     // MARK: - Route Matching
@@ -130,7 +133,7 @@ open class Router {
         let env = AppEnvironment
             .resolved(
                 for: url,
-                contextShardID: contextTabUrlInteractor?.contextShardID(for: url)
+                contextShardID: contextBaseUrlInteractor.contextShardID(for: url)
             )
 
         for route in handlers {
@@ -175,7 +178,7 @@ open class Router {
         let env = AppEnvironment
             .resolved(
                 for: url,
-                contextShardID: contextTabUrlInteractor?.contextShardID(for: url)
+                contextShardID: contextBaseUrlInteractor.contextShardID(for: url)
             )
 
         if isExternalUrl, !url.originIsNotification, let url = url.url {
@@ -190,9 +193,9 @@ open class Router {
 
         // block disabled course tab urls
         if env.app == .student,
-           let contextTabUrlInteractor,
+           let courseTabUrlInteractor,
            let url = url.url,
-           !contextTabUrlInteractor.isAllowedUrl(url, userInfo: userInfo) {
+           !courseTabUrlInteractor.isAllowedUrl(url, userInfo: userInfo) {
 
             let snackBarViewModel = from.findSnackBarViewModel()
             snackBarViewModel?.showSnack(
@@ -222,9 +225,7 @@ open class Router {
             .apiHost
             .flatMap({ [$0] }) ?? []
 
-        if let contextTabUrlInteractor {
-            acceptableHosts.formUnion(contextTabUrlInteractor.baseURLHostOverrides)
-        }
+        acceptableHosts.formUnion(contextBaseUrlInteractor.baseURLHostOverrides)
 
         return url.isExternalWebsite(of: acceptableHosts)
     }
@@ -373,7 +374,7 @@ open class Router {
             url.path = "/" + url.path
         }
 
-        if let apiHostOverride = contextTabUrlInteractor?.baseUrlHostOverride(for: url) {
+        if let apiHostOverride = contextBaseUrlInteractor.baseUrlHostOverride(for: url) {
             url.host = apiHostOverride
         }
 

@@ -292,6 +292,18 @@ public extension URL {
         )
         try imageData.write(to: url)
     }
+
+    /// Returns a copy of URL stripped out of any query param or fragment
+    func removingQueryAndFragment() -> URL {
+        guard var components = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
+            return self
+        }
+
+        components.query = nil
+        components.fragment = nil
+
+        return components.url ?? self
+    }
 }
 
 public extension Array where Element == URL {

@@ -191,9 +191,9 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
         guard let assignment = assignment.first else { return }
 
         let submissions = assignment.submissions ?? []
-        let gUserID = studentID.sameForm(as: submissions.first?.userID, in: env)
+        let globalUserID = studentID.sameForm(as: submissions.first?.userID, in: env)
 
-        let submission = submissions.first(where: { $0.userID == gUserID })
+        let submission = submissions.first(where: { $0.userID == globalUserID })
         let displayProperties = submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
         title = course.first?.name ?? String(localized: "Assignment Details", bundle: .parent)
 
@@ -333,33 +333,5 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
             from: self,
             options: .modal(.overFullScreen)
         )
-    }
-}
-
-struct StudentID {
-
-    let raw: String
-    init(_ value: String) {
-        self.raw = value
-    }
-
-    func sameForm(as otherUserID: String?, in env: AppEnvironment) -> String {
-        guard let otherUserID else { return raw }
-
-        if otherUserID.hasShardID {
-            return raw.hasShardID ? raw : raw.asGlobalID(of: env.sessionShardID)
-        } else {
-            return raw.localID
-        }
-    }
-
-    func value(for env: AppEnvironment) -> String {
-        env.isRoot ? raw : raw.asGlobalID(of: env.sessionShardID)
-    }
-}
-
-extension ColorScheme {
-    static func observee(_ studentID: StudentID) -> ColorScheme {
-        observee(studentID.raw)
     }
 }

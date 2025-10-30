@@ -97,8 +97,8 @@ open class AppEnvironment {
         currentSession = session
         currentSession?.migrateSavedAnnotatedPDFs()
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
-        router.contextTabUrlInteractor?.clearEnabledTabs()
-        router.contextTabUrlInteractor?.setupTabSubscription()
+        router.courseTabUrlInteractor?.clearEnabledTabs()
+        router.courseTabUrlInteractor?.setupTabSubscription()
 
         if isSilent {
             return
@@ -126,7 +126,7 @@ open class AppEnvironment {
         k5.userDidLogout()
         currentSession = nil
         userDefaults = nil
-        router.contextTabUrlInteractor?.cancelTabSubscription()
+        router.courseTabUrlInteractor?.cancelTabSubscription()
         refreshWidgets()
         deleteUserData(session: session)
         if AppEnvironment.shared.app == .horizon {

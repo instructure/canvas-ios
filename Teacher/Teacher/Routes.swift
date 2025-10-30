@@ -461,7 +461,7 @@ let router = Router(routes: [
     RouteHandler("/about") { _, _, _ in
         AboutAssembly.makeAboutViewController()
     }
-], contextTabUrlInteractor: .init())
+])
 
 private func discussionDetails(
     url: URLComponents,

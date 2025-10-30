@@ -19,10 +19,8 @@
 import Foundation
 import Combine
 
-/// This interactor has two purposes
-/// - Provide info on hidden tabs for routing. When routing we shouldn't allow routes for disabled tabs.
-/// - Extract base URLs for courses. We use these base URLs for API calls in case a course is on a different host compared to the the one used to log in. Only applies to Courses & Groups.
-public final class ContextTabUrlInteractor {
+/// This interactor purpose is to provide info on hidden tabs for routing. When routing we shouldn't allow routes for disabled tabs.
+public final class CourseTabUrlInteractor {
 
     public static let blockDisabledTabUserInfoKey = "shouldBlockDisabledCourseTabKey"
 
@@ -32,8 +30,7 @@ public final class ContextTabUrlInteractor {
         let apiBaseUrlHost: String?
     }
 
-    private var enabledTabsPerContext: [Context: [String]] = [:]
-    private var baseURLHostOverridesPerCourse: [Context: String] = [:]
+    private var enabledTabsPerCourse: [Context: [String]] = [:]
     private var tabSubscription: AnyCancellable?
 
     public init() { }
@@ -54,7 +51,7 @@ public final class ContextTabUrlInteractor {
     }
 
     public func clearEnabledTabs() {
-        enabledTabsPerContext = [:]
+        enabledTabsPerCourse = [:]
     }
 
     // MARK: - Allow / Block URL
@@ -69,7 +66,7 @@ public final class ContextTabUrlInteractor {
         }
 
         // if url doesn't match "/courses/:courseID/*" for the known courses -> it's not a tab, allow it
-        guard let context = Context(url: url), let enabledTabs = enabledTabsPerContext[context] else {
+        guard let context = Context(url: url), let enabledTabs = enabledTabsPerCourse[context] else {
             return true
         }
 
@@ -120,12 +117,8 @@ public final class ContextTabUrlInteractor {
     // MARK: - Enabled tab list
 
     private func updateEnabledTabs(with tabs: [Tab]) {
-        let contextTabs = tabs.filter {
-            $0.context.contextType == .course ||
-            $0.context.contextType == .group
-        }
-
-        let tabsPerCourse = Dictionary(grouping: contextTabs, by: { $0.context })
+        let courseTabs = tabs.filter { $0.context.contextType == .course }
+        let tabsPerCourse = Dictionary(grouping: courseTabs, by: { $0.context })
 
         let tabModelsPerCourse: [Context: [TabModel]] = tabsPerCourse.mapValues { tabArray in
             tabArray.compactMap { tab in
@@ -140,19 +133,8 @@ public final class ContextTabUrlInteractor {
 
         tabModelsPerCourse.forEach { context, tabs in
             let tabPaths = pathsForTabs(tabs, context: context)
-            enabledTabsPerContext[context] = tabPaths
+            enabledTabsPerCourse[context] = tabPaths
         }
-
-        let defaultHost = AppEnvironment.shared.apiHost
-
-        baseURLHostOverridesPerCourse =
-            tabModelsPerCourse
-            .reduce(into: [:], { partialResult, pair in
-                pair.value.forEach { tab in
-                    guard let apiHost = tab.apiBaseUrlHost, apiHost != defaultHost else { return }
-                    partialResult[pair.key] = apiHost
-                }
-            })
     }
 
     private func pathsForTabs(_ tabs: [TabModel], context: Context) -> [String] {
@@ -230,57 +212,6 @@ public final class ContextTabUrlInteractor {
 
         return false
     }
-
-    // MARK: Base URL Overrides
-
-    public var baseURLHostOverrides: Set<String> {
-        Set(baseURLHostOverridesPerCourse.values)
-    }
-
-    public func baseUrlHostOverride(for url: URLComponents) -> String? {
-        guard let context = Context(path: url.path) else { return nil }
-
-        // Check if it is internal link in a course
-        guard !url.path.hasSuffix(context.pathComponent) else { return nil }
-
-        return baseURLHostOverridesPerCourse.first(where: {
-            return $0.key.isEquivalent(to: context)
-        })?.value
-    }
-
-    public func contextShardID(for url: URLComponents) -> String? {
-        let pathContext = Context(path: url.path)
-
-        if let pathContext,
-           pathContext.contextType == .course || pathContext.contextType == .group,
-           let shardID = pathContext.id.shardID {
-            return shardID
-        }
-
-        if let urlHost = url.host {
-
-            let overrideContexts = baseURLHostOverridesPerCourse
-                .filter { $0.value == urlHost } // It's possible to have multiple contexts with the same `value`
-                .map { $0.key }
-
-            if let shardID = overrideContexts.compactMap(\.id.shardID).first {
-                return shardID
-            }
-        }
-
-        if let pathContext {
-
-            let overrideContexts = baseURLHostOverridesPerCourse
-                .filter { $0.key.isEquivalent(to: pathContext) } // It's possible to have multiple equivalent contexts
-                .map { $0.key }
-
-            if let shardID = overrideContexts.compactMap(\.id.shardID).first {
-                return shardID
-            }
-        }
-
-        return nil
-    }
 }
 
 // MARK: - CourseTabFormat
@@ -329,18 +260,5 @@ private enum CourseTabFormat: CaseIterable {
 private extension String {
     var splitUsingSlash: [String] {
         split(separator: "/").map { String($0) }
-    }
-}
-
-private extension URL {
-    func removingQueryAndFragment() -> URL {
-        guard var components = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
-            return self
-        }
-
-        components.query = nil
-        components.fragment = nil
-
-        return components.url ?? self
     }
 }
