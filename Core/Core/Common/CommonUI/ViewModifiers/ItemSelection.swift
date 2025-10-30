@@ -43,6 +43,6 @@ private struct ItemSelectionModifier: ViewModifier {
         let isSplitViewControllerCollapsed = controller.value.splitViewController?.isCollapsed ?? true
 
         content
-            .environment(\.isItemSelected, isSplitViewControllerCollapsed && isSelected)
+            .environment(\.isItemSelected, !isSplitViewControllerCollapsed && isSelected)
     }
 }
