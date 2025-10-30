@@ -189,12 +189,6 @@ struct CourseListWidgetItemView: View {
                 Text("Congrats! You’ve completed your course. View your progress and scores on the Learn page.")
                     .huiTypography(.p1)
                     .foregroundColor(.huiColors.text.title)
-            } else {
-                Text("No modules found")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .huiTypography(.p1)
-                    .foregroundColor(.huiColors.text.title)
-                    .skeletonLoadable()
             }
         }
     }
