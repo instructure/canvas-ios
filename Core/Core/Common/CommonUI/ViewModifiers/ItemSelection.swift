@@ -23,13 +23,13 @@ extension EnvironmentValues {
 }
 
 extension View {
-        /// This View Modifier sets the `isSelected` Environment Value on a view.
-        /// /// If the Split View Controller is collapsed, it always sets it to `false`.
+    /// This View Modifier sets the `isSelected` Environment Value on a view.
+    /// If the Split View Controller is collapsed, it always sets it to `false`.
     public func selected(when condition: Bool) -> some View {
         modifier(ItemSelectionModifier(isSelected: condition))
     }
 
-        /// This View Modifier sets the `isSelected` Environment Value on a view to `false`.
+    /// Disables selection highlighting for this view and its children, regardless of selection state.
     public func selectionIndicatorDisabled() -> some View {
         self.environment(\.isItemSelected, false)
     }
