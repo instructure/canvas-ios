@@ -29,7 +29,6 @@ public struct TintedContextButton: ButtonStyle {
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .background(selectionIndicator(configuration.isPressed || isSelected))
-            .animation(.default.speed(2), value: isSelected)
     }
 
     private func selectionIndicator(_ isSelected: Bool) -> some View {

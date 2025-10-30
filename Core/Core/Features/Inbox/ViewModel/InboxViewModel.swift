@@ -209,9 +209,7 @@ public class InboxViewModel: ObservableObject {
                 }.eraseToAnyPublisher()
             }
             .sink { [router, scopeDidChange] (id, controller) in
-                Task { @MainActor in
-                    self.selectedMessageId = id
-                }
+                self.selectedMessageId = id
                 let openedFromSentFilter = scopeDidChange.value == .sent
                 router.route(
                     to: "/conversations/\(id)",

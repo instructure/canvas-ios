@@ -138,9 +138,7 @@ public final class GradeListViewModel: ObservableObject {
             .receive(on: scheduler)
             .sink { url, id, controller in
                 guard let url else { return }
-                Task { @MainActor in
-                    self.selectedAssignmentId = id
-                }
+                self.selectedAssignmentId = id
                 env.router.route(to: url, from: controller, options: .detail)
             }
             .store(in: &subscriptions)

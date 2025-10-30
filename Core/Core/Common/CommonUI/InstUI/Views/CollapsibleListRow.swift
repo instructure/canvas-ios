@@ -94,7 +94,6 @@ extension InstUI {
                                 .contentShape(Rectangle())
                                 .accessibilityHidden(true)
                                 .background(isItemSelected ? .backgroundLight : .backgroundLightest)
-                                .animation(.default.speed(2), value: isItemSelected)
                         }
                     )
                     .buttonStyle(.plain)

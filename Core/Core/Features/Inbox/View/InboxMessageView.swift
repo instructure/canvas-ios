@@ -79,7 +79,6 @@ public struct InboxMessageView: View {
         .padding(.leading, 15)
         .padding(.trailing, 16)
         .background(isSelected ? .backgroundLight : .backgroundLightest)
-        .animation(.default.speed(2), value: isSelected)
         .overlay(unreadDot)
         .contentShape(Rectangle())
     }
