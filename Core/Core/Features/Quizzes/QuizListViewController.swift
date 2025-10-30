@@ -103,7 +103,7 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
         emptyView.isHidden = quizzes.state != .empty
         errorView.isHidden = quizzes.state != .error
         tableView.reloadData()
-        
+
         if !selectedFirstQuiz, quizzes.state != .loading, let url = quizzes.first?.htmlURL {
             selectedFirstQuiz = true
             if splitViewController?.isCollapsed == false, !isInSplitViewDetail {
