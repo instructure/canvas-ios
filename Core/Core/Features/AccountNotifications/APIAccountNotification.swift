@@ -58,10 +58,19 @@ extension APIAccountNotification {
 public struct GetAccountNotificationsRequest: APIRequestable {
     public typealias Response = [APIAccountNotification]
 
+    public let includePast: Bool
     public let path = "accounts/self/account_notifications"
-    public let query: [APIQueryItem] = [ .perPage(100), .bool("show_is_closed", true) ]
-}
+    public var query: [APIQueryItem]
 
+    public init(includePast: Bool = false) {
+        self.includePast = includePast
+        self.query = [
+            .perPage(100),
+            .bool("include_past", includePast),
+            .bool("show_is_closed", true)
+        ]
+    }
+}
 // https://canvas.instructure.com/doc/api/account_notifications.html#method.account_notifications.show
 public struct GetAccountNotificationRequest: APIRequestable {
     public typealias Response = APIAccountNotification
