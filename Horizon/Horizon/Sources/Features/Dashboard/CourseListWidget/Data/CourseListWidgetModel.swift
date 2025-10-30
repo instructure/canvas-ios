@@ -43,8 +43,7 @@ struct CourseListWidgetModel: Identifiable, Equatable {
 
     var progressPercentage: String {
         let percentage = Int(progress.rounded())
-        let format = String(localized: "%d%% complete", bundle: .horizon)
-        return String.localizedStringWithFormat(format, percentage)
+        return String(format: "%d%%", percentage)
     }
 
     var hasPrograms: Bool {
@@ -57,6 +56,10 @@ struct CourseListWidgetModel: Identifiable, Equatable {
 
     var hasCurrentLearningObject: Bool {
         currentLearningObject != nil
+    }
+
+    var isCourseCompleted: Bool {
+        progress == 100 && !hasCurrentLearningObject
     }
 
     var accessibilityDescription: String {

@@ -79,10 +79,11 @@ struct CourseListWidgetView: View {
         VStack(alignment: .center, spacing: .huiSpaces.space12) {
             SingleAxisGeometryReader(initialSize: 300) { size in
                 ScrollView(.horizontal) {
-                    HStack(alignment: .top, spacing: .huiSpaces.space12) {
+                    LazyHStack(alignment: .top, spacing: .huiSpaces.space12) {
                         ForEach(Array(viewModel.courses.enumerated()), id: \.element.id) { index, course in
                             CourseListWidgetItemView(
                                 model: CourseListWidgetModel(from: course),
+                                width: size - 48,
                                 onCourseTap: { courseId in
                                     lastFocusedElement.wrappedValue = .course(id: courseId)
                                     viewModel.navigateToCourseDetails(

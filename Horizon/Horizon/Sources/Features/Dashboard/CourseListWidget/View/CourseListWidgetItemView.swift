@@ -21,6 +21,7 @@ import SwiftUI
 
 struct CourseListWidgetItemView: View {
     let model: CourseListWidgetModel
+    let width: CGFloat
     let onCourseTap: (String) -> Void
     let onProgramTap: ((String) -> Void)?
     let onLearningObjectTap: ((String, URL?) -> Void)?
@@ -101,14 +102,20 @@ struct CourseListWidgetItemView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(height: imageHeight)
+                .frame(maxWidth: width)
                 .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
                 .accessibilityLabel("")
                 .accessibilityRemoveTraits(.isImage)
                 .accessibilityHidden(true)
         } placeholder: {
-            Color.huiColors.primitives.grey14
-                .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
-                .accessibilityHidden(true)
+            ZStack {
+                Color.huiColors.primitives.grey14
+                    .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
+                    .accessibilityHidden(true)
+                Image.huiIcons.book2Filled
+                    .foregroundStyle(Color.huiColors.surface.institution)
+                    .accessibilityHidden(true)
+            }
         }
         .skeletonLoadable()
         .frame(height: imageHeight)
@@ -125,9 +132,15 @@ struct CourseListWidgetItemView: View {
             }
 
             courseTitleAndProgressSection
+                .onTapGesture {
+                    onCourseTap(model.id)
+                }
 
             if model.hasCurrentLearningObject {
                 learningObjectSection
+                    .onTapGesture {
+                        onLearningObjectTap?(model.id, model.currentLearningObject?.url)
+                    }
             }
         }
         .padding(.horizontal, .huiSpaces.space24)
@@ -157,15 +170,7 @@ struct CourseListWidgetItemView: View {
 
     private var progressSection: some View {
         VStack(spacing: .huiSpaces.space16) {
-            VStack(alignment: .leading, spacing: .huiSpaces.space8) {
-                HStack {
-                    Text(model.progressPercentage)
-                        .huiTypography(.p1)
-                        .foregroundStyle(Color.huiColors.text.title)
-                    Spacer()
-                }
-                .skeletonLoadable()
-
+            HStack(spacing: .huiSpaces.space8) {
                 HorizonUI.ProgressBar(
                     progress: model.progress / 100.0,
                     progressColor: .huiColors.surface.institution,
@@ -174,11 +179,22 @@ struct CourseListWidgetItemView: View {
                     backgroundColor: Color.huiColors.primitives.grey14
                 )
                 .skeletonLoadable()
+
+                Text(model.progressPercentage)
+                    .huiTypography(.p2)
+                    .foregroundStyle(Color.huiColors.surface.institution)
+                    .skeletonLoadable()
             }
-            if !model.hasCurrentLearningObject {
+            if model.isCourseCompleted {
                 Text("Congrats! You’ve completed your course. View your progress and scores on the Learn page.")
                     .huiTypography(.p1)
                     .foregroundColor(.huiColors.text.title)
+            } else {
+                Text("No modules found")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .huiTypography(.p1)
+                    .foregroundColor(.huiColors.text.title)
+                    .skeletonLoadable()
             }
         }
     }
@@ -276,7 +292,7 @@ struct CourseListWidgetItemView: View {
                             estimatedDuration: "xxxxx",
                             url: nil
                         )
-                    ),
+                    ), width: 300,
                     onCourseTap: { _ in },
                     onProgramTap: { _ in },
                     onLearningObjectTap: { _, _ in }
@@ -300,7 +316,7 @@ struct CourseListWidgetItemView: View {
                             estimatedDuration: "XX mins",
                             url: nil
                         )
-                    ),
+                    ), width: 300,
                     onCourseTap: { _ in },
                     onProgramTap: { _ in },
                     onLearningObjectTap: { _, _ in }
@@ -327,7 +343,7 @@ struct CourseListWidgetItemView: View {
                             estimatedDuration: "XX mins",
                             url: nil
                         )
-                    ),
+                    ), width: 300,
                     onCourseTap: { _ in },
                     onProgramTap: { _ in },
                     onLearningObjectTap: { _, _ in }
@@ -349,7 +365,7 @@ struct CourseListWidgetItemView: View {
                             estimatedDuration: "XX mins",
                             url: nil
                         )
-                    ),
+                    ), width: 300,
                     onCourseTap: { _ in },
                     onProgramTap: { _ in },
                     onLearningObjectTap: { _, _ in }
@@ -364,7 +380,7 @@ struct CourseListWidgetItemView: View {
                         lastActivityAt: nil,
                         programs: [],
                         currentLearningObject: nil
-                    ),
+                    ), width: 300,
                     onCourseTap: { _ in },
                     onProgramTap: { _ in },
                     onLearningObjectTap: { _, _ in }
