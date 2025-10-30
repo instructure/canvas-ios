@@ -64,7 +64,7 @@ class DashboardViewModel {
     ) {
         self.dashboardInteractor = dashboardInteractor
         self.notificationInteractor = notificationInteractor
-        self.programInteractor = programInteractor
+		self.programInteractor = programInteractor
         self.router = router
         self.onTapProgram = onTapProgram
         getCourses()
