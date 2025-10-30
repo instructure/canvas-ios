@@ -28,6 +28,7 @@ public final class Activity: NSManagedObject, WriteableModel {
     @NSManaged public var message: String?
     @NSManaged public var title: String?
     @NSManaged public var typeRaw: String
+    @NSManaged public var isDiscussionSubmission: Bool
     @NSManaged public var htmlURL: URL?
     @NSManaged public var canvasContextIDRaw: String?
     @NSManaged public var score: String?
@@ -38,6 +39,10 @@ public final class Activity: NSManagedObject, WriteableModel {
     @NSManaged public var readState: Bool
     @NSManaged public var announcementId: String?
     @NSManaged public var assignmentURL: URL?
+    @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
+    public var discussionCheckpointStep: DiscussionCheckpointStep? {
+        get { discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(newValue) }
+    }
 
     public var context: Context? {
         get { return Context(canvasContextID: canvasContextIDRaw ?? "") }
@@ -53,22 +58,42 @@ public final class Activity: NSManagedObject, WriteableModel {
     public static func save(_ item: APIActivity, in client: NSManagedObjectContext) -> Activity {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(Activity.id), item.id.value)
         let model: Activity = client.fetch(predicate).first ?? client.insert()
+
         model.id = item.id.value
         model.createdAt = item.created_at
         model.message = item.message
         model.title = item.title
         model.htmlURL = item.html_url
+
+        // Replacing the assignmentId in htmlUrl with the correct value for DCPs.
+        // For DCPs backend returns wrong id inside `html_url`.
+        // This is a temporary workaround to use the correct id.
+        // TODO: remove the workaround after EGG-2059
+        if let htmlUrl = item.html_url,
+           let assignmentIdFromAssignment = item.assignment?.id,
+           let assignmentIdFromDiscussionTopic = item.assignment?.discussion_topic?.assignment_id {
+            let urlString = htmlUrl.absoluteString.replacingOccurrences(
+                of: "assignments/\(assignmentIdFromAssignment)",
+                with: "assignments/\(assignmentIdFromDiscussionTopic)"
+            )
+            model.htmlURL = URL(string: urlString)
+        }
+
         model.typeRaw = item.type.rawValue
+        model.isDiscussionSubmission = item.type == .submission && item.assignment?.discussion_topic != nil
         model.grade = item.grade
         model.notificationCategory = item.notification_category
         model.contextType = item.context_type
         model.readState = item.read_state ?? true
         model.announcementId = item.announcement_id
         model.assignmentURL = item.assignment?.html_url
+
         if let score = item.score {
             model.score = String(score)
         }
+
         model.updatedAt = item.latestRelevantUpdate
+
         if let rawValue = item.context_type, let contextType = ContextType(rawValue: rawValue.lowercased()) {
             var context: Context?
             switch contextType {
@@ -86,6 +111,12 @@ public final class Activity: NSManagedObject, WriteableModel {
 
             model.canvasContextIDRaw = context?.canvasContextID
         }
+
+        model.discussionCheckpointStep = .init(
+            tag: item.assignment?.sub_assignment_tag,
+            requiredReplyCount: item.assignment?.discussion_topic?.reply_to_entry_required_count
+        )
+
         return model
     }
 }
@@ -97,7 +128,7 @@ extension Activity {
         case .announcement:     return .announcementLine
         case .conversation:     return .emailLine
         case .message:          return .assignmentLine
-        case .submission:       return .assignmentLine
+        case .submission:       return isDiscussionSubmission ? .discussionLine : .assignmentLine
         case .conference:       return .conferences
         case .collaboration:    return .collaborations
         case .assessmentRequest: return .quizLine

@@ -30,6 +30,7 @@ public final class CDHCourse: NSManagedObject, WriteableModel {
     @NSManaged public var completionPercentage: Double
     @NSManaged public var state: String
     @NSManaged public var enrollmentID: String
+    @NSManaged public var imageUrl: String?
     @NSManaged public var institutionName: String?
     @NSManaged public var incompleteModulesRaw: NSOrderedSet?
     @NSManaged public var nextModuleItemID: String?
@@ -102,6 +103,7 @@ public final class CDHCourse: NSManagedObject, WriteableModel {
         model.courseID = courseId
         model.name = enrollmentModel.course.name
         model.overviewDescription = enrollmentModel.course.syllabusBody
+        model.imageUrl = enrollmentModel.course.imageUrl
         model.institutionName = institutionName
         model.state = enrollmentModel.state
         model.enrollmentID = enrollmentModel.id

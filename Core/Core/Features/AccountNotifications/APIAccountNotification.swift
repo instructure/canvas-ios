@@ -27,6 +27,7 @@ public struct APIAccountNotification: Codable {
     // let role_ids: [String]
     let start_at: Date
     let subject: String
+    let closed: Bool?
 }
 
 #if DEBUG
@@ -37,7 +38,8 @@ extension APIAccountNotification {
         id: ID = "1",
         message: String = "The financial aid office is closed on Tuesdays.",
         start_at: Date = Date(),
-        subject: String = "Financial Aid"
+        subject: String = "Financial Aid",
+        closed: Bool = false
     ) -> APIAccountNotification {
         return APIAccountNotification(
             end_at: end_at,
@@ -45,7 +47,8 @@ extension APIAccountNotification {
             id: id,
             message: message,
             start_at: start_at,
-            subject: subject
+            subject: subject,
+            closed: closed
         )
     }
 }
@@ -55,10 +58,19 @@ extension APIAccountNotification {
 public struct GetAccountNotificationsRequest: APIRequestable {
     public typealias Response = [APIAccountNotification]
 
+    public let includePast: Bool
     public let path = "accounts/self/account_notifications"
-    public let query: [APIQueryItem] = [ .perPage(100) ]
-}
+    public var query: [APIQueryItem]
 
+    public init(includePast: Bool = false) {
+        self.includePast = includePast
+        self.query = [
+            .perPage(100),
+            .bool("include_past", includePast),
+            .bool("show_is_closed", true)
+        ]
+    }
+}
 // https://canvas.instructure.com/doc/api/account_notifications.html#method.account_notifications.show
 public struct GetAccountNotificationRequest: APIRequestable {
     public typealias Response = APIAccountNotification
