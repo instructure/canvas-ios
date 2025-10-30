@@ -23,6 +23,7 @@ import Core
 protocol NotificationInteractor {
     func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Error>
     func getUnreadNotificationCount() -> AnyPublisher<Int, Never>
+    func markNotificationAsRead(notification: NotificationModel) -> AnyPublisher<[NotificationModel], Error>
 }
 
 final class NotificationInteractorLive: NotificationInteractor {
@@ -73,6 +74,9 @@ final class NotificationInteractorLive: NotificationInteractor {
         .map { [weak self] activities, courses -> [NotificationModel] in
             self?.formatter.formatNotifications(activities, courses: courses) ?? []
         }
+        .flatMap { Publishers.Sequence(sequence: $0) }
+        .filter { $0.type != .announcement }
+        .collect()
         .map { notifications in
             notifications.reduce(0) { count, notification in
                 notification.isRead ? count : count + 1
@@ -110,12 +114,57 @@ final class NotificationInteractorLive: NotificationInteractor {
                     id: $0.id,
                     title: $0.subject,
                     date: $0.startAt,
-                    isRead: true,
+                    isRead: $0.closed,
                     type: .announcement,
-                    announcementId: $0.id
+                    announcementId: $0.id,
+                    isGlobalNotification: true
                 )
             }
             .collect()
+            .eraseToAnyPublisher()
+    }
+
+    func markNotificationAsRead(notification: NotificationModel) -> AnyPublisher<[NotificationModel], Error> {
+        if notification.isGlobalNotification {
+            return deleteAccountNotification(id: notification.id)
+        } else {
+            return markDiscussionTopicRead(
+                courseID: notification.courseID,
+                topicID: notification.announcementId.defaultToEmpty
+            )
+        }
+    }
+
+    private func markDiscussionTopicRead(courseID: String, topicID: String) -> AnyPublisher<[NotificationModel], Error> {
+        let useCase = MarkDiscussionTopicRead(
+            context: .course(courseID),
+            topicID: topicID,
+            isRead: true
+        )
+        return ReactiveStore(useCase: useCase)
+            .getEntities(ignoreCache: true)
+            .flatMap { [weak self] _ -> AnyPublisher<[NotificationModel], Error> in
+                guard let self = self else {
+                    return Just([])
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return self.getNotifications(ignoreCache: true)
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func deleteAccountNotification(id: String) -> AnyPublisher<[NotificationModel], Error> {
+        ReactiveStore(useCase: DeleteAccountNotification(id: id))
+            .getEntities(ignoreCache: true)
+            .flatMap { [weak self] _ -> AnyPublisher<[NotificationModel], Error> in
+                guard let self = self else {
+                    return Just([])
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return self.getNotifications(ignoreCache: true)
+            }
             .eraseToAnyPublisher()
     }
 }

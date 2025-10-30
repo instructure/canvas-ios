@@ -19,7 +19,7 @@
 import Core
 import Foundation
 
-struct NotificationModel: Identifiable {
+struct NotificationModel: Identifiable, Equatable {
     let id: String
     let title: String
     let date: Date?
@@ -32,6 +32,7 @@ struct NotificationModel: Identifiable {
     let announcementId: String?
     let assignmentURL: URL?
     let htmlURL: URL?
+    let isGlobalNotification: Bool
 
     init(
         id: String,
@@ -45,7 +46,8 @@ struct NotificationModel: Identifiable {
         type: NotificationType,
         announcementId: String? = nil,
         assignmentURL: URL? = nil,
-        htmlURL: URL? = nil
+        htmlURL: URL? = nil,
+        isGlobalNotification: Bool = false
     ) {
         self.id = id
         self.title = title
@@ -59,6 +61,7 @@ struct NotificationModel: Identifiable {
         self.announcementId = announcementId
         self.assignmentURL = assignmentURL
         self.htmlURL = htmlURL
+        self.isGlobalNotification = isGlobalNotification
     }
 
     var dateFormatted: String {
@@ -77,5 +80,35 @@ struct NotificationModel: Identifiable {
         default:
             return date.formatted(format: "MMM d, yyyy")
         }
+    }
+
+    static let mock: Self = .init(
+        id: "1",
+        title: "Title 1",
+        date: Date(),
+        isRead: false,
+        courseName: "Course name",
+        type: .announcement
+    )
+
+    var accessibilityCourseName: String {
+        String.localizedStringWithFormat(String(localized: "Course %@", bundle: .horizon), courseName.defaultToEmpty)
+    }
+
+    var accessibilityDate: String {
+        String.localizedStringWithFormat(String(localized: "Date %@", bundle: .horizon), dateFormatted)
+    }
+
+    var accessibilityTitle: String {
+        String.localizedStringWithFormat(String(localized: "Title %@", bundle: .horizon), title)
+    }
+
+    // Returns true if the notification's date is within the last 14 days.
+    // If date is nil, returns false.
+    var isWithinTwoWeeksLimit: Bool {
+        guard let date else { return false }
+        // Calculate the cutoff date (14 days ago)
+        let cutoff = Calendar.current.date(byAdding: .day, value: -14, to: Date()) ?? Date.distantPast
+        return date >= cutoff
     }
 }

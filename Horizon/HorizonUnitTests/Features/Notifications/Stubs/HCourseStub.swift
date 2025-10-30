@@ -29,8 +29,7 @@ enum HCourseStub {
             enrollments: [],
             modules: [],
             progress: 0.2,
-            overviewDescription: "",
-            learningObjectCardModel: nil
+            overviewDescription: ""
         )
     }
 
@@ -46,8 +45,7 @@ enum HCourseStub {
                 enrollments: [],
                 modules: [],
                 progress: 0.2,
-                overviewDescription: "Learn the fundamentals of programming and computer science.",
-                learningObjectCardModel: nil
+                overviewDescription: "Learn the fundamentals of programming and computer science."
             ),
             HCourse(
                 id: "3",
@@ -58,8 +56,7 @@ enum HCourseStub {
                 enrollments: [],
                 modules: [],
                 progress: 0.85,
-                overviewDescription: "Explore key historical events from the 18th century to the present.",
-                learningObjectCardModel: nil
+                overviewDescription: "Explore key historical events from the 18th century to the present."
             ),
             HCourse(
                 id: "4",
@@ -70,8 +67,7 @@ enum HCourseStub {
                 enrollments: [],
                 modules: [],
                 progress: 1.0,
-                overviewDescription: "An introduction to essential business and management principles.",
-                learningObjectCardModel: nil
+                overviewDescription: "An introduction to essential business and management principles."
             ),
             HCourse(
                 id: "5",
@@ -82,8 +78,7 @@ enum HCourseStub {
                 enrollments: [],
                 modules: [],
                 progress: 0.0,
-                overviewDescription: "A foundation course in art, design, and creative expression.",
-                learningObjectCardModel: nil
+                overviewDescription: "A foundation course in art, design, and creative expression."
             )
         ]
     }

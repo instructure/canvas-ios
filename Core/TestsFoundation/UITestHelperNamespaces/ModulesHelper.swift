@@ -33,8 +33,16 @@ public class ModulesHelper: BaseHelper {
         return app.find(id: "ModuleList.\(moduleIndex).\(itemIndex)", type: .cell)
     }
 
-    public static func moduleItemDueLabel(moduleIndex: Int, itemIndex: Int) -> XCUIElement {
-        return app.find(id: "ModuleList.\(moduleIndex).\(itemIndex).dueLabel")
+    public static func moduleItemDueDateLabel1(moduleIndex: Int, itemIndex: Int) -> XCUIElement {
+        return app.find(id: "ModuleList.\(moduleIndex).\(itemIndex).dueDateLabel1")
+    }
+
+    public static func moduleItemDueDateLabel2(moduleIndex: Int, itemIndex: Int) -> XCUIElement {
+        return app.find(id: "ModuleList.\(moduleIndex).\(itemIndex).dueDateLabel2")
+    }
+
+    public static func moduleItemMiscSubtitleLabel(moduleIndex: Int, itemIndex: Int) -> XCUIElement {
+        return app.find(id: "ModuleList.\(moduleIndex).\(itemIndex).miscSubtitleLabel")
     }
 
     public static func moduleItemNameLabel(moduleIndex: Int, itemIndex: Int) -> XCUIElement {
