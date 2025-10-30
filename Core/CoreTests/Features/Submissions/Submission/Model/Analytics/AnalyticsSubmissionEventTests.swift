@@ -30,15 +30,12 @@ class AnalyticsSubmissionEventTests: XCTestCase {
 
     func testLogSingleEvents() {
         Analytics.shared.logSubmission(.start)
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "assignment_submit_selected")
-
-        Analytics.shared.logSubmission(.lti)
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "assignment_launchlti_selected")
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "assignmentDetails_submitButton_selected")
     }
 
     func testLogPhasedEvents() {
-        Analytics.shared.logSubmission(.phase(.selected, .text_entry, 3))
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textentry_selected")
+        Analytics.shared.logSubmission(.phase(.selected, .textEntry, 3))
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textEntry_selected")
         XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 3)
 
         Analytics.shared.logSubmission(.phase(.succeeded, .url, 2))
@@ -46,18 +43,18 @@ class AnalyticsSubmissionEventTests: XCTestCase {
         XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 2)
 
         Analytics.shared.logSubmission(
-            .phase(.failed, .file_upload, nil),
+            .phase(.failed, .fileUpload, nil),
             additionalParams: [.error: "Random error desc"]
         )
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_fileupload_failed")
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_fileUpload_failed")
         XCTAssertNil(testAnalyticsHandler.lastEventParameter("attempt", ofType: Int.self))
         XCTAssertEqual(testAnalyticsHandler.lastEventParameter("error"), "Random error desc")
 
         Analytics.shared.logSubmission(
-            .phase(.failed, .media_recording, 10),
+            .phase(.failed, .mediaRecording, 10),
             additionalParams: [.media_type: "video", .media_source: "camera"]
         )
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_mediarecording_failed")
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_mediaRecording_failed")
         XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 10)
         XCTAssertEqual(testAnalyticsHandler.lastEventParameter("media_source"), "camera")
         XCTAssertEqual(testAnalyticsHandler.lastEventParameter("media_type"), "video")
@@ -72,9 +69,15 @@ class AnalyticsSubmissionEventTests: XCTestCase {
 
     func testLogDetailEvents() {
         Analytics.shared.logSubmission(.detail(.discussion))
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "assignment_detail_discussionlaunch")
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "assignmentDetails_discussion_opened")
 
-        Analytics.shared.logSubmission(.detail(.quiz))
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "assignment_detail_quizlaunch")
+        Analytics.shared.logSubmission(.detail(.classicQuiz))
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "assignmentDetails_classicQuiz_opened")
+
+        Analytics.shared.logSubmission(.detail(.newQuiz))
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "assignmentDetails_newQuiz_opened")
+
+        Analytics.shared.logSubmission(.detail(.lti))
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "assignmentDetails_lti_opened")
     }
 }

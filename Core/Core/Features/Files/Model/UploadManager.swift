@@ -375,7 +375,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                                 guard let file = try? self.context.existingObject(with: objectID) as? File else { return }
                                 guard let submission = response, error == nil else {
                                     Analytics.shared.logSubmission(
-                                        .phase(.failed, .file_upload, attempt),
+                                        .phase(.failed, .fileUpload, attempt),
                                         additionalParams: [.error: error?.localizedDescription ?? "unknown"]
                                     )
                                     RemoteLogger.shared.logError(name: "File upload failed during submission", reason: error?.localizedDescription)
@@ -399,7 +399,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                                 }
 
                                 Analytics.shared.logSubmission(
-                                    .phase(.succeeded, .file_upload, attempt)
+                                    .phase(.succeeded, .fileUpload, attempt)
                                 )
 
                                 self.localNotifications.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)

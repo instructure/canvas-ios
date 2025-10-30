@@ -20,32 +20,9 @@ import Foundation
 
 extension Analytics {
 
-    public enum PhasedEventSubmissionType: String {
-        case media_recording, text_entry, file_upload, url, annotation, studio
-    }
-
-    public enum SubmissionPhase: String {
-        case selected
-        case presented // only valid for annotation type
-        case succeeded
-        case failed
-    }
-
-    public enum SubmissionDetail: String {
-        case discussion, quiz
-    }
-
     public enum SubmissionEvent {
-        public enum Param: String {
-            case attempt
-            case error
-            case media_type
-            case media_source
-        }
-
-        case phase(SubmissionPhase, PhasedEventSubmissionType, Int?)
-        case detail(SubmissionDetail)
-        case lti
+        case phase(Phase, PhasedType, Int?)
+        case detail(Detail)
         case start
     }
 
@@ -61,16 +38,49 @@ extension Analytics {
     }
 }
 
+extension Analytics.SubmissionEvent {
+
+    public enum PhasedType: String {
+        case mediaRecording
+        case textEntry
+        case fileUpload
+        case url
+        case annotation
+        case studio
+    }
+
+    public enum Phase: String {
+        case selected
+        case presented // only valid for annotation type
+        case succeeded
+        case failed
+    }
+
+    public enum Detail: String {
+        case discussion
+        case classicQuiz
+        case newQuiz
+        case lti
+    }
+
+    public enum Param: String {
+        case attempt
+        case error
+        case media_type
+        case media_source
+    }
+}
+
 extension SubmissionType {
 
-    public func asAnalyticsPhasedEventType() -> Analytics.PhasedEventSubmissionType? {
+    public var analyticsValue: Analytics.SubmissionEvent.PhasedType? {
         switch self {
         case .media_recording:
-            return .media_recording
+            return .mediaRecording
         case .online_text_entry:
-            return .text_entry
+            return .textEntry
         case .online_upload:
-            return .file_upload
+            return .fileUpload
         case .online_url:
             return .url
         case .student_annotation:
@@ -81,8 +91,9 @@ extension SubmissionType {
     }
 }
 
-public extension FilePickerSource {
-    var analyticsValue: String {
+extension FilePickerSource {
+
+    public var analyticsValue: String {
         switch self {
         case .camera:
             return "camera"
@@ -103,14 +114,11 @@ private extension Analytics.SubmissionEvent {
     var analyticsEventName: String {
         switch self {
         case .start:
-            return "assignment_submit_selected"
-        case .lti:
-            return "assignment_launchlti_selected"
+            return "assignmentDetails_submitButton_selected"
         case .detail(let type):
-            return "assignment_detail_\(type.rawValue)launch"
+            return "assignmentDetails_\(type.rawValue)_opened"
         case .phase(let phase, let type, _):
-            let cleanName = type.rawValue.replacingOccurrences(of: "_", with: "")
-            return "submit_\(cleanName)_\(phase.rawValue)"
+            return "submit_\(type.rawValue)_\(phase.rawValue)"
         }
     }
 

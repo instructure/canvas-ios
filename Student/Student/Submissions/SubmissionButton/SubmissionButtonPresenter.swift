@@ -122,7 +122,7 @@ class SubmissionButtonPresenter: NSObject {
 
         switch type {
         case .basic_lti_launch, .external_tool:
-            Analytics.shared.logSubmission(.lti)
+            Analytics.shared.logSubmission(assignment.isQuizLTI ? .detail(.newQuiz) : .detail(.lti))
             LTITools(
                 context: .course(courseID),
                 id: assignment.externalToolContentID,
@@ -136,10 +136,10 @@ class SubmissionButtonPresenter: NSObject {
             guard let url = assignment.discussionTopic?.htmlURL else { return }
             env.router.route(to: url, from: view)
         case .media_recording:
-            Analytics.shared.logSubmission(.phase(.selected, .media_recording, attempt))
+            Analytics.shared.logSubmission(.phase(.selected, .mediaRecording, attempt))
             pickFiles(for: assignment, selectedSubmissionTypes: [type])
         case .online_text_entry:
-            Analytics.shared.logSubmission(.phase(.selected, .text_entry, attempt))
+            Analytics.shared.logSubmission(.phase(.selected, .textEntry, attempt))
             guard let userID = assignment.submission?.userID else { return }
             env.router.show(TextSubmissionViewController.create(
                 env: env,
@@ -148,7 +148,7 @@ class SubmissionButtonPresenter: NSObject {
                 userID: userID
             ), from: view, options: .modal(isDismissable: false, embedInNav: true))
         case .online_quiz:
-            Analytics.shared.logSubmission(.detail(.quiz))
+            Analytics.shared.logSubmission(.detail(.classicQuiz))
             guard let quizID = assignment.quizID else { return }
             env.router.show(StudentQuizWebViewController.create(
                 courseID: courseID,
@@ -156,7 +156,7 @@ class SubmissionButtonPresenter: NSObject {
                 env: env
             ), from: view, options: .modal(.fullScreen, isDismissable: false, embedInNav: true))
         case .online_upload:
-            Analytics.shared.logSubmission(.phase(.selected, .file_upload, attempt))
+            Analytics.shared.logSubmission(.phase(.selected, .fileUpload, attempt))
             pickFiles(for: assignment, selectedSubmissionTypes: [type])
         case .online_url:
             Analytics.shared.logSubmission(.phase(.selected, .url, attempt))
@@ -371,6 +371,9 @@ extension SubmissionButtonPresenter {
 // MARK: - Assignment's Helper
 
 private extension Assignment {
+
+    /// This represent order no. of the next attempt currently is being submitted.
+    /// Use this with tracked analytics events of submission phases.
     var upcomingAttempt: Int {
         max(submission?.attempt ?? 0, 0) + 1
     }

@@ -124,8 +124,11 @@ public class CreateSubmission: APIUseCase {
                 .store(in: &subscriptions)
 
             // Analytics
-            let eventPhase: Analytics.SubmissionPhase = isSuccessful ? .succeeded : .failed
-            logAnalyticsEvent(phase: eventPhase, attempt: response?.attempt, env: environment)
+            logAnalyticsEvent(
+                phase: isSuccessful ? .succeeded : .failed,
+                attempt: response?.attempt,
+                env: environment
+            )
         }
     }
 
@@ -143,7 +146,7 @@ public class CreateSubmission: APIUseCase {
 
     // MARK: Analytics Event
 
-    private func logAnalyticsEvent(phase: Analytics.SubmissionPhase, attempt: Int?, env: AppEnvironment?) {
+    private func logAnalyticsEvent(phase: Analytics.SubmissionEvent.Phase, attempt: Int?, env: AppEnvironment?) {
         guard let phasedType = analyticsPhasedEventType else { return }
 
         let mediaParams = mediaCommentType.flatMap({ mediaType in
@@ -173,8 +176,8 @@ public class CreateSubmission: APIUseCase {
         }
     }
 
-    private var analyticsPhasedEventType: Analytics.PhasedEventSubmissionType? {
-        if let phasedType = submissionType.asAnalyticsPhasedEventType() { return phasedType }
+    private var analyticsPhasedEventType: Analytics.SubmissionEvent.PhasedType? {
+        if let phasedType = submissionType.analyticsValue { return phasedType }
 
         // This is currently passed for `studio` submissions
         if case .basic_lti_launch = submissionType { return .studio }
