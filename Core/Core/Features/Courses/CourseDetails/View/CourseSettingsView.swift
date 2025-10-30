@@ -120,8 +120,12 @@ public struct CourseSettingsView: View, ScreenViewTrackable {
     }
 }
 
+#if DEBUG
+
 struct CourseSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         CourseSettingsView(viewModel: CourseSettingsViewModel(context: .course("1"), environment: PreviewEnvironment()))
     }
 }
+
+#endif
