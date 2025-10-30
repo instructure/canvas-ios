@@ -19,16 +19,12 @@
 import Foundation
 import Combine
 
-/// This interactor purpose is to extract base URLs for courses. We use these base URLs for API calls in case a course is on a different host compared to the the one used to log in. Only applies to Courses & Groups.
+/// This interactor purpose's to extract base URLs for courses. We use these
+/// base URLs for API calls in case a course is on a different host compared
+/// to the the one used to log in. Only applies to Courses & Groups.
 public final class ContextBaseUrlInteractor {
 
-    private struct TabModel {
-        let id: String
-        let htmlUrl: String
-        let apiBaseUrlHost: String?
-    }
-
-    private var baseURLHostOverridesPerCourse: [Context: String] = [:]
+    private var baseURLHostOverridesPerContext: [Context: String] = [:]
     private var tabSubscription: AnyCancellable?
 
     public init() { }
@@ -39,7 +35,7 @@ public final class ContextBaseUrlInteractor {
             .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .sink { [weak self] tabs in
-                self?.updateEnabledTabs(with: tabs)
+                self?.updateBaseUrlHosts(with: tabs)
             }
     }
 
@@ -50,27 +46,19 @@ public final class ContextBaseUrlInteractor {
 
     // MARK: - Enabled tab list
 
-    private func updateEnabledTabs(with tabs: [Tab]) {
-        let courseTabs = tabs.filter { $0.context.contextType == .course }
-        let tabsPerCourse = Dictionary(grouping: courseTabs, by: { $0.context })
-
-        let tabModelsPerCourse: [Context: [TabModel]] = tabsPerCourse.mapValues { tabArray in
-            tabArray.compactMap { tab in
-                guard let htmlURL = tab.htmlURL else { return nil }
-                return TabModel(
-                    id: tab.id,
-                    htmlUrl: htmlURL.removingQueryAndFragment().absoluteString,
-                    apiBaseUrlHost: tab.apiBaseURL?.host()
-                )
-            }
+    private func updateBaseUrlHosts(with tabs: [Tab]) {
+        let contextTabs = tabs.filter {
+            $0.context.contextType == .course ||
+            $0.context.contextType == .group
         }
 
+        let tabsPerContext = Dictionary(grouping: contextTabs, by: { $0.context })
         let defaultHost = AppEnvironment.shared.apiHost
-        baseURLHostOverridesPerCourse =
-            tabModelsPerCourse
+
+        baseURLHostOverridesPerContext = tabsPerContext
             .reduce(into: [:], { partialResult, pair in
                 pair.value.forEach { tab in
-                    guard let apiHost = tab.apiBaseUrlHost, apiHost != defaultHost else { return }
+                    guard let apiHost = tab.apiBaseURL?.host(), apiHost != defaultHost else { return }
                     partialResult[pair.key] = apiHost
                 }
             })
@@ -79,7 +67,7 @@ public final class ContextBaseUrlInteractor {
     // MARK: Base URL Overrides
 
     public var baseURLHostOverrides: Set<String> {
-        Set(baseURLHostOverridesPerCourse.values)
+        Set(baseURLHostOverridesPerContext.values)
     }
 
     public func baseUrlHostOverride(for url: URLComponents) -> String? {
@@ -88,7 +76,7 @@ public final class ContextBaseUrlInteractor {
         // Check if it is internal link in a course
         if url.path.hasSuffix(context.pathComponent) { return nil }
 
-        return baseURLHostOverridesPerCourse.first(where: {
+        return baseURLHostOverridesPerContext.first(where: {
             return $0.key.isEquivalent(to: context)
         })?.value
     }
@@ -104,10 +92,11 @@ public final class ContextBaseUrlInteractor {
 
         if let urlHost = url.host {
 
-            let overrideContexts = baseURLHostOverridesPerCourse
+            let overrideContexts = baseURLHostOverridesPerContext
                 .filter { $0.value == urlHost } // It's possible to have multiple contexts with the same `value`
                 .map { $0.key }
 
+            // ShardID would be the same for all contexts sharing the same overridden host value
             if let shardID = overrideContexts.compactMap(\.id.shardID).first {
                 return shardID
             }
@@ -115,7 +104,7 @@ public final class ContextBaseUrlInteractor {
 
         if let pathContext {
 
-            let overrideContexts = baseURLHostOverridesPerCourse
+            let overrideContexts = baseURLHostOverridesPerContext
                 .filter { $0.key.isEquivalent(to: pathContext) } // It's possible to have multiple equivalent contexts
                 .map { $0.key }
 

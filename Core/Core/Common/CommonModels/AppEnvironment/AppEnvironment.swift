@@ -99,6 +99,7 @@ open class AppEnvironment {
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
         router.courseTabUrlInteractor?.clearEnabledTabs()
         router.courseTabUrlInteractor?.setupTabSubscription()
+        router.contextBaseUrlInteractor.setupTabSubscription()
 
         if isSilent {
             return
@@ -127,6 +128,7 @@ open class AppEnvironment {
         currentSession = nil
         userDefaults = nil
         router.courseTabUrlInteractor?.cancelTabSubscription()
+        router.contextBaseUrlInteractor.cancelTabSubscription()
         refreshWidgets()
         deleteUserData(session: session)
         if AppEnvironment.shared.app == .horizon {

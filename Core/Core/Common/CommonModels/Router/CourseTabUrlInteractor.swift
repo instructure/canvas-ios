@@ -19,7 +19,8 @@
 import Foundation
 import Combine
 
-/// This interactor purpose is to provide info on hidden tabs for routing. When routing we shouldn't allow routes for disabled tabs.
+/// This interactor's purpose is to provide info on hidden tabs for routing.
+/// When routing we shouldn't allow routes for disabled tabs.
 public final class CourseTabUrlInteractor {
 
     public static let blockDisabledTabUserInfoKey = "shouldBlockDisabledCourseTabKey"
@@ -27,7 +28,6 @@ public final class CourseTabUrlInteractor {
     private struct TabModel {
         let id: String
         let htmlUrl: String
-        let apiBaseUrlHost: String?
     }
 
     private var enabledTabsPerCourse: [Context: [String]] = [:]
@@ -125,8 +125,7 @@ public final class CourseTabUrlInteractor {
                 guard let htmlURL = tab.htmlURL else { return nil }
                 return TabModel(
                     id: tab.id,
-                    htmlUrl: htmlURL.removingQueryAndFragment().absoluteString,
-                    apiBaseUrlHost: tab.apiBaseURL?.host()
+                    htmlUrl: htmlURL.removingQueryAndFragment().absoluteString
                 )
             }
         }

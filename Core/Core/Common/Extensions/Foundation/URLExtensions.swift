@@ -293,7 +293,7 @@ public extension URL {
         try imageData.write(to: url)
     }
 
-    /// Returns a copy of URL stripped out of any query param or fragment
+    /// Returns a copy of URL without any query parameter or fragment
     func removingQueryAndFragment() -> URL {
         guard var components = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
             return self
