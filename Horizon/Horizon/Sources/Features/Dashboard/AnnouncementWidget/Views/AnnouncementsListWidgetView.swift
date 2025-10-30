@@ -76,7 +76,7 @@ struct AnnouncementsListWidgetView: View {
             )
             .id(viewModel.currentAnnouncement.id)
             .paginationTransition(transitionDirection)
-            if viewModel.isNavigationButtonVisiable {
+            if viewModel.isNavigationButtonVisible {
                 announcementNavigationButtons
             }
         }
@@ -112,7 +112,7 @@ struct AnnouncementsListWidgetView: View {
             Text(
                 String(
                     format: String(localized: "%@ of %@"),
-                    (viewModel.currentInex + 1).description,
+                    (viewModel.currentIndex + 1).description,
                     viewModel.announcements.count.description
                 )
             )
@@ -123,7 +123,7 @@ struct AnnouncementsListWidgetView: View {
                 Text(
                     String(
                         format: String(localized: "Announcement %@ of %@"),
-                        (viewModel.currentInex + 1).description,
+                        (viewModel.currentIndex + 1).description,
                         viewModel.announcements.count.description
                     )
                 )

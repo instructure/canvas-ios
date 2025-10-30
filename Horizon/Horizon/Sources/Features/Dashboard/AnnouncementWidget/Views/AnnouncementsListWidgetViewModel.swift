@@ -30,9 +30,9 @@ final class AnnouncementsListWidgetViewModel {
     private(set) var currentAnnouncement: NotificationModel = NotificationModel.mock
     private(set) var isNextButtonEnabled = false
     private(set) var isPreviousButtonEnabled = false
-    private(set) var isNavigationButtonVisiable = false
+    private(set) var isNavigationButtonVisible = false
     private(set) var announcements: [NotificationModel] = []
-    private(set) var currentInex = 0
+    private(set) var currentIndex = 0
 
     // MARK: - Private Properties
 
@@ -110,8 +110,8 @@ final class AnnouncementsListWidgetViewModel {
     private func handleResponse(notifications: [NotificationModel]) {
         state = notifications.isEmpty ? .empty : .data
         announcements = notifications
-        currentInex = 0
-        isNavigationButtonVisiable = announcements.count > 1
+        currentIndex = 0
+        isNavigationButtonVisible = announcements.count > 1
         if let firstAnnouncement = notifications.first {
             currentAnnouncement = firstAnnouncement
         }
@@ -120,15 +120,15 @@ final class AnnouncementsListWidgetViewModel {
 
     func goNextAnnouncement() {
         guard announcements.isNotEmpty else { return }
-        currentInex = min(currentInex + 1, announcements.count - 1)
-        currentAnnouncement = announcements[currentInex]
+        currentIndex = min(currentIndex + 1, announcements.count - 1)
+        currentAnnouncement = announcements[currentIndex]
         updateButtonStates()
     }
 
     func goPreviousAnnouncement() {
         guard announcements.isNotEmpty else { return }
-        currentInex = max(currentInex - 1, 0)
-        currentAnnouncement = announcements[currentInex]
+        currentIndex = max(currentIndex - 1, 0)
+        currentAnnouncement = announcements[currentIndex]
         updateButtonStates()
     }
 
@@ -139,7 +139,7 @@ final class AnnouncementsListWidgetViewModel {
             return
         }
 
-        isNextButtonEnabled = currentInex < announcements.count - 1
-        isPreviousButtonEnabled = currentInex > 0
+        isNextButtonEnabled = currentIndex < announcements.count - 1
+        isPreviousButtonEnabled = currentIndex > 0
     }
 }
