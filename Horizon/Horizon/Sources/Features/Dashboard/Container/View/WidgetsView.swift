@@ -69,7 +69,7 @@ struct WidgetsView: View {
     }
 
     private func scale(for index: Int) -> CGFloat {
-        currentCardIndex == index ? 1 : 0.8
+        currentCardIndex == index ? 1 : 0.9
     }
 
     private func anchor(for index: Int) -> UnitPoint {
