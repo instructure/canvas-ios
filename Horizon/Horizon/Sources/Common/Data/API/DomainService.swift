@@ -40,7 +40,7 @@ final class DomainService: DomainServiceProtocol {
 
     private var horizonCDURL: String {
         if( option == .journey) {
-            return "journey-server-dev.journey.nonprod.inseng.io"
+            return "journey-server-edge.journey.nonprod.inseng.io"
         }
         return "\(option)-api-dev.domain-svcs.nonprod.inseng.io"
     }

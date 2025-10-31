@@ -41,12 +41,6 @@ public struct K5DashboardView: View {
                 }
             }
         }
-        .onAppear {
-            let env = AppEnvironment.shared
-            if env.userDefaults?.interfaceStyle == nil && env.currentSession?.isFakeStudent == false {
-                controller.value.showThemeSelectorAlert()
-            }
-        }
         .background(Color.backgroundLightest)
         .navigationBarGlobal()
         .navigationBarItems(

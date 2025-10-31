@@ -50,6 +50,11 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var isQuizLTI: Bool
     @NSManaged public var estimatedDuration: String?
 
+    @NSManaged private var discussionCheckpointRaw: NSOrderedSet
+    var discussionCheckpoints: [CDModuleItemDiscussionCheckpoint] {
+        get { discussionCheckpointRaw.typedArray() ?? [] } set { discussionCheckpointRaw = .init(newValue) }
+    }
+
     /// In case the module item is a file it can have 4 states of availability. Only used for the teacher modules list.
     public var fileAvailability: FileAvailability? {
         get {

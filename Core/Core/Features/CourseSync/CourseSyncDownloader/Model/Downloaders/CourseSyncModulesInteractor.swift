@@ -44,7 +44,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
 
     public func getModuleItems(courseId: CourseSyncID) -> AnyPublisher<[ModuleItem], Error> {
         ReactiveStore(
-            useCase: GetModules(courseID: courseId.localID),
+            useCase: GetModules(courseID: courseId.localID, shouldGetDiscussionCheckpoints: true),
             environment: envResolver.targetEnvironment(for: courseId)
         )
         .getEntities(ignoreCache: true)

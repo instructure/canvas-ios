@@ -91,8 +91,9 @@ class ProgramInteractorPreview: ProgramInteractor {
         publisherWithProgram()
     }
 
-    func getProgramsWithObserving(ignoreCache: Bool) -> AnyPublisher<[Program], Never> {
+    func getProgramsWithObserving(ignoreCache: Bool) -> AnyPublisher<[Program], Error> {
         Just([sampleProgram])
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 }

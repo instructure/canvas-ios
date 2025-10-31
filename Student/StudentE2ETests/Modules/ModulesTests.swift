@@ -46,15 +46,13 @@ class ModulesTests: E2ETestCase {
         // MARK: Check assignment module item
         let assignmentItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 0).waitUntil(.visible)
         let assignmentTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 0).waitUntil(.visible)
-        let assignmentPoints = ModulesHelper.moduleItemDueLabel(moduleIndex: 0, itemIndex: 0).waitUntil(.visible)
+        let assignmentPoints = ModulesHelper.moduleItemMiscSubtitleLabel(moduleIndex: 0, itemIndex: 0).waitUntil(.visible)
         XCTAssertVisible(assignmentItem)
         XCTAssertVisible(assignmentTitle)
         XCTAssertEqual(assignmentTitle.label, moduleAssignment.title)
         XCTAssertVisible(assignmentPoints)
 
-        // TODO: Update the below line once the points label bug is fixed
-        let pointsString = moduleAssignment.points_possible! == 1 ? "pts" : "pts"
-
+        let pointsString = moduleAssignment.points_possible! == 1 ? "point" : "points"
         XCTAssertEqual(assignmentPoints.label, "\(moduleAssignment.points_possible!) \(pointsString)")
 
         // MARK: Check discussion module item

@@ -28,6 +28,7 @@ struct Announcement: Equatable, Identifiable, Hashable {
     let id: String
     let isAccountAnnouncement: Bool
     let title: String
+    let message: String
 }
 
 protocol AnnouncementsInteractor {
@@ -57,7 +58,7 @@ class AnnouncementsInteractorLive: AnnouncementsInteractor {
 
     // MARK: - Private
     private func listenForAccountNotifications() {
-        ReactiveStore(useCase: GetAccountNotifications())
+        ReactiveStore(useCase: GetAccountNotifications(includePast: true))
             .getEntities()
             .map { $0.map { $0.announcement} }
             .subscribe(accountAnnouncements)
@@ -124,7 +125,8 @@ extension AccountNotification {
             date: startAt ?? endAt,
             id: id,
             isAccountAnnouncement: true,
-            title: subject
+            title: subject,
+            message: message
         )
     }
 }
@@ -137,7 +139,8 @@ extension DiscussionTopic {
             date: postedAt,
             id: id,
             isAccountAnnouncement: false,
-            title: title ?? ""
+            title: title ?? "",
+            message: message ?? ""
         )
     }
 }

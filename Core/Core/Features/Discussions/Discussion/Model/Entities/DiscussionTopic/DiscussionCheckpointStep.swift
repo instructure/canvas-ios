@@ -95,7 +95,7 @@ final class DiscussionCheckpointStepWrapper: NSObject, NSSecureCoding {
         self.value = value
     }
 
-    init?(value: DiscussionCheckpointStep?) {
+    init?(_ value: DiscussionCheckpointStep?) {
         guard let value else { return nil }
         self.value = value
     }

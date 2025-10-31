@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SyllabusActionableItemsCell" customModule="Core" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SyllabusSummaryItemCell" customModule="Core" customModuleProvider="target">
             <connections>
                 <outlet property="dateLabel" destination="sBO-lg-S52" id="zDC-Lt-9ET"/>
                 <outlet property="iconImageView" destination="fUC-Pd-E2a" id="nuL-lC-Lsb"/>
                 <outlet property="itemNameLabel" destination="T12-iA-cYO" id="iuW-L3-EYF"/>
+                <outlet property="subtitleLabel" destination="6eU-bh-IHE" id="new-subtitle-connection"/>
                 <outlet property="stackView" destination="EaW-6y-Jo2" id="UsN-fq-j6Q"/>
             </connections>
         </placeholder>
@@ -21,10 +21,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EaW-6y-Jo2">
-                    <rect key="frame" x="58" y="8" width="340" height="41"/>
+                    <rect key="frame" x="58" y="8" width="340" height="44"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T12-iA-cYO" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="340" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T12-iA-cYO" userLabel="Title Label" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="340" height="3"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -32,8 +32,17 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBO-lg-S52" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="20.5" width="340" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eU-bh-IHE" userLabel="Subtitle Label" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="3" width="340" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBO-lg-S52" userLabel="Date Label" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="23.5" width="340" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -67,12 +76,4 @@
             <point key="canvasLocation" x="137.68115942028987" y="81.696428571428569"/>
         </view>
     </objects>
-    <designables>
-        <designable name="T12-iA-cYO">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="sBO-lg-S52">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-    </designables>
 </document>

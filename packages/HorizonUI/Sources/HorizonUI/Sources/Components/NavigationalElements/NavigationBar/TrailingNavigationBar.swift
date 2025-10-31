@@ -19,7 +19,7 @@
 import SwiftUI
 
 extension HorizonUI.NavigationBar {
-    public struct Trailing: View {
+    public struct Trailing<FocusValue: Hashable>: View {
         // MARK: - Dependencies
 
         private let hasUnreadNotification: Bool
@@ -27,6 +27,10 @@ extension HorizonUI.NavigationBar {
         private let onNotebookDidTap: (() -> Void)?
         private let onNotificationDidTap: () -> Void
         private let onMailDidTap: () -> Void
+        private let focusedButton: AccessibilityFocusState<FocusValue?>.Binding
+        private let notebookFocusValue: FocusValue?
+        private let notificationFocusValue: FocusValue?
+        private let mailFocusValue: FocusValue?
 
         // MARK: - Init
 
@@ -35,13 +39,21 @@ extension HorizonUI.NavigationBar {
             hasUnreadInboxMessage: Bool,
             onNotebookDidTap: (() -> Void)? = nil,
             onNotificationDidTap: @escaping () -> Void,
-            onMailDidTap: @escaping () -> Void
+            onMailDidTap: @escaping () -> Void,
+            focusedButton: AccessibilityFocusState<FocusValue?>.Binding,
+            notebookFocusValue: FocusValue? = nil,
+            notificationFocusValue: FocusValue? = nil,
+            mailFocusValue: FocusValue? = nil
         ) {
             self.hasUnreadNotification = hasUnreadNotification
             self.hasUnreadInboxMessage = hasUnreadInboxMessage
             self.onNotebookDidTap = onNotebookDidTap
             self.onNotificationDidTap = onNotificationDidTap
             self.onMailDidTap = onMailDidTap
+            self.focusedButton = focusedButton
+            self.notebookFocusValue = notebookFocusValue
+            self.notificationFocusValue = notificationFocusValue
+            self.mailFocusValue = mailFocusValue
         }
 
         public var body: some View {
@@ -54,9 +66,10 @@ extension HorizonUI.NavigationBar {
                         ) {
                             onNotebookDidTap()
                         }
+                        .accessibilityLabel(String(localized: "Notebook"))
                     }
                     .dropShadow()
-
+                    .accessibilityFocused(focusedButton, equals: notebookFocusValue)
                 }
 
                 ZStack(alignment: .topTrailing) {
@@ -69,11 +82,10 @@ extension HorizonUI.NavigationBar {
                     .accessibilityLabel(
                         Text(
                             hasUnreadNotification
-                            ? String(localized: "Notifications, unread notifications available")
-                            : String(localized: "Notifications")
+                                ? String(localized: "Notifications, unread notifications available")
+                                : String(localized: "Notifications")
                         )
                     )
-                    .accessibilityAddTraits(.isButton)
                     if hasUnreadNotification {
                         HorizonUI.Badge(
                             type: .solidColor,
@@ -83,6 +95,7 @@ extension HorizonUI.NavigationBar {
                     }
                 }
                 .dropShadow()
+                .accessibilityFocused(focusedButton, equals: notificationFocusValue)
 
                 ZStack(alignment: .topTrailing) {
                     HorizonUI.IconButton(
@@ -91,52 +104,85 @@ extension HorizonUI.NavigationBar {
                     ) {
                         onMailDidTap()
                     }
+                    .accessibilityLabel(
+                        Text(
+                            hasUnreadNotification
+                                ? String(localized: "Inbox, unread messages available")
+                                : String(localized: "Inbox")
+                        )
+                    )
 
                     if hasUnreadInboxMessage {
                         HorizonUI.Badge(
                             type: .solidColor,
                             style: .custom(backgroundColor: .huiColors.surface.inversePrimary, foregroundColor: .clear)
                         )
+                        .accessibilityHidden(true)
                     }
                 }
                 .dropShadow()
+                .accessibilityFocused(focusedButton, equals: mailFocusValue)
             }
         }
     }
 }
 
+extension HorizonUI.NavigationBar.Trailing where FocusValue == Int {
+    public init(
+        hasUnreadNotification: Bool,
+        hasUnreadInboxMessage: Bool,
+        onNotebookDidTap: (() -> Void)? = nil,
+        onNotificationDidTap: @escaping () -> Void,
+        onMailDidTap: @escaping () -> Void
+    ) {
+        @AccessibilityFocusState var dummyFocus: Int?
+        self.hasUnreadNotification = hasUnreadNotification
+        self.hasUnreadInboxMessage = hasUnreadInboxMessage
+        self.onNotebookDidTap = onNotebookDidTap
+        self.onNotificationDidTap = onNotificationDidTap
+        self.onMailDidTap = onMailDidTap
+        self.focusedButton = $dummyFocus
+        self.notebookFocusValue = nil
+        self.notificationFocusValue = nil
+        self.mailFocusValue = nil
+    }
+}
+
 #Preview {
+    @Previewable @AccessibilityFocusState var focusedButton: String?
     HorizonUI.NavigationBar.Trailing(
         hasUnreadNotification: true,
         hasUnreadInboxMessage: true,
         onNotebookDidTap: {},
         onNotificationDidTap: {},
-        onMailDidTap: {}
+        onMailDidTap: {},
+        focusedButton: $focusedButton,
+        notebookFocusValue: "notebook",
+        notificationFocusValue: "notification",
+        mailFocusValue: "mail"
     )
 }
 
-fileprivate extension HorizonUI.NavigationBar.Trailing {
-    struct DropShadowModifire: ViewModifier {
-        func body(content: Content) -> some View {
-            content
-                .foregroundStyle(Color.huiColors.icon.default)
-                .frame(width: 44, height: 44)
-                .background {
-                    Rectangle()
-                        .fill(Color.huiColors.surface.pageSecondary)
-                        .huiCornerRadius(level: .level6)
-                        .huiElevation(level: .level4)
-                }
-        }
+private struct DropShadowModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundStyle(Color.huiColors.icon.default)
+            .frame(width: 44, height: 44)
+            .background {
+                Rectangle()
+                    .fill(Color.huiColors.surface.pageSecondary)
+                    .huiCornerRadius(level: .level6)
+                    .huiElevation(level: .level4)
+            }
     }
 }
 
-fileprivate extension View {
-    func dropShadow() -> some View {
-        modifier(HorizonUI.NavigationBar.Trailing.DropShadowModifire())
+extension View {
+    fileprivate func dropShadow() -> some View {
+        modifier(DropShadowModifier())
     }
 }
 
-public extension HorizonUI {
-    struct NavigationBar {}
+extension HorizonUI {
+    public struct NavigationBar {}
 }

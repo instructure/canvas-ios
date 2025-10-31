@@ -24,7 +24,9 @@ class ModuleItemCell: UITableViewCell {
 
     @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var dueLabel: UILabel!
+    @IBOutlet weak var dueDateLabel1: UILabel!
+    @IBOutlet weak var dueDateLabel2: UILabel!
+    @IBOutlet weak var miscSubtitleLabel: UILabel!
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
     @IBOutlet weak var completedStatusView: UIImageView!
@@ -43,6 +45,8 @@ class ModuleItemCell: UITableViewCell {
     private var fileId: String?
     private var moduleId: String?
     private var courseId: String?
+
+    private var miscSubtitleA11yLabel: String?
 
     // MARK: - Update
 
@@ -91,12 +95,15 @@ class ModuleItemCell: UITableViewCell {
 
         indentConstraint.constant = CGFloat(item.indent) * ModuleItemCell.IndentMultiplier
 
-        updateDueLabel(item)
+        updateDueDateLabels(item)
+        updateMiscSubtitleLabel(item)
 
         accessibilityTraits = .button
         accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row)"
         nameLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).nameLabel"
-        dueLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).dueLabel"
+        dueDateLabel1.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).dueDateLabel1"
+        dueDateLabel1.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).dueDateLabel2"
+        miscSubtitleLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).miscSubtitleLabel"
 
         publishControl.isHidden = !shouldShowPublishControl
         contentStackViewTrailingConstraint.constant = shouldShowPublishControl ? 0 : 16
@@ -108,30 +115,55 @@ class ModuleItemCell: UITableViewCell {
         subscribeToPublishStateUpdates(item, publishInteractor: publishInteractor, host: host)
     }
 
-    private func updateDueLabel(_ item: ModuleItem) {
-        let dueAt = item.dueAt.flatMap { DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .none) }
-        let points: String? = item.pointsPossible.flatMap {
-            if item.hideQuantitativeData {
-                return nil
+    private func updateDueDateLabels(_ item: ModuleItem) {
+        let checkpointDueDateTexts = item.discussionCheckpoints.map {
+            if let dueDate = $0.dueDate {
+                DueDateFormatter.absoluteDateTextWithoutDue(dueDate)
             } else {
-                return String.localizedStringWithFormat(
-                    String(localized: "%@ pts", bundle: .core),
-                    NSNumber(value: $0)
-                )
+                DueDateFormatter.noDueDateText
             }
         }
-        let requirement = item.completionRequirement?.description
+
+        if checkpointDueDateTexts.isEmpty {
+            // Display module item due date, but hide if "No Due Date".
+            updateSubtitleLabel(dueDateLabel1, text: item.dueAt.flatMap { DueDateFormatter.absoluteDateTextWithoutDue($0) })
+            updateSubtitleLabel(dueDateLabel2, text: nil)
+        } else if item.discussionCheckpoints.allSatisfy({ $0.dueDate == nil }) {
+            // Hide if all would be "No Due Date"
+            updateSubtitleLabel(dueDateLabel1, text: nil)
+            updateSubtitleLabel(dueDateLabel2, text: nil)
+        } else {
+            // Displaying only first 2 labels, since we have a set number of labels.
+            // There shouldn't be more anyway. SwiftUI implenentation shall handle this properly.
+            updateSubtitleLabel(dueDateLabel1, text: checkpointDueDateTexts[safeIndex: 0])
+            updateSubtitleLabel(dueDateLabel2, text: checkpointDueDateTexts[safeIndex: 1])
+        }
+    }
+
+    private func updateMiscSubtitleLabel(_ item: ModuleItem) {
         if let masteryPath = item.masteryPath, masteryPath.needsSelection, !masteryPath.locked {
             let format = String(localized: "d_options", bundle: .core)
-            dueLabel.setText(String.localizedStringWithFormat(format, masteryPath.numberOfOptions), style: .textCellSupportingText)
-            dueLabel.textColor = tintColor
+            let text = String.localizedStringWithFormat(format, masteryPath.numberOfOptions)
+            miscSubtitleLabel.setText(text, style: .textCellSupportingText)
+            miscSubtitleLabel.textColor = tintColor
+            miscSubtitleA11yLabel = text
             accessoryView = UIImageView(image: .masteryPathsLine)
         } else {
-            dueLabel.setText([dueAt, points, requirement].joined(separator: " | "), style: .textCellSupportingText)
-            dueLabel.textColor = .textDark
+            let points = item.hideQuantitativeData ? nil : String.format(pts: item.pointsPossible)
+            let requirement = item.completionRequirement?.description
+            let text = [points, requirement].joined(separator: " | ").nilIfEmpty
+            updateSubtitleLabel(miscSubtitleLabel, text: text)
+            miscSubtitleLabel.textColor = .textDark
+            let a11yPoints = item.hideQuantitativeData ? nil : String.format(points: item.pointsPossible)
+            let a11yText = [a11yPoints, requirement].accessibilityJoined()
+            miscSubtitleA11yLabel = a11yText
             accessoryView = nil
         }
-        dueLabel.isHidden = dueLabel.text == nil
+    }
+
+    private func updateSubtitleLabel(_ label: UILabel, text: String?) {
+        label.setText(text, style: .textCellSupportingText)
+        label.isHidden = text == nil
     }
 
     private func updateA11yLabel(_ item: ModuleItem, isPublishing: Bool) {
@@ -157,7 +189,9 @@ class ModuleItemCell: UITableViewCell {
             a11yLabels.append(publishedText)
         } else {
             a11yLabels.append(contentsOf: [
-                dueLabel.text,
+                dueDateLabel1.text,
+                dueDateLabel2.text,
+                miscSubtitleA11yLabel,
                 item.isLocked ? String(localized: "locked", bundle: .core) : nil
             ])
         }
