@@ -59,7 +59,7 @@ struct CourseListWidgetModel: Identifiable, Equatable {
     }
 
     var isCourseCompleted: Bool {
-        progress == 100 && !hasCurrentLearningObject
+        progress.rounded() == 100 && !hasCurrentLearningObject
     }
 
     var accessibilityDescription: String {

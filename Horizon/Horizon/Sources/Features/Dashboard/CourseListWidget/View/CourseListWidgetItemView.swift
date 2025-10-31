@@ -32,10 +32,10 @@ struct CourseListWidgetItemView: View {
         ZStack(alignment: .top) {
             VStack(spacing: .zero) {
                 courseImageSection
+                    .onTapGesture {
+                        onCardTapGesture()
+                    }
                 courseContentSection
-            }
-            .onTapGesture {
-                onCardTapGesture()
             }
 
             Color.clear // This is needed to overwrite a11y VO automatic tap gesture mechanism.
