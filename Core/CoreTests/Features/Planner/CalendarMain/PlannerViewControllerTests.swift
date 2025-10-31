@@ -48,7 +48,7 @@ class PlannerViewControllerTests: CoreTestCase {
         let titles = controller.addButton.menu?.allActions.map { $0.title } ?? []
 
         XCTAssertTrue(titles.contains("Add Event"), "Add Event should be visible when not restricted")
-        XCTAssertTrue(titles.contains("Add To Do"), "Add To Do should always be visible")
+        XCTAssertTrue(titles.contains("Add To-do"), "Add To-do should always be visible")
     }
 
     func test_addEventButtonHidden_whenRestricted() {
@@ -65,7 +65,7 @@ class PlannerViewControllerTests: CoreTestCase {
         let titles = controller.addButton.menu?.allActions.map { $0.title } ?? []
 
         XCTAssertFalse(titles.contains("Add Event"), "Add Event should be hidden when restricted")
-        XCTAssertTrue(titles.contains("Add To Do"), "Add To Do should always be visible")
+        XCTAssertTrue(titles.contains("Add To-do"), "Add To-do should always be visible")
     }
 
     func testLayout() {

@@ -37,18 +37,18 @@ class ManageStudentsTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Manage Students
         logInDSUser(parent)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         profileButton.hit()
         let manageStudentsButton = ProfileHelper.manageStudentsButton.waitUntil(.visible)
-        XCTAssertTrue(manageStudentsButton.isVisible)
+        XCTAssertVisible(manageStudentsButton)
 
         // MARK: Check students
         manageStudentsButton.hit()
         let student1cell = ManageStudentsHelper.studentCell(student: student1).waitUntil(.visible)
         let student2cell = ManageStudentsHelper.studentCell(student: student2).waitUntil(.visible)
-        XCTAssertTrue(student1cell.isVisible)
-        XCTAssertTrue(student2cell.isVisible)
+        XCTAssertVisible(student1cell)
+        XCTAssertVisible(student2cell)
 
         // MARK: Check detail screen
         student1cell.hit()
@@ -60,14 +60,14 @@ class ManageStudentsTests: E2ETestCase {
         let assignmentGradeBelow = ManageStudentsHelper.Details.assignmentGradeBelow.waitUntil(.visible)
         let courseAnnouncements = ManageStudentsHelper.Details.courseAnnouncements.waitUntil(.visible)
         let institutionAnnouncements = ManageStudentsHelper.Details.institutionAnnouncements.waitUntil(.visible)
-        XCTAssertTrue(backButton.isVisible)
-        XCTAssertTrue(courseGradeAbove.isVisible)
-        XCTAssertTrue(courseGradeBelow.isVisible)
-        XCTAssertTrue(assignmentMissing.isVisible)
-        XCTAssertTrue(assignmentGradeAbove.isVisible)
-        XCTAssertTrue(assignmentGradeBelow.isVisible)
-        XCTAssertTrue(courseAnnouncements.isVisible)
-        XCTAssertTrue(institutionAnnouncements.isVisible)
+        XCTAssertVisible(backButton)
+        XCTAssertVisible(courseGradeAbove)
+        XCTAssertVisible(courseGradeBelow)
+        XCTAssertVisible(assignmentMissing)
+        XCTAssertVisible(assignmentGradeAbove)
+        XCTAssertVisible(assignmentGradeBelow)
+        XCTAssertVisible(courseAnnouncements)
+        XCTAssertVisible(institutionAnnouncements)
 
         courseGradeAbove.writeText(text: highPercent)
         courseGradeBelow.writeText(text: lowPercent)

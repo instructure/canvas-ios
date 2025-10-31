@@ -217,7 +217,7 @@ class RoutesTests: XCTestCase {
     func testModuleItems() {
         XCTAssert(router.match("/courses/1/assignments/syllabus") is SyllabusTabViewController)
         XCTAssert(router.match("/courses/1/assignments/2") is ModuleItemSequenceViewController)
-        XCTAssert(router.match("/courses/1/assignments/2?origin=module_item_details") is AssignmentDetailsViewController)
+        XCTAssert(router.match("/courses/1/assignments/2?origin=module_item_details") is StudentAssignmentDetailsViewController)
         XCTAssert(router.match("/courses/1/discussions/2") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/groups/1/discussions/2") is CoreHostingController<EmbeddedWebPageContainerScreen>)
         XCTAssert(router.match("/courses/1/discussion_topics/2") is ModuleItemSequenceViewController)

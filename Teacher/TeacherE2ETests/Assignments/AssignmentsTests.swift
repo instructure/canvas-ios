@@ -38,15 +38,15 @@ class AssignmentsTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(teacher)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
         let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
+        XCTAssertVisible(navBar)
 
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
-        XCTAssertTrue(assignmentButton.isVisible)
+        XCTAssertVisible(assignmentButton)
         XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
@@ -59,20 +59,20 @@ class AssignmentsTests: E2ETestCase {
         let viewAllSubmissionsButton = DetailsHelper.viewAllSubmissionsButton.waitUntil(.visible)
         let needsGradingButton = DetailsHelper.oneNeedsGradingButton.waitUntil(.visible)
         let descriptionLabel = DetailsHelper.description(assignment: assignment).waitUntil(.visible)
-        XCTAssertTrue(nameLabel.isVisible)
+        XCTAssertVisible(nameLabel)
         XCTAssertEqual(nameLabel.label, assignment.name)
-        XCTAssertTrue(pointsLabel.isVisible)
+        XCTAssertVisible(pointsLabel)
         XCTAssertEqual(pointsLabel.label, "\(assignment.points_possible!) pt")
-        XCTAssertTrue(publishedLabel.isVisible)
+        XCTAssertVisible(publishedLabel)
         XCTAssertEqual(publishedLabel.label, "Published")
-        XCTAssertTrue(dueLabel.isVisible)
+        XCTAssertVisible(dueLabel)
         XCTAssertContains(dueLabel.label, "No due date")
-        XCTAssertTrue(submissionTypesLabel.isVisible)
+        XCTAssertVisible(submissionTypesLabel)
         XCTAssertEqual(submissionTypesLabel.label, "Text Entry")
-        XCTAssertTrue(viewAllSubmissionsButton.isVisible)
-        XCTAssertTrue(needsGradingButton.isVisible)
+        XCTAssertVisible(viewAllSubmissionsButton)
+        XCTAssertVisible(needsGradingButton)
         XCTAssertEqual(needsGradingButton.stringValue, "1 item")
-        XCTAssertTrue(descriptionLabel.isVisible)
+        XCTAssertVisible(descriptionLabel)
     }
 
     func testAssignmentDueDate() {
@@ -93,19 +93,19 @@ class AssignmentsTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(teacher)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to Assignments
         Helper.navigateToAssignments(course: course)
         let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
+        XCTAssertVisible(navBar)
 
         // MARK: Check due date of assignments
         let yesterdaysAssignmentButton = Helper.assignmentButton(assignment: yesterdaysAssignment).waitUntil(.visible)
         let tomorrowsAssignmentButton = Helper.assignmentButton(assignment: tomorrowsAssignment).waitUntil(.visible)
-        XCTAssertTrue(yesterdaysAssignmentButton.isVisible)
+        XCTAssertVisible(yesterdaysAssignmentButton)
         XCTAssertContains(yesterdaysAssignmentButton.label, "Due Yesterday")
-        XCTAssertTrue(tomorrowsAssignmentButton.isVisible)
+        XCTAssertVisible(tomorrowsAssignmentButton)
         XCTAssertContains(tomorrowsAssignmentButton.label, "Due Tomorrow")
     }
 }

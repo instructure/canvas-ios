@@ -45,7 +45,7 @@ class CalendarFilterEntryProviderParentTests: CoreTestCase {
         let testee = CalendarFilterEntryProviderParent(observedUserId: "observedId")
 
         // THEN
-        XCTAssertFirstValueAndCompletion(testee.make(ignoreCache: false)!) { filters in
+        XCTAssertSingleOutputAndFinish(testee.make(ignoreCache: false)!) { filters in
             let sortedFilters = filters.sorted()
             XCTAssertEqual(sortedFilters.count, 3)
             XCTAssertEqual(sortedFilters[0].context, .user("testParentId"))

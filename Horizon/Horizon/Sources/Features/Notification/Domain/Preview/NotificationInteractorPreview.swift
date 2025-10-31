@@ -21,24 +21,78 @@ import Combine
 
 #if DEBUG
 final class NotificationInteractorPreview: NotificationInteractor {
-    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never> {
+    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Error> {
         Just([
             .init(
                 id: "1",
-                category: "announcement from [Course]",
                 title: "[first two lines of the message......... there’s more.].",
-                date: "Mar 17",
-                isRead: true,
+                date: Date(),
+                isRead: false,
+                courseName: "course Name One",
                 courseID: "12",
                 enrollmentID: "1211",
-                isScoreAnnouncement: false
+                isScoreAnnouncement: false,
+                type: .announcement,
+                announcementId: "1",
+                assignmentURL: nil
+
+            ),
+            .init(
+                id: "2",
+                title: "[first two lines of the message.",
+                date: Date(),
+                isRead: false,
+                courseName: "course Name Two",
+                courseID: "12",
+                enrollmentID: "1211",
+                isScoreAnnouncement: false,
+                type: .announcement,
+                announcementId: "1",
+                assignmentURL: nil
+
             )
         ])
+        .setFailureType(to: Error.self)
         .eraseToAnyPublisher()
     }
 
     func getUnreadNotificationCount() -> AnyPublisher<Int, Never> {
         Just(3).eraseToAnyPublisher()
+    }
+
+    func markNotificationAsRead(notification: NotificationModel) -> AnyPublisher<[NotificationModel], Error> {
+        Just([
+            .init(
+                id: "4",
+                title: "[first two lines of the message......... there’s more.].",
+                date: Date(),
+                isRead: true,
+                courseName: "course Name",
+                courseID: "1552",
+                enrollmentID: "1211",
+                isScoreAnnouncement: false,
+                type: .announcement,
+                announcementId: "1",
+                assignmentURL: nil
+
+            ),
+            .init(
+                id: "5",
+                title: "[first two lines of the message......... there’s more.].",
+                date: Date(),
+                isRead: false,
+                courseName: "course Name",
+                courseID: "122",
+                enrollmentID: "1211",
+                isScoreAnnouncement: false,
+                type: .announcement,
+                announcementId: "1",
+                assignmentURL: nil
+
+            )
+        ])
+        .setFailureType(to: Error.self)
+        .eraseToAnyPublisher()
     }
 }
 #endif

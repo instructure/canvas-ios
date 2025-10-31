@@ -1800,6 +1800,9 @@
         }
       }
     },
+    "Biology 101" : {
+
+    },
     "Biology 201" : {
       "comment" : "Example course name\nExample course name for widget preview",
       "localizations" : {
@@ -2827,6 +2830,12 @@
         }
       }
     },
+    "Chapter 5 Discussion" : {
+
+    },
+    "Chemistry Lab" : {
+
+    },
     "Course" : {
       "localizations" : {
         "ar" : {
@@ -3339,6 +3348,9 @@
           }
         }
       }
+    },
+    "Course Syllabus" : {
+
     },
     "Double tap to view course grades tab" : {
       "localizations" : {
@@ -6934,6 +6946,9 @@
         }
       }
     },
+    "Guest Lecture Series" : {
+
+    },
     "Hidden Grades" : {
       "localizations" : {
         "ar" : {
@@ -7189,6 +7204,9 @@
           }
         }
       }
+    },
+    "History 202" : {
+
     },
     "In the Jungle" : {
       "comment" : "Example course name for widget preview",
@@ -7446,6 +7464,9 @@
           }
         }
       }
+    },
+    "Introduction to Psychology" : {
+
     },
     "Introduction to the Solar System" : {
       "comment" : "Example course name",
@@ -7960,6 +7981,9 @@
           }
         }
       }
+    },
+    "Lab Report Submission" : {
+
     },
     "Let's Get You Logged In!" : {
       "localizations" : {
@@ -9242,6 +9266,9 @@
           }
         }
       }
+    },
+    "Modern Literature" : {
+
     },
     "No Announcements" : {
       "localizations" : {
@@ -11806,6 +11833,12 @@
         }
       }
     },
+    "Research Paper Draft" : {
+
+    },
+    "Review study materials" : {
+
+    },
     "Select Course" : {
       "localizations" : {
         "ar" : {
@@ -13857,6 +13890,9 @@
         }
       }
     },
+    "To Do" : {
+
+    },
     "To see your grades, please log in to your account in the app." : {
       "localizations" : {
         "ar" : {
@@ -14627,7 +14663,6 @@
     },
     "To-do" : {
       "comment" : "Name of the to-do widget",
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -14885,6 +14920,7 @@
     },
     "To-Do" : {
       "comment" : "Name of the to-do widget",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -15395,6 +15431,9 @@
           }
         }
       }
+    },
+    "Unit 3 Quiz" : {
+
     },
     "View Full List" : {
       "localizations" : {

@@ -43,13 +43,26 @@ struct HMessageDetailsView: View {
 
     private var content: some View {
         VStack(alignment: .leading) {
-            titleBar
             messages
             replyArea
         }
         .background(HorizonUI.colors.surface.pagePrimary)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .overlay { loaderView }
+        .safeAreaInset(edge: .top) {
+            titleBar
+        }
         .navigationBarHidden(true)
+    }
+
+    @ViewBuilder
+    private var loaderView: some View {
+        if model.isLoaderVisible {
+            ZStack {
+                Color.huiColors.surface.pageSecondary
+                    .ignoresSafeArea()
+                HorizonUI.Spinner(size: .small, showBackground: true)
+            }
+        }
     }
 
     private var messages: some View {
@@ -102,7 +115,16 @@ struct HMessageDetailsView: View {
         }
     }
 
+    @ViewBuilder
     private var messageBodies: some View {
+        if model.isAnnouncement {
+            announcementView(model.messages.first?.body ?? "")
+        } else {
+            messagesView
+        }
+    }
+
+    private var messagesView: some View {
         ForEach(model.messages) { message in
             messageBody(message)
                 .id(message.id)
@@ -117,6 +139,12 @@ struct HMessageDetailsView: View {
                     alignment: .top
                 )
         }
+    }
+
+    private func announcementView(_ message: String) -> some View {
+        WebView(html: message, isScrollEnabled: false)
+            .frameToFit()
+            .padding(.horizontal, -16)
     }
 
     private func messageBody(_ message: HMessageViewModel) -> some View {

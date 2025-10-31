@@ -33,7 +33,7 @@ public extension HorizonUI.StatusChip {
         case violet
         case institution
 
-        func forgroundColor(isFilled: Bool) -> Color {
+        func foregroundColor(isFilled: Bool) -> Color {
             switch self {
             case .white: isFilled ? Color.huiColors.text.title : Color.huiColors.text.surfaceColored
             case .gray: Color.huiColors.text.title

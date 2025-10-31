@@ -114,6 +114,7 @@ public extension HorizonUI {
                     }
                 }
             }
+            .contentShape(.rect)
         }
 
         private func primaryButton(_ configuration: Configuration) -> some View {
@@ -142,6 +143,7 @@ public extension HorizonUI {
                     configuration: configuration
                 )
             )
+            .contentShape(.rect)
         }
     }
 }
@@ -192,6 +194,7 @@ public extension HorizonUI.ButtonStyles {
         case danger = "Danger"
         case dangerInverse = "DangerInverse"
         case darkOutline = "DarkOutline"
+        case grayOutline = "grayOutline"
         case ghost = "Ghost"
         case gray = "Gray"
         case institution = "Institution"
@@ -210,6 +213,7 @@ public extension HorizonUI.ButtonStyles {
                 .danger: .huiColors.surface.error,
                 .dangerInverse: .huiColors.surface.pageSecondary,
                 .darkOutline: .clear,
+                .grayOutline: .clear,
                 .ghost: .clear,
                 .gray: .huiColors.surface.pagePrimary,
                 .institution: .huiColors.surface.institution,
@@ -224,6 +228,7 @@ public extension HorizonUI.ButtonStyles {
                 .black: .huiColors.surface.trueBlack,
                 .danger: .huiColors.surface.errorPressed,
                 .darkOutline: .huiColors.surface.inversePrimary,
+                .grayOutline: .clear,
                 .gray: .huiColors.surface.pageTertiary,
                 .whiteOutline: .huiColors.surface.pageSecondary
             ]
@@ -255,6 +260,7 @@ public extension HorizonUI.ButtonStyles {
             }
             let borderMap: [Self: any ShapeStyle] = [
                 .darkOutline: Color.huiColors.surface.inversePrimary,
+                .grayOutline: Color.huiColors.lineAndBorders.lineStroke,
                 .whiteGrayOutline: Color.huiColors.lineAndBorders.lineStroke,
                 .whiteOutline: Color.huiColors.surface.pageSecondary
             ]

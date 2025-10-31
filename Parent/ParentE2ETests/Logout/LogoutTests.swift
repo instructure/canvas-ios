@@ -32,13 +32,13 @@ class LogoutTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(parent)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         profileButton.hit()
         let usernameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
         let logoutButton = ProfileHelper.logOutButton.waitUntil(.visible)
-        XCTAssertTrue(logoutButton.isVisible)
-        XCTAssertTrue(usernameLabel.isVisible)
+        XCTAssertVisible(logoutButton)
+        XCTAssertVisible(usernameLabel)
         XCTAssertEqual(usernameLabel.label, parent.name)
 
         // MARK: Get the user logged out

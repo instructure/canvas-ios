@@ -416,7 +416,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         // MARK: - THEN
 
         drainMainQueue()
-        XCTAssertCompletableSingleOutputEquals(selectedItemID, "courses/2")
+        XCTAssertSingleOutputEqualsAndFinish(selectedItemID, "courses/2")
         session.reset()
     }
 

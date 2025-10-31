@@ -377,7 +377,7 @@ open class CoreWebView: WKWebView {
         fileLoadNavigation = loadFileURL(url, allowingReadAccessTo: urlDirectory)
     }
 
-    private func checkFileLoadNavigationAndExecuteCallback(navigation: WKNavigation, error: (any Error)?) {
+    private func checkFileLoadNavigationAndExecuteCallback(navigation: WKNavigation?, error: (any Error)?) {
         if navigation == fileLoadNavigation {
             fileLoadNavigation = nil
             fileLoadCompletion?(.init(error: error))

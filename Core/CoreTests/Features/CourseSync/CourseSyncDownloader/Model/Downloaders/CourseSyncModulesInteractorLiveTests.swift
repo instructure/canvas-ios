@@ -41,17 +41,19 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
         mockModules()
         mockModuleItemSequence()
         mockModuleItems()
+        mockDiscussionCheckpoints()
         XCTAssertFinish(testee.getModuleItems(courseId: "course-1"))
 
         let modules: [Module] = databaseClient.fetch()
         XCTAssertEqual(modules.count, 1)
-        XCTAssertEqual(modules[0].id, "module-1")
+        XCTAssertEqual(modules.first?.id, "module-1")
     }
 
     func testModulesFailure() {
         mockModulesError()
         mockModuleItemSequence()
         mockModuleItems()
+        mockDiscussionCheckpoints()
         XCTAssertFailure(testee.getModuleItems(courseId: "course-1"))
     }
 
@@ -59,6 +61,7 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
         mockModules()
         mockModuleItemSequenceError()
         mockModuleItems()
+        mockDiscussionCheckpoints()
         XCTAssertFailure(testee.getModuleItems(courseId: "course-1"))
     }
 
@@ -66,6 +69,15 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
         mockModules()
         mockModuleItemSequence()
         mockModuleItemsError()
+        mockDiscussionCheckpoints()
+        XCTAssertFailure(testee.getModuleItems(courseId: "course-1"))
+    }
+
+    func testDiscussionCheckpointsFailure() {
+        mockModules()
+        mockModuleItemSequence()
+        mockModuleItems()
+        mockDiscussionCheckpointsError()
         XCTAssertFailure(testee.getModuleItems(courseId: "course-1"))
     }
 
@@ -147,6 +159,13 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
         )
     }
 
+    private func mockDiscussionCheckpoints() {
+        api.mock(
+            GetModuleItemsDiscussionCheckpointsRequest(courseId: "course-1"),
+            value: .make()
+        )
+    }
+
     private func mockModuleItemSequence() {
         api.mock(
             GetModuleItemSequence(
@@ -199,6 +218,13 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
                 moduleID: "module-1", include: [.content_details, .mastery_paths],
                 perPage: nil
             ),
+            error: NSError.instructureError("")
+        )
+    }
+
+    private func mockDiscussionCheckpointsError() {
+        api.mock(
+            GetModuleItemsDiscussionCheckpointsRequest(courseId: "course-1"),
             error: NSError.instructureError("")
         )
     }

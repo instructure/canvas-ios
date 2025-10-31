@@ -4,7 +4,6 @@ app:
   - HOMEBREW_NO_INSTALL_CLEANUP: 1
   - BITRISE_PROJECT_PATH: "./Canvas.xcworkspace"
   - BITRISE_SCHEME: NightlyTests
-  - SPLUNK_ENDPOINT_URL: https://http-inputs-inst.splunkcloud.com:443/services/collector
   - RCT_NO_LAUNCH_PACKAGER: 1
   - FORCE_BUNDLING: 1
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
@@ -164,24 +163,6 @@ workflows:
             # Move & handle CITests coverage report
             yarn coverage
             zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
-    - script:
-        title: Report tests
-        inputs:
-        - runner_bin: "/bin/zsh"
-        - content: |-
-            #!/bin/zsh
-            set -xeuo pipefail
-
-            ./scripts/run-swift summarize-test-results scripts/coverage/citests.xcresult | jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' > scripts/coverage/jqresults.json
-
-            curl -q -X POST \
-                -H "Authorization: $SPLUNK_SECRET" \
-                -H "Content-Type: application/json" \
-                --data-binary @"scripts/coverage/jqresults.json" \
-                "$SPLUNK_ENDPOINT_URL"
-
-            tar -cJf "$BITRISE_DEPLOY_DIR/jqresults.json.tar.xz" scripts/coverage/jqresults.json
-        is_always_run: true
     - yarn:
         title: yarn danger ci
         is_always_run: true

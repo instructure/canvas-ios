@@ -22,6 +22,8 @@ public struct TodoListScreen: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ObservedObject var viewModel: TodoListViewModel
+    /// The sticky section header grows horizontally, so we need to increase paddings here not to let the header overlap the cell content.
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     public init(viewModel: TodoListViewModel) {
         self.viewModel = viewModel
@@ -30,19 +32,58 @@ public struct TodoListScreen: View {
     public var body: some View {
         InstUI.BaseScreen(
             state: viewModel.state,
+            config: viewModel.screenConfig,
             refreshAction: { completion in
                 viewModel.refresh(completion: completion, ignoreCache: true)
             }
         ) { _ in
-            ForEach(viewModel.items) { item in
-                TodoListItemCell(
-                    item: item,
-                    onTap: viewModel.didTapItem,
-                    isLastItem: viewModel.items.last == item
-                )
+            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                InstUI.TopDivider()
+                ForEach(viewModel.items) { group in
+                    groupView(for: group)
+                }
+                .paddingStyle(.trailing, .standard)
+                InstUI.Divider()
             }
         }
+        .clipped()
         .navigationBarItems(leading: profileMenuButton)
+    }
+
+    @ViewBuilder
+    private func groupView(for group: TodoGroupViewModel) -> some View {
+        Section {
+            let leadingPadding = TodoDayHeaderView.headerWidth(uiScale)
+            ForEach(group.items) { item in
+                TodoListItemCell(
+                    item: item,
+                    onTap: viewModel.didTapItem
+                )
+                .padding(.leading, leadingPadding)
+
+                let isLastItemInGroup = (group.items.last == item)
+
+                if !isLastItemInGroup {
+                    InstUI.Divider().padding(.leading, leadingPadding)
+                }
+            }
+        } header: {
+            VStack(spacing: 0) {
+                let isFirstSection = (viewModel.items.first == group)
+
+                if !isFirstSection {
+                    InstUI.Divider().paddingStyle(.leading, .standard)
+                }
+
+                TodoDayHeaderView(group: group) { group in
+                    viewModel.didTapDayHeader(group, viewController: viewController)
+                }
+                // Move day badge to the left of the screen.
+                .frame(maxWidth: .infinity, alignment: .leading)
+                // Squeeze height to 0 so day badge goes next to cell.
+                .frame(height: 0, alignment: .top)
+            }
+        }
     }
 
     private var profileMenuButton: some View {
@@ -67,6 +108,11 @@ public struct TodoListScreen: View {
 
 #Preview {
     let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(), env: PreviewEnvironment())
+    TodoListScreen(viewModel: viewModel)
+}
+
+#Preview("Empty State") {
+    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(todoGroups: []), env: PreviewEnvironment())
     TodoListScreen(viewModel: viewModel)
 }
 

@@ -32,23 +32,23 @@ class ToDoTests: E2ETestCase {
         // MARK: Get the user logged in and check ToDo tab bar
         logInDSUser(student)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         let toDoTab = ToDoHelper.TabBar.todoTab.waitUntil(.visible)
-        XCTAssertTrue(toDoTab.isVisible)
+        XCTAssertVisible(toDoTab)
         XCTAssertEqual(toDoTab.stringValue, "2 items")
 
         // MARK: Tap ToDo button and check the 3 items
         toDoTab.hit()
         let assignmentItem = ToDoHelper.cell(id: assignment.id).waitUntil(.visible)
         let quizItem = ToDoHelper.cell(id: quiz.assignment_id!).waitUntil(.visible)
-        XCTAssertTrue(assignmentItem.isVisible)
-        XCTAssertTrue(quizItem.isVisible)
+        XCTAssertVisible(assignmentItem)
+        XCTAssertVisible(quizItem)
 
         let assignmentItemTitle = ToDoHelper.cellItemTitle(cell: assignmentItem).waitUntil(.visible)
         let quizItemTitle = ToDoHelper.cellItemTitle(cell: quizItem).waitUntil(.visible)
-        XCTAssertTrue(assignmentItemTitle.isVisible)
-        XCTAssertTrue(quizItemTitle.isVisible)
+        XCTAssertVisible(assignmentItemTitle)
+        XCTAssertVisible(quizItemTitle)
         XCTAssertEqual(assignmentItemTitle.label, assignment.name)
         XCTAssertEqual(quizItemTitle.label, quiz.title)
 
@@ -56,12 +56,12 @@ class ToDoTests: E2ETestCase {
         assignmentItem.hit()
         let backButton = ToDoHelper.toDoBackButton.waitUntil(.visible, timeout: 5)
         let assignmentDescription = app.find(label: assignment.description!).waitUntil(.visible)
-        XCTAssertTrue(assignmentDescription.isVisible)
+        XCTAssertVisible(assignmentDescription)
 
         if backButton.isVisible { backButton.hit() }
         backButton.waitUntil(.vanish)
         quizItem.hit()
         let quizDescription = app.find(label: quiz.description).waitUntil(.visible)
-        XCTAssertTrue(quizDescription.isVisible)
+        XCTAssertVisible(quizDescription)
     }
 }
