@@ -162,18 +162,20 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
             let defaultDate = max(minDate, min(maxDate,
                 event.startAt?.addMinutes(-60) ?? Clock.now.addDays(7)
             ))
-            userNotificationCenter.requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
-                guard error == nil && success else {
-                    self.reminderSwitch.setOn(false, animated: true)
-                    return self.showNotificationsPermissionError()
+            userNotificationCenter.requestAuthorization(options: [.alert, .sound]) { success, error in
+                Task { @MainActor in
+                    guard error == nil && success else {
+                        self.reminderSwitch.setOn(false, animated: true)
+                        return self.showNotificationsPermissionError()
+                    }
+                    self.reminderDateButton.setTitle(defaultDate.dateTimeString, for: .normal)
+                    self.selectedDate = defaultDate
+                    UIView.animate(withDuration: 0.2) {
+                        self.reminderDateButton.isHidden = false
+                    }
+                    self.reminderDateChanged(selectedDate: self.selectedDate)
                 }
-                self.reminderDateButton.setTitle(defaultDate.dateTimeString, for: .normal)
-                self.selectedDate = defaultDate
-                UIView.animate(withDuration: 0.2) {
-                    self.reminderDateButton.isHidden = false
-                }
-                self.reminderDateChanged(selectedDate: self.selectedDate)
-            } }
+            }
         } else {
             localNotifications.removeReminder(eventID)
             UIView.animate(withDuration: 0.2) {
