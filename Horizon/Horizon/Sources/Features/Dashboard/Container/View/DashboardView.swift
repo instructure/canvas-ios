@@ -28,7 +28,7 @@ struct DashboardView: View {
 
     // MARK: - a11y
 
-    @State private var isShowDivider: Bool = true
+    @State private var isShowHeader: Bool = true
     @State private var lastFocusedElement: DashboardFocusableElement?
     @State private var restoreFocusTrigger: Bool = false
     @AccessibilityFocusState private var accessibilityFocusedElement: DashboardFocusableElement?
@@ -78,11 +78,20 @@ struct DashboardView: View {
         }
         .captureWidgetReloadHandlers($widgetReloadHandlers)
         .safeAreaInset(edge: .top, spacing: .zero) {
-            navigationBar
-                .toolbar(.hidden)
+            if isShowHeader {
+                navigationBar
+                    .toolbar(.hidden)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+            } else {
+                Rectangle()
+                    .fill(Color.huiColors.surface.pagePrimary)
+                    .frame(height: 55)
+                    .ignoresSafeArea()
+            }
         }
         .scrollIndicators(.hidden, axes: .vertical)
         .background(Color.huiColors.surface.pagePrimary)
+        .animation(.linear, value: isShowHeader)
         .onDidAppear {
             viewModel.reloadUnreadBadges()
 
@@ -103,7 +112,7 @@ struct DashboardView: View {
         Color.clear
             .frame(height: 16)
             .readingFrame { frame in
-                isShowDivider = frame.minY > -100
+                isShowHeader = frame.minY > -100
             }
     }
 
@@ -120,8 +129,7 @@ struct DashboardView: View {
             .background(Color.huiColors.surface.pagePrimary)
             Rectangle()
                 .fill(Color.huiColors.primitives.grey14)
-                .frame(height: 1.5)
-                .hidden(isShowDivider)
+                .frame(height: 1)
         }
     }
 
