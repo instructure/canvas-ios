@@ -29,6 +29,7 @@ struct DashboardView: View {
     // MARK: - a11y
 
     @State private var isShowHeader: Bool = true
+    @State private var isShowDivider: Bool = false
     @State private var lastFocusedElement: DashboardFocusableElement?
     @State private var restoreFocusTrigger: Bool = false
     @AccessibilityFocusState private var accessibilityFocusedElement: DashboardFocusableElement?
@@ -113,6 +114,7 @@ struct DashboardView: View {
             .frame(height: 16)
             .readingFrame { frame in
                 isShowHeader = frame.minY > -100
+                isShowDivider = frame.minY < 100
             }
     }
 
@@ -129,7 +131,8 @@ struct DashboardView: View {
             .background(Color.huiColors.surface.pagePrimary)
             Rectangle()
                 .fill(Color.huiColors.primitives.grey14)
-                .frame(height: 1)
+                .frame(height: 1.5)
+                .hidden(!isShowDivider)
         }
     }
 
