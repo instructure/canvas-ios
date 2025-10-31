@@ -83,6 +83,7 @@ struct CourseListWidgetView: View {
                         ForEach(Array(viewModel.courses.enumerated()), id: \.element.id) { index, course in
                             CourseListWidgetItemView(
                                 model: CourseListWidgetModel(from: course),
+                                width: size - 48,
                                 onCourseTap: { courseId in
                                     lastFocusedElement.wrappedValue = .course(id: courseId)
                                     viewModel.navigateToCourseDetails(

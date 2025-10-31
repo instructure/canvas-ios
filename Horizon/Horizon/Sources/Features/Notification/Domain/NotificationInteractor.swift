@@ -95,7 +95,7 @@ final class NotificationInteractorLive: NotificationInteractor {
     }
 
     private func fetchCourses() -> AnyPublisher<[HCourse], Never> {
-        ReactiveStore(useCase: GetHCoursesProgressionUseCase(userId: userID))
+        ReactiveStore(useCase: GetHCoursesProgressionUseCase(userId: userID, horizonCourses: true))
             .getEntities()
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0)}
