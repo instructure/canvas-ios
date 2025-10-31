@@ -10,6 +10,10 @@ on:
     #   - "src/**/*.js"
     #   - "src/**/*.jsx"
 
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   claude-review:
     # Optional: Filter by PR author
@@ -40,18 +44,24 @@ jobs:
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ github.event.pull_request.number }}
 
-            Please review this pull request and provide feedback on:
-            - Code quality and best practices
-            - Potential bugs or issues
-            - Performance considerations
-            - Security concerns
-            - Test coverage
+            Provide a CONCISE review (max 10 bullet points) focusing ONLY on:
+            - Potential bugs or crashes
+            - Major performance issues
+            - Breaking changes
+            - Correctness
 
-            Use the repository's CLAUDE.md for guidance on style and conventions. Be constructive and helpful in your feedback.
+            Skip minor style issues, suggestions, and explanations. Be direct and brief.
+            If critical issues are found, list them in a few short bullet points. If no critical issues are found, provide a simple approval.
+            Sign off with a checkbox emoji:  (approved) or  (issues found).
 
-            Use `gh pr comment` with your Bash tool to leave your review as a comment on the PR.
+            IMPORTANT: Before posting your review:
+            1. Check if there's an existing comment from "github-actions[bot]" containing "Claude Code Review"
+            2. If found, UPDATE that comment using: gh api repos/${{ github.repository }}/issues/comments/{comment_id} -X PATCH -f body="your review"
+            3. If not found, create a new comment with: gh pr comment ${{ github.event.pull_request.number }} --body "your review"
+
+            Start your review with "## Claude Code Review" and include "Updated: $(date)" at the top.
 
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://docs.claude.com/en/docs/claude-code/cli-reference for available options
-          claude_args: '--allowed-tools "Bash(gh issue view:*),Bash(gh search:*),Bash(gh issue list:*),Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr list:*)"'
+          claude_args: '--allowed-tools "Bash(gh issue view:*),Bash(gh search:*),Bash(gh issue list:*),Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr list:*),Bash(gh api:*)" --model haiku --timeout 300000'
 
