@@ -20,65 +20,86 @@ import XCTest
 @testable import Horizon
 
 final class TimeSpentWidgetModelTests: XCTestCase {
-    func testFormattedHoursUnderOneHourSingularAndPlural() {
-        let oneMinute = TimeSpentWidgetModel(id: "1", courseName: "Test", minutesPerDay: 1)
-        XCTAssertEqual(oneMinute.formattedHours.value, "1")
-        XCTAssertTrue(oneMinute.formattedHours.unit.contains("minute"))
-        XCTAssertFalse(oneMinute.formattedHours.unit.contains("hours"))
 
-        let fiftyNine = TimeSpentWidgetModel(id: "2", courseName: "Test", minutesPerDay: 59)
-        XCTAssertEqual(fiftyNine.formattedHours.value, "59")
-        XCTAssertTrue(fiftyNine.formattedHours.unit.contains("minutes"))
+    func test_TimeComponents_CalculatesCorrectly() {
+        let model = TimeSpentWidgetModel(id: "1", courseName: "Math", minutesPerDay: 130)
+        XCTAssertEqual(model.minutesPerDay / 60, 2)
+        XCTAssertEqual(model.minutesPerDay % 60, 10)
     }
 
-    func testFormattedHoursExactlyOneHourAndRounding() {
-        let sixty = TimeSpentWidgetModel(id: "1", courseName: "Test", minutesPerDay: 60)
-        XCTAssertEqual(sixty.formattedHours.value, "1")
-        XCTAssertTrue(sixty.formattedHours.unit.contains("hour"))
-
-        let eightyNine = TimeSpentWidgetModel(id: "2", courseName: "Test", minutesPerDay: 89)
-        XCTAssertEqual(eightyNine.formattedHours.value, "1")
-        XCTAssertTrue(eightyNine.formattedHours.unit.contains("hour"))
-
-        let ninety = TimeSpentWidgetModel(id: "3", courseName: "Test", minutesPerDay: 90)
-        XCTAssertEqual(ninety.formattedHours.value, "2")
-        XCTAssertTrue(ninety.formattedHours.unit.contains("hours"))
+    func test_FormattedTime_OnlyMinutes() {
+        let model = TimeSpentWidgetModel(id: "1", courseName: "Math", minutesPerDay: 45)
+        let result = model.formattedTime.description
+        XCTAssertTrue(result.contains("45"))
+        XCTAssertTrue(result.contains("mins"))
     }
 
-    func testTitleAccessibilityLabelSingleCourse() {
-        let model = TimeSpentWidgetModel(id: "10", courseName: "Biology", minutesPerDay: 30)
-        let label = model.titleAccessibilityLabel.lowercased()
-        XCTAssertTrue(label.contains("biology"))
-        XCTAssertTrue(label.contains("30"))
+    func test_FormattedTime_HoursOnly() {
+        let model = TimeSpentWidgetModel(id: "1", courseName: "Physics", minutesPerDay: 120)
+        let result = model.formattedTime.description
+        XCTAssertTrue(result.contains("2"))
+        XCTAssertTrue(result.contains("hrs"))
     }
 
-    func testTitleAccessibilityLabelAllCourses() {
-        let aggregate = TimeSpentWidgetModel(id: "-1", courseName: "all courses", minutesPerDay: 120)
-        let label = aggregate.titleAccessibilityLabel.lowercased()
-        XCTAssertTrue(label.contains("all courses"))
-        XCTAssertTrue(label.contains("2") || label.contains("120"))
+    func test_FormattedTime_HoursAndMinutes() {
+        let model = TimeSpentWidgetModel(id: "1", courseName: "Chemistry", minutesPerDay: 80)
+        let result = model.formattedTime.description
+        XCTAssertTrue(result.contains("1"))
+        XCTAssertTrue(result.contains("hr"))
+        XCTAssertTrue(result.contains("20"))
+        XCTAssertTrue(result.contains("mins"))
     }
 
-    func testTitleAccessibilityButtonLabelSingleCourse() {
-        let model = TimeSpentWidgetModel(id: "5", courseName: "Chemistry", minutesPerDay: 15)
-        let label = model.titleAccessibilityButtonLabel.lowercased()
-        XCTAssertTrue(label.contains("chemistry"))
-        XCTAssertTrue(label.contains("selected"))
+    func test_AccessibilityTimeDescription_HandlesPluralAndSingular() {
+        let oneMinute = TimeSpentWidgetModel(id: "1", courseName: "Swift", minutesPerDay: 1)
+        XCTAssertEqual(oneMinute.titleAccessibilityLabel.contains("1 minute"), true)
+
+        let oneHour = TimeSpentWidgetModel(id: "2", courseName: "SwiftUI", minutesPerDay: 60)
+        XCTAssertEqual(oneHour.titleAccessibilityLabel.contains("1 hour"), true)
     }
 
-    func testTitleAccessibilityButtonLabelAllCourses() {
-        let aggregate = TimeSpentWidgetModel(id: "-1", courseName: "all courses", minutesPerDay: 75)
-        let label = aggregate.titleAccessibilityButtonLabel.lowercased()
-        XCTAssertTrue(label.contains("all course"))
-        XCTAssertTrue(label.contains("selected"))
+    func test_AccessibilityCourseTimeSpent_AllCourses() {
+        let model = TimeSpentWidgetModel(id: "-1", courseName: "All", minutesPerDay: 180)
+        let label = model.accessibilityCourseTimeSpent
+        XCTAssertTrue(label.contains("Time spent for all courses"))
+        XCTAssertTrue(label.contains("3 hours"))
     }
 
-    func testTotalMinutesPerDayAggregation() {
-        let models: [TimeSpentWidgetModel] = [
-            .init(id: "1", courseName: "A", minutesPerDay: 10),
-            .init(id: "2", courseName: "B", minutesPerDay: 20),
-            .init(id: "3", courseName: "C", minutesPerDay: 0)
-        ]
-        XCTAssertEqual(models.totalMinutesPerDay, 30)
+    func test_AccessibilityCourseTimeSpent_SingleCourse() {
+        let model = TimeSpentWidgetModel(id: "1", courseName: "Biology", minutesPerDay: 135)
+        let label = model.accessibilityCourseTimeSpent
+        XCTAssertTrue(label.contains("Time spent for course Biology"))
+        XCTAssertTrue(label.contains("2 hours 15 minutes"))
+    }
+
+    func test_TitleAccessibilityLabel_AllCourses() {
+        let model = TimeSpentWidgetModel(id: "-1", courseName: "All", minutesPerDay: 125)
+        let label = model.titleAccessibilityLabel
+        XCTAssertTrue(label.contains("total time spent"))
+        XCTAssertTrue(label.contains("2 hours 5 minutes"))
+    }
+
+    func test_TitleAccessibilityLabel_SingleCourse() {
+        let model = TimeSpentWidgetModel(id: "123", courseName: "Art", minutesPerDay: 61)
+        let label = model.titleAccessibilityLabel
+        XCTAssertTrue(label.contains("Art time spent is"))
+        XCTAssertTrue(label.contains("1 hour 1 minute"))
+    }
+
+    func test_TitleAccessibilityButtonLabel_AllCourses() {
+        let model = TimeSpentWidgetModel(id: "-1", courseName: "All", minutesPerDay: 100)
+        XCTAssertEqual(model.titleAccessibilityButtonLabel, "total selected")
+    }
+
+    func test_TitleAccessibilityButtonLabel_SingleCourse() {
+        let model = TimeSpentWidgetModel(id: "1", courseName: "History", minutesPerDay: 40)
+        let label = model.titleAccessibilityButtonLabel
+        XCTAssertTrue(label.contains("History time spent selected"))
+    }
+
+    func test_ZeroMinutes_ReturnsZeroMinutesString() {
+        let model = TimeSpentWidgetModel(id: "1", courseName: "Science", minutesPerDay: 0)
+        let label = model.titleAccessibilityLabel
+        XCTAssertTrue(label.contains("0 minutes"))
     }
 }
