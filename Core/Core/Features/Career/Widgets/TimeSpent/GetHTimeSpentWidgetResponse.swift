@@ -17,7 +17,7 @@
 //
 
 public struct GetHTimeSpentWidgetResponse: Codable {
-   public let data: Response?
+    public let data: Response?
 
     public struct Response: Codable {
         public let widgetData: WidgetData?

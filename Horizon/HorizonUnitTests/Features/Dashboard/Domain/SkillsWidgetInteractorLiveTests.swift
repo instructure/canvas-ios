@@ -30,8 +30,8 @@ final class SkillsWidgetInteractorLiveTests: HorizonTestCase {
 
         // When
         api.mock(
-            DomainService.JWTTokenRequest(domainServiceOption: .journey),
-            value: DomainService.JWTTokenRequest.Result(token: HSkillStubs.token)
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            value: DomainJWTService.JWTTokenRequest.Result(token: HSkillStubs.token)
         )
         api.mock(GetHSkillRequest(), value: HSkillStubs.response)
 
