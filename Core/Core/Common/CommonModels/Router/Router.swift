@@ -100,6 +100,7 @@ open class Router {
     public typealias FallbackHandler = (URLComponents, [String: Any]?, UIViewController, RouteOptions) -> Void
     public static let DefaultRouteOptions: RouteOptions = .push
 
+    public let contextBaseUrlInteractor: ContextBaseUrlInteractor
     public let courseTabUrlInteractor: CourseTabUrlInteractor?
 
     public var count: Int { handlers.count }
@@ -110,10 +111,12 @@ open class Router {
     public init(
         routes: [RouteHandler],
         fallback: @escaping FallbackHandler = { url, _, _, _ in open(url: url) },
+        contextBaseUrlInteractor: ContextBaseUrlInteractor = .init(),
         courseTabUrlInteractor: CourseTabUrlInteractor? = nil
     ) {
         self.handlers = routes
         self.fallback = fallback
+        self.contextBaseUrlInteractor = contextBaseUrlInteractor
         self.courseTabUrlInteractor = courseTabUrlInteractor
     }
 
@@ -130,7 +133,7 @@ open class Router {
         let env = AppEnvironment
             .resolved(
                 for: url,
-                courseShardID: courseTabUrlInteractor?.courseShardID(for: url)
+                contextShardID: contextBaseUrlInteractor.contextShardID(for: url)
             )
 
         for route in handlers {
@@ -175,7 +178,7 @@ open class Router {
         let env = AppEnvironment
             .resolved(
                 for: url,
-                courseShardID: courseTabUrlInteractor?.courseShardID(for: url)
+                contextShardID: contextBaseUrlInteractor.contextShardID(for: url)
             )
 
         if isExternalUrl, !url.originIsNotification, let url = url.url {
@@ -204,7 +207,9 @@ open class Router {
 
         for handler in handlers {
             if let params = handler.match(url) {
-                if let view = handler.factory(url, params, userInfo, env) {
+                let (newParams, newURL) = env.transformContentIDsToLocalForm(params: params, url: url)
+
+                if let view = handler.factory(newURL, newParams, userInfo, env) {
                     show(view, from: from, options: options, analyticsRoute: handler.route.template)
                 }
 
@@ -220,9 +225,7 @@ open class Router {
             .apiHost
             .flatMap({ [$0] }) ?? []
 
-        if let courseTabUrlInteractor {
-            acceptableHosts.formUnion(courseTabUrlInteractor.baseURLHostOverrides)
-        }
+        acceptableHosts.formUnion(contextBaseUrlInteractor.baseURLHostOverrides)
 
         return url.isExternalWebsite(of: acceptableHosts)
     }
@@ -367,7 +370,11 @@ open class Router {
         var url = url
         url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
 
-        if let apiHostOverride = courseTabUrlInteractor?.baseUrlHostOverride(for: url) {
+        if url.path.isNotEmpty, url.path.hasPrefix("/") == false {
+            url.path = "/" + url.path
+        }
+
+        if let apiHostOverride = contextBaseUrlInteractor.baseUrlHostOverride(for: url) {
             url.host = apiHostOverride
         }
 

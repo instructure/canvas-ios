@@ -19,9 +19,8 @@
 import Foundation
 import Combine
 
-/// This interactor has two purposes
-/// - Provide info on hidden tabs for routing. When routing we shouldn't allow routes for disabled tabs.
-/// - Extract base URLs for courses. We use these base URLs for API calls in case a course is on a different host compared to the the one used to log in.
+/// This interactor's purpose is to provide info on hidden tabs for routing.
+/// When routing we shouldn't allow routes for disabled tabs.
 public final class CourseTabUrlInteractor {
 
     public static let blockDisabledTabUserInfoKey = "shouldBlockDisabledCourseTabKey"
@@ -29,11 +28,9 @@ public final class CourseTabUrlInteractor {
     private struct TabModel {
         let id: String
         let htmlUrl: String
-        let apiBaseUrlHost: String?
     }
 
     private var enabledTabsPerCourse: [Context: [String]] = [:]
-    private var baseURLHostOverridesPerCourse: [Context: String] = [:]
     private var tabSubscription: AnyCancellable?
 
     public init() { }
@@ -128,8 +125,7 @@ public final class CourseTabUrlInteractor {
                 guard let htmlURL = tab.htmlURL else { return nil }
                 return TabModel(
                     id: tab.id,
-                    htmlUrl: htmlURL.removingQueryAndFragment().absoluteString,
-                    apiBaseUrlHost: tab.apiBaseURL?.host()
+                    htmlUrl: htmlURL.removingQueryAndFragment().absoluteString
                 )
             }
         }
@@ -138,17 +134,6 @@ public final class CourseTabUrlInteractor {
             let tabPaths = pathsForTabs(tabs, context: context)
             enabledTabsPerCourse[context] = tabPaths
         }
-
-        let defaultHost = AppEnvironment.shared.apiHost
-
-        baseURLHostOverridesPerCourse =
-            tabModelsPerCourse
-            .reduce(into: [:], { partialResult, pair in
-                pair.value.forEach { tab in
-                    guard let apiHost = tab.apiBaseUrlHost, apiHost != defaultHost else { return }
-                    partialResult[pair.key] = apiHost
-                }
-            })
     }
 
     private func pathsForTabs(_ tabs: [TabModel], context: Context) -> [String] {
@@ -226,52 +211,6 @@ public final class CourseTabUrlInteractor {
 
         return false
     }
-
-    // MARK: Base URL Overrides
-
-    public var baseURLHostOverrides: Set<String> {
-        Set(baseURLHostOverridesPerCourse.values)
-    }
-
-    public func baseUrlHostOverride(for url: URLComponents) -> String? {
-        guard let context = Context(path: url.path) else { return nil }
-        return baseURLHostOverridesPerCourse.first(where: {
-            return $0.key.isEquivalent(to: context)
-        })?.value
-    }
-
-    public func courseShardID(for url: URLComponents) -> String? {
-        let pathContext = Context(path: url.path)
-
-        if let pathContext,
-           let shardID = pathContext.courseId?.shardID {
-            return shardID
-        }
-
-        if let urlHost = url.host {
-
-            let overrideContexts = baseURLHostOverridesPerCourse
-                .filter { $0.value == urlHost } // It's possible to have multiple contexts with the same `value`
-                .map { $0.key }
-
-            if let shardID = overrideContexts.compactMap(\.id.shardID).first {
-                return shardID
-            }
-        }
-
-        if let pathContext {
-
-            let overrideContexts = baseURLHostOverridesPerCourse
-                .filter { $0.key.isEquivalent(to: pathContext) } // It's possible to have multiple equivalent contexts
-                .map { $0.key }
-
-            if let shardID = overrideContexts.compactMap(\.id.shardID).first {
-                return shardID
-            }
-        }
-
-        return nil
-    }
 }
 
 // MARK: - CourseTabFormat
@@ -320,18 +259,5 @@ private enum CourseTabFormat: CaseIterable {
 private extension String {
     var splitUsingSlash: [String] {
         split(separator: "/").map { String($0) }
-    }
-}
-
-private extension URL {
-    func removingQueryAndFragment() -> URL {
-        guard var components = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
-            return self
-        }
-
-        components.query = nil
-        components.fragment = nil
-
-        return components.url ?? self
     }
 }

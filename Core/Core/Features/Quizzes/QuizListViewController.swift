@@ -43,7 +43,7 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
     lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()
     }
-    lazy var quizzes = env.subscribe(GetQuizzes(courseID: courseID.localID)) { [weak self] in
+    lazy var quizzes = env.subscribe(GetQuizzes(courseID: courseID)) { [weak self] in
         self?.update()
     }
 

@@ -38,7 +38,7 @@ public class CourseSettingsViewModel: ObservableObject {
         course.first?.id ?? ""
     }
 
-    private let env = AppEnvironment.shared
+    private let env: AppEnvironment
     private var isFirstAppearance = true
     private var context: Context
     private lazy var colors = env.subscribe(GetCustomColors())
@@ -50,8 +50,9 @@ public class CourseSettingsViewModel: ObservableObject {
         self?.hideColorOverlay = self?.settings.first?.hideDashcardColorOverlays == true
     }
 
-    public init(context: Context) {
+    public init(context: Context, environment: AppEnvironment) {
         self.context = context
+        self.env = environment
     }
 
     public func viewDidAppear() {
@@ -87,9 +88,13 @@ public class CourseSettingsViewModel: ObservableObject {
         }
 
         state = .saving
-        UpdateCourse(courseID: context.id,
-                     name: newName,
-                     defaultView: newDefaultView).fetch { [weak self] result, _, error in performUIUpdate {
+        UpdateCourse(
+            courseID: context.id,
+            name: newName,
+            defaultView: newDefaultView
+        )
+        .modified(for: env)
+        .fetch(environment: env) { [weak self] result, _, error in performUIUpdate {
             guard let self = self else { return }
             self.state = .ready
 

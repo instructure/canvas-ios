@@ -74,8 +74,12 @@ open class AppEnvironment {
     public var sessionShardID: String? { currentSession?.accessToken?.shardID }
 
     // This can be different from `sessionShardID` for cross-shard setup.
-    // See `AppEnvironmentOverride` impl. for it.
-    public var courseShardID: String? { sessionShardID }
+    // See `AppEnvironmentOverride` impl. for it. Only applies to Courses & Groups.
+    public var contextShardID: String? { sessionShardID }
+
+    public func transformContentIDsToLocalForm(params: [String: String], url: URLComponents) -> ([String: String], URLComponents) {
+        return (params, url)
+    }
 
     /**
      - parameters:
@@ -95,6 +99,7 @@ open class AppEnvironment {
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
         router.courseTabUrlInteractor?.clearEnabledTabs()
         router.courseTabUrlInteractor?.setupTabSubscription()
+        router.contextBaseUrlInteractor.setupTabSubscription()
 
         if isSilent {
             return
@@ -123,6 +128,7 @@ open class AppEnvironment {
         currentSession = nil
         userDefaults = nil
         router.courseTabUrlInteractor?.cancelTabSubscription()
+        router.contextBaseUrlInteractor.cancelTabSubscription()
         refreshWidgets()
         deleteUserData(session: session)
         if AppEnvironment.shared.app == .horizon {
