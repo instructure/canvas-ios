@@ -61,6 +61,7 @@ final public class File: NSManagedObject {
     @NSManaged public var modifiedAt: Date?
     @NSManaged public var mimeClass: String?
     @NSManaged public var mediaEntryID: String?
+    @NSManaged public var mediaAttachmentID: String?
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var lockExplanation: String?
     @NSManaged public var previewURL: URL?

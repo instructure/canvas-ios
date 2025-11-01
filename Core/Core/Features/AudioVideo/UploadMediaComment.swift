@@ -90,8 +90,8 @@ public class UploadMediaComment {
                 try client.save()
                 self.placeholderID = placeholder.id
                 UploadMediaComment.placeholderSuffix += 1
-                self.uploader.fetch { mediaID, error in
-                    guard error == nil, let mediaID = mediaID else {
+                self.uploader.fetch { entry, error in
+                    guard error == nil, let mediaID = entry?.mediaID else {
                         self.callback(nil, error)
                         return
                     }

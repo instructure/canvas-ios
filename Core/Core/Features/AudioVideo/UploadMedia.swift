@@ -24,7 +24,7 @@ public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     let database = UploadManager.shared.database
     var mediaAPI: API?
     var task: APITask?
-    var callback: (String?, Error?) -> Void = { _, _ in }
+    var callback: (MediaEntry?, Error?) -> Void = { _, _ in }
     let file: File?
     let url: URL
     let type: MediaCommentType
@@ -45,7 +45,7 @@ public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
         }
     }
 
-    public func fetch(_ callback: @escaping (String?, Error?) -> Void) {
+    public func fetch(_ callback: @escaping (MediaEntry?, Error?) -> Void) {
         self.callback = callback
         upload()
     }
@@ -121,11 +121,22 @@ public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
     func completeUpload(mediaID: String) {
         guard let context = context else {
-            return self.callback(mediaID, nil)
+            return self.callback(MediaEntry(mediaID: mediaID, attachmentID: nil), nil)
         }
         let request = PostCompleteMediaUploadRequest(mediaID: mediaID, context: context, type: type)
         task = env.api.makeRequest(request) { response, _, error in
-            self.callback(response?.media_object.media_id, error)
+            let entry = response.flatMap({
+                MediaEntry(
+                    mediaID: $0.media_object.media_id,
+                    attachmentID: $0.media_object.attachment_id
+                )
+            })
+            self.callback(entry, error)
         }
     }
+}
+
+public struct MediaEntry {
+    public let mediaID: String
+    public let attachmentID: String?
 }

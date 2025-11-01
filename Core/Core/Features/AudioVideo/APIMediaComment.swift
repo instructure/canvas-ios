@@ -208,6 +208,7 @@ struct PostCompleteMediaUploadRequest: APIRequestable {
     struct Response: Codable {
         struct MediaObject: Codable {
             let media_id: String
+            let attachment_id: String?
         }
         let media_object: MediaObject
     }
