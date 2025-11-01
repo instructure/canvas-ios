@@ -73,6 +73,7 @@ extension InstUI {
 
     private struct CollapsibleListRowDisclosureStyle: DisclosureGroupStyle {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+        @Environment(\.isItemSelected) private var isItemSelected
 
         func makeBody(configuration: Configuration) -> some View {
             VStack(alignment: .leading, spacing: 0) {
@@ -92,6 +93,7 @@ extension InstUI {
                                 .paddingStyle(set: .standardCell)
                                 .contentShape(Rectangle())
                                 .accessibilityHidden(true)
+                                .background(isItemSelected ? .backgroundLight : .backgroundLightest)
                         }
                     )
                     .buttonStyle(.plain)

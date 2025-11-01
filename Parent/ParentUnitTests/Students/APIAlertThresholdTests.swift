@@ -41,10 +41,10 @@ class GetAlertThresholdRequestTests: XCTestCase {
         XCTAssertEqual(req.queryItems, expected)
     }
 
-	func testModel() {
-		let model = APIAlertThreshold.make()
-		XCTAssertNotNil(model)
-	}
+    func testModel() {
+        let model = APIAlertThreshold.make()
+        XCTAssertNotNil(model)
+    }
 }
 
 class DeleteAlertThresholdRequestTests: XCTestCase {

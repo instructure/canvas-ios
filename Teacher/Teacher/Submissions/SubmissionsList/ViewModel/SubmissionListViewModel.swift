@@ -157,7 +157,7 @@ class SubmissionListViewModel: ObservableObject {
     }
 
     private var hasDifferentiationTagFilter: Bool {
-	    differentiationTagFilters.isNotEmpty && differentiationTagFilters.count < differentiationTags.count
+        differentiationTagFilters.isNotEmpty && differentiationTagFilters.count < differentiationTags.count
     }
 
     private var selectedPreferences: SubmissionListPreferences {

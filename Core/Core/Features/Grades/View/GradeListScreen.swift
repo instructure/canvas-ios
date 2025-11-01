@@ -152,7 +152,10 @@ public struct GradeListScreen: View, ScreenViewTrackable {
         AssignmentListView(
             sections: gradeListData.assignmentSections,
             identifierGroup: "GradeList",
-            navigateToDetailsAction: { viewModel.didSelectAssignment.accept(($0, viewController)) },
+            selectedAssignmentId: viewModel.selectedAssignmentId,
+            navigateToDetailsAction: { url, id in
+                viewModel.didSelectAssignment.accept((url, id, viewController))
+            },
             whatIfModel: .init(
                 isEnabled: viewModel.isWhatIfScoreModeOn,
                 editScoreAction: { isScoreEditorPresented.toggle() },

@@ -41,6 +41,7 @@ public class AssignmentListScreenViewModel: ObservableObject {
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var courseName: String?
     @Published public private(set) var defaultDetailViewRoute = "/empty"
+    @Published public private(set) var selectedAssignmentId: String?
 
     public var isFilterIconSolid: Bool = false
     public var defaultGradingPeriodId: String?
@@ -52,7 +53,7 @@ public class AssignmentListScreenViewModel: ObservableObject {
 
     // MARK: - Inputs
 
-    let didSelectAssignment = PassthroughSubject<(URL?, WeakViewController), Never>()
+    let didSelectAssignment = PassthroughSubject<(URL?, String, WeakViewController), Never>()
 
     // MARK: - Private properties
 
@@ -123,8 +124,9 @@ public class AssignmentListScreenViewModel: ObservableObject {
 
         didSelectAssignment
             .receive(on: scheduler)
-            .sink { url, controller in
+            .sink { url, id, controller in
                 guard let url else { return }
+                self.selectedAssignmentId = id
                 env.router.route(to: url, from: controller, options: .detail)
             }
             .store(in: &subscriptions)
