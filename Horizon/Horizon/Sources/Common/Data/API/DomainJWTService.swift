@@ -52,44 +52,50 @@ final public class DomainJWTService {
     // MARK: - Public API
 
     func getValidToken(option: DomainServiceOption) -> AnyPublisher<String, Error> {
-        if let cached = queue.sync(execute: { tokenCache[option] }), cached.isValid {
-            return Just(cached.token)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        }
-
-        if let existing = queue.sync(execute: { refreshSubjects[option] }) {
-            return existing
-        }
-
-        let publisher = horizonApi.makeRequest(JWTTokenRequest(domainServiceOption: option))
-            .tryMap { [weak self] response, urlResponse -> String in
-                guard let self else {
-                    throw Issue.unableToGetToken
-                }
-                let token = try self.tokenResponseToUtf8String(
-                    tokenResponse: response,
-                    urlResponse: urlResponse
-                )
-
-                guard !token.isEmpty else {
-                    throw Issue.unableToGetToken
-                }
-
-                return token
+        return queue.sync(flags: .barrier) { [weak self] () -> AnyPublisher<String, Error> in
+            guard let self else {
+                return Fail(error: Issue.unableToGetToken)
+                    .eraseToAnyPublisher()
             }
-            .handleEvents(receiveOutput: { [weak self] newToken in
-                self?.setToken(newToken, for: option)
-            }, receiveCompletion: { [weak self] completion in
-                self?.clearRefreshSubject(for: option, after: completion)
-            })
-            .share()
-            .eraseToAnyPublisher()
 
-        queue.async(flags: .barrier) {
+            if let cached = self.tokenCache[option], cached.isValid {
+                return Just(cached.token)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+
+            if let existing = self.refreshSubjects[option] {
+                return existing
+            }
+
+            let api = self.horizonApi
+            let publisher = api.makeRequest(JWTTokenRequest(domainServiceOption: option))
+                .tryMap { [weak self] response, urlResponse -> String in
+                    guard let self else {
+                        throw Issue.unableToGetToken
+                    }
+                    let token = try self.tokenResponseToUtf8String(
+                        tokenResponse: response,
+                        urlResponse: urlResponse
+                    )
+
+                    guard !token.isEmpty else {
+                        throw Issue.unableToGetToken
+                    }
+
+                    return token
+                }
+                .handleEvents(receiveOutput: { [weak self] newToken in
+                    self?.setToken(newToken, for: option)
+                }, receiveCompletion: { [weak self] completion in
+                    self?.clearRefreshSubject(for: option, after: completion)
+                })
+                .share()
+                .eraseToAnyPublisher()
+
             self.refreshSubjects[option] = publisher
+            return publisher
         }
-        return publisher
     }
 
     private func setToken(_ token: String, for option: DomainServiceOption) {
@@ -126,12 +132,16 @@ final public class DomainJWTService {
     }
 
     func clear() {
-        tokenCache = [:]
-        refreshSubjects = [:]
+        queue.sync(flags: .barrier) { [weak self] in
+            self?.tokenCache = [:]
+            self?.refreshSubjects = [:]
+        }
     }
 
     public func setAPIAfterLogin(_ api: API) {
-        horizonApi = api
+        queue.async(flags: .barrier) { [weak self] in
+            self?.horizonApi = api
+        }
     }
 }
 extension DomainJWTService {

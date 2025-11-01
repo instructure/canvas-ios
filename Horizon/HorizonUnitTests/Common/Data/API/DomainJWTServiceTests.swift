@@ -115,7 +115,7 @@ final class DomainJWTServiceTests: HorizonTestCase {
         // When — first request (fetches from network and caches)
         _ = try await service.getValidToken(option: .cedar)
             .values
-            .first(where: { _ in true }) // Get first emitted value
+            .first(where: { _ in true })
 
         // Then — second request (should use cache)
         var secondToken: String?
@@ -125,6 +125,127 @@ final class DomainJWTServiceTests: HorizonTestCase {
 
         // Then
         XCTAssertEqual(secondToken, "fake-jwt-token")
+    }
+
+    func testGetToken_DifferentOptionsAreCachedSeparately() async throws {
+        // Given
+        let cedarToken = "Y2VkYXItdG9rZW4="
+        let pineToken = "cGluZS10b2tlbg=="
+
+        api.mock(
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .cedar),
+            value: .make(token: cedarToken)
+        )
+        api.mock(
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .pine),
+            value: .make(token: pineToken)
+        )
+
+        // When
+        let cedarResult = try await service.getValidToken(option: .cedar)
+            .values
+            .first(where: { _ in true })
+        let pineResult = try await service.getValidToken(option: .pine)
+            .values
+            .first(where: { _ in true })
+
+        // Then
+        XCTAssertEqual(cedarResult, "cedar-token")
+        XCTAssertEqual(pineResult, "pine-token")
+    }
+
+    func testGetToken_InvalidBase64ThrowsError() {
+        // Given
+        let expectation = expectation(description: "Token request completes")
+        api.mock(
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .cedar),
+            value: .make(token: "not-valid-base64!!!")
+        )
+
+        // When
+        var receivedError: Error?
+        service.getValidToken(option: .cedar)
+            .sink(
+                receiveCompletion: { completion in
+                    if case .failure(let error) = completion {
+                        receivedError = error
+                    }
+                    expectation.fulfill()
+                },
+                receiveValue: { _ in }
+            )
+            .store(in: &subscriptions)
+
+        wait(for: [expectation], timeout: 0.5)
+
+        // Then
+        XCTAssertNotNil(receivedError)
+        XCTAssertEqual(receivedError as? DomainJWTService.Issue, .unableToGetToken)
+    }
+
+    func testClear_RemovesAllCachedTokens() async throws {
+        // Given
+        let mockToken = "ZmFrZS1qd3QtdG9rZW4="
+        let mockToken2 = "bmV3LWZha2UtdG9rZW4="
+
+        api.mock(
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .cedar),
+            value: .make(token: mockToken)
+        )
+
+        let firstToken = try await service.getValidToken(option: .cedar).values.first(where: { _ in true })
+        XCTAssertEqual(firstToken, "fake-jwt-token")
+
+        // When
+        service.clear()
+
+        // Allow async clear to complete
+        try await Task.sleep(nanoseconds: 100_000_000)
+
+        // Mock a different token to verify new request is made
+        api.mock(
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .cedar),
+            value: .make(token: mockToken2)
+        )
+
+        // Then — should fetch new token, not use cache
+        let newToken = try await service.getValidToken(option: .cedar).values.first(where: { _ in true })
+        XCTAssertEqual(newToken, "new-fake-token")
+    }
+
+    func testSetAPIAfterLogin_UsesNewAPI() async throws {
+        // Given
+        let originalToken = "b3JpZ2luYWwtdG9rZW4="
+        let newToken = "bmV3LWFwaS10b2tlbg=="
+        let url = URL(string: "https://career.com")!
+
+        api.mock(
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .cedar),
+            value: .make(token: originalToken)
+        )
+
+        let firstToken = try await service.getValidToken(option: .cedar).values.first(where: { _ in true })
+        XCTAssertEqual(firstToken, "original-token")
+
+        // When
+        let loginSession = LoginSession(
+            accessToken: "jwt",
+            baseURL: url,
+            userID: "",
+            userName: ""
+        )
+        let newApi = API(loginSession, baseURL: url)
+        newApi.mock(
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .cedar),
+            value: .make(token: newToken)
+        )
+
+        service.setAPIAfterLogin(newApi)
+        service.clear()
+
+        // Then
+        let tokenAfterAPIChange = try await service.getValidToken(option: .cedar).values.first(where: { _ in true })
+        XCTAssertEqual(tokenAfterAPIChange, "new-api-token")
     }
 }
 
