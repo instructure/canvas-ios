@@ -20,7 +20,7 @@ import Foundation
 
 public enum FileUploadContext: Codable, Equatable {
     enum CodingKeys: String, CodingKey {
-        case type, context, courseID, assignmentID, userID, comment
+        case type, context, courseID, assignmentID, userID, comment, attempt
     }
 
     enum Key: String, Codable {
@@ -28,11 +28,15 @@ public enum FileUploadContext: Codable, Equatable {
     }
 
     case context(Context)
-    case submission(courseID: String, assignmentID: String, comment: String?)
+    case submission(courseID: String, assignmentID: String, comment: String?, attempt: Int?)
     case submissionComment(courseID: String, assignmentID: String, userID: String)
 
     public static var myFiles: FileUploadContext {
         return .context(Context.currentUser)
+    }
+
+    public static func submission(courseID: String, assignmentID: String, comment: String?) -> FileUploadContext {
+        return .submission(courseID: courseID, assignmentID: assignmentID, comment: comment, attempt: nil)
     }
 
     public init(from decoder: Decoder) throws {
@@ -46,7 +50,8 @@ public enum FileUploadContext: Codable, Equatable {
             let courseID = try decoder.decode(String.self, forKey: .courseID)
             let assignmentID = try decoder.decode(String.self, forKey: .assignmentID)
             let comment = try decoder.decodeIfPresent(String.self, forKey: .comment)
-            self = .submission(courseID: courseID, assignmentID: assignmentID, comment: comment)
+            let attempt = try decoder.decodeIfPresent(Int.self, forKey: .attempt)
+            self = .submission(courseID: courseID, assignmentID: assignmentID, comment: comment, attempt: attempt)
         case .submissionComment:
             let courseID = try decoder.decode(String.self, forKey: .courseID)
             let assignmentID = try decoder.decode(String.self, forKey: .assignmentID)
@@ -61,11 +66,12 @@ public enum FileUploadContext: Codable, Equatable {
         case let .context(context):
             try container.encode(Key.context, forKey: .type)
             try container.encode(Context(context.contextType, id: context.id), forKey: .context)
-        case let .submission(courseID, assignmentID, comment):
+        case let .submission(courseID, assignmentID, comment, attempt):
             try container.encode(Key.submission, forKey: .type)
             try container.encode(courseID, forKey: .courseID)
             try container.encode(assignmentID, forKey: .assignmentID)
             try container.encodeIfPresent(comment, forKey: .comment)
+            try container.encodeIfPresent(attempt, forKey: .attempt)
         case let .submissionComment(courseID, assignmentID, userID):
             try container.encode(Key.submissionComment, forKey: .type)
             try container.encode(courseID, forKey: .courseID)

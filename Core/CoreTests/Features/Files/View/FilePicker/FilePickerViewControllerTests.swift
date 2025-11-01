@@ -157,7 +157,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         let url = URL.Directories.temporary.appendingPathComponent("FilePickerViewControllerTests-document.txt")
         controller.view.layoutIfNeeded()
 
-        controller.add(url)
+        controller.add(url, source: .files)
         let index = IndexPath(row: 0, section: 0)
         let row = controller.tableView.cellForRow(at: index) as? FilePickerCell
         XCTAssertEqual(row?.removeButton.isHidden, false)

@@ -28,4 +28,8 @@ class MockAnalyticsHandler: AnalyticsHandler {
         lastEventParameters = parameters
         totalEventCount += 1
     }
+
+    func lastEventParameter<T: Equatable>(_ key: String, ofType type: T.Type = T.self) -> T? {
+        lastEventParameters?[key] as? T
+    }
 }

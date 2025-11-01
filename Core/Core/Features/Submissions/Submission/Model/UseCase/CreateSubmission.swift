@@ -30,6 +30,10 @@ public class CreateSubmission: APIUseCase {
     public let request: CreateSubmissionRequest
     public typealias Model = Submission
 
+    private let submissionType: SubmissionType
+    private let mediaCommentType: MediaCommentType?
+    private let mediaCommentSource: FilePickerSource?
+
     private var subscriptions = Set<AnyCancellable>()
 
     public init(
@@ -44,6 +48,7 @@ public class CreateSubmission: APIUseCase {
         fileIDs: [String]? = nil,
         mediaCommentID: String? = nil,
         mediaCommentType: MediaCommentType? = nil,
+        mediaCommentSource: FilePickerSource? = nil,
         annotatableAttachmentID: String? = nil,
         moduleID: String? = nil,
         moduleItemID: String? = nil
@@ -53,6 +58,9 @@ public class CreateSubmission: APIUseCase {
         self.userID = userID
         self.moduleID = moduleID
         self.moduleItemID = moduleItemID
+        self.submissionType = submissionType
+        self.mediaCommentType = mediaCommentType
+        self.mediaCommentSource = mediaCommentSource
 
         let submission = CreateSubmissionRequest.Body.Submission(
             annotatable_attachment_id: annotatableAttachmentID,
@@ -87,7 +95,7 @@ public class CreateSubmission: APIUseCase {
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APISubmission?, URLResponse?, Error?) -> Void) {
 
-        environment.api.makeRequest(request) { [weak self] response, urlResponse, error in
+        environment.api.makeRequest(request) { [weak self, weak environment] response, urlResponse, error in
             guard let self = self else { return }
 
             if error == nil {
@@ -106,12 +114,21 @@ public class CreateSubmission: APIUseCase {
                 }
             }
 
+            let isSuccessful = response != nil && error == nil
+
             UIAccessibility
-                .announceSubmission(isSuccessful: response != nil && error == nil)
+                .announceSubmission(isSuccessful: isSuccessful)
                 .sink {
                     completionHandler(response, urlResponse, error)
                 }
                 .store(in: &subscriptions)
+
+            // Analytics
+            logAnalyticsEvent(
+                phase: isSuccessful ? .succeeded : .failed,
+                attempt: response?.attempt,
+                env: environment
+            )
         }
     }
 
@@ -125,5 +142,46 @@ public class CreateSubmission: APIUseCase {
                 "assignmentID": assignmentID
             ])
         }
+    }
+
+    // MARK: Analytics Event
+
+    private func logAnalyticsEvent(phase: Analytics.SubmissionEvent.Phase, attempt: Int?, env: AppEnvironment?) {
+        guard let phasedType = analyticsPhasedEventType else { return }
+
+        let mediaParams = mediaCommentType.flatMap({ mediaType in
+            var params: [Analytics.SubmissionEvent.Param: Any] = [.media_type: mediaType.rawValue]
+            if let source = mediaCommentSource {
+                params[.media_source] = source.analyticsValue
+            }
+            return params
+        })
+
+        if let attempt {
+
+            Analytics.shared.logSubmission(.phase(phase, phasedType, attempt), additionalParams: mediaParams)
+
+        } else if let client = env?.database.viewContext {
+
+            // This would mainly be executed on API failure case
+            client.perform { [scope, client] in
+
+                let latestSubmission: Submission? = client.fetch(scope: scope).first
+
+                // Do your best to get the correct attempt number of last submission
+                // If doesn't exist, fallback to `nil`
+                let failureAttempt = latestSubmission.flatMap { $0.attempt + 1 }
+                Analytics.shared.logSubmission(.phase(phase, phasedType, failureAttempt), additionalParams: mediaParams)
+            }
+        }
+    }
+
+    private var analyticsPhasedEventType: Analytics.SubmissionEvent.PhasedType? {
+        if let phasedType = submissionType.analyticsValue { return phasedType }
+
+        // This is currently passed for `studio` submissions
+        if case .basic_lti_launch = submissionType { return .studio }
+
+        return nil
     }
 }

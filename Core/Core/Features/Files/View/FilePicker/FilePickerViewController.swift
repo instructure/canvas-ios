@@ -58,6 +58,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     private let avPermissionViewModel: AVPermissionViewModel = .init()
 
     private var subscriptions = Set<AnyCancellable>()
+    private var pickedFilesSourceMap: [URL: FilePickerSource] = [:]
 
     public lazy var files = env.uploadManager.subscribe(batchID: batchID) { [weak self] in
         self?.update()
@@ -68,6 +69,10 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         controller.env = env
         controller.batchID = batchID
         return controller
+    }
+
+    public func pickerSource(for localFileURL: URL) -> FilePickerSource? {
+        return pickedFilesSourceMap[localFileURL]
     }
 
     open override func viewDidLoad() {
@@ -304,15 +309,19 @@ extension FilePickerViewController: AudioRecorderDelegate {
     }
 
     public func send(_ controller: AudioRecorderViewController, url: URL) {
-        controller.dismiss(animated: true, completion: { [weak self] in self?.add(url) })
+        controller.dismiss(animated: true, completion: { [weak self] in self?.add(url, source: .audio) })
     }
 }
 
 extension FilePickerViewController: UIDocumentPickerDelegate {
-    func add(_ url: URL) {
+    func add(_ url: URL, source: FilePickerSource) {
         env.uploadManager.viewContext.performAndWait {
+
             do {
-                try env.uploadManager.add(url: url, batchID: self.batchID)
+                let file = try env.uploadManager.add(url: url, batchID: self.batchID)
+                if let localURL = file.localFileURL {
+                    pickedFilesSourceMap[localURL] = source
+                }
                 UIAccessibility.announcePersistently(String(localized: "File added", bundle: .core))
                     .sink { [weak self] _ in
                         guard let self else { return }
@@ -326,16 +335,17 @@ extension FilePickerViewController: UIDocumentPickerDelegate {
     }
 
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        for url in urls { add(url) }
+        for url in urls { add(url, source: .files) }
     }
 }
 
 extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         picker.dismiss(animated: true)
+        let source: FilePickerSource = picker.sourceType == .camera ? .camera : .library
         do {
             if let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage {
-                add(try image.normalize().write())
+                add(try image.normalize().write(), source: source)
             } else if let videoURL = info[.mediaURL] as? URL {
                 let destination = URL
                     .Directories
@@ -344,7 +354,7 @@ extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigatio
                     .appendingPathComponent(String(Clock.now.timeIntervalSince1970), isDirectory: true)
                     .appendingPathExtension(videoURL.pathExtension)
                 try videoURL.copy(to: destination)
-                add(destination)
+                add(destination, source: source)
             }
         } catch {
             showError(error)
@@ -380,7 +390,7 @@ extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
         for i in 0..<scan.pageCount {
             do {
                 let image = scan.imageOfPage(at: i)
-                add(try image.write())
+                add(try image.write(), source: .documentScan)
             } catch {
                 showError(error)
             }
