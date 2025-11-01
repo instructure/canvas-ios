@@ -54,7 +54,6 @@ class ArcSubmissionViewController: UIViewController, ArcSubmissionView {
         spinner.startAnimating()
 
         let config = WKWebViewConfiguration()
-        config.processPool = CoreWebView.processPool
         webView = WKWebView(frame: .zero, configuration: config)
         webView.navigationDelegate = self
         webView.addScript(js)

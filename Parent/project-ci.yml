@@ -7,6 +7,9 @@ options:
   deploymentTarget:
     iOS: 17.0
   createIntermediateGroups: true
+  fileTypes:
+    "icon":
+      file: true
 settings:
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true

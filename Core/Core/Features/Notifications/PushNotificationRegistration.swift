@@ -28,7 +28,9 @@ public extension UIApplication {
         notificationCenter.requestAuthorization(options: [.badge, .sound, .alert]) { granted, error in performUIUpdate {
             guard granted, error == nil else { return }
             #if !targetEnvironment(simulator) // Can't register on simulator
+            Task { @MainActor in
                 self.registerForRemoteNotifications()
+            }
             #endif
         } }
     }

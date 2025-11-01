@@ -241,18 +241,20 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
                 assignment.dueAt?.addDays(-1) ?? Clock.now.addDays(1)
             ))
             userNotificationCenter
-                .requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
-                guard error == nil && success else {
-                    self.reminderSwitch.setOn(false, animated: true)
-                    return self.showNotificationsPermissionError()
-                }
-                self.reminderDateButton.setTitle(defaultDate.dateTimeString, for: .normal)
-                self.selectedDate = defaultDate
-                UIView.animate(withDuration: 0.2) {
-                    self.reminderDateButton.isHidden = false
+                .requestAuthorization(options: [.alert, .sound]) { success, error in
+                    Task { @MainActor in
+                        guard error == nil && success else {
+                            self.reminderSwitch.setOn(false, animated: true)
+                            return self.showNotificationsPermissionError()
+                        }
+                        self.reminderDateButton.setTitle(defaultDate.dateTimeString, for: .normal)
+                        self.selectedDate = defaultDate
+                        UIView.animate(withDuration: 0.2) {
+                            self.reminderDateButton.isHidden = false
 
+                        }
+                    }
                 }
-            } }
         } else {
             localNotifications.removeReminder(assignmentID)
             UIView.animate(withDuration: 0.2) {
