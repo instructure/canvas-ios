@@ -24,7 +24,7 @@ class TodoGroupViewModelTests: CoreTestCase {
 
     func testAccessibilityLabel() {
         let date = Date.make(year: 2021, month: 8, day: 7, hour: 12)
-        let items = [TodoItemViewModel.make(id: "1"), TodoItemViewModel.make(id: "2")]
+        let items = [TodoItemViewModel.make(plannableId: "1"), TodoItemViewModel.make(plannableId: "2")]
 
         let group = TodoGroupViewModel(date: date, items: items)
 
@@ -35,7 +35,7 @@ class TodoGroupViewModelTests: CoreTestCase {
 
     func testDateFormatting() {
         let date = Date.make(year: 2021, month: 12, day: 25, hour: 15)
-        let items = [TodoItemViewModel.make(id: "1")]
+        let items = [TodoItemViewModel.make(plannableId: "1")]
 
         let group = TodoGroupViewModel(date: date, items: items)
 
@@ -60,7 +60,7 @@ class TodoGroupViewModelTests: CoreTestCase {
     func testComparison() {
         let date1 = Date.make(year: 2021, month: 1, day: 1)
         let date2 = Date.make(year: 2021, month: 1, day: 2)
-        let items = [TodoItemViewModel.make(id: "1")]
+        let items = [TodoItemViewModel.make(plannableId: "1")]
 
         let group1 = TodoGroupViewModel(date: date1, items: items)
         let group2 = TodoGroupViewModel(date: date2, items: items)
