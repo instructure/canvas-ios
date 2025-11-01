@@ -26,6 +26,6 @@ struct WidgetEmptyView: View {
             .foregroundStyle(Color.huiColors.text.timestamp)
             .skeletonLoadable()
             .multilineTextAlignment(.leading)
-            .frame(alignment: .leading)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

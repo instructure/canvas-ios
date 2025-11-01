@@ -63,8 +63,8 @@ struct SkillsCountWidgetView: View {
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
         .isSkeletonLoadActive(viewModel.state == .loading)
+        .containerRelativeFrame(.horizontal)
         .buttonStyle(.plain)
-        .fixedSize(horizontal: true, vertical: false)
         .accessibilityFocused($isFocused)
         .accessibilityHint(String(localized: "Double tap to open skillspace", bundle: .horizon))
         .onChange(of: restoreFocusTrigger) { _, _ in
@@ -114,7 +114,7 @@ struct SkillsCountWidgetView: View {
 
 #if DEBUG
     #Preview {
-        HStack {
+        VStack {
             SkillsCountWidgetView(
                 viewModel: .init(
                     interactor: SkillsWidgetInteractorPreview(shouldReturnError: true)

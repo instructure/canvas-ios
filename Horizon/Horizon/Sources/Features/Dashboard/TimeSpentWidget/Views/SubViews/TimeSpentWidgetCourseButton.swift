@@ -47,7 +47,6 @@ struct TimeSpentWidgetCourseButton: View {
         ) {
             onTap()
         }
-        .frame(width: 130)
     }
 }
 

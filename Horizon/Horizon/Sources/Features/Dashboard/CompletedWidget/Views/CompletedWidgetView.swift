@@ -43,8 +43,8 @@ struct CompletedWidgetView: View {
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
         .isSkeletonLoadActive(viewModel.state == .loading)
-        .fixedSize(horizontal: true, vertical: false)
         .accessibilityElement(children: viewModel.state == .loading ? .ignore : .contain)
+        .containerRelativeFrame(.horizontal)
         .accessibilityLabel(
             viewModel.state == .loading
                             ? Text(String(localized: "Loading courses progress", bundle: .horizon))
@@ -67,6 +67,7 @@ struct CompletedWidgetView: View {
                 .foregroundStyle(Color.huiColors.text.body)
                 .skeletonLoadable()
                 .accessibilityHidden(viewModel.state == .loading)
+            Spacer()
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(

@@ -82,8 +82,12 @@ public extension HorizonUI {
 
         private let name: Name
 
-        init(_ name: Name) {
+       public init(_ name: Name) {
             self.name = name
+        }
+
+        public var fount: Font {
+            name.font
         }
 
         public func body(content: Content) -> some View {
