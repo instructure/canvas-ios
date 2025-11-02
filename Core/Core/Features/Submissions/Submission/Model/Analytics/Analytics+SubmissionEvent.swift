@@ -85,7 +85,14 @@ extension SubmissionType {
             return .url
         case .student_annotation:
             return .annotation
-        default:
+        case .discussion_topic,
+                .external_tool,
+                .none,
+                .not_graded,
+                .online_quiz,
+                .on_paper,
+                .basic_lti_launch,
+                .wiki_page:
             return nil
         }
     }

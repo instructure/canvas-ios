@@ -375,6 +375,6 @@ private extension Assignment {
     /// This represent order no. of the next attempt currently is being submitted.
     /// Use this with tracked analytics events of submission phases.
     var upcomingAttempt: Int {
-        max(submission?.attempt ?? 0, 0) + 1
+        (submission?.attempt ?? 0) + 1
     }
 }

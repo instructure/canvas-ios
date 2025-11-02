@@ -111,7 +111,7 @@ class CreateSubmissionTests: CoreTestCase {
         let useCase = CreateSubmission(context: context, assignmentID: "2", userID: "3", submissionType: .online_text_entry)
         useCase.makeRequest(environment: environment) { _, _, _ in }
 
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textentry_succeeded")
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textEntry_succeeded")
         XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 2)
     }
 
@@ -174,7 +174,7 @@ class CreateSubmissionTests: CoreTestCase {
 
         useCase.makeRequest(environment: environment) { _, _, _ in }
 
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_mediarecording_succeeded")
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_mediaRecording_succeeded")
         XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 6)
         XCTAssertEqual(testAnalyticsHandler.lastEventParameter("media_type"), "video")
         XCTAssertEqual(testAnalyticsHandler.lastEventParameter("media_source"), "camera")
