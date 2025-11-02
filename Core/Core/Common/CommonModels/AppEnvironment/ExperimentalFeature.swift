@@ -30,6 +30,7 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case whatIfScore = "what_if_score"
     case rebuiltCalendar = "rebuilt_calendar"
     case newStudentToDoScreen = "new_student_todo_screen"
+    case forceRceEnhancements = "force_rce_enhancements"
 
     public var isEnabled: Bool {
         get {

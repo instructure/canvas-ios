@@ -209,7 +209,13 @@ public class RichContentEditorViewController: UIViewController {
     }
 
     private func setFeatureFlags() {
-        let flags = featureFlags.map { $0.name }
+        var flags = featureFlags.map { $0.name }
+
+        if flags.contains("rce_enhancements") == false,
+           ExperimentalFeature.forceRceEnhancements.isEnabled {
+            flags.append("rce_enhancements")
+        }
+
         if let data = try? JSONSerialization.data(withJSONObject: flags),
             let flags = String(data: data, encoding: .utf8) {
             webView.evaluateJavaScript("editor.featureFlags = \(flags)")
