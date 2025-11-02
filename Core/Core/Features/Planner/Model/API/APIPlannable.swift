@@ -267,7 +267,7 @@ public struct GetPlannablesRequest: APIRequestable {
 
 // https://canvas.instructure.com/doc/api/planner.html#method.planner_overrides.update
 public struct UpdatePlannerOverrideRequest: APIRequestable {
-    public typealias Response = APINoContent
+    public typealias Response = APIPlannerOverride
     public struct Body: Codable, Equatable {
         let marked_complete: Bool
     }

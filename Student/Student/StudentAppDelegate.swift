@@ -423,7 +423,8 @@ extension StudentAppDelegate {
             AppEnvironment.shared.app = .student
             AppEnvironment.shared.router = academicRouter
             guard let window = window else { return }
-
+            let userInterfaceStyle = AppEnvironment.shared.userDefaults?.academicInterfaceStyle ?? AppEnvironment.shared.userDefaults?.interfaceStyle
+            window.updateInterfaceStyleWithoutTransition(userInterfaceStyle)
             let appearance = UINavigationBar.appearance(whenContainedInInstancesOf: [CoreNavigationController.self])
             appearance.barTintColor = nil
             appearance.tintColor = nil
@@ -444,6 +445,7 @@ extension StudentAppDelegate {
             AppEnvironment.shared.router = Router(routes: HorizonRoutes.routeHandlers())
             HorizonUI.setInstitutionColor(Brand.shared.primary)
             guard let window = window else { return }
+            window.updateInterfaceStyleWithoutTransition(.light)
             let controller = HorizonTabBarController()
             controller.view.layoutIfNeeded()
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {

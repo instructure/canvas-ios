@@ -84,11 +84,11 @@ private extension CGFloat {
     let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
     let todayGroup = TodoGroupViewModel(
         date: today,
-        items: [.makeShortText(id: "1")]
+        items: [.makeShortText(plannableId: "1")]
     )
     let tomorrowGroup = TodoGroupViewModel(
         date: tomorrow,
-        items: [.makeShortText(id: "1")]
+        items: [.makeShortText(plannableId: "1")]
     )
 
     HStack(spacing: 0) {
