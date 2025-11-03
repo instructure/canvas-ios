@@ -21,48 +21,69 @@ import SwiftUI
 
 struct UnenrolledProgramListItemWidgetView: View {
     let program: Program
-    let onTap: (Program) -> Void
+    let currentIndex: Int
+    let totalCount: Int
+    let isCounterVisible: Bool
     let focusedProgramID: AccessibilityFocusState<String?>.Binding
 
     init(
         program: Program,
-        onTap: @escaping (Program) -> Void,
+        currentIndex: Int,
+        totalCount: Int,
+        isCounterVisible: Bool,
         focusedProgramID: AccessibilityFocusState<String?>.Binding
     ) {
         self.program = program
-        self.onTap = onTap
+        self.currentIndex = currentIndex
+        self.totalCount = totalCount
+        self.isCounterVisible = isCounterVisible
         self.focusedProgramID = focusedProgramID
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
-            HorizonUI.StatusChip(
-                title: String(localized: "Program", bundle: .horizon),
-                style: .gray
-            )
-            .skeletonLoadable()
+            HStack(spacing: .zero) {
+                HorizonUI.StatusChip(
+                    title: String(localized: "Program", bundle: .horizon),
+                    style: .gray
+                )
+                .skeletonLoadable()
+                .accessibilityHidden(true)
+                Spacer()
+
+                if isCounterVisible {
+                    countView
+                        .accessibilityHidden(true)
+                }
+            }
 
             Text(descriptionText)
-            .foregroundStyle(Color.huiColors.text.body)
-            .huiTypography(.p1)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .multilineTextAlignment(.leading)
-            .skeletonLoadable()
-
-            buttonView
+                .foregroundStyle(Color.huiColors.text.body)
+                .huiTypography(.p1)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .multilineTextAlignment(.leading)
+                .skeletonLoadable()
+                .accessibilityHidden(true)
         }
+        .padding(.huiSpaces.space24)
+        .background(Color.huiColors.surface.pageSecondary)
+        .huiCornerRadius(level: .level5)
+        .huiElevation(level: .level4)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(combinedAccessibilityLabel))
+        .accessibilityFocused(focusedProgramID, equals: program.id)
     }
 
-    private var buttonView: some View {
-        HorizonUI.PrimaryButton(
-            String(localized: "Program details", bundle: .horizon),
-            type: .black,
-            isSmall: true,
-            fillsWidth: true
-        ) {
-            onTap(program)
-        }
-        .accessibilityFocused(focusedProgramID, equals: program.id)
+    private var countView: some View {
+        Text(
+            String(
+                format: String(localized: "%@ of %@"),
+                (currentIndex + 1).description,
+                totalCount.description
+            )
+        )
+        .huiTypography(.p1)
+        .foregroundStyle(Color.huiColors.text.dataPoint)
         .skeletonLoadable()
     }
 
@@ -77,6 +98,21 @@ struct UnenrolledProgramListItemWidgetView: View {
         )
     }
 
+    private var combinedAccessibilityLabel: String {
+        var components: [String] = []
+        components.append(String(localized: "Program"))
+        components.append(descriptionText)
+        if isCounterVisible {
+            let counterText = String(
+                format: String(localized: "Program %@ of %@"),
+                (currentIndex + 1).description,
+                totalCount.description
+            )
+            components.append(counterText)
+        }
+
+        return components.joined(separator: ", ")
+    }
 }
 
 #Preview {
@@ -92,7 +128,9 @@ struct UnenrolledProgramListItemWidgetView: View {
             courseCompletionCount: 10,
             courses: []
         ),
-        onTap: { _ in },
+        currentIndex: 0,
+        totalCount: 10,
+        isCounterVisible: true,
         focusedProgramID: $focusState
     )
 }

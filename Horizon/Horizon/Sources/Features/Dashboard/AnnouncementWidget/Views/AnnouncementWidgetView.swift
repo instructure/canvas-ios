@@ -21,31 +21,29 @@ import SwiftUI
 
 struct AnnouncementWidgetView: View {
     let announcement: NotificationModel
-    let onTap: (NotificationModel) -> Void
+    let currentIndex: Int
+    let totalCount: Int
+    let isCounterVisible: Bool
     let focusedAnnouncementID: AccessibilityFocusState<String?>.Binding
 
     init(
         announcement: NotificationModel,
+        currentIndex: Int,
+        totalCount: Int,
+        isCounterVisible: Bool,
         focusedAnnouncementID: AccessibilityFocusState<String?>.Binding,
-        onTap: @escaping ((NotificationModel) -> Void)
     ) {
         self.announcement = announcement
+        self.currentIndex = currentIndex
+        self.totalCount = totalCount
+        self.isCounterVisible = isCounterVisible
         self.focusedAnnouncementID = focusedAnnouncementID
-        self.onTap = onTap
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space4) {
             VStack(alignment: .leading, spacing: .huiSpaces.space4) {
-                HorizonUI.StatusChip(
-                    title: announcement.type.title,
-                    style: announcement.type.style
-                )
-                .padding(.bottom, .huiSpaces.space10)
-                .padding(.bottom, .huiSpaces.space2)
-                .skeletonLoadable()
-                .accessibilityHidden(true)
-
+                headerView
                 if let courseName = announcement.courseName {
                     Text(courseName)
                         .lineLimit(1)
@@ -74,23 +72,44 @@ struct AnnouncementWidgetView: View {
                     .skeletonLoadable()
                     .accessibilityHidden(true)
             }
+            .padding(.huiSpaces.space24)
+            .background(Color.huiColors.surface.pageSecondary)
+            .huiCornerRadius(level: .level5)
+            .huiElevation(level: .level4)
             .accessibilityElement(children: .combine)
             .accessibilityLabel(Text(combinedAccessibilityLabel))
-            buttonView
-                .skeletonLoadable()
+            .accessibilityFocused(focusedAnnouncementID, equals: announcement.id)
         }
     }
 
-    private var buttonView: some View {
-        HorizonUI.PrimaryButton(
-            String(localized: "Go to announcement", bundle: .horizon),
-            type: .grayOutline,
-            isSmall: true,
-            fillsWidth: true
-        ) {
-            onTap(announcement)
+    private var headerView: some View {
+        HStack(spacing: .zero) {
+            HorizonUI.StatusChip(
+                title: announcement.type.title,
+                style: announcement.type.style
+            )
+            .padding(.bottom, .huiSpaces.space10)
+            .padding(.bottom, .huiSpaces.space2)
+            .skeletonLoadable()
+            .accessibilityHidden(true)
+            Spacer()
+            if isCounterVisible {
+                countView
+            }
         }
-        .accessibilityFocused(focusedAnnouncementID, equals: announcement.id)
+    }
+
+    private var countView: some View {
+        Text(
+            String(
+                format: String(localized: "%@ of %@"),
+                (currentIndex + 1).description,
+                totalCount.description
+            )
+        )
+        .huiTypography(.p1)
+        .foregroundStyle(Color.huiColors.text.dataPoint)
+        .skeletonLoadable()
     }
 
     private var combinedAccessibilityLabel: String {
@@ -101,6 +120,16 @@ struct AnnouncementWidgetView: View {
         }
         components.append(announcement.accessibilityDate)
         components.append(announcement.accessibilityTitle)
+
+        if isCounterVisible {
+            let counterText = String(
+                format: String(localized: "Announcement %@ of %@"),
+                (currentIndex + 1).description,
+                totalCount.description
+            )
+            components.append(counterText)
+        }
+
         return components.joined(separator: ", ")
     }
 }
@@ -116,6 +145,10 @@ struct AnnouncementWidgetView: View {
             isRead: true,
             courseName: "Course Name",
             type: .announcement
-        ), focusedAnnouncementID: $focusState
-    ) { _ in }
+        ),
+        currentIndex: 1,
+        totalCount: 10,
+        isCounterVisible: true,
+        focusedAnnouncementID: $focusState
+    )
 }

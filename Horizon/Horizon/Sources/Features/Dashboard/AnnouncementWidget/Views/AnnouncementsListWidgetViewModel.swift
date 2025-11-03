@@ -27,12 +27,8 @@ final class AnnouncementsListWidgetViewModel {
     // MARK: - Outputs
 
     private(set) var state: HViewState = .loading
-    private(set) var currentAnnouncement: NotificationModel = NotificationModel.mock
-    private(set) var isNextButtonEnabled = false
-    private(set) var isPreviousButtonEnabled = false
-    private(set) var isNavigationButtonVisible = false
+    private(set) var isCounterViewVisible = false
     private(set) var announcements: [NotificationModel] = []
-    private(set) var currentIndex = 0
 
     // MARK: - Private Properties
 
@@ -91,6 +87,7 @@ final class AnnouncementsListWidgetViewModel {
         } else if announcements.isNotEmpty {
             state = .loading
         }
+        announcements = [NotificationModel.mock]
         isFirstLoading = false
         interactor
             .getNotifications(ignoreCache: ignoreCache)
@@ -110,36 +107,6 @@ final class AnnouncementsListWidgetViewModel {
     private func handleResponse(notifications: [NotificationModel]) {
         state = notifications.isEmpty ? .empty : .data
         announcements = notifications
-        currentIndex = 0
-        isNavigationButtonVisible = announcements.count > 1
-        if let firstAnnouncement = notifications.first {
-            currentAnnouncement = firstAnnouncement
-        }
-        updateButtonStates()
-    }
-
-    func goNextAnnouncement() {
-        guard announcements.isNotEmpty else { return }
-        currentIndex = min(currentIndex + 1, announcements.count - 1)
-        currentAnnouncement = announcements[currentIndex]
-        updateButtonStates()
-    }
-
-    func goPreviousAnnouncement() {
-        guard announcements.isNotEmpty else { return }
-        currentIndex = max(currentIndex - 1, 0)
-        currentAnnouncement = announcements[currentIndex]
-        updateButtonStates()
-    }
-
-    private func updateButtonStates() {
-        guard announcements.isNotEmpty else {
-            isNextButtonEnabled = false
-            isPreviousButtonEnabled = false
-            return
-        }
-
-        isNextButtonEnabled = currentIndex < announcements.count - 1
-        isPreviousButtonEnabled = currentIndex > 0
+        isCounterViewVisible = announcements.count > 1
     }
 }
