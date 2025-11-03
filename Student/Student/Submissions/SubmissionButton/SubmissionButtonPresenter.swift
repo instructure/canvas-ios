@@ -327,14 +327,14 @@ extension SubmissionButtonPresenter {
                 reportSuccess()
             } }
         }
-        let createSubmission = { (mediaID: String?, error: Error?) in
+        let createSubmission = { (media: MediaEntry?, error: Error?) in
             guard error == nil else { return doneUploading(error) }
             CreateSubmission(
                 context: .course(assignment.courseID),
                 assignmentID: assignment.id,
                 userID: userID,
                 submissionType: .media_recording,
-                mediaCommentID: mediaID,
+                mediaCommentID: media?.mediaID,
                 mediaCommentType: type,
                 mediaCommentSource: source
             ).fetch(environment: env) { _, _, error in doneUploading(error) }

@@ -397,18 +397,19 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
             let string = CoreWebView.jsString(url.absoluteString)
             webView.evaluateJavaScript("editor.insertVideoPlaceholder(\(string))")
         }
-        UploadMedia(type: .video, url: url, file: file, context: context).fetch { [weak self] mediaID, error in
-            self?.updateFile(file, error: error, mediaID: mediaID)
+        UploadMedia(type: .video, url: url, file: file, context: context).fetch { [weak self] media, error in
+            self?.updateFile(file, error: error, media: media)
         }
     }
 
-    private func updateFile(_ file: File, error: Error?, mediaID: String? = nil) {
+    private func updateFile(_ file: File, error: Error?, media: MediaEntry? = nil) {
         let context = env.uploadManager.viewContext
         context.performAndWait { [weak self] in
             do {
                 guard let file = try? context.existingObject(with: file.objectID) as? File else { return }
                 file.uploadError = error?.localizedDescription ?? file.uploadError
-                file.mediaEntryID = mediaID
+                file.mediaEntryID = media?.mediaID
+                file.mediaAttachmentID = media?.attachmentID
                 try context.save()
             } catch {
                 self?.showError(error)
@@ -421,6 +422,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
             "localFileURL": file.localFileURL?.absoluteString,
             "url": file.url?.absoluteString,
             "mediaEntryID": file.mediaEntryID,
+            "mediaAttachmentID": file.mediaAttachmentID,
             "uploadError": file.uploadError,
             "uploadErrorTitle": String(localized: "Failed Upload", bundle: .core),
             "bytesSent": file.bytesSent,
