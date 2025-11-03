@@ -32,8 +32,10 @@ extension CoreWebView {
         /// These are the constraints the webview had before entered fullscreen mode
         private var originalConstraints: [NSLayoutConstraint]
         private var originalWebViewBackgroundColor: UIColor?
+        private weak var originalSuperview: UIView?
 
         public init(webView: WKWebView) {
+            originalSuperview = webView.superview
             originalConstraints = (webView.superview?.constraintsAffecting(view: webView) ?? []) + webView.constraints
             fullScreenObservation = webView.observe(\.fullscreenState, options: []) { [weak self] webView, _  in
                 guard let self else { return }
@@ -90,6 +92,15 @@ extension CoreWebView {
             }
 
             webView.translatesAutoresizingMaskIntoConstraints = false
+
+            /// This is a walk-around for an issue that occurs on iOS 26, where
+            /// webView doesn't get moved back to the original superview upon
+            /// exiting fullScreen mode.
+            if let originalSuperview, originalSuperview !== webView.superview {
+                webView.removeFromSuperview()
+                originalSuperview.addSubview(webView)
+            }
+
             originalConstraints.forEach { $0.isActive = true }
             webView.superview?.layoutIfNeeded()
         }
