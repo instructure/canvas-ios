@@ -24,118 +24,75 @@ struct UnenrolledProgramListWidgetView: View {
     @Environment(\.dashboardRestoreFocusTrigger) private var restoreFocusTrigger
     @AccessibilityFocusState private var focusedProgramID: String?
     @State private var transitionDirection: Edge = .leading
+    @State private var currentCardIndex: Int? = 0
 
     // MARK: - Dependencies
 
-    private let viewModel: UnenrolledProgramListWidgetViewModel
+    private let programs: [Program]
     private let onTap: (Program) -> Void
 
     // MARK: - Init
 
     init(
-        viewModel: UnenrolledProgramListWidgetViewModel,
+        programs: [Program],
         onTap: @escaping (Program) -> Void
     ) {
-        self.viewModel = viewModel
+        self.programs = programs
         self.onTap = onTap
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space16) {
-            if let program = viewModel.currentProgram {
-                UnenrolledProgramListItemWidgetView(
-                    program: program,
-                    onTap: onTap,
-                    focusedProgramID: $focusedProgramID
-                )
-                .id(viewModel.currentProgram?.id)
-                .paginationTransition(transitionDirection)
-                if viewModel.isNavigationButtonVisible {
-                    programNavigationButtons
+        ScrollView(.horizontal) {
+            HStack(alignment: .center, spacing: .huiSpaces.space12) {
+                ForEach(Array(programs.enumerated()), id: \.offset) { index, program in
+                    programView(program: program)
+                        .id(index)
+                        .scaleEffect(
+                            currentCardIndex == index ? 1 : 0.8,
+                            anchor: (currentCardIndex ?? 0) < index ? .leading : .trailing
+                        )
                 }
             }
+            .scrollTargetLayout()
+            .padding(.bottom, .huiSpaces.space16)
         }
-        .padding(.huiSpaces.space24)
-        .background(Color.huiColors.surface.pageSecondary)
-        .huiCornerRadius(level: .level5)
-        .huiElevation(level: .level4)
+        .animation(.smooth, value: currentCardIndex)
+        .scrollPosition(id: $currentCardIndex)
+        .scrollTargetBehavior(.viewAligned)
+        .contentMargins(.horizontal, HorizonUI.spaces.space24, for: .scrollContent)
+        .scrollIndicators(.hidden)
         .onChange(of: restoreFocusTrigger) { _, _ in
             if let lastFocused = lastFocusedElement.wrappedValue,
                case .programInvitation(let id) = lastFocused {
                 DispatchQueue.main.async {
                     focusedProgramID = id
-
                 }
             }
         }
     }
 
-    private var programNavigationButtons: some View {
-        HStack {
-            HorizonUI.IconButton(
-                Image.huiIcons.chevronLeft,
-                type: .grayOutline,
-                isSmall: true
-            ) {
-                transitionDirection = .leading
-                withAnimation(.spring(response: 0.45, dampingFraction: 0.8)) {
-                    viewModel.goPreviousProgram()
-                }
-            }
-            .disabled(!viewModel.isPreviousButtonEnabled)
-            .opacity(viewModel.isPreviousButtonEnabled ? 1.0 : 0.5)
-            .skeletonLoadable()
-            .accessibilityLabel(Text("Go to the previous program"))
-            .accessibilityAddTraits(.isButton)
-            .accessibilityHidden(!viewModel.isPreviousButtonEnabled)
+    private func programView(program: Program) -> some View {
+        Button {
+            onTap(program)
+            lastFocusedElement.wrappedValue = .programInvitation(id: program.id)
 
-            Spacer()
-
-            Text(
-                String(
-                    format: String(localized: "%@ of %@"),
-                    (viewModel.currentInex + 1).description,
-                    viewModel.programs.count.description
-                )
+        } label: {
+            UnenrolledProgramListItemWidgetView(
+                program: program,
+                currentIndex: currentCardIndex ?? 0,
+                totalCount: programs.count,
+                isCounterVisible: programs.count > 1,
+                focusedProgramID: $focusedProgramID
             )
-            .huiTypography(.p1)
-            .foregroundStyle(Color.huiColors.text.title)
-            .skeletonLoadable()
-            .accessibilityLabel(
-                Text(
-                    String(
-                        format: String(localized: "Program %@ of %@"),
-                        (viewModel.currentInex + 1).description,
-                        viewModel.programs.count.description
-                    )
-                )
-            )
-
-            Spacer()
-
-            HorizonUI.IconButton(
-                Image.huiIcons.chevronRight,
-                type: .grayOutline,
-                isSmall: true
-            ) {
-                transitionDirection = .trailing
-                withAnimation(.spring(response: 0.45, dampingFraction: 0.8)) {
-                    viewModel.goNextProgram()
-                }
-            }
-            .disabled(!viewModel.isNextButtonEnabled)
-            .opacity(viewModel.isNextButtonEnabled ? 1.0 : 0.5)
-            .skeletonLoadable()
-            .accessibilityLabel(Text("Go to the next program"))
-            .accessibilityAddTraits(.isButton)
-            .accessibilityHidden(!viewModel.isNextButtonEnabled)
         }
+        .containerRelativeFrame(.horizontal)
     }
+
 }
 
 #Preview {
     UnenrolledProgramListWidgetView(
-        viewModel: .init(programs: [
+        programs: [
             .init(
                 id: "1",
                 name: "Dolor Sit Amet Program",
@@ -154,6 +111,6 @@ struct UnenrolledProgramListWidgetView: View {
                 courseCompletionCount: 10,
                 courses: []
             )
-        ])
+        ]
     ) { _ in }
 }
