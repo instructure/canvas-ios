@@ -72,7 +72,6 @@ struct UnenrolledProgramListWidgetView: View {
         }
     }
 
-
     private func programView(program: Program) -> some View {
         Button {
             onTap(program)
