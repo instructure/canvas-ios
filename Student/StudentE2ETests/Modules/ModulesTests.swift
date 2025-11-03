@@ -52,7 +52,8 @@ class ModulesTests: E2ETestCase {
         XCTAssertEqual(assignmentTitle.label, moduleAssignment.title)
         XCTAssertVisible(assignmentPoints)
 
-        let pointsString = moduleAssignment.points_possible! == 1 ? "point" : "points"
+        // expecting "pt/pts" instead of "point/points", even though the `accessibilityLabel` has and reads "point/points"
+        let pointsString = moduleAssignment.points_possible! == 1 ? "pt" : "pts"
         XCTAssertEqual(assignmentPoints.label, "\(moduleAssignment.points_possible!) \(pointsString)")
 
         // MARK: Check discussion module item
