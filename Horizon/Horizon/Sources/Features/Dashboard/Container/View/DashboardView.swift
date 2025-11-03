@@ -168,18 +168,11 @@ struct DashboardView: View {
     }
 
     private var dataWidgetsView: some View {
-        ScrollView(.horizontal) {
-            HStack(alignment: .center, spacing: .huiSpaces.space12) {
-                completedWidgetView
-                timeSpentWidgetView
-                skillsCountWidgetView
-            }
-            .padding(.top, .huiSpaces.space12 - 4)
-            .padding(.bottom, .huiSpaces.space16)
-            .padding(.horizontal, .huiSpaces.space24)
-        }
-        .scrollIndicators(.hidden)
-        .scrollBounceBehavior(.basedOnSize)
+        WidgetsView(
+            skillsCountWidgetView: skillsCountWidgetView,
+            timeSpentWidgetView: timeSpentWidgetView,
+            completedWidgetView: completedWidgetView
+        )
     }
 }
 

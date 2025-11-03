@@ -22,7 +22,7 @@ import SwiftUI
 struct TimeSpentWidgetHeader: View {
     var body: some View {
         HStack {
-            Text("Time", bundle: .horizon)
+            Text("Time learning", bundle: .horizon)
                 .foregroundStyle(Color.huiColors.text.dataPoint)
                 .huiTypography(.labelMediumBold)
                 .frame(alignment: .leading)
