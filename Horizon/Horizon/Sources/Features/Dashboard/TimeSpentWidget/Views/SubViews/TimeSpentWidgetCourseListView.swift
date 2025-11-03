@@ -23,6 +23,7 @@ struct TimeSpentWidgetCourseListView: View {
     @State private var isListCoursesVisiable = false
     let courses: [TimeSpentWidgetModel]
     @State var selectedCourse: TimeSpentWidgetModel?
+    let focusedCourseButton: AccessibilityFocusState<Bool?>.Binding
     let onSelect: (TimeSpentWidgetModel?) -> Void
 
     var body: some View {
@@ -34,6 +35,7 @@ struct TimeSpentWidgetCourseListView: View {
         }
         .accessibilityLabel(Text(selectedCourse?.titleAccessibilityButtonLabel ?? ""))
         .accessibilityHint(Text("Double tab to select a different course", bundle: .horizon))
+        .accessibilityFocused(focusedCourseButton, equals: true)
         .popover(isPresented: $isListCoursesVisiable, attachmentAnchor: .point(.center), arrowEdge: .top) {
             courseListView
                 .presentationCompactAdaptation(.none)
@@ -63,9 +65,20 @@ struct TimeSpentWidgetCourseListView: View {
 }
 
 #Preview {
-    TimeSpentWidgetCourseListView(courses: [
-        .init(id: "1", courseName: "Introduction to SwiftUI", minutesPerDay: 125),
-        .init(id: "2", courseName: "Advanced iOS Development", minutesPerDay: 90),
-        .init(id: "3", courseName: "UI/UX Design Principles", minutesPerDay: 45)
-    ]) { _ in }
+    struct PreviewWrapper: View {
+        @AccessibilityFocusState private var focused: Bool?
+
+        var body: some View {
+            TimeSpentWidgetCourseListView(
+                courses: [
+                    .init(id: "1", courseName: "Introduction to SwiftUI", minutesPerDay: 125),
+                    .init(id: "2", courseName: "Advanced iOS Development", minutesPerDay: 90),
+                    .init(id: "3", courseName: "UI/UX Design Principles", minutesPerDay: 45)
+                ],
+                focusedCourseButton: $focused
+            ) { _ in }
+        }
+    }
+
+    return PreviewWrapper()
 }

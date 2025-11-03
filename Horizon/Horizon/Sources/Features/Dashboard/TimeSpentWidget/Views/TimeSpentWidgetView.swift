@@ -20,6 +20,8 @@ import HorizonUI
 import SwiftUI
 
 struct TimeSpentWidgetView: View {
+    @Environment(\.dashboardLastFocusedElement) private var lastFocusedElement
+    @AccessibilityFocusState private var focusedCourseButton: Bool?
     private let viewModel: TimeSpentWidgetViewModel
 
     init(viewModel: TimeSpentWidgetViewModel) {
@@ -71,12 +73,14 @@ struct TimeSpentWidgetView: View {
             if viewModel.isListCoursesVisiable {
                 TimeSpentWidgetCourseListView(
                     courses: viewModel.courses,
-                    selectedCourse: viewModel.selectedCourse
+                    selectedCourse: viewModel.selectedCourse,
+                    focusedCourseButton: $focusedCourseButton
                 ) { course in
+                    lastFocusedElement.wrappedValue = .timeSpent
                     viewModel.selectedCourse = course
+                    focusedCourseButton = true
                 }
                 .frame(minWidth: 150)
-                .fixedSize(horizontal: true, vertical: false)
             }
             Spacer()
         }
