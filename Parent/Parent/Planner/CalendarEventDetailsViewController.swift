@@ -195,13 +195,15 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
 
     @IBAction func reminderDateChanged(selectedDate: Date?) {
         guard let selectedDate = selectedDate, let event = events.first else { return }
-        localNotifications.setReminder(for: event, at: selectedDate, studentID: studentID) { error in performUIUpdate {
-            if error == nil {
-                self.reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
-            } else {
-                self.reminderSwitch.setOn(false, animated: true)
-                self.reminderSwitchChanged()
+        localNotifications.setReminder(for: event, at: selectedDate, studentID: studentID) { error in
+            Task { @MainActor in
+                if error == nil {
+                    self.reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
+                } else {
+                    self.reminderSwitch.setOn(false, animated: true)
+                    self.reminderSwitchChanged()
+                }
             }
-        } }
+        }
     }
 }
