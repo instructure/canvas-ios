@@ -30,6 +30,10 @@ final class AnnouncementsListWidgetViewModel {
     private(set) var isCounterViewVisible = false
     private(set) var announcements: [NotificationModel] = []
 
+    // MARK: - Input/Outputs
+
+    var currentCardIndex: Int? = 0
+
     // MARK: - Private Properties
 
     private var subscriptions = Set<AnyCancellable>()
@@ -87,6 +91,7 @@ final class AnnouncementsListWidgetViewModel {
         } else if announcements.isNotEmpty {
             state = .loading
         }
+        currentCardIndex = 0
         announcements = [NotificationModel.mock]
         isFirstLoading = false
         interactor
@@ -108,5 +113,6 @@ final class AnnouncementsListWidgetViewModel {
         state = notifications.isEmpty ? .empty : .data
         announcements = notifications
         isCounterViewVisible = announcements.count > 1
+        currentCardIndex = .zero
     }
 }

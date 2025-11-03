@@ -66,8 +66,6 @@ struct AnnouncementWidgetView: View {
                     .huiTypography(.p1)
                     .multilineTextAlignment(.leading)
                     .foregroundStyle(Color.huiColors.text.body)
-                    .padding(.bottom, .huiSpaces.space10)
-                    .padding(.bottom, .huiSpaces.space2)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .skeletonLoadable()
                     .accessibilityHidden(true)

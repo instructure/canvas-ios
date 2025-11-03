@@ -46,6 +46,7 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
         XCTAssertTrue(testee.announcements.contains(where: { $0.id == "1" }))
         XCTAssertTrue(testee.announcements.contains(where: { $0.id == "3" }))
         XCTAssertTrue(testee.isCounterViewVisible)
+        XCTAssertEqual(testee.currentCardIndex, 0)
     }
 
     func testFetchAnnouncementsWithEmptyResponse() {

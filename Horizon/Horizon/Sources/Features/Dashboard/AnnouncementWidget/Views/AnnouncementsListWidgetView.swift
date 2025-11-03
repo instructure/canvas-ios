@@ -27,7 +27,6 @@ struct AnnouncementsListWidgetView: View {
     @State private var viewModel: AnnouncementsListWidgetViewModel
     @AccessibilityFocusState private var focusedAnnouncementID: String?
     @State private var transitionDirection: Edge = .leading
-    @State private var currentCardIndex: Int? = 0
 
     init(viewModel: AnnouncementsListWidgetViewModel) {
         _viewModel = State(initialValue: viewModel)
@@ -66,25 +65,25 @@ struct AnnouncementsListWidgetView: View {
         ScrollView(.horizontal) {
             HStack(alignment: .center, spacing: .huiSpaces.space12) {
                 ForEach(Array(viewModel.announcements.enumerated()), id: \.offset) { index, announcement in
-                    announcementView(announcement: announcement)
+                    announcementView(announcement: announcement, index: index)
                         .id(index)
                         .scaleEffect(
-                            currentCardIndex == index ? 1 : 0.9,
-                            anchor: (currentCardIndex ?? 0) < index ? .leading : .trailing
+                            viewModel.currentCardIndex == index ? 1 : 0.9,
+                            anchor: (viewModel.currentCardIndex ?? 0) < index ? .leading : .trailing
                         )
                 }
             }
             .scrollTargetLayout()
             .padding(.bottom, .huiSpaces.space16)
         }
-        .animation(.smooth, value: currentCardIndex)
-        .scrollPosition(id: $currentCardIndex)
+        .animation(.smooth, value: viewModel.currentCardIndex)
+        .scrollPosition(id: $viewModel.currentCardIndex)
         .scrollTargetBehavior(.viewAligned)
         .contentMargins(.horizontal, HorizonUI.spaces.space24, for: .scrollContent)
         .scrollIndicators(.hidden)
     }
 
-    private func announcementView(announcement: NotificationModel) -> some View {
+    private func announcementView(announcement: NotificationModel, index: Int) -> some View {
         Button {
             lastFocusedElement.wrappedValue = .announcement(id: announcement.id)
             viewModel.navigateToAnnouncement(
@@ -94,7 +93,7 @@ struct AnnouncementsListWidgetView: View {
         } label: {
             AnnouncementWidgetView(
                 announcement: announcement,
-                currentIndex: currentCardIndex ?? 0,
+                currentIndex: index,
                 totalCount: viewModel.announcements.count,
                 isCounterVisible: viewModel.isCounterViewVisible,
                 focusedAnnouncementID: $focusedAnnouncementID

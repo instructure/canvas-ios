@@ -66,7 +66,6 @@ struct UnenrolledProgramListWidgetView: View {
                case .programInvitation(let id) = lastFocused {
                 DispatchQueue.main.async {
                     focusedProgramID = id
-
                 }
             }
         }
