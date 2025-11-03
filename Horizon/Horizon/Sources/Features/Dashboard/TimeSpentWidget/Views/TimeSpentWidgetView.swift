@@ -66,6 +66,8 @@ struct TimeSpentWidgetView: View {
         HStack(spacing: .huiSpaces.space8) {
             Text(viewModel.selectedCourse?.formattedTime ?? "")
                 .accessibilityLabel(Text(viewModel.selectedCourse?.accessibilityCourseTimeSpent ?? ""))
+                .fixedSize(horizontal: true, vertical: false)
+                .skeletonLoadable()
             if viewModel.isListCoursesVisiable {
                 TimeSpentWidgetCourseListView(
                     courses: viewModel.courses,
