@@ -36,7 +36,7 @@ class APIPlannableTests: XCTestCase {
         XCTAssertEqual(req.path, "users/1/planner/items")
     }
 
-	func testQuery() {
+    func testQuery() {
         let start = Date().addDays(-1)
         let end = Date().addDays(2)
         req = GetPlannablesRequest(startDate: start, endDate: end, contextCodes: ["course_1"], filter: "new_activity")
@@ -47,16 +47,16 @@ class APIPlannableTests: XCTestCase {
             URLQueryItem(name: "context_codes[]", value: "course_1"),
             URLQueryItem(name: "filter", value: "new_activity")
         ]
-		XCTAssertEqual(req.queryItems, expected)
-	}
+        XCTAssertEqual(req.queryItems, expected)
+    }
 
-	func testModel() {
-		let model = APIPlannable.make()
-		XCTAssertNotNil(model)
+    func testModel() {
+        let model = APIPlannable.make()
+        XCTAssertNotNil(model)
 
         let override = APIPlannerOverride.make()
         XCTAssertNotNil(override)
-	}
+    }
 
     func testAPIPlannableContextWhenContextTypeAndIDIsSet() {
         let p = APIPlannable.make(course_id: "42", context_type: "Course", plannable_type: "assignment")

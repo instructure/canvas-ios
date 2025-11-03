@@ -22,7 +22,14 @@ import XCTest
 class APIAccountNotificationTests: XCTestCase {
     func testGetAccountNotificationsRequest() {
         XCTAssertEqual(GetAccountNotificationsRequest().path, "accounts/self/account_notifications")
-        XCTAssertEqual(GetAccountNotificationsRequest().queryItems, [ URLQueryItem(name: "per_page", value: "100"), URLQueryItem(name: "show_is_closed", value: "1") ])
+        XCTAssertEqual(
+            GetAccountNotificationsRequest().queryItems,
+            [
+                URLQueryItem(name: "per_page", value: "100"),
+                URLQueryItem(name: "include_past", value: "0"),
+                URLQueryItem(name: "show_is_closed", value: "1")
+            ]
+        )
     }
 
     func testGetAccountNotificationRequest() {

@@ -128,8 +128,9 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
                 AssignmentListView(
                     sections: viewModel.sections,
                     identifierGroup: "AssignmentList",
-                    navigateToDetailsAction: {
-                        viewModel.didSelectAssignment.send(($0, controller))
+                    selectedAssignmentId: viewModel.selectedAssignmentId,
+                    navigateToDetailsAction: { url, id in
+                        viewModel.didSelectAssignment.send((url, id, controller))
                     }
                 )
             }

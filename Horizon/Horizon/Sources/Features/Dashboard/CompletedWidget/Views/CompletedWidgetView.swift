@@ -72,7 +72,7 @@ struct CompletedWidgetView: View {
         .accessibilityLabel(
             Text(
                 String.localizedStringWithFormat(
-                        String(localized: "Count of completed modules %@", bundle: .horizon),
+                        String(localized: "%@ completed modules", bundle: .horizon),
                         viewModel.totalCount.description,
                     )
             )

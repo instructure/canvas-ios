@@ -193,9 +193,9 @@ class ModulePublishMenuTests: XCTestCase {
     func testUnpublishItem() {
         let actionExpectation = expectation(description: "Action performed")
         let testee = UIMenu.makePublishModuleItemMenu(action: .unpublish,
-                                      		          host: hostView,
-	                                                  router: router,
-      		                                          actionDidPerform: { actionExpectation.fulfill() })
+                                                      host: hostView,
+                                                      router: router,
+                                                      actionDidPerform: { actionExpectation.fulfill() })
         let publishItem = testee.children[0] as! UIAction
 
         publishItem.performWithSender(nil, target: nil)

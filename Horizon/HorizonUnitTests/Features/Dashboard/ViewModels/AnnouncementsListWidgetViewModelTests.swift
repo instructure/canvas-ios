@@ -42,14 +42,14 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
 
         // Then
         XCTAssertEqual(testee.state, .data)
-        XCTAssertEqual(testee.announcements.count, 2)
+        XCTAssertEqual(testee.announcements.count, 4)
         XCTAssertTrue(testee.announcements.contains(where: { $0.id == "1" }))
         XCTAssertTrue(testee.announcements.contains(where: { $0.id == "3" }))
         XCTAssertEqual(testee.currentAnnouncement.id, "1")
-        XCTAssertEqual(testee.currentInex, 0)
+        XCTAssertEqual(testee.currentIndex, 0)
         XCTAssertFalse(testee.isPreviousButtonEnabled)
         XCTAssertTrue(testee.isNextButtonEnabled)
-        XCTAssertTrue(testee.isNavigationButtonVisiable)
+        XCTAssertTrue(testee.isNavigationButtonVisible)
     }
 
     func testFetchAnnouncementsWithEmptyResponse() {
@@ -63,7 +63,7 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
         XCTAssertTrue(testee.announcements.isEmpty)
         XCTAssertFalse(testee.isPreviousButtonEnabled)
         XCTAssertFalse(testee.isNextButtonEnabled)
-        XCTAssertFalse(testee.isNavigationButtonVisiable)
+        XCTAssertFalse(testee.isNavigationButtonVisible)
     }
 
     func testFetchAnnouncementsOnErrorReturnsEmptyData() {
@@ -117,7 +117,7 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
 
         // Initially at first announcement
         XCTAssertEqual(testee.currentAnnouncement.id, "1")
-        XCTAssertEqual(testee.currentInex, 0)
+        XCTAssertEqual(testee.currentIndex, 0)
         XCTAssertFalse(testee.isPreviousButtonEnabled)
         XCTAssertTrue(testee.isNextButtonEnabled)
 
@@ -126,7 +126,7 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
 
         // Then
         XCTAssertEqual(testee.currentAnnouncement.id, "2")
-        XCTAssertEqual(testee.currentInex, 1)
+        XCTAssertEqual(testee.currentIndex, 1)
         XCTAssertTrue(testee.isPreviousButtonEnabled)
         XCTAssertTrue(testee.isNextButtonEnabled)
 
@@ -135,7 +135,7 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
 
         // Then
         XCTAssertEqual(testee.currentAnnouncement.id, "3")
-        XCTAssertEqual(testee.currentInex, 2)
+        XCTAssertEqual(testee.currentIndex, 2)
         XCTAssertTrue(testee.isPreviousButtonEnabled)
         XCTAssertFalse(testee.isNextButtonEnabled)
 
@@ -144,7 +144,7 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
 
         // Then - should stay at the last announcement
         XCTAssertEqual(testee.currentAnnouncement.id, "3")
-        XCTAssertEqual(testee.currentInex, 2)
+        XCTAssertEqual(testee.currentIndex, 2)
         XCTAssertTrue(testee.isPreviousButtonEnabled)
         XCTAssertFalse(testee.isNextButtonEnabled)
     }
@@ -164,7 +164,7 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
 
         // Verify we're at the last announcement
         XCTAssertEqual(testee.currentAnnouncement.id, "3")
-        XCTAssertEqual(testee.currentInex, 2)
+        XCTAssertEqual(testee.currentIndex, 2)
         XCTAssertTrue(testee.isPreviousButtonEnabled)
         XCTAssertFalse(testee.isNextButtonEnabled)
 
@@ -173,7 +173,7 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
 
         // Then
         XCTAssertEqual(testee.currentAnnouncement.id, "2")
-        XCTAssertEqual(testee.currentInex, 1)
+        XCTAssertEqual(testee.currentIndex, 1)
         XCTAssertTrue(testee.isPreviousButtonEnabled)
         XCTAssertTrue(testee.isNextButtonEnabled)
 
@@ -182,7 +182,7 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
 
         // Then
         XCTAssertEqual(testee.currentAnnouncement.id, "1")
-        XCTAssertEqual(testee.currentInex, 0)
+        XCTAssertEqual(testee.currentIndex, 0)
         XCTAssertFalse(testee.isPreviousButtonEnabled)
         XCTAssertTrue(testee.isNextButtonEnabled)
 
@@ -191,7 +191,7 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
 
         // Then - should stay at the first announcement
         XCTAssertEqual(testee.currentAnnouncement.id, "1")
-        XCTAssertEqual(testee.currentInex, 0)
+        XCTAssertEqual(testee.currentIndex, 0)
         XCTAssertFalse(testee.isPreviousButtonEnabled)
         XCTAssertTrue(testee.isNextButtonEnabled)
     }
@@ -250,7 +250,7 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
         let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
 
         // Then
-        XCTAssertFalse(testee.isNavigationButtonVisiable)
+        XCTAssertFalse(testee.isNavigationButtonVisible)
     }
 
     func testMarkAsRead() {

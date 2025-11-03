@@ -19,26 +19,23 @@
 import Foundation
 import Combine
 
-public protocol TodoInteractor {
-    var todoGroups: AnyPublisher<[TodoGroupViewModel], Never> { get }
+protocol TodoInteractor {
+    var todoGroups: CurrentValueSubject<[TodoGroupViewModel], Never> { get }
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
+    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error>
 }
 
-public final class TodoInteractorLive: TodoInteractor {
-    public var todoGroups: AnyPublisher<[TodoGroupViewModel], Never> {
-        todoGroupsSubject.eraseToAnyPublisher()
-    }
+final class TodoInteractorLive: TodoInteractor {
+    var todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([])
 
-    private let todoGroupsSubject = CurrentValueSubject<[TodoGroupViewModel], Never>([])
     private let env: AppEnvironment
-
     private var subscriptions = Set<AnyCancellable>()
 
     init(env: AppEnvironment) {
         self.env = env
     }
 
-    public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
         let startDate = Clock.now.addDays(-28)
         let endDate = Clock.now.addDays(28)
         let currentUserID = env.currentSession?.userID
@@ -60,21 +57,49 @@ public final class TodoInteractorLive: TodoInteractor {
                 .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
                 .map { plannables in
                     let coursesByCanvasContextIds = Dictionary(uniqueKeysWithValues: courses.map { ($0.canvasContextID, $0) })
-                    return plannables.compactMap { plannable in
-                        let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
-                        return TodoItemViewModel(plannable, course: course)
-                    }
+                    return plannables
+                        .filter { !$0.isMarkedComplete && !$0.isSubmitted }
+                        .compactMap { plannable in
+                            let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
+                            return TodoItemViewModel(plannable, course: course)
+                        }
                 }
             }
-            .map { [weak todoGroupsSubject] (todos: [TodoItemViewModel]) in
+            .map { [weak todoGroups] (todos: [TodoItemViewModel]) in
                 TabBarBadgeCounts.todoListCount = UInt(todos.count)
 
                 // Group todos by day
                 let groupedTodos = Self.groupTodosByDay(todos)
-                todoGroupsSubject?.value = groupedTodos
+                todoGroups?.value = groupedTodos
                 return ()
             }
             .eraseToAnyPublisher()
+    }
+
+    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
+        let useCase = MarkPlannableItemDone(
+            plannableId: item.plannableId,
+            plannableType: item.plannableType,
+            overrideId: item.overrideId,
+            done: done
+        )
+
+        return useCase.fetchWithFuture(environment: env)
+            .map { [weak self] _ in
+                self?.updateOverrideId(for: item)
+                let eventName = done ? "todo_item_marked_done" : "todo_item_marked_undone"
+                Analytics.shared.logEvent(eventName)
+                return ()
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func updateOverrideId(for item: TodoItemViewModel) {
+        let scope = Scope.plannable(id: item.plannableId)
+        if let plannable: Plannable = env.database.viewContext.fetch(scope: scope).first,
+           let overrideId = plannable.plannerOverrideId {
+            item.overrideId = overrideId
+        }
     }
 
     private static func groupTodosByDay(_ todos: [TodoItemViewModel]) -> [TodoGroupViewModel] {
@@ -93,12 +118,12 @@ public final class TodoInteractorLive: TodoInteractor {
 
 #if DEBUG
 
-public final class TodoInteractorPreview: TodoInteractor {
-    public let todoGroups: AnyPublisher<[TodoGroupViewModel], Never>
+final class TodoInteractorPreview: TodoInteractor {
+    let todoGroups: CurrentValueSubject<[TodoGroupViewModel], Never>
 
-    public init(todoGroups: [TodoGroupViewModel]? = nil) {
+    init(todoGroups: [TodoGroupViewModel]? = nil) {
         if let todoGroups {
-            self.todoGroups = Publishers.typedJust(todoGroups)
+            self.todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>(todoGroups)
             return
         }
 
@@ -108,20 +133,24 @@ public final class TodoInteractorPreview: TodoInteractor {
         let todayGroup = TodoGroupViewModel(
             date: today,
             items: [
-                .makeShortText(id: "3")
+                .makeShortText(plannableId: "3")
             ]
         )
         let tomorrowGroup = TodoGroupViewModel(
             date: tomorrow,
             items: [
-                .makeShortText(id: "1"),
-                .makeLongText(id: "2")
+                .makeShortText(plannableId: "1"),
+                .makeLongText(plannableId: "2")
             ]
         )
-        self.todoGroups = Publishers.typedJust([todayGroup, tomorrowGroup])
+        self.todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([todayGroup, tomorrowGroup])
     }
 
-    public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+        Publishers.typedJust(())
+    }
+
+    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
         Publishers.typedJust(())
     }
 }

@@ -24,10 +24,13 @@ public struct GetAccountNotifications: CollectionUseCase {
     public typealias Response = Request.Response
 
     public var cacheKey: String? { "accounts/self/account_notifications" }
-    public var request: GetAccountNotificationsRequest { GetAccountNotificationsRequest() }
+    public var request: GetAccountNotificationsRequest { GetAccountNotificationsRequest(includePast: includePast) }
     public var scope: Scope { .all(orderBy: #keyPath(AccountNotification.endAt), ascending: false) }
 
-    public init() {}
+    private let includePast: Bool
+    public init(includePast: Bool = false) {
+        self.includePast = includePast
+    }
 }
 
 public class GetAccountNotification: APIUseCase {

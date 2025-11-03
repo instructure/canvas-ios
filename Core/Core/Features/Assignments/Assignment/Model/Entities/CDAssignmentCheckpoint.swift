@@ -27,7 +27,7 @@ public class CDAssignmentCheckpoint: NSManagedObject {
     @NSManaged public var tag: String
     @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
     public var discussionCheckpointStep: DiscussionCheckpointStep? {
-        get { return discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(value: newValue) }
+        get { discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(newValue) }
     }
 
     @NSManaged private var pointsPossibleRaw: NSNumber?

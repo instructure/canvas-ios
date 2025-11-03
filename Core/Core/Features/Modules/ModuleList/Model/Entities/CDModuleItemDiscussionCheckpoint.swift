@@ -28,7 +28,7 @@ final class CDModuleItemDiscussionCheckpoint: NSManagedObject {
 
     @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
     var discussionCheckpointStep: DiscussionCheckpointStep? {
-        get { return discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(value: newValue) }
+        get { discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(newValue) }
     }
 
     @NSManaged private var pointsPossibleRaw: NSNumber?

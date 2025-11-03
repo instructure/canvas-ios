@@ -36,42 +36,46 @@ struct AnnouncementWidgetView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space4) {
-            HorizonUI.StatusChip(
-                title: announcement.type.title,
-                style: announcement.type.style
-            )
-            .padding(.bottom, .huiSpaces.space10)
-            .padding(.bottom, .huiSpaces.space2)
-            .skeletonLoadable()
-
-            if let courseName = announcement.courseName {
-                Text(courseName)
-                    .lineLimit(1)
-                    .huiTypography(.p2)
-                    .foregroundStyle(Color.huiColors.text.dataPoint)
-                    .accessibilityLabel(announcement.accessibilityCourseName)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .skeletonLoadable()
-            }
-
-            Text(announcement.dateFormatted)
-                .huiTypography(.p3)
-                .foregroundStyle(Color.huiColors.text.timestamp)
-                .accessibilityLabel(announcement.accessibilityDate)
-                .padding(.bottom, .huiSpaces.space4)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .skeletonLoadable()
-
-            Text(announcement.title)
-                .huiTypography(.p1)
-                .multilineTextAlignment(.leading)
-                .foregroundStyle(Color.huiColors.text.body)
-                .accessibilityLabel(announcement.accessibilityTitle)
+            VStack(alignment: .leading, spacing: .huiSpaces.space4) {
+                HorizonUI.StatusChip(
+                    title: announcement.type.title,
+                    style: announcement.type.style
+                )
                 .padding(.bottom, .huiSpaces.space10)
                 .padding(.bottom, .huiSpaces.space2)
-                .frame(maxWidth: .infinity, alignment: .leading)
                 .skeletonLoadable()
+                .accessibilityHidden(true)
 
+                if let courseName = announcement.courseName {
+                    Text(courseName)
+                        .lineLimit(1)
+                        .huiTypography(.p2)
+                        .foregroundStyle(Color.huiColors.text.dataPoint)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .skeletonLoadable()
+                        .accessibilityHidden(true)
+                }
+
+                Text(announcement.dateFormatted)
+                    .huiTypography(.p3)
+                    .foregroundStyle(Color.huiColors.text.timestamp)
+                    .padding(.bottom, .huiSpaces.space4)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .skeletonLoadable()
+                    .accessibilityHidden(true)
+
+                Text(announcement.title)
+                    .huiTypography(.p1)
+                    .multilineTextAlignment(.leading)
+                    .foregroundStyle(Color.huiColors.text.body)
+                    .padding(.bottom, .huiSpaces.space10)
+                    .padding(.bottom, .huiSpaces.space2)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .skeletonLoadable()
+                    .accessibilityHidden(true)
+            }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(Text(combinedAccessibilityLabel))
             buttonView
                 .skeletonLoadable()
         }
@@ -80,13 +84,24 @@ struct AnnouncementWidgetView: View {
     private var buttonView: some View {
         HorizonUI.PrimaryButton(
             String(localized: "Go to announcement", bundle: .horizon),
-            type: .darkOutline,
+            type: .grayOutline,
             isSmall: true,
             fillsWidth: true
         ) {
             onTap(announcement)
         }
         .accessibilityFocused(focusedAnnouncementID, equals: announcement.id)
+    }
+
+    private var combinedAccessibilityLabel: String {
+        var components: [String] = []
+        components.append(announcement.type.title)
+        if announcement.courseName != nil {
+            components.append(announcement.accessibilityCourseName)
+        }
+        components.append(announcement.accessibilityDate)
+        components.append(announcement.accessibilityTitle)
+        return components.joined(separator: ", ")
     }
 }
 
