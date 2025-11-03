@@ -136,7 +136,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
                 newParams[key] = value
             } else if key.lowercased().hasSuffix("id") {
                 newParams[key] = value.localID
-                newUrl.path = newUrl.path.replacingOccurrences(of: value, with: value.localID)
+                newUrl.path = newUrl.path.replacingPathComponent(of: value, with: value.localID)
             } else {
                 newParams[key] = value
             }
