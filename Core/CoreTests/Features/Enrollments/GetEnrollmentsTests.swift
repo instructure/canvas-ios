@@ -86,26 +86,6 @@ class GetEnrollmentsTests: CoreTestCase {
         XCTAssertEqual(modified.request.userID, "someUserID")
     }
 
-    func test_modified_expandsUserIDForNonRootEnvironment() {
-        let session = LoginSession.make(accessToken: "7053~token", baseURL: URL(string: "https://canvas.instructure.com")!)
-        environment.userDidLogin(session: session)
-
-        let overrideURL = URL(string: "https://override.instructure.com")!
-        let env = AppEnvironment.resolved(for: overrideURL, courseShardID: "7053")
-
-        let testee = GetEnrollments(
-            context: .course("123"),
-            userID: "456"
-        )
-
-        // WHEN
-        let modified = testee.modified(for: env)
-
-        // THEN
-        XCTAssertEqual(modified.context.canvasContextID, "course_123")
-        XCTAssertEqual(modified.request.userID, "70530000000000456")
-    }
-
     func test_write_savesEnrollmentToDatabase() {
         let testee = GetEnrollments(
             context: .course("1"),

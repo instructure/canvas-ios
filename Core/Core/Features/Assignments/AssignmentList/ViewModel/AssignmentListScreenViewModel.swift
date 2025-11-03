@@ -186,7 +186,7 @@ public class AssignmentListScreenViewModel: ObservableObject {
             isFilterIconSolid = selectedGradingPeriodId != defaultGradingPeriodId || (isFilteringCustom && selectedFilterOptionsStudent != initialFilterOptionsStudent)
         }
 
-        assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID.localID, gradingPeriodID: selectedGradingPeriodId)) { [weak self] in
+        assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: selectedGradingPeriodId)) { [weak self] in
             self?.assignmentGroupsDidUpdate()
         }
 

@@ -26,7 +26,7 @@ class CourseSettingsViewModelTests: CoreTestCase {
         api.mock(GetUserSettings(userID: "self"), value: .make(hide_dashcard_color_overlays: true))
         api.mock(GetCourse(courseID: "1"), value: .make())
 
-        let testee = CourseSettingsViewModel(context: .course("1"))
+        let testee = CourseSettingsViewModel(context: .course("1"), environment: environment)
         XCTAssertEqual(testee.state, .loading)
         testee.viewDidAppear()
 
@@ -42,7 +42,7 @@ class CourseSettingsViewModelTests: CoreTestCase {
         api.mock(GetUserSettings(userID: "self"), value: .make(hide_dashcard_color_overlays: true))
         api.mock(GetCourse(courseID: "1"), value: .make(default_view: .syllabus))
 
-        let testee = CourseSettingsViewModel(context: .course("1"))
+        let testee = CourseSettingsViewModel(context: .course("1"), environment: environment)
         testee.viewDidAppear()
         testee.defaultViewSelectorTapped(router: router, viewController: WeakViewController(UIViewController()))
 
@@ -69,7 +69,7 @@ class CourseSettingsViewModelTests: CoreTestCase {
         api.mock(GetUserSettings(userID: "self"), value: .make(hide_dashcard_color_overlays: true))
         api.mock(GetCourse(courseID: "1"), value: .make(default_view: .syllabus))
 
-        let testee = CourseSettingsViewModel(context: .course("1"))
+        let testee = CourseSettingsViewModel(context: .course("1"), environment: environment)
         testee.viewDidAppear()
 
         testee.newDefaultView = .assignments

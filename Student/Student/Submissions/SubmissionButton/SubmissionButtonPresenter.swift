@@ -179,7 +179,10 @@ class SubmissionButtonPresenter: NSObject {
         guard
             let submissionId = assignment.submission?.id,
             let userID = assignment.submission?.userID,
-            let course = GetCourse(courseID: assignment.courseID).fetchFromDatabase(environment: env).first
+            let course = GetCourse(courseID: assignment.courseID)
+                .modified(for: env)
+                .fetchFromDatabase(environment: env)
+                .first
         else {
             return
         }

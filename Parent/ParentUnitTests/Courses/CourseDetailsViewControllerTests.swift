@@ -36,7 +36,7 @@ class CourseDetailsViewControllerTests: ParentTestCase {
 
     override func setUp() {
         super.setUp()
-        vc = CourseDetailsViewController.create(courseID: courseID, studentID: studentID)
+        vc = CourseDetailsViewController.create(courseID: courseID, studentID: studentID, env: env)
         api.mock(GetFrontPageRequest(context: .course(courseID)), value: APIPage.make())
         api.mock(
             GetTabsRequest(context: .course(courseID)),

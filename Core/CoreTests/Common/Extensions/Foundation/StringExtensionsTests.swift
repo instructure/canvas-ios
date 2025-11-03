@@ -32,6 +32,17 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(result, "/courses/1/assignments/1")
     }
 
+    func testPathComponentReplacement() {
+        let path1 = "/courses/1234/assignments/123"
+        XCTAssertEqual(path1.replacingPathComponent(of: "123", with: "567"), "/courses/1234/assignments/567")
+
+        let path2 = "courses/734/assignments/123/submissions/47345"
+        XCTAssertEqual(path2.replacingPathComponent(of: "734", with: "898"), "courses/898/assignments/123/submissions/47345")
+
+        let path3 = "//courses/cid_123/assignments/123/submissions/56545"
+        XCTAssertEqual(path3.replacingPathComponent(of: "123", with: "565"), "//courses/cid_123/assignments/565/submissions/56545")
+    }
+
     func testPruneApiVersionFromPath() {
         let path = "/api/v1/courses/1/assignments/1"
         let result = path.pruneApiVersionFromPath()
