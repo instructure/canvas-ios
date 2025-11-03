@@ -351,7 +351,9 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             // This is to make the background task wait until we receive the submission response from the API.
             let semaphore = DispatchSemaphore(value: 0)
             let objectID = file.objectID
-            process.performExpiringActivity(reason: "submit assignment") { expired in
+            process.performExpiringActivity(reason: "submit assignment") { [weak self] expired in
+                guard let self else { return }
+
                 if expired {
                     task?.cancel()
                 }
