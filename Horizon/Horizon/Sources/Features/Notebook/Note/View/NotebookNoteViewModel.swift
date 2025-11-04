@@ -30,7 +30,7 @@ final class NotebookNoteViewModel {
     var courseNoteLabels: [CourseNoteLabel] {
         [
             isImportant ? .important : nil,
-            isConfusing ? .confusing : nil
+            isConfusing ? .unclear : nil
         ].compactMap { $0 }
     }
 
@@ -204,7 +204,7 @@ final class NotebookNoteViewModel {
 
     private var labels: [CourseNoteLabel] {
         [
-            isConfusing ? .confusing : nil,
+            isConfusing ? .unclear : nil,
             isImportant ? .important : nil
         ].compactMap { $0 }
     }
@@ -216,7 +216,7 @@ final class NotebookNoteViewModel {
         }
         noteSaved = note
 
-        isConfusing = courseNote?.labels?.contains { $0 == .confusing } ?? false
+        isConfusing = courseNote?.labels?.contains { $0 == .unclear } ?? false
         isConfusingSaved = isConfusing
 
         isImportant = courseNote?.labels?.contains { $0 == .important } ?? false

@@ -114,7 +114,7 @@ struct NotebookNoteView: View {
 
         HStack(spacing: .huiSpaces.space8) {
             NoteCardFilterButton(
-                type: .confusing,
+                type: .unclear,
                 selected: viewModel.isConfusing
             ).onTapGesture {
                 viewModel.toggleConfusing()

@@ -50,7 +50,7 @@ struct NoteCardFilterButton: View {
 
 #Preview {
     HStack(spacing: 16) {
-        NoteCardFilterButton(type: .confusing, selected: true)
+        NoteCardFilterButton(type: .unclear, selected: true)
         NoteCardFilterButton(type: .important, selected: false)
     }
 }

@@ -116,7 +116,7 @@ extension CourseNotebookNote {
                 textPosition: NotebookHighlight.TextPosition(start: 0, end: 0),
                 range: NotebookHighlight.Range(startContainer: "", startOffset: 0, endContainer: "", endOffset: 0)
             ),
-            labels: [CourseNoteLabel.confusing]
+            labels: [CourseNoteLabel.unclear]
         )
     }
 }

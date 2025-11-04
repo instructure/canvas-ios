@@ -20,7 +20,7 @@ import SwiftUI
 import HorizonUI
 
 enum CourseNoteLabel: String, CaseIterable {
-    case confusing = "Confusing"
+    case unclear = "Unclear"
     case important = "Important"
     case other = "Other"
 
@@ -40,7 +40,7 @@ enum CourseNoteLabel: String, CaseIterable {
     // swiftlint:enable line_length
 
     static let imageMap = [
-        CourseNoteLabel.confusing: (Image.huiIcons.help, questionMarkSVG),
+        CourseNoteLabel.unclear: (Image.huiIcons.help, questionMarkSVG),
         CourseNoteLabel.important: (Image.huiIcons.flag2, flagSVG)
     ]
 
@@ -53,8 +53,8 @@ enum CourseNoteLabel: String, CaseIterable {
     }
 
     var label: String {
-        self == .confusing ?
-            String(localized: "Confusing", bundle: .horizon) :
+        self == .unclear ?
+            String(localized: "Unclear", bundle: .horizon) :
             String(localized: "Important", bundle: .horizon)
     }
 
