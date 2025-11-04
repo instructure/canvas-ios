@@ -178,7 +178,7 @@ const editor = window.editor = {
         for (let img of clone.querySelectorAll('[data-media_comment_id]')) {
             let mediaID = img.dataset.media_comment_id
             let attachmentID = img.dataset.media_attachment_id
-            img.outerHTML = `<div id="media_object_${mediaID}" style="width: 768px; height: 432px;"><iframe src="/media_attachments_iframe/${attachmentID}" width="100%" height="100%"></iframe></div>`
+            img.outerHTML = `<div id="media_object_${mediaID}" style="width: 100%; min-width: 350px; max-width: 768px; height: 432px;"><iframe src="/media_attachments_iframe/${attachmentID}" width="100%" height="100%"></iframe></div>`
         }
         let html = clone.innerHTML
         // backspaces can leave behind empty line breaks
