@@ -20,7 +20,7 @@ type TextPositionSelector = {
 type NotebookTextSelection = {
   backgroundColor?: string;
   borderColor?: string;
-  iconSVG?: string;
+  borderStyle?: string;
   range: RangeSelector;
   selectedText: string;
   textPosition: TextPositionSelector;

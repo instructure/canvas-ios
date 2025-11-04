@@ -257,7 +257,7 @@ extension CourseNotebookNote {
         return NotebookTextSelection(
             backgroundColor: label.backgroundColorCSS,
             borderColor: label.borderColorCSS,
-            iconSVG: label.iconSVG,
+            borderStyle: label.borderStyle,
             range: highlightData.range.rangeSelector,
             selectedText: highlightData.selectedText,
             textPosition: highlightData.textPosition.textPositionSelector
