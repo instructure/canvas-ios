@@ -19,6 +19,10 @@
 import UIKit
 
 extension UIWindow {
+    private var defaultStyle: UIUserInterfaceStyle {
+        AppEnvironment.shared.app == .horizon ? .light : .unspecified
+    }
+    
     public func updateInterfaceStyle(_ style: UIUserInterfaceStyle?) {
         let style = style ?? defaultStyle
         UIView.transition(with: self, duration: 0.3, options: .transitionCrossDissolve, animations: {
@@ -29,9 +33,5 @@ extension UIWindow {
     public func updateInterfaceStyleWithoutTransition(_ style: UIUserInterfaceStyle?) {
         let style = style ?? defaultStyle
         overrideUserInterfaceStyle = style
-    }
-
-    private var defaultStyle: UIUserInterfaceStyle {
-        AppEnvironment.shared.app == .horizon ? .light : .unspecified
     }
 }
