@@ -106,13 +106,13 @@ class TodoListViewModel: ObservableObject {
     }
 
     func markItemAsDone(_ item: TodoItemViewModel) {
-        if item.markDoneState == .loading {
+        if item.markAsDoneState == .loading {
             return
         }
 
-        if item.markDoneState == .notDone {
+        if item.markAsDoneState == .notDone {
             performMarkAsDone(item)
-        } else if item.markDoneState == .done {
+        } else if item.markAsDoneState == .done {
             performMarkAsUndone(item)
         }
     }
@@ -181,7 +181,7 @@ class TodoListViewModel: ObservableObject {
 
     private func performMarkAsDone(_ item: TodoItemViewModel) {
         cancelDelayedRemove(for: item)
-        item.markDoneState = .loading
+        item.markAsDoneState = .loading
 
         interactor.markItemAsDone(item, done: true)
             .receive(on: scheduler)
@@ -197,7 +197,7 @@ class TodoListViewModel: ObservableObject {
 
     private func performMarkAsUndone(_ item: TodoItemViewModel) {
         cancelDelayedRemove(for: item)
-        item.markDoneState = .loading
+        item.markAsDoneState = .loading
 
         interactor.markItemAsDone(item, done: false)
             .receive(on: scheduler)
@@ -206,7 +206,7 @@ class TodoListViewModel: ObservableObject {
                 self?.handleMarkAsUndoneError(item, error)
             } receiveValue: { [weak item] _ in
                 guard let item else { return }
-                item.markDoneState = .notDone
+                item.markAsDoneState = .notDone
                 TabBarBadgeCounts.todoListCount += 1
 
                 let announcement = String(localized: "\(item.title), marked as not done", bundle: .core)
@@ -221,7 +221,7 @@ class TodoListViewModel: ObservableObject {
     }
 
     private func handleMarkAsDoneSuccess(_ item: TodoItemViewModel) {
-        item.markDoneState = .done
+        item.markAsDoneState = .done
 
         if TabBarBadgeCounts.todoListCount > 0 {
             TabBarBadgeCounts.todoListCount -= 1
@@ -240,12 +240,12 @@ class TodoListViewModel: ObservableObject {
     }
 
     private func handleMarkAsDoneError(_ item: TodoItemViewModel, _ error: Error) {
-        item.markDoneState = .notDone
+        item.markAsDoneState = .notDone
         snackBar.showSnack(String(localized: "Failed to mark item as done", bundle: .core))
     }
 
     private func handleMarkAsUndoneError(_ item: TodoItemViewModel, _ error: Error) {
-        item.markDoneState = .done
+        item.markAsDoneState = .done
         snackBar.showSnack(String(localized: "Failed to mark item as not done", bundle: .core))
     }
 

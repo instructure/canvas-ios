@@ -268,7 +268,7 @@ class TodoListViewModelTests: CoreTestCase {
         let item = TodoItemViewModel.make(plannableId: "1")
 
         // THEN
-        XCTAssertEqual(item.markDoneState, .notDone)
+        XCTAssertEqual(item.markAsDoneState, .notDone)
     }
 
     func test_markItemAsDone_onSuccess_changesStateToDone() {
@@ -281,7 +281,7 @@ class TodoListViewModelTests: CoreTestCase {
         testScheduler.advance()
 
         // THEN
-        XCTAssertEqual(item.markDoneState, .done)
+        XCTAssertEqual(item.markAsDoneState, .done)
         XCTAssertTrue(interactor.markItemAsDoneCalled)
         XCTAssertEqual(interactor.lastMarkAsDoneItem?.plannableId, "1")
         XCTAssertEqual(interactor.lastMarkAsDoneDone, true)
@@ -297,7 +297,7 @@ class TodoListViewModelTests: CoreTestCase {
         testScheduler.advance()
 
         // THEN
-        XCTAssertEqual(item.markDoneState, .notDone)
+        XCTAssertEqual(item.markAsDoneState, .notDone)
     }
 
     func test_markItemAsDone_onError_showsSnackBar() {
@@ -325,7 +325,7 @@ class TodoListViewModelTests: CoreTestCase {
         testScheduler.advance()
 
         // THEN
-        XCTAssertEqual(item.markDoneState, .done)
+        XCTAssertEqual(item.markAsDoneState, .done)
         XCTAssertEqual(testee.items.count, 1)
         XCTAssertEqual(testee.items.first?.items.count, 1)
 
@@ -337,14 +337,14 @@ class TodoListViewModelTests: CoreTestCase {
         // GIVEN
         interactor.markItemAsDoneResult = .success(())
         let item = TodoItemViewModel.make(plannableId: "1", plannableType: "assignment", overrideId: "override-1")
-        item.markDoneState = .done
+        item.markAsDoneState = .done
 
         // WHEN
         testee.markItemAsDone(item)
         testScheduler.advance()
 
         // THEN
-        XCTAssertEqual(item.markDoneState, .notDone)
+        XCTAssertEqual(item.markAsDoneState, .notDone)
         XCTAssertTrue(interactor.markItemAsDoneCalled)
         XCTAssertEqual(interactor.lastMarkAsDoneDone, false)
     }
@@ -359,11 +359,11 @@ class TodoListViewModelTests: CoreTestCase {
         // WHEN
         testee.markItemAsDone(item)
         testScheduler.advance()
-        XCTAssertEqual(item.markDoneState, .done)
+        XCTAssertEqual(item.markAsDoneState, .done)
 
         testee.markItemAsDone(item)
         testScheduler.advance()
-        XCTAssertEqual(item.markDoneState, .notDone)
+        XCTAssertEqual(item.markAsDoneState, .notDone)
 
         // THEN
         testScheduler.advance(by: .seconds(3))
@@ -375,21 +375,21 @@ class TodoListViewModelTests: CoreTestCase {
         // GIVEN
         interactor.markItemAsDoneResult = .failure(NSError.internalError())
         let item = TodoItemViewModel.make(plannableId: "1", plannableType: "assignment", overrideId: "override-1")
-        item.markDoneState = .done
+        item.markAsDoneState = .done
 
         // WHEN
         testee.markItemAsDone(item)
         testScheduler.advance()
 
         // THEN
-        XCTAssertEqual(item.markDoneState, .done)
+        XCTAssertEqual(item.markAsDoneState, .done)
     }
 
     func test_markAsUndone_onError_showsSnackBar() {
         // GIVEN
         interactor.markItemAsDoneResult = .failure(NSError.internalError())
         let item = TodoItemViewModel.make(plannableId: "1", plannableType: "assignment", overrideId: "override-1")
-        item.markDoneState = .done
+        item.markAsDoneState = .done
 
         // WHEN
         testee.markItemAsDone(item)
@@ -411,7 +411,7 @@ class TodoListViewModelTests: CoreTestCase {
         // WHEN
         testee.markItemAsDone(item1)
         testScheduler.advance()
-        XCTAssertEqual(item1.markDoneState, .done)
+        XCTAssertEqual(item1.markAsDoneState, .done)
 
         // THEN
         testScheduler.advance(by: .seconds(3))
@@ -430,7 +430,7 @@ class TodoListViewModelTests: CoreTestCase {
         // WHEN
         testee.markItemAsDone(item)
         testScheduler.advance()
-        XCTAssertEqual(item.markDoneState, .done)
+        XCTAssertEqual(item.markAsDoneState, .done)
 
         // THEN
         testScheduler.advance(by: .seconds(3))
@@ -445,7 +445,7 @@ class TodoListViewModelTests: CoreTestCase {
 
         // WHEN
         testee.markItemAsDone(item)
-        XCTAssertEqual(item.markDoneState, .loading)
+        XCTAssertEqual(item.markAsDoneState, .loading)
         XCTAssertEqual(interactor.markItemAsDoneCallCount, 1)
 
         testee.markItemAsDone(item)
@@ -454,10 +454,10 @@ class TodoListViewModelTests: CoreTestCase {
 
         // THEN
         XCTAssertEqual(interactor.markItemAsDoneCallCount, 1)
-        XCTAssertEqual(item.markDoneState, .loading)
+        XCTAssertEqual(item.markAsDoneState, .loading)
 
         testScheduler.advance()
-        XCTAssertEqual(item.markDoneState, .done)
+        XCTAssertEqual(item.markAsDoneState, .done)
     }
 
     func test_markItemAsDone_decrementsBadgeCount() {
@@ -472,7 +472,7 @@ class TodoListViewModelTests: CoreTestCase {
 
         // THEN
         XCTAssertEqual(TabBarBadgeCounts.todoListCount, 4)
-        XCTAssertEqual(item.markDoneState, .done)
+        XCTAssertEqual(item.markAsDoneState, .done)
     }
 
     func test_markItemAsUndone_incrementsBadgeCount() {
@@ -480,7 +480,7 @@ class TodoListViewModelTests: CoreTestCase {
         TabBarBadgeCounts.todoListCount = 3
         interactor.markItemAsDoneResult = .success(())
         let item = TodoItemViewModel.make(plannableId: "1", plannableType: "assignment")
-        item.markDoneState = .done
+        item.markAsDoneState = .done
 
         // WHEN
         testee.markItemAsDone(item)
@@ -488,7 +488,7 @@ class TodoListViewModelTests: CoreTestCase {
 
         // THEN
         XCTAssertEqual(TabBarBadgeCounts.todoListCount, 4)
-        XCTAssertEqual(item.markDoneState, .notDone)
+        XCTAssertEqual(item.markAsDoneState, .notDone)
     }
 
     func test_markItemAsDone_doesNotDecrementBadgeCountBelowZero() {
@@ -503,7 +503,7 @@ class TodoListViewModelTests: CoreTestCase {
 
         // THEN
         XCTAssertEqual(TabBarBadgeCounts.todoListCount, 0)
-        XCTAssertEqual(item.markDoneState, .done)
+        XCTAssertEqual(item.markAsDoneState, .done)
     }
 
     // MARK: - Swipe to done

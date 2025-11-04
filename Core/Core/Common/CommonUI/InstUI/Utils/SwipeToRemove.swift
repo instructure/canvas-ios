@@ -66,7 +66,7 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
     @State private var actionViewOffset: CGFloat = 0
 
     // MARK: - Internal Logic States
-    /// Becomes true, if dragging goes beyond `actionThreshold`. If grad is ended while this is true the swipe action will be performed.
+    /// Becomes true, if dragging goes beyond `actionThreshold`. If drag is ended while this is true the swipe action will be performed.
     @State private var isActionThresholdReached = false
     /// Becomes true after the action has been invoked to disable further drag gestures
     @State private var isActionInvoked = false

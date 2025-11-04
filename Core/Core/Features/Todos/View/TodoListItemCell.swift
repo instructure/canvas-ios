@@ -75,7 +75,7 @@ struct TodoListItemCell: View {
     @ViewBuilder
     private var checkboxButton: some View {
         ZStack {
-            switch item.markDoneState {
+            switch item.markAsDoneState {
             case .notDone:
                 InstUI.Checkbox(isSelected: false)
             case .loading:
