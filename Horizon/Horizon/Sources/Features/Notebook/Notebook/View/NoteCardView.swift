@@ -49,7 +49,7 @@ struct NoteCardView: View {
                     }
                 }
                 if !note.highlightedText.isEmpty {
-                    HighlightedText(note.highlightedText.trimmed(), ofTypes: note.types)
+                    HighlightedText(text: note.highlightedText.trimmed(), type: note.types.first ?? .important)
                 }
                 if !note.note.isEmpty {
                     Text(note.note)

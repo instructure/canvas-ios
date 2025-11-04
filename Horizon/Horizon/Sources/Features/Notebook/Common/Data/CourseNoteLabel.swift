@@ -37,6 +37,13 @@ enum CourseNoteLabel: String, CaseIterable {
         }
     }
 
+    var backgroundColor: Color {
+        switch self {
+        case .important: .huiColors.primitives.sea12
+        default: .huiColors.primitives.red12
+        }
+    }
+
     var borderStyle: String {
         switch self {
         case .important: "solid"
@@ -48,6 +55,13 @@ enum CourseNoteLabel: String, CaseIterable {
         self == .unclear ?
             String(localized: "Unclear", bundle: .horizon) :
             String(localized: "Important", bundle: .horizon)
+    }
+
+    var icon: Image {
+        switch self {
+        case .important: Image.huiIcons.keepPin
+        default: Image.huiIcons.help
+        }
     }
 
     func image(selected: Bool = true) -> some View {

@@ -19,37 +19,31 @@
 import HorizonUI
 import SwiftUI
 
-struct HighlightedText: View {
-    // MARK: - Dependencies
-
-    private let text: String
-    private let type: CourseNoteLabel
-
-    // MARK: - Init
-
-    init(
-        text: String,
-        type: CourseNoteLabel
-    ) {
-        self.text = text
-        self.type = type
-    }
+struct NoteCardButton: View {
+    let type: CourseNoteLabel
 
     var body: some View {
-        Text(text)
-            .padding(.horizontal, .huiSpaces.space2)
-            .padding(.top, .huiSpaces.space2)
-            .huiTypography(.p1)
-            .underline(pattern: type == .important ? .solid : .dot, color: type.color)
-            .background(type.backgroundColor)
-            .baselineOffset(3)
+        let style = HorizonUI.Chip.CustomStyle(
+            state: .default,
+            foregroundColor: type.color,
+            backgroundNormal: .clear,
+            backgroundPressed: .clear,
+            borderColor: type.color,
+            focusedBorderColor: type.color,
+            iconColor: type.color
+        )
+        HorizonUI.InputChip(
+            title: type.label,
+            style: .custom(style),
+            size: .small,
+            leadingIcon: type.icon,
+            trallingIcon: nil
+        ) {
+
+        }
     }
 }
 
 #Preview {
-    HighlightedText(
-        text: "Important Note. Not only is it important, but it's also quite long so that it wraps.",
-        type: .important
-    )
-    .padding()
+    NoteCardButton(type: .important)
 }
