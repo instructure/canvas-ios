@@ -42,7 +42,6 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     public let icon: Image
 
     public let plannableId: String
-    public let plannableType: String
     public var overrideId: String?
 
     @Published public var markAsDoneState: MarkAsDoneState = .notDone
@@ -71,7 +70,6 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         self.color = plannable.color.asColor
         self.icon = plannable.icon.asImage
 
-        self.plannableType = plannable.typeRaw
         self.overrideId = plannable.plannerOverrideId
         self.markAsDoneState = plannable.isMarkedComplete ? .done : .notDone
     }
@@ -86,7 +84,6 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         htmlURL: URL?,
         color: Color,
         icon: Image,
-        plannableType: String = "assignment",
         overrideId: String? = nil
     ) {
         self.plannableId = plannableId
@@ -102,7 +99,6 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         self.color = color
         self.icon = icon
 
-        self.plannableType = plannableType
         self.overrideId = overrideId
     }
 
@@ -182,7 +178,6 @@ extension TodoItemViewModel {
         htmlURL: URL? = nil,
         color: Color = .red,
         icon: Image = .assignmentLine,
-        plannableType: String = "assignment",
         overrideId: String? = nil
     ) -> TodoItemViewModel {
         TodoItemViewModel(
@@ -195,7 +190,6 @@ extension TodoItemViewModel {
             htmlURL: htmlURL,
             color: color,
             icon: icon,
-            plannableType: plannableType,
             overrideId: overrideId
         )
     }

@@ -93,8 +93,7 @@ struct TodoListItemCell: View {
             case .notDone:
                 InstUI.Checkbox(isSelected: false)
             case .loading:
-                ProgressView()
-                    .tint(Color(Brand.shared.primary))
+                ProgressView().tint(nil)
             case .done:
                 InstUI.Checkbox(isSelected: true)
             }

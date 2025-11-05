@@ -34,11 +34,13 @@ class TodoListViewModel: ObservableObject {
     )
     let snackBar = SnackBarViewModel()
 
+    private static let autoRemovalDelay: TimeInterval = 3
+
     private let interactor: TodoInteractor
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
-    /// Tracks cancellable timers for items in the done state waiting to be removed after 3 seconds
+    /// Tracks cancellable timers for items in the done state waiting to be removed
     private var markDoneTimers: [String: AnyCancellable] = [:]
     /// Tracks item IDs that have been optimistically removed via swipe and are awaiting API response
     private var optimisticallyRemovedIds: Set<String> = []
@@ -117,6 +119,8 @@ class TodoListViewModel: ObservableObject {
         }
     }
 
+    /// The item is immediately removed from the list before the network request completes,
+    /// providing instant feedback. If the request fails, the item is restored to its original position.
     func markItemAsDoneWithOptimisticUI(_ item: TodoItemViewModel) {
         optimisticallyRemovedIds.insert(item.plannableId)
 
@@ -209,7 +213,11 @@ class TodoListViewModel: ObservableObject {
                 item.markAsDoneState = .notDone
                 TabBarBadgeCounts.todoListCount += 1
 
-                let announcement = String(localized: "\(item.title), marked as not done", bundle: .core)
+                let announcement = String(
+                    localized: "\(item.title), marked as not done",
+                    bundle: .core,
+                    comment: "VoiceOver announcement when a to-do item is unmarked as complete. The item title is inserted before the status message."
+                )
                 UIAccessibility.announce(announcement)
             }
             .store(in: &subscriptions)
@@ -228,7 +236,7 @@ class TodoListViewModel: ObservableObject {
         }
 
         let timer = Just(())
-            .delay(for: .seconds(3), scheduler: scheduler)
+            .delay(for: .seconds(Self.autoRemovalDelay), scheduler: scheduler)
             .sink { [weak self] in
                 withAnimation {
                     self?.removeItem(item)
@@ -260,7 +268,11 @@ class TodoListViewModel: ObservableObject {
             state = .empty
         }
 
-        let announcement = String(localized: "\(item.title), marked as done", bundle: .core)
+        let announcement = String(
+            localized: "\(item.title), marked as done",
+            bundle: .core,
+            comment: "VoiceOver announcement when a to-do item is marked as complete. The item title is inserted before the status message."
+        )
         UIAccessibility.announce(announcement)
     }
 }
