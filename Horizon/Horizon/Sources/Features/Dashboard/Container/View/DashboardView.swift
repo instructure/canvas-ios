@@ -29,6 +29,7 @@ struct DashboardView: View {
     // MARK: - a11y
 
     @State private var isShowHeader: Bool = true
+    @State private var isShowDivider: Bool = false
     @State private var lastFocusedElement: DashboardFocusableElement?
     @State private var restoreFocusTrigger: Bool = false
     @AccessibilityFocusState private var accessibilityFocusedElement: DashboardFocusableElement?
@@ -113,19 +114,26 @@ struct DashboardView: View {
             .frame(height: 16)
             .readingFrame { frame in
                 isShowHeader = frame.minY > -100
+                isShowDivider = frame.minY < 100
             }
     }
 
     private var navigationBar: some View {
-        HStack(spacing: .zero) {
-            InstitutionLogo()
-            Spacer()
-            navigationBarButtons
+        VStack(spacing: .zero) {
+            HStack(spacing: .zero) {
+                InstitutionLogo()
+                Spacer()
+                navigationBarButtons
+            }
+            .padding(.horizontal, .huiSpaces.space24)
+            .padding(.top, .huiSpaces.space10)
+            .padding(.bottom, .huiSpaces.space4)
+            .background(Color.huiColors.surface.pagePrimary)
+            Rectangle()
+                .fill(Color.huiColors.primitives.grey14)
+                .frame(height: 1.5)
+                .hidden(!isShowDivider)
         }
-        .padding(.horizontal, .huiSpaces.space24)
-        .padding(.top, .huiSpaces.space10)
-        .padding(.bottom, .huiSpaces.space4)
-        .background(Color.huiColors.surface.pagePrimary)
     }
 
     private var navigationBarButtons: some View {
@@ -160,18 +168,11 @@ struct DashboardView: View {
     }
 
     private var dataWidgetsView: some View {
-        ScrollView(.horizontal) {
-            HStack(alignment: .center, spacing: .huiSpaces.space12) {
-                completedWidgetView
-                timeSpentWidgetView
-                skillsCountWidgetView
-            }
-            .padding(.top, .huiSpaces.space12 - 4)
-            .padding(.bottom, .huiSpaces.space16)
-            .padding(.horizontal, .huiSpaces.space24)
-        }
-        .scrollIndicators(.hidden)
-        .scrollBounceBehavior(.basedOnSize)
+        WidgetsView(
+            skillsCountWidgetView: skillsCountWidgetView,
+            timeSpentWidgetView: timeSpentWidgetView,
+            completedWidgetView: completedWidgetView
+        )
     }
 }
 

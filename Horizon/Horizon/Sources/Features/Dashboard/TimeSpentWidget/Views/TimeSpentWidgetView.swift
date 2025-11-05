@@ -20,6 +20,8 @@ import HorizonUI
 import SwiftUI
 
 struct TimeSpentWidgetView: View {
+    @Environment(\.dashboardLastFocusedElement) private var lastFocusedElement
+    @AccessibilityFocusState private var focusedCourseButton: Bool?
     private let viewModel: TimeSpentWidgetViewModel
 
     init(viewModel: TimeSpentWidgetViewModel) {
@@ -49,7 +51,7 @@ struct TimeSpentWidgetView: View {
             x: 1,
             y: 2
         )
-        .fixedSize(horizontal: true, vertical: false)
+        .containerRelativeFrame(.horizontal)
         .isSkeletonLoadActive(viewModel.state == .loading)
         .accessibilityElement(children: viewModel.state == .loading ? .ignore : .contain)
         .accessibilityLabel(
@@ -64,27 +66,23 @@ struct TimeSpentWidgetView: View {
 
     private var dataView: some View {
         HStack(spacing: .huiSpaces.space8) {
-           Group {
-                Text(viewModel.selectedCourse?.formattedHours.value ?? "")
-                    .huiTypography(.labelSemibold)
-                    .foregroundStyle(Color.huiColors.text.body)
-                    .skeletonLoadable()
-                Text(viewModel.courseDurationText.defaultToEmpty)
-                    .huiTypography(.labelMediumBold)
-                    .foregroundStyle(Color.huiColors.text.body)
-                    .skeletonLoadable()
-                    .accessibilityHidden(true)
-            }
-           .accessibilityElement(children: .combine)
-           .accessibilityLabel(Text(viewModel.accessibilityCourseTimeSpent))
+            Text(viewModel.selectedCourse?.formattedTime ?? "")
+                .accessibilityLabel(Text(viewModel.selectedCourse?.accessibilityCourseTimeSpent ?? ""))
+                .fixedSize(horizontal: true, vertical: false)
+                .skeletonLoadable()
             if viewModel.isListCoursesVisiable {
                 TimeSpentWidgetCourseListView(
                     courses: viewModel.courses,
-                    selectedCourse: viewModel.selectedCourse
+                    selectedCourse: viewModel.selectedCourse,
+                    focusedCourseButton: $focusedCourseButton
                 ) { course in
+                    lastFocusedElement.wrappedValue = .timeSpent
                     viewModel.selectedCourse = course
+                    focusedCourseButton = true
                 }
+                .frame(minWidth: 150)
             }
+            Spacer()
         }
     }
 

@@ -64,18 +64,6 @@ public class GetEnrollments: CollectionUseCase {
         return "\(request.path)?\(url.query ?? "")"
     }
 
-    public func modified(for env: AppEnvironment) -> Self {
-        guard env.isRoot == false else { return self }
-
-        self.context = context.local
-
-        var request = self.request
-        request.userID = request.userID?.asGlobalID(of: env.sessionShardID)
-        self.request = request
-
-        return self
-
-    }
     public func write(response: [APIEnrollment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         response?.forEach { item in
             let enrollment: Enrollment = client.first(where: #keyPath(Enrollment.id), equals: item.id!.rawValue) ?? client.insert()

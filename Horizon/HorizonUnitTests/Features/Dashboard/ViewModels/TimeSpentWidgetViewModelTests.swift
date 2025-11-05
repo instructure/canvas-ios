@@ -43,8 +43,6 @@ final class TimeSpentWidgetViewModelTests: HorizonTestCase {
         XCTAssertEqual(testee.courses.first?.id, "-1")
         XCTAssertEqual(testee.courses.count, 3) // all + 2 filtered
         XCTAssertEqual(testee.selectedCourse?.id, "-1")
-        XCTAssertTrue(testee.accessibilityCourseTimeSpent.contains("all courses"))
-        XCTAssertEqual(testee.courseDurationText, String(format: String(localized: "%@ in", bundle: .horizon), testee.selectedCourse!.formattedHours.unit))
     }
 
     func testInitializationSuccessSingleFilteredCourseNoAggregate() {
@@ -64,8 +62,6 @@ final class TimeSpentWidgetViewModelTests: HorizonTestCase {
         XCTAssertEqual(testee.courses.count, 1)
         XCTAssertEqual(testee.courses.first?.id, "1")
         XCTAssertEqual(testee.selectedCourse?.id, "1")
-        XCTAssertFalse(testee.accessibilityCourseTimeSpent.contains("all courses"))
-        XCTAssertEqual(testee.courseDurationText, String(format: String(localized: "%@ in your course", bundle: .horizon), testee.selectedCourse!.formattedHours.unit))
     }
 
     func testInitializationEmptySetsEmptyState() {
@@ -114,46 +110,6 @@ final class TimeSpentWidgetViewModelTests: HorizonTestCase {
         XCTAssertEqual(interactor.lastIgnoreCache, true)
         testee.getTimeSpent(ignoreCache: false)
         XCTAssertEqual(interactor.lastIgnoreCache, false)
-    }
-
-    func testCourseDurationTextMinutesVsHours() {
-        let testeeMinutes = makeViewModel(
-            times: [
-                TimeSpentWidgetModel(
-                    id: "1",
-                    courseName: "Intro",
-                    minutesPerDay: 59
-                )
-            ],
-            learnCourses: [
-                LearnCourse(
-                    id: "1",
-                    name: "Intro",
-                    enrollmentId: "e1"
-                )]
-        )
-        XCTAssertTrue(testeeMinutes.selectedCourse?.formattedHours.unit.contains(String(localized: "minutes", bundle: .horizon)) ?? false)
-        XCTAssertEqual(
-            testeeMinutes.courseDurationText,
-            String(
-                format: String(
-                    localized: "%@ in your course",
-                    bundle: .horizon
-                ),
-                testeeMinutes.selectedCourse!.formattedHours.unit
-            )
-        )
-
-        let testeeHours = makeViewModel(
-            times: [TimeSpentWidgetModel(id: "1", courseName: "Intro", minutesPerDay: 120)],
-            learnCourses: [LearnCourse(id: "1", name: "Intro", enrollmentId: "e1")]
-        )
-        XCTAssertTrue(testeeHours.selectedCourse?.formattedHours.unit.contains(String(localized: "hours", bundle: .horizon)) ?? false)
-        XCTAssertEqual(
-            testeeHours.courseDurationText,
-            String(format: String(localized: "%@ in your course", bundle: .horizon),
-                   testeeHours.selectedCourse!.formattedHours.unit)
-        )
     }
 
     private func makeViewModel(

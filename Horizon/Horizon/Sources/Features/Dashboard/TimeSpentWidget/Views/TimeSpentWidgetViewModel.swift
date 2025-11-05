@@ -29,22 +29,6 @@ final class TimeSpentWidgetViewModel {
     private(set) var courses: [TimeSpentWidgetModel] = []
     private(set) var courseDurationText: String?
     private(set) var isListCoursesVisiable = false
-    var accessibilityCourseTimeSpent: String {
-        if selectedCourse?.id == "-1" { // refer to all courses seleted
-            return String.localizedStringWithFormat(
-                 String(localized: "Time spent for all courses is %@ %@", bundle: .horizon),
-                 selectedCourse?.formattedHours.value ?? "",
-                 selectedCourse?.formattedHours.unit ?? ""
-             )
-        } else {
-           return String.localizedStringWithFormat(
-                String(localized: "Time spent for course %@ is %@ %@", bundle: .horizon),
-                selectedCourse?.courseName ?? "",
-                selectedCourse?.formattedHours.value ?? "",
-                selectedCourse?.formattedHours.unit ?? ""
-            )
-        }
-    }
 
     // MARK: - Private Propertites
 
@@ -53,20 +37,7 @@ final class TimeSpentWidgetViewModel {
 
     // MARK: - Input / Outputs
 
-    var selectedCourse: TimeSpentWidgetModel? {
-        didSet {
-            guard let selectedCourse else {
-                courseDurationText = nil
-                return
-            }
-
-            let unit = selectedCourse.formattedHours.unit
-            let key: String = courses.count == 1
-            ? String(localized: "%@ in your course", bundle: .horizon)
-            : String(localized: "%@ in", bundle: .horizon)
-            courseDurationText = String(format: key, unit)
-        }
-    }
+    var selectedCourse: TimeSpentWidgetModel?
 
     // MARK: - Dependencies
 
@@ -108,7 +79,7 @@ final class TimeSpentWidgetViewModel {
                     self.courses = [
                         .init(
                             id: "-1",
-                            courseName: String(localized: "all courses", bundle: .horizon),
+                            courseName: String(localized: "total", bundle: .horizon),
                             minutesPerDay: timesForCourses.totalMinutesPerDay
                         )
                     ]

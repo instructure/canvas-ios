@@ -62,91 +62,43 @@ struct AnnouncementsListWidgetView: View {
     }
 
     private var dataView: some View {
-        VStack(spacing: .huiSpaces.space16) {
-            AnnouncementWidgetView(
-                announcement: viewModel.currentAnnouncement,
-                focusedAnnouncementID: $focusedAnnouncementID,
-                onTap: { seletedAnnouncement in
-                    lastFocusedElement.wrappedValue = .announcement(id: seletedAnnouncement.id)
-                    viewModel.navigateToAnnouncement(
-                        announcement: seletedAnnouncement,
-                        viewController: viewController
-                    )
+        ScrollView(.horizontal) {
+            HStack(alignment: .center, spacing: .huiSpaces.space12) {
+                ForEach(Array(viewModel.announcements.enumerated()), id: \.offset) { index, announcement in
+                    announcementView(announcement: announcement, index: index)
+                        .id(index)
+                        .scaleEffect(
+                            viewModel.currentCardIndex == index ? 1 : 0.9,
+                            anchor: (viewModel.currentCardIndex ?? 0) < index ? .leading : .trailing
+                        )
                 }
-            )
-            .id(viewModel.currentAnnouncement.id)
-            .paginationTransition(transitionDirection)
-            if viewModel.isNavigationButtonVisible {
-                announcementNavigationButtons
             }
+            .scrollTargetLayout()
+            .padding(.bottom, .huiSpaces.space16)
         }
-        .padding(.huiSpaces.space24)
-        .background(Color.huiColors.surface.pageSecondary)
-        .huiCornerRadius(level: .level5)
-        .huiElevation(level: .level4)
-        .padding(.bottom, .huiSpaces.space16)
-        .padding(.horizontal, .huiSpaces.space24)
+        .animation(.smooth, value: viewModel.currentCardIndex)
+        .scrollPosition(id: $viewModel.currentCardIndex)
+        .scrollTargetBehavior(.viewAligned)
+        .contentMargins(.horizontal, HorizonUI.spaces.space24, for: .scrollContent)
+        .scrollIndicators(.hidden)
     }
 
-    private var announcementNavigationButtons: some View {
-        HStack {
-            HorizonUI.IconButton(
-                Image.huiIcons.chevronLeft,
-                type: .grayOutline,
-                isSmall: true
-            ) {
-                transitionDirection = .leading
-                withAnimation(.spring(response: 0.45, dampingFraction: 0.8)) {
-                    viewModel.goPreviousAnnouncement()
-                }
-            }
-            .disabled(!viewModel.isPreviousButtonEnabled)
-            .opacity(viewModel.isPreviousButtonEnabled ? 1.0 : 0.5)
-            .skeletonLoadable()
-            .accessibilityLabel(Text("Go to the previous announcement"))
-            .accessibilityAddTraits(.isButton)
-            .accessibilityHidden(!viewModel.isPreviousButtonEnabled)
-
-            Spacer()
-
-            Text(
-                String(
-                    format: String(localized: "%@ of %@"),
-                    (viewModel.currentIndex + 1).description,
-                    viewModel.announcements.count.description
-                )
+    private func announcementView(announcement: NotificationModel, index: Int) -> some View {
+        Button {
+            lastFocusedElement.wrappedValue = .announcement(id: announcement.id)
+            viewModel.navigateToAnnouncement(
+                announcement: announcement,
+                viewController: viewController
             )
-            .huiTypography(.p1)
-            .foregroundStyle(Color.huiColors.text.title)
-            .skeletonLoadable()
-            .accessibilityLabel(
-                Text(
-                    String(
-                        format: String(localized: "Announcement %@ of %@"),
-                        (viewModel.currentIndex + 1).description,
-                        viewModel.announcements.count.description
-                    )
-                )
+        } label: {
+            AnnouncementWidgetView(
+                announcement: announcement,
+                currentIndex: index,
+                totalCount: viewModel.announcements.count,
+                isCounterVisible: viewModel.isCounterViewVisible,
+                focusedAnnouncementID: $focusedAnnouncementID
             )
-
-            Spacer()
-
-            HorizonUI.IconButton(
-                Image.huiIcons.chevronRight,
-                type: .grayOutline,
-                isSmall: true
-            ) {
-                transitionDirection = .trailing
-                withAnimation(.spring(response: 0.45, dampingFraction: 0.8)) {
-                    viewModel.goNextAnnouncement()
-                }
-            }
-            .disabled(!viewModel.isNextButtonEnabled)
-            .opacity(viewModel.isNextButtonEnabled ? 1.0 : 0.5)
-            .skeletonLoadable()
-            .accessibilityLabel(Text("Go to the next announcement"))
-            .accessibilityAddTraits(.isButton)
-            .accessibilityHidden(!viewModel.isNextButtonEnabled)
+            .containerRelativeFrame(.horizontal)
         }
     }
 }

@@ -22,7 +22,6 @@ import SwiftUI
 
 struct CourseListWidgetView: View {
     @State private var viewModel: CourseListWidgetViewModel
-    private let unenrolledProgramsViewModel: UnenrolledProgramListWidgetViewModel
     @Environment(\.viewController) private var viewController
     @Environment(\.dashboardLastFocusedElement) private var lastFocusedElement
     @Environment(\.dashboardRestoreFocusTrigger) private var restoreFocusTrigger
@@ -33,7 +32,6 @@ struct CourseListWidgetView: View {
 
     init(viewModel: CourseListWidgetViewModel) {
         _viewModel = State(initialValue: viewModel)
-        self.unenrolledProgramsViewModel = UnenrolledProgramListWidgetAssembly.makeViewModel()
     }
 
     var body: some View {
@@ -83,6 +81,7 @@ struct CourseListWidgetView: View {
                         ForEach(Array(viewModel.courses.enumerated()), id: \.element.id) { index, course in
                             CourseListWidgetItemView(
                                 model: CourseListWidgetModel(from: course),
+                                width: size - 48,
                                 onCourseTap: { courseId in
                                     lastFocusedElement.wrappedValue = .course(id: courseId)
                                     viewModel.navigateToCourseDetails(
@@ -122,9 +121,6 @@ struct CourseListWidgetView: View {
                     .scrollTargetLayout()
                     .padding(.horizontal, .huiSpaces.space24)
                 }
-                .onChange(of: viewModel.unenrolledPrograms.count) { _, _ in
-                    unenrolledProgramsViewModel.updatePrograms(viewModel.unenrolledPrograms)
-                }
                 .scrollIndicators(.hidden)
                 .scrollTargetBehavior(.viewAligned)
                 .scrollClipDisabled()
@@ -141,12 +137,10 @@ struct CourseListWidgetView: View {
     @ViewBuilder
     private var programCardsView: some View {
         if viewModel.isProgramWidgetVisible {
-            UnenrolledProgramListWidgetAssembly.makeView(viewModel: unenrolledProgramsViewModel) { program in
+            UnenrolledProgramListWidgetView(programs: viewModel.unenrolledPrograms) { program in
                 lastFocusedElement.wrappedValue = .programInvitation(id: program.id)
                 viewModel.navigateProgram(id: program.id, viewController: viewController)
             }
-            .padding(.horizontal, .huiSpaces.space24)
-            .padding(.bottom, .huiSpaces.space16)
         }
     }
 

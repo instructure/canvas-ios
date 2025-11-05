@@ -25,6 +25,17 @@ workflows:
     - git-clone:
         inputs:
         - reset_repository: 'Yes'
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -e
+            # Set scheme to "All" and configuration to "Adhoc" to install all production secrets at once
+            envman add --key BITRISE_SCHEME --value All
+            envman add --key BITRISE_CONFIGURATION --value Adhoc
+            echo "BITRISE_SCHEME set to: All"
+            echo "BITRISE_CONFIGURATION set to: Adhoc"
+        title: Set Scheme and Configuration for Secrets Setup
     - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
     - script@1:

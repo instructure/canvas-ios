@@ -17,9 +17,18 @@
 //
 
 import SwiftUI
+import Combine
 
-public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
-    public let id: String
+public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableObject {
+
+    public enum MarkDoneState: Equatable {
+        case notDone
+        case loading
+        case done
+    }
+
+    /// This is the view identity that might change. Don't use this for business logic.
+    public private(set) var id: String = UUID.string
     public let type: PlannableType
     public let date: Date
     public let dateText: String
@@ -32,10 +41,16 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
     public let color: Color
     public let icon: Image
 
+    public let plannableId: String
+    public let plannableType: String
+    public var overrideId: String?
+
+    @Published public var markDoneState: MarkDoneState = .notDone
+
     public init?(_ plannable: Plannable, course: Course? = nil) {
         guard let date = plannable.date else { return nil }
 
-        self.id = plannable.id
+        self.plannableId = plannable.id
         self.type = plannable.plannableType
         self.date = date
         self.dateText = date.timeOnlyString
@@ -55,6 +70,59 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
 
         self.color = plannable.color.asColor
         self.icon = plannable.icon.asImage
+
+        self.plannableType = plannable.typeRaw
+        self.overrideId = plannable.plannerOverrideId
+        self.markDoneState = plannable.isMarkedComplete ? .done : .notDone
+    }
+
+    public init(
+        plannableId: String,
+        type: PlannableType,
+        date: Date,
+        title: String,
+        subtitle: String?,
+        contextName: String,
+        htmlURL: URL?,
+        color: Color,
+        icon: Image,
+        plannableType: String = "assignment",
+        overrideId: String? = nil
+    ) {
+        self.plannableId = plannableId
+        self.type = type
+        self.date = date
+        self.dateText = date.timeOnlyString
+
+        self.title = title
+        self.subtitle = subtitle
+        self.contextName = contextName
+        self.htmlURL = htmlURL
+
+        self.color = color
+        self.icon = icon
+
+        self.plannableType = plannableType
+        self.overrideId = overrideId
+    }
+
+    /// Resets the view identity to force SwiftUI to recreate the view.
+    /// This is necessary when an item is restored after being marked as done to ensure
+    /// the view is fully re-created. Without this, SwiftUI reuses the old
+    /// view instance where the swipe gesture is already in the fully swiped state.
+    public func resetViewIdentity() {
+        id = UUID.string
+    }
+
+    public var markAsDoneAccessibilityLabel: String? {
+        switch markDoneState {
+        case .notDone:
+            return String(localized: "Mark as done", bundle: .core)
+        case .loading:
+            return nil
+        case .done:
+            return String(localized: "Mark as not done", bundle: .core)
+        }
     }
 
     /// Helper function to determine the context name for a Todo item.
@@ -77,29 +145,18 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
         }
     }
 
-    public init(
-        id: String,
-        type: PlannableType,
-        date: Date,
-        title: String,
-        subtitle: String?,
-        contextName: String,
-        htmlURL: URL?,
-        color: Color,
-        icon: Image
-    ) {
-        self.id = id
-        self.type = type
-        self.date = date
-        self.dateText = date.timeOnlyString
+    // MARK: - Equatable
 
-        self.title = title
-        self.subtitle = subtitle
-        self.contextName = contextName
-        self.htmlURL = htmlURL
-
-        self.color = color
-        self.icon = icon
+    public static func == (lhs: TodoItemViewModel, rhs: TodoItemViewModel) -> Bool {
+        lhs.plannableId == rhs.plannableId &&
+        lhs.type == rhs.type &&
+        lhs.date == rhs.date &&
+        lhs.title == rhs.title &&
+        lhs.subtitle == rhs.subtitle &&
+        lhs.contextName == rhs.contextName &&
+        lhs.htmlURL == rhs.htmlURL &&
+        lhs.color == rhs.color &&
+        lhs.markDoneState == rhs.markDoneState
     }
 
     // MARK: - Comparable
@@ -107,13 +164,16 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
     public static func < (lhs: TodoItemViewModel, rhs: TodoItemViewModel) -> Bool {
         lhs.date < rhs.date
     }
+}
 
-    // MARK: Preview & Testing
+#if DEBUG
 
-    #if DEBUG
+// MARK: Preview & Testing
+
+extension TodoItemViewModel {
 
     public static func make(
-        id: String = "1",
+        plannableId: String = "1",
         type: PlannableType = .assignment,
         date: Date = Clock.now,
         title: String = "Calculate how far the Millennium Falcon actually traveled in less than 12 parsecs",
@@ -121,10 +181,12 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
         contextName: String = "FORC 101 or something longer to even show it in two lines",
         htmlURL: URL? = nil,
         color: Color = .red,
-        icon: Image = .assignmentLine
+        icon: Image = .assignmentLine,
+        plannableType: String = "assignment",
+        overrideId: String? = nil
     ) -> TodoItemViewModel {
         TodoItemViewModel(
-            id: id,
+            plannableId: plannableId,
             type: type,
             date: date,
             title: title,
@@ -132,12 +194,14 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
             contextName: contextName,
             htmlURL: htmlURL,
             color: color,
-            icon: icon
+            icon: icon,
+            plannableType: plannableType,
+            overrideId: overrideId
         )
     }
 
     public static func makeShortText(
-        id: String = "1",
+        plannableId: String = "1",
         type: PlannableType = .assignment,
         date: Date = Clock.now,
         title: String = "Quiz 1",
@@ -148,7 +212,7 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
         icon: Image = .quizLine
     ) -> TodoItemViewModel {
         TodoItemViewModel(
-            id: id,
+            plannableId: plannableId,
             type: type,
             date: date,
             title: title,
@@ -161,7 +225,7 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
     }
 
     public static func makeLongText(
-        id: String = "1",
+        plannableId: String = "1",
         type: PlannableType = .assignment,
         date: Date = Clock.now,
         title: String = "Complete comprehensive reading assignment covering advanced mathematical concepts and theoretical applications",
@@ -172,7 +236,7 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
         icon: Image = .assignmentLine
     ) -> TodoItemViewModel {
         TodoItemViewModel(
-            id: id,
+            plannableId: plannableId,
             type: type,
             date: date,
             title: title,
@@ -183,6 +247,6 @@ public struct TodoItemViewModel: Identifiable, Equatable, Comparable {
             icon: icon
         )
     }
-
-    #endif
 }
+
+#endif

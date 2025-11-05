@@ -67,7 +67,7 @@ extension TodoModel {
     static func make(count: Int = 5) -> TodoModel {
         let items = [
             TodoItemViewModel(
-                id: "1",
+                plannableId: "1",
                 type: .assignment,
                 date: Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: Date.now)!,
                 title: String(localized: "Research Paper Draft"),
@@ -78,7 +78,7 @@ extension TodoModel {
                 icon: .assignmentLine
             ),
             TodoItemViewModel(
-                id: "2",
+                plannableId: "2",
                 type: .discussion_topic,
                 date: Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date.now)!,
                 title: String(localized: "Chapter 5 Discussion"),
@@ -89,7 +89,7 @@ extension TodoModel {
                 icon: .discussionLine
             ),
             TodoItemViewModel(
-                id: "3",
+                plannableId: "3",
                 type: .calendar_event,
                 date: Calendar.current.date(bySettingHour: 15, minute: 0, second: 0, of: Date.now)!,
                 title: String(localized: "Guest Lecture Series"),
@@ -100,7 +100,7 @@ extension TodoModel {
                 icon: .calendarMonthLine
             ),
             TodoItemViewModel(
-                id: "4",
+                plannableId: "4",
                 type: .planner_note,
                 date: Calendar.current.date(bySettingHour: 10, minute: 0, second: 0, of: Date.now.addDays(3))!,
                 title: String(localized: "Review study materials"),
@@ -111,7 +111,7 @@ extension TodoModel {
                 icon: .noteLine
             ),
             TodoItemViewModel(
-                id: "5",
+                plannableId: "5",
                 type: .quiz,
                 date: Calendar.current.date(bySettingHour: 14, minute: 0, second: 0, of: Date.now.addDays(3))!,
                 title: String(localized: "Unit 3 Quiz"),
@@ -122,7 +122,7 @@ extension TodoModel {
                 icon: .quizLine
             ),
             TodoItemViewModel(
-                id: "6",
+                plannableId: "6",
                 type: .assignment,
                 date: Calendar.current.date(bySettingHour: 16, minute: 0, second: 0, of: Date.now.addDays(3))!,
                 title: String(localized: "Lab Report Submission"),
@@ -133,7 +133,7 @@ extension TodoModel {
                 icon: .assignmentLine
             ),
             TodoItemViewModel(
-                id: "7",
+                plannableId: "7",
                 type: .wiki_page,
                 date: Calendar.current.date(bySettingHour: 18, minute: 0, second: 0, of: Date.now.addDays(3))!,
                 title: String(localized: "Course Syllabus"),

@@ -42,7 +42,7 @@ extension APIPage {
         title: String = "Answers Page",
         updated_at: Date = Date(),
         url: String = "answers-page"
-	) -> APIPage {
+    ) -> APIPage {
         return APIPage(
             url: url,
             updated_at: updated_at,

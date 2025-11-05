@@ -35,9 +35,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         }
     }
 
-    lazy var audioRecorder = AudioRecorderViewController.create()
     lazy var button = UIView()
-    lazy var imagePicker = UIImagePickerController()
     lazy var presenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: "1")
     lazy var filePicker: FilePickerViewController = {
         let picker = FilePickerViewController.create(env: env, batchID: presenter.batchID)
@@ -269,22 +267,5 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         try UploadManager.shared.add(url: url, batchID: presenter.batchID)
         let filePicker = FilePickerViewController.create(env: env, batchID: presenter.batchID)
         XCTAssertTrue(presenter.canSubmit(filePicker))
-    }
-
-    func testCancelAudioRecording() {
-        presenter.cancel(audioRecorder)
-        XCTAssert(audioRecorder == router.dismissed)
-    }
-
-    func testSendAudioRecording() {
-        let url = URL(string: "data:audio/x-aac,")!
-        presenter.send(audioRecorder, url: url)
-        XCTAssertNotNil(router.presented)
-    }
-
-    func testImagePickerControllerVideo() {
-        let url = URL(string: "data:audio/x-aac,")!
-        presenter.imagePickerController(imagePicker, didFinishPickingMediaWithInfo: [.mediaURL: url])
-        XCTAssert(imagePicker == router.dismissed)
     }
 }

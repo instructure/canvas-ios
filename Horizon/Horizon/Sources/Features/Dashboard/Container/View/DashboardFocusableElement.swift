@@ -25,4 +25,5 @@ enum DashboardFocusableElement: Hashable, Codable {
     case notebookButton
     case notificationButton
     case mailButton
+    case timeSpent
 }

@@ -16,17 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
+import TestsFoundation
+@testable import Core
 
-enum UnenrolledProgramListWidgetAssembly {
-    static func makeViewModel(programs: [Program] = []) -> UnenrolledProgramListWidgetViewModel {
-        UnenrolledProgramListWidgetViewModel(programs: programs)
-    }
+class RouterInteractorTestCase: CoreTestCase {
 
-    static func makeView(
-        viewModel: UnenrolledProgramListWidgetViewModel,
-        onTap: @escaping (Program) -> Void
-    ) -> UnenrolledProgramListWidgetView {
-        return UnenrolledProgramListWidgetView(viewModel: viewModel, onTap: onTap)
+    @discardableResult
+    func saveTab(id: String = "", htmlUrl: String, fullUrl: String? = nil, context: Context) -> Tab {
+        let fURL = fullUrl.flatMap({ URL(string: $0) })
+        let apiTab = APITab.make(id: ID(id), html_url: URL(string: htmlUrl)!, full_url: fURL)
+        let tab: Tab = databaseClient.insert()
+        tab.save(apiTab, in: databaseClient, context: context)
+        drainMainQueue()
+        return tab
     }
 }
