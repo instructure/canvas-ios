@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public extension View {
+extension View {
 
     /// Adds a swipe-to-remove gesture that reveals an action view when swiping left.
     ///
@@ -32,7 +32,7 @@ public extension View {
     ///   - isSwiping: Binding that tracks whether a swipe gesture is currently active. Use this to disable scrolling or other gestures while swiping.
     ///   - onSwipe: Closure called when the swipe action is completed.
     ///   - label: The view displayed in the revealed area during the swipe.
-    func swipeToRemove<Label: View>(
+    public func swipeToRemove<Label: View>(
         backgroundColor: Color,
         isSwiping: Binding<Bool> = .constant(false),
         onSwipe: @escaping () -> Void,
