@@ -58,8 +58,6 @@ targets:
           - $(SRCROOT)/.swiftlint.yml
     settings:
       SWIFT_EMIT_LOC_STRINGS: true
-      MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS: "gnu11 gnu++14"
-      ENABLE_MODULE_VERIFIER: YES
   CoreTests:    
     type: bundle.unit-test
     platform: iOS
