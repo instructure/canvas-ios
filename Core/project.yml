@@ -1,7 +1,7 @@
 ---
 name: Core
 attributes: {
-  LastUpgradeCheck: "1600"
+  LastUpgradeCheck: "2610"
 }
 options:
   groupSortPosition: top
@@ -17,8 +17,6 @@ settings:
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
   ENABLE_USER_SCRIPT_SANDBOXING: false
   ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: false
-  MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS: "gnu11 gnu++14"
-  ENABLE_MODULE_VERIFIER: YES
   STRING_CATALOG_GENERATE_SYMBOLS: false
   platform: iOS
 packages:
@@ -60,6 +58,8 @@ targets:
           - $(SRCROOT)/.swiftlint.yml
     settings:
       SWIFT_EMIT_LOC_STRINGS: true
+      MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS: "gnu11 gnu++14"
+      ENABLE_MODULE_VERIFIER: YES
   CoreTests:    
     type: bundle.unit-test
     platform: iOS
