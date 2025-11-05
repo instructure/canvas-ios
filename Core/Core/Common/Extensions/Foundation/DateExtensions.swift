@@ -62,6 +62,11 @@ public extension Date {
             ?? Date()
     }
 
+    func addWeeks(_ weeks: Int) -> Date {
+        Cal.currentCalendar.date(byAdding: .weekOfYear, value: weeks, to: self)
+            ?? Date()
+    }
+
     func addDays(_ days: Int) -> Date {
         Cal.currentCalendar.date(byAdding: .day, value: days, to: self)
             ?? Date()
@@ -202,6 +207,12 @@ public extension Date {
         return formatter
     }()
 
+    private static var shortDayMonthFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("dMMM")
+        return formatter
+    }()
+
     private static var timeOnlyFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .none
@@ -304,6 +315,13 @@ public extension Date {
      */
     var dayString: String {
         Date.dayFormatter.string(from: self)
+    }
+
+    /**
+     E.g.: 6 Sep
+     */
+    var shortDayMonth: String {
+        Date.shortDayMonthFormatter.string(from: self)
     }
 
     var timeString: String {
