@@ -1,5 +1,8 @@
 ---
 name: Horizon
+attributes: {
+  LastUpgradeCheck: "2610"
+}
 options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure.horizon
