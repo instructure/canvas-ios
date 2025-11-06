@@ -20,12 +20,12 @@ import Foundation
 import SwiftUI
 
 public enum TodoDateRangeEnd: String, CaseIterable, Codable {
-    case today
-    case thisWeek
-    case nextWeek
-    case inTwoWeeks
-    case inThreeWeeks
-    case inFourWeeks
+    case today = "end-today"
+    case thisWeek = "end-thisWeek"
+    case nextWeek = "end-nextWeek"
+    case inTwoWeeks = "end-inTwoWeeks"
+    case inThreeWeeks = "end-inThreeWeeks"
+    case inFourWeeks = "end-inFourWeeks"
 
     public var title: String {
         switch self {
