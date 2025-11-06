@@ -25,6 +25,7 @@ import SwiftUI
 class TodoListViewModel: ObservableObject {
     @Published var items: [TodoGroupViewModel] = []
     @Published var state: InstUI.ScreenState = .loading
+    @Published var filterIcon: Image = .filterLine
     let screenConfig = InstUI.BaseScreenConfig(
         emptyPandaConfig: .init(
             scene: VacationPanda(),
@@ -36,6 +37,7 @@ class TodoListViewModel: ObservableObject {
 
     private let interactor: TodoInteractor
     private let router: Router
+    private let sessionDefaults: SessionDefaults
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
     /// Tracks cancellable timers for items in the done state waiting to be removed after 3 seconds
@@ -46,16 +48,19 @@ class TodoListViewModel: ObservableObject {
     init(
         interactor: TodoInteractor,
         router: Router,
+        sessionDefaults: SessionDefaults,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
         self.router = router
+        self.sessionDefaults = sessionDefaults
         self.scheduler = scheduler
 
         interactor.todoGroups
             .assign(to: \.items, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
+        updateFilterIcon()
         refresh(completion: { }, ignoreCache: false)
     }
 
@@ -92,6 +97,19 @@ class TodoListViewModel: ObservableObject {
 
     func openProfile(_ viewController: WeakViewController) {
         router.route(to: "/profile", from: viewController, options: .modal())
+    }
+
+    func openFilter(_ viewController: WeakViewController) {
+        let filterVC = TodoAssembly.makeTodoFilterViewController(
+            sessionDefaults: sessionDefaults,
+            onFiltersChanged: handleFiltersChanged
+        )
+        router.show(filterVC, from: viewController, options: .modal(embedInNav: true, addDoneButton: false))
+    }
+
+    func handleFiltersChanged() {
+        updateFilterIcon()
+        refresh(completion: { }, ignoreCache: true)
     }
 
     func didTapDayHeader(_ group: TodoGroupViewModel, viewController: WeakViewController) {
@@ -262,5 +280,10 @@ class TodoListViewModel: ObservableObject {
 
         let announcement = String(localized: "\(item.title), marked as done", bundle: .core)
         UIAccessibility.announce(announcement)
+    }
+
+    private func updateFilterIcon() {
+        let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
+        filterIcon = filterOptions.isDefault ? .filterLine : .filterSolid
     }
 }

@@ -48,7 +48,7 @@ struct TodoListScreen: View {
         }
         .clipped()
         .scrollDisabled(isCellSwiping)
-        .navigationBarItems(leading: profileMenuButton)
+        .navigationBarItems(leading: profileMenuButton, trailing: filterButton)
         .snackBar(viewModel: viewModel.snackBar)
     }
 
@@ -113,20 +113,33 @@ struct TodoListScreen: View {
             comment: "Accessibility text describing the Profile Menu button and its state"
         ))
     }
+
+    private var filterButton: some View {
+        Button {
+            viewModel.openFilter(viewController)
+        } label: {
+            viewModel.filterIcon
+                .foregroundColor(Color(Brand.shared.navTextColor))
+        }
+        .frame(width: 44, height: 44)
+        .padding(.trailing, -6)
+        .identifier("ToDos.filterButton")
+        .accessibility(label: Text(
+            "Filter To Do list",
+            bundle: .core,
+            comment: "Button to open To Do list filter preferences"
+        ))
+    }
 }
 
 #if DEBUG
 
 #Preview {
-    let env = PreviewEnvironment()
-    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(), router: env.router)
-    TodoListScreen(viewModel: viewModel)
+    TodoAssembly.makePreviewViewController(interactor: TodoInteractorPreview())
 }
 
 #Preview("Empty State") {
-    let env = PreviewEnvironment()
-    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(todoGroups: []), router: env.router)
-    TodoListScreen(viewModel: viewModel)
+    TodoAssembly.makePreviewViewController(interactor: TodoInteractorPreview(todoGroups: []))
 }
 
 #endif

@@ -36,9 +36,14 @@ public class TodoFilterViewModel: ObservableObject {
     // MARK: - Private Properties
 
     private var sessionDefaults: SessionDefaults
+    private var onFiltersChanged: (() -> Void)?
 
-    public init(sessionDefaults: SessionDefaults) {
+    public init(
+        sessionDefaults: SessionDefaults,
+        onFiltersChanged: (() -> Void)? = nil
+    ) {
         self.sessionDefaults = sessionDefaults
+        self.onFiltersChanged = onFiltersChanged
 
         let savedFilters = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
 
@@ -68,7 +73,12 @@ public class TodoFilterViewModel: ObservableObject {
             dateRangeEnd: endEnum
         )
 
-        sessionDefaults.todoFilterOptions = newFilters
+        let currentFilters = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
+
+        if newFilters != currentFilters {
+            sessionDefaults.todoFilterOptions = newFilters
+            onFiltersChanged?()
+        }
     }
 }
 

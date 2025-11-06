@@ -20,7 +20,7 @@ import SwiftUI
 
 public struct TodoFilterScreen: View {
 
-    @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.viewController) private var viewController
     @StateObject private var viewModel: TodoFilterViewModel
 
     public init(viewModel: TodoFilterViewModel) {
@@ -118,7 +118,7 @@ public struct TodoFilterScreen: View {
 
     private var cancelButton: some View {
         Button {
-            presentationMode.wrappedValue.dismiss()
+            viewController.value.dismiss(animated: true)
         } label: {
             Text("Cancel", bundle: .core)
         }
@@ -127,7 +127,7 @@ public struct TodoFilterScreen: View {
     private var doneButton: some View {
         Button {
             viewModel.applyFilters()
-            presentationMode.wrappedValue.dismiss()
+            viewController.value.dismiss(animated: true)
         } label: {
             Text("Done", bundle: .core)
         }
