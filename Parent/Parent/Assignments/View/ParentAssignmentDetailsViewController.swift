@@ -224,7 +224,7 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
 
     func reminderDateChanged(selectedDate: Date?) {
         guard let selectedDate = selectedDate, let assignment = assignment.first else { return }
-        localNotifications.setReminder(for: assignment, at: selectedDate, studentID: studentID) { error in
+        localNotifications.setReminder(for: assignment, at: selectedDate, studentID: studentID.raw) { error in
             Task { @MainActor in
                 if error == nil {
                     self.reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
