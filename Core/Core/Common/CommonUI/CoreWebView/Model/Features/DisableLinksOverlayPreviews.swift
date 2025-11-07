@@ -39,7 +39,7 @@ private class DisableLinksOverlayPreviews: CoreWebViewFeature {
                 }
             })
         }
-        window.addEventListener("DOMSubtreeModified", disableLinksOverlayPreviews)
+        disableLinksOverlayPreviews();
         """
     }()
 

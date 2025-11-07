@@ -130,9 +130,21 @@ class CoreWebViewTests: CoreTestCase {
             return mockType
         }
 
+        let mockSourceFrame: WKFrameInfo
+        override var sourceFrame: WKFrameInfo {
+            mockSourceFrame
+        }
+
+        let mockTargetFrame: WKFrameInfo?
+        override var targetFrame: WKFrameInfo? {
+            mockTargetFrame
+        }
+
         init(url: String, type: WKNavigationType) {
             mockRequest = URLRequest(url: URL(string: url)!)
             mockType = type
+            mockSourceFrame = WKFrameInfo()
+            mockTargetFrame = mockSourceFrame
             super.init()
         }
     }

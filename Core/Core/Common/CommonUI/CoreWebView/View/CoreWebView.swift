@@ -484,7 +484,7 @@ extension CoreWebView: WKNavigationDelegate {
         if action.navigationType == .linkActivated,
            action.sourceFrame == action.targetFrame,
            let url = action.request.url, let fragment = url.fragment,
-           let lhsString: String.SubSequence = self.url?.absoluteString.split(separator: "#").first,
+           let lhsString: String.SubSequence = (self.url ?? self.baseURL)?.absoluteString.split(separator: "#").first,
            let rhsString: String.SubSequence = url.absoluteString.split(separator: "#").first,
            lhsString == rhsString {
             scrollIntoView(fragment: fragment)
