@@ -19,22 +19,18 @@
 import HorizonUI
 import SwiftUI
 
-struct TimeSpentWidgetListCursesView: View {
-    @State private var isCourseListVisible = false
-    let courses: [TimeSpentWidgetModel]
-    @State var selectedCourse: TimeSpentWidgetModel?
-    let onSelect: (TimeSpentWidgetModel?) -> Void
+struct CourseFilteringView: View {
+    @State var selectedStatus: CourseCardModel.CourseStatus?
+    @State private var isListCoursesVisiable = false
+    let onSelect: (CourseCardModel.CourseStatus?) -> Void
 
     var body: some View {
-        TimeSpentWidgetCourseButton(
-            courseName: selectedCourse?.courseName ?? "",
-            isSelected: selectedCourse != nil
-        ) {
-            isCourseListVisible.toggle()
+        CourseSelectionButton(status: selectedStatus?.name ?? "") {
+            isListCoursesVisiable.toggle()
         }
-        .accessibilityLabel(Text(selectedCourse?.titleAccessibilityButtonLabel ?? ""))
+        .frame(minWidth: 130)
         .accessibilityHint(Text("Double tab to select a different course", bundle: .horizon))
-        .popover(isPresented: $isCourseListVisible, attachmentAnchor: .point(.center), arrowEdge: .top) {
+        .popover(isPresented: $isListCoursesVisiable, attachmentAnchor: .point(.center), arrowEdge: .top) {
             courseListView
                 .presentationCompactAdaptation(.none)
                 .presentationBackground(Color.huiColors.surface.cardPrimary)
@@ -44,28 +40,19 @@ struct TimeSpentWidgetListCursesView: View {
     private var courseListView: some View {
         ScrollView {
             VStack(spacing: .zero) {
-                ForEach(courses) { course in
+                ForEach(CourseCardModel.CourseStatus.allCases, id: \.self) { status in
                     Button {
-                        selectedCourse = course
-                        onSelect(course)
-                        isCourseListVisible.toggle()
+                        selectedStatus = status
+                        onSelect(status)
+                        isListCoursesVisiable.toggle()
                     } label: {
                         TimeSpentCourseView(
-                            name: course.courseName,
-                            isSelected: course == selectedCourse
+                            name: status.name,
+                            isSelected: status == selectedStatus
                         )
                     }
-                    .accessibilityLabel(Text(course.titleAccessibilityLabel))
                 }
             }
         }
     }
-}
-
-#Preview {
-    TimeSpentWidgetListCursesView(courses: [
-        .init(id: "1", courseName: "Introduction to SwiftUI", minutesPerDay: 125),
-        .init(id: "2", courseName: "Advanced iOS Development", minutesPerDay: 90),
-        .init(id: "3", courseName: "UI/UX Design Principles", minutesPerDay: 45)
-    ]) { _ in }
 }
