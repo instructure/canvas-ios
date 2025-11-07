@@ -207,6 +207,8 @@ extension Plannable {
         } else {
             if let color: ContextColor = managedObjectContext?.first(where: #keyPath(ContextColor.canvasContextID), equals: canvasContextID) {
                 return color.color
+            } else if context?.contextType == .account {
+                return Brand.shared.primary
             } else {
                 return .textDark
             }
