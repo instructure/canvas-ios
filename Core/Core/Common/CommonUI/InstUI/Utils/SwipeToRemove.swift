@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public extension View {
+extension View {
 
     /// Adds a swipe-to-remove gesture that reveals an action view when swiping left.
     ///
@@ -29,12 +29,12 @@ public extension View {
     ///
     /// - Parameters:
     ///   - backgroundColor: The background color revealed behind the content during the swipe.
-    ///   - isSwiping: Optional binding that tracks whether a swipe gesture is currently active. Use this to disable scrolling or other gestures while swiping.
+    ///   - isSwiping: Binding that tracks whether a swipe gesture is currently active. Use this to disable scrolling or other gestures while swiping.
     ///   - onSwipe: Closure called when the swipe action is completed.
     ///   - label: The view displayed in the revealed area during the swipe.
-    func swipeToRemove<Label: View>(
+    public func swipeToRemove<Label: View>(
         backgroundColor: Color,
-        isSwiping: Binding<Bool>? = nil,
+        isSwiping: Binding<Bool> = .constant(false),
         onSwipe: @escaping () -> Void,
         @ViewBuilder label: @escaping () -> Label
     ) -> some View {
@@ -49,9 +49,21 @@ public extension View {
 
 private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
     let backgroundColor: Color
-    let isSwiping: Binding<Bool>?
+    @Binding var isSwiping: Bool
     let onSwipe: () -> Void
     let label: () -> Label
+
+    init(
+        backgroundColor: Color,
+        isSwiping: Binding<Bool>,
+        onSwipe: @escaping () -> Void,
+        label: @escaping () -> Label
+    ) {
+        self.backgroundColor = backgroundColor
+        self._isSwiping = isSwiping
+        self.onSwipe = onSwipe
+        self.label = label
+    }
 
     // MARK: - Gesture Properties
     /// The ratio of cell width that must be swiped to trigger the action (0.8 = 80% of cell width).
@@ -66,7 +78,7 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
     @State private var actionViewOffset: CGFloat = 0
 
     // MARK: - Internal Logic States
-    /// Becomes true, if dragging goes beyond `actionThreshold`. If grad is ended while this is true the swipe action will be performed.
+    /// Becomes true, if dragging goes beyond `actionThreshold`. If drag is ended while this is true the swipe action will be performed.
     @State private var isActionThresholdReached = false
     /// Becomes true after the action has been invoked to disable further drag gestures
     @State private var isActionInvoked = false
@@ -119,7 +131,7 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
               value.translation.isSwipingLeft
         else { return }
 
-        isSwiping?.wrappedValue = true
+        isSwiping = true
 
         hapticGenerator.prepare()
         cellContentOffset = max(value.translation.width, -cellWidth)
@@ -166,7 +178,7 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
         defer { isStartedAsHorizontalGesture = nil }
         guard isStartedAsHorizontalGesture == true else { return }
 
-        isSwiping?.wrappedValue = false
+        isSwiping = false
 
         if isActionThresholdReached {
             animateToOpenedState()

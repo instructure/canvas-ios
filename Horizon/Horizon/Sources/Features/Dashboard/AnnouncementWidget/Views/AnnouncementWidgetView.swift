@@ -41,73 +41,73 @@ struct AnnouncementWidgetView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space4) {
-            VStack(alignment: .leading, spacing: .huiSpaces.space4) {
-                headerView
-                if let courseName = announcement.courseName {
-                    Text(courseName)
-                        .lineLimit(1)
-                        .huiTypography(.p2)
-                        .foregroundStyle(Color.huiColors.text.dataPoint)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .skeletonLoadable()
-                        .accessibilityHidden(true)
-                }
-
-                Text(announcement.dateFormatted)
-                    .huiTypography(.p3)
-                    .foregroundStyle(Color.huiColors.text.timestamp)
+        VStack(alignment: .leading, spacing: .zero) {
+            headerView
+                .padding(.bottom, .huiSpaces.space16)
+            if let courseName = announcement.courseName {
+                Text(courseName)
+                    .lineLimit(1)
+                    .huiTypography(.p2)
+                    .foregroundStyle(Color.huiColors.text.dataPoint)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .skeletonLoadable()
+                    .accessibilityHidden(true)
                     .padding(.bottom, .huiSpaces.space4)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .skeletonLoadable()
-                    .accessibilityHidden(true)
-
-                Text(announcement.title)
-                    .huiTypography(.p1)
-                    .multilineTextAlignment(.leading)
-                    .foregroundStyle(Color.huiColors.text.body)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .skeletonLoadable()
-                    .accessibilityHidden(true)
             }
-            .padding(.huiSpaces.space24)
-            .background(Color.huiColors.surface.pageSecondary)
-            .huiCornerRadius(level: .level5)
-            .huiElevation(level: .level4)
-            .accessibilityElement(children: .combine)
-            .accessibilityLabel(Text(combinedAccessibilityLabel))
-            .accessibilityFocused(focusedAnnouncementID, equals: announcement.id)
+
+            Text(announcement.dateFormatted)
+                .huiTypography(.p2)
+                .foregroundStyle(Color.huiColors.text.timestamp)
+                .padding(.bottom, .huiSpaces.space4)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .skeletonLoadable()
+                .accessibilityHidden(true)
+                .padding(.bottom, .huiSpaces.space8)
+
+            Text(announcement.title)
+                .lineLimit(3)
+                .huiTypography(.p1)
+                .multilineTextAlignment(.leading)
+                .foregroundStyle(Color.huiColors.text.body)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .skeletonLoadable()
+                .accessibilityHidden(true)
         }
+        .padding(.huiSpaces.space24)
+        .background(Color.huiColors.surface.pageSecondary)
+        .huiCornerRadius(level: .level5)
+        .huiElevation(level: .level4)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(Text(combinedAccessibilityLabel))
+        .accessibilityFocused(focusedAnnouncementID, equals: announcement.id)
     }
 
     private var headerView: some View {
-        HStack(spacing: .zero) {
-            HorizonUI.StatusChip(
-                title: announcement.type.title,
-                style: announcement.type.style
-            )
-            .padding(.bottom, .huiSpaces.space10)
-            .padding(.bottom, .huiSpaces.space2)
-            .skeletonLoadable()
-            .accessibilityHidden(true)
+        HStack(spacing: .huiSpaces.space8) {
+            Image.huiIcons.announcement
+                .frame(width: 16, height: 16)
+                .foregroundStyle(Color.huiColors.icon.default)
+                .padding(.huiSpaces.space8)
+                .background(Color(hexString: "#E6EDF3"))
+                .clipShape(.circle)
+                .skeletonLoadable()
+                .accessibilityHidden(true)
+
+            Text(announcement.type.title)
+                .foregroundStyle(Color.huiColors.text.dataPoint)
+                .huiTypography(.labelMediumBold)
+                .skeletonLoadable()
+                .accessibilityHidden(true)
+
             Spacer()
             if isCounterVisible {
-                countView
+                CounterTextView(
+                    currentIndex: currentIndex + 1,
+                    totalCount: totalCount
+                )
+                .accessibilityHidden(true)
             }
         }
-    }
-
-    private var countView: some View {
-        Text(
-            String(
-                format: String(localized: "%@ of %@"),
-                (currentIndex + 1).description,
-                totalCount.description
-            )
-        )
-        .huiTypography(.p1)
-        .foregroundStyle(Color.huiColors.text.dataPoint)
-        .skeletonLoadable()
     }
 
     private var combinedAccessibilityLabel: String {
