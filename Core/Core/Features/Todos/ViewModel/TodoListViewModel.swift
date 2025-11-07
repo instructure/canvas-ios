@@ -111,7 +111,18 @@ class TodoListViewModel: ObservableObject {
 
     func handleFiltersChanged() {
         updateFilterIcon()
-        refresh(completion: { }, ignoreCache: true)
+
+        interactor.isCacheExpired()
+            .sink { [weak self] cacheExpired in
+                guard let self else { return }
+
+                if cacheExpired {
+                    self.state = .loading
+                }
+
+                self.refresh(completion: {}, ignoreCache: false)
+            }
+            .store(in: &subscriptions)
     }
 
     func didTapDayHeader(_ group: TodoGroupViewModel, viewController: WeakViewController) {

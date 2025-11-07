@@ -57,3 +57,33 @@ extension TodoVisibilityOption {
         allCases.map { $0.toOptionItem() }
     }
 }
+
+// MARK: - Filtering
+
+extension Set where Element == TodoVisibilityOption {
+
+    public func shouldInclude(plannableType: PlannableType) -> Bool {
+        switch plannableType {
+        case .planner_note:
+            return contains(.showPersonalTodos)
+        case .calendar_event:
+            return contains(.showCalendarEvents)
+        default:
+            return true
+        }
+    }
+
+    public func shouldInclude(isCompleted: Bool, isSubmitted: Bool) -> Bool {
+        if isCompleted || isSubmitted {
+            return contains(.showCompleted)
+        }
+        return true
+    }
+
+    public func shouldInclude(isFavorite: Bool?, hasNoCourse: Bool) -> Bool {
+        if contains(.favouriteCoursesOnly) {
+            return hasNoCourse || (isFavorite == true)
+        }
+        return true
+    }
+}

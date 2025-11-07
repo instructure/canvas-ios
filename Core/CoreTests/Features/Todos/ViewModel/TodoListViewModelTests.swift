@@ -33,7 +33,8 @@ class TodoListViewModelTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         interactor = .init()
-        testee = .init(interactor: interactor, router: router, scheduler: testScheduler.eraseToAnyScheduler())
+        let sessionDefaults = SessionDefaults(sessionID: "test")
+        testee = .init(interactor: interactor, router: router, sessionDefaults: sessionDefaults, scheduler: testScheduler.eraseToAnyScheduler())
     }
 
     override func tearDown() {

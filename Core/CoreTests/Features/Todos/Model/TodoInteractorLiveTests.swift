@@ -35,7 +35,8 @@ class TodoInteractorLiveTests: CoreTestCase {
         environment.currentSession = LoginSession.make(userID: "1")
         mockAnalyticsHandler = MockAnalyticsHandler()
         Analytics.shared.handler = mockAnalyticsHandler
-        testee = TodoInteractorLive(env: environment)
+        let sessionDefaults = SessionDefaults(sessionID: "test")
+        testee = TodoInteractorLive(env: environment, sessionDefaults: sessionDefaults)
     }
 
     override func tearDown() {

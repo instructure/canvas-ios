@@ -50,4 +50,28 @@ public struct TodoFilterOptions: Codable, Equatable {
         dateRangeStart: .lastWeek,
         dateRangeEnd: .nextWeek
     )
+
+    public func shouldInclude(plannable: Plannable, course: Course?) -> Bool {
+        guard let plannableDate = plannable.date else { return false }
+
+        let isWithinDateRange = plannableDate >= startDate && plannableDate <= endDate
+        guard isWithinDateRange else { return false }
+
+        let typeMatches = visibilityOptions.shouldInclude(plannableType: plannable.plannableType)
+        guard typeMatches else { return false }
+
+        let completionMatches = visibilityOptions.shouldInclude(
+            isCompleted: plannable.isMarkedComplete,
+            isSubmitted: plannable.isSubmitted
+        )
+        guard completionMatches else { return false }
+
+        let favoriteMatches = visibilityOptions.shouldInclude(
+            isFavorite: course?.isFavorite,
+            hasNoCourse: course == nil
+        )
+        guard favoriteMatches else { return false }
+
+        return true
+    }
 }

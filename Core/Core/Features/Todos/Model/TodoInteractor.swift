@@ -20,8 +20,34 @@ import Foundation
 import Combine
 
 protocol TodoInteractor {
+    /// The current list of todo groups, grouped by day and filtered according to user preferences.
+    /// Updated when `refresh()` is called.
     var todoGroups: CurrentValueSubject<[TodoGroupViewModel], Never> { get }
+
+    /// Fetches todos from the API or cache and applies current filter settings.
+    ///
+    /// This method fetches plannables and courses, applies user's filter preferences,
+    /// groups the results by day, and updates the badge count.
+    ///
+    /// - Parameter ignoreCache: If `true`, forces a fetch from the API.
+    ///   If `false`, checks cache expiration: returns cached data if valid, fetches from API if expired.
+    /// - Returns: A publisher that completes when the refresh operation finishes.
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
+
+    /// Checks if the cache has expired for todo data.
+    ///
+    /// Returns `true` if the cache has expired and the next `refresh(ignoreCache: false)` will fetch from the API.
+    /// Returns `false` if cached data is still valid.
+    ///
+    /// - Returns: A publisher that emits whether the cache has expired.
+    func isCacheExpired() -> AnyPublisher<Bool, Never>
+
+    /// Marks a todo item as done or not done.
+    ///
+    /// - Parameters:
+    ///   - item: The todo item to update.
+    ///   - done: `true` to mark as done, `false` to mark as not done.
+    /// - Returns: A publisher that completes when the operation finishes.
     func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error>
 }
 
@@ -29,51 +55,43 @@ final class TodoInteractorLive: TodoInteractor {
     var todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([])
 
     private let env: AppEnvironment
+    private let sessionDefaults: SessionDefaults
+    private let coursesStore: ReactiveStore<GetCourses>
     private var subscriptions = Set<AnyCancellable>()
 
-    init(env: AppEnvironment) {
+    init(env: AppEnvironment, sessionDefaults: SessionDefaults) {
         self.env = env
+        self.sessionDefaults = sessionDefaults
+        self.coursesStore = ReactiveStore(useCase: GetCourses(), environment: env)
     }
 
+    // MARK: - Public Methods
+
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        let startDate = Clock.now.addDays(-28)
-        let endDate = Clock.now.addDays(28)
-        let currentUserID = env.currentSession?.userID
+        let plannableStore = makePlannablesStore()
 
-        return ReactiveStore(useCase: GetCourses(), environment: env)
-            .getEntities(ignoreCache: ignoreCache)
-            .map { courses in
-                var contextCodes: [String] = courses.filter(\.isPublished).map(\.canvasContextID)
-                if let userContextCode = Context(.user, id: currentUserID)?.canvasContextID {
-                    contextCodes.append(userContextCode)
-                }
-                return (contextCodes, courses)
-            }
-            .flatMap { [env] (courseContextCodes, courses: [Course]) in
-                ReactiveStore(
-                    useCase: GetPlannables(startDate: startDate, endDate: endDate, contextCodes: courseContextCodes),
-                    environment: env
-                )
-                .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
-                .map { plannables in
-                    let coursesByCanvasContextIds = Dictionary(uniqueKeysWithValues: courses.map { ($0.canvasContextID, $0) })
-                    return plannables
-                        .filter { !$0.isMarkedComplete && !$0.isSubmitted }
-                        .compactMap { plannable in
-                            let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
-                            return TodoItemViewModel(plannable, course: course)
-                        }
-                }
-            }
-            .map { [weak todoGroups] (todos: [TodoItemViewModel]) in
-                TabBarBadgeCounts.todoListCount = UInt(todos.count)
+        return Publishers.Zip(
+            plannableStore.getEntities(ignoreCache: ignoreCache, loadAllPages: true),
+            coursesStore.getEntities(ignoreCache: ignoreCache)
+        )
+        .handleEvents(receiveOutput: { [weak self] plannables, courses in
+            self?.filterAndGroupTodos(plannables: plannables, courses: courses)
+        })
+        .mapToVoid()
+        .eraseToAnyPublisher()
+    }
 
-                // Group todos by day
-                let groupedTodos = Self.groupTodosByDay(todos)
-                todoGroups?.value = groupedTodos
-                return ()
-            }
-            .eraseToAnyPublisher()
+    func isCacheExpired() -> AnyPublisher<Bool, Never> {
+        let plannablesUseCase = makePlannablesUseCase()
+
+        return Publishers.Zip(
+            plannablesUseCase.hasCacheExpired(environment: env),
+            coursesStore.useCase.hasCacheExpired(environment: env)
+        )
+        .map { plannablesExpired, coursesExpired in
+            plannablesExpired || coursesExpired
+        }
+        .eraseToAnyPublisher()
     }
 
     func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
@@ -92,6 +110,39 @@ final class TodoInteractorLive: TodoInteractor {
                 return ()
             }
             .eraseToAnyPublisher()
+    }
+
+    // MARK: - Private Methods
+
+    private func makePlannablesUseCase() -> GetPlannables {
+        let startDate = TodoDateRangeStart.fourWeeksAgo.startDate()
+        let endDate = TodoDateRangeEnd.inFourWeeks.endDate()
+        return GetPlannables(startDate: startDate, endDate: endDate, contextCodes: nil)
+    }
+
+    private func makePlannablesStore() -> ReactiveStore<GetPlannables> {
+        ReactiveStore(useCase: makePlannablesUseCase(), environment: env)
+    }
+
+    private func filterAndGroupTodos(plannables: [Plannable], courses: [Course]) {
+        let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
+        let coursesByCanvasContextIds = Dictionary(uniqueKeysWithValues: courses.map { ($0.canvasContextID, $0) })
+
+        let todos = plannables
+            .filter { plannable in
+                let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
+                return filterOptions.shouldInclude(plannable: plannable, course: course)
+            }
+            .compactMap { plannable in
+                let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
+                return TodoItemViewModel(plannable, course: course)
+            }
+
+        let notDoneTodos = todos.filter { $0.markAsDoneState == .notDone }
+        TabBarBadgeCounts.todoListCount = UInt(notDoneTodos.count)
+
+        let groupedTodos = Self.groupTodosByDay(todos)
+        todoGroups.value = groupedTodos
     }
 
     private func updateOverrideId(for item: TodoItemViewModel) {
@@ -148,6 +199,10 @@ final class TodoInteractorPreview: TodoInteractor {
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
         Publishers.typedJust(())
+    }
+
+    func isCacheExpired() -> AnyPublisher<Bool, Never> {
+        Just(false).eraseToAnyPublisher()
     }
 
     func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
