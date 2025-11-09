@@ -79,7 +79,7 @@ final class TodoInteractorLive: TodoInteractor {
     func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
         let useCase = MarkPlannableItemDone(
             plannableId: item.plannableId,
-            plannableType: item.plannableType,
+            plannableType: item.type.rawValue,
             overrideId: item.overrideId,
             done: done
         )
