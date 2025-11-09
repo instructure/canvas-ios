@@ -35,6 +35,8 @@ struct ProgramNameListChipView: View {
                         hasBorder: true
                     )
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(String(localized: "Part of program: \(program.name)"))
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

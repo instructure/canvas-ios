@@ -27,30 +27,32 @@ struct CourseListWidgetItemView: View {
     let onCourseTap: (String) -> Void
     let onProgramTap: ((String) -> Void)?
     let onLearningObjectTap: ((String, URL?) -> Void)?
-
+    private let isVoiceOverRunning = UIAccessibility.isVoiceOverRunning
     private let imageHeight: CGFloat = 182
 
     var body: some View {
         ZStack(alignment: .top) {
             VStack(spacing: .zero) {
-                courseImageSection
-                    .onTapGesture {
-                        onCardTapGesture()
-                    }
-                courseContentSection
-            }
+                ZStack(alignment: .topLeading) {
+                    courseImageSection
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            onCourseTap(model.id)
+                        }
+                    if model.hasPrograms {
+                        programLinkSection
 
-            Color.clear // This is needed to overwrite a11y VO automatic tap gesture mechanism.
-                .frame(height: imageHeight)
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    if model.id != "mock-course-id" { // This is mock data for skeleton loading so we disable user interaction.
-                        onCourseTap(model.id)
                     }
                 }
-                .allowsHitTesting(true)
-                .accessibilityHidden(true)
+
+                courseContentSection
+                Spacer()
+                counterView
+
+            }
+            voiceOverHelperView
         }
+        .padding(.bottom, .huiSpaces.space16)
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
@@ -227,25 +229,25 @@ struct CourseListWidgetItemView: View {
     private func learningObjectMetadata(for learningObject: CourseListWidgetModel.LearningObjectInfo) -> some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space8) {
             HStack(spacing: .huiSpaces.space8) {
+                if let estimatedDuration = learningObject.estimatedDuration {
+                    HorizonUI.StatusChip(
+                        title: estimatedDuration,
+                        style: .white,
+                        icon: .huiIcons.schedule,
+                        isFilled: true
+                    )
+                    .skeletonLoadable()
+                    .accessibilityHidden(true)
+                }
+
                 HorizonUI.StatusChip(
-                    title: learningObject.dueDate ?? "",
+                    title: learningObject.dueDate ?? String(localized: "No due date"),
                     style: .white,
                     icon: .huiIcons.calendarToday,
                     isFilled: true
                 )
                 .skeletonLoadable()
                 .accessibilityHidden(true)
-                .hidden(learningObject.dueDate == nil)
-
-                HorizonUI.StatusChip(
-                    title: learningObject.estimatedDuration ?? "",
-                    style: .white,
-                    icon: .huiIcons.schedule,
-                    isFilled: true
-                )
-                .skeletonLoadable()
-                .accessibilityHidden(true)
-                .hidden(learningObject.estimatedDuration == nil)
             }
 
             HorizonUI.StatusChip(
@@ -257,6 +259,32 @@ struct CourseListWidgetItemView: View {
             .skeletonLoadable()
             .accessibilityHidden(true)
             .hidden((learningObject.type == nil))
+        }
+    }
+
+    @ViewBuilder
+    private var voiceOverHelperView: some View {
+        if isVoiceOverRunning {
+            Color.clear // This is needed to overwrite a11y VO automatic tap gesture mechanism.
+                .frame(height: imageHeight)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    if model.id != "mock-course-id" { // This is mock data for skeleton loading so we disable user interaction.
+                        onCourseTap(model.id)
+                    }
+                }
+                .allowsHitTesting(true)
+                .accessibilityHidden(true)
+        }
+    }
+
+    @ViewBuilder
+    private var counterView: some View {
+        if totalCount > 1 {
+            CounterTextView(
+                currentIndex: currentIndex + 1,
+                totalCount: totalCount
+            )
         }
     }
 }

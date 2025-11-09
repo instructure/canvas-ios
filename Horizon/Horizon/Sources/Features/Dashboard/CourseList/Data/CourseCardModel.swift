@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import Foundation
 
 struct CourseCardModel: Identifiable, Equatable {
@@ -41,6 +42,36 @@ struct CourseCardModel: Identifiable, Equatable {
         self.hasPrograms = course.programs.isNotEmpty
         self.status = .init(progress: progress)
         self.firstProgramID = course.programs.first?.id
+    }
+
+    var accessibilityDescription: String {
+        var description = String.localizedStringWithFormat(
+            String(localized: "Course: %@. ", bundle: .horizon),
+            name
+        )
+
+        if programs.isNotEmpty {
+            let programsSeparated = programs.map(\.name).joined(separator: ", ")
+            if programsSeparated.isNotEmpty {
+                description += String.localizedStringWithFormat(
+                    String(localized: "Part of %@. ", bundle: .horizon),
+                    programsSeparated
+                )
+            }
+        }
+
+        description += String.localizedStringWithFormat(
+            String(localized: "Progress: %d percent complete. ", bundle: .horizon),
+            Int(progress.rounded())
+        )
+
+        return description
+    }
+    func viewProgramAccessibilityString(_ programName: String) -> String {
+        String.localizedStringWithFormat(
+            String(localized: "Open %@", bundle: .horizon),
+            programName
+        )
     }
 
     enum CourseStatus: CaseIterable {

@@ -30,20 +30,22 @@ struct ProgramNameListView: View {
                 .foregroundStyle(Color.huiColors.text.timestamp)
 
             ForEach(programs) { program in
+                let isLast = program.id == programs.last?.id
+
                 Button {
                     onSelect(program)
                 } label: {
-                    Text(program.name)
-                        .foregroundStyle(Color.huiColors.text.body)
-                        .huiTypography(.labelSmallBold)
-                        .underline(true, color: Color.huiColors.text.body)
-                        .baselineOffset(2)
-                        .multilineTextAlignment(.leading)
-                }
-                if program.id != programs.last?.id {
-                    Text(verbatim: ",")
-                        .foregroundStyle(Color.huiColors.text.body)
-                        .huiTypography(.buttonTextLarge)
+                    (
+                        Text(program.name)
+                            .underline(true, color: Color.huiColors.text.body)
+                        +
+                        Text(verbatim: isLast ? "" : " , ")
+                            .underline(false)
+                    )
+                    .huiTypography(.labelSmallBold)
+                    .foregroundStyle(Color.huiColors.text.body)
+                    .baselineOffset(2)
+                    .multilineTextAlignment(.leading)
                 }
             }
         }

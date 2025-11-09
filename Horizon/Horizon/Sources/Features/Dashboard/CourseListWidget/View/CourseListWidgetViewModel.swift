@@ -115,7 +115,7 @@ class CourseListWidgetViewModel {
                     let filteredPrograms = programs.filter { !$0.hasEnrolledCourse }
 
                     self?.courses = attachedCourses
-                    self?.unenrolledPrograms = Self.programsMock //filteredPrograms
+                    self?.unenrolledPrograms = filteredPrograms
 
                     let invitedCourses = items.filter { $0.state == HCourse.EnrollmentState.invited.rawValue }
                     self?.acceptInvitation(courses: invitedCourses)

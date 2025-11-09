@@ -26,9 +26,12 @@ struct CourseListWidgetView: View {
     @Environment(\.dashboardLastFocusedElement) private var lastFocusedElement
     @Environment(\.dashboardRestoreFocusTrigger) private var restoreFocusTrigger
     @AccessibilityFocusState private var focusedCourseID: String?
+    @AccessibilityFocusState private var focusedSeeAllCourses: Bool?
     @State private var currentCourseIndex: Int? = 0
     @State private var bounceScale: CGFloat = 1.0
     @State private var scrollViewID = UUID()
+    private let focusedseeAllCoursesButton = "focusedseeAllCoursesButton"
+    private let focusedseeAllCoursesCard = "focusedseeAllCoursesCard"
 
     init(viewModel: CourseListWidgetViewModel) {
         _viewModel = State(initialValue: viewModel)
@@ -123,9 +126,12 @@ struct CourseListWidgetView: View {
 
                         if viewModel.isExceededMaxCourses {
                             CourseListWidgetSeeAllCoursesView(count: viewModel.courses.count) {
+                                lastFocusedElement.wrappedValue = .course(id: focusedseeAllCoursesCard)
                                 viewModel.navigateToListCourse(viewController: viewController)
                             }
                             .frame(width: size - 48)
+                            .id(focusedseeAllCoursesCard)
+                            .accessibilityFocused($focusedCourseID, equals: focusedseeAllCoursesCard)
                         }
                     }
                     .scrollTargetLayout()
@@ -168,8 +174,11 @@ struct CourseListWidgetView: View {
     private var seeAllCourseButton: some View {
         if viewModel.isExceededMaxCourses {
             SeeAllCoursesButton {
+                lastFocusedElement.wrappedValue = .course(id: focusedseeAllCoursesButton)
                 viewModel.navigateToListCourse(viewController: viewController)
             }
+            .id(focusedseeAllCoursesButton)
+            .accessibilityFocused($focusedCourseID, equals: focusedseeAllCoursesButton)
         }
     }
 }

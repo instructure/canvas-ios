@@ -39,6 +39,8 @@ struct CourseCardView: View {
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level3_5)
         .huiElevation(level: .level4)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(course.accessibilityDescription)
     }
 
     private var programLinkSection: some View {

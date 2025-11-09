@@ -29,12 +29,20 @@ struct CourseFilteringView: View {
             isListCoursesVisiable.toggle()
         }
         .frame(minWidth: 130)
-        .accessibilityHint(Text("Double tab to select a different course", bundle: .horizon))
+        .accessibilityHint(
+            Text(
+                String.localizedStringWithFormat(
+                    String(localized: "Selected filter is %@. Double tap to select another filter", bundle: .horizon),
+                    selectedStatus?.name ?? ""
+                )
+            )
+        )
         .popover(isPresented: $isListCoursesVisiable, attachmentAnchor: .point(.center), arrowEdge: .top) {
             courseListView
                 .presentationCompactAdaptation(.none)
                 .presentationBackground(Color.huiColors.surface.cardPrimary)
         }
+        .accessibilityRemoveTraits(.isButton)
     }
 
     private var courseListView: some View {

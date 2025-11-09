@@ -21,11 +21,22 @@ import HorizonUI
 import SwiftUI
 
 struct CourseListView: View {
+    // MARK: - VO
+
+    @State private var lastFocusedCcourseID: String?
+    @AccessibilityFocusState private var focusedCourseID: String?
+    private let selectFilterFocusedID = "selectFilterFocusedID"
+
+    // MARK: - Private variables
+
     @Environment(\.dismiss) private var dismiss
     @Environment(\.viewController) private var viewController
     @State private var isShowHeader: Bool = true
     @State private var isShowDivider: Bool = false
     @State private var selectedStatus: CourseCardModel.CourseStatus = .all
+
+    // MARK: - Dependencies
+
     let viewModel: CourseListViewModel
 
     var body: some View {
@@ -50,6 +61,8 @@ struct CourseListView: View {
         .safeAreaInset(edge: .top, spacing: .zero) { headerView }
         .animation(.linear, value: isShowHeader)
         .animation(.easeInOut, value: viewModel.filteredCourses.count)
+        .onAppear { restoreFocusIfNeeded() }
+        .onChange(of: lastFocusedCcourseID) { _, _ in restoreFocusIfNeeded()  }
     }
 
     private var headerView: some View {
@@ -74,12 +87,30 @@ struct CourseListView: View {
         VStack(spacing: .huiSpaces.space16) {
             ForEach(viewModel.filteredCourses) { course in
                 Button {
+                    lastFocusedCcourseID = course.id
                     viewModel.navigateToCourseDetails(course: course, viewController: viewController)
                 } label: {
                     CourseCardView(course: course) { program in
+                        lastFocusedCcourseID = course.id
                         viewModel.navigateProgram(id: program.id, viewController: viewController)
                     }
+                    .accessibilityActions {
+                        Button("Open course") {
+                            viewModel.navigateToCourseDetails(course: course, viewController: viewController)
+                        }
+
+                        ForEach(course.programs) { program in
+                            Button {
+                                viewModel.navigateProgram(id: program.id, viewController: viewController)
+                            } label: {
+                                Text(course.viewProgramAccessibilityString(program.name))
+                            }
+                        }
+                    }
                 }
+                .accessibilityFocused($focusedCourseID, equals: course.id)
+                .buttonStyle(.plain)
+                .accessibilityRemoveTraits(.isButton)
             }
         }
     }
@@ -88,6 +119,7 @@ struct CourseListView: View {
         HStack(spacing: .zero) {
             CourseFilteringView(selectedStatus: selectedStatus) { status in
                 viewModel.filter(status: status ?? .all)
+                lastFocusedCcourseID = selectFilterFocusedID
             }
             .frame(maxWidth: 200)
             .fixedSize(horizontal: true, vertical: false)
@@ -96,9 +128,20 @@ struct CourseListView: View {
             Text(viewModel.filteredCourses.count.description)
                 .foregroundStyle(Color.huiColors.text.dataPoint)
                 .huiTypography(.p1)
+                .accessibilityLabel(
+                    Text(
+                        String(
+                            format: String(localized: "Count of visible courses is @%"),
+                            viewModel.filteredCourses.count.description
+                        )
+                    )
+                )
         }
         .padding(.horizontal, .huiSpaces.space16)
         .padding(.bottom, .huiSpaces.space16)
+        .id(selectFilterFocusedID)
+        .accessibilityFocused($focusedCourseID, equals: selectFilterFocusedID)
+
     }
 
     private var navigationBarHelperView: some View {
@@ -119,6 +162,7 @@ struct CourseListView: View {
                 .frame(maxWidth: .infinity)
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
+                .accessibilityAddTraits(.isHeader)
         }
     }
 
@@ -134,6 +178,13 @@ struct CourseListView: View {
         .accessibilityLabel(String(localized: "Show more"))
         .accessibilityHint( String(localized: "Double tap to load more courses"))
         .padding(.top, .huiSpaces.space16)
+    }
+
+    private func restoreFocusIfNeeded() {
+        guard let lastFocused = lastFocusedCcourseID else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            focusedCourseID = lastFocused
+        }
     }
 }
 
