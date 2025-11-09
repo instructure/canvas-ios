@@ -31,6 +31,7 @@ public struct WebView: UIViewRepresentable {
     private var configuration: WKWebViewConfiguration
     private let features: [CoreWebViewFeature]
     private let baseURL: URL?
+    private var featuresContext: Context?
 
     private var isScrollEnabled: Bool = true
     @Environment(\.appEnvironment) private var env
@@ -95,6 +96,12 @@ public struct WebView: UIViewRepresentable {
     public func onNavigationFinished(_ handleNavigationFinished: (() -> Void)?) -> Self {
         var modified = self
         modified.handleNavigationFinished = handleNavigationFinished
+        return modified
+    }
+
+    public func featuresContext(_ context: Context) -> Self {
+        var modified = self
+        modified.featuresContext = context
         return modified
     }
 
@@ -246,6 +253,8 @@ extension WebView {
         // MARK: CoreWebViewLinkDelegate
 
         public var routeLinksFrom: UIViewController { view.controller.value }
+
+        public var coreWebViewFeaturesContext: Context? { view.featuresContext }
 
         public func handleLink(_ url: URL) -> Bool {
             if let handleLink = view.handleLink {

@@ -390,4 +390,8 @@ extension DiscussionReplyViewController: CoreWebViewLinkDelegate {
         }
         return true
     }
+
+    public var coreWebViewFeaturesContext: Context? {
+        context
+    }
 }

@@ -135,6 +135,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     func configureFrontPage() {
         let vc = CoreWebViewController()
         vc.webView.resetEnvironment(env)
+        vc.featuresContext = .course(courseID)
         vc.webView.loadHTMLString(frontPages.first?.body ?? "", baseURL: frontPages.first?.htmlURL)
         viewControllers.append(vc)
     }

@@ -44,7 +44,26 @@ open class CoreWebView: WKWebView {
     public static let processPool = WKProcessPool()
 
     @IBInspectable public var autoresizesHeight: Bool = false
-    public weak var linkDelegate: CoreWebViewLinkDelegate?
+
+    public weak var linkDelegate: CoreWebViewLinkDelegate? {
+        didSet {
+
+            guard let context = self.linkDelegate?.coreWebViewFeaturesContext else {
+                studioImprovementsFlag = nil
+                updateStudioFeatures()
+                return
+            }
+
+            studioImprovementsFlag = env.subscribe(
+                GetFeatureFlagState(featureName: .studioEmbedImprovements, context: context)
+            ) { [weak self] in
+                self?.updateStudioFeatures()
+            }
+
+            studioImprovementsFlag?.refresh()
+        }
+    }
+
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
     public weak var errorDelegate: CoreWebViewErrorDelegate?
     public var isLinkNavigationEnabled = true
@@ -70,6 +89,8 @@ open class CoreWebView: WKWebView {
 
     private var env: AppEnvironment = .shared
     private var subscriptions = Set<AnyCancellable>()
+
+    private var studioImprovementsFlag: Store<GetFeatureFlagState>?
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -454,6 +475,16 @@ open class CoreWebView: WKWebView {
             )
             .store(in: &subscriptions)
     }
+
+    func updateStudioFeatures() {
+        let isStudioImprovementsEnabled = studioImprovementsFlag?.first?.enabled ?? false
+        if isStudioImprovementsEnabled {
+            addFeature(.insertStudioDetailView)
+        } else if features.contains(where: { $0 is InsertStudioDetailView }) {
+            features.removeAll(where: { $0 is InsertStudioDetailView })
+            reload()
+        }
+    }
 }
 
 // MARK: - WKNavigationDelegate
@@ -465,6 +496,14 @@ extension CoreWebView: WKNavigationDelegate {
         decidePolicyFor action: WKNavigationAction,
         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
     ) {
+
+        print()
+        print("HANDLING ACTION: ")
+        print(action.request)
+        print(action.navigationType == .linkActivated)
+        print(action.navigationType == .other)
+        print()
+
         if action.navigationType == .linkActivated && !isLinkNavigationEnabled {
             decisionHandler(.cancel)
             return
@@ -823,6 +862,12 @@ extension CoreWebView {
         content: String?,
         originalBaseURL: URL?
     ) {
+
+        print()
+        print("HTML CONTENT LOADING: ")
+        print(content)
+        print()
+
         if let filePath, isOffline == true, FileManager.default.fileExists(atPath: filePath.path) {
 
             loadFileURL(

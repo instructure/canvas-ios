@@ -613,6 +613,11 @@ extension DiscussionDetailsViewController: UIScrollViewDelegate {
 }
 
 extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
+
+    public var coreWebViewFeaturesContext: Context? {
+        context
+    }
+
     public func handleLink(_ url: URL) -> Bool {
         guard
             url.host == env.currentSession?.baseURL.host,

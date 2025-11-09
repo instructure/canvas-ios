@@ -64,7 +64,7 @@ public class GetEnabledFeatureFlags: CollectionUseCase {
 }
 
 extension Store where U == GetEnabledFeatureFlags {
-    public func isFeatureFlagEnabled(_ key: APIFeatureFlag.Key) -> Bool {
+    public func isFeatureFlagEnabled(_ key: FeatureFlagName) -> Bool {
         all.isFeatureFlagEnabled(key)
     }
 }

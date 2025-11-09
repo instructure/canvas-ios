@@ -129,6 +129,10 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
         env.router.route(
             to: "\(context?.pathComponent ?? "")/syllabus/edit", from: self, options: .modal(isDismissable: false, embedInNav: true))
     }
+
+    public var coreWebViewFeaturesContext: Context? {
+        .course(courseID)
+    }
 }
 
 extension SyllabusTabViewController: HorizontalPagedMenuDelegate {

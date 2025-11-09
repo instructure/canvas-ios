@@ -207,6 +207,8 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
 
 extension PageDetailsViewController: CoreWebViewLinkDelegate {
 
+    public var coreWebViewFeaturesContext: Context? { context }
+
     public func handleLink(_ url: URL) -> Bool {
         env.router.route(to: url, from: self)
         return true

@@ -224,4 +224,8 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
             env.router.route(to: url, from: self, options: .modal(embedInNav: true))
         }
     }
+
+    public var coreWebViewFeaturesContext: Context? {
+        .course(courseID)
+    }
 }

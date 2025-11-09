@@ -69,4 +69,8 @@ open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
             self?.refreshControl.endRefreshing()
         }
     }
+
+    public var coreWebViewFeaturesContext: Context? {
+        .course(courseID)
+    }
 }

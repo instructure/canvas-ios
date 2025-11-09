@@ -197,4 +197,6 @@ extension ParentSubmissionViewController {
         )
         viewModel.router.show(shareSheet, from: self, options: routeOptions)
     }
+
+    var coreWebViewFeaturesContext: Context? { nil }
 }

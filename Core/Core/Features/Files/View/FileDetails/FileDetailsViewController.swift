@@ -417,6 +417,10 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
             }
         }
     }
+
+    public var coreWebViewFeaturesContext: Context? {
+        context
+    }
 }
 
 // MARK: - URLSessionDownloadDelegate

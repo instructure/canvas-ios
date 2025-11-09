@@ -768,6 +768,8 @@ extension StudentAssignmentDetailsViewController: CoreWebViewLinkDelegate {
         guard let presenter = presenter else { return false }
         return presenter.route(to: url, from: self)
     }
+
+    public var coreWebViewFeaturesContext: Context? { .course(courseID) }
 }
 
 // MARK: - Events

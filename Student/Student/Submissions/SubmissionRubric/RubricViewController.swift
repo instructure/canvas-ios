@@ -224,6 +224,8 @@ extension RubricViewController: CoreWebViewLinkDelegate {
         }
         return true
     }
+
+    public var coreWebViewFeaturesContext: Context? { .course(presenter.courseID) }
 }
 
 extension RubricViewController: RubricViewProtocol {

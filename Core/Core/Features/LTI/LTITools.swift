@@ -165,7 +165,7 @@ public class LTITools: NSObject {
     }
 
     public func presentTool(from view: UIViewController, animated: Bool = true, completionHandler: ((Bool) -> Void)? = nil) {
-        getSessionlessLaunch { [weak view, originalUrl = url, env, isQuizLTI] response in
+        getSessionlessLaunch { [weak view, originalUrl = url, env, isQuizLTI, context] response in
             guard let view else { return }
             guard let response = response else {
 
@@ -193,6 +193,7 @@ public class LTITools: NSObject {
                     .hideReturnButtonInQuizLTI,
                     .disableLinksOverlayPreviews
                 ])
+                controller.featuresContext = context
                 controller.webView.load(URLRequest(url: url))
                 controller.title = String(localized: "Quiz", bundle: .core)
                 controller.addDoneButton(side: .right)

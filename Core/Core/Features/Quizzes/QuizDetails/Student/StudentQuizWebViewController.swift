@@ -115,4 +115,8 @@ extension StudentQuizWebViewController: CoreWebViewLinkDelegate {
         env.router.route(to: url, from: self)
         return true
     }
+
+    public var coreWebViewFeaturesContext: Context? {
+        .course(courseID)
+    }
 }
