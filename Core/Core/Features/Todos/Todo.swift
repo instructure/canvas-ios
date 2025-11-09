@@ -159,7 +159,7 @@ public final class Todo: NSManagedObject, WriteableModel {
         model.id = id
         model.ignoreURL = item.ignore
         model.ignorePermanentlyURL = item.ignore_permanently
-        model.needsGradingCount = (item.needs_grading_count ?? 0) - UInt(customGradeStatedSubmittedCount)
+        model.needsGradingCount = UInt(max(Int(item.needs_grading_count ?? 0) - customGradeStatedSubmittedCount, 0))
         model.type = item.type
         return model
     }
