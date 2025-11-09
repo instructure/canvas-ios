@@ -81,8 +81,8 @@ final class CourseListViewModel {
     }
 
     func seeMore() {
-        guard currentPage + 1 < totalPages else { return }
         currentPage += 1
+        guard currentPage + 1 < totalPages else { return }
         filteredCourses.append(contentsOf: paginatedCourses[currentPage])
     }
 

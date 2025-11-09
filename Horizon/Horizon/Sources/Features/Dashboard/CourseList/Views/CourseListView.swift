@@ -23,7 +23,7 @@ import SwiftUI
 struct CourseListView: View {
     // MARK: - VO
 
-    @State private var lastFocusedCcourseID: String?
+    @State private var lastFocusedCourseID: String?
     @AccessibilityFocusState private var focusedCourseID: String?
     private let selectFilterFocusedID = "selectFilterFocusedID"
 
@@ -86,11 +86,11 @@ struct CourseListView: View {
         VStack(spacing: .huiSpaces.space16) {
             ForEach(viewModel.filteredCourses) { course in
                 Button {
-                    lastFocusedCcourseID = course.id
+                    lastFocusedCourseID = course.id
                     viewModel.navigateToCourseDetails(course: course, viewController: viewController)
                 } label: {
                     CourseCardView(course: course) { program in
-                        lastFocusedCcourseID = course.id
+                        lastFocusedCourseID = course.id
                         viewModel.navigateProgram(id: program.id, viewController: viewController)
                     }
                     .accessibilityActions {
@@ -118,7 +118,7 @@ struct CourseListView: View {
         HStack(spacing: .zero) {
             CourseFilteringView(selectedStatus: selectedStatus) { status in
                 viewModel.filter(status: status ?? .all)
-                lastFocusedCcourseID = selectFilterFocusedID
+                lastFocusedCourseID = selectFilterFocusedID
                 restoreFocusIfNeeded(after: 1)
                 selectedStatus = status ?? .all
             }
@@ -132,7 +132,7 @@ struct CourseListView: View {
                 .accessibilityLabel(
                     Text(
                         String(
-                            format: String(localized: "Count of visible courses is @%"),
+                            format: String(localized: "Count of visible courses is %@"),
                             viewModel.filteredCourses.count.description
                         )
                     )
@@ -182,7 +182,7 @@ struct CourseListView: View {
     }
 
     private func restoreFocusIfNeeded(after: Double) {
-        guard let lastFocused = lastFocusedCcourseID else { return }
+        guard let lastFocused = lastFocusedCourseID else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + after) {
             focusedCourseID = lastFocused
         }
