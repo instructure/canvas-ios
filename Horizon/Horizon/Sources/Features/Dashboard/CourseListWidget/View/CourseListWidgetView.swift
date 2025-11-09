@@ -26,7 +26,6 @@ struct CourseListWidgetView: View {
     @Environment(\.dashboardLastFocusedElement) private var lastFocusedElement
     @Environment(\.dashboardRestoreFocusTrigger) private var restoreFocusTrigger
     @AccessibilityFocusState private var focusedCourseID: String?
-    @AccessibilityFocusState private var focusedSeeAllCourses: Bool?
     @State private var currentCourseIndex: Int? = 0
     @State private var bounceScale: CGFloat = 1.0
     @State private var scrollViewID = UUID()
