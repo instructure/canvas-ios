@@ -61,8 +61,7 @@ struct CourseListView: View {
         .safeAreaInset(edge: .top, spacing: .zero) { headerView }
         .animation(.linear, value: isShowHeader)
         .animation(.easeInOut, value: viewModel.filteredCourses.count)
-        .onAppear { restoreFocusIfNeeded() }
-        .onChange(of: lastFocusedCcourseID) { _, _ in restoreFocusIfNeeded()  }
+        .onAppear { restoreFocusIfNeeded(after: 0.1) }
     }
 
     private var headerView: some View {
@@ -120,6 +119,8 @@ struct CourseListView: View {
             CourseFilteringView(selectedStatus: selectedStatus) { status in
                 viewModel.filter(status: status ?? .all)
                 lastFocusedCcourseID = selectFilterFocusedID
+                restoreFocusIfNeeded(after: 1)
+                selectedStatus = status ?? .all
             }
             .frame(maxWidth: 200)
             .fixedSize(horizontal: true, vertical: false)
@@ -180,9 +181,9 @@ struct CourseListView: View {
         .padding(.top, .huiSpaces.space16)
     }
 
-    private func restoreFocusIfNeeded() {
+    private func restoreFocusIfNeeded(after: Double) {
         guard let lastFocused = lastFocusedCcourseID else { return }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + after) {
             focusedCourseID = lastFocused
         }
     }
