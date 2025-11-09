@@ -20,7 +20,7 @@ import HorizonUI
 import SwiftUI
 
 struct CourseFilteringView: View {
-    @State var selectedStatus: CourseCardModel.CourseStatus?
+    let selectedStatus: CourseCardModel.CourseStatus?
     @State private var isListCoursesVisiable = false
     let onSelect: (CourseCardModel.CourseStatus?) -> Void
 
@@ -50,7 +50,6 @@ struct CourseFilteringView: View {
             VStack(spacing: .zero) {
                 ForEach(CourseCardModel.CourseStatus.allCases, id: \.self) { status in
                     Button {
-                        selectedStatus = status
                         onSelect(status)
                         isListCoursesVisiable.toggle()
                     } label: {
