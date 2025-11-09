@@ -359,8 +359,6 @@ final class CourseListWidgetViewModelTests: HorizonTestCase {
         let presentedViewController = router.lastViewController as? CoreHostingController<CourseListView>
         XCTAssertNotNil(presentedViewController)
     }
-
-
     // MARK: - Helper Methods
 
     private func createVM() -> CourseListWidgetViewModel {
