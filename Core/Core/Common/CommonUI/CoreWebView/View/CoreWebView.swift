@@ -497,13 +497,6 @@ extension CoreWebView: WKNavigationDelegate {
         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
     ) {
 
-        print()
-        print("HANDLING ACTION: ")
-        print(action.request)
-        print(action.navigationType == .linkActivated)
-        print(action.navigationType == .other)
-        print()
-
         if action.navigationType == .linkActivated && !isLinkNavigationEnabled {
             decisionHandler(.cancel)
             return
@@ -867,12 +860,6 @@ extension CoreWebView {
         content: String?,
         originalBaseURL: URL?
     ) {
-
-        print()
-        print("HTML CONTENT LOADING: ")
-        print(content)
-        print()
-
         if let filePath, isOffline == true, FileManager.default.fileExists(atPath: filePath.path) {
 
             loadFileURL(
@@ -900,10 +887,17 @@ extension WKNavigationAction {
     }
 
     var isStudioImmersiveViewLinkTap: Bool {
-        navigationType == .other &&
+        let isExpandLink = navigationType == .other &&
         request.url?.path.contains("/media_attachments/") == true &&
         request.url?.path.hasSuffix("/immersive_view") == true &&
         sourceFrame.isMainFrame == false
+
+        let isDetailsLink = navigationType == .linkActivated &&
+        request.url?.path.contains("/media_attachments/") == true &&
+        request.url?.path.hasSuffix("/immersive_view") == true &&
+        (targetFrame?.isMainFrame ?? false) == false
+
+        return isExpandLink || isDetailsLink
     }
 
     func handleStudioImmersiveViewIfNeeded(from viewController: UIViewController?, router: Router) -> Bool {
@@ -914,7 +908,10 @@ extension WKNavigationAction {
             return false
         }
 
-        url.append(queryItems: [.init(name: "embedded", value: "true")])
+        if url.containsQueryItem(named: "embedded") == false {
+            url.append(queryItems: [.init(name: "embedded", value: "true")])
+        }
+
         let controller = StudioViewController(url: url)
         router.show(controller, from: viewController, options: .modal(.overFullScreen))
         return true
