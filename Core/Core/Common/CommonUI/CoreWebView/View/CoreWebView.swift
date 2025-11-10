@@ -55,17 +55,17 @@ open class CoreWebView: WKWebView {
         }
     }
 
-    public var featuresContext: Context? {
+    public var studioFeaturesContext: Context? {
         didSet {
 
-            guard let featuresContext, studioImprovementsFlag == nil else {
+            guard let studioFeaturesContext, studioImprovementsFlag == nil else {
                 studioImprovementsFlag = nil
                 updateStudioFeatures()
                 return
             }
 
             studioImprovementsFlag = env.subscribe(
-                GetFeatureFlagState(featureName: .studioEmbedImprovements, context: featuresContext)
+                GetFeatureFlagState(featureName: .studioEmbedImprovements, context: studioFeaturesContext)
             ) { [weak self] in
                 self?.updateStudioFeatures()
             }

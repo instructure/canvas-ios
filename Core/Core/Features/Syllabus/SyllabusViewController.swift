@@ -44,7 +44,7 @@ open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
         webView.backgroundColor = .backgroundLightest
         webView.scrollView.refreshControl = refreshControl
         webView.linkDelegate = self
-        webView.featuresContext = .course(courseID)
+        webView.studioFeaturesContext = .course(courseID)
 
         view.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: view)

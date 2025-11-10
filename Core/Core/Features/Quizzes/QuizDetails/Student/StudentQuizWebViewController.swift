@@ -47,7 +47,7 @@ public class StudentQuizWebViewController: UIViewController {
 
         webView.linkDelegate = self
         webView.uiDelegate = self
-        webView.featuresContext = .course(courseID)
+        webView.studioFeaturesContext = .course(courseID)
 
         title = String(localized: "Take Quiz", bundle: .core)
         navigationItem.rightBarButtonItem = UIBarButtonItem(

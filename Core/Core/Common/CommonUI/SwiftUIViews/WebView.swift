@@ -158,7 +158,7 @@ public struct WebView: UIViewRepresentable {
         guard let webView: CoreWebView = uiView.subviews.first(where: { $0 is CoreWebView }) as? CoreWebView else { return }
         webView.linkDelegate = context.coordinator
         webView.sizeDelegate = context.coordinator
-        webView.featuresContext = featuresContext
+        webView.studioFeaturesContext = featuresContext
 
         // During `makeUIView` `UIView`s have no view controllers so they can't check if dark mode is enabled.
         // We force an update here since a `CoreHostingController` is assiged to the view hierarchy.

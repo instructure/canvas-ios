@@ -167,7 +167,7 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         webView.autoresizesHeight = true
         webView.backgroundColor = .backgroundLightest
         webView.linkDelegate = self
-        webView.featuresContext = context
+        webView.studioFeaturesContext = context
         webView.scrollView.isScrollEnabled = false
         contentHeight.priority = .defaultHigh // webViewHeight will win
         contentHeight.isActive = true

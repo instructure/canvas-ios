@@ -154,7 +154,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.backgroundColor = .backgroundLightest
         webView.linkDelegate = self
         webView.errorDelegate = self
-        webView.featuresContext = context
+        webView.studioFeaturesContext = context
         webView.addScript(DiscussionHTML.preact)
         webView.addScript(DiscussionHTML.js)
         webView.handle("like") { [weak self] message in self?.handleLike(message) }

@@ -238,7 +238,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         lockedIconImageView.image = UIImage(named: Panda.Locked.name, in: .core, compatibleWith: nil)
 
         // Routing from description
-        webView.featuresContext = .course(courseID)
+        webView.studioFeaturesContext = .course(courseID)
         webView.linkDelegate = self
         webView.autoresizesHeight = true
         webView.heightAnchor.constraint(equalToConstant: 0).isActive = true

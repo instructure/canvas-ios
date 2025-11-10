@@ -210,14 +210,14 @@ class SubmissionDetailsPresenter {
             if let quizID = assignment.quizID,
                 let url = URL(string: "/courses/\(assignment.courseID)/quizzes/\(quizID)/history?version=\(selectedAttempt ?? 1)&headless=1", relativeTo: env.api.baseURL) {
                 let controller = CoreWebViewController(features: [.invertColorsInDarkMode])
-                controller.webView.featuresContext = .course(assignment.courseID)
+                controller.webView.studioFeaturesContext = .course(assignment.courseID)
                 controller.webView.accessibilityIdentifier = "SubmissionDetails.onlineQuizWebView"
                 controller.webView.load(URLRequest(url: url))
                 return controller
             }
         case .some(.online_text_entry):
             let controller = CoreWebViewController()
-            controller.webView.featuresContext = .course(assignment.courseID)
+            controller.webView.studioFeaturesContext = .course(assignment.courseID)
             controller.webView.accessibilityIdentifier = "SubmissionDetails.onlineTextEntryWebView"
             controller.webView.loadHTMLString(submission.body ?? "")
             return controller
@@ -247,7 +247,7 @@ class SubmissionDetailsPresenter {
                     )
                 }
                 let controller = CoreWebViewController(features: [.invertColorsInDarkMode])
-                controller.webView.featuresContext = .course(assignment.courseID)
+                controller.webView.studioFeaturesContext = .course(assignment.courseID)
                 controller.webView.accessibilityIdentifier = "SubmissionDetails.webView"
                 controller.webView.load(URLRequest(url: url))
                 return controller
@@ -256,7 +256,7 @@ class SubmissionDetailsPresenter {
             guard let previewUrl = submission.previewUrl else { break }
 
             let controller = CoreWebViewController(features: [.invertColorsInDarkMode])
-            controller.webView.featuresContext = .course(assignment.courseID)
+            controller.webView.studioFeaturesContext = .course(assignment.courseID)
             controller.webView.accessibilityIdentifier = "SubmissionDetails.discussionWebView"
             controller.webView.load(URLRequest(url: previewUrl))
             return controller
