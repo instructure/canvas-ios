@@ -33,6 +33,10 @@ public final class Todo: NSManagedObject, WriteableModel {
     @NSManaged public var name: String?
     @NSManaged public var dueAtSortNilsAtBottom: Date
     @NSManaged var typeRaw: String
+    @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
+    public var discussionCheckpointStep: DiscussionCheckpointStep? {
+        get { discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(newValue) }
+    }
 
     public var context: Context {
         get { return Context(canvasContextID: contextRaw) ?? .currentUser }
@@ -161,6 +165,12 @@ public final class Todo: NSManagedObject, WriteableModel {
         model.ignorePermanentlyURL = item.ignore_permanently
         model.needsGradingCount = (item.needs_grading_count ?? 0) - UInt(customGradeStatedSubmittedCount)
         model.type = item.type
+
+        model.discussionCheckpointStep = .init(
+            tag: item.checkpoint_label,
+            requiredReplyCount: item.assignment?.discussion_topic?.reply_to_entry_required_count
+        )
+
         return model
     }
 

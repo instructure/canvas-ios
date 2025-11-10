@@ -29,6 +29,7 @@ public struct APITodo: Codable {
     let ignore_permanently: URL
     let needs_grading_count: UInt?
     let type: TodoType
+    let checkpoint_label: String?
 }
 
 #if DEBUG
@@ -43,7 +44,8 @@ extension APITodo {
         ignore: URL = URL(string: "https://canvas.instructure.com/api/v1/users/self/todo_ignore/1")!,
         ignore_permanently: URL = URL(string: "https://canvas.instructure.com/api/v1/users/self/todo_ignore/1")!,
         needs_grading_count: UInt? = nil,
-        type: TodoType = .submitting
+        type: TodoType = .submitting,
+        checkpoint_label: String? = nil
     ) -> APITodo {
         return APITodo(
             assignment: assignment,
@@ -55,7 +57,8 @@ extension APITodo {
             ignore: ignore,
             ignore_permanently: ignore_permanently,
             needs_grading_count: needs_grading_count,
-            type: type
+            type: type,
+            checkpoint_label: checkpoint_label
         )
     }
 }
