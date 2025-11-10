@@ -45,33 +45,32 @@ open class CoreWebView: WKWebView {
 
     @IBInspectable public var autoresizesHeight: Bool = false
 
-    public weak var linkDelegate: CoreWebViewLinkDelegate? {
-        didSet {
-
-            guard
-                let context = self.linkDelegate?.coreWebViewFeaturesContext,
-                studioImprovementsFlag == nil else {
-                studioImprovementsFlag = nil
-                updateStudioFeatures()
-                return
-            }
-
-            studioImprovementsFlag = env.subscribe(
-                GetFeatureFlagState(featureName: .studioEmbedImprovements, context: context)
-            ) { [weak self] in
-                self?.updateStudioFeatures()
-            }
-
-            studioImprovementsFlag?.refresh()
-        }
-    }
-
+    public weak var linkDelegate: CoreWebViewLinkDelegate?
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
     public weak var errorDelegate: CoreWebViewErrorDelegate?
     public var isLinkNavigationEnabled = true
     public var contentInputAccessoryView: UIView? {
         didSet {
             addContentInputAccessoryView()
+        }
+    }
+
+    public var featuresContext: Context? {
+        didSet {
+
+            guard let featuresContext, studioImprovementsFlag == nil else {
+                studioImprovementsFlag = nil
+                updateStudioFeatures()
+                return
+            }
+
+            studioImprovementsFlag = env.subscribe(
+                GetFeatureFlagState(featureName: .studioEmbedImprovements, context: featuresContext)
+            ) { [weak self] in
+                self?.updateStudioFeatures()
+            }
+
+            studioImprovementsFlag?.refresh()
         }
     }
 

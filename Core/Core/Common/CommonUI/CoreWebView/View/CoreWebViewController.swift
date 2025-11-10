@@ -22,8 +22,6 @@ import UIKit
 public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
     public var webView: CoreWebView
 
-    public var featuresContext: Context?
-
     var limitedInteractionView: NotificationView?
 
     private var subscriptions = Set<AnyCancellable>()
@@ -89,9 +87,5 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
                 self?.navigationController?.setToolbarHidden(!canGoBack, animated: true)
             }
             .store(in: &subscriptions)
-    }
-
-    public var coreWebViewFeaturesContext: Context? {
-        featuresContext
     }
 }

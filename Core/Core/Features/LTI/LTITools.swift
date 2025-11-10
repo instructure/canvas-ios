@@ -193,7 +193,7 @@ public class LTITools: NSObject {
                     .hideReturnButtonInQuizLTI,
                     .disableLinksOverlayPreviews
                 ])
-                controller.featuresContext = context
+                controller.webView.featuresContext = context
                 controller.webView.load(URLRequest(url: url))
                 controller.title = String(localized: "Quiz", bundle: .core)
                 controller.addDoneButton(side: .right)

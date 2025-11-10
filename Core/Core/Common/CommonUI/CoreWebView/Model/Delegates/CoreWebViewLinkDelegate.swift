@@ -20,7 +20,6 @@ import WebKit
 
 public protocol CoreWebViewLinkDelegate: AnyObject {
     var routeLinksFrom: UIViewController { get }
-    var coreWebViewFeaturesContext: Context? { get }
 
     func handleLink(_ url: URL) -> Bool
     func finishedNavigation()

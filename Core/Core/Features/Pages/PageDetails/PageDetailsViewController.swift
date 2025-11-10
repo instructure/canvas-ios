@@ -84,6 +84,7 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
         webViewContainer.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: webViewContainer)
         webView.linkDelegate = self
+        webView.featuresContext  = context
 
         if context.contextType == .course {
             webView.addScript("window.ENV={COURSE:{id:\(CoreWebView.jsString(context.id))}}")
@@ -207,8 +208,6 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
 }
 
 extension PageDetailsViewController: CoreWebViewLinkDelegate {
-
-    public var coreWebViewFeaturesContext: Context? { context }
 
     public func handleLink(_ url: URL) -> Bool {
         env.router.route(to: url, from: self)

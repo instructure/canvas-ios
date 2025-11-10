@@ -158,6 +158,8 @@ public struct WebView: UIViewRepresentable {
         guard let webView: CoreWebView = uiView.subviews.first(where: { $0 is CoreWebView }) as? CoreWebView else { return }
         webView.linkDelegate = context.coordinator
         webView.sizeDelegate = context.coordinator
+        webView.featuresContext = featuresContext
+
         // During `makeUIView` `UIView`s have no view controllers so they can't check if dark mode is enabled.
         // We force an update here since a `CoreHostingController` is assiged to the view hierarchy.
         webView.updateInterfaceStyle()
@@ -254,8 +256,6 @@ extension WebView {
         // MARK: CoreWebViewLinkDelegate
 
         public var routeLinksFrom: UIViewController { view.controller.value }
-
-        public var coreWebViewFeaturesContext: Context? { view.featuresContext }
 
         public func handleLink(_ url: URL) -> Bool {
             if let handleLink = view.handleLink {

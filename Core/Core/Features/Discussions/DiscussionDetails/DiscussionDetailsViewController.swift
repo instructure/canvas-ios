@@ -148,13 +148,13 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.accessibilityIdentifier = "DiscussionDetails.body"
         webView.pinWithThemeSwitchButton(inside: webViewPlaceholder)
         webView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-
         webView.autoresizesHeight = true // will update the height constraint
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.alwaysBounceVertical = false
         webView.backgroundColor = .backgroundLightest
         webView.linkDelegate = self
         webView.errorDelegate = self
+        webView.featuresContext = context
         webView.addScript(DiscussionHTML.preact)
         webView.addScript(DiscussionHTML.js)
         webView.handle("like") { [weak self] message in self?.handleLike(message) }
@@ -613,10 +613,6 @@ extension DiscussionDetailsViewController: UIScrollViewDelegate {
 }
 
 extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
-
-    public var coreWebViewFeaturesContext: Context? {
-        context
-    }
 
     public func handleLink(_ url: URL) -> Bool {
         guard

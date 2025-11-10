@@ -94,6 +94,7 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
         instructionsWebView.scrollView.alwaysBounceVertical = false
         instructionsWebView.backgroundColor = .backgroundLightest
         instructionsWebView.linkDelegate = self
+        instructionsWebView.featuresContext = .course(courseID)
 
         loadingView.color = nil
         refreshControl.color = nil
@@ -223,9 +224,5 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
         } else if let url = quiz.resultsURL {
             env.router.route(to: url, from: self, options: .modal(embedInNav: true))
         }
-    }
-
-    public var coreWebViewFeaturesContext: Context? {
-        .course(courseID)
     }
 }
