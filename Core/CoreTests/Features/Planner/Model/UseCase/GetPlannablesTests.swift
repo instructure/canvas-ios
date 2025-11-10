@@ -131,6 +131,8 @@ class GetPlannablesTests: CoreTestCase {
             endDate: end,
             contextCodes: []
         ), value: [.make(plannable_id: "1")])
+
+        // Test default behavior (allowEmptyContextCodesFetch = false): empty selection shows nothing
         let expectation = XCTestExpectation(description: "callback")
         useCase.makeRequest(environment: environment) { response, _, _ in
             XCTAssertEqual(response!.plannables, [])
@@ -138,6 +140,15 @@ class GetPlannablesTests: CoreTestCase {
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1)
+
+        // Test opt-in behavior (allowEmptyContextCodesFetch = true): empty contextCodes fetches everything for todos
+        let expectation2 = XCTestExpectation(description: "callback2")
+        let useCaseAllowEmpty = GetPlannables(userID: userID, startDate: start, endDate: end, contextCodes: [], allowEmptyContextCodesFetch: true)
+        useCaseAllowEmpty.makeRequest(environment: environment) { response, _, _ in
+            XCTAssertEqual(response!.plannables?.first?.plannable_id, "1")
+            expectation2.fulfill()
+        }
+        wait(for: [expectation2], timeout: 1)
     }
 
     func testMakeRequestParentApp() {

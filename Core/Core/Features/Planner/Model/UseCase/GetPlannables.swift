@@ -35,16 +35,18 @@ public class GetPlannables: UseCase {
     var endDate: Date
     var contextCodes: [String]?
     var filter: String = ""
+    var allowEmptyContextCodesFetch: Bool = false
 
     let observerEvents = PassthroughSubject<EventsRequest, Never>()
     var subscriptions = Set<AnyCancellable>()
 
-    public init(userID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String]? = nil, filter: String = "") {
+    public init(userID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String]? = nil, filter: String = "", allowEmptyContextCodesFetch: Bool = false) {
         self.userID = userID
         self.startDate = startDate
         self.endDate = endDate
         self.contextCodes = contextCodes
         self.filter = filter
+        self.allowEmptyContextCodesFetch = allowEmptyContextCodesFetch
 
         setupObserverEventsSubscription()
     }
@@ -87,8 +89,9 @@ public class GetPlannables: UseCase {
     }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
-        // If we would send out the request without any context codes the API would return all events so we do an early exit
-        if (contextCodes ?? []).isEmpty {
+        // If we would send out the request without any context codes the API would return all events
+        // Only return empty if allowEmptyContextCodesFetch is false (e.g. calendar filter with nothing selected)
+        if !allowEmptyContextCodesFetch, (contextCodes ?? []).isEmpty {
             completionHandler(.empty, nil, nil)
             return
         }
