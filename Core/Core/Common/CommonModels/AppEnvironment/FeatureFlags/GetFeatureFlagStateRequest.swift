@@ -60,6 +60,6 @@ public struct APIFeatureFlagState: Codable {
     private let context_type: String
 
     public var canvasContextID: String {
-        return "\(context_type)_\(context_id)"
+        return "\(context_type.lowercased())_\(context_id)"
     }
 }

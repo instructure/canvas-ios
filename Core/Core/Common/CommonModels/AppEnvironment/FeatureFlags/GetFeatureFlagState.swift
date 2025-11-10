@@ -54,4 +54,9 @@ public class GetFeatureFlagState: APIUseCase {
         guard let response = response else { return }
         FeatureFlag.save(response, in: client)
     }
+
+    public func reset(context: NSManagedObjectContext) {
+        let all = context.fetch(scope: scope) as [Model]
+        context.delete(all)
+    }
 }

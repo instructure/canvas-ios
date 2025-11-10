@@ -48,7 +48,9 @@ open class CoreWebView: WKWebView {
     public weak var linkDelegate: CoreWebViewLinkDelegate? {
         didSet {
 
-            guard let context = self.linkDelegate?.coreWebViewFeaturesContext else {
+            guard
+                let context = self.linkDelegate?.coreWebViewFeaturesContext,
+                studioImprovementsFlag == nil else {
                 studioImprovementsFlag = nil
                 updateStudioFeatures()
                 return
@@ -123,6 +125,15 @@ open class CoreWebView: WKWebView {
     deinit {
         configuration.userContentController.removeAllScriptMessageHandlers()
         configuration.userContentController.removeAllUserScripts()
+    }
+
+    open override func reload() -> WKNavigation? {
+        prepareForReload()
+        return super.reload()
+    }
+
+    public func prepareForReload() {
+        studioImprovementsFlag?.refresh(force: true)
     }
 
     /**
@@ -482,7 +493,9 @@ open class CoreWebView: WKWebView {
             addFeature(.insertStudioDetailView)
         } else if features.contains(where: { $0 is InsertStudioDetailView }) {
             features.removeAll(where: { $0 is InsertStudioDetailView })
-            reload()
+            configuration.userContentController.removeAllUserScripts()
+            features.forEach({ $0.apply(on: self) })
+            _ = reload()
         }
     }
 }
