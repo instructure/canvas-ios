@@ -27,6 +27,7 @@ public final class Todo: NSManagedObject, WriteableModel {
     @NSManaged public var course: Course?
     @NSManaged public var group: Group?
     @NSManaged public var id: String
+    @NSManaged public var htmlURL: URL?
     @NSManaged public var ignoreURL: URL?
     @NSManaged public var ignorePermanentlyURL: URL?
     @NSManaged public var needsGradingCount: UInt
@@ -81,16 +82,6 @@ public final class Todo: NSManagedObject, WriteableModel {
         }
     }
 
-    public var htmlURL: URL? {
-        if let assignment {
-            return assignment.htmlURL
-        } else if let quiz {
-            return quiz.htmlURL
-        } else {
-            return nil
-        }
-    }
-
     public var dueAt: Date? {
         if let assignmentDueAt = assignment?.dueAt {
             return assignmentDueAt
@@ -134,6 +125,19 @@ public final class Todo: NSManagedObject, WriteableModel {
             model.assignment = assignment
             model.name = assignment.name
             model.dueAtSortNilsAtBottom = assignment.dueAt ?? .distantFuture
+            model.htmlURL = assignment.htmlURL
+
+            // Replacing the assignmentId in htmlUrl with the correct value for DCPs.
+            // For DCPs backend returns wrong id inside `html_url` and `assignment.html_url`
+            // This is a workaround to use the correct id.
+            if let htmlUrl = assignment.htmlURL,
+               let parentAssignmentId = item.parent_assignment_id {
+                let urlString = htmlUrl.absoluteString.replacingOccurrences(
+                    of: "assignments/\(assignment.id)",
+                    with: "assignments/\(parentAssignmentId)"
+                )
+                model.htmlURL = URL(string: urlString)
+            }
 
             /// This is used because of a limitation on Todo fetch API by which
             /// which `needs_grading_count` doesn't subtract submissions count of
@@ -151,6 +155,7 @@ public final class Todo: NSManagedObject, WriteableModel {
             model.quiz = quiz
             model.name = quiz.title
             model.dueAtSortNilsAtBottom = quiz.dueAt ?? .distantFuture
+            model.htmlURL = quiz.htmlURL
         }
 
         if let id = item.course_id?.value {
