@@ -480,11 +480,12 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
 
-        // Check for #fragment link click
+        // Scroll to fragment if this is a #fragment link click on the same site
         if action.navigationType == .linkActivated,
            action.sourceFrame == action.targetFrame,
            let url = action.request.url, let fragment = url.fragment,
-           let lhsString: String.SubSequence = (self.url ?? self.baseURL)?.absoluteString.split(separator: "#").first,
+           // self.url isn't set when using loadHTMLString, so we check the baseURL that is set when calling that method
+           let lhsString: String.SubSequence = (self.url ?? baseURL)?.absoluteString.split(separator: "#").first,
            let rhsString: String.SubSequence = url.absoluteString.split(separator: "#").first,
            lhsString == rhsString {
             scrollIntoView(fragment: fragment)
