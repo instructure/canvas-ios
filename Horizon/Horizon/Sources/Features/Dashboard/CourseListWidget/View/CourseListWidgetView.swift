@@ -29,6 +29,8 @@ struct CourseListWidgetView: View {
     @State private var currentCourseIndex: Int? = 0
     @State private var bounceScale: CGFloat = 1.0
     @State private var scrollViewID = UUID()
+    private let focusedseeAllCoursesButton = "focusedseeAllCoursesButton"
+    private let focusedseeAllCoursesCard = "focusedseeAllCoursesCard"
 
     init(viewModel: CourseListWidgetViewModel) {
         _viewModel = State(initialValue: viewModel)
@@ -40,6 +42,7 @@ struct CourseListWidgetView: View {
             case .data, .loading:
                 programCardsView
                 dataView
+                seeAllCourseButton
             case .empty:
                 emptyView
             case .error:
@@ -78,10 +81,12 @@ struct CourseListWidgetView: View {
             SingleAxisGeometryReader(initialSize: 300) { size in
                 ScrollView(.horizontal) {
                     HStack(alignment: .top, spacing: .huiSpaces.space12) {
-                        ForEach(Array(viewModel.courses.enumerated()), id: \.element.id) { index, course in
+                        ForEach(Array(viewModel.allowedCourse.enumerated()), id: \.element.id) { index, course in
                             CourseListWidgetItemView(
                                 model: CourseListWidgetModel(from: course),
                                 width: size - 48,
+                                currentIndex: index,
+                                totalCount: viewModel.courses.count,
                                 onCourseTap: { courseId in
                                     lastFocusedElement.wrappedValue = .course(id: courseId)
                                     viewModel.navigateToCourseDetails(
@@ -117,6 +122,16 @@ struct CourseListWidgetView: View {
                             }
                             .id(index)
                         }
+
+                        if viewModel.isExceededMaxCourses {
+                            CourseListWidgetSeeAllCoursesView(count: viewModel.courses.count) {
+                                lastFocusedElement.wrappedValue = .course(id: focusedseeAllCoursesCard)
+                                viewModel.navigateToListCourse(viewController: viewController)
+                            }
+                            .frame(width: size - 48)
+                            .id(focusedseeAllCoursesCard)
+                            .accessibilityFocused($focusedCourseID, equals: focusedseeAllCoursesCard)
+                        }
                     }
                     .scrollTargetLayout()
                     .padding(.horizontal, .huiSpaces.space24)
@@ -126,10 +141,6 @@ struct CourseListWidgetView: View {
                 .scrollClipDisabled()
                 .scrollPosition(id: $currentCourseIndex)
                 .id(scrollViewID)
-            }
-
-            if viewModel.courses.count >= 4 {
-                PaginationIndicatorView(currentIndex: $currentCourseIndex, count: viewModel.courses.count)
             }
         }
     }
@@ -156,5 +167,17 @@ struct CourseListWidgetView: View {
     private var emptyView: some View {
         CourseListWidgetEmptyView()
             .padding(.horizontal, .huiSpaces.space24)
+    }
+
+    @ViewBuilder
+    private var seeAllCourseButton: some View {
+        if viewModel.isExceededMaxCourses {
+            SeeAllCoursesButton {
+                lastFocusedElement.wrappedValue = .course(id: focusedseeAllCoursesButton)
+                viewModel.navigateToListCourse(viewController: viewController)
+            }
+            .id(focusedseeAllCoursesButton)
+            .accessibilityFocused($focusedCourseID, equals: focusedseeAllCoursesButton)
+        }
     }
 }

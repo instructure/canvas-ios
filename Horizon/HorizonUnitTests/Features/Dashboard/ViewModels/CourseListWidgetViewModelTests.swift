@@ -293,6 +293,72 @@ final class CourseListWidgetViewModelTests: HorizonTestCase {
         XCTAssertEqual(onTapProgramModel?.id, "program-1")
     }
 
+    func test_isExceededMaxCourses_whenCoursesCountIsLessThanMax() {
+        // Given
+        courseListWidgetInteractor.coursesToReturn = Array(HCourseStubs.activeCourses.prefix(2)) // 2 courses
+        let testee = createVM()
+
+        // Then
+        XCTAssertFalse(testee.isExceededMaxCourses)
+    }
+
+    func test_isExceededMaxCourses_whenCoursesCountIsEqualToMax() {
+        // Given
+        courseListWidgetInteractor.coursesToReturn = Array(HCourseStubs.activeCourses.prefix(3)) // 3 courses
+        let testee = createVM()
+
+        // Then
+        XCTAssertFalse(testee.isExceededMaxCourses)
+    }
+
+    func test_isExceededMaxCourses_whenCoursesCountIsGreaterThanMax() {
+        // Given
+        courseListWidgetInteractor.coursesToReturn = HCourseStubs.activeCourses // 3 active courses
+        let extraCourse = HCourse(id: "extra-course", name: "Extra Course", state: "active", enrollmentID: "extra-enrollment")
+        courseListWidgetInteractor.coursesToReturn.append(extraCourse) // 4 courses
+        let testee = createVM()
+
+        // Then
+        XCTAssertTrue(testee.isExceededMaxCourses)
+    }
+
+    func test_allowedCourse_returnsAllCoursesWhenLessThanMax() {
+        // Given
+        let courses = Array(HCourseStubs.activeCourses.prefix(2)) // 2 courses
+        courseListWidgetInteractor.coursesToReturn = courses
+        let testee = createVM()
+
+        // Then
+        XCTAssertEqual(testee.allowedCourse.count, 2)
+        XCTAssertEqual(testee.allowedCourse.map(\.id), courses.map(\.id))
+    }
+
+    func test_allowedCourse_returnsMaxCoursesWhenGreaterThanMax() {
+        // Given
+        let courses = HCourseStubs.activeCourses // 3 active courses
+        let extraCourse = HCourse(id: "extra-course", name: "Extra Course", state: "active", enrollmentID: "extra-enrollment")
+        courseListWidgetInteractor.coursesToReturn = courses + [extraCourse] // 4 courses
+        let testee = createVM()
+
+        // Then
+        XCTAssertEqual(testee.allowedCourse.count, 3)
+        XCTAssertEqual(testee.allowedCourse.map(\.id), courses.map(\.id)) // Should only contain the first 3
+    }
+
+    func test_navigateToListCourse_callsRouterWithCorrectView() {
+        // Given
+        courseListWidgetInteractor.coursesToReturn = HCourseStubs.activeCourses
+        let testee = createVM()
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+
+        // When
+        testee.navigateToListCourse(viewController: viewController)
+
+        // Then
+        let presentedViewController = router.lastViewController as? CoreHostingController<CourseListView>
+        XCTAssertNotNil(presentedViewController)
+    }
     // MARK: - Helper Methods
 
     private func createVM() -> CourseListWidgetViewModel {
