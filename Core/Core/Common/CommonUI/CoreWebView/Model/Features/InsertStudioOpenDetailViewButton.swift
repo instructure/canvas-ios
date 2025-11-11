@@ -71,7 +71,7 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
         webView.addScript(insertScript)
     }
 
-    override func remove(from: CoreWebView) {
+    override func remove(from webView: CoreWebView) {
         webView.removeScript(insertScript)
     }
 }
