@@ -61,7 +61,10 @@ public class GetFeatureFlagState: APIUseCase {
         /// the most higher level (which is the account)
         if item.contextType != context.contextType {
             if case .account = item.contextType {
-                item.state = item.state == .allowed_on ? .on : item.state
+                item = item.overriden(
+                    state: item.state == .allowed_on ? .on : item.state,
+                    context: context
+                )
             }
         }
 

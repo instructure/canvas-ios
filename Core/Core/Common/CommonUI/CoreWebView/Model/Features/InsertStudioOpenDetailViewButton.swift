@@ -16,30 +16,70 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
+
 class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
+
+    private let insertStyle: String = {
+        let css = """
+        p[ios-injected] {
+            text-align: center;
+        }
+
+        .open_details_button {
+            font-weight: 400;
+            font-size: 15px;
+            text-decoration: none;
+            color: #2B7ABC;
+        }
+
+        .open_details_button_icon {
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            padding-right: 6px;
+            padding-left: 6px;
+        }
+        """
+
+        let cssString = css.components(separatedBy: .newlines).joined()
+        return """
+           function insertStudioDetailLinksStyle() {
+                var element = document.createElement('style');
+                element.innerHTML = '\(cssString)';
+                document.head.appendChild(element);
+           }
+           insertStudioDetailLinksStyle();
+        """
+    }()
 
     private let insertScript: String = {
         let title = String(localized: "Open in Detail View", bundle: .core)
+        let iconSVG = (NSDataAsset(name: "externalLinkData", bundle: .core)
+            .flatMap({ String(data: $0.data, encoding: .utf8) ?? "" }) ?? "")
+            .components(separatedBy: .newlines).joined()
 
         return """
             function insertStudioDetailsLinks() {
                 const frameElements = document.querySelectorAll('iframe[data-media-id]');
 
                 frameElements.forEach(elm => {
-                    let next = elm.nextElementSibling.nextElementSibling;
-                    let wasInjected = next.getAttribute("ios-injected");
+                    let nextSibling = elm.nextElementSibling;
+                    let nextNextSibling = (nextSibling) ? nextSibling.nextElementSibling : null;
+                    let wasInjected = (nextNextSibling) ? nextNextSibling.getAttribute("ios-injected") : 0;
 
                     if(wasInjected == 1) { return }
 
                     const videoTitle = elm.getAttribute("title");
                     const ariaTitle = elm.getAttribute("aria-title");
-                    const title = videoTitle ?? ariaTitle;
+                    var title = videoTitle ?? ariaTitle;
 
                     var frameLink = elm.getAttribute("src");
                     frameLink = frameLink.replace("media_attachments_iframe", "media_attachments");
 
                     var linkSuffix = "/immersive_view";
                     if(title){
+                        title = title.replace("Video player for ", "").replace(".mp4", "");
                         linkSuffix = "/immersive_view?title=" + encodeURIComponent(title);
                     }
 
@@ -47,13 +87,22 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
                     const newParagraph = document.createElement('p');
                     newParagraph.setAttribute("ios-injected", 1);
 
+                    const buttonContainer = document.createElement('div');
+                    buttonContainer.className = "open_detail_button_container";
+
+                    const icon = document.createElement('div');
+                    icon.className = "open_details_button_icon";
+                    icon.innerHTML = '\(iconSVG)';
+
                     const detailButton = document.createElement('a');
-                    detailButton.className = "details_view_link";
+                    detailButton.className = "open_details_button";
                     detailButton.href = frameLink + linkSuffix;
-                    detailButton.target = "_detail_view";
+                    detailButton.target = "_blank";
                     detailButton.textContent = '\(title)';
 
-                    newParagraph.appendChild(detailButton);
+                    buttonContainer.appendChild(icon);
+                    buttonContainer.appendChild(detailButton);
+                    newParagraph.appendChild(buttonContainer);
 
                     elm.insertAdjacentElement('afterend', newLine);
                     newLine.insertAdjacentElement('afterend', newParagraph);
@@ -68,10 +117,12 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
     public override init() {}
 
     override func apply(on webView: CoreWebView) {
+        webView.addScript(insertStyle)
         webView.addScript(insertScript)
     }
 
     override func remove(from webView: CoreWebView) {
+        webView.removeScript(insertStyle)
         webView.removeScript(insertScript)
     }
 }

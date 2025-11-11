@@ -53,7 +53,7 @@ public struct APIFeatureFlagState: Codable {
     }
 
     public let feature: String
-    public var state: State
+    public let state: State
     public let locked: Bool
 
     private let context_id: String
@@ -65,5 +65,15 @@ public struct APIFeatureFlagState: Codable {
 
     public var canvasContextID: String {
         return "\(context_type.lowercased())_\(context_id)"
+    }
+
+    public func overriden(state: State, context: Context) -> Self {
+        APIFeatureFlagState(
+            feature: feature,
+            state: state,
+            locked: locked,
+            context_id: context.id,
+            context_type: context.contextType.rawValue
+        )
     }
 }

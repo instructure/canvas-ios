@@ -71,7 +71,9 @@ public class StudioFeaturesInteractor {
     }
 
     private func updateStudioFeatures() {
-        let isStudioImprovementsEnabled = studioImprovementsFlag?.first?.enabled ?? false
+        guard let studioImprovementsFlag else { return }
+
+        let isStudioImprovementsEnabled = studioImprovementsFlag.first?.enabled ?? false
         if isStudioImprovementsEnabled {
             webView.addFeature(.insertStudioOpenInDetailButtons)
         } else {
@@ -119,6 +121,8 @@ public class StudioFeaturesInteractor {
                     else { return }
 
                     mapped[urlCleanPath] = title
+                        .replacingOccurrences(of: "Video player for ", with: "")
+                        .replacingOccurrences(of: ".mp4", with: "")
                 })
 
             self?.videoFramesTitleMap = mapped
