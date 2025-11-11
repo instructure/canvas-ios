@@ -470,7 +470,7 @@ extension Submission {
             customStatusId: customGradeStatusId,
             customStatusName: customGradeStatusName,
             submissionType: type ?? assignment?.submissionTypes.first,
-            isGradeBelongToCurrentSubmission: gradeMatchesCurrentSubmission
+            isGradeBelongsToCurrentSubmission: gradeMatchesCurrentSubmission
         )
     }
 

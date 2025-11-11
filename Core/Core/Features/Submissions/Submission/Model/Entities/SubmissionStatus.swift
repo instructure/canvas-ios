@@ -57,7 +57,7 @@ public enum SubmissionStatus: Equatable {
         customStatusId: String?,
         customStatusName: String?,
         submissionType: SubmissionType?,
-        isGradeBelongToCurrentSubmission: Bool
+        isGradeBelongsToCurrentSubmission: Bool
     ) {
         self = if isExcused {
             .excused
@@ -72,7 +72,7 @@ public enum SubmissionStatus: Equatable {
         } else if isMissing {
             .missing
         } else if isGraded {
-            isGradeBelongToCurrentSubmission ? .graded : .submitted
+            isGradeBelongsToCurrentSubmission ? .graded : .submitted
         } else if isSubmitted {
             .submitted
         } else if submissionType == .on_paper {

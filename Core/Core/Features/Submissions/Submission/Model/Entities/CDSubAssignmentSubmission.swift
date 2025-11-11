@@ -68,7 +68,7 @@ public class CDSubAssignmentSubmission: NSManagedObject {
             customStatusId: customGradeStatusId,
             customStatusName: customGradeStatusName,
             submissionType: nil,
-            isGradeBelongToCurrentSubmission: gradeMatchesCurrentSubmission
+            isGradeBelongsToCurrentSubmission: gradeMatchesCurrentSubmission
         )
     }
 
