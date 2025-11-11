@@ -21,7 +21,7 @@ import Core
 struct StudentSubAssignmentsCardItem: Equatable, Identifiable {
     let id: String
     let title: String
-    let submissionStatus: SubmissionStatusLabel.Model?
+    let submissionStatus: SubmissionStatusLabel.Model
     let score: String?
     let scoreA11yLabel: String?
 }
@@ -32,7 +32,7 @@ extension StudentSubAssignmentsCardItem {
     static func make(
         id: String = "",
         title: String = "",
-        submissionStatus: SubmissionStatusLabel.Model? = nil,
+        submissionStatus: SubmissionStatusLabel.Model = .init(text: "", icon: .emptyLine, color: .clear),
         score: String? = nil,
         scoreA11yLabel: String? = nil
     ) -> StudentSubAssignmentsCardItem {
