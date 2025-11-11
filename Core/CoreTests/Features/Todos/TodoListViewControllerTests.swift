@@ -36,6 +36,7 @@ class TodoListViewControllerTests: CoreTestCase {
             .make(assignment: .make(due_at: Date(), id: "1"), course_id: "1", group_id: nil),
             .make(assignment: .make(due_at: Date().addDays(1), id: "2"), course_id: nil, group_id: "1"),
             .make(assignment: .make(due_at: Date().addDays(2), id: "3")),
+            .make(assignment: .make(due_at: Date().addDays(3), id: "5"), checkpoint_label: "reply_to_topic"),
             .make(assignment: .make(due_at: nil, id: "4"), needs_grading_count: 2, type: .grading)
         ])
     }
@@ -52,9 +53,16 @@ class TodoListViewControllerTests: CoreTestCase {
         var cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TodoListCell
         XCTAssertEqual(cell?.contextLabel.textColor.hexString, UIColor(hexString: "#f00")!.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(cell?.contextLabel.text, "Course One")
+        XCTAssertEqual(cell?.checkpointLabel.text, nil)
+        XCTAssertEqual(cell?.checkpointLabel.isHidden, true)
         cell = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TodoListCell
         XCTAssertEqual(cell?.contextLabel.textColor.hexString, CourseColorsInteractorLive().courseColorFromAPIColor("#0f0").hexString)
         XCTAssertEqual(cell?.contextLabel.text, "Group One")
+        XCTAssertEqual(cell?.checkpointLabel.text, nil)
+        XCTAssertEqual(cell?.checkpointLabel.isHidden, true)
+        cell = controller.tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? TodoListCell
+        XCTAssertEqual(cell?.checkpointLabel.text, "Reply to topic")
+        XCTAssertEqual(cell?.checkpointLabel.isHidden, false)
     }
 
     func testSelect() {
@@ -63,7 +71,7 @@ class TodoListViewControllerTests: CoreTestCase {
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssert(router.lastRoutedTo("/courses/1/assignments/1"))
 
-        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 3, section: 0))
+        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 4, section: 0))
         XCTAssert(router.lastRoutedTo("/courses/1/assignments/4/submissions/speedgrader"))
 
         _ = controller.profileButton.target?.perform(controller.profileButton.action)
@@ -103,7 +111,7 @@ class TodoListViewControllerTests: CoreTestCase {
     func testBadgeCount() {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 5)
+        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 6)
     }
 
     func testTodoItem() {

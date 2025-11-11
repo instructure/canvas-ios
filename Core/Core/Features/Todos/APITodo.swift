@@ -29,6 +29,8 @@ public struct APITodo: Codable {
     let ignore_permanently: URL
     let needs_grading_count: UInt?
     let type: TodoType
+    let checkpoint_label: String?
+    let parent_assignment_id: String? // Sub-assignments set the wrong `assignment.id`. This is the correct one.
 }
 
 #if DEBUG
@@ -43,7 +45,9 @@ extension APITodo {
         ignore: URL = URL(string: "https://canvas.instructure.com/api/v1/users/self/todo_ignore/1")!,
         ignore_permanently: URL = URL(string: "https://canvas.instructure.com/api/v1/users/self/todo_ignore/1")!,
         needs_grading_count: UInt? = nil,
-        type: TodoType = .submitting
+        type: TodoType = .submitting,
+        checkpoint_label: String? = nil,
+        parent_assignment_id: String? = nil
     ) -> APITodo {
         return APITodo(
             assignment: assignment,
@@ -55,7 +59,9 @@ extension APITodo {
             ignore: ignore,
             ignore_permanently: ignore_permanently,
             needs_grading_count: needs_grading_count,
-            type: type
+            type: type,
+            checkpoint_label: checkpoint_label,
+            parent_assignment_id: parent_assignment_id
         )
     }
 }

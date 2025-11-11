@@ -93,4 +93,51 @@ class TodoTests: CoreTestCase {
         XCTAssertTrue(todo.dueText.contains("1970"))
         XCTAssertTrue(todo.dueText.contains(":00"))
     }
+
+    func test_save_shouldSetDiscussionCheckpointStep() {
+        var todo = Todo.make(from: .make(
+            checkpoint_label: "reply_to_topic"
+        ))
+        XCTAssertEqual(todo.discussionCheckpointStep, .replyToTopic)
+
+        todo = Todo.make(from: .make(
+            assignment: .make(discussion_topic: .make(reply_to_entry_required_count: 3)),
+            checkpoint_label: "reply_to_entry"
+        ))
+        XCTAssertEqual(todo.discussionCheckpointStep, .requiredReplies(3))
+
+        todo = Todo.make(from: .make(
+            checkpoint_label: "some_unknown_tag"
+        ))
+        XCTAssertEqual(todo.discussionCheckpointStep, nil)
+    }
+
+    func test_save_whenToDoAssignmentIsNotCheckpoint_shouldSetAssignmentHtmlUrl() {
+        let assignmentHtmlUrl = URL(string: "some/assignments/123")!
+
+        let todo = Todo.make(from: .make(
+            assignment: .make(html_url: assignmentHtmlUrl, id: "whatever")
+        ))
+        XCTAssertEqual(todo.htmlURL, assignmentHtmlUrl)
+    }
+
+    func test_save_whenToDoAssignmentIsCheckpoint_shouldSetHtmlUrlWithParentId() {
+        let assignmentHtmlUrl = URL(string: "some/assignments/123")!
+
+        let todo = Todo.make(from: .make(
+            assignment: .make(html_url: assignmentHtmlUrl, id: "123"),
+            parent_assignment_id: "456"
+        ))
+        XCTAssertEqual(todo.htmlURL?.absoluteString, "some/assignments/456")
+    }
+
+    func test_save_whenToDoAssignmentIsCheckpointWithUnexpectedHtmlUrl_shouldSetOriginalAssignmentHtmlUrl() {
+        let assignmentHtmlUrl = URL(string: "some/assignments/123")!
+
+        let todo = Todo.make(from: .make(
+            assignment: .make(html_url: assignmentHtmlUrl, id: "789"),
+            parent_assignment_id: "456"
+        ))
+        XCTAssertEqual(todo.htmlURL?.absoluteString, "some/assignments/123")
+    }
 }
