@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-class InsertStudioDetailView: CoreWebViewFeature {
+class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
 
     private let insertScript: String = {
         let title = String(localized: "Open in Detail View", bundle: .core)
@@ -27,22 +27,25 @@ class InsertStudioDetailView: CoreWebViewFeature {
 
                 frameElements.forEach(elm => {
                     let next = elm.nextElementSibling.nextElementSibling;
-                    let wasInjected = next.getAttribute("web-injected");
+                    let wasInjected = next.getAttribute("ios-injected");
 
                     if(wasInjected == 1) { return }
 
                     const videoTitle = elm.getAttribute("title");
+                    const ariaTitle = elm.getAttribute("aria-title");
+                    const title = videoTitle ?? ariaTitle;
+
                     var frameLink = elm.getAttribute("src");
                     frameLink = frameLink.replace("media_attachments_iframe", "media_attachments");
 
                     var linkSuffix = "/immersive_view";
-                    if(videoTitle){
-                        linkSuffix = "/immersive_view?title=" + encodeURIComponent(videoTitle);
+                    if(title){
+                        linkSuffix = "/immersive_view?title=" + encodeURIComponent(title);
                     }
 
                     const newLine = document.createElement('br');
                     const newParagraph = document.createElement('p');
-                    newParagraph.setAttribute("web-injected", 1);
+                    newParagraph.setAttribute("ios-injected", 1);
 
                     const detailButton = document.createElement('a');
                     detailButton.className = "details_view_link";
@@ -71,7 +74,7 @@ class InsertStudioDetailView: CoreWebViewFeature {
 
 public extension CoreWebViewFeature {
 
-    static var insertStudioDetailView: CoreWebViewFeature {
-        InsertStudioDetailView()
+    static var insertStudioOpenInDetailButtons: CoreWebViewFeature {
+        InsertStudioOpenInDetailButtons()
     }
 }

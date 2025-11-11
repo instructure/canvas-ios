@@ -193,7 +193,7 @@ public class LTITools: NSObject {
                     .hideReturnButtonInQuizLTI,
                     .disableLinksOverlayPreviews
                 ])
-                controller.webView.studioFeaturesContext = context
+                controller.webView.setStudioFeatures(context: context, env: env)
                 controller.webView.load(URLRequest(url: url))
                 controller.title = String(localized: "Quiz", bundle: .core)
                 controller.addDoneButton(side: .right)

@@ -55,25 +55,6 @@ open class CoreWebView: WKWebView {
         }
     }
 
-    public var studioFeaturesContext: Context? {
-        didSet {
-
-            guard let studioFeaturesContext, studioImprovementsFlag == nil else {
-                studioImprovementsFlag = nil
-                updateStudioFeatures()
-                return
-            }
-
-            studioImprovementsFlag = env.subscribe(
-                GetFeatureFlagState(featureName: .studioEmbedImprovements, context: studioFeaturesContext)
-            ) { [weak self] in
-                self?.updateStudioFeatures()
-            }
-
-            studioImprovementsFlag?.refresh()
-        }
-    }
-
     var downloadingAttachment: CoreWebAttachment?
     internal var a11yHelper = CoreWebViewAccessibilityHelper()
 
@@ -90,8 +71,7 @@ open class CoreWebView: WKWebView {
 
     private var env: AppEnvironment = .shared
     private var subscriptions = Set<AnyCancellable>()
-
-    private var studioImprovementsFlag: Store<GetFeatureFlagState>?
+    private(set) lazy var studioInteractor = StudioFeaturesInteractor(webView: self)
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -121,18 +101,18 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
+    public func setStudioFeatures(context: Context?, env: AppEnvironment) {
+        studioInteractor.setupFeatureFlagStore(context: context, env: env)
+    }
+
     deinit {
         configuration.userContentController.removeAllScriptMessageHandlers()
         configuration.userContentController.removeAllUserScripts()
     }
 
     open override func reload() -> WKNavigation? {
-        prepareForReload()
+        studioInteractor.refresh()
         return super.reload()
-    }
-
-    public func prepareForReload() {
-        studioImprovementsFlag?.refresh(force: true)
     }
 
     /**
@@ -142,6 +122,15 @@ open class CoreWebView: WKWebView {
     public func addFeature(_ feature: CoreWebViewFeature) {
         features.append(feature)
         feature.apply(on: self)
+    }
+
+    public func removeFeatures<T: CoreWebViewFeature>(ofType: T.Type) {
+        if features.contains(where: { $0 is T }) {
+            features.removeAll(where: { $0 is T })
+            configuration.userContentController.removeAllUserScripts()
+            features.forEach({ $0.apply(on: self) })
+            _ = reload()
+        }
     }
 
     public func scrollIntoView(fragment: String, then: ((Bool) -> Void)? = nil) {
@@ -485,18 +474,6 @@ open class CoreWebView: WKWebView {
             )
             .store(in: &subscriptions)
     }
-
-    func updateStudioFeatures() {
-        let isStudioImprovementsEnabled = studioImprovementsFlag?.first?.enabled ?? false
-        if isStudioImprovementsEnabled {
-            addFeature(.insertStudioDetailView)
-        } else if features.contains(where: { $0 is InsertStudioDetailView }) {
-            features.removeAll(where: { $0 is InsertStudioDetailView })
-            configuration.userContentController.removeAllUserScripts()
-            features.forEach({ $0.apply(on: self) })
-            _ = reload()
-        }
-    }
 }
 
 // MARK: - WKNavigationDelegate
@@ -574,7 +551,7 @@ extension CoreWebView: WKNavigationDelegate {
         }
 
         // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
-        if action.handleStudioImmersiveViewIfNeeded(from: linkDelegate?.routeLinksFrom, router: env.router) {
+        if studioInteractor.handleStudioImmersiveViewIfNeeded(action, from: linkDelegate?.routeLinksFrom, router: env.router) {
             return decisionHandler(.cancel)
         }
 
@@ -599,6 +576,7 @@ extension CoreWebView: WKNavigationDelegate {
         }
 
         features.forEach { $0.webView(webView, didFinish: navigation) }
+        studioInteractor.scanVideoFrames()
     }
 
     public func webView(
@@ -872,6 +850,12 @@ extension CoreWebView {
         content: String?,
         originalBaseURL: URL?
     ) {
+
+        print()
+        print("WEBVIEW - Loading Content:")
+        print(content ?? "")
+        print()
+
         if let filePath, isOffline == true, FileManager.default.fileExists(atPath: filePath.path) {
 
             loadFileURL(
@@ -896,36 +880,5 @@ extension WKNavigationAction {
 
     var isCanvasUserContentLinkTap: Bool {
         navigationType == .linkActivated && request.url?.host()?.hasSuffix(".canvas-user-content.com") == true
-    }
-
-    var isStudioImmersiveViewLinkTap: Bool {
-        let isExpandLink = navigationType == .other &&
-        request.url?.path.contains("/media_attachments/") == true &&
-        request.url?.path.hasSuffix("/immersive_view") == true &&
-        sourceFrame.isMainFrame == false
-
-        let isDetailsLink = navigationType == .linkActivated &&
-        request.url?.path.contains("/media_attachments/") == true &&
-        request.url?.path.hasSuffix("/immersive_view") == true &&
-        (targetFrame?.isMainFrame ?? false) == false
-
-        return isExpandLink || isDetailsLink
-    }
-
-    func handleStudioImmersiveViewIfNeeded(from viewController: UIViewController?, router: Router) -> Bool {
-        guard isStudioImmersiveViewLinkTap,
-              var url = request.url,
-              let viewController
-        else {
-            return false
-        }
-
-        if url.containsQueryItem(named: "embedded") == false {
-            url.append(queryItems: [.init(name: "embedded", value: "true")])
-        }
-
-        let controller = StudioViewController(url: url)
-        router.show(controller, from: viewController, options: .modal(.overFullScreen))
-        return true
     }
 }

@@ -53,11 +53,15 @@ public struct APIFeatureFlagState: Codable {
     }
 
     public let feature: String
-    public let state: State
+    public var state: State
     public let locked: Bool
 
     private let context_id: String
     private let context_type: String
+
+    public var contextType: ContextType? {
+        return ContextType(rawValue: context_type.lowercased())
+    }
 
     public var canvasContextID: String {
         return "\(context_type.lowercased())_\(context_id)"

@@ -52,7 +52,20 @@ public class GetFeatureFlagState: APIUseCase {
 
     public func write(response: APIFeatureFlagState?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
-        FeatureFlag.save(response, in: client)
+
+        var item = response
+
+        /// This as walkaround for an API limitation, where
+        /// requesting feature state of a course context,
+        /// if not set on that course, would return the feature state of
+        /// the most higher level (which is the account)
+        if item.contextType != context.contextType {
+            if case .account = item.contextType {
+                item.state = item.state == .allowed_on ? .on : item.state
+            }
+        }
+
+        FeatureFlag.save(item, in: client)
     }
 
     public func reset(context: NSManagedObjectContext) {
