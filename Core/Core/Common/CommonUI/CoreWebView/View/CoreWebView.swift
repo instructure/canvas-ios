@@ -124,13 +124,17 @@ open class CoreWebView: WKWebView {
         feature.apply(on: self)
     }
 
-    public func removeFeatures<T: CoreWebViewFeature>(ofType: T.Type) {
-        if features.contains(where: { $0 is T }) {
-            features.removeAll(where: { $0 is T })
-            configuration.userContentController.removeAllUserScripts()
-            features.forEach({ $0.apply(on: self) })
+    @discardableResult
+    public func removeFeatures<T: CoreWebViewFeature>(ofType: T.Type) -> Bool {
+        let filteredList = features.enumerated().filter({ $0.element is T })
+        let indexSet = IndexSet(filteredList.map({ $0.offset }))
+        if indexSet.isNotEmpty {
+            filteredList.forEach({ $0.element.remove(from: self) })
+            features.remove(atOffsets: indexSet)
             _ = reload()
+            return true
         }
+        return false
     }
 
     public func scrollIntoView(fragment: String, then: ((Bool) -> Void)? = nil) {
@@ -850,12 +854,6 @@ extension CoreWebView {
         content: String?,
         originalBaseURL: URL?
     ) {
-
-        print()
-        print("WEBVIEW - Loading Content:")
-        print(content ?? "")
-        print()
-
         if let filePath, isOffline == true, FileManager.default.fileExists(atPath: filePath.path) {
 
             loadFileURL(
