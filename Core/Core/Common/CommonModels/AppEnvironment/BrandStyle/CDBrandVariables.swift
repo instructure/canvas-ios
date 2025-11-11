@@ -25,18 +25,18 @@ public final class CDBrandVariables: NSManagedObject {
     @NSManaged public var headerImageRaw: Data?
     @NSManaged public var institutionLogo: URL?
 
-    public var brandVariables: APIBrandVariables? {
+    public private(set) lazy var brandVariables: APIBrandVariables? = {
         let decoder = JSONDecoder()
         guard let jsonData = apiBrandVariablesRaw.data(using: .utf8) else {
             return nil
         }
         return try? decoder.decode(APIBrandVariables.self, from: jsonData)
-    }
+    }()
 
-    public var headerImage: UIImage? {
+    public private(set) lazy var headerImage: UIImage? = {
         guard let headerImageRaw else { return nil }
         return UIImage(data: headerImageRaw)
-    }
+    }()
 
     @discardableResult
     public static func save(
