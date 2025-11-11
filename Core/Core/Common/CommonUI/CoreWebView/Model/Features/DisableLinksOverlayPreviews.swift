@@ -39,7 +39,19 @@ private class DisableLinksOverlayPreviews: CoreWebViewFeature {
                 }
             })
         }
+
+        // Run immediately on load
         disableLinksOverlayPreviews();
+
+        // Use MutationObserver for dynamic content changes
+        const observer = new MutationObserver(function(mutations) {
+            disableLinksOverlayPreviews();
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
         """
     }()
 
