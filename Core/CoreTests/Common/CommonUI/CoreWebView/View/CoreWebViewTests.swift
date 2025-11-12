@@ -119,24 +119,6 @@ class CoreWebViewTests: CoreTestCase {
         XCTAssertNotEqual(scrollView.contentOffset.y, 0)
     }
 
-    class MockNavigationAction: WKNavigationAction {
-        let mockRequest: URLRequest
-        override var request: URLRequest {
-            return mockRequest
-        }
-
-        let mockType: WKNavigationType
-        override var navigationType: WKNavigationType {
-            return mockType
-        }
-
-        init(url: String, type: WKNavigationType) {
-            mockRequest = URLRequest(url: URL(string: url)!)
-            mockType = type
-            super.init()
-        }
-    }
-
     class MockNavigationResponse: WKNavigationResponse {
         let mockResponse: URLResponse
         override var response: URLResponse { mockResponse }
@@ -404,4 +386,45 @@ private class MockA11yHelper: CoreWebViewAccessibilityHelper {
         receivedView = view
         receivedViewController = viewController
     }
+}
+
+class MockNavigationAction: WKNavigationAction {
+    let mockRequest: URLRequest
+    override var request: URLRequest {
+        return mockRequest
+    }
+
+    let mockType: WKNavigationType
+    override var navigationType: WKNavigationType {
+        return mockType
+    }
+
+    let mockSourceFrame: MockFrameInfo?
+    let mockTargetFrame: MockFrameInfo?
+    init(url: String, type: WKNavigationType, sourceFrame: MockFrameInfo? = nil, targetFrame: MockFrameInfo? = nil) {
+        mockRequest = URLRequest(url: URL(string: url)!)
+        mockType = type
+        mockSourceFrame = sourceFrame
+        mockTargetFrame = targetFrame
+        super.init()
+    }
+
+    override var sourceFrame: WKFrameInfo {
+        mockSourceFrame ?? super.sourceFrame
+    }
+
+    override var targetFrame: WKFrameInfo? {
+        mockTargetFrame ?? super.targetFrame
+    }
+}
+
+class MockFrameInfo: WKFrameInfo {
+
+    let mockIsMainFrame: Bool
+    init(isMainFrame: Bool) {
+        mockIsMainFrame = isMainFrame
+        super.init()
+    }
+
+    override var isMainFrame: Bool { mockIsMainFrame }
 }

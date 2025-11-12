@@ -22,6 +22,6 @@ import XCTest
 class FeatureFlagTests: XCTestCase {
 
     func testFeatureFlagKeys() {
-        XCTAssertEqual(APIFeatureFlag.Key.assignmentEnhancements.rawValue, "assignments_2_student")
+        XCTAssertEqual(FeatureFlagName.assignmentEnhancements.rawValue, "assignments_2_student")
     }
 }
