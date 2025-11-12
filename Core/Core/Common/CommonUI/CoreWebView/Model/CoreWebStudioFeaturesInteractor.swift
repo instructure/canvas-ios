@@ -18,8 +18,9 @@
 
 import WebKit
 import UIKit
+import Combine
 
-public class StudioFeaturesInteractor {
+public class CoreWebStudioFeaturesInteractor {
     private static let scanFramesScript = """
         function scanVideoFramesForTitles() {
             const frameElements = document.querySelectorAll('iframe[data-media-id]');
@@ -45,7 +46,9 @@ public class StudioFeaturesInteractor {
 
     unowned let webView: CoreWebView
     private var studioImprovementsFlag: Store<GetFeatureFlagState>?
-    private var videoFramesTitleMap: [String: String] = [:]
+    private(set) var videoFramesTitleMap: [String: String] = [:]
+
+    var onScanFinished: (() -> Void)?
 
     init(webView: CoreWebView) {
         self.webView = webView
@@ -81,12 +84,9 @@ public class StudioFeaturesInteractor {
         }
     }
 
-    func handleStudioImmersiveViewIfNeeded(_ action: WKNavigationAction, from viewController: UIViewController?, router: Router) -> Bool {
-        guard action.isStudioImmersiveViewLinkTap,
-              var url = action.request.url,
-              let viewController
-        else {
-            return false
+    func urlForStudioImmersiveView(of action: WKNavigationAction) -> URL? {
+        guard action.isStudioImmersiveViewLinkTap, var url = action.request.url else {
+            return nil
         }
 
         if url.containsQueryItem(named: "title") == false,
@@ -98,9 +98,7 @@ public class StudioFeaturesInteractor {
             url.append(queryItems: [.init(name: "embedded", value: "true")])
         }
 
-        let controller = StudioViewController(url: url)
-        router.show(controller, from: viewController, options: .modal(.overFullScreen))
-        return true
+        return url
     }
 
     func scanVideoFrames() {
@@ -126,6 +124,7 @@ public class StudioFeaturesInteractor {
                 })
 
             self?.videoFramesTitleMap = mapped
+            self?.onScanFinished?()
         }
     }
 

@@ -71,7 +71,7 @@ open class CoreWebView: WKWebView {
 
     private var env: AppEnvironment = .shared
     private var subscriptions = Set<AnyCancellable>()
-    private(set) lazy var studioInteractor = StudioFeaturesInteractor(webView: self)
+    private(set) lazy var studioFeaturesInteractor = CoreWebStudioFeaturesInteractor(webView: self)
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -102,7 +102,7 @@ open class CoreWebView: WKWebView {
     }
 
     public func setStudioFeatures(context: Context?, env: AppEnvironment) {
-        studioInteractor.setupFeatureFlagStore(context: context, env: env)
+        studioFeaturesInteractor.setupFeatureFlagStore(context: context, env: env)
     }
 
     deinit {
@@ -111,7 +111,7 @@ open class CoreWebView: WKWebView {
     }
 
     open override func reload() -> WKNavigation? {
-        studioInteractor.refresh()
+        studioFeaturesInteractor.refresh()
         return super.reload()
     }
 
@@ -555,7 +555,14 @@ extension CoreWebView: WKNavigationDelegate {
         }
 
         // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
-        if studioInteractor.handleStudioImmersiveViewIfNeeded(action, from: linkDelegate?.routeLinksFrom, router: env.router) {
+        if let immersiveURL = studioFeaturesInteractor.urlForStudioImmersiveView(of: action),
+           let controller = linkDelegate?.routeLinksFrom {
+
+            env.router.show(
+                StudioViewController(url: immersiveURL),
+                from: controller,
+                options: .modal(.overFullScreen)
+            )
             return decisionHandler(.cancel)
         }
 
@@ -580,7 +587,7 @@ extension CoreWebView: WKNavigationDelegate {
         }
 
         features.forEach { $0.webView(webView, didFinish: navigation) }
-        studioInteractor.scanVideoFrames()
+        studioFeaturesInteractor.scanVideoFrames()
     }
 
     public func webView(
