@@ -35,7 +35,7 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertVisible(courseCard)
 
         // MARK: Share a photo using Canvas app share extension
