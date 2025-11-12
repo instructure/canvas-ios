@@ -43,15 +43,19 @@ class FilesTests: E2ETestCase {
         addressLabel.cutText(tapSelectAll: false, customApp: SafariAppHelper.safariApp)
         addressLabel.pasteText(text: FilesHelper.TestPDF.url, customApp: SafariAppHelper.safariApp, pasteAndGo: true)
         // addressLabel.writeText(text: FilesHelper.TestPDF.url, hitGo: true, customApp: SafariAppHelper.safariApp)
+        let moreButton = SafariAppHelper.moreButton.waitUntil(.visible)
+        XCTAssertVisible(moreButton)
+        moreButton.hit()
+
         let shareButton = SafariAppHelper.shareButton.waitUntil(.visible)
         XCTAssertVisible(shareButton)
-
         shareButton.hit()
+
         let titleOfFile = SafariAppHelper.Share.titleLabel(title: FilesHelper.TestPDF.title).waitUntil(.visible)
         XCTAssertVisible(titleOfFile)
 
-        let moreButton = SafariAppHelper.Share.moreButton.waitUntil(.visible)
-        moreButton.swipeUp()
+        let shareMoreButton = SafariAppHelper.Share.moreButton.waitUntil(.visible)
+        shareMoreButton.swipeUp()
         let saveToFilesButton = SafariAppHelper.Share.saveToFiles.waitUntil(.visible)
         XCTAssertVisible(saveToFilesButton)
 
