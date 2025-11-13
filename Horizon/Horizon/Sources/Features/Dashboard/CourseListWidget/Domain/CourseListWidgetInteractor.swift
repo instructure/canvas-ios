@@ -55,7 +55,7 @@ final class CourseListWidgetInteractorLive: CourseListWidgetInteractor {
             .flatMap { param -> AnyPublisher<[HCourse], Error> in
                 let shouldIgnoreCache = param.object != nil ? true : ignoreCache
                 return ReactiveStore(useCase: GetHCoursesProgressionUseCase(userId: unownedSelf.userId, horizonCourses: true))
-                    .getEntities(ignoreCache: shouldIgnoreCache)
+                    .getEntities(ignoreCache: shouldIgnoreCache, keepObservingDatabaseChanges: true)
                     .flatMap {
                         $0.publisher
                             .map { HCourse(from: $0, modules: nil) }
