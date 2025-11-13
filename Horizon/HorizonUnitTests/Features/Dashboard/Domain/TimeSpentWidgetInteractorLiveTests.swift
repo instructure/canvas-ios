@@ -29,8 +29,8 @@ final class TimeSpentWidgetInteractorLiveTests: HorizonTestCase {
         let testee = TimeSpentWidgetInteractorLive(timeSpentUseCase: useCase)
 
         api.mock(
-            DomainService.JWTTokenRequest(domainServiceOption: .journey),
-            value: DomainService.JWTTokenRequest.Result(token: HTimeSpentWidgetStubs.token)
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            value: DomainJWTService.JWTTokenRequest.Result(token: HTimeSpentWidgetStubs.token)
         )
         api.mock(GetHTimeSpentWidgetRequest(), value: HTimeSpentWidgetStubs.response)
 
@@ -58,8 +58,8 @@ final class TimeSpentWidgetInteractorLiveTests: HorizonTestCase {
         let testee = TimeSpentWidgetInteractorLive(timeSpentUseCase: useCase)
 
         api.mock(
-            DomainService.JWTTokenRequest(domainServiceOption: .journey),
-            value: DomainService.JWTTokenRequest.Result(token: HTimeSpentWidgetStubs.token)
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            value: DomainJWTService.JWTTokenRequest.Result(token: HTimeSpentWidgetStubs.token)
         )
         api.mock(GetHTimeSpentWidgetRequest(), value: emptyResponse)
 

@@ -711,6 +711,7 @@ extension StudentAppDelegate: LoginDelegate {
     func userDidLogin(session: LoginSession) {
         LoginSession.add(session)
         setup(session: session)
+        DomainJWTService.shared.setAPIAfterLogin(API(session))
     }
 
     func userDidStopActing(as session: LoginSession) {
