@@ -47,6 +47,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var gradingPeriod: GradingPeriod?
     @NSManaged public var gradingStandardId: String?
     @NSManaged public var gradingTypeRaw: String
+    @StoredEnumWithDefault(\.gradingTypeRaw, .points) public var gradingType: GradingType
     @NSManaged public var groupCategoryID: String?
     @NSManaged public var hasSubmittedSubmissions: Bool
     @NSManaged public var hasOverrides: Bool
@@ -66,10 +67,12 @@ public class Assignment: NSManagedObject {
     @NSManaged public var onlyVisibleToOverrides: Bool
     @NSManaged public var overrides: Set<AssignmentOverride>
     @NSManaged public var pointsPossibleRaw: NSNumber?
+    @StoredDouble(\.pointsPossibleRaw) public var pointsPossible: Double?
     @NSManaged public var position: Int
     @NSManaged public var published: Bool
     @NSManaged public var quizID: String?
     @NSManaged public var rubricPointsPossibleRaw: NSNumber?
+    @StoredDouble(\.rubricPointsPossibleRaw) public var rubricPointsPossible: Double?
     @NSManaged public var rubricRaw: NSOrderedSet?
     @NSManaged public var scoreStatistics: AssignmentScoreStatistics?
     @NSManaged public var submissionTypesRaw: String
@@ -83,9 +86,7 @@ public class Assignment: NSManagedObject {
     // Checkpoints
     @NSManaged public var hasSubAssignments: Bool
     @NSManaged private var checkpointsRaw: NSOrderedSet
-    public var checkpoints: [CDAssignmentCheckpoint] {
-        get { checkpointsRaw.typedArray() ?? [] } set { checkpointsRaw = .init(newValue) }
-    }
+    @StoredArray(\.checkpointsRaw) public var checkpoints: [CDAssignmentCheckpoint]
 
     /**
      Use this property (vs. submissions) when you want the most recent submission
@@ -134,24 +135,9 @@ public class Assignment: NSManagedObject {
         set { allowedExtensionsRaw = newValue.joined(separator: ",") }
     }
 
-    public var gradingType: GradingType {
-        get { return GradingType(rawValue: gradingTypeRaw) ?? .points }
-        set { gradingTypeRaw = newValue.rawValue }
-    }
-
-    public var pointsPossible: Double? {
-        get { return pointsPossibleRaw?.doubleValue }
-        set { pointsPossibleRaw = NSNumber(value: newValue) }
-    }
-
     public var rubric: [CDRubricCriterion]? {
         get { rubricRaw?.array as? [CDRubricCriterion] }
         set { rubricRaw = newValue.map { NSOrderedSet(array: $0) } }
-    }
-
-    public var rubricPointsPossible: Double? {
-        get { return rubricPointsPossibleRaw?.doubleValue }
-        set { rubricPointsPossibleRaw = NSNumber(value: newValue) }
     }
 
     public var submissionTypes: [SubmissionType] {

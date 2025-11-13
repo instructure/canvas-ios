@@ -29,9 +29,7 @@ public class CDSubAssignmentSubmission: NSManagedObject {
     @NSManaged public var isExcused: Bool
     @NSManaged public var isLate: Bool
     @NSManaged private var latePolicyStatusRaw: String?
-    public var latePolicyStatus: LatePolicyStatus? {
-        get { .init(rawValue: latePolicyStatusRaw) } set { latePolicyStatusRaw = newValue?.rawValue }
-    }
+    @StoredEnum(\.latePolicyStatusRaw) public var latePolicyStatus: LatePolicyStatus?
     @NSManaged public var lateSeconds: Int
     @NSManaged public var isMissing: Bool
     @NSManaged public var submittedAt: Date?
@@ -40,17 +38,11 @@ public class CDSubAssignmentSubmission: NSManagedObject {
 
     // Score
     @NSManaged private var enteredScoreRaw: NSNumber?
-    public var enteredScore: Double? {
-        get { enteredScoreRaw?.doubleValue } set { enteredScoreRaw = .init(newValue) }
-    }
+    @StoredDouble(\.enteredScoreRaw) public var enteredScore: Double?
     @NSManaged private var scoreRaw: NSNumber?
-    public var score: Double? {
-        get { scoreRaw?.doubleValue } set { scoreRaw = .init(newValue) }
-    }
+    @StoredDouble(\.scoreRaw) public var score: Double?
     @NSManaged private var publishedScoreRaw: NSNumber?
-    public var publishedScore: Double? {
-        get { publishedScoreRaw?.doubleValue } set { publishedScoreRaw = .init(newValue) }
-    }
+    @StoredDouble(\.publishedScoreRaw) public var publishedScore: Double?
 
     // Grade
     @NSManaged public var enteredGrade: String?
