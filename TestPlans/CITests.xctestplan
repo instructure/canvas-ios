@@ -84,6 +84,13 @@
         "identifier" : "41BA2B211CB47478407A6101",
         "name" : "ParentUnitTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Horizon\/Horizon.xcodeproj",
+        "identifier" : "20252627727AC8643AB77E40",
+        "name" : "HorizonSnapshotTests"
+      }
     }
   ],
   "version" : 1
