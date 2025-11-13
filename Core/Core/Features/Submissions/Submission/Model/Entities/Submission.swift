@@ -34,7 +34,7 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var enteredGrade: String?
     @NSManaged var enteredScoreRaw: NSNumber?
     @StoredDouble(\.enteredScoreRaw) public var enteredScore: Double?
-    @NSManaged var excusedRaw: NSNumber?
+    @NSManaged public var excused: Bool
     @NSManaged public var externalToolURL: URL?
     @NSManaged public var grade: String?
     @NSManaged public var gradedAt: Date?
@@ -92,11 +92,6 @@ final public class Submission: NSManagedObject, Identifiable {
 
     public var attachmentsSorted: [File] {
         attachments?.sorted(by: File.idCompare) ?? []
-    }
-
-    public var excused: Bool? {
-        get { return excusedRaw?.boolValue }
-        set { excusedRaw = NSNumber(value: newValue) }
     }
 
     /** Returns a score between 1.0 and 0.0 by dividing the submission's score by the assignments total score. */
@@ -158,7 +153,7 @@ extension Submission: WriteableModel {
         model.dueAt = item.cached_due_date
         model.enteredGrade = item.entered_grade
         model.enteredScore = item.entered_score
-        model.excused = item.excused
+        model.excused = item.excused ?? false
         model.externalToolURL = item.external_tool_url?.rawValue
         model.grade = item.grade
         model.gradedAt = item.graded_at
@@ -389,7 +384,7 @@ extension Submission {
 
     /// See canvas-lms submission.rb `def needs_grading?`
     public var needsGrading: Bool {
-        return excused != true &&
+        return !excused &&
             customGradeStatusId == nil &&
             (type != nil && (workflowState == .pending_review ||
                                 ([.graded, .submitted].contains(workflowState) &&
@@ -398,7 +393,7 @@ extension Submission {
     }
 
     public var isGraded: Bool {
-        return excused == true
+        return excused
             || customGradeStatusId != nil
             || (score != nil && workflowState == .graded)
     }
@@ -440,7 +435,7 @@ extension Submission {
         .init(
             isLate: late,
             isMissing: missing,
-            isExcused: excused ?? false,
+            isExcused: excused,
             isSubmitted: submittedAt != nil,
             isGraded: workflowState == .graded && score != nil,
             customStatusId: customGradeStatusId,
@@ -459,7 +454,7 @@ extension Submission {
 
     public var statusIncludingGradedState: SubmissionStatusOld {
         if isGraded {
-            if excused == true { return .excused }
+            if excused { return .excused }
             if customGradeStatusId != nil { return customGradedStatus }
             return .graded
         }
