@@ -123,7 +123,7 @@ class BottomSheetPresentationController: UIPresentationController {
         let fittingSize = presentedView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
         let height = max(fittingSize.height, presentedView.frame.height)
 
-        return CGRect(x: 0, y: containerView.frame.height - height, width: containerView.bounds.width, height: height)
+        return CGRect(x: 0, y: containerView.bounds.height - height, width: containerView.bounds.width, height: height)
     }
 
     override func containerViewWillLayoutSubviews() {
