@@ -108,7 +108,6 @@ class RollCallSession: NSObject, WKNavigationDelegate {
         else { return }
 
         // Force cookies to flush. Only works on device. Simulator is flaky.
-        webView.configuration.processPool = WKProcessPool()
         webView.evaluateJavaScript("""
         ({
             error: (document.querySelector('pre') || {}).textContent || '',

@@ -20,7 +20,7 @@
 
 import Foundation
 
-extension URLRequest: Codable {
+extension URLRequest: @retroactive Codable {
     enum CodingKeys: String, CodingKey {
         case allHTTPHeaderFields, cachePolicy, httpBody, httpMethod, url
     }

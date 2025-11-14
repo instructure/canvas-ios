@@ -61,7 +61,7 @@ class AssignmentReminderTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertVisible(courseCard)
 
         // MARK: Navigate to Assignments and check visibility
@@ -139,7 +139,7 @@ class AssignmentReminderTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertVisible(courseCard)
 
         // MARK: Navigate to Assignments and check visibility
@@ -215,7 +215,7 @@ class AssignmentReminderTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertVisible(courseCard)
 
         // MARK: Navigate to Assignments and check visibility
@@ -296,7 +296,7 @@ class AssignmentReminderTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertVisible(courseCard)
 
         // MARK: Navigate to Assignments and check visibility

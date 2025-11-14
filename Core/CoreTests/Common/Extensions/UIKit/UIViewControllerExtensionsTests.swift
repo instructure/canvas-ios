@@ -74,7 +74,11 @@ class UIViewControllerExtensionsTests: XCTestCase {
     func testIsInSplitViewDetail() {
         let controller = UIViewController()
         let split = UISplitViewController()
-        split.viewControllers = [UIViewController(), UINavigationController(rootViewController: controller)]
+
+        let navController = UINavigationController(rootViewController: controller)
+        split.viewControllers = [UIViewController(), navController]
+        split.addChild(navController)
+
         XCTAssertTrue(controller.isInSplitViewDetail)
 
         split.viewControllers = [UINavigationController(rootViewController: controller)]
@@ -85,7 +89,11 @@ class UIViewControllerExtensionsTests: XCTestCase {
 
         let parent = UIViewController()
         parent.embed(controller, in: parent.view)
-        split.viewControllers = [UIViewController(), UINavigationController(rootViewController: parent)]
+
+        let parentNavController = UINavigationController(rootViewController: parent)
+        split.viewControllers = [UIViewController(), parentNavController]
+        split.addChild(parentNavController)
+
         XCTAssertTrue(controller.isInSplitViewDetail)
     }
 
@@ -93,7 +101,8 @@ class UIViewControllerExtensionsTests: XCTestCase {
         let controller = UIViewController()
         XCTAssertNil(controller.splitDisplayModeButtonItem)
         let split = UISplitViewController()
-        split.viewControllers = [controller]
+        split.addChild(controller)
+
         XCTAssertNotNil(controller.splitDisplayModeButtonItem)
     }
 

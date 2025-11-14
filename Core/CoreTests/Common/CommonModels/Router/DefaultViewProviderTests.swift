@@ -24,7 +24,10 @@ class DefaultViewProviderTests: CoreTestCase {
     func testDefaultViewPresentation() {
         let testee = MockDefaultViewProviderViewController()
         let splitView = UISplitViewController()
-        splitView.viewControllers = [UINavigationController(rootViewController: testee), UIViewController()]
+        let navController = UINavigationController(rootViewController: testee)
+
+        splitView.viewControllers = [navController, UIViewController()]
+        splitView.addChild(navController)
 
         testee.showDefaultDetailViewIfNeeded()
         XCTAssertTrue(router.lastRoutedTo("/empty"))

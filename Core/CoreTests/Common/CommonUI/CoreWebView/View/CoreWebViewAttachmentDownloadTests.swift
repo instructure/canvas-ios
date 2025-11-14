@@ -85,9 +85,9 @@ class CoreWebViewAttachmentDownloadTests: CoreTestCase {
         linkDelegate = nil
     }
 
+    private let response = MockNavigationResponse(response: TestConstants.attachmentResponse)
     @MainActor
     func test_attachment_download_policy() async {
-        let response = MockNavigationResponse(response: TestConstants.attachmentResponse)
         let policy = await webView.webView(webView, decidePolicyFor: response)
         XCTAssertEqual(policy, .download)
     }

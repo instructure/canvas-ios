@@ -23,7 +23,8 @@ public class SafariAppHelper: BaseHelper {
     public static var tabBarItemTitle: XCUIElement { safariApp.find(id: "TabBarItemTitle") }
     public static var reloadButton: XCUIElement { safariApp.find(id: "ReloadButton") }
     public static var URL: XCUIElement { safariApp.find(id: "URL") }
-    public static var shareButton: XCUIElement { safariApp.find(id: "ShareButton") }
+    public static var shareButton: XCUIElement { safariApp.find(label: "Share", type: .button) }
+    public static var moreButton: XCUIElement { safariApp.find(label: "More", type: .button) }
     public static var clearTextButton: XCUIElement { safariApp.find(id: "ClearTextButton") }
     public static var replaceButton: XCUIElement { safariApp.find(label: "Replace", type: .button) }
     public static var addressLabelIpad: XCUIElement { safariApp.find(id: "UnifiedTabBarItemView?isSelected=true") }

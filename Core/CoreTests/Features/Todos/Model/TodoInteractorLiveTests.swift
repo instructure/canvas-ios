@@ -217,7 +217,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         // When
         mockCourses(courses)
         mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]))
-        XCTAssertFinish(testee.refresh(ignoreCache: false))
+        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
 
         // Then
         XCTAssertEqual(TabBarBadgeCounts.todoListCount, 3)

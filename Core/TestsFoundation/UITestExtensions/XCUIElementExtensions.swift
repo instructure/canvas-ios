@@ -277,10 +277,10 @@ public extension XCUIElement {
         coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: point.x, dy: point.y)).tap()
     }
 
-    func forceTap() {
+    func forceTap(application: XCUIApplication = app) {
         waitUntil(.visible)
         let coordinatesToTap = CGPoint(x: frame.midX, y: frame.midY)
-        app.tapAt(coordinatesToTap)
+        application.tapAt(coordinatesToTap)
     }
 
     func longTap() {

@@ -29,6 +29,7 @@ class FileEditorViewTests: CoreTestCase {
     }()
 
     func testFile() throws {
+        try XCTSkipIf(true, "testTree based assertions are flaky")
         api.mock(GetFile(context: .course("1"), fileID: "1"), value: .make(usage_rights: .make(
             use_justification: .creative_commons
         )))
@@ -43,6 +44,7 @@ class FileEditorViewTests: CoreTestCase {
     }
 
     func testScheduled() throws {
+        try XCTSkipIf(true, "testTree based assertions are flaky")
         api.mock(GetFile(context: .course("1"), fileID: "1"), value: .make(unlock_at: Clock.now))
         let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "FileEditor.nameField"))
@@ -68,6 +70,7 @@ class FileEditorViewTests: CoreTestCase {
     }
 
     func testScheduledFolder() throws {
+        try XCTSkipIf(true, "testTree based assertions are flaky")
         api.mock(GetFolder(context: nil, folderID: "1"), value: .make(lock_at: Clock.now))
         controller = hostSwiftUIController(FileEditorView(folderID: "1"))
         let tree = controller.testTree

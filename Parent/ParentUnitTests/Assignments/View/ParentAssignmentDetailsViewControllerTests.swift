@@ -101,12 +101,12 @@ class ParentAssignmentDetailsViewControllerTests: ParentTestCase {
         }
         notificationCenter.error = NSError.internalError()
         controller.reminderDateChanged(selectedDate: controller.selectedDate)
-        XCTAssertEqual(controller.reminderSwitch.isOn, false)
+        waitUntil(shouldFail: true) { controller.reminderSwitch.isOn == false }
 
         notificationCenter.authorized = false
         controller.reminderSwitch.isOn = true
         controller.reminderSwitch.sendActions(for: .valueChanged)
-        XCTAssertEqual(controller.reminderSwitch.isOn, false)
+        waitUntil(shouldFail: true) { controller.reminderSwitch.isOn == false }
         XCTAssertEqual((router.presented as? UIAlertController)?.title, "Permission Needed")
 
         controller.reminderSwitch.isOn = false

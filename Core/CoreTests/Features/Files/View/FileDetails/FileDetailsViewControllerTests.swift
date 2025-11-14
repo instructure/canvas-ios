@@ -226,7 +226,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         // Delete got an icon
         XCTAssertNotNil(results[1].image)
         pdf.document?.delegate = self
-        _ = controller.shareButton.target?.perform(controller.shareButton.action, with: [controller.shareButton])
+        _ = controller.shareButton.target?.perform(controller.shareButton.action, with: controller.shareButton)
         XCTAssert(router.presented is UIActivityViewController)
         XCTAssertTrue(saveWasCalled)
         saveWasCalled = false
@@ -300,7 +300,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
     func testShare() {
         controller.view.layoutIfNeeded()
-        _ = controller.shareButton.target?.perform(controller.shareButton.action, with: [controller.shareButton])
+        _ = controller.shareButton.target?.perform(controller.shareButton.action, with: controller.shareButton)
         XCTAssert(router.presented is UIActivityViewController)
     }
 
@@ -337,7 +337,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.copiedView.isHidden, false)
         XCTAssertEqual(UIPasteboard.general.url, URL(string: "https://canvas.instructure.com/files/1/download"))
 
-        _ = controller.toolbarShareButton.target?.perform(controller.toolbarShareButton.action, with: [controller.toolbarShareButton])
+        _ = controller.toolbarShareButton.target?.perform(controller.toolbarShareButton.action, with: controller.toolbarShareButton)
         XCTAssert(router.presented is UIActivityViewController)
     }
 }

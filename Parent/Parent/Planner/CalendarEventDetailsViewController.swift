@@ -162,18 +162,21 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
             let defaultDate = max(minDate, min(maxDate,
                 event.startAt?.addMinutes(-60) ?? Clock.now.addDays(7)
             ))
-            userNotificationCenter.requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
-                guard error == nil && success else {
-                    self.reminderSwitch.setOn(false, animated: true)
-                    return self.showNotificationsPermissionError()
+            userNotificationCenter.requestAuthorization(options: [.alert, .sound]) { [weak self] success, error in
+                Task { @MainActor in
+                    guard let self else { return }
+                    guard error == nil && success else {
+                        self.reminderSwitch.setOn(false, animated: true)
+                        return self.showNotificationsPermissionError()
+                    }
+                    self.reminderDateButton.setTitle(defaultDate.dateTimeString, for: .normal)
+                    self.selectedDate = defaultDate
+                    UIView.animate(withDuration: 0.2) {
+                        self.reminderDateButton.isHidden = false
+                    }
+                    self.reminderDateChanged(selectedDate: self.selectedDate)
                 }
-                self.reminderDateButton.setTitle(defaultDate.dateTimeString, for: .normal)
-                self.selectedDate = defaultDate
-                UIView.animate(withDuration: 0.2) {
-                    self.reminderDateButton.isHidden = false
-                }
-                self.reminderDateChanged(selectedDate: self.selectedDate)
-            } }
+            }
         } else {
             localNotifications.removeReminder(eventID)
             UIView.animate(withDuration: 0.2) {
@@ -193,13 +196,16 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
 
     @IBAction func reminderDateChanged(selectedDate: Date?) {
         guard let selectedDate = selectedDate, let event = events.first else { return }
-        localNotifications.setReminder(for: event, at: selectedDate, studentID: studentID) { error in performUIUpdate {
-            if error == nil {
-                self.reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
-            } else {
-                self.reminderSwitch.setOn(false, animated: true)
-                self.reminderSwitchChanged()
+        localNotifications.setReminder(for: event, at: selectedDate, studentID: studentID) { [weak self] error in
+            Task { @MainActor in
+                guard let self else { return }
+                if error == nil {
+                    self.reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
+                } else {
+                    self.reminderSwitch.setOn(false, animated: true)
+                    self.reminderSwitchChanged()
+                }
             }
-        } }
+        }
     }
 }

@@ -27,10 +27,19 @@ class BottomSheetOpenTransitioning: NSObject, UIViewControllerAnimatedTransition
             return transitionContext.completeTransition(false)
         }
 
-        transitionContext.containerView.insertSubview(to, belowSubview: from)
-        to.frame.origin.y = from.frame.height
+        guard let toViewController = transitionContext.viewController(forKey: .to) else {
+            return transitionContext.completeTransition(false)
+        }
+
+        let containerView = transitionContext.containerView
+        let finalFrame = transitionContext.finalFrame(for: toViewController)
+
+        to.frame = finalFrame
+        to.frame.origin.y = containerView.bounds.height
+        containerView.insertSubview(to, belowSubview: from)
+
         UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: .curveEaseOut, animations: {
-            to.frame.origin.y -= to.frame.height
+            to.frame.origin.y = finalFrame.origin.y
         }, completion: { _ in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
@@ -104,9 +113,17 @@ class BottomSheetPresentationController: UIPresentationController {
     }
 
     override var frameOfPresentedViewInContainerView: CGRect {
-        guard let view = containerView else { return .zero }
-        let presented = presentedViewController.view.frame
-        return CGRect(x: 0, y: view.frame.height - presented.height, width: presented.width, height: presented.height)
+        guard let containerView else { return .zero }
+        guard let presentedView = presentedViewController.view else { return .zero }
+
+        presentedView.setNeedsLayout()
+        presentedView.layoutIfNeeded()
+
+        let targetSize = CGSize(width: containerView.bounds.width, height: UIView.layoutFittingCompressedSize.height)
+        let fittingSize = presentedView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+        let height = max(fittingSize.height, presentedView.frame.height)
+
+        return CGRect(x: 0, y: containerView.bounds.height - height, width: containerView.bounds.width, height: height)
     }
 
     override func containerViewWillLayoutSubviews() {

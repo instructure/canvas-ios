@@ -9377,7 +9377,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%tU 日"
+            "value" : "%tu 日"
           }
         },
         "mi" : {

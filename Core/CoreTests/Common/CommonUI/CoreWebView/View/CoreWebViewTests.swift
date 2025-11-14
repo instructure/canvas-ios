@@ -108,12 +108,16 @@ class CoreWebViewTests: CoreTestCase {
         view.autoresizesHeight = true
         scrollView.addSubview(middle)
         middle.addSubview(view)
+        scrollView.contentSize = CGSize(width: 100, height: 400)
 
         let expectation = XCTestExpectation(description: "offset is updated")
-        let observation = scrollView.observe(\.contentOffset, options: .new) { _, _ in
-            expectation.fulfill()
+        let observation = scrollView.observe(\.contentOffset, options: .new) { _, change in
+            if let newValue = change.newValue, newValue.y > 0 {
+                expectation.fulfill()
+            }
         }
-        view.loadHTMLString("<a name='t' href='#t'>link</a>", baseURL: URL(string: "#t"))
+        let html = String(repeating: "<p>Content before anchor</p>", count: 20) + "<a name='t' href='#t'>link</a>"
+        view.loadHTMLString(html, baseURL: URL(string: "http://localhost#t"))
         wait(for: [expectation], timeout: 30)
         observation.invalidate()
         XCTAssertNotEqual(scrollView.contentOffset.y, 0)
@@ -130,9 +134,21 @@ class CoreWebViewTests: CoreTestCase {
             return mockType
         }
 
+        let mockSourceFrame: WKFrameInfo
+        override var sourceFrame: WKFrameInfo {
+            mockSourceFrame
+        }
+
+        let mockTargetFrame: WKFrameInfo?
+        override var targetFrame: WKFrameInfo? {
+            mockTargetFrame
+        }
+
         init(url: String, type: WKNavigationType) {
             mockRequest = URLRequest(url: URL(string: url)!)
             mockType = type
+            mockSourceFrame = WKFrameInfo()
+            mockTargetFrame = mockSourceFrame
             super.init()
         }
     }

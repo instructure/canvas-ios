@@ -19,7 +19,7 @@
 import XCTest
 
 public class HelpHelper: BaseHelper {
-    public static var doneButton: XCUIElement { app.find(label: "Done", type: .button) }
+    public static var closeButton: XCUIElement { app.find(label: "Close", type: .button) }
 
     public static var searchTheCanvasGuides: XCUIElement {
         return app.find(id: "helpItems").find(labelContaining: "Search the Canvas Guides", type: .button)
@@ -71,7 +71,7 @@ public class HelpHelper: BaseHelper {
 
     public static func returnToHelpPage(teacher: Bool = false) {
         closeSafariAndActivateApp()
-        if teacher { doneButton.hit() }
+        if teacher { closeButton.hit() }
         navigateToHelpPage()
     }
 }
