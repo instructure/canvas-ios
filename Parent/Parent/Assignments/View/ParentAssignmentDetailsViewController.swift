@@ -224,8 +224,9 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
 
     func reminderDateChanged(selectedDate: Date?) {
         guard let selectedDate = selectedDate, let assignment = assignment.first else { return }
-        localNotifications.setReminder(for: assignment, at: selectedDate, studentID: studentID.raw) { error in
+        localNotifications.setReminder(for: assignment, at: selectedDate, studentID: studentID.raw) { [weak self] error in
             Task { @MainActor in
+                guard let self else { return }
                 if error == nil {
                     self.reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
                     self.selectedDate = selectedDate
@@ -247,8 +248,9 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
                 assignment.dueAt?.addDays(-1) ?? Clock.now.addDays(1)
             ))
             userNotificationCenter
-                .requestAuthorization(options: [.alert, .sound]) { success, error in
+                .requestAuthorization(options: [.alert, .sound]) { [weak self] success, error in
                     Task { @MainActor in
+                        guard let self else { return }
                         guard error == nil && success else {
                             self.reminderSwitch.setOn(false, animated: true)
                             return self.showNotificationsPermissionError()

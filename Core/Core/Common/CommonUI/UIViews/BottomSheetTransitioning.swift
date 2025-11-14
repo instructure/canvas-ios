@@ -27,8 +27,12 @@ class BottomSheetOpenTransitioning: NSObject, UIViewControllerAnimatedTransition
             return transitionContext.completeTransition(false)
         }
 
+        guard let toViewController = transitionContext.viewController(forKey: .to) else {
+            return transitionContext.completeTransition(false)
+        }
+
         let containerView = transitionContext.containerView
-        let finalFrame = transitionContext.finalFrame(for: transitionContext.viewController(forKey: .to)!)
+        let finalFrame = transitionContext.finalFrame(for: toViewController)
 
         to.frame = finalFrame
         to.frame.origin.y = containerView.bounds.height
@@ -109,12 +113,12 @@ class BottomSheetPresentationController: UIPresentationController {
     }
 
     override var frameOfPresentedViewInContainerView: CGRect {
-        guard let containerView = containerView else { return .zero }
+        guard let containerView else { return .zero }
+        guard let presentedView = presentedViewController.view else { return .zero }
 
-        presentedViewController.view.setNeedsLayout()
-        presentedViewController.view.layoutIfNeeded()
+        presentedView.setNeedsLayout()
+        presentedView.layoutIfNeeded()
 
-        let presentedView = presentedViewController.view!
         let targetSize = CGSize(width: containerView.bounds.width, height: UIView.layoutFittingCompressedSize.height)
         let fittingSize = presentedView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
         let height = max(fittingSize.height, presentedView.frame.height)
