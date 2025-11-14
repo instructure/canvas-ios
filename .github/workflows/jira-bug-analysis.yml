@@ -1,0 +1,90 @@
+name: Jira iOS Bug Analysis
+
+on:
+  repository_dispatch:
+    types: [jira-ios-bug-created]
+  workflow_dispatch:
+    inputs:
+      issue_key:
+        description: 'Jira issue key (e.g., CLX-1234)'
+        required: true
+        type: string
+
+jobs:
+  analyze-bug:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch Jira Issue Details
+        id: jira-fetch
+        env:
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            ISSUE_KEY="${{ inputs.issue_key }}"
+          else
+            ISSUE_KEY="${{ github.event.client_payload.issue_key }}"
+          fi
+
+          echo "Fetching Jira issue: $ISSUE_KEY"
+          echo "Jira URL: $JIRA_BASE_URL/rest/api/3/issue/$ISSUE_KEY"
+
+          AUTH_STRING="${JIRA_EMAIL}:${JIRA_API_TOKEN}"
+          AUTH_HEADER="Authorization: Basic $(printf '%s' "$AUTH_STRING" | base64 -w 0)"
+
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X GET \
+            -H "$AUTH_HEADER" \
+            -H "Content-Type: application/json" \
+            "$JIRA_BASE_URL/rest/api/3/issue/$ISSUE_KEY")
+
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          RESPONSE_BODY=$(echo "$RESPONSE" | sed '$d')
+
+          echo "HTTP Status Code: $HTTP_CODE"
+
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "Error: Failed to fetch Jira issue. HTTP $HTTP_CODE"
+            echo "Response: $RESPONSE_BODY"
+            exit 1
+          fi
+
+          echo "jira_response<<EOF" >> $GITHUB_OUTPUT
+          echo "$RESPONSE_BODY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          echo "issue_key=$ISSUE_KEY" >> $GITHUB_OUTPUT
+
+      - name: Analyze Bug with Claude
+        id: claude-analysis
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          node .github/scripts/analyze-bug.js \
+            '${{ steps.jira-fetch.outputs.jira_response }}'
+
+      - name: Search Codebase for Context
+        id: code-search
+        run: |
+          node .github/scripts/search-code-context.js \
+            '${{ steps.jira-fetch.outputs.jira_response }}'
+
+      - name: Post Analysis to Jira
+        env:
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          ISSUE_KEY: ${{ steps.jira-fetch.outputs.issue_key }}
+          ANALYSIS_TEXT: ${{ steps.claude-analysis.outputs.analysis }}
+          CODE_CONTEXT: ${{ steps.code-search.outputs.context }}
+        run: |
+          node .github/scripts/post-to-jira.js

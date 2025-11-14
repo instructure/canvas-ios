@@ -30,6 +30,7 @@ public extension HorizonUI {
             case p2
             case p3
             case tag
+            case labelSemibold
             case labelLargeBold
             case labelMediumBold
             case labelSmallBold
@@ -54,7 +55,12 @@ public extension HorizonUI {
                 case .labelSmall: return .huiFonts.figtreeRegular12
                 case .buttonTextLarge: return .huiFonts.figtreeRegular16
                 case .buttonTextMedium: return .huiFonts.figtreeRegular14
+                case .labelSemibold: return .huiFonts.manropeSB36
                 }
+            }
+
+            public var fontSize: CGFloat {
+                HorizonUI.fonts.uiFont(font: font).pointSize
             }
 
             public var letterSpacing: CGFloat {
@@ -76,15 +82,20 @@ public extension HorizonUI {
 
         private let name: Name
 
-        init(_ name: Name) {
+       public init(_ name: Name) {
             self.name = name
         }
 
+        public var fount: Font {
+            name.font
+        }
+
         public func body(content: Content) -> some View {
+            let lineHeight = name.fontSize * name.lineHeightMultiple
+            let lineSpacing = lineHeight - name.fontSize
             content
                 .font(name.font)
-                // TODO: Research line height implementation
-//                .lineSpacing(name.lineSpacing)
+                .lineSpacing(lineSpacing)
                 .tracking(name.letterSpacing)
         }
     }

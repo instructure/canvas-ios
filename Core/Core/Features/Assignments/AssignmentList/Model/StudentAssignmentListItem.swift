@@ -29,6 +29,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
         // TODO: remove optionality after EVAL-5938
         let submissionStatus: SubmissionStatusLabel.Model?
         let score: String?
+        let scoreA11yLabel: String?
 
         var id: String { tag }
     }
@@ -40,6 +41,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
     let dueDates: [String]
     let submissionStatus: SubmissionStatusLabel.Model
     let score: String?
+    let scoreA11yLabel: String?
 
     let subItems: [SubItem]?
 
@@ -47,26 +49,43 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
 
     init(
         assignment: Assignment,
-        dueDateTextsProvider: AssignmentDueDateTextsProvider = .live
+        userId: String?,
+        dateTextsProvider: AssignmentDateTextsProvider = .live
     ) {
+        let submission: Submission?
+        if let userId {
+            submission = assignment.submissions?.first { $0.userID == userId }
+        } else {
+            submission = assignment.submission
+        }
+
         let hasSubAssignments = assignment.hasSubAssignments
 
         self.id = assignment.id
         self.title = assignment.name
         self.icon = assignment.icon.asImage
 
-        self.dueDates = dueDateTextsProvider.formattedDueDates(for: assignment)
+        self.dueDates = dateTextsProvider.summarizedDueDates(for: assignment)
 
-        let status = assignment.submission?.status ?? .notSubmitted
+        let status = submission?.status ?? .notSubmitted
         self.submissionStatus = .init(status: status)
+
         let hasPointsPossible = assignment.pointsPossible != nil
-        self.score = hasPointsPossible && status != .excused ? GradeFormatter.string(from: assignment, style: .medium) : nil
+        let score = hasPointsPossible && status != .excused
+            ? GradeFormatter.string(from: assignment, submission: submission, style: .medium)
+            : nil
+        self.score = score
+        self.scoreA11yLabel = score.flatMap {
+            [String(localized: "Grade", bundle: .core), GradeFormatter.a11yString(from: $0)]
+                .accessibilityJoined()
+        }
+
         self.route = assignment.htmlURL
 
         if hasSubAssignments {
             self.subItems = assignment.checkpoints
                 .map { checkpoint in
-                    let subSubmission = assignment.submission?.subAssignmentSubmissions
+                    let subSubmission = submission?.subAssignmentSubmissions
                         .first { $0.subAssignmentTag == checkpoint.tag }
 
                     // This is only needed because `APISubAssignmentSubmission.submitted_at` is currently not populated by backend.
@@ -87,9 +106,12 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
                             isExcused: false,
                             score: subSubmission?.score,
                             normalizedScore: (subSubmission?.score).map { $0 / pointsPossible },
-                            grade: subSubmission?.grade,
-                            enforceShortStyleForLetterGrade: false
+                            grade: subSubmission?.grade
                         )
+                    }
+                    let scoreA11yLabel = score.flatMap {
+                        [String(localized: "Grade", bundle: .core), GradeFormatter.a11yString(from: $0)]
+                            .accessibilityJoined()
                     }
 
                     return SubItem(
@@ -97,7 +119,8 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
                         title: checkpoint.title,
                         dueDate: DueDateFormatter.format(checkpoint.dueDate, lockDate: checkpoint.lockDate),
                         submissionStatus: status.map { .init(status: $0) },
-                        score: score
+                        score: score,
+                        scoreA11yLabel: scoreA11yLabel
                     )
                 }
         } else {
@@ -116,6 +139,7 @@ extension StudentAssignmentListItem {
         dueDates: [String],
         submissionStatus: SubmissionStatusLabel.Model,
         score: String?,
+        scoreA11yLabel: String?,
         subItems: [SubItem]?,
         route: URL?
     ) {
@@ -125,6 +149,7 @@ extension StudentAssignmentListItem {
         self.dueDates = dueDates
         self.submissionStatus = submissionStatus
         self.score = score
+        self.scoreA11yLabel = scoreA11yLabel
         self.subItems = subItems
         self.route = route
     }
@@ -136,6 +161,7 @@ extension StudentAssignmentListItem {
         dueDates: [String] = [],
         submissionStatus: SubmissionStatusLabel.Model = .init(text: "", icon: .emptyLine, color: .clear),
         score: String? = nil,
+        scoreA11yLabel: String? = nil,
         subItems: [SubItem]? = nil,
         route: URL? = nil
     ) -> Self {
@@ -146,6 +172,7 @@ extension StudentAssignmentListItem {
             dueDates: dueDates,
             submissionStatus: submissionStatus,
             score: score,
+            scoreA11yLabel: scoreA11yLabel,
             subItems: subItems,
             route: route
         )
@@ -158,14 +185,16 @@ extension StudentAssignmentListItem.SubItem {
         title: String = "",
         dueDate: String = "",
         submissionStatus: SubmissionStatusLabel.Model = .init(text: "", icon: .emptyLine, color: .clear),
-        score: String? = nil
+        score: String? = nil,
+        scoreA11yLabel: String? = nil
     ) -> Self {
         self.init(
             tag: tag,
             title: title,
             dueDate: dueDate,
             submissionStatus: submissionStatus,
-            score: score
+            score: score,
+            scoreA11yLabel: scoreA11yLabel
         )
     }
 }

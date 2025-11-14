@@ -19,19 +19,27 @@
 import Foundation
 import SwiftUI
 
+/// Section model to be used in `AssignmentListView`.
+/// Its `Row` enum provides models for various kinds of item cells.
 struct AssignmentListSection: Equatable, Identifiable {
     let id: String
     let title: String
     let rows: [Row]
 
     enum Row: Equatable, Identifiable {
+        /// Used on `AssignmentListScreen` when displayed in Student app
         case student(StudentAssignmentListItem)
+        /// Used on `AssignmentListScreen` when displayed in Teacher app
         case teacher(TeacherAssignmentListItem)
+        /// Used on `GradeListScreen` when displayed in Student or Parent apps
+        /// The model type is common with the `student` case, but the cell using it is slightly different.
+        case gradeListRow(StudentAssignmentListItem)
 
         var id: String {
             switch self {
             case .student(let row): row.id
             case .teacher(let row): row.id
+            case .gradeListRow(let row): row.id
             }
         }
     }

@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
 struct AssignmentReminderItemView: View {
@@ -26,8 +27,7 @@ struct AssignmentReminderItemView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Color.borderMedium
-                .frame(height: 0.5)
+            InstUI.Divider()
             HStack(spacing: 0) {
                 bellIcon
                 titleView

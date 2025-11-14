@@ -44,7 +44,7 @@ class CoreWebViewCrossCookieInjectionTests: XCTestCase {
         )
 
         // THEN
-        XCTAssertFirstValue(
+        XCTAssertSingleOutput(
             cookieStore.getAllCookies(),
             timeout: 10
         ) { cookies in

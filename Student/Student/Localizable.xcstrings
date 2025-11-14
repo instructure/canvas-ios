@@ -37826,7 +37826,7 @@
         "en-AU-unimelb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Subject Overview"
+            "value" : "Subject Subject Overview"
           }
         },
         "en-CA" : {
@@ -37886,7 +37886,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Siollabas an Chúrsa"
+            "value" : "Siollabas Cúrsa"
           }
         },
         "hi" : {
@@ -37916,7 +37916,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Piano di studio corso"
+            "value" : "Syllabus corso"
           }
         },
         "ja" : {
@@ -37994,7 +37994,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kursöversikt för kursen"
+            "value" : "Kursöversikt"
           }
         },
         "th" : {
@@ -47705,6 +47705,7 @@
       }
     },
     "Due" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -69998,13 +69999,13 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bloquejat"
+            "value" : "S’ha bloquejat"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wedi Cloi"
+            "value" : "Wedi cloi"
           }
         },
         "da" : {
@@ -81301,6 +81302,7 @@
     },
     "No Due Date" : {
       "comment" : "Label shown for a to do that doesn't have a due date",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -130954,6 +130956,7 @@
     },
     "To Do" : {
       "comment" : "Tab title, max character count is 14",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -130970,7 +130973,7 @@
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tasgau i’w Gwneud"
+            "value" : "Tasg i’w Gwneud"
           }
         },
         "da" : {
@@ -131030,7 +131033,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Por hacer"
+            "value" : "Ítem Por hacer"
           }
         },
         "es-ES" : {
@@ -131054,7 +131057,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "À faire"
+            "value" : "À accomplir"
           }
         },
         "ga" : {
@@ -131096,7 +131099,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "タスク"
+            "value" : "するべきこと"
           }
         },
         "mi" : {
@@ -131126,7 +131129,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Takenlijst"
+            "value" : "Opdracht"
           }
         },
         "pl" : {
@@ -131156,7 +131159,7 @@
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Čakajoča opravila"
+            "value" : "Opravilo"
           }
         },
         "sv" : {
@@ -131180,7 +131183,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cần Làm"
+            "value" : "Việc Cần Làm"
           }
         },
         "zh" : {
@@ -131205,6 +131208,263 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "待辦事項"
+          }
+        }
+      }
+    },
+    "To-do" : {
+      "comment" : "Tab title, max character count is 14",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قائمة المهام"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasques pendents"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasg i’w Gwneud"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At gøre"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At gøre"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufgaben"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To-do"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To-do"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To-do"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To-do"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To-do"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To-do"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ítems Por hacer"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tareas pendientes"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tehtävälista"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À faire"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À accomplir"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le Déanamh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "करने के लिए"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pou fè"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To-do"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verkefnalisti"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attività da fare"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "するべきこと"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mahi-mahi"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk Dilakukan"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjøremål"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjøremål"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opdracht"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista zadań"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarefa"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A fazer"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Задача"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opravilo"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Att göra"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Att göra"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "สิ่งที่ต้องทำ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Việc Cần Làm"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "待办"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "待办"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "代辦"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "代辦"
           }
         }
       }
@@ -131694,7 +131954,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Idag"
+            "value" : "I dag"
           }
         },
         "th" : {

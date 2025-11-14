@@ -39,7 +39,7 @@ struct ScoresAssignmentsView: View {
             VStack(spacing: .zero) {
                 ForEach(Array(details.assignments.enumerated()), id: \.offset) { index, assignment in
                     VStack(alignment: .leading, spacing: .huiSpaces.space12) {
-                        Text("Name: \(assignment.name)", bundle: .horizon)
+                        Text(assignment.name)
                         if let dueAtString = assignment.dueAtString {
                             Text("Due date: \(dueAtString)", bundle: .horizon)
                         }
@@ -47,11 +47,9 @@ struct ScoresAssignmentsView: View {
                         let submissionStatus = assignment.status
                         HStack(spacing: .huiSpaces.space4) {
                             Text("Status: ", bundle: .horizon)
-                            HorizonUI.Pill(
+                            HorizonUI.StatusChip(
                                 title: submissionStatus.text,
-                                style: submissionStatus == .missing ? .outline(.danger) : .outline(.institution),
-                                isUppercased: false,
-                                icon: nil
+                                style: submissionStatus == .missing ? .red : .sky
                             )
                         }
                         Text("Result: \(assignment.pointsResult)", bundle: .horizon)

@@ -36,16 +36,12 @@ struct ModuleItemLockedView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            HorizonUI.Pill(
+            HorizonUI.StatusChip(
                 title: String(localized: "Locked Content", bundle: .horizon),
-                    style: .inline(.init(
-                        textColor: Color.huiColors.text.body,
-                        iconColor: Color.huiColors.surface.institution
-                    )),
-                    isUppercased: false,
-                    icon: Image.huiIcons.lock
-                )
-
+                style: .institution,
+                icon: Image.huiIcons.lock,
+                isFilled: false
+            )
             WebView(html: "<p class=\"lock-explanation\">\(lockExplanation)</p>")
                 .frameToFit()
                 .padding(.horizontal, -(.huiSpaces.space24))

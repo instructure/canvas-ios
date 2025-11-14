@@ -55,6 +55,10 @@ enum ColorScheme: String, CaseIterable {
         AppEnvironment.shared.userDefaults?.parentColorScheme = nil
     }
 
+    static func observee(_ studentID: StudentID) -> ColorScheme {
+        observee(studentID.raw)
+    }
+
     static func observee(_ studentID: String) -> ColorScheme {
         if let scheme = dictionary?[studentID].flatMap({ allCases[$0 % allCases.count] }) {
             lastScheme = scheme

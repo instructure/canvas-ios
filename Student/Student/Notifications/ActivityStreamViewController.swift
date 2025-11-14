@@ -161,7 +161,8 @@ extension ActivityStreamViewController {
 
 class ActivityCell: UITableViewCell {
     @IBOutlet weak var titleLabel: DynamicLabel!
-    @IBOutlet weak var subTitleLabel: DynamicLabel!
+    @IBOutlet weak var dateLabel: DynamicLabel!
+    @IBOutlet weak var checkpointLabel: DynamicLabel!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var courseCode: DynamicLabel!
 
@@ -177,8 +178,21 @@ class ActivityCell: UITableViewCell {
             courseCode.isHidden = true
         }
 
+        if let checkpointStep = activity.discussionCheckpointStep {
+            checkpointLabel.setText(checkpointStep.text, style: .textCellSupportingText)
+            checkpointLabel.isHidden = false
+        } else {
+            checkpointLabel.text = nil
+            checkpointLabel.isHidden = true
+        }
+
         if let date = activity.updatedAt {
-            subTitleLabel.setText(ActivityStreamViewController.dateFormatter.string(from: date), style: .textCellSupportingText)
+            let dateText = ActivityStreamViewController.dateFormatter.string(from: date)
+            dateLabel.setText(dateText, style: .textCellSupportingText)
+            dateLabel.isHidden = false
+        } else {
+            dateLabel.text = nil
+            dateLabel.isHidden = true
         }
 
         icon.image = activity.icon

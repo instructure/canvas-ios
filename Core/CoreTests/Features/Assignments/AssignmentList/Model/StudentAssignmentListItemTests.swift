@@ -38,16 +38,16 @@ final class StudentAssignmentListItemTests: CoreTestCase {
     private lazy var testData = Self.testData
 
     private var testee: StudentAssignmentListItem!
-    private var dueDateTextsProvider: AssignmentDueDateTextsProviderMock!
+    private var dateTextsProvider: AssignmentDateTextsProviderMock!
 
     override func setUp() {
         super.setUp()
-        dueDateTextsProvider = .init()
+        dateTextsProvider = .init()
     }
 
     override func tearDown() {
         testee = nil
-        dueDateTextsProvider = nil
+        dateTextsProvider = nil
         Clock.reset()
         super.tearDown()
     }
@@ -85,14 +85,14 @@ final class StudentAssignmentListItemTests: CoreTestCase {
 
     // MARK: - Due dates
 
-    func test_dueDates_shouldCallDueDateTextsProviderAndUseItsResult() {
-        dueDateTextsProvider.formattedDueDatesResult = ["dd1", "dd2"]
+    func test_dueDates_shouldCallDateTextsProviderAndUseItsResult() {
+        dateTextsProvider.summarizedDueDatesResult = ["dd1", "dd2"]
         testee = makeListItem(.make(
             id: ID(testData.assignmentId)
         ))
 
-        XCTAssertEqual(dueDateTextsProvider.formattedDueDatesCallsCount, 1)
-        XCTAssertEqual(dueDateTextsProvider.formattedDueDatesInput?.id, testData.assignmentId)
+        XCTAssertEqual(dateTextsProvider.summarizedDueDatesCallsCount, 1)
+        XCTAssertEqual(dateTextsProvider.summarizedDueDatesInput?.id, testData.assignmentId)
         XCTAssertEqual(testee.dueDates.count, 2)
         XCTAssertEqual(testee.dueDates.first, "dd1")
         XCTAssertEqual(testee.dueDates.last, "dd2")
@@ -132,6 +132,7 @@ final class StudentAssignmentListItemTests: CoreTestCase {
         ))
         // THEN
         XCTAssertEqual(testee.score, "42 / 100")
+        XCTAssertEqual(testee.scoreA11yLabel, "Grade, 42 out of 100")
 
         // WHEN has pointsPossible, has no score
         testee = makeListItem(.make(
@@ -140,6 +141,7 @@ final class StudentAssignmentListItemTests: CoreTestCase {
         ))
         // THEN
         XCTAssertEqual(testee.score, "- / 100")
+        XCTAssertEqual(testee.scoreA11yLabel, "Grade, - out of 100")
 
         // WHEN has no pointsPossible, has score
         testee = makeListItem(.make(
@@ -148,6 +150,7 @@ final class StudentAssignmentListItemTests: CoreTestCase {
         ))
         // THEN
         XCTAssertEqual(testee.score, nil)
+        XCTAssertEqual(testee.scoreA11yLabel, nil)
 
         // WHEN excused
         testee = makeListItem(.make(
@@ -156,6 +159,7 @@ final class StudentAssignmentListItemTests: CoreTestCase {
         ))
         // THEN
         XCTAssertEqual(testee.score, nil)
+        XCTAssertEqual(testee.scoreA11yLabel, nil)
     }
 
     func test_score_withSubAssignments_shouldIgnoreSubAssignmentValues() {
@@ -334,14 +338,56 @@ final class StudentAssignmentListItemTests: CoreTestCase {
         XCTAssertEqual(testee.subItems?[1].score, "- / 21")
         XCTAssertEqual(testee.subItems?[2].score, nil)
         XCTAssertEqual(testee.subItems?[3].score, nil)
+
+        XCTAssertEqual(testee.subItems?[0].scoreA11yLabel, "Grade, 7 out of 20")
+        XCTAssertEqual(testee.subItems?[1].scoreA11yLabel, "Grade, - out of 21")
+        XCTAssertEqual(testee.subItems?[2].scoreA11yLabel, nil)
+        XCTAssertEqual(testee.subItems?[3].scoreA11yLabel, nil)
+    }
+
+    // MARK: - Submission for UserId
+
+    func test_submission_whenUserIdIsNilAndThereIsOnlyOneSubmission_shouldBeFirstAndOnlySubmission() {
+        testee = makeListItem(
+            .make(
+                submissions: [
+                    // We are testing with only one submission, because `Assignment.submissions`
+                    // is a `Set` and testing `first` on it would be flaky.
+                    // This matches assumed behavior, because Student app expects only one submission per assignment.
+                    .make(excused: true, user_id: "42")
+                ]
+            ),
+            userId: nil
+        )
+
+        XCTAssertEqual(testee.submissionStatus, .init(status: .excused))
+    }
+
+    func test_submission_whenUserIdIsSet_shouldBeSubmissionMatchingUserId() {
+        testee = makeListItem(
+            .make(
+                submissions: [
+                    .make(excused: false),
+                    .make(excused: true, user_id: "42"),
+                    .make(excused: false, user_id: "7")
+                ]
+            ),
+            userId: "42"
+        )
+
+        XCTAssertEqual(testee.submissionStatus, .init(status: .excused))
     }
 
     // MARK: - Private helpers
 
-    private func makeListItem(_ apiModel: APIAssignment) -> StudentAssignmentListItem {
+    private func makeListItem(
+        _ apiModel: APIAssignment,
+        userId: String? = nil
+    ) -> StudentAssignmentListItem {
         StudentAssignmentListItem(
             assignment: .make(from: apiModel, in: databaseClient),
-            dueDateTextsProvider: dueDateTextsProvider
+            userId: userId,
+            dateTextsProvider: dateTextsProvider
         )
     }
 }

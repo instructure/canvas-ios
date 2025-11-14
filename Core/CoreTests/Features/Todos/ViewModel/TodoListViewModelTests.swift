@@ -20,18 +20,20 @@
 import TestsFoundation
 import XCTest
 import Combine
+import CombineSchedulers
 
 class TodoListViewModelTests: CoreTestCase {
 
     private var interactor: TodoInteractorMock!
     private var testee: TodoListViewModel!
+    private let testScheduler: TestSchedulerOf<DispatchQueue> = DispatchQueue.test
 
     // MARK: - Setup and teardown
 
     override func setUp() {
         super.setUp()
         interactor = .init()
-        testee = .init(interactor: interactor, env: environment)
+        testee = .init(interactor: interactor, router: router, scheduler: testScheduler.eraseToAnyScheduler())
     }
 
     override func tearDown() {
@@ -44,7 +46,7 @@ class TodoListViewModelTests: CoreTestCase {
 
     func testInitialState() {
         XCTAssertEqual(testee.items, [])
-        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.state, .empty)
     }
 
     func testInitialRefreshCalled() {
@@ -55,23 +57,24 @@ class TodoListViewModelTests: CoreTestCase {
     func testItemsUpdateFromInteractor() {
         // Given
         let testItems = [
-            TodoItem.make(id: "1", title: "Test Item 1"),
-            TodoItem.make(id: "2", title: "Test Item 2")
+            TodoItemViewModel.make(plannableId: "1", title: "Test Item 1"),
+            TodoItemViewModel.make(plannableId: "2", title: "Test Item 2")
         ]
+        let testGroups = [TodoGroupViewModel(date: Date(), items: testItems)]
 
         // When
-        interactor.todosSubject.send(testItems)
+        interactor.todoGroups.send(testGroups)
 
         // Then
         XCTAssertFirstValue(testee.$items) { items in
-            XCTAssertEqual(items, testItems)
+            XCTAssertEqual(items, testGroups)
         }
     }
 
     func testRefreshWithIgnoreCacheTrue() {
         // Given
         let expectation = expectation(description: "Refresh completion called")
-        interactor.refreshResult = .success(false)
+        interactor.refreshResult = .success
 
         // When
         testee.refresh(completion: {
@@ -83,13 +86,13 @@ class TodoListViewModelTests: CoreTestCase {
         XCTAssertTrue(interactor.lastIgnoreCache)
 
         waitForExpectations(timeout: 1.0)
-        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.state, .empty)
     }
 
     func testRefreshWithIgnoreCacheFalse() {
         // Given
         let expectation = expectation(description: "Refresh completion called")
-        interactor.refreshResult = .success(false)
+        interactor.refreshResult = .success
 
         // When
         testee.refresh(completion: {
@@ -106,7 +109,8 @@ class TodoListViewModelTests: CoreTestCase {
     func testRefreshSuccessWithNonEmptyData() {
         // Given
         let expectation = expectation(description: "Refresh completion called")
-        interactor.refreshResult = .success(false)
+        interactor.refreshResult = .success
+        interactor.todoGroups.send([TodoGroupViewModel(date: Date(), items: [TodoItemViewModel.make(plannableId: "1", title: "Test Item")])])
 
         // When
         testee.refresh(completion: {
@@ -121,7 +125,8 @@ class TodoListViewModelTests: CoreTestCase {
     func testRefreshSuccessWithEmptyData() {
         // Given
         let expectation = expectation(description: "Refresh completion called")
-        interactor.refreshResult = .success(true)
+        interactor.refreshResult = .success
+        interactor.todoGroups.send([])
 
         // When
         testee.refresh(completion: {
@@ -150,8 +155,8 @@ class TodoListViewModelTests: CoreTestCase {
 
     func testDidTapItemPlannerNote() {
         // Given
-        let todo = TodoItem.make(id: "123", type: .planner_note)
-        interactor.todosSubject.send([todo])
+        let todo = TodoItemViewModel.make(plannableId: "123", type: .planner_note)
+        interactor.todoGroups.send([TodoGroupViewModel(date: Date(), items: [todo])])
 
         // When
         testee.didTapItem(todo, WeakViewController())
@@ -163,12 +168,12 @@ class TodoListViewModelTests: CoreTestCase {
 
     func testDidTapItemCalendarEvent() {
         // Given
-        let todo = TodoItem.make(
-            id: "456",
+        let todo = TodoItemViewModel.make(
+            plannableId: "456",
             type: .calendar_event,
             htmlURL: URL(string: "https://canvas.instructure.com/calendar")
         )
-        interactor.todosSubject.send([todo])
+        interactor.todoGroups.send([TodoGroupViewModel(date: Date(), items: [todo])])
 
         // When
         testee.didTapItem(todo, WeakViewController())
@@ -180,11 +185,11 @@ class TodoListViewModelTests: CoreTestCase {
 
     func testDidTapItemOtherTypeWithURL() {
         // Given
-        let todo = TodoItem.make(
-            id: "789",
+        let todo = TodoItemViewModel.make(
+            plannableId: "789",
             type: .assignment,
             htmlURL: URL(string: "https://canvas.instructure.com/courses/1/assignments/789"))
-        interactor.todosSubject.send([todo])
+        interactor.todoGroups.send([TodoGroupViewModel(date: Date(), items: [todo])])
 
         // When
         testee.didTapItem(todo, WeakViewController())
@@ -195,8 +200,8 @@ class TodoListViewModelTests: CoreTestCase {
 
     func testDidTapItemOtherTypeWithoutURL() {
         // Given
-        let todo = TodoItem.make(id: "999", type: .assignment, htmlURL: nil as URL?)
-        interactor.todosSubject.send([todo])
+        let todo = TodoItemViewModel.make(plannableId: "999", type: .assignment, htmlURL: nil as URL?)
+        interactor.todoGroups.send([TodoGroupViewModel(date: Date(), items: [todo])])
 
         // When
         testee.didTapItem(todo, WeakViewController())
@@ -206,23 +211,25 @@ class TodoListViewModelTests: CoreTestCase {
     }
 
     func testStateUpdatesCorrectly() {
-        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.state, .empty)
 
-        // When
-        interactor.refreshResult = .success(false)
+        // When - with non-empty todos
+        interactor.refreshResult = .success
+        interactor.todoGroups.send([TodoGroupViewModel(date: Date(), items: [TodoItemViewModel.make(plannableId: "1", title: "Test")])])
         testee.refresh(completion: {}, ignoreCache: false)
 
         // Then
         XCTAssertEqual(testee.state, .data)
 
-        // When
-        interactor.refreshResult = .success(true)
+        // When - with empty todos
+        interactor.refreshResult = .success
+        interactor.todoGroups.send([])
         testee.refresh(completion: {}, ignoreCache: false)
 
         // Then
         XCTAssertEqual(testee.state, .empty)
 
-        // When
+        // When - with error
         interactor.refreshResult = .failure(NSError.internalError())
         testee.refresh(completion: {}, ignoreCache: false)
 
@@ -233,7 +240,7 @@ class TodoListViewModelTests: CoreTestCase {
     func testMultipleRefreshCalls() {
         // Given
         interactor.refreshCallCount = 0
-        interactor.refreshResult = .success(false)
+        interactor.refreshResult = .success
 
         // When
         testee.refresh(completion: {}, ignoreCache: false)
@@ -242,5 +249,470 @@ class TodoListViewModelTests: CoreTestCase {
 
         // Then
         XCTAssertEqual(interactor.refreshCallCount, 3)
+    }
+
+    func testOpenProfile() {
+        // Given
+        let viewController = WeakViewController()
+
+        // When
+        testee.openProfile(viewController)
+
+        // Then
+        XCTAssert(router.lastRoutedTo("/profile"))
+        XCTAssertEqual(router.calls.last?.2.isModal, true)
+    }
+
+    func test_markItemAsDone_startsInNotDoneState() {
+        // GIVEN
+        let item = TodoItemViewModel.make(plannableId: "1")
+
+        // THEN
+        XCTAssertEqual(item.markAsDoneState, .notDone)
+    }
+
+    func test_markItemAsDone_onSuccess_changesStateToDone() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .success(())
+        let item = TodoItemViewModel.make(plannableId: "1")
+
+        // WHEN
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(item.markAsDoneState, .done)
+        XCTAssertTrue(interactor.markItemAsDoneCalled)
+        XCTAssertEqual(interactor.lastMarkAsDoneItem?.plannableId, "1")
+        XCTAssertEqual(interactor.lastMarkAsDoneDone, true)
+    }
+
+    func test_markItemAsDone_onError_changesStateBackToNotDone() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .failure(NSError.internalError())
+        let item = TodoItemViewModel.make(plannableId: "1", overrideId: "override-1")
+
+        // WHEN
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(item.markAsDoneState, .notDone)
+    }
+
+    func test_markItemAsDone_onError_showsSnackBar() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .failure(NSError.internalError())
+        let item = TodoItemViewModel.make(plannableId: "1", overrideId: "override-1")
+
+        // WHEN
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertNotNil(testee.snackBar.visibleSnack)
+    }
+
+    func test_markItemAsDone_removesItemAfterThreeSeconds() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .success(())
+        let item = TodoItemViewModel.make(plannableId: "1")
+        let group = TodoGroupViewModel(date: Date(), items: [item])
+        testee.items = [group]
+
+        // WHEN
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(item.markAsDoneState, .done)
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.count, 1)
+
+        testScheduler.advance(by: .seconds(3))
+        XCTAssertEqual(testee.items.count, 0)
+    }
+
+    func test_markItemAsDone_whileDone_marksAsUndone() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .success(())
+        let item = TodoItemViewModel.make(plannableId: "1", overrideId: "override-1")
+        item.markAsDoneState = .done
+
+        // WHEN
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(item.markAsDoneState, .notDone)
+        XCTAssertTrue(interactor.markItemAsDoneCalled)
+        XCTAssertEqual(interactor.lastMarkAsDoneDone, false)
+    }
+
+    func test_markItemAsDone_undoBeforeRemoval_cancelsTimer() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .success(())
+        let item = TodoItemViewModel.make(plannableId: "1", overrideId: "override-1")
+        let group = TodoGroupViewModel(date: Date(), items: [item])
+        testee.items = [group]
+
+        // WHEN
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+        XCTAssertEqual(item.markAsDoneState, .done)
+
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+        XCTAssertEqual(item.markAsDoneState, .notDone)
+
+        // THEN
+        testScheduler.advance(by: .seconds(3))
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.count, 1)
+    }
+
+    func test_markAsUndone_onError_changesStateBackToDone() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .failure(NSError.internalError())
+        let item = TodoItemViewModel.make(plannableId: "1", overrideId: "override-1")
+        item.markAsDoneState = .done
+
+        // WHEN
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(item.markAsDoneState, .done)
+    }
+
+    func test_markAsUndone_onError_showsSnackBar() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .failure(NSError.internalError())
+        let item = TodoItemViewModel.make(plannableId: "1", overrideId: "override-1")
+        item.markAsDoneState = .done
+
+        // WHEN
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertNotNil(testee.snackBar.visibleSnack)
+    }
+
+    func test_removeItem_removesEmptyGroups() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .success(())
+        let item1 = TodoItemViewModel.make(plannableId: "1")
+        let item2 = TodoItemViewModel.make(plannableId: "2")
+        let group1 = TodoGroupViewModel(date: Date(), items: [item1])
+        let group2 = TodoGroupViewModel(date: Date().addingTimeInterval(86400), items: [item2])
+        testee.items = [group1, group2]
+
+        // WHEN
+        testee.markItemAsDone(item1)
+        testScheduler.advance()
+        XCTAssertEqual(item1.markAsDoneState, .done)
+
+        // THEN
+        testScheduler.advance(by: .seconds(3))
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.first?.plannableId, "2")
+    }
+
+    func test_removeItem_setsStateToEmpty_whenLastItemRemoved() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .success(())
+        let item = TodoItemViewModel.make(plannableId: "1")
+        let group = TodoGroupViewModel(date: Date(), items: [item])
+        testee.items = [group]
+        testee.state = .data
+
+        // WHEN
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+        XCTAssertEqual(item.markAsDoneState, .done)
+
+        // THEN
+        testScheduler.advance(by: .seconds(3))
+        XCTAssertEqual(testee.items.count, 0)
+        XCTAssertEqual(testee.state, .empty)
+    }
+
+    func test_markItemAsDone_whileLoading_ignoresAdditionalTaps() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .success(())
+        let item = TodoItemViewModel.make(plannableId: "1")
+
+        // WHEN
+        testee.markItemAsDone(item)
+        XCTAssertEqual(item.markAsDoneState, .loading)
+        XCTAssertEqual(interactor.markItemAsDoneCallCount, 1)
+
+        testee.markItemAsDone(item)
+        testee.markItemAsDone(item)
+        testee.markItemAsDone(item)
+
+        // THEN
+        XCTAssertEqual(interactor.markItemAsDoneCallCount, 1)
+        XCTAssertEqual(item.markAsDoneState, .loading)
+
+        testScheduler.advance()
+        XCTAssertEqual(item.markAsDoneState, .done)
+    }
+
+    func test_markItemAsDone_decrementsBadgeCount() {
+        // GIVEN
+        TabBarBadgeCounts.todoListCount = 5
+        interactor.markItemAsDoneResult = .success(())
+        let item = TodoItemViewModel.make(plannableId: "1")
+
+        // WHEN
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 4)
+        XCTAssertEqual(item.markAsDoneState, .done)
+    }
+
+    func test_markItemAsUndone_incrementsBadgeCount() {
+        // GIVEN
+        TabBarBadgeCounts.todoListCount = 3
+        interactor.markItemAsDoneResult = .success(())
+        let item = TodoItemViewModel.make(plannableId: "1")
+        item.markAsDoneState = .done
+
+        // WHEN
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 4)
+        XCTAssertEqual(item.markAsDoneState, .notDone)
+    }
+
+    func test_markItemAsDone_doesNotDecrementBadgeCountBelowZero() {
+        // GIVEN
+        TabBarBadgeCounts.todoListCount = 0
+        interactor.markItemAsDoneResult = .success(())
+        let item = TodoItemViewModel.make(plannableId: "1")
+
+        // WHEN
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 0)
+        XCTAssertEqual(item.markAsDoneState, .done)
+    }
+
+    // MARK: - Swipe to done
+
+    func test_markItemAsDoneWithOptimisticUI_removesItemImmediately() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .success(())
+        let item = TodoItemViewModel.make(plannableId: "1")
+        let group = TodoGroupViewModel(date: Date(), items: [item])
+        testee.items = [group]
+
+        // WHEN
+        testee.markItemAsDoneWithOptimisticUI(item)
+
+        // THEN
+        XCTAssertEqual(testee.items.count, 0)
+        XCTAssertTrue(interactor.markItemAsDoneCalled)
+    }
+
+    func test_markItemAsDoneWithOptimisticUI_onSuccess_staysRemoved() {
+        // GIVEN
+        TabBarBadgeCounts.todoListCount = 5
+        interactor.markItemAsDoneResult = .success(())
+        let item = TodoItemViewModel.make(plannableId: "1")
+        let group = TodoGroupViewModel(date: Date(), items: [item])
+        testee.items = [group]
+
+        // WHEN
+        testee.markItemAsDoneWithOptimisticUI(item)
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(testee.items.count, 0)
+        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 4)
+    }
+
+    func test_markItemAsDoneWithOptimisticUI_onFailure_restoresItem() {
+        // GIVEN
+        TabBarBadgeCounts.todoListCount = 5
+        interactor.markItemAsDoneResult = .failure(NSError.internalError())
+        let item = TodoItemViewModel.make(plannableId: "1", date: Date())
+        let group = TodoGroupViewModel(date: Date().startOfDay(), items: [item])
+        testee.items = [group]
+        interactor.todoGroups.send([group])
+
+        // WHEN
+        testee.markItemAsDoneWithOptimisticUI(item)
+        XCTAssertEqual(testee.items.count, 0)
+
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.first?.plannableId, "1")
+        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 5)
+        XCTAssertNotNil(testee.snackBar.visibleSnack)
+    }
+
+    func test_markItemAsDoneWithOptimisticUI_multipleConcurrentSwipes_allSucceed() {
+        // GIVEN
+        TabBarBadgeCounts.todoListCount = 3
+        interactor.markItemAsDoneResult = .success(())
+        let item1 = TodoItemViewModel.make(plannableId: "1")
+        let item2 = TodoItemViewModel.make(plannableId: "2")
+        let item3 = TodoItemViewModel.make(plannableId: "3")
+        let group = TodoGroupViewModel(date: Date(), items: [item1, item2, item3])
+        testee.items = [group]
+
+        // WHEN
+        testee.markItemAsDoneWithOptimisticUI(item1)
+        testee.markItemAsDoneWithOptimisticUI(item2)
+        testee.markItemAsDoneWithOptimisticUI(item3)
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(testee.items.count, 0)
+        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 0)
+        XCTAssertEqual(interactor.markItemAsDoneCallCount, 3)
+    }
+
+    func test_markItemAsDoneWithOptimisticUI_multipleConcurrentSwipes_allFail() {
+        // GIVEN
+        TabBarBadgeCounts.todoListCount = 3
+        interactor.markItemAsDoneResult = .failure(NSError.internalError())
+        let item1 = TodoItemViewModel.make(plannableId: "1", date: Date())
+        let item2 = TodoItemViewModel.make(plannableId: "2", date: Date())
+        let item3 = TodoItemViewModel.make(plannableId: "3", date: Date())
+        let group = TodoGroupViewModel(date: Date().startOfDay(), items: [item1, item2, item3])
+        testee.items = [group]
+        interactor.todoGroups.send([group])
+
+        // WHEN
+        testee.markItemAsDoneWithOptimisticUI(item1)
+        testee.markItemAsDoneWithOptimisticUI(item2)
+        testee.markItemAsDoneWithOptimisticUI(item3)
+        XCTAssertEqual(testee.items.count, 0)
+
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.count, 3)
+        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 3)
+        XCTAssertNotNil(testee.snackBar.visibleSnack)
+    }
+
+    func test_markItemAsDoneWithOptimisticUI_multipleConcurrentSwipes_mixedResults() {
+        // GIVEN
+        TabBarBadgeCounts.todoListCount = 3
+        let item1 = TodoItemViewModel.make(plannableId: "1", date: Date())
+        let item2 = TodoItemViewModel.make(plannableId: "2", date: Date())
+        let item3 = TodoItemViewModel.make(plannableId: "3", date: Date())
+        let group = TodoGroupViewModel(date: Date().startOfDay(), items: [item1, item2, item3])
+        testee.items = [group]
+        interactor.todoGroups.send([group])
+
+        interactor.markItemAsDoneResult = .success(())
+
+        // WHEN - swipe all items
+        testee.markItemAsDoneWithOptimisticUI(item1)
+
+        // Change result to failure for item2
+        interactor.markItemAsDoneResult = .failure(NSError.internalError())
+        testee.markItemAsDoneWithOptimisticUI(item2)
+
+        // Change result back to success for item3
+        interactor.markItemAsDoneResult = .success(())
+        testee.markItemAsDoneWithOptimisticUI(item3)
+
+        XCTAssertEqual(testee.items.count, 0)
+
+        testScheduler.advance()
+
+        // THEN - only item2 should be restored
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.first?.plannableId, "2")
+        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 1)
+    }
+
+    func test_markItemAsDoneWithOptimisticUI_restoresToCorrectGroup() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .failure(NSError.internalError())
+        let today = Date().startOfDay()
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+
+        let item1 = TodoItemViewModel.make(plannableId: "1", date: today)
+        let item2 = TodoItemViewModel.make(plannableId: "2", date: tomorrow)
+        let group1 = TodoGroupViewModel(date: today, items: [item1])
+        let group2 = TodoGroupViewModel(date: tomorrow, items: [item2])
+
+        testee.items = [group1, group2]
+        interactor.todoGroups.send([group1, group2])
+
+        // WHEN
+        testee.markItemAsDoneWithOptimisticUI(item1)
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(testee.items.count, 2)
+        XCTAssertEqual(testee.items.first?.date, today)
+        XCTAssertEqual(testee.items.first?.items.first?.plannableId, "1")
+        XCTAssertEqual(testee.items.last?.date, tomorrow)
+        XCTAssertEqual(testee.items.last?.items.first?.plannableId, "2")
+    }
+
+    func test_markItemAsDoneWithOptimisticUI_recreatesGroupIfNeeded() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .failure(NSError.internalError())
+        let today = Date().startOfDay()
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+
+        let item1 = TodoItemViewModel.make(plannableId: "1", date: today)
+        let item2 = TodoItemViewModel.make(plannableId: "2", date: tomorrow)
+        let group1 = TodoGroupViewModel(date: today, items: [item1])
+        let group2 = TodoGroupViewModel(date: tomorrow, items: [item2])
+
+        testee.items = [group1, group2]
+        interactor.todoGroups.send([group1, group2])
+
+        // WHEN - remove all items from first group
+        testee.markItemAsDoneWithOptimisticUI(item1)
+        XCTAssertEqual(testee.items.count, 1)
+
+        testScheduler.advance()
+
+        // THEN - first group should be recreated
+        XCTAssertEqual(testee.items.count, 2)
+        XCTAssertEqual(testee.items.first?.date, today)
+    }
+
+    func test_markItemAsDoneWithOptimisticUI_stateTransition_emptyToData() {
+        // GIVEN
+        interactor.markItemAsDoneResult = .failure(NSError.internalError())
+        let item = TodoItemViewModel.make(plannableId: "1", date: Date())
+        let group = TodoGroupViewModel(date: Date().startOfDay(), items: [item])
+        testee.items = [group]
+        testee.state = .data
+        interactor.todoGroups.send([group])
+
+        // WHEN
+        testee.markItemAsDoneWithOptimisticUI(item)
+        XCTAssertEqual(testee.state, .empty)
+
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.items.count, 1)
     }
 }

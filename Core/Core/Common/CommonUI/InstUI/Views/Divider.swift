@@ -58,16 +58,26 @@ extension InstUI {
     /// It can be used before the first item of a list to make it
     /// have a top divider visible only when it is scrolled down.
     public struct TopDivider: View {
+        private static let offset: CGFloat = 1
 
         private let style: Divider.Style
+        private let backgroundColor: Color
 
-        public init(_ style: Divider.Style = .full) {
+        public init(
+            _ style: Divider.Style = .full,
+            backgroundColor: Color = .backgroundLightest
+        ) {
             self.style = style
+            self.backgroundColor = backgroundColor
         }
 
         public var body: some View {
-            InstUI.Divider(style)
-                .offset(y: -1)
+            backgroundColor
+                .frame(height: Self.offset)
+                .overlay {
+                    InstUI.Divider(style)
+                        .offset(y: -Self.offset)
+                }
         }
     }
 }

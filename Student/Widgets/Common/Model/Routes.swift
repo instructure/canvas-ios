@@ -31,13 +31,13 @@ extension Assignment {
     }
 }
 
-extension TodoItem {
+extension TodoItemViewModel {
     var route: URL {
         var url = switch type {
         case .calendar_event:
-            URL.todoWidgetRoute("todo-widget/calendar_events/\(id)")
+            URL.todoWidgetRoute("todo-widget/calendar_events/\(plannableId)")
         case .planner_note:
-            URL.todoWidgetRoute("todo-widget/planner-notes/\(id)")
+            URL.todoWidgetRoute("todo-widget/planner-notes/\(plannableId)")
         default:
             htmlURL?.appendingOrigin("todo-widget") ?? .appEmptyRoute
         }

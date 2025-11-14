@@ -23,12 +23,12 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.appEnvironment) private var env
 
-    @ObservedObject private var viewModel: AssignmentListViewModel
+    @ObservedObject private var viewModel: AssignmentListScreenViewModel
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     @State private var isShowingGradingPeriodPicker = false
 
-    public init(viewModel: AssignmentListViewModel) {
+    public init(viewModel: AssignmentListScreenViewModel) {
         self.viewModel = viewModel
         screenViewTrackingParameters = ScreenViewTrackingParameters(
             eventName: "/courses/\(viewModel.courseID)/assignments"
@@ -151,11 +151,16 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
 	@available(iOS, introduced: 26, message: "Legacy version exists")
     private var assignmentList: some View {
         ScrollView {
-            LazyVStack(spacing: 0) {
-				gradingPeriodTitle
-                ForEach(viewModel.sections) { section in
-                    sectionView(with: section)
-                }
+            VStack(spacing: 0) {
+                InstUI.TopDivider()
+                AssignmentListView(
+                    sections: viewModel.sections,
+                    identifierGroup: "AssignmentList",
+                    selectedAssignmentId: viewModel.selectedAssignmentId,
+                    navigateToDetailsAction: { url, id in
+                        viewModel.didSelectAssignment.send((url, id, controller))
+                    }
+                )
             }
         }
         .refreshable {
@@ -295,18 +300,15 @@ private func createSections() -> [AssignmentListSection] {
 
 #Preview("Data State") {
     let sections = createSections()
-    let viewModel = AssignmentListViewModel(state: .data, sections: sections)
-    AssignmentListScreen(viewModel: viewModel)
+    AssignmentListScreen(viewModel: .init(state: .data, sections: sections))
 }
 
 #Preview("Empty State") {
-    let emptyModel = AssignmentListViewModel(state: .empty)
-    AssignmentListScreen(viewModel: emptyModel)
+    AssignmentListScreen(viewModel: .init(state: .empty))
 }
 
 #Preview("Loading State") {
-    let loadingModel = AssignmentListViewModel(state: .loading)
-    AssignmentListScreen(viewModel: loadingModel)
+    AssignmentListScreen(viewModel: .init(state: .loading))
 }
 
 #endif

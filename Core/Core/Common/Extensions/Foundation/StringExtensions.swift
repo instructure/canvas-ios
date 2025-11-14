@@ -201,6 +201,14 @@ extension String {
         components.queryItems = queryItems
         return components.string ?? self
     }
+
+    public func replacingPathComponent(of value: String, with newValue: String) -> String {
+        var components = components(separatedBy: "/")
+        for i in components.indices where components[i] == value {
+            components[i] = newValue
+        }
+        return components.joined(separator: "/")
+    }
 }
 
 private enum StringFormatUtils {

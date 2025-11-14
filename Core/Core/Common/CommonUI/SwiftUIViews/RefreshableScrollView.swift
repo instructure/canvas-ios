@@ -137,10 +137,11 @@ public struct RefreshableScrollView<Content: View>: View {
             refreshAction {
                 let triggerEndDate = Date()
                 let timeElapsed = triggerEndDate.timeIntervalSince1970 - triggerStartDate.timeIntervalSince1970
-                let additionalDuration = 1 - timeElapsed
+                let additionalDuration = max(1 - timeElapsed, 0)
                 DispatchQueue.main.asyncAfter(deadline: .now() + additionalDuration) {
                     isAnimating = false
                     progress = 0
+                    canStartNewRefresh = true
                 }
             }
         }

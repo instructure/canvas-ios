@@ -36,7 +36,7 @@ class PeopleTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(students[0])
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to People
         PeopleHelper.navigateToPeople(course: course)
@@ -45,46 +45,46 @@ class PeopleTests: E2ETestCase {
         let person1 = PeopleHelper.peopleCell(index: 0).waitUntil(.visible)
         let person1RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 0).waitUntil(.visible)
         let person1NameLabel = PeopleHelper.nameLabelOfPeopleCell(index: 0).waitUntil(.visible)
-        XCTAssertTrue(person1.isVisible)
-        XCTAssertTrue(person1RoleLabel.isVisible)
+        XCTAssertVisible(person1)
+        XCTAssertVisible(person1RoleLabel)
         XCTAssertEqual(person1RoleLabel.label, studentLabel)
-        XCTAssertTrue(person1NameLabel.isVisible)
+        XCTAssertVisible(person1NameLabel)
         XCTAssertEqual(person1NameLabel.label, students[0].name)
 
         let person2 = PeopleHelper.peopleCell(index: 1).waitUntil(.visible)
         let person2RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 1).waitUntil(.visible)
         let person2NameLabel = PeopleHelper.nameLabelOfPeopleCell(index: 1).waitUntil(.visible)
-        XCTAssertTrue(person2.isVisible)
-        XCTAssertTrue(person2RoleLabel.isVisible)
+        XCTAssertVisible(person2)
+        XCTAssertVisible(person2RoleLabel)
         XCTAssertEqual(person2RoleLabel.label, studentLabel)
-        XCTAssertTrue(person2NameLabel.isVisible)
+        XCTAssertVisible(person2NameLabel)
         XCTAssertEqual(person2NameLabel.label, students[1].name)
 
         let person3 = PeopleHelper.peopleCell(index: 2).waitUntil(.visible)
         let person3RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 2).waitUntil(.visible)
         let person3NameLabel = PeopleHelper.nameLabelOfPeopleCell(index: 2).waitUntil(.visible)
-        XCTAssertTrue(person3.isVisible)
-        XCTAssertTrue(person3RoleLabel.isVisible)
+        XCTAssertVisible(person3)
+        XCTAssertVisible(person3RoleLabel)
         XCTAssertEqual(person3RoleLabel.label, studentLabel)
-        XCTAssertTrue(person3NameLabel.isVisible)
+        XCTAssertVisible(person3NameLabel)
         XCTAssertEqual(person3NameLabel.label, students[2].name)
 
         let person4 = PeopleHelper.peopleCell(index: 3).waitUntil(.visible)
         let person4RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 3).waitUntil(.visible)
         let person4NameLabel = PeopleHelper.nameLabelOfPeopleCell(index: 3).waitUntil(.visible)
-        XCTAssertTrue(person4.isVisible)
-        XCTAssertTrue(person4RoleLabel.isVisible)
+        XCTAssertVisible(person4)
+        XCTAssertVisible(person4RoleLabel)
         XCTAssertEqual(person4RoleLabel.label, teacherLabel)
-        XCTAssertTrue(person4NameLabel.isVisible)
+        XCTAssertVisible(person4NameLabel)
         XCTAssertEqual(person4NameLabel.label, teachers[0].name)
 
         let person5 = PeopleHelper.peopleCell(index: 4).waitUntil(.visible)
         let person5RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 4).waitUntil(.visible)
         let person5NameLabel = PeopleHelper.nameLabelOfPeopleCell(index: 4).waitUntil(.visible)
-        XCTAssertTrue(person5.isVisible)
-        XCTAssertTrue(person5RoleLabel.isVisible)
+        XCTAssertVisible(person5)
+        XCTAssertVisible(person5RoleLabel)
         XCTAssertEqual(person5RoleLabel.label, teacherLabel)
-        XCTAssertTrue(person5NameLabel.isVisible)
+        XCTAssertVisible(person5NameLabel)
         XCTAssertEqual(person5NameLabel.label, teachers[1].name)
 
         // MARK: Tap on one of them and check details on the Context Card
@@ -92,15 +92,15 @@ class PeopleTests: E2ETestCase {
         PeopleHelper.peopleCell(index: randomIndex).hit()
 
         let nameLabel = PeopleHelper.ContextCard.userNameLabel.waitUntil(.visible)
-        XCTAssertTrue(nameLabel.isVisible)
+        XCTAssertVisible(nameLabel)
         XCTAssertEqual(nameLabel.label, users[randomIndex].name)
 
         let courseLabel = PeopleHelper.ContextCard.courseLabel.waitUntil(.visible)
-        XCTAssertTrue(courseLabel.isVisible)
+        XCTAssertVisible(courseLabel)
         XCTAssertEqual(courseLabel.label, course.name)
 
         let sectionLabel = PeopleHelper.ContextCard.sectionLabel.waitUntil(.visible)
-        XCTAssertTrue(sectionLabel.isVisible)
+        XCTAssertVisible(sectionLabel)
         XCTAssertEqual(sectionLabel.label, "Section: \(course.name)")
     }
 
@@ -114,7 +114,7 @@ class PeopleTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(students[0])
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to People
         PeopleHelper.navigateToPeople(course: course)
@@ -123,19 +123,19 @@ class PeopleTests: E2ETestCase {
         let person1 = PeopleHelper.peopleCell(index: 0).waitUntil(.visible)
         let person1RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 0).waitUntil(.visible)
         let person1NameLabel = PeopleHelper.nameLabelOfPeopleCell(index: 0).waitUntil(.visible)
-        XCTAssertTrue(person1.isVisible)
-        XCTAssertTrue(person1RoleLabel.isVisible)
+        XCTAssertVisible(person1)
+        XCTAssertVisible(person1RoleLabel)
         XCTAssertEqual(person1RoleLabel.label, studentLabel)
-        XCTAssertTrue(person1NameLabel.isVisible)
+        XCTAssertVisible(person1NameLabel)
         XCTAssertEqual(person1NameLabel.label, students[0].name)
 
         let person2 = PeopleHelper.peopleCell(index: 1).waitUntil(.visible)
         let person2RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 1).waitUntil(.visible)
         let person2NameLabel = PeopleHelper.nameLabelOfPeopleCell(index: 1).waitUntil(.visible)
-        XCTAssertTrue(person2.isVisible)
-        XCTAssertTrue(person2RoleLabel.isVisible)
+        XCTAssertVisible(person2)
+        XCTAssertVisible(person2RoleLabel)
         XCTAssertEqual(person2RoleLabel.label, studentLabel)
-        XCTAssertTrue(person2NameLabel.isVisible)
+        XCTAssertVisible(person2NameLabel)
         XCTAssertEqual(person2NameLabel.label, students[1].name)
 
         // MARK: Delete enrollment of the other student and check if People List gets updated
@@ -159,24 +159,24 @@ class PeopleTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(students[0])
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to People, 4 people should be displayed
         PeopleHelper.navigateToPeople(course: course)
         let person6 = PeopleHelper.peopleCell(index: 3).waitUntil(.visible)
-        XCTAssertTrue(person6.isVisible)
+        XCTAssertVisible(person6)
 
         // MARK: Check filters
         let filterButton = PeopleHelper.filterButton.waitUntil(.visible)
-        XCTAssertTrue(filterButton.isVisible)
+        XCTAssertVisible(filterButton)
 
         filterButton.hit()
         let observersButton = PeopleHelper.FilterOptions.observersButton.waitUntil(.visible)
         let studentsButton = PeopleHelper.FilterOptions.studentsButton.waitUntil(.visible)
         let teachersButton = PeopleHelper.FilterOptions.teachersButton.waitUntil(.visible)
-        XCTAssertTrue(observersButton.isVisible)
-        XCTAssertTrue(studentsButton.isVisible)
-        XCTAssertTrue(teachersButton.isVisible)
+        XCTAssertVisible(observersButton)
+        XCTAssertVisible(studentsButton)
+        XCTAssertVisible(teachersButton)
 
         // MARK: Filter for students, 2 people should be visible
         studentsButton.hit()
@@ -184,21 +184,21 @@ class PeopleTests: E2ETestCase {
         let person1RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 0).waitUntil(.visible)
         let person2RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 1).waitUntil(.visible)
         XCTAssertTrue(person3.isVanished)
-        XCTAssertTrue(person1RoleLabel.isVisible)
-        XCTAssertTrue(person2RoleLabel.isVisible)
+        XCTAssertVisible(person1RoleLabel)
+        XCTAssertVisible(person2RoleLabel)
         XCTAssertEqual(person1RoleLabel.waitUntil(.label(expected: studentLabel)).label, studentLabel)
         XCTAssertEqual(person2RoleLabel.waitUntil(.label(expected: studentLabel)).label, studentLabel)
 
         // MARK: Filter for teachers, 2 people should be visible
         let clearFilterButton = PeopleHelper.clearFilterButton.waitUntil(.visible)
-        XCTAssertTrue(clearFilterButton.isVisible)
+        XCTAssertVisible(clearFilterButton)
 
         clearFilterButton.hit()
         filterButton.hit()
         teachersButton.hit()
         XCTAssertTrue(person3.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(person1RoleLabel.waitUntil(.visible).isVisible)
-        XCTAssertTrue(person2RoleLabel.waitUntil(.visible).isVisible)
+        XCTAssertVisible(person1RoleLabel.waitUntil(.visible))
+        XCTAssertVisible(person2RoleLabel.waitUntil(.visible))
         XCTAssertEqual(person1RoleLabel.waitUntil(.label(expected: teacherLabel)).label, teacherLabel)
         XCTAssertEqual(person2RoleLabel.waitUntil(.label(expected: teacherLabel)).label, teacherLabel)
 
@@ -223,24 +223,24 @@ class PeopleTests: E2ETestCase {
         // MARK: Get the user logged in
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         // MARK: Navigate to People, open detail screen, Filter for teacher
         PeopleHelper.navigateToPeople(course: course)
         let filterButton = PeopleHelper.filterButton.waitUntil(.visible)
-        XCTAssertTrue(filterButton.isVisible)
+        XCTAssertVisible(filterButton)
 
         filterButton.hit()
         let teacherButton = PeopleHelper.FilterOptions.teachersButton.waitUntil(.visible)
-        XCTAssertTrue(teacherButton.isVisible)
+        XCTAssertVisible(teacherButton)
 
         teacherButton.hit()
         let person1 = PeopleHelper.peopleCell(index: 0).waitUntil(.visible)
-        XCTAssertTrue(person1.isVisible)
+        XCTAssertVisible(person1)
 
         person1.hit()
         let sendEmailButton = PeopleHelper.ContextCard.sendEmailButton.waitUntil(.visible)
-        XCTAssertTrue(sendEmailButton.isVisible)
+        XCTAssertVisible(sendEmailButton)
 
         // MARK: Tap the "Send Email" icon, Check recipient, Check elements
         sendEmailButton.hit()
@@ -249,11 +249,11 @@ class PeopleTests: E2ETestCase {
         let subjectInput = InboxHelper.Composer.subjectInput.waitUntil(.visible)
         let messageInput = InboxHelper.Composer.bodyInput.waitUntil(.visible)
         let recipientPill = InboxHelper.Composer.recipientPillById(recipient: teacher)
-        XCTAssertTrue(sendButton.isVisible)
-        XCTAssertTrue(courseSelector.isVisible)
-        XCTAssertTrue(subjectInput.isVisible)
-        XCTAssertTrue(messageInput.isVisible)
-        XCTAssertTrue(recipientPill.isVisible)
+        XCTAssertVisible(sendButton)
+        XCTAssertVisible(courseSelector)
+        XCTAssertVisible(subjectInput)
+        XCTAssertVisible(messageInput)
+        XCTAssertVisible(recipientPill)
 
         // MARK: Add a subject and a message, Tap send, Check result
         subjectInput.writeText(text: messageSubject)
@@ -262,19 +262,19 @@ class PeopleTests: E2ETestCase {
 
         sendButton.hit()
         let inboxTab = DashboardHelper.TabBar.inboxTab.waitUntil(.visible)
-        XCTAssertTrue(inboxTab.isVisible)
+        XCTAssertVisible(inboxTab)
 
         inboxTab.hit()
         let filterByTypeButton = InboxHelper.filterByTypeButton.waitUntil(.visible)
-        XCTAssertTrue(filterByTypeButton.isVisible)
+        XCTAssertVisible(filterByTypeButton)
 
         filterByTypeButton.hit()
         let sentOption = InboxHelper.Filter.sent.waitUntil(.visible)
-        XCTAssertTrue(sentOption.isVisible)
+        XCTAssertVisible(sentOption)
 
         sentOption.hit()
         let conversationButton = InboxHelper.conversations[0].waitUntil(.visible)
-        XCTAssertTrue(conversationButton.isVisible)
+        XCTAssertVisible(conversationButton)
         XCTAssertContains(conversationButton.label, messageSubject)
     }
 }

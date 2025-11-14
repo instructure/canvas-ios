@@ -37,6 +37,7 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
     private(set) var programs: [ProgramSwitcherModel] = []
     private(set) var selectedCourse: ProgramSwitcherModel.Course?
     private(set) var courses: [LearnCourse] = []
+    private(set) var courseTools: [ToolLinkItem] = []
     private(set) var selectedProgram: ProgramSwitcherModel?
     private(set) var isLoaderVisible: Bool = false
     private(set) var overviewDescription = ""
@@ -59,6 +60,7 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
     private let getCoursesInteractor: GetCoursesInteractor
     private let learnCoursesInteractor: GetLearnCoursesInteractor
     private let programInteractor: ProgramInteractor
+    private let courseToolsInteractor: CourseToolsInteractor
     private let selectedTab: CourseDetailsTabs?
     private var pullToRefreshCancellable: AnyCancellable?
     private let scoresViewModelBuilder: ScoresViewModelBuilder
@@ -71,6 +73,7 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
         getCoursesInteractor: GetCoursesInteractor,
         learnCoursesInteractor: GetLearnCoursesInteractor,
         programInteractor: ProgramInteractor,
+        courseToolsInteractor: CourseToolsInteractor,
         courseID: String,
         enrollmentID: String,
         programID: String? = nil,
@@ -82,6 +85,7 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
         self.getCoursesInteractor = getCoursesInteractor
         self.learnCoursesInteractor = learnCoursesInteractor
         self.programInteractor = programInteractor
+        self.courseToolsInteractor = courseToolsInteractor
         self.courseID = courseID
         self.course = course ?? .init()
         self.selectedProgram = .init(id: programID)
@@ -112,12 +116,14 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
             let syllabusPublisher = getCoursesInteractor
                 .getCourseSyllabus(courseID: course.id, ignoreCache: true)
             let programsPublisher = getPrograms(ignoreCache: true)
+           let toolsPublisher = courseToolsInteractor.getTools(courseID: courseID, ignoreCache: true)
 
-            pullToRefreshCancellable = Publishers.Zip3(coursePublisher, syllabusPublisher, programsPublisher)
-                .sink { [weak self] course, syllabus, programs in
+            pullToRefreshCancellable = Publishers.Zip4(coursePublisher, syllabusPublisher, programsPublisher, toolsPublisher)
+                .sink { [weak self] course, syllabus, programs, tools in
                     continuation.resume()
                     guard let self = self, let course = course else { return }
                     self.course = course
+                    self.courseTools = tools
                     self.programs = mapPrograms(programs: programs, courses: self.courses)
                     self.overviewDescription = syllabus ?? ""
                 }
@@ -131,6 +137,26 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
     func moduleItemDidTap(item: HModuleItem, from: WeakViewController) {
         if let url = item.htmlURL {
             router.route(to: url, userInfo: ["moduleItem": item], from: from)
+        }
+    }
+
+    func openSafari(url: URL, viewController: WeakViewController) {
+        let tools = LTITools(
+            context: nil,
+            id: nil,
+            url: url,
+            isQuizLTI: false,
+            assignmentID: nil,
+            env: AppEnvironment.shared,
+        )
+
+        isLoaderVisible = true
+        tools.getSessionlessLaunch { [weak self] value in
+            guard let self, let url = value?.url  else {
+                return
+            }
+            self.isLoaderVisible = false
+            EmbeddedExternalTools.presentSafari(url: url, from: viewController, router: router)
         }
     }
 
@@ -167,14 +193,16 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
     }
 
     private func fetchData() {
-        Publishers.CombineLatest3(
+        Publishers.CombineLatest4(
             getCourse(for: courseID),
             getCourses(),
-            getPrograms()
+            getPrograms(),
+            courseToolsInteractor.getTools(courseID: courseID, ignoreCache: false)
         )
-        .sink { [weak self] courseInfo, courses, allPrograms in
+        .sink { [weak self] courseInfo, courses, allPrograms, tools in
             guard let self else { return }
             self.courses = courses
+            self.courseTools = tools
             self.programs = mapPrograms(programs: allPrograms, courses: courses)
             selectedProgram = findProgram(containing: courseID, programID: selectedProgram?.id, in: allPrograms)
             updateCourse(course: courseInfo.course, syllabus: courseInfo.syllabus)

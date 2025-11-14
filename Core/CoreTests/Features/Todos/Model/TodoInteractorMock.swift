@@ -20,24 +20,43 @@
 import Combine
 
 final class TodoInteractorMock: TodoInteractor {
-    var todos: AnyPublisher<[TodoItem], Never> {
-        todosSubject.eraseToAnyPublisher()
-    }
-
-    let todosSubject = CurrentValueSubject<[TodoItem], Never>([])
+    var todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([])
     var refreshCalled = false
     var refreshCallCount = 0
     var lastIgnoreCache = false
-    var refreshResult: Result<Bool, Error> = .success(false)
+    var refreshResult: Result<Void, Error> = .success(())
 
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
+    var markItemAsDoneCalled = false
+    var markItemAsDoneCallCount = 0
+    var lastMarkAsDoneItem: TodoItemViewModel?
+    var lastMarkAsDoneDone: Bool?
+    var markItemAsDoneResult: Result<Void, Error> = .success(())
+
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
         refreshCalled = true
         refreshCallCount += 1
         lastIgnoreCache = ignoreCache
 
         switch refreshResult {
-        case .success(let isEmpty):
-            return Just(isEmpty)
+        case .success:
+            return Just(())
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        case .failure(let error):
+            return Fail(error: error)
+                .eraseToAnyPublisher()
+        }
+    }
+
+    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
+        markItemAsDoneCalled = true
+        markItemAsDoneCallCount += 1
+        lastMarkAsDoneItem = item
+        lastMarkAsDoneDone = done
+
+        switch markItemAsDoneResult {
+        case .success:
+            return Just(())
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         case .failure(let error):

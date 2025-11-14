@@ -20,6 +20,15 @@ import XCTest
 @testable import Core
 
 class CreateSubmissionTests: CoreTestCase {
+
+    private var testAnalyticsHandler: MockAnalyticsHandler!
+
+    override func setUp() {
+        super.setUp()
+        testAnalyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = testAnalyticsHandler
+    }
+
     func testItCreatesAssignmentSubmission() {
         //  given
         let submissionType = SubmissionType.online_url
@@ -84,5 +93,123 @@ class CreateSubmissionTests: CoreTestCase {
         useCase.makeRequest(environment: environment) { _, _, _ in }
         wait(for: [expectation], timeout: 0.2)
         NotificationCenter.default.removeObserver(token)
+    }
+
+    func test_analytics_success() {
+        let context = Context(.course, id: "1")
+        let request = CreateSubmissionRequest(
+            context: context,
+            assignmentID: "2",
+            body: .init(submission: .init(group_comment: nil, submission_type: .online_text_entry))
+        )
+
+        api.mock(request, value: .make(
+            assignment_id: "2",
+            attempt: 2
+        ))
+
+        let useCase = CreateSubmission(context: context, assignmentID: "2", userID: "3", submissionType: .online_text_entry)
+        useCase.makeRequest(environment: environment) { _, _, _ in }
+
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textEntry_succeeded")
+        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 2)
+    }
+
+    func test_analytics_failure() {
+        let context = Context(.course, id: "1")
+        let request = CreateSubmissionRequest(
+            context: context,
+            assignmentID: "4",
+            body: .init(submission: .init(group_comment: nil, submission_type: .online_url))
+        )
+
+        let prevSubmission = Submission(context: databaseClient)
+        prevSubmission.userID = "3"
+        prevSubmission.assignmentID = "4"
+        prevSubmission.attempt = 16
+
+        api.mock(request, error: NSError.instructureError("Random error"))
+
+        let useCase = CreateSubmission(context: context, assignmentID: "4", userID: "3", submissionType: .online_url)
+        useCase.makeRequest(environment: environment) { _, _, _ in }
+
+        // Datebase client exhaust
+        let exp = expectation(description: "context exhaust")
+        databaseClient.perform { exp.fulfill() }
+        wait(for: [exp])
+
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_url_failed")
+        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 17)
+    }
+
+    func test_analytics_media_recording_params() {
+        let context = Context(.course, id: "1")
+        let request = CreateSubmissionRequest(
+            context: context,
+            assignmentID: "34",
+            body: .init(
+                submission: .init(
+                    group_comment: nil,
+                    submission_type: .media_recording,
+                    media_comment_id: "567",
+                    media_comment_type: .video
+                )
+            )
+        )
+
+        api.mock(request, value: .make(
+            assignment_id: "34",
+            attempt: 6
+        ))
+
+        let useCase = CreateSubmission(
+            context: context,
+            assignmentID: "34",
+            userID: "76",
+            submissionType: .media_recording,
+            mediaCommentID: "34",
+            mediaCommentType: .video,
+            mediaCommentSource: .camera
+        )
+
+        useCase.makeRequest(environment: environment) { _, _, _ in }
+
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_mediaRecording_succeeded")
+        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 6)
+        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("media_type"), "video")
+        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("media_source"), "camera")
+    }
+
+    func test_analytics_studio() {
+        let context = Context(.course, id: "1")
+        let request = CreateSubmissionRequest(
+            context: context,
+            assignmentID: "12",
+            body: .init(
+                submission: .init(
+                    group_comment: nil,
+                    submission_type: .basic_lti_launch,
+                    url: URL(string: "https://canvas.com/path/to/studio/media")
+                )
+            )
+        )
+
+        api.mock(request, value: .make(
+            assignment_id: "12",
+            attempt: 13
+        ))
+
+        let useCase = CreateSubmission(
+            context: context,
+            assignmentID: "12",
+            userID: "4",
+            submissionType: .basic_lti_launch,
+            url: URL(string: "https://canvas.com/path/to/studio/media")
+        )
+
+        useCase.makeRequest(environment: environment) { _, _, _ in }
+
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_studio_succeeded")
+        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 13)
     }
 }

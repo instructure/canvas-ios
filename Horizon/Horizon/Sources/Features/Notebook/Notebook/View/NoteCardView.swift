@@ -69,17 +69,15 @@ struct NoteCardView: View {
     private func noteCardLabelView(type: CourseNoteLabel) -> some View {
         switch type {
         case .confusing:
-            HorizonUI.Pill(
-                title: type.label,
-                style: .outline(.danger),
-                isUppercased: true,
+            HorizonUI.StatusChip(
+                title: type.label.uppercased(),
+                style: .red,
                 icon: Image.huiIcons.help
             )
         default:
-            HorizonUI.Pill(
-                title: type.label,
-                style: .outline(.institution),
-                isUppercased: true,
+            HorizonUI.StatusChip(
+                title: type.label.uppercased(),
+                style: .institution,
                 icon: Image.huiIcons.flag2
             )
         }

@@ -29,11 +29,11 @@ class CollaborationsTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Collaborations
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertVisible(courseCard)
 
         courseCard.hit()
         let collaborationsButton = CourseDetailsHelper.cell(type: .collaborations).waitUntil(.visible)
-        XCTAssertTrue(collaborationsButton.isVisible)
+        XCTAssertVisible(collaborationsButton)
 
         collaborationsButton.hit()
 
