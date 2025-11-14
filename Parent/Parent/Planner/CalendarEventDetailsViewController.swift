@@ -162,8 +162,9 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
             let defaultDate = max(minDate, min(maxDate,
                 event.startAt?.addMinutes(-60) ?? Clock.now.addDays(7)
             ))
-            userNotificationCenter.requestAuthorization(options: [.alert, .sound]) { success, error in
+            userNotificationCenter.requestAuthorization(options: [.alert, .sound]) { [weak self] success, error in
                 Task { @MainActor in
+                    guard let self else { return }
                     guard error == nil && success else {
                         self.reminderSwitch.setOn(false, animated: true)
                         return self.showNotificationsPermissionError()
@@ -195,8 +196,9 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
 
     @IBAction func reminderDateChanged(selectedDate: Date?) {
         guard let selectedDate = selectedDate, let event = events.first else { return }
-        localNotifications.setReminder(for: event, at: selectedDate, studentID: studentID) { error in
+        localNotifications.setReminder(for: event, at: selectedDate, studentID: studentID) { [weak self] error in
             Task { @MainActor in
+                guard let self else { return }
                 if error == nil {
                     self.reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
                 } else {
