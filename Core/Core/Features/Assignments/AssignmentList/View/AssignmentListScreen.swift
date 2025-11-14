@@ -49,7 +49,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
 				}
 			}
 			.navigationTitle(.init("Assignments", bundle: .core))
-			.navigationSubtitle(viewModel.courseName ??  "")
+			.optionalNavigationSubtitle(viewModel.courseName)
 			.background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
 			.tint(viewModel.courseColor?.asColor)
 			.toolbar {
@@ -71,7 +71,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
 					loadingView
 				case .data:
 					gradingPeriodTitle
-					legacyAssignmentList
+					assignmentList
 				}
 			}
 			.background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
@@ -148,7 +148,6 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
         Spacer()
     }
 
-	@available(iOS, introduced: 26, message: "Legacy version exists")
     private var assignmentList: some View {
         ScrollView {
             VStack(spacing: 0) {
@@ -166,84 +165,6 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
         .refreshable {
             await viewModel.refresh()
         }
-    }
-
-	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
-	private var legacyAssignmentList: some View {
-		ScrollView {
-			LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
-				InstUI.TopDivider()
-				ForEach(viewModel.sections) { section in
-					sectionView(with: section)
-				}
-			}
-		}
-		.refreshable {
-			await viewModel.refresh()
-		}
-	}
-
-    private func sectionView(with section: AssignmentListSection) -> some View {
-        InstUI.CollapsibleListSection(title: section.title, itemCount: section.rows.count) {
-            ForEach(section.rows) { row in
-                switch row {
-                case .student(let model):
-                    studentCell(model: model, isLastItem: section.rows.last == row)
-                case .teacher(let model):
-                    teacherCell(model: model, isLastItem: section.rows.last == row)
-                }
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func studentCell(model: StudentAssignmentListItem, isLastItem: Bool) -> some View {
-        let routeAction = { navigateToDetails(at: model.route) }
-        let identifier = "AssignmentList.\(model.id)"
-
-        if let subItems = model.subItems {
-            InstUI.CollapsibleListRow(
-                cell: StudentAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
-                    .identifier(identifier),
-                isInitiallyExpanded: false
-            ) {
-                ForEach(subItems) { subItem in
-                    StudentAssignmentListSubItemCell(model: subItem, action: routeAction)
-                        .identifier(identifier, subItem.tag)
-                }
-            }
-            InstUI.Divider(isLast: isLastItem)
-        } else {
-            StudentAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
-                .identifier(identifier)
-        }
-    }
-
-    @ViewBuilder
-    private func teacherCell(model: TeacherAssignmentListItem, isLastItem: Bool) -> some View {
-        let routeAction = { navigateToDetails(at: model.route) }
-        let identifier = "AssignmentList.\(model.id)"
-
-        if let subItems = model.subItems {
-            InstUI.CollapsibleListRow(
-                cell: TeacherAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
-                    .identifier(identifier),
-                isInitiallyExpanded: false
-            ) {
-                ForEach(subItems) { subItem in
-                    TeacherAssignmentListSubItemCell(model: subItem, action: routeAction)
-                        .identifier(identifier, subItem.tag)
-                }
-            }
-            InstUI.Divider(isLast: isLastItem)
-        } else {
-            TeacherAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
-                .identifier(identifier)
-        }
-    }
-
-    private func navigateToDetails(at url: URL?) {
-        viewModel.didSelectAssignment.send((url, controller))
     }
 
     private func setupDefaultSplitDetailView(_ routeUrl: String) {

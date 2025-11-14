@@ -92,14 +92,6 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 				}
 			}
 		}
-        .onAppear {
-            refresh(force: false) {
-                let env = AppEnvironment.shared
-                if env.userDefaults?.interfaceStyle == nil, env.currentSession?.isFakeStudent == false {
-                    controller.value.showThemeSelectorAlert()
-                }
-            }
-        }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             fileUploadNotificationCardViewModel.sceneDidBecomeActive.send()
         }
