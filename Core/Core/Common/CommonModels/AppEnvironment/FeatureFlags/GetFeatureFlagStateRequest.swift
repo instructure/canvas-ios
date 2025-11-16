@@ -18,6 +18,7 @@
 
 import Foundation
 
+// https://canvas.instructure.com/doc/api/feature_flags.html#method.feature_flags.show
 public struct GetFeatureFlagStateRequest: APIRequestable {
     public typealias Response = APIFeatureFlagState
 
@@ -39,49 +40,4 @@ public struct GetFeatureFlagStateRequest: APIRequestable {
 public enum FeatureFlagName: String {
     case assignmentEnhancements = "assignments_2_student"
     case studioEmbedImprovements = "rce_studio_embed_improvements"
-}
-
-// MARK: - Response
-
-public struct APIFeatureFlagState: Codable {
-
-    public enum State: String, Codable {
-        case allowed
-        case allowed_on
-        case on
-        case off
-    }
-
-    public let feature: String
-    public let state: State
-    public let locked: Bool
-
-    private let context_id: String
-    private let context_type: String
-
-    init(feature: String, state: State, locked: Bool, context_id: String, context_type: String) {
-        self.feature = feature
-        self.state = state
-        self.locked = locked
-        self.context_id = context_id
-        self.context_type = context_type
-    }
-
-    public var contextType: ContextType? {
-        return ContextType(rawValue: context_type.lowercased())
-    }
-
-    public var canvasContextID: String {
-        return "\(context_type.lowercased())_\(context_id)"
-    }
-
-    public func overriden(state: State, context: Context) -> Self {
-        APIFeatureFlagState(
-            feature: feature,
-            state: state,
-            locked: locked,
-            context_id: context.id,
-            context_type: context.contextType.rawValue
-        )
-    }
 }

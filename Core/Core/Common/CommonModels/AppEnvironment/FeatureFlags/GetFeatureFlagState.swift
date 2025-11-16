@@ -19,7 +19,7 @@
 import Foundation
 import CoreData
 
-public class GetFeatureFlagState: APIUseCase {
+public class GetFeatureFlagState: CollectionUseCase {
     public typealias Model = FeatureFlag
 
     public let featureName: FeatureFlagName
@@ -51,28 +51,19 @@ public class GetFeatureFlagState: APIUseCase {
     }
 
     public func write(response: APIFeatureFlagState?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response else { return }
+        guard var item = response else { return }
 
-        var item = response
-
-        /// This as walkaround for an API limitation, where
+        /// This as workaround for an API limitation, where
         /// requesting feature state of a course context,
         /// if not set on that course, would return the feature state of
         /// the most higher level (which is the account)
-        if item.contextType != context.contextType {
-            if case .account = item.contextType {
-                item = item.overriden(
-                    state: item.state == .allowed_on ? .on : item.state,
-                    context: context
-                )
-            }
+        if item.contextType != context.contextType && item.contextType == .account {
+            item = item.overriden(
+                state: item.state == .allowed_on ? .on : item.state,
+                context: context
+            )
         }
 
         FeatureFlag.save(item, in: client)
-    }
-
-    public func reset(context: NSManagedObjectContext) {
-        let all = context.fetch(scope: scope) as [Model]
-        context.delete(all)
     }
 }

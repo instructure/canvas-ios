@@ -16,9 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import WebKit
-import UIKit
 import Combine
+import WebKit
 
 public class CoreWebStudioFeaturesInteractor {
     private static let scanFramesScript = """
@@ -45,7 +44,11 @@ public class CoreWebStudioFeaturesInteractor {
     """
 
     unowned let webView: CoreWebView
-    private var studioImprovementsFlag: Store<GetFeatureFlagState>?
+    private var studioImprovementsFlagStore: ReactiveStore<GetFeatureFlagState>?
+    private var storeSubscription: AnyCancellable?
+
+    /// This is to persist a map of video URL vs Title for the currently loaded page
+    /// of CoreWebView. Supposed to be updated (or emptied) on each page load.
     private(set) var videoFramesTitleMap: [String: String] = [:]
 
     var onScanFinished: (() -> Void)?
@@ -56,32 +59,21 @@ public class CoreWebStudioFeaturesInteractor {
 
     func setupFeatureFlagStore(context: Context?, env: AppEnvironment) {
         guard let context else {
-            studioImprovementsFlag = nil
+            storeSubscription?.cancel()
+            storeSubscription = nil
+            studioImprovementsFlagStore = nil
             return
         }
 
-        studioImprovementsFlag = env.subscribe(
-            GetFeatureFlagState(featureName: .studioEmbedImprovements, context: context)
-        ) { [weak self] in
-            self?.updateStudioFeatures()
-        }
+        studioImprovementsFlagStore = ReactiveStore(
+            useCase: GetFeatureFlagState(
+                featureName: .studioEmbedImprovements,
+                context: context
+            ),
+            environment: env
+        )
 
-        studioImprovementsFlag?.refresh()
-    }
-
-    public func refresh() {
-        studioImprovementsFlag?.refresh(force: true)
-    }
-
-    private func updateStudioFeatures() {
-        guard let studioImprovementsFlag else { return }
-
-        let isStudioImprovementsEnabled = studioImprovementsFlag.first?.enabled ?? false
-        if isStudioImprovementsEnabled {
-            webView.addFeature(.insertStudioOpenInDetailButtons)
-        } else {
-            webView.removeFeatures(ofType: InsertStudioOpenInDetailButtons.self)
-        }
+        resetStoreSubscription()
     }
 
     func urlForStudioImmersiveView(of action: WKNavigationAction) -> URL? {
@@ -101,6 +93,11 @@ public class CoreWebStudioFeaturesInteractor {
         return url
     }
 
+    /// To be called in didFinishLoading delegate method of WKWebView, it scans through
+    /// currently loaded page HTML content looking for video studio `iframe`s. It will extract
+    /// `title` attribute value and keep a map of such values vs video src URL, to be used
+    /// later to set immersive video player title. This mainly useful when triggering the player
+    /// from a button that's internal to video-frame. (`Expand` button)
     func scanVideoFrames() {
 
         videoFramesTitleMap.removeAll()
@@ -128,26 +125,56 @@ public class CoreWebStudioFeaturesInteractor {
         }
     }
 
+    public func refresh() {
+        resetStoreSubscription(ignoreCache: true)
+    }
+
+    // MARK: Privates
+
+    private func resetStoreSubscription(ignoreCache: Bool = false) {
+        storeSubscription?.cancel()
+        storeSubscription = studioImprovementsFlagStore?
+            .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
+            .map({ $0.first?.enabled ?? false })
+            .sink(receiveValue: { [weak self] isEnabled in
+                self?.updateStudioImprovementFeature(isEnabled: isEnabled)
+            })
+    }
+
+    private func updateStudioImprovementFeature(isEnabled: Bool) {
+        if isEnabled {
+            webView.addFeature(.insertStudioOpenInDetailButtons)
+        } else {
+            webView.removeFeatures(ofType: InsertStudioOpenInDetailButtons.self)
+        }
+    }
+
     private func videoPlayerFrameTitle(matching url: URL) -> String? {
         let path = url.removingQueryAndFragment().absoluteString
-        return videoFramesTitleMap.first(where: { path.hasPrefix($0.key) })?.value
+        return videoFramesTitleMap.first(where: { path.hasPrefix($0.key) })?
+            .value
     }
 }
 
 // MARK: - WKNavigationAction Extensions
 
-private extension WKNavigationAction {
+extension WKNavigationAction {
 
-    var isStudioImmersiveViewLinkTap: Bool {
-        let isExpandLink = navigationType == .other &&
-        request.url?.path.contains("/media_attachments/") == true &&
-        request.url?.path.hasSuffix("/immersive_view") == true &&
-        sourceFrame.isMainFrame == false
+    fileprivate var isStudioImmersiveViewLinkTap: Bool {
+        guard let path = request.url?.path else { return false }
 
-        let isDetailsLink = navigationType == .linkActivated &&
-        request.url?.path.contains("/media_attachments/") == true &&
-        request.url?.path.hasSuffix("/immersive_view") == true &&
-        (targetFrame?.isMainFrame ?? false) == false
+        let isExpandLink =
+            navigationType == .other
+            && path.contains("/media_attachments/") == true
+            && path.hasSuffix("/immersive_view") == true
+            && sourceFrame.isMainFrame == false
+
+        let isDetailsLink =
+            navigationType == .linkActivated
+            && path.contains("/media_attachments/") == true
+            && path.hasSuffix("/immersive_view") == true
+            && (targetFrame?.isMainFrame ?? false) == false
 
         return isExpandLink || isDetailsLink
     }

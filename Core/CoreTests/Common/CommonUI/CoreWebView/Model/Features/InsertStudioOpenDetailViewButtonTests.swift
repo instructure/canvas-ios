@@ -69,7 +69,10 @@ class InsertStudioOpenDetailViewButtonTests: XCTestCase {
             let list = result as? [String]
             let urls = list?.compactMap({ URL(string: $0) }) ?? []
 
-            guard urls.count == 2 else { return }
+            guard urls.count == 2 else {
+                XCTFail("Expecting 2 URLs to be evaluated")
+                return
+            }
 
             XCTAssertEqual(
                 urls[0].removingQueryAndFragment().absoluteString,
