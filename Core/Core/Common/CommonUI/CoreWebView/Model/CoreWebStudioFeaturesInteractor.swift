@@ -57,7 +57,7 @@ public class CoreWebStudioFeaturesInteractor {
         self.webView = webView
     }
 
-    func setupFeatureFlagStore(context: Context?, env: AppEnvironment) {
+    func resetFeatureFlagStore(context: Context?, env: AppEnvironment) {
         guard let context else {
             storeSubscription?.cancel()
             storeSubscription = nil

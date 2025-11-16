@@ -101,8 +101,8 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
-    public func setStudioFeatures(context: Context?, env: AppEnvironment) {
-        studioFeaturesInteractor.setupFeatureFlagStore(context: context, env: env)
+    public func resetStudioFeatures(context: Context?, env: AppEnvironment) {
+        studioFeaturesInteractor.resetFeatureFlagStore(context: context, env: env)
     }
 
     deinit {

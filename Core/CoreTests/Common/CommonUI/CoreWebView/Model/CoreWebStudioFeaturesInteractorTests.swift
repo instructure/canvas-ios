@@ -78,7 +78,7 @@ class CoreWebStudioFeaturesInteractorTests: CoreTestCase {
         )
 
         // when
-        interactor.setupFeatureFlagStore(context: context, env: environment)
+        interactor.resetFeatureFlagStore(context: context, env: environment)
 
         // Then
         XCTAssertTrue( webView.features.contains(where: { $0 is InsertStudioOpenInDetailButtons }) )
@@ -103,7 +103,7 @@ class CoreWebStudioFeaturesInteractorTests: CoreTestCase {
         )
 
         // when
-        interactor.setupFeatureFlagStore(context: context, env: environment)
+        interactor.resetFeatureFlagStore(context: context, env: environment)
 
         // Then
         XCTAssertFalse( webView.features.contains(where: { $0 is InsertStudioOpenInDetailButtons }) )
@@ -128,7 +128,7 @@ class CoreWebStudioFeaturesInteractorTests: CoreTestCase {
         )
 
         // when
-        interactor.setupFeatureFlagStore(context: context, env: environment)
+        interactor.resetFeatureFlagStore(context: context, env: environment)
 
         // Then
         XCTAssertTrue( webView.features.contains(where: { $0 is InsertStudioOpenInDetailButtons }) )

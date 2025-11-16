@@ -94,7 +94,7 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
         instructionsWebView.scrollView.alwaysBounceVertical = false
         instructionsWebView.backgroundColor = .backgroundLightest
         instructionsWebView.linkDelegate = self
-        instructionsWebView.setStudioFeatures(context: .course(courseID), env: env)
+        instructionsWebView.resetStudioFeatures(context: .course(courseID), env: env)
 
         loadingView.color = nil
         refreshControl.color = nil
