@@ -58,9 +58,8 @@ public class CoreWebStudioFeaturesInteractor {
     }
 
     func resetFeatureFlagStore(context: Context?, env: AppEnvironment) {
-        storeSubscription?.cancel()
-
         guard let context else {
+            storeSubscription?.cancel()
             storeSubscription = nil
             studioImprovementsFlagStore = nil
             return
