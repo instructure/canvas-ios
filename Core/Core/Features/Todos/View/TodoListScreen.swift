@@ -59,9 +59,10 @@ struct TodoListScreen: View {
             ForEach(group.items) { item in
                 TodoListItemCell(
                     item: item,
+                    swipeCompletionBehavior: viewModel.swipeCompletionBehavior,
                     onTap: viewModel.didTapItem,
                     onMarkAsDone: viewModel.markItemAsDone,
-                    onSwipeMarkAsDone: viewModel.markItemAsDoneWithOptimisticUI,
+                    onSwipeMarkAsDone: viewModel.handleSwipeAction,
                     isSwiping: $isCellSwiping
                 )
                 .padding(.leading, leadingPadding)

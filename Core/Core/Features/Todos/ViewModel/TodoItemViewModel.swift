@@ -27,6 +27,15 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         case done
     }
 
+    @Published public var markAsDoneState: MarkAsDoneState = .notDone {
+        didSet {
+            updateSwipeProperties()
+        }
+    }
+    @Published public private(set) var swipeBackgroundColor: Color = .backgroundSuccess
+    @Published public private(set) var swipeActionText: String = ""
+    @Published public private(set) var swipeActionIcon: Image = .checkLine
+
     /// This is the view identity that might change. Don't use this for business logic.
     public private(set) var id: String = UUID.string
     public let type: PlannableType
@@ -43,8 +52,6 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
 
     public let plannableId: String
     public var overrideId: String?
-
-    @Published public var markAsDoneState: MarkAsDoneState = .notDone
 
     public init?(_ plannable: Plannable, course: Course? = nil) {
         guard let date = plannable.date else { return nil }
@@ -72,6 +79,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
 
         self.overrideId = plannable.plannerOverrideId
         self.markAsDoneState = plannable.isMarkedComplete ? .done : .notDone
+        updateSwipeProperties()
     }
 
     public init(
@@ -100,6 +108,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         self.icon = icon
 
         self.overrideId = overrideId
+        updateSwipeProperties()
     }
 
     /// Resets the view identity to force SwiftUI to recreate the view.
@@ -108,6 +117,19 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     /// view instance where the swipe gesture is already in the fully swiped state.
     public func resetViewIdentity() {
         id = UUID.string
+    }
+
+    private func updateSwipeProperties() {
+        switch markAsDoneState {
+        case .done:
+            swipeBackgroundColor = .backgroundDark
+            swipeActionText = String(localized: "Undo", bundle: .core)
+            swipeActionIcon = .discussionReply2Line
+        case .notDone, .loading:
+            swipeBackgroundColor = .backgroundSuccess
+            swipeActionText = String(localized: "Done", bundle: .core)
+            swipeActionIcon = .checkLine
+        }
     }
 
     public var markAsDoneAccessibilityLabel: String? {
