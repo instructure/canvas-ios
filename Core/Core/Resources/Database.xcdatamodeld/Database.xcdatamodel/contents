@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24G90" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24G231" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
+        <attribute name="closed" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
@@ -9,13 +10,17 @@
         <attribute name="subject" attributeType="String"/>
     </entity>
     <entity name="Activity" representedClassName=".Activity" syncable="YES">
+        <attribute name="announcementId" optional="YES" attributeType="String"/>
+        <attribute name="assignmentURL" optional="YES" attributeType="URI"/>
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="contextType" optional="YES" attributeType="String"/>
         <attribute name="courseId" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="discussionCheckpointStepRaw" optional="YES" attributeType="Transformable" valueTransformerName="DiscussionCheckpointStepTransformer" customClassName="Core.DiscussionCheckpointStepWrapper"/>
         <attribute name="grade" optional="YES" attributeType="String"/>
         <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isDiscussionSubmission" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="message" optional="YES" attributeType="String"/>
         <attribute name="notificationCategory" optional="YES" attributeType="String"/>
         <attribute name="readState" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -39,15 +44,14 @@
         <attribute name="anonymousSubmissions" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="assignmentGroupID" optional="YES" attributeType="String"/>
         <attribute name="assignmentGroupPosition" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="assignmentGroupSectionName" optional="YES" transient="YES" attributeType="String"/>
         <attribute name="cacheKey" optional="YES" attributeType="String"/>
         <attribute name="canSubmit" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="canUnpublish" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="courseID" attributeType="String"/>
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dueAtForSorting" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dueAtOrCheckpointsDueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="dueAtSortNilsAtBottom" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="externalToolContentID" optional="YES" attributeType="String"/>
         <attribute name="externalToolTagAttributeURL" optional="YES" attributeType="URI"/>
         <attribute name="freeFormCriterionCommentsOnRubric" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -255,6 +259,11 @@
         <attribute name="scalingFactor" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
     </entity>
+    <entity name="CDHActivitiesWidgetModel" representedClassName=".CDHActivitiesWidgetModel" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="courseName" attributeType="String"/>
+        <attribute name="moduleCountCompleted" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="CDHCommentAttachment" representedClassName="Core.CDHCommentAttachment" syncable="YES">
         <attribute name="displayName" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
@@ -265,6 +274,7 @@
         <attribute name="completionPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="courseID" attributeType="String"/>
         <attribute name="enrollmentID" attributeType="String"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String"/>
         <attribute name="institutionName" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="nextModuleID" optional="YES" attributeType="String"/>
@@ -278,6 +288,13 @@
         <attribute name="nextModuleName" optional="YES" attributeType="String"/>
         <attribute name="overviewDescription" optional="YES" attributeType="String"/>
         <attribute name="state" attributeType="String"/>
+    </entity>
+    <entity name="CDHCourseTools" representedClassName="Core.CDHCourseTools" syncable="YES">
+        <attribute name="courseContextsCodes" attributeType="String"/>
+        <attribute name="iconURL" optional="YES" attributeType="URI"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
     </entity>
     <entity name="CDHLearnCourse" representedClassName="Core.CDHLearnCourse" syncable="YES">
         <attribute name="enrollmentId" attributeType="String"/>
@@ -397,6 +414,11 @@
         <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHScoresCourse" inverseName="settings" inverseEntity="CDHScoresCourse"/>
     </entity>
+    <entity name="CDHSkill" representedClassName=".CDHSkill" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="proficiencyLevel" attributeType="String"/>
+    </entity>
     <entity name="CDHSubmission" representedClassName="Core.CDHSubmission" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
         <attribute name="attempt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -429,6 +451,11 @@
         <attribute name="enrollmentID" attributeType="String"/>
         <relationship name="assignmentGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHScoresAssignmentGroup" inverseName="relationship" inverseEntity="CDHScoresAssignmentGroup"/>
     </entity>
+    <entity name="CDHTimeSpentWidgetModel" representedClassName=".CDHTimeSpentWidgetModel" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="courseName" attributeType="String"/>
+        <attribute name="minutesPerDay" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="CDInboxEnrollment" representedClassName="Core.CDInboxEnrollment" syncable="YES">
         <attribute name="canvasContextID" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
@@ -446,6 +473,31 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="useOutOfOffice" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="useSignature" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDModuleItemAssignmentInfo" representedClassName="Core.CDModuleItemAssignmentInfo" syncable="YES">
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isPastDue" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="moduleItemId" attributeType="String"/>
+        <attribute name="pointsPossible" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="todoDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="subAssignments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="CDModuleItemAssignmentInfoSubAssignment" inverseName="assignmentInfo" inverseEntity="CDModuleItemAssignmentInfoSubAssignment"/>
+    </entity>
+    <entity name="CDModuleItemAssignmentInfoSubAssignment" representedClassName="Core.CDModuleItemAssignmentInfoSubAssignment" syncable="YES">
+        <attribute name="discussionCheckpointStepRaw" optional="YES" attributeType="Transformable" valueTransformerName="DiscussionCheckpointStepTransformer" customClassName="Core.DiscussionCheckpointStepWrapper"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="moduleItemId" attributeType="String"/>
+        <attribute name="pointsPossible" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="tag" attributeType="String"/>
+        <relationship name="assignmentInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDModuleItemAssignmentInfo" inverseName="subAssignments" inverseEntity="CDModuleItemAssignmentInfo"/>
+    </entity>
+    <entity name="CDModuleItemDiscussionCheckpoint" representedClassName="Core.CDModuleItemDiscussionCheckpoint" syncable="YES">
+        <attribute name="discussionCheckpointStepRaw" optional="YES" attributeType="Transformable" valueTransformerName="DiscussionCheckpointStepTransformer" customClassName="Core.DiscussionCheckpointStepWrapper"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="moduleItemId" attributeType="String"/>
+        <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="tag" attributeType="String"/>
+        <relationship name="moduleItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem" inverseName="discussionCheckpointRaw" inverseEntity="ModuleItem"/>
     </entity>
     <entity name="CDRubricCriterion" representedClassName="Core.CDRubricCriterion" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
@@ -623,6 +675,7 @@
         <attribute name="isPastEnrollment" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isPublished" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="originalName" optional="YES" attributeType="String"/>
         <attribute name="pointsBasedGradingScheme" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="roles" optional="YES" attributeType="String"/>
         <attribute name="scalingFactor" attributeType="Double" defaultValueString="1" usesScalarValueType="YES"/>
@@ -820,6 +873,7 @@
         <attribute name="locked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lockExplanation" optional="YES" attributeType="String"/>
+        <attribute name="mediaAttachmentID" optional="YES" attributeType="String"/>
         <attribute name="mediaEntryID" optional="YES" attributeType="String"/>
         <attribute name="mimeClass" optional="YES" attributeType="String"/>
         <attribute name="modifiedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -1046,6 +1100,7 @@
         <attribute name="title" attributeType="String"/>
         <attribute name="typeRaw" optional="YES" attributeType="Binary"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
+        <relationship name="discussionCheckpointRaw" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="CDModuleItemDiscussionCheckpoint" inverseName="moduleItem" inverseEntity="CDModuleItemDiscussionCheckpoint"/>
         <relationship name="masteryPath" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPath" inverseName="moduleItem" inverseEntity="MasteryPath"/>
         <relationship name="masteryPathItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem" inverseName="moduleItem" inverseEntity="ModuleItem"/>
         <relationship name="module" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="itemsRaw" inverseEntity="Module"/>
@@ -1196,8 +1251,13 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="discussionCheckpointStepRaw" optional="YES" attributeType="Transformable" valueTransformerName="DiscussionCheckpointStepTransformer" customClassName="Core.DiscussionCheckpointStepWrapper"/>
+        <attribute name="hasDate" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isMarkedComplete" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="originUseCaseIDRaw" optional="YES" attributeType="String"/>
+        <attribute name="plannerOverrideId" optional="YES" attributeType="String"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="typeRaw" optional="YES" attributeType="String"/>
@@ -1382,7 +1442,9 @@
     </entity>
     <entity name="Todo" representedClassName="Core.Todo" syncable="YES">
         <attribute name="contextRaw" attributeType="String"/>
+        <attribute name="discussionCheckpointStepRaw" optional="YES" attributeType="Transformable" valueTransformerName="DiscussionCheckpointStepTransformer" customClassName="Core.DiscussionCheckpointStepWrapper"/>
         <attribute name="dueAtSortNilsAtBottom" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="ignorePermanentlyURL" attributeType="URI"/>
         <attribute name="ignoreURL" attributeType="URI"/>

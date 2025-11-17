@@ -41,8 +41,6 @@ open class CoreWebView: WKWebView {
         return try! String(contentsOf: url)
     }()
 
-    public static let processPool = WKProcessPool()
-
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
@@ -379,7 +377,7 @@ open class CoreWebView: WKWebView {
         fileLoadNavigation = loadFileURL(url, allowingReadAccessTo: urlDirectory)
     }
 
-    private func checkFileLoadNavigationAndExecuteCallback(navigation: WKNavigation, error: (any Error)?) {
+    private func checkFileLoadNavigationAndExecuteCallback(navigation: WKNavigation?, error: (any Error)?) {
         if navigation == fileLoadNavigation {
             fileLoadNavigation = nil
             fileLoadCompletion?(.init(error: error))
@@ -482,11 +480,12 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
 
-        // Check for #fragment link click
+        // Scroll to fragment if this is a #fragment link click on the same site
         if action.navigationType == .linkActivated,
            action.sourceFrame == action.targetFrame,
            let url = action.request.url, let fragment = url.fragment,
-           let lhsString: String.SubSequence = self.url?.absoluteString.split(separator: "#").first,
+           // self.url isn't set when using loadHTMLString, so we check the baseURL that is set when calling that method
+           let lhsString: String.SubSequence = (self.url ?? baseURL)?.absoluteString.split(separator: "#").first,
            let rhsString: String.SubSequence = url.absoluteString.split(separator: "#").first,
            lhsString == rhsString {
             scrollIntoView(fragment: fragment)

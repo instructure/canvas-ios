@@ -31,7 +31,7 @@ final class StudentAccessInteractorTests: CoreTestCase {
         )
 
         let interactor = StudentAccessInteractorLive(env: environment)
-        XCTAssertCompletableSingleOutputEquals(interactor.isRestricted(), true)
+        XCTAssertSingleOutputEqualsAndFinish(interactor.isRestricted(), true)
     }
 
     func test_isRestricted_returnsFalse_whenFlagDisabled() {
@@ -43,6 +43,6 @@ final class StudentAccessInteractorTests: CoreTestCase {
 
         let interactor = StudentAccessInteractorLive(env: environment)
 
-        XCTAssertCompletableSingleOutputEquals(interactor.isRestricted(), false)
+        XCTAssertSingleOutputEqualsAndFinish(interactor.isRestricted(), false)
     }
 }

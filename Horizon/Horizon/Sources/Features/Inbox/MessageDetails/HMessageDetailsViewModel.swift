@@ -49,7 +49,11 @@ class HMessageDetailsViewModel {
     var loadingSpinnerOpacity: Double {
         isSending ? 1.0 : 0.0
     }
+    var isAnnouncement: Bool {
+        messages.count == 1 && messages.first?.isAnnouncement == true
+    }
     private(set) var messages: [HMessageViewModel] = []
+    private(set) var isLoaderVisible: Bool = false
     var isReplayAreaVisible: Bool = true
     private(set) var headerTitle: String = ""
 
@@ -199,8 +203,10 @@ class HMessageDetailsViewModel {
 
     // MARK: - Private Methods
     private func listenForAnnouncements() {
-        announcementsInteractor?.messages.sink { [weak self] messages in
+        isLoaderVisible = true
+        announcementsInteractor?.messages.dropFirst().sink { [weak self] messages in
             let announcements = messages ?? []
+            self?.isLoaderVisible = false
             self?.headerTitle = announcements.first(where: { $0.id == self?.announcementID })?.title ?? String(localized: "Announcement", bundle: .horizon)
             self?.messages = announcements
                 .filter { $0.id == self?.announcementID }
@@ -292,15 +298,17 @@ struct HMessageViewModel: Identifiable, Hashable, Equatable {
     let body: String
     let date: String
     let id: String
+    let isAnnouncement: Bool
 }
 
 extension HMessageViewModel {
     init(announcement: Announcement) {
         self.id = announcement.id
-        self.body = announcement.title
+        self.body = announcement.message
         self.author = announcement.author
         self.date = announcement.date?.dateTimeString ?? ""
         self.attachments = []
+        self.isAnnouncement = true
     }
 }
 
@@ -315,7 +323,7 @@ extension HMessageViewModel {
     ) {
         self.id = conversationMessage.id
         self.body = conversationMessage.body
-
+        self.isAnnouncement = false
         self.author = conversationMessage.authorID == myID ?
             String(localized: "You", bundle: .horizon) :
             (userMap[conversationMessage.authorID]?.name ?? conversationMessage.authorID)

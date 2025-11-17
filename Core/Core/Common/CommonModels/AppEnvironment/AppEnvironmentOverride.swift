@@ -25,12 +25,12 @@ public final class AppEnvironmentOverride: AppEnvironment {
 
     let base: AppEnvironment
     let baseURL: URL
-    private(set) var _courseShardID: String?
+    private(set) var _contextShardID: String?
 
-    fileprivate init(base: AppEnvironment, baseURL: URL, courseShardID: String?) {
+    fileprivate init(base: AppEnvironment, baseURL: URL, contextShardID: String?) {
         self.base = base
         self.baseURL = baseURL
-        self._courseShardID = courseShardID
+        self._contextShardID = contextShardID
         super.init()
     }
 
@@ -39,7 +39,9 @@ public final class AppEnvironmentOverride: AppEnvironment {
     }()
 
     public override var root: AppEnvironment { base }
-    public override var courseShardID: String? { _courseShardID ?? sessionShardID }
+
+    public override var sessionShardID: String? { base.sessionShardID }
+    public override var contextShardID: String? { _contextShardID ?? sessionShardID }
 
     public override var app: AppEnvironment.App? {
         get { base.app }
@@ -89,6 +91,20 @@ public final class AppEnvironmentOverride: AppEnvironment {
         get {
             guard let cSession = base.currentSession else { return nil }
 
+            let userID: String
+            if let userShardID = cSession.userID.shardID, userShardID == contextShardID {
+                // If user share the same shardID of the course/group, it means it belong to the
+                // same account hosting the course/group. Course/Group content APIs would always respond
+                // with local-form user ID
+                userID = cSession.userID.localID
+            } else {
+                // If user doesn't share the same shardID of the course/group.
+                // Course/Group content APIs requires the global-form user ID to succeed.
+                // Examples: Course/group hosted in a trusted account, or in a cross-shard account
+                // which current user doesn't belong to.
+                userID = cSession.userID.asGlobalID(of: cSession.accessToken?.shardID)
+            }
+
             return LoginSession(
                 accessToken: cSession.accessToken,
                 baseURL: baseURL, // This is important to authenticate requests
@@ -98,7 +114,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
                 masquerader: cSession.masquerader,
                 refreshToken: cSession.refreshToken,
                 userAvatarURL: cSession.userAvatarURL,
-                userID: cSession.userID.localID,
+                userID: userID,
                 userName: cSession.userName,
                 userEmail: cSession.userEmail,
                 clientID: cSession.clientID,
@@ -109,19 +125,49 @@ public final class AppEnvironmentOverride: AppEnvironment {
         }
         set {}
     }
+
+    public override func transformContentIDsToLocalForm(params: [String: String], url: URLComponents) -> ([String: String], URLComponents) {
+        var newParams: [String: String] = [:]
+        var newUrl = url
+
+        params.forEach { (key, value) in
+            // Localize IDs except for userID params
+            if key.lowercased() == "userID".lowercased() {
+                newParams[key] = value
+            } else if key.lowercased().hasSuffix("id") {
+                newParams[key] = value.localID
+                newUrl.path = newUrl.path.replacingPathComponent(of: value, with: value.localID)
+            } else {
+                newParams[key] = value
+            }
+        }
+
+        // Fix query items
+        newUrl.queryItems = url.queryItems?.map({ item in
+            if ["courseID", "assignmentID", "assignment_id"].contains(item.name) {
+                var newItem = item
+                newItem.value = item.value?.localID
+                return newItem
+            }
+
+            return item
+        })
+
+        return (newParams, newUrl)
+    }
 }
 
 extension AppEnvironment {
 
     /// This method returns an `AppEnvironmentOverride` using the given `url`s host if it
     /// doesn't match the one on `AppEnvironment.shared`.
-    static func resolved(for url: URLComponents, courseShardID: String?) -> AppEnvironment {
+    static func resolved(for url: URLComponents, contextShardID: String?) -> AppEnvironment {
         if let host = url.host, host != shared.api.baseURL.host(),
            let baseURL = url.with(scheme: shared.api.baseURL.scheme).url?.apiBaseURL {
             return AppEnvironmentOverride(
                 base: shared,
                 baseURL: baseURL,
-                courseShardID: courseShardID
+                contextShardID: contextShardID
             )
         }
 
@@ -130,12 +176,12 @@ extension AppEnvironment {
 
     /// This method returns an `AppEnvironmentOverride` using the given `baseURL`s host if it
     /// doesn't match the one on `AppEnvironment.shared`.
-    static func resolved(for baseURL: URL?, courseShardID: String?) -> AppEnvironment {
+    public static func resolved(for baseURL: URL?, contextShardID: String?) -> AppEnvironment {
         guard
             let baseURL,
             let components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)
         else { return .shared }
-        return resolved(for: components, courseShardID: courseShardID)
+        return resolved(for: components, contextShardID: contextShardID)
     }
 }
 

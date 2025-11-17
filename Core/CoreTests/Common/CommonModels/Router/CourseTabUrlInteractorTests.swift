@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 @testable import Core
 
-final class CourseTabUrlInteractorTests: CoreTestCase {
+final class CourseTabUrlInteractorTests: RouterInteractorTestCase {
 
     private var testee: CourseTabUrlInteractor!
 
@@ -374,104 +374,7 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         verifyUnrelatedURLsAreAllowed()
     }
 
-    // MARK: - Host Overrides
-
-    func test_baseURlHostOverrides() {
-        saveTab(
-            id: "12345~324",
-            htmlUrl: "/courses/324/pages",
-            fullUrl: "https://example-01.instructure.com/courses/324/pages",
-            context: .course("324")
-        )
-        saveTab(
-            id: "01234~123",
-            htmlUrl: "/courses/123/pages",
-            fullUrl: "https://example-02.instructure.com/courses/324/pages",
-            context: .course("123")
-        )
-        saveTab(
-            id: "54321~435",
-            htmlUrl: "/courses/435/pages",
-            fullUrl: "https://example-03.instructure.com/courses/324/pages",
-            context: .course("435")
-        )
-        saveTab(
-            id: "324",
-            htmlUrl: "/courses/324/pages",
-            fullUrl: "https://example-01.instructure.com/courses/324/pages",
-            context: .course("324")
-        )
-
-        XCTAssertEqual(
-            testee.baseURLHostOverrides,
-            Set(["example-01.instructure.com", "example-02.instructure.com", "example-03.instructure.com"])
-        )
-
-        XCTAssertEqual(
-            testee.baseUrlHostOverride(for: .init(string: "/courses/324/pages")!),
-            "example-01.instructure.com"
-        )
-
-        XCTAssertEqual(
-            testee.baseUrlHostOverride(for: .init(string: "/courses/123/pages")!),
-            "example-02.instructure.com"
-        )
-
-        XCTAssertEqual(
-            testee.baseUrlHostOverride(for: .init(string: "/courses/435/pages")!),
-            "example-03.instructure.com"
-        )
-    }
-
-    // MARK: - Course Shard ID
-
-    func test_courseShardID() {
-        saveTab(
-            id: "324",
-            htmlUrl: "/courses/324/pages",
-            fullUrl: "https://example-01.instructure.com/courses/324/pages",
-            context: .course("12345~324")
-        )
-        saveTab(
-            id: "123",
-            htmlUrl: "/courses/123/pages",
-            fullUrl: "https://example-02.instructure.com/courses/123/pages",
-            context: .course("7643~123")
-        )
-        saveTab(
-            id: "435",
-            htmlUrl: "/courses/435/pages",
-            fullUrl: "https://example-03.instructure.com/courses/435/pages",
-            context: .course("54321~435")
-        )
-        saveTab(
-            id: "324",
-            htmlUrl: "/courses/324/pages",
-            fullUrl: "https://example-01.instructure.com/courses/324/pages",
-            context: .course("324")
-        )
-
-        XCTAssertEqual(testee.courseShardID(for: .init(string: "/courses/324/pages")!), "12345")
-        XCTAssertEqual(testee.courseShardID(for: .init(string: "/courses/123/grades")!), "7643")
-        XCTAssertEqual(testee.courseShardID(for: .init(string: "/courses/435/people")!), "54321")
-        XCTAssertEqual(testee.courseShardID(for: .init(string: "/courses/98762~678/pages")!), "98762")
-        XCTAssertEqual(testee.courseShardID(for: .init(string: "https://example-03.instructure.com/pages/897")!), "54321")
-        XCTAssertEqual(testee.courseShardID(for: .init(string: "/courses/324/assignments")!), "12345")
-
-        XCTAssertNil(testee.courseShardID(for: .init(string: "/courses/786/pages")!))
-    }
-
     // MARK: - Private helpers
-
-    @discardableResult
-    private func saveTab(id: String = "", htmlUrl: String, fullUrl: String? = nil, context: Context) -> Tab {
-        let fURL = fullUrl.flatMap({ URL(string: $0) })
-        let apiTab = APITab.make(id: ID(id), html_url: URL(string: htmlUrl)!, full_url: fURL)
-        let tab: Tab = databaseClient.insert()
-        tab.save(apiTab, in: databaseClient, context: context)
-        drainMainQueue()
-        return tab
-    }
 
     private func verifyUnrelatedURLsAreAllowed() {
         XCTAssertEqual(testee.isAllowedUrl(.make("/users/self/activity_stream")), true)

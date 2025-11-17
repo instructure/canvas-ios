@@ -54,14 +54,14 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        title = String(localized: "To Do", bundle: .core)
+        title = String(localized: "To-do", bundle: .core)
         navigationItem.leftBarButtonItem = profileButton
         navigationItem.titleView = Brand.shared.headerImageView()
 
-        emptyDescLabel.text = String(localized: "Your to do list is empty. Time to recharge.", bundle: .core)
+        emptyDescLabel.text = String(localized: "Your To-do list is empty. Time to recharge.", bundle: .core)
         emptyTitleLabel.text = String(localized: "Well Done!", bundle: .core)
         emptyView.accessibilityLabel = "\(emptyTitleLabel.text!) \(emptyDescLabel.text!)"
-        errorView.messageLabel.text = String(localized: "There was an error loading items to do. Pull to refresh to try again.", bundle: .core)
+        errorView.messageLabel.text = String(localized: "There was an error loading To-do items. Pull to refresh to try again.", bundle: .core)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         profileButton.accessibilityLabel = String(localized: "Profile Menu", bundle: .core)
@@ -184,6 +184,7 @@ class TodoListCell: UITableViewCell {
     @IBOutlet weak var needsGradingSpacer: UIView!
     @IBOutlet weak var needsGradingLabel: UILabel!
     @IBOutlet weak var needsGradingView: UIView!
+    @IBOutlet weak var checkpointLabel: DynamicLabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
@@ -205,6 +206,15 @@ class TodoListCell: UITableViewCell {
         }
         backgroundColor = .backgroundLightest
         titleLabel.setText(todo?.name, style: .textCellTitle)
+
+        if let checkpointStep = todo?.discussionCheckpointStep {
+            checkpointLabel.setText(checkpointStep.text, style: .textCellSupportingText)
+            checkpointLabel.isHidden = false
+        } else {
+            checkpointLabel.text = nil
+            checkpointLabel.isHidden = true
+        }
+
         subtitleLabel.setText(todo?.dueText, style: .textCellSupportingText)
         tintColor = todo?.contextColor
         contextLabel.textColor = tintColor
@@ -213,6 +223,13 @@ class TodoListCell: UITableViewCell {
         needsGradingSpacer.isHidden = needsGradingView.isHidden
         needsGradingLabel.text = todo?.needsGradingText
         accessibilityIdentifier = "to-do.list.\(todo?.assignmentOrQuizID ?? "unknown").row"
-        accessibilityLabel = [accessIconView.accessibilityLabel, todo?.contextName, todo?.name, todo?.dueText, todo?.needsGradingText].joined(separator: ", ")
+        accessibilityLabel = [
+            accessIconView.accessibilityLabel,
+            todo?.contextName,
+            todo?.name,
+            checkpointLabel.text,
+            todo?.dueText,
+            todo?.needsGradingText
+        ].accessibilityJoined()
     }
 }

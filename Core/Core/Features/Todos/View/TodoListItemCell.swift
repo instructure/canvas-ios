@@ -22,54 +22,112 @@ struct TodoListItemCell: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.viewController) private var viewController
 
-    let item: TodoItem
-    let onTap: (_ item: TodoItem, _ viewController: WeakViewController) -> Void
-    let isLastItem: Bool
+    @ObservedObject var item: TodoItemViewModel
+    @Binding var isSwiping: Bool
+    let onTap: (_ item: TodoItemViewModel, _ viewController: WeakViewController) -> Void
+    let onMarkAsDone: (_ item: TodoItemViewModel) -> Void
+    let onSwipeMarkAsDone: (_ item: TodoItemViewModel) -> Void
+
+    init(
+        item: TodoItemViewModel,
+        onTap: @escaping (TodoItemViewModel, WeakViewController) -> Void,
+        onMarkAsDone: @escaping (TodoItemViewModel) -> Void,
+        onSwipeMarkAsDone: @escaping (TodoItemViewModel) -> Void,
+        isSwiping: Binding<Bool> = .constant(false)
+    ) {
+        self.item = item
+        self.onTap = onTap
+        self.onMarkAsDone = onMarkAsDone
+        self.onSwipeMarkAsDone = onSwipeMarkAsDone
+        self._isSwiping = isSwiping
+    }
 
     var body: some View {
-        VStack(spacing: 0) {
-            Button {
-                onTap(item, viewController)
-            } label: {
-                HStack(alignment: .top, spacing: 0) {
-                    item.icon
-                        .scaledIcon()
-                        .foregroundStyle(item.color)
-                        .paddingStyle(.trailing, .cellIconText)
-                        .accessibilityHidden(true)
+        HStack(spacing: 0) {
+            TodoItemContentView(item: item, isCompactLayout: false)
 
-                    HStack(alignment: .center) {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(item.contextName)
-                                .font(.regular14)
-                                .foregroundStyle(item.color)
-
-                            Text(item.title)
-                                .font(.regular16)
-                                .foregroundStyle(.textDarkest)
-
-                            if let subtitle = item.subtitle {
-                                Text(subtitle)
-                                    .font(.regular14)
-                                    .foregroundStyle(.textDark)
-                            }
-
-                            Text(item.date.dateTimeStringShort)
-                                .font(.regular14)
-                                .foregroundStyle(.textDark)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                        InstUI.DisclosureIndicator()
-                            .paddingStyle(.leading, .cellAccessoryPadding)
-                            .accessibilityHidden(true)
-                    }
-                    .multilineTextAlignment(.leading)
-                }
-                .paddingStyle(set: .iconCell)
-            }
-            .accessibilityElement(children: .combine)
-            InstUI.Divider(isLastItem ? .full : .padded)
+            checkboxButton
+                .paddingStyle(.leading, .cellAccessoryPadding)
+                .accessibilityHidden(true)
         }
+        .padding(.vertical, 8)
+        .paddingStyle(.trailing, .standard)
+        .background(.backgroundLightest)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            if isSwiping { return }
+            onTap(item, viewController)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityActions {
+            if let label = item.markAsDoneAccessibilityLabel {
+                Button(label) {
+                    onMarkAsDone(item)
+                }
+            }
+        }
+        .swipeToRemove(
+            backgroundColor: .backgroundSuccess,
+            isSwiping: $isSwiping,
+            onSwipe: { onSwipeMarkAsDone(item) },
+            label: { swipeActionView }
+        )
     }
+
+    private var swipeActionView: some View {
+        HStack(spacing: 12) {
+            Text("Done", bundle: .core)
+                .font(.semibold16, lineHeight: .fit)
+            Image.checkLine
+                .scaledIcon(size: 24)
+        }
+        .paddingStyle(.horizontal, .standard)
+        .foregroundStyle(Color.textLightest)
+    }
+
+    @ViewBuilder
+    private var checkboxButton: some View {
+        ZStack {
+            switch item.markAsDoneState {
+            case .notDone:
+                InstUI.Checkbox(isSelected: false)
+            case .loading:
+                ProgressView().tint(nil)
+            case .done:
+                InstUI.Checkbox(isSelected: true)
+            }
+        }
+        .frame(width: 44, height: 44)
+        .tint(Color(Brand.shared.primary))
+        .contentShape(Rectangle())
+        .onTapGesture {
+            if isSwiping { return }
+            onMarkAsDone(item)
+        }
+        .identifier("to-do.list.\(item.plannableId).checkbox")
+    }
+
 }
+
+#if DEBUG
+
+#Preview {
+    VStack(spacing: 0) {
+        TodoListItemCell(
+            item: .makeShortText(),
+            onTap: { _, _ in },
+            onMarkAsDone: { _ in },
+            onSwipeMarkAsDone: { _ in }
+        )
+        TodoListItemCell(
+            item: .makeLongText(),
+            onTap: { _, _ in },
+            onMarkAsDone: { _ in },
+            onSwipeMarkAsDone: { _ in }
+        )
+    }
+    .background(Color.backgroundLightest)
+}
+
+#endif

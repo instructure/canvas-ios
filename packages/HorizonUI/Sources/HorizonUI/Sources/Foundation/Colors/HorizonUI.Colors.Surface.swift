@@ -23,6 +23,7 @@ public extension HorizonUI.Colors {
         public let attention = Color(hexString: "#2B7ABC")
         public let attentionSecondary = Color(hexString: "#0A5A9E")
         public let cardPrimary = Color(hexString: "#FFFFFF")
+        public let hover = Color(hexString: "#F2F4F4")
         public let cardSecondary = Color(hexString: "#F9F9F9")
         public let divider = Color(hexString: "#E8EAEC")
         public let error = Color(hexString: "#C71F23")

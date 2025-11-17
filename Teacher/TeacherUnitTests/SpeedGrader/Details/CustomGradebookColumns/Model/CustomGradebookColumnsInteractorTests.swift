@@ -140,7 +140,7 @@ class CustomGradebookColumnsInteractorTests: TeacherTestCase {
     // MARK: - getCustomColumnEntries
 
     func test_getCustomColumnEntries() throws {
-        XCTAssertFirstValue(testee.getCustomColumnEntries(columnId: testData.column0)) { [self] in
+        XCTAssertSingleOutput(testee.getCustomColumnEntries(columnId: testData.column0)) { [self] in
             let entries = $0.sorted { $0.userId < $1.userId }
             XCTAssertEqual(entries.count, 2)
 
@@ -157,7 +157,7 @@ class CustomGradebookColumnsInteractorTests: TeacherTestCase {
     // MARK: - getStudentNotesEntries
 
     func test_getStudentNotesEntries() throws {
-        XCTAssertFirstValue(testee.getStudentNotesEntries(userId: testData.userB)) { [self] in
+        XCTAssertSingleOutput(testee.getStudentNotesEntries(userId: testData.userB)) { [self] in
             let entries = $0.sorted { $0.index < $1.index }
             XCTAssertEqual(entries.count, 1)
 

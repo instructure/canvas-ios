@@ -74,7 +74,7 @@ struct ContextCardSubmissionRow: View {
             return CGFloat(min(1, score / maxPoints))
         }()
         self.grade = {
-            GradeFormatter.string(from: assignment, submission: submission) ?? ""
+            GradeFormatter.string(from: assignment, submission: submission, style: .medium, customStyleForLetterGrade: .short) ?? ""
         }()
         self.icon = {
             if assignment.submissionTypesWithQuizLTIMapping.contains(.online_quiz) {
@@ -88,7 +88,9 @@ struct ContextCardSubmissionRow: View {
         self.a11ySubmissionStatus = {
             if submission.needsGrading {
                 return String(localized: "NEEDS GRADING", bundle: .core)
-            } else if submission.workflowState == .graded, submission.score != nil, let grade = GradeFormatter.string(from: assignment, submission: submission) {
+            } else if submission.workflowState == .graded,
+                      submission.score != nil,
+                      let grade = GradeFormatter.string(from: assignment, submission: submission, style: .medium, customStyleForLetterGrade: .short) {
                 return String(localized: "grade", bundle: .core) + " " + grade
             } else {
                 return ""

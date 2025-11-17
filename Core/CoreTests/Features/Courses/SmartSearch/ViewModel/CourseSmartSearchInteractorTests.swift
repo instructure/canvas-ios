@@ -197,7 +197,7 @@ class CourseSmartSearchInteractorTests: CoreTestCase {
         let courseFetcher = interactor.fetchCourse()
 
         // Then
-        XCTAssertFirstValue(courseFetcher) { fetched in
+        XCTAssertSingleOutput(courseFetcher) { fetched in
             guard let course = fetched else {
                 return XCTFail("No course was fetched!")
             }

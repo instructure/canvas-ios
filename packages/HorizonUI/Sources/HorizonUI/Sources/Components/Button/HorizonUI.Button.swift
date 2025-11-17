@@ -47,16 +47,18 @@ extension HorizonUI {
         }
 
         public var body: some View {
-            Button(self.label, action: action)
-                .buttonStyle(
-                    HorizonUI.ButtonStyles.primary(
-                        type,
-                        isSmall: isSmall,
-                        fillsWidth: fillsWidth,
-                        leading: leading,
-                        trailing: trailing
+            Group {
+                Button(self.label, action: action)
+                    .buttonStyle(
+                        HorizonUI.ButtonStyles.primary(
+                            type,
+                            isSmall: isSmall,
+                            fillsWidth: fillsWidth,
+                            leading: leading,
+                            trailing: trailing
+                        )
                     )
-                )
+            }
         }
     }
 }

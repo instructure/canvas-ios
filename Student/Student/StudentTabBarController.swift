@@ -142,12 +142,15 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 
     func todoTab() -> UIViewController {
         let todo = CoreSplitViewController()
-        let todoController = TodoListViewController.create()
+        let todoController = {
+            let useNewTodo = ExperimentalFeature.newStudentToDoScreen.isEnabled
+            return useNewTodo ? TodoAssembly.makeTodoListViewController(env: .shared) : TodoListViewController.create()
+        }()
         todo.viewControllers = [
             CoreNavigationController(rootViewController: todoController),
             CoreNavigationController(rootViewController: EmptyViewController())
         ]
-        todo.tabBarItem.title = String(localized: "To Do", bundle: .student, comment: "Tab title, max character count is 14")
+        todo.tabBarItem.title = String(localized: "To-do", bundle: .student, comment: "Tab title, max character count is 14")
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
         todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"

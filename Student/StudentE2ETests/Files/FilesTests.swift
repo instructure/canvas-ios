@@ -41,32 +41,32 @@ class FilesTests: E2ETestCase {
         let clearTextButton = SafariAppHelper.clearTextButton.waitUntil(.visible, timeout: 5)
         if clearTextButton.isVisible, clearTextButton.isHittable { clearTextButton.hit() }
         addressLabel.waitUntil(.visible)
-        XCTAssertTrue(addressLabel.isVisible)
+        XCTAssertVisible(addressLabel)
 
         addressLabel.writeText(text: FilesHelper.TestPDF.url, hitEnter: true, customApp: SafariAppHelper.safariApp)
         let shareButton = SafariAppHelper.shareButton.waitUntil(.visible)
-        XCTAssertTrue(shareButton.isVisible)
+        XCTAssertVisible(shareButton)
 
         shareButton.hit()
         let titleOfFile = SafariAppHelper.Share.titleLabel(title: FilesHelper.TestPDF.title).waitUntil(.visible)
-        XCTAssertTrue(titleOfFile.isVisible)
+        XCTAssertVisible(titleOfFile)
 
         let moreButton = SafariAppHelper.Share.moreButton.waitUntil(.visible)
         moreButton.swipeUp()
         let saveToFilesButton = SafariAppHelper.Share.saveToFiles.waitUntil(.visible)
-        XCTAssertTrue(saveToFilesButton.isVisible)
+        XCTAssertVisible(saveToFilesButton)
 
         saveToFilesButton.hit()
         var onMyButton = SafariAppHelper.Share.onMyIpadCell.waitUntil(.visible, timeout: 5)
         if onMyButton.isVanished { onMyButton = SafariAppHelper.Share.onMyIphoneButton.waitUntil(.visible) }
-        XCTAssertTrue(onMyButton.isVisible)
+        XCTAssertVisible(onMyButton)
 
         onMyButton.hit()
         let onMyLabel = SafariAppHelper.Share.onMyLabel.waitUntil(.visible)
-        XCTAssertTrue(onMyLabel.isVisible)
+        XCTAssertVisible(onMyLabel)
 
         let saveButton = SafariAppHelper.Share.saveButton.waitUntil(.visible)
-        XCTAssertTrue(saveButton.isVisible)
+        XCTAssertVisible(saveButton)
 
         saveButton.hit()
         let replaceButton = SafariAppHelper.replaceButton.waitUntil(.visible, timeout: 5)
@@ -93,33 +93,33 @@ class FilesTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Files, create test folder
         logInDSUser(student)
         let profileButton = Dashboard.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         profileButton.hit()
         let filesButton = Profile.filesButton.waitUntil(.visible)
-        XCTAssertTrue(filesButton.isVisible)
+        XCTAssertVisible(filesButton)
 
         filesButton.hit()
         let noFilesLabel = Helper.noFilesLabel.waitUntil(.visible)
-        XCTAssertTrue(noFilesLabel.isVisible)
+        XCTAssertVisible(noFilesLabel)
 
         let addButton = FileList.addButton.waitUntil(.visible)
-        XCTAssertTrue(addButton.isVisible)
+        XCTAssertVisible(addButton)
 
         addButton.hit()
         let addFolderButton = FileList.addFolderButton.waitUntil(.visible)
-        XCTAssertTrue(addFolderButton.isVisible)
+        XCTAssertVisible(addFolderButton)
 
         addFolderButton.hit()
         let folderNameInput = FileList.folderNameInput.waitUntil(.visible)
         let okButton = FileList.okButton.waitUntil(.visible)
-        XCTAssertTrue(folderNameInput.isVisible)
-        XCTAssertTrue(okButton.isVisible)
+        XCTAssertVisible(folderNameInput)
+        XCTAssertVisible(okButton)
 
         folderNameInput.writeText(text: testFolderName)
         okButton.hit()
         let testFolder = FileList.file(index: 0).waitUntil(.visible)
-        XCTAssertTrue(testFolder.isVisible)
+        XCTAssertVisible(testFolder)
 
         // MARK: Upload test PDF to the test folder
         testFolder.hit()
@@ -129,31 +129,31 @@ class FilesTests: E2ETestCase {
         XCTAssertTrue(addButton.waitUntil(.vanish).isVanished)
 
         let addFileButton = FileList.addFileButton.waitUntil(.visible)
-        XCTAssertTrue(addFileButton.isVisible)
+        XCTAssertVisible(addFileButton)
 
         addFileButton.hit()
         XCTAssertTrue(addFileButton.waitUntil(.vanish).isVanished)
 
         let uploadFileButton = FileList.uploadFileButton.waitUntil(.visible)
-        XCTAssertTrue(uploadFileButton.isVisible)
+        XCTAssertVisible(uploadFileButton)
 
         uploadFileButton.hit()
         XCTAssertTrue(uploadFileButton.waitUntil(.vanish).isVanished)
 
         var buttonToBeSelected = FileList.onMyIpadButton.waitUntil(.visible, timeout: 5)
         if buttonToBeSelected.isVanished { buttonToBeSelected = FileList.browseButton.waitUntil(.visible) }
-        XCTAssertTrue(buttonToBeSelected.isVisible)
+        XCTAssertVisible(buttonToBeSelected)
 
         if !buttonToBeSelected.isSelected { buttonToBeSelected.hit() }
         let testPDFButton = FileList.testPDFButton.waitUntil(.visible)
-        XCTAssertTrue(testPDFButton.isVisible)
+        XCTAssertVisible(testPDFButton)
 
         testPDFButton.hit()
         XCTAssertTrue(testPDFButton.waitUntil(.vanish).isVanished)
 
         // MARK: Check uploaded file in list
         let uploadedFileListItem = FileList.file(index: 0).waitUntil(.visible)
-        XCTAssertTrue(uploadedFileListItem.isVisible)
+        XCTAssertVisible(uploadedFileListItem)
         XCTAssertContains(uploadedFileListItem.label, Helper.TestPDF.title)
 
         // MARK: Tap test PDF file, check details
@@ -162,23 +162,23 @@ class FilesTests: E2ETestCase {
         let testText1 = PDFViewer.testText1.waitUntil(.visible)
         let testText2 = PDFViewer.testText2.waitUntil(.visible)
         let testText3 = PDFViewer.testText3.waitUntil(.visible)
-        XCTAssertTrue(PDFView.isVisible)
-        XCTAssertTrue(testText1.isVisible)
-        XCTAssertTrue(testText2.isVisible)
-        XCTAssertTrue(testText3.isVisible)
+        XCTAssertVisible(PDFView)
+        XCTAssertVisible(testText1)
+        XCTAssertVisible(testText2)
+        XCTAssertVisible(testText3)
 
         let backButton = Helper.backButton.waitUntil(.visible)
-        XCTAssertTrue(backButton.isVisible)
+        XCTAssertVisible(backButton)
 
         // MARK: Delete the file
         if uploadedFileListItem.isVanished { backButton.hit() }
         uploadedFileListItem.actionUntilElementCondition(action: .swipeLeft(.onElement), element: FileList.deleteButton, condition: .visible)
         let deleteButton = FileList.deleteButton.waitUntil(.visible)
-        XCTAssertTrue(deleteButton.isVisible)
+        XCTAssertVisible(deleteButton)
 
         deleteButton.hit()
         let areYouSureLabel = FileList.areYouSureLabel.waitUntil(.visible)
-        XCTAssertTrue(areYouSureLabel.isVisible)
+        XCTAssertVisible(areYouSureLabel)
 
         deleteButton.hit()
         deleteButton.waitUntil(.vanish)
@@ -194,7 +194,7 @@ class FilesTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Files, create test folder
         logInDSUser(student)
         let profileButton = Dashboard.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+        XCTAssertVisible(profileButton)
 
         Helper.navigateToFiles()
         let folderIsCreated = FileList.createFolder(name: testFolderName, shouldOpen: true)
@@ -204,34 +204,34 @@ class FilesTests: E2ETestCase {
         FileList.addButton.hit()
         FileList.addFileButton.hit()
         let uploadImageButton = FileList.uploadImageButton.waitUntil(.visible)
-        XCTAssertTrue(uploadImageButton.isVisible)
+        XCTAssertVisible(uploadImageButton)
 
         uploadImageButton.hit()
         let imageItem = FileList.imageItem.waitUntil(.visible)
-        XCTAssertTrue(imageItem.isVisible)
+        XCTAssertVisible(imageItem)
 
-        imageItem.hit()
+        imageItem.forceTap()
         imageItem.waitUntil(.vanish)
         XCTAssertTrue(imageItem.isVanished)
 
         let uploadedImageItem = FileList.file(index: 0).waitUntil(.visible, timeout: 60)
-        XCTAssertTrue(uploadedImageItem.isVisible)
+        XCTAssertVisible(uploadedImageItem)
 
         uploadedImageItem.hit()
         let imageView = Details.imageView.waitUntil(.visible, timeout: 60)
         let backButton = Helper.backButton.waitUntil(.visible)
-        XCTAssertTrue(imageView.isVisible)
-        XCTAssertTrue(backButton.isVisible)
+        XCTAssertVisible(imageView)
+        XCTAssertVisible(backButton)
 
         // MARK: Delete image
         backButton.hit()
         uploadedImageItem.actionUntilElementCondition(action: .swipeLeft(.onElement), element: FileList.deleteButton, condition: .visible)
         let deleteButton = FileList.deleteButton.waitUntil(.visible)
-        XCTAssertTrue(deleteButton.isVisible)
+        XCTAssertVisible(deleteButton)
 
         deleteButton.hit()
         let areYouSureLabel = FileList.areYouSureLabel.waitUntil(.visible)
-        XCTAssertTrue(areYouSureLabel.isVisible)
+        XCTAssertVisible(areYouSureLabel)
 
         deleteButton.hit()
         deleteButton.waitUntil(.vanish)

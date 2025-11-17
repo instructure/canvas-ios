@@ -78,67 +78,51 @@ public class GradeFormatter {
 
     // MARK: - Grade/Score for Assignment/Submission, includes metrics
 
-    /// Creates a formatted accessibility grade string (including metrics)
-    /// for the `assignment`'s first `submission` matching `userID` if it exists, or `assignment.submission` otherwise.
-    /// This variant does not enforce `short` style for Letter Grade.
-    public static func a11yString(from assignment: Assignment, userID: String? = nil, style: Style = .medium) -> String? {
-        a11yString(from: string(from: assignment, userID: userID, style: style))
-    }
-
-    /// Creates a formatted grade string (including metrics)
-    /// for the `assignment`'s first `submission` matching `userID` if it exists, or `assignment.submission` otherwise.
-    /// This variant does not enforce `short` style for Letter Grade.
-    public static func string(from assignment: Assignment, userID: String? = nil, style: Style = .medium) -> String? {
-        let formatter = GradeFormatter()
-        formatter.pointsPossible = assignment.pointsPossible ?? 0
-        formatter.gradingType = assignment.gradingType
-        formatter.gradeStyle = style
-        formatter.hideScores = assignment.hideQuantitativeData
-        if let userID = userID {
-            let submission = assignment.submissions?.first { $0.userID == userID }
-            return formatter.string(from: submission)
-        }
-        return formatter.string(from: assignment.submission)
-    }
-
-    /// Creates a formatted grade string for the given `submission`.
-    /// This variant enforces `short` style for Letter Grade (but not for GPA, for some reason...)
-    public static func string(from assignment: Assignment, submission: Submission, style: Style = .medium) -> String? {
+    /// Creates a formatted grade string (including metrics) for the given `assignment` and `submission`.
+    public static func string(
+        from assignment: Assignment,
+        submission: Submission?,
+        style: Style,
+        customStyleForLetterGrade: Style? = nil
+    ) -> String? {
         string(
             pointsPossible: assignment.pointsPossible,
             gradingType: assignment.gradingType,
-            gradingScheme: submission.assignment?.gradingScheme, // maybe we could use assignment directly, but not founding out now
+            gradingScheme: submission?.assignment?.gradingScheme, // maybe we could use assignment directly, but not finding out now
             hideScores: assignment.hideQuantitativeData,
             style: style,
-            isExcused: submission.excused == true,
-            score: submission.score,
-            normalizedScore: submission.normalizedScore,
-            grade: submission.grade,
-            enforceShortStyleForLetterGrade: true
+            customStyleForLetterGrade: customStyleForLetterGrade,
+            isExcused: submission?.excused ?? false,
+            score: submission?.score,
+            normalizedScore: submission?.normalizedScore,
+            grade: submission?.grade
         )
     }
 
-    /// Creates a formatted grade string for the given `assignment` and `submission` properties.
+    /// Creates a formatted grade string (including metrics) for the given `assignment` and `submission` properties.
     public static func string(
         pointsPossible: Double?,
         gradingType: GradingType,
         gradingScheme: GradingScheme?,
         hideScores: Bool,
-        style: Style = .medium,
+        style: Style,
+        customStyleForLetterGrade: Style? = nil,
         isExcused: Bool,
         score: Double?,
         normalizedScore: Double?,
-        grade: String?,
-        enforceShortStyleForLetterGrade: Bool
+        grade: String?
     ) -> String? {
         let formatter = GradeFormatter()
         formatter.pointsPossible = pointsPossible ?? 0
         formatter.gradingType = gradingType
-        formatter.gradeStyle = style
         formatter.hideScores = hideScores
-        if enforceShortStyleForLetterGrade && gradingType == .letter_grade {
-            formatter.gradeStyle = .short
+
+        if [.letter_grade, .gpa_scale].contains(gradingType) {
+            formatter.gradeStyle = customStyleForLetterGrade ?? style
+        } else {
+            formatter.gradeStyle = style
         }
+
         return formatter.string(
             isExcused: isExcused,
             score: score,
@@ -148,30 +132,14 @@ public class GradeFormatter {
         )
     }
 
-    /// The actual `a11yString` logic
-    private static func a11yString(from formattedGrade: String?) -> String? {
-        guard var formattedGrade = formattedGrade else { return nil }
+    /// Creates a formatted accessibility grade string (including metrics) based on the given `formattedGrade` string.
+    public static func a11yString(from formattedGrade: String?) -> String? {
+        guard var formattedGrade else { return nil }
 
         formattedGrade = formattedGrade.replacingOccurrences(of: " / ", with: "/")
         formattedGrade = formattedGrade.replacingOccurrences(of: "/", with: " " + String(localized: "out of", bundle: .core, comment: "5 out of 10") + " ")
 
         return formattedGrade
-    }
-
-    /// Convenience, used only for testing
-    internal func a11yString(from submission: Submission?) -> String? {
-        GradeFormatter.a11yString(from: string(from: submission))
-    }
-
-    /// Convenience using a Submission
-    internal func string(from submission: Submission?) -> String? {
-        string(
-            isExcused: submission?.excused == true,
-            score: submission?.score,
-            normalizedScore: submission?.normalizedScore,
-            grade: submission?.grade,
-            gradingScheme: submission?.assignment?.gradingScheme
-        )
     }
 
     /// The actual `string` logic

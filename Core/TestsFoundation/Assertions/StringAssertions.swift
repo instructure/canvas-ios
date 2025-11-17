@@ -55,6 +55,18 @@ public func XCTAssertContainsIgnoringCase(
     XCTAssert(logic, message + messageSuffix, file: file, line: line)
 }
 
+public func XCTAssertNotContains(
+    _ actual: String?,
+    _ expectedSubstring: String,
+    _ messageSuffix: String = "",
+    file: StaticString = #filePath,
+    line: UInt = #line
+) {
+    let logic = !(actual ?? "").contains(expectedSubstring)
+    let message = "\(actual.testDescription) contains \(expectedSubstring.testDescription)"
+    XCTAssert(logic, message + messageSuffix, file: file, line: line)
+}
+
 public func XCTAssertHasPrefix(
     _ actual: String?,
     _ expectedPrefix: String,

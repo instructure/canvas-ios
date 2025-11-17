@@ -24,10 +24,13 @@ public struct GetAccountNotifications: CollectionUseCase {
     public typealias Response = Request.Response
 
     public var cacheKey: String? { "accounts/self/account_notifications" }
-    public var request: GetAccountNotificationsRequest { GetAccountNotificationsRequest() }
+    public var request: GetAccountNotificationsRequest { GetAccountNotificationsRequest(includePast: includePast) }
     public var scope: Scope { .all(orderBy: #keyPath(AccountNotification.endAt), ascending: false) }
 
-    public init() {}
+    private let includePast: Bool
+    public init(includePast: Bool = false) {
+        self.includePast = includePast
+    }
 }
 
 public class GetAccountNotification: APIUseCase {
@@ -46,13 +49,16 @@ public class GetAccountNotification: APIUseCase {
     public var scope: Scope { .where(#keyPath(AccountNotification.id), equals: notificationID) }
 }
 
-struct DeleteAccountNotification: DeleteUseCase {
-    typealias Model = AccountNotification
-    typealias Response = APINoContent
+public struct DeleteAccountNotification: DeleteUseCase {
+    public typealias Model = AccountNotification
+    public typealias Response = APINoContent
 
     let id: String
+    public init(id: String) {
+        self.id = id
+    }
 
-    var cacheKey: String? { nil }
-    var request: DeleteAccountNotificationRequest { DeleteAccountNotificationRequest(id: id) }
-    var scope: Scope { .where(#keyPath(AccountNotification.id), equals: id) }
+    public var cacheKey: String? { nil }
+    public var request: DeleteAccountNotificationRequest { DeleteAccountNotificationRequest(id: id) }
+    public var scope: Scope { .where(#keyPath(AccountNotification.id), equals: id) }
 }

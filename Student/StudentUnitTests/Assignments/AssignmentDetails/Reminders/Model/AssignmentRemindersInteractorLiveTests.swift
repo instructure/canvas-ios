@@ -26,6 +26,8 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
     private enum TestConstants {
         static let courseId = "some courseId"
         static let assignmentId = "some assignmentId"
+        static let subAssignmentTag = "some subAssignmentTag"
+        static let assignmentName = "some assignmentName"
         static let userId = "some userId"
         static let dateNow = Date.make(year: 2100, month: 1, day: 15)
         static let dueDate = dateNow.addDays(2)
@@ -42,7 +44,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
             courseId: TestConstants.courseId,
             assignmentId: TestConstants.assignmentId,
             userId: TestConstants.userId,
-            assignmentName: "test",
+            assignmentName: TestConstants.assignmentName,
             dueDate: TestConstants.dueDate
         )
     }
@@ -138,10 +140,57 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         XCTAssertEqual(notification.content.title, String(localized: "Due Date Reminder"))
         XCTAssertEqual(notification.content.sound, .default)
         let dueText = "5 minutes"
-        XCTAssertEqual(notification.content.body, String(localized: "This assignment is due in \(dueText)") + ": test")
+        XCTAssertEqual(notification.content.body, String(localized: "This assignment is due in \(dueText)") + ": \(TestConstants.assignmentName)")
         typealias Key = UNNotificationContent.AssignmentReminderKeys
         XCTAssertEqual(notification.content.userInfo[Key.courseId.rawValue] as? String, TestConstants.courseId)
         XCTAssertEqual(notification.content.userInfo[Key.assignmentId.rawValue] as? String, TestConstants.assignmentId)
+        XCTAssertEqual(notification.content.userInfo[Key.subAssignmentTag.rawValue] as? String, "")
+        XCTAssertEqual(notification.content.userInfo[Key.userId.rawValue] as? String, TestConstants.userId)
+        XCTAssertEqual(notification.content.userInfo[Key.triggerTimeText.rawValue] as? String, "5 minutes before")
+        XCTAssertEqual(notification.content.userInfo[UNNotificationContent.RouteURLKey] as? String, "courses/\(TestConstants.courseId)/assignments/\(TestConstants.assignmentId)")
+
+        guard let timeTrigger = notification.trigger as? UNCalendarNotificationTrigger else {
+            return XCTFail()
+        }
+        XCTAssertEqual(timeTrigger.nextTriggerDate(), context.dueDate.addMinutes(-5))
+    }
+
+    func testNewReminder_withSubAssignmentTag() {
+        let notificationCenter = MockUserNotificationCenter()
+        let testee = AssignmentRemindersInteractorLive(notificationCenter: notificationCenter)
+        testee.contextDidUpdate.send(
+            AssignmentReminderContext(
+                courseId: TestConstants.courseId,
+                assignmentId: TestConstants.assignmentId,
+                subAssignmentTag: TestConstants.subAssignmentTag,
+                userId: TestConstants.userId,
+                assignmentName: TestConstants.assignmentName,
+                dueDate: TestConstants.dueDate
+            )
+        )
+
+        // WHEN
+        testee.newReminderDidSelect.send(DateComponents(minute: 5))
+
+        // THEN
+        XCTAssertEqual(testee.reminders.value.count, 1)
+        guard let reminder = testee.reminders.value.first else {
+            return XCTFail()
+        }
+        XCTAssertEqual(reminder.title, "5 minutes before")
+
+        guard let notification = notificationCenter.requests.first else {
+            return XCTFail()
+        }
+        XCTAssertEqual(notification.identifier, reminder.id)
+        XCTAssertEqual(notification.content.title, String(localized: "Due Date Reminder"))
+        XCTAssertEqual(notification.content.sound, .default)
+        let dueText = "5 minutes"
+        XCTAssertEqual(notification.content.body, String(localized: "This assignment is due in \(dueText)") + ": \(TestConstants.assignmentName)")
+        typealias Key = UNNotificationContent.AssignmentReminderKeys
+        XCTAssertEqual(notification.content.userInfo[Key.courseId.rawValue] as? String, TestConstants.courseId)
+        XCTAssertEqual(notification.content.userInfo[Key.assignmentId.rawValue] as? String, TestConstants.assignmentId)
+        XCTAssertEqual(notification.content.userInfo[Key.subAssignmentTag.rawValue] as? String, TestConstants.subAssignmentTag)
         XCTAssertEqual(notification.content.userInfo[Key.userId.rawValue] as? String, TestConstants.userId)
         XCTAssertEqual(notification.content.userInfo[Key.triggerTimeText.rawValue] as? String, "5 minutes before")
         XCTAssertEqual(notification.content.userInfo[UNNotificationContent.RouteURLKey] as? String, "courses/\(TestConstants.courseId)/assignments/\(TestConstants.assignmentId)")

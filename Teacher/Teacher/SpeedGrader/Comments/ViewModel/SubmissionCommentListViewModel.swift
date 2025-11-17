@@ -86,8 +86,6 @@ class SubmissionCommentListViewModel: ObservableObject {
         self.comment = comment
         self.commentLibraryViewModel = CommentLibraryViewModel(comment: comment)
 
-        unowned let unownedSelf = self
-
         contextColor.assign(to: &$contextColor)
 
         Publishers.CombineLatest4(
@@ -96,28 +94,31 @@ class SubmissionCommentListViewModel: ObservableObject {
             interactor.getIsAssignmentEnhancementsEnabled(),
             interactor.getIsCommentLibraryEnabled()
         )
-        .map { submissions, comments, isAssignmentEnhancementsEnabled, isCommentLibraryEnabled in
-            unownedSelf.submissions = submissions
-            unownedSelf.allComments = comments
-            unownedSelf.isAssignmentEnhancementsEnabled = isAssignmentEnhancementsEnabled
-            unownedSelf.isCommentLibraryEnabled = isCommentLibraryEnabled
-            return unownedSelf.commentFilter
+        .map { [weak self] submissions, comments, isAssignmentEnhancementsEnabled, isCommentLibraryEnabled -> [SubmissionCommentListCellViewModel] in
+            guard let self else { return [] }
+
+            self.submissions = submissions
+            self.allComments = comments
+            self.isAssignmentEnhancementsEnabled = isAssignmentEnhancementsEnabled
+            self.isCommentLibraryEnabled = isCommentLibraryEnabled
+
+            return self.commentFilter
                 .filterComments(
                     comments,
-                    for: unownedSelf.selectedAttemptNumber,
+                    for: self.selectedAttemptNumber,
                     isAssignmentEnhancementsEnabled: isAssignmentEnhancementsEnabled
                 )
-                .map(unownedSelf.commentViewModel)
+                .map(self.commentViewModel)
         }
         .receive(on: scheduler)
         .sinkFailureOrValue(
-            receiveFailure: { _ in
-                unownedSelf.state = .error
-                unownedSelf.cellViewModels = []
+            receiveFailure: { [weak self] _ in
+                self?.state = .error
+                self?.cellViewModels = []
             },
-            receiveValue: {
-                unownedSelf.state = $0.isEmpty ? .empty : .data
-                unownedSelf.cellViewModels = $0
+            receiveValue: { [weak self] models in
+                self?.state = models.isEmpty ? .empty : .data
+                self?.cellViewModels = models
             }
         )
         .store(in: &subscriptions)
@@ -126,7 +127,9 @@ class SubmissionCommentListViewModel: ObservableObject {
             .compactMap { $0.object as? SpeedGraderAttemptChangeInfo }
             .filter { $0.userId == latestSubmission.userID }
             .map { $0.attemptIndex }
-            .sink { unownedSelf.updateComments(attempt: $0) }
+            .sink { [weak self] in
+                self?.updateComments(attempt: $0)
+            }
             .store(in: &subscriptions)
     }
 

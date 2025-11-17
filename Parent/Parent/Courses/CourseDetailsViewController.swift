@@ -24,11 +24,11 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     private var syllabusViewController: Core.SyllabusViewController!
     private var summaryViewController: Core.SyllabusSummaryViewController!
     var courseID: String = ""
-    var studentID: String = ""
+    private var studentID = StudentID("")
     var viewControllers: [UIViewController] = []
     var readyToLayoutTabs: Bool = false
     var didLayoutTabs: Bool = false
-    let env = AppEnvironment.shared
+    private(set) var env = AppEnvironment.shared
     var colorScheme: ColorScheme?
     var replyButton: FloatingButton?
     var replyStarted: Bool = false
@@ -39,7 +39,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
     lazy var customStatuses = env.subscribe(GetCustomGradeStatuses(courseID: courseID))
 
-    lazy var student = env.subscribe(GetSearchRecipients(context: .course(courseID), userID: studentID)) { [weak self] in
+    lazy var student = env.subscribe(GetSearchRecipients(context: .course(courseID), userID: studentID.raw)) { [weak self] in
         self?.messagingReady()
     }
 
@@ -63,10 +63,11 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         self?.courseReady()
     }
 
-    static func create(courseID: String, studentID: String) -> CourseDetailsViewController {
+    static func create(courseID: String, studentID: String, env: AppEnvironment) -> CourseDetailsViewController {
         let controller = CourseDetailsViewController(nibName: nil, bundle: nil)
         controller.courseID = courseID
-        controller.studentID = studentID
+        controller.studentID = StudentID(studentID)
+        controller.env = env
         return controller
     }
 
@@ -101,12 +102,24 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func configureGrades() {
+        let targetEnv = gradesTargetEnvironment()
+
         gradesViewController = GradeListAssembly.makeGradeListViewController(
-            env: AppEnvironment.shared,
+            env: targetEnv,
             courseID: courseID,
-            userID: studentID
+            userID: studentID.value(for: targetEnv)
         )
         viewControllers.append(gradesViewController)
+    }
+
+    private func gradesTargetEnvironment() -> AppEnvironment {
+        guard env.isRoot,
+              let shardID = courseID.shardID,
+              let gradesTab = tabs.first(where: { $0.name == .grades })
+        else { return env }
+
+        return AppEnvironment
+            .resolved(for: gradesTab.fullURL, contextShardID: shardID)
     }
 
     func configureSyllabus() {
@@ -121,6 +134,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
     func configureFrontPage() {
         let vc = CoreWebViewController()
+        vc.webView.resetEnvironment(env)
         vc.webView.loadHTMLString(frontPages.first?.body ?? "", baseURL: frontPages.first?.htmlURL)
         viewControllers.append(vc)
     }

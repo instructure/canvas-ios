@@ -126,6 +126,34 @@ class GetCoursesTest: CoreTestCase {
         XCTAssertEqual(GetCourse(courseID: "2").request.courseID, "2")
     }
 
+    func testGetCourse_notModifiedForRootEnvironment() {
+        let testee = GetCourse(courseID: "someCourseID")
+
+        // WHEN
+        let modified = testee.modified(for: environment)
+
+        // THEN
+        XCTAssertEqual(modified.courseID, "someCourseID")
+        XCTAssertEqual(modified.request.courseID, "someCourseID")
+    }
+
+    func testGetCourse_modifiedForNonRootEnvironment() {
+        let session = LoginSession.make(accessToken: "6754~token", baseURL: URL(string: "https://canvas.instructure.com")!)
+        environment.userDidLogin(session: session)
+
+        let overrideURL = URL(string: "https://override.instructure.com")!
+        let env = AppEnvironment.resolved(for: overrideURL, contextShardID: "7053")
+
+        let testee = GetCourse(courseID: "454")
+
+        // WHEN
+        let modified = testee.modified(for: env)
+
+        // THEN
+        XCTAssertEqual(modified.courseID, "70530000000000454")
+        XCTAssertEqual(modified.request.courseID, "70530000000000454")
+    }
+
     func testGetCourseSettings() {
         let useCase = GetCourseSettings(courseID: "3")
         XCTAssertEqual(useCase.cacheKey, "courses/3/settings")

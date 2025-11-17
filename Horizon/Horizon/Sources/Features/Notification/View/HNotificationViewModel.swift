@@ -17,8 +17,10 @@
 //
 
 import Observation
+import CombineSchedulers
 import Core
 import Combine
+import Foundation
 
 @Observable
 final class HNotificationViewModel {
@@ -26,19 +28,22 @@ final class HNotificationViewModel {
 
     private(set) var notifications: [NotificationModel] = []
     private(set) var isLoaderVisible: Bool = true
-    private(set) var isFooterVisible: Bool = false
-    private(set) var isNextButtonEnabled: Bool = false
-    private(set) var isPreviousButtonEnabled: Bool = false
+    private(set) var isSeeMoreButtonVisible: Bool = false
+    private(set) var errorMessage = ""
+
+    // MARK: - Inputs / Outputs
+
+    var isErrorVisiable: Bool = false
 
     // MARK: - Private Properties
 
     private var subscriptions = Set<AnyCancellable>()
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     private var paginatedNotifications: [[NotificationModel]] = [[]]
     private var totalPages = 0
     private var currentPage = 0 {
         didSet {
-            isPreviousButtonEnabled = currentPage > 0
-            isNextButtonEnabled = currentPage < totalPages - 1
+            isSeeMoreButtonVisible = currentPage < totalPages - 1
         }
     }
     // MARK: - Dependencies
@@ -50,55 +55,73 @@ final class HNotificationViewModel {
 
     init(
         interactor: NotificationInteractor,
-        router: Router
+        router: Router,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
         self.router = router
-        fetchNotifications()
+        self.scheduler = scheduler
+        fetchNotifications(ignoreCache: false)
     }
 
     // MARK: - Input Actions
 
-    func goNext() {
+    func seeMore() {
         currentPage += 1
-        notifications = paginatedNotifications[safe: currentPage] ?? []
-    }
-
-    func goPrevious() {
-        currentPage -= 1
-        notifications = paginatedNotifications[safe: currentPage] ?? []
+        notifications.append(contentsOf: paginatedNotifications[safe: currentPage] ?? [])
     }
 
     @MainActor
     func refresh() async {
         await withCheckedContinuation { continuation in
-            interactor.getNotifications(ignoreCache: true)
-                .sink { [weak self] notifications in
-                    continuation.resume()
-                    self?.handleResponse(notifications: notifications)
-                }
-                .store(in: &subscriptions)
+            fetchNotifications(ignoreCache: true) {
+                continuation.resume()
+            }
         }
     }
 
-    func navigeteToCourseDetails(
+    func navigateToDetails(
         notification: NotificationModel,
         viewController: WeakViewController
     ) {
-        let view = LearnAssembly.makeCourseDetailsViewController(
-            courseID: notification.courseID,
-            enrollmentID: notification.enrollmentID,
-            shoudHideTabBar: true,
-            selectedTab: notification.isScoreAnnouncement ? .scores : .myProgress
-        )
-        router.show(view, from: viewController)
+        switch notification.type {
+        case .score, .scoreChanged, .dueDate:
+            let url = (notification.type == .dueDate)
+            ? notification.htmlURL
+            : notification.assignmentURL
+            if let url {
+                router.route(to: url, from: viewController)
+            } else {
+                let view = LearnAssembly.makeCourseDetailsViewController(
+                    courseID: notification.courseID,
+                    enrollmentID: notification.enrollmentID,
+                    shoudHideTabBar: true,
+                    selectedTab: notification.isScoreAnnouncement ? .scores : .myProgress
+                )
+                router.show(view, from: viewController)
+            }
+        case .announcement:
+            break
+        }
     }
 
     // MARK: - Private Functions
 
-    private func fetchNotifications() {
-        interactor.getNotifications(ignoreCache: false)
-            .sink { [weak self] notifications in
+    private func fetchNotifications(
+        ignoreCache: Bool,
+        completion: (() -> Void)? = nil
+    ) {
+        interactor
+            .getNotifications(ignoreCache: ignoreCache)
+            .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
+            .filter { $0.type != .announcement }
+            .collect()
+            .sinkFailureOrValue { [weak self] error in
+                completion?()
+                self?.isErrorVisiable = true
+                self?.errorMessage = error.localizedDescription
+            } receiveValue: { [weak self] notifications in
+                completion?()
                 self?.handleResponse(notifications: notifications)
             }
             .store(in: &subscriptions)
@@ -106,7 +129,6 @@ final class HNotificationViewModel {
 
     private func handleResponse(notifications: [NotificationModel]) {
         paginatedNotifications = notifications.chunked(into: 10)
-        isFooterVisible = paginatedNotifications.count > 1
         totalPages = paginatedNotifications.count
         self.notifications = paginatedNotifications.first ?? []
         currentPage = 0
@@ -115,12 +137,6 @@ final class HNotificationViewModel {
 }
 
 extension Array {
-    func chunked(into size: Int) -> [[Element]] {
-        stride(from: 0, to: self.count, by: size).map {
-            Array(self[$0..<Swift.min($0 + size, self.count)])
-        }
-    }
-
     subscript(safe index: Int) -> Element? {
         return indices.contains(index) ? self[index] : nil
     }
