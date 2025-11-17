@@ -418,7 +418,7 @@ class MockNavigationAction: WKNavigationAction {
     }
 
     override var targetFrame: WKFrameInfo? {
-        mockTargetFrame ?? super.targetFrame
+        mockTargetFrame ?? sourceFrame
     }
 }
 
