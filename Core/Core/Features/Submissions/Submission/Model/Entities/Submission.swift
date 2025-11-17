@@ -33,7 +33,6 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var dueAt: Date?
     @NSManaged public var enteredGrade: String?
     @NSManaged var enteredScoreRaw: NSNumber?
-    @StoredDouble(\.enteredScoreRaw) public var enteredScore: Double?
     @NSManaged public var excused: Bool
     @NSManaged public var externalToolURL: URL?
     @NSManaged public var grade: String?
@@ -46,15 +45,12 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var isLatest: Bool
     @NSManaged public var late: Bool
     @NSManaged var latePolicyStatusRaw: String?
-    @StoredEnum(\.latePolicyStatusRaw) public var latePolicyStatus: LatePolicyStatus?
     @NSManaged public var lateSeconds: Int
     @NSManaged public var missing: Bool
     @NSManaged var pointsDeductedRaw: NSNumber?
-    @StoredDouble(\.pointsDeductedRaw) public var pointsDeducted: Double?
     @NSManaged public var postedAt: Date?
     @NSManaged public var previewUrl: URL?
     @NSManaged var scoreRaw: NSNumber?
-    @StoredDouble(\.scoreRaw) public var score: Double?
     @NSManaged public var shuffleOrder: String
     @NSManaged public var similarityScore: Double
     @NSManaged public var similarityStatus: String?
@@ -62,11 +58,9 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var sortableName: String?
     @NSManaged public var submittedAt: Date?
     @NSManaged var typeRaw: String?
-    @StoredEnum(\.typeRaw) public var type: SubmissionType?
     @NSManaged public var url: URL?
     @NSManaged public var userID: String
     @NSManaged public var workflowStateRaw: String
-    @StoredEnumWithDefault(\.workflowStateRaw, .unsubmitted) public var workflowState: SubmissionWorkflowState
 
     @NSManaged public var enrollments: Set<Enrollment>
     @NSManaged public var mediaComment: MediaComment?
@@ -94,6 +88,26 @@ final public class Submission: NSManagedObject, Identifiable {
         attachments?.sorted(by: File.idCompare) ?? []
     }
 
+    public var enteredScore: Double? {
+        get { return enteredScoreRaw?.doubleValue }
+        set { enteredScoreRaw = NSNumber(value: newValue) }
+    }
+
+    public var latePolicyStatus: LatePolicyStatus? {
+        get { return LatePolicyStatus(rawValue: latePolicyStatusRaw ?? "") }
+        set { latePolicyStatusRaw = newValue?.rawValue }
+    }
+
+    public var pointsDeducted: Double? {
+        get { return pointsDeductedRaw?.doubleValue }
+        set { pointsDeductedRaw = NSNumber(value: newValue) }
+    }
+
+    public var score: Double? {
+        get { return scoreRaw?.doubleValue }
+        set { scoreRaw = NSNumber(value: newValue) }
+    }
+
     /** Returns a score between 1.0 and 0.0 by dividing the submission's score by the assignments total score. */
     public var normalizedScore: Double? {
         guard let pointsPossible = assignment?.pointsPossible,
@@ -102,6 +116,16 @@ final public class Submission: NSManagedObject, Identifiable {
         }
 
         return score / pointsPossible
+    }
+
+    public var type: SubmissionType? {
+        get { return SubmissionType(rawValue: typeRaw ?? "") }
+        set { typeRaw = newValue?.rawValue }
+    }
+
+    public var workflowState: SubmissionWorkflowState {
+        get { return SubmissionWorkflowState(rawValue: workflowStateRaw) ?? .unsubmitted }
+        set { workflowStateRaw = newValue.rawValue }
     }
 
     public var discussionEntriesOrdered: [DiscussionEntry] {
