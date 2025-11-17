@@ -24,7 +24,7 @@ let RemindableActionURLKey = "RemindableActionURL"
 
 extension LocalNotificationsInteractor {
 
-    func setReminder(for event: CalendarEvent, at date: Date, studentID: String, callback: @escaping (Error?) -> Void) {
+    func setReminder(for event: CalendarEvent, at date: Date, studentID: String, callback: @escaping @Sendable (Error?) -> Void) {
         let content = UNMutableNotificationContent()
         content.title = String(localized: "Event reminder", bundle: .parent)
         content.body = String.localizedStringWithFormat(
@@ -39,7 +39,7 @@ extension LocalNotificationsInteractor {
         setReminder(id: event.id, content: content, at: date, callback: callback)
     }
 
-    func setReminder(for assignment: Assignment, at date: Date, studentID: String, callback: @escaping (Error?) -> Void) {
+    func setReminder(for assignment: Assignment, at date: Date, studentID: String, callback: @escaping @Sendable (Error?) -> Void) {
         let content = UNMutableNotificationContent()
         content.title = String(localized: "Assignment reminder", bundle: .parent)
         content.body = assignment.dueAt.map { String.localizedStringWithFormat(
@@ -54,7 +54,7 @@ extension LocalNotificationsInteractor {
         setReminder(id: assignment.id, content: content, at: date, callback: callback)
     }
 
-    func setReminder(id: String, content: UNMutableNotificationContent, at date: Date, callback: @escaping (Error?) -> Void) {
+    func setReminder(id: String, content: UNMutableNotificationContent, at date: Date, callback: @escaping @Sendable (Error?) -> Void) {
         let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)

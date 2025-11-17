@@ -38,7 +38,6 @@ Pods
 refreshPods.sh
 
 iCanvasHudsonBuild
-assets
 Pods
 *.xccheckout
 

@@ -206,7 +206,7 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.count, 1)
         let options = controller.navigationItem.rightBarButtonItems!.first!
-        XCTAssertNoThrow(options.target!.perform(options.action, with: [options]))
+        XCTAssertNoThrow(options.target!.perform(options.action, with: options))
         let alert = router.presented as! UIAlertController
         let markAsDone = alert.actions.first as! AlertAction
         XCTAssertEqual(markAsDone.title, "Mark as Done")
