@@ -60,6 +60,7 @@ struct CourseFilteringView: View {
                     }
                 }
             }
+            .padding(.vertical, .huiSpaces.space10)
         }
     }
 }
