@@ -42,21 +42,7 @@ struct UnenrolledProgramListItemWidgetView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
-            HStack(spacing: .zero) {
-                HorizonUI.StatusChip(
-                    title: String(localized: "Program", bundle: .horizon),
-                    style: .gray
-                )
-                .skeletonLoadable()
-                .accessibilityHidden(true)
-                Spacer()
-
-                if isCounterVisible {
-                    countView
-                        .accessibilityHidden(true)
-                }
-            }
-
+            headerView
             Text(descriptionText)
                 .foregroundStyle(Color.huiColors.text.body)
                 .huiTypography(.p1)
@@ -74,17 +60,32 @@ struct UnenrolledProgramListItemWidgetView: View {
         .accessibilityFocused(focusedProgramID, equals: program.id)
     }
 
-    private var countView: some View {
-        Text(
-            String(
-                format: String(localized: "%@ of %@"),
-                (currentIndex + 1).description,
-                totalCount.description
-            )
-        )
-        .huiTypography(.p1)
-        .foregroundStyle(Color.huiColors.text.dataPoint)
-        .skeletonLoadable()
+    private var headerView: some View {
+        HStack(spacing: .huiSpaces.space8) {
+            Image.huiIcons.book2
+                .frame(width: 16, height: 16)
+                .foregroundStyle(Color.huiColors.icon.default)
+                .padding(.huiSpaces.space8)
+                .background(Color(hexString: "#E6EDF3"))
+                .clipShape(.circle)
+                .skeletonLoadable()
+                .accessibilityHidden(true)
+
+            Text("Program")
+                .foregroundStyle(Color.huiColors.text.dataPoint)
+                .huiTypography(.labelMediumBold)
+                .skeletonLoadable()
+
+            Spacer()
+
+            if isCounterVisible {
+                CounterTextView(
+                    currentIndex: currentIndex + 1,
+                    totalCount: totalCount
+                )
+                .accessibilityHidden(true)
+            }
+        }
     }
 
     private var descriptionText: String {

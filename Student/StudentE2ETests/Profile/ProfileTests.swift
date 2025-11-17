@@ -79,7 +79,7 @@ class ProfileTests: E2ETestCase {
         let firstPhoto = ProfileHelper.ChangePicture.firstPhoto.waitUntil(.visible)
         XCTAssertVisible(firstPhoto)
 
-        firstPhoto.hit()
+        firstPhoto.forceTap()
         let chooseButton = ProfileHelper.ChangePicture.chooseButton.waitUntil(.visible)
         XCTAssertVisible(chooseButton)
 

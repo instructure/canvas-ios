@@ -132,7 +132,7 @@ class RouterTests: CoreTestCase {
     func testRouteDetail() {
         let mockView = MockViewController()
         let split = UISplitViewController()
-        split.viewControllers = [UINavigationController(rootViewController: mockView)]
+        split.addChild(UINavigationController(rootViewController: mockView))
         let router = Router(routes: [
             RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
@@ -146,7 +146,7 @@ class RouterTests: CoreTestCase {
     func testRouteDetailEmbedInNav() {
         let mockView = MockViewController()
         let split = UISplitViewController()
-        split.viewControllers = [UINavigationController(rootViewController: mockView)]
+        split.addChild(UINavigationController(rootViewController: mockView))
         let router = Router(routes: [
             RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
@@ -219,7 +219,9 @@ class RouterTests: CoreTestCase {
         XCTAssertFalse(mockView.navigationItem.leftItemsSupplementBackButton)
 
         let split = MockSplitViewController()
-        split.viewControllers = [UIViewController(), UINavigationController(rootViewController: mockView)]
+        let navController = UINavigationController(rootViewController: mockView)
+        split.viewControllers = [UIViewController(), navController]
+        split.addChild(navController)
 
         // to detail
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)

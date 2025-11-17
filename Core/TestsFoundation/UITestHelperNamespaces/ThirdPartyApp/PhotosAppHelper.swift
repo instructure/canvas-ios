@@ -39,7 +39,7 @@ public class PhotosAppHelper: BaseHelper {
         let thePhoto = photosApp.descendants(matching: .image).matching(labelContaining: "Photo, March").firstMatch
         photosApp.actionUntilElementCondition(action: .swipeDown(.onElement), element: thePhoto, condition: .visible, timeout: 5)
         guard thePhoto.waitForExistence(timeout: defaultTimeout) else { return }
-        thePhoto.tap()
+        thePhoto.forceTap(application: photosApp)
     }
 
     public static func tapShare() {

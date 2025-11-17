@@ -112,12 +112,12 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
         }
         notificationCenter.error = NSError.internalError()
         controller.reminderDateChanged(selectedDate: controller.selectedDate)
-        XCTAssertEqual(controller.reminderSwitch.isOn, false)
+        waitUntil(shouldFail: true) { controller.reminderSwitch.isOn == false }
 
         notificationCenter.authorized = false
         controller.reminderSwitch.isOn = true
         controller.reminderSwitch.sendActions(for: .valueChanged)
-        XCTAssertEqual(controller.reminderSwitch.isOn, false)
+        waitUntil(shouldFail: true) { controller.reminderSwitch.isOn == false }
         XCTAssertEqual((router.presented as? UIAlertController)?.title, "Permission Needed")
         router.presented?.dismiss(animated: false)
         controller.reminderSwitch.isOn = false
@@ -129,7 +129,7 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
         notificationCenter.error = nil
         controller.reminderSwitch.isOn = true
         controller.reminderSwitch.sendActions(for: .valueChanged)
-        XCTAssertEqual(controller.reminderDateButton.isHidden, false)
+        waitUntil(shouldFail: true) { controller.reminderDateButton.isHidden == false }
         controller.reminderDateButton.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.reminderDateButton.title(for: .normal), controller.selectedDate!.dateTimeString)
         XCTAssertGreaterThan(controller.selectedDate!, Clock.now)

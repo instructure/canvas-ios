@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,24 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import WebKit
+import HorizonUI
+import SwiftUI
 
-public extension WKWebViewConfiguration {
+struct CounterTextView: View {
+    let currentIndex: Int
+    let totalCount: Int
 
-    static var defaultConfiguration: WKWebViewConfiguration {
-        let configuration = WKWebViewConfiguration()
-        configuration.applyDefaultSettings()
-        return configuration
+    var body: some View {
+        Text(
+            String(
+                format: String(localized: "%@ of %@"),
+                currentIndex.description,
+                totalCount.description
+            )
+        )
+        .huiTypography(.p2)
+        .foregroundStyle(Color.huiColors.text.dataPoint)
+        .skeletonLoadable()
     }
+}
 
-    func applyDefaultSettings() {
-        preferences.isElementFullscreenEnabled = true
-        allowsInlineMediaPlayback = true
-        allowsPictureInPictureMediaPlayback = true
-        allowsAirPlayForMediaPlayback = true
-
-        // This is to make -webkit-text-size-adjust work on iPads.
-        // https://trac.webkit.org/changeset/261940/webkit
-        defaultWebpagePreferences.preferredContentMode = .mobile
-    }
+#Preview {
+    CounterTextView(currentIndex: 1, totalCount: 10)
 }
