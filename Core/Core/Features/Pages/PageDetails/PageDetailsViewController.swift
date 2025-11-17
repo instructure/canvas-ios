@@ -84,7 +84,7 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
         webViewContainer.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: webViewContainer)
         webView.linkDelegate = self
-        webView.resetStudioFeatures(context: context, env: env)
+        webView.setupStudioFeatures(context: context, env: env)
 
         if context.contextType == .course {
             webView.addScript("window.ENV={COURSE:{id:\(CoreWebView.jsString(context.id))}}")

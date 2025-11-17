@@ -92,13 +92,13 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
 
                     const icon = document.createElement('div');
                     icon.className = "open_details_button_icon";
-                    icon.innerHTML = '\(iconSVG)';
+                    icon.innerHTML = DOMPurify.sanitize('\(iconSVG)');
 
                     const detailButton = document.createElement('a');
                     detailButton.className = "open_details_button";
                     detailButton.href = frameLink + linkSuffix;
                     detailButton.target = "_blank";
-                    detailButton.textContent = '\(title)';
+                    detailButton.textContent = DOMPurify.sanitize('\(title)');
 
                     buttonContainer.appendChild(icon);
                     buttonContainer.appendChild(detailButton);

@@ -101,7 +101,10 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
-    public func resetStudioFeatures(context: Context?, env: AppEnvironment) {
+    /// Optional. Use this to enable insertion of `Open in Detail View` links below
+    /// each Studio video `iframe` when `rce_studio_embed_improvements` feature
+    /// flag is enabled for the passed context.
+    public func setupStudioFeatures(context: Context?, env: AppEnvironment) {
         studioFeaturesInteractor.resetFeatureFlagStore(context: context, env: env)
     }
 

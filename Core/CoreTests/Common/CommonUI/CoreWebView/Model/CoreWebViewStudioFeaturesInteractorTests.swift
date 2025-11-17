@@ -21,7 +21,7 @@ import WebKit
 import XCTest
 import Combine
 
-class CoreWebStudioFeaturesInteractorTests: CoreTestCase {
+class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
 
     private enum TestConstants {
         static let context = Context(.course, id: "32342")
