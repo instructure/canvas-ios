@@ -47,7 +47,7 @@ final class DomainJWTServiceTests: HorizonTestCase {
 
         // When
         var receivedToken: String?
-        service.getValidToken(option: .cedar)
+        service.getToken(option: .cedar)
             .sink(
                 receiveCompletion: { completion in
                     if case .failure(let error) = completion {
@@ -77,7 +77,7 @@ final class DomainJWTServiceTests: HorizonTestCase {
 
         // When
         var receivedError: Error?
-        service.getValidToken(option: .cedar)
+        service.getToken(option: .cedar)
             .sink(
                 receiveCompletion: { completion in
                     if case .failure(let error) = completion {
@@ -113,13 +113,13 @@ final class DomainJWTServiceTests: HorizonTestCase {
         )
 
         // When — first request (fetches from network and caches)
-        _ = try await service.getValidToken(option: .cedar)
+        _ = try await service.getToken(option: .cedar)
             .values
             .first(where: { _ in true })
 
         // Then — second request (should use cache)
         var secondToken: String?
-        secondToken = try await service.getValidToken(option: .cedar)
+        secondToken = try await service.getToken(option: .cedar)
             .values
             .first(where: { _ in true })
 
@@ -142,10 +142,10 @@ final class DomainJWTServiceTests: HorizonTestCase {
         )
 
         // When
-        let cedarResult = try await service.getValidToken(option: .cedar)
+        let cedarResult = try await service.getToken(option: .cedar)
             .values
             .first(where: { _ in true })
-        let pineResult = try await service.getValidToken(option: .pine)
+        let pineResult = try await service.getToken(option: .pine)
             .values
             .first(where: { _ in true })
 
@@ -164,7 +164,7 @@ final class DomainJWTServiceTests: HorizonTestCase {
 
         // When
         var receivedError: Error?
-        service.getValidToken(option: .cedar)
+        service.getToken(option: .cedar)
             .sink(
                 receiveCompletion: { completion in
                     if case .failure(let error) = completion {
@@ -193,7 +193,7 @@ final class DomainJWTServiceTests: HorizonTestCase {
             value: .make(token: mockToken)
         )
 
-        let firstToken = try await service.getValidToken(option: .cedar).values.first(where: { _ in true })
+        let firstToken = try await service.getToken(option: .cedar).values.first(where: { _ in true })
         XCTAssertEqual(firstToken, "fake-jwt-token")
 
         // When
@@ -209,7 +209,7 @@ final class DomainJWTServiceTests: HorizonTestCase {
         )
 
         // Then — should fetch new token, not use cache
-        let newToken = try await service.getValidToken(option: .cedar).values.first(where: { _ in true })
+        let newToken = try await service.getToken(option: .cedar).values.first(where: { _ in true })
         XCTAssertEqual(newToken, "new-fake-token")
     }
 
@@ -224,7 +224,7 @@ final class DomainJWTServiceTests: HorizonTestCase {
             value: .make(token: originalToken)
         )
 
-        let firstToken = try await service.getValidToken(option: .cedar).values.first(where: { _ in true })
+        let firstToken = try await service.getToken(option: .cedar).values.first(where: { _ in true })
         XCTAssertEqual(firstToken, "original-token")
 
         // When
@@ -244,7 +244,7 @@ final class DomainJWTServiceTests: HorizonTestCase {
         service.clear()
 
         // Then
-        let tokenAfterAPIChange = try await service.getValidToken(option: .cedar).values.first(where: { _ in true })
+        let tokenAfterAPIChange = try await service.getToken(option: .cedar).values.first(where: { _ in true })
         XCTAssertEqual(tokenAfterAPIChange, "new-api-token")
     }
 }

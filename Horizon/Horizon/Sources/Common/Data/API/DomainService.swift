@@ -71,7 +71,7 @@ final class DomainService: DomainServiceProtocol {
     /// Get the API for the domain service
     func api() -> AnyPublisher<API, Error> {
         domainJWTService
-            .getValidToken(option: option)
+            .getToken(option: option)
             .tryMap { [weak self] jwt -> API in
                 guard let self, let url = URL(string: "https://\(self.audience)") else {
                     throw DomainJWTService.Issue.unableToGetToken

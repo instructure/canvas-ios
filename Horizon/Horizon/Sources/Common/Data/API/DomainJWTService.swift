@@ -51,7 +51,7 @@ final public class DomainJWTService {
 
     // MARK: - Public API
 
-    func getValidToken(option: DomainServiceOption) -> AnyPublisher<String, Error> {
+    func getToken(option: DomainServiceOption) -> AnyPublisher<String, Error> {
         return queue.sync(flags: .barrier) { [weak self] () -> AnyPublisher<String, Error> in
             guard let self else {
                 return Fail(error: Issue.unableToGetToken)
