@@ -69,7 +69,7 @@ open class CoreWebView: WKWebView {
 
     private var env: AppEnvironment = .shared
     private var subscriptions = Set<AnyCancellable>()
-    private(set) lazy var studioFeaturesInteractor = CoreWebStudioFeaturesInteractor(webView: self)
+    private(set) lazy var studioFeaturesInteractor = CoreWebViewStudioFeaturesInteractor(webView: self)
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -559,7 +559,7 @@ extension CoreWebView: WKNavigationDelegate {
         // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
         if let immersiveURL = studioFeaturesInteractor.urlForStudioImmersiveView(of: action),
            let controller = linkDelegate?.routeLinksFrom {
-
+            controller.pauseWebViewPlayback()
             env.router.show(
                 StudioViewController(url: immersiveURL),
                 from: controller,

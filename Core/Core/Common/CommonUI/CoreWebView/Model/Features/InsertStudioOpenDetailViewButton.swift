@@ -59,7 +59,7 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
             .flatMap({ String(data: $0.data, encoding: .utf8) ?? "" }) ?? "")
             .components(separatedBy: .newlines).joined()
 
-        return """
+        let script = """
             function insertStudioDetailsLinks() {
                 const frameElements = document.querySelectorAll('iframe[data-media-id]');
 
@@ -92,13 +92,13 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
 
                     const icon = document.createElement('div');
                     icon.className = "open_details_button_icon";
-                    icon.innerHTML = DOMPurify.sanitize('\(iconSVG)');
+                    icon.innerHTML = '%@';
 
                     const detailButton = document.createElement('a');
                     detailButton.className = "open_details_button";
                     detailButton.href = frameLink + linkSuffix;
                     detailButton.target = "_blank";
-                    detailButton.textContent = DOMPurify.sanitize('\(title)');
+                    detailButton.textContent = '%@';
 
                     buttonContainer.appendChild(icon);
                     buttonContainer.appendChild(detailButton);
@@ -112,6 +112,8 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
             insertStudioDetailsLinks();
             window.addEventListener("DOMContentLoaded", insertStudioDetailsLinks);
         """
+
+        return String(format: script, iconSVG, title)
     }()
 
     public override init() {}
