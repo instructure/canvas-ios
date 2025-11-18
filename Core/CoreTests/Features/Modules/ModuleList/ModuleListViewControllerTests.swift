@@ -445,6 +445,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         let svc = MockSplitViewController()
         svc.mockCollapsed = false
         svc.viewControllers = [viewController]
+        svc.addChild(viewController)
         loadView()
         viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssertNoThrow(viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 99)))

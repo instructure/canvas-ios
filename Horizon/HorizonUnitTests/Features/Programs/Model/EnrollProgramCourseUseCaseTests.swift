@@ -35,8 +35,8 @@ final class EnrollProgramCourseUseCaseTests: HorizonTestCase {
 
         // When
         api.mock(
-            DomainService.JWTTokenRequest(domainServiceOption: .journey),
-            value: DomainService.JWTTokenRequest.Result(token: HProgramStubs.token)
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            value: DomainJWTService.JWTTokenRequest.Result(token: HProgramStubs.token)
         )
 
         // Then
@@ -52,21 +52,21 @@ final class EnrollProgramCourseUseCaseTests: HorizonTestCase {
         let testee = EnrollProgramCourseUseCase(
             progressId: "123",
             journey: DomainServiceMock(
-                result: .failure(DomainService.Issue.unableToGetToken)
+                result: .failure(DomainJWTService.Issue.unableToGetToken)
             )
         )
         let expection = expectation(description: "Wait for completion")
 
         // When
         api.mock(
-            DomainService.JWTTokenRequest(domainServiceOption: .journey),
-            value: DomainService.JWTTokenRequest.Result(token: HProgramStubs.token)
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            value: DomainJWTService.JWTTokenRequest.Result(token: HProgramStubs.token)
         )
 
         // Then
         testee.makeRequest(environment: environment) { _, _, error in
             expection.fulfill()
-            XCTAssertEqual(error?.localizedDescription, DomainService.Issue.unableToGetToken.localizedDescription)
+            XCTAssertEqual(error?.localizedDescription, DomainJWTService.Issue.unableToGetToken.localizedDescription)
         }
         wait(for: [expection], timeout: 0.2)
     }

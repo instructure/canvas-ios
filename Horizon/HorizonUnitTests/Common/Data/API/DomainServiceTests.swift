@@ -25,36 +25,107 @@ import XCTest
 
 class DomainServiceTests: HorizonTestCase {
 
-    // Given the Domain Service
-    // When initilized with .cedar
-    // When initialized with the baseURL https://example.com
-    // When initialized with the us-east-1 region
-    // Then the url is https://cedar-api-production.us-east-1.temp.prod.inseng.io
-    func test_when_initialized_with_east_1_region_then_url_is_correct() async throws {
+    func test_when_initialized_with_west_1_region_then_url_is_correct() async throws {
         // Given
         let baseURL = "https://example.com"
-        let requestKey = "POST:https://canvas.instructure.com/api/v1/jwts?canvas_audience=false&no_verifiers=1&workflows%5B%5D=cedar"
-        let response = DomainService.JWTTokenRequest.Result(token: "")
-        let responseData = try! JSONEncoder().encode(response)
-        let apiMock = APIMock { _ in
-            (responseData, nil, nil)
-        }
-        API.mocks = [requestKey: apiMock]
+        let mockToken = "ZmFrZS1qd3QtdG9rZW4="
+        api.mock(
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .cedar),
+            value: DomainJWTService.JWTTokenRequest.Result(token: mockToken)
+        )
 
         // When
         let domainService = DomainService(
             .cedar,
             baseURL: baseURL,
             region: "us-west-1",
-            horizonApi: api
+            domainJWTService: DomainJWTService(horizonApi: api)
         )
-        let domainServiceApi = try? await domainService.api().values.first { _ in true }
+        let domainServiceApi = try await domainService.api().values.first { _ in true }
 
         // Then
         XCTAssertEqual(
-            domainServiceApi!.baseURL.absoluteString,
+            domainServiceApi?.baseURL.absoluteString,
             "https://cedar-api-production.us-west-1.temp.prod.inseng.io",
             "The region should be included in the domain service URL"
+        )
+    }
+
+    func test_when_initialized_with_east_1_region_then_url_is_correct() async throws {
+        // Given
+        let baseURL = "https://example.com"
+        let mockToken = "ZmFrZS1qd3QtdG9rZW4="
+        api.mock(
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .cedar),
+            value: DomainJWTService.JWTTokenRequest.Result(token: mockToken)
+        )
+
+        // When
+        let domainService = DomainService(
+            .cedar,
+            baseURL: baseURL,
+            region: "us-east-1",
+            domainJWTService: DomainJWTService(horizonApi: api)
+        )
+        let domainServiceApi = try await domainService.api().values.first { _ in true }
+
+        // Then
+        XCTAssertEqual(
+            domainServiceApi?.baseURL.absoluteString,
+            "https://cedar-api-production.us-east-1.temp.prod.inseng.io",
+            "The region should be included in the domain service URL"
+        )
+    }
+
+    func test_when_initialized_with_nonprod_baseURL_then_url_is_dev() async throws {
+        // Given
+        let baseURL = "https://horizon.cd.instructure.com"
+        let mockToken = "ZmFrZS1qd3QtdG9rZW4="
+        api.mock(
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .cedar),
+            value: DomainJWTService.JWTTokenRequest.Result(token: mockToken)
+        )
+
+        // When
+        let domainService = DomainService(
+            .cedar,
+            baseURL: baseURL,
+            region: "us-east-1",
+            domainJWTService: DomainJWTService(horizonApi: api)
+        )
+        let domainServiceApi = try await domainService.api().values.first { _ in true }
+
+        // Then
+        XCTAssertEqual(
+            domainServiceApi?.baseURL.absoluteString,
+            "https://cedar-api-dev.domain-svcs.nonprod.inseng.io",
+            "Non-prod environments should use dev URL"
+        )
+    }
+
+    func test_when_journey_option_is_used_then_url_is_correct() async throws {
+        // Given
+        let baseURL = "https://example.com"
+        let mockToken = "ZmFrZS1qd3QtdG9rZW4="
+        api.mock(
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            value: DomainJWTService.JWTTokenRequest.Result(token: mockToken)
+        )
+
+        // When
+        let domainService = DomainService(
+            .journey,
+            baseURL: baseURL,
+            region: "us-east-1",
+            domainJWTService: DomainJWTService(horizonApi: api)
+        )
+        let domainServiceApi = try await domainService.api().values.first { _ in true }
+
+        // Then
+        XCTAssertEqual(
+            domainServiceApi?.baseURL.absoluteString,
+            "https://journey-server-prod.us-east-1.temp.prod.inseng.io",
+            "Journey should use its specific URL pattern"
         )
     }
 }

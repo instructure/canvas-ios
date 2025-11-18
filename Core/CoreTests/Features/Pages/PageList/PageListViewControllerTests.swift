@@ -39,7 +39,7 @@ class PageListViewControllerTests: CoreTestCase {
     func testLayout() {
         let nav = UINavigationController(rootViewController: controller)
         let split = UISplitViewController()
-        split.viewControllers = [ nav ]
+        split.addChild(nav)
         split.preferredDisplayMode = .oneBesideSecondary
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)

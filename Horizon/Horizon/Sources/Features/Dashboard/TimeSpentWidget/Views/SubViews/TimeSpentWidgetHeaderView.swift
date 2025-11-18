@@ -21,15 +21,7 @@ import SwiftUI
 
 struct TimeSpentWidgetHeader: View {
     var body: some View {
-        HStack {
-            Text("Time learning", bundle: .horizon)
-                .foregroundStyle(Color.huiColors.text.dataPoint)
-                .huiTypography(.labelMediumBold)
-                .frame(alignment: .leading)
-                .skeletonLoadable()
-
-            Spacer()
-
+        HStack(spacing: .huiSpaces.space8) {
             Image.huiIcons.schedule
                 .resizable()
                 .frame(width: 16, height: 16)
@@ -41,8 +33,31 @@ struct TimeSpentWidgetHeader: View {
                 }
                 .accessibilityHidden(true)
                 .skeletonLoadable()
+
+            Text("Time learning", bundle: .horizon)
+                .foregroundStyle(Color.huiColors.text.dataPoint)
+                .huiTypography(.labelMediumBold)
+                .frame(alignment: .leading)
+                .skeletonLoadable()
+                .accessibilityHidden(true)
+
+            Spacer()
+
+            CounterTextView(
+                currentIndex: 2,
+                totalCount: 3
+            )
+            .accessibilityHidden(true)
         }
         .accessibilityElement(children: .combine)
+        .accessibilityLabel(
+            Text(
+                String(
+                    localized: "Time learning, Widget 2 of 3",
+                    bundle: .horizon
+                )
+            )
+        )
         .accessibilityAddTraits(.isHeader)
     }
 }

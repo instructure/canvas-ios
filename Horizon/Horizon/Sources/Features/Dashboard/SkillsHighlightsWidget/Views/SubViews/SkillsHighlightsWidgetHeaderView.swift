@@ -21,13 +21,7 @@ import SwiftUI
 
 struct SkillsHighlightsWidgetHeaderView: View {
     var body: some View {
-        HStack {
-            Text("Skill highlights", bundle: .horizon)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .huiTypography(.labelMediumBold)
-                .foregroundStyle(Color.huiColors.text.timestamp)
-                .skeletonLoadable()
-            Spacer()
+        HStack(spacing: .huiSpaces.space8) {
             Image.huiIcons.hub
                 .resizable()
                 .frame(width: 16, height: 16)
@@ -39,6 +33,14 @@ struct SkillsHighlightsWidgetHeaderView: View {
                 }
                 .accessibilityHidden(true)
                 .skeletonLoadable()
+
+            Text("Skill highlights", bundle: .horizon)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .huiTypography(.labelMediumBold)
+                .foregroundStyle(Color.huiColors.text.timestamp)
+                .skeletonLoadable()
+            Spacer()
+
         }
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isHeader)

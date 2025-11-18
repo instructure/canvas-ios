@@ -19,6 +19,12 @@
 import Foundation
 import CoreData
 
+/// Marks a plannable item (assignment, quiz, etc.) as done or not done.
+///
+/// Canvas uses "planner overrides" to track user-specific modifications to plannable items.
+/// When a user marks an item as done, a planner override is created or updated with the
+/// `marked_complete` flag. This allows users to track their personal completion status
+/// without affecting the actual assignment state on the server.
 public struct MarkPlannableItemDone: UseCase {
     public typealias Model = Plannable
     public typealias Response = APIPlannerOverride
@@ -45,7 +51,7 @@ public struct MarkPlannableItemDone: UseCase {
     }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
-        if let overrideId = overrideId {
+        if let overrideId {
             updateExistingOverride(overrideId: overrideId, environment: environment, completionHandler: completionHandler)
         } else {
             createNewOverride(environment: environment, completionHandler: completionHandler)
@@ -53,7 +59,7 @@ public struct MarkPlannableItemDone: UseCase {
     }
 
     public func write(response: APIPlannerOverride?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response,
+        guard let response,
               let plannable: Plannable = client.fetch(scope: scope).first
         else {
             return
@@ -61,9 +67,6 @@ public struct MarkPlannableItemDone: UseCase {
 
         plannable.plannerOverrideId = response.id.value
         plannable.isMarkedComplete = done
-    }
-
-    public func reset(context: NSManagedObjectContext) {
     }
 
     // MARK: - Private Methods

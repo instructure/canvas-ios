@@ -21,7 +21,7 @@ import Combine
 
 public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableObject {
 
-    public enum MarkDoneState: Equatable {
+    public enum MarkAsDoneState: Equatable {
         case notDone
         case loading
         case done
@@ -42,10 +42,9 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     public let icon: Image
 
     public let plannableId: String
-    public let plannableType: String
     public var overrideId: String?
 
-    @Published public var markDoneState: MarkDoneState = .notDone
+    @Published public var markAsDoneState: MarkAsDoneState = .notDone
 
     public init?(_ plannable: Plannable, course: Course? = nil) {
         guard let date = plannable.date else { return nil }
@@ -71,9 +70,8 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         self.color = plannable.color.asColor
         self.icon = plannable.icon.asImage
 
-        self.plannableType = plannable.typeRaw
         self.overrideId = plannable.plannerOverrideId
-        self.markDoneState = plannable.isMarkedComplete ? .done : .notDone
+        self.markAsDoneState = plannable.isMarkedComplete ? .done : .notDone
     }
 
     public init(
@@ -86,7 +84,6 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         htmlURL: URL?,
         color: Color,
         icon: Image,
-        plannableType: String = "assignment",
         overrideId: String? = nil
     ) {
         self.plannableId = plannableId
@@ -102,7 +99,6 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         self.color = color
         self.icon = icon
 
-        self.plannableType = plannableType
         self.overrideId = overrideId
     }
 
@@ -115,7 +111,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     }
 
     public var markAsDoneAccessibilityLabel: String? {
-        switch markDoneState {
+        switch markAsDoneState {
         case .notDone:
             return String(localized: "Mark as done", bundle: .core)
         case .loading:
@@ -156,7 +152,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         lhs.contextName == rhs.contextName &&
         lhs.htmlURL == rhs.htmlURL &&
         lhs.color == rhs.color &&
-        lhs.markDoneState == rhs.markDoneState
+        lhs.markAsDoneState == rhs.markAsDoneState
     }
 
     // MARK: - Comparable
@@ -182,7 +178,6 @@ extension TodoItemViewModel {
         htmlURL: URL? = nil,
         color: Color = .red,
         icon: Image = .assignmentLine,
-        plannableType: String = "assignment",
         overrideId: String? = nil
     ) -> TodoItemViewModel {
         TodoItemViewModel(
@@ -195,7 +190,6 @@ extension TodoItemViewModel {
             htmlURL: htmlURL,
             color: color,
             icon: icon,
-            plannableType: plannableType,
             overrideId: overrideId
         )
     }

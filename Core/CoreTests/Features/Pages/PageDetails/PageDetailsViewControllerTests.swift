@@ -58,7 +58,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.count, 1)
 
         let optionsButton = controller.navigationItem.rightBarButtonItem
-        _ = optionsButton?.target?.perform(optionsButton!.action, with: [optionsButton])
+        _ = optionsButton?.target?.perform(optionsButton!.action, with: optionsButton)
         let alert = router.presented as? UIAlertController
         XCTAssertEqual(alert?.actions.count, 2)
         XCTAssertEqual(alert?.actions.last?.title, "Cancel")
@@ -69,7 +69,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
 
         api.mock(DeletePageRequest(context: context, url: pageURL), error: NSError.internalError())
         controller.app = .teacher
-        _ = optionsButton?.target?.perform(optionsButton!.action, with: [optionsButton])
+        _ = optionsButton?.target?.perform(optionsButton!.action, with: optionsButton)
         let deleteAction = (router.presented as? UIAlertController)?.actions[1]
         XCTAssertEqual(deleteAction?.title, "Delete")
         XCTAssertEqual(deleteAction?.style, .destructive)

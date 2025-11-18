@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+@preconcurrency import Foundation
 
 class MockURLProtocolSupport: URLProtocol {
 

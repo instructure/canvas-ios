@@ -86,16 +86,16 @@ extension View {
     public func onWidthChange(_ perform: @escaping (CGFloat) -> Void) -> some View {
         onGeometryChange(for: CGFloat.self) { geometry in
             geometry.size.width
-        } action: { height in
-            perform(height)
+        } action: { width in
+            perform(width)
         }
     }
 
     public func onWidthChange(update binding: Binding<CGFloat>) -> some View {
         onGeometryChange(for: CGFloat.self) { geometry in
             geometry.size.width
-        } action: { height in
-            binding.wrappedValue = height
+        } action: { width in
+            binding.wrappedValue = width
         }
     }
 
