@@ -22,7 +22,7 @@ import SwiftUI
 
 public enum SubmissionStatus: Equatable {
 
-    // NOT SUBMITTED (no grade)
+    // MARK: - NOT SUBMITTED (no grade)
 
     /// not submitted but submittable, before due date, no grade
     case notSubmitted
@@ -36,32 +36,36 @@ public enum SubmissionStatus: Equatable {
     /// not submitted for assignment grading type "Not Graded", regardless of due date, no grade
     case notGradable
 
-    /// not submitted, after due date, no grade
+    /// not submitted, usually after due date, no grade
     /// (Teacher can mark any submission Missing, regardless of due date or submission type)
     case missing
 
-    // SUBMITTED (no grade)
+    /// not submitted, marked Late by teacher, regardless of due date, no grade
+    /// (It is an edge case needed for needsGrading calculation)
+    case lateButNotSubmitted
+
+    // MARK: - SUBMITTED (no grade)
 
     /// submitted, before due date, no grade
     case submitted
 
-    /// submitted, after due date, no grade
-    /// (Teachers can mark any submission Late, regardless of due date, submission or submission type)
+    /// submitted, usually after due date, no grade
+    /// (Teachers can mark any submission Late, regardless of due date or submission type)
     case late
 
-    /// submitted, marked missing by teacher, regardless of due date, no grade
+    /// submitted, marked Missing by teacher, regardless of due date, no grade
     /// (It is an edge case needed for needsGrading calculation)
     case missingButSubmitted
 
-    // GRADED
+    // MARK: - GRADED
 
     /// graded, regardless of submission or due date
     case graded
 
-    /// graded, marked missing by teacher, regardless of submission or due date
+    /// graded, marked Missing by teacher, regardless of submission or due date
     case gradedMissing
 
-    /// graded, marked late, regardless of submission or due date
+    /// graded, marked Late, regardless of submission or due date
     case gradedLate
 
     /// excused, regardless of submission or due date
@@ -96,7 +100,11 @@ public enum SubmissionStatus: Equatable {
                 .graded
             }
         } else if isLate {
-            .late
+            if isSubmitted {
+                .late
+            } else {
+                .lateButNotSubmitted
+            }
         } else if isMissing {
             if isSubmitted {
                 .missingButSubmitted
@@ -105,14 +113,16 @@ public enum SubmissionStatus: Equatable {
             }
         } else if isSubmitted {
             .submitted
-        } else if submissionType == .on_paper {
-            .onPaper
-        } else if submissionType == SubmissionType.none {
-            .noSubmission
-        } else if submissionType == .not_graded {
-            .notGradable
         } else {
-            .notSubmitted
+            if submissionType == .on_paper {
+                .onPaper
+            } else if submissionType == SubmissionType.none {
+                .noSubmission
+            } else if submissionType == .not_graded {
+                .notGradable
+            } else {
+                .notSubmitted
+            }
         }
     }
 }
@@ -136,6 +146,7 @@ extension SubmissionStatus {
              .noSubmission,
              .notGradable,
              .missing,
+             .lateButNotSubmitted,
              .submitted,
              .late,
              .missingButSubmitted:
@@ -155,6 +166,7 @@ extension SubmissionStatus {
              .noSubmission,
              .notGradable,
              .missing,
+             .lateButNotSubmitted,
              .graded,
              .gradedLate,
              .gradedMissing,
@@ -168,7 +180,8 @@ extension SubmissionStatus {
     public var isNotSubmittedNotGraded: Bool {
         switch self {
         case .notSubmitted,
-             .missing:
+             .missing,
+             .lateButNotSubmitted:
             true
         case
              .onPaper,
@@ -195,6 +208,7 @@ extension SubmissionStatus {
             true
         case .notSubmitted,
              .missing,
+             .lateButNotSubmitted,
              .submitted,
              .late,
              .missingButSubmitted,
@@ -212,6 +226,7 @@ extension SubmissionStatus {
     public var isLate: Bool {
         switch self {
         case .late,
+             .lateButNotSubmitted,
              .gradedLate:
             true
         case .notSubmitted,
@@ -241,6 +256,7 @@ extension SubmissionStatus {
              .onPaper,
              .noSubmission,
              .notGradable,
+             .lateButNotSubmitted,
              .submitted,
              .late,
              .graded,
@@ -249,6 +265,19 @@ extension SubmissionStatus {
              .excused:
             false
         }
+    }
+
+    /// Returns `true` for excused status.
+    public var isExcused: Bool {
+        self == .excused
+    }
+
+    /// Returns `true` for custom statuses.
+    public var isCustom: Bool {
+        if case .custom = self {
+            return true
+        }
+        return false
     }
 }
 
@@ -269,7 +298,7 @@ extension SubmissionStatus {
                 icon: .completeLine,
                 color: .textSuccess
             )
-        case .late, .gradedLate:
+        case .late, .lateButNotSubmitted, .gradedLate:
             .init(
                 text: String(localized: "Late", bundle: .core),
                 icon: .clockLine,
@@ -325,7 +354,7 @@ extension SubmissionStatus {
         switch self {
         case .notSubmitted: .noSolid
         case .submitted: .completeLine
-        case .late, .gradedLate: .clockLine
+        case .late, .lateButNotSubmitted, .gradedLate: .clockLine
         case .missing, .missingButSubmitted, .gradedMissing: .noSolid
         case .graded: .completeSolid
         case .excused: .completeSolid
