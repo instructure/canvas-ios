@@ -55,6 +55,7 @@ final class SessionInteractor: NSObject {
             let loginDelegate = environment.loginDelegate else {
             return
         }
+        DomainJWTService.shared.clear()
         loginDelegate.userDidLogout(session: currentSession)
     }
 

@@ -28,8 +28,8 @@ final class DomainService: DomainServiceProtocol {
     // MARK: - Dependencies
 
     private let baseURL: String
-    private let horizonApi: API
-    let option: Option
+    private let domainJWTService: DomainJWTService
+    let option: DomainServiceOption
     private let region: String
 
     // MARK: - Private
@@ -55,39 +55,26 @@ final class DomainService: DomainServiceProtocol {
     // MARK: - Init
 
     init(
-        _ domainServiceOption: Option,
+        _ domainServiceOption: DomainServiceOption,
         baseURL: String = AppEnvironment.shared.currentSession?.baseURL.absoluteString ?? "",
         region: String? = AppEnvironment.shared.currentSession?.canvasRegion,
-        horizonApi: API = AppEnvironment.defaultValue.api
+        domainJWTService: DomainJWTService = DomainJWTService.shared,
     ) {
         self.option = domainServiceOption
         self.baseURL = baseURL
         self.region = region ?? "us-east-1"
-        self.horizonApi = horizonApi
+        self.domainJWTService = domainJWTService
     }
 
     // MARK: - Public
 
-    // TODO: cache the token and reuse it
     /// Get the API for the domain service
     func api() -> AnyPublisher<API, Error> {
-        horizonApi
-            .makeRequest(
-                JWTTokenRequest(
-                    domainServiceOption: option
-                )
-            )
-            .tryMap { [weak self] response, urlResponse in
-                guard let self else { throw DomainService.Issue.unableToGetToken }
-                return try tokenResponseToUtf8String(
-                    tokenResponse: response,
-                    urlResponse: urlResponse
-                )
-            }
-            .compactMap { [weak self] jwt in
-                guard let self else { return nil }
-                guard let url = URL(string: "https://\(self.audience)") else {
-                    fatalError("Unable to get the base URL for the domain service")
+        domainJWTService
+            .getToken(option: option)
+            .tryMap { [weak self] jwt -> API in
+                guard let self, let url = URL(string: "https://\(self.audience)") else {
+                    throw DomainJWTService.Issue.unableToGetToken
                 }
                 return API(
                     LoginSession(
@@ -101,69 +88,20 @@ final class DomainService: DomainServiceProtocol {
             }
             .eraseToAnyPublisher()
     }
-
-    // MARK: - Private
-
-    private func tokenResponseToUtf8String(
-        tokenResponse: JWTTokenRequest.Result,
-        urlResponse _: HTTPURLResponse?
-    ) throws -> String {
-        guard let decodedToken = Data(base64Encoded: tokenResponse.token) else {
-            throw DomainService.Issue.unableToGetToken
-        }
-
-        let utf8EncodedToken = String(data: decodedToken, encoding: .utf8)
-
-        guard let utf8EncodedToken else {
-            throw DomainService.Issue.unableToGetToken
-        }
-
-        return utf8EncodedToken
-    }
 }
 
-extension DomainService {
-    enum Issue: Error {
-        case unableToGetToken
-        case serviceConfigurationNotFound
+enum DomainServiceOption: String {
+    case cedar
+    case journey
+    case pine
+    case redwood
+    var service: String {
+        rawValue
     }
-}
 
-extension DomainService {
-    enum Option: String {
-        case cedar
-        case journey
-        case pine
-        case redwood
-        var service: String {
-            rawValue
-        }
-
-        var workflows: [Option] {
-            self == .journey ?
-            [self, .pine] :
-            [self]
-        }
-    }
-}
-
-extension DomainService {
-     struct JWTTokenRequest: APIRequestable {
-        typealias Response = Result
-
-        let domainServiceOption: DomainService.Option
-
-        var path: String {
-            let workflowQueryParams = domainServiceOption.workflows.map {
-                "workflows[]=\($0.rawValue)"
-            }.joined(separator: "&")
-            return "/api/v1/jwts?canvas_audience=false&\(workflowQueryParams)"
-        }
-
-        var method: APIMethod { .post }
-
-        struct Result: Codable {
-            let token: String
-        }
+    var workflows: [DomainServiceOption] {
+        self == .journey ?
+        [self, .pine] :
+        [self]
     }
 }
