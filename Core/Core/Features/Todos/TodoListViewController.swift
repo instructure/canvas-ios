@@ -185,6 +185,7 @@ class TodoListCell: UITableViewCell {
     @IBOutlet weak var needsGradingSpacer: UIView!
     @IBOutlet weak var needsGradingLabel: UILabel!
     @IBOutlet weak var needsGradingView: UIView!
+    @IBOutlet weak var checkpointLabel: DynamicLabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
@@ -206,6 +207,15 @@ class TodoListCell: UITableViewCell {
         }
         backgroundColor = .backgroundLightest
         titleLabel.setText(todo?.name, style: .textCellTitle)
+
+        if let checkpointStep = todo?.discussionCheckpointStep {
+            checkpointLabel.setText(checkpointStep.text, style: .textCellSupportingText)
+            checkpointLabel.isHidden = false
+        } else {
+            checkpointLabel.text = nil
+            checkpointLabel.isHidden = true
+        }
+
         subtitleLabel.setText(todo?.dueText, style: .textCellSupportingText)
         tintColor = todo?.contextColor
         contextLabel.textColor = tintColor
@@ -214,6 +224,13 @@ class TodoListCell: UITableViewCell {
         needsGradingSpacer.isHidden = needsGradingView.isHidden
         needsGradingLabel.text = todo?.needsGradingText
         accessibilityIdentifier = "to-do.list.\(todo?.assignmentOrQuizID ?? "unknown").row"
-        accessibilityLabel = [accessIconView.accessibilityLabel, todo?.contextName, todo?.name, todo?.dueText, todo?.needsGradingText].joined(separator: ", ")
+        accessibilityLabel = [
+            accessIconView.accessibilityLabel,
+            todo?.contextName,
+            todo?.name,
+            checkpointLabel.text,
+            todo?.dueText,
+            todo?.needsGradingText
+        ].accessibilityJoined()
     }
 }

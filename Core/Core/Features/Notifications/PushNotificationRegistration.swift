@@ -25,11 +25,13 @@ public extension UIApplication {
     ) {
         guard !ProcessInfo.isUITest else { return }
 
-        notificationCenter.requestAuthorization(options: [.badge, .sound, .alert]) { granted, error in performUIUpdate {
+        notificationCenter.requestAuthorization(options: [.badge, .sound, .alert]) { granted, error in
             guard granted, error == nil else { return }
             #if !targetEnvironment(simulator) // Can't register on simulator
+            Task { @MainActor in
                 self.registerForRemoteNotifications()
+            }
             #endif
-        } }
+        }
     }
 }
