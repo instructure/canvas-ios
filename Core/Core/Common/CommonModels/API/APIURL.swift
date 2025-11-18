@@ -71,7 +71,6 @@ extension KeyedDecodingContainer {
     }
 }
 
-
 private extension String {
 
     /// Keeping this private as it aims to fix a specific issue with URL strings
