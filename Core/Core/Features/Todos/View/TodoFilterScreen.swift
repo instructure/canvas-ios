@@ -18,16 +18,16 @@
 
 import SwiftUI
 
-public struct TodoFilterScreen: View {
+struct TodoFilterScreen: View {
 
     @Environment(\.viewController) private var viewController
     @StateObject private var viewModel: TodoFilterViewModel
 
-    public init(viewModel: TodoFilterViewModel) {
+    init(viewModel: TodoFilterViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
-    public var body: some View {
+    var body: some View {
         ScrollView {
             LazyVStack(spacing: 0) {
                 InstUI.TopDivider()

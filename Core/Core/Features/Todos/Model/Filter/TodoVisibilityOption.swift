@@ -25,16 +25,12 @@ public enum TodoVisibilityOption: String, CaseIterable, Codable, Hashable {
     case showCompleted
     case favouriteCoursesOnly
 
-    public var title: String {
+    var title: String {
         switch self {
-        case .showPersonalTodos:
-            return String(localized: "Show Personal To Dos", bundle: .core)
-        case .showCalendarEvents:
-            return String(localized: "Show Calendar Events", bundle: .core)
-        case .showCompleted:
-            return String(localized: "Show Completed", bundle: .core)
-        case .favouriteCoursesOnly:
-            return String(localized: "Favourite Courses Only", bundle: .core)
+        case .showPersonalTodos: String(localized: "Show Personal To Dos", bundle: .core)
+        case .showCalendarEvents: String(localized: "Show Calendar Events", bundle: .core)
+        case .showCompleted: String(localized: "Show Completed", bundle: .core)
+        case .favouriteCoursesOnly: String(localized: "Favourite Courses Only", bundle: .core)
         }
     }
 }
@@ -42,18 +38,18 @@ public enum TodoVisibilityOption: String, CaseIterable, Codable, Hashable {
 // MARK: - OptionItem Conversion
 
 extension TodoVisibilityOption {
-    public func toOptionItem() -> OptionItem {
+    func toOptionItem() -> OptionItem {
         OptionItem(
             id: rawValue,
             title: title
         )
     }
 
-    public static func from(optionItem: OptionItem) -> TodoVisibilityOption? {
+    static func from(optionItem: OptionItem) -> TodoVisibilityOption? {
         TodoVisibilityOption(rawValue: optionItem.id)
     }
 
-    public static var allOptionItems: [OptionItem] {
+    static var allOptionItems: [OptionItem] {
         allCases.map { $0.toOptionItem() }
     }
 }
@@ -62,7 +58,7 @@ extension TodoVisibilityOption {
 
 extension Set where Element == TodoVisibilityOption {
 
-    public func shouldInclude(plannableType: PlannableType) -> Bool {
+    func shouldInclude(plannableType: PlannableType) -> Bool {
         switch plannableType {
         case .planner_note:
             return contains(.showPersonalTodos)
@@ -73,14 +69,14 @@ extension Set where Element == TodoVisibilityOption {
         }
     }
 
-    public func shouldInclude(isCompleted: Bool, isSubmitted: Bool) -> Bool {
+    func shouldInclude(isCompleted: Bool, isSubmitted: Bool) -> Bool {
         if isCompleted || isSubmitted {
             return contains(.showCompleted)
         }
         return true
     }
 
-    public func shouldInclude(isFavorite: Bool?, hasNoCourse: Bool) -> Bool {
+    func shouldInclude(isFavorite: Bool?, hasNoCourse: Bool) -> Bool {
         if contains(.favouriteCoursesOnly) {
             return hasNoCourse || (isFavorite == true)
         }

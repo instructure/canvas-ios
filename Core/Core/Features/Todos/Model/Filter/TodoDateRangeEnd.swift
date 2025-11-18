@@ -27,52 +27,40 @@ public enum TodoDateRangeEnd: String, CaseIterable, Codable {
     case inThreeWeeks = "end-inThreeWeeks"
     case inFourWeeks = "end-inFourWeeks"
 
-    public var title: String {
+    var title: String {
         switch self {
-        case .today:
-            return String(localized: "Today", bundle: .core)
-        case .thisWeek:
-            return String(localized: "This Week", bundle: .core)
-        case .nextWeek:
-            return String(localized: "Next Week", bundle: .core)
-        case .inTwoWeeks:
-            return String(localized: "In 2 Weeks", bundle: .core)
-        case .inThreeWeeks:
-            return String(localized: "In 3 Weeks", bundle: .core)
-        case .inFourWeeks:
-            return String(localized: "In 4 Weeks", bundle: .core)
+        case .today: String(localized: "Today", bundle: .core)
+        case .thisWeek: String(localized: "This Week", bundle: .core)
+        case .nextWeek: String(localized: "Next Week", bundle: .core)
+        case .inTwoWeeks: String(localized: "In 2 Weeks", bundle: .core)
+        case .inThreeWeeks: String(localized: "In 3 Weeks", bundle: .core)
+        case .inFourWeeks: String(localized: "In 4 Weeks", bundle: .core)
         }
     }
 
-    public func endDate(relativeTo referenceDate: Date = Clock.now) -> Date {
+    func endDate(relativeTo referenceDate: Date = Clock.now) -> Date {
         let weekStart = referenceDate.startOfWeek()
 
-        switch self {
-        case .today:
-            return referenceDate.endOfDay()
-        case .thisWeek:
-            return weekStart.addWeeks(1).addSeconds(-1)
-        case .nextWeek:
-            return weekStart.addWeeks(2).addSeconds(-1)
-        case .inTwoWeeks:
-            return weekStart.addWeeks(3).addSeconds(-1)
-        case .inThreeWeeks:
-            return weekStart.addWeeks(4).addSeconds(-1)
-        case .inFourWeeks:
-            return weekStart.addWeeks(5).addSeconds(-1)
+        return switch self {
+        case .today: referenceDate.endOfDay()
+        case .thisWeek: weekStart.addWeeks(1).addSeconds(-1)
+        case .nextWeek: weekStart.addWeeks(2).addSeconds(-1)
+        case .inTwoWeeks: weekStart.addWeeks(3).addSeconds(-1)
+        case .inThreeWeeks: weekStart.addWeeks(4).addSeconds(-1)
+        case .inFourWeeks: weekStart.addWeeks(5).addSeconds(-1)
         }
     }
 
-    public func subtitle(relativeTo referenceDate: Date = Clock.now) -> String {
+    func subtitle(relativeTo referenceDate: Date = Clock.now) -> String {
         let dateString = endDate(relativeTo: referenceDate).shortDayMonth
-        return String(localized: "Until \(dateString)", bundle: .core, comment: "Todo list date range filter subtitle showing the end date. The date is formatted as 'Day Month' (e.g., '15 Jan')")
+        return String(localized: "Until \(dateString)", bundle: .core, comment: "Todo list date range filter subtitle showing the end date.")
     }
 }
 
 // MARK: - OptionItem Conversion
 
 extension TodoDateRangeEnd {
-    public func toOptionItem(relativeTo referenceDate: Date = Clock.now) -> OptionItem {
+    func toOptionItem(relativeTo referenceDate: Date = Clock.now) -> OptionItem {
         OptionItem(
             id: rawValue,
             title: title,
@@ -80,11 +68,11 @@ extension TodoDateRangeEnd {
         )
     }
 
-    public static func from(optionItem: OptionItem) -> TodoDateRangeEnd? {
+    static func from(optionItem: OptionItem) -> TodoDateRangeEnd? {
         TodoDateRangeEnd(rawValue: optionItem.id)
     }
 
-    public static func allOptionItems(relativeTo referenceDate: Date = Clock.now) -> [OptionItem] {
+    static func allOptionItems(relativeTo referenceDate: Date = Clock.now) -> [OptionItem] {
         allCases.map { $0.toOptionItem(relativeTo: referenceDate) }
     }
 }

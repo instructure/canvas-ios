@@ -20,11 +20,11 @@ import Foundation
 
 extension TodoFilterOptions {
 
-    public var analyticsEventName: String {
+    var analyticsEventName: String {
         isDefault ? "todo_list_loaded_default_filter" : "todo_list_loaded_custom_filter"
     }
 
-    public var analyticsParameters: [String: Any] {
+    var analyticsParameters: [String: Any] {
         [
             "filter_personal_todos": visibilityOptions.contains(.showPersonalTodos),
             "filter_calendar_events": visibilityOptions.contains(.showCalendarEvents),
@@ -38,7 +38,7 @@ extension TodoFilterOptions {
 
 extension TodoDateRangeStart {
 
-    public var analyticsValue: String {
+    var analyticsValue: String {
         switch self {
         case .today: "today"
         case .thisWeek: "this_week"
@@ -52,7 +52,7 @@ extension TodoDateRangeStart {
 
 extension TodoDateRangeEnd {
 
-    public var analyticsValue: String {
+    var analyticsValue: String {
         switch self {
         case .today: "today"
         case .thisWeek: "this_week"

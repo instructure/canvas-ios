@@ -19,26 +19,26 @@
 import SwiftUI
 import Combine
 
-public class TodoFilterViewModel: ObservableObject {
+class TodoFilterViewModel: ObservableObject {
 
     // MARK: - Outputs
 
-    @Published public private(set) var visibilityOptionItems: [OptionItem] = []
-    @Published public private(set) var dateRangeStartItems: [OptionItem] = []
-    @Published public private(set) var dateRangeEndItems: [OptionItem] = []
+    @Published private(set) var visibilityOptionItems: [OptionItem] = []
+    @Published private(set) var dateRangeStartItems: [OptionItem] = []
+    @Published private(set) var dateRangeEndItems: [OptionItem] = []
 
     // MARK: - Inputs
 
-    @Published public var selectedVisibilityOptions: Set<OptionItem> = []
-    @Published public var selectedDateRangeStart: OptionItem?
-    @Published public var selectedDateRangeEnd: OptionItem?
+    @Published var selectedVisibilityOptions: Set<OptionItem> = []
+    @Published var selectedDateRangeStart: OptionItem?
+    @Published var selectedDateRangeEnd: OptionItem?
 
     // MARK: - Private Properties
 
     private var sessionDefaults: SessionDefaults
     private var onFiltersChanged: (() -> Void)?
 
-    public init(
+    init(
         sessionDefaults: SessionDefaults,
         onFiltersChanged: (() -> Void)? = nil
     ) {
@@ -56,7 +56,7 @@ public class TodoFilterViewModel: ObservableObject {
         self.selectedDateRangeEnd = savedFilters.dateRangeEnd.toOptionItem()
     }
 
-    public func applyFilters() {
+    func applyFilters() {
         let visibilityEnums = Set(selectedVisibilityOptions.compactMap { TodoVisibilityOption.from(optionItem: $0) })
         guard
             let selectedStart = selectedDateRangeStart,

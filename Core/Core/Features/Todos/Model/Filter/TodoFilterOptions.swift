@@ -19,6 +19,12 @@
 import Foundation
 
 public struct TodoFilterOptions: Codable, Equatable {
+    public static let `default` = TodoFilterOptions(
+        visibilityOptions: [],
+        dateRangeStart: .lastWeek,
+        dateRangeEnd: .nextWeek
+    )
+
     public let visibilityOptions: Set<TodoVisibilityOption>
     public let dateRangeStart: TodoDateRangeStart
     public let dateRangeEnd: TodoDateRangeEnd
@@ -44,12 +50,6 @@ public struct TodoFilterOptions: Codable, Equatable {
         self.dateRangeStart = dateRangeStart
         self.dateRangeEnd = dateRangeEnd
     }
-
-    public static let `default` = TodoFilterOptions(
-        visibilityOptions: [],
-        dateRangeStart: .lastWeek,
-        dateRangeEnd: .nextWeek
-    )
 
     public func shouldInclude(plannable: Plannable, course: Course?) -> Bool {
         guard let plannableDate = plannable.date else { return false }
