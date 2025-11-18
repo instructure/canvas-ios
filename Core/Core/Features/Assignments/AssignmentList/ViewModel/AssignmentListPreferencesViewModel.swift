@@ -44,7 +44,7 @@ public struct AssignmentFilterOptionStudent: CaseIterable, Equatable {
         self.rule = rule
     }
 
-    /// Submissions which are not yet submitted, but submittable, and not graded yet.
+    /// Submissions which are not yet submitted (but submittable), and not graded yet.
     static let notYetSubmitted = Self(
         id: "notYetSubmitted",
         title: String(localized: "Not Yet Submitted", bundle: .core),

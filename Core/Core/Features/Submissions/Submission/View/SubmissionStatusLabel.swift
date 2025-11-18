@@ -49,27 +49,30 @@ public struct SubmissionStatusLabel: View {
 
 extension SubmissionStatusLabel {
     public struct Model: Equatable {
-        let text: String
-        let icon: Image
-        let color: Color
+        public let text: String
+        public let icon: Image
+        public let color: Color
 
         public init(text: String, icon: Image, color: Color) {
             self.text = text
             self.icon = icon
             self.color = color
         }
-
-        public init(status: SubmissionStatus) {
-            self.init(
-                text: status.text,
-                icon: status.icon,
-                color: status.color
-            )
-        }
     }
 }
 
 #if DEBUG
+
+extension SubmissionStatusLabel.Model {
+    public init(status: SubmissionStatus) {
+        let model = status.viewModel
+        self.init(
+            text: model.text,
+            icon: model.icon,
+            color: model.color
+        )
+    }
+}
 
 #Preview {
     PreviewContainer(spacing: 20) {

@@ -21,32 +21,56 @@ import UIKit
 import SwiftUI
 
 public enum SubmissionStatus: Equatable {
-    /// not submitted, before due date
+
+    // NOT SUBMITTED (no grade)
+
+    /// not submitted but submittable, before due date, no grade
     case notSubmitted
 
-    /// not submitted for on-paper assignments, before due date
+    /// not submitted for assignment type "On Paper", regardless of due date, no grade
     case onPaper
 
-    /// not submitted for no-submission assignments, before due date
+    /// not submitted for assignment type "No Submission", regardless of due date, no grade
     case noSubmission
 
-    /// not submitted, after due date (Teacher can force it)
+    /// not submitted for assignment grading type "Not Graded", regardless of due date, no grade
+    case notGradable
+
+    /// not submitted, after due date, no grade
+    /// (Teacher can mark any submission Missing, regardless of due date or submission type)
     case missing
 
-    /// submitted, before due date
+    // SUBMITTED (no grade)
+
+    /// submitted, before due date, no grade
     case submitted
 
-    /// submitted, after due date (Teacher can force it)
+    /// submitted, after due date, no grade
+    /// (Teachers can mark any submission Late, regardless of due date, submission or submission type)
     case late
+
+    /// submitted, marked missing by teacher, regardless of due date, no grade
+    /// (It is an edge case needed for needsGrading calculation)
+    case missingButSubmitted
+
+    // GRADED
 
     /// graded, regardless of submission or due date
     case graded
+
+    /// graded, marked missing by teacher, regardless of submission or due date
+    case gradedMissing
+
+    /// graded, marked late, regardless of submission or due date
+    case gradedLate
 
     /// excused, regardless of submission or due date
     case excused
 
     /// custom status, regardless of submission or due date
     case custom(id: String, name: String)
+
+    // MARK: - Init
 
     public init(
         isSubmitted: Bool,
@@ -63,87 +87,236 @@ public enum SubmissionStatus: Equatable {
             .excused
         } else if let customStatusId, let customStatusName {
             .custom(id: customStatusId, name: customStatusName)
-        // graded should have priority over late/missing, but currently
-        // all other places in Student app check for late/missing before checking for graded.
-        // We should move the `isGraded` check up here once SubmissionStatus is unified in MBL-19323.
-        // This logic is currently used only in Student Assignment List, so it won't cause issues in Teacher.
+        } else if isGraded && isGradeBelongsToCurrentSubmission {
+            if isLate {
+                .gradedLate
+            } else if isMissing {
+                .gradedMissing
+            } else {
+                .graded
+            }
         } else if isLate {
             .late
         } else if isMissing {
-            .missing
-        } else if isGraded {
-            isGradeBelongsToCurrentSubmission ? .graded : .submitted
+            if isSubmitted {
+                .missingButSubmitted
+            } else {
+                .missing
+            }
         } else if isSubmitted {
             .submitted
         } else if submissionType == .on_paper {
             .onPaper
         } else if submissionType == SubmissionType.none {
             .noSubmission
+        } else if submissionType == .not_graded {
+            .notGradable
         } else {
             .notSubmitted
         }
     }
+}
+
+// MARK: - Computed properties
+
+extension SubmissionStatus {
 
     // TODO: uncomment and replace Submission.isGraded with this one in MBL-19323
-//    public var isGraded: Bool {
-//        switch self {
-//        case .excused,
-//             .custom,
-//             .graded:
-//            true
-//        case .late,
-//             .missing,
-//             .submitted,
-//             .notSubmitted,
-//             .onPaper,
-//             .noSubmission:
-//            false
-//        }
-//    }
+    /// Returns `true` for all graded statuses, including `excused` and `custom` too.
+    public var isGraded: Bool {
+        switch self {
+        case .graded,
+             .gradedMissing,
+             .gradedLate,
+             .excused,
+             .custom:
+            true
+        case .notSubmitted,
+             .onPaper,
+             .noSubmission,
+             .notGradable,
+             .missing,
+             .submitted,
+             .late,
+             .missingButSubmitted:
+            false
+        }
+    }
+
+    /// Returns `true` for all submitted statuses which are not graded.
+    public var isSubmittedButNotGraded: Bool {
+        switch self {
+        case .submitted,
+             .late,
+             .missingButSubmitted:
+            true
+        case .notSubmitted,
+             .onPaper,
+             .noSubmission,
+             .notGradable,
+             .missing,
+             .graded,
+             .gradedLate,
+             .gradedMissing,
+             .custom,
+             .excused:
+            false
+        }
+    }
+
+    /// Returns `true` for all not submitted but submittable statuses which are not graded.
+    public var isNotSubmittedNotGraded: Bool {
+        switch self {
+        case .notSubmitted,
+             .missing:
+            true
+        case
+             .onPaper,
+             .noSubmission,
+             .notGradable,
+             .submitted,
+             .late,
+             .missingButSubmitted,
+             .graded,
+             .gradedLate,
+             .gradedMissing,
+             .custom,
+             .excused:
+            false
+        }
+    }
+
+    /// Returns `true` for all not submittable statuses which are not graded, marked Missing or Late.
+    public var isNotSubmittable: Bool {
+        switch self {
+        case .onPaper,
+             .noSubmission,
+             .notGradable:
+            true
+        case .notSubmitted,
+             .missing,
+             .submitted,
+             .late,
+             .missingButSubmitted,
+             .graded,
+             .gradedMissing,
+             .gradedLate,
+             .custom,
+             .excused:
+            false
+        }
+    }
+
+    /// Returns `true` for any late statuses, regardless of graded or not.
+    /// Late does not require an actual submission, because teachers can mark a submission Late any time.
+    public var isLate: Bool {
+        switch self {
+        case .late,
+             .gradedLate:
+            true
+        case .notSubmitted,
+             .onPaper,
+             .noSubmission,
+             .notGradable,
+             .missing,
+             .submitted,
+             .missingButSubmitted,
+             .graded,
+             .gradedMissing,
+             .custom,
+             .excused:
+            false
+        }
+    }
+
+    /// Returns `true` for any missing statuses, regardless of graded or not.
+    /// Missing does not necessarily mean there is no submission, because teachers can mark a submission Missing any time.
+    public var isMissing: Bool {
+        switch self {
+        case .missing,
+             .missingButSubmitted,
+             .gradedMissing:
+            true
+        case .notSubmitted,
+             .onPaper,
+             .noSubmission,
+             .notGradable,
+             .submitted,
+             .late,
+             .graded,
+             .gradedLate,
+             .custom,
+             .excused:
+            false
+        }
+    }
 }
 
 // MARK: - View Model
 
 extension SubmissionStatus {
-    public var text: String {
+    public var viewModel: SubmissionStatusLabel.Model {
         switch self {
-        case .notSubmitted: String(localized: "Not Submitted", bundle: .core)
-        case .submitted: String(localized: "Submitted", bundle: .core)
-        case .late: String(localized: "Late", bundle: .core)
-        case .missing: String(localized: "Missing", bundle: .core)
-        case .graded: String(localized: "Graded", bundle: .core)
-        case .excused: String(localized: "Excused", bundle: .core)
-        case .custom(_, let name): name
-        case .onPaper: String(localized: "On Paper", bundle: .core)
-        case .noSubmission: String(localized: "No Submission", bundle: .core)
-        }
-    }
-
-    public var color: Color {
-        switch self {
-        case .notSubmitted: .textDark
-        case .submitted: .textSuccess
-        case .late: .textWarning
-        case .missing: .textDanger
-        case .graded: .textSuccess
-        case .excused: .textWarning
-        case .custom: .textInfo
-        case .onPaper: .textDark
-        case .noSubmission: .textDark
-        }
-    }
-
-    public var icon: Image {
-        switch self {
-        case .notSubmitted: .noSolid
-        case .submitted: .completeLine
-        case .late: .clockLine
-        case .missing: .noSolid
-        case .graded: .completeSolid
-        case .excused: .completeSolid
-        case .custom: .flagLine
-        case .onPaper: .noSolid
-        case .noSubmission: .noSolid
+        case .notSubmitted:
+            .init(
+                text: String(localized: "Not Submitted", bundle: .core),
+                icon: .noSolid,
+                color: .textDark
+            )
+        case .submitted:
+            .init(
+                text: String(localized: "Submitted", bundle: .core),
+                icon: .completeLine,
+                color: .textSuccess
+            )
+        case .late:
+            .init(
+                text: String(localized: "Late", bundle: .core),
+                icon: .clockLine,
+                color: .textWarning
+            )
+        case .missing, .missingButSubmitted:
+            .init(
+                text: String(localized: "Missing", bundle: .core),
+                icon: .noSolid,
+                color: .textDanger
+            )
+        case .graded, .gradedMissing, .gradedLate:
+            .init(
+                text: String(localized: "Graded", bundle: .core),
+                icon: .completeSolid,
+                color: .textSuccess
+            )
+        case .excused:
+            .init(
+                text: String(localized: "Excused", bundle: .core),
+                icon: .completeSolid,
+                color: .textWarning
+            )
+        case .custom(_, let name):
+            .init(
+                text: name,
+                icon: .flagLine,
+                color: .textInfo
+            )
+        case .onPaper:
+            .init(
+                text: String(localized: "On Paper", bundle: .core),
+                icon: .noSolid,
+                color: .textDark
+            )
+        case .noSubmission:
+            .init(
+                text: String(localized: "No Submission", bundle: .core),
+                icon: .noSolid,
+                color: .textDark
+            )
+        case .notGradable:
+            .init(
+                text: String(localized: "Not Graded", bundle: .core),
+                icon: .noSolid,
+                color: .textDark
+            )
         }
     }
 
@@ -153,12 +326,13 @@ extension SubmissionStatus {
         case .notSubmitted: .noSolid
         case .submitted: .completeLine
         case .late: .clockLine
-        case .missing: .noSolid
-        case .graded: .completeSolid
+        case .missing, .missingButSubmitted: .noSolid
+        case .graded, .gradedMissing, .gradedLate: .completeSolid
         case .excused: .completeSolid
         case .custom: .flagLine
         case .onPaper: .noSolid
         case .noSubmission: .noSolid
+        case .notGradable: .noSolid
         }
     }
 }

@@ -67,7 +67,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
         self.dueDates = dateTextsProvider.summarizedDueDates(for: assignment)
 
         let status = submission?.status ?? .notSubmitted
-        self.submissionStatus = .init(status: status)
+        self.submissionStatus = status.viewModel
 
         let hasPointsPossible = assignment.pointsPossible != nil
         let score = hasPointsPossible && status != .excused
@@ -112,7 +112,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
                         tag: checkpoint.tag,
                         title: checkpoint.title,
                         dueDate: DueDateFormatter.format(checkpoint.dueDate, lockDate: checkpoint.lockDate),
-                        submissionStatus: .init(status: status),
+                        submissionStatus: status.viewModel,
                         score: score,
                         scoreA11yLabel: scoreA11yLabel
                     )

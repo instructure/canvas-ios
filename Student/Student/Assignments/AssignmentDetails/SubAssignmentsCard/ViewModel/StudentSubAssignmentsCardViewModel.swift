@@ -57,7 +57,7 @@ struct StudentSubAssignmentsCardViewModel {
                 return StudentSubAssignmentsCardItem(
                     id: checkpoint.tag,
                     title: checkpoint.title,
-                    submissionStatus: .init(status: status),
+                    submissionStatus: status.viewModel,
                     score: score,
                     scoreA11yLabel: scoreA11yLabel
                 )
