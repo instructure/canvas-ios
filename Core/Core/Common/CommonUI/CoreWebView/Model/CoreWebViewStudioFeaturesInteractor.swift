@@ -43,7 +43,7 @@ public class CoreWebViewStudioFeaturesInteractor {
         scanVideoFramesForTitles();
     """
 
-    unowned let webView: CoreWebView
+    private(set) weak var webView: CoreWebView?
     private var studioImprovementsFlagStore: ReactiveStore<GetFeatureFlagState>?
     private var storeSubscription: AnyCancellable?
 
@@ -83,11 +83,11 @@ public class CoreWebViewStudioFeaturesInteractor {
 
         if url.containsQueryItem(named: "title") == false,
             let title = videoPlayerFrameTitle(matching: url) {
-            url.append(queryItems: [.init(name: "title", value: title)])
+            url = url.appendingQueryItems(.init(name: "title", value: title))
         }
 
         if url.containsQueryItem(named: "embedded") == false {
-            url.append(queryItems: [.init(name: "embedded", value: "true")])
+            url = url.appendingQueryItems(.init(name: "embedded", value: "true"))
         }
 
         return url
@@ -99,9 +99,17 @@ public class CoreWebViewStudioFeaturesInteractor {
     /// later to set immersive video player title. This mainly useful when triggering the player
     /// from a button that's internal to video-frame. (`Expand` button)
     func scanVideoFrames() {
+        guard let webView else { return }
 
         videoFramesTitleMap.removeAll()
-        webView.evaluateJavaScript(Self.scanFramesScript) { [weak self] result, _ in
+        webView.evaluateJavaScript(Self.scanFramesScript) { [weak self] result, error in
+
+            if let error {
+                RemoteLogger.shared.logError(
+                    name: "Error scanning video iframes elements",
+                    reason: error.localizedDescription
+                )
+            }
 
             var mapped: [String: String] = [:]
 
@@ -143,6 +151,8 @@ public class CoreWebViewStudioFeaturesInteractor {
     }
 
     private func updateStudioImprovementFeature(isEnabled: Bool) {
+        guard let webView else { return }
+
         if isEnabled {
             webView.addFeature(.insertStudioOpenInDetailButtons)
         } else {
