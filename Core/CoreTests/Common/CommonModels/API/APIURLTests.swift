@@ -111,6 +111,11 @@ class APIURLTests: CoreTestCase {
             try decoder.decode(APIURL.self, from: try encoder.encode("https://domain.com?q=[some%20value]")),
             .make(rawValue: URL(string: "https://domain.com?q=%5Bsome%20value%5D")!)
         )
+
+        XCTAssertEqual(
+            try decoder.decode(APIURL.self, from: try encoder.encode("https://domain.com?q=[some value]&a=another%20value")),
+            .make(rawValue: URL(string: "https://domain.com?q=%5Bsome%20value%5D&a=another%20value")!)
+        )
     }
 }
 

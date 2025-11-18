@@ -35,7 +35,7 @@ public struct APIURL: Codable, Equatable {
         let container = try decoder.singleValueContainer()
         let string = try container.decode(String.self)
             .removingXMLEscaping
-            .fixingBracketsPercentEncoding
+            .removingQueryPercentEncoding
         if let url = URL(string: string, relativeTo: baseURL) {
             rawValue = url
             return
@@ -71,28 +71,32 @@ extension KeyedDecodingContainer {
     }
 }
 
-private extension String {
+/// Keeping this private as they aim to fix a specific issue with URL strings
+/// retrieved from BackEnd: Such strings get percent-encoded except for brackets
+/// characters `[` & `]` in query part. Thus resulting into double encoding for some
+/// other characters when fed to `URL.init(string:)` leading to failure on request.
+///
+/// Those methods aim to remove percent-encoding entirely for the query part, so
+/// they get encoded properly as a whole when using `URL.init(string:)` with
+/// the resulting string.
+extension String {
 
-    var hasPercentEncoding: Bool {
-        let decoded = removingPercentEncoding ?? self
-        return decoded != self
+    private var removingPercentEncodingDeeply: String {
+        var value = self
+        while let decoded = value.removingPercentEncoding, decoded != value {
+            value = decoded
+        }
+        return value
     }
 
-    /// This is fix string with already percent-encoded query except for
-    /// brackets characters `[` & `]`. This is to avoid double percent-encoding
-    /// for an already encoded characters when fed to `URL.init(string:)`,
-    /// leading to failure on request.
-    var fixingBracketsPercentEncoding: String {
-        guard hasPercentEncoding else { return self }
-
-        var value = self
-        ["[", "]"].forEach { char in
-            if let encoded = char.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-                value = value.replacingOccurrences(of: char, with: encoded)
+    fileprivate var removingQueryPercentEncoding: String {
+        if var comps = URLComponents(string: self) {
+            if let fixedQuery = comps.query?.removingPercentEncodingDeeply {
+                comps.query = fixedQuery
             }
+            return comps.string ?? self
         }
-
-        return value
+        return self
     }
 }
 
