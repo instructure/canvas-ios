@@ -95,6 +95,93 @@ class PlannableTests: CoreTestCase {
         XCTAssertTrue(plannable.isSubmitted)
     }
 
+    func testSaveAPIPlannable_savesAllDayAndEndAt() {
+        // GIVEN
+        let startDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+        let endDate = Date.make(year: 2025, month: 9, day: 30, hour: 16, minute: 0)
+        let apiPlannable = APIPlannable.make(
+            plannable: .make(
+                title: "Test Event",
+                all_day: true,
+                start_at: startDate,
+                end_at: endDate
+            ),
+            plannable_date: startDate
+        )
+
+        // WHEN
+        let plannable = Plannable.save(apiPlannable, userId: nil, in: databaseClient)
+
+        // THEN
+        XCTAssertTrue(plannable.isAllDay)
+        XCTAssertEqual(plannable.endAt, endDate)
+    }
+
+    func testSaveAPIPlannable_savesAllDayFalse_whenNilInAPI() {
+        // GIVEN
+        let startDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+        let apiPlannable = APIPlannable.make(
+            plannable: .make(
+                title: "Test Event",
+                all_day: nil,
+                start_at: startDate,
+                end_at: nil
+            ),
+            plannable_date: startDate
+        )
+
+        // WHEN
+        let plannable = Plannable.save(apiPlannable, userId: nil, in: databaseClient)
+
+        // THEN
+        XCTAssertFalse(plannable.isAllDay)
+        XCTAssertNil(plannable.endAt)
+    }
+
+    func testSaveAPICalendarEvent_savesAllDayAndEndAt() {
+        // GIVEN
+        let startDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+        let endDate = Date.make(year: 2025, month: 9, day: 30, hour: 16, minute: 0)
+        let apiCalendarEvent = APICalendarEvent.make(
+            id: "event-123",
+            title: "Calendar Event",
+            start_at: startDate,
+            end_at: endDate,
+            all_day: true,
+            type: .event,
+            context_code: "course_123"
+        )
+
+        // WHEN
+        let plannable = Plannable.save(apiCalendarEvent, userId: nil, in: databaseClient)
+
+        // THEN
+        XCTAssertTrue(plannable.isAllDay)
+        XCTAssertEqual(plannable.endAt, endDate)
+        XCTAssertEqual(plannable.date, startDate)
+    }
+
+    func testSaveAPICalendarEvent_savesAllDayFalse() {
+        // GIVEN
+        let startDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+        let apiCalendarEvent = APICalendarEvent.make(
+            id: "event-123",
+            title: "Calendar Event",
+            start_at: startDate,
+            end_at: nil,
+            all_day: false,
+            type: .event,
+            context_code: "course_123"
+        )
+
+        // WHEN
+        let plannable = Plannable.save(apiCalendarEvent, userId: nil, in: databaseClient)
+
+        // THEN
+        XCTAssertFalse(plannable.isAllDay)
+        XCTAssertNil(plannable.endAt)
+    }
+
     func testSaveAPIPlannerNote() {
         var apiPlannerNote = APIPlannerNote.make(
             id: TestConstants.plannableId,

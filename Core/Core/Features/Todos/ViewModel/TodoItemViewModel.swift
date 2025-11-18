@@ -59,7 +59,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         self.plannableId = plannable.id
         self.type = plannable.plannableType
         self.date = date
-        self.dateText = date.timeOnlyString
+        self.dateText = Self.formatDateText(date: date, isAllDay: plannable.isAllDay, endAt: plannable.endAt)
 
         self.title = plannable.title ?? ""
         self.subtitle = plannable.discussionCheckpointStep?.text
@@ -92,12 +92,14 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         htmlURL: URL?,
         color: Color,
         icon: Image,
-        overrideId: String? = nil
+        overrideId: String? = nil,
+        isAllDay: Bool = false,
+        endAt: Date? = nil
     ) {
         self.plannableId = plannableId
         self.type = type
         self.date = date
-        self.dateText = date.timeOnlyString
+        self.dateText = Self.formatDateText(date: date, isAllDay: isAllDay, endAt: endAt)
 
         self.title = title
         self.subtitle = subtitle
@@ -140,6 +142,22 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
             return nil
         case .done:
             return String(localized: "Mark as not done", bundle: .core)
+        }
+    }
+
+    /// Helper function to format the date text for a Todo item.
+    /// - Parameters:
+    ///   - date: The start date of the todo item.
+    ///   - isAllDay: Whether the event is an all-day event.
+    ///   - endAt: The end date if the event has a time range.
+    /// - Returns: Formatted date string.
+    static func formatDateText(date: Date, isAllDay: Bool, endAt: Date?) -> String {
+        if isAllDay {
+            String(localized: "All Day", bundle: .core)
+        } else if let end = endAt {
+            date.timeIntervalString(to: end)
+        } else {
+            date.timeOnlyString
         }
     }
 

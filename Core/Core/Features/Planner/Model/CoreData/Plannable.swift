@@ -40,6 +40,8 @@ public final class Plannable: NSManagedObject {
     @NSManaged public var canvasContextIDRaw: String?
     @NSManaged public var contextName: String?
     @NSManaged public var date: Date?
+    @NSManaged public var isAllDay: Bool
+    @NSManaged public var endAt: Date?
     @NSManaged public var hasDate: Bool
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var userID: String?
@@ -87,6 +89,8 @@ public final class Plannable: NSManagedObject {
         model.title = item.plannable?.title
         model.date = item.plannable_date
         model.hasDate = true
+        model.isAllDay = item.plannable?.all_day ?? false
+        model.endAt = item.plannable?.end_at
         model.pointsPossible = item.plannable?.points_possible
         model.details = item.plannable?.details
         model.context = item.context
@@ -137,6 +141,8 @@ public final class Plannable: NSManagedObject {
         model.contextName = item.context_name
         model.date = item.start_at
         model.hasDate = item.start_at != nil
+        model.isAllDay = item.all_day
+        model.endAt = item.end_at
         model.pointsPossible = item.assignment?.points_possible
         model.details = item.description
         model.userID = userId

@@ -276,6 +276,175 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem.date, specificDate)
     }
 
+    // MARK: - Date Formatting Tests
+
+    func test_formatDateText_returnsAllDay_whenIsAllDayIsTrue() {
+        // GIVEN
+        let date = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+
+        // WHEN
+        let result = TodoItemViewModel.formatDateText(date: date, isAllDay: true, endAt: nil)
+
+        // THEN
+        XCTAssertEqual(result, "All Day")
+    }
+
+    func test_formatDateText_returnsTimeRange_whenEndAtIsProvided() {
+        // GIVEN
+        let startDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+        let endDate = Date.make(year: 2025, month: 9, day: 30, hour: 16, minute: 0)
+
+        // WHEN
+        let result = TodoItemViewModel.formatDateText(date: startDate, isAllDay: false, endAt: endDate)
+
+        // THEN
+        XCTAssertEqual(result, startDate.timeIntervalString(to: endDate))
+    }
+
+    func test_formatDateText_returnsSingleTime_whenNotAllDayAndNoEndDate() {
+        // GIVEN
+        let date = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+
+        // WHEN
+        let result = TodoItemViewModel.formatDateText(date: date, isAllDay: false, endAt: nil)
+
+        // THEN
+        XCTAssertEqual(result, date.timeOnlyString)
+    }
+
+    func test_formatDateText_prioritizesAllDay_overEndAt() {
+        // GIVEN
+        let startDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+        let endDate = Date.make(year: 2025, month: 9, day: 30, hour: 16, minute: 0)
+
+        // WHEN
+        let result = TodoItemViewModel.formatDateText(date: startDate, isAllDay: true, endAt: endDate)
+
+        // THEN
+        XCTAssertEqual(result, "All Day")
+    }
+
+    func test_init_withPlannable_setsAllDayDateText() {
+        // GIVEN
+        let date = Date.make(year: 2025, month: 9, day: 30, hour: 0, minute: 0)
+        let plannable = Plannable.save(
+            APIPlannable.make(
+                plannable: .make(
+                    title: "All Day Event",
+                    all_day: true,
+                    start_at: date,
+                    end_at: nil
+                ),
+                plannable_date: date
+            ),
+            userId: nil,
+            in: databaseClient
+        )
+
+        // WHEN
+        let todoItem = TodoItemViewModel(plannable)
+
+        // THEN
+        XCTAssertNotNil(todoItem)
+        XCTAssertEqual(todoItem?.dateText, "All Day")
+    }
+
+    func test_init_withPlannable_setsTimeRangeDateText() {
+        // GIVEN
+        let startDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+        let endDate = Date.make(year: 2025, month: 9, day: 30, hour: 16, minute: 0)
+        let plannable = Plannable.save(
+            APIPlannable.make(
+                plannable: .make(
+                    title: "Time Range Event",
+                    all_day: false,
+                    start_at: startDate,
+                    end_at: endDate
+                ),
+                plannable_date: startDate
+            ),
+            userId: nil,
+            in: databaseClient
+        )
+
+        // WHEN
+        let todoItem = TodoItemViewModel(plannable)
+
+        // THEN
+        XCTAssertNotNil(todoItem)
+        XCTAssertEqual(todoItem?.dateText, startDate.timeIntervalString(to: endDate))
+    }
+
+    func test_init_withPlannable_setsSingleTimeDateText() {
+        // GIVEN
+        let date = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+        let plannable = Plannable.save(
+            APIPlannable.make(
+                plannable: .make(
+                    title: "Single Time Event",
+                    all_day: false,
+                    start_at: date,
+                    end_at: nil
+                ),
+                plannable_date: date
+            ),
+            userId: nil,
+            in: databaseClient
+        )
+
+        // WHEN
+        let todoItem = TodoItemViewModel(plannable)
+
+        // THEN
+        XCTAssertNotNil(todoItem)
+        XCTAssertEqual(todoItem?.dateText, date.timeOnlyString)
+    }
+
+    func test_init_withDirectParams_setsAllDayDateText() {
+        // GIVEN
+        let date = Date.make(year: 2025, month: 9, day: 30, hour: 0, minute: 0)
+
+        // WHEN
+        let todoItem = TodoItemViewModel(
+            plannableId: "all-day-id",
+            type: .calendar_event,
+            date: date,
+            title: "All Day Event",
+            subtitle: nil,
+            contextName: "Test Course",
+            htmlURL: nil,
+            color: .blue,
+            icon: .calendarMonthLine,
+            isAllDay: true
+        )
+
+        // THEN
+        XCTAssertEqual(todoItem.dateText, "All Day")
+    }
+
+    func test_init_withDirectParams_setsTimeRangeDateText() {
+        // GIVEN
+        let startDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+        let endDate = Date.make(year: 2025, month: 9, day: 30, hour: 16, minute: 0)
+
+        // WHEN
+        let todoItem = TodoItemViewModel(
+            plannableId: "time-range-id",
+            type: .calendar_event,
+            date: startDate,
+            title: "Time Range Event",
+            subtitle: nil,
+            contextName: "Test Course",
+            htmlURL: nil,
+            color: .blue,
+            icon: .calendarMonthLine,
+            endAt: endDate
+        )
+
+        // THEN
+        XCTAssertEqual(todoItem.dateText, startDate.timeIntervalString(to: endDate))
+    }
+
     // MARK: - Mark As Done State
 
     func test_markAsDoneState_initializesToNotDone_whenPlannableIsNotComplete() {

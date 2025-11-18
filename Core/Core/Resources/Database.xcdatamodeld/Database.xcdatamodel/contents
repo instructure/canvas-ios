@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24G231" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24411" systemVersion="24G325" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="closed" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -1251,9 +1251,11 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="discussionCheckpointStepRaw" optional="YES" attributeType="Transformable" valueTransformerName="DiscussionCheckpointStepTransformer" customClassName="Core.DiscussionCheckpointStepWrapper"/>
+        <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="hasDate" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isAllDay" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isMarkedComplete" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="originUseCaseIDRaw" optional="YES" attributeType="String"/>
