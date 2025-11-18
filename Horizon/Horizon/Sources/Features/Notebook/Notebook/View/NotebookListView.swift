@@ -180,7 +180,7 @@ struct NotebookListView: View {
         }
     }
 }
-
+#if DEBUG
 #Preview {
     NotebookListView(
         viewModel: .init(
@@ -190,3 +190,4 @@ struct NotebookListView: View {
         )
     )
 }
+#endif
