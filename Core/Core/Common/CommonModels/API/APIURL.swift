@@ -33,7 +33,9 @@ public struct APIURL: Codable, Equatable {
     public init(from decoder: Decoder) throws {
         let baseURL = AppEnvironment.shared.currentSession?.baseURL
         let container = try decoder.singleValueContainer()
-        let string = try container.decode(String.self).removingXMLEscaping
+        let string = try container.decode(String.self)
+            .removingXMLEscaping
+            .fixingBracketsPercentEncoding
         if let url = URL(string: string, relativeTo: baseURL) {
             rawValue = url
             return
@@ -66,6 +68,31 @@ extension KeyedDecodingContainer {
 
     public func decodeIfPresent(_ type: APIURL.Type, forKey key: Self.Key) throws -> APIURL? {
         try decodeURLIfPresent(forKey: key)
+    }
+}
+
+private extension String {
+
+    var hasPercentEncoding: Bool {
+        let decoded = removingPercentEncoding ?? self
+        return decoded != self
+    }
+
+    /// This is fix string with already percent-encoded query except for
+    /// brackets characters `[` & `]`. This is to avoid double percent-encoding
+    /// for an already encoded characters when fed to `URL.init(string:)`,
+    /// leading to failure on request.
+    var fixingBracketsPercentEncoding: String {
+        guard hasPercentEncoding else { return self }
+
+        var value = self
+        ["[", "]"].forEach { char in
+            if let encoded = char.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                value = value.replacingOccurrences(of: char, with: encoded)
+            }
+        }
+
+        return value
     }
 }
 
