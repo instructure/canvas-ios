@@ -32,7 +32,27 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
 
-    lazy var addButton = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(addItem))
+    lazy var addButton: UIBarButtonItem = {
+        var button = UIBarButtonItem(image: .addSolid)
+
+        let addFolderAction = UIAction(title: .init(localized: "Add Folder", bundle: .core), image: .folderLine) { [weak self] _ in
+            self?.addFolder()
+        }
+        addFolderAction.accessibilityIdentifier = "FileList.addFolderButton"
+
+        let addFileAction = UIAction(title: .init(localized: "Add File", bundle: .core), image: .addDocumentLine) { [weak self] _ in
+            guard let self = self else { return }
+            self.filePicker.pick(from: self)
+        }
+        addFileAction.accessibilityIdentifier = "FileList.addFileButton"
+
+        let menu = UIMenu(children: !isStudentAccessRestricted ? [addFolderAction, addFileAction] : [addFolderAction])
+
+        return UIBarButtonItem(image: .addSolid, menu: menu)
+    }()
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    lazy var legacyAddButton = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(addItem))
     lazy var editButton = UIBarButtonItem(
         title: String(localized: "Edit", bundle: .core), style: .plain,
         target: self, action: #selector(edit)
@@ -112,6 +132,8 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
 
         addButton.accessibilityIdentifier = "FileList.addButton"
         addButton.accessibilityLabel = String(localized: "Add Item", bundle: .core)
+        legacyAddButton.accessibilityIdentifier = "FileList.addButton"
+        legacyAddButton.accessibilityLabel = String(localized: "Add Item", bundle: .core)
         editButton.accessibilityIdentifier = "FileList.editButton"
 
         emptyImageView.image = UIImage(named: Panda.FilePicker.name, in: .core, compatibleWith: nil)
@@ -326,9 +348,10 @@ extension FileListViewController: UISearchBarDelegate {
 
 extension FileListViewController: FilePickerDelegate {
     func updateNavButtons() {
+        let button = if #available(iOS 26, *) { addButton } else { legacyAddButton }
         navigationItem.rightBarButtonItems = [
-            canAddItem ? addButton : nil,
-            canEditFolder ? editButton : nil
+            /*canAddItem ?*/ button /* : nil*/,
+            /*canEditFolder ?*/ editButton /*: nil*/
         ].compactMap { $0 }
     }
 
@@ -350,6 +373,7 @@ extension FileListViewController: FilePickerDelegate {
         folder.first?.canUpload == true
     }
 
+    @available(iOS, deprecated: 26)
     @objc func addItem() {
         let sheet = BottomSheetPickerViewController.create()
         sheet.addAction(

@@ -131,11 +131,9 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-		if #available(iOS 26, *) {
-			DispatchQueue.main.async {
-				self.tableView.contentOffset.y = self.searchBar.frame.height
-			}
-		}
+        DispatchQueue.main.async {
+            self.tableView.contentOffset.y = self.searchBar.frame.height
+        }
     }
 
     func updateNavBar() {

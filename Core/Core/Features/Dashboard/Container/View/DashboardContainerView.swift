@@ -185,23 +185,20 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 	@available(iOS, introduced: 26, message: "Legacy version exists")
 	private var optionsKebabMenu: some View {
         Menu {
-            Button {
+            Button(.init("Manage Offline Content", bundle: .core), image: .offlineLine) {
                 if offlineModeViewModel.isOffline {
                     UIAlertController.showItemNotAvailableInOfflineAlert()
                 } else {
                     env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
                 }
-            } label: {
-                Text("Manage Offline Content", bundle: .core)
             }
-            Button {
+
+            Button(.init("Dashboard Settings", bundle: .core), image: .settingsSolid) {
                 guard controller.value.presentedViewController == nil else {
                     controller.value.presentedViewController?.dismiss(animated: true)
                     return
                 }
                 viewModel.settingsButtonTapped.send()
-            } label: {
-                Text("Dashboard Settings", bundle: .core)
             }
         } label: {
             Image.moreSolid

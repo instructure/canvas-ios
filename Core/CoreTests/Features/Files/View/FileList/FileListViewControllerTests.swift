@@ -218,8 +218,8 @@ class FileListViewControllerTests: CoreTestCase {
         controller.viewWillAppear(false)
         drainMainQueue()
 
-        XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.contains(controller.addButton), true)
-        _ = controller.addButton.target?.perform(controller.addButton.action)
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.contains(controller.legacyAddButton), true)
+        _ = controller.legacyAddButton.target?.perform(controller.legacyAddButton.action)
         let sheet = router.presented as? BottomSheetPickerViewController
         XCTAssertEqual(sheet?.actions.first?.title, "Add Folder")
         sheet?.actions.first?.action()
@@ -246,8 +246,8 @@ class FileListViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
-        XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.contains(controller.addButton), true)
-        _ = controller.addButton.target?.perform(controller.addButton.action)
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.contains(controller.legacyAddButton), true)
+        _ = controller.legacyAddButton.target?.perform(controller.legacyAddButton.action)
         let sheet = router.presented as? BottomSheetPickerViewController
         XCTAssertEqual(sheet?.actions.last?.title, "Add File")
         router.calls = []
@@ -291,7 +291,7 @@ class FileListViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
-        _ = controller.addButton.target?.perform(controller.addButton.action)
+        _ = controller.legacyAddButton.target?.perform(controller.legacyAddButton.action)
         let sheet = router.presented as? BottomSheetPickerViewController
         let titles = sheet?.actions.map { $0.title } ?? []
 
@@ -313,7 +313,7 @@ class FileListViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
-        _ = controller.addButton.target?.perform(controller.addButton.action)
+        _ = controller.legacyAddButton.target?.perform(controller.legacyAddButton.action)
         let sheet = router.presented as? BottomSheetPickerViewController
         let titles = sheet?.actions.map { $0.title } ?? []
         XCTAssertFalse(titles.contains("Add File"), "Add File should be hidden when restricted")
