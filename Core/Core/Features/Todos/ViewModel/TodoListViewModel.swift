@@ -63,6 +63,7 @@ class TodoListViewModel: ObservableObject {
         self.scheduler = scheduler
 
         interactor.todoGroups
+            .receive(on: scheduler)
             .assign(to: \.items, on: self, ownership: .weak)
             .store(in: &subscriptions)
 

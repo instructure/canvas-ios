@@ -38,7 +38,7 @@ public struct TodoFilterScreen: View {
                 dateRangeEndSection
             }
         }
-        .navigationBarTitle(Text("To Do list Preferences", bundle: .core), displayMode: .inline)
+        .navigationBarTitle(Text("To-do List Preferences", bundle: .core), displayMode: .inline)
         .navigationBarItems(
             leading: cancelButton,
             trailing: doneButton

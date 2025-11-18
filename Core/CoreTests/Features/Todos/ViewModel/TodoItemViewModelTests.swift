@@ -23,9 +23,9 @@ import SwiftUI
 
 class TodoItemViewModelTests: CoreTestCase {
 
-    // MARK: - Tests
+    // MARK: - Initialization Tests
 
-    func testInitFromPlannableWithValidDate() {
+    func test_init_setsPropertiesFromPlannable() {
         // When
         let date = Date()
         let plannable = makePlannable(
@@ -50,7 +50,7 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem?.htmlURL, URL(string: "https://example.com"))
     }
 
-    func testInitFromPlannableWithEmptyTitle() {
+    func test_init_handlesEmptyTitle() {
         // When
         let plannable = makePlannable(plannable: .make(title: nil))
         let todoItem = TodoItemViewModel(plannable)
@@ -60,7 +60,7 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem?.title, "")
     }
 
-    func testInitFromPlannableWithDiscussionCheckpointStep() {
+    func test_init_setsDiscussionCheckpointSubtitle() {
         // When
         let plannable = makePlannable(
             plannableType: "sub_assignment",
@@ -78,7 +78,7 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem?.subtitle, "Reply to topic")
     }
 
-    func testInitFromPlannableWithRequiredRepliesCheckpointStep() {
+    func test_init_setsRequiredRepliesSubtitle() {
         // When
         let plannable = makePlannable(
             plannableType: "sub_assignment",
@@ -96,7 +96,7 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem?.subtitle, "Additional replies (3)")
     }
 
-    func testInitFromPlannableWithPlannerNote() {
+    func test_init_formatsPlannerNoteContextName() {
         // When
         let plannable = makePlannable(
             plannableType: "planner_note",
@@ -111,7 +111,7 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem?.contextName, "Math 101 To-do")
     }
 
-    func testInitFromPlannableWithPlannerNoteNoContextName() {
+    func test_init_handlesPlannerNoteWithoutContextName() {
         // When
         let plannable = makePlannable(
             plannableType: "planner_note",
@@ -125,7 +125,7 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem?.contextName, "To-do")
     }
 
-    func testDirectInit() {
+    func test_init_setsPropertiesDirectly() {
         // When
         let date = Date()
         let url = URL(string: "https://example.com")!
@@ -153,7 +153,9 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem.color, .blue)
     }
 
-    func testMakeFactoryMethod() {
+    // MARK: - Factory Methods
+
+    func test_make_createsInstanceWithFactoryMethod() {
         // When
         let date = Date()
         let url = URL(string: "https://example.com")!
@@ -180,7 +182,9 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem.color, .green)
     }
 
-    func testEquality() {
+    // MARK: - Equatable & Comparable
+
+    func test_equatable_comparesCorrectly() {
         // When
         let date = Date()
         let url = URL(string: "https://example.com")!
@@ -225,7 +229,7 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertNotEqual(todoItem1, todoItem3)
     }
 
-    func testDifferentPlannableTypes() {
+    func test_init_handlesAllPlannableTypes() {
         // Given
         let allTypes: [PlannableType] = [
             .announcement,
@@ -250,7 +254,7 @@ class TodoItemViewModelTests: CoreTestCase {
         }
     }
 
-    func testDateTextProperty() {
+    func test_dateText_formatsCorrectly() {
         // Given
         let specificDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
 
@@ -271,6 +275,8 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem.dateText, specificDate.timeOnlyString)
         XCTAssertEqual(todoItem.date, specificDate)
     }
+
+    // MARK: - Mark As Done State
 
     func test_markAsDoneState_initializesToNotDone_whenPlannableIsNotComplete() {
         // GIVEN
@@ -305,6 +311,91 @@ class TodoItemViewModelTests: CoreTestCase {
         // THEN
         XCTAssertNotNil(todoItem)
         XCTAssertEqual(todoItem?.markAsDoneState, .done)
+    }
+
+    // MARK: - Swipe Properties
+
+    func test_swipeProperties_initializeWithNotDoneState() {
+        // GIVEN
+        let plannable = Plannable.save(
+            APIPlannable.make(plannable_id: ID("1")),
+            userId: nil,
+            in: databaseClient
+        )
+
+        // WHEN
+        let todoItem = TodoItemViewModel(plannable)
+
+        // THEN
+        XCTAssertNotNil(todoItem)
+        XCTAssertEqual(todoItem?.swipeBackgroundColor, .backgroundSuccess)
+        XCTAssertEqual(todoItem?.swipeActionText, "Done")
+        XCTAssertEqual(todoItem?.swipeActionIcon, .checkLine)
+    }
+
+    func test_swipeProperties_updateWhenMarkAsDoneStateChangesToDone() {
+        // GIVEN
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        XCTAssertEqual(todoItem.swipeBackgroundColor, .backgroundSuccess)
+
+        // WHEN
+        todoItem.markAsDoneState = .done
+
+        // THEN
+        XCTAssertEqual(todoItem.swipeBackgroundColor, .backgroundDark)
+        XCTAssertEqual(todoItem.swipeActionText, "Undo")
+        XCTAssertEqual(todoItem.swipeActionIcon, .discussionReply2Line)
+    }
+
+    func test_swipeProperties_updateWhenMarkAsDoneStateChangesToNotDone() {
+        // GIVEN
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .done
+        XCTAssertEqual(todoItem.swipeBackgroundColor, .backgroundDark)
+
+        // WHEN
+        todoItem.markAsDoneState = .notDone
+
+        // THEN
+        XCTAssertEqual(todoItem.swipeBackgroundColor, .backgroundSuccess)
+        XCTAssertEqual(todoItem.swipeActionText, "Done")
+        XCTAssertEqual(todoItem.swipeActionIcon, .checkLine)
+    }
+
+    func test_swipeProperties_updateDuringLoadingState() {
+        // GIVEN
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .done
+        XCTAssertEqual(todoItem.swipeBackgroundColor, .backgroundDark)
+
+        // WHEN
+        todoItem.markAsDoneState = .loading
+
+        // THEN
+        XCTAssertEqual(todoItem.swipeBackgroundColor, .backgroundSuccess)
+        XCTAssertEqual(todoItem.swipeActionText, "Done")
+        XCTAssertEqual(todoItem.swipeActionIcon, .checkLine)
+    }
+
+    func test_swipeProperties_initializeCorrectlyWithDoneState() {
+        // GIVEN
+        let plannable = Plannable.save(
+            APIPlannable.make(
+                planner_override: .make(id: "override-1", marked_complete: true),
+                plannable_id: ID("1")
+            ),
+            userId: nil,
+            in: databaseClient
+        )
+
+        // WHEN
+        let todoItem = TodoItemViewModel(plannable)
+
+        // THEN
+        XCTAssertNotNil(todoItem)
+        XCTAssertEqual(todoItem?.swipeBackgroundColor, .backgroundDark)
+        XCTAssertEqual(todoItem?.swipeActionText, "Undo")
+        XCTAssertEqual(todoItem?.swipeActionIcon, .discussionReply2Line)
     }
 
     // MARK: - Helpers
