@@ -71,27 +71,21 @@ extension KeyedDecodingContainer {
     }
 }
 
-/// Keeping this private as they aim to fix a specific issue with URL strings
-/// retrieved from BackEnd: Such strings get percent-encoded except for brackets
-/// characters `[` & `]` in query part. Thus resulting into double encoding for some
-/// other characters when fed to `URL.init(string:)` leading to failure on request.
-///
-/// Those methods aim to remove percent-encoding entirely for the query part, so
-/// they get encoded properly as a whole when using `URL.init(string:)` with
-/// the resulting string.
-extension String {
 
-    private var removingPercentEncodingDeeply: String {
-        var value = self
-        while let decoded = value.removingPercentEncoding, decoded != value {
-            value = decoded
-        }
-        return value
-    }
+private extension String {
 
-    fileprivate var removingQueryPercentEncoding: String {
+    /// Keeping this private as it aims to fix a specific issue with URL strings
+    /// retrieved from BackEnd: Such strings get percent-encoded except for brackets
+    /// characters `[` & `]` in query part. Thus resulting into double encoding for some
+    /// other characters when fed to `URL.init(string:)` leading to failure on request.
+    ///
+    /// This method removes percent-encoding entirely for the query part, so
+    /// it get encoded properly as a whole when using `URL.init(string:)` with
+    /// the resulting one. It assumes Backend perform only 1 iteration of
+    /// percent-encoding on URL strings.
+    var removingQueryPercentEncoding: String {
         if var comps = URLComponents(string: self) {
-            if let fixedQuery = comps.query?.removingPercentEncodingDeeply {
+            if let fixedQuery = comps.query?.removingPercentEncoding {
                 comps.query = fixedQuery
             }
             return comps.string ?? self
