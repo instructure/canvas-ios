@@ -224,9 +224,8 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 			Button {
 				model.didTapSend.accept(controller)
 			} label: {
-				Image.circleArrowUpLine
-					.resizable()
-					.frame(width: 32, height: 32)
+				Image.arrowUpLine
+                    .resizable()
 			}
 			.buttonStyle(.glassProminent)
 			.accessibility(label: Text("Send", bundle: .core))
@@ -618,7 +617,9 @@ struct ComposeMessageView_Previews: PreviewProvider {
     static let env = PreviewEnvironment()
 
     static var previews: some View {
-        ComposeMessageAssembly.makePreview(env: env)
+        NavigationStack {
+            ComposeMessageAssembly.makePreview(env: env)
+        }
     }
 }
 

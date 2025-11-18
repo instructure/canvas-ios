@@ -162,7 +162,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 	private var rightNavBarButtons: some View {
 		if courseCardListViewModel.shouldShowSettingsButton {
 			if offlineModeViewModel.isOfflineFeatureEnabled, env.app == .student {
-				optionsKebabButton
+				optionsKebabMenu
 			} else {
 				dashboardSettingsButton
 			}
@@ -183,39 +183,30 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 
 	@ViewBuilder
 	@available(iOS, introduced: 26, message: "Legacy version exists")
-	private var optionsKebabButton: some View {
-		Button {
-			// Dismiss dashboard settings popover
-			guard controller.value.presentedViewController == nil else {
-				controller.value.presentedViewController?.dismiss(animated: true)
-				return
-			}
-
-			isShowingKebabDialog.toggle()
-		} label: {
-			Image.moreSolid
-		}
-		.accessibilityLabel(Text("Dashboard Options", bundle: .core))
-		.confirmationDialog("", isPresented: $isShowingKebabDialog) {
-			Button {
-				if offlineModeViewModel.isOffline {
-					UIAlertController.showItemNotAvailableInOfflineAlert()
-				} else {
-					env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
-				}
-			} label: {
-				Text("Manage Offline Content", bundle: .core)
-			}
-			Button {
-				guard controller.value.presentedViewController == nil else {
-					controller.value.presentedViewController?.dismiss(animated: true)
-					return
-				}
-				viewModel.settingsButtonTapped.send()
-			} label: {
-				Text("Dashboard Settings", bundle: .core)
-			}
-		}
+	private var optionsKebabMenu: some View {
+        Menu {
+            Button {
+                if offlineModeViewModel.isOffline {
+                    UIAlertController.showItemNotAvailableInOfflineAlert()
+                } else {
+                    env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
+                }
+            } label: {
+                Text("Manage Offline Content", bundle: .core)
+            }
+            Button {
+                guard controller.value.presentedViewController == nil else {
+                    controller.value.presentedViewController?.dismiss(animated: true)
+                    return
+                }
+                viewModel.settingsButtonTapped.send()
+            } label: {
+                Text("Dashboard Settings", bundle: .core)
+            }
+        } label: {
+            Image.moreSolid
+        }
+        .accessibilityLabel(Text("Dashboard Options", bundle: .core))
 	}
 
     @ViewBuilder

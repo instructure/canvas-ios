@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,35 +18,26 @@
 
 import SwiftUI
 
-@available(iOS, introduced: 26, message: "Legacy version exists")
-public struct MessageView: View {
+@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+public struct LegacyMessageView: View {
     @Environment(\.viewController) private var controller
     @ScaledMetric private var uiScale: CGFloat = 1
 
     private var model: MessageViewModel
     private let isReplyButtonVisible: Bool
-    private let isStudentAccessRestricted: Bool
-    private let replyDidTap: () -> Void
-    private let replyAllDidTap: () -> Void
-    private let forwardDidTap: () -> Void
-    public var deleteDidTap: () -> Void
+    private var replyDidTap: () -> Void
+    private var moreDidTap: () -> Void
 
     public init(
         model: MessageViewModel,
         isReplyButtonVisible: Bool,
-        isStudentAccessRestricted: Bool,
         replyDidTap: @escaping () -> Void,
-        replyAllDidTap: @escaping () -> Void,
-        forwardDidTap: @escaping () -> Void,
-        deleteDidTap: @escaping () -> Void
+        moreDidTap: @escaping () -> Void
     ) {
         self.model = model
         self.replyDidTap = replyDidTap
-        self.isStudentAccessRestricted = isStudentAccessRestricted
-        self.replyAllDidTap = replyAllDidTap
+        self.moreDidTap = moreDidTap
         self.isReplyButtonVisible = isReplyButtonVisible
-        self.forwardDidTap = forwardDidTap
-        self.deleteDidTap = deleteDidTap
     }
 
     public var body: some View {
@@ -89,32 +80,8 @@ public struct MessageView: View {
             if isReplyButtonVisible {
                 replyIconButton
             }
-            Menu {
-                if isReplyButtonVisible {
-                    Button(.init("Reply", bundle: .core), image: .replyLine, action: replyDidTap)
-                        .accessibilityIdentifier("MessageDetails.reply")
-
-                    if !isStudentAccessRestricted {
-                        Button(
-                            .init("Reply All", bundle: .core),
-                            image: .replyAllLine,
-                            action: replyAllDidTap
-                        )
-                        .accessibilityIdentifier("MessageDetails.replyAll")
-                    }
-
-                    Button(.init("Forward", bundle: .core), image: .forwardLine, action: forwardDidTap)
-                        .accessibilityIdentifier("MessageDetails.forward")
-
-                    if !isStudentAccessRestricted {
-                        Button(
-                            .init("Delete Message", bundle: .core),
-                            image: .trashLine,
-                            action: deleteDidTap
-                        )
-                        .accessibilityIdentifier("MessageDetails.delete")
-                    }
-                }
+            Button {
+                moreDidTap()
             } label: {
                 Image
                     .moreLine
@@ -166,13 +133,3 @@ public struct MessageView: View {
     }
 }
 
-#Preview {
-    let env = PreviewEnvironment()
-    let context = env.globalDatabase.viewContext
-
-    MessageDetailsAssembly.makePreview(
-        env: env,
-        subject: "Message Title",
-        messages: .make(count: 5, body: InstUI.PreviewData.loremIpsumLong, in: context)
-    )
-}
