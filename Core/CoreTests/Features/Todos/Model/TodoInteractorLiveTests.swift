@@ -497,6 +497,22 @@ class TodoInteractorLiveTests: CoreTestCase {
         XCTAssertNil(mockAnalyticsHandler.lastEvent)
     }
 
+    func test_refresh_logsFilterAnalytics() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let plannables = [makePlannable(courseId: "1", plannableId: "p1", type: "assignment", title: "Assignment 1")]
+
+        // WHEN
+        mockCourses(courses)
+        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]))
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
+
+        // THEN
+        XCTAssertNotNil(mockAnalyticsHandler.lastEvent)
+        XCTAssertTrue(mockAnalyticsHandler.lastEvent == "todo_list_loaded_default_filter" || mockAnalyticsHandler.lastEvent == "todo_list_loaded_custom_filter")
+        XCTAssertNotNil(mockAnalyticsHandler.lastEventParameters)
+    }
+
     // MARK: - Helpers
 
     private func mockCourses(_ courses: [APICourse]) {

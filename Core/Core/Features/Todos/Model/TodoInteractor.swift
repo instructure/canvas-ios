@@ -76,6 +76,7 @@ final class TodoInteractorLive: TodoInteractor {
         )
         .handleEvents(receiveOutput: { [weak self] plannables, courses in
             self?.filterAndGroupTodos(plannables: plannables, courses: courses)
+            self?.logFilterAnalytics()
         })
         .mapToVoid()
         .eraseToAnyPublisher()
@@ -164,6 +165,11 @@ final class TodoInteractorLive: TodoInteractor {
             TodoGroupViewModel(date: date, items: items.sorted())
         }
         .sorted()
+    }
+
+    private func logFilterAnalytics() {
+        let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
+        Analytics.shared.logEvent(filterOptions.analyticsEventName, parameters: filterOptions.analyticsParameters)
     }
 }
 
