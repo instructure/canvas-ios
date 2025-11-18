@@ -64,6 +64,14 @@ enum CourseNoteLabel: String, CaseIterable {
         }
     }
 
+    static var list: [DropdownMenuItem] {
+        [
+            .init(id: "1", name: String(localized: "All notes")),
+            .init(id: "2", name: CourseNoteLabel.unclear.label),
+            .init(id: "3", name: CourseNoteLabel.important.label)
+        ]
+    }
+
     func image(selected: Bool = true) -> some View {
         let color = selected ? self.color : HorizonUI.colors.lineAndBorders.containerStroke
         let image = self == .unclear ? Image.huiIcons.help : Image.huiIcons.flag2

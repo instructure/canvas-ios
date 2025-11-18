@@ -16,32 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import HorizonUI
-import SwiftUI
-
-struct NoteCardButton: View {
-    let type: CourseNoteLabel
-
-    var body: some View {
-        let style = HorizonUI.Chip.CustomStyle(
-            state: .default,
-            foregroundColor: type.color,
-            backgroundNormal: .clear,
-            backgroundPressed: .clear,
-            borderColor: type.color,
-            focusedBorderColor: type.color,
-            iconColor: type.color
-        )
-        HorizonUI.InputChip(
-            title: type.label,
-            style: .custom(style),
-            size: .small,
-            leadingIcon: type.icon,
-            trallingIcon: nil
-        ) {}
-    }
-}
-
-#Preview {
-    NoteCardButton(type: .important)
+struct NoteCardListState {
+    // Loader
+    var isLoaderVisible = true
+    var isDeletedNoteLoaderVisible: Bool = true
+    // Visiablity
+    var isSeeMoreButtonVisible: Bool = false
+    var isShowfilterView: Bool = true
+    var isPresentedErrorToast: Bool = false
+    /// This flag determines whether pagination should be reset when fetching notes after deleting a note.
+    /// We set `keepObserving = true` to observe changes in real time. Without this flag,
+    /// deleting a note would reset the pagination unexpectedly.
+    var shouldReset = true
+    // Animations
+    var isNoteDeleted: Bool = true
+    // Values
+    var errorMessage = ""
+    var selectedCourse: DropdownMenuItem?
+    var selectedLable: DropdownMenuItem?
 }

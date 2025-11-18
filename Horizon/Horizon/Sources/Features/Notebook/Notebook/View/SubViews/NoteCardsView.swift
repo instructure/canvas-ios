@@ -16,18 +16,42 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import HorizonUI
 import SwiftUI
 
 struct NoteCardsView: View {
-    let note: NoteCardModel
-    let onTapDelete: (NoteCardModel) -> Void
+    // MARK: - Private variables
+
+    @State private var showDeleteConfirmation = false
+    @State private var selectedNote: CourseNotebookNote?
+
+    // MARK: - Dependencies
+
+    private let note: CourseNotebookNote
+    private let isLoading: Bool
+    private let onTapDelete: (CourseNotebookNote) -> Void
+
+    // MARK: - Init
+
+    init(
+        note: CourseNotebookNote,
+        isLoading: Bool,
+        onTapDelete: @escaping (CourseNotebookNote) -> Void
+    ) {
+        self.note = note
+        self.isLoading = isLoading
+        self.onTapDelete = onTapDelete
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
             NoteCardButton(type: note.type)
             HighlightedText(text: note.highlightedText, type: note.type)
-            noteView
+            if let content = note.content, content.isNotEmpty {
+                noteView(content)
+            }
+
             HStack(spacing: .zero) {
                 noteInfoView
                 Spacer()
@@ -44,17 +68,24 @@ struct NoteCardsView: View {
                 .fill(note.type.backgroundColor)
                 .clipShape(.rect(cornerRadius: 16))
         }
+        .confirmationDialog("", isPresented: $showDeleteConfirmation, titleVisibility: .hidden) {
+            Button(String(localized: "Delete note"), role: .destructive) {
+                if let selectedNote {
+                    onTapDelete(selectedNote)
+                }
+            }
+            Button(String(localized: "Cancel"), role: .cancel) {
+                selectedNote = nil
+            }
+        }
     }
 
-    @ViewBuilder
-    private var noteView: some View {
-        if let note = note.note {
-            Text(note)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .lineLimit(3)
-                .huiTypography(.p1)
-                .foregroundStyle(Color.huiColors.text.body)
-        }
+    private func noteView(_ note: String) -> some View {
+        Text(note)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .lineLimit(3)
+            .huiTypography(.p1)
+            .foregroundStyle(Color.huiColors.text.body)
     }
 
     private var noteInfoView: some View {
@@ -75,16 +106,22 @@ struct NoteCardsView: View {
 
     private var deleteButton: some View {
         Button {
-            onTapDelete(note)
+            selectedNote = note
+            showDeleteConfirmation = true
         } label: {
-            Image.huiIcons.delete
-                .foregroundStyle(Color.huiColors.icon.error)
-                .frame(width: 32, height: 32)
+            if isLoading {
+                HorizonUI.Spinner(size: .xSmall)
+            } else {
+                Image.huiIcons.delete
+                    .foregroundStyle(Color.huiColors.icon.error)
+                    .frame(width: 32, height: 32)
+            }
         }
+        .disabled(isLoading)
     }
 }
 
 #Preview {
-    NoteCardsView(note: NoteCardModel.mockData[0]) { _ in }
+    NoteCardsView(note: CourseNotebookNote.example, isLoading: false) { _ in }
         .padding()
 }

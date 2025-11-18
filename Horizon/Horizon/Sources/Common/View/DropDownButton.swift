@@ -19,29 +19,28 @@
 import HorizonUI
 import SwiftUI
 
-struct NoteCardButton: View {
-    let type: CourseNoteLabel
+struct DropDownButton: View {
+    let status: String
+    let onTap: () -> Void
 
     var body: some View {
-        let style = HorizonUI.Chip.CustomStyle(
-            state: .default,
-            foregroundColor: type.color,
-            backgroundNormal: .clear,
-            backgroundPressed: .clear,
-            borderColor: type.color,
-            focusedBorderColor: type.color,
-            iconColor: type.color
-        )
-        HorizonUI.InputChip(
-            title: type.label,
-            style: .custom(style),
-            size: .small,
-            leadingIcon: type.icon,
-            trallingIcon: nil
-        ) {}
+        HorizonUI.Chip(
+            title: status,
+            style: .custom(
+                .init(
+                    state: .default,
+                    foregroundColor: Color.huiColors.text.title,
+                    backgroundNormal: Color.huiColors.surface.cardPrimary,
+                    backgroundPressed: Color.huiColors.surface.hover,
+                    borderColor: Color.huiColors.lineAndBorders.lineStroke,
+                    focusedBorderColor: Color.huiColors.lineAndBorders.lineStroke,
+                    iconColor: Color.huiColors.icon.medium
+                )
+            ),
+            size: .large,
+            trallingIcon: Image.huiIcons.keyboardArrowDown
+        ) {
+            onTap()
+        }
     }
-}
-
-#Preview {
-    NoteCardButton(type: .important)
 }

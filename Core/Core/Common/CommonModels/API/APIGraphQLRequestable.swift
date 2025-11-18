@@ -60,4 +60,4 @@ extension APIGraphQLRequestable {
     }
 }
 
-typealias APIGraphQLPagedRequestable = APIGraphQLRequestable & APIPagedRequestable
+public typealias APIGraphQLPagedRequestable = APIGraphQLRequestable & APIPagedRequestable

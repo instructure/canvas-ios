@@ -38,14 +38,7 @@ final class NotebookViewModel {
         CourseNoteLabel.allCases.filter { $0 != .other }
     }
 
-    var filter: CourseNoteLabel? {
-        get {
-            courseNoteInteractor.filter
-        }
-        set {
-            courseNoteInteractor.set(filter: (self.filter == newValue ? nil : newValue))
-        }
-    }
+    var filter: CourseNoteLabel?
 
     var isBackVisible: Bool { courseId == nil }
     var isCloseVisible: Bool { courseId != nil }
@@ -80,10 +73,9 @@ final class NotebookViewModel {
         self.courseNoteInteractor = courseNoteInteractor
         self.router = router
         self.title = String(localized: "Notebook", bundle: .horizon)
-
-        self.courseNoteInteractor.set(filter: nil)
-        self.courseNoteInteractor.set(cursor: nil)
-        self.courseNoteInteractor.set(courseID: courseId, pageURL: pageUrl)
+//        self.courseNoteInteractor.set(filter: nil)
+//        self.courseNoteInteractor.set(cursor: nil)
+//        self.courseNoteInteractor.set(courseID: courseId, pageURL: pageUrl)
 
         loadNotes()
     }
@@ -116,51 +108,62 @@ final class NotebookViewModel {
     }
 
     func nextPage() {
-        guard let cursor = notes.last?.cursor else { return }
+//        guard let cursor = notes.last?.cursor else { return }
         isLoaderVisible = true
-        courseNoteInteractor.set(cursor: Cursor(previous: cursor))
+//        courseNoteInteractor.set(cursor: Cursor(previous: cursor))
     }
 
     func previousPage() {
-        guard let cursor = notes.first?.cursor else { return }
-        isLoaderVisible = true
-        courseNoteInteractor.set(cursor: Cursor(next: cursor))
-    }
-
-    func refresh(refreshComplete: @escaping RefreshCompletion) {
-        self.refreshComplete = refreshComplete
-        courseNoteInteractor.refresh()
+//        guard let cursor = notes.first?.cursor else { return }
+//        isLoaderVisible = true
+//        courseNoteInteractor.set(cursor: Cursor(next: cursor))
     }
 
     func refresh() async {
-        await withCheckedContinuation { continuation in
-            refresh {
-                continuation.resume()
-            }
-        }
+//        let notes: [CourseNotebookNote] = await withCheckedContinuation { continuation in
+//            refreshCancellable = courseNoteInteractor
+//                .get(ignoreCache: true, keepObserving: false, startCursor: nil)
+//                .replaceError(with: [])
+//                .first()
+//                .sink { notes in
+//                    continuation.resume(returning: notes)
+//                }
+//        }
+//        loadNotesComplete(courseNotes: notes, courses: [])
     }
 
     // MARK: - Private functions
 
-    private func loadNotes() {
-        courseNoteInteractor
-            .get()
-            .replaceError(with: [])
-            .sink { [weak self] notes in
-                self?.loadNotesComplete(courseNotes: notes)
-            }
-            .store(in: &subscriptions)
+    private func loadNotes(ignoreCache: Bool = false, startCursor: String? = nil) {
+//        courseNoteInteractor
+//            .get(ignoreCache: ignoreCache, keepObserving: false, filter: .init())
+//            .replaceError(with: .init(notes: [], pageinfo: nil))
+//            .sink { [weak self] notes in
+//                self?.loadNotesComplete(courseNotes: notes.notes, courses: [])
+//            }
+//            .store(in: &subscriptions)
+
+//        let notesPublisher = courseNoteInteractor
+//            .get()
+//            .replaceError(with: [])
+//        let coursesPublisher = learnCoursesInteractor.getCourses(ignoreCache: false)
+//        notesPublisher
+//            .zip(coursesPublisher)
+//            .sink { [weak self] notes, course in
+//                self?.loadNotesComplete(courseNotes: notes, courses: course)
+//            }
+//            .store(in: &subscriptions)
     }
 
     private func loadNotesComplete(courseNotes: [CourseNotebookNote]) {
         notes = courseNotes.map { note in
             NotebookNote(courseNotebookNote: note)
         }
-        isNextDisabled = courseNotes.last?.hasNext != true
-        isPreviousDisabled = courseNotes.first?.hasPrevious != true
+//        isNextDisabled = courseNotes.last?.hasNext != true
+//        isPreviousDisabled = courseNotes.first?.hasPrevious != true
         isLoaderVisible = false
-        refreshComplete?()
-        refreshComplete = nil
+//        refreshComplete?()
+//        refreshComplete = nil
     }
 }
 

@@ -19,29 +19,21 @@
 import HorizonUI
 import SwiftUI
 
-struct NoteCardButton: View {
-    let type: CourseNoteLabel
-
+struct NotebookFilterEmptyView: View {
     var body: some View {
-        let style = HorizonUI.Chip.CustomStyle(
-            state: .default,
-            foregroundColor: type.color,
-            backgroundNormal: .clear,
-            backgroundPressed: .clear,
-            borderColor: type.color,
-            focusedBorderColor: type.color,
-            iconColor: type.color
-        )
-        HorizonUI.InputChip(
-            title: type.label,
-            style: .custom(style),
-            size: .small,
-            leadingIcon: type.icon,
-            trallingIcon: nil
-        ) {}
+        VStack(spacing: .huiSpaces.space8) {
+            Text("Nothing here yet")
+                .foregroundStyle(Color.huiColors.text.body)
+                .huiTypography(.h2)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text("Adjust your filters or create a new note to get started.")
+                .foregroundStyle(Color.huiColors.text.dataPoint)
+                .huiTypography(.p1)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
     }
 }
 
 #Preview {
-    NoteCardButton(type: .important)
+    NotebookFilterEmptyView()
 }

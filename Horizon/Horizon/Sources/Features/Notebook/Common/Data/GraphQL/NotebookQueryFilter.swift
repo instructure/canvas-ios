@@ -16,32 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import HorizonUI
-import SwiftUI
+struct NotebookQueryFilter {
+    /// The cursor used to start pagination in the backward direction.
+    let startCursor: String?
+    let reactions: [String]?
+    let courseId: String?
+    var pageId: String?
 
-struct NoteCardButton: View {
-    let type: CourseNoteLabel
-
-    var body: some View {
-        let style = HorizonUI.Chip.CustomStyle(
-            state: .default,
-            foregroundColor: type.color,
-            backgroundNormal: .clear,
-            backgroundPressed: .clear,
-            borderColor: type.color,
-            focusedBorderColor: type.color,
-            iconColor: type.color
-        )
-        HorizonUI.InputChip(
-            title: type.label,
-            style: .custom(style),
-            size: .small,
-            leadingIcon: type.icon,
-            trallingIcon: nil
-        ) {}
+    init(
+        startCursor: String? = nil,
+        reactions: [String]? = nil,
+        courseId: String? = nil,
+        pageId: String? = nil
+    ) {
+        self.startCursor = startCursor
+        self.reactions = reactions
+        self.courseId = courseId
+        self.pageId = pageId
     }
-}
-
-#Preview {
-    NoteCardButton(type: .important)
 }

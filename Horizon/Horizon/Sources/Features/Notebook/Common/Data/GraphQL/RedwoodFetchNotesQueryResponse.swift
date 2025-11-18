@@ -16,32 +16,32 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import HorizonUI
-import SwiftUI
+import Core
 
-struct NoteCardButton: View {
-    let type: CourseNoteLabel
+public struct RedwoodFetchNotesQueryResponse: Codable, PagedResponse {
+    public var page: [ResponseEdge] { data.notes.edges }
+    public typealias Page = [ResponseEdge]
 
-    var body: some View {
-        let style = HorizonUI.Chip.CustomStyle(
-            state: .default,
-            foregroundColor: type.color,
-            backgroundNormal: .clear,
-            backgroundPressed: .clear,
-            borderColor: type.color,
-            focusedBorderColor: type.color,
-            iconColor: type.color
-        )
-        HorizonUI.InputChip(
-            title: type.label,
-            style: .custom(style),
-            size: .small,
-            leadingIcon: type.icon,
-            trallingIcon: nil
-        ) {}
+    let data: ResponseData
+
+    public struct ResponseData: Codable {
+        let notes: ResponseNotes
     }
-}
 
-#Preview {
-    NoteCardButton(type: .important)
+    public struct ResponseNotes: Codable, Equatable {
+        let edges: [ResponseEdge]
+        let pageInfo: PageInfo
+    }
+
+    public struct ResponseEdge: Codable, Equatable {
+        let node: RedwoodNote
+        let cursor: String
+    }
+
+    public struct PageInfo: Codable, Equatable {
+        let hasNextPage: Bool
+        let hasPreviousPage: Bool
+        let endCursor: String?
+        let startCursor: String?
+    }
 }

@@ -19,29 +19,21 @@
 import HorizonUI
 import SwiftUI
 
-struct NoteCardButton: View {
-    let type: CourseNoteLabel
-
+struct NotebookEmptyView: View {
     var body: some View {
-        let style = HorizonUI.Chip.CustomStyle(
-            state: .default,
-            foregroundColor: type.color,
-            backgroundNormal: .clear,
-            backgroundPressed: .clear,
-            borderColor: type.color,
-            focusedBorderColor: type.color,
-            iconColor: type.color
-        )
-        HorizonUI.InputChip(
-            title: type.label,
-            style: .custom(style),
-            size: .small,
-            leadingIcon: type.icon,
-            trallingIcon: nil
-        ) {}
+        VStack(spacing: .huiSpaces.space8) {
+            Text("Start capturing your notes")
+                .foregroundStyle(Color.huiColors.text.body)
+                .huiTypography(.h2)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text("Your notes from learning materials will appear here. Highlight key ideas, reflections, or questions as you learn—they'll all be saved in your Notebook for easy review later.")
+                .foregroundStyle(Color.huiColors.text.dataPoint)
+                .huiTypography(.p1)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
     }
 }
 
 #Preview {
-    NoteCardButton(type: .important)
+    NotebookEmptyView()
 }

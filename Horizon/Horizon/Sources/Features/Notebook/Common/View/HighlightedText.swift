@@ -43,6 +43,8 @@ struct HighlightedText: View {
             .underline(pattern: type == .important ? .solid : .dot, color: type.color)
             .background(type.backgroundColor)
             .baselineOffset(3)
+            .multilineTextAlignment(.leading)
+            .foregroundStyle(Color.huiColors.text.body)
     }
 }
 

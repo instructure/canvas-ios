@@ -110,9 +110,6 @@ final class NotebookNoteViewModel {
         self.highlightedText = notebookHighlight?.selectedText ?? ""
 
         self.courseNote = nil
-
-        self.courseNoteInteractor.set(courseID: courseID, pageURL: pageURL)
-
         initUI()
     }
 
@@ -227,6 +224,8 @@ final class NotebookNoteViewModel {
         do {
             _ = try await courseNoteInteractor
                 .add(
+                    courseID: courseID,
+                    pageURL: pageURL,
                     content: note,
                     labels: labels,
                     notebookHighlight: notebookHighlight
