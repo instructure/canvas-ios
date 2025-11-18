@@ -90,6 +90,28 @@ class APIURLTests: CoreTestCase {
         let model = try decoder.decode(MockAPIResponse.self, from: data)
         XCTAssertEqual(model.avatar_url?.rawValue, URL(string: "https://example.com/path%7B%20%7D%60%7C%5C%5E")!)
     }
+
+    func testURLQueryPercentEncoding() throws {
+        XCTAssertEqual(
+            try decoder.decode(APIURL.self, from: try encoder.encode("https://domain.com?q=value")),
+            .make(rawValue: URL(string: "https://domain.com?q=value")!)
+        )
+
+        XCTAssertEqual(
+            try decoder.decode(APIURL.self, from: try encoder.encode("https://domain.com?q=some value")),
+            .make(rawValue: URL(string: "https://domain.com?q=some%20value")!)
+        )
+
+        XCTAssertEqual(
+            try decoder.decode(APIURL.self, from: try encoder.encode("https://domain.com?q=[some value]")),
+            .make(rawValue: URL(string: "https://domain.com?q=%5Bsome%20value%5D")!)
+        )
+
+        XCTAssertEqual(
+            try decoder.decode(APIURL.self, from: try encoder.encode("https://domain.com?q=[some%20value]")),
+            .make(rawValue: URL(string: "https://domain.com?q=%5Bsome%20value%5D")!)
+        )
+    }
 }
 
 private struct MockAPIResponse: Codable {
