@@ -424,13 +424,13 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         nameLabel?.text = assignment.name
         pointsLabel?.text = hideScores ? nil : assignment.pointsPossibleText
         pointsLabel?.isHidden = pointsLabel?.text == nil
-        let displayProperties = assignment.submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
+        let status = assignment.submission?.status ?? .notSubmitted
         statusIconView?.isHidden = assignment.submissionStatusIsHidden
-        statusIconView?.image = displayProperties.icon
-        statusIconView?.tintColor = displayProperties.color
+        statusIconView?.image = status.uiImageIcon
+        statusIconView?.tintColor = status.viewModel.color.asUIColor
         statusLabel?.isHidden = assignment.submissionStatusIsHidden
-        statusLabel?.textColor = displayProperties.color
-        statusLabel?.text = displayProperties.text
+        statusLabel?.textColor = status.viewModel.color.asUIColor
+        statusLabel?.text = status.viewModel.text
 
         updateDueDateSections(assignment: assignment)
 
@@ -466,9 +466,9 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         lockedSection?.isHidden = presenter.lockedSectionIsHidden()
         fileTypesSection?.isHidden = presenter.fileTypesSectionIsHidden()
         submissionTypesSection?.isHidden = presenter.submissionTypesSectionIsHidden()
-        var showGradeSection = assignment.submission?.needsGrading == true ||
-            (assignment.submission?.isGraded == true && assignment.gradingType != .not_graded ) ||
-            presenter.onlineUploadState != nil
+        var showGradeSection = assignment.submission?.needsGrading == true
+            || (assignment.submission?.status.isGraded == true)
+            || presenter.onlineUploadState != nil
         let gradeText = GradeFormatter.string(from: assignment, submission: submission, style: .short)
         if assignment.hideQuantitativeData, (gradeText ?? "").isEmpty == true {
             showGradeSection = false

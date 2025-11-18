@@ -25,6 +25,7 @@ struct ContextCardSubmissionRow: View {
     private let gradient = LinearGradient(gradient: Gradient(colors: [Color(hexString: "#008EE2")!, Color(hexString: "#00C1F3")!]), startPoint: .leading, endPoint: .trailing)
     private let assignment: Assignment
     private let submission: Submission
+    private let submissionStatus: SubmissionStatusLabel.Model
     private let progressRatio: CGFloat
     private let grade: String
     private let icon: Image
@@ -40,16 +41,7 @@ struct ContextCardSubmissionRow: View {
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
 
-                    HStack(spacing: 2) {
-
-                        Image(uiImage: submission.stateDisplayProperties.icon)
-                            .scaledIcon(size: 16)
-                            .foregroundColor(Color(submission.stateDisplayProperties.color))
-
-                        Text(submission.stateDisplayProperties.text)
-                            .font(.regular14)
-                            .foregroundColor(Color(submission.stateDisplayProperties.color))
-                    }
+                    SubmissionStatusLabel(model: submissionStatus)
 
                     if submission.needsGrading {
                         needsGradingCapsule()
@@ -85,6 +77,7 @@ struct ContextCardSubmissionRow: View {
                 return .assignmentLine
             }
         }()
+        self.submissionStatus = submission.status.viewModel
         self.a11ySubmissionStatus = {
             if submission.needsGrading {
                 return String(localized: "NEEDS GRADING", bundle: .core)

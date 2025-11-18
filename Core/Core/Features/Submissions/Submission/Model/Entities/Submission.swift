@@ -422,39 +422,6 @@ extension Submission {
             || (score != nil && workflowState == .graded)
     }
 
-    /// Returns the appropriate display properties for submission, with consideration for
-    /// `onPaper` & `noSubmission` submission type.
-    /// If the submission has been submitted and it's graded already, then it returns `Graded`.
-    /// Otherwise it returns the submissions's status.
-    /// `Graded` submissions that have been resubmitted will return `Submitted`.
-    /// For `onPaper` & `noSubmission`, it would return `Graded` only for when the submission
-    /// **has a** grade associated with it.
-    public var stateDisplayProperties: SubmissionStateDisplayProperties {
-        let desc: SubmissionStateDisplayProperties = {
-            if case .notSubmitted = statusOld {
-                if let submissionTypes = assignment?.submissionTypes {
-                    if submissionTypes.contains(.on_paper) { return .onPaper }
-                    if submissionTypes.contains(.none) { return .noSubmission }
-                }
-                return .usingStatus(.notSubmitted)
-            } else {
-                return .usingStatus(statusOld)
-            }
-        }()
-
-        // Graded check
-        switch desc {
-        case .usingStatus(.submitted):
-            return needsGrading == false ? gradedState : desc // Maintaining the old logic
-        case .onPaper, .noSubmission:
-            return isGraded ? gradedState : desc
-        case .usingStatus(.notSubmitted):
-            return isGraded ? gradedState : desc
-        default:
-            return desc
-        }
-    }
-
     public var status: SubmissionStatus {
         .init(
             isSubmitted: submittedAt != nil,
@@ -483,14 +450,6 @@ extension Submission {
             return .graded
         }
         return statusOld
-    }
-
-    private var gradedState: SubmissionStateDisplayProperties {
-        if customGradeStatusId != nil,
-           let name = customGradeStatusName {
-            return .usingStatus(.custom(name))
-        }
-        return .graded
     }
 
     private var customGradedStatus: SubmissionStatusOld {

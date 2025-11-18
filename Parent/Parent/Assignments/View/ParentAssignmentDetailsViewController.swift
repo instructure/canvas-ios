@@ -194,7 +194,7 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
         let globalUserID = studentID.sameForm(as: submissions.first?.userID, in: env)
 
         let submission = submissions.first(where: { $0.userID == globalUserID })
-        let displayProperties = submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
+        let status = submission?.status ?? .notSubmitted
         title = course.first?.name ?? String(localized: "Assignment Details", bundle: .parent)
 
         titleLabel.text = assignment.name
@@ -205,11 +205,11 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
             return assignment.pointsPossibleText
         }()
         statusIconView.isHidden = assignment.submissionStatusIsHidden
-        statusIconView.image = displayProperties.icon
-        statusIconView.tintColor = displayProperties.color
+        statusIconView.image = status.uiImageIcon
+        statusIconView.tintColor = status.viewModel.color.asUIColor
         statusLabel.isHidden = assignment.submissionStatusIsHidden
-        statusLabel.textColor = displayProperties.color
-        statusLabel?.text = displayProperties.text
+        statusLabel.textColor = status.viewModel.color.asUIColor
+        statusLabel?.text = status.viewModel.text
         dateLabel.text = assignment.dueAt?.dateTimeString ?? String(localized: "No Due Date", bundle: .parent)
         reminderSwitch.isEnabled = true
         reminderDateButton.isEnabled = true

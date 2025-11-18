@@ -40,50 +40,11 @@ extension SubmissionViewable {
         return ListFormatter.localizedString(from: list, conjunction: .or)
     }
 
-    public var isSubmitted: Bool {
-        return submission != nil && submission?.submittedAt != nil
-    }
-
     public var submissionStatusIsHidden: Bool {
-        return submissionTypes.contains(.not_graded)
-    }
-
-    public var submissionStatusColor: UIColor {
-        return isSubmitted ? .textSuccess : .textDark
-    }
-
-    public var submissionStatusIcon: UIImage {
-        if !isSubmitted {
-            return .noSolid
-        }
-
-        if submission?.workflowState == .graded {
-            return .completeSolid
-        }
-
-        return .completeLine
-    }
-
-    public var submissionStatusText: String {
-        if !isSubmitted {
-            return String(localized: "Not Submitted", bundle: .core)
-        }
-
-        if submission?.workflowState == .graded {
-            return String(localized: "Graded", bundle: .core)
-        }
-
-        return String(localized: "Submitted", bundle: .core)
-    }
-
-    public var submissionDateText: String? {
-        submission?.submittedAt?.dateTimeString
-    }
-
-    public var submissionAttemptNumberText: String? {
-        guard let attempt = submission?.attempt else { return nil }
-
-        return String.format(attemptNumber: attempt)
+        // Hide status if it is not gradable, because "Not Graded" is already displayed
+        // in that case. That "Not Graded" label comes from `pointsPossible` text.
+        // Missing/Late/Excused/Custom statuses are still displayed, even for not gradable types.
+        submission?.status == .notGradable
     }
 
     public var hasLatePenalty: Bool {
