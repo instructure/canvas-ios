@@ -44,12 +44,11 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
 
         let cssString = css.components(separatedBy: .newlines).joined()
         return """
-           function insertStudioDetailLinksStyle() {
+           (() => {
                 var element = document.createElement('style');
                 element.innerHTML = '\(cssString)';
                 document.head.appendChild(element);
-           }
-           insertStudioDetailLinksStyle();
+           })()
         """
     }()
 
@@ -59,7 +58,16 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
             .flatMap({ String(data: $0.data, encoding: .utf8) ?? "" }) ?? "")
             .components(separatedBy: .newlines).joined()
 
-        let script = """
+        return """
+            function escapeHTML(text) {
+                return text
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/'/g, '&#039;')
+                    .replace(/"/g, '&quot;')
+            }
+
             function insertStudioDetailsLinks() {
                 const frameElements = document.querySelectorAll('iframe[data-media-id]');
 
@@ -92,13 +100,13 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
 
                     const icon = document.createElement('div');
                     icon.className = "open_details_button_icon";
-                    icon.innerHTML = '%@';
+                    icon.innerHTML = \(CoreWebView.jsString(iconSVG));
 
                     const detailButton = document.createElement('a');
                     detailButton.className = "open_details_button";
-                    detailButton.href = frameLink + linkSuffix;
+                    detailButton.href = escapeHTML(frameLink + linkSuffix);
                     detailButton.target = "_blank";
-                    detailButton.textContent = '%@';
+                    detailButton.textContent = escapeHTML(\(CoreWebView.jsString(title)));
 
                     buttonContainer.appendChild(icon);
                     buttonContainer.appendChild(detailButton);
@@ -112,8 +120,6 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
             insertStudioDetailsLinks();
             window.addEventListener("DOMContentLoaded", insertStudioDetailsLinks);
         """
-
-        return String(format: script, iconSVG, title)
     }()
 
     public override init() {}
