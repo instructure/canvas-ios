@@ -269,19 +269,19 @@ extension SubmissionStatus {
                 icon: .completeLine,
                 color: .textSuccess
             )
-        case .late:
+        case .late, .gradedLate:
             .init(
                 text: String(localized: "Late", bundle: .core),
                 icon: .clockLine,
                 color: .textWarning
             )
-        case .missing, .missingButSubmitted:
+        case .missing, .missingButSubmitted, .gradedMissing:
             .init(
                 text: String(localized: "Missing", bundle: .core),
                 icon: .noSolid,
                 color: .textDanger
             )
-        case .graded, .gradedMissing, .gradedLate:
+        case .graded:
             .init(
                 text: String(localized: "Graded", bundle: .core),
                 icon: .completeSolid,
@@ -325,9 +325,9 @@ extension SubmissionStatus {
         switch self {
         case .notSubmitted: .noSolid
         case .submitted: .completeLine
-        case .late: .clockLine
-        case .missing, .missingButSubmitted: .noSolid
-        case .graded, .gradedMissing, .gradedLate: .completeSolid
+        case .late, .gradedLate: .clockLine
+        case .missing, .missingButSubmitted, .gradedMissing: .noSolid
+        case .graded: .completeSolid
         case .excused: .completeSolid
         case .custom: .flagLine
         case .onPaper: .noSolid
