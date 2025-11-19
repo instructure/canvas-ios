@@ -412,6 +412,22 @@ class StudentAssignmentDetailsPresenterTests: StudentTestCase {
         XCTAssertTrue( presenter.submitAssignmentButtonIsHidden() )
     }
 
+    func testSubmitAssignmentButtonIsNotHiddenForClosedForCommentsDiscussion() {
+        Assignment.make(from: .make(
+            can_submit: false,
+            locked_for_user: true,
+            lock_at: Date().addDays(-3),
+            lock_explanation: "closed for comments",
+            submission_types: [ .discussion_topic ]
+        ))
+        XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
+    }
+
+    func testSubmitAssignmentButtonIsNotHiddenForUnlockedDiscussion() {
+        Assignment.make(from: .make(submission_types: [ .discussion_topic ]))
+        XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
+    }
+
     func testSubmitAssignmentButtonIsNotHiddenForUnlockedQuiz() {
         Assignment.make(from: .make(locked_for_user: true, quiz_id: "1"))
         Quiz.make(from: .make(id: "1", locked_for_user: false))
