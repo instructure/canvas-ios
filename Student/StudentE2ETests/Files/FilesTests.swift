@@ -210,7 +210,7 @@ class FilesTests: E2ETestCase {
         let imageItem = FileList.imageItem.waitUntil(.visible)
         XCTAssertVisible(imageItem)
 
-        imageItem.hit()
+        imageItem.forceTap()
         imageItem.waitUntil(.vanish)
         XCTAssertTrue(imageItem.isVanished)
 

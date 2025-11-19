@@ -13,7 +13,7 @@ workflows:
         - stamp_version: PR
         - stamp_build_number: $PR_NUMBER
         - stamp_path_to_icons: ${INST_XCODE_SCHEME}/${INST_XCODE_SCHEME}/Assets.xcassets/AppIcon.appiconset
-    - xcode-archive@5:
+    - xcode-archive@5.8:
         inputs:
         - distribution_method: ad-hoc
         - automatic_code_signing: api-key

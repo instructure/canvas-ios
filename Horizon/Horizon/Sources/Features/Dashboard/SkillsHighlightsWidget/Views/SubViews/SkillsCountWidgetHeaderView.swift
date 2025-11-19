@@ -21,15 +21,7 @@ import SwiftUI
 
 struct SkillsCountWidgetHeaderView: View {
     var body: some View {
-        HStack {
-            Text("Skills", bundle: .horizon)
-                .foregroundStyle(Color.huiColors.text.dataPoint)
-                .huiTypography(.labelMediumBold)
-                .frame(alignment: .leading)
-                .skeletonLoadable()
-                .accessibilityAddTraits(.isHeader)
-            Spacer()
-
+        HStack(spacing: .huiSpaces.space8) {
             Image.huiIcons.hub
                 .resizable()
                 .frame(width: 16, height: 16)
@@ -41,6 +33,31 @@ struct SkillsCountWidgetHeaderView: View {
                 }
                 .accessibilityHidden(true)
                 .skeletonLoadable()
+
+            Text("Skills", bundle: .horizon)
+                .foregroundStyle(Color.huiColors.text.dataPoint)
+                .huiTypography(.labelMediumBold)
+                .frame(alignment: .leading)
+                .skeletonLoadable()
+                .accessibilityHidden(true)
+
+            Spacer()
+
+            CounterTextView(
+                currentIndex: 3,
+                totalCount: 3
+            )
+            .accessibilityHidden(true)
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(
+            Text(
+                String(
+                    localized: "Skills, Widget 3 of 3",
+                    bundle: .horizon
+                )
+            )
+        )
+        .accessibilityAddTraits(.isHeader)
     }
 }
