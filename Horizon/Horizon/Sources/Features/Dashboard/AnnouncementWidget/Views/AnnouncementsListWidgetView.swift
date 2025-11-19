@@ -100,6 +100,7 @@ struct AnnouncementsListWidgetView: View {
             )
             .containerRelativeFrame(.horizontal)
         }
+        .disabled(viewModel.state == .loading)
     }
 }
 

@@ -138,8 +138,10 @@ struct CourseListWidgetView: View {
     private var programCardsView: some View {
         if viewModel.isProgramWidgetVisible {
             UnenrolledProgramListWidgetView(programs: viewModel.unenrolledPrograms) { program in
-                lastFocusedElement.wrappedValue = .programInvitation(id: program.id)
-                viewModel.navigateProgram(id: program.id, viewController: viewController)
+                if program.id != "mock-program-id" {
+                    lastFocusedElement.wrappedValue = .programInvitation(id: program.id)
+                    viewModel.navigateProgram(id: program.id, viewController: viewController)
+                }
             }
         }
     }

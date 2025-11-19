@@ -390,7 +390,6 @@ class StudentAssignmentDetailsPresenter {
             assignment?.lockedForUser == true ||
             assignment?.isSubmittable == false ||
             assignment?.submission?.excused == true ||
-            assignment?.submission?.customGradeStatusId != nil ||
             assignment?.isMasteryPathAssignment == true ||
             (assignment?.canSubmit == false && (assignment?.isLTIAssignment != true))
     }

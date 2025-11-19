@@ -23,10 +23,24 @@ struct TodoListItemCell: View {
     @Environment(\.viewController) private var viewController
 
     @ObservedObject var item: TodoItemViewModel
+    @Binding var isSwiping: Bool
     let onTap: (_ item: TodoItemViewModel, _ viewController: WeakViewController) -> Void
     let onMarkAsDone: (_ item: TodoItemViewModel) -> Void
     let onSwipeMarkAsDone: (_ item: TodoItemViewModel) -> Void
-    let isSwiping: Binding<Bool>?
+
+    init(
+        item: TodoItemViewModel,
+        onTap: @escaping (TodoItemViewModel, WeakViewController) -> Void,
+        onMarkAsDone: @escaping (TodoItemViewModel) -> Void,
+        onSwipeMarkAsDone: @escaping (TodoItemViewModel) -> Void,
+        isSwiping: Binding<Bool> = .constant(false)
+    ) {
+        self.item = item
+        self.onTap = onTap
+        self.onMarkAsDone = onMarkAsDone
+        self.onSwipeMarkAsDone = onSwipeMarkAsDone
+        self._isSwiping = isSwiping
+    }
 
     var body: some View {
         HStack(spacing: 0) {
@@ -41,7 +55,7 @@ struct TodoListItemCell: View {
         .background(.backgroundLightest)
         .contentShape(Rectangle())
         .onTapGesture {
-            guard isSwiping?.wrappedValue != true else { return }
+            if isSwiping { return }
             onTap(item, viewController)
         }
         .accessibilityElement(children: .combine)
@@ -55,7 +69,7 @@ struct TodoListItemCell: View {
         }
         .swipeToRemove(
             backgroundColor: .backgroundSuccess,
-            isSwiping: isSwiping,
+            isSwiping: $isSwiping,
             onSwipe: { onSwipeMarkAsDone(item) },
             label: { swipeActionView }
         )
@@ -75,12 +89,11 @@ struct TodoListItemCell: View {
     @ViewBuilder
     private var checkboxButton: some View {
         ZStack {
-            switch item.markDoneState {
+            switch item.markAsDoneState {
             case .notDone:
                 InstUI.Checkbox(isSelected: false)
             case .loading:
-                ProgressView()
-                    .tint(Color(Brand.shared.primary))
+                ProgressView().tint(nil)
             case .done:
                 InstUI.Checkbox(isSelected: true)
             }
@@ -89,7 +102,7 @@ struct TodoListItemCell: View {
         .tint(Color(Brand.shared.primary))
         .contentShape(Rectangle())
         .onTapGesture {
-            guard isSwiping?.wrappedValue != true else { return }
+            if isSwiping { return }
             onMarkAsDone(item)
         }
         .identifier("to-do.list.\(item.plannableId).checkbox")
@@ -101,8 +114,18 @@ struct TodoListItemCell: View {
 
 #Preview {
     VStack(spacing: 0) {
-        TodoListItemCell(item: .makeShortText(), onTap: { _, _ in }, onMarkAsDone: { _ in }, onSwipeMarkAsDone: { _ in }, isSwiping: nil)
-        TodoListItemCell(item: .makeLongText(), onTap: { _, _ in }, onMarkAsDone: { _ in }, onSwipeMarkAsDone: { _ in }, isSwiping: nil)
+        TodoListItemCell(
+            item: .makeShortText(),
+            onTap: { _, _ in },
+            onMarkAsDone: { _ in },
+            onSwipeMarkAsDone: { _ in }
+        )
+        TodoListItemCell(
+            item: .makeLongText(),
+            onTap: { _, _ in },
+            onMarkAsDone: { _ in },
+            onSwipeMarkAsDone: { _ in }
+        )
     }
     .background(Color.backgroundLightest)
 }

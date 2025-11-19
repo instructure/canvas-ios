@@ -272,7 +272,7 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem.date, specificDate)
     }
 
-    func test_markDoneState_initializesToNotDone_whenPlannableIsNotComplete() {
+    func test_markAsDoneState_initializesToNotDone_whenPlannableIsNotComplete() {
         // GIVEN
         let plannable = Plannable.save(
             APIPlannable.make(plannable_id: ID("1")),
@@ -285,10 +285,10 @@ class TodoItemViewModelTests: CoreTestCase {
 
         // THEN
         XCTAssertNotNil(todoItem)
-        XCTAssertEqual(todoItem?.markDoneState, .notDone)
+        XCTAssertEqual(todoItem?.markAsDoneState, .notDone)
     }
 
-    func test_markDoneState_initializesToDone_whenPlannableIsComplete() {
+    func test_markAsDoneState_initializesToDone_whenPlannableIsComplete() {
         // GIVEN
         let plannable = Plannable.save(
             APIPlannable.make(
@@ -304,7 +304,7 @@ class TodoItemViewModelTests: CoreTestCase {
 
         // THEN
         XCTAssertNotNil(todoItem)
-        XCTAssertEqual(todoItem?.markDoneState, .done)
+        XCTAssertEqual(todoItem?.markAsDoneState, .done)
     }
 
     // MARK: - Helpers

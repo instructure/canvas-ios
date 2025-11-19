@@ -21,16 +21,7 @@ import SwiftUI
 
 struct CompletedWidgetHeader: View {
     var body: some View {
-        HStack {
-            Text("Activities", bundle: .horizon)
-                .foregroundStyle(Color.huiColors.text.dataPoint)
-                .huiTypography(.labelMediumBold)
-                .frame(alignment: .leading)
-                .skeletonLoadable()
-                .accessibilityLabel(Text("Courses activities", bundle: .horizon))
-
-            Spacer()
-
+        HStack(spacing: .huiSpaces.space8) {
             Image.huiIcons.trendingUp
                 .frame(width: 16, height: 16)
                 .foregroundStyle(Color.huiColors.icon.default)
@@ -41,8 +32,31 @@ struct CompletedWidgetHeader: View {
                 }
                 .accessibilityHidden(true)
                 .skeletonLoadable()
+
+            Text("Activities", bundle: .horizon)
+                .foregroundStyle(Color.huiColors.text.dataPoint)
+                .huiTypography(.labelMediumBold)
+                .frame(alignment: .leading)
+                .skeletonLoadable()
+                .accessibilityHidden(true)
+
+            Spacer()
+
+            CounterTextView(
+                currentIndex: 1,
+                totalCount: 3
+            )
+            .accessibilityHidden(true)
         }
         .accessibilityElement(children: .combine)
+        .accessibilityLabel(
+            Text(
+                String(
+                    localized: "Courses activities, Widget 1 of 3",
+                    bundle: .horizon
+                )
+            )
+        )
         .accessibilityAddTraits(.isHeader)
     }
 }
