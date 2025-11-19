@@ -19,34 +19,24 @@
 import HorizonUI
 import SwiftUI
 
-struct ProgramNameListView: View {
+struct ProgramNameListChipView: View {
     let programs: [CourseListWidgetModel.ProgramInfo]
     let onSelect: (CourseListWidgetModel.ProgramInfo) -> Void
-
     var body: some View {
-        HorizonUI.HFlow(spacing: .huiSpaces.space4, lineSpacing: .huiSpaces.space2) {
-            Text("Part of", bundle: .horizon)
-                .huiTypography(.labelSmall)
-                .foregroundStyle(Color.huiColors.text.timestamp)
-
+        HorizonUI.HFlow {
             ForEach(programs) { program in
-                let isLast = program.id == programs.last?.id
-
                 Button {
                     onSelect(program)
                 } label: {
-                    (
-                        Text(program.name)
-                            .underline(true, color: Color.huiColors.text.body)
-                        +
-                        Text(verbatim: isLast ? "" : " , ")
-                            .underline(false)
+                    HorizonUI.StatusChip(
+                        title: program.name,
+                        style: .white,
+                        label: String(localized: "Part of :"),
+                        hasBorder: true
                     )
-                    .huiTypography(.labelSmallBold)
-                    .foregroundStyle(Color.huiColors.text.body)
-                    .baselineOffset(2)
-                    .multilineTextAlignment(.leading)
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(String(localized: "Part of program: \(program.name)"))
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -54,11 +44,11 @@ struct ProgramNameListView: View {
 }
 
 #Preview {
-    ProgramNameListView(
+    ProgramNameListChipView(
         programs: [
             CourseListWidgetModel.ProgramInfo(
                 id: "1",
-                name: "Program 1"
+                name: "Program 1 Program 1 Program 1   Program 1  Program 1  Program 1  "
             ),
             CourseListWidgetModel.ProgramInfo(
                 id: "2",
@@ -85,5 +75,6 @@ struct ProgramNameListView: View {
                 name: "Test Program 4"
             )
         ]
-    ) { _ in }
+    ) { _ in}
+        .padding()
 }

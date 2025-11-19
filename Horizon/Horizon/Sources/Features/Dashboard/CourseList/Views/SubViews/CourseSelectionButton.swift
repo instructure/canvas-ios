@@ -19,32 +19,28 @@
 import HorizonUI
 import SwiftUI
 
-struct TimeSpentCourseView: View {
-    let name: String
-    let isSelected: Bool
+struct CourseSelectionButton: View {
+    let status: String
+    let onTap: () -> Void
 
     var body: some View {
-        HStack(spacing: .huiSpaces.space4) {
-            if isSelected {
-                Image.huiIcons.check
-                    .frame(width: 24, height: 24)
-            }
-            Text(name)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .multilineTextAlignment(.leading)
-                .huiTypography(.buttonTextMedium)
+        HorizonUI.Chip(
+            title: status,
+            style: .custom(
+                .init(
+                    state: .default,
+                    foregroundColor: Color.huiColors.text.title,
+                    backgroundNormal: Color.huiColors.surface.cardPrimary,
+                    backgroundPressed: Color.huiColors.surface.hover,
+                    borderColor: Color.huiColors.lineAndBorders.lineStroke,
+                    focusedBorderColor: Color.huiColors.lineAndBorders.lineStroke,
+                    iconColor: Color.huiColors.icon.medium
+                )
+            ),
+            size: .large,
+            trallingIcon: Image.huiIcons.keyboardArrowDown
+        ) {
+            onTap()
         }
-        .padding(.horizontal, .huiSpaces.space16)
-        .padding(.vertical, .huiSpaces.space8)
-        .foregroundStyle(
-            isSelected
-            ? Color.huiColors.surface.pageSecondary
-            : Color.huiColors.text.body
-        )
-        .background(
-            isSelected
-            ? Color.huiColors.surface.inversePrimary
-            : Color.clear
-        )
     }
 }
