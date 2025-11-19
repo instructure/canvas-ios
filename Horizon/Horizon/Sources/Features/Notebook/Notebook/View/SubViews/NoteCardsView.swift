@@ -120,8 +120,9 @@ struct NoteCardsView: View {
         .disabled(isLoading)
     }
 }
-
+#if DEBUG
 #Preview {
     NoteCardsView(note: CourseNotebookNote.example, isLoading: false) { _ in }
         .padding()
 }
+#endif
