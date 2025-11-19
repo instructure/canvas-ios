@@ -54,23 +54,22 @@ final class NotebookListViewModel {
     // MARK: - Dependencies
 
     private let interactor: CourseNoteInteractor
-    private let learnCoursesInteractor: GetLearnCoursesInteractor
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
 
     init(
+        pageURL: String?,
+        courseID: String?,
         interactor: CourseNoteInteractor,
-        learnCoursesInteractor: GetLearnCoursesInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         router: Router
     ) {
         self.interactor = interactor
-        self.learnCoursesInteractor = learnCoursesInteractor
         self.router = router
         self.scheduler = scheduler
-        fetchNotes()
+        fetchNotes(pageURL: pageURL, filter: .init(courseId: courseID))
     }
 
     // MARK: - Input Actions
@@ -128,6 +127,11 @@ final class NotebookListViewModel {
     ) {
         let routePath = "/courses/\(note.courseId)/modules/items/\(note.objectId)?asset_type=Page&notebook_disabled=true"
         router.route(to: routePath, from: viewController)
+    }
+
+    func presentEditNote(note: CourseNotebookNote, viewController: WeakViewController) {
+        let noteVC = NotebookNoteAssembly.makeViewNoteViewController(courseNotebookNote: note)
+        router.show(noteVC, from: viewController)
     }
 
     // MARK: - Private Functions

@@ -184,8 +184,9 @@ struct NotebookListView: View {
 #Preview {
     NotebookListView(
         viewModel: .init(
+            pageURL: "",
+            courseID: "",
             interactor: CourseNoteInteractorPreview(),
-            learnCoursesInteractor: GetLearnCoursesInteractorPreview(),
             router: AppEnvironment.shared.router
         )
     )

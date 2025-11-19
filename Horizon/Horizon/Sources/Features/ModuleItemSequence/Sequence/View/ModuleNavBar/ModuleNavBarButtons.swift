@@ -49,7 +49,7 @@ enum ModuleNavBarUtilityButtons: Equatable, Hashable {
         case .chatBot:
             nil // use the default for the buttonStyle
         case .notebook:
-            Image.huiIcons.menuBookNotebook
+            Image.huiIcons.editNote
         case .assignmentMoreOptions:
             Image.huiIcons.moreVert
         }
