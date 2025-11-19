@@ -47,7 +47,6 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         addFileAction.accessibilityIdentifier = "FileList.addFileButton"
 
         let menu = UIMenu(children: !isStudentAccessRestricted ? [addFolderAction, addFileAction] : [addFolderAction])
-
         return UIBarButtonItem(image: .addSolid, menu: menu)
     }()
 
@@ -350,8 +349,8 @@ extension FileListViewController: FilePickerDelegate {
     func updateNavButtons() {
         let button = if #available(iOS 26, *) { addButton } else { legacyAddButton }
         navigationItem.rightBarButtonItems = [
-            /*canAddItem ?*/ button /* : nil*/,
-            /*canEditFolder ?*/ editButton /*: nil*/
+            canAddItem ? button : nil,
+            canEditFolder ? editButton : nil
         ].compactMap { $0 }
     }
 

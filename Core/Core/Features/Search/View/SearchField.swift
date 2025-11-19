@@ -40,52 +40,102 @@ struct SearchTextField: View {
     }
 
     var body: some View {
-        HStack(spacing: 0) {
-            Image
-                .smartSearchSmallLine
-                .foregroundStyle(.secondary)
-                .fixedSize()
-                .accessibilityHidden(true)
+        if #available(iOS 26, *) {
+            HStack(spacing: 0) {
+                Image
+                    .smartSearchSmallLine
+                    .foregroundStyle(.secondary)
+                    .fixedSize()
+                    .accessibilityHidden(true)
 
-            Spacer(minLength: 5)
+                Spacer(minLength: 5)
 
-            TextField("", text: $text, prompt: Text(prompt))
-                .textInputAutocapitalization(.never)
-                .labelsHidden()
-                .submitLabel(.search)
-                .font(.regular14)
-                .foregroundStyle(Color.textDarkest)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 8)
-                .onSubmit {
-                    minWidth.update()
-                    onSubmit()
+                TextField("", text: $text, prompt: Text(prompt))
+                    .textInputAutocapitalization(.never)
+                    .labelsHidden()
+                    .submitLabel(.search)
+                    .font(.regular14)
+                    .foregroundStyle(Color.textDarkest)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding(.vertical, 8)
+                    .onSubmit {
+                        minWidth.update()
+                        onSubmit()
+                    }
+
+                if text.isNotEmpty {
+                    Button {
+                        text = ""
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.caption)
+                            .foregroundStyle(clearButtonColor)
+                    }
+                    .fixedSize()
+                    .accessibilityLabel(Text("Clear text", bundle: .core))
                 }
-
-            if text.isNotEmpty {
-                Button {
-                    text = ""
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.caption)
-                        .foregroundStyle(clearButtonColor)
-                }
-                .fixedSize()
-                .accessibilityLabel(Text("Clear text", bundle: .core))
             }
-        }
-        .padding(.leading, 10)
-        .padding(.trailing, text.isEmpty ? 10 : 3)
-        .background(Color.backgroundLightest)
-        .clipShape(Capsule())
-        .shadow(radius: 2, y: 2)
-        .frame(idealWidth: minWidth.value, maxWidth: .infinity)
-        .measuringSize { size in
-            minWidth.deferred = size.width
-        }
-        .onDisappear {
-            // This is to resolve issue of field size when pushing to result details
-            minWidth.update()
+            .padding(.leading, 10)
+            .padding(.trailing, text.isEmpty ? 10 : 3)
+            .clipShape(Capsule())
+            .frame(idealWidth: minWidth.value, maxWidth: .infinity)
+            .frame(height: 44)
+            .glassEffect()
+            .measuringSize { size in
+                minWidth.deferred = size.width
+            }
+            .onDisappear {
+                    // This is to resolve issue of field size when pushing to result details
+                minWidth.update()
+            }
+        } else {
+            HStack(spacing: 0) {
+                Image
+                    .smartSearchSmallLine
+                    .foregroundStyle(.secondary)
+                    .fixedSize()
+                    .accessibilityHidden(true)
+
+                Spacer(minLength: 5)
+
+                TextField("", text: $text, prompt: Text(prompt))
+                    .textInputAutocapitalization(.never)
+                    .labelsHidden()
+                    .submitLabel(.search)
+                    .font(.regular14)
+                    .foregroundStyle(Color.textDarkest)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
+                    .onSubmit {
+                        minWidth.update()
+                        onSubmit()
+                    }
+
+                if text.isNotEmpty {
+                    Button {
+                        text = ""
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.caption)
+                            .foregroundStyle(clearButtonColor)
+                    }
+                    .fixedSize()
+                    .accessibilityLabel(Text("Clear text", bundle: .core))
+                }
+            }
+            .padding(.leading, 10)
+            .padding(.trailing, text.isEmpty ? 10 : 3)
+            .background(Color.backgroundLightest)
+            .clipShape(Capsule())
+            .shadow(radius: 2, y: 2)
+            .frame(idealWidth: minWidth.value, maxWidth: .infinity)
+            .measuringSize { size in
+                minWidth.deferred = size.width
+            }
+            .onDisappear {
+                    // This is to resolve issue of field size when pushing to result details
+                minWidth.update()
+            }
         }
     }
 }

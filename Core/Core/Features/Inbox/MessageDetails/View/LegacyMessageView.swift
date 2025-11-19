@@ -132,4 +132,3 @@ public struct LegacyMessageView: View {
         .environment(\.openURL, OpenURLAction(handler: model.handleURL))
     }
 }
-

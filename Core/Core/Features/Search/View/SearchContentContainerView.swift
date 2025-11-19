@@ -73,7 +73,7 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
                             Image.filterLine
                         }
                     }
-                    .tint(Color.textLightest)
+                    .tintBefore26(Color.textLightest)
                     .accessibilityLabel(Text("Filter", bundle: .core))
                 }
 
@@ -86,7 +86,7 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
                         } label: {
                             support.icon.image()
                         }
-                        .tint(Color.textLightest)
+                        .tintBefore26(Color.textLightest)
                         .accessibilityLabel(Text("Help", bundle: .core))
                     }
                 }
@@ -99,7 +99,7 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
                             .font(.body)
                             .fontWeight(.semibold)
                     }
-                    .tint(Color.textLightest)
+                    .tintBefore26(Color.textLightest)
                     .accessibilityLabel(Text("Back", bundle: .core))
                 }
             }

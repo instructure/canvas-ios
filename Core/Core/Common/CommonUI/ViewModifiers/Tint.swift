@@ -34,4 +34,14 @@ extension View {
     public func applyTint() -> some View {
         foregroundStyle(.tint)
     }
+
+    @available(iOS, deprecated: 26, message: "Intended for temporary compatibility before full iOS 26 adoption.")
+    @ViewBuilder
+    func tintBefore26(_ tint: Color?) -> some View {
+        if #available(iOS 26, *) {
+            self
+        } else {
+            self.tint(tint)
+        }
+    }
 }
