@@ -125,7 +125,8 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
         .contentShape(Rectangle())
         // If this is a simple gesture and the cell is a button then swiping won't work
         .simultaneousGesture(
-            DragGesture()
+            // Values lower than 20 will prevent parent gesture recognizers from working. (Parent scrollview cannot be scrolled when tapped on an element having this swipe modifier.)
+            DragGesture(minimumDistance: 20)
                 .onChanged(handleDragChanged)
                 .onEnded(handleDragEnded),
             isEnabled: isEnabled && !isActionInvoked
