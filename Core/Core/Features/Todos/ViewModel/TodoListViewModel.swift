@@ -71,6 +71,7 @@ class TodoListViewModel: ObservableObject {
 
     func refresh(completion: @escaping () -> Void, ignoreCache: Bool) {
         interactor.refresh(ignoreCache: ignoreCache)
+            .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] _ in
                 self?.state = .error
                 completion()

@@ -53,6 +53,7 @@ class TodoListViewModelTests: CoreTestCase {
     // MARK: - Initialization
 
     func test_init_setsInitialState() {
+        testScheduler.advance()
         XCTAssertEqual(testee.items, [])
         XCTAssertEqual(testee.state, .empty)
     }
@@ -93,6 +94,7 @@ class TodoListViewModelTests: CoreTestCase {
         testee.refresh(completion: {
             expectation.fulfill()
         }, ignoreCache: true)
+        testScheduler.advance()
 
         // Then
         XCTAssertTrue(interactor.refreshCalled)
@@ -111,6 +113,7 @@ class TodoListViewModelTests: CoreTestCase {
         testee.refresh(completion: {
             expectation.fulfill()
         }, ignoreCache: false)
+        testScheduler.advance()
 
         // Then
         XCTAssertTrue(interactor.refreshCalled)
@@ -130,6 +133,7 @@ class TodoListViewModelTests: CoreTestCase {
         testee.refresh(completion: {
             expectation.fulfill()
         }, ignoreCache: false)
+        testScheduler.advance()
 
         // Then
         XCTAssertEqual(testee.state, .data)
@@ -146,6 +150,7 @@ class TodoListViewModelTests: CoreTestCase {
         testee.refresh(completion: {
             expectation.fulfill()
         }, ignoreCache: false)
+        testScheduler.advance()
 
         // Then
         XCTAssertEqual(testee.state, .empty)
@@ -161,6 +166,7 @@ class TodoListViewModelTests: CoreTestCase {
         testee.refresh(completion: {
             expectation.fulfill()
         }, ignoreCache: false)
+        testScheduler.advance()
 
         // Then
         XCTAssertEqual(testee.state, .error)
@@ -229,6 +235,7 @@ class TodoListViewModelTests: CoreTestCase {
     // MARK: - State Management
 
     func test_state_updatesBasedOnRefreshResults() {
+        testScheduler.advance()
         XCTAssertEqual(testee.state, .empty)
 
         // When - with non-empty todos
@@ -236,6 +243,7 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.todoGroups.send([TodoGroupViewModel(date: Date(), items: [TodoItemViewModel.make(plannableId: "1", title: "Test")])])
         testScheduler.advance()
         testee.refresh(completion: {}, ignoreCache: false)
+        testScheduler.advance()
 
         // Then
         XCTAssertEqual(testee.state, .data)
@@ -245,6 +253,7 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.todoGroups.send([])
         testScheduler.advance()
         testee.refresh(completion: {}, ignoreCache: false)
+        testScheduler.advance()
 
         // Then
         XCTAssertEqual(testee.state, .empty)
@@ -252,6 +261,7 @@ class TodoListViewModelTests: CoreTestCase {
         // When - with error
         interactor.refreshResult = .failure(NSError.internalError())
         testee.refresh(completion: {}, ignoreCache: false)
+        testScheduler.advance()
 
         // Then
         XCTAssertEqual(testee.state, .error)
