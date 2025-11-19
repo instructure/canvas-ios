@@ -18,11 +18,14 @@
 
 import SwiftUI
 
-public enum SwipeCompletionBehavior {
-    /// Swipe action remains fully revealed after swipe completion. Gesture is disabled after action is triggered.
-    case stayOpen
-    /// Swipe action immediately resets to closed position after swipe completion. Gesture remains enabled for repeated use.
-    case reset
+extension InstUI {
+
+    public enum SwipeCompletionBehavior: Equatable {
+        /// Swipe action remains fully revealed after swipe completion. Gesture is disabled after action is triggered.
+        case stayOpen
+        /// Swipe action immediately resets to closed position after swipe completion. Gesture remains enabled for repeated use.
+        case reset
+    }
 }
 
 extension View {
@@ -36,12 +39,16 @@ extension View {
     ///   - backgroundColor: The background color revealed behind the content during the swipe.
     ///   - completionBehavior: Determines what happens after the swipe action completes. Defaults to `.stayOpen`.
     ///   - isSwiping: Binding that tracks whether a swipe gesture is currently active. Use this to disable scrolling or other gestures while swiping.
-    ///   - onSwipe: Closure called when the swipe action is completed.
+    ///   - isEnabled: Whether the swipe gesture is enabled. Defaults to `true`.
+    ///   - onSwipeCommitted: Optional closure called immediately when the swipe action is committed (user releases after reaching threshold) but before animations finish.
+    ///   - onSwipe: Closure called when the swipe action is completed animations included. For `.reset` behavior, this is called after the close animation finishes. For `.stayOpen` behavior, this is called while the open animation is running.
     ///   - label: The view displayed in the revealed area during the swipe.
     public func swipeAction<Label: View>(
         backgroundColor: Color,
-        completionBehavior: SwipeCompletionBehavior = .stayOpen,
+        completionBehavior: InstUI.SwipeCompletionBehavior = .stayOpen,
         isSwiping: Binding<Bool> = .constant(false),
+        isEnabled: Bool = true,
+        onSwipeCommitted: (() -> Void)? = nil,
         onSwipe: @escaping () -> Void,
         @ViewBuilder label: @escaping () -> Label
     ) -> some View {
@@ -49,6 +56,8 @@ extension View {
             backgroundColor: backgroundColor,
             completionBehavior: completionBehavior,
             isSwiping: isSwiping,
+            isEnabled: isEnabled,
+            onSwipeCommitted: onSwipeCommitted,
             onSwipe: onSwipe,
             label: label
         ))
@@ -57,21 +66,27 @@ extension View {
 
 private struct SwipeActionModifier<Label: View>: ViewModifier {
     let backgroundColor: Color
-    let completionBehavior: SwipeCompletionBehavior
+    let completionBehavior: InstUI.SwipeCompletionBehavior
     @Binding var isSwiping: Bool
+    let isEnabled: Bool
+    let onSwipeCommitted: (() -> Void)?
     let onSwipe: () -> Void
     let label: () -> Label
 
     init(
         backgroundColor: Color,
-        completionBehavior: SwipeCompletionBehavior,
+        completionBehavior: InstUI.SwipeCompletionBehavior,
         isSwiping: Binding<Bool>,
+        isEnabled: Bool,
+        onSwipeCommitted: (() -> Void)?,
         onSwipe: @escaping () -> Void,
         label: @escaping () -> Label
     ) {
         self.backgroundColor = backgroundColor
         self.completionBehavior = completionBehavior
         self._isSwiping = isSwiping
+        self.isEnabled = isEnabled
+        self.onSwipeCommitted = onSwipeCommitted
         self.onSwipe = onSwipe
         self.label = label
     }
@@ -113,7 +128,7 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
             DragGesture()
                 .onChanged(handleDragChanged)
                 .onEnded(handleDragEnded),
-            isEnabled: !isActionInvoked
+            isEnabled: isEnabled && !isActionInvoked
         )
     }
 
@@ -192,6 +207,8 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
         isSwiping = false
 
         if isActionThresholdReached {
+            onSwipeCommitted?()
+
             switch completionBehavior {
             case .stayOpen:
                 animateToOpenedState()
@@ -200,7 +217,7 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
             case .reset:
                 animateToClosedState()
                 Task { @MainActor in
-                    // Wait for close animation to complete before invoking callback
+                    // Wait for close animation to complete before invoking callback.
                     // This prevents visual state changes during the animation
                     // Note: await suspends the Task but does NOT block the main thread
                     try? await Task.sleep(nanoseconds: 430_000_000)

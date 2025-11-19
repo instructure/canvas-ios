@@ -68,7 +68,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // When
         mockCourses(courses)
-        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1", "2"]))
+        mockPlannables(plannables)
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
@@ -91,7 +91,7 @@ class TodoInteractorLiveTests: CoreTestCase {
     func testRefreshWithNoCourses() {
         // When
         mockCourses([])
-        mockPlannables([], contextCodes: makeUserContextCodes())
+        mockPlannables([])
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
@@ -112,7 +112,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // When
         mockCourses(courses)
-        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]))
+        mockPlannables(plannables)
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
@@ -127,6 +127,8 @@ class TodoInteractorLiveTests: CoreTestCase {
         // Given
         let courses = [makeCourse(id: "1", name: "Course 1")]
         let plannables = [makePlannable(courseId: "1", plannableId: "p1", type: "assignment", title: "Assignment 1")]
+        let expectedStartDate = TodoDateRangeStart.fourWeeksAgo.startDate()
+        let expectedEndDate = TodoDateRangeEnd.inFourWeeks.endDate()
 
         let coursesAPICallExpectation = expectation(description: "Courses API called")
         coursesAPICallExpectation.expectedFulfillmentCount = 2
@@ -138,9 +140,9 @@ class TodoInteractorLiveTests: CoreTestCase {
         api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), expectation: coursesAPICallExpectation, value: courses)
         api.mock(GetPlannablesRequest(
             userID: nil,
-            startDate: Clock.now.addDays(-28),
-            endDate: Clock.now.addDays(28),
-            contextCodes: makeContextCodes(courseIds: ["1"])
+            startDate: expectedStartDate,
+            endDate: expectedEndDate,
+            contextCodes: []
         ), expectation: plannablesAPICallExpectation, value: plannables)
 
         // Then - First call with ignoreCache: false
@@ -166,7 +168,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // When
         mockCourses(courses)
-        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]))
+        mockPlannables(plannables)
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
@@ -191,12 +193,12 @@ class TodoInteractorLiveTests: CoreTestCase {
         // Given
         let courses = [makeCourse(id: "1", name: "Course 1")]
         let plannables = [makePlannable(courseId: "1", plannableId: "p1", type: "assignment", title: "Assignment 1")]
-        let expectedStartDate = Clock.now.addDays(-28)
-        let expectedEndDate = Clock.now.addDays(28)
+        let expectedStartDate = TodoDateRangeStart.fourWeeksAgo.startDate()
+        let expectedEndDate = TodoDateRangeEnd.inFourWeeks.endDate()
 
         // When
         mockCourses(courses)
-        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]), startDate: expectedStartDate, endDate: expectedEndDate)
+        mockPlannables(plannables, startDate: expectedStartDate, endDate: expectedEndDate)
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
@@ -217,7 +219,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // When
         mockCourses(courses)
-        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]))
+        mockPlannables(plannables)
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
 
         // Then
@@ -504,7 +506,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // WHEN
         mockCourses(courses)
-        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]))
+        mockPlannables(plannables)
         XCTAssertFinish(testee.refresh(ignoreCache: false))
 
         // THEN
@@ -519,21 +521,23 @@ class TodoInteractorLiveTests: CoreTestCase {
         api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), value: courses)
     }
 
-    private func mockPlannables(_ plannables: [APIPlannable], contextCodes: [String]) {
-        api.mock(GetPlannablesRequest(
-            userID: nil,
-            startDate: Clock.now.addDays(-28),
-            endDate: Clock.now.addDays(28),
-            contextCodes: contextCodes
-        ), value: plannables)
-    }
-
-    private func mockPlannables(_ plannables: [APIPlannable], contextCodes: [String], startDate: Date, endDate: Date) {
+    private func mockPlannables(_ plannables: [APIPlannable]) {
+        let startDate = TodoDateRangeStart.fourWeeksAgo.startDate()
+        let endDate = TodoDateRangeEnd.inFourWeeks.endDate()
         api.mock(GetPlannablesRequest(
             userID: nil,
             startDate: startDate,
             endDate: endDate,
-            contextCodes: contextCodes
+            contextCodes: []
+        ), value: plannables)
+    }
+
+    private func mockPlannables(_ plannables: [APIPlannable], startDate: Date, endDate: Date) {
+        api.mock(GetPlannablesRequest(
+            userID: nil,
+            startDate: startDate,
+            endDate: endDate,
+            contextCodes: []
         ), value: plannables)
     }
 
@@ -557,15 +561,4 @@ class TodoInteractorLiveTests: CoreTestCase {
         )
     }
 
-    private func makeUserContextCodes() -> [String] {
-        ["user_1"]
-    }
-
-    private func makeCourseContextCodes(_ courseIds: [String]) -> [String] {
-        courseIds.map { "course_\($0)" }
-    }
-
-    private func makeContextCodes(courseIds: [String]) -> [String] {
-        makeCourseContextCodes(courseIds) + makeUserContextCodes()
-    }
 }

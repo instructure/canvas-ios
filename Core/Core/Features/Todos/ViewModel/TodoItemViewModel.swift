@@ -32,9 +32,32 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
             updateSwipeProperties()
         }
     }
+
+    // MARK: - Swipe Properties
+
     @Published public private(set) var swipeBackgroundColor: Color = .backgroundSuccess
     @Published public private(set) var swipeActionText: String = ""
     @Published public private(set) var swipeActionIcon: Image = .checkLine
+
+    public var shouldKeepCompletedItemsVisible: Bool = false
+
+    public var swipeCompletionBehavior: InstUI.SwipeCompletionBehavior {
+        if markAsDoneState == .done {
+            return .reset
+        } else {
+            return shouldKeepCompletedItemsVisible ? .reset : .stayOpen
+        }
+    }
+
+    public var isSwipeEnabled: Bool {
+        markAsDoneState != .loading
+    }
+
+    public var shouldToggleInPlaceAfterSwipe: Bool {
+        markAsDoneState == .done || shouldKeepCompletedItemsVisible
+    }
+
+    // MARK: - UI Properties
 
     /// This is the view identity that might change. Don't use this for business logic.
     public private(set) var id: String = UUID.string
@@ -121,6 +144,19 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         id = UUID.string
     }
 
+    public var markAsDoneAccessibilityLabel: String? {
+        switch markAsDoneState {
+        case .notDone:
+            return String(localized: "Mark as done", bundle: .core)
+        case .loading:
+            return nil
+        case .done:
+            return String(localized: "Mark as not done", bundle: .core)
+        }
+    }
+
+    // MARK: - Private Functions
+
     private func updateSwipeProperties() {
         switch markAsDoneState {
         case .done:
@@ -134,24 +170,13 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         }
     }
 
-    public var markAsDoneAccessibilityLabel: String? {
-        switch markAsDoneState {
-        case .notDone:
-            return String(localized: "Mark as done", bundle: .core)
-        case .loading:
-            return nil
-        case .done:
-            return String(localized: "Mark as not done", bundle: .core)
-        }
-    }
-
     /// Helper function to format the date text for a Todo item.
     /// - Parameters:
     ///   - date: The start date of the todo item.
     ///   - isAllDay: Whether the event is an all-day event.
     ///   - endAt: The end date if the event has a time range.
     /// - Returns: Formatted date string.
-    static func formatDateText(date: Date, isAllDay: Bool, endAt: Date?) -> String {
+    internal static func formatDateText(date: Date, isAllDay: Bool, endAt: Date?) -> String {
         if isAllDay {
             String(localized: "All Day", bundle: .core)
         } else if let end = endAt {
@@ -168,7 +193,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     ///   - courseCode: The course code.
     ///   - fallback: Fallback value if no course data is available.
     /// - Returns: The appropriate context name.
-    public static func contextName(
+    private static func contextName(
         isCourseNameNickname: Bool,
         courseName: String?,
         courseCode: String?,

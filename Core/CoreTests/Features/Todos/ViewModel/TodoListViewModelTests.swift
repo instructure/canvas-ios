@@ -533,77 +533,6 @@ class TodoListViewModelTests: CoreTestCase {
         XCTAssertEqual(item.markAsDoneState, .done)
     }
 
-    // MARK: - Swipe Completion Behavior
-
-    func test_swipeCompletionBehavior_initializesToStayOpen_whenShowCompletedNotEnabled() {
-        // GIVEN
-        sessionDefaults.todoFilterOptions = TodoFilterOptions(
-            visibilityOptions: [],
-            dateRangeStart: .lastWeek,
-            dateRangeEnd: .nextWeek
-        )
-
-        // WHEN
-        let viewModel = TodoListViewModel(
-            interactor: interactor,
-            router: router,
-            sessionDefaults: sessionDefaults,
-            scheduler: testScheduler.eraseToAnyScheduler()
-        )
-
-        // THEN
-        XCTAssertEqual(viewModel.swipeCompletionBehavior, .stayOpen)
-    }
-
-    func test_swipeCompletionBehavior_initializesToReset_whenShowCompletedEnabled() {
-        // GIVEN
-        sessionDefaults.todoFilterOptions = TodoFilterOptions(
-            visibilityOptions: [.showCompleted],
-            dateRangeStart: .lastWeek,
-            dateRangeEnd: .nextWeek
-        )
-
-        // WHEN
-        let viewModel = TodoListViewModel(
-            interactor: interactor,
-            router: router,
-            sessionDefaults: sessionDefaults,
-            scheduler: testScheduler.eraseToAnyScheduler()
-        )
-
-        // THEN
-        XCTAssertEqual(viewModel.swipeCompletionBehavior, .reset)
-    }
-
-    func test_handleFiltersChanged_updatesSwipeCompletionBehavior() {
-        // GIVEN
-        sessionDefaults.todoFilterOptions = TodoFilterOptions(
-            visibilityOptions: [],
-            dateRangeStart: .lastWeek,
-            dateRangeEnd: .nextWeek
-        )
-        let viewModel = TodoListViewModel(
-            interactor: interactor,
-            router: router,
-            sessionDefaults: sessionDefaults,
-            scheduler: testScheduler.eraseToAnyScheduler()
-        )
-        XCTAssertEqual(viewModel.swipeCompletionBehavior, .stayOpen)
-
-        // WHEN
-        sessionDefaults.todoFilterOptions = TodoFilterOptions(
-            visibilityOptions: [.showCompleted],
-            dateRangeStart: .lastWeek,
-            dateRangeEnd: .nextWeek
-        )
-        interactor.isCacheExpiredResult = false
-        interactor.refreshResult = .success(())
-        viewModel.handleFiltersChanged()
-
-        // THEN
-        XCTAssertEqual(viewModel.swipeCompletionBehavior, .reset)
-    }
-
     // MARK: - Handle Swipe Action
 
     func test_handleSwipeAction_whenNotDone_andFilterHidesCompleted_removesItemImmediately() {
@@ -647,6 +576,7 @@ class TodoListViewModelTests: CoreTestCase {
         )
         interactor.markItemAsDoneResult = .success(())
         let item = TodoItemViewModel.make(plannableId: "1")
+        item.shouldKeepCompletedItemsVisible = true
         let group = TodoGroupViewModel(date: Date(), items: [item])
         interactor.todoGroups.send([group])
 
@@ -714,6 +644,7 @@ class TodoListViewModelTests: CoreTestCase {
         XCTAssertEqual(item.markAsDoneState, .done)
 
         // WHEN - undo via swipe before removal timer fires
+        viewModel.handleSwipeCommitted(item)
         viewModel.handleSwipeAction(item)
         testScheduler.advance()
 
@@ -742,6 +673,7 @@ class TodoListViewModelTests: CoreTestCase {
         )
         interactor.markItemAsDoneResult = .success(())
         let item = TodoItemViewModel.make(plannableId: "1")
+        item.shouldKeepCompletedItemsVisible = true
 
         // WHEN
         viewModel.handleSwipeAction(item)
@@ -767,6 +699,7 @@ class TodoListViewModelTests: CoreTestCase {
         )
         interactor.markItemAsDoneResult = .failure(NSError.internalError())
         let item = TodoItemViewModel.make(plannableId: "1")
+        item.shouldKeepCompletedItemsVisible = true
 
         // WHEN
         viewModel.handleSwipeAction(item)

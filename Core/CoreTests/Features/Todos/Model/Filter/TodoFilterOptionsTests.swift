@@ -66,7 +66,7 @@ class TodoFilterOptionsTests: XCTestCase {
             dateRangeEnd: .nextWeek
         )
 
-        let expected = Date(fromISOString: "2025-01-12T00:00:00Z")!
+        let expected = referenceDate.startOfWeek()
         XCTAssertEqual(options.startDate, expected)
 
         Clock.reset()
@@ -82,7 +82,7 @@ class TodoFilterOptionsTests: XCTestCase {
             dateRangeEnd: .nextWeek
         )
 
-        let expected = Date(fromISOString: "2025-01-25T23:59:59Z")!
+        let expected = referenceDate.startOfWeek().addWeeks(2).addSeconds(-1)
         XCTAssertEqual(options.endDate, expected)
 
         Clock.reset()

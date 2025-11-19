@@ -567,6 +567,124 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem?.swipeActionIcon, .discussionReply2Line)
     }
 
+    // MARK: - Swipe Completion Behavior
+
+    func test_swipeCompletionBehavior_returnsStayOpen_whenNotDone_andCompletedItemsHidden() {
+        // GIVEN
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .notDone
+        todoItem.shouldKeepCompletedItemsVisible = false
+
+        // THEN
+        XCTAssertEqual(todoItem.swipeCompletionBehavior, .stayOpen)
+    }
+
+    func test_swipeCompletionBehavior_returnsReset_whenNotDone_andCompletedItemsVisible() {
+        // GIVEN
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .notDone
+        todoItem.shouldKeepCompletedItemsVisible = true
+
+        // THEN
+        XCTAssertEqual(todoItem.swipeCompletionBehavior, .reset)
+    }
+
+    func test_swipeCompletionBehavior_returnsReset_whenDone_regardlessOfFilter() {
+        // GIVEN
+        let todoItem1 = TodoItemViewModel.make(plannableId: "1")
+        todoItem1.markAsDoneState = .done
+        todoItem1.shouldKeepCompletedItemsVisible = false
+
+        let todoItem2 = TodoItemViewModel.make(plannableId: "2")
+        todoItem2.markAsDoneState = .done
+        todoItem2.shouldKeepCompletedItemsVisible = true
+
+        // THEN
+        XCTAssertEqual(todoItem1.swipeCompletionBehavior, .reset)
+        XCTAssertEqual(todoItem2.swipeCompletionBehavior, .reset)
+    }
+
+    func test_swipeCompletionBehavior_returnsStayOpen_whenLoading_andCompletedItemsHidden() {
+        // GIVEN
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .loading
+        todoItem.shouldKeepCompletedItemsVisible = false
+
+        // THEN
+        XCTAssertEqual(todoItem.swipeCompletionBehavior, .stayOpen)
+    }
+
+    // MARK: - Swipe Enabled
+
+    func test_isSwipeEnabled_returnsTrue_whenNotDone() {
+        // GIVEN
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .notDone
+
+        // THEN
+        XCTAssertTrue(todoItem.isSwipeEnabled)
+    }
+
+    func test_isSwipeEnabled_returnsTrue_whenDone() {
+        // GIVEN
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .done
+
+        // THEN
+        XCTAssertTrue(todoItem.isSwipeEnabled)
+    }
+
+    func test_isSwipeEnabled_returnsFalse_whenLoading() {
+        // GIVEN
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .loading
+
+        // THEN
+        XCTAssertFalse(todoItem.isSwipeEnabled)
+    }
+
+    // MARK: - Swipe Action Type
+
+    func test_shouldToggleInPlaceAfterSwipe_returnsTrue_whenDone() {
+        // GIVEN
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .done
+        todoItem.shouldKeepCompletedItemsVisible = false
+
+        // THEN
+        XCTAssertTrue(todoItem.shouldToggleInPlaceAfterSwipe)
+    }
+
+    func test_shouldToggleInPlaceAfterSwipe_returnsTrue_whenNotDone_andCompletedItemsVisible() {
+        // GIVEN
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .notDone
+        todoItem.shouldKeepCompletedItemsVisible = true
+
+        // THEN
+        XCTAssertTrue(todoItem.shouldToggleInPlaceAfterSwipe)
+    }
+
+    func test_shouldToggleInPlaceAfterSwipe_returnsFalse_whenNotDone_andCompletedItemsHidden() {
+        // GIVEN
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .notDone
+        todoItem.shouldKeepCompletedItemsVisible = false
+
+        // THEN
+        XCTAssertFalse(todoItem.shouldToggleInPlaceAfterSwipe)
+    }
+
+    func test_shouldToggleInPlaceAfterSwipe_returnsTrue_whenLoading_andCompletedItemsVisible() {
+        // GIVEN
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .loading
+        todoItem.shouldKeepCompletedItemsVisible = true
+
+        // THEN
+        XCTAssertTrue(todoItem.shouldToggleInPlaceAfterSwipe)
+    }
+
     // MARK: - Helpers
 
     private func makePlannable(

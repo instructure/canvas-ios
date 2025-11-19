@@ -129,14 +129,18 @@ final class TodoInteractorLive: TodoInteractor {
         let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
         let coursesByCanvasContextIds = Dictionary(uniqueKeysWithValues: courses.map { ($0.canvasContextID, $0) })
 
+        let shouldKeepCompletedItemsVisible = filterOptions.visibilityOptions.contains(.showCompleted)
+
         let todos = plannables
             .filter { plannable in
                 let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
                 return filterOptions.shouldInclude(plannable: plannable, course: course)
             }
-            .compactMap { plannable in
+            .compactMap { plannable -> TodoItemViewModel? in
                 let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
-                return TodoItemViewModel(plannable, course: course)
+                guard let item = TodoItemViewModel(plannable, course: course) else { return nil }
+                item.shouldKeepCompletedItemsVisible = shouldKeepCompletedItemsVisible
+                return item
             }
 
         let notDoneTodos = todos.filter { $0.markAsDoneState == .notDone }

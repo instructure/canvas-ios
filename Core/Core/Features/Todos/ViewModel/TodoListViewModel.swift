@@ -26,7 +26,6 @@ class TodoListViewModel: ObservableObject {
     @Published private(set) var items: [TodoGroupViewModel] = []
     @Published private(set) var state: InstUI.ScreenState = .loading
     @Published private(set) var filterIcon: Image = .filterLine
-    @Published private(set) var swipeCompletionBehavior: SwipeCompletionBehavior = .stayOpen
     let screenConfig = InstUI.BaseScreenConfig(
         emptyPandaConfig: .init(
             scene: VacationPanda(),
@@ -47,9 +46,6 @@ class TodoListViewModel: ObservableObject {
     private var markDoneTimers: [String: AnyCancellable] = [:]
     /// Tracks item IDs that have been optimistically removed via swipe and are awaiting API response
     private var optimisticallyRemovedIds: Set<String> = []
-    private var shouldKeepCompletedItemsVisible: Bool {
-        swipeCompletionBehavior == .reset
-    }
 
     init(
         interactor: TodoInteractor,
@@ -67,7 +63,6 @@ class TodoListViewModel: ObservableObject {
             .assign(to: \.items, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
-        updateSwipeCompletionBehavior()
         updateFilterIcon()
         refresh(completion: { }, ignoreCache: false)
     }
@@ -117,7 +112,6 @@ class TodoListViewModel: ObservableObject {
 
     func handleFiltersChanged() {
         updateFilterIcon()
-        updateSwipeCompletionBehavior()
 
         interactor.isCacheExpired()
             .sink { [weak self] cacheExpired in
@@ -155,20 +149,19 @@ class TodoListViewModel: ObservableObject {
         }
     }
 
-    func handleSwipeAction(_ item: TodoItemViewModel) {
-        let isCurrentlyDone = item.markAsDoneState == .done
+    /// Cancels any pending auto-removal timer immediately when swipe is committed.
+    /// This is called before the animation delay to prevent the cell getting removed while the swipe animation is being finished for undo action.
+    func handleSwipeCommitted(_ item: TodoItemViewModel) {
+        cancelDelayedRemove(for: item)
+    }
 
-        if isCurrentlyDone {
-            // Undoing - always toggle in place and cancel any pending removal
-            cancelDelayedRemove(for: item)
+    /// Performs the mark as done/undone action after the swipe animation completes.
+    /// Timer cancellation happens earlier in handleSwipeCommitted to avoid race conditions.
+    func handleSwipeAction(_ item: TodoItemViewModel) {
+        if item.shouldToggleInPlaceAfterSwipe {
             toggleItemStateInPlace(item)
         } else {
-            // Marking as done - respect filter behavior
-            if shouldKeepCompletedItemsVisible {
-                toggleItemStateInPlace(item)
-            } else {
-                removeItemWithOptimisticUI(item)
-            }
+            removeItemWithOptimisticUI(item)
         }
     }
 
@@ -362,10 +355,5 @@ class TodoListViewModel: ObservableObject {
     private func updateFilterIcon() {
         let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
         filterIcon = filterOptions.isDefault ? .filterLine : .filterSolid
-    }
-
-    private func updateSwipeCompletionBehavior() {
-        let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
-        swipeCompletionBehavior = filterOptions.visibilityOptions.contains(.showCompleted) ? .reset : .stayOpen
     }
 }
