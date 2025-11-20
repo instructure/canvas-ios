@@ -90,7 +90,7 @@ public class GradeCircleView: UIView {
         }
 
         guard submission.grade != nil
-                || submission.excused == true
+                || submission.excused
                 || submission.customGradeStatusId != nil
         else {
             isHidden = true
@@ -145,7 +145,7 @@ public class GradeCircleView: UIView {
         }
 
         // Update for excused
-        if submission.excused == true {
+        if submission.excused {
             circlePoints.isHidden = true
             circleLabel.isHidden = true
             circleComplete.isHidden = false
