@@ -33,7 +33,7 @@ class GetPlannablesTests: CoreTestCase {
     lazy var useCase: GetPlannables = makeUseCase()
 
     func testCacheKey() {
-        XCTAssertEqual(useCase.cacheKey, "get-plannables--\(start)-\(end)--")
+        XCTAssertEqual(useCase.cacheKey, "get-plannables--\(start)-\(end)---nil")
     }
 
     func testScope() {
