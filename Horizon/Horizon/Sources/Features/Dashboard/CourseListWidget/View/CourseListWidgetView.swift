@@ -30,7 +30,6 @@ struct CourseListWidgetView: View {
     @State private var bounceScale: CGFloat = 1.0
     @State private var scrollViewID = UUID()
     private let focusedseeAllCoursesButton = "focusedseeAllCoursesButton"
-    private let focusedseeAllCoursesCard = "focusedseeAllCoursesCard"
 
     init(viewModel: CourseListWidgetViewModel) {
         _viewModel = State(initialValue: viewModel)
@@ -121,16 +120,6 @@ struct CourseListWidgetView: View {
                                     .scaleEffect(y: phase.isIdentity ? 1.0 : 0.8)
                             }
                             .id(index)
-                        }
-
-                        if viewModel.isExceededMaxCourses {
-                            CourseListWidgetSeeAllCoursesView(count: viewModel.courses.count) {
-                                lastFocusedElement.wrappedValue = .course(id: focusedseeAllCoursesCard)
-                                viewModel.navigateToListCourse(viewController: viewController)
-                            }
-                            .frame(width: size - 48)
-                            .id(focusedseeAllCoursesCard)
-                            .accessibilityFocused($focusedCourseID, equals: focusedseeAllCoursesCard)
                         }
                     }
                     .scrollTargetLayout()
