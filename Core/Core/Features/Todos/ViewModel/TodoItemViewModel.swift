@@ -76,6 +76,9 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     public let plannableId: String
     public var overrideId: String?
 
+    /// Indicates whether this item can be tapped to navigate to its details. Items with account-level context are not tappable.
+    public let isTappable: Bool
+
     public init?(_ plannable: Plannable, course: Course? = nil) {
         guard let date = plannable.date else { return nil }
 
@@ -102,6 +105,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
 
         self.overrideId = plannable.plannerOverrideId
         self.markAsDoneState = plannable.isMarkedComplete ? .done : .notDone
+        self.isTappable = plannable.context?.contextType != .account
         updateSwipeProperties()
     }
 
@@ -117,7 +121,8 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         icon: Image,
         overrideId: String? = nil,
         isAllDay: Bool = false,
-        endAt: Date? = nil
+        endAt: Date? = nil,
+        isTappable: Bool = true
     ) {
         self.plannableId = plannableId
         self.type = type
@@ -133,6 +138,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         self.icon = icon
 
         self.overrideId = overrideId
+        self.isTappable = isTappable
         updateSwipeProperties()
     }
 

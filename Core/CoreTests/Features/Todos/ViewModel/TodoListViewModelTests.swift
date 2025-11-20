@@ -232,6 +232,30 @@ class TodoListViewModelTests: CoreTestCase {
         XCTAssertNil(router.lastViewController)
     }
 
+    func test_didTapItem_withAccountContext_doesNothing() {
+        // Given
+        let todo = TodoItemViewModel(
+            plannableId: "123",
+            type: .assignment,
+            date: Date(),
+            title: "Account level assignment",
+            subtitle: nil,
+            contextName: "Account",
+            htmlURL: URL(string: "https://canvas.instructure.com/accounts/1/assignments/123"),
+            color: .red,
+            icon: .assignmentLine,
+            isTappable: false
+        )
+        interactor.todoGroups.send([TodoGroupViewModel(date: Date(), items: [todo])])
+
+        // When
+        testee.didTapItem(todo, WeakViewController())
+
+        // Then
+        XCTAssertNil(router.lastViewController)
+        XCTAssertFalse(router.lastRoutedTo("https://canvas.instructure.com/accounts/1/assignments/123?origin=todo"))
+    }
+
     // MARK: - State Management
 
     func test_state_updatesBasedOnRefreshResults() {

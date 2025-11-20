@@ -84,6 +84,8 @@ class TodoListViewModel: ObservableObject {
     }
 
     func didTapItem(_ item: TodoItemViewModel, _ viewController: WeakViewController) {
+        guard item.isTappable else { return }
+
         switch item.type {
         case .planner_note:
             let vc = PlannerAssembly.makeToDoDetailsViewController(plannableId: item.plannableId)
