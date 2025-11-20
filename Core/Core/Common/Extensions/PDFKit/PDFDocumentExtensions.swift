@@ -22,18 +22,29 @@ extension PDFDocument {
 
     @discardableResult
     public func write(to url: URL? = nil, name: String? = nil) throws -> URL {
-        let directory = url ?? URL.Directories.temporary.appendingPathComponent("Documents", isDirectory: true)
-        let name = name ?? String(Clock.now.timeIntervalSince1970)
-        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
-        var url = directory.appendingPathComponent(name, isDirectory: false)
+        let manager = FileManager.default
+        let directory = url ?? URL.Directories
+            .temporary
+            .appendingPathComponent("PDF_Documents", isDirectory: true)
+
+        let fileName = name ?? Foundation.UUID().uuidString
+        try manager.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
+
+        var url = directory.appendingPathComponent(fileName, isDirectory: false)
         url = url.pathExtension != "pdf" ? url.appendingPathExtension("pdf") : url
+
         guard let data = dataRepresentation() else {
-            throw NSError.instructureError(String(localized: "Failed to save pdf", bundle: .core))
+            throw NSError.instructureError(
+                String(localized: "Failed to save PDF", bundle: .core)
+            )
         }
-        if FileManager.default.fileExists(atPath: url.path) {
-            try FileManager.default.removeItem(at: url)
+
+        if manager.fileExists(atPath: url.path) {
+            try manager.removeItem(at: url)
         }
+
         try data.write(to: url)
+
         return url
     }
 }

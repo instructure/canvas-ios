@@ -386,24 +386,37 @@ extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
+
+    private var shouldMergeScannedImagesIntoPDF: Bool {
+        utis.contains(where: { $0.isPdf }) && utis.contains(where: { $0.isImage }) == false
+    }
+
+    private func proposeFilenameForNewPDFScan() -> String {
+        let scannedCount = pickedFilesSourceMap.filter({ $0.value == .documentScan }).count
+        return "Scan_\(scannedCount + 1).pdf"
+    }
+
     public func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
         controller.dismiss(animated: true)
 
-        let usePdf = utis.contains(where: { $0.isPdf }) && !utis.contains(where: { $0.isImage })
-
-        if usePdf {
+        if shouldMergeScannedImagesIntoPDF {
             let pdfDocument = PDFDocument()
+            let pages = (0 ..< scan.pageCount).compactMap {
+                PDFPage(image: scan.imageOfPage(at: $0))
+            }
 
-            let pages = (0 ..< scan.pageCount).compactMap { PDFPage(image: scan.imageOfPage(at: $0)) }
-            pages.forEach { pdfDocument.insert($0, at: pdfDocument.pageCount) }
+            pages.forEach {
+                pdfDocument.insert($0, at: pdfDocument.pageCount)
+            }
 
             do {
-                add(try pdfDocument.write(), source: .documentScan)
+                let proposeName = proposeFilenameForNewPDFScan()
+                add(try pdfDocument.write(name: proposeName), source: .documentScan)
             } catch {
                 showError(error)
             }
         } else {
-            for i in 0..<scan.pageCount {
+            for i in 0 ..< scan.pageCount {
                 do {
                     let image = scan.imageOfPage(at: i)
                     add(try image.write(), source: .documentScan)
