@@ -457,15 +457,15 @@ extension Submission {
 
     public var status: SubmissionStatus {
         .init(
+            isSubmitted: submittedAt != nil,
+            isGraded: workflowState == .graded && score != nil,
+            isGradeBelongsToCurrentSubmission: gradeMatchesCurrentSubmission,
             isLate: late,
             isMissing: missing,
             isExcused: excused,
-            isSubmitted: submittedAt != nil,
-            isGraded: workflowState == .graded && score != nil,
             customStatusId: customGradeStatusId,
             customStatusName: customGradeStatusName,
-            submissionType: type ?? assignment?.submissionTypes.first,
-            isGradeBelongsToCurrentSubmission: gradeMatchesCurrentSubmission
+            submissionType: type ?? assignment?.submissionTypes.first
         )
     }
 

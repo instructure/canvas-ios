@@ -60,15 +60,15 @@ public class CDSubAssignmentSubmission: NSManagedObject {
 
     public var status: SubmissionStatus {
         .init(
+            isSubmitted: submittedAt != nil,
+            isGraded: score != nil,
+            isGradeBelongsToCurrentSubmission: gradeMatchesCurrentSubmission,
             isLate: isLate,
             isMissing: isMissing,
             isExcused: isExcused,
-            isSubmitted: submittedAt != nil,
-            isGraded: score != nil,
             customStatusId: customGradeStatusId,
             customStatusName: customGradeStatusName,
-            submissionType: nil,
-            isGradeBelongsToCurrentSubmission: gradeMatchesCurrentSubmission
+            submissionType: nil
         )
     }
 
