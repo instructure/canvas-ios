@@ -25,7 +25,9 @@ class TodoDateRangeStartTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        Cal.mockCalendar(Calendar(identifier: .gregorian), timeZone: TimeZone(abbreviation: "UTC")!)
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.locale = Locale(identifier: "en_US")
+        Cal.mockCalendar(calendar, timeZone: TimeZone(abbreviation: "UTC")!)
     }
 
     override func tearDown() {
@@ -80,7 +82,9 @@ class TodoDateRangeStartTests: XCTestCase {
 
     func testSubtitle() {
         let result = TodoDateRangeStart.today.subtitle(relativeTo: referenceDate)
-        XCTAssertTrue(result.contains("From"))
-        XCTAssertTrue(result.contains("Jan 15"))
+        let expectedDate = TodoDateRangeStart.today.startDate(relativeTo: referenceDate)
+        let expectedDateString = expectedDate.shortDayMonth
+        let expectedSubtitle = String(localized: "From \(expectedDateString)", bundle: .core)
+        XCTAssertEqual(result, expectedSubtitle)
     }
 }

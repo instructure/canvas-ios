@@ -115,7 +115,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         mockPlannables(plannables)
 
         // Then
-        XCTAssertFinish(testee.refresh(ignoreCache: false))
+        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
         XCTAssertFirstValue(testee.todoGroups) { todoGroups in
             XCTAssertEqual(todoGroups.count, 1)
             XCTAssertEqual(todoGroups.first?.items.count, 1)
