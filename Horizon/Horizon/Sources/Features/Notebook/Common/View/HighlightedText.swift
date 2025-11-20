@@ -36,15 +36,21 @@ struct HighlightedText: View {
     }
 
     var body: some View {
-        Text(text)
+        Text(styledText)
             .padding(.horizontal, .huiSpaces.space2)
             .padding(.top, .huiSpaces.space2)
-            .huiTypography(.p1)
-            .underline(pattern: type == .important ? .solid : .dot, color: type.color)
-            .background(type.backgroundColor)
             .baselineOffset(3)
             .multilineTextAlignment(.leading)
-            .foregroundStyle(Color.huiColors.text.body)
+    }
+
+    private var styledText: AttributedString {
+        var text = AttributedString(text)
+        text.backgroundColor = type.backgroundColor
+        text.underlineStyle = type == .important ? [.single] : [.single, .patternDot]
+        text.underlineColor = UIColor(type.color)
+        text.foregroundColor = UIColor(Color.huiColors.text.body)
+        text.font = HorizonUI.Typography(.p1).fount
+        return text
     }
 }
 

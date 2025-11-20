@@ -44,7 +44,6 @@ struct NotesbookCardsView: View {
                 .transition(.move(edge: .trailing).combined(with: .opacity))
                 .scrollTransition(.animated) { content, phase in
                     content
-                        .opacity(phase.isIdentity ? 1 : 0.3)
                         .scaleEffect(phase.isIdentity ? 1 : 0.9)
                 }
             }
