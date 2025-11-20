@@ -118,7 +118,13 @@ final class TodoInteractorLive: TodoInteractor {
     private func makePlannablesUseCase() -> GetPlannables {
         let startDate = TodoDateRangeStart.fourWeeksAgo.startDate()
         let endDate = TodoDateRangeEnd.inFourWeeks.endDate()
-        return GetPlannables(startDate: startDate, endDate: endDate, contextCodes: nil, allowEmptyContextCodesFetch: true)
+        return GetPlannables(
+            startDate: startDate,
+            endDate: endDate,
+            contextCodes: nil,
+            allowEmptyContextCodesFetch: true,
+            useCaseID: .todo
+        )
     }
 
     private func makePlannablesStore() -> ReactiveStore<GetPlannables> {

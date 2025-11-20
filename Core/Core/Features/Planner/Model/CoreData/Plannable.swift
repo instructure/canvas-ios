@@ -27,6 +27,7 @@ public enum PlannableType: String, Codable {
 
 public enum PlannableUseCaseID: String, Codable {
     case syllabusSummary
+    case todo
 }
 
 public final class Plannable: NSManagedObject {
