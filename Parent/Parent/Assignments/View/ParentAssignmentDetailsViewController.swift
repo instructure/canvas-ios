@@ -206,10 +206,10 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
         }()
         statusIconView.isHidden = assignment.submissionStatusIsHidden
         statusIconView.image = status.uiImageIcon
-        statusIconView.tintColor = status.viewModel.color.asUIColor
+        statusIconView.tintColor = status.labelModel.color.asUIColor
         statusLabel.isHidden = assignment.submissionStatusIsHidden
-        statusLabel.textColor = status.viewModel.color.asUIColor
-        statusLabel?.text = status.viewModel.text
+        statusLabel.textColor = status.labelModel.color.asUIColor
+        statusLabel?.text = status.labelModel.text
         dateLabel.text = assignment.dueAt?.dateTimeString ?? String(localized: "No Due Date", bundle: .parent)
         reminderSwitch.isEnabled = true
         reminderDateButton.isEnabled = true

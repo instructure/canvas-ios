@@ -427,10 +427,10 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         let status = assignment.submission?.status ?? .notSubmitted
         statusIconView?.isHidden = assignment.submissionStatusIsHidden
         statusIconView?.image = status.uiImageIcon
-        statusIconView?.tintColor = status.viewModel.color.asUIColor
+        statusIconView?.tintColor = status.labelModel.color.asUIColor
         statusLabel?.isHidden = assignment.submissionStatusIsHidden
-        statusLabel?.textColor = status.viewModel.color.asUIColor
-        statusLabel?.text = status.viewModel.text
+        statusLabel?.textColor = status.labelModel.color.asUIColor
+        statusLabel?.text = status.labelModel.text
 
         updateDueDateSections(assignment: assignment)
 

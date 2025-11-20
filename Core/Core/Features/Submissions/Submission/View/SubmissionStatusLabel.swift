@@ -65,7 +65,7 @@ extension SubmissionStatusLabel {
 
 extension SubmissionStatusLabel.Model {
     public init(status: SubmissionStatus) {
-        let model = status.viewModel
+        let model = status.labelModel
         self.init(
             text: model.text,
             icon: model.icon,

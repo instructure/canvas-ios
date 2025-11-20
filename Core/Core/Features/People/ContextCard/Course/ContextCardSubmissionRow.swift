@@ -77,7 +77,7 @@ struct ContextCardSubmissionRow: View {
                 return .assignmentLine
             }
         }()
-        self.submissionStatus = submission.status.viewModel
+        self.submissionStatus = submission.status.labelModel
         self.a11ySubmissionStatus = {
             if submission.needsGrading {
                 return String(localized: "NEEDS GRADING", bundle: .core)

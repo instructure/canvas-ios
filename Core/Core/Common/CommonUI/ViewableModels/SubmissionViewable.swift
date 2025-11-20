@@ -44,7 +44,7 @@ extension SubmissionViewable {
         // Hide status if it is not gradable, because "Not Graded" is already displayed
         // in that case. That "Not Graded" label comes from `pointsPossible` text.
         // Missing/Late/Excused/Custom statuses are still displayed, even for not gradable types.
-        submission?.status == .notGradable
+        submission?.status.isNotGradableWithNoGradeStatus ?? true
     }
 
     public var hasLatePenalty: Bool {

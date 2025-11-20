@@ -51,12 +51,12 @@ public struct AssignmentFilterOptionStudent: CaseIterable, Equatable {
         rule: { assignment in
             guard let submission = assignment.submission else { return false }
 
-            if submission.status.isNotSubmittedNotGraded {
+            if submission.status.needsSubmission {
                 return true
             }
 
             return submission.subAssignmentSubmissions.contains {
-                $0.status.isNotSubmittedNotGraded
+                $0.status.needsSubmission
             }
         }
     )
@@ -69,12 +69,12 @@ public struct AssignmentFilterOptionStudent: CaseIterable, Equatable {
         rule: { assignment in
             guard let submission = assignment.submission else { return false }
 
-            if submission.status.isSubmittedButNotGraded {
+            if submission.status.needsGrading {
                 return true
             }
 
             return submission.subAssignmentSubmissions.contains {
-                $0.status.isSubmittedButNotGraded
+                $0.status.needsGrading
             }
         }
     )
@@ -106,7 +106,7 @@ public struct AssignmentFilterOptionStudent: CaseIterable, Equatable {
             guard let submission = assignment.submission else { return false }
 
             let status = submission.status
-            if status.isNotSubmittable || status.isExcused {
+            if status.isNotSubmittableWithNoGradeNoGradeStatus || status.isExcused {
                 return true
             }
 
