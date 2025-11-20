@@ -24,6 +24,7 @@ struct NotesbookCardsView: View {
     let selectedNote: CourseNotebookNote?
     let showDeleteLoader: Bool
     let isSeeMoreButtonVisible: Bool
+    let showCourseName: Bool
     let onTapNote: (CourseNotebookNote) -> Void
     let onTapDeleteNote: (CourseNotebookNote) -> Void
     let onTapSeeMore: () -> Void
@@ -36,7 +37,8 @@ struct NotesbookCardsView: View {
                 } label: {
                     NoteCardsView(
                         note: note,
-                        isLoading: note == selectedNote ? showDeleteLoader : false
+                        isLoading: note == selectedNote ? showDeleteLoader : false,
+                        showCourseName: showCourseName
                     ) { deletedNote in
                         onTapDeleteNote(deletedNote)
                     }
@@ -44,7 +46,6 @@ struct NotesbookCardsView: View {
                 .transition(.move(edge: .trailing).combined(with: .opacity))
                 .scrollTransition(.animated) { content, phase in
                     content
-                        .opacity(phase.isIdentity ? 1 : 0.3)
                         .scaleEffect(phase.isIdentity ? 1 : 0.9)
                 }
             }

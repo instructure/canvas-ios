@@ -35,17 +35,13 @@ final class NotebookAssembly {
         )
     }
 
-    static func makeView(
-        courseID: String? = nil,
-        pageURL: String? = nil
-    ) -> NotebookListView {
-        let viewModel = makeViewModel(courseID: courseID, pageURL: pageURL)
-        return NotebookListView(viewModel: viewModel)
+    static func makeView(courseID: String) -> NotebookCourseView {
+        let viewModel = makeViewModel(courseID: courseID)
+        return NotebookCourseView(viewModel: viewModel)
     }
 
-    static func makeViewController(
-    ) -> CoreHostingController<NotebookListView> {
-        let viewModel = makeViewModel(courseID: nil, pageURL: nil)
+    static func makeViewController() -> CoreHostingController<NotebookListView> {
+        let viewModel = makeViewModel()
         return CoreHostingController(NotebookListView(viewModel: viewModel))
     }
 

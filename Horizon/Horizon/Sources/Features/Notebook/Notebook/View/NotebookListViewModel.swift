@@ -55,6 +55,7 @@ final class NotebookListViewModel {
 
     private let interactor: CourseNoteInteractor
     private let router: Router
+    let courseID: String?
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
@@ -68,6 +69,7 @@ final class NotebookListViewModel {
     ) {
         self.interactor = interactor
         self.router = router
+        self.courseID = courseID
         self.scheduler = scheduler
         fetchNotes(pageURL: pageURL, filter: .init(courseId: courseID))
     }
@@ -134,6 +136,10 @@ final class NotebookListViewModel {
         router.show(noteVC, from: viewController)
     }
 
+    func realod() {
+        fetchNotes(ignoreCache: true, filter: .init(courseId: courseID))
+    }
+
     // MARK: - Private Functions
 
     private func getSelectedFilter() -> NotebookQueryFilter {
@@ -152,7 +158,7 @@ final class NotebookListViewModel {
         filter: NotebookQueryFilter = .init(),
         completion: (() -> Void)? = nil
     ) {
-        let isUnfiltered = filter.courseId == nil && filter.reactions == nil && filter.pageId == nil
+        let isUnfiltered = filter.courseId == courseID && filter.reactions == nil && filter.pageId == nil
 
         interactor
             .getAllNotesWithCourses(
@@ -207,7 +213,7 @@ final class NotebookListViewModel {
                 pageURL: nil,
                 ignoreCache: false,
                 keepObserving: false,
-                filter: .init()
+                filter: .init(courseId: courseID)
             )
             .first()
             .receive(on: scheduler)

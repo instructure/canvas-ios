@@ -55,7 +55,8 @@ struct NotebookModuleItemView: View {
             notes: viewModel.filteredNotes,
             selectedNote: selectedNote,
             showDeleteLoader: viewModel.listState.isDeletedNoteLoaderVisible,
-            isSeeMoreButtonVisible: viewModel.listState.isSeeMoreButtonVisible) { selectedNote in
+            isSeeMoreButtonVisible: viewModel.listState.isSeeMoreButtonVisible,
+            showCourseName: false) { selectedNote in
                 viewModel.presentEditNote(note: selectedNote, viewController: viewController)
             } onTapDeleteNote: { deletedNote in
                 selectedNote = deletedNote
