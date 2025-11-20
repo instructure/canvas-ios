@@ -64,12 +64,13 @@ class SubmissionTypeTests: XCTestCase {
 
     func testAllowedUTIsAllowedExtensions() {
         let submissionTypes: [SubmissionType] = [.online_upload]
-        let allowedExtensions = ["png", "mov", "mp3"]
+        let allowedExtensions = ["png", "mov", "mp3", "pdf"]
         let result = submissionTypes.allowedUTIs(allowedExtensions: allowedExtensions)
         XCTAssertEqual(result.count, 3)
         XCTAssertTrue(result.contains { $0.isImage })
         XCTAssertTrue(result.contains { $0.isVideo })
         XCTAssertTrue(result.contains { $0.isAudio })
+        XCTAssertTrue(result.contains { $0.isPDF })
     }
 
     func testAllowedUTIsAllowedExtensionsVideo() {
