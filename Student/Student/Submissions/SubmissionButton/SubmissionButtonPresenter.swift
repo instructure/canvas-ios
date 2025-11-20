@@ -239,7 +239,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         if assignment.allowedExtensions.isEmpty == true || allowedUTIs.contains(where: { $0.isImage || $0.isVideo }) {
             filePicker.sources.append(contentsOf: [.library, .camera])
             if !isMediaRecording { filePicker.sources.append(.documentScan) }
-        } else if allowedUTIs.contains(where: { $0.isPdf }) {
+        } else if allowedUTIs.contains(where: { $0.isPDF }) {
             filePicker.sources.append(.documentScan)
         }
         if isMediaRecording { filePicker.sources.append(.audio) }
