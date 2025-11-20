@@ -63,6 +63,8 @@ class TodoListViewModel: ObservableObject {
             .assign(to: \.items, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
+        setupRefreshOnAppForegroundEvent()
+
         updateFilterIcon()
         refresh(ignoreCache: false)
     }
@@ -115,18 +117,7 @@ class TodoListViewModel: ObservableObject {
 
     func handleFiltersChanged() {
         updateFilterIcon()
-
-        interactor.isCacheExpired()
-            .sink { [weak self] cacheExpired in
-                guard let self else { return }
-
-                if cacheExpired {
-                    self.state = .loading
-                }
-
-                self.refresh(ignoreCache: false)
-            }
-            .store(in: &subscriptions)
+        checkCacheAndRefresh()
     }
 
     func didTapDayHeader(_ group: TodoGroupViewModel, viewController: WeakViewController) {
@@ -169,6 +160,32 @@ class TodoListViewModel: ObservableObject {
     }
 
     // MARK: - Private Methods -
+    // MARK: Refresh
+
+    private func setupRefreshOnAppForegroundEvent() {
+        NotificationCenter.default
+            .publisher(for: UIApplication.willEnterForegroundNotification)
+            .sink { [weak self] _ in
+                self?.checkCacheAndRefresh()
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func checkCacheAndRefresh() {
+        interactor.isCacheExpired()
+            .receive(on: scheduler)
+            .sink { [weak self] cacheExpired in
+                guard let self else { return }
+
+                if cacheExpired {
+                    self.state = .loading
+                }
+
+                self.refresh(ignoreCache: false)
+            }
+            .store(in: &subscriptions)
+    }
+
     // MARK: Swipe Gesture
 
     private func toggleItemStateInPlace(_ item: TodoItemViewModel) {

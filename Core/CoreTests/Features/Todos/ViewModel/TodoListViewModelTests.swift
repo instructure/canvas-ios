@@ -317,6 +317,27 @@ class TodoListViewModelTests: CoreTestCase {
         XCTAssertEqual(router.calls.last?.2.isModal, true)
     }
 
+    // MARK: - App Foreground Handling
+
+    func test_appWillEnterForeground_checksCacheAndRefreshes() {
+        // Given
+        testScheduler.advance()
+        XCTAssertEqual(testee.state, .empty)
+        interactor.isCacheExpiredResult = true
+        interactor.refreshResult = .success(())
+        interactor.refreshCallCount = 0
+
+        // When
+        NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: nil)
+        testScheduler.advance()
+
+        // Then
+        XCTAssertTrue(interactor.isCacheExpiredCalled)
+        XCTAssertTrue(interactor.refreshCalled)
+        XCTAssertEqual(interactor.refreshCallCount, 1)
+        XCTAssertFalse(interactor.lastIgnoreCache)
+    }
+
     // MARK: - Mark Item As Done (Checkbox)
 
     func test_markItemAsDone_startsInNotDoneState() {
