@@ -64,21 +64,21 @@ class TodoListViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         updateFilterIcon()
-        refresh(completion: { }, ignoreCache: false)
+        refresh(ignoreCache: false)
     }
 
     // MARK: - User Actions
 
-    func refresh(completion: @escaping () -> Void, ignoreCache: Bool) {
+    func refresh(ignoreCache: Bool, completion: (() -> Void)? = nil) {
         interactor.refresh(ignoreCache: ignoreCache)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] _ in
                 self?.state = .error
-                completion()
+                completion?()
             } receiveValue: { [weak self] _ in
                 let isListEmpty = self?.items.isEmpty == true
                 self?.state = isListEmpty ? .empty : .data
-                completion()
+                completion?()
             }
             .store(in: &subscriptions)
     }
@@ -124,7 +124,7 @@ class TodoListViewModel: ObservableObject {
                     self.state = .loading
                 }
 
-                self.refresh(completion: {}, ignoreCache: false)
+                self.refresh(ignoreCache: false)
             }
             .store(in: &subscriptions)
     }

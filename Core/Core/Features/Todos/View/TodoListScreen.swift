@@ -35,7 +35,7 @@ struct TodoListScreen: View {
             state: viewModel.state,
             config: viewModel.screenConfig,
             refreshAction: { completion in
-                viewModel.refresh(completion: completion, ignoreCache: true)
+                viewModel.refresh(ignoreCache: true, completion: completion)
             }
         ) { _ in
             LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {

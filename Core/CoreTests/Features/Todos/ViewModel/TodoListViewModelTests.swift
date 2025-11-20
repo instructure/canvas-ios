@@ -91,9 +91,9 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.refreshResult = .success(())
 
         // When
-        testee.refresh(completion: {
+        testee.refresh(ignoreCache: true) {
             expectation.fulfill()
-        }, ignoreCache: true)
+        }
         testScheduler.advance()
 
         // Then
@@ -110,9 +110,9 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.refreshResult = .success(())
 
         // When
-        testee.refresh(completion: {
+        testee.refresh(ignoreCache: false) {
             expectation.fulfill()
-        }, ignoreCache: false)
+        }
         testScheduler.advance()
 
         // Then
@@ -130,9 +130,9 @@ class TodoListViewModelTests: CoreTestCase {
         testScheduler.advance()
 
         // When
-        testee.refresh(completion: {
+        testee.refresh(ignoreCache: false) {
             expectation.fulfill()
-        }, ignoreCache: false)
+        }
         testScheduler.advance()
 
         // Then
@@ -147,9 +147,9 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.todoGroups.send([])
 
         // When
-        testee.refresh(completion: {
+        testee.refresh(ignoreCache: false) {
             expectation.fulfill()
-        }, ignoreCache: false)
+        }
         testScheduler.advance()
 
         // Then
@@ -163,9 +163,9 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.refreshResult = .failure(NSError.internalError())
 
         // When
-        testee.refresh(completion: {
+        testee.refresh(ignoreCache: false) {
             expectation.fulfill()
-        }, ignoreCache: false)
+        }
         testScheduler.advance()
 
         // Then
@@ -266,7 +266,7 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.refreshResult = .success(())
         interactor.todoGroups.send([TodoGroupViewModel(date: Date(), items: [TodoItemViewModel.make(plannableId: "1", title: "Test")])])
         testScheduler.advance()
-        testee.refresh(completion: {}, ignoreCache: false)
+        testee.refresh(ignoreCache: false)
         testScheduler.advance()
 
         // Then
@@ -276,7 +276,7 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.refreshResult = .success(())
         interactor.todoGroups.send([])
         testScheduler.advance()
-        testee.refresh(completion: {}, ignoreCache: false)
+        testee.refresh(ignoreCache: false)
         testScheduler.advance()
 
         // Then
@@ -284,7 +284,7 @@ class TodoListViewModelTests: CoreTestCase {
 
         // When - with error
         interactor.refreshResult = .failure(NSError.internalError())
-        testee.refresh(completion: {}, ignoreCache: false)
+        testee.refresh(ignoreCache: false)
         testScheduler.advance()
 
         // Then
@@ -297,9 +297,9 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.refreshResult = .success(())
 
         // When
-        testee.refresh(completion: {}, ignoreCache: false)
-        testee.refresh(completion: {}, ignoreCache: true)
-        testee.refresh(completion: {}, ignoreCache: false)
+        testee.refresh(ignoreCache: false)
+        testee.refresh(ignoreCache: true)
+        testee.refresh(ignoreCache: false)
 
         // Then
         XCTAssertEqual(interactor.refreshCallCount, 3)
