@@ -19,32 +19,20 @@
 import HorizonUI
 import SwiftUI
 
-struct TimeSpentCourseView: View {
-    let name: String
-    let isSelected: Bool
-
+struct CourseListEmptyView: View {
     var body: some View {
-        HStack(spacing: .huiSpaces.space4) {
-            if isSelected {
-                Image.huiIcons.check
-                    .frame(width: 24, height: 24)
-            }
-            Text(name)
+        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
+            Text("Nothing here yet")
+                .huiTypography(.h2)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .multilineTextAlignment(.leading)
-                .huiTypography(.buttonTextMedium)
+            Text("Adjust your filters to see more.")
+                .huiTypography(.p1)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.horizontal, .huiSpaces.space16)
-        .padding(.vertical, .huiSpaces.space8)
-        .foregroundStyle(
-            isSelected
-            ? Color.huiColors.surface.pageSecondary
-            : Color.huiColors.text.body
-        )
-        .background(
-            isSelected
-            ? Color.huiColors.surface.inversePrimary
-            : Color.clear
-        )
+        .foregroundStyle(Color.huiColors.text.body)
     }
+}
+
+#Preview {
+    CourseListEmptyView()
 }
