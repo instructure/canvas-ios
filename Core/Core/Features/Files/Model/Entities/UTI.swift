@@ -131,7 +131,8 @@ public struct UTI: Equatable, Hashable {
     public var isImage: Bool {
         return uttype?.conforms(to: .image) ?? false
     }
-    public var isPdf: Bool {
+
+    public var isPDF: Bool {
         return uttype?.conforms(to: .pdf) ?? false
     }
 
