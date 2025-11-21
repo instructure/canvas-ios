@@ -166,6 +166,8 @@ public struct MessageView: View {
     }
 }
 
+#if DEBUG
+
 #Preview {
     let env = PreviewEnvironment()
     let context = env.globalDatabase.viewContext
@@ -176,3 +178,5 @@ public struct MessageView: View {
         messages: .make(count: 5, body: InstUI.PreviewData.loremIpsumLong, in: context)
     )
 }
+
+#endif
