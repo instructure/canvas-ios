@@ -210,6 +210,7 @@ public extension Date {
     private static var shortDayMonthFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("dMMM")
+        formatter.timeZone = Cal.currentCalendar.timeZone
         return formatter
     }()
 
