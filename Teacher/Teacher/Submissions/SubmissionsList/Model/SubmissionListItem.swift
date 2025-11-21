@@ -24,7 +24,7 @@ public struct SubmissionListItem {
     let originalUserID: String
     let userNameModel: UserNameModel
     let userAsRecipient: Recipient?
-    let status: SubmissionStatusOld
+    let status: SubmissionStatusLabel.Model
     let needsGrading: Bool
     let gradeFormatted: String
 
@@ -35,7 +35,7 @@ public struct SubmissionListItem {
         originalUserID: String,
         userNameModel: UserNameModel,
         userAsRecipient: Recipient?,
-        status: SubmissionStatusOld,
+        status: SubmissionStatusLabel.Model,
         needsGrading: Bool,
         gradeFormatted: String
     ) {
@@ -64,7 +64,7 @@ public struct SubmissionListItem {
             userAsRecipient: submission.user.flatMap {
                 Recipient(id: $0.id, name: $0.name, avatarURL: $0.avatarURL)
             },
-            status: submission.statusIncludingGradedState,
+            status: submission.status.labelModel,
             needsGrading: submission.needsGrading,
             gradeFormatted: GradeFormatter.shortString(for: assignment, submission: submission, blankPlaceholder: .oneDash)
         )
@@ -85,7 +85,7 @@ extension SubmissionListItem {
         originalUserID: String = "",
         userNameModel: UserNameModel = .anonymousUser,
         userAsRecipient: Recipient? = nil,
-        status: SubmissionStatusOld = .notSubmitted,
+        status: SubmissionStatusLabel.Model = .notSubmitted,
         needsGrading: Bool = false,
         gradeFormatted: String = "-"
     ) -> SubmissionListItem {

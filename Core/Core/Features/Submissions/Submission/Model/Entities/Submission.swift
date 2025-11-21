@@ -442,22 +442,6 @@ extension Submission {
         if submittedAt != nil { return .submitted }
         return .notSubmitted
     }
-
-    public var statusIncludingGradedState: SubmissionStatusOld {
-        if isGraded {
-            if excused { return .excused }
-            if customGradeStatusId != nil { return customGradedStatus }
-            return .graded
-        }
-        return statusOld
-    }
-
-    private var customGradedStatus: SubmissionStatusOld {
-        if let name = customGradeStatusName {
-            return .custom(name)
-        }
-        return .graded
-    }
 }
 
 extension Submission: Comparable {

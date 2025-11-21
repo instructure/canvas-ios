@@ -327,12 +327,10 @@ class SubmissionTests: CoreTestCase {
         XCTAssertEqual(notSubmitted.statusOld, .notSubmitted)
 
         let graded = Submission.make(from: .make(excused: false, score: 95, submitted_at: Date(), workflow_state: .graded))
-        XCTAssertEqual(graded.statusIncludingGradedState, .graded)
         XCTAssertEqual(graded.statusOld, .submitted)
         XCTAssertEqual(graded.statusOld, graded.statusOld)
 
         let excused = Submission.make(from: .make(excused: true, score: 95, submitted_at: Date(), workflow_state: .graded))
-        XCTAssertEqual(excused.statusIncludingGradedState, .excused)
         XCTAssertEqual(excused.statusOld, .submitted)
         XCTAssertEqual(excused.statusOld, excused.statusOld)
     }
