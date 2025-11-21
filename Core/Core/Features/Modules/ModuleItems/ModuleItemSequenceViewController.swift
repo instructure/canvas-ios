@@ -69,6 +69,15 @@ public final class ModuleItemSequenceViewController: UIViewController {
         leftBarButtonItems = navigationItem.leftBarButtonItems
         rightBarButtonItems = navigationItem.rightBarButtonItems
 
+        if #available(iOS 26, *) {
+            // Since titleSubtitleView is in use, we need to set the toolbar appearance to match the screen's
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithDefaultBackground()
+            appearance.backgroundColor = .backgroundLightest
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
+
         showSequenceButtons(prev: false, next: false)
         pages.scrollView.isScrollEnabled = false
         embed(pages, in: pagesContainer)
