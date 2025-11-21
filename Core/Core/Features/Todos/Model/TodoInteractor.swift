@@ -19,7 +19,7 @@
 import Foundation
 import Combine
 
-protocol TodoInteractor {
+public protocol TodoInteractor {
     /// The current list of todo groups, grouped by day and filtered according to user preferences.
     /// Updated when `refresh()` is called.
     var todoGroups: CurrentValueSubject<[TodoGroupViewModel], Never> { get }
@@ -51,23 +51,25 @@ protocol TodoInteractor {
     func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error>
 }
 
-final class TodoInteractorLive: TodoInteractor {
-    var todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([])
+public final class TodoInteractorLive: TodoInteractor {
+    public var todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([])
 
     private let env: AppEnvironment
     private let sessionDefaults: SessionDefaults
     private let coursesStore: ReactiveStore<GetCourses>
+    private let alwaysExcludeCompleted: Bool
     private var subscriptions = Set<AnyCancellable>()
 
-    init(env: AppEnvironment, sessionDefaults: SessionDefaults) {
+    public init(env: AppEnvironment, sessionDefaults: SessionDefaults, alwaysExcludeCompleted: Bool) {
         self.env = env
         self.sessionDefaults = sessionDefaults
+        self.alwaysExcludeCompleted = alwaysExcludeCompleted
         self.coursesStore = ReactiveStore(useCase: GetCourses(), environment: env)
     }
 
     // MARK: - Public Methods
 
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+    public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
         let plannableStore = makePlannablesStore()
 
         return Publishers.Zip(
@@ -82,7 +84,7 @@ final class TodoInteractorLive: TodoInteractor {
         .eraseToAnyPublisher()
     }
 
-    func isCacheExpired() -> AnyPublisher<Bool, Never> {
+    public func isCacheExpired() -> AnyPublisher<Bool, Never> {
         let plannablesUseCase = makePlannablesUseCase()
 
         return Publishers.Zip(
@@ -95,7 +97,7 @@ final class TodoInteractorLive: TodoInteractor {
         .eraseToAnyPublisher()
     }
 
-    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
+    public func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
         let useCase = MarkPlannableItemDone(
             plannableId: item.plannableId,
             plannableType: item.type.rawValue,
@@ -152,7 +154,7 @@ final class TodoInteractorLive: TodoInteractor {
         let notDoneTodos = todos.filter { $0.markAsDoneState == .notDone }
         TabBarBadgeCounts.todoListCount = UInt(notDoneTodos.count)
 
-        let groupedTodos = Self.groupTodosByDay(todos)
+        let groupedTodos = Self.groupTodosByDay(alwaysExcludeCompleted ? notDoneTodos : todos)
         todoGroups.value = groupedTodos
     }
 

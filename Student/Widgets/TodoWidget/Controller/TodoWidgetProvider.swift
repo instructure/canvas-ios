@@ -53,7 +53,7 @@ class TodoWidgetProvider: TimelineProvider {
 
         setupEnvironment(with: session)
         /// The interactor needs to be created here, after the session is setup
-        let interactor = PlannerAssembly.makeFilterInteractor(observedUserId: nil)
+        let interactor = TodoInteractorLive(env: env, sessionDefaults: env.userDefaults ?? .fallback, alwaysExcludeCompleted: true)
         let getTimeline = fetch(interactor: interactor)
         let getBrandColors = ReactiveStore(useCase: GetBrandVariables())
             .getEntities()
@@ -75,39 +75,16 @@ class TodoWidgetProvider: TimelineProvider {
     }
 
     private func fetch(
-        interactor: CalendarFilterInteractor
+        interactor: TodoInteractor
     ) -> AnyPublisher<Timeline<TodoWidgetEntry>, Never> {
-        let env = env
         return interactor
-            .load(ignoreCache: false)
-            .flatMap {
-                interactor.selectedContexts
-                    .first()
-                    .setFailureType(to: Error.self)
+            .refresh(ignoreCache: false)
+            .map {
+                interactor.todoGroups.value
             }
-            .flatMap { contexts in
-                let contextCodes = contexts.map(\.canvasContextID)
-                let start = Clock.now.startOfDay()
-                let end = start.addDays(28)
-
-                return ReactiveStore(
-                    useCase: GetPlannables(
-                        startDate: start,
-                        endDate: end,
-                        contextCodes: contextCodes
-                    ),
-                    environment: env
-                )
-                .getEntities()
-            }
-            .map { plannables in
-                let todoItems = plannables
-                    .filter {
-                        $0.plannableType != .announcement && $0.plannableType != .assessment_request
-                    }
-                    .compactMap { (TodoItemViewModel($0)) }
-
-                let model = TodoModel(items: todoItems)
+            .map { groups in
+                // TodoInteractor already filters out completed items when alwaysExcludeCompleted is true
+                let model = TodoModel(groups: groups)
                 let entry = TodoWidgetEntry(data: model, date: Clock.now)
                 let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
                 return Timeline(entries: [entry], policy: .after(refreshDate))

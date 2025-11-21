@@ -25,34 +25,42 @@ class TodoModel: WidgetModel {
         Self.make()
     }
 
-    let items: [TodoItemViewModel]
+    let groups: [TodoGroupViewModel]
     let error: TodoError?
 
     init(
         isLoggedIn: Bool = true,
-        items: [TodoItemViewModel] = [],
+        groups: [TodoGroupViewModel] = [],
         error: TodoError? = nil
     ) {
-        self.items = items
+        self.groups = groups
         self.error = error
 
         super.init(isLoggedIn: isLoggedIn)
     }
 
     func todoDays(for family: WidgetFamily) -> TodoList {
-        let todoItems = Array(
-            items
-                .sorted { $0.date < $1.date }
-                .prefix(family.shownTodoItemsMaximumCount)
-        )
+        let allItems = groups.flatMap { $0.items }
+        let maxCount = family.shownTodoItemsMaximumCount
 
-        let days = Dictionary(grouping: todoItems, by: { $0.date.startOfDay() })
-            .sorted(by: { $0.key < $1.key })
-            .map { (date, dayItems) in
-                return TodoDay(date: date, items: dayItems)
+        var itemCount = 0
+        var days: [TodoDay] = []
+
+        for group in groups.sorted() {
+            if itemCount >= maxCount {
+                break
             }
 
-        return TodoList(days: days, isFullList: todoItems.count == items.count)
+            let remainingCount = maxCount - itemCount
+            let itemsToTake = Array(group.items.prefix(remainingCount))
+
+            if !itemsToTake.isEmpty {
+                days.append(TodoDay(date: group.date, items: itemsToTake))
+                itemCount += itemsToTake.count
+            }
+        }
+
+        return TodoList(days: days, isFullList: itemCount == allItems.count)
     }
 }
 
@@ -65,7 +73,23 @@ enum TodoError: Error {
 extension TodoModel {
 
     static func make(count: Int = 5) -> TodoModel {
-        let items = [
+        let groups = makePreviewGroups()
+        let limitedGroups = limitGroups(groups, maxItemCount: count)
+        return TodoModel(groups: limitedGroups)
+    }
+
+    private static func makePreviewGroups() -> [TodoGroupViewModel] {
+        let todayItems = makeTodayPreviewItems()
+        let laterItems = makeLaterPreviewItems()
+
+        return [
+            TodoGroupViewModel(date: Date.now.startOfDay(), items: todayItems),
+            TodoGroupViewModel(date: Date.now.addDays(3).startOfDay(), items: laterItems)
+        ]
+    }
+
+    private static func makeTodayPreviewItems() -> [TodoItemViewModel] {
+        [
             TodoItemViewModel(
                 plannableId: "1",
                 type: .assignment,
@@ -98,7 +122,12 @@ extension TodoModel {
                 htmlURL: nil,
                 color: .course5,
                 icon: .calendarMonthLine
-            ),
+            )
+        ]
+    }
+
+    private static func makeLaterPreviewItems() -> [TodoItemViewModel] {
+        [
             TodoItemViewModel(
                 plannableId: "4",
                 type: .planner_note,
@@ -144,6 +173,31 @@ extension TodoModel {
                 icon: .documentLine
             )
         ]
-        return TodoModel(items: Array(items.prefix(count)))
+    }
+
+    private static func limitGroups(_ groups: [TodoGroupViewModel], maxItemCount: Int) -> [TodoGroupViewModel] {
+        let allItems = groups.flatMap { $0.items }
+
+        guard maxItemCount < allItems.count else {
+            return groups
+        }
+
+        var itemCount = 0
+        var resultGroups: [TodoGroupViewModel] = []
+
+        for group in groups {
+            if itemCount >= maxItemCount {
+                break
+            }
+            let remainingCount = maxItemCount - itemCount
+            let itemsToTake = Array(group.items.prefix(remainingCount))
+
+            if !itemsToTake.isEmpty {
+                resultGroups.append(TodoGroupViewModel(date: group.date, items: itemsToTake))
+                itemCount += itemsToTake.count
+            }
+        }
+
+        return resultGroups
     }
 }
