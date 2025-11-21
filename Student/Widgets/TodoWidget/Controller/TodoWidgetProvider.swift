@@ -52,9 +52,17 @@ class TodoWidgetProvider: TimelineProvider {
         if fetchSubscription != nil { return }
 
         setupEnvironment(with: session)
-        /// The interactor needs to be created here, after the session is setup
-        let interactor = TodoInteractorLive(alwaysExcludeCompleted: true, sessionDefaults: env.userDefaults ?? .fallback, env: env)
-        let getTimeline = fetch(interactor: interactor)
+
+        let useNewTodo = ExperimentalFeature.newStudentToDoScreen.isEnabled
+        let getTimeline: AnyPublisher<Timeline<TodoWidgetEntry>, Never>
+
+        if useNewTodo {
+            let interactor = TodoInteractorLive(alwaysExcludeCompleted: true, sessionDefaults: env.userDefaults ?? .fallback, env: env)
+            getTimeline = fetchNewTodos(interactor: interactor)
+        } else {
+            getTimeline = fetchOldTodos()
+        }
+
         let getBrandColors = ReactiveStore(useCase: GetBrandVariables())
             .getEntities()
             .replaceError(with: [])
@@ -74,7 +82,7 @@ class TodoWidgetProvider: TimelineProvider {
         env.userDidLogin(session: session, isSilent: true)
     }
 
-    private func fetch(
+    private func fetchNewTodos(
         interactor: TodoInteractor
     ) -> AnyPublisher<Timeline<TodoWidgetEntry>, Never> {
         return interactor
@@ -98,5 +106,65 @@ class TodoWidgetProvider: TimelineProvider {
                 )
             }
             .eraseToAnyPublisher()
+    }
+
+    private func fetchOldTodos() -> AnyPublisher<Timeline<TodoWidgetEntry>, Never> {
+        let interactor = PlannerAssembly.makeFilterInteractor(observedUserId: nil)
+
+        return interactor
+            .load(ignoreCache: false)
+            .flatMap {
+                interactor.selectedContexts
+                    .first()
+                    .setFailureType(to: Error.self)
+            }
+            .flatMap { contexts in
+                let contextCodes = contexts.map(\.canvasContextID)
+                let start = Clock.now.startOfDay()
+                let end = start.addDays(28)
+
+                return ReactiveStore(
+                    useCase: GetPlannables(
+                        startDate: start,
+                        endDate: end,
+                        contextCodes: contextCodes
+                    ),
+                    environment: self.env
+                )
+                .getEntities()
+            }
+            .map { plannables in
+                let todoItems = plannables
+                    .filter {
+                        $0.plannableType != .announcement && $0.plannableType != .assessment_request
+                    }
+                    .compactMap { TodoItemViewModel($0) }
+
+                let groups = Self.groupItemsByDay(todoItems)
+                let model = TodoModel(groups: groups)
+                let entry = TodoWidgetEntry(data: model, date: Clock.now)
+                let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
+                return Timeline(entries: [entry], policy: .after(refreshDate))
+            }
+            .catch { _ in
+                let model = TodoModel(error: .fetchingDataFailure)
+                let entry = TodoWidgetEntry(data: model, date: Clock.now)
+                let recoveryDate = Clock.now.addingTimeInterval(.widgetRecover)
+                return Just(
+                    Timeline(entries: [entry], policy: .after(recoveryDate))
+                )
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private static func groupItemsByDay(_ items: [TodoItemViewModel]) -> [TodoGroupViewModel] {
+        let groupedDict = Dictionary(grouping: items) { item in
+            item.date.startOfDay()
+        }
+
+        return groupedDict.map { (date, items) in
+            TodoGroupViewModel(date: date, items: items.sorted())
+        }
+        .sorted()
     }
 }
