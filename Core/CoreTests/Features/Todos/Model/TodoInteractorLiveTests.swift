@@ -515,6 +515,171 @@ class TodoInteractorLiveTests: CoreTestCase {
         XCTAssertNotNil(mockAnalyticsHandler.lastEventParameters)
     }
 
+    // MARK: - alwaysExcludeCompleted Tests
+
+    func test_refresh_withAlwaysExcludeCompleted_filtersOutCompletedItems() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let completedPlannable = makePlannableWithCompletion(
+            courseId: "1",
+            plannableId: "p1",
+            type: "assignment",
+            title: "Completed Assignment",
+            isCompleted: true
+        )
+        let notCompletedPlannable = makePlannableWithCompletion(
+            courseId: "1",
+            plannableId: "p2",
+            type: "quiz",
+            title: "Pending Quiz",
+            isCompleted: false
+        )
+        let sessionDefaults = SessionDefaults(sessionID: "test-widget")
+        let interactor = TodoInteractorLive(alwaysExcludeCompleted: true, sessionDefaults: sessionDefaults, env: environment)
+
+        // WHEN
+        mockCourses(courses)
+        mockPlannables([completedPlannable, notCompletedPlannable])
+        XCTAssertFinish(interactor.refresh(ignoreCache: false))
+
+        // THEN
+        XCTAssertFirstValue(interactor.todoGroups) { todoGroups in
+            let allItems = todoGroups.flatMap { $0.items }
+            XCTAssertEqual(allItems.count, 1)
+            XCTAssertEqual(allItems.first?.title, "Pending Quiz")
+            XCTAssertFalse(allItems.contains(where: { $0.title == "Completed Assignment" }))
+        }
+    }
+
+    func test_refresh_withAlwaysExcludeCompletedFalse_includesCompletedItems() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let completedPlannable = makePlannableWithCompletion(
+            courseId: "1",
+            plannableId: "p1",
+            type: "assignment",
+            title: "Completed Assignment",
+            isCompleted: true
+        )
+        let notCompletedPlannable = makePlannableWithCompletion(
+            courseId: "1",
+            plannableId: "p2",
+            type: "quiz",
+            title: "Pending Quiz",
+            isCompleted: false
+        )
+        let sessionDefaults = SessionDefaults(sessionID: "test-app")
+        var filterOptions = TodoFilterOptions.default
+        filterOptions = TodoFilterOptions(
+            visibilityOptions: [.showCompleted],
+            dateRangeStart: filterOptions.dateRangeStart,
+            dateRangeEnd: filterOptions.dateRangeEnd
+        )
+        environment.userDefaults = sessionDefaults
+        environment.userDefaults?.todoFilterOptions = filterOptions
+        let interactor = TodoInteractorLive(alwaysExcludeCompleted: false, sessionDefaults: sessionDefaults, env: environment)
+
+        // WHEN
+        mockCourses(courses)
+        mockPlannables([completedPlannable, notCompletedPlannable])
+        XCTAssertFinish(interactor.refresh(ignoreCache: false))
+
+        // THEN
+        XCTAssertFirstValue(interactor.todoGroups) { todoGroups in
+            let allItems = todoGroups.flatMap { $0.items }
+            XCTAssertEqual(allItems.count, 2)
+            XCTAssertTrue(allItems.contains(where: { $0.title == "Completed Assignment" }))
+            XCTAssertTrue(allItems.contains(where: { $0.title == "Pending Quiz" }))
+        }
+    }
+
+    func test_refresh_withAlwaysExcludeCompleted_ignoresShowCompletedFilter() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let completedPlannable = makePlannableWithCompletion(
+            courseId: "1",
+            plannableId: "p1",
+            type: "assignment",
+            title: "Completed Assignment",
+            isCompleted: true
+        )
+        let notCompletedPlannable = makePlannableWithCompletion(
+            courseId: "1",
+            plannableId: "p2",
+            type: "quiz",
+            title: "Pending Quiz",
+            isCompleted: false
+        )
+        let sessionDefaults = SessionDefaults(sessionID: "test-widget-override")
+        var filterOptions = TodoFilterOptions.default
+        filterOptions = TodoFilterOptions(
+            visibilityOptions: [.showCompleted],
+            dateRangeStart: filterOptions.dateRangeStart,
+            dateRangeEnd: filterOptions.dateRangeEnd
+        )
+        environment.userDefaults = sessionDefaults
+        environment.userDefaults?.todoFilterOptions = filterOptions
+        let interactor = TodoInteractorLive(alwaysExcludeCompleted: true, sessionDefaults: sessionDefaults, env: environment)
+
+        // WHEN
+        mockCourses(courses)
+        mockPlannables([completedPlannable, notCompletedPlannable])
+        XCTAssertFinish(interactor.refresh(ignoreCache: false))
+
+        // THEN
+        XCTAssertFirstValue(interactor.todoGroups) { todoGroups in
+            let allItems = todoGroups.flatMap { $0.items }
+            XCTAssertEqual(allItems.count, 1)
+            XCTAssertEqual(allItems.first?.title, "Pending Quiz")
+            XCTAssertFalse(allItems.contains(where: { $0.title == "Completed Assignment" }))
+        }
+    }
+
+    func test_refresh_badgeCount_onlyCountsNotDoneItems_regardlessOfExcludeFlag() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let completedPlannables = [
+            makePlannableWithCompletion(courseId: "1", plannableId: "p1", type: "assignment", title: "Done 1", isCompleted: true),
+            makePlannableWithCompletion(courseId: "1", plannableId: "p2", type: "quiz", title: "Done 2", isCompleted: true)
+        ]
+        let notCompletedPlannables = [
+            makePlannableWithCompletion(courseId: "1", plannableId: "p3", type: "discussion", title: "Pending 1", isCompleted: false),
+            makePlannableWithCompletion(courseId: "1", plannableId: "p4", type: "assignment", title: "Pending 2", isCompleted: false),
+            makePlannableWithCompletion(courseId: "1", plannableId: "p5", type: "quiz", title: "Pending 3", isCompleted: false)
+        ]
+        let allPlannables = completedPlannables + notCompletedPlannables
+
+        // WHEN - Test with alwaysExcludeCompleted: true
+        mockCourses(courses)
+        mockPlannables(allPlannables)
+        let sessionDefaults1 = SessionDefaults(sessionID: "test-badge-true")
+        let interactor1 = TodoInteractorLive(alwaysExcludeCompleted: true, sessionDefaults: sessionDefaults1, env: environment)
+        TabBarBadgeCounts.todoListCount = 0
+        XCTAssertFinish(interactor1.refresh(ignoreCache: false))
+
+        // THEN
+        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 3)
+
+        // WHEN - Test with alwaysExcludeCompleted: false
+        mockCourses(courses)
+        mockPlannables(allPlannables)
+        let sessionDefaults2 = SessionDefaults(sessionID: "test-badge-false")
+        var filterOptions2 = TodoFilterOptions.default
+        filterOptions2 = TodoFilterOptions(
+            visibilityOptions: [.showCompleted],
+            dateRangeStart: filterOptions2.dateRangeStart,
+            dateRangeEnd: filterOptions2.dateRangeEnd
+        )
+        environment.userDefaults = sessionDefaults2
+        environment.userDefaults?.todoFilterOptions = filterOptions2
+        let interactor2 = TodoInteractorLive(alwaysExcludeCompleted: false, sessionDefaults: sessionDefaults2, env: environment)
+        TabBarBadgeCounts.todoListCount = 0
+        XCTAssertFinish(interactor2.refresh(ignoreCache: false))
+
+        // THEN
+        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 3)
+    }
+
     // MARK: - Helpers
 
     private func mockCourses(_ courses: [APICourse]) {
@@ -554,6 +719,31 @@ class TodoInteractorLiveTests: CoreTestCase {
     ) -> APIPlannable {
         APIPlannable.make(
             course_id: ID(courseId),
+            plannable_id: ID(plannableId),
+            plannable_type: type,
+            plannable: .make(title: title),
+            plannable_date: date
+        )
+    }
+
+    private func makePlannableWithCompletion(
+        courseId: String,
+        plannableId: String,
+        type: String,
+        title: String,
+        isCompleted: Bool,
+        date: Date = Clock.now.addDays(1)
+    ) -> APIPlannable {
+        let plannerOverride = isCompleted ? APIPlannerOverride.make(
+            id: ID("override-\(plannableId)"),
+            plannable_type: type,
+            plannable_id: ID(plannableId),
+            marked_complete: true
+        ) : nil
+
+        return APIPlannable.make(
+            course_id: ID(courseId),
+            planner_override: plannerOverride,
             plannable_id: ID(plannableId),
             plannable_type: type,
             plannable: .make(title: title),
