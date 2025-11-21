@@ -71,7 +71,6 @@ class QuizListViewControllerTests: CoreTestCase {
             throw XCTSkip("Skip below iOS 26")
         }
 
-        let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
