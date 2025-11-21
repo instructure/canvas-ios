@@ -16,13 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-
 import Core
 import SwiftUI
 
-@available(iOS, introduced: 26, message: "Legacy version exists")
-struct StudentHeaderView: View {
+@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+struct LegacyStudentHeaderView: View {
     @ObservedObject private var viewModel: StudentHeaderViewModel
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
@@ -36,17 +34,24 @@ struct StudentHeaderView: View {
     private let horizontalPadding: CGFloat = 16
     private var menuIconSize: CGFloat { uiScale.iconScale * 24 }
     private var avatarSize: CGFloat { isVerticallyCompact ? 32 : 48 }
-    private var navBarHeight: CGFloat { isVerticallyCompact ? 56 : 94 }
+    private var navBarHeight: CGFloat { isVerticallyCompact ? 42 : 91 }
 
     init(viewModel: StudentHeaderViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
-        studentView
-            .frame(height: navBarHeight, alignment: .center)
-            .frame(maxWidth: .infinity)
-            .background(.backgroundLightest)
+        HStack(alignment: isVerticallyCompact ? .center : .top, spacing: horizontalPadding) {
+            menuButton
+            studentView
+            Color.clear.frame(width: horizontalPadding + menuIconSize)
+        }
+        .frame(height: navBarHeight, alignment: .center)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .animation(nil, value: viewModel.backgroundColor)
+        .background(viewModel.backgroundColor)
+        .animation(.default, value: viewModel.backgroundColor)
+        .foregroundStyle(Color.textLightest)
     }
 
     private var studentView: some View {
@@ -63,37 +68,29 @@ struct StudentHeaderView: View {
                     .accessibilityValue(viewModel.accessibilityValue)
                     .accessibilityHint(viewModel.accessibilityHint)
             }
-                // Match the animation we use for the student carousel appearance
+            // Match the animation we use for the student carousel appearance
             .animation(.easeOut(duration: 0.3), value: viewModel.state)
+            .clipped()
         }
+        .frame(maxWidth: .infinity, alignment: .center)
         .accessibilityFocused($isStudentViewFocused)
         .onReceive(viewModel.focusStudentPicker) {
             isStudentViewFocused = true
         }
-        .buttonStyle(.plain)
     }
 
     @ViewBuilder
     private var viewBody: some View {
         if isVerticallyCompact {
             HStack(spacing: 8) {
-                menuButton
-                Spacer()
                 icon
                 label
-                Spacer()
             }
         } else {
-            VStack(spacing: 4) {
-                Spacer()
+            VStack(spacing: 8) {
                 icon
                 label
             }
-            .frame(maxWidth: .infinity, alignment: .center)
-            .overlay(alignment: .topLeading) {
-                menuButton
-            }
-            .padding(.bottom, 30)
         }
     }
 
@@ -103,10 +100,8 @@ struct StudentHeaderView: View {
         case .addStudent:
             Circle()
                 .frame(width: avatarSize, height: avatarSize)
-                .foregroundStyle(.clear)
-                .glassEffect()
                 .overlay {
-                    Image.addSolid
+                    Image.addLine
                         .size(avatarSize / 2)
                         .foregroundStyle(viewModel.backgroundColor)
                 }
@@ -119,18 +114,12 @@ struct StudentHeaderView: View {
 
     @ViewBuilder
     private var label: some View {
-        Group {
-            switch viewModel.state {
-            case .addStudent:
-                addStudentLabel
-            case .student(let name, _):
-                studentNameWithDropDown(name: name)
-            }
+        switch viewModel.state {
+        case .addStudent:
+            addStudentLabel
+        case .student(let name, _):
+            studentNameWithDropDown(name: name)
         }
-        .padding(.vertical, 8)
-        .padding(.horizontal, 12)
-        .glassEffect()
-        .padding(.horizontal, isVerticallyCompact ? 0 : 64)
     }
 
     private func studentNameWithDropDown(name: String) -> some View {
@@ -156,12 +145,9 @@ struct StudentHeaderView: View {
             Image.hamburgerSolid
                 .resizable()
                 .size(menuIconSize)
-                .foregroundColor(Color.textDarkest)
-                // Could not find a better way to make the button a circle
-                .frame(height: 34)
+                .foregroundColor(Color.textLightest)
+                .instBadge(viewModel.badgeCount)
         }
-        .instBadge(viewModel.badgeCount)
-        .buttonStyle(.glass)
         .padding(.leading, horizontalPadding)
         .padding(.top, isVerticallyCompact ? 0 : 12)
         .identifier("Dashboard.profileButton")
@@ -185,16 +171,14 @@ private extension View {
 
 #if DEBUG
 
-#Preview("Add student") {
+#Preview {
     VStack {
-        if #available(iOS 26, *) {
-            StudentHeaderView(viewModel: StudentHeaderViewModel())
-        }
+        LegacyStudentHeaderView(viewModel: StudentHeaderViewModel())
         Spacer()
     }
 }
 
-#Preview("Student Name") {
+#Preview {
     let previewEnvironment = PreviewEnvironment()
     let user = User.save(
         // swiftlint:disable:next line_length
@@ -208,29 +192,7 @@ private extension View {
     }()
 
     VStack {
-        if #available(iOS 26, *) {
-            StudentHeaderView(viewModel: viewModel)
-        }
-        Spacer()
-    }
-}
-
-#Preview("Beyoncé") {
-    let previewEnvironment = PreviewEnvironment()
-    let user = User.save(
-        .make(short_name: "Beyoncé"),
-        in: previewEnvironment.database.viewContext
-    )
-    let viewModel = {
-        let model = StudentHeaderViewModel()
-        model.didSelectStudent.send(user)
-        return model
-    }()
-
-    VStack {
-        if #available(iOS 26, *) {
-            StudentHeaderView(viewModel: viewModel)
-        }
+        LegacyStudentHeaderView(viewModel: viewModel)
         Spacer()
     }
 }

@@ -78,8 +78,10 @@ open class HorizontalMenuViewController: ScreenViewTrackerViewController {
         } else {
             setupMenu()
             setupPages()
-            setupUnderline()
-            setupBottomBorder()
+            if #unavailable(iOS 26) {
+                setupUnderline()
+                setupBottomBorder()
+            }
         }
     }
 
@@ -143,6 +145,7 @@ open class HorizontalMenuViewController: ScreenViewTrackerViewController {
         pages.addConstraintsWithVFL("V:[menu][view]|", views: ["menu": menu])
     }
 
+    @available(iOS, deprecated: 26)
     func setupUnderline() {
         underlineView = UIView()
         guard let underlineView = underlineView else { return }
@@ -157,6 +160,7 @@ open class HorizontalMenuViewController: ScreenViewTrackerViewController {
         underlineView.backgroundColor = delegate?.menuItemSelectedColor ?? UIColor.blue
     }
 
+    @available(iOS, deprecated: 26)
     func setupBottomBorder() {
         bottomBorder = UIView()
         guard let bottomBorder = bottomBorder, let underlineView = underlineView else { return }

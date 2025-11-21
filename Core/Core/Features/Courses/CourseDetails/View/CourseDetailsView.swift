@@ -46,7 +46,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 			GeometryReader { geometry in
                 VStack(spacing: 0) {
 					switch viewModel.state {
-					case .empty(let title, let message):
+                    case .empty(let title, let message):
 						imageHeader(geometry: geometry)
                         errorView(title: title, message: message)
                     case .loading:
@@ -198,6 +198,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 		ScrollView {
 			VStack(spacing: 0) {
 				imageHeader(geometry: geometry)
+                    .padding(.bottom, 16)
 				if viewModel.showHome {
 					homeView
 					Divider()

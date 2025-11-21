@@ -53,7 +53,10 @@ public class TitleSubtitleView: UIView {
 
     public static func create() -> Self {
 		let view = loadFromXib()
-		guard #available(iOS 26, *) else { return view }
+
+        if #available(iOS 26, *) {
+            view.tintColor = .textDarkest
+        }
 
 		view.titleLabel.text = ""
 		view.subtitleLabel.text = ""
@@ -69,7 +72,10 @@ public class TitleSubtitleView: UIView {
 
     public func recreate() -> TitleSubtitleView {
         let copy = TitleSubtitleView.create()
-		guard #available(iOS 26, *) else { return copy }
+
+        if #available(iOS 26, *) {
+            copy.tintColor = .textDarkest
+        }
         copy.title = title
         copy.subtitle = subtitle
         return copy

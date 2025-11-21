@@ -194,13 +194,8 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         view.backgroundColor = .backgroundLightest
 
         // Navigation Bar
-		if #available(iOS 26, *) {
-			navigationItem.titleView = nil
-			navigationItem.title = String(localized: "Assignment Details", bundle: .student)
-		} else {
-			navigationItem.titleView = titleSubtitleView
-			titleSubtitleView.title = String(localized: "Assignment Details", bundle: .student)
-		}
+        navigationItem.titleView = titleSubtitleView
+        titleSubtitleView.title = String(localized: "Assignment Details", bundle: .student)
 
         // Loading
         scrollView?.isHidden = true
@@ -323,11 +318,10 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
 
 	@available(iOS, deprecated: 26)
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?) {
-		if #available(iOS 26, *) {
-			navigationItem.subtitle = subtitle
-		} else {
-			titleSubtitleView.subtitle = subtitle
-			navigationController?.navigationBar.useContextColor(backgroundColor)
+        titleSubtitleView.subtitle = subtitle
+
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(backgroundColor)
 		}
     }
 

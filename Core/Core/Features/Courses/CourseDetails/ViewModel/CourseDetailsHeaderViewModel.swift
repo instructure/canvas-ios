@@ -52,5 +52,6 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
         imageURL = course.imageDownloadURL
         termName = course.termName ?? ""
         courseColor = course.color
+        imageOpacity = hideColorOverlay ? 1 : Self.originalImageOpacity
     }
 }
