@@ -148,7 +148,11 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
 
     private func update() {
         guard let page = page else { return }
-        setupTitleViewInNavbar(title: page.title)
+        if #available(iOS 26, *) {
+            navigationItem.title = page.title
+        } else {
+            setupTitleViewInNavbar(title: page.title)
+        }
         optionsButton.accessibilityIdentifier = "PageDetails.options"
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
 

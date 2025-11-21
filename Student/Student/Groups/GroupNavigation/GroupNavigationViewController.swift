@@ -44,7 +44,12 @@ class GroupNavigationViewController: ScreenViewTrackableTableViewController, Col
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: groups.first?.name ?? "")
+
+        if #available(iOS 26, *) {
+            navigationItem.title = groups.first?.name
+        } else {
+            setupTitleViewInNavbar(title: groups.first?.name ?? "")
+        }
 
         view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
@@ -61,7 +66,11 @@ class GroupNavigationViewController: ScreenViewTrackableTableViewController, Col
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.useContextColor(color)
+
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(color)
+        }
+
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: animated)
         }
@@ -69,10 +78,16 @@ class GroupNavigationViewController: ScreenViewTrackableTableViewController, Col
 
     func update() {
         if let group = groups.first {
-            titleSubtitleView.title = group.name
+            if #available(iOS 26, *) {
+                navigationItem.title = group.name
+            } else {
+                titleSubtitleView.title = group.name
+            }
             if !colors.pending {
                 color = group.color
-                navigationController?.navigationBar.useContextColor(group.color)
+                if #unavailable(iOS 26) {
+                    navigationController?.navigationBar.useContextColor(group.color)
+                }
             }
         }
         if !colors.pending, !groups.pending, !tabs.pending, let error = tabs.error {

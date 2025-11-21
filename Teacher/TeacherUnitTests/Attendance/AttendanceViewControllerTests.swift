@@ -67,10 +67,14 @@ class AttendanceViewControllerTests: TeacherTestCase {
 
     func testStatusDisplay() {
         loadView()
-        XCTAssertEqual(
-            controller.navigationController?.navigationBar.barTintColor?.hexString,
-            UIColor(hexString: courseColor)!.variantForLightMode.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString
-        )
+
+        if #unavailable(iOS 26) {
+            XCTAssertEqual(
+                controller.navigationController?.navigationBar.barTintColor?.hexString,
+                UIColor(hexString: courseColor)!.variantForLightMode.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString
+            )
+        }
+
         XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
         RunLoop.main.run(until: Date() + 1)

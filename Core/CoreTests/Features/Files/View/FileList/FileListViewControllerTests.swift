@@ -55,8 +55,14 @@ class FileListViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         drainMainQueue()
-        XCTAssertEqual(controller.titleSubtitleView.title, "Folder A")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "")
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Folder A")
+            XCTAssertEqual(controller.navigationItem.subtitle, nil)
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "Folder A")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "")
+        }
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 0)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 1), 0)
@@ -136,7 +142,12 @@ class FileListViewControllerTests: CoreTestCase {
         index = IndexPath(row: 1, section: 2)
         cell = controller.tableView.cellForRow(at: index) as? FileListCell
         XCTAssertEqual(cell?.nameLabel.text, "Picture")
-        XCTAssertEqual(controller.titleSubtitleView.title, "Folder Refresh")
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Folder Refresh")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "Folder Refresh")
+        }
 
         XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.contains(controller.editButton), true)
         _ = controller.editButton.target?.perform(controller.editButton.action)
@@ -158,8 +169,13 @@ class FileListViewControllerTests: CoreTestCase {
         controller.viewWillAppear(false)
         drainMainQueue()
 
-        XCTAssertEqual(controller.titleSubtitleView.title, "Files")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Files")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "Files")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+        }
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 0)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 1), 0)
@@ -178,8 +194,13 @@ class FileListViewControllerTests: CoreTestCase {
         controller.viewWillAppear(false)
         drainMainQueue()
 
-        XCTAssertEqual(controller.titleSubtitleView.title, "Files")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Files")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Group One")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "Files")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
+        }
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 0)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 1), 0)
@@ -193,7 +214,11 @@ class FileListViewControllerTests: CoreTestCase {
         controller.viewWillAppear(false)
         drainMainQueue()
 
-        XCTAssertEqual(controller.titleSubtitleView.title, "Folder A")
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Folder A")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "Folder A")
+        }
 
         api.mock(controller.folder, value: [
             .make(full_name: "my files/Folder Z", id: "2", name: "Folder Z", parent_folder_id: "1")
@@ -201,7 +226,12 @@ class FileListViewControllerTests: CoreTestCase {
         controller.errorView.retryButton.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 2), 2)
 
-        XCTAssertEqual(controller.titleSubtitleView.title, "Folder Z")
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Folder Z")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "Folder Z")
+        }
+
         XCTAssertEqual(controller.path, "Folder Z")
         XCTAssertEqual(controller.folder.useCase.path, "Folder Z")
 
@@ -218,7 +248,11 @@ class FileListViewControllerTests: CoreTestCase {
         controller.viewWillAppear(false)
         drainMainQueue()
 
-        XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.contains(controller.legacyAddButton), true)
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.contains(controller.addButton), true)
+        } else {
+            XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.contains(controller.legacyAddButton), true)
+        }
         _ = controller.legacyAddButton.target?.perform(controller.legacyAddButton.action)
         let sheet = router.presented as? BottomSheetPickerViewController
         XCTAssertEqual(sheet?.actions.first?.title, "Add Folder")
@@ -246,7 +280,12 @@ class FileListViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
-        XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.contains(controller.legacyAddButton), true)
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.contains(controller.addButton), true)
+        } else {
+            XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.contains(controller.legacyAddButton), true)
+        }
+
         _ = controller.legacyAddButton.target?.perform(controller.legacyAddButton.action)
         let sheet = router.presented as? BottomSheetPickerViewController
         XCTAssertEqual(sheet?.actions.last?.title, "Add File")

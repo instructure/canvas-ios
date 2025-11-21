@@ -30,6 +30,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
 
     lazy var controller = DiscussionListViewController.create(context: .course("1"), env: environment)
 
+    // swiftlint:disable:next function_body_length
     func testCourseDiscussions() {
         api.mock(GetCourse(courseID: "1"), value: .make(enrollments: [
             .make(
@@ -87,9 +88,14 @@ class DiscussionListViewControllerTests: CoreTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(controller.titleSubtitleView.title, "Discussions")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#0000ff")
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Discussions")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "Discussions")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#0000ff")
+        }
         XCTAssertNil(controller.navigationItem.rightBarButtonItem)
 
         XCTAssertEqual(controller.tableView.numberOfSections, 3)
@@ -229,9 +235,14 @@ class DiscussionListViewControllerTests: CoreTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(controller.titleSubtitleView.title, "Discussions")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000000")
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Discussions")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Group One")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "Discussions")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000000")
+        }
         XCTAssertNotNil(controller.navigationItem.rightBarButtonItem)
 
         _ = controller.addButton.target?.perform(controller.addButton.action)

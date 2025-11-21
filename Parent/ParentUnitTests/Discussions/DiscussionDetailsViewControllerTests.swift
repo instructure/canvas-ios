@@ -37,7 +37,9 @@ class DiscussionDetailsViewControllerTests: ParentTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
+        if #unavailable(iOS 26) {
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
+        }
         XCTAssertEqual(controller.title, "Course One")
         XCTAssertEqual(controller.titleLabel.text, "Pandemic")
 

@@ -63,7 +63,7 @@ struct StudentHeaderView: View {
                     .accessibilityValue(viewModel.accessibilityValue)
                     .accessibilityHint(viewModel.accessibilityHint)
             }
-                // Match the animation we use for the student carousel appearance
+            // Match the animation we use for the student carousel appearance
             .animation(.easeOut(duration: 0.3), value: viewModel.state)
         }
         .accessibilityFocused($isStudentViewFocused)

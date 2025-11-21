@@ -32,6 +32,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
 
+    // Legacy version exists, cannot be marked unavailable
     lazy var addButton: UIBarButtonItem = {
         var button = UIBarButtonItem(image: .addSolid)
 
@@ -220,7 +221,13 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         loadingView.isHidden = !folder.pending || !folder.isEmpty || folder.error != nil || refreshControl.isRefreshing
         errorView.isHidden = folder.error == nil
         let title = (path.isEmpty ? nil : folder.first?.name) ?? String(localized: "Files", bundle: .core)
-        setupTitleViewInNavbar(title: title)
+
+        if #available(iOS 26, *) {
+            navigationItem.title = title
+        } else {
+            setupTitleViewInNavbar(title: title)
+        }
+
         updateNavButtons()
 
         guard let folder = folder.first, items == nil else { return update() }

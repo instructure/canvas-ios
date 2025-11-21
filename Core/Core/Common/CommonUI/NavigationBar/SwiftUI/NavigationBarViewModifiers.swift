@@ -18,10 +18,12 @@
 
 import SwiftUI
 
+@available(iOS, deprecated: 26)
 protocol NavigationBarStyled: AnyObject {
     var navigationBarStyle: NavigationBarStyle { get set }
 }
 
+@available(iOS, deprecated: 26)
 struct NavigationBarStyleModifier: ViewModifier {
     let style: NavigationBarStyle
 
