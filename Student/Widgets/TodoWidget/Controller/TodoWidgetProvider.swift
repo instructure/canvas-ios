@@ -53,7 +53,7 @@ class TodoWidgetProvider: TimelineProvider {
 
         setupEnvironment(with: session)
         /// The interactor needs to be created here, after the session is setup
-        let interactor = TodoInteractorLive(env: env, sessionDefaults: env.userDefaults ?? .fallback, alwaysExcludeCompleted: true)
+        let interactor = TodoInteractorLive(alwaysExcludeCompleted: true, sessionDefaults: env.userDefaults ?? .fallback, env: env)
         let getTimeline = fetch(interactor: interactor)
         let getBrandColors = ReactiveStore(useCase: GetBrandVariables())
             .getEntities()

@@ -21,7 +21,7 @@ import SwiftUI
 public struct TodoAssembly {
     public static func makeTodoListViewController(env: AppEnvironment) -> UIViewController {
         let sessionDefaults = env.userDefaults ?? SessionDefaults(sessionID: env.currentSession?.uniqueID ?? "")
-        let interactor = TodoInteractorLive(env: env, sessionDefaults: sessionDefaults, alwaysExcludeCompleted: false)
+        let interactor = TodoInteractorLive(alwaysExcludeCompleted: false, sessionDefaults: sessionDefaults, env: env)
         let model = TodoListViewModel(
             interactor: interactor,
             router: env.router,

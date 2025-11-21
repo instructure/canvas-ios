@@ -60,10 +60,10 @@ public final class TodoInteractorLive: TodoInteractor {
     private let alwaysExcludeCompleted: Bool
     private var subscriptions = Set<AnyCancellable>()
 
-    public init(env: AppEnvironment, sessionDefaults: SessionDefaults, alwaysExcludeCompleted: Bool) {
-        self.env = env
+    public init(alwaysExcludeCompleted: Bool, sessionDefaults: SessionDefaults, env: AppEnvironment) {
         self.sessionDefaults = sessionDefaults
         self.alwaysExcludeCompleted = alwaysExcludeCompleted
+        self.env = env
         self.coursesStore = ReactiveStore(useCase: GetCourses(), environment: env)
     }
 
