@@ -109,7 +109,8 @@ struct NotebookListView: View {
             notes: viewModel.filteredNotes,
             selectedNote: selectedNote,
             showDeleteLoader: viewModel.listState.isDeletedNoteLoaderVisible,
-            isSeeMoreButtonVisible: viewModel.listState.isSeeMoreButtonVisible) { selectedNote in
+            isSeeMoreButtonVisible: viewModel.listState.isSeeMoreButtonVisible,
+            showCourseName: true) { selectedNote in
                 viewModel.goToModuleItem(selectedNote, viewController: viewController)
             } onTapDeleteNote: { deletedNote in
                 selectedNote = deletedNote
@@ -117,7 +118,6 @@ struct NotebookListView: View {
             } onTapSeeMore: {
                 viewModel.seeMore()
             }
-
     }
 
     private var listCourses: some View {
@@ -184,8 +184,9 @@ struct NotebookListView: View {
 #Preview {
     NotebookListView(
         viewModel: .init(
+            pageURL: "",
+            courseID: "",
             interactor: CourseNoteInteractorPreview(),
-            learnCoursesInteractor: GetLearnCoursesInteractorPreview(),
             router: AppEnvironment.shared.router
         )
     )

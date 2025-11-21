@@ -54,23 +54,24 @@ final class NotebookListViewModel {
     // MARK: - Dependencies
 
     private let interactor: CourseNoteInteractor
-    private let learnCoursesInteractor: GetLearnCoursesInteractor
     private let router: Router
+    let courseID: String?
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
 
     init(
+        pageURL: String?,
+        courseID: String?,
         interactor: CourseNoteInteractor,
-        learnCoursesInteractor: GetLearnCoursesInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         router: Router
     ) {
         self.interactor = interactor
-        self.learnCoursesInteractor = learnCoursesInteractor
         self.router = router
+        self.courseID = courseID
         self.scheduler = scheduler
-        fetchNotes()
+        fetchNotes(pageURL: pageURL, filter: .init(courseId: courseID))
     }
 
     // MARK: - Input Actions
@@ -130,6 +131,15 @@ final class NotebookListViewModel {
         router.route(to: routePath, from: viewController)
     }
 
+    func presentEditNote(note: CourseNotebookNote, viewController: WeakViewController) {
+        let noteVC = NotebookNoteAssembly.makeViewNoteViewController(courseNotebookNote: note)
+        router.show(noteVC, from: viewController)
+    }
+
+    func realod() {
+        fetchNotes(ignoreCache: true, filter: .init(courseId: courseID))
+    }
+
     // MARK: - Private Functions
 
     private func getSelectedFilter() -> NotebookQueryFilter {
@@ -148,7 +158,7 @@ final class NotebookListViewModel {
         filter: NotebookQueryFilter = .init(),
         completion: (() -> Void)? = nil
     ) {
-        let isUnfiltered = filter.courseId == nil && filter.reactions == nil && filter.pageId == nil
+        let isUnfiltered = filter.courseId == courseID && filter.reactions == nil && filter.pageId == nil
 
         interactor
             .getAllNotesWithCourses(
@@ -203,7 +213,7 @@ final class NotebookListViewModel {
                 pageURL: nil,
                 ignoreCache: false,
                 keepObserving: false,
-                filter: .init()
+                filter: .init(courseId: courseID)
             )
             .first()
             .receive(on: scheduler)

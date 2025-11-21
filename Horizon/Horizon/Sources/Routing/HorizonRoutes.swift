@@ -276,11 +276,11 @@ public enum HorizonRoutes {
                     router.show(
                         NotebookAssembly.makeViewController(courseID: courseID, pageURL: pageURL),
                         from: vc,
-                        options: .modal(.pageSheet, isDismissable: false)
+                        options: .modal(.fullScreen, isDismissable: false)
                     )
                     return nil
                 }
-                return NotebookAssembly.makeViewController(courseID: courseID, pageURL: pageURL)
+                return NotebookAssembly.makeViewController()
             },
             RouteHandler("/notebook/:courseID/add") { url, params, userInfo in
                 guard let courseID = params["courseID"],

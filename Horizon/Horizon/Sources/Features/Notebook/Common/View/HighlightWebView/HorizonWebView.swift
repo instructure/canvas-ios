@@ -40,9 +40,8 @@ final class HorizonWebView: CoreWebView {
     private var subscriptions = Set<AnyCancellable>()
     private var highlightWebFeature: HighlightWebFeature?
     private let actionDefinitions = [
-        (label: CourseNoteLabel.unclear, title: String(localized: "Unclear", bundle: .horizon)),
-        (label: CourseNoteLabel.important, title: String(localized: "Important", bundle: .horizon)),
-        (label: CourseNoteLabel.other, title: String(localized: "Add a Note", bundle: .horizon))
+        (label: CourseNoteLabel.important, title: String(localized: "Mark important", bundle: .horizon)),
+        (label: CourseNoteLabel.unclear, title: String(localized: "Mark unclear", bundle: .horizon))
     ]
 
     // MARK: - Dependencies

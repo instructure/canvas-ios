@@ -30,6 +30,7 @@ struct NoteCardsView: View {
 
     private let note: CourseNotebookNote
     private let isLoading: Bool
+    private let showCourseName: Bool
     private let onTapDelete: (CourseNotebookNote) -> Void
 
     // MARK: - Init
@@ -37,10 +38,12 @@ struct NoteCardsView: View {
     init(
         note: CourseNotebookNote,
         isLoading: Bool,
+        showCourseName: Bool,
         onTapDelete: @escaping (CourseNotebookNote) -> Void
     ) {
         self.note = note
         self.isLoading = isLoading
+        self.showCourseName = showCourseName
         self.onTapDelete = onTapDelete
     }
 
@@ -95,7 +98,7 @@ struct NoteCardsView: View {
                  .frame(maxWidth: .infinity, alignment: .leading)
                  .foregroundStyle(Color.huiColors.text.timestamp)
 
-             if let courseName = note.courseName {
+             if let courseName = note.courseName, showCourseName {
                  Text(courseName)
                      .huiTypography(.labelSmall)
                      .frame(maxWidth: .infinity, alignment: .leading)
@@ -122,7 +125,11 @@ struct NoteCardsView: View {
 }
 #if DEBUG
 #Preview {
-    NoteCardsView(note: CourseNotebookNote.example, isLoading: false) { _ in }
+    NoteCardsView(
+        note: CourseNotebookNote.example,
+        isLoading: false,
+        showCourseName: true
+    ) { _ in }
         .padding()
 }
 #endif
