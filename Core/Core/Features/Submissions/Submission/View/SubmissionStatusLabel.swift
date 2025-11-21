@@ -47,8 +47,11 @@ public struct SubmissionStatusLabel: View {
     }
 }
 
+// MARK: - Model
+
 extension SubmissionStatusLabel {
-    public struct Model: Equatable {
+
+    public struct Model: Equatable, Hashable {
         public let text: String
         public let icon: Image
         public let color: Color
@@ -58,36 +61,96 @@ extension SubmissionStatusLabel {
             self.icon = icon
             self.color = color
         }
+
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(text)
+        }
     }
+}
+
+// MARK: - Status constants
+
+extension SubmissionStatusLabel.Model {
+
+    public static let excused = Self(
+        text: String(localized: "Excused", bundle: .core),
+        icon: .completeSolid,
+        color: .textWarning
+    )
+
+    public static func custom(_ name: String) -> Self {
+        .init(
+            text: name,
+            icon: .flagLine,
+            color: .textInfo
+        )
+    }
+
+    public static let late = Self(
+        text: String(localized: "Late", bundle: .core),
+        icon: .clockLine,
+        color: .textWarning
+    )
+
+    public static let missing = Self(
+        text: String(localized: "Missing", bundle: .core),
+        icon: .noSolid,
+        color: .textDanger
+    )
+
+    public static let graded = Self(
+        text: String(localized: "Graded", bundle: .core),
+        icon: .completeSolid,
+        color: .textSuccess
+    )
+
+    public static let submitted = Self(
+        text: String(localized: "Submitted", bundle: .core),
+        icon: .completeLine,
+        color: .textSuccess
+    )
+
+    public static let onPaper = Self(
+        text: String(localized: "On Paper", bundle: .core),
+        icon: .noSolid,
+        color: .textDark
+    )
+
+    public static let noSubmission = Self(
+        text: String(localized: "No Submission", bundle: .core),
+        icon: .noSolid,
+        color: .textDark
+    )
+
+    public static let notGradable = Self(
+        text: String(localized: "Not Graded", bundle: .core),
+        icon: .noSolid,
+        color: .textDark
+    )
+
+    public static let notSubmitted = Self(
+        text: String(localized: "Not Submitted", bundle: .core),
+        icon: .noSolid,
+        color: .textDark
+    )
 }
 
 #if DEBUG
 
-extension SubmissionStatusLabel.Model {
-    public init(status: SubmissionStatus) {
-        let model = status.labelModel
-        self.init(
-            text: model.text,
-            icon: model.icon,
-            color: model.color
-        )
-    }
-}
-
 #Preview {
     PreviewContainer(spacing: 20) {
         SubmissionStatusLabel(
-            model: .init(text: "Graded", icon: .completeSolid, color: .textSuccess)
+            model: .graded
         )
 
         SubmissionStatusLabel(
-            model: .init(text: "Graded", icon: .completeSolid, color: .textSuccess),
+            model: .graded,
             iconSize: 24,
             font: .regular16
         )
 
         SubmissionStatusLabel(
-            model: .init(text: "Not Submitted", icon: .noSolid, color: .textDark)
+            model: .notSubmitted
         )
 
         SubmissionStatusLabel(
