@@ -106,6 +106,18 @@ public final class ModuleItemSequenceViewController: UIViewController {
         store.refresh(force: true)
     }
 
+    public override func viewWillDisappear(_ animated: Bool) {
+        if #available(iOS 26, *) {
+            // Remove the toolbar appearance override since it is for this screen only
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithDefaultBackground()
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
+
+        super.viewWillDisappear(animated)
+    }
+
     private func update(embed: Bool) {
         if store.requested, store.pending {
             return
