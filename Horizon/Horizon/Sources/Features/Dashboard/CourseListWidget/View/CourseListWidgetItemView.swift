@@ -57,7 +57,7 @@ struct CourseListWidgetItemView: View {
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(model.accessibilityDescription)
+        .accessibilityLabel(accessibilityLabel)
         .accessibilityHint(model.accessiblityHintString)
         .accessibilityAction {
             onCardTapGesture()
@@ -84,6 +84,18 @@ struct CourseListWidgetItemView: View {
             }
         }
         .id(model.id)
+    }
+
+    private var accessibilityLabel: String {
+        var label = model.accessibilityDescription
+        if totalCount > 1 {
+            label += String(
+                format: String(localized: "%d of %d"),
+                currentIndex + 1,
+                totalCount
+            )
+        }
+        return label
     }
 
     private func onCardTapGesture() {
