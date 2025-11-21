@@ -466,8 +466,10 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         lockedSection?.isHidden = presenter.lockedSectionIsHidden()
         fileTypesSection?.isHidden = presenter.fileTypesSectionIsHidden()
         submissionTypesSection?.isHidden = presenter.submissionTypesSectionIsHidden()
+
+        // The pointsPossible check safeguards against backend issues like in MBL-15698
         var showGradeSection = assignment.submission?.needsGrading == true
-            || (assignment.submission?.status.isGraded == true)
+            || (assignment.submission?.status.isGraded == true && assignment.pointsPossible != nil)
             || presenter.onlineUploadState != nil
         let gradeText = GradeFormatter.string(from: assignment, submission: submission, style: .short)
         if assignment.hideQuantitativeData, (gradeText ?? "").isEmpty == true {

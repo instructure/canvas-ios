@@ -443,8 +443,8 @@ class StudentAssignmentDetailsViewControllerTests: StudentTestCase {
         api.mock(viewController.presenter!.courses, value: course)
         let assignment = APIAssignment.make(
             course_id: ID(courseID),
-            grading_type: .not_graded,
             id: ID(assignmentID),
+            points_possible: nil,
             submission: .make(
                 grade: "10",
                 score: 10,

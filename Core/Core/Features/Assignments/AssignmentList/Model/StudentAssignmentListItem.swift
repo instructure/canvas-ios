@@ -69,6 +69,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
         let status = submission?.status ?? .notSubmitted
         self.submissionStatus = status.labelModel
 
+        // The pointsPossible check safeguards against backend issues like in MBL-15698
         let hasPointsPossible = assignment.pointsPossible != nil
         let score = hasPointsPossible && !status.isExcused
             ? GradeFormatter.string(from: assignment, submission: submission, style: .medium)
