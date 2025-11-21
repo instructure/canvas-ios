@@ -30,7 +30,7 @@ struct HSubmission: Hashable, Equatable {
     let submittedAt: Date?
     let late: Bool
     let missing: Bool
-    let excused: Bool?
+    let excused: Bool
     let grade: String?
     let score: Double?
     let showSubmitButton: Bool
@@ -65,7 +65,7 @@ struct HSubmission: Hashable, Equatable {
         submittedAt: Date? = nil,
         late: Bool = false,
         missing: Bool = false,
-        excused: Bool? = nil,
+        excused: Bool = false,
         grade: String? = nil,
         score: Double? = nil,
         showSubmitButton: Bool = true,

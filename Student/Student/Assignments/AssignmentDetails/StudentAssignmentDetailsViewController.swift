@@ -352,7 +352,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
 
         fileSubmissionButton?.isHidden = true
 
-        if submission.excused == true {
+        if submission.excused {
             // Excused assignments cannot be submitted so we make sure not to
             // reserve any space for the not visible submit button below the scroll
             showSubmitAssignmentButton(title: nil)

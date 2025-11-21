@@ -49,15 +49,15 @@ public enum SubmissionStatus: Equatable {
     case custom(id: String, name: String)
 
     public init(
+        isSubmitted: Bool,
+        isGraded: Bool,
+        isGradeBelongsToCurrentSubmission: Bool,
         isLate: Bool,
         isMissing: Bool,
         isExcused: Bool,
-        isSubmitted: Bool,
-        isGraded: Bool,
         customStatusId: String?,
         customStatusName: String?,
-        submissionType: SubmissionType?,
-        isGradeBelongToCurrentSubmission: Bool
+        submissionType: SubmissionType?
     ) {
         self = if isExcused {
             .excused
@@ -72,7 +72,7 @@ public enum SubmissionStatus: Equatable {
         } else if isMissing {
             .missing
         } else if isGraded {
-            isGradeBelongToCurrentSubmission ? .graded : .submitted
+            isGradeBelongsToCurrentSubmission ? .graded : .submitted
         } else if isSubmitted {
             .submitted
         } else if submissionType == .on_paper {

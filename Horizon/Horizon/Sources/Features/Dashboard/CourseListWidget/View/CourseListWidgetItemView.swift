@@ -22,38 +22,42 @@ import SwiftUI
 struct CourseListWidgetItemView: View {
     let model: CourseListWidgetModel
     let width: CGFloat
+    let currentIndex: Int
+    let totalCount: Int
     let onCourseTap: (String) -> Void
     let onProgramTap: ((String) -> Void)?
     let onLearningObjectTap: ((String, URL?) -> Void)?
-
+    private let isVoiceOverRunning = UIAccessibility.isVoiceOverRunning
     private let imageHeight: CGFloat = 182
 
     var body: some View {
         ZStack(alignment: .top) {
             VStack(spacing: .zero) {
-                courseImageSection
-                    .onTapGesture {
-                        onCardTapGesture()
-                    }
-                courseContentSection
-            }
+                ZStack(alignment: .topLeading) {
+                    courseImageSection
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            onCourseTap(model.id)
+                        }
+                    if model.hasPrograms {
+                        programLinkSection
 
-            Color.clear // This is needed to overwrite a11y VO automatic tap gesture mechanism.
-                .frame(height: imageHeight)
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    if model.id != "mock-course-id" { // This is mock data for skeleton loading so we disable user interaction.
-                        onCourseTap(model.id)
                     }
                 }
-                .allowsHitTesting(true)
-                .accessibilityHidden(true)
+
+                courseContentSection
+                Spacer()
+                counterView
+
+            }
+            voiceOverHelperView
         }
+        .padding(.bottom, .huiSpaces.space16)
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(model.accessibilityDescription)
+        .accessibilityLabel(accessibilityLabel)
         .accessibilityHint(model.accessiblityHintString)
         .accessibilityAction {
             onCardTapGesture()
@@ -80,6 +84,18 @@ struct CourseListWidgetItemView: View {
             }
         }
         .id(model.id)
+    }
+
+    private var accessibilityLabel: String {
+        var label = model.accessibilityDescription
+        if totalCount > 1 {
+            label += String(
+                format: String(localized: "%d of %d"),
+                currentIndex + 1,
+                totalCount
+            )
+        }
+        return label
     }
 
     private func onCardTapGesture() {
@@ -127,10 +143,6 @@ struct CourseListWidgetItemView: View {
 
     private var courseContentSection: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
-            if model.hasPrograms {
-                programLinkSection
-            }
-
             courseTitleAndProgressSection
                 .onTapGesture {
                     onCourseTap(model.id)
@@ -144,23 +156,23 @@ struct CourseListWidgetItemView: View {
             }
         }
         .padding(.horizontal, .huiSpaces.space24)
-        .padding(.bottom, .huiSpaces.space24)
     }
 
     private var programLinkSection: some View {
-        ProgramNameListView(programs: model.programs) { program in
+        ProgramNameListChipView(programs: model.programs) { program in
             onProgramTap?(program.id)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .skeletonLoadable()
+        .padding(.huiSpaces.space24)
     }
 
     private var courseTitleAndProgressSection: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space12) {
             Text(model.name)
-                .huiTypography(.h4)
+                .huiTypography(.labelLargeBold)
                 .foregroundStyle(Color.huiColors.text.title)
-                .lineLimit(2)
+                .lineLimit(1)
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .skeletonLoadable()
@@ -185,10 +197,12 @@ struct CourseListWidgetItemView: View {
                     .foregroundStyle(Color.huiColors.surface.institution)
                     .skeletonLoadable()
             }
+            .padding(.vertical, .huiSpaces.space8)
             if model.isCourseCompleted {
                 Text("Congrats! You’ve completed your course. View your progress and scores on the Learn page.")
                     .huiTypography(.p1)
                     .foregroundColor(.huiColors.text.title)
+                    .padding(.top, .huiSpaces.space16)
             }
         }
     }
@@ -200,15 +214,12 @@ struct CourseListWidgetItemView: View {
                 onLearningObjectTap?(model.id, learningObject.url)
             } label: {
                 VStack(alignment: .leading, spacing: .huiSpaces.space12) {
-                    HStack {
-                        Text(learningObject.name)
-                            .huiTypography(.p2)
-                            .foregroundStyle(Color.huiColors.text.body)
-                            .lineLimit(1)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Spacer()
-                    }
-                    .skeletonLoadable()
+                    Text(learningObject.name)
+                        .huiTypography(.p2)
+                        .foregroundStyle(Color.huiColors.text.body)
+                        .lineLimit(1)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .skeletonLoadable()
 
                     learningObjectMetadata(for: learningObject)
                 }
@@ -228,21 +239,21 @@ struct CourseListWidgetItemView: View {
     }
 
     private func learningObjectMetadata(for learningObject: CourseListWidgetModel.LearningObjectInfo) -> some View {
-        HorizonUI.WrappingHStack(spacing: .huiSpaces.space8) {
-            if let type = learningObject.type {
-                HorizonUI.StatusChip(
-                    title: type.rawValue,
-                    style: .white,
-                    icon: type.getIcon(isAssessment: false),
-                    isFilled: true
-                )
-                .skeletonLoadable()
-                .accessibilityHidden(true)
-            }
+        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
+            HStack(spacing: .huiSpaces.space8) {
+                if let estimatedDuration = learningObject.estimatedDuration {
+                    HorizonUI.StatusChip(
+                        title: estimatedDuration,
+                        style: .white,
+                        icon: .huiIcons.schedule,
+                        isFilled: true
+                    )
+                    .skeletonLoadable()
+                    .accessibilityHidden(true)
+                }
 
-            if let dueDate = learningObject.dueDate {
                 HorizonUI.StatusChip(
-                    title: dueDate,
+                    title: learningObject.dueDate ?? String(localized: "No due date"),
                     style: .white,
                     icon: .huiIcons.calendarToday,
                     isFilled: true
@@ -251,17 +262,41 @@ struct CourseListWidgetItemView: View {
                 .accessibilityHidden(true)
             }
 
-            if let duration = learningObject.estimatedDuration {
-                HorizonUI.StatusChip(
-                    title: duration,
-                    style: .white,
-                    icon: .huiIcons.schedule,
-                    isFilled: true
-                )
-                .skeletonLoadable()
+            HorizonUI.StatusChip(
+                title: (learningObject.type ?? .assessment).rawValue,
+                style: .white,
+                icon: (learningObject.type ?? .assessment).getIcon(isAssessment: false),
+                isFilled: true
+            )
+            .skeletonLoadable()
+            .accessibilityHidden(true)
+            .hidden((learningObject.type == nil))
+        }
+    }
+
+    @ViewBuilder
+    private var voiceOverHelperView: some View {
+        if isVoiceOverRunning {
+            Color.clear // This is needed to overwrite a11y VO automatic tap gesture mechanism.
+                .frame(height: imageHeight)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    if model.id != "mock-course-id" { // This is mock data for skeleton loading so we disable user interaction.
+                        onCourseTap(model.id)
+                    }
+                }
+                .allowsHitTesting(true)
                 .accessibilityHidden(true)
-            }
-            Spacer()
+        }
+    }
+
+    @ViewBuilder
+    private var counterView: some View {
+        if totalCount > 1 {
+            CounterTextView(
+                currentIndex: currentIndex + 1,
+                totalCount: totalCount
+            )
         }
     }
 }
@@ -286,7 +321,10 @@ struct CourseListWidgetItemView: View {
                             estimatedDuration: "xxxxx",
                             url: nil
                         )
-                    ), width: 300,
+                    ),
+                    width: 300,
+                    currentIndex: 1,
+                    totalCount: 10,
                     onCourseTap: { _ in },
                     onProgramTap: { _ in },
                     onLearningObjectTap: { _, _ in }
@@ -310,7 +348,10 @@ struct CourseListWidgetItemView: View {
                             estimatedDuration: "XX mins",
                             url: nil
                         )
-                    ), width: 300,
+                    ),
+                    width: 300,
+                    currentIndex: 2,
+                    totalCount: 10,
                     onCourseTap: { _ in },
                     onProgramTap: { _ in },
                     onLearningObjectTap: { _, _ in }
@@ -337,7 +378,10 @@ struct CourseListWidgetItemView: View {
                             estimatedDuration: "XX mins",
                             url: nil
                         )
-                    ), width: 300,
+                    ),
+                    width: 300,
+                    currentIndex: 3,
+                    totalCount: 10,
                     onCourseTap: { _ in },
                     onProgramTap: { _ in },
                     onLearningObjectTap: { _, _ in }
@@ -359,7 +403,10 @@ struct CourseListWidgetItemView: View {
                             estimatedDuration: "XX mins",
                             url: nil
                         )
-                    ), width: 300,
+                    ),
+                    width: 300,
+                    currentIndex: 3,
+                    totalCount: 10,
                     onCourseTap: { _ in },
                     onProgramTap: { _ in },
                     onLearningObjectTap: { _, _ in }
@@ -374,7 +421,10 @@ struct CourseListWidgetItemView: View {
                         lastActivityAt: nil,
                         programs: [],
                         currentLearningObject: nil
-                    ), width: 300,
+                    ),
+                    width: 300,
+                    currentIndex: 3,
+                    totalCount: 10,
                     onCourseTap: { _ in },
                     onProgramTap: { _ in },
                     onLearningObjectTap: { _, _ in }

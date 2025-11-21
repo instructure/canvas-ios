@@ -49,7 +49,7 @@ final class GradeStatusInteractorMock: GradeStatusInteractor {
     func gradeStatusFor(
         customGradeStatusId: String?,
         latePolicyStatus: LatePolicyStatus?,
-        isExcused: Bool?,
+        isExcused: Bool,
         isLate: Bool?
     ) -> GradeStatus {
         return gradeStatuses.first ?? .none

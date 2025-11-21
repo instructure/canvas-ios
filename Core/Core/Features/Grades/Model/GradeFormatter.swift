@@ -293,11 +293,11 @@ public class GradeFormatter {
 
     private static func formatGradeWithoutMetric(
         gradingType: GradingType,
-        isExcused: Bool?,
+        isExcused: Bool,
         score: Double?,
         grade: String?
     ) -> String? {
-        if isExcused ?? false {
+        if isExcused {
             return String(localized: "Excused", bundle: .core)
         }
 
