@@ -32,13 +32,16 @@ final class NotebookAssembly {
         )
     }
 
-    static func makeView(courseID: String? = nil, pageURL: String? = nil) -> NotebookView {
-        NotebookView(
-            viewModel: makeViewModel(courseID: courseID, pageURL: pageURL)
+    static func makeView(courseID: String? = nil, pageURL: String? = nil) -> NotebookListView {
+        let viewModel = NotebookListViewModel(
+            interactor: makeCourseNoteInteractor(),
+            learnCoursesInteractor: GetLearnCoursesInteractorLive(),
+            router: AppEnvironment.shared.router
         )
+        return NotebookListView(viewModel: viewModel)
     }
 
-    static func makeViewController(courseID: String? = nil, pageURL: String? = nil) -> CoreHostingController<NotebookView> {
+    static func makeViewController(courseID: String? = nil, pageURL: String? = nil) -> CoreHostingController<NotebookListView> {
         CoreHostingController(
             makeView(courseID: courseID, pageURL: pageURL)
         )

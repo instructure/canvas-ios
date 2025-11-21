@@ -40,7 +40,7 @@ final class HorizonWebView: CoreWebView {
     private var subscriptions = Set<AnyCancellable>()
     private var highlightWebFeature: HighlightWebFeature?
     private let actionDefinitions = [
-        (label: CourseNoteLabel.confusing, title: String(localized: "Confusing", bundle: .horizon)),
+        (label: CourseNoteLabel.unclear, title: String(localized: "Unclear", bundle: .horizon)),
         (label: CourseNoteLabel.important, title: String(localized: "Important", bundle: .horizon)),
         (label: CourseNoteLabel.other, title: String(localized: "Add a Note", bundle: .horizon))
     ]
@@ -63,7 +63,7 @@ final class HorizonWebView: CoreWebView {
         moduleType: ModuleItemType,
         viewController: WeakViewController,
         router: Router = AppEnvironment.shared.router,
-        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive(pageSize: 10000)
+        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive()
     ) {
         self.courseID = courseID
         self.pageURL = pageURL
@@ -77,9 +77,6 @@ final class HorizonWebView: CoreWebView {
         self.highlightWebFeature = highlightWebFeature
 
         super.init(features: [highlightWebFeature, .enableZoom])
-
-        self.courseNoteInteractor.set(courseID: courseID, pageURL: pageURL)
-
         listenForSelectionChange()
         listenForHighlightTaps()
     }
@@ -158,15 +155,19 @@ final class HorizonWebView: CoreWebView {
             return
         }
 
-        self.courseNoteInteractor.set(courseID: courseID, pageURL: pageURL)
-        self.courseNoteInteractor.get()
-            .sink(
-                receiveCompletion: { _ in },
-                receiveValue: { [weak self] courseNotebookNotes in
-                    self?.applyHighlights(courseNotebookNotes)
-                }
-            )
-            .store(in: &subscriptions)
+        self.courseNoteInteractor.getNotes(
+            for: pageURL,
+            ignoreCache: false,
+            keepObserving: true,
+            filter: .init(courseId: courseID)
+        )
+        .sink(
+            receiveCompletion: { _ in },
+            receiveValue: { [weak self] notes in
+                self?.applyHighlights(notes)
+            }
+        )
+        .store(in: &subscriptions)
     }
 
     private func listenForHighlightTaps() {
@@ -215,6 +216,8 @@ final class HorizonWebView: CoreWebView {
         }
 
         courseNoteInteractor.add(
+            courseID: courseID,
+            pageURL: pageURL,
             content: "",
             labels: [label],
             notebookHighlight: notebookHighlight

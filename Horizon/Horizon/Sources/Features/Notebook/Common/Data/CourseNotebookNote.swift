@@ -21,14 +21,13 @@ import Foundation
 
 /// This is an API agnostic entity model.
 /// It's used in the interactors and can be used in the views, but will normally be translated to a view model before being used in the views.
-struct CourseNotebookNote {
+struct CourseNotebookNote: Equatable, Identifiable {
     // MARK: - Required
 
     var id: String
     var date: Date
     var courseId: String
-    var hasNext: Bool
-    var hasPrevious: Bool
+    var courseName: String?
     var objectId: String
 
     // MARK: - Optional
@@ -36,67 +35,30 @@ struct CourseNotebookNote {
     var content: String?
     var highlightData: NotebookHighlight?
     var labels: [CourseNoteLabel]?
+
+    var type: CourseNoteLabel {
+        labels?.first ?? .important
+    }
+
+    var highlightedText: String {
+        highlightData?.selectedText ?? ""
+    }
+
+    var dateFormatted: String {
+        date.formatted(format: "MMM dd, yyyy")
+    }
 }
 
-extension CourseNotebookNote {
+struct ListCourseNotebookNoteModel: Equatable {
+    let notes: [CourseNotebookNote]
+    let courses: [DropdownMenuItem]
+
     init(
-        from edge: RedwoodFetchNotesQueryResponse.ResponseEdge,
-        pageInfo: RedwoodFetchNotesQueryResponse.PageInfo
+        notes: [CourseNotebookNote] = [],
+        courses: [DropdownMenuItem] = []
     ) {
-        let note = edge.node
-
-        self.id = note.id
-        self.date = note.updatedAt
-        self.courseId = note.courseId
-        self.objectId = note.objectId
-        self.hasNext = false
-        self.hasPrevious = false
-
-        self.labels = note.reaction?.compactMap { .init(rawValue: $0) }
-
-        self.content = note.userText
-
-        self.highlightData = note.highlightData
-
-    }
-
-    func copy(
-        date: Date? = nil,
-        courseId: String? = nil,
-        objectId: String? = nil,
-        content: String? = nil,
-        highlightData: NotebookHighlight? = nil,
-        labels: [CourseNoteLabel]? = nil,
-        hasPrevious: Bool = false,
-        hasNext: Bool = false
-    ) -> CourseNotebookNote {
-        CourseNotebookNote(
-            id: self.id,
-            date: date ?? self.date,
-            courseId: courseId ?? self.courseId,
-            hasNext: hasNext,
-            hasPrevious: hasPrevious,
-            objectId: objectId ?? self.objectId,
-            content: content ?? self.content,
-            highlightData: highlightData ?? self.highlightData,
-            labels: labels ?? self.labels
-        )
-    }
-}
-
-extension CourseNotebookNote {
-    init(from note: RedwoodNote) {
-        self.id = note.id
-        self.date = note.updatedAt
-        self.courseId = note.courseId
-        self.objectId = note.objectId
-
-        self.content = note.userText
-        self.labels = note.reaction?.compactMap { CourseNoteLabel(rawValue: $0) } ?? []
-
-        self.highlightData = note.highlightData
-        self.hasNext = false
-        self.hasPrevious = false
+        self.notes = notes
+        self.courses = courses
     }
 }
 
@@ -107,8 +69,6 @@ extension CourseNotebookNote {
             id: "1",
             date: Date(),
             courseId: "courseID",
-            hasNext: false,
-            hasPrevious: false,
             objectId: "objectID",
             content: "Good morning",
             highlightData: NotebookHighlight(
@@ -116,7 +76,7 @@ extension CourseNotebookNote {
                 textPosition: NotebookHighlight.TextPosition(start: 0, end: 0),
                 range: NotebookHighlight.Range(startContainer: "", startOffset: 0, endContainer: "", endOffset: 0)
             ),
-            labels: [CourseNoteLabel.confusing]
+            labels: [CourseNoteLabel.unclear]
         )
     }
 }

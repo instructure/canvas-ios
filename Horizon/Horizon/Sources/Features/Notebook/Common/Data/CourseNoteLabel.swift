@@ -20,7 +20,7 @@ import SwiftUI
 import HorizonUI
 
 enum CourseNoteLabel: String, CaseIterable {
-    case confusing = "Confusing"
+    case unclear = "Unclear"
     case important = "Important"
     case other = "Other"
 
@@ -37,6 +37,13 @@ enum CourseNoteLabel: String, CaseIterable {
         }
     }
 
+    var backgroundColor: Color {
+        switch self {
+        case .important: .huiColors.primitives.sea12
+        default: .huiColors.primitives.red12
+        }
+    }
+
     var borderStyle: String {
         switch self {
         case .important: "solid"
@@ -45,14 +52,29 @@ enum CourseNoteLabel: String, CaseIterable {
     }
 
     var label: String {
-        self == .confusing ?
-            String(localized: "Confusing", bundle: .horizon) :
+        self == .unclear ?
+            String(localized: "Unclear", bundle: .horizon) :
             String(localized: "Important", bundle: .horizon)
+    }
+
+    var icon: Image {
+        switch self {
+        case .important: Image.huiIcons.keepPin
+        default: Image.huiIcons.help
+        }
+    }
+
+    static var list: [DropdownMenuItem] {
+        [
+            .init(id: "1", name: String(localized: "All notes")),
+            .init(id: "2", name: CourseNoteLabel.unclear.label),
+            .init(id: "3", name: CourseNoteLabel.important.label)
+        ]
     }
 
     func image(selected: Bool = true) -> some View {
         let color = selected ? self.color : HorizonUI.colors.lineAndBorders.containerStroke
-        let image = self == .confusing ? Image.huiIcons.help : Image.huiIcons.flag2
+        let image = self == .unclear ? Image.huiIcons.help : Image.huiIcons.flag2
         return image.foregroundStyle(color)
     }
 }

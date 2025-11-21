@@ -100,7 +100,7 @@ struct NotebookNoteView: View {
         NotebookSectionHeading(title: String(localized: "Highlight", bundle: .horizon))
 
         if viewModel.isHighlightedTextVisible {
-            HighlightedText(viewModel.highlightedText, ofTypes: viewModel.courseNoteLabels)
+            HighlightedText(text: viewModel.highlightedText, type: viewModel.courseNoteLabels.first ?? .important)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .huiTypography(.p1)
                 .padding(.top, .huiSpaces.space12)
@@ -114,7 +114,7 @@ struct NotebookNoteView: View {
 
         HStack(spacing: .huiSpaces.space8) {
             NoteCardFilterButton(
-                type: .confusing,
+                type: .unclear,
                 selected: viewModel.isConfusing
             ).onTapGesture {
                 viewModel.toggleConfusing()

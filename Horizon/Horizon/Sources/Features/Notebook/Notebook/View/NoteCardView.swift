@@ -49,7 +49,7 @@ struct NoteCardView: View {
                     }
                 }
                 if !note.highlightedText.isEmpty {
-                    HighlightedText(note.highlightedText.trimmed(), ofTypes: note.types)
+                    HighlightedText(text: note.highlightedText.trimmed(), type: note.types.first ?? .important)
                 }
                 if !note.note.isEmpty {
                     Text(note.note)
@@ -68,7 +68,7 @@ struct NoteCardView: View {
 
     private func noteCardLabelView(type: CourseNoteLabel) -> some View {
         switch type {
-        case .confusing:
+        case .unclear:
             HorizonUI.StatusChip(
                 title: type.label.uppercased(),
                 style: .red,
@@ -89,7 +89,7 @@ struct NoteCardView: View {
     VStack {
         NoteCardView(
             note: NotebookNote(
-                courseNotebookNote: CourseNotebookNote.example.copy(content: "")
+                courseNotebookNote: CourseNotebookNote.example
             )
         )
 

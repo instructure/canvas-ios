@@ -1,0 +1,70 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import HorizonUI
+import SwiftUI
+
+struct NotesbookCardsView: View {
+    let notes: [CourseNotebookNote]
+    let selectedNote: CourseNotebookNote?
+    let showDeleteLoader: Bool
+    let isSeeMoreButtonVisible: Bool
+    let onTapNote: (CourseNotebookNote) -> Void
+    let onTapDeleteNote: (CourseNotebookNote) -> Void
+    let onTapSeeMore: () -> Void
+
+    var body: some View {
+        VStack(spacing: .huiSpaces.space16) {
+            ForEach(notes) { note in
+                Button {
+                    onTapNote(note)
+                } label: {
+                    NoteCardsView(
+                        note: note,
+                        isLoading: note == selectedNote ? showDeleteLoader : false
+                    ) { deletedNote in
+                        onTapDeleteNote(deletedNote)
+                    }
+                }
+                .transition(.move(edge: .trailing).combined(with: .opacity))
+                .scrollTransition(.animated) { content, phase in
+                    content
+                        .scaleEffect(phase.isIdentity ? 1 : 0.9)
+                }
+            }
+
+            if isSeeMoreButtonVisible {
+                seeMoreButton
+            }
+        }
+        .padding(.bottom, .huiSpaces.space16)
+    }
+
+    private var seeMoreButton: some View {
+        HorizonUI.PrimaryButton(
+            String(localized: "Show more", bundle: .horizon),
+            type: .whiteGrayOutline,
+            isSmall: true,
+            fillsWidth: true
+        ) {
+            onTapSeeMore()
+        }
+        .accessibilityLabel(String(localized: "Show more"))
+        .accessibilityHint( String(localized: "Double tap to load more notes"))
+    }
+}
