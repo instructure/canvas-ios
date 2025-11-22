@@ -43,7 +43,7 @@ struct SubmissionListSection: Identifiable {
         var filter: (Submission) -> Bool {
             switch self {
             case .submitted:
-                { $0.submittedAt != nil && $0.isGraded == false }
+                { $0.submittedAt != nil && $0.status.isGraded == false }
             case .unsubmitted:
                 { submission in
                     if submission.excused { return false }
@@ -61,7 +61,7 @@ struct SubmissionListSection: Identifiable {
                     return false
                 }
             case .graded:
-                { $0.isGraded }
+                { $0.status.isGraded }
             case .others:
                 { submission in
                     let matchesTheOtherCases = Self

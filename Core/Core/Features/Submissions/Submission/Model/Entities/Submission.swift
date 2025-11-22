@@ -416,12 +416,6 @@ extension Submission {
             ))
     }
 
-    public var isGraded: Bool {
-        return excused
-            || customGradeStatusId != nil
-            || (score != nil && workflowState == .graded)
-    }
-
     public var status: SubmissionStatus {
         .init(
             isSubmitted: submittedAt != nil,

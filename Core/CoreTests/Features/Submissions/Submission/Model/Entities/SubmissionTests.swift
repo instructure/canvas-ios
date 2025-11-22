@@ -299,20 +299,6 @@ class SubmissionTests: CoreTestCase {
         XCTAssertTrue(resubmitted.needsGrading)
     }
 
-    func testIsGraded() {
-        let excused = Submission.make(from: .make(excused: true))
-        XCTAssertTrue(excused.isGraded)
-
-        let gradedNoScore = Submission.make(from: .make(score: nil, workflow_state: .graded))
-        XCTAssertFalse(gradedNoScore.isGraded)
-
-        let scoreNotGraded = Submission.make(from: .make(score: 10, workflow_state: .pending_review))
-        XCTAssertFalse(scoreNotGraded.isGraded)
-
-        let gradedWithScore = Submission.make(from: .make(score: 10, workflow_state: .graded))
-        XCTAssertTrue(gradedWithScore.isGraded)
-    }
-
     func testSubmissionStatus() {
         let late = Submission.make(from: .make(late: true))
         XCTAssertEqual(late.statusOld, .late)
