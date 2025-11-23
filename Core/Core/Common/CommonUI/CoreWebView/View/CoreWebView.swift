@@ -520,6 +520,18 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.allow) // let web view scroll to link too, if necessary
         }
 
+        // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
+        if let immersiveURL = studioFeaturesInteractor.urlForStudioImmersiveView(of: action),
+           let controller = linkDelegate?.routeLinksFrom {
+            controller.pauseWebViewPlayback()
+            env.router.show(
+                StudioViewController(url: immersiveURL),
+                from: controller,
+                options: .modal(.overFullScreen)
+            )
+            return decisionHandler(.cancel)
+        }
+
         // Handle "Launch External Tool" button OR 
         // LTI app buttons embedded in K5 WebViews when there's no additional JavaScript
         // involved (like Zoom and Microsoft).
@@ -553,18 +565,6 @@ extension CoreWebView: WKNavigationDelegate {
                 addDoneButton: true
             )
             env.router.show(controller, from: viewController, options: routeOptions)
-            return decisionHandler(.cancel)
-        }
-
-        // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
-        if let immersiveURL = studioFeaturesInteractor.urlForStudioImmersiveView(of: action),
-           let controller = linkDelegate?.routeLinksFrom {
-            controller.pauseWebViewPlayback()
-            env.router.show(
-                StudioViewController(url: immersiveURL),
-                from: controller,
-                options: .modal(.overFullScreen)
-            )
             return decisionHandler(.cancel)
         }
 

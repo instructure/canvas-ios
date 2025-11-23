@@ -97,7 +97,8 @@ public class CoreWebViewStudioFeaturesInteractor {
     /// currently loaded page HTML content looking for video studio `iframe`s. It will extract
     /// `title` attribute value and keep a map of such values vs video src URL, to be used
     /// later to set immersive video player title. This mainly useful when triggering the player
-    /// from a button that's internal to video-frame. (`Expand` button)
+    /// from a button that's internal to video-frame. (`Expand` button).
+    /// Only for Canvas uploads video players.
     func scanVideoFrames() {
         guard let webView else { return }
 
@@ -180,12 +181,19 @@ extension WKNavigationAction {
             && path.hasSuffix("/immersive_view") == true
             && sourceFrame.isMainFrame == false
 
-        let isDetailsLink =
+        let isCanvasUploadDetailsLink =
             navigationType == .linkActivated
             && path.contains("/media_attachments/") == true
             && path.hasSuffix("/immersive_view") == true
             && (targetFrame?.isMainFrame ?? false) == false
 
-        return isExpandLink || isDetailsLink
+        let query = request.url?.query()?.removingPercentEncoding ?? ""
+        let isStudioEmbedDetailsLink =
+            navigationType == .linkActivated
+            && path.hasSuffix("/external_tools/retrieve")
+            && query.contains("custom_arc_launch_type=immersive_view")
+            && (targetFrame?.isMainFrame ?? false) == false
+
+        return isExpandLink || isCanvasUploadDetailsLink || isStudioEmbedDetailsLink
     }
 }
