@@ -24,6 +24,7 @@ struct NoteCardListState {
     var isSeeMoreButtonVisible: Bool = false
     var isShowfilterView: Bool = true
     var isPresentedErrorToast: Bool = false
+    var isPresentedSuccessToast: Bool = false
     /// This flag determines whether pagination should be reset when fetching notes after deleting a note.
     /// We set `keepObserving = true` to observe changes in real time. Without this flag,
     /// deleting a note would reset the pagination unexpectedly.
@@ -32,6 +33,7 @@ struct NoteCardListState {
     var isNoteDeleted: Bool = true
     // Values
     var errorMessage = ""
+    var successMessage = ""
     var selectedCourse: DropdownMenuItem?
     var selectedLable: DropdownMenuItem?
 }

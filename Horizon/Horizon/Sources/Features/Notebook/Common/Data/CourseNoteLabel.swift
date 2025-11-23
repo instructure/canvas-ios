@@ -33,14 +33,16 @@ enum CourseNoteLabel: String, CaseIterable {
     var color: Color {
         switch self {
         case .important: .huiColors.primitives.sea57
-        default: .huiColors.primitives.red57
+        case .unclear: .huiColors.primitives.red57
+        case .other: .huiColors.text.body
         }
     }
 
     var backgroundColor: Color {
         switch self {
         case .important: .huiColors.primitives.sea12
-        default: .huiColors.primitives.red12
+        case .unclear: .huiColors.primitives.red12
+        case .other: Color.clear
         }
     }
 
@@ -52,12 +54,15 @@ enum CourseNoteLabel: String, CaseIterable {
     }
 
     var label: String {
-        self == .unclear ?
-            String(localized: "Unclear", bundle: .horizon) :
-            String(localized: "Important", bundle: .horizon)
+        switch self {
+        case .unclear: String(localized: "Unclear", bundle: .horizon)
+        case .important: String(localized: "Important", bundle: .horizon)
+        case .other: String(localized: "All notes", bundle: .horizon)
+        }
     }
 
     var icon: Image {
+
         switch self {
         case .important: Image.huiIcons.keepPin
         default: Image.huiIcons.help
@@ -72,9 +77,22 @@ enum CourseNoteLabel: String, CaseIterable {
         ]
     }
 
-    func image(selected: Bool = true) -> some View {
-        let color = selected ? self.color : HorizonUI.colors.lineAndBorders.containerStroke
-        let image = self == .unclear ? Image.huiIcons.help : Image.huiIcons.flag2
-        return image.foregroundStyle(color)
+    var markNoteName: String {
+        switch self {
+        case .unclear: String(localized: "Mark unclear", bundle: .horizon)
+        case .important: String(localized: "Mark important", bundle: .horizon)
+        case .other: String(localized: "All notes", bundle: .horizon)
+        }
+    }
+
+    var image: some View {
+        switch self {
+        case .unclear:
+            Image.huiIcons.help
+        case .important:
+            Image.huiIcons.keepPin
+        case .other:
+            Image.huiIcons.editNote
+        }
     }
 }

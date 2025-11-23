@@ -147,7 +147,7 @@ struct NotebookView: View {
 
     private var notesBody: some View {
         VStack(spacing: .huiSpaces.space12) {
-            NotebookSectionHeading(title: String(localized: "Notes", bundle: .horizon))
+//            NotebookSectionHeading(title: String(localized: "Notes", bundle: .horizon))
             ForEach(viewModel.notes) { note in
                 NoteCardView(note: note)
                 .onTapGesture {
@@ -161,7 +161,7 @@ struct NotebookView: View {
     @ViewBuilder
     private var filterButtons: some View {
         VStack(spacing: .huiSpaces.space12) {
-            NotebookSectionHeading(title: String(localized: "Filter", bundle: .horizon))
+//            NotebookSectionHeading(title: String(localized: "Filter", bundle: .horizon))
             HStack(spacing: .huiSpaces.space12) {
                 ForEach(viewModel.courseNoteLabels, id: \.rawValue) { filter in
                     NoteCardFilterButton(type: filter, selected: viewModel.isEnabled(filter: filter))

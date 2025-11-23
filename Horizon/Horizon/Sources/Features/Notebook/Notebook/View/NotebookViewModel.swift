@@ -95,7 +95,7 @@ final class NotebookViewModel {
         let courseNote = note.courseNotebookNote
 
         if isNavigatingFromModule {
-            let noteVC = NotebookNoteAssembly.makeViewNoteViewController(courseNotebookNote: courseNote)
+            let noteVC = EditNotebookAssembly.makeViewNoteViewController(courseNotebookNote: courseNote)
             router.show(noteVC, from: viewController)
         } else {
             let routePath = "/courses/\(courseNote.courseId)/modules/items/\(courseNote.objectId)?asset_type=Page&notebook_disabled=true"

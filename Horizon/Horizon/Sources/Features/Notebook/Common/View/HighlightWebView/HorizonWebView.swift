@@ -173,15 +173,20 @@ final class HorizonWebView: CoreWebView {
         highlightWebFeature?.listenForHighlightTaps()
             .sink { _ in
             } receiveValue: { [weak self] notebookTextSelection in
-                guard let self = self,
-                    let viewController = self.viewController
-                else {
-                    return
-                }
+                guard let self = self, let viewController = self.viewController else { return }
                 if let courseNotebookNote = self.courseNotebookNotes.first(where: {
                     $0.notebookTextSelection == notebookTextSelection
                 }) {
-                    router.route(to: "/notebook/note", userInfo: ["note": courseNotebookNote], from: viewController)
+                    let editNotebookView = EditNotebookAssembly.makeViewNoteViewController(
+                        courseNotebookNote: courseNotebookNote
+                    ) {
+                    NotificationCenter.default.post(name: .showToastaAlert, object: String(localized: "Note saved", bundle: .horizon))
+                    }
+                    router.show(
+                        editNotebookView,
+                        from: viewController,
+                        options: .modal(.pageSheet, isDismissable: false)
+                    )
                 }
             }
             .store(in: &subscriptions)

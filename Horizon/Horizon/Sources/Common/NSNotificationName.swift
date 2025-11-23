@@ -16,14 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Foundation
 
-struct NotebookSectionHeading: View {
-    let title: String
-
-    var body: some View {
-        Text(title)
-            .huiTypography(.labelLargeBold)
-            .frame(maxWidth: .infinity, alignment: .leading)
-    }
+extension NSNotification.Name {
+    static let showToastaAlert = Notification.Name("com.instructure.horizon.notification.showToastaAlert")
 }

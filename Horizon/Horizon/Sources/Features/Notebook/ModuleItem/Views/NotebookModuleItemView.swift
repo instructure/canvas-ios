@@ -48,6 +48,13 @@ struct NotebookModuleItemView: View {
             ),
             isPresented: $viewModel.listState.isPresentedErrorToast
         )
+        .huiToast(
+            viewModel: .init(
+                text: viewModel.listState.successMessage,
+                style: .success
+            ),
+            isPresented: $viewModel.listState.isPresentedSuccessToast
+        )
     }
 
     private var dataView: some View {

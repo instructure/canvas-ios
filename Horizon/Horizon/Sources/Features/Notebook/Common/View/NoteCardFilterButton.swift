@@ -19,6 +19,7 @@
 import HorizonUI
 import SwiftUI
 
+// Need to delete it
 struct NoteCardFilterButton: View {
 
     // MARK: - Dependencies
@@ -28,7 +29,7 @@ struct NoteCardFilterButton: View {
 
     var body: some View {
         VStack {
-            type.image(selected: selected)
+            type.image
                 .frame(width: .huiSpaces.space24, height: .huiSpaces.space24)
             Text(type.label)
                 .huiTypography(.buttonTextLarge)

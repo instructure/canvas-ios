@@ -282,34 +282,12 @@ public enum HorizonRoutes {
                 }
                 return NotebookAssembly.makeViewController()
             },
-            RouteHandler("/notebook/:courseID/add") { url, params, userInfo in
-                guard let courseID = params["courseID"],
-                      let pageURL = url.queryItems?.first(where: { $0.name == "pageURL" })?.value,
-                      let pageURLDecoded = pageURL.removingPercentEncoding
-                else {
-                    return nil
-                }
-
-                guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
-                let router: Router = AppEnvironment.shared.router
-                let notebookHighlight = userInfo?["notebookHighlight"] as? NotebookHighlight
-                router.show(
-                    NotebookNoteAssembly.makeViewNoteViewController(
-                        courseID: courseID,
-                        pageURL: pageURLDecoded,
-                        notebookHighlight: notebookHighlight
-                    ),
-                    from: vc,
-                    options: .modal(.pageSheet, isDismissable: false)
-                )
-                return nil
-            },
             RouteHandler("/notebook/note") { _, _, userInfo in
                 guard let courseNotebookNote = userInfo?["note"] as? CourseNotebookNote else { return nil }
                 guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
                 let router: Router = AppEnvironment.shared.router
                 router.show(
-                    NotebookNoteAssembly.makeViewNoteViewController(courseNotebookNote: courseNotebookNote),
+                    EditNotebookAssembly.makeViewNoteViewController(courseNotebookNote: courseNotebookNote),
                     from: vc,
                     options: .modal(.pageSheet, isDismissable: false)
                 )

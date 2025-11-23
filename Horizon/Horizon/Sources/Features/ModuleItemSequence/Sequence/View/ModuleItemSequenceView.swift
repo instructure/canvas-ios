@@ -74,6 +74,11 @@ public struct ModuleItemSequenceView: View {
                 }
         }
         .overlay { loaderView }
+        .onReceive(NotificationCenter.default.publisher(for: .showToastaAlert)) { notification in
+            if let message = notification.object as? String, message.isNotEmpty {
+                draftToastViewModel = .init(title: message, isPresented: true)
+            }
+        }
         .safeAreaInset(edge: .top, spacing: .zero) { introBlock }
         .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
         .animation(isHeaderAnimationEnabled ? .linear : nil, value: isShowHeader)
