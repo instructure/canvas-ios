@@ -39,7 +39,6 @@ final class EditNotebookViewModel {
     var selectedLabel: CourseNoteLabel { didSet { validateInputs() } }
     var note: String = "" { didSet { validateInputs() } }
 
-
     // MARK: - Dependencies
 
     private let courseID: String?
