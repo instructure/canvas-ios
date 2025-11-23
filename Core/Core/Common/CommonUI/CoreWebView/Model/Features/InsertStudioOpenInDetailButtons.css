@@ -1,0 +1,18 @@
+p[ios-injected] {
+    text-align: center;
+}
+
+.open_details_button {
+    font-weight: 400;
+    font-size: 15px;
+    text-decoration: none;
+    color: #2B7ABC;
+}
+
+.open_details_button_icon {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    padding-right: 6px;
+    padding-left: 6px;
+}
