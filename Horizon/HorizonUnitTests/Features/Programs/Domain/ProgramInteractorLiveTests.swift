@@ -29,8 +29,8 @@ final class ProgramInteractorLiveTests: HorizonTestCase {
 
         // When
         api.mock(
-            DomainService.JWTTokenRequest(domainServiceOption: .journey),
-            value: DomainService.JWTTokenRequest.Result(token: HProgramStubs.token)
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            value: DomainJWTService.JWTTokenRequest.Result(token: HProgramStubs.token)
         )
         api.mock(GetHProgramsRequest(), value: HProgramStubs.response)
         // Then
@@ -53,8 +53,8 @@ final class ProgramInteractorLiveTests: HorizonTestCase {
 
         // When
         api.mock(
-            DomainService.JWTTokenRequest(domainServiceOption: .journey),
-            value: DomainService.JWTTokenRequest.Result(token: HProgramStubs.token)
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            value: DomainJWTService.JWTTokenRequest.Result(token: HProgramStubs.token)
         )
         api.mock(GetHProgramsRequest(), value: HProgramStubs.response)
         // Then
@@ -87,8 +87,8 @@ final class ProgramInteractorLiveTests: HorizonTestCase {
 
         // When
         api.mock(
-            DomainService.JWTTokenRequest(domainServiceOption: .journey),
-            value: DomainService.JWTTokenRequest.Result(token: HProgramStubs.token)
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            value: DomainJWTService.JWTTokenRequest.Result(token: HProgramStubs.token)
         )
         api.mock(GetHProgramsRequest(), value: HProgramStubs.response)
         // Then

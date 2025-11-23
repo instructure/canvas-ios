@@ -17,33 +17,21 @@
 //
 
 import Core
+import UIKit
 
-struct StudentSubAssignmentsCardItem: Equatable, Identifiable {
-    let id: String
-    let title: String
-    let submissionStatus: SubmissionStatusLabel.Model
-    let score: String?
-    let scoreA11yLabel: String?
-}
-
-#if DEBUG
-
-extension StudentSubAssignmentsCardItem {
-    static func make(
-        id: String = "",
-        title: String = "",
-        submissionStatus: SubmissionStatusLabel.Model = .init(text: "", icon: .emptyLine, color: .clear),
-        score: String? = nil,
-        scoreA11yLabel: String? = nil
-    ) -> StudentSubAssignmentsCardItem {
-        StudentSubAssignmentsCardItem(
-            id: id,
-            title: title,
-            submissionStatus: submissionStatus,
-            score: score,
-            scoreA11yLabel: scoreA11yLabel
+enum CourseListAssembly {
+    static func makeViewModel(courses: [CourseCardModel]) -> CourseListViewModel {
+        let onTapProgram: (ProgramSwitcherModel?, WeakViewController) -> Void = { program, viewController in
+            AppEnvironment.shared.switchToLearnTab(with: program, from: viewController)
+        }
+        return CourseListViewModel(
+            courses: courses,
+            router: AppEnvironment.shared.router,
+            onTapProgram: onTapProgram
         )
     }
-}
 
-#endif
+    static func makeView(courses: [CourseCardModel]) -> UIViewController {
+        CoreHostingController(CourseListView(viewModel: makeViewModel(courses: courses)))
+    }
+}

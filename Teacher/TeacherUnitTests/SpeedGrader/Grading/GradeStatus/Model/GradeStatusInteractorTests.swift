@@ -49,7 +49,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         let custom = testee.gradeStatusFor(
             customGradeStatusId: "custom1",
             latePolicyStatus: nil,
-            isExcused: nil,
+            isExcused: false,
             isLate: nil
         )
         XCTAssertEqual(custom.id, "custom1")
@@ -65,7 +65,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         let late = testee.gradeStatusFor(
             customGradeStatusId: nil,
             latePolicyStatus: .late,
-            isExcused: nil,
+            isExcused: false,
             isLate: nil
         )
         XCTAssertEqual(late.id, "late")
@@ -73,7 +73,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         let noStatusGiven = testee.gradeStatusFor(
             customGradeStatusId: nil,
             latePolicyStatus: nil,
-            isExcused: nil,
+            isExcused: false,
             isLate: nil
         )
         XCTAssertEqual(noStatusGiven, .none)
@@ -81,7 +81,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         let lateByIsLate = testee.gradeStatusFor(
             customGradeStatusId: nil,
             latePolicyStatus: nil,
-            isExcused: nil,
+            isExcused: false,
             isLate: true
         )
         XCTAssertEqual(lateByIsLate.id, "late")
@@ -109,7 +109,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         submission.attempt = 1
         submission.customGradeStatusId = "custom1"
         submission.latePolicyStatus = nil
-        submission.excused = nil
+        submission.excused = false
         submission.lateSeconds = seconds(forHours: 24) // 1 day
         submission.dueAt = nil
 
@@ -162,7 +162,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         XCTAssertEqual(receivedStatuses.last?.dueDate, nil)
 
         // GIVEN - reset status
-        submission.excused = nil
+        submission.excused = false
         submission.dueAt = submissionDueDate
 
         // WHEN
@@ -176,7 +176,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
 
         // GIVEN - days late
         submission.lateSeconds = seconds(forHours: 36) // 1.5 days
-        submission.excused = nil
+        submission.excused = false
         submission.dueAt = nil
 
         // WHEN
@@ -188,7 +188,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
 
         // GIVEN - another days late
         submission.lateSeconds = seconds(forHours: 18) // 0.75 days
-        submission.excused = nil
+        submission.excused = false
         submission.dueAt = nil
 
         // WHEN
