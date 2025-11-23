@@ -429,13 +429,6 @@ extension Submission {
             submissionType: type ?? assignment?.submissionTypes.first
         )
     }
-
-    public var statusOld: SubmissionStatusOld {
-        if late { return .late }
-        if missing { return .missing }
-        if submittedAt != nil { return .submitted }
-        return .notSubmitted
-    }
 }
 
 extension Submission: Comparable {

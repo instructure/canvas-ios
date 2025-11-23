@@ -52,7 +52,7 @@ struct ContextCardSubmissionRow: View {
             }
         }
         .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-        .accessibility(label: Text("Submission \(assignment.name), \(submission.statusOld.text), \(a11ySubmissionStatus)", bundle: .core))
+        .accessibility(label: Text("Submission \(assignment.name), \(submission.status.labelModel.text), \(a11ySubmissionStatus)", bundle: .core))
         .identifier("ContextCard.submissionCell(\(assignment.id))")
     }
 
@@ -65,9 +65,9 @@ struct ContextCardSubmissionRow: View {
             }
             return CGFloat(min(1, score / maxPoints))
         }()
-        self.grade = {
-            GradeFormatter.string(from: assignment, submission: submission, style: .medium, customStyleForLetterGrade: .short) ?? ""
-        }()
+
+        let formattedGrade = GradeFormatter.string(from: assignment, submission: submission, style: .medium, customStyleForLetterGrade: .short)
+        self.grade = formattedGrade ?? ""
         self.icon = {
             if assignment.submissionTypesWithQuizLTIMapping.contains(.online_quiz) {
                 return .quizLine
@@ -81,9 +81,8 @@ struct ContextCardSubmissionRow: View {
         self.a11ySubmissionStatus = {
             if submission.needsGrading {
                 return String(localized: "NEEDS GRADING", bundle: .core)
-            } else if submission.workflowState == .graded,
-                      submission.score != nil,
-                      let grade = GradeFormatter.string(from: assignment, submission: submission, style: .medium, customStyleForLetterGrade: .short) {
+            } else if submission.status.isGraded,
+                      let grade = formattedGrade {
                 return String(localized: "grade", bundle: .core) + " " + grade
             } else {
                 return ""

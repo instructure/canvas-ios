@@ -206,7 +206,7 @@ class StudentAssignmentDetailsPresenter {
         if onlineUpload.isEmpty {
             onlineUploadState = nil
         } else if onlineUpload.first(where: { $0.uploadError != nil }) != nil {
-            if let assignment = assignment, assignment.submissionStatus == .submitted {
+            if let submission = assignment?.submission, submission.status.isSubmitted {
                 onlineUploadState = .reSubmissionFailed
             } else {
                 onlineUploadState = .failed
