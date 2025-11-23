@@ -139,9 +139,9 @@ public enum AssignmentFilterOptionsTeacher: String, CaseIterable {
                 guard let submissions = $0.submissions, submissions.count > 0 else { return true }
 
                 return submissions.contains { submission in
-                    submission.status == .notSubmitted
+                    submission.status.needsSubmission
                     || submission.subAssignmentSubmissions.contains { subSubmission in
-                        subSubmission.status == .notSubmitted
+                        subSubmission.status.needsSubmission
                     }
                 }
             }

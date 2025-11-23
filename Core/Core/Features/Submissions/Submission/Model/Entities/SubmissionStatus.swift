@@ -136,7 +136,8 @@ extension SubmissionStatus {
         isSubmitted && !isGraded
     }
 
-    /// True if there is no submission, the assignment is submittable and it is not considered graded.
+    /// True if there is no submission, the assignment is submittable
+    /// and it is not considered graded.
     public var needsSubmission: Bool {
         !isSubmitted && isTypeSubmittable && !isGraded
     }
