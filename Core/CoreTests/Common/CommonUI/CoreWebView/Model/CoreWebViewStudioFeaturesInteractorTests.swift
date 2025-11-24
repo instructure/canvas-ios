@@ -187,4 +187,18 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         // Then
         XCTAssertEqual(immersiveUrl?.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view?title=Hello%20World&embedded=true")
     }
+
+    func testStudioImmersiveViewURL_DetailButton() {
+        // Given
+        preloadPageContent()
+        let interactor = webView.studioFeaturesInteractor
+
+        // When
+        let actionUrl = "https://suhaibalabsi.instructure.com/courses/1234/external_tools/retrieve?display=full_width&url=https%3A%2F%2Fsuhaibalabsi.staging.instructuremedia.com%2Flti%2Flaunch%3Fcustom_arc_display_download%3Dtrue%26custom_arc_launch_type%3Dimmersive_view%26custom_arc_lock_speed%3Dtrue%26custom_arc_media_id%3D7dc9ffdc-c30a-44e6-869e-a940ea66331e-1%26custom_arc_start_at%3D0%26custom_arc_transcript_downloadable%3Dtrue%26com_instructure_course_canvas_resource_type%3Dwiki_page.body%26com_instructure_course_canvas_resource_id%3D6408%26custom_arc_source_view_type%3Dcollaboration_embed%26platform_redirect_url%3Dhttps%253A%252F%252Fsuhaibalabsi.instructure.com%252Fcourses%252F991%252Fpages%252Ftest-both-embed-types%26full_win_launch_requested%3D1"
+        let action = MockNavigationAction(url: actionUrl, type: .linkActivated, targetFrame: MockFrameInfo(isMainFrame: false))
+        let immersiveUrl = interactor.urlForStudioImmersiveView(of: action)
+
+        // Then
+        XCTAssertNotNil(immersiveUrl)
+    }
 }

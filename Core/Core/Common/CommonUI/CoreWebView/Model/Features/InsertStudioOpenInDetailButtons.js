@@ -19,19 +19,21 @@
 function findCanvasUploadLink(elm, title) {
     if(elm.hasAttribute("data-media-id") == false) { return null }
 
-    var frameSource = elm.getAttribute("src");
+    let frameSource = elm.getAttribute("src");
     if(!frameSource) { return null }
 
-    frameSource = frameSource.replace("media_attachments_iframe", "media_attachments");
+    let frameFullPath = frameSource
+        .replace("media_attachments_iframe", "media_attachments")
+        .concat("/immersive_view");
 
-    var suffix = "/immersive_view";
+    let frameURL = new URL(frameFullPath);
 
     if(title) {
         title = title.replace("Video player for ", "").replace(".mp4", "");
-        suffix = "/immersive_view?title=" + encodeURIComponent(title);
+        frameURL.searchParams.set("title", encodeURIComponent(title));
     }
 
-    return new URL(frameSource + suffix);
+    return frameURL;
 }
 
 function findStudioEmbedLink(elm, title) {
@@ -58,7 +60,7 @@ function findStudioEmbedLink(elm, title) {
 
 function insertDetailsLinks(elm, method) {
     var linkSpecs = window.detailLinkSpecs;
-    linkSpecs = (linkSpecs) ? linkSpecs : { iconSVG: '', title: '' };
+    linkSpecs = (linkSpecs) ? linkSpecs : { iconSVG: null, title: null };
 
     let nextSibling = elm.nextElementSibling;
     let nextNextSibling = (nextSibling) ? nextSibling.nextElementSibling : null;
@@ -68,7 +70,7 @@ function insertDetailsLinks(elm, method) {
 
     const videoTitle = elm.getAttribute("title");
     const ariaTitle = elm.getAttribute("aria-title");
-    var title = videoTitle ?? ariaTitle;
+    const title = videoTitle ?? ariaTitle;
 
     var buttonHref;
     if(method == "studio") {
@@ -86,19 +88,23 @@ function insertDetailsLinks(elm, method) {
     const buttonContainer = document.createElement('div');
     buttonContainer.className = "open_detail_button_container";
 
-    const icon = document.createElement('div');
-    icon.className = "open_details_button_icon";
-    icon.innerHTML = linkSpecs.iconSVG;
+    if(linkSpecs.iconSVG) {
+        const icon = document.createElement('div');
+        icon.className = "open_details_button_icon";
+        icon.innerHTML = linkSpecs.iconSVG;
+        buttonContainer.appendChild(icon);
+    }
 
-    const detailButton = document.createElement('a');
-    detailButton.className = "open_details_button";
-    detailButton.href = buttonHref;
-    detailButton.target = "_blank";
-    detailButton.textContent = escapeHTML(linkSpecs.title);
+    if(linkSpecs.title) {
+        const detailButton = document.createElement('a');
+        detailButton.className = "open_details_button";
+        detailButton.href = buttonHref;
+        detailButton.target = "_blank";
+        detailButton.textContent = escapeHTML(linkSpecs.title);
 
-    buttonContainer.appendChild(icon);
-    buttonContainer.appendChild(detailButton);
-    newParagraph.appendChild(buttonContainer);
+        buttonContainer.appendChild(detailButton);
+        newParagraph.appendChild(buttonContainer);
+    }
 
     elm.insertAdjacentElement('afterend', newLine);
     newLine.insertAdjacentElement('afterend', newParagraph);
