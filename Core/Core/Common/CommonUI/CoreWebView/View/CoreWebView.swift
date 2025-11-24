@@ -132,7 +132,7 @@ open class CoreWebView: WKWebView {
         if indexSet.isNotEmpty {
             filteredList.forEach({ $0.element.remove(from: self) })
             features.remove(atOffsets: indexSet)
-            _ = reload()
+            _ = super.reload()
             return true
         }
         return false
