@@ -20,7 +20,7 @@ import SwiftUI
 import HorizonUI
 
 enum CourseNoteLabel: String, CaseIterable {
-    case unclear = "Unclear"
+    case unclear = "Confusing"
     case important = "Important"
     case other = "Other"
 
@@ -62,7 +62,6 @@ enum CourseNoteLabel: String, CaseIterable {
     }
 
     var icon: Image {
-
         switch self {
         case .important: Image.huiIcons.keepPin
         default: Image.huiIcons.help
@@ -72,8 +71,8 @@ enum CourseNoteLabel: String, CaseIterable {
     static var list: [DropdownMenuItem] {
         [
             .init(id: "1", name: String(localized: "All notes")),
-            .init(id: "2", name: CourseNoteLabel.unclear.label),
-            .init(id: "3", name: CourseNoteLabel.important.label)
+            .init(id: "2", name: CourseNoteLabel.unclear.label, key: CourseNoteLabel.unclear.rawValue),
+            .init(id: "3", name: CourseNoteLabel.important.label, key: CourseNoteLabel.important.rawValue)
         ]
     }
 

@@ -148,7 +148,7 @@ final class NotebookListViewModel {
     private func getSelectedFilter() -> NotebookQueryFilter {
         let course = listState.selectedCourse ?? courses.first
         let label = listState.selectedLable ?? courseLables.first
-        let reactions = label?.id == "1" ? nil : [label?.name ?? ""]
+        let reactions = label?.id == "1" ? nil : [label?.key ?? ""]
         let courseID = course?.id == "-1" ? nil : course?.id
         return NotebookQueryFilter(reactions: reactions, courseId: courseID)
     }

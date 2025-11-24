@@ -44,17 +44,27 @@ struct NotebookLabelFilterButton: View {
         } label: {
             labelButton
         }
+        .accessibilityHint(
+                    Text(
+                        String.localizedStringWithFormat(
+                            String(localized: "Selected notebook lable is %@. Double tap to select another lable", bundle: .horizon),
+                            selectedLable.label
+                        )
+                    )
+                )
         .popover(isPresented: $isListLableVisiable, attachmentAnchor: .point(.center), arrowEdge: .top) {
             listLabelView
                 .presentationCompactAdaptation(.none)
                 .presentationBackground(Color.huiColors.surface.cardPrimary)
         }
+        .accessibilityRemoveTraits(.isButton)
     }
 
     private var labelButton: some View {
         HStack(spacing: .huiSpaces.space2) {
             selectedLable.image
                 .foregroundStyle(selectedLable.color)
+                .accessibilityHidden(true)
             Text(selectedLable.label)
                 .foregroundStyle(selectedLable.color)
                 .huiTypography(.p2)
@@ -63,6 +73,7 @@ struct NotebookLabelFilterButton: View {
                 .rotationEffect(.degrees(isListLableVisiable ? 180 : 0))
                 .animation(.easeInOut, value: isListLableVisiable)
                 .frame(width: 24, height: 24)
+                .accessibilityHidden(true)
         }
         .padding(.vertical, .huiSpaces.space4)
         .padding(.horizontal, .huiSpaces.space8)

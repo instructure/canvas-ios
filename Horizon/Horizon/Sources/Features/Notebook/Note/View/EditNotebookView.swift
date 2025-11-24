@@ -21,6 +21,12 @@ import HorizonUI
 import SwiftUI
 
 struct EditNotebookView: View {
+
+    // MARK: - A11y Properties
+
+    @AccessibilityFocusState private var focusedLabelID: String?
+    private let selectLabelFocusedID = "selectLabelFocusedID"
+
     // MARK: - Private variables
 
     @Environment(\.viewController) private var viewController
@@ -57,13 +63,22 @@ struct EditNotebookView: View {
             VStack(alignment: .leading, spacing: .huiSpaces.space24) {
                 NotebookLabelFilterButton(selectedLable: viewModel.selectedLabel) { label in
                     viewModel.selectedLabel = label
+                    restoreFocusIfNeeded()
                 }
+                .id(selectLabelFocusedID)
+                .accessibilityFocused($focusedLabelID, equals: selectLabelFocusedID)
 
                 HighlightedText(
                     text: viewModel.highlightedText,
                     type: viewModel.selectedLabel
                 )
-
+                .accessibilityLabel(
+                    String.localizedStringWithFormat(
+                        String(localized: "Highlighted text is %@ label type is %@", bundle: .horizon),
+                        viewModel.highlightedText,
+                        viewModel.selectedLabel.label
+                    )
+                )
                 noteView(proxy: proxy)
 
                 footerView
@@ -81,9 +96,6 @@ struct EditNotebookView: View {
                 }
                 Button(String(localized: "Cancel"), role: .cancel) {}
             }
-            .onTapGesture {
-                isTextFieldFocused = false
-            }
         }
     }
 
@@ -97,6 +109,12 @@ struct EditNotebookView: View {
             proxy: proxy
         )
         .focused($isTextFieldFocused)
+        .accessibilityLabel(String(localized: "Note content"))
+        .accessibilityLabel(
+            String.localizedStringWithFormat(
+                String(localized: "Note content is %@", bundle: .horizon),
+                viewModel.note.isEmpty ? String(localized: "Empty. You can write a note.") : viewModel.note
+            ))
     }
 
     // MARK: - Navigation Bar
@@ -110,12 +128,14 @@ struct EditNotebookView: View {
             ) {
                 viewModel.close(viewController)
             }
+            .accessibilityHint(Text(String(localized: "Double tap to dismiss the screeen")))
 
             Spacer()
 
             Text(String(localized: "Edit note"))
                 .foregroundStyle(Color.huiColors.text.title)
                 .huiTypography(.h4)
+                .accessibilityAddTraits(.isHeader)
 
             Spacer()
 
@@ -127,6 +147,10 @@ struct EditNotebookView: View {
                 viewModel.update(viewController: viewController)
             }
             .disabled(!viewModel.isSaveButtonEnabled)
+            .accessibilityHint(viewModel.isSaveButtonEnabled
+                               ? Text(String(localized: "Save changes made to the note"))
+                               : Text(String(localized: "Do any changes to the note to enable the save button"))
+            )
 
         }
         .padding([.horizontal, .top], .huiSpaces.space16)
@@ -138,9 +162,12 @@ struct EditNotebookView: View {
 
     private var footerView: some View {
         HStack {
-            Text(viewModel.courseNote?.dateFormatted ?? "")
-                .foregroundStyle(Color.huiColors.text.timestamp)
-                .huiTypography(.labelSmall)
+            if let dateFormatted = viewModel.courseNote?.dateFormatted, !dateFormatted.isEmpty {
+                Text(dateFormatted)
+                    .foregroundStyle(Color.huiColors.text.timestamp)
+                    .huiTypography(.labelSmall)
+                    .accessibilityLabel(String(localized: "Note created on \(dateFormatted)"))
+            }
 
             Spacer()
 
@@ -152,6 +179,15 @@ struct EditNotebookView: View {
             ) {
                 showDeleteConfirmation.toggle()
             }
+            .accessibilityAction {
+                viewModel.deleteNoteAndDismiss(viewController: viewController)
+            }
+        }
+    }
+
+    private func restoreFocusIfNeeded() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            focusedLabelID = selectLabelFocusedID
         }
     }
 }

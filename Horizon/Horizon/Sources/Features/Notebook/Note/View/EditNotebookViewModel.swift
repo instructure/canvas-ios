@@ -86,6 +86,7 @@ final class EditNotebookViewModel {
                 self?.isErrorMessagePresented = true
 
             } receiveValue: { [weak self]  _ in
+                self?.state = .data
                 self?.close(viewController)
             }
             .store(in: &subscriptions)
