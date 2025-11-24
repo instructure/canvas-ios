@@ -273,6 +273,8 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
         if #available(iOS 26, *) {
             navigationItem.subtitle = name
+            // WebView needs this color
+            self.color = color
         } else {
             updateNavBar(subtitle: name, color: color)
         }
