@@ -24,10 +24,6 @@ enum CourseNoteLabel: String, CaseIterable {
     case important = "Important"
     case other = "Other"
 
-    // MARK: Static
-    static func color(_ label: CourseNoteLabel) -> Color? {
-        label.color
-    }
 
     // MARK: Properties
     var color: Color {
@@ -43,13 +39,6 @@ enum CourseNoteLabel: String, CaseIterable {
         case .important: .huiColors.primitives.sea12
         case .unclear: .huiColors.primitives.red12
         case .other: Color.clear
-        }
-    }
-
-    var backgroundColor: Color {
-        switch self {
-        case .important: .huiColors.primitives.sea12
-        default: .huiColors.primitives.red12
         }
     }
 
