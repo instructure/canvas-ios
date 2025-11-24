@@ -47,7 +47,7 @@ struct NotebookLabelFilterButton: View {
         .accessibilityHint(
                     Text(
                         String.localizedStringWithFormat(
-                            String(localized: "Selected notebook lable is %@. Double tap to select another lable", bundle: .horizon),
+                            String(localized: "Selected notebook label is %@. Double tap to select another lable", bundle: .horizon),
                             selectedLabel.label
                         )
                     )
