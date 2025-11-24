@@ -46,6 +46,13 @@ enum CourseNoteLabel: String, CaseIterable {
         }
     }
 
+    var backgroundColor: Color {
+        switch self {
+        case .important: .huiColors.primitives.sea12
+        default: .huiColors.primitives.red12
+        }
+    }
+
     var borderStyle: String {
         switch self {
         case .important: "solid"
