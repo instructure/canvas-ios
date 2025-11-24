@@ -17,6 +17,7 @@
 //
 
 @testable import Core
+import TestsFoundation
 import XCTest
 
 class TodoDateRangeEndTests: XCTestCase {
@@ -80,7 +81,7 @@ class TodoDateRangeEndTests: XCTestCase {
 
     func testSubtitle() {
         let result = TodoDateRangeEnd.today.subtitle(relativeTo: referenceDate)
-        XCTAssertTrue(result.contains("Until"))
-        XCTAssertTrue(result.contains("Jan 15"))
+        XCTAssertContains(result, "Until")
+        XCTAssertContains(result, referenceDate.shortDayMonth)
     }
 }

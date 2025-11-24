@@ -40,6 +40,9 @@ class TodoListViewModel: ObservableObject {
     private let interactor: TodoInteractor
     private let router: Router
     private let sessionDefaults: SessionDefaults
+    private var filterOptions: TodoFilterOptions {
+        sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
+    }
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
     /// Tracks cancellable timers for items in the done state waiting to be removed
@@ -59,8 +62,12 @@ class TodoListViewModel: ObservableObject {
         self.scheduler = scheduler
 
         interactor.todoGroups
+            .dropFirst() // Skip the initial value to avoid overwriting the loading state
             .receive(on: scheduler)
-            .assign(to: \.items, on: self, ownership: .weak)
+            .sink { [weak self] todos in
+                self?.items = todos
+                self?.state = todos.isEmpty ? .empty : .data
+            }
             .store(in: &subscriptions)
 
         setupRefreshOnAppForegroundEvent()
@@ -77,9 +84,7 @@ class TodoListViewModel: ObservableObject {
             .sinkFailureOrValue { [weak self] _ in
                 self?.state = .error
                 completion?()
-            } receiveValue: { [weak self] _ in
-                let isListEmpty = self?.items.isEmpty == true
-                self?.state = isListEmpty ? .empty : .data
+            } receiveValue: { _ in
                 completion?()
             }
             .store(in: &subscriptions)
@@ -198,8 +203,9 @@ class TodoListViewModel: ObservableObject {
                 guard let item else { return }
                 item.markAsDoneState = isCurrentlyDone ? .done : .notDone
                 self?.snackBar.showSnack(String(localized: "Failed to update item", bundle: .core))
-            } receiveValue: { [weak item] _ in
+            } receiveValue: { [weak item] overrideId in
                 guard let item else { return }
+                item.overrideId = overrideId
                 item.markAsDoneState = isCurrentlyDone ? .notDone : .done
 
                 if isCurrentlyDone {
@@ -222,6 +228,10 @@ class TodoListViewModel: ObservableObject {
 
         let itemId = item.plannableId
 
+        if TabBarBadgeCounts.todoListCount > 0 {
+            TabBarBadgeCounts.todoListCount -= 1
+        }
+
         interactor.markItemAsDone(item, done: true)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] _ in
@@ -229,13 +239,11 @@ class TodoListViewModel: ObservableObject {
                 self.restoreItem(withId: itemId)
                 self.optimisticallyRemovedIds.remove(itemId)
                 self.snackBar.showSnack(String(localized: "Failed to mark item as done", bundle: .core))
-            } receiveValue: { [weak self] _ in
-                guard let self else { return }
+            } receiveValue: { [weak self, weak item] overrideId in
+                guard let self, let item else { return }
+                item.overrideId = overrideId
+                item.markAsDoneState = .done
                 self.optimisticallyRemovedIds.remove(itemId)
-
-                if TabBarBadgeCounts.todoListCount > 0 {
-                    TabBarBadgeCounts.todoListCount -= 1
-                }
             }
             .store(in: &subscriptions)
     }
@@ -262,6 +270,8 @@ class TodoListViewModel: ObservableObject {
         }
         // We need to reset the view's ID otherwise the previous state of the cell (swiped left) will be restored.
         itemToRestore.resetViewIdentity()
+        itemToRestore.markAsDoneState = .notDone
+        TabBarBadgeCounts.todoListCount += 1
 
         withAnimation {
             var updatedItems = items
@@ -298,8 +308,9 @@ class TodoListViewModel: ObservableObject {
             .sinkFailureOrValue { [weak self, weak item] error in
                 guard let item else { return }
                 self?.handleMarkAsDoneError(item, error)
-            } receiveValue: { [weak self, weak item] _ in
+            } receiveValue: { [weak self, weak item] overrideId in
                 guard let self, let item else { return }
+                item.overrideId = overrideId
                 self.handleMarkAsDoneSuccess(item)
             }
             .store(in: &subscriptions)
@@ -314,8 +325,9 @@ class TodoListViewModel: ObservableObject {
             .sinkFailureOrValue { [weak self, weak item] error in
                 guard let item else { return }
                 self?.handleMarkAsUndoneError(item, error)
-            } receiveValue: { [weak item] _ in
+            } receiveValue: { [weak item] overrideId in
                 guard let item else { return }
+                item.overrideId = overrideId
                 item.markAsDoneState = .notDone
                 TabBarBadgeCounts.todoListCount += 1
 
@@ -341,6 +353,17 @@ class TodoListViewModel: ObservableObject {
             TabBarBadgeCounts.todoListCount -= 1
         }
 
+        let announcement = String(
+            localized: "\(item.title), marked as done",
+            bundle: .core,
+            comment: "VoiceOver announcement when a to-do item is marked as complete. The item title is inserted before the status message."
+        )
+        UIAccessibility.announce(announcement)
+
+        let shouldKeepCompletedItemsVisible = filterOptions.visibilityOptions.contains(.showCompleted)
+
+        if shouldKeepCompletedItemsVisible { return }
+
         let timer = Just(())
             .delay(for: .seconds(Self.autoRemovalDelay), scheduler: scheduler)
             .sink { [weak self] in
@@ -351,13 +374,6 @@ class TodoListViewModel: ObservableObject {
             }
 
         markDoneTimers[item.plannableId] = timer
-
-        let announcement = String(
-            localized: "\(item.title), marked as done",
-            bundle: .core,
-            comment: "VoiceOver announcement when a to-do item is marked as complete. The item title is inserted before the status message."
-        )
-        UIAccessibility.announce(announcement)
     }
 
     private func handleMarkAsDoneError(_ item: TodoItemViewModel, _ error: Error) {
@@ -373,7 +389,6 @@ class TodoListViewModel: ObservableObject {
     // MARK: Filter Updates
 
     private func updateFilterIcon() {
-        let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
         filterIcon = filterOptions.isDefault ? .filterLine : .filterSolid
     }
 }

@@ -21,20 +21,11 @@ import XCTest
 
 class TodoVisibilityOptionTests: XCTestCase {
 
-    func testAllCases() {
-        let allCases = TodoVisibilityOption.allCases
-        XCTAssertEqual(allCases.count, 4)
-        XCTAssertEqual(allCases[0], .showPersonalTodos)
-        XCTAssertEqual(allCases[1], .showCalendarEvents)
-        XCTAssertEqual(allCases[2], .showCompleted)
-        XCTAssertEqual(allCases[3], .favouriteCoursesOnly)
-    }
-
     func testTitles() {
-        XCTAssertEqual(TodoVisibilityOption.showPersonalTodos.title, "Show Personal To Dos")
+        XCTAssertEqual(TodoVisibilityOption.showPersonalTodos.title, "Show Personal To-dos")
         XCTAssertEqual(TodoVisibilityOption.showCalendarEvents.title, "Show Calendar Events")
         XCTAssertEqual(TodoVisibilityOption.showCompleted.title, "Show Completed")
-        XCTAssertEqual(TodoVisibilityOption.favouriteCoursesOnly.title, "Favourite Courses Only")
+        XCTAssertEqual(TodoVisibilityOption.favouriteCoursesOnly.title, "Favorite Courses Only")
     }
 
     func testToOptionItem() {
@@ -42,7 +33,7 @@ class TodoVisibilityOptionTests: XCTestCase {
         let optionItem = option.toOptionItem()
 
         XCTAssertEqual(optionItem.id, "showPersonalTodos")
-        XCTAssertEqual(optionItem.title, "Show Personal To Dos")
+        XCTAssertEqual(optionItem.title, "Show Personal To-dos")
     }
 
     func testAllOptionItems() {
@@ -53,5 +44,23 @@ class TodoVisibilityOptionTests: XCTestCase {
         XCTAssertEqual(optionItems[1].id, "showCalendarEvents")
         XCTAssertEqual(optionItems[2].id, "showCompleted")
         XCTAssertEqual(optionItems[3].id, "favouriteCoursesOnly")
+    }
+
+    func testShouldInclude_completedItems_whenShowCompletedEnabled() {
+        let options: Set<TodoVisibilityOption> = [.showCompleted]
+        XCTAssertTrue(options.shouldInclude(isCompleted: true))
+    }
+
+    func testShouldInclude_completedItems_whenShowCompletedDisabled() {
+        let options: Set<TodoVisibilityOption> = []
+        XCTAssertFalse(options.shouldInclude(isCompleted: true))
+    }
+
+    func testShouldInclude_notCompletedItems_always() {
+        let optionsWithShowCompleted: Set<TodoVisibilityOption> = [.showCompleted]
+        XCTAssertTrue(optionsWithShowCompleted.shouldInclude(isCompleted: false))
+
+        let optionsWithoutShowCompleted: Set<TodoVisibilityOption> = []
+        XCTAssertTrue(optionsWithoutShowCompleted.shouldInclude(isCompleted: false))
     }
 }

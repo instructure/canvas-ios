@@ -17,6 +17,7 @@
 //
 
 @testable import Core
+import TestsFoundation
 import XCTest
 
 class TodoFilterOptionsTests: XCTestCase {
@@ -96,9 +97,8 @@ class TodoFilterOptionsTests: XCTestCase {
         )
 
         XCTAssertEqual(options.visibilityOptions.count, 2)
-        XCTAssertTrue(options.visibilityOptions.contains(.showPersonalTodos))
-        XCTAssertTrue(options.visibilityOptions.contains(.showCompleted))
-        XCTAssertFalse(options.visibilityOptions.contains(.showCalendarEvents))
+        XCTAssertContains(options.visibilityOptions, .showPersonalTodos)
+        XCTAssertContains(options.visibilityOptions, .showCompleted)
+        XCTAssertNotContains(options.visibilityOptions, .showCalendarEvents)
     }
-
 }

@@ -111,8 +111,7 @@ class APIPlannableTests: XCTestCase {
         XCTAssertEqual(p.context?.id, "7")
     }
 
-    func testContextFromContextType_switchExpression() {
-        // Test all context types in the new switch expression
+    func testContextFromContextType() {
         var p = APIPlannable.make(
             group_id: "123",
             context_type: "Group",
@@ -136,11 +135,8 @@ class APIPlannableTests: XCTestCase {
         )
         XCTAssertEqual(p.context?.contextType, .account)
         XCTAssertEqual(p.context?.id, "789")
-    }
 
-    func testContextFromContextType_defaultCase() {
-        // Test that unsupported context types return nil
-        let p = APIPlannable.make(
+        p = APIPlannable.make(
             course_id: "42",
             context_type: "UnsupportedType",
             plannable_type: "assignment"

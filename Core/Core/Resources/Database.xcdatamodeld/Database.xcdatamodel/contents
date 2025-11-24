@@ -1256,7 +1256,7 @@
         <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="isAllDay" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="isMarkedComplete" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isMarkedCompleteRaw" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="originUseCaseIDRaw" optional="YES" attributeType="String"/>
         <attribute name="plannerOverrideId" optional="YES" attributeType="String"/>

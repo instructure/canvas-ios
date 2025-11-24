@@ -102,11 +102,10 @@ public class GetPlannables: UseCase {
     }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
-        // If we would send out the request without any context codes the API would return all events.
-        // ^ Old comment
-        //
         // Only return empty if allowEmptyContextCodesFetch is false. Student To-do needs to fetch all plannables
         // without context codes so that's why the allowEmptyContextCodesFetch param was introduced.
+        // Sending out the request without any context codes makes the API return all events,
+        // which is only usable if we do local filtering (like in Student To-do).
         if !allowEmptyContextCodesFetch, (contextCodes ?? []).isEmpty {
             completionHandler(.empty, nil, nil)
             return
