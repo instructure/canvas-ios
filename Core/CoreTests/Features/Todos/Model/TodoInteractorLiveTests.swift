@@ -233,6 +233,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         let plannable = Plannable.save(
             APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
@@ -269,6 +270,7 @@ class TodoInteractorLiveTests: CoreTestCase {
                 plannable_type: "assignment"
             ),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
@@ -297,6 +299,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         let plannable = Plannable.save(
             APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
@@ -315,7 +318,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // Then
         databaseClient.refresh()
-        XCTAssertEqual(plannable.isMarkedComplete, false)
+        XCTAssertNil(plannable.isMarkedComplete)
         XCTAssertNil(plannable.plannerOverrideId)
         XCTAssertNil(item.overrideId)
     }
@@ -325,6 +328,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         let plannable = Plannable.save(
             APIPlannable.make(plannable_id: ID("123"), plannable_type: "quiz"),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
@@ -354,10 +358,11 @@ class TodoInteractorLiveTests: CoreTestCase {
         let plannable = Plannable.save(
             APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
-        XCTAssertFalse(plannable.isMarkedComplete)
+        XCTAssertNil(plannable.isMarkedComplete)
 
         let createRequest = CreatePlannerOverrideRequest(
             body: .init(
@@ -373,7 +378,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // Then
         databaseClient.refresh()
-        XCTAssertTrue(plannable.isMarkedComplete)
+        XCTAssertEqual(plannable.isMarkedComplete, true)
     }
 
     func testMarkItemAsDone_marksItemAsUndone_withDoneFalse() {
@@ -385,10 +390,11 @@ class TodoInteractorLiveTests: CoreTestCase {
                 plannable_type: "assignment"
             ),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
-        XCTAssertTrue(plannable.isMarkedComplete)
+        XCTAssertEqual(plannable.isMarkedComplete, true)
 
         let updateRequest = UpdatePlannerOverrideRequest(
             overrideId: "override-123",
@@ -406,7 +412,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // Then
         databaseClient.refresh()
-        XCTAssertFalse(plannable.isMarkedComplete)
+        XCTAssertEqual(plannable.isMarkedComplete, false)
     }
 
     // MARK: - Analytics Tests
@@ -416,6 +422,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         let plannable = Plannable.save(
             APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
@@ -445,6 +452,7 @@ class TodoInteractorLiveTests: CoreTestCase {
                 plannable_type: "assignment"
             ),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
@@ -472,6 +480,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         let plannable = Plannable.save(
             APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!

@@ -42,18 +42,34 @@ public final class Plannable: NSManagedObject {
     @NSManaged public var contextName: String?
     @NSManaged public var date: Date?
     @NSManaged public var isAllDay: Bool
+    /// Default value is `false`.
+    @NSManaged public var isSubmitted: Bool
     @NSManaged public var endAt: Date?
     @NSManaged public var hasDate: Bool
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var userID: String?
     @NSManaged public var details: String?
+
     // MARK: - Planner Override Fields
     @NSManaged public var plannerOverrideId: String?
-    /// Default value is `false`.
-    @NSManaged public var isMarkedComplete: Bool
-    /// Default value is `false`.
-    @NSManaged public var isSubmitted: Bool
+    @NSManaged private var isMarkedCompleteRaw: NSNumber?
+    /// Contains the user override for the marked complete state of the plannable item.
+    /// If the field is `nil`, then the user has not set any override.
+    public var isMarkedComplete: Bool? {
+        get { return isMarkedCompleteRaw?.boolValue }
+        set { isMarkedCompleteRaw = newValue.map { NSNumber(value: $0) } }
+    }
+
     // MARK: -
+
+    public var isCompleted: Bool {
+        // If there's a user override then ignore the submission status
+        if let isMarkedComplete = isMarkedComplete {
+            return isMarkedComplete
+        } else {
+            return isSubmitted
+        }
+    }
 
     @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
     public var discussionCheckpointStep: DiscussionCheckpointStep? {
@@ -102,7 +118,7 @@ public final class Plannable: NSManagedObject {
             requiredReplyCount: item.details?.reply_to_entry_required_count
         )
         model.plannerOverrideId = item.planner_override?.id.value
-        model.isMarkedComplete = item.planner_override?.marked_complete ?? false
+        model.isMarkedComplete = item.planner_override?.marked_complete
         model.isSubmitted = item.submissions?.value1?.submitted ?? false
         return model
     }

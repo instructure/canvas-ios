@@ -137,49 +137,58 @@ public extension UseCase {
     /// Reactive `fetch()`, used by the `ReactiveStore` and directly from other places.
     /// Returns the URLResponse after writing to the database.
     func fetchWithFuture(environment: AppEnvironment = .shared) -> Future<URLResponse?, Error> {
-        executeFetch(environment: environment) { _, urlResponse in urlResponse }
+        Future<URLResponse?, Error> { promise in
+            self.executeFetch(environment: environment) { result in
+                switch result {
+                case .success((_, let urlResponse)):
+                    promise(.success(urlResponse))
+                case .failure(let error):
+                    promise(.failure(error))
+                }
+            }
+        }
     }
 
     /// Reactive `fetch()` that returns both the API response and URLResponse.
     /// Use this when you need access to the API response data directly.
-    func fetchWithAPIResponse(environment: AppEnvironment = .shared) -> Future<(Response, URLResponse?), Error> {
-        executeFetch(environment: environment) { response, urlResponse in (response, urlResponse) }
+    /// The response is optional - it will be nil if the API returned no response body.
+    func fetchWithAPIResponse(environment: AppEnvironment = .shared) -> Future<(Response?, URLResponse?), Error> {
+        Future<(Response?, URLResponse?), Error> { promise in
+            self.executeFetch(environment: environment) { result in
+                promise(result)
+            }
+        }
     }
 
     /// Private helper method that executes the fetch and write logic.
-    private func executeFetch<T>(
+    private func executeFetch(
         environment: AppEnvironment,
-        transform: @escaping (Response, URLResponse?) -> T
-    ) -> Future<T, Error> {
-        Future<T, Error> { promise in
-            self.makeRequest(environment: environment) { response, urlResponse, error in
-                if let error {
-                    performUIUpdate {
-                        promise(.failure(error))
-                    }
-                } else if let response {
-                    let database = environment.database
-                    database.performWriteTask { context in
-                        do {
-                            self.reset(context: context)
-                            self.write(response: response, urlResponse: urlResponse, to: context)
-                            self.updateTTL(in: context)
-                            try context.save()
-                            performUIUpdate {
-                                promise(.success(transform(response, urlResponse)))
-                            }
-                        } catch let dbError {
-                            Logger.shared.error(dbError.localizedDescription)
-                            RemoteLogger.shared.logError(name: "CoreData save failed",
-                                                         reason: dbError.localizedDescription)
-                            performUIUpdate {
-                                promise(.failure(dbError))
-                            }
+        completion: @escaping (Result<(Response?, URLResponse?), Error>) -> Void
+    ) {
+        self.makeRequest(environment: environment) { response, urlResponse, error in
+            if let error {
+                performUIUpdate {
+                    completion(.failure(error))
+                }
+            } else {
+                environment.database.performWriteTask { context in
+                    do {
+                        self.reset(context: context)
+                        self.write(response: response, urlResponse: urlResponse, to: context)
+                        self.updateTTL(in: context)
+                        try context.save()
+                        performUIUpdate {
+                            completion(.success((response, urlResponse)))
                         }
-                    }
-                } else {
-                    performUIUpdate {
-                        promise(.failure(NSError.instructureError("No response from API")))
+                    } catch let dbError {
+                        Logger.shared.error(dbError.localizedDescription)
+                        RemoteLogger.shared.logError(
+                            name: "CoreData save failed",
+                            reason: dbError.localizedDescription
+                        )
+                        performUIUpdate {
+                            completion(.failure(dbError))
+                        }
                     }
                 }
             }

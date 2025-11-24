@@ -104,7 +104,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         self.icon = plannable.icon.asImage
 
         self.overrideId = plannable.plannerOverrideId
-        self.markAsDoneState = plannable.isMarkedComplete ? .done : .notDone
+        self.markAsDoneState = plannable.isCompleted ? .done : .notDone
         self.isTappable = plannable.context?.contextType != .account
         updateSwipeProperties()
     }

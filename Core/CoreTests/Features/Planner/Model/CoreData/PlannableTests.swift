@@ -68,7 +68,7 @@ class PlannableTests: CoreTestCase {
         XCTAssertEqual(plannable.userID, "another userId")
         XCTAssertEqual(plannable.discussionCheckpointStep, .requiredReplies(42))
         XCTAssertNil(plannable.plannerOverrideId)
-        XCTAssertFalse(plannable.isMarkedComplete)
+        XCTAssertNil(plannable.isMarkedComplete)
         XCTAssertFalse(plannable.isSubmitted)
     }
 
@@ -81,7 +81,7 @@ class PlannableTests: CoreTestCase {
         let plannable = Plannable.save(apiPlannable, userId: nil, in: databaseClient)
 
         XCTAssertEqual(plannable.plannerOverrideId, "override-123")
-        XCTAssertTrue(plannable.isMarkedComplete)
+        XCTAssertEqual(plannable.isMarkedComplete, true)
     }
 
     func testSaveAPIPlannableWithSubmitted() {
@@ -342,5 +342,49 @@ class PlannableTests: CoreTestCase {
         testee = Plannable.make(from: .make(plannable_type: "planner_note", context_name: TestConstants.contextName))
         XCTAssertEqual(testee.contextName, TestConstants.contextName)
         XCTAssertEqual(testee.contextNameUserFacing, TestConstants.contextName + " To-do")
+    }
+
+    func testIsCompleted_returnsUserOverride_whenPresent() {
+        let plannableMarkedComplete = APIPlannable.make(
+            planner_override: .make(marked_complete: true),
+            plannable_id: ID("1"),
+            submissions: .make(submitted: false)
+        )
+        let plannable1 = Plannable.save(plannableMarkedComplete, userId: nil, in: databaseClient)
+        XCTAssertTrue(plannable1.isCompleted)
+
+        let plannableMarkedIncomplete = APIPlannable.make(
+            planner_override: .make(marked_complete: false),
+            plannable_id: ID("2"),
+            submissions: .make(submitted: true)
+        )
+        let plannable2 = Plannable.save(plannableMarkedIncomplete, userId: nil, in: databaseClient)
+        XCTAssertFalse(plannable2.isCompleted)
+    }
+
+    func testIsCompleted_returnsSubmissionStatus_whenNoUserOverride() {
+        let submittedPlannable = APIPlannable.make(
+            plannable_id: ID("1"),
+            submissions: .make(submitted: true)
+        )
+        let plannable1 = Plannable.save(submittedPlannable, userId: nil, in: databaseClient)
+        XCTAssertTrue(plannable1.isCompleted)
+
+        let notSubmittedPlannable = APIPlannable.make(
+            plannable_id: ID("2"),
+            submissions: .make(submitted: false)
+        )
+        let plannable2 = Plannable.save(notSubmittedPlannable, userId: nil, in: databaseClient)
+        XCTAssertFalse(plannable2.isCompleted)
+    }
+
+    func testIsCompleted_userOverrideTakesPrecedence() {
+        let plannable = APIPlannable.make(
+            planner_override: .make(marked_complete: true),
+            plannable_id: ID("1"),
+            submissions: .make(submitted: false)
+        )
+        let saved = Plannable.save(plannable, userId: nil, in: databaseClient)
+        XCTAssertTrue(saved.isCompleted)
     }
 }

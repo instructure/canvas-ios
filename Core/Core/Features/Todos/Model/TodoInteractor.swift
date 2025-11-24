@@ -109,7 +109,12 @@ final class TodoInteractorLive: TodoInteractor {
                 let eventName = done ? "todo_item_marked_done" : "todo_item_marked_undone"
                 Analytics.shared.logEvent(eventName)
             })
-            .map { response, _ in response.id.value }
+            .tryMap { response, _ in
+                guard let response else {
+                    throw NSError.instructureError("No response from API")
+                }
+                return response.id.value
+            }
             .eraseToAnyPublisher()
     }
 

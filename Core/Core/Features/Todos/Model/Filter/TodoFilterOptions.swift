@@ -60,10 +60,7 @@ public struct TodoFilterOptions: Codable, Equatable {
         let typeMatches = visibilityOptions.shouldInclude(plannableType: plannable.plannableType)
         guard typeMatches else { return false }
 
-        let completionMatches = visibilityOptions.shouldInclude(
-            isCompleted: plannable.isMarkedComplete,
-            isSubmitted: plannable.isSubmitted
-        )
+        let completionMatches = visibilityOptions.shouldInclude(isCompleted: plannable.isCompleted)
         guard completionMatches else { return false }
 
         let favoriteMatches = visibilityOptions.shouldInclude(
