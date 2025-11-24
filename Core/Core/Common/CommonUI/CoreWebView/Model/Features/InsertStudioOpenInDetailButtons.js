@@ -19,38 +19,46 @@
 function findCanvasUploadLink(elm, title) {
     if(elm.hasAttribute("data-media-id") == false) { return null }
 
-    var frameLink = elm.getAttribute("src");
-    frameLink = frameLink.replace("media_attachments_iframe", "media_attachments");
+    var frameSource = elm.getAttribute("src");
+    if(!frameSource) { return null }
 
-    var linkSuffix = "/immersive_view";
+    frameSource = frameSource.replace("media_attachments_iframe", "media_attachments");
 
-    if(title){
+    var suffix = "/immersive_view";
+
+    if(title) {
         title = title.replace("Video player for ", "").replace(".mp4", "");
-        linkSuffix = "/immersive_view?title=" + encodeURIComponent(title);
+        suffix = "/immersive_view?title=" + encodeURIComponent(title);
     }
 
-    return escapeHTML(frameLink + linkSuffix)
+    return new URL(frameSource + suffix);
 }
 
 function findStudioEmbedLink(elm, title) {
-    let pageSrc = elm.getAttribute("src");
-    let pageURL = new URL(pageSrc);
-    let playerURL = new URL(pageURL.searchParams.get("url"));
+    let frameSource = elm.getAttribute("src");
+    if(!frameSource) { return null }
+
+    let frameURL = new URL(frameSource);
+    let playerSource = frameURL.searchParams.get("url");
+    if(!playerSource) { return null }
+
+    let playerURL = new URL(playerSource);
     playerURL.searchParams.set("custom_arc_launch_type", "immersive_view");
 
-    pageURL.searchParams.set("url", playerURL.toString());
-    pageURL.searchParams.set("display", "full_width");
+    frameURL.searchParams.set("url", playerURL.toString());
+    frameURL.searchParams.set("display", "full_width");
 
-    if(title){
+    if(title) {
         title = title.replace("Video player for ", "").replace(".mp4", "");
-        pageURL.searchParams.set("title", encodeURIComponent(title));
+        frameURL.searchParams.set("title", encodeURIComponent(title));
     }
 
-    return pageURL.toString();
+    return frameURL;
 }
 
 function insertDetailsLinks(elm, method) {
-    const linkSpecs = window.detailLinkSpecs;
+    var linkSpecs = window.detailLinkSpecs;
+    linkSpecs = (linkSpecs) ? linkSpecs : { iconSVG: '', title: '' };
 
     let nextSibling = elm.nextElementSibling;
     let nextNextSibling = (nextSibling) ? nextSibling.nextElementSibling : null;
@@ -68,6 +76,8 @@ function insertDetailsLinks(elm, method) {
     } else {
         buttonHref = findCanvasUploadLink(elm, title);
     }
+
+    if(!buttonHref) { return }
 
     const newLine = document.createElement('br');
     const newParagraph = document.createElement('p');
