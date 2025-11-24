@@ -73,7 +73,7 @@ struct NavBarBackButtonModifier: ViewModifier {
 extension View {
 	@available(iOS, introduced: 26)
 	@ViewBuilder
-	func optionalNavigationSubtitle(_ subtitle: String?) -> some View {
+	public func optionalNavigationSubtitle(_ subtitle: String?) -> some View {
 		if let subtitle {
 			self.navigationSubtitle(subtitle)
 		} else {
@@ -83,7 +83,7 @@ extension View {
 
 	@available(iOS, introduced: 26)
 	@ViewBuilder
-	func optionalNavigationTitle(_ title: String?) -> some View {
+	public func optionalNavigationTitle(_ title: String?) -> some View {
 		if let title {
 			self.navigationTitle(title)
 		} else {
