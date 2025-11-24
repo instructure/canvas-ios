@@ -24,7 +24,6 @@ enum CourseNoteLabel: String, CaseIterable {
     case important = "Important"
     case other = "Other"
 
-
     // MARK: Properties
     var color: Color {
         switch self {
