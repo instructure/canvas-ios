@@ -25,16 +25,16 @@ struct NotebookLabelFilterButton: View {
 
     // MARK: - Dependencies
 
-    private let selectedLable: CourseNoteLabel
+    private let selectedLabel: CourseNoteLabel
     private let onTap: (CourseNoteLabel) -> Void
 
     // MARK: - Init
 
     init(
-        selectedLable: CourseNoteLabel,
+        selectedLabel: CourseNoteLabel,
         onTap: @escaping (CourseNoteLabel) -> Void
     ) {
-        self.selectedLable = selectedLable
+        self.selectedLabel = selectedLabel
         self.onTap = onTap
     }
 
@@ -48,7 +48,7 @@ struct NotebookLabelFilterButton: View {
                     Text(
                         String.localizedStringWithFormat(
                             String(localized: "Selected notebook lable is %@. Double tap to select another lable", bundle: .horizon),
-                            selectedLable.label
+                            selectedLabel.label
                         )
                     )
                 )
@@ -62,14 +62,14 @@ struct NotebookLabelFilterButton: View {
 
     private var labelButton: some View {
         HStack(spacing: .huiSpaces.space2) {
-            selectedLable.image
-                .foregroundStyle(selectedLable.color)
+            selectedLabel.image
+                .foregroundStyle(selectedLabel.color)
                 .accessibilityHidden(true)
-            Text(selectedLable.label)
-                .foregroundStyle(selectedLable.color)
+            Text(selectedLabel.label)
+                .foregroundStyle(selectedLabel.color)
                 .huiTypography(.p2)
             Image.huiIcons.keyboardArrowDown
-                .foregroundStyle(selectedLable.color)
+                .foregroundStyle(selectedLabel.color)
                 .rotationEffect(.degrees(isListLableVisiable ? 180 : 0))
                 .animation(.easeInOut, value: isListLableVisiable)
                 .frame(width: 24, height: 24)
@@ -77,7 +77,7 @@ struct NotebookLabelFilterButton: View {
         }
         .padding(.vertical, .huiSpaces.space4)
         .padding(.horizontal, .huiSpaces.space8)
-        .huiBorder(level: .level1, color: selectedLable.color, radius: 8)
+        .huiBorder(level: .level1, color: selectedLabel.color, radius: 8)
     }
 
     private var listLabelView: some View {
@@ -89,7 +89,7 @@ struct NotebookLabelFilterButton: View {
                 } label: {
                     NotebookLabelView(
                         label: label,
-                        isSelected: label == selectedLable
+                        isSelected: label == selectedLabel
                     )
                 }
             }
@@ -100,7 +100,7 @@ struct NotebookLabelFilterButton: View {
 #Preview {
     @Previewable @State var selectedLabel = CourseNoteLabel.important
     VStack {
-        NotebookLabelFilterButton(selectedLable: selectedLabel) { label in
+        NotebookLabelFilterButton(selectedLabel: selectedLabel) { label in
             selectedLabel = label
         }
     }

@@ -180,7 +180,7 @@ final class HorizonWebView: CoreWebView {
                     let editNotebookView = EditNotebookAssembly.makeViewNoteViewController(
                         courseNotebookNote: courseNotebookNote
                     ) {
-                    NotificationCenter.default.post(name: .showToastaAlert, object: String(localized: "Note saved", bundle: .horizon))
+                    NotificationCenter.default.post(name: .showToastAlert, object: String(localized: "Note saved", bundle: .horizon))
                     }
                     router.show(
                         editNotebookView,

@@ -74,7 +74,7 @@ public struct ModuleItemSequenceView: View {
                 }
         }
         .overlay { loaderView }
-        .onReceive(NotificationCenter.default.publisher(for: .showToastaAlert)) { notification in
+        .onReceive(NotificationCenter.default.publisher(for: .showToastAlert)) { notification in
             if let message = notification.object as? String, message.isNotEmpty {
                 draftToastViewModel = .init(title: message, isPresented: true)
             }

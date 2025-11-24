@@ -19,5 +19,5 @@
 import Foundation
 
 extension NSNotification.Name {
-    static let showToastaAlert = Notification.Name("com.instructure.horizon.notification.showToastaAlert")
+    static let showToastAlert = Notification.Name("com.instructure.horizon.notification.showToastAlert")
 }

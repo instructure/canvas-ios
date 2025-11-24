@@ -61,7 +61,7 @@ struct EditNotebookView: View {
             )
         ) { proxy in
             VStack(alignment: .leading, spacing: .huiSpaces.space24) {
-                NotebookLabelFilterButton(selectedLable: viewModel.selectedLabel) { label in
+                NotebookLabelFilterButton(selectedLabel: viewModel.selectedLabel) { label in
                     viewModel.selectedLabel = label
                     restoreFocusIfNeeded()
                 }
@@ -109,7 +109,6 @@ struct EditNotebookView: View {
             proxy: proxy
         )
         .focused($isTextFieldFocused)
-        .accessibilityLabel(String(localized: "Note content"))
         .accessibilityLabel(
             String.localizedStringWithFormat(
                 String(localized: "Note content is %@", bundle: .horizon),
@@ -128,7 +127,7 @@ struct EditNotebookView: View {
             ) {
                 viewModel.close(viewController)
             }
-            .accessibilityHint(Text(String(localized: "Double tap to dismiss the screeen")))
+            .accessibilityHint(Text(String(localized: "Double tap to dismiss the screen")))
 
             Spacer()
 
@@ -149,7 +148,7 @@ struct EditNotebookView: View {
             .disabled(!viewModel.isSaveButtonEnabled)
             .accessibilityHint(viewModel.isSaveButtonEnabled
                                ? Text(String(localized: "Save changes made to the note"))
-                               : Text(String(localized: "Do any changes to the note to enable the save button"))
+                               : Text(String(localized: "Make any changes to the note to enable the save button"))
             )
 
         }
