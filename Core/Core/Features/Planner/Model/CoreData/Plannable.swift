@@ -117,6 +117,7 @@ public final class Plannable: NSManagedObject {
         model.title = item.title
         model.date = item.todo_date
         model.hasDate = true
+        model.isAllDay = false
         model.pointsPossible = nil
         model.details = item.details
         model.context = Context(.course, id: item.course_id) ?? Context(.user, id: item.user_id)

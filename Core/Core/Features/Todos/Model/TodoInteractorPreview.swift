@@ -57,8 +57,8 @@ final class TodoInteractorPreview: TodoInteractor {
         Just(false).eraseToAnyPublisher()
     }
 
-    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
-        Publishers.typedJust()
+    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<String, Error> {
+        Publishers.typedJust("preview-override-id")
     }
 }
 

@@ -68,8 +68,8 @@ extension Set where Element == TodoVisibilityOption {
     }
 
     func shouldInclude(isCompleted: Bool, isSubmitted: Bool) -> Bool {
-        if contains(.showCompleted) {
-            return isCompleted || isSubmitted
+        if isCompleted || isSubmitted {
+            return contains(.showCompleted)
         }
         return true
     }

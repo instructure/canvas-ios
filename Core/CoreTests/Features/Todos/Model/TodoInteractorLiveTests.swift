@@ -252,14 +252,12 @@ class TodoInteractorLiveTests: CoreTestCase {
         )
         api.mock(createRequest, value: mockResponse)
 
-        // When
-        XCTAssertFinish(testee.markItemAsDone(item, done: true))
+        // When & Then
+        XCTAssertSingleOutputEqualsAndFinish(testee.markItemAsDone(item, done: true), "override-456")
 
-        // Then
         databaseClient.refresh()
         XCTAssertEqual(plannable.isMarkedComplete, true)
         XCTAssertEqual(plannable.plannerOverrideId, "override-456")
-        XCTAssertEqual(item.overrideId, "override-456")
     }
 
     func testMarkItemAsDone_updatesExistingOverride_whenOverrideExists() {
@@ -286,14 +284,12 @@ class TodoInteractorLiveTests: CoreTestCase {
             marked_complete: false
         ))
 
-        // When
-        XCTAssertFinish(testee.markItemAsDone(item, done: false))
+        // When & Then
+        XCTAssertSingleOutputEqualsAndFinish(testee.markItemAsDone(item, done: false), "override-123")
 
-        // Then
         databaseClient.refresh()
         XCTAssertEqual(plannable.isMarkedComplete, false)
         XCTAssertEqual(plannable.plannerOverrideId, "override-123")
-        XCTAssertEqual(item.overrideId, "override-123")
     }
 
     func testMarkItemAsDone_handlesError_whenAPICallFails() {
@@ -349,11 +345,8 @@ class TodoInteractorLiveTests: CoreTestCase {
         )
         api.mock(createRequest, value: mockResponse)
 
-        // When
-        XCTAssertFinish(testee.markItemAsDone(item, done: true))
-
-        // Then
-        XCTAssertEqual(item.overrideId, "new-override-789")
+        // When & Then
+        XCTAssertSingleOutputEqualsAndFinish(testee.markItemAsDone(item, done: true), "new-override-789")
     }
 
     func testMarkItemAsDone_marksItemAsDone_withDoneTrue() {

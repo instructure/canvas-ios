@@ -350,7 +350,7 @@ class TodoListViewModelTests: CoreTestCase {
 
     func test_markItemAsDone_onSuccess_changesStateToDone() {
         // GIVEN
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1")
 
         // WHEN
@@ -392,7 +392,7 @@ class TodoListViewModelTests: CoreTestCase {
 
     func test_markItemAsDone_removesItemAfterThreeSeconds() {
         // GIVEN
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1")
         let group = TodoGroupViewModel(date: Date(), items: [item])
         interactor.todoGroups.send([group])
@@ -410,9 +410,35 @@ class TodoListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.items.count, 0)
     }
 
+    func test_markItemAsDone_keepsItemVisible_whenShowCompletedFilterEnabled() {
+        // GIVEN
+        sessionDefaults.todoFilterOptions = TodoFilterOptions(
+            visibilityOptions: [.showCompleted],
+            dateRangeStart: .lastWeek,
+            dateRangeEnd: .nextWeek
+        )
+        interactor.markItemAsDoneResult = .success("mock-override-id")
+        let item = TodoItemViewModel.make(plannableId: "1")
+        let group = TodoGroupViewModel(date: Date(), items: [item])
+        interactor.todoGroups.send([group])
+
+        // WHEN
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+
+        // THEN
+        XCTAssertEqual(item.markAsDoneState, .done)
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.count, 1)
+
+        testScheduler.advance(by: .seconds(3))
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.count, 1)
+    }
+
     func test_markItemAsDone_whileDone_marksAsUndone() {
         // GIVEN
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1", overrideId: "override-1")
         item.markAsDoneState = .done
 
@@ -428,7 +454,7 @@ class TodoListViewModelTests: CoreTestCase {
 
     func test_markItemAsDone_undoBeforeRemoval_cancelsTimer() {
         // GIVEN
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1", overrideId: "override-1")
         let group = TodoGroupViewModel(date: Date(), items: [item])
         interactor.todoGroups.send([group])
@@ -482,7 +508,7 @@ class TodoListViewModelTests: CoreTestCase {
 
     func test_removeItem_removesEmptyGroups() {
         // GIVEN
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item1 = TodoItemViewModel.make(plannableId: "1")
         let item2 = TodoItemViewModel.make(plannableId: "2")
         let group1 = TodoGroupViewModel(date: Date(), items: [item1])
@@ -502,7 +528,7 @@ class TodoListViewModelTests: CoreTestCase {
 
     func test_removeItem_setsStateToEmpty_whenLastItemRemoved() {
         // GIVEN
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1")
         let group = TodoGroupViewModel(date: Date(), items: [item])
         interactor.todoGroups.send([group])
@@ -520,7 +546,7 @@ class TodoListViewModelTests: CoreTestCase {
 
     func test_markItemAsDone_whileLoading_ignoresAdditionalTaps() {
         // GIVEN
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1")
 
         // WHEN
@@ -545,7 +571,7 @@ class TodoListViewModelTests: CoreTestCase {
     func test_markItemAsDone_decrementsBadgeCount() {
         // GIVEN
         TabBarBadgeCounts.todoListCount = 5
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1")
 
         // WHEN
@@ -560,7 +586,7 @@ class TodoListViewModelTests: CoreTestCase {
     func test_markItemAsUndone_incrementsBadgeCount() {
         // GIVEN
         TabBarBadgeCounts.todoListCount = 3
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1")
         item.markAsDoneState = .done
 
@@ -576,7 +602,7 @@ class TodoListViewModelTests: CoreTestCase {
     func test_markItemAsDone_doesNotDecrementBadgeCountBelowZero() {
         // GIVEN
         TabBarBadgeCounts.todoListCount = 0
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1")
 
         // WHEN
@@ -603,7 +629,7 @@ class TodoListViewModelTests: CoreTestCase {
             sessionDefaults: sessionDefaults,
             scheduler: testScheduler.eraseToAnyScheduler()
         )
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1")
         let group = TodoGroupViewModel(date: Date(), items: [item])
         interactor.todoGroups.send([group])
@@ -629,7 +655,7 @@ class TodoListViewModelTests: CoreTestCase {
             sessionDefaults: sessionDefaults,
             scheduler: testScheduler.eraseToAnyScheduler()
         )
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1")
         item.shouldKeepCompletedItemsVisible = true
         let group = TodoGroupViewModel(date: Date(), items: [item])
@@ -658,7 +684,7 @@ class TodoListViewModelTests: CoreTestCase {
             sessionDefaults: sessionDefaults,
             scheduler: testScheduler.eraseToAnyScheduler()
         )
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1")
         item.markAsDoneState = .done
         let group = TodoGroupViewModel(date: Date(), items: [item])
@@ -688,7 +714,7 @@ class TodoListViewModelTests: CoreTestCase {
             sessionDefaults: sessionDefaults,
             scheduler: testScheduler.eraseToAnyScheduler()
         )
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1")
         let group = TodoGroupViewModel(date: Date(), items: [item])
         interactor.todoGroups.send([group])
@@ -726,7 +752,7 @@ class TodoListViewModelTests: CoreTestCase {
             sessionDefaults: sessionDefaults,
             scheduler: testScheduler.eraseToAnyScheduler()
         )
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1")
         item.shouldKeepCompletedItemsVisible = true
 
@@ -769,7 +795,7 @@ class TodoListViewModelTests: CoreTestCase {
 
     func test_markItemAsDoneWithOptimisticUI_removesItemImmediately() {
         // GIVEN
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1")
         let group = TodoGroupViewModel(date: Date(), items: [item])
         interactor.todoGroups.send([group])
@@ -786,7 +812,7 @@ class TodoListViewModelTests: CoreTestCase {
     func test_markItemAsDoneWithOptimisticUI_onSuccess_staysRemoved() {
         // GIVEN
         TabBarBadgeCounts.todoListCount = 5
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item = TodoItemViewModel.make(plannableId: "1")
         let group = TodoGroupViewModel(date: Date(), items: [item])
         interactor.todoGroups.send([group])
@@ -827,7 +853,7 @@ class TodoListViewModelTests: CoreTestCase {
     func test_markItemAsDoneWithOptimisticUI_multipleConcurrentSwipes_allSucceed() {
         // GIVEN
         TabBarBadgeCounts.todoListCount = 3
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         let item1 = TodoItemViewModel.make(plannableId: "1")
         let item2 = TodoItemViewModel.make(plannableId: "2")
         let item3 = TodoItemViewModel.make(plannableId: "3")
@@ -883,7 +909,7 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.todoGroups.send([group])
         testScheduler.advance()
 
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
 
         // WHEN - swipe all items
         testee.handleSwipeAction(item1)
@@ -893,7 +919,7 @@ class TodoListViewModelTests: CoreTestCase {
         testee.handleSwipeAction(item2)
 
         // Change result back to success for item3
-        interactor.markItemAsDoneResult = .success(())
+        interactor.markItemAsDoneResult = .success("mock-override-id")
         testee.handleSwipeAction(item3)
 
         XCTAssertEqual(testee.items.count, 0)

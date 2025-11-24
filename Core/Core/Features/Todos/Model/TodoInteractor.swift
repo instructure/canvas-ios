@@ -47,8 +47,8 @@ protocol TodoInteractor {
     /// - Parameters:
     ///   - item: The todo item to update.
     ///   - done: `true` to mark as done, `false` to mark as not done.
-    /// - Returns: A publisher that completes when the operation finishes.
-    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error>
+    /// - Returns: A publisher that emits the override ID and completes when the operation finishes.
+    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<String, Error>
 }
 
 final class TodoInteractorLive: TodoInteractor {
@@ -95,21 +95,21 @@ final class TodoInteractorLive: TodoInteractor {
         .eraseToAnyPublisher()
     }
 
-    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
+    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<String, Error> {
         let useCase = MarkPlannableItemDone(
             plannableId: item.plannableId,
             plannableType: item.type.rawValue,
             overrideId: item.overrideId,
+            useCaseId: .todo,
             done: done
         )
 
         return useCase.fetchWithAPIResponse(environment: env)
-            .handleEvents(receiveOutput: { response, _ in
-                item.overrideId = response.id.value
+            .handleEvents(receiveOutput: { _, _ in
                 let eventName = done ? "todo_item_marked_done" : "todo_item_marked_undone"
                 Analytics.shared.logEvent(eventName)
             })
-            .mapToVoid()
+            .map { response, _ in response.id.value }
             .eraseToAnyPublisher()
     }
 
