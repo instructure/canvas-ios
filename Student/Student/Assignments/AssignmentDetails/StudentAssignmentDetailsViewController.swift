@@ -214,6 +214,8 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         fileTypesSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.allowedExtensions"
         submissionTypesSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.submissionTypes"
 
+        submitAssignmentButton.layer.cornerRadius = 25
+
         // Localization
         updateDueSection(dueSection1, with: nil)
         updateDueSection(dueSection2, with: nil)

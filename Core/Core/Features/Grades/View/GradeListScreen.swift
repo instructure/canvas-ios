@@ -98,7 +98,7 @@ public struct GradeListScreen: View, ScreenViewTrackable {
 				RevertWhatIfScoreButton(isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn) {
 					viewModel.isShowingRevertDialog = true
 				}
-				ToolbarItem(placement: .primaryAction) {
+				ToolbarItem {
 					GradeListFilterButton(viewModel: viewModel)
 				}
 			}
@@ -271,14 +271,14 @@ private struct RevertWhatIfScoreButton: ToolbarContent {
     let buttonDidTap: () -> Void
 
     var body: some ToolbarContent {
-        ToolbarItemGroup(placement: .navigationBarTrailing) {
+        ToolbarItem(placement: .navigationBarTrailing) {
             if isWhatIfScoreModeOn {
                 Button(action: {
                     buttonDidTap()
                 }) {
                     Image(uiImage: .replyLine)
                         .resizable()
-                        .foregroundColor(.textLightest.variantForLightMode)
+                        .foregroundStyleBelow26(.textLightest.variantForLightMode)
                 }
                 .frame(alignment: .leading)
                 .accessibilityLabel(Text("Revert", bundle: .core))
