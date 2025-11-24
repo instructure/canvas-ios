@@ -86,7 +86,7 @@ struct TodoFilterScreen: View {
             }
         } header: {
             InstUI.ListSectionHeader(
-                title: String(localized: "Show tasks from", bundle: .core),
+                title: String(localized: "Show tasks from", bundle: .core, comment: "Show tasks from a selected date"),
                 itemCount: viewModel.dateRangeStartItems.count
             )
         }
@@ -110,7 +110,7 @@ struct TodoFilterScreen: View {
             }
         } header: {
             InstUI.ListSectionHeader(
-                title: String(localized: "Show tasks until", bundle: .core),
+                title: String(localized: "Show tasks until", bundle: .core, comment: "Show tasks until a selected date"),
                 itemCount: viewModel.dateRangeEndItems.count
             )
         }

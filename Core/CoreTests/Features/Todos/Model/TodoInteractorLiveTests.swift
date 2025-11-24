@@ -521,18 +521,11 @@ class TodoInteractorLiveTests: CoreTestCase {
         api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), value: courses)
     }
 
-    private func mockPlannables(_ plannables: [APIPlannable]) {
-        let startDate = TodoDateRangeStart.fourWeeksAgo.startDate()
-        let endDate = TodoDateRangeEnd.inFourWeeks.endDate()
-        api.mock(GetPlannablesRequest(
-            userID: nil,
-            startDate: startDate,
-            endDate: endDate,
-            contextCodes: []
-        ), value: plannables)
-    }
-
-    private func mockPlannables(_ plannables: [APIPlannable], startDate: Date, endDate: Date) {
+    private func mockPlannables(
+        _ plannables: [APIPlannable],
+        startDate: Date = TodoDateRangeStart.fourWeeksAgo.startDate(),
+        endDate: Date = TodoDateRangeEnd.inFourWeeks.endDate()
+    ) {
         api.mock(GetPlannablesRequest(
             userID: nil,
             startDate: startDate,

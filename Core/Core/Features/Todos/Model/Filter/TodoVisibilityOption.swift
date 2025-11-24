@@ -27,10 +27,10 @@ public enum TodoVisibilityOption: String, CaseIterable, Codable, Hashable {
 
     var title: String {
         switch self {
-        case .showPersonalTodos: String(localized: "Show Personal To Dos", bundle: .core)
+        case .showPersonalTodos: String(localized: "Show Personal To-dos", bundle: .core)
         case .showCalendarEvents: String(localized: "Show Calendar Events", bundle: .core)
         case .showCompleted: String(localized: "Show Completed", bundle: .core)
-        case .favouriteCoursesOnly: String(localized: "Favourite Courses Only", bundle: .core)
+        case .favouriteCoursesOnly: String(localized: "Favorite Courses Only", bundle: .core)
         }
     }
 }
@@ -49,9 +49,7 @@ extension TodoVisibilityOption {
         TodoVisibilityOption(rawValue: optionItem.id)
     }
 
-    static var allOptionItems: [OptionItem] {
-        allCases.map { $0.toOptionItem() }
-    }
+    static let allOptionItems: [OptionItem] = allCases.map { $0.toOptionItem() }
 }
 
 // MARK: - Filtering
@@ -70,8 +68,8 @@ extension Set where Element == TodoVisibilityOption {
     }
 
     func shouldInclude(isCompleted: Bool, isSubmitted: Bool) -> Bool {
-        if isCompleted || isSubmitted {
-            return contains(.showCompleted)
+        if contains(.showCompleted) {
+            return isCompleted || isSubmitted
         }
         return true
     }

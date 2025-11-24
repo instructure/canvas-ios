@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 @testable import Core
+import Foundation
+import TestsFoundation
 import XCTest
 
 class SessionDefaultsTests: XCTestCase {
@@ -88,8 +89,8 @@ class SessionDefaultsTests: XCTestCase {
         // THEN
         XCTAssertEqual(defaults.todoFilterOptions, options)
         XCTAssertEqual(defaults.todoFilterOptions?.visibilityOptions.count, 2)
-        XCTAssertTrue(defaults.todoFilterOptions?.visibilityOptions.contains(.showPersonalTodos) ?? false)
-        XCTAssertTrue(defaults.todoFilterOptions?.visibilityOptions.contains(.showCompleted) ?? false)
+        XCTAssertContains(defaults.todoFilterOptions?.visibilityOptions, .showPersonalTodos)
+        XCTAssertContains(defaults.todoFilterOptions?.visibilityOptions, .showCompleted)
         XCTAssertEqual(defaults.todoFilterOptions?.dateRangeStart, .thisWeek)
         XCTAssertEqual(defaults.todoFilterOptions?.dateRangeEnd, .nextWeek)
 
