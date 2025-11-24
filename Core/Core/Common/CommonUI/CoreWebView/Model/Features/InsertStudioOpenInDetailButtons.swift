@@ -19,6 +19,7 @@
 import UIKit
 
 class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
+    private var isAdded: Bool = false
 
     private let insertValues: String = {
         let title = String(localized: "Open in Detail View", bundle: .core)
@@ -39,7 +40,6 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
            let jsSource = try? String(contentsOf: url, encoding: .utf8) {
             return jsSource
         }
-
         return nil
     }()
 
@@ -55,20 +55,25 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
                 })()
             """
         }
-
         return nil
     }()
 
     public override init() { }
 
     override func apply(on webView: CoreWebView) {
-        webView.addScript(insertValues)
-
-        if let insertStyle {
-            webView.addScript(insertStyle)
+        guard
+            let insertScript,
+            let insertStyle
+        else {
+            RemoteLogger.shared.logError(name: "WebView: Missing immersive player links script or stylesheet")
+            return
         }
-        if let insertScript {
+
+        if isAdded == false {
+            webView.addScript(insertValues)
+            webView.addScript(insertStyle)
             webView.addScript(insertScript)
+            isAdded = true
         }
     }
 
@@ -78,9 +83,12 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
         if let insertStyle {
             webView.removeScript(insertStyle)
         }
+
         if let insertScript {
             webView.removeScript(insertScript)
         }
+
+        isAdded = false
     }
 }
 

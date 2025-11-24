@@ -26,14 +26,20 @@ function findCanvasUploadLink(elm, title) {
         .replace("media_attachments_iframe", "media_attachments")
         .concat("/immersive_view");
 
-    let frameURL = new URL(frameFullPath);
+    try {
 
-    if(title) {
-        title = title.replace("Video player for ", "").replace(".mp4", "");
-        frameURL.searchParams.set("title", encodeURIComponent(title));
+        let frameURL = new URL(frameFullPath);
+
+        if(title) {
+            title = title.replace("Video player for ", "").replace(".mp4", "");
+            frameURL.searchParams.set("title", encodeURIComponent(title));
+        }
+
+        return frameURL;
+
+    } catch {
+        return null;
     }
-
-    return frameURL;
 }
 
 function findStudioEmbedLink(elm, title) {
@@ -44,18 +50,24 @@ function findStudioEmbedLink(elm, title) {
     let playerSource = frameURL.searchParams.get("url");
     if(!playerSource) { return null }
 
-    let playerURL = new URL(playerSource);
-    playerURL.searchParams.set("custom_arc_launch_type", "immersive_view");
+    try {
 
-    frameURL.searchParams.set("url", playerURL.toString());
-    frameURL.searchParams.set("display", "full_width");
+        let playerURL = new URL(playerSource);
+        playerURL.searchParams.set("custom_arc_launch_type", "immersive_view");
 
-    if(title) {
-        title = title.replace("Video player for ", "").replace(".mp4", "");
-        frameURL.searchParams.set("title", encodeURIComponent(title));
+        frameURL.searchParams.set("url", playerURL.toString());
+        frameURL.searchParams.set("display", "full_width");
+
+        if(title) {
+            title = title.replace("Video player for ", "").replace(".mp4", "");
+            frameURL.searchParams.set("title", encodeURIComponent(title));
+        }
+
+        return frameURL;
+
+    } catch {
+        return null;
     }
-
-    return frameURL;
 }
 
 function insertDetailsLinks(elm, method) {
