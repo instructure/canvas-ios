@@ -365,14 +365,6 @@ class StudentAssignmentDetailsPresenter {
         return assignment?.lockStatus == .before
     }
 
-    func gradesSectionIsHidden() -> Bool {
-        if let submission = assignment?.submission {
-            return submission.workflowState == .unsubmitted && submission.customGradeStatusId == nil
-        } else {
-            return true
-        }
-    }
-
     func viewSubmissionButtonSectionIsHidden() -> Bool {
         return assignment?.lockStatus == .before || assignment?.isMasteryPathAssignment == true
     }

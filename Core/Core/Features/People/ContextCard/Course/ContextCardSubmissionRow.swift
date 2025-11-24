@@ -45,7 +45,7 @@ struct ContextCardSubmissionRow: View {
 
                     if submission.needsGrading {
                         needsGradingCapsule()
-                    } else if submission.workflowState == .graded, submission.score != nil {
+                    } else if submission.status.hasGrade { // not showing for Excused or Custom without grade
                         progressView(progress: progressRatio, label: Text(grade))
                     }
                 }.frame(maxWidth: .infinity, alignment: .leading)

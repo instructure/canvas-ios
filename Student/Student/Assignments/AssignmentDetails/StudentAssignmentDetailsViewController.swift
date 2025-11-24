@@ -338,6 +338,8 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
             return
         }
 
+        let status = submission.status
+
         submissionRubricButtonSection?.isHidden = true
         submittedLabel?.textColor = .textDarkest
         submittedLabel?.text = String(localized: "Successfully submitted!", bundle: .student)
@@ -346,7 +348,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
 
         fileSubmissionButton?.isHidden = true
 
-        if submission.excused {
+        if status.isExcused {
             // Excused assignments cannot be submitted so we make sure not to
             // reserve any space for the not visible submit button below the scroll
             showSubmitAssignmentButton(title: nil)
@@ -363,7 +365,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
             updateSubmissionLabels(state: onlineUploadState)
         }
 
-        if submission.workflowState == .unsubmitted, submission.customGradeStatusId == nil {
+        guard status.isSubmitted || status.isGraded else {
             hideGradeCell()
             submissionRubricButtonSection?.isHidden = false
             return

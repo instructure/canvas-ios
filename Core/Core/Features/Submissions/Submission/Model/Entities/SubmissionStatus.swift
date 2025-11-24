@@ -34,10 +34,10 @@ public struct SubmissionStatus: Equatable {
         case notGradable
     }
 
-    public var isSubmitted: Bool
-    public var hasGrade: Bool
-    public var gradeStatus: GradeStatus?
-    public var nonSubmittableType: NonSubmittableType?
+    public let isSubmitted: Bool
+    public let hasGrade: Bool
+    public let gradeStatus: GradeStatus?
+    public let nonSubmittableType: NonSubmittableType?
 
     public init(
         isSubmitted: Bool,
@@ -80,7 +80,7 @@ extension SubmissionStatus {
     public static let notSubmitted = Self(
         isSubmitted: false,
         isGraded: false,
-        isGradeBelongsToCurrentSubmission: false,
+        isGradeBelongsToCurrentSubmission: true,
         isLate: false,
         isMissing: false,
         isExcused: false,

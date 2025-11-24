@@ -416,10 +416,13 @@ extension Submission {
             ))
     }
 
+    // It is valid for LTIs to set `workflow_state: pending_review` but `submitted_at: null`.
+    // Quizzes may also use `pending_review` (ie.: for essay questions), but the `submitted_at` is populated in that case.
+    // Those still mean the assignment is submitted.
     public var status: SubmissionStatus {
         .init(
-            isSubmitted: submittedAt != nil,
-            isGraded: workflowState == .graded && score != nil,
+            isSubmitted: submittedAt != nil || workflowState == .pending_review,
+            isGraded: score != nil && workflowState == .graded,
             isGradeBelongsToCurrentSubmission: gradeMatchesCurrentSubmission,
             isLate: late,
             isMissing: missing,
@@ -428,6 +431,14 @@ extension Submission {
             customStatusName: customGradeStatusName,
             submissionType: type ?? assignment?.submissionTypes.first
         )
+    }
+
+    /// True if the submission is a resubmission, a previous attempt had been graded,
+    /// and that grade had not been removed by the teacher.
+    public var hasGradeFromEarlierSubmission: Bool {
+        score != nil
+        && [.submitted, .graded].contains(workflowState)
+        && !gradeMatchesCurrentSubmission
     }
 }
 

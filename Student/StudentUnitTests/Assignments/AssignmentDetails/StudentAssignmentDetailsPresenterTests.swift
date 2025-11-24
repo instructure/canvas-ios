@@ -311,21 +311,6 @@ class StudentAssignmentDetailsPresenterTests: StudentTestCase {
         XCTAssertFalse( presenter.submissionTypesSectionIsHidden() )
     }
 
-    func testGradesSectionIsHiddenBeforeAvailability() {
-        setupIsHiddenTest(lockStatus: .before)
-        XCTAssertTrue( presenter.gradesSectionIsHidden() )
-    }
-
-    func testGradesSectionNotHiddenAfterAvailability() {
-        Assignment.make(from: .make(locked_for_user: true, lock_explanation: "this is locked", submission: APISubmission.make(workflow_state: .graded), unlock_at: Date().addYears(-1)))
-        XCTAssertFalse( presenter.gradesSectionIsHidden() )
-    }
-
-    func testGradesSectionNotHidden() {
-        Assignment.make(from: .make(submission: APISubmission.make(workflow_state: .graded)))
-        XCTAssertFalse( presenter.gradesSectionIsHidden() )
-    }
-
     func testStatisticsSectionIsHiddenBeforeAvailability() {
         setupIsHiddenTest(lockStatus: .before)
         XCTAssertTrue( presenter.statisticsIsHidden() )
