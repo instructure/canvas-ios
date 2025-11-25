@@ -416,9 +416,17 @@ extension Submission {
             ))
     }
 
-    // It is valid for LTIs to set `workflow_state: pending_review` but `submitted_at: null`.
-    // Quizzes may also use `pending_review` (ie.: for essay questions), but the `submitted_at` is populated in that case.
-    // Those still mean the assignment is submitted.
+    /// This status is the single source of truth for any related logic.
+    /// Use this property instead of the properties it builds on.
+    /// Submissions and subassignment-submissions have their own, independent statuses.
+    ///
+    /// About the `isSubmitted` logic, after analyzing the backend logic:
+    /// - `workflow_state: submitted` is not guaranteed for submissions which had been submitted.
+    /// That's why we rely on `submitted_at` instead.
+    /// - `submittedAt != nil` also means `type != nil`
+    /// - It is valid for LTIs to set `workflow_state: pending_review` but `submitted_at: null`.
+    /// Quizzes may also use `pending_review` (ie.: for essay questions), but the `submitted_at` is populated in that case.
+    /// Those still mean the assignment is submitted.
     public var status: SubmissionStatus {
         .init(
             isSubmitted: submittedAt != nil || workflowState == .pending_review,

@@ -20,6 +20,13 @@ import Foundation
 import UIKit
 import SwiftUI
 
+/// This represents a submission's status, both for students and teachers in a uniform way.
+///
+/// It is intended to be the single source of truth. All related logic should use
+/// it's properties, to provide consistency within and across the apps.
+/// It could not be reasonably represented as a flat enum,
+/// so it groups together related properties and provides accessors instead.
+/// - It has a `.notSubmitted` fallback value for convenience.
 public struct SubmissionStatus: Equatable {
     public enum GradeStatus: Equatable {
         case excused
@@ -34,9 +41,21 @@ public struct SubmissionStatus: Equatable {
         case notGradable
     }
 
+    /// True if there is a submission, regardless of grade, grade status or submission type.
     public let isSubmitted: Bool
+
+    /// True if there is an actual grade/score, and it belongs to the current submission,
+    /// regardless of submission, submission type or grade status.
+    /// Resubmissions may also have grade displayed, but those are excluded here.
     public let hasGrade: Bool
+
+    /// The grade status with the most priority. A submission is not expected to have more
+    /// at the same time anyway, so we enforce this here.
+    /// It is set regardless of submission, submission type or grade status.
     public let gradeStatus: GradeStatus?
+
+    /// The type of a non-submittable assignment. These can not have online submissions.
+    /// (It's not strictly a part of submission status but it's closely related.)
     public let nonSubmittableType: NonSubmittableType?
 
     public init(
@@ -132,6 +151,13 @@ extension SubmissionStatus {
     }
 
     /// True if there is a submission and it is not considered graded.
+    ///
+    /// This logic is based on the original `submission.needsGrading` logic used previously on iOS,
+    /// which in turn matches the logic used on web. With one notable exception:
+    /// Custom statuses are always considered graded in mobile, but not on web.
+    /// This means `assignment.needs_grading_count` (at the time of writing) does not substract
+    /// submissions with custom statuses, which creates a discrepancy for mobile.
+    /// The correct logic matching mobile expectations is this one.
     public var needsGrading: Bool {
         isSubmitted && !isGraded
     }
@@ -166,7 +192,9 @@ extension SubmissionStatus {
 extension SubmissionStatus {
 
     /// The displayed status is always a single label, even though multiple properties
-    /// can apply to a given submission. The order of priority is the following:
+    /// can apply to a given submission.
+    ///
+    /// The order of priority is the following:
     /// - Grade statuses (Excused / Custom / Late / Missing)
     /// - Graded
     /// - Submitted
