@@ -179,8 +179,12 @@ final class HorizonWebView: CoreWebView {
                 }) {
                     let editNotebookView = EditNotebookAssembly.makeViewNoteViewController(
                         courseNotebookNote: courseNotebookNote
-                    ) {
-                    NotificationCenter.default.post(name: .showToastAlert, object: String(localized: "Note saved", bundle: .horizon))
+                    ) { isNoteUpdated in
+                        if isNoteUpdated {
+                            NotificationCenter
+                                .default
+                                .post(name: .showToastAlert, object: String(localized: "Note saved", bundle: .horizon))
+                        }
                     }
                     router.show(
                         editNotebookView,

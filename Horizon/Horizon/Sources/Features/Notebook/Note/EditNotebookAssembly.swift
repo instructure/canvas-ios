@@ -24,7 +24,10 @@ final class EditNotebookAssembly {
         CourseNoteInteractorLive()
     }
 
-    static func makeViewNoteViewController(courseNotebookNote: CourseNotebookNote, onUpdateNote: (() -> Void)? = nil) -> UIViewController {
+    static func makeViewNoteViewController(
+        courseNotebookNote: CourseNotebookNote,
+        onUpdateNote: ((Bool) -> Void)? = nil
+    ) -> UIViewController {
         let viewController = CoreHostingController(
             EditNotebookView(
                 viewModel: .init(

@@ -45,7 +45,10 @@ final class EditNotebookViewModel {
     private let courseNoteInteractor: CourseNoteInteractor
     private let router: Router
     private let notebookHighlight: NotebookHighlight?
-    private let onUpdateNote: (() -> Void)?
+    /// A Boolean value indicating the result of the user's action on the note screen.
+    /// - `true`: The user updated and saved the note.
+    /// - `false`: The user tapped **Cancel** or dismissed the view without saving.
+    private let onUpdateNote: ((Bool) -> Void)?
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
@@ -55,7 +58,7 @@ final class EditNotebookViewModel {
         router: Router = AppEnvironment.shared.router,
         courseNotebookNote: CourseNotebookNote,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
-        onUpdateNote: (() -> Void)? = nil
+        onUpdateNote: ((Bool) -> Void)? = nil
     ) {
         self.courseNoteInteractor = courseNoteInteractor
         self.router = router
@@ -72,6 +75,7 @@ final class EditNotebookViewModel {
     // MARK: - Input Actions
 
     func close(_ viewController: WeakViewController) {
+        onUpdateNote?(false)
         router.dismiss(viewController)
     }
 
@@ -110,8 +114,8 @@ final class EditNotebookViewModel {
                 self?.isErrorMessagePresented = true
             } receiveValue: { [weak self] _ in
                 self?.state = .data
-                self?.onUpdateNote?()
-                self?.close(viewController)
+                self?.onUpdateNote?(true)
+                self?.router.dismiss(viewController)
             }
             .store(in: &subscriptions)
     }

@@ -132,9 +132,12 @@ final class NotebookListViewModel {
     }
 
     func presentEditNote(note: CourseNotebookNote, viewController: WeakViewController) {
-        let noteVC = EditNotebookAssembly.makeViewNoteViewController(courseNotebookNote: note) { [weak self] in
-            self?.listState.successMessage = String(localized: "Note saved", bundle: .horizon)
-            self?.listState.isPresentedSuccessToast = true
+        let noteVC = EditNotebookAssembly.makeViewNoteViewController(courseNotebookNote: note) { [weak self] isNoteUpdated in
+            if isNoteUpdated {
+                self?.listState.successMessage = String(localized: "Note saved", bundle: .horizon)
+                self?.listState.isPresentedSuccessToast = true
+            }
+            self?.listState.restoreAccessibility.send(())
         }
         router.show(noteVC, from: viewController)
     }

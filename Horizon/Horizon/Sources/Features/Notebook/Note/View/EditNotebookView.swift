@@ -196,7 +196,7 @@ struct EditNotebookView: View {
     EditNotebookView(
         viewModel: .init(
             courseNotebookNote: CourseNotebookNote.example
-        ) {}
+        ) { _ in }
     )
 }
 #endif

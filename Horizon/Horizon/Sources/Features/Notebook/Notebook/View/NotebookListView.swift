@@ -21,11 +21,23 @@ import HorizonUI
 import SwiftUI
 
 struct NotebookListView: View {
+    // MARK: - A11y Properties
+
+    @State private var lastFocusedID: String?
+    @AccessibilityFocusState private var focusedID: String?
+    private let selectLabelFocusedID = "selectLabelFocusedID"
+    private let selectCourseFocusedID = "selectCourseFocusedID"
+
+    // MARK: - Private Properties
+
     @Environment(\.viewController) private var viewController
-    @State var viewModel: NotebookListViewModel
     @State private var isShowHeader: Bool = true
     @State private var isShowDivider: Bool = false
     @State private var selectedNote: CourseNotebookNote?
+
+    // MARK: - Dependencies
+
+    @State var viewModel: NotebookListViewModel
 
     var body: some View {
         ZStack {
@@ -82,6 +94,7 @@ struct NotebookListView: View {
                 await viewModel.refresh()
             }
         }
+        .onAppear { restoreFocusIfNeeded(after: 0.1) }
     }
 
     private var filterView: some View {
@@ -93,6 +106,7 @@ struct NotebookListView: View {
                 Text(viewModel.filteredNotes.count.description)
                     .foregroundStyle(Color.huiColors.text.dataPoint)
                     .huiTypography(.p1)
+                    .accessibilityLabel(String(format: String(localized: "Count of visible notes is %@. "), viewModel.filteredNotes.count.description))
             }
             .padding([.horizontal, .top], .huiSpaces.space16)
             if isShowDivider {
@@ -110,7 +124,9 @@ struct NotebookListView: View {
             selectedNote: selectedNote,
             showDeleteLoader: viewModel.listState.isDeletedNoteLoaderVisible,
             isSeeMoreButtonVisible: viewModel.listState.isSeeMoreButtonVisible,
-            showCourseName: true) { selectedNote in
+            screenType: .list,
+            focusedID: $focusedID) { selectedNote in
+                lastFocusedID = selectedNote.id
                 viewModel.goToModuleItem(selectedNote, viewController: viewController)
             } onTapDeleteNote: { deletedNote in
                 selectedNote = deletedNote
@@ -118,28 +134,40 @@ struct NotebookListView: View {
             } onTapSeeMore: {
                 viewModel.seeMore()
             }
+            .accessibilityHint(String(localized: "Double tap to open page", bundle: .horizon))
+            .accessibilityFocused($focusedID, equals: selectCourseFocusedID)
     }
 
     private var listCourses: some View {
         SelectionPopover(
             items: viewModel.courses,
-            selectedItem: viewModel.listState.selectedCourse ?? viewModel.courses.first
+            selectedItem: viewModel.listState.selectedCourse ?? viewModel.courses.first,
+            accessibilityHint: String(localized: "Double tab to select a different course", bundle: .horizon)
         ) { seletected in
             viewModel.listState.selectedCourse = seletected
             viewModel.filter()
+            lastFocusedID = selectCourseFocusedID
+            restoreFocusIfNeeded()
         }
         .frame(maxWidth: 200)
+        .id(selectCourseFocusedID)
+        .accessibilityFocused($focusedID, equals: selectCourseFocusedID)
     }
 
     private var listStatus: some View {
         SelectionPopover(
             items: viewModel.courseLables,
-            selectedItem: viewModel.listState.selectedLable ?? viewModel.courseLables.first
+            selectedItem: viewModel.listState.selectedLable ?? viewModel.courseLables.first,
+            accessibilityHint: String(localized: "Double tab to select a different label", bundle: .horizon)
         ) { seletected in
             viewModel.listState.selectedLable = seletected
             viewModel.filter()
+            lastFocusedID = selectLabelFocusedID
+            restoreFocusIfNeeded()
         }
         .fixedSize(horizontal: true, vertical: false)
+        .id(selectLabelFocusedID)
+        .accessibilityFocused($focusedID, equals: selectLabelFocusedID)
     }
 
     private var navigationBarHelperView: some View {
@@ -159,6 +187,7 @@ struct NotebookListView: View {
             Text("Notebook", bundle: .horizon)
                 .frame(maxWidth: .infinity)
                 .huiTypography(.h3)
+                .accessibilityAddTraits(.isHeader)
                 .foregroundStyle(Color.huiColors.text.title)
         }
         .padding(.bottom, .huiSpaces.space16)
@@ -177,6 +206,13 @@ struct NotebookListView: View {
                 HorizonUI.Spinner(size: .small, showBackground: true)
                     .accessibilityLabel("Loading Notebooks")
             }
+        }
+    }
+
+    private func restoreFocusIfNeeded(after: Double = 1) {
+        guard let lastFocused = lastFocusedID else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + after) {
+            focusedID = lastFocused
         }
     }
 }
