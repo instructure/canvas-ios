@@ -45,6 +45,7 @@ struct CourseDetailsHeaderView: View {
                         color: viewModel.courseTitleShadow.color,
                         radius: viewModel.courseTitleShadow.radius
                     )
+                    .multilineTextAlignment(.leading)
                 Text(viewModel.termName)
                     .font(.semibold14)
                     .accessibility(identifier: "course-details.subtitle-lbl")
@@ -52,13 +53,14 @@ struct CourseDetailsHeaderView: View {
                         color: viewModel.courseTitleShadow.color,
                         radius: viewModel.courseTitleShadow.radius
                     )
+                    .multilineTextAlignment(.leading)
             }
             .padding()
             .multilineTextAlignment(.center)
             .foregroundColor(.textLightest)
             .opacity(viewModel.titleOpacity)
         }
-        .frame(height: viewModel.height)
+        .frame(width: width, height: viewModel.height)
         .clipped()
     }
 }

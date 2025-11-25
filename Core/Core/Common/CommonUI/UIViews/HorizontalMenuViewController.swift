@@ -32,7 +32,7 @@ open class HorizontalMenuViewController: ScreenViewTrackerViewController {
     public weak var delegate: HorizontalPagedMenuDelegate?
     public private(set) var selectedIndexPath: IndexPath = IndexPath(item: 0, section: 0)
 
-    private var itemCount: Int {
+    public var itemCount: Int {
         return delegate?.numberOfMenuItems ?? 0
     }
 
@@ -78,9 +78,15 @@ open class HorizontalMenuViewController: ScreenViewTrackerViewController {
         } else {
             setupMenu()
             setupPages()
-            if #unavailable(iOS 26) {
+            setupBottomBorder()
+
+            // Only show the underline on iOS 26 if there are more than one tabs
+            if #available(iOS 26, *) {
+                if itemCount > 1 {
+                    setupUnderline()
+                }
+            } else {
                 setupUnderline()
-                setupBottomBorder()
             }
         }
     }
@@ -145,7 +151,6 @@ open class HorizontalMenuViewController: ScreenViewTrackerViewController {
         pages.addConstraintsWithVFL("V:[menu][view]|", views: ["menu": menu])
     }
 
-    @available(iOS, deprecated: 26)
     func setupUnderline() {
         underlineView = UIView()
         guard let underlineView = underlineView else { return }
@@ -160,7 +165,6 @@ open class HorizontalMenuViewController: ScreenViewTrackerViewController {
         underlineView.backgroundColor = delegate?.menuItemSelectedColor ?? UIColor.blue
     }
 
-    @available(iOS, deprecated: 26)
     func setupBottomBorder() {
         bottomBorder = UIView()
         guard let bottomBorder = bottomBorder, let underlineView = underlineView else { return }

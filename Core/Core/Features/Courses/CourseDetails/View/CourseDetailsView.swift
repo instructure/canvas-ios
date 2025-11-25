@@ -293,7 +293,14 @@ struct CourseDetailsView_Previews: PreviewProvider {
     private static let env = AppEnvironment.shared
     private static let context = env.globalDatabase.viewContext
     private static var contentViewModel: CourseDetailsViewModel {
-        let course = Course.save(.make(default_view: .assignments, term: .init(id: "1", name: "Default Term", start_at: nil, end_at: nil)), in: context)
+        let course = Course.save(
+            .make(
+                name: "Long name to brake the layout of the title",
+                default_view: .assignments,
+                term: .init(id: "1", name: "Default Term", start_at: nil, end_at: nil)
+            ),
+            in: context
+        )
         let tab1: Tab = Tab(context: context)
         tab1.save(.make(), in: context, context: .course("1"))
         let tab2: Tab = Tab(context: context)
