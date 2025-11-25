@@ -44,7 +44,6 @@ struct NotesbookCardsView: View {
     private let onTapSeeMore: () -> Void
 
     // MARK: - Init
-    
     init(
         notes: [CourseNotebookNote],
         selectedNote: CourseNotebookNote?,
