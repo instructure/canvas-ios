@@ -20,7 +20,7 @@ import HorizonUI
 import SwiftUI
 
 struct NotebookLabelFilterButton: View {
-    @State private var isListLableVisiable = false
+    @State private var isListLabelVisible = false
     private let list: [CourseNoteLabel] = [.important, .unclear]
 
     // MARK: - Dependencies
@@ -40,7 +40,7 @@ struct NotebookLabelFilterButton: View {
 
     var body: some View {
         Button {
-            isListLableVisiable.toggle()
+            isListLabelVisible.toggle()
         } label: {
             labelButton
         }
@@ -52,7 +52,7 @@ struct NotebookLabelFilterButton: View {
                         )
                     )
                 )
-        .popover(isPresented: $isListLableVisiable, attachmentAnchor: .point(.center), arrowEdge: .top) {
+        .popover(isPresented: $isListLabelVisible, attachmentAnchor: .point(.center), arrowEdge: .top) {
             listLabelView
                 .presentationCompactAdaptation(.none)
                 .presentationBackground(Color.huiColors.surface.cardPrimary)
@@ -70,8 +70,8 @@ struct NotebookLabelFilterButton: View {
                 .huiTypography(.p2)
             Image.huiIcons.keyboardArrowDown
                 .foregroundStyle(selectedLabel.color)
-                .rotationEffect(.degrees(isListLableVisiable ? 180 : 0))
-                .animation(.easeInOut, value: isListLableVisiable)
+                .rotationEffect(.degrees(isListLabelVisible ? 180 : 0))
+                .animation(.easeInOut, value: isListLabelVisible)
                 .frame(width: 24, height: 24)
                 .accessibilityHidden(true)
         }
@@ -85,7 +85,7 @@ struct NotebookLabelFilterButton: View {
             ForEach(list, id: \.self) { label in
                 Button {
                     onTap(label)
-                    isListLableVisiable.toggle()
+                    isListLabelVisible.toggle()
                 } label: {
                     NotebookLabelView(
                         label: label,
