@@ -57,15 +57,21 @@ public class StudioIFrameReplaceInteractorLive: StudioIFrameReplaceInteractor {
             throw StudioIFrameReplaceError.failedToConvertDataToString
         }
 
+        var replacedFrames = 0
         for iframe in iframes {
             guard let offlineVideo = offlineVideos.first(where: { $0.ltiLaunchID == iframe.mediaLTILaunchID }) else {
-                throw StudioIFrameReplaceError.offlineVideoIDNotFound
+                continue
             }
             htmlString = replaceStudioIFrame(
                 html: htmlString,
                 iFrameHtml: iframe.sourceHtml,
                 studioVideo: offlineVideo
             )
+            replacedFrames += 1
+        }
+
+        if replacedFrames == 0 {
+            throw StudioIFrameReplaceError.offlineVideoIDNotFound
         }
 
         guard let updatedHtmlData = htmlString.data(using: .utf8) else {
