@@ -78,7 +78,13 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         )
 
         // when
+        let exp = expectation(description: "feature updated")
         interactor.resetFeatureFlagStore(context: context, env: environment)
+        interactor.onFeatureUpdate = {
+            exp.fulfill()
+        }
+
+        wait(for: [exp])
 
         // Then
         XCTAssertTrue( webView.features.contains(where: { $0 is InsertStudioOpenInDetailButtons }) )
@@ -103,7 +109,13 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         )
 
         // when
+        let exp = expectation(description: "feature updated")
         interactor.resetFeatureFlagStore(context: context, env: environment)
+        interactor.onFeatureUpdate = {
+            exp.fulfill()
+        }
+
+        wait(for: [exp])
 
         // Then
         XCTAssertFalse( webView.features.contains(where: { $0 is InsertStudioOpenInDetailButtons }) )
@@ -128,7 +140,13 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         )
 
         // when
+        let exp = expectation(description: "feature updated")
         interactor.resetFeatureFlagStore(context: context, env: environment)
+        interactor.onFeatureUpdate = {
+            exp.fulfill()
+        }
+
+        wait(for: [exp])
 
         // Then
         XCTAssertTrue( webView.features.contains(where: { $0 is InsertStudioOpenInDetailButtons }) )
