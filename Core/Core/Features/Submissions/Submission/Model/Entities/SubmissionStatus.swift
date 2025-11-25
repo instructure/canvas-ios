@@ -235,3 +235,60 @@ extension SubmissionStatus {
         }
     }
 }
+
+#if DEBUG
+
+extension SubmissionStatus {
+
+    private init(
+        isSubmitted: Bool = false,
+        hasGrade: Bool = false,
+        gradeStatus: GradeStatus? = nil,
+        nonSubmittableType: NonSubmittableType? = nil
+    ) {
+        self.isSubmitted = isSubmitted
+        self.hasGrade = hasGrade
+        self.gradeStatus = gradeStatus
+        self.nonSubmittableType = nonSubmittableType
+    }
+
+    public static func make(
+        isSubmitted: Bool = false,
+        hasGrade: Bool = false,
+        gradeStatus: GradeStatus? = nil,
+        nonSubmittableType: NonSubmittableType? = nil
+    ) -> SubmissionStatus {
+        SubmissionStatus(
+            isSubmitted: isSubmitted,
+            hasGrade: hasGrade,
+            gradeStatus: gradeStatus,
+            nonSubmittableType: nonSubmittableType
+        )
+    }
+
+    public static func make(
+        isSubmitted: Bool = false,
+        isGraded: Bool = false,
+        isGradeBelongsToCurrentSubmission: Bool = true,
+        isLate: Bool = false,
+        isMissing: Bool = false,
+        isExcused: Bool = false,
+        customStatusId: String? = nil,
+        customStatusName: String? = nil,
+        submissionType: SubmissionType? = nil
+    ) -> SubmissionStatus {
+        SubmissionStatus(
+            isSubmitted: isSubmitted,
+            isGraded: isGraded,
+            isGradeBelongsToCurrentSubmission: isGradeBelongsToCurrentSubmission,
+            isLate: isLate,
+            isMissing: isMissing,
+            isExcused: isExcused,
+            customStatusId: customStatusId,
+            customStatusName: customStatusName,
+            submissionType: submissionType
+        )
+    }
+}
+
+#endif
