@@ -217,7 +217,7 @@ final class EditNotebookViewModelTests: HorizonTestCase {
             router: router,
             courseNotebookNote: courseNotebookNote,
             scheduler: .immediate,
-            onUpdateNote: { [weak self] in
+            onUpdateNote: { [weak self] _ in
                 self?.onUpdateNoteCalled = true
             }
         )
