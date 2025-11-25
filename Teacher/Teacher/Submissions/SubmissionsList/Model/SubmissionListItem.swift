@@ -57,6 +57,7 @@ public struct SubmissionListItem {
     }
 
     init(submission: Submission, assignment: Assignment?, displayIndex: Int?) {
+        let submissionStatus = submission.status
         self.init(
             submissionId: submission.id,
             originalUserID: submission.userID,
@@ -64,8 +65,8 @@ public struct SubmissionListItem {
             userAsRecipient: submission.user.flatMap {
                 Recipient(id: $0.id, name: $0.name, avatarURL: $0.avatarURL)
             },
-            status: submission.status.labelModel,
-            needsGrading: submission.needsGrading,
+            status: submissionStatus.labelModel,
+            needsGrading: submissionStatus.needsGrading,
             gradeFormatted: GradeFormatter.shortString(for: assignment, submission: submission, blankPlaceholder: .oneDash)
         )
     }

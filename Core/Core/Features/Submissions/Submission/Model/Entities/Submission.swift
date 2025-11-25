@@ -406,16 +406,6 @@ private extension String {
 
 extension Submission {
 
-    /// See canvas-lms submission.rb `def needs_grading?`
-    public var needsGrading: Bool {
-        return !excused &&
-            customGradeStatusId == nil &&
-            (type != nil && (workflowState == .pending_review ||
-                                ([.graded, .submitted].contains(workflowState) &&
-                                    (score == nil || !gradeMatchesCurrentSubmission))
-            ))
-    }
-
     /// This status is the single source of truth for any related logic.
     /// Use this property instead of the properties it builds on.
     /// Submissions and subassignment-submissions have their own, independent statuses.

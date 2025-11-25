@@ -43,9 +43,10 @@ struct ContextCardSubmissionRow: View {
 
                     SubmissionStatusLabel(model: submissionStatus)
 
-                    if submission.needsGrading {
+                    let status = submission.status
+                    if status.needsGrading {
                         needsGradingCapsule()
-                    } else if submission.status.hasGrade { // not showing for Excused or Custom without grade
+                    } else if status.hasGrade { // not showing for Excused or Custom without grade
                         progressView(progress: progressRatio, label: Text(grade))
                     }
                 }.frame(maxWidth: .infinity, alignment: .leading)
@@ -77,11 +78,13 @@ struct ContextCardSubmissionRow: View {
                 return .assignmentLine
             }
         }()
-        self.submissionStatus = submission.status.labelModel
+
+        let status = submission.status
+        self.submissionStatus = status.labelModel
         self.a11ySubmissionStatus = {
-            if submission.needsGrading {
+            if status.needsGrading {
                 return String(localized: "NEEDS GRADING", bundle: .core)
-            } else if submission.status.isGraded,
+            } else if status.isGraded,
                       let grade = formattedGrade {
                 return String(localized: "grade", bundle: .core) + " " + grade
             } else {

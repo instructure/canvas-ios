@@ -371,7 +371,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
             return
         }
 
-        if submission.needsGrading, submission.score == nil {
+        if status.needsGrading && submission.score == nil {
             submittedView?.isHidden = false
             return
         }
@@ -470,8 +470,8 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         submissionTypesSection?.isHidden = presenter.submissionTypesSectionIsHidden()
 
         // The pointsPossible check safeguards against backend issues like in MBL-15698
-        var showGradeSection = assignment.submission?.needsGrading == true
-            || (assignment.submission?.status.isGraded == true && assignment.pointsPossible != nil)
+        var showGradeSection = status.needsGrading
+            || (status.isGraded && assignment.pointsPossible != nil)
             || presenter.onlineUploadState != nil
         let gradeText = GradeFormatter.string(from: assignment, submission: submission, style: .short)
         if assignment.hideQuantitativeData, (gradeText ?? "").isEmpty == true {
