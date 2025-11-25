@@ -52,6 +52,7 @@ public class CoreWebViewStudioFeaturesInteractor {
     private(set) var videoFramesTitleMap: [String: String] = [:]
 
     var onScanFinished: (() -> Void)?
+    var onFeatureUpdate: (() -> Void)?
 
     init(webView: CoreWebView) {
         self.webView = webView
@@ -159,6 +160,8 @@ public class CoreWebViewStudioFeaturesInteractor {
         } else {
             webView.removeFeatures(ofType: InsertStudioOpenInDetailButtons.self)
         }
+
+        onFeatureUpdate?()
     }
 
     private func videoPlayerFrameTitle(matching url: URL) -> String? {
