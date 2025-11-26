@@ -94,7 +94,6 @@ public final class GradeListInteractorLive: GradeListInteractor {
             environment: env
         )
     }
-    
 
     public func loadBaseData(ignoreCache: Bool) -> AnyPublisher<GradeListGradingPeriodData, Error> {
         let userID = userID
