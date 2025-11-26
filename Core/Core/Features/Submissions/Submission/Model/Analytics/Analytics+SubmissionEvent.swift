@@ -132,9 +132,9 @@ private extension Analytics.SubmissionEvent {
 
     var params: [Param: Any]? {
         if case .phase(_, _, let attempt) = self, let attempt {
-            return [.attempt: attempt, .retry: 0]
+            return [.attempt: attempt]
         } else {
-            return [.retry: 0]
+            return nil
         }
     }
 }
