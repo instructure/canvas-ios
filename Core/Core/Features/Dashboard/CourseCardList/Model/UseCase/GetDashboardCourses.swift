@@ -19,7 +19,7 @@
 import CoreData
 import Foundation
 
-public class GetDashboardCourses: CollectionUseCase {
+public class GetDashboardCourses: APIUseCase {
     public typealias Model = Course
 
     public var cacheKey: String? { "get-dashboard-courses-\(enrollmentState)" }
@@ -45,11 +45,18 @@ public class GetDashboardCourses: CollectionUseCase {
 
     public func write(response: [APICourse]?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         guard let response else { return }
+
+        deleteCoursesNotInResponse(response, in: client)
+
         response.forEach {
-            Course.save(
-                $0,
-                in: client
-            )
+            Course.save($0, in: client)
         }
+    }
+
+    private func deleteCoursesNotInResponse(_ response: [APICourse], in context: NSManagedObjectContext) {
+        let idsToKeep = Set(response.map { $0.id.value })
+        let existingCourses: [Course] = context.fetch(scope: scope)
+        let coursesToDelete = existingCourses.filter { !idsToKeep.contains($0.id) }
+        context.delete(coursesToDelete)
     }
 }
