@@ -84,7 +84,7 @@ class InsertStudioOpenDetailViewButtonTests: XCTestCase {
                 "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view"
             )
 
-            XCTAssertEqual(urls[0].queryValue(for: "title"), "Example Video Title")
+            XCTAssertEqual(urls[0].queryValue(for: "title")?.removingPercentEncoding, "Example Video Title")
             XCTAssertEqual(urls[1].queryValue(for: "title"), "Some_File_Name")
         }
 
