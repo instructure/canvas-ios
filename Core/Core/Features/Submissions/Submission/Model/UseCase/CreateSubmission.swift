@@ -167,17 +167,14 @@ public class CreateSubmission: APIUseCase {
 
         if let retrialState, phase == .succeeded || phase == .failed {
             params = params ?? [:]
-            params?.merge(retrialState.params(), uniquingKeysWith: { $1 })
+            params?.merge(retrialState.paramsSync(), uniquingKeysWith: { $1 })
         }
 
         if let attempt {
 
-            retrialState?.reportSync(phase)
             Analytics.shared.logSubmission(.phase(phase, phasedType, attempt), additionalParams: params)
 
         } else if let client = env?.database.viewContext {
-
-            retrialState?.reportSync(phase)
 
             // This would mainly be executed on API failure case
             client.perform { [scope, client] in
@@ -190,6 +187,8 @@ public class CreateSubmission: APIUseCase {
                 Analytics.shared.logSubmission(.phase(phase, phasedType, failureAttempt), additionalParams: params)
             }
         }
+
+        retrialState?.reportSync(phase)
     }
 
     private var analyticsPhasedEventType: Analytics.SubmissionEvent.PhasedType? {
@@ -223,6 +222,12 @@ public class SubmissionRetrialState {
         }
     }
 
+    func params() -> [Analytics.SubmissionEvent.Param: Any] {
+        return synchronizer.sync {
+            return paramsSync()
+        }
+    }
+
     fileprivate func validateSync(for anotherRequest: CreateSubmissionRequest) {
         guard let request else {
             self.request = anotherRequest
@@ -247,7 +252,7 @@ public class SubmissionRetrialState {
         }
     }
 
-    func params() -> [Analytics.SubmissionEvent.Param: Any] {
+    fileprivate func paramsSync() -> [Analytics.SubmissionEvent.Param: Any] {
         return [.retry: inRetrialPhase ? 1 : 0]
     }
 }
