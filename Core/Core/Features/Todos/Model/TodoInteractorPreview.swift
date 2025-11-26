@@ -50,7 +50,8 @@ final class TodoInteractorPreview: TodoInteractor {
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        Publishers.typedJust()
+        todoGroups.send(todoGroups.value)
+        return Publishers.typedJust()
     }
 
     func isCacheExpired() -> AnyPublisher<Bool, Never> {

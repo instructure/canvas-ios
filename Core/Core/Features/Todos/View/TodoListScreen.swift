@@ -44,6 +44,7 @@ struct TodoListScreen: View {
                     groupView(for: group)
                 }
                 InstUI.Divider()
+                upsideDownPanda
             }
         }
         .clipped()
@@ -132,6 +133,14 @@ struct TodoListScreen: View {
             bundle: .core,
             comment: "Button to open To Do list filter preferences"
         ))
+    }
+
+    private var upsideDownPanda: some View {
+        Image("panda-todo-2", bundle: .core)
+            .accessibilityHidden(true)
+            .paddingStyle(.trailing, .standard)
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .frame(height: 0, alignment: .topTrailing)
     }
 }
 
