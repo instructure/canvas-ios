@@ -193,12 +193,20 @@ class TodoInteractorLiveTests: CoreTestCase {
         let expectedStartDate = Clock.now.addDays(-28)
         let expectedEndDate = Clock.now.addDays(28)
 
+        let plannablesAPIExpectation = expectation(description: "Plannables API called with correct date range")
+
         // When
         mockCourses(courses)
-        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]), startDate: expectedStartDate, endDate: expectedEndDate)
+        api.mock(GetPlannablesRequest(
+            userID: nil,
+            startDate: expectedStartDate,
+            endDate: expectedEndDate,
+            contextCodes: makeContextCodes(courseIds: ["1"])
+        ), expectation: plannablesAPIExpectation, value: plannables)
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
+        wait(for: [plannablesAPIExpectation], timeout: 1.0)
         XCTAssertFirstValue(testee.todoGroups) { todos in
             XCTAssertEqual(todos.count, 1)
         }
@@ -507,15 +515,6 @@ class TodoInteractorLiveTests: CoreTestCase {
             userID: nil,
             startDate: Clock.now.addDays(-28),
             endDate: Clock.now.addDays(28),
-            contextCodes: contextCodes
-        ), value: plannables)
-    }
-
-    private func mockPlannables(_ plannables: [APIPlannable], contextCodes: [String], startDate: Date, endDate: Date) {
-        api.mock(GetPlannablesRequest(
-            userID: nil,
-            startDate: startDate,
-            endDate: endDate,
             contextCodes: contextCodes
         ), value: plannables)
     }
