@@ -19,6 +19,7 @@
 import Combine
 @testable import Core
 import XCTest
+import TestsFoundation
 
 class ProfileSettingsViewControllerTests: CoreTestCase {
     var vc: ProfileSettingsViewController!
@@ -38,16 +39,15 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
 
     func testSelfRegistrationRowVisibility() {
         api.mock(GetAccountTermsOfServiceRequest(), value: .make(self_registration_type: .all))
-        load()
 
         AppEnvironment.shared.app = .teacher
         vc.refresh(sender: self)
-        drainMainQueue()
+        waitUntil { self.vc.tableView.numberOfSections > 0 }
         XCTAssertFalse(isCellExists(title: "Pair with Observer", section: 0))
 
         AppEnvironment.shared.app = .student
-        vc.refresh(sender: self)
-        drainMainQueue()
+        load()
+        waitUntil { self.vc.tableView.numberOfSections > 0 }
         XCTAssertTrue(isCellExists(title: "Pair with Observer", section: 0))
     }
 
@@ -73,19 +73,21 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
 
         mockInteractor.isSwitchAvailableMock = false
         load()
-        drainMainQueue()
+        waitUntil { self.vc.tableView.numberOfSections > 0 }
         XCTAssertFalse(isCellExists(title: "Switch to Canvas Career", section: 0))
 
+        vc = ProfileSettingsViewController.create(appExperienceInteractor: mockInteractor)
         mockInteractor.isSwitchAvailableMock = true
         environment.app = .student
         load()
-        drainMainQueue()
+        waitUntil { self.vc.tableView.numberOfSections > 0 }
         XCTAssertTrue(isCellExists(title: "Switch to Canvas Career", section: 0))
 
+        vc = ProfileSettingsViewController.create(appExperienceInteractor: mockInteractor)
         mockInteractor.isSwitchAvailableMock = true
         environment.app = .teacher
         load()
-        drainMainQueue()
+        waitUntil { self.vc.tableView.numberOfSections > 0 }
         XCTAssertFalse(isCellExists(title: "Switch to Canvas Career", section: 0))
     }
 
