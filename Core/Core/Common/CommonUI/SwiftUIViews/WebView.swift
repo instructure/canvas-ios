@@ -214,7 +214,7 @@ extension WebView {
         ) {
             reloadObserver?.cancel()
             reloadObserver = trigger?.sink {
-                webView.reload()
+                _ = webView.reload()
             }
         }
 
