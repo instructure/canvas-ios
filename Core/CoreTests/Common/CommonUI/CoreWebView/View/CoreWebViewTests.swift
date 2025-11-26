@@ -405,10 +405,16 @@ class MockNavigationAction: WKNavigationAction {
 
     let mockSourceFrame: MockFrameInfo
     let mockTargetFrame: MockFrameInfo?
-    init(url: String, type: WKNavigationType, sourceFrame: MockFrameInfo? = nil, targetFrame: MockFrameInfo? = nil) {
+
+    init(
+        url: String,
+        type: WKNavigationType,
+        sourceFrame: MockFrameInfo = MockFrameInfo(isMainFrame: true),
+        targetFrame: MockFrameInfo? = nil
+    ) {
         mockRequest = URLRequest(url: URL(string: url)!)
         mockType = type
-        mockSourceFrame = sourceFrame ?? MockFrameInfo(isMainFrame: true)
+        mockSourceFrame = sourceFrame
         mockTargetFrame = targetFrame
         super.init()
     }
