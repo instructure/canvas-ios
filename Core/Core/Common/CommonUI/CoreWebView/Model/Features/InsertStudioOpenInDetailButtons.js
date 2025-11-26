@@ -17,18 +17,18 @@
 //
 
 function findCanvasUploadLink(elm, title) {
-    if(elm.hasAttribute("data-media-id") == false) { return null }
+    if (elm.hasAttribute("data-media-id") == false) { return null }
 
     let frameSource = elm.getAttribute("src");
-    if(!frameSource) { return null }
+    if (!frameSource) { return null }
 
     let frameFullPath = frameSource
-        .replace("media_attachments_iframe", "media_attachments")
-        .concat("/immersive_view");
+        .replace("/media_attachments_iframe/", "/media_attachments/")
 
     try {
 
         let frameURL = new URL(frameFullPath);
+        frameURL.pathname += "/immersive_view";
 
         if(title) {
             title = title.replace("Video player for ", "").replace(".mp4", "");
@@ -36,7 +36,6 @@ function findCanvasUploadLink(elm, title) {
         }
 
         return frameURL;
-
     } catch {
         return null;
     }

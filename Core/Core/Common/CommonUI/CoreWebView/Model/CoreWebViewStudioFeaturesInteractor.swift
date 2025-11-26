@@ -20,7 +20,6 @@ import Combine
 import WebKit
 
 public class CoreWebViewStudioFeaturesInteractor {
-
     private static let scanFramesScript = """
         function scanVideoFramesForTitles() {
             const frameElements = document.querySelectorAll('iframe[data-media-id]');
