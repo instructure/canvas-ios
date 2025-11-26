@@ -82,6 +82,31 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
                     .replace(/"/g, '&quot;')
             }
 
+            function findCanvasUploadLink(elm, title) {
+                if (elm.hasAttribute("data-media-id") == false) { return null }
+
+                let frameSource = elm.getAttribute("src");
+                if (!frameSource) { return null }
+
+                let frameFullPath = frameSource
+                    .replace("/media_attachments_iframe/", "/media_attachments/")
+
+                try {
+
+                    let frameURL = new URL(frameFullPath);
+                    frameURL.pathname += "/immersive_view";
+
+                    if (title) {
+                        title = title.replace("Video player for ", "").replace(".mp4", "");
+                        frameURL.searchParams.set("title", encodeURIComponent(title));
+                    }
+
+                    return frameURL;
+                } catch {
+                    return null;
+                }
+            }
+
             function insertStudioDetailsLinks() {
                 const frameElements = document.querySelectorAll('iframe[data-media-id]');
 
@@ -94,16 +119,9 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
 
                     const videoTitle = elm.getAttribute("title");
                     const ariaTitle = elm.getAttribute("aria-title");
-                    var title = videoTitle ?? ariaTitle;
 
-                    var frameLink = elm.getAttribute("src");
-                    frameLink = frameLink.replace("media_attachments_iframe", "media_attachments");
-
-                    var linkSuffix = "/immersive_view";
-                    if(title){
-                        title = title.replace("Video player for ", "").replace(".mp4", "");
-                        linkSuffix = "/immersive_view?title=" + encodeURIComponent(title);
-                    }
+                    let title = videoTitle ?? ariaTitle;
+                    let frameLink = findCanvasUploadLink(elm, title);
 
                     const newLine = document.createElement('br');
                     const newParagraph = document.createElement('p');
@@ -118,7 +136,7 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
 
                     const detailButton = document.createElement('a');
                     detailButton.className = "open_details_button";
-                    detailButton.href = escapeHTML(frameLink + linkSuffix);
+                    detailButton.href = frameLink;
                     detailButton.target = "_blank";
                     detailButton.textContent = escapeHTML(\(CoreWebView.jsString(title)));
 
