@@ -43,7 +43,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     private var validSession: URLSession?
     private let submissionsStatus = FileSubmissionsStatus()
     private let submissionState = CreateSubmissionState()
-    
+
     public let didUploadFile = PassthroughSubject<Result<Void, Error>, Never>()
     var backgroundSession: URLSession {
         if let validSession = validSession {
