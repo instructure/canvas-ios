@@ -20,6 +20,7 @@ import Combine
 import WebKit
 
 public class CoreWebViewStudioFeaturesInteractor {
+
     private static let scanFramesScript = """
         function scanVideoFramesForTitles() {
             const frameElements = document.querySelectorAll('iframe[data-media-id]');
@@ -43,6 +44,9 @@ public class CoreWebViewStudioFeaturesInteractor {
         scanVideoFramesForTitles();
     """
 
+    var onScanFinished: (() -> Void)?
+    var onFeatureUpdate: (() -> Void)?
+
     private(set) weak var webView: CoreWebView?
     private var studioImprovementsFlagStore: ReactiveStore<GetFeatureFlagState>?
     private var storeSubscription: AnyCancellable?
@@ -50,9 +54,6 @@ public class CoreWebViewStudioFeaturesInteractor {
     /// This is to persist a map of video URL vs Title for the currently loaded page
     /// of CoreWebView. Supposed to be updated (or emptied) on each page load.
     private(set) var videoFramesTitleMap: [String: String] = [:]
-
-    var onScanFinished: (() -> Void)?
-    var onFeatureUpdate: (() -> Void)?
 
     init(webView: CoreWebView) {
         self.webView = webView
