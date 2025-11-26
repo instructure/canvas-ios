@@ -68,6 +68,7 @@ extension Analytics.SubmissionEvent {
         case error
         case media_type
         case media_source
+        case retry
     }
 }
 
@@ -131,9 +132,9 @@ private extension Analytics.SubmissionEvent {
 
     var params: [Param: Any]? {
         if case .phase(_, _, let attempt) = self, let attempt {
-            return [.attempt: attempt]
+            return [.attempt: attempt, .retry: 0]
         } else {
-            return nil
+            return [.retry: 0]
         }
     }
 }

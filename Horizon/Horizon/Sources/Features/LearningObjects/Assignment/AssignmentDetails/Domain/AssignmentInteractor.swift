@@ -47,6 +47,7 @@ final class AssignmentInteractorLive: AssignmentInteractor {
     private let userID: String
     private let uploadManager: HUploadFileManager
     private let appEnvironment: AppEnvironment
+    private let submissionState = CreateSubmissionState()
 
     // MARK: - Init
 
@@ -99,6 +100,7 @@ final class AssignmentInteractorLive: AssignmentInteractor {
             moduleID: moduleID,
             moduleItemID: moduleItemID
         )
+        .setting(state: submissionState)
         return ReactiveStore(useCase: createSubmission)
             .getEntities()
     }

@@ -27,6 +27,7 @@ public class FileSubmissionSubmitter {
     private let api: API
     private let context: NSManagedObjectContext
     private var subscriptions = Set<AnyCancellable>()
+    private let submissionState = CreateSubmissionState()
 
     public init(api: API, context: NSManagedObjectContext) {
         self.api = api
@@ -70,12 +71,17 @@ public class FileSubmissionSubmitter {
                 assignmentID: submission.assignmentID,
                 body: .init(submission: requestedSubmission)
             )
+
+            submissionState.validate(for: request)
             API(self.api.loginSession, baseURL: baseURL)
                 .makeRequest(request) { [weak self] response, _, error in
                     guard let self else { return }
 
+                    let isSuccessful = response != nil && error == nil
+                    self.logAnalyticsEvent(isSuccessful: isSuccessful, error: error)
+
                     UIAccessibility
-                        .announceSubmission(isSuccessful: response != nil && error == nil)
+                        .announceSubmission(isSuccessful: isSuccessful)
                         .sink { [weak self] in
                             self?.handleResponse(
                                 response,
@@ -86,6 +92,23 @@ public class FileSubmissionSubmitter {
                         }
                         .store(in: &subscriptions)
                 }
+        }
+    }
+
+    private func logAnalyticsEvent(isSuccessful: Bool, error: Error? = nil) {
+        var eventParams = submissionState.params()
+
+        if let error {
+            eventParams.merge([.error: error.localizedDescription], uniquingKeysWith: { $1 })
+        }
+
+        Analytics.shared.logSubmission(
+            .phase(isSuccessful ? .succeeded : .failed, .fileUpload, nil),
+            additionalParams: eventParams
+        )
+
+        if !isSuccessful {
+            submissionState.reportFailure()
         }
     }
 

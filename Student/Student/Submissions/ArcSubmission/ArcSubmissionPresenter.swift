@@ -30,6 +30,7 @@ class ArcSubmissionPresenter {
     let assignmentID: String
     let userID: String
     let arcID: String
+    private let submissionState = CreateSubmissionState()
 
     init(environment: AppEnvironment = .shared, view: ArcSubmissionView, courseID: String, assignmentID: String, userID: String, arcID: String) {
         self.env = environment
@@ -68,7 +69,9 @@ class ArcSubmissionPresenter {
             userID: userID,
             submissionType: .basic_lti_launch,
             url: url
-        ).fetch(environment: env) { _, _, error in
+        )
+        .setting(state: submissionState)
+        .fetch(environment: env) { _, _, error in
             callback(error)
         }
     }
