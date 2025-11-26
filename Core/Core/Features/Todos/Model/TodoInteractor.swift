@@ -108,8 +108,7 @@ public final class TodoInteractorLive: TodoInteractor {
 
         return useCase.fetchWithAPIResponse(environment: env)
             .handleEvents(receiveOutput: { _, _ in
-                let eventName = done ? "todo_item_marked_done" : "todo_item_marked_undone"
-                Analytics.shared.logEvent(eventName)
+                Analytics.shared.logTodoEvent(done ? .itemMarkedDone : .itemMarkedUndone)
             })
             .tryMap { response, _ in
                 guard let response else {
@@ -153,7 +152,7 @@ public final class TodoInteractorLive: TodoInteractor {
 
     private func logFilterAnalytics() {
         let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
-        Analytics.shared.logEvent(filterOptions.analyticsEventName, parameters: filterOptions.analyticsParameters)
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
     }
 }
 
