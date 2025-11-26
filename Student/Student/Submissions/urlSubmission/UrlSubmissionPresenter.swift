@@ -31,7 +31,7 @@ class UrlSubmissionPresenter {
     let userID: String
     let env: AppEnvironment
 
-    private let submissionState = CreateSubmissionState()
+    private let submissionRetrialState = SubmissionRetrialState()
 
     init(env: AppEnvironment, view: UrlSubmissionViewProtocol?, courseID: String, assignmentID: String, userID: String) {
         self.view = view
@@ -61,7 +61,7 @@ class UrlSubmissionPresenter {
     func submit(_ text: String?) {
         if let url = scrubUrl(text: text) {
             let useCase = CreateSubmission(context: .course(courseID), assignmentID: assignmentID, userID: userID, submissionType: .online_url, url: url)
-            useCase.state = submissionState
+            useCase.retrialState = submissionRetrialState
             useCase.fetch(environment: env) { [weak self] (_, _, error) in
                 DispatchQueue.main.async {
                     if let error = error {

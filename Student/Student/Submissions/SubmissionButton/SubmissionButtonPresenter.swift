@@ -42,7 +42,7 @@ class SubmissionButtonPresenter: NSObject {
     var selectedSubmissionTypes: [SubmissionType] = []
     lazy var flags = env.subscribe(GetEnabledFeatureFlags(context: .currentUser)) {}
 
-    private let mediaSubmissionState = CreateSubmissionState()
+    private let mediaSubmissionState = SubmissionRetrialState()
 
     init(env: AppEnvironment, view: SubmissionButtonViewProtocol, assignmentID: String) {
         self.env = env
@@ -343,7 +343,7 @@ extension SubmissionButtonPresenter {
                 mediaCommentType: type,
                 mediaCommentSource: source
             )
-            .setting(state: self?.mediaSubmissionState)
+            .settingRetrialState(self?.mediaSubmissionState)
             .fetch(environment: env) { _, _, error in doneUploading(error) }
         }
         let upload = { mediaUploader.fetch(createSubmission) }

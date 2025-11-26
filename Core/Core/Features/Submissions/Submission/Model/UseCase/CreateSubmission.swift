@@ -21,34 +21,6 @@ import CoreData
 import Combine
 import UIKit
 
-public class CreateSubmissionState {
-    private var inRetrialPhase: Bool = false
-    private var request: CreateSubmissionRequest?
-
-    public init() {}
-
-    func validate(for anotherRequest: CreateSubmissionRequest) {
-        guard let request else {
-            self.request = anotherRequest
-            self.inRetrialPhase = false
-            return
-        }
-
-        if request != anotherRequest {
-            self.request = anotherRequest
-            self.inRetrialPhase = false
-        }
-    }
-
-    func reportFailure() {
-        inRetrialPhase = true
-    }
-
-    func params() -> [Analytics.SubmissionEvent.Param: Any] {
-        return [.retry: inRetrialPhase ? 1 : 0]
-    }
-}
-
 public class CreateSubmission: APIUseCase {
     let context: Context
     let assignmentID: String
@@ -56,7 +28,7 @@ public class CreateSubmission: APIUseCase {
     let moduleID: String?
     let moduleItemID: String?
 
-    public weak var state: CreateSubmissionState?
+    public weak var retrialState: SubmissionRetrialState?
     public let request: CreateSubmissionRequest
     public typealias Model = Submission
 
@@ -111,8 +83,8 @@ public class CreateSubmission: APIUseCase {
         )
     }
 
-    public func setting(state: CreateSubmissionState?) -> Self {
-        self.state = state
+    public func settingRetrialState(_ state: SubmissionRetrialState?) -> Self {
+        self.retrialState = state
         return self
     }
 
@@ -129,7 +101,7 @@ public class CreateSubmission: APIUseCase {
     ) }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APISubmission?, URLResponse?, Error?) -> Void) {
-        state?.validate(for: request)
+        retrialState?.validate(for: request)
 
         environment.api.makeRequest(request) { [weak self, weak environment] response, urlResponse, error in
             guard let self = self else { return }
@@ -193,8 +165,8 @@ public class CreateSubmission: APIUseCase {
             return params
         })
 
-        if let state, phase == .succeeded || phase == .failed {
-            params?.merge(state.params(), uniquingKeysWith: { $1 })
+        if let retrialState, phase == .succeeded || phase == .failed {
+            params?.merge(retrialState.params(), uniquingKeysWith: { $1 })
         }
 
         if let attempt {
@@ -215,9 +187,7 @@ public class CreateSubmission: APIUseCase {
             }
         }
 
-        if phase == .failed {
-            state?.reportFailure()
-        }
+        retrialState?.report(phase)
     }
 
     private var analyticsPhasedEventType: Analytics.SubmissionEvent.PhasedType? {
@@ -227,5 +197,55 @@ public class CreateSubmission: APIUseCase {
         if case .basic_lti_launch = submissionType { return .studio }
 
         return nil
+    }
+}
+
+// MARK: - State Tracking
+
+public class SubmissionRetrialState {
+    private var inRetrialPhase: Bool = false
+    private var request: CreateSubmissionRequest?
+    private let synchronizer = DispatchQueue(label: "Submission state synchronized access")
+
+    public init() {}
+
+    func validate(for anotherRequest: CreateSubmissionRequest) {
+        synchronizer.sync {
+            validateSync(for: anotherRequest)
+        }
+    }
+
+    func report(_ phase: Analytics.SubmissionEvent.Phase) {
+        synchronizer.sync {
+            reportSync(phase)
+        }
+    }
+
+    private func validateSync(for anotherRequest: CreateSubmissionRequest) {
+        guard let request else {
+            self.request = anotherRequest
+            self.inRetrialPhase = false
+            return
+        }
+
+        if request != anotherRequest {
+            self.request = anotherRequest
+            self.inRetrialPhase = false
+        }
+    }
+
+    private func reportSync(_ phase: Analytics.SubmissionEvent.Phase) {
+        switch phase {
+        case .succeeded:
+            inRetrialPhase = false
+        case .failed:
+            inRetrialPhase = true
+        case .selected, .presented:
+            break
+        }
+    }
+
+    func params() -> [Analytics.SubmissionEvent.Param: Any] {
+        return [.retry: inRetrialPhase ? 1 : 0]
     }
 }

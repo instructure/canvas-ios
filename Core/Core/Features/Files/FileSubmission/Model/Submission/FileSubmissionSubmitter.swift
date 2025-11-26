@@ -27,7 +27,7 @@ public class FileSubmissionSubmitter {
     private let api: API
     private let context: NSManagedObjectContext
     private var subscriptions = Set<AnyCancellable>()
-    private let submissionState = CreateSubmissionState()
+    private let submissionRetrialState = SubmissionRetrialState()
 
     public init(api: API, context: NSManagedObjectContext) {
         self.api = api
@@ -72,7 +72,7 @@ public class FileSubmissionSubmitter {
                 body: .init(submission: requestedSubmission)
             )
 
-            submissionState.validate(for: request)
+            submissionRetrialState.validate(for: request)
             API(self.api.loginSession, baseURL: baseURL)
                 .makeRequest(request) { [weak self] response, _, error in
                     guard let self else { return }
@@ -96,20 +96,20 @@ public class FileSubmissionSubmitter {
     }
 
     private func logAnalyticsEvent(isSuccessful: Bool, error: Error? = nil) {
-        var eventParams = submissionState.params()
+        var eventParams = submissionRetrialState.params()
 
         if let error {
             eventParams.merge([.error: error.localizedDescription], uniquingKeysWith: { $1 })
         }
 
+        let phase: Analytics.SubmissionEvent.Phase = isSuccessful ? .succeeded : .failed
+
         Analytics.shared.logSubmission(
-            .phase(isSuccessful ? .succeeded : .failed, .fileUpload, nil),
+            .phase(phase, .fileUpload, nil),
             additionalParams: eventParams
         )
 
-        if !isSuccessful {
-            submissionState.reportFailure()
-        }
+        submissionRetrialState.report(phase)
     }
 
     private func handleResponse(_ response: APISubmission?, error: Error?, fileSubmissionID: NSManagedObjectID, promise: @escaping Future<APISubmission, FileSubmissionErrors.Submission>.Promise) {
