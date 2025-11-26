@@ -176,11 +176,14 @@ class StudentAssignmentDetailsViewControllerTests: StudentTestCase {
 
     func testUpdateGradeCellWorkflowStateUnsubmitted() {
         mockCourse()
-        let a = APIAssignment.make( submission: .make(
-        grade: "10",
-        score: 10,
-        submission_type: .online_text_entry,
-        workflow_state: .unsubmitted))
+        let a = APIAssignment.make(
+            submission: .make(
+                grade: "10",
+                score: 10,
+                submission_type: .online_text_entry,
+                submitted_at: nil
+            )
+        )
         api.mock(viewController.presenter!.assignments, value: a)
 
         load()
@@ -426,6 +429,7 @@ class StudentAssignmentDetailsViewControllerTests: StudentTestCase {
                 grade: nil,
                 score: nil,
                 submission_type: nil,
+                submitted_at: nil,
                 workflow_state: .graded
             )
         )
