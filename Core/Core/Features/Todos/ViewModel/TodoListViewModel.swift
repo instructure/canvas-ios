@@ -91,7 +91,10 @@ class TodoListViewModel: ObservableObject {
     }
 
     func didTapItem(_ item: TodoItemViewModel, _ viewController: WeakViewController) {
-        guard item.isTappable else { return }
+        guard item.isTappable else {
+            snackBar.showSnack(String(localized: "No additional details available.", bundle: .core))
+            return
+        }
 
         switch item.type {
         case .planner_note:

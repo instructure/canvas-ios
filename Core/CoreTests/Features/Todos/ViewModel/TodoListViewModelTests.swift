@@ -257,6 +257,29 @@ class TodoListViewModelTests: CoreTestCase {
         XCTAssertFalse(router.lastRoutedTo("https://canvas.instructure.com/accounts/1/assignments/123?origin=todo"))
     }
 
+    func test_didTapItem_withNonTappableItem_showsSnackBar() {
+        // Given
+        let todo = TodoItemViewModel(
+            plannableId: "123",
+            type: .assignment,
+            date: Date(),
+            title: "Account level assignment",
+            subtitle: nil,
+            contextName: "Account",
+            htmlURL: URL(string: "https://canvas.instructure.com/accounts/1/assignments/123"),
+            color: .red,
+            icon: .assignmentLine,
+            isTappable: false
+        )
+        interactor.todoGroups.send([TodoGroupViewModel(date: Date(), items: [todo])])
+
+        // When
+        testee.didTapItem(todo, WeakViewController())
+
+        // Then
+        XCTAssertEqual(testee.snackBar.visibleSnack, "No additional details available.")
+    }
+
     // MARK: - State Management
 
     func test_state_updatesBasedOnRefreshResults() {
