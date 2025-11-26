@@ -23,8 +23,9 @@ import CombineSchedulers
 import SwiftUI
 
 class TodoListViewModel: ObservableObject {
-    @Published var items: [TodoGroupViewModel] = []
-    @Published var state: InstUI.ScreenState = .loading
+    @Published private(set) var items: [TodoGroupViewModel] = []
+    @Published private(set) var state: InstUI.ScreenState = .loading
+    @Published private(set) var filterIcon: Image = .filterLine
     let screenConfig = InstUI.BaseScreenConfig(
         emptyPandaConfig: .init(
             scene: VacationPanda(),
@@ -38,6 +39,10 @@ class TodoListViewModel: ObservableObject {
 
     private let interactor: TodoInteractor
     private let router: Router
+    private let sessionDefaults: SessionDefaults
+    private var filterOptions: TodoFilterOptions {
+        sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
+    }
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
     /// Tracks cancellable timers for items in the done state waiting to be removed
@@ -48,35 +53,46 @@ class TodoListViewModel: ObservableObject {
     init(
         interactor: TodoInteractor,
         router: Router,
+        sessionDefaults: SessionDefaults,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
         self.router = router
+        self.sessionDefaults = sessionDefaults
         self.scheduler = scheduler
 
         interactor.todoGroups
-            .assign(to: \.items, on: self, ownership: .weak)
+            .dropFirst() // Skip the initial value to avoid overwriting the loading state
+            .receive(on: scheduler)
+            .sink { [weak self] todos in
+                self?.items = todos
+                self?.state = todos.isEmpty ? .empty : .data
+            }
             .store(in: &subscriptions)
 
-        refresh(completion: { }, ignoreCache: false)
+        setupRefreshOnAppForegroundEvent()
+
+        updateFilterIcon()
+        refresh(ignoreCache: false)
     }
 
     // MARK: - User Actions
 
-    func refresh(completion: @escaping () -> Void, ignoreCache: Bool) {
+    func refresh(ignoreCache: Bool, completion: (() -> Void)? = nil) {
         interactor.refresh(ignoreCache: ignoreCache)
+            .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] _ in
                 self?.state = .error
-                completion()
-            } receiveValue: { [weak self] _ in
-                let isListEmpty = self?.items.isEmpty == true
-                self?.state = isListEmpty ? .empty : .data
-                completion()
+                completion?()
+            } receiveValue: { _ in
+                completion?()
             }
             .store(in: &subscriptions)
     }
 
     func didTapItem(_ item: TodoItemViewModel, _ viewController: WeakViewController) {
+        guard item.isTappable else { return }
+
         switch item.type {
         case .planner_note:
             let vc = PlannerAssembly.makeToDoDetailsViewController(plannableId: item.plannableId)
@@ -94,6 +110,19 @@ class TodoListViewModel: ObservableObject {
 
     func openProfile(_ viewController: WeakViewController) {
         router.route(to: "/profile", from: viewController, options: .modal())
+    }
+
+    func openFilter(_ viewController: WeakViewController) {
+        let filterVC = TodoAssembly.makeTodoFilterViewController(
+            sessionDefaults: sessionDefaults,
+            onFiltersChanged: handleFiltersChanged
+        )
+        router.show(filterVC, from: viewController, options: .modal(embedInNav: true, addDoneButton: false))
+    }
+
+    func handleFiltersChanged() {
+        updateFilterIcon()
+        checkCacheAndRefresh()
     }
 
     func didTapDayHeader(_ group: TodoGroupViewModel, viewController: WeakViewController) {
@@ -119,9 +148,78 @@ class TodoListViewModel: ObservableObject {
         }
     }
 
-    /// The item is immediately removed from the list before the network request completes,
-    /// providing instant feedback. If the request fails, the item is restored to its original position.
-    func markItemAsDoneWithOptimisticUI(_ item: TodoItemViewModel) {
+    /// Cancels any pending auto-removal timer immediately when swipe is committed.
+    /// This is called before the animation delay to prevent the cell getting removed while the swipe animation is being finished for undo action.
+    func handleSwipeCommitted(_ item: TodoItemViewModel) {
+        cancelDelayedRemove(for: item)
+    }
+
+    /// Performs the mark as done/undone action after the swipe animation completes.
+    /// Timer cancellation happens earlier in handleSwipeCommitted to avoid race conditions.
+    func handleSwipeAction(_ item: TodoItemViewModel) {
+        if item.shouldToggleInPlaceAfterSwipe {
+            toggleItemStateInPlace(item)
+        } else {
+            removeItemWithOptimisticUI(item)
+        }
+    }
+
+    // MARK: - Private Methods -
+    // MARK: Refresh
+
+    private func setupRefreshOnAppForegroundEvent() {
+        NotificationCenter.default
+            .publisher(for: UIApplication.willEnterForegroundNotification)
+            .sink { [weak self] _ in
+                self?.checkCacheAndRefresh()
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func checkCacheAndRefresh() {
+        interactor.isCacheExpired()
+            .receive(on: scheduler)
+            .sink { [weak self] cacheExpired in
+                guard let self else { return }
+
+                if cacheExpired {
+                    self.state = .loading
+                }
+
+                self.refresh(ignoreCache: false)
+            }
+            .store(in: &subscriptions)
+    }
+
+    // MARK: Swipe Gesture
+
+    private func toggleItemStateInPlace(_ item: TodoItemViewModel) {
+        let isCurrentlyDone = item.markAsDoneState == .done
+        item.markAsDoneState = .loading
+
+        interactor.markItemAsDone(item, done: !isCurrentlyDone)
+            .receive(on: scheduler)
+            .sinkFailureOrValue { [weak self, weak item] _ in
+                guard let item else { return }
+                item.markAsDoneState = isCurrentlyDone ? .done : .notDone
+                self?.snackBar.showSnack(String(localized: "Failed to update item", bundle: .core))
+            } receiveValue: { [weak item] overrideId in
+                guard let item else { return }
+                item.overrideId = overrideId
+                item.markAsDoneState = isCurrentlyDone ? .notDone : .done
+
+                if isCurrentlyDone {
+                    TabBarBadgeCounts.todoListCount += 1
+                } else {
+                    if TabBarBadgeCounts.todoListCount > 0 {
+                        TabBarBadgeCounts.todoListCount -= 1
+                    }
+                }
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func removeItemWithOptimisticUI(_ item: TodoItemViewModel) {
         optimisticallyRemovedIds.insert(item.plannableId)
 
         withAnimation {
@@ -130,6 +228,10 @@ class TodoListViewModel: ObservableObject {
 
         let itemId = item.plannableId
 
+        if TabBarBadgeCounts.todoListCount > 0 {
+            TabBarBadgeCounts.todoListCount -= 1
+        }
+
         interactor.markItemAsDone(item, done: true)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] _ in
@@ -137,18 +239,28 @@ class TodoListViewModel: ObservableObject {
                 self.restoreItem(withId: itemId)
                 self.optimisticallyRemovedIds.remove(itemId)
                 self.snackBar.showSnack(String(localized: "Failed to mark item as done", bundle: .core))
-            } receiveValue: { [weak self] _ in
-                guard let self else { return }
+            } receiveValue: { [weak self, weak item] overrideId in
+                guard let self, let item else { return }
+                item.overrideId = overrideId
+                item.markAsDoneState = .done
                 self.optimisticallyRemovedIds.remove(itemId)
-
-                if TabBarBadgeCounts.todoListCount > 0 {
-                    TabBarBadgeCounts.todoListCount -= 1
-                }
             }
             .store(in: &subscriptions)
     }
 
-    // MARK: - Private Methods
+    // MARK: List Management
+
+    private func removeItem(_ item: TodoItemViewModel) {
+        items = items.compactMap { group in
+            let filteredItems = group.items.filter { $0.plannableId != item.plannableId }
+            guard !filteredItems.isEmpty else { return nil }
+            return TodoGroupViewModel(date: group.date, items: filteredItems)
+        }
+
+        if items.isEmpty {
+            state = .empty
+        }
+    }
 
     private func restoreItem(withId itemId: String) {
         guard let itemToRestore = interactor.todoGroups.value
@@ -158,6 +270,8 @@ class TodoListViewModel: ObservableObject {
         }
         // We need to reset the view's ID otherwise the previous state of the cell (swiped left) will be restored.
         itemToRestore.resetViewIdentity()
+        itemToRestore.markAsDoneState = .notDone
+        TabBarBadgeCounts.todoListCount += 1
 
         withAnimation {
             var updatedItems = items
@@ -183,6 +297,8 @@ class TodoListViewModel: ObservableObject {
         }
     }
 
+    // MARK: Checkbox Button Actions
+
     private func performMarkAsDone(_ item: TodoItemViewModel) {
         cancelDelayedRemove(for: item)
         item.markAsDoneState = .loading
@@ -192,8 +308,9 @@ class TodoListViewModel: ObservableObject {
             .sinkFailureOrValue { [weak self, weak item] error in
                 guard let item else { return }
                 self?.handleMarkAsDoneError(item, error)
-            } receiveValue: { [weak self, weak item] _ in
+            } receiveValue: { [weak self, weak item] overrideId in
                 guard let self, let item else { return }
+                item.overrideId = overrideId
                 self.handleMarkAsDoneSuccess(item)
             }
             .store(in: &subscriptions)
@@ -208,8 +325,9 @@ class TodoListViewModel: ObservableObject {
             .sinkFailureOrValue { [weak self, weak item] error in
                 guard let item else { return }
                 self?.handleMarkAsUndoneError(item, error)
-            } receiveValue: { [weak item] _ in
+            } receiveValue: { [weak item] overrideId in
                 guard let item else { return }
+                item.overrideId = overrideId
                 item.markAsDoneState = .notDone
                 TabBarBadgeCounts.todoListCount += 1
 
@@ -235,6 +353,17 @@ class TodoListViewModel: ObservableObject {
             TabBarBadgeCounts.todoListCount -= 1
         }
 
+        let announcement = String(
+            localized: "\(item.title), marked as done",
+            bundle: .core,
+            comment: "VoiceOver announcement when a to-do item is marked as complete. The item title is inserted before the status message."
+        )
+        UIAccessibility.announce(announcement)
+
+        let shouldKeepCompletedItemsVisible = filterOptions.visibilityOptions.contains(.showCompleted)
+
+        if shouldKeepCompletedItemsVisible { return }
+
         let timer = Just(())
             .delay(for: .seconds(Self.autoRemovalDelay), scheduler: scheduler)
             .sink { [weak self] in
@@ -257,22 +386,9 @@ class TodoListViewModel: ObservableObject {
         snackBar.showSnack(String(localized: "Failed to mark item as not done", bundle: .core))
     }
 
-    private func removeItem(_ item: TodoItemViewModel) {
-        items = items.compactMap { group in
-            let filteredItems = group.items.filter { $0.plannableId != item.plannableId }
-            guard !filteredItems.isEmpty else { return nil }
-            return TodoGroupViewModel(date: group.date, items: filteredItems)
-        }
+    // MARK: Filter Updates
 
-        if items.isEmpty {
-            state = .empty
-        }
-
-        let announcement = String(
-            localized: "\(item.title), marked as done",
-            bundle: .core,
-            comment: "VoiceOver announcement when a to-do item is marked as complete. The item title is inserted before the status message."
-        )
-        UIAccessibility.announce(announcement)
+    private func updateFilterIcon() {
+        filterIcon = filterOptions.isDefault ? .filterLine : .filterSolid
     }
 }

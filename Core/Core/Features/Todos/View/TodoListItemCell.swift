@@ -24,21 +24,30 @@ struct TodoListItemCell: View {
 
     @ObservedObject var item: TodoItemViewModel
     @Binding var isSwiping: Bool
+    let swipeCompletionBehavior: InstUI.SwipeCompletionBehavior
+    let swipeEnabled: Bool
     let onTap: (_ item: TodoItemViewModel, _ viewController: WeakViewController) -> Void
     let onMarkAsDone: (_ item: TodoItemViewModel) -> Void
-    let onSwipeMarkAsDone: (_ item: TodoItemViewModel) -> Void
+    let onSwipe: (_ item: TodoItemViewModel) -> Void
+    let onSwipeCommitted: ((_ item: TodoItemViewModel) -> Void)?
 
     init(
         item: TodoItemViewModel,
+        swipeCompletionBehavior: InstUI.SwipeCompletionBehavior,
+        swipeEnabled: Bool = true,
         onTap: @escaping (TodoItemViewModel, WeakViewController) -> Void,
         onMarkAsDone: @escaping (TodoItemViewModel) -> Void,
-        onSwipeMarkAsDone: @escaping (TodoItemViewModel) -> Void,
+        onSwipe: @escaping (TodoItemViewModel) -> Void,
+        onSwipeCommitted: ((TodoItemViewModel) -> Void)? = nil,
         isSwiping: Binding<Bool> = .constant(false)
     ) {
         self.item = item
+        self.swipeCompletionBehavior = swipeCompletionBehavior
+        self.swipeEnabled = swipeEnabled
         self.onTap = onTap
         self.onMarkAsDone = onMarkAsDone
-        self.onSwipeMarkAsDone = onSwipeMarkAsDone
+        self.onSwipe = onSwipe
+        self.onSwipeCommitted = onSwipeCommitted
         self._isSwiping = isSwiping
     }
 
@@ -67,19 +76,22 @@ struct TodoListItemCell: View {
                 }
             }
         }
-        .swipeToRemove(
-            backgroundColor: .backgroundSuccess,
+        .swipeAction(
+            backgroundColor: item.swipeBackgroundColor,
+            completionBehavior: swipeCompletionBehavior,
             isSwiping: $isSwiping,
-            onSwipe: { onSwipeMarkAsDone(item) },
+            isEnabled: swipeEnabled,
+            onSwipeCommitted: { onSwipeCommitted?(item) },
+            onSwipe: { onSwipe(item) },
             label: { swipeActionView }
         )
     }
 
     private var swipeActionView: some View {
         HStack(spacing: 12) {
-            Text("Done", bundle: .core)
+            Text(item.swipeActionText)
                 .font(.semibold16, lineHeight: .fit)
-            Image.checkLine
+            item.swipeActionIcon
                 .scaledIcon(size: 24)
         }
         .paddingStyle(.horizontal, .standard)
@@ -116,15 +128,17 @@ struct TodoListItemCell: View {
     VStack(spacing: 0) {
         TodoListItemCell(
             item: .makeShortText(),
+            swipeCompletionBehavior: .reset,
             onTap: { _, _ in },
             onMarkAsDone: { _ in },
-            onSwipeMarkAsDone: { _ in }
+            onSwipe: { _ in }
         )
         TodoListItemCell(
             item: .makeLongText(),
+            swipeCompletionBehavior: .reset,
             onTap: { _, _ in },
             onMarkAsDone: { _ in },
-            onSwipeMarkAsDone: { _ in }
+            onSwipe: { _ in }
         )
     }
     .background(Color.backgroundLightest)

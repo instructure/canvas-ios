@@ -35,7 +35,8 @@ class TodoInteractorLiveTests: CoreTestCase {
         environment.currentSession = LoginSession.make(userID: "1")
         mockAnalyticsHandler = MockAnalyticsHandler()
         Analytics.shared.handler = mockAnalyticsHandler
-        testee = TodoInteractorLive(env: environment)
+        let sessionDefaults = SessionDefaults(sessionID: "test")
+        testee = TodoInteractorLive(env: environment, sessionDefaults: sessionDefaults)
     }
 
     override func tearDown() {
@@ -67,7 +68,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // When
         mockCourses(courses)
-        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1", "2"]))
+        mockPlannables(plannables)
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
@@ -90,7 +91,7 @@ class TodoInteractorLiveTests: CoreTestCase {
     func testRefreshWithNoCourses() {
         // When
         mockCourses([])
-        mockPlannables([], contextCodes: makeUserContextCodes())
+        mockPlannables([])
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
@@ -111,10 +112,10 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // When
         mockCourses(courses)
-        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]))
+        mockPlannables(plannables)
 
         // Then
-        XCTAssertFinish(testee.refresh(ignoreCache: false))
+        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
         XCTAssertFirstValue(testee.todoGroups) { todoGroups in
             XCTAssertEqual(todoGroups.count, 1)
             XCTAssertEqual(todoGroups.first?.items.count, 1)
@@ -126,6 +127,8 @@ class TodoInteractorLiveTests: CoreTestCase {
         // Given
         let courses = [makeCourse(id: "1", name: "Course 1")]
         let plannables = [makePlannable(courseId: "1", plannableId: "p1", type: "assignment", title: "Assignment 1")]
+        let expectedStartDate = TodoDateRangeStart.fourWeeksAgo.startDate()
+        let expectedEndDate = TodoDateRangeEnd.inFourWeeks.endDate()
 
         let coursesAPICallExpectation = expectation(description: "Courses API called")
         coursesAPICallExpectation.expectedFulfillmentCount = 2
@@ -137,9 +140,9 @@ class TodoInteractorLiveTests: CoreTestCase {
         api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), expectation: coursesAPICallExpectation, value: courses)
         api.mock(GetPlannablesRequest(
             userID: nil,
-            startDate: Clock.now.addDays(-28),
-            endDate: Clock.now.addDays(28),
-            contextCodes: makeContextCodes(courseIds: ["1"])
+            startDate: expectedStartDate,
+            endDate: expectedEndDate,
+            contextCodes: []
         ), expectation: plannablesAPICallExpectation, value: plannables)
 
         // Then - First call with ignoreCache: false
@@ -165,7 +168,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // When
         mockCourses(courses)
-        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]))
+        mockPlannables(plannables)
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
@@ -190,12 +193,12 @@ class TodoInteractorLiveTests: CoreTestCase {
         // Given
         let courses = [makeCourse(id: "1", name: "Course 1")]
         let plannables = [makePlannable(courseId: "1", plannableId: "p1", type: "assignment", title: "Assignment 1")]
-        let expectedStartDate = Clock.now.addDays(-28)
-        let expectedEndDate = Clock.now.addDays(28)
+        let expectedStartDate = TodoDateRangeStart.fourWeeksAgo.startDate()
+        let expectedEndDate = TodoDateRangeEnd.inFourWeeks.endDate()
 
         // When
         mockCourses(courses)
-        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]), startDate: expectedStartDate, endDate: expectedEndDate)
+        mockPlannables(plannables, startDate: expectedStartDate, endDate: expectedEndDate)
 
         // Then
         XCTAssertFinish(testee.refresh(ignoreCache: false))
@@ -216,7 +219,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // When
         mockCourses(courses)
-        mockPlannables(plannables, contextCodes: makeContextCodes(courseIds: ["1"]))
+        mockPlannables(plannables)
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
 
         // Then
@@ -230,6 +233,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         let plannable = Plannable.save(
             APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
@@ -249,14 +253,12 @@ class TodoInteractorLiveTests: CoreTestCase {
         )
         api.mock(createRequest, value: mockResponse)
 
-        // When
-        XCTAssertFinish(testee.markItemAsDone(item, done: true))
+        // When & Then
+        XCTAssertSingleOutputEqualsAndFinish(testee.markItemAsDone(item, done: true), "override-456")
 
-        // Then
         databaseClient.refresh()
         XCTAssertEqual(plannable.isMarkedComplete, true)
         XCTAssertEqual(plannable.plannerOverrideId, "override-456")
-        XCTAssertEqual(item.overrideId, "override-456")
     }
 
     func testMarkItemAsDone_updatesExistingOverride_whenOverrideExists() {
@@ -268,6 +270,7 @@ class TodoInteractorLiveTests: CoreTestCase {
                 plannable_type: "assignment"
             ),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
@@ -283,14 +286,12 @@ class TodoInteractorLiveTests: CoreTestCase {
             marked_complete: false
         ))
 
-        // When
-        XCTAssertFinish(testee.markItemAsDone(item, done: false))
+        // When & Then
+        XCTAssertSingleOutputEqualsAndFinish(testee.markItemAsDone(item, done: false), "override-123")
 
-        // Then
         databaseClient.refresh()
         XCTAssertEqual(plannable.isMarkedComplete, false)
         XCTAssertEqual(plannable.plannerOverrideId, "override-123")
-        XCTAssertEqual(item.overrideId, "override-123")
     }
 
     func testMarkItemAsDone_handlesError_whenAPICallFails() {
@@ -298,6 +299,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         let plannable = Plannable.save(
             APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
@@ -316,7 +318,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // Then
         databaseClient.refresh()
-        XCTAssertEqual(plannable.isMarkedComplete, false)
+        XCTAssertNil(plannable.isMarkedComplete)
         XCTAssertNil(plannable.plannerOverrideId)
         XCTAssertNil(item.overrideId)
     }
@@ -326,6 +328,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         let plannable = Plannable.save(
             APIPlannable.make(plannable_id: ID("123"), plannable_type: "quiz"),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
@@ -346,11 +349,8 @@ class TodoInteractorLiveTests: CoreTestCase {
         )
         api.mock(createRequest, value: mockResponse)
 
-        // When
-        XCTAssertFinish(testee.markItemAsDone(item, done: true))
-
-        // Then
-        XCTAssertEqual(item.overrideId, "new-override-789")
+        // When & Then
+        XCTAssertSingleOutputEqualsAndFinish(testee.markItemAsDone(item, done: true), "new-override-789")
     }
 
     func testMarkItemAsDone_marksItemAsDone_withDoneTrue() {
@@ -358,10 +358,11 @@ class TodoInteractorLiveTests: CoreTestCase {
         let plannable = Plannable.save(
             APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
-        XCTAssertFalse(plannable.isMarkedComplete)
+        XCTAssertNil(plannable.isMarkedComplete)
 
         let createRequest = CreatePlannerOverrideRequest(
             body: .init(
@@ -377,7 +378,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // Then
         databaseClient.refresh()
-        XCTAssertTrue(plannable.isMarkedComplete)
+        XCTAssertEqual(plannable.isMarkedComplete, true)
     }
 
     func testMarkItemAsDone_marksItemAsUndone_withDoneFalse() {
@@ -389,10 +390,11 @@ class TodoInteractorLiveTests: CoreTestCase {
                 plannable_type: "assignment"
             ),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
-        XCTAssertTrue(plannable.isMarkedComplete)
+        XCTAssertEqual(plannable.isMarkedComplete, true)
 
         let updateRequest = UpdatePlannerOverrideRequest(
             overrideId: "override-123",
@@ -410,7 +412,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
         // Then
         databaseClient.refresh()
-        XCTAssertFalse(plannable.isMarkedComplete)
+        XCTAssertEqual(plannable.isMarkedComplete, false)
     }
 
     // MARK: - Analytics Tests
@@ -420,6 +422,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         let plannable = Plannable.save(
             APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
@@ -449,6 +452,7 @@ class TodoInteractorLiveTests: CoreTestCase {
                 plannable_type: "assignment"
             ),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
@@ -476,6 +480,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         let plannable = Plannable.save(
             APIPlannable.make(plannable_id: ID("123"), plannable_type: "assignment"),
             userId: nil,
+            useCase: .todo,
             in: databaseClient
         )
         let item = TodoItemViewModel(plannable)!
@@ -496,27 +501,38 @@ class TodoInteractorLiveTests: CoreTestCase {
         XCTAssertNil(mockAnalyticsHandler.lastEvent)
     }
 
+    func test_refresh_logsFilterAnalytics() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let plannables = [makePlannable(courseId: "1", plannableId: "p1", type: "assignment", title: "Assignment 1")]
+
+        // WHEN
+        mockCourses(courses)
+        mockPlannables(plannables)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
+
+        // THEN
+        XCTAssertNotNil(mockAnalyticsHandler.lastEvent)
+        XCTAssertTrue(mockAnalyticsHandler.lastEvent == "todo_list_loaded_default_filter" || mockAnalyticsHandler.lastEvent == "todo_list_loaded_custom_filter")
+        XCTAssertNotNil(mockAnalyticsHandler.lastEventParameters)
+    }
+
     // MARK: - Helpers
 
     private func mockCourses(_ courses: [APICourse]) {
         api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), value: courses)
     }
 
-    private func mockPlannables(_ plannables: [APIPlannable], contextCodes: [String]) {
-        api.mock(GetPlannablesRequest(
-            userID: nil,
-            startDate: Clock.now.addDays(-28),
-            endDate: Clock.now.addDays(28),
-            contextCodes: contextCodes
-        ), value: plannables)
-    }
-
-    private func mockPlannables(_ plannables: [APIPlannable], contextCodes: [String], startDate: Date, endDate: Date) {
+    private func mockPlannables(
+        _ plannables: [APIPlannable],
+        startDate: Date = TodoDateRangeStart.fourWeeksAgo.startDate(),
+        endDate: Date = TodoDateRangeEnd.inFourWeeks.endDate()
+    ) {
         api.mock(GetPlannablesRequest(
             userID: nil,
             startDate: startDate,
             endDate: endDate,
-            contextCodes: contextCodes
+            contextCodes: []
         ), value: plannables)
     }
 
@@ -540,15 +556,4 @@ class TodoInteractorLiveTests: CoreTestCase {
         )
     }
 
-    private func makeUserContextCodes() -> [String] {
-        ["user_1"]
-    }
-
-    private func makeCourseContextCodes(_ courseIds: [String]) -> [String] {
-        courseIds.map { "course_\($0)" }
-    }
-
-    private func makeContextCodes(courseIds: [String]) -> [String] {
-        makeCourseContextCodes(courseIds) + makeUserContextCodes()
-    }
 }

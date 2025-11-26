@@ -68,7 +68,7 @@ class PlannableTests: CoreTestCase {
         XCTAssertEqual(plannable.userID, "another userId")
         XCTAssertEqual(plannable.discussionCheckpointStep, .requiredReplies(42))
         XCTAssertNil(plannable.plannerOverrideId)
-        XCTAssertFalse(plannable.isMarkedComplete)
+        XCTAssertNil(plannable.isMarkedComplete)
         XCTAssertFalse(plannable.isSubmitted)
     }
 
@@ -81,7 +81,7 @@ class PlannableTests: CoreTestCase {
         let plannable = Plannable.save(apiPlannable, userId: nil, in: databaseClient)
 
         XCTAssertEqual(plannable.plannerOverrideId, "override-123")
-        XCTAssertTrue(plannable.isMarkedComplete)
+        XCTAssertEqual(plannable.isMarkedComplete, true)
     }
 
     func testSaveAPIPlannableWithSubmitted() {
@@ -93,6 +93,93 @@ class PlannableTests: CoreTestCase {
         let plannable = Plannable.save(apiPlannable, userId: nil, in: databaseClient)
 
         XCTAssertTrue(plannable.isSubmitted)
+    }
+
+    func testSaveAPIPlannable_savesAllDayAndEndAt() {
+        // GIVEN
+        let startDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+        let endDate = Date.make(year: 2025, month: 9, day: 30, hour: 16, minute: 0)
+        let apiPlannable = APIPlannable.make(
+            plannable: .make(
+                title: "Test Event",
+                all_day: true,
+                start_at: startDate,
+                end_at: endDate
+            ),
+            plannable_date: startDate
+        )
+
+        // WHEN
+        let plannable = Plannable.save(apiPlannable, userId: nil, in: databaseClient)
+
+        // THEN
+        XCTAssertTrue(plannable.isAllDay)
+        XCTAssertEqual(plannable.endAt, endDate)
+    }
+
+    func testSaveAPIPlannable_savesAllDayFalse_whenNilInAPI() {
+        // GIVEN
+        let startDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+        let apiPlannable = APIPlannable.make(
+            plannable: .make(
+                title: "Test Event",
+                all_day: nil,
+                start_at: startDate,
+                end_at: nil
+            ),
+            plannable_date: startDate
+        )
+
+        // WHEN
+        let plannable = Plannable.save(apiPlannable, userId: nil, in: databaseClient)
+
+        // THEN
+        XCTAssertFalse(plannable.isAllDay)
+        XCTAssertNil(plannable.endAt)
+    }
+
+    func testSaveAPICalendarEvent_savesAllDayAndEndAt() {
+        // GIVEN
+        let startDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+        let endDate = Date.make(year: 2025, month: 9, day: 30, hour: 16, minute: 0)
+        let apiCalendarEvent = APICalendarEvent.make(
+            id: "event-123",
+            title: "Calendar Event",
+            start_at: startDate,
+            end_at: endDate,
+            all_day: true,
+            type: .event,
+            context_code: "course_123"
+        )
+
+        // WHEN
+        let plannable = Plannable.save(apiCalendarEvent, userId: nil, in: databaseClient)
+
+        // THEN
+        XCTAssertTrue(plannable.isAllDay)
+        XCTAssertEqual(plannable.endAt, endDate)
+        XCTAssertEqual(plannable.date, startDate)
+    }
+
+    func testSaveAPICalendarEvent_savesAllDayFalse() {
+        // GIVEN
+        let startDate = Date.make(year: 2025, month: 9, day: 30, hour: 14, minute: 30)
+        let apiCalendarEvent = APICalendarEvent.make(
+            id: "event-123",
+            title: "Calendar Event",
+            start_at: startDate,
+            end_at: nil,
+            all_day: false,
+            type: .event,
+            context_code: "course_123"
+        )
+
+        // WHEN
+        let plannable = Plannable.save(apiCalendarEvent, userId: nil, in: databaseClient)
+
+        // THEN
+        XCTAssertFalse(plannable.isAllDay)
+        XCTAssertNil(plannable.endAt)
     }
 
     func testSaveAPIPlannerNote() {
@@ -255,5 +342,49 @@ class PlannableTests: CoreTestCase {
         testee = Plannable.make(from: .make(plannable_type: "planner_note", context_name: TestConstants.contextName))
         XCTAssertEqual(testee.contextName, TestConstants.contextName)
         XCTAssertEqual(testee.contextNameUserFacing, TestConstants.contextName + " To-do")
+    }
+
+    func testIsCompleted_returnsUserOverride_whenPresent() {
+        let plannableMarkedComplete = APIPlannable.make(
+            planner_override: .make(marked_complete: true),
+            plannable_id: ID("1"),
+            submissions: .make(submitted: false)
+        )
+        let plannable1 = Plannable.save(plannableMarkedComplete, userId: nil, in: databaseClient)
+        XCTAssertTrue(plannable1.isCompleted)
+
+        let plannableMarkedIncomplete = APIPlannable.make(
+            planner_override: .make(marked_complete: false),
+            plannable_id: ID("2"),
+            submissions: .make(submitted: true)
+        )
+        let plannable2 = Plannable.save(plannableMarkedIncomplete, userId: nil, in: databaseClient)
+        XCTAssertFalse(plannable2.isCompleted)
+    }
+
+    func testIsCompleted_returnsSubmissionStatus_whenNoUserOverride() {
+        let submittedPlannable = APIPlannable.make(
+            plannable_id: ID("1"),
+            submissions: .make(submitted: true)
+        )
+        let plannable1 = Plannable.save(submittedPlannable, userId: nil, in: databaseClient)
+        XCTAssertTrue(plannable1.isCompleted)
+
+        let notSubmittedPlannable = APIPlannable.make(
+            plannable_id: ID("2"),
+            submissions: .make(submitted: false)
+        )
+        let plannable2 = Plannable.save(notSubmittedPlannable, userId: nil, in: databaseClient)
+        XCTAssertFalse(plannable2.isCompleted)
+    }
+
+    func testIsCompleted_userOverrideTakesPrecedence() {
+        let plannable = APIPlannable.make(
+            planner_override: .make(marked_complete: true),
+            plannable_id: ID("1"),
+            submissions: .make(submitted: false)
+        )
+        let saved = Plannable.save(plannable, userId: nil, in: databaseClient)
+        XCTAssertTrue(saved.isCompleted)
     }
 }

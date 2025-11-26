@@ -26,11 +26,15 @@ final class TodoInteractorMock: TodoInteractor {
     var lastIgnoreCache = false
     var refreshResult: Result<Void, Error> = .success(())
 
+    var isCacheExpiredCalled = false
+    var isCacheExpiredCallCount = 0
+    var isCacheExpiredResult = false
+
     var markItemAsDoneCalled = false
     var markItemAsDoneCallCount = 0
     var lastMarkAsDoneItem: TodoItemViewModel?
     var lastMarkAsDoneDone: Bool?
-    var markItemAsDoneResult: Result<Void, Error> = .success(())
+    var markItemAsDoneResult: Result<String, Error> = .success("mock-override-id")
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
         refreshCalled = true
@@ -48,15 +52,21 @@ final class TodoInteractorMock: TodoInteractor {
         }
     }
 
-    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
+    func isCacheExpired() -> AnyPublisher<Bool, Never> {
+        isCacheExpiredCalled = true
+        isCacheExpiredCallCount += 1
+        return Just(isCacheExpiredResult).eraseToAnyPublisher()
+    }
+
+    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<String, Error> {
         markItemAsDoneCalled = true
         markItemAsDoneCallCount += 1
         lastMarkAsDoneItem = item
         lastMarkAsDoneDone = done
 
         switch markItemAsDoneResult {
-        case .success:
-            return Just(())
+        case .success(let overrideId):
+            return Just(overrideId)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         case .failure(let error):
