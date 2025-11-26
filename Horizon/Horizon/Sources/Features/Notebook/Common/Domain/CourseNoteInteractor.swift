@@ -51,7 +51,7 @@ protocol CourseNoteInteractor {
         content: String?,
         labels: [CourseNoteLabel]?,
         highlightData: NotebookHighlight?
-    ) -> AnyPublisher<CourseNotebookNote, NotebookError>
+    ) -> AnyPublisher<CourseNotebookNote, Error>
 }
 
 enum NotebookError: Error {
@@ -63,11 +63,16 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
     // MARK: - Dependencies
 
     private let learnCoursesInteractor: GetLearnCoursesInteractor
+    private let domainService: DomainServiceProtocol
 
     // MARK: - Init
 
-    init(learnCoursesInteractor: GetLearnCoursesInteractor = GetLearnCoursesInteractorLive()) {
+    init(
+        learnCoursesInteractor: GetLearnCoursesInteractor = GetLearnCoursesInteractorLive(),
+        domainService: DomainServiceProtocol = DomainService(.redwood)
+    ) {
         self.learnCoursesInteractor = learnCoursesInteractor
+        self.domainService = domainService
     }
 
     func add(
@@ -110,7 +115,8 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
     func delete(id: String) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: DeleteNotebookNoteUseCase(
-                request: RedwoodDeleteNoteMutation(id: id)
+                request: RedwoodDeleteNoteMutation(id: id),
+                redwood: domainService
             )
         )
         .getEntities()
@@ -177,7 +183,7 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
         content: String?,
         labels: [CourseNoteLabel]?,
         highlightData: NotebookHighlight?
-    ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
+    ) -> AnyPublisher<CourseNotebookNote, Error> {
         ReactiveStore(
             useCase: UpdateNotebookNoteUseCase(
                 updateNoteMutation: RedwoodUpdateNoteMutation(
@@ -185,12 +191,12 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
                     userText: content ?? "",
                     reaction: labels?.map { $0.rawValue } ?? [],
                     highlightData: highlightData
-                )
+                ),
+                redwood: domainService
             )
         )
         .getEntities()
         .compactMap { $0.mapToNoteModel().first }
-        .mapError { _ in NotebookError.unknown }
         .eraseToAnyPublisher()
     }
 
@@ -201,7 +207,7 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
         keepObserving: Bool,
         filter: NotebookQueryFilter
     ) -> AnyPublisher<[CDHNotebookNote], Never> {
-        return ReactiveStore(useCase: GetNotebookNotesUseCase(filter: filter))
+        return ReactiveStore(useCase: GetNotebookNotesUseCase(filter: filter, redwood: domainService))
             .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: keepObserving)
             .replaceError(with: [])
             .eraseToAnyPublisher()

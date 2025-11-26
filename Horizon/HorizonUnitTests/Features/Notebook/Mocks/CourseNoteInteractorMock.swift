@@ -28,6 +28,10 @@ final class CourseNoteInteractorMock: CourseNoteInteractor {
     var shouldFailSet = false
     var shouldFailDelete = false
     var noteToReturn = CourseNotebookNote.example
+    var getAllNotesWithCoursesResult = ListCourseNotebookNoteModel()
+    var lastFilter: NotebookQueryFilter?
+    var lastIgnoreCache: Bool?
+    var lastKeepObserving: Bool?
 
     func getAllNotesWithCourses(
         pageURL: String?,
@@ -35,7 +39,10 @@ final class CourseNoteInteractorMock: CourseNoteInteractor {
         keepObserving: Bool,
         filter: NotebookQueryFilter
     ) -> AnyPublisher<ListCourseNotebookNoteModel, Never> {
-        Just(ListCourseNotebookNoteModel()).eraseToAnyPublisher()
+        lastFilter = filter
+        lastIgnoreCache = ignoreCache
+        lastKeepObserving = keepObserving
+        return Just(getAllNotesWithCoursesResult).eraseToAnyPublisher()
     }
 
     func add(
@@ -88,16 +95,16 @@ final class CourseNoteInteractorMock: CourseNoteInteractor {
         content: String?,
         labels: [CourseNoteLabel]?,
         highlightData: NotebookHighlight?
-    ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
+    ) -> AnyPublisher<CourseNotebookNote, Error> {
         setCallCount += 1
         lastSetParams = (id, content, labels, highlightData)
         if shouldFailSet {
-            return Fail(error: .unableToCreateNote).eraseToAnyPublisher()
+            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
         } else {
             var updatedNote = noteToReturn
             updatedNote.content = content
             updatedNote.labels = labels
-            return Just(updatedNote).setFailureType(to: NotebookError.self).eraseToAnyPublisher()
+            return Just(updatedNote).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
     }
 }
