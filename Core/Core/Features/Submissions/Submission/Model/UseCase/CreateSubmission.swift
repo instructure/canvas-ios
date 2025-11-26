@@ -101,7 +101,7 @@ public class CreateSubmission: APIUseCase {
     ) }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APISubmission?, URLResponse?, Error?) -> Void) {
-        retrialState?.validate(for: request)
+        retrialState?.validateSync(for: request)
 
         environment.api.makeRequest(request) { [weak self, weak environment] response, urlResponse, error in
             guard let self = self else { return }
@@ -124,19 +124,19 @@ public class CreateSubmission: APIUseCase {
 
             let isSuccessful = response != nil && error == nil
 
-            UIAccessibility
-                .announceSubmission(isSuccessful: isSuccessful)
-                .sink {
-                    completionHandler(response, urlResponse, error)
-                }
-                .store(in: &subscriptions)
-
             // Analytics
             logAnalyticsEvent(
                 phase: isSuccessful ? .succeeded : .failed,
                 attempt: response?.attempt,
                 env: environment
             )
+
+            UIAccessibility
+                .announceSubmission(isSuccessful: isSuccessful)
+                .sink {
+                    completionHandler(response, urlResponse, error)
+                }
+                .store(in: &subscriptions)
         }
     }
 
@@ -166,14 +166,18 @@ public class CreateSubmission: APIUseCase {
         })
 
         if let retrialState, phase == .succeeded || phase == .failed {
+            params = params ?? [:]
             params?.merge(retrialState.params(), uniquingKeysWith: { $1 })
         }
 
         if let attempt {
 
+            retrialState?.reportSync(phase)
             Analytics.shared.logSubmission(.phase(phase, phasedType, attempt), additionalParams: params)
 
         } else if let client = env?.database.viewContext {
+
+            retrialState?.reportSync(phase)
 
             // This would mainly be executed on API failure case
             client.perform { [scope, client] in
@@ -186,8 +190,6 @@ public class CreateSubmission: APIUseCase {
                 Analytics.shared.logSubmission(.phase(phase, phasedType, failureAttempt), additionalParams: params)
             }
         }
-
-        retrialState?.report(phase)
     }
 
     private var analyticsPhasedEventType: Analytics.SubmissionEvent.PhasedType? {
@@ -221,7 +223,7 @@ public class SubmissionRetrialState {
         }
     }
 
-    private func validateSync(for anotherRequest: CreateSubmissionRequest) {
+    fileprivate func validateSync(for anotherRequest: CreateSubmissionRequest) {
         guard let request else {
             self.request = anotherRequest
             self.inRetrialPhase = false
@@ -234,7 +236,7 @@ public class SubmissionRetrialState {
         }
     }
 
-    private func reportSync(_ phase: Analytics.SubmissionEvent.Phase) {
+    fileprivate func reportSync(_ phase: Analytics.SubmissionEvent.Phase) {
         switch phase {
         case .succeeded:
             inRetrialPhase = false
