@@ -213,65 +213,24 @@ class TodoFilterOptionsAnalyticsTests: XCTestCase {
 
     // MARK: - TodoDateRangeStart Analytics Value
 
-    func test_dateRangeStart_analyticsValue_today() {
+    func test_dateRangeStart_analyticsValue() {
         // THEN
         XCTAssertEqual(TodoDateRangeStart.today.analyticsValue, "today")
-    }
-
-    func test_dateRangeStart_analyticsValue_thisWeek() {
-        // THEN
         XCTAssertEqual(TodoDateRangeStart.thisWeek.analyticsValue, "this_week")
-    }
-
-    func test_dateRangeStart_analyticsValue_lastWeek() {
-        // THEN
         XCTAssertEqual(TodoDateRangeStart.lastWeek.analyticsValue, "one_week")
-    }
-
-    func test_dateRangeStart_analyticsValue_twoWeeksAgo() {
-        // THEN
         XCTAssertEqual(TodoDateRangeStart.twoWeeksAgo.analyticsValue, "two_weeks")
-    }
-
-    func test_dateRangeStart_analyticsValue_threeWeeksAgo() {
-        // THEN
         XCTAssertEqual(TodoDateRangeStart.threeWeeksAgo.analyticsValue, "three_weeks")
-    }
-
-    func test_dateRangeStart_analyticsValue_fourWeeksAgo() {
-        // THEN
         XCTAssertEqual(TodoDateRangeStart.fourWeeksAgo.analyticsValue, "four_weeks")
     }
 
     // MARK: - TodoDateRangeEnd Analytics Value
 
-    func test_dateRangeEnd_analyticsValue_today() {
-        // THEN
+    func test_dateRangeEnd_analyticsValue() {
         XCTAssertEqual(TodoDateRangeEnd.today.analyticsValue, "today")
-    }
-
-    func test_dateRangeEnd_analyticsValue_thisWeek() {
-        // THEN
         XCTAssertEqual(TodoDateRangeEnd.thisWeek.analyticsValue, "this_week")
-    }
-
-    func test_dateRangeEnd_analyticsValue_nextWeek() {
-        // THEN
         XCTAssertEqual(TodoDateRangeEnd.nextWeek.analyticsValue, "one_week")
-    }
-
-    func test_dateRangeEnd_analyticsValue_inTwoWeeks() {
-        // THEN
         XCTAssertEqual(TodoDateRangeEnd.inTwoWeeks.analyticsValue, "two_weeks")
-    }
-
-    func test_dateRangeEnd_analyticsValue_inThreeWeeks() {
-        // THEN
         XCTAssertEqual(TodoDateRangeEnd.inThreeWeeks.analyticsValue, "three_weeks")
-    }
-
-    func test_dateRangeEnd_analyticsValue_inFourWeeks() {
-        // THEN
         XCTAssertEqual(TodoDateRangeEnd.inFourWeeks.analyticsValue, "four_weeks")
     }
 }

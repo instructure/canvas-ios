@@ -129,7 +129,7 @@ struct TodoListScreen: View {
         .padding(.trailing, -6)
         .identifier("ToDos.filterButton")
         .accessibility(label: Text(
-            "Filter To Do list",
+            "Filter To-do list",
             bundle: .core,
             comment: "Button to open To Do list filter preferences"
         ))

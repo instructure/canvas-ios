@@ -38,10 +38,14 @@ extension View {
     /// - Parameters:
     ///   - backgroundColor: The background color revealed behind the content during the swipe.
     ///   - completionBehavior: Determines what happens after the swipe action completes. Defaults to `.stayOpen`.
-    ///   - isSwiping: Binding that tracks whether a swipe gesture is currently active. Use this to disable scrolling or other gestures while swiping.
+    ///   - isSwiping: Binding that tracks whether a swipe gesture is currently active.
+    ///                Use this to disable scrolling or other gestures while swiping.
     ///   - isEnabled: Whether the swipe gesture is enabled. Defaults to `true`.
-    ///   - onSwipeCommitted: Optional closure called immediately when the swipe action is committed (user releases after reaching threshold) but before animations finish.
-    ///   - onSwipe: Closure called when the swipe action is completed animations included. For `.reset` behavior, this is called after the close animation finishes. For `.stayOpen` behavior, this is called while the open animation is running.
+    ///   - onSwipeCommitted: Optional closure called immediately when the swipe action is committed
+    ///                       (user releases after reaching threshold) but before animations finish.
+    ///   - onSwipe: Closure called when the swipe action is completed animations included.
+    ///              For `.reset` behavior, this is called after the close animation finishes.
+    ///              For `.stayOpen` behavior, this is called while the open animation is running.
     ///   - label: The view displayed in the revealed area during the swipe.
     public func swipeAction<Label: View>(
         backgroundColor: Color,
