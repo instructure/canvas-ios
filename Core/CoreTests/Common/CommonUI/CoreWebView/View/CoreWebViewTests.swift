@@ -403,18 +403,18 @@ class MockNavigationAction: WKNavigationAction {
         return mockType
     }
 
-    let mockSourceFrame: MockFrameInfo?
+    let mockSourceFrame: MockFrameInfo
     let mockTargetFrame: MockFrameInfo?
     init(url: String, type: WKNavigationType, sourceFrame: MockFrameInfo? = nil, targetFrame: MockFrameInfo? = nil) {
         mockRequest = URLRequest(url: URL(string: url)!)
         mockType = type
-        mockSourceFrame = sourceFrame
+        mockSourceFrame = sourceFrame ?? MockFrameInfo(isMainFrame: true)
         mockTargetFrame = targetFrame
         super.init()
     }
 
     override var sourceFrame: WKFrameInfo {
-        mockSourceFrame ?? super.sourceFrame
+        mockSourceFrame
     }
 
     override var targetFrame: WKFrameInfo? {
