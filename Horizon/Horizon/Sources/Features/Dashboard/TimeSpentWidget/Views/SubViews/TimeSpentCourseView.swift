@@ -32,10 +32,10 @@ struct TimeSpentCourseView: View {
             Text(name)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
-                .frame(minHeight: 42)
                 .huiTypography(.buttonTextMedium)
         }
         .padding(.horizontal, .huiSpaces.space16)
+        .padding(.vertical, .huiSpaces.space8)
         .foregroundStyle(
             isSelected
             ? Color.huiColors.surface.pageSecondary

@@ -71,7 +71,7 @@ public class GradeSubmission: APIUseCase {
         model.customGradeStatusId = item.custom_grade_status_id
         model.enteredGrade = item.entered_grade
         model.enteredScore = item.entered_score
-        model.excused = item.excused
+        model.excused = item.excused ?? false
         model.grade = item.grade
         model.gradedAt = item.graded_at
         model.gradeMatchesCurrentSubmission = item.grade_matches_current_submission

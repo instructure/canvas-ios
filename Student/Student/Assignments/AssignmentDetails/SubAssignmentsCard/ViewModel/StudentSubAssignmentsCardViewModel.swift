@@ -33,12 +33,7 @@ struct StudentSubAssignmentsCardViewModel {
                 let subSubmission = submission?.subAssignmentSubmissions
                     .first { $0.subAssignmentTag == checkpoint.tag }
 
-                // This is only needed because `APISubAssignmentSubmission.submitted_at` is currently not populated by backend.
-                // TODO: fallback to `.notSubmitted` and remove optionality once status can be calculated after EVAL-5938
-                var status = subSubmission?.status
-                if status == .notSubmitted {
-                    status = nil
-                }
+                let status = subSubmission?.status ?? .notSubmitted
 
                 var score: String?
                 if let pointsPossible = checkpoint.pointsPossible, status != .excused {
@@ -59,14 +54,14 @@ struct StudentSubAssignmentsCardViewModel {
                         .accessibilityJoined()
                 }
 
-                return .init(
-                id: checkpoint.tag,
-                title: checkpoint.title,
-                submissionStatus: status.map { .init(status: $0) },
-                score: score,
-                scoreA11yLabel: scoreA11yLabel
-            )
-        }
+                return StudentSubAssignmentsCardItem(
+                    id: checkpoint.tag,
+                    title: checkpoint.title,
+                    submissionStatus: .init(status: status),
+                    score: score,
+                    scoreA11yLabel: scoreA11yLabel
+                )
+            }
     }
 }
 

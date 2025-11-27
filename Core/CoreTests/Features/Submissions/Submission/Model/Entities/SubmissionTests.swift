@@ -24,11 +24,6 @@ class SubmissionTests: CoreTestCase {
     func testProperties() {
         let submission = Submission.make()
 
-        submission.excused = nil
-        XCTAssertNil(submission.excused)
-        submission.excused = true
-        XCTAssertEqual(submission.excused, true)
-
         submission.latePolicyStatus = nil
         XCTAssertNil(submission.latePolicyStatus)
         submission.latePolicyStatus = .late

@@ -32,6 +32,7 @@ public extension HorizonUI {
         private let title: String
         private let isFilled: Bool
         private let hasBorder: Bool
+        private let lineLimit: Int?
 
         // MARK: - Init
 
@@ -41,7 +42,8 @@ public extension HorizonUI {
             icon: Image? = nil,
             label: String? = nil,
             isFilled: Bool = true,
-            hasBorder: Bool = false
+            hasBorder: Bool = false,
+            lineLimit: Int? = 1
         ) {
             self.style = style
             self.icon = icon
@@ -49,10 +51,11 @@ public extension HorizonUI {
             self.title = title
             self.isFilled = isFilled
             self.hasBorder = hasBorder
+            self.lineLimit = lineLimit
         }
 
         public var body: some View {
-            HStack(spacing: .huiSpaces.space2) {
+            HStack(alignment: .top, spacing: .huiSpaces.space2) {
                 if let icon = icon {
                     icon
                         .resizable()
@@ -69,6 +72,8 @@ public extension HorizonUI {
                 Text(title)
                     .foregroundStyle(style.foregroundColor(isFilled: isFilled))
                     .huiTypography(.p2)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(lineLimit)
             }
             .padding(.horizontal, isFilled ? .huiSpaces.space8 : .zero)
             .padding(.vertical, .huiSpaces.space2)

@@ -64,8 +64,8 @@ public struct AssignmentFilterOptionStudent: CaseIterable, Equatable {
 
             return submission.subAssignmentSubmissions.contains {
                 // TODO: remove isGraded check in MBL-19323
-                // TODO: also return true for .notSubmitted after EVAL-5938
-                $0.status == .missing && !$0.isGraded
+                let subStatus = $0.status
+                return (subStatus == .missing && !$0.isGraded) || subStatus == .notSubmitted
             }
         }
     )
@@ -91,8 +91,8 @@ public struct AssignmentFilterOptionStudent: CaseIterable, Equatable {
 
             return submission.subAssignmentSubmissions.contains {
                 // TODO: remove isGraded check in MBL-19323
-                // TODO: also return true for .submitted after EVAL-5938
-                $0.status == .late && !$0.isGraded
+                let subStatus = $0.status
+                return (subStatus == .late && !$0.isGraded) || subStatus == .submitted
             }
         }
     )
