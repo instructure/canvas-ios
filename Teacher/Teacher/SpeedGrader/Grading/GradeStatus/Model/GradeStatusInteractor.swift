@@ -36,7 +36,7 @@ protocol GradeStatusInteractor {
     func gradeStatusFor(
         customGradeStatusId: String?,
         latePolicyStatus: LatePolicyStatus?,
-        isExcused: Bool?,
+        isExcused: Bool,
         isLate: Bool?
     ) -> GradeStatus
 
@@ -114,7 +114,7 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
     func gradeStatusFor(
         customGradeStatusId: String?,
         latePolicyStatus: LatePolicyStatus?,
-        isExcused: Bool?,
+        isExcused: Bool,
         isLate: Bool?
     ) -> GradeStatus {
         var result: GradeStatus?
@@ -123,7 +123,7 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
             result = gradeStatuses.first { $0.isUserDefined && $0.id == customGradeStatusId }
         } else if let lateStatus = latePolicyStatus?.rawValue {
             result = gradeStatuses.first { !$0.isUserDefined && $0.id == lateStatus }
-        } else if isExcused == true {
+        } else if isExcused {
             result = gradeStatuses.first { $0 == .excused }
         } else if isLate == true {
             result = gradeStatuses.first { $0 == .late }

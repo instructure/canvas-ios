@@ -386,6 +386,9 @@ class StudentAssignmentDetailsPresenter {
             return false
         }
 
+        // Always show "View Discussion" button for graded discussions
+        if assignment?.isDiscussion == true { return false }
+
         return assignment?.lockStatus != .unlocked ||
             assignment?.lockedForUser == true ||
             assignment?.isSubmittable == false ||

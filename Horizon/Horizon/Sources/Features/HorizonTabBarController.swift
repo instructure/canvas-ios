@@ -140,7 +140,7 @@ extension HorizonTabBarController {
         guard let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) else {
             return true
         }
-        if selectedIndex == 2, shouldPresentChatBot {
+        if selectedIndex == 2 {
             presentChatBot()
             return false
         }

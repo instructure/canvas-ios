@@ -52,9 +52,7 @@ private struct StudentSubAssignmentsCardItemCell: View {
         HStack(alignment: .center, spacing: 16) {
             VStack(alignment: .leading, spacing: 2) {
                 titleLabel
-                if let status = model.submissionStatus {
-                    submissionStatusLabel(status)
-                }
+                submissionStatusLabel
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -72,8 +70,8 @@ private struct StudentSubAssignmentsCardItemCell: View {
             .foregroundStyle(.textDarkest)
     }
 
-    private func submissionStatusLabel(_ status: SubmissionStatusLabel.Model) -> some View {
-        SubmissionStatusLabel(model: status)
+    private var submissionStatusLabel: some View {
+        SubmissionStatusLabel(model: model.submissionStatus)
     }
 
     private func scoreLabel(_ score: String) -> some View {

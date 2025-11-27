@@ -43,7 +43,7 @@ class GradeStateInteractorLive: GradeStateInteractor {
 
         let isGraded = (submission.grade?.isEmpty == false)
         let hasLatePenaltyPoints = (submission.pointsDeducted ?? 0) > 0
-        let isExcused = (submission.excused == true)
+        let isExcused = submission.excused
         let score = submission.enteredScore ?? submission.score ?? 0
         let pointsDeducted = -(submission.pointsDeducted ?? 0)
 
