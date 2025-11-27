@@ -169,7 +169,7 @@ final class NotebookListViewModelTests: HorizonTestCase {
         viewModel.goToModuleItem(note, viewController: WeakViewController(UIViewController()))
         wait(for: [router.routeExpectation], timeout: 1)
         // Then
-        XCTAssertEqual(router.calls.last?.0, URLComponents(string: "/courses/466/modules/items/1171?asset_type=Page&notebook_disabled=true"))
+        XCTAssertEqual(router.calls.last?.0, URLComponents(string: "/courses/466/modules/items/1171?asset_type=Page&notebook_disabled=true&scrollToNoteID=noteID"))
     }
 
     func testPresentEditNote_callsRouter() {
@@ -214,7 +214,7 @@ final class NotebookListViewModelTests: HorizonTestCase {
 // Helper extension to create mock notes easily
 fileprivate extension CourseNotebookNote {
     static func make(
-        id: String = UUID().uuidString,
+        id: String = "noteID",
         date: Date = Date(),
         courseId: String = "courseID",
         courseName: String? = "Course Name",

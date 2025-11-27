@@ -26,17 +26,20 @@ struct PageViewRepresentable: UIViewControllerRepresentable {
     let context: Core.Context
     let pageURL: String
     let itemID: String
+    let scrollToNoteID: String?
 
     init(
         isScrollTopReached: Binding<Bool>,
         context: Core.Context,
         pageURL: String,
-        itemID: String
+        itemID: String,
+        scrollToNoteID: String? = nil
     ) {
         self._isScrollTopReached = isScrollTopReached
         self.context = context
         self.pageURL = pageURL
         self.itemID = itemID
+        self.scrollToNoteID = scrollToNoteID
     }
 
     func makeUIViewController(context: Self.Context) -> UIViewController {
@@ -50,7 +53,8 @@ struct PageViewRepresentable: UIViewControllerRepresentable {
             courseID: self.context.id,
             pageURL: pageURL,
             moduleType: .page(pageURL),
-            viewController: WeakViewController(viewController)
+            viewController: WeakViewController(viewController),
+            scrollToNoteID: scrollToNoteID
         )
         if let scrollView = findScrollView(in: viewController.view) {
             scrollView.delegate = context.coordinator

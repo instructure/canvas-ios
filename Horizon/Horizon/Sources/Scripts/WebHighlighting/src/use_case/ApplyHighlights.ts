@@ -146,6 +146,8 @@ const createHighlightElement = ({
   span.onclick = () => notifyiOSOfHighlightTap(notebookTextSelection);
   span.style.cssText = buildHighlightStyle(notebookTextSelection);
   span.textContent = textContent;
+  span.setAttribute("data-text-start", notebookTextSelection.textPosition.start.toString());
+  span.setAttribute("data-text-end", notebookTextSelection.textPosition.end.toString());
 
   return span;
 };

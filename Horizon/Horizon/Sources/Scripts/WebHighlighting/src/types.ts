@@ -1,6 +1,7 @@
 interface Window {
   applyHighlights: (highlights: [NotebookTextSelection]) => void;
   getCurrentTextSelection: () => NotebookTextSelection;
+  scrollToHighlight: (notebookTextSelection: NotebookTextSelection) => void;
   notifyTextSelectionChange: () => void;
   webkit?: any;
 }
