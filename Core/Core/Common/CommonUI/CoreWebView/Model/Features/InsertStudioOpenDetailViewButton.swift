@@ -29,7 +29,7 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
 
         .open_details_button {
             font-weight: 400;
-            font-size: \(fontSize)px;
+            font-size: \(fontSize.pointSize)px;
             text-decoration: none;
             color: #2B7ABC;
         }
