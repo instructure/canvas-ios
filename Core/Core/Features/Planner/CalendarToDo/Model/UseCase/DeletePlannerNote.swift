@@ -31,4 +31,9 @@ final class DeletePlannerNote: DeleteUseCase {
     init(id: String) {
         self.id = id
     }
+
+    func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        client.delete(client.fetch(scope: scope) as [Model])
+        NotificationCenter.default.post(name: .plannerItemChanged, object: nil)
+    }
 }

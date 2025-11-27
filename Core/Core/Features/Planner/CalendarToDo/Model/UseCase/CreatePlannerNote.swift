@@ -54,5 +54,6 @@ final class CreatePlannerNote: APIUseCase {
         guard let response else { return }
 
         Plannable.save(response, contextName: courseName, in: client)
+        NotificationCenter.default.post(name: .plannerItemChanged, object: nil)
     }
 }

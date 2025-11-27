@@ -24,19 +24,20 @@ public protocol TodoInteractor {
     /// Updated when `refresh()` is called.
     var todoGroups: CurrentValueSubject<[TodoGroupViewModel], Never> { get }
 
-    /// Fetches todos from the API or cache and applies current filter settings.
+    /// Fetches todos from the API or cache with separate cache control for plannables and courses.
     ///
     /// This method fetches plannables and courses, applies user's filter preferences,
     /// groups the results by day, and updates the badge count.
     ///
-    /// - Parameter ignoreCache: If `true`, forces a fetch from the API.
-    ///   If `false`, checks cache expiration: returns cached data if valid, fetches from API if expired.
+    /// - Parameters:
+    ///   - ignorePlannablesCache: If `true`, forces a fetch of plannables from the API.
+    ///   - ignoreCoursesCache: If `true`, forces a fetch of courses from the API.
     /// - Returns: A publisher that completes when the refresh operation finishes.
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
+    func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error>
 
     /// Checks if the cache has expired for todo data.
     ///
-    /// Returns `true` if the cache has expired and the next `refresh(ignoreCache: false)` will fetch from the API.
+    /// Returns `true` if the cache has expired and the next `refresh()` call will fetch from the API.
     /// Returns `false` if cached data is still valid.
     ///
     /// - Returns: A publisher that emits whether the cache has expired.
@@ -69,12 +70,12 @@ public final class TodoInteractorLive: TodoInteractor {
 
     // MARK: - Public Methods
 
-    public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+    public func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error> {
         let plannableStore = makePlannablesStore()
 
         return Publishers.Zip(
-            plannableStore.getEntities(ignoreCache: ignoreCache, loadAllPages: true),
-            coursesStore.getEntities(ignoreCache: ignoreCache)
+            plannableStore.getEntities(ignoreCache: ignorePlannablesCache, loadAllPages: true),
+            coursesStore.getEntities(ignoreCache: ignoreCoursesCache)
         )
         .handleEvents(receiveOutput: { [weak self] plannables, courses in
             self?.filterAndGroupTodos(plannables: plannables, courses: courses)

@@ -71,7 +71,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         mockPlannables(plannables)
 
         // Then
-        XCTAssertFinish(testee.refresh(ignoreCache: false))
+        XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false))
         XCTAssertFirstValue(testee.todoGroups) { todoGroups in
             // Should have 2 groups (one for each day since plannables are on different days)
             XCTAssertEqual(todoGroups.count, 2)
@@ -94,7 +94,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         mockPlannables([])
 
         // Then
-        XCTAssertFinish(testee.refresh(ignoreCache: false))
+        XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false))
         XCTAssertFirstValue(testee.todoGroups) { todos in
             XCTAssertEqual(todos, [])
         }
@@ -115,7 +115,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         mockPlannables(plannables)
 
         // Then
-        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+        XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false), timeout: 5)
         XCTAssertFirstValue(testee.todoGroups) { todoGroups in
             XCTAssertEqual(todoGroups.count, 1)
             XCTAssertEqual(todoGroups.first?.items.count, 1)
@@ -146,10 +146,10 @@ class TodoInteractorLiveTests: CoreTestCase {
         ), expectation: plannablesAPICallExpectation, value: plannables)
 
         // Then - First call with ignoreCache: false
-        XCTAssertFinish(testee.refresh(ignoreCache: false))
+        XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false))
 
         // Then - Second call with ignoreCache: true should trigger API calls again
-        XCTAssertFinish(testee.refresh(ignoreCache: true))
+        XCTAssertFinish(testee.refresh(ignorePlannablesCache: true, ignoreCoursesCache: true))
 
         wait(for: [coursesAPICallExpectation, plannablesAPICallExpectation], timeout: 1.0)
 
@@ -171,7 +171,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         mockPlannables(plannables)
 
         // Then
-        XCTAssertFinish(testee.refresh(ignoreCache: false))
+        XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false))
         XCTAssertFirstValue(testee.todoGroups) { todos in
             XCTAssertEqual(todos.count, 1)
             XCTAssertEqual(todos.first?.items.first?.title, "Assignment 2")
@@ -183,7 +183,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), error: NSError.internalError())
 
         // Then
-        XCTAssertFailure(testee.refresh(ignoreCache: false))
+        XCTAssertFailure(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false))
         XCTAssertFirstValue(testee.todoGroups) { todos in
             XCTAssertEqual(todos, [])
         }
@@ -201,7 +201,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         mockPlannables(plannables, startDate: expectedStartDate, endDate: expectedEndDate)
 
         // Then
-        XCTAssertFinish(testee.refresh(ignoreCache: false))
+        XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false))
         XCTAssertFirstValue(testee.todoGroups) { todos in
             XCTAssertEqual(todos.count, 1)
         }
@@ -220,7 +220,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         // When
         mockCourses(courses)
         mockPlannables(plannables)
-        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+        XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false), timeout: 5)
 
         // Then
         XCTAssertEqual(TabBarBadgeCounts.todoListCount, 3)
@@ -509,7 +509,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         // WHEN
         mockCourses(courses)
         mockPlannables(plannables)
-        XCTAssertFinish(testee.refresh(ignoreCache: false))
+        XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false))
 
         // THEN
         XCTAssertNotNil(mockAnalyticsHandler.lastEvent)
@@ -542,7 +542,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         // WHEN
         mockCourses(courses)
         mockPlannables([completedPlannable, notCompletedPlannable])
-        XCTAssertFinish(interactor.refresh(ignoreCache: false))
+        XCTAssertFinish(interactor.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false))
 
         // THEN
         XCTAssertFirstValue(interactor.todoGroups) { todoGroups in
@@ -584,7 +584,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         // WHEN
         mockCourses(courses)
         mockPlannables([completedPlannable, notCompletedPlannable])
-        XCTAssertFinish(interactor.refresh(ignoreCache: false))
+        XCTAssertFinish(interactor.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false))
 
         // THEN
         XCTAssertFirstValue(interactor.todoGroups) { todoGroups in
@@ -626,7 +626,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         // WHEN
         mockCourses(courses)
         mockPlannables([completedPlannable, notCompletedPlannable])
-        XCTAssertFinish(interactor.refresh(ignoreCache: false))
+        XCTAssertFinish(interactor.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false))
 
         // THEN
         XCTAssertFirstValue(interactor.todoGroups) { todoGroups in
@@ -657,7 +657,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         let sessionDefaults1 = SessionDefaults(sessionID: "test-badge-true")
         let interactor1 = TodoInteractorLive(alwaysExcludeCompleted: true, sessionDefaults: sessionDefaults1, env: environment)
         TabBarBadgeCounts.todoListCount = 0
-        XCTAssertFinish(interactor1.refresh(ignoreCache: false))
+        XCTAssertFinish(interactor1.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false))
 
         // THEN
         XCTAssertEqual(TabBarBadgeCounts.todoListCount, 3)
@@ -676,7 +676,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         environment.userDefaults?.todoFilterOptions = filterOptions2
         let interactor2 = TodoInteractorLive(alwaysExcludeCompleted: false, sessionDefaults: sessionDefaults2, env: environment)
         TabBarBadgeCounts.todoListCount = 0
-        XCTAssertFinish(interactor2.refresh(ignoreCache: false))
+        XCTAssertFinish(interactor2.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false))
 
         // THEN
         XCTAssertEqual(TabBarBadgeCounts.todoListCount, 3)

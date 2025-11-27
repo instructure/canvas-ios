@@ -49,7 +49,7 @@ final class TodoInteractorPreview: TodoInteractor {
         self.todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([todayGroup, tomorrowGroup])
     }
 
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+    func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error> {
         todoGroups.send(todoGroups.value)
         return Publishers.typedJust()
     }

@@ -60,7 +60,8 @@ class TodoListViewModelTests: CoreTestCase {
 
     func test_init_callsRefresh() {
         XCTAssertTrue(interactor.refreshCalled)
-        XCTAssertFalse(interactor.lastIgnoreCache)
+        XCTAssertFalse(interactor.lastIgnorePlannablesCache)
+        XCTAssertFalse(interactor.lastIgnoreCoursesCache)
     }
 
     // MARK: - Items Update
@@ -92,14 +93,15 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.todoGroups.send([])
 
         // When
-        testee.refresh(ignoreCache: true) {
+        testee.refresh(ignorePlannablesCache: true, ignoreCoursesCache: true) {
             expectation.fulfill()
         }
         testScheduler.advance()
 
         // Then
         XCTAssertTrue(interactor.refreshCalled)
-        XCTAssertTrue(interactor.lastIgnoreCache)
+        XCTAssertTrue(interactor.lastIgnorePlannablesCache)
+        XCTAssertTrue(interactor.lastIgnoreCoursesCache)
 
         waitForExpectations(timeout: 1.0)
         XCTAssertEqual(testee.state, .empty)
@@ -111,14 +113,15 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.refreshResult = .success(())
 
         // When
-        testee.refresh(ignoreCache: false) {
+        testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false) {
             expectation.fulfill()
         }
         testScheduler.advance()
 
         // Then
         XCTAssertTrue(interactor.refreshCalled)
-        XCTAssertFalse(interactor.lastIgnoreCache)
+        XCTAssertFalse(interactor.lastIgnorePlannablesCache)
+        XCTAssertFalse(interactor.lastIgnoreCoursesCache)
 
         waitForExpectations(timeout: 1.0)
     }
@@ -131,7 +134,7 @@ class TodoListViewModelTests: CoreTestCase {
         testScheduler.advance()
 
         // When
-        testee.refresh(ignoreCache: false) {
+        testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false) {
             expectation.fulfill()
         }
         testScheduler.advance()
@@ -148,7 +151,7 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.todoGroups.send([])
 
         // When
-        testee.refresh(ignoreCache: false) {
+        testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false) {
             expectation.fulfill()
         }
         testScheduler.advance()
@@ -164,7 +167,7 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.refreshResult = .failure(NSError.internalError())
 
         // When
-        testee.refresh(ignoreCache: false) {
+        testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false) {
             expectation.fulfill()
         }
         testScheduler.advance()
@@ -290,7 +293,7 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.refreshResult = .success(())
         interactor.todoGroups.send([TodoGroupViewModel(date: Date(), items: [TodoItemViewModel.make(plannableId: "1", title: "Test")])])
         testScheduler.advance()
-        testee.refresh(ignoreCache: false)
+        testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false)
         testScheduler.advance()
 
         // Then
@@ -300,7 +303,7 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.refreshResult = .success(())
         interactor.todoGroups.send([])
         testScheduler.advance()
-        testee.refresh(ignoreCache: false)
+        testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false)
         testScheduler.advance()
 
         // Then
@@ -308,7 +311,7 @@ class TodoListViewModelTests: CoreTestCase {
 
         // When - with error
         interactor.refreshResult = .failure(NSError.internalError())
-        testee.refresh(ignoreCache: false)
+        testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false)
         testScheduler.advance()
 
         // Then
@@ -321,9 +324,9 @@ class TodoListViewModelTests: CoreTestCase {
         interactor.refreshResult = .success(())
 
         // When
-        testee.refresh(ignoreCache: false)
-        testee.refresh(ignoreCache: true)
-        testee.refresh(ignoreCache: false)
+        testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false)
+        testee.refresh(ignorePlannablesCache: true, ignoreCoursesCache: true)
+        testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false)
 
         // Then
         XCTAssertEqual(interactor.refreshCallCount, 3)
@@ -359,7 +362,8 @@ class TodoListViewModelTests: CoreTestCase {
         XCTAssertTrue(interactor.isCacheExpiredCalled)
         XCTAssertTrue(interactor.refreshCalled)
         XCTAssertEqual(interactor.refreshCallCount, 1)
-        XCTAssertFalse(interactor.lastIgnoreCache)
+        XCTAssertFalse(interactor.lastIgnorePlannablesCache)
+        XCTAssertFalse(interactor.lastIgnoreCoursesCache)
     }
 
     // MARK: - Mark Item As Done (Checkbox)

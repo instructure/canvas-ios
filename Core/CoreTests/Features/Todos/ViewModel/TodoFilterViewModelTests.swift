@@ -43,9 +43,9 @@ class TodoFilterViewModelTests: CoreTestCase {
         XCTAssertEqual(viewModel.dateRangeStartItems.count, 6)
         XCTAssertEqual(viewModel.dateRangeEndItems.count, 6)
 
-        XCTAssertTrue(viewModel.selectedVisibilityOptions.isEmpty)
-        XCTAssertEqual(viewModel.selectedDateRangeStart, TodoDateRangeStart.lastWeek.toOptionItem())
-        XCTAssertEqual(viewModel.selectedDateRangeEnd, TodoDateRangeEnd.nextWeek.toOptionItem())
+        XCTAssertTrue(viewModel.selectedVisibilityOptions.value.isEmpty)
+        XCTAssertEqual(viewModel.selectedDateRangeStart.value, TodoDateRangeStart.lastWeek.toOptionItem())
+        XCTAssertEqual(viewModel.selectedDateRangeEnd.value, TodoDateRangeEnd.nextWeek.toOptionItem())
     }
 
     func testInitLoadsSavedFilters() {
@@ -61,11 +61,11 @@ class TodoFilterViewModelTests: CoreTestCase {
         let viewModel = TodoFilterViewModel(sessionDefaults: sessionDefaults)
 
         // THEN
-        XCTAssertTrue(viewModel.selectedVisibilityOptions.contains(TodoVisibilityOption.showPersonalTodos.toOptionItem()))
-        XCTAssertTrue(viewModel.selectedVisibilityOptions.contains(TodoVisibilityOption.showCompleted.toOptionItem()))
-        XCTAssertFalse(viewModel.selectedVisibilityOptions.contains(TodoVisibilityOption.showCalendarEvents.toOptionItem()))
-        XCTAssertEqual(viewModel.selectedDateRangeStart, TodoDateRangeStart.thisWeek.toOptionItem())
-        XCTAssertEqual(viewModel.selectedDateRangeEnd, TodoDateRangeEnd.inTwoWeeks.toOptionItem())
+        XCTAssertTrue(viewModel.selectedVisibilityOptions.value.contains(TodoVisibilityOption.showPersonalTodos.toOptionItem()))
+        XCTAssertTrue(viewModel.selectedVisibilityOptions.value.contains(TodoVisibilityOption.showCompleted.toOptionItem()))
+        XCTAssertFalse(viewModel.selectedVisibilityOptions.value.contains(TodoVisibilityOption.showCalendarEvents.toOptionItem()))
+        XCTAssertEqual(viewModel.selectedDateRangeStart.value, TodoDateRangeStart.thisWeek.toOptionItem())
+        XCTAssertEqual(viewModel.selectedDateRangeEnd.value, TodoDateRangeEnd.inTwoWeeks.toOptionItem())
     }
 
     func testToggleVisibility() {
@@ -74,17 +74,21 @@ class TodoFilterViewModelTests: CoreTestCase {
         let option = TodoVisibilityOption.showPersonalTodos.toOptionItem()
 
         // WHEN
-        XCTAssertFalse(viewModel.selectedVisibilityOptions.contains(option))
-        viewModel.selectedVisibilityOptions.insert(option)
+        XCTAssertFalse(viewModel.selectedVisibilityOptions.value.contains(option))
+        var updatedSet = viewModel.selectedVisibilityOptions.value
+        updatedSet.insert(option)
+        viewModel.selectedVisibilityOptions.send(updatedSet)
 
         // THEN
-        XCTAssertTrue(viewModel.selectedVisibilityOptions.contains(option))
+        XCTAssertTrue(viewModel.selectedVisibilityOptions.value.contains(option))
 
         // WHEN
-        viewModel.selectedVisibilityOptions.remove(option)
+        updatedSet = viewModel.selectedVisibilityOptions.value
+        updatedSet.remove(option)
+        viewModel.selectedVisibilityOptions.send(updatedSet)
 
         // THEN
-        XCTAssertFalse(viewModel.selectedVisibilityOptions.contains(option))
+        XCTAssertFalse(viewModel.selectedVisibilityOptions.value.contains(option))
     }
 
     func testSelectDateRangeStart() {
@@ -93,10 +97,10 @@ class TodoFilterViewModelTests: CoreTestCase {
         let option = TodoDateRangeStart.thisWeek.toOptionItem()
 
         // WHEN
-        viewModel.selectedDateRangeStart = option
+        viewModel.selectedDateRangeStart.send(option)
 
         // THEN
-        XCTAssertEqual(viewModel.selectedDateRangeStart, option)
+        XCTAssertEqual(viewModel.selectedDateRangeStart.value, option)
     }
 
     func testSelectDateRangeEnd() {
@@ -105,10 +109,10 @@ class TodoFilterViewModelTests: CoreTestCase {
         let option = TodoDateRangeEnd.thisWeek.toOptionItem()
 
         // WHEN
-        viewModel.selectedDateRangeEnd = option
+        viewModel.selectedDateRangeEnd.send(option)
 
         // THEN
-        XCTAssertEqual(viewModel.selectedDateRangeEnd, option)
+        XCTAssertEqual(viewModel.selectedDateRangeEnd.value, option)
     }
 
     func testApplyFiltersSavesToSessionDefaults() {
@@ -116,10 +120,12 @@ class TodoFilterViewModelTests: CoreTestCase {
         let viewModel = TodoFilterViewModel(sessionDefaults: sessionDefaults)
 
         // WHEN
-        viewModel.selectedVisibilityOptions.insert(TodoVisibilityOption.showPersonalTodos.toOptionItem())
-        viewModel.selectedVisibilityOptions.insert(TodoVisibilityOption.showCompleted.toOptionItem())
-        viewModel.selectedDateRangeStart = TodoDateRangeStart.thisWeek.toOptionItem()
-        viewModel.selectedDateRangeEnd = TodoDateRangeEnd.inTwoWeeks.toOptionItem()
+        var updatedSet = viewModel.selectedVisibilityOptions.value
+        updatedSet.insert(TodoVisibilityOption.showPersonalTodos.toOptionItem())
+        updatedSet.insert(TodoVisibilityOption.showCompleted.toOptionItem())
+        viewModel.selectedVisibilityOptions.send(updatedSet)
+        viewModel.selectedDateRangeStart.send(TodoDateRangeStart.thisWeek.toOptionItem())
+        viewModel.selectedDateRangeEnd.send(TodoDateRangeEnd.inTwoWeeks.toOptionItem())
         viewModel.applyFilters()
 
         // THEN

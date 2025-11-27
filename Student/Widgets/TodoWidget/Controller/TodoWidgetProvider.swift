@@ -86,7 +86,7 @@ class TodoWidgetProvider: TimelineProvider {
         interactor: TodoInteractor
     ) -> AnyPublisher<Timeline<TodoWidgetEntry>, Never> {
         return interactor
-            .refresh(ignoreCache: false)
+            .refresh(ignorePlannablesCache: false, ignoreCoursesCache: false)
             .map {
                 interactor.todoGroups.value
             }

@@ -59,5 +59,6 @@ final class CreateCalendarEvent: APIUseCase {
         guard let response else { return }
 
         CalendarEvent.save(response, in: client)
+        NotificationCenter.default.post(name: .plannerItemChanged, object: nil)
     }
 }
