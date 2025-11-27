@@ -46,17 +46,10 @@ public class GetDashboardCourses: APIUseCase {
     public func write(response: [APICourse]?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         guard let response else { return }
 
-        deleteCoursesNotInResponse(response, in: client)
+        GetCourses.deleteCoursesNotInResponse(response, scope: scope, in: client)
 
         response.forEach {
             Course.save($0, in: client)
         }
-    }
-
-    private func deleteCoursesNotInResponse(_ response: [APICourse], in context: NSManagedObjectContext) {
-        let idsToKeep = Set(response.map { $0.id.value })
-        let existingCourses: [Course] = context.fetch(scope: scope)
-        let coursesToDelete = existingCourses.filter { !idsToKeep.contains($0.id) }
-        context.delete(coursesToDelete)
     }
 }

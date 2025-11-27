@@ -34,6 +34,6 @@ final class DeletePlannerNote: DeleteUseCase {
 
     func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         client.delete(client.fetch(scope: scope) as [Model])
-        NotificationCenter.default.post(name: .plannerItemChanged, object: nil)
+        NotificationCenter.default.post(name: .plannerItemDidChange, object: nil)
     }
 }

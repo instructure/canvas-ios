@@ -112,14 +112,18 @@ public class GetCourses: APIUseCase {
     public func write(response: GetCoursesRequest.Response?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         guard let response else { return }
 
-        deleteCoursesNotInResponse(response, in: client)
+        Self.deleteCoursesNotInResponse(response, scope: scope, in: client)
 
         response.forEach {
             Course.save($0, in: client)
         }
     }
 
-    private func deleteCoursesNotInResponse(_ response: [APICourse], in context: NSManagedObjectContext) {
+    public static func deleteCoursesNotInResponse(
+        _ response: [APICourse],
+        scope: Scope,
+        in context: NSManagedObjectContext
+    ) {
         let idsToKeep = Set(response.map { $0.id.value })
         let existingCourses: [Course] = context.fetch(scope: scope)
         let coursesToDelete = existingCourses.filter { !idsToKeep.contains($0.id) }

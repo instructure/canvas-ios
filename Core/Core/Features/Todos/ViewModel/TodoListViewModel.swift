@@ -180,7 +180,7 @@ class TodoListViewModel: ObservableObject {
 
         Publishers.MergeMany(
             NotificationCenter.default.publisher(for: .moduleItemRequirementCompleted),
-            NotificationCenter.default.publisher(for: .plannerItemChanged)
+            NotificationCenter.default.publisher(for: .plannerItemDidChange)
         )
         .sink { [weak self] _ in
             self?.handleContentChanged()
