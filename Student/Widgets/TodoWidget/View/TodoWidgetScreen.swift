@@ -37,7 +37,7 @@ struct TodoWidgetScreen: View {
 
             if model.error != nil {
                 TodoFailureView()
-            } else if model.items.isEmpty {
+            } else if model.groups.isEmpty {
                 TodoEmptyView()
             } else {
                 TodoListView(todoList: model.todoDays(for: family))
