@@ -60,7 +60,7 @@ class TodoWidgetProvider: TimelineProvider {
             getTimeline = fetchOldTodos()
         } else {
             let interactor = TodoInteractorLive(alwaysExcludeCompleted: true, sessionDefaults: env.userDefaults ?? .fallback, env: env)
-            getTimeline = fetchNewTodos(interactor: interactor)
+            getTimeline = fetchTodos(interactor: interactor)
         }
 
         let getBrandColors = ReactiveStore(useCase: GetBrandVariables())
@@ -82,7 +82,7 @@ class TodoWidgetProvider: TimelineProvider {
         env.userDidLogin(session: session, isSilent: true)
     }
 
-    private func fetchNewTodos(
+    private func fetchTodos(
         interactor: TodoInteractor
     ) -> AnyPublisher<Timeline<TodoWidgetEntry>, Never> {
         return interactor
@@ -118,7 +118,7 @@ class TodoWidgetProvider: TimelineProvider {
                     .first()
                     .setFailureType(to: Error.self)
             }
-            .flatMap { contexts in
+            .flatMap { [env] contexts in
                 let contextCodes = contexts.map(\.canvasContextID)
                 let start = Clock.now.startOfDay()
                 let end = start.addDays(28)
@@ -129,7 +129,7 @@ class TodoWidgetProvider: TimelineProvider {
                         endDate: end,
                         contextCodes: contextCodes
                     ),
-                    environment: self.env
+                    environment: env
                 )
                 .getEntities()
             }
@@ -140,7 +140,7 @@ class TodoWidgetProvider: TimelineProvider {
                     }
                     .compactMap { TodoItemViewModel($0) }
 
-                let groups = Self.groupItemsByDay(todoItems)
+                let groups = todoItems.groupByDay()
                 let model = TodoModel(groups: groups)
                 let entry = TodoWidgetEntry(data: model, date: Clock.now)
                 let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
@@ -155,16 +155,5 @@ class TodoWidgetProvider: TimelineProvider {
                 )
             }
             .eraseToAnyPublisher()
-    }
-
-    private static func groupItemsByDay(_ items: [TodoItemViewModel]) -> [TodoGroupViewModel] {
-        let groupedDict = Dictionary(grouping: items) { item in
-            item.date.startOfDay()
-        }
-
-        return groupedDict.map { (date, items) in
-            TodoGroupViewModel(date: date, items: items.sorted())
-        }
-        .sorted()
     }
 }

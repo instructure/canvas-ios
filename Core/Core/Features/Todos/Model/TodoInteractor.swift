@@ -157,9 +157,9 @@ public final class TodoInteractorLive: TodoInteractor {
     }
 }
 
-private extension [TodoItemViewModel] {
+extension [TodoItemViewModel] {
 
-    func groupByDay() -> [TodoGroupViewModel] {
+    public func groupByDay() -> [TodoGroupViewModel] {
         let todosPerDay = Dictionary(grouping: self) { todo in
             todo.date.startOfDay()
         }
