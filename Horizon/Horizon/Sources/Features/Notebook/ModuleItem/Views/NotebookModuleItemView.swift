@@ -112,6 +112,7 @@ struct NotebookModuleItemView: View {
                 .padding(.top, .huiSpaces.space16)
                 .accessibilityHidden(true)
         }
+        .padding(.top, .huiSpaces.space16)
     }
 
     @ViewBuilder

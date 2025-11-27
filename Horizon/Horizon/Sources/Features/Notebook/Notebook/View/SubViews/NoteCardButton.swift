@@ -35,7 +35,7 @@ struct NoteCardButton: View {
         HorizonUI.InputChip(
             title: type.label,
             style: .custom(style),
-            size: .small,
+            size: .medium,
             leadingIcon: type.icon,
             trallingIcon: nil
         ) {}

@@ -164,7 +164,7 @@ struct EditNotebookView: View {
             if let dateFormatted = viewModel.courseNote?.dateFormatted, !dateFormatted.isEmpty {
                 Text(dateFormatted)
                     .foregroundStyle(Color.huiColors.text.timestamp)
-                    .huiTypography(.labelSmall)
+                    .huiTypography(.labelSmallBold)
                     .accessibilityLabel(String(localized: "Note created on \(dateFormatted)"))
             }
 
