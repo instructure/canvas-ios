@@ -97,9 +97,9 @@ public class CoreWebViewStudioFeaturesInteractor {
     /// To be called in didFinishLoading delegate method of WKWebView, it scans through
     /// currently loaded page HTML content looking for video studio `iframe`s. It will extract
     /// `title` attribute value and keep a map of such values vs video src URL, to be used
-    /// later to set immersive video player title. This mainly useful when triggering the player
-    /// from a button that's internal to video-frame. (`Expand` button).
-    /// Only for Canvas uploads video players.
+    /// later to set the title for the immersive video player. This is mainly useful when launching
+    /// the immersive player from a button that's internal to video-frame. (`Expand` button).
+    /// Only applies for video frames of Canvas uploads.
     func scanVideoFrames() {
         guard let webView else { return }
 
