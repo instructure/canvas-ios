@@ -30,7 +30,6 @@ struct CourseListWidgetView: View {
     @State private var bounceScale: CGFloat = 1.0
     @State private var scrollViewID = UUID()
     private let focusedseeAllCoursesButton = "focusedseeAllCoursesButton"
-    private let focusedseeAllCoursesCard = "focusedseeAllCoursesCard"
 
     init(viewModel: CourseListWidgetViewModel) {
         _viewModel = State(initialValue: viewModel)
@@ -86,7 +85,8 @@ struct CourseListWidgetView: View {
                                 model: CourseListWidgetModel(from: course),
                                 width: size - 48,
                                 currentIndex: index,
-                                totalCount: viewModel.courses.count,
+                                // We should set a static value for the total course count depending on the maximum number of courses that should be visible.
+                                totalCount: 3,
                                 onCourseTap: { courseId in
                                     lastFocusedElement.wrappedValue = .course(id: courseId)
                                     viewModel.navigateToCourseDetails(
@@ -121,16 +121,6 @@ struct CourseListWidgetView: View {
                                     .scaleEffect(y: phase.isIdentity ? 1.0 : 0.8)
                             }
                             .id(index)
-                        }
-
-                        if viewModel.isExceededMaxCourses {
-                            CourseListWidgetSeeAllCoursesView(count: viewModel.courses.count) {
-                                lastFocusedElement.wrappedValue = .course(id: focusedseeAllCoursesCard)
-                                viewModel.navigateToListCourse(viewController: viewController)
-                            }
-                            .frame(width: size - 48)
-                            .id(focusedseeAllCoursesCard)
-                            .accessibilityFocused($focusedCourseID, equals: focusedseeAllCoursesCard)
                         }
                     }
                     .scrollTargetLayout()

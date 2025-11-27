@@ -18,49 +18,75 @@
 
 import SwiftUI
 
+extension InstUI {
+
+    public enum SwipeCompletionBehavior: Equatable {
+        /// Swipe action remains fully revealed after swipe completion. Gesture is disabled after action is triggered.
+        case stayOpen
+        /// Swipe action immediately resets to closed position after swipe completion. Gesture remains enabled for repeated use.
+        case reset
+    }
+}
+
 extension View {
 
-    /// Adds a swipe-to-remove gesture that reveals an action view when swiping left.
+    /// Adds a swipe action gesture that reveals an action view when swiping left.
     ///
     /// The gesture requires swiping past a threshold to trigger the action.
     /// Visual and haptic feedback is provided when the threshold is crossed.
-    /// Once the action is triggered, the view remains in the fully revealed position
-    /// and it's the caller's responsibility to remove the cell from the view hierarcy.
     ///
     /// - Parameters:
     ///   - backgroundColor: The background color revealed behind the content during the swipe.
+    ///   - completionBehavior: Determines what happens after the swipe action completes. Defaults to `.stayOpen`.
     ///   - isSwiping: Binding that tracks whether a swipe gesture is currently active. Use this to disable scrolling or other gestures while swiping.
-    ///   - onSwipe: Closure called when the swipe action is completed.
+    ///   - isEnabled: Whether the swipe gesture is enabled. Defaults to `true`.
+    ///   - onSwipeCommitted: Optional closure called immediately when the swipe action is committed (user releases after reaching threshold) but before animations finish.
+    ///   - onSwipe: Closure called when the swipe action is completed animations included. For `.reset` behavior, this is called after the close animation finishes. For `.stayOpen` behavior, this is called while the open animation is running.
     ///   - label: The view displayed in the revealed area during the swipe.
-    public func swipeToRemove<Label: View>(
+    public func swipeAction<Label: View>(
         backgroundColor: Color,
+        completionBehavior: InstUI.SwipeCompletionBehavior = .stayOpen,
         isSwiping: Binding<Bool> = .constant(false),
+        isEnabled: Bool = true,
+        onSwipeCommitted: (() -> Void)? = nil,
         onSwipe: @escaping () -> Void,
         @ViewBuilder label: @escaping () -> Label
     ) -> some View {
-        modifier(SwipeToRemoveModifier(
+        modifier(SwipeActionModifier(
             backgroundColor: backgroundColor,
+            completionBehavior: completionBehavior,
             isSwiping: isSwiping,
+            isEnabled: isEnabled,
+            onSwipeCommitted: onSwipeCommitted,
             onSwipe: onSwipe,
             label: label
         ))
     }
 }
 
-private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
+private struct SwipeActionModifier<Label: View>: ViewModifier {
     let backgroundColor: Color
+    let completionBehavior: InstUI.SwipeCompletionBehavior
     @Binding var isSwiping: Bool
+    let isEnabled: Bool
+    let onSwipeCommitted: (() -> Void)?
     let onSwipe: () -> Void
     let label: () -> Label
 
     init(
         backgroundColor: Color,
+        completionBehavior: InstUI.SwipeCompletionBehavior,
         isSwiping: Binding<Bool>,
+        isEnabled: Bool,
+        onSwipeCommitted: (() -> Void)?,
         onSwipe: @escaping () -> Void,
         label: @escaping () -> Label
     ) {
         self.backgroundColor = backgroundColor
+        self.completionBehavior = completionBehavior
         self._isSwiping = isSwiping
+        self.isEnabled = isEnabled
+        self.onSwipeCommitted = onSwipeCommitted
         self.onSwipe = onSwipe
         self.label = label
     }
@@ -99,10 +125,11 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
         .contentShape(Rectangle())
         // If this is a simple gesture and the cell is a button then swiping won't work
         .simultaneousGesture(
-            DragGesture()
+            // Values lower than 20 will prevent parent gesture recognizers from working. (Parent scrollview cannot be scrolled when tapped on an element having this swipe modifier.)
+            DragGesture(minimumDistance: 20)
                 .onChanged(handleDragChanged)
                 .onEnded(handleDragEnded),
-            isEnabled: !isActionInvoked
+            isEnabled: isEnabled && !isActionInvoked
         )
     }
 
@@ -181,9 +208,23 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
         isSwiping = false
 
         if isActionThresholdReached {
-            animateToOpenedState()
-            isActionInvoked = true
-            onSwipe()
+            onSwipeCommitted?()
+
+            switch completionBehavior {
+            case .stayOpen:
+                animateToOpenedState()
+                isActionInvoked = true
+                onSwipe()
+            case .reset:
+                animateToClosedState()
+                Task { @MainActor in
+                    // Wait for close animation to complete before invoking callback.
+                    // This prevents visual state changes during the animation
+                    // Note: await suspends the Task but does NOT block the main thread
+                    try? await Task.sleep(nanoseconds: 430_000_000)
+                    onSwipe()
+                }
+            }
         } else {
             animateToClosedState()
         }
@@ -221,8 +262,9 @@ private struct SwipeToRemoveModifier<Label: View>: ViewModifier {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
                 .background(.backgroundLightest)
-                .swipeToRemove(
+                .swipeAction(
                     backgroundColor: .backgroundSuccess,
+                    completionBehavior: .reset,
                     onSwipe: {},
                     label: {
                         Image(systemName: "checkmark.circle.fill")

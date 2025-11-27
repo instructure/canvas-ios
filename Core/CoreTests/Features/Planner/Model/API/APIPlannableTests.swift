@@ -110,6 +110,39 @@ class APIPlannableTests: XCTestCase {
         XCTAssertEqual(p.context?.contextType, .group)
         XCTAssertEqual(p.context?.id, "7")
     }
+
+    func testContextFromContextType() {
+        var p = APIPlannable.make(
+            group_id: "123",
+            context_type: "Group",
+            plannable_type: "discussion"
+        )
+        XCTAssertEqual(p.context?.contextType, .group)
+        XCTAssertEqual(p.context?.id, "123")
+
+        p = APIPlannable.make(
+            user_id: "456",
+            context_type: "User",
+            plannable_type: "planner_note"
+        )
+        XCTAssertEqual(p.context?.contextType, .user)
+        XCTAssertEqual(p.context?.id, "456")
+
+        p = APIPlannable.make(
+            account_id: "789",
+            context_type: "Account",
+            plannable_type: "assignment"
+        )
+        XCTAssertEqual(p.context?.contextType, .account)
+        XCTAssertEqual(p.context?.id, "789")
+
+        p = APIPlannable.make(
+            course_id: "42",
+            context_type: "UnsupportedType",
+            plannable_type: "assignment"
+        )
+        XCTAssertNil(p.context)
+    }
 }
 
 class UpdatePlannerOverrideRequestTests: XCTestCase {

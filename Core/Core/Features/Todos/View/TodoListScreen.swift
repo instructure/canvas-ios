@@ -35,7 +35,7 @@ struct TodoListScreen: View {
             state: viewModel.state,
             config: viewModel.screenConfig,
             refreshAction: { completion in
-                viewModel.refresh(completion: completion, ignoreCache: true)
+                viewModel.refresh(ignoreCache: true, completion: completion)
             }
         ) { _ in
             LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
@@ -48,7 +48,7 @@ struct TodoListScreen: View {
         }
         .clipped()
         .scrollDisabled(isCellSwiping)
-        .navigationBarItems(leading: profileMenuButton)
+        .navigationBarItems(leading: profileMenuButton, trailing: filterButton)
         .snackBar(viewModel: viewModel.snackBar)
     }
 
@@ -59,9 +59,12 @@ struct TodoListScreen: View {
             ForEach(group.items) { item in
                 TodoListItemCell(
                     item: item,
+                    swipeCompletionBehavior: item.swipeCompletionBehavior,
+                    swipeEnabled: item.isSwipeEnabled,
                     onTap: viewModel.didTapItem,
                     onMarkAsDone: viewModel.markItemAsDone,
-                    onSwipeMarkAsDone: viewModel.markItemAsDoneWithOptimisticUI,
+                    onSwipe: viewModel.handleSwipeAction,
+                    onSwipeCommitted: viewModel.handleSwipeCommitted,
                     isSwiping: $isCellSwiping
                 )
                 .padding(.leading, leadingPadding)
@@ -113,20 +116,33 @@ struct TodoListScreen: View {
             comment: "Accessibility text describing the Profile Menu button and its state"
         ))
     }
+
+    private var filterButton: some View {
+        Button {
+            viewModel.openFilter(viewController)
+        } label: {
+            viewModel.filterIcon
+                .foregroundColor(Color(Brand.shared.navTextColor))
+        }
+        .frame(width: 44, height: 44)
+        .padding(.trailing, -6)
+        .identifier("ToDos.filterButton")
+        .accessibility(label: Text(
+            "Filter To Do list",
+            bundle: .core,
+            comment: "Button to open To Do list filter preferences"
+        ))
+    }
 }
 
 #if DEBUG
 
 #Preview {
-    let env = PreviewEnvironment()
-    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(), router: env.router)
-    TodoListScreen(viewModel: viewModel)
+    TodoAssembly.makePreviewViewController(interactor: TodoInteractorPreview())
 }
 
 #Preview("Empty State") {
-    let env = PreviewEnvironment()
-    let viewModel = TodoListViewModel(interactor: TodoInteractorPreview(todoGroups: []), router: env.router)
-    TodoListScreen(viewModel: viewModel)
+    TodoAssembly.makePreviewViewController(interactor: TodoInteractorPreview(todoGroups: []))
 }
 
 #endif

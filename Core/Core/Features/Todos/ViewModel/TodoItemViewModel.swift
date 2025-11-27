@@ -27,6 +27,38 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         case done
     }
 
+    @Published public var markAsDoneState: MarkAsDoneState = .notDone {
+        didSet {
+            updateSwipeProperties()
+        }
+    }
+
+    // MARK: - Swipe Properties
+
+    @Published public private(set) var swipeBackgroundColor: Color = .backgroundSuccess
+    @Published public private(set) var swipeActionText: String = ""
+    @Published public private(set) var swipeActionIcon: Image = .checkLine
+
+    public var shouldKeepCompletedItemsVisible: Bool = false
+
+    public var swipeCompletionBehavior: InstUI.SwipeCompletionBehavior {
+        if markAsDoneState == .done {
+            return .reset
+        } else {
+            return shouldKeepCompletedItemsVisible ? .reset : .stayOpen
+        }
+    }
+
+    public var isSwipeEnabled: Bool {
+        markAsDoneState != .loading
+    }
+
+    public var shouldToggleInPlaceAfterSwipe: Bool {
+        markAsDoneState == .done || shouldKeepCompletedItemsVisible
+    }
+
+    // MARK: - UI Properties
+
     /// This is the view identity that might change. Don't use this for business logic.
     public private(set) var id: String = UUID.string
     public let type: PlannableType
@@ -44,7 +76,8 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     public let plannableId: String
     public var overrideId: String?
 
-    @Published public var markAsDoneState: MarkAsDoneState = .notDone
+    /// Indicates whether this item can be tapped to navigate to its details. Items with account-level context are not tappable.
+    public let isTappable: Bool
 
     public init?(_ plannable: Plannable, course: Course? = nil) {
         guard let date = plannable.date else { return nil }
@@ -52,7 +85,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         self.plannableId = plannable.id
         self.type = plannable.plannableType
         self.date = date
-        self.dateText = date.timeOnlyString
+        self.dateText = Self.formatDateText(date: date, isAllDay: plannable.isAllDay, endAt: plannable.endAt)
 
         self.title = plannable.title ?? ""
         self.subtitle = plannable.discussionCheckpointStep?.text
@@ -71,7 +104,9 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         self.icon = plannable.icon.asImage
 
         self.overrideId = plannable.plannerOverrideId
-        self.markAsDoneState = plannable.isMarkedComplete ? .done : .notDone
+        self.markAsDoneState = plannable.isCompleted ? .done : .notDone
+        self.isTappable = plannable.context?.contextType != .account
+        updateSwipeProperties()
     }
 
     public init(
@@ -84,12 +119,15 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         htmlURL: URL?,
         color: Color,
         icon: Image,
-        overrideId: String? = nil
+        overrideId: String? = nil,
+        isAllDay: Bool = false,
+        endAt: Date? = nil,
+        isTappable: Bool = true
     ) {
         self.plannableId = plannableId
         self.type = type
         self.date = date
-        self.dateText = date.timeOnlyString
+        self.dateText = Self.formatDateText(date: date, isAllDay: isAllDay, endAt: endAt)
 
         self.title = title
         self.subtitle = subtitle
@@ -100,6 +138,8 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         self.icon = icon
 
         self.overrideId = overrideId
+        self.isTappable = isTappable
+        updateSwipeProperties()
     }
 
     /// Resets the view identity to force SwiftUI to recreate the view.
@@ -121,6 +161,37 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         }
     }
 
+    // MARK: - Private Functions
+
+    private func updateSwipeProperties() {
+        switch markAsDoneState {
+        case .done:
+            swipeBackgroundColor = .backgroundDark
+            swipeActionText = String(localized: "Undo", bundle: .core)
+            swipeActionIcon = .discussionReply2Line
+        case .notDone, .loading:
+            swipeBackgroundColor = .backgroundSuccess
+            swipeActionText = String(localized: "Done", bundle: .core)
+            swipeActionIcon = .checkLine
+        }
+    }
+
+    /// Helper function to format the date text for a Todo item.
+    /// - Parameters:
+    ///   - date: The start date of the todo item.
+    ///   - isAllDay: Whether the event is an all-day event.
+    ///   - endAt: The end date if the event has a time range.
+    /// - Returns: Formatted date string.
+    internal static func formatDateText(date: Date, isAllDay: Bool, endAt: Date?) -> String {
+        if isAllDay {
+            String(localized: "All Day", bundle: .core)
+        } else if let end = endAt {
+            date.timeIntervalString(to: end)
+        } else {
+            date.timeOnlyString
+        }
+    }
+
     /// Helper function to determine the context name for a Todo item.
     /// - Parameters:
     ///   - isCourseNameNickname: Whether the course name is a user-given nickname.
@@ -128,7 +199,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     ///   - courseCode: The course code.
     ///   - fallback: Fallback value if no course data is available.
     /// - Returns: The appropriate context name.
-    public static func contextName(
+    private static func contextName(
         isCourseNameNickname: Bool,
         courseName: String?,
         courseCode: String?,

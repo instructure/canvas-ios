@@ -41,13 +41,14 @@ public struct MarkPlannableItemDone: UseCase {
         plannableId: String,
         plannableType: String,
         overrideId: String?,
+        useCaseId: PlannableUseCaseID? = nil,
         done: Bool
     ) {
         self.plannableId = plannableId
         self.plannableType = plannableType
         self.overrideId = overrideId
         self.done = done
-        self.scope = .plannable(id: plannableId)
+        self.scope = .plannable(id: plannableId, useCase: useCaseId)
     }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {

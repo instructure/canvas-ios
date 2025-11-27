@@ -27,7 +27,7 @@ struct SeeAllCoursesButton: View {
             onTap()
         } label: {
             HStack(spacing: .huiSpaces.space10) {
-                Text("See all courses")
+                Text("See full course list")
                     .huiTypography(.buttonTextLarge)
                     .foregroundStyle(Color.huiColors.text.title)
                     .frame(alignment: .center)
