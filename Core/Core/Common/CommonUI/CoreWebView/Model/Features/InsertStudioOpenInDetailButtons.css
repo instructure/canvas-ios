@@ -4,7 +4,7 @@ p[ios-injected] {
 
 .open_details_button {
     font-weight: 400;
-    font-size: \(fontSize)px;
+    font-size: 14px;
     text-decoration: none;
     color: #2B7ABC;
 }
