@@ -53,14 +53,14 @@ class TodoWidgetProvider: TimelineProvider {
 
         setupEnvironment(with: session)
 
-        let useNewTodo = ExperimentalFeature.newStudentToDoScreen.isEnabled
+        let useOldTodo = ExperimentalFeature.revertToOldStudentToDo.isEnabled
         let getTimeline: AnyPublisher<Timeline<TodoWidgetEntry>, Never>
 
-        if useNewTodo {
+        if useOldTodo {
+            getTimeline = fetchOldTodos()
+        } else {
             let interactor = TodoInteractorLive(alwaysExcludeCompleted: true, sessionDefaults: env.userDefaults ?? .fallback, env: env)
             getTimeline = fetchNewTodos(interactor: interactor)
-        } else {
-            getTimeline = fetchOldTodos()
         }
 
         let getBrandColors = ReactiveStore(useCase: GetBrandVariables())
