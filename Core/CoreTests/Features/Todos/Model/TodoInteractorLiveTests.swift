@@ -509,7 +509,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         // WHEN
         mockCourses(courses)
         mockPlannables(plannables)
-        XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false))
+        XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false), timeout: 5)
 
         // THEN
         XCTAssertNotNil(mockAnalyticsHandler.lastEvent)
