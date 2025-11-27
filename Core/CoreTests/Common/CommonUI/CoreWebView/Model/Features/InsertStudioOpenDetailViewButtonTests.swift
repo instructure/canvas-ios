@@ -90,4 +90,45 @@ class InsertStudioOpenDetailViewButtonTests: XCTestCase {
 
         wait(for: [exp])
     }
+
+    func testFontSizeCSSProperty() {
+        let mockLinkDelegate = MockCoreWebViewLinkDelegate()
+        let webView = CoreWebView(features: [.insertStudioOpenInDetailButtons])
+        webView.linkDelegate = mockLinkDelegate
+        webView.loadHTMLString("<div>Test</div>")
+        wait(for: [mockLinkDelegate.navigationFinishedExpectation], timeout: 10)
+
+        let expectedFontSize = UIFont.scaledNamedFont(.regular14).pointSize
+
+        let jsEvaluated = expectation(description: "JS evaluated")
+
+        let extractCSSScript = """
+        (function() {
+            const styles = document.head.querySelectorAll('style');
+            for (let style of styles) {
+                const css = style.innerHTML;
+                if (css.includes('open_details_button')) {
+                    const match = css.match(/\\.open_details_button\\s*\\{[^}]*font-size:\\s*([\\d.]+)px/);
+                    return match ? match[1] : null;
+                }
+            }
+            return null;
+        })()
+        """
+
+        webView.evaluateJavaScript(extractCSSScript) { result, error in
+            defer { jsEvaluated.fulfill() }
+
+            XCTAssertNil(error)
+            guard let fontSizeString = result as? String,
+                  let actualFontSize = Double(fontSizeString) else {
+                XCTFail("Could not extract font-size value from CSS")
+                return
+            }
+
+            XCTAssertEqual(actualFontSize, expectedFontSize, accuracy: 0.01, "Font size in CSS should match UIFont.scaledNamedFont(.regular14).pointSize")
+        }
+
+        wait(for: [jsEvaluated], timeout: 10)
+    }
 }
