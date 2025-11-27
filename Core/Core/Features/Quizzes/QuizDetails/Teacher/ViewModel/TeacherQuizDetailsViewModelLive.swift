@@ -128,6 +128,7 @@ public class TeacherQuizDetailsViewModelLive: TeacherQuizDetailsViewModel {
                 assignmentDateSectionViewModel = AssignmentDateSectionViewModel(assignment: assignment)
                 assignmentSubmissionBreakdownViewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes, env: env)
             } else {
+                // This is reached when a quiz has no assignment (e.g.: it is a practice quiz)
                 quizSubmissionBreakdownViewModel = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID, env: env)
                 quizDateSectionViewModel = TeacherQuizDateSectionViewModelLive(quiz: quiz)
             }

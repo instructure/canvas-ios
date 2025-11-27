@@ -39,6 +39,12 @@ class CourseListWidgetViewModel {
     var isProgramWidgetVisible: Bool {
         unenrolledPrograms.isNotEmpty && unenrolledPrograms.first?.id != "mock-program-id"
     }
+    var isExceededMaxCourses: Bool {
+        courses.count > maxCourses
+    }
+    var allowedCourse: [HCourse] {
+        Array(courses.prefix(maxCourses))
+    }
 
     // MARK: - Dependencies
 
@@ -53,6 +59,7 @@ class CourseListWidgetViewModel {
     private var getDashboardCoursesCancellable: AnyCancellable?
     private var refreshCompletedModuleItemCancellable: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
+    private let maxCourses = 3
 
     // MARK: - Init
 
@@ -200,6 +207,14 @@ class CourseListWidgetViewModel {
 
     func navigateProgram(id: String, viewController: WeakViewController) {
         onTapProgram(.init(id: id), viewController)
+    }
+
+    func navigateToListCourse(viewController: WeakViewController) {
+        let courseCardModels: [CourseCardModel] = courses.map { .init(course: $0) }
+        router.show(
+            CourseListAssembly.makeView(courses: courseCardModels),
+            from: viewController
+        )
     }
 }
 

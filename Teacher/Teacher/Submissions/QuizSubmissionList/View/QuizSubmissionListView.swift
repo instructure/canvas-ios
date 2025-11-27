@@ -19,6 +19,8 @@
 import SwiftUI
 import Core
 
+// This is reached when a quiz has no assignment (e.g.: it is a practice quiz),
+// or when navigated to via URL directly.
 public struct QuizSubmissionListView: View, ScreenViewTrackable {
     @ObservedObject private var model: QuizSubmissionListViewModel
     @Environment(\.viewController) private var controller

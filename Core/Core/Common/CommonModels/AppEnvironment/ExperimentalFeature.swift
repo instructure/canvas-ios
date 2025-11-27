@@ -35,6 +35,10 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
         UserDefaults(suiteName: Bundle.main.appGroupID()) ?? .standard
     }
 
+    private static var sharedUserDefaults: UserDefaults {
+        UserDefaults(suiteName: Bundle.main.appGroupID()) ?? .standard
+    }
+
     public var isEnabled: Bool {
         get {
             // If there are no saved values for K5 mode we return true by default. Debug builds without Firebase feature flag fetch will have this enabled.

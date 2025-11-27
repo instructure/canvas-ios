@@ -206,7 +206,7 @@ extension GetSubmissions.Filter {
         }
 
         var predicate: NSPredicate {
-            let notExcused = NSPredicate(format: "%K == nil OR %K != true", #keyPath(Submission.excusedRaw), #keyPath(Submission.excusedRaw))
+            let notExcused = NSPredicate(format: "%K != true", #keyPath(Submission.excused))
             let notCustomGradeStated = NSPredicate(
                 format: "%K == nil", #keyPath(Submission.customGradeStatusId)
             )
@@ -240,7 +240,7 @@ extension GetSubmissions.Filter {
 
             case .graded:
                 return NSPredicate(format: "%K == true OR %K != nil OR (%K != nil AND %K == 'graded')",
-                    #keyPath(Submission.excusedRaw),
+                    #keyPath(Submission.excused),
                     #keyPath(Submission.customGradeStatusId),
                     #keyPath(Submission.scoreRaw),
                     #keyPath(Submission.workflowStateRaw)
