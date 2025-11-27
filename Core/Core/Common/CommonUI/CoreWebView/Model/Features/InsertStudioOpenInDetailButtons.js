@@ -52,6 +52,10 @@ function findStudioEmbedLink(elm, title) {
     try {
 
         let playerURL = new URL(playerSource);
+
+        let mediaID = playerURL.searchParams.get("custom_arc_media_id")
+        if(!mediaID) { return null }
+
         playerURL.searchParams.set("custom_arc_launch_type", "immersive_view");
 
         frameURL.searchParams.set("url", playerURL.toString());
