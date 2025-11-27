@@ -21,7 +21,7 @@ import UIKit
 class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
 
     private let insertStyle: String = {
-        let fontSize = UIFont.scaledNamedFont(.regular14)
+        let fontSize = UIFont.scaledNamedFont(.regular14).pointSize
         let css = """
         p[ios-injected] {
             text-align: center;
@@ -29,7 +29,7 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
 
         .open_details_button {
             font-weight: 400;
-            font-size: \(fontSize.pointSize)px;
+            font-size: \(fontSize)px;
             text-decoration: none;
             color: #2B7ABC;
         }
