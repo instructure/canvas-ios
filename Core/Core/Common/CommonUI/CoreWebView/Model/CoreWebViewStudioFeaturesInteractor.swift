@@ -20,7 +20,6 @@ import Combine
 import WebKit
 
 public class CoreWebViewStudioFeaturesInteractor {
-
     private static let scanFramesScript = """
         function scanVideoFramesForTitles() {
             const frameElements = document.querySelectorAll('iframe[data-media-id]');
@@ -98,8 +97,9 @@ public class CoreWebViewStudioFeaturesInteractor {
     /// To be called in didFinishLoading delegate method of WKWebView, it scans through
     /// currently loaded page HTML content looking for video studio `iframe`s. It will extract
     /// `title` attribute value and keep a map of such values vs video src URL, to be used
-    /// later to set immersive video player title. This mainly useful when triggering the player
-    /// from a button that's internal to video-frame. (`Expand` button)
+    /// later to set the title for the immersive video player. This is mainly useful when launching
+    /// the immersive player from a button that's internal to video-frame. (`Expand` button).
+    /// Only applies for video frames of Canvas uploads.
     func scanVideoFrames() {
         guard let webView else { return }
 
@@ -184,12 +184,19 @@ extension WKNavigationAction {
             && path.hasSuffix("/immersive_view") == true
             && sourceFrame.isMainFrame == false
 
-        let isDetailsLink =
+        let isCanvasUploadDetailsLink =
             navigationType == .linkActivated
             && path.contains("/media_attachments/") == true
             && path.hasSuffix("/immersive_view") == true
             && (targetFrame?.isMainFrame ?? false) == false
 
-        return isExpandLink || isDetailsLink
+        let query = request.url?.query()?.removingPercentEncoding ?? ""
+        let isStudioEmbedDetailsLink =
+            navigationType == .linkActivated
+            && path.hasSuffix("/external_tools/retrieve")
+            && query.contains("custom_arc_launch_type=immersive_view")
+            && (targetFrame?.isMainFrame ?? false) == false
+
+        return isExpandLink || isCanvasUploadDetailsLink || isStudioEmbedDetailsLink
     }
 }

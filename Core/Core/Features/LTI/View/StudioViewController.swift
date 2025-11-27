@@ -25,7 +25,8 @@ class StudioViewController: UINavigationController {
         let controller = CoreWebViewController()
         controller.webView.load(URLRequest(url: url))
         controller.addDoneButton()
-        controller.title = url.queryValue(for: "title") ?? String(localized: "Studio", bundle: .core)
+        controller.title = url.queryValue(for: "title")?.removingPercentEncoding
+                            ?? String(localized: "Studio", bundle: .core)
 
         super.init(rootViewController: controller)
 
