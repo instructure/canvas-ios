@@ -10522,6 +10522,7 @@
       }
     },
     "Looks like you're free for the next 4 weeks.  Do you want to add some to-dos?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -10776,6 +10777,9 @@
           }
         }
       }
+    },
+    "Looks like you're free for the next period.  Do you want to add some to-dos?" : {
+
     },
     "Mathematics 904 2024/25" : {
       "comment" : "Example course name for widget preview",
