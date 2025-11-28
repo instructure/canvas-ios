@@ -29,13 +29,23 @@ struct TodoFilterScreen: View {
 
     var body: some View {
         ScrollView {
-            LazyVStack(spacing: 0) {
+            VStack(spacing: 0) {
                 InstUI.TopDivider()
-                visibilitySection
-                InstUI.Divider()
-                dateRangeStartSection
-                InstUI.Divider()
-                dateRangeEndSection
+                MultiSelectionView(
+                    title: String(localized: "Visible Items", bundle: .core),
+                    allOptions: viewModel.visibilityOptionItems,
+                    selectedOptions: viewModel.selectedVisibilityOptions
+                )
+                SingleSelectionView(
+                    title: String(localized: "Show tasks from", bundle: .core, comment: "Show tasks from a selected date"),
+                    allOptions: viewModel.dateRangeStartItems,
+                    selectedOption: viewModel.selectedDateRangeStart
+                )
+                SingleSelectionView(
+                    title: String(localized: "Show tasks until", bundle: .core, comment: "Show tasks until a selected date"),
+                    allOptions: viewModel.dateRangeEndItems,
+                    selectedOption: viewModel.selectedDateRangeEnd
+                )
             }
         }
         .navigationBarTitle(Text("To-do List Preferences", bundle: .core), displayMode: .inline)
@@ -43,77 +53,6 @@ struct TodoFilterScreen: View {
             leading: cancelButton,
             trailing: doneButton
         )
-    }
-
-    private var visibilitySection: some View {
-        Section {
-            ForEach(viewModel.visibilityOptionItems) { item in
-                InstUI.CheckboxCell(
-                    title: item.title,
-                    headerTitle: item.headerTitle,
-                    subtitle: item.subtitle,
-                    isSelected: visibilityBinding(for: item),
-                    dividerStyle: dividerStyle(
-                        for: item,
-                        in: viewModel.visibilityOptionItems,
-                        shouldHideLastDivider: true
-                    )
-                )
-            }
-        } header: {
-            InstUI.ListSectionHeader(
-                title: String(localized: "Visible Items", bundle: .core),
-                itemCount: viewModel.visibilityOptionItems.count
-            )
-        }
-    }
-
-    private var dateRangeStartSection: some View {
-        Section {
-            ForEach(viewModel.dateRangeStartItems) { item in
-                InstUI.RadioButtonCell(
-                    title: item.title,
-                    headerTitle: item.headerTitle,
-                    subtitle: item.subtitle,
-                    value: item,
-                    selectedValue: $viewModel.selectedDateRangeStart,
-                    dividerStyle: dividerStyle(
-                        for: item,
-                        in: viewModel.dateRangeStartItems,
-                        shouldHideLastDivider: true
-                    )
-                )
-            }
-        } header: {
-            InstUI.ListSectionHeader(
-                title: String(localized: "Show tasks from", bundle: .core, comment: "Show tasks from a selected date"),
-                itemCount: viewModel.dateRangeStartItems.count
-            )
-        }
-    }
-
-    private var dateRangeEndSection: some View {
-        Section {
-            ForEach(viewModel.dateRangeEndItems) { item in
-                InstUI.RadioButtonCell(
-                    title: item.title,
-                    headerTitle: item.headerTitle,
-                    subtitle: item.subtitle,
-                    value: item,
-                    selectedValue: $viewModel.selectedDateRangeEnd,
-                    dividerStyle: dividerStyle(
-                        for: item,
-                        in: viewModel.dateRangeEndItems,
-                        shouldHideLastDivider: false
-                    )
-                )
-            }
-        } header: {
-            InstUI.ListSectionHeader(
-                title: String(localized: "Show tasks until", bundle: .core, comment: "Show tasks until a selected date"),
-                itemCount: viewModel.dateRangeEndItems.count
-            )
-        }
     }
 
     private var cancelButton: some View {
@@ -130,32 +69,6 @@ struct TodoFilterScreen: View {
             viewController.value.dismiss(animated: true)
         } label: {
             Text("Done", bundle: .core)
-        }
-    }
-
-    private func visibilityBinding(for item: OptionItem) -> Binding<Bool> {
-        Binding {
-            viewModel.selectedVisibilityOptions.contains(item)
-        } set: { isSelected in
-            if isSelected {
-                viewModel.selectedVisibilityOptions.insert(item)
-            } else {
-                viewModel.selectedVisibilityOptions.remove(item)
-            }
-        }
-    }
-
-    private func dividerStyle(
-        for item: OptionItem,
-        in items: [OptionItem],
-        shouldHideLastDivider: Bool
-    ) -> InstUI.Divider.Style {
-        let isLastItem = (item.id == items.last?.id)
-
-        if isLastItem {
-            return shouldHideLastDivider ? .hidden : .full
-        } else {
-            return .padded
         }
     }
 }

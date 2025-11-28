@@ -193,6 +193,15 @@ public extension Date {
     }()
 
     /**
+     This date formatter displays abbreviated month names. E.g.: Jan, Feb, Mar.
+     */
+    private static var monthFormatterAbbreviated: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("MMM")
+        return formatter
+    }()
+
+    /**
      This date formatter displays the full month name and the day of the month. E.g.: September 6.
      */
     private static var dayInMonthFormatter: DateFormatter = {
@@ -302,6 +311,13 @@ public extension Date {
      */
     var weekdayNameAbbreviated: String {
         Date.weekdayFormatterAbbreviated.string(from: self)
+    }
+
+    /**
+     E.g.: Jan, Feb, Mar
+     */
+    var monthNameAbbreviated: String {
+        Date.monthFormatterAbbreviated.string(from: self)
     }
 
     /**

@@ -170,25 +170,26 @@ public extension UseCase {
                 performUIUpdate {
                     completion(.failure(error))
                 }
-            } else {
-                environment.database.performWriteTask { context in
-                    do {
-                        self.reset(context: context)
-                        self.write(response: response, urlResponse: urlResponse, to: context)
-                        self.updateTTL(in: context)
-                        try context.save()
-                        performUIUpdate {
-                            completion(.success((response, urlResponse)))
-                        }
-                    } catch let dbError {
-                        Logger.shared.error(dbError.localizedDescription)
-                        RemoteLogger.shared.logError(
-                            name: "CoreData save failed",
-                            reason: dbError.localizedDescription
-                        )
-                        performUIUpdate {
-                            completion(.failure(dbError))
-                        }
+                return
+            }
+
+            environment.database.performWriteTask { context in
+                do {
+                    self.reset(context: context)
+                    self.write(response: response, urlResponse: urlResponse, to: context)
+                    self.updateTTL(in: context)
+                    try context.save()
+                    performUIUpdate {
+                        completion(.success((response, urlResponse)))
+                    }
+                } catch let dbError {
+                    Logger.shared.error(dbError.localizedDescription)
+                    RemoteLogger.shared.logError(
+                        name: "CoreData save failed",
+                        reason: dbError.localizedDescription
+                    )
+                    performUIUpdate {
+                        completion(.failure(dbError))
                     }
                 }
             }

@@ -42,12 +42,17 @@ struct TodoDayHeaderView: View {
                 ZStack {
                     Circle()
                         .stroke(tintColor)
-                        .scaledFrame(size: 32, useIconScale: true)
+                        .scaledFrame(size: 40, useIconScale: true)
                         .hidden(!group.isToday)
-                    Text(group.dayNumber)
-                        .font(group.isToday ? .bold12 : .regular12, lineHeight: .fit)
-                        .padding(.top, group.isToday ? 0 : uiScale * -14)
+                    VStack(spacing: 0) {
+                        Text(group.dayNumber)
+                            .font(group.isToday ? .bold12 : .regular12)
+                        Text(group.monthAbbreviation)
+                            .font(.regular10)
+                    }
+                    .padding(.top, group.isToday ? 0 : uiScale * -14)
                 }
+                .padding(.top, 1)
             }
             .padding(.top, 8)
             .padding(.bottom, 9) // to maximize hit area

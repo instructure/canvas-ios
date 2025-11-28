@@ -23,7 +23,8 @@ final class TodoInteractorMock: TodoInteractor {
     var todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([])
     var refreshCalled = false
     var refreshCallCount = 0
-    var lastIgnoreCache = false
+    var lastIgnorePlannablesCache = false
+    var lastIgnoreCoursesCache = false
     var refreshResult: Result<Void, Error> = .success(())
 
     var isCacheExpiredCalled = false
@@ -36,10 +37,11 @@ final class TodoInteractorMock: TodoInteractor {
     var lastMarkAsDoneDone: Bool?
     var markItemAsDoneResult: Result<String, Error> = .success("mock-override-id")
 
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+    func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error> {
         refreshCalled = true
         refreshCallCount += 1
-        lastIgnoreCache = ignoreCache
+        lastIgnorePlannablesCache = ignorePlannablesCache
+        lastIgnoreCoursesCache = ignoreCoursesCache
 
         switch refreshResult {
         case .success:
