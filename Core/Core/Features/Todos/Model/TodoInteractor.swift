@@ -58,6 +58,7 @@ public final class TodoInteractorLive: TodoInteractor {
     private let env: AppEnvironment
     private let sessionDefaults: SessionDefaults
     private let coursesStore: ReactiveStore<GetCourses>
+    private let contextColorsStore: ReactiveStore<GetCustomColors>
     private let alwaysExcludeCompleted: Bool
     private var subscriptions = Set<AnyCancellable>()
 
@@ -66,6 +67,7 @@ public final class TodoInteractorLive: TodoInteractor {
         self.alwaysExcludeCompleted = alwaysExcludeCompleted
         self.env = env
         self.coursesStore = ReactiveStore(useCase: GetCourses(), environment: env)
+        self.contextColorsStore = ReactiveStore(useCase: GetCustomColors(), environment: env)
     }
 
     // MARK: - Public Methods
@@ -73,11 +75,12 @@ public final class TodoInteractorLive: TodoInteractor {
     public func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error> {
         let plannableStore = makePlannablesStore()
 
-        return Publishers.Zip(
+        return Publishers.Zip3(
             plannableStore.getEntities(ignoreCache: ignorePlannablesCache, loadAllPages: true),
-            coursesStore.getEntities(ignoreCache: ignoreCoursesCache)
+            coursesStore.getEntities(ignoreCache: ignoreCoursesCache),
+            contextColorsStore.getEntities(ignoreCache: ignoreCoursesCache)
         )
-        .handleEvents(receiveOutput: { [weak self] plannables, courses in
+        .handleEvents(receiveOutput: { [weak self] plannables, courses, _ in
             self?.filterAndGroupTodos(plannables: plannables, courses: courses)
             self?.logFilterAnalytics()
         })
@@ -88,12 +91,13 @@ public final class TodoInteractorLive: TodoInteractor {
     public func isCacheExpired() -> AnyPublisher<Bool, Never> {
         let plannablesUseCase = GetPlannables.makeTodoFetchUseCase()
 
-        return Publishers.Zip(
+        return Publishers.Zip3(
             plannablesUseCase.hasCacheExpired(environment: env),
-            coursesStore.useCase.hasCacheExpired(environment: env)
+            coursesStore.useCase.hasCacheExpired(environment: env),
+            contextColorsStore.useCase.hasCacheExpired(environment: env)
         )
-        .map { plannablesExpired, coursesExpired in
-            plannablesExpired || coursesExpired
+        .map { plannablesExpired, coursesExpired, colorsExpired in
+            plannablesExpired || coursesExpired || colorsExpired
         }
         .eraseToAnyPublisher()
     }
