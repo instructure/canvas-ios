@@ -140,7 +140,8 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
     }
 
     private var swipeBackground: some View {
-        backgroundColor
+        // Only show background when swipe has started to prevent it from being visible during cell fade-in animations
+        (cellContentOffset != 0 ? backgroundColor : Color.clear)
             .overlay(alignment: .trailing) {
                 label()
                     .onWidthChange { width in
