@@ -42,6 +42,8 @@ class SubmissionButtonPresenter: NSObject {
     var selectedSubmissionTypes: [SubmissionType] = []
     lazy var flags = env.subscribe(GetEnabledFeatureFlags(context: .currentUser)) {}
 
+    private let mediaSubmissionState = SubmissionRetrialState()
+
     init(env: AppEnvironment, view: SubmissionButtonViewProtocol, assignmentID: String) {
         self.env = env
         self.view = view
@@ -332,7 +334,7 @@ extension SubmissionButtonPresenter {
                 reportSuccess()
             } }
         }
-        let createSubmission = { (media: MediaEntry?, error: Error?) in
+        let createSubmission = { [weak self] (media: MediaEntry?, error: Error?) in
             guard error == nil else { return doneUploading(error) }
             CreateSubmission(
                 context: .course(assignment.courseID),
@@ -342,7 +344,9 @@ extension SubmissionButtonPresenter {
                 mediaCommentID: media?.mediaID,
                 mediaCommentType: type,
                 mediaCommentSource: source
-            ).fetch(environment: env) { _, _, error in doneUploading(error) }
+            )
+            .settingRetrialState(self?.mediaSubmissionState)
+            .fetch(environment: env) { _, _, error in doneUploading(error) }
         }
         let upload = { mediaUploader.fetch(createSubmission) }
         show(uploading, completion: upload)

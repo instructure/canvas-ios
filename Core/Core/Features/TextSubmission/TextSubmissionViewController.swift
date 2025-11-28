@@ -36,6 +36,8 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
         env.app != .student
     }
 
+    private let submissionRetrialState = SubmissionRetrialState()
+
     // MARK: - Public Properties
     public var didSetHtmlContent: ((String) -> Void) = { _ in}
 
@@ -145,6 +147,7 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
                 submissionType: .online_text_entry,
                 body: html
             )
+            .settingRetrialState(submissionRetrialState)
             .fetch(environment: self.env, { (_, _, error) in
                 performUIUpdate {
                     if let error = error {
