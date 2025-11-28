@@ -25,7 +25,7 @@ final class GetNotebookNotesUseCase: CollectionUseCase {
 
     // MARK: - Dependencies
 
-    private let redwood: DomainService
+    private let redwood: DomainServiceProtocol
     private let filter: NotebookQueryFilter
 
     // MARK: - Properties
@@ -62,7 +62,7 @@ final class GetNotebookNotesUseCase: CollectionUseCase {
 
     init(
         filter: NotebookQueryFilter,
-        redwood: DomainService = DomainService(.redwood),
+        redwood: DomainServiceProtocol = DomainService(.redwood),
     ) {
         self.filter = filter
         self.redwood = redwood

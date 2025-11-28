@@ -63,13 +63,13 @@ struct NoteCardsView: View {
         }
         .padding(.huiSpaces.space24)
         .background(Color.huiColors.surface.cardPrimary)
-        .clipShape(.rect(cornerRadius: 16))
-        .padding([.leading, .bottom], .huiSpaces.space8)
-        .padding([.top, .trailing], .huiSpaces.space2)
+        .huiCornerRadius(level: .level3)
+        .padding([.leading, .bottom], 6)
+        .padding([.top, .trailing], 1)
         .background {
             Rectangle()
                 .fill(note.type.backgroundColor)
-                .clipShape(.rect(cornerRadius: 16))
+                .huiCornerRadius(level: .level3)
         }
         .confirmationDialog("", isPresented: $showDeleteConfirmation, titleVisibility: .hidden) {
             Button(String(localized: "Delete note"), role: .destructive) {

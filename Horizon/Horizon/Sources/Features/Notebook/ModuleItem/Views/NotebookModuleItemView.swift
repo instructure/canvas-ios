@@ -21,6 +21,9 @@ import HorizonUI
 import SwiftUI
 
 struct NotebookModuleItemView: View {
+    @AccessibilityFocusState private var focusedID: String?
+    @State private var lastFocusedID: String?
+
     @Environment(\.dismiss) private var dismiss
     @Environment(\.viewController) private var viewController
     @State private var selectedNote: CourseNotebookNote?
@@ -48,6 +51,17 @@ struct NotebookModuleItemView: View {
             ),
             isPresented: $viewModel.listState.isPresentedErrorToast
         )
+        .huiToast(
+            viewModel: .init(
+                text: viewModel.listState.successMessage,
+                style: .success
+            ),
+            isPresented: $viewModel.listState.isPresentedSuccessToast
+        )
+        .onReceive(viewModel.listState.restoreAccessibility) {
+            restoreFocusIfNeeded(after: 1)
+        }
+
     }
 
     private var dataView: some View {
@@ -56,8 +70,10 @@ struct NotebookModuleItemView: View {
             selectedNote: selectedNote,
             showDeleteLoader: viewModel.listState.isDeletedNoteLoaderVisible,
             isSeeMoreButtonVisible: viewModel.listState.isSeeMoreButtonVisible,
-            showCourseName: false) { selectedNote in
+            screenType: .moduleItem,
+            focusedID: $focusedID) { selectedNote in
                 viewModel.presentEditNote(note: selectedNote, viewController: viewController)
+                lastFocusedID = selectedNote.id
             } onTapDeleteNote: { deletedNote in
                 selectedNote = deletedNote
                 viewModel.deleteNote(deletedNote)
@@ -66,6 +82,7 @@ struct NotebookModuleItemView: View {
             }
             .padding(.horizontal, .huiSpaces.space16)
             .padding(.top, .huiSpaces.space8)
+            .accessibilityHint(String(localized: "Double tap to edit note", bundle: .horizon))
     }
 
     private var navigationBar: some View {
@@ -73,9 +90,11 @@ struct NotebookModuleItemView: View {
             HStack(spacing: .huiSpaces.space4) {
                 Image.huiIcons.editNote
                     .foregroundStyle(Color.huiColors.icon.default)
+                    .accessibilityHidden(true)
                 Text("Notebook")
                     .foregroundStyle(Color.huiColors.text.title)
                     .huiTypography(.h4)
+                    .accessibilityAddTraits(.isHeader)
                 Spacer()
                 HorizonUI.IconButton(
                     .huiIcons.close,
@@ -84,14 +103,16 @@ struct NotebookModuleItemView: View {
                 ) {
                     dismiss()
                 }
+                .accessibilityLabel(String(localized: "Double tap to dismiss the screen", bundle: .horizon))
             }
             .padding(.horizontal, .huiSpaces.space16)
-
             Rectangle()
                 .fill(Color.huiColors.primitives.grey14)
                 .frame(height: 1.5)
                 .padding(.top, .huiSpaces.space16)
+                .accessibilityHidden(true)
         }
+        .padding(.top, .huiSpaces.space16)
     }
 
     @ViewBuilder
@@ -112,6 +133,13 @@ struct NotebookModuleItemView: View {
             .foregroundStyle(Color.huiColors.text.body)
             .huiTypography(.p1)
             .padding(.huiSpaces.space16)
+    }
+
+    private func restoreFocusIfNeeded(after: Double = 1) {
+        guard let lastFocused = lastFocusedID else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + after) {
+            focusedID = lastFocused
+        }
     }
 }
 

@@ -26,7 +26,7 @@ class DeleteNotebookNoteUseCase: DeleteUseCase {
     typealias Model = CDHNotebookNote
 
     // MARK: Dependencies
-    let redwood: DomainService
+    let redwood: DomainServiceProtocol
 
     // MARK: Overridden Properties
     let request: RedwoodDeleteNoteMutation
@@ -39,7 +39,7 @@ class DeleteNotebookNoteUseCase: DeleteUseCase {
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: Init
-    init(request: RedwoodDeleteNoteMutation, redwood: DomainService = DomainService(.redwood)) {
+    init(request: RedwoodDeleteNoteMutation, redwood: DomainServiceProtocol = DomainService(.redwood)) {
         self.request = request
         self.redwood = redwood
     }

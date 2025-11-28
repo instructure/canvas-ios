@@ -50,10 +50,9 @@ extension HorizonUI.Chip {
                 .clipShape(.rect(cornerRadius: cornerRadius.attributes.radius))
                 .overlay(
                     RoundedRectangle(cornerRadius: cornerRadius.attributes.radius)
-                        .stroke(style.borderColor)
+                        .stroke(style.borderColor, lineWidth: 1)
                 )
                 .opacity(style.state == .disable ? 0.5 : 1)
-                .padding(.huiSpaces.space2)
         }
     }
 }

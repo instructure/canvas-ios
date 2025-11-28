@@ -127,12 +127,18 @@ final class NotebookListViewModel {
         _ note: CourseNotebookNote,
         viewController: WeakViewController
     ) {
-        let routePath = "/courses/\(note.courseId)/modules/items/\(note.objectId)?asset_type=Page&notebook_disabled=true"
+        let routePath = "/courses/\(note.courseId)/modules/items/\(note.objectId)?asset_type=Page&notebook_disabled=true&scrollToNoteID=\(note.id)"
         router.route(to: routePath, from: viewController)
     }
 
     func presentEditNote(note: CourseNotebookNote, viewController: WeakViewController) {
-        let noteVC = NotebookNoteAssembly.makeViewNoteViewController(courseNotebookNote: note)
+        let noteVC = EditNotebookAssembly.makeViewNoteViewController(courseNotebookNote: note) { [weak self] isNoteUpdated in
+            if isNoteUpdated {
+                self?.listState.successMessage = String(localized: "Note saved", bundle: .horizon)
+                self?.listState.isPresentedSuccessToast = true
+            }
+            self?.listState.restoreAccessibility.send(())
+        }
         router.show(noteVC, from: viewController)
     }
 
@@ -145,7 +151,7 @@ final class NotebookListViewModel {
     private func getSelectedFilter() -> NotebookQueryFilter {
         let course = listState.selectedCourse ?? courses.first
         let label = listState.selectedLable ?? courseLables.first
-        let reactions = label?.id == "1" ? nil : [label?.name ?? ""]
+        let reactions = label?.id == "1" ? nil : [label?.key ?? ""]
         let courseID = course?.id == "-1" ? nil : course?.id
         return NotebookQueryFilter(reactions: reactions, courseId: courseID)
     }

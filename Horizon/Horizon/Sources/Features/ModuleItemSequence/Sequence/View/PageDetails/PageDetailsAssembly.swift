@@ -45,7 +45,8 @@ struct PageDetailsAssembly {
                          isCompletedItem: Bool,
                          isMarkedAsDoneButtonVisible: Bool,
                          moduleID: String,
-                         itemID: String) -> PageDetailsView {
+                         itemID: String,
+                         scrollToNoteID: String? = nil) -> PageDetailsView {
 
         let interactor = ModuleItemSequenceInteractorLive(
             courseID: context.id,
@@ -61,7 +62,8 @@ struct PageDetailsAssembly {
                 itemID: itemID,
                 isCompleted: isCompletedItem,
                 moduleItemSequenceInteractor: interactor
-            )
+            ),
+            scrollToNoteID: scrollToNoteID
         )
         return PageDetailsView(viewModel: viewModel)
     }

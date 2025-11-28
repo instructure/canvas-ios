@@ -20,14 +20,51 @@ import HorizonUI
 import SwiftUI
 
 struct NotesbookCardsView: View {
-    let notes: [CourseNotebookNote]
-    let selectedNote: CourseNotebookNote?
-    let showDeleteLoader: Bool
-    let isSeeMoreButtonVisible: Bool
-    let showCourseName: Bool
-    let onTapNote: (CourseNotebookNote) -> Void
-    let onTapDeleteNote: (CourseNotebookNote) -> Void
-    let onTapSeeMore: () -> Void
+    enum ScreenType {
+        case list
+        case  moduleItem
+        case course
+        var isShowCourseNameVisible: Bool {
+            switch self {
+            case .list: return true
+            case .course, .moduleItem: return false
+            }
+        }
+    }
+    // MARK: - Dependencies
+
+    private let notes: [CourseNotebookNote]
+    private let selectedNote: CourseNotebookNote?
+    private let showDeleteLoader: Bool
+    private let isSeeMoreButtonVisible: Bool
+    private let screenType: ScreenType
+    private let focusedID: AccessibilityFocusState<String?>.Binding
+    private let onTapNote: (CourseNotebookNote) -> Void
+    private let onTapDeleteNote: (CourseNotebookNote) -> Void
+    private let onTapSeeMore: () -> Void
+
+    // MARK: - Init
+    init(
+        notes: [CourseNotebookNote],
+        selectedNote: CourseNotebookNote?,
+        showDeleteLoader: Bool,
+        isSeeMoreButtonVisible: Bool,
+        screenType: ScreenType,
+        focusedID: AccessibilityFocusState<String?>.Binding,
+        onTapNote: @escaping (CourseNotebookNote) -> Void,
+        onTapDeleteNote: @escaping (CourseNotebookNote) -> Void,
+        onTapSeeMore: @escaping () -> Void
+    ) {
+        self.notes = notes
+        self.selectedNote = selectedNote
+        self.showDeleteLoader = showDeleteLoader
+        self.isSeeMoreButtonVisible = isSeeMoreButtonVisible
+        self.screenType = screenType
+        self.focusedID = focusedID
+        self.onTapNote = onTapNote
+        self.onTapDeleteNote = onTapDeleteNote
+        self.onTapSeeMore = onTapSeeMore
+    }
 
     var body: some View {
         VStack(spacing: .huiSpaces.space16) {
@@ -38,15 +75,28 @@ struct NotesbookCardsView: View {
                     NoteCardsView(
                         note: note,
                         isLoading: note == selectedNote ? showDeleteLoader : false,
-                        showCourseName: showCourseName
+                        showCourseName: screenType.isShowCourseNameVisible
                     ) { deletedNote in
                         onTapDeleteNote(deletedNote)
                     }
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityRemoveTraits(.isButton)
+                .accessibilityLabel(note.getAccessliblityLabel(isCourseNameVisible: screenType.isShowCourseNameVisible))
                 .transition(.move(edge: .trailing).combined(with: .opacity))
+                .accessibilityFocused(focusedID, equals: note.id)
                 .scrollTransition(.animated) { content, phase in
                     content
                         .scaleEffect(phase.isIdentity ? 1 : 0.9)
+                }
+                .accessibilityActions {
+                    Button(screenType == .moduleItem ? String(localized: "Edit note") : String(localized: "Open page")) {
+                        onTapNote(note)
+                    }
+
+                    Button(String(localized: "Delete note")) {
+                        onTapDeleteNote(note)
+                    }
                 }
             }
 

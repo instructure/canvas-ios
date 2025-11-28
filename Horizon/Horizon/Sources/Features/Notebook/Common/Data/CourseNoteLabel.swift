@@ -20,27 +20,24 @@ import SwiftUI
 import HorizonUI
 
 enum CourseNoteLabel: String, CaseIterable {
-    case unclear = "Unclear"
+    case unclear = "Confusing"
     case important = "Important"
     case other = "Other"
-
-    // MARK: Static
-    static func color(_ label: CourseNoteLabel) -> Color? {
-        label.color
-    }
 
     // MARK: Properties
     var color: Color {
         switch self {
         case .important: .huiColors.primitives.sea57
-        default: .huiColors.primitives.red57
+        case .unclear: .huiColors.primitives.red57
+        case .other: .huiColors.text.body
         }
     }
 
     var backgroundColor: Color {
         switch self {
         case .important: .huiColors.primitives.sea12
-        default: .huiColors.primitives.red12
+        case .unclear: .huiColors.primitives.red12
+        case .other: Color.clear
         }
     }
 
@@ -52,9 +49,11 @@ enum CourseNoteLabel: String, CaseIterable {
     }
 
     var label: String {
-        self == .unclear ?
-            String(localized: "Unclear", bundle: .horizon) :
-            String(localized: "Important", bundle: .horizon)
+        switch self {
+        case .unclear: String(localized: "Unclear", bundle: .horizon)
+        case .important: String(localized: "Important", bundle: .horizon)
+        case .other: String(localized: "All notes", bundle: .horizon)
+        }
     }
 
     var icon: Image {
@@ -67,14 +66,27 @@ enum CourseNoteLabel: String, CaseIterable {
     static var list: [DropdownMenuItem] {
         [
             .init(id: "1", name: String(localized: "All notes")),
-            .init(id: "2", name: CourseNoteLabel.unclear.label),
-            .init(id: "3", name: CourseNoteLabel.important.label)
+            .init(id: "2", name: CourseNoteLabel.unclear.label, key: CourseNoteLabel.unclear.rawValue),
+            .init(id: "3", name: CourseNoteLabel.important.label, key: CourseNoteLabel.important.rawValue)
         ]
     }
 
-    func image(selected: Bool = true) -> some View {
-        let color = selected ? self.color : HorizonUI.colors.lineAndBorders.containerStroke
-        let image = self == .unclear ? Image.huiIcons.help : Image.huiIcons.flag2
-        return image.foregroundStyle(color)
+    var markNoteName: String {
+        switch self {
+        case .unclear: String(localized: "Mark unclear", bundle: .horizon)
+        case .important: String(localized: "Mark important", bundle: .horizon)
+        case .other: String(localized: "All notes", bundle: .horizon)
+        }
+    }
+
+    var image: some View {
+        switch self {
+        case .unclear:
+            Image.huiIcons.help
+        case .important:
+            Image.huiIcons.keepPin
+        case .other:
+            Image.huiIcons.editNote
+        }
     }
 }

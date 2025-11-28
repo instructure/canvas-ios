@@ -62,9 +62,9 @@ final class CourseNoteInteractorPreview: CourseNoteInteractor {
         content: String?,
         labels: [CourseNoteLabel]?,
         highlightData: NotebookHighlight?
-    ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
+    ) -> AnyPublisher<CourseNotebookNote, Error> {
         Just(CourseNotebookNote.example)
-            .setFailureType(to: NotebookError.self)
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 }

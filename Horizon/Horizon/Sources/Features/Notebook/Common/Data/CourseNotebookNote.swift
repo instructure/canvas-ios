@@ -47,6 +47,17 @@ struct CourseNotebookNote: Equatable, Identifiable {
     var dateFormatted: String {
         date.formatted(format: "MMM dd, yyyy")
     }
+
+    func getAccessliblityLabel(isCourseNameVisible: Bool = true) -> String {
+        var description = String(format: String(localized: "Note label is %@. "), type.label)
+        description += String(format: String(localized: "Highlighted text is %@. "), highlightedText)
+        description += String(format: String(localized: "Added at %@. "), dateFormatted)
+
+        if isCourseNameVisible {
+            description += String(format: String(localized: "Course name is %@. "), courseName ?? "")
+        }
+        return description
+    }
 }
 
 struct ListCourseNotebookNoteModel: Equatable {

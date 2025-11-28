@@ -43,8 +43,6 @@ public final class CDHNotebookNote: NSManagedObject {
     }
 
     public static func serializeLabels(from strings: [String]?) -> String? {
-        // TODO: - Remove it later
-        let transformed = (strings ?? []).map { $0 == "Confusing" ? "Unclear" : $0 }
-        return transformed.sorted().joined(separator: ";")
+        return strings?.sorted().joined(separator: ";")
     }
 }

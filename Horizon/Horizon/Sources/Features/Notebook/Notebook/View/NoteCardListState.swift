@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+
 struct NoteCardListState {
     // Loader
     var isLoaderVisible = true
@@ -24,6 +26,9 @@ struct NoteCardListState {
     var isSeeMoreButtonVisible: Bool = false
     var isShowfilterView: Bool = true
     var isPresentedErrorToast: Bool = false
+    var isPresentedSuccessToast: Bool = false
+    // When dismiss the edit note view, we need to restore the accessibility focus to the note card list.
+    var restoreAccessibility = PassthroughSubject<Void, Never>()
     /// This flag determines whether pagination should be reset when fetching notes after deleting a note.
     /// We set `keepObserving = true` to observe changes in real time. Without this flag,
     /// deleting a note would reset the pagination unexpectedly.
@@ -32,6 +37,7 @@ struct NoteCardListState {
     var isNoteDeleted: Bool = true
     // Values
     var errorMessage = ""
+    var successMessage = ""
     var selectedCourse: DropdownMenuItem?
     var selectedLable: DropdownMenuItem?
 }
