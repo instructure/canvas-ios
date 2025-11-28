@@ -583,7 +583,7 @@ class StudentAssignmentDetailsPresenterTests: StudentTestCase {
     func testAttemptPickerActiveOnMultipleSubmissionsWhenFlagIsActive() {
         Submission.make(from: .make(attempt: 1, id: "1"))
         Submission.make(from: .make(attempt: 2, id: "2"))
-        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: true)
+        FeatureFlag.make(name: FeatureFlagName.assignmentEnhancements.rawValue, enabled: true)
 
         waitUntil(shouldFail: true) {
             resultingAttemptPickerActiveState == true
@@ -593,14 +593,14 @@ class StudentAssignmentDetailsPresenterTests: StudentTestCase {
     func testAttemptPickerDisabledOnMultipleSubmissionsWhenFlagIsInactive() {
         Submission.make(from: .make(attempt: 1, id: "1"))
         Submission.make(from: .make(attempt: 2, id: "2"))
-        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: false)
+        FeatureFlag.make(name: FeatureFlagName.assignmentEnhancements.rawValue, enabled: false)
 
         XCTAssertEqual(resultingAttemptPickerActiveState, false)
     }
 
     func testAttemptPickerDisabledOnSingleSubmissionWhenFlagIsActive() {
         Submission.make(from: .make(attempt: 1, id: "1"))
-        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: true)
+        FeatureFlag.make(name: FeatureFlagName.assignmentEnhancements.rawValue, enabled: true)
 
         XCTAssertEqual(resultingAttemptPickerActiveState, false)
     }
@@ -609,7 +609,7 @@ class StudentAssignmentDetailsPresenterTests: StudentTestCase {
         Assignment.make()
         let submission1 = Submission.make(from: .make(attempt: 1, id: "1", score: 1))
         let submission2 = Submission.make(from: .make(attempt: 2, id: "2", score: 2))
-        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: true)
+        FeatureFlag.make(name: FeatureFlagName.assignmentEnhancements.rawValue, enabled: true)
 
         waitUntil(shouldFail: true) {
             resultingAttemptPickerItems?.count == 2
@@ -631,7 +631,7 @@ class StudentAssignmentDetailsPresenterTests: StudentTestCase {
         Assignment.make()
         Submission.make(from: .make(attempt: 1, id: "1", score: 1))
         Submission.make(from: .make(attempt: 2, id: "2", score: 2))
-        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: true)
+        FeatureFlag.make(name: FeatureFlagName.assignmentEnhancements.rawValue, enabled: true)
 
         waitUntil(shouldFail: true) {
             resultingAttemptPickerItems?.count == 2

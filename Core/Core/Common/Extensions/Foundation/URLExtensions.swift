@@ -191,6 +191,10 @@ public extension URL {
         return components.queryValue(for: key) != nil
     }
 
+    func queryValue(for key: String) -> String? {
+        return URLComponents.parse(self).queryValue(for: key)
+    }
+
     func appendingOrigin(_ origin: String) -> URL {
         return appendingQueryItems(.init(name: "origin", value: origin))
     }

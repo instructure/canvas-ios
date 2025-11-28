@@ -312,6 +312,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         contentView.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: contentView)
         webView.linkDelegate = self
+        webView.setupStudioFeatures(context: context, env: env)
         webView.accessibilityLabel = "FileDetails.webView"
         progressView.progress = 0
         setupLoadObservation(for: webView)

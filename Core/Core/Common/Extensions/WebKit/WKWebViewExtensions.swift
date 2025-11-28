@@ -28,6 +28,16 @@ public extension WKWebView {
         configuration.userContentController.addUserScript(script)
     }
 
+    func removeScript(_ js: String) {
+        let controller = configuration.userContentController
+        let scriptsToKeep = controller.userScripts.filter({ $0.source != js })
+
+        controller.removeAllUserScripts()
+        scriptsToKeep.forEach { script in
+            controller.addUserScript(script)
+        }
+    }
+
     func handle(_ name: String, handler: @escaping MessageHandler) {
         let passer = MessagePasser(handler: handler)
         configuration.userContentController.removeScriptMessageHandler(forName: name)
