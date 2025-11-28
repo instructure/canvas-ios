@@ -46,7 +46,7 @@ enum TodoStatusState {
     var subtitle: String {
         switch self {
         case .empty:
-            String(localized: "Looks like you're free for the next 4 weeks.  Do you want to add some to-dos?")
+            String(localized: "Looks like you are free, you have no upcoming tasks.  Do you want to add some to-dos?")
         case .failure:
             String(localized: "We're having trouble showing your tasks right now.  Please try again in a bit or head to the app.")
         case .loggedOut:

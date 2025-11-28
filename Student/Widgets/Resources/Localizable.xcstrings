@@ -10521,7 +10521,11 @@
         }
       }
     },
+    "Looks like you are free, you have no upcoming tasks.  Do you want to add some to-dos?" : {
+
+    },
     "Looks like you're free for the next 4 weeks.  Do you want to add some to-dos?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

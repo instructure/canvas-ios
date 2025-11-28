@@ -229,7 +229,10 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
     // MARK: - Comparable
 
     public static func < (lhs: TodoItemViewModel, rhs: TodoItemViewModel) -> Bool {
-        lhs.date < rhs.date
+        if lhs.date != rhs.date {
+            return lhs.date < rhs.date
+        }
+        return lhs.title < rhs.title
     }
 }
 
