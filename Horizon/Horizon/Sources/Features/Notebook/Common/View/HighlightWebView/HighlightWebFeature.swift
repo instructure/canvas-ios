@@ -51,6 +51,21 @@ class HighlightWebFeature: CoreWebViewFeature {
         }
     }
 
+    /// Scrolls to a specific highlight in the web view
+    func scrollToHighlight(webView: WKWebView, notebookTextSelection: NotebookTextSelection) async {
+        await withCheckedContinuation { continuation in
+            if let jsonData = try? JSONEncoder().encode(notebookTextSelection),
+               let jsonString = String(data: jsonData, encoding: .utf8) {
+                let evalString = "scrollToHighlight(\(jsonString))"
+                DispatchQueue.main.async {
+                    webView.evaluateJavaScript(evalString) { _, _ in
+                        continuation.resume()
+                    }
+                }
+            }
+        }
+    }
+
     /// Gets the NotebookTextSelection of the current selection in the web view
     func getCurrentTextSelection(from webView: WKWebView) async -> NotebookTextSelection? {
         await withCheckedContinuation { continuation in

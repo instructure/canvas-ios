@@ -127,7 +127,7 @@ final class NotebookListViewModel {
         _ note: CourseNotebookNote,
         viewController: WeakViewController
     ) {
-        let routePath = "/courses/\(note.courseId)/modules/items/\(note.objectId)?asset_type=Page&notebook_disabled=true"
+        let routePath = "/courses/\(note.courseId)/modules/items/\(note.objectId)?asset_type=Page&notebook_disabled=true&scrollToNoteID=\(note.id)"
         router.route(to: routePath, from: viewController)
     }
 

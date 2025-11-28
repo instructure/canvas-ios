@@ -34,6 +34,13 @@ final class HorizonWebView: CoreWebView {
                     webView: self,
                     notebookTextSelections: courseNotebookNotes.compactMap { $0.notebookTextSelection }
                 )
+                if let scrollToNoteID = scrollToNoteID {
+                    if let note = courseNotebookNotes.first(where: { $0.id == scrollToNoteID }),
+                       let textSelection = note.notebookTextSelection {
+                        try? await Task.sleep(for: .milliseconds(500)) // Wait for highlights to be applied
+                        await highlightWebFeature?.scrollToHighlight(webView: self, notebookTextSelection: textSelection)
+                    }
+                }
             }
         }
     }
@@ -53,6 +60,7 @@ final class HorizonWebView: CoreWebView {
     private let moduleType: ModuleItemType?
     private let router: Router
     private let viewController: WeakViewController?
+    private let scrollToNoteID: String?
 
     // MARK: - Init
 
@@ -61,6 +69,7 @@ final class HorizonWebView: CoreWebView {
         pageURL: String,
         moduleType: ModuleItemType,
         viewController: WeakViewController,
+        scrollToNoteID: String? = nil,
         router: Router = AppEnvironment.shared.router,
         courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive()
     ) {
@@ -70,6 +79,7 @@ final class HorizonWebView: CoreWebView {
         self.router = router
         self.courseNoteInteractor = courseNoteInteractor
         self.viewController = viewController
+        self.scrollToNoteID = scrollToNoteID
 
         let highlightWebFeature = HighlightWebFeature()
 
@@ -89,7 +99,7 @@ final class HorizonWebView: CoreWebView {
         self.moduleType = nil
         self.viewController = nil
         self.highlightWebFeature = nil
-
+        self.scrollToNoteID = nil
         super.init(coder: coder)
     }
 

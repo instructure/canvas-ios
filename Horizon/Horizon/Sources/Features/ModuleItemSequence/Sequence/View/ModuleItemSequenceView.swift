@@ -232,7 +232,8 @@ private struct ContentView: View {
                         isCompletedItem: isCompleted,
                         isMarkedAsDoneButtonVisible: isMarkedAsDoneButtonVisible,
                         moduleID: moduleID,
-                        itemID: itemID
+                        itemID: itemID,
+                        scrollToNoteID: viewModel.scrollToNoteID
                     )
                     .id(pageURL)
                 case .moduleItem(controller: let controller, let id):
