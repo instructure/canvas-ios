@@ -134,15 +134,17 @@ struct CustomizeCourseView: View {
 #if DEBUG
 
 #Preview {
-    CustomizeCourseView(
-        viewModel: CustomizeCourseViewModel(
-            courseId: "1",
-            courseImage: nil,
-            courseColor: .course1,
-            courseName: "Test Course",
-            hideColorOverlay: false
+    NavigationStack {
+        CustomizeCourseView(
+            viewModel: CustomizeCourseViewModel(
+                courseId: "1",
+                courseImage: nil,
+                courseColor: .course1,
+                courseName: "Test Course",
+                hideColorOverlay: false
+            )
         )
-    )
+    }
 }
 
 #endif

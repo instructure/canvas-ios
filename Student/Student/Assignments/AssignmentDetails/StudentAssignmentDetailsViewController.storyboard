@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -679,10 +679,10 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oo1-Sb-iO9" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="2949" width="375" height="51"/>
+                                <rect key="frame" x="16" y="2942" width="343" height="50"/>
                                 <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.submitAssignmentButton"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="PCA-RH-zpk"/>
+                                    <constraint firstAttribute="height" constant="50" id="PCA-RH-zpk"/>
                                 </constraints>
                                 <state key="normal" title="Submit Assignment"/>
                                 <userDefinedRuntimeAttributes>
@@ -698,16 +698,16 @@
                         <viewLayoutGuide key="safeArea" id="1aY-Ds-3yT"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1aY-Ds-3yT" firstAttribute="bottom" secondItem="Oo1-Sb-iO9" secondAttribute="bottom" id="0h4-mw-Ggs"/>
+                            <constraint firstItem="1aY-Ds-3yT" firstAttribute="bottom" secondItem="Oo1-Sb-iO9" secondAttribute="bottom" constant="8" id="0h4-mw-Ggs" userLabel="Safe Area.bottom = Submit Assignment Button.bottom + 8"/>
                             <constraint firstItem="2qC-UP-t75" firstAttribute="bottom" secondItem="1aY-Ds-3yT" secondAttribute="bottom" id="JB1-8g-YCS"/>
-                            <constraint firstItem="Oo1-Sb-iO9" firstAttribute="leading" secondItem="1aY-Ds-3yT" secondAttribute="leading" id="UrJ-3m-vFe"/>
+                            <constraint firstItem="Oo1-Sb-iO9" firstAttribute="leading" secondItem="1aY-Ds-3yT" secondAttribute="leading" constant="16" id="UrJ-3m-vFe"/>
                             <constraint firstItem="2qC-UP-t75" firstAttribute="top" secondItem="1aY-Ds-3yT" secondAttribute="top" id="XxZ-9j-Zcg"/>
                             <constraint firstItem="2qC-UP-t75" firstAttribute="trailing" secondItem="1aY-Ds-3yT" secondAttribute="trailing" id="cX4-tg-p1U"/>
                             <constraint firstItem="QTp-Qq-8ZA" firstAttribute="trailing" secondItem="1aY-Ds-3yT" secondAttribute="trailing" id="cX4-tg-p3U"/>
                             <constraint firstItem="2qC-UP-t75" firstAttribute="leading" secondItem="1aY-Ds-3yT" secondAttribute="leading" id="iUD-HX-1Ym"/>
                             <constraint firstItem="QTp-Qq-8ZA" firstAttribute="leading" secondItem="1aY-Ds-3yT" secondAttribute="leading" id="iUD-HX-3Ym"/>
                             <constraint firstItem="Y4n-B5-455" firstAttribute="centerY" secondItem="vDv-xP-3aC" secondAttribute="centerY" id="is1-G2-BQM"/>
-                            <constraint firstItem="1aY-Ds-3yT" firstAttribute="trailing" secondItem="Oo1-Sb-iO9" secondAttribute="trailing" id="k95-9S-QPt"/>
+                            <constraint firstItem="1aY-Ds-3yT" firstAttribute="trailing" secondItem="Oo1-Sb-iO9" secondAttribute="trailing" constant="16" id="k95-9S-QPt"/>
                             <constraint firstItem="Y4n-B5-455" firstAttribute="centerX" secondItem="vDv-xP-3aC" secondAttribute="centerX" id="ou3-uJ-bnX"/>
                         </constraints>
                     </view>

@@ -18,14 +18,9 @@
 
 import UIKit
 
+@available(iOS, introduced: 26, message: "Legacy version exists")
 public class SectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak public var titleLabel: UILabel!
-    @IBOutlet weak var bgView: UIView!
-
-    public override func awakeFromNib() {
-        super.awakeFromNib()
-        bgView.backgroundColor = .backgroundLight
-    }
 
     public static func create(title: String, section: Int) -> SectionHeaderView {
         let view = loadFromXib()

@@ -241,14 +241,28 @@ public struct Brand: Equatable {
         }
     }
 
-    public func headerImageView() -> UIImageView {
-        let logoView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-        logoView.contentMode = .scaleAspectFit
-        logoView.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        logoView.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        logoView.image = headerImage
-        logoView.backgroundColor = headerImageBackground
-        logoView.accessibilityElementsHidden = true
-        return logoView
-    }
+	@available(iOS, deprecated: 26, message: "Remove conditional code when iOS 18 support is dropped")
+	public func headerImageView() -> UIImageView {
+		if #available(iOS 26, *) {
+			let logoView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+			logoView.contentMode = .scaleAspectFit
+			logoView.heightAnchor.constraint(equalToConstant: 44).isActive = true
+			logoView.widthAnchor.constraint(equalToConstant: 44).isActive = true
+			logoView.image = headerImage
+			logoView.backgroundColor = headerImageBackground
+			logoView.layer.cornerRadius = 8
+			logoView.clipsToBounds = true
+			logoView.accessibilityElementsHidden = true
+			return logoView
+		} else {
+			let logoView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+			logoView.contentMode = .scaleAspectFit
+			logoView.heightAnchor.constraint(equalToConstant: 44).isActive = true
+			logoView.widthAnchor.constraint(equalToConstant: 44).isActive = true
+			logoView.image = headerImage
+			logoView.backgroundColor = headerImageBackground
+			logoView.accessibilityElementsHidden = true
+			return logoView
+		}
+	}
 }

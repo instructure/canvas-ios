@@ -32,7 +32,27 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
 
-    lazy var addButton = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(addItem))
+    // Legacy version exists, cannot be marked unavailable
+    lazy var addButton: UIBarButtonItem = {
+        var button = UIBarButtonItem(image: .addSolid)
+
+        let addFolderAction = UIAction(title: .init(localized: "Add Folder", bundle: .core), image: .folderLine) { [weak self] _ in
+            self?.addFolder()
+        }
+        addFolderAction.accessibilityIdentifier = "FileList.addFolderButton"
+
+        let addFileAction = UIAction(title: .init(localized: "Add File", bundle: .core), image: .addDocumentLine) { [weak self] _ in
+            guard let self = self else { return }
+            self.filePicker.pick(from: self)
+        }
+        addFileAction.accessibilityIdentifier = "FileList.addFileButton"
+
+        let menu = UIMenu(children: !isStudentAccessRestricted ? [addFolderAction, addFileAction] : [addFolderAction])
+        return UIBarButtonItem(image: .addSolid, menu: menu)
+    }()
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    lazy var legacyAddButton = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(addItem))
     lazy var editButton = UIBarButtonItem(
         title: String(localized: "Edit", bundle: .core), style: .plain,
         target: self, action: #selector(edit)
@@ -103,10 +123,17 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: String(localized: "Files", bundle: .core))
+
+		if #available(iOS 26, *) {
+			navigationItem.title = String(localized: "Files", bundle: .core)
+		} else {
+			setupTitleViewInNavbar(title: String(localized: "Files", bundle: .core))
+		}
 
         addButton.accessibilityIdentifier = "FileList.addButton"
         addButton.accessibilityLabel = String(localized: "Add Item", bundle: .core)
+        legacyAddButton.accessibilityIdentifier = "FileList.addButton"
+        legacyAddButton.accessibilityLabel = String(localized: "Add Item", bundle: .core)
         editButton.accessibilityIdentifier = "FileList.editButton"
 
         emptyImageView.image = UIImage(named: Panda.FilePicker.name, in: .core, compatibleWith: nil)
@@ -146,21 +173,32 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         super.viewWillAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
         tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
-        if context.contextType == .user {
-            navigationController?.navigationBar.useGlobalNavStyle()
-        } else {
-            navigationController?.navigationBar.useContextColor(color)
-        }
+
+		if #unavailable(iOS 26) {
+			if context.contextType == .user {
+				navigationController?.navigationBar.useGlobalNavStyle()
+			} else {
+				navigationController?.navigationBar.useContextColor(color)
+			}
+		}
     }
 
     func updateNavBar() {
-        if let course = course?.first {
-            updateNavBar(subtitle: course.name, color: course.color)
-        } else if let group = group?.first {
-            updateNavBar(subtitle: group.name, color: group.color)
-        } else if context.contextType == .user {
-            color = .textDark
-        }
+		if #available(iOS 26, *) {
+			if let course = course?.first {
+				navigationItem.subtitle = course.name
+			} else if let group = group?.first {
+				navigationItem.subtitle = group.name
+			}
+		} else {
+			if let course = course?.first {
+				updateNavBar(subtitle: course.name, color: course.color)
+			} else if let group = group?.first {
+				updateNavBar(subtitle: group.name, color: group.color)
+			} else if context.contextType == .user {
+				color = .textDark
+			}
+		}
         view.tintColor = color
         updateNavButtons()
     }
@@ -183,7 +221,13 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         loadingView.isHidden = !folder.pending || !folder.isEmpty || folder.error != nil || refreshControl.isRefreshing
         errorView.isHidden = folder.error == nil
         let title = (path.isEmpty ? nil : folder.first?.name) ?? String(localized: "Files", bundle: .core)
-        setupTitleViewInNavbar(title: title)
+
+        if #available(iOS 26, *) {
+            navigationItem.title = title
+        } else {
+            setupTitleViewInNavbar(title: title)
+        }
+
         updateNavButtons()
 
         guard let folder = folder.first, items == nil else { return update() }
@@ -310,8 +354,9 @@ extension FileListViewController: UISearchBarDelegate {
 
 extension FileListViewController: FilePickerDelegate {
     func updateNavButtons() {
+        let button = if #available(iOS 26, *) { addButton } else { legacyAddButton }
         navigationItem.rightBarButtonItems = [
-            canAddItem ? addButton : nil,
+            canAddItem ? button : nil,
             canEditFolder ? editButton : nil
         ].compactMap { $0 }
     }
@@ -334,6 +379,7 @@ extension FileListViewController: FilePickerDelegate {
         folder.first?.canUpload == true
     }
 
+    @available(iOS, deprecated: 26)
     @objc func addItem() {
         let sheet = BottomSheetPickerViewController.create()
         sheet.addAction(

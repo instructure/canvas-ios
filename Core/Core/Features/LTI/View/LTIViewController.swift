@@ -60,7 +60,13 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
         scrollView.backgroundColor = .backgroundLightest
         spinnerView.isHidden = true
         nameLabel.text = name ?? String(localized: "LTI Tool", bundle: .core)
-        setupTitleViewInNavbar(title: String(localized: "External Tool", bundle: .core))
+
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "External Tool", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "External Tool", bundle: .core))
+        }
+
         if name == nil {
             // try to get a more descriptive name of the tool
             tools.getSessionlessLaunch { [weak self] response in
@@ -86,7 +92,12 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
             return
         }
         let course = courses?.first
-        updateNavBar(subtitle: course?.name, color: course?.color)
+
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = course?.name
+        } else {
+            updateNavBar(subtitle: course?.name, color: course?.color)
+        }
     }
 
     @IBAction func openButtonPressed(_ sender: UIButton) {

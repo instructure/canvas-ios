@@ -29,39 +29,78 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        InstUI.BaseScreen(
-            state: viewModel.state,
-            refreshAction: viewModel.reload
-        ) { _ in
-            eventContent
-        }
-        .navigationBarTitleView(title: viewModel.pageTitle, subtitle: viewModel.pageSubtitle)
-        .navBarItems(
-            trailing: viewModel.shouldShowMenuButton
-            ? InstUI.NavigationBarButton.moreIcon(
-                isBackgroundContextColor: true,
-                isEnabled: viewModel.isMoreButtonEnabled,
-                isAvailableOffline: false,
-                menuContent: {
-                    InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
-                    InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
+        if #available(iOS 26, *) {
+            InstUI.BaseScreen(
+                state: viewModel.state,
+                refreshAction: viewModel.reload
+            ) { _ in
+                eventContent
+            }
+            .navigationTitle(viewModel.pageTitle)
+            .optionalNavigationSubtitle(viewModel.pageSubtitle)
+            .toolbar {
+                if viewModel.shouldShowMenuButton {
+                    InstUI.NavigationBarButton.moreIcon(
+                        isEnabled: viewModel.isMoreButtonEnabled,
+                        isAvailableOffline: false,
+                        menuContent: {
+                            InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
+                            InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
+                        }
+                    )
+                    .confirmation(
+                        isPresented: $viewModel.shouldShowDeleteConfirmation,
+                        presenting: viewModel.deleteConfirmation
+                    )
                 }
+            }
+            .errorAlert(
+                isPresented: $viewModel.shouldShowDeleteError,
+                presenting: .init(
+                    title: String(localized: "Deletion not completed", bundle: .core),
+                    message: String(localized: "We couldn't delete your Event at this time. You can try it again.", bundle: .core),
+                    buttonTitle: String(localized: "OK", bundle: .core)
+                )
             )
             .confirmation(
                 isPresented: $viewModel.shouldShowDeleteConfirmation,
                 presenting: viewModel.deleteConfirmation
             )
-            : nil
-        )
-        .navigationBarStyle(.color(viewModel.contextColor))
-        .errorAlert(
-            isPresented: $viewModel.shouldShowDeleteError,
-            presenting: .init(
-                title: String(localized: "Deletion not completed", bundle: .core),
-                message: String(localized: "We couldn't delete your Event at this time. You can try it again.", bundle: .core),
-                buttonTitle: String(localized: "OK", bundle: .core)
+        } else {
+            InstUI.BaseScreen(
+                state: viewModel.state,
+                refreshAction: viewModel.reload
+            ) { _ in
+                eventContent
+            }
+            .navigationBarTitleView(title: viewModel.pageTitle, subtitle: viewModel.pageSubtitle)
+            .navBarItems(
+                trailing: viewModel.shouldShowMenuButton
+                ? InstUI.NavigationBarButton.moreIcon(
+                    isBackgroundContextColor: true,
+                    isEnabled: viewModel.isMoreButtonEnabled,
+                    isAvailableOffline: false,
+                    menuContent: {
+                        InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
+                        InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
+                    }
+                )
+                .confirmation(
+                    isPresented: $viewModel.shouldShowDeleteConfirmation,
+                    presenting: viewModel.deleteConfirmation
+                )
+                : nil
             )
-        )
+            .navigationBarStyle(.color(viewModel.contextColor))
+            .errorAlert(
+                isPresented: $viewModel.shouldShowDeleteError,
+                presenting: .init(
+                    title: String(localized: "Deletion not completed", bundle: .core),
+                    message: String(localized: "We couldn't delete your Event at this time. You can try it again.", bundle: .core),
+                    buttonTitle: String(localized: "OK", bundle: .core)
+                )
+            )
+        }
     }
 
     private var eventContent: some View {
@@ -77,19 +116,21 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
 #if DEBUG
 
 #Preview {
-    let event = CalendarEvent.save(
-        .make(
-            id: "",
-            title: "Creative Machines and Innovative Instrumentation Conference",
-            description: "We should meet 10 minutes before the event. <a href=\"\">Click here!</a>",
-            location_name: "UCF Department of Mechanical and Aerospace Engineering",
-            location_address: "12760 Pegasus Dr\nOrlando, FL 32816"
-        ),
-        in: PreviewEnvironment().database.viewContext
-    )
-    let contextColor: UIColor = .red
+    NavigationStack {
+        let event = CalendarEvent.save(
+            .make(
+                id: "",
+                title: "Creative Machines and Innovative Instrumentation Conference",
+                description: "We should meet 10 minutes before the event. <a href=\"\">Click here!</a>",
+                location_name: "UCF Department of Mechanical and Aerospace Engineering",
+                location_address: "12760 Pegasus Dr\nOrlando, FL 32816"
+            ),
+            in: PreviewEnvironment().database.viewContext
+        )
+        let contextColor: UIColor = .red
 
-    return PlannerAssembly.makeEventDetailsScreenPreview(event: event, contextColor: contextColor)
+        return PlannerAssembly.makeEventDetailsScreenPreview(event: event, contextColor: contextColor)
+    }
 }
 
 #endif

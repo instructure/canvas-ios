@@ -18,6 +18,7 @@
 
 import UIKit
 
+@available(iOS, deprecated: 26)
 public class TitleSubtitleView: UIView {
     @IBOutlet public weak var titleLabel: UILabel!
     @IBOutlet public weak var subtitleLabel: UILabel!
@@ -51,27 +52,37 @@ public class TitleSubtitleView: UIView {
     }
 
     public static func create() -> Self {
-        let view = loadFromXib()
-        view.titleLabel.text = ""
-        view.subtitleLabel.text = ""
-        view.titleLabel.font = .scaledNamedFont(.semibold16)
-        view.subtitleLabel.font = .scaledNamedFont(.regular14)
-        view.titleLabel.accessibilityElementsHidden = true
-        view.subtitleLabel.accessibilityElementsHidden = true
-        view.accessibilityTraits = [.header]
-        view.showsLargeContentViewer = true
-        view.addInteraction(UILargeContentViewerInteraction())
-        return view
+		let view = loadFromXib()
+
+        if #available(iOS 26, *) {
+            view.tintColor = .textDarkest
+        }
+
+		view.titleLabel.text = ""
+		view.subtitleLabel.text = ""
+		view.titleLabel.font = .scaledNamedFont(.semibold16)
+		view.subtitleLabel.font = .scaledNamedFont(.regular14)
+		view.titleLabel.accessibilityElementsHidden = true
+		view.subtitleLabel.accessibilityElementsHidden = true
+		view.accessibilityTraits = [.header]
+		view.showsLargeContentViewer = true
+		view.addInteraction(UILargeContentViewerInteraction())
+		return view
     }
 
     public func recreate() -> TitleSubtitleView {
         let copy = TitleSubtitleView.create()
+
+        if #available(iOS 26, *) {
+            copy.tintColor = .textDarkest
+        }
         copy.title = title
         copy.subtitle = subtitle
         return copy
     }
 
     public override func tintColorDidChange() {
+		guard #available(iOS 26, *) else { return }
         let title = (superview?.superview as? UINavigationBar)?.titleTextAttributes?[.foregroundColor] as? UIColor
         let color = title ?? tintColor
         titleLabel.textColor = color

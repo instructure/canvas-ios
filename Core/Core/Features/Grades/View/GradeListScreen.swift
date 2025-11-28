@@ -64,51 +64,95 @@ public struct GradeListScreen: View, ScreenViewTrackable {
     // MARK: - Components
 
     public var body: some View {
-        ZStack {
-            ScrollView(showsIndicators: false) {
-                contentView
-            }
-            .background(Color.backgroundLight)
-            .accessibilityHidden(isScoreEditorPresented)
-            .refreshable {
-                await withCheckedContinuation { continuation in
-                    viewModel.pullToRefreshDidTrigger.accept {
-                        continuation.resume()
-                    }
-                }
-            }
+		if #available(iOS 26, *) {
+			ZStack {
+				ScrollView(showsIndicators: false) {
+					contentView
+				}
+				.background(Color.backgroundLight)
+				.accessibilityHidden(isScoreEditorPresented)
+				.refreshable {
+					await withCheckedContinuation { continuation in
+						viewModel.pullToRefreshDidTrigger.accept {
+							continuation.resume()
+						}
+					}
+				}
 
-            whatIfScoreEditorView
-        }
-        .animation(.smooth, value: isScoreEditorPresented)
-        .safeAreaInset(edge: .top, spacing: 0) {
-            switch viewModel.state {
-            case .data, .empty: GradeListHeaderView(
-                viewModel: viewModel,
-                toggleViewIsVisible: toggleViewIsVisible
-            )
-            default: SwiftUI.EmptyView()
-            }
-        }
-        .background(Color.backgroundLightest)
-        .tint(viewModel.courseColor?.asColor)
-        .navigationBarTitleView(
-            title: String(localized: "Grades", bundle: .core),
-            subtitle: viewModel.courseName
-        )
-        .toolbar {
-            RevertWhatIfScoreButton(isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn) {
-                viewModel.isShowingRevertDialog = true
-            }
-            ToolbarItem(placement: .primaryAction) {
-                GradeListFilterButton(viewModel: viewModel)
-            }
-        }
-        .navigationBarStyle(.color(nil))
-        .confirmationAlert(
-            isPresented: $viewModel.isShowingRevertDialog,
-            presenting: viewModel.confirmRevertAlertViewModel
-        )
+				whatIfScoreEditorView
+			}
+			.animation(.smooth, value: isScoreEditorPresented)
+			.safeAreaInset(edge: .top, spacing: 0) {
+				switch viewModel.state {
+				case .data, .empty: GradeListHeaderView(
+					viewModel: viewModel,
+					toggleViewIsVisible: toggleViewIsVisible
+				)
+				default: SwiftUI.EmptyView()
+				}
+			}
+			.background(Color.backgroundLightest)
+			.navigationTitle(.init("Grades", bundle: .core))
+			.optionalNavigationSubtitle(viewModel.courseName)
+			.toolbar {
+				RevertWhatIfScoreButton(isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn) {
+					viewModel.isShowingRevertDialog = true
+				}
+				ToolbarItem {
+					GradeListFilterButton(viewModel: viewModel)
+				}
+			}
+			.navigationBarStyle(.color(nil))
+			.confirmationAlert(
+				isPresented: $viewModel.isShowingRevertDialog,
+				presenting: viewModel.confirmRevertAlertViewModel
+			)
+		} else {
+			ZStack {
+				ScrollView(showsIndicators: false) {
+					contentView
+				}
+				.background(Color.backgroundLight)
+				.accessibilityHidden(isScoreEditorPresented)
+				.refreshable {
+					await withCheckedContinuation { continuation in
+						viewModel.pullToRefreshDidTrigger.accept {
+							continuation.resume()
+						}
+					}
+				}
+
+				whatIfScoreEditorView
+			}
+			.animation(.smooth, value: isScoreEditorPresented)
+			.safeAreaInset(edge: .top, spacing: 0) {
+				switch viewModel.state {
+				case .data, .empty: GradeListHeaderView(
+					viewModel: viewModel,
+					toggleViewIsVisible: toggleViewIsVisible
+				)
+				default: SwiftUI.EmptyView()
+				}
+			}
+			.background(Color.backgroundLightest)
+			.navigationBarTitleView(
+				title: String(localized: "Grades", bundle: .core),
+				subtitle: viewModel.courseName
+			)
+			.toolbar {
+				RevertWhatIfScoreButton(isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn) {
+					viewModel.isShowingRevertDialog = true
+				}
+				ToolbarItem(placement: .primaryAction) {
+					LegacyGradeListFilterButton(viewModel: viewModel)
+				}
+			}
+			.navigationBarStyle(.color(nil))
+			.confirmationAlert(
+				isPresented: $viewModel.isShowingRevertDialog,
+				presenting: viewModel.confirmRevertAlertViewModel
+			)
+		}
     }
 
     @ViewBuilder
@@ -227,14 +271,14 @@ private struct RevertWhatIfScoreButton: ToolbarContent {
     let buttonDidTap: () -> Void
 
     var body: some ToolbarContent {
-        ToolbarItemGroup(placement: .navigationBarTrailing) {
+        ToolbarItem(placement: .navigationBarTrailing) {
             if isWhatIfScoreModeOn {
                 Button(action: {
                     buttonDidTap()
                 }) {
                     Image(uiImage: .replyLine)
                         .resizable()
-                        .foregroundColor(.textLightest.variantForLightMode)
+                        .foregroundStyleBelow26(.textLightest.variantForLightMode)
                 }
                 .frame(alignment: .leading)
                 .accessibilityLabel(Text("Revert", bundle: .core))

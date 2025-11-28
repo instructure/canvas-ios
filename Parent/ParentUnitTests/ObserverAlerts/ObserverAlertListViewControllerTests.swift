@@ -87,7 +87,9 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         drainMainQueue()
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
+        if #unavailable(iOS 26) {
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
+        }
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 4)
 

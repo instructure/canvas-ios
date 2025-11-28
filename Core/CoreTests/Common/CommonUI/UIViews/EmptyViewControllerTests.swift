@@ -34,7 +34,9 @@ class EmptyViewControllerTests: CoreTestCase {
         }
         wait(for: [waitExpectation], timeout: 3.0)
 
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, Brand.shared.navBackground.hexString)
+        if #unavailable(iOS 26) {
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, Brand.shared.navBackground.hexString)
+        }
 
         XCTAssertEqual(controller.view.subviews.count, 1)
         XCTAssert(controller.view.subviews.first is UIImageView)

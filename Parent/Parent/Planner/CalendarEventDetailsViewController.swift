@@ -70,7 +70,13 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: String(localized: "Event Details", bundle: .parent))
+
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Event Details", bundle: .parent)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Event Details", bundle: .parent))
+        }
+
         updateNavBar(subtitle: nil, color: ColorScheme.observee(studentID).color)
         webViewContainer.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: webViewContainer)
@@ -130,7 +136,11 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     func update() {
         guard let event = events.first else { return }
         if let title = event.contextName {
-            setupTitleViewInNavbar(title: title)
+            if #available(iOS 26, *) {
+                navigationItem.title = title
+            } else {
+                setupTitleViewInNavbar(title: title)
+            }
         }
 
         titleLabel.text = event.title
