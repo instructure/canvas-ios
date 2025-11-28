@@ -332,12 +332,17 @@ class SubmissionDetailsPresenter {
     }
 
     func lockedEmptyViewIsHidden() -> Bool {
-        if let assignment = assignment.first {
-            let isHidden = ( assignment.lockExplanation == nil && !(assignment.lockedForUser) )
-                || (assignment.submission != nil && assignment.submission?.workflowState != .unsubmitted)
-            return isHidden
+        guard let assignment = assignment.first else { return true }
+
+        // if not locked
+        if assignment.lockExplanation == nil && !(assignment.lockedForUser) {
+            return true
         }
-        return true
+
+        guard let submission = assignment.submission else { return false }
+
+        let status = submission.status
+        return status.isSubmitted || status.isGraded
     }
 
     func lockedEmptyViewHeader() -> String {

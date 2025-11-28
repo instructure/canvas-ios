@@ -36,7 +36,7 @@ struct StudentSubAssignmentsCardViewModel {
                 let status = subSubmission?.status ?? .notSubmitted
 
                 var score: String?
-                if let pointsPossible = checkpoint.pointsPossible, status != .excused {
+                if let pointsPossible = checkpoint.pointsPossible, !status.isExcused {
                     score = GradeFormatter.string(
                         pointsPossible: pointsPossible,
                         gradingType: assignment.gradingType,
@@ -57,7 +57,7 @@ struct StudentSubAssignmentsCardViewModel {
                 return StudentSubAssignmentsCardItem(
                     id: checkpoint.tag,
                     title: checkpoint.title,
-                    submissionStatus: .init(status: status),
+                    submissionStatus: status.labelModel,
                     score: score,
                     scoreA11yLabel: scoreA11yLabel
                 )

@@ -91,15 +91,17 @@ class SubmissionButtonPresenter: NSObject {
             return String(localized: "Resume Quiz", bundle: .student)
         }
         if quiz?.submission?.attemptsLeft == 0 { return nil }
+
+        let isSubmitted = assignment.submission?.status.isSubmitted ?? false
         if assignment.quizID != nil {
-            return assignment.submission?.submittedAt == nil
-                ? String(localized: "Take Quiz", bundle: .student)
-                : String(localized: "Retake Quiz", bundle: .student)
+            return isSubmitted
+                ? String(localized: "Retake Quiz", bundle: .student)
+                : String(localized: "Take Quiz", bundle: .student)
         }
 
-        return assignment.submission?.workflowState == .unsubmitted || assignment.submission?.submittedAt == nil
-            ? String(localized: "Submit Assignment", bundle: .student)
-            : String(localized: "Resubmit Assignment", bundle: .student)
+        return isSubmitted
+            ? String(localized: "Resubmit Assignment", bundle: .student)
+            : String(localized: "Submit Assignment", bundle: .student)
     }
 
     func submitAssignment(_ assignment: Assignment, button: UIView) {
