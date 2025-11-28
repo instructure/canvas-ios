@@ -71,7 +71,7 @@ class TodoGroupViewModelTests: CoreTestCase {
         XCTAssertFalse(group2 < group1)
     }
 
-    func testShouldShowMonthWhenInCurrentMonth() {
+    func testShouldShowMonthWhenInSameMonth() {
         let referenceDate = Date.make(year: 2021, month: 8, day: 1)
         let dateInSameMonth = Date.make(year: 2021, month: 8, day: 15)
         let items = [TodoItemViewModel.make(plannableId: "1")]
