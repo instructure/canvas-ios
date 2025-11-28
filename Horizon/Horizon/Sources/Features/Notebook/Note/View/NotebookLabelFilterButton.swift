@@ -52,7 +52,7 @@ struct NotebookLabelFilterButton: View {
                         )
                     )
                 )
-        .popover(isPresented: $isListLabelVisible, attachmentAnchor: .point(.center), arrowEdge: .top) {
+        .popover(isPresented: $isListLabelVisible, attachmentAnchor: .point(.bottom), arrowEdge: .top) {
             listLabelView
                 .presentationCompactAdaptation(.none)
                 .presentationBackground(Color.huiColors.surface.cardPrimary)
