@@ -392,7 +392,13 @@ extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
     }
 
     private func proposeFilenameForNewPDFScan() -> String {
-        let prefix = batchID.replacingOccurrences(of: "-", with: "_").prefix(5)
+        // This gives a reasonably consistent unique ID
+        // necessary to avoid name conflicts across upload batches
+        let prefix = batchID
+            .split(separator: "-")
+            .compactMap({ $0.prefix(2) })
+            .map(String.init)
+            .joined()
         let scannedCount = pickedFilesSourceMap.filter({ $0.value == .documentScan }).count
         return "Scan_b\(prefix)_\(scannedCount + 1).pdf"
     }
