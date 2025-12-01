@@ -19,34 +19,29 @@
 import Core
 import UIKit
 
-final class NotebookNoteAssembly {
-    static func makeCourseNoteInteractor() -> CourseNoteInteractor {
+final class EditNotebookAssembly {
+    static private func makeCourseNoteInteractor() -> CourseNoteInteractor {
         CourseNoteInteractorLive()
     }
 
-    static func makeViewNoteViewController(courseNotebookNote: CourseNotebookNote) -> CoreHostingController<NotebookNoteView> {
-        CoreHostingController(
-            NotebookNoteView(
+    static func makeViewNoteViewController(
+        courseNotebookNote: CourseNotebookNote,
+        onUpdateNote: ((Bool) -> Void)? = nil
+    ) -> UIViewController {
+        let viewController = CoreHostingController(
+            EditNotebookView(
                 viewModel: .init(
                     courseNoteInteractor: makeCourseNoteInteractor(),
                     router: AppEnvironment.shared.router,
-                    courseNotebookNote: courseNotebookNote
+                    courseNotebookNote: courseNotebookNote,
+                    onUpdateNote: onUpdateNote
                 )
             )
         )
-    }
-
-    static func makeViewNoteViewController(courseID: String, pageURL: String, notebookHighlight: NotebookHighlight? = nil) -> CoreHostingController<NotebookNoteView> {
-        CoreHostingController(
-            NotebookNoteView(
-                viewModel: .init(
-                    courseNoteInteractor: makeCourseNoteInteractor(),
-                    router: AppEnvironment.shared.router,
-                    courseID: courseID,
-                    pageURL: pageURL,
-                    notebookHighlight: notebookHighlight
-                )
-            )
-        )
+        if let presentationController = viewController.sheetPresentationController {
+            presentationController.detents = [.large()]
+            presentationController.preferredCornerRadius = 16
+        }
+        return viewController
     }
 }

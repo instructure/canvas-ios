@@ -16,14 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
 import SwiftUI
 
-struct NotebookSectionHeading: View {
-    let title: String
-
+struct NotebookEmptyView: View {
     var body: some View {
-        Text(title)
-            .huiTypography(.labelLargeBold)
-            .frame(maxWidth: .infinity, alignment: .leading)
+        VStack(spacing: .huiSpaces.space8) {
+            Text("Start capturing your notes")
+                .foregroundStyle(Color.huiColors.text.body)
+                .huiTypography(.h2)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text("Your notes from learning materials will appear here. Highlight key ideas, reflections, or questions as you learn—they'll all be saved in your Notebook for easy review later.")
+                .foregroundStyle(Color.huiColors.text.dataPoint)
+                .huiTypography(.p1)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
     }
+}
+
+#Preview {
+    NotebookEmptyView()
 }

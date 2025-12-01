@@ -16,39 +16,49 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
 import SwiftUI
 
 struct HighlightedText: View {
     // MARK: - Dependencies
 
     private let text: String
-    private let types: [CourseNoteLabel]
-
-    // MARK: - Computed Properties
-
-    private var firstType: CourseNoteLabel {
-        types.first ?? .important
-    }
+    private let type: CourseNoteLabel
 
     // MARK: - Init
 
-    init(_ text: String, ofTypes: [CourseNoteLabel]) {
+    init(
+        text: String,
+        type: CourseNoteLabel
+    ) {
         self.text = text
-        self.types = ofTypes
+        self.type = type
     }
 
     var body: some View {
-        Text(text)
+        Text(styledText)
             .padding(.horizontal, .huiSpaces.space2)
             .padding(.top, .huiSpaces.space2)
-            .huiTypography(.p1)
-            .underline(true, color: firstType.color)
-            .background(firstType.color.opacity(0.2))
             .baselineOffset(3)
+            .lineLimit(3)
+            .multilineTextAlignment(.leading)
+    }
+
+    private var styledText: AttributedString {
+        var text = AttributedString(text)
+        text.backgroundColor = type.backgroundColor
+        text.underlineStyle = type == .important ? [.single] : [.single, .patternDot]
+        text.underlineColor = UIColor(type.color)
+        text.foregroundColor = UIColor(Color.huiColors.text.body)
+        text.font = HorizonUI.Typography(.p1).fount
+        return text
     }
 }
 
 #Preview {
-    HighlightedText("Important Note. Not only is it important, but it's also quite long so that it wraps.", ofTypes: [.important])
-        .padding()
+    HighlightedText(
+        text: "Important Note. Not only is it important, but it's also quite long so that it wraps.",
+        type: .important
+    )
+    .padding()
 }

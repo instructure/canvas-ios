@@ -32,6 +32,7 @@ enum ModuleItemSequenceAssembly {
     ) -> UIViewController {
         let getCoursesInteractor = GetCoursesInteractorLive()
         let isNotebookDisabled = url.queryItems?.first(where: { $0.name == "notebook_disabled" })?.value?.boolValue ?? false
+        let scrollToNoteID = url.queryItems?.first(where: { $0.name == "scrollToNoteID" })?.value
         let interactor = ModuleItemSequenceInteractorLive(
             courseID: courseID,
             getCoursesInteractor: getCoursesInteractor
@@ -50,7 +51,8 @@ enum ModuleItemSequenceAssembly {
             firstModuleItem: firstModuleItem,
             assetID: assetID,
             courseID: courseID,
-            isNotebookDisabled: isNotebookDisabled
+            isNotebookDisabled: isNotebookDisabled,
+            scrollToNoteID: scrollToNoteID
         )
 
         let showTabBarAndNavigationBar: (Bool) -> Void = { isVisible in

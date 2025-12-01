@@ -82,6 +82,7 @@ final class ModuleItemSequenceViewModel {
     private let assetID: String
     private let courseID: String
     private let isNotebookDisabled: Bool
+    let scrollToNoteID: String?
     // Need to save the completion state for the module items without observation
     private var unobservedCourse: HCourse?
     private var firstModuleItem: HModuleItem?
@@ -100,7 +101,8 @@ final class ModuleItemSequenceViewModel {
         firstModuleItem: HModuleItem? = nil,
         assetID: String,
         courseID: String,
-        isNotebookDisabled: Bool = false
+        isNotebookDisabled: Bool = false,
+        scrollToNoteID: String? = nil
     ) {
         self.moduleItemInteractor = moduleItemInteractor
         self.moduleItemStateInteractor = moduleItemStateInteractor
@@ -109,6 +111,7 @@ final class ModuleItemSequenceViewModel {
         self.assetID = assetID
         self.courseID = courseID
         self.isNotebookDisabled = isNotebookDisabled
+        self.scrollToNoteID = scrollToNoteID
         self.firstModuleItem = firstModuleItem
 
         fetchModuleItemSequence(assetId: assetID)

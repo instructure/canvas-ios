@@ -16,18 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import HorizonUI
-import SwiftUI
+struct NotebookQueryFilter {
+    /// The cursor used to start pagination in the backward direction.
+    let startCursor: String?
+    let reactions: [String]?
+    let courseId: String?
+    var pageId: String?
 
-struct NotebookTitle: View {
-    var body: some View {
-        HStack {
-            HorizonUI.icons.menuBookNotebook
-                .frame(width: 24, height: 24)
-
-            Text("Notebook", bundle: .horizon)
-                .huiTypography(.h3)
-        }
-        .frame(maxWidth: .infinity)
+    init(
+        startCursor: String? = nil,
+        reactions: [String]? = nil,
+        courseId: String? = nil,
+        pageId: String? = nil
+    ) {
+        self.startCursor = startCursor
+        self.reactions = reactions
+        self.courseId = courseId
+        self.pageId = pageId
     }
 }

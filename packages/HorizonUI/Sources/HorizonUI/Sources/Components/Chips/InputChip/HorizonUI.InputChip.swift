@@ -55,11 +55,11 @@ public extension HorizonUI {
                 onTap()
             } label: {
                 ZStack(alignment: .trailing) {
-                    HStack(spacing: .huiSpaces.space8) {
+                    HStack(spacing: .huiSpaces.space2) {
                         if let leadingIcon {
                             leadingIcon
                                 .resizable()
-                                .frame(width: 12, height: 12)
+                                .frame(width: 16, height: 16)
                                 .foregroundStyle(style.iconForeground())
                         }
                         Text(title)
@@ -77,7 +77,7 @@ public extension HorizonUI {
                 )
             )
             .accessibilityFocused($isFocused)
-            .padding( .vertical, .huiSpaces.space2)
+            .padding( .vertical, .huiSpaces.space4)
             .overlay(alignment: .trailing) {
                 if let trallingIcon {
                     Circle()
