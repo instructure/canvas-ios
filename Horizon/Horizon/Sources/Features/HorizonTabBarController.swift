@@ -25,6 +25,13 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
 
     private let horizonTabBar = HorizonTabBar()
     private let router = AppEnvironment.shared.router
+    private lazy var chatBotButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(resource: .chatBot)
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(chatBotAction), for: .touchUpInside)
+        return button
+    }()
     private var learnTabCourseID: String? {
         var courseID: String?
         if let selectedViewController = viewControllers?[selectedIndex],
@@ -41,8 +48,10 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
     public override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
-        setValue(horizonTabBar, forKey: "tabBar")
-        horizonTabBar.backgroundColor = .backgroundLightest
+        if #unavailable(iOS 26) {
+            setValue(horizonTabBar, forKey: "tabBar")
+            horizonTabBar.backgroundColor = .backgroundLightest
+        }
 
         viewControllers = [
             dashboardTab(),
@@ -52,15 +61,31 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
             accountTab()
         ]
         tabBar.tintColor = .textDarkest
+        tabBar.addSubview(chatBotButton)
         UINavigationBar.appearance().tintColor = .textDarkest
-        guard let tabBar = tabBar as? HorizonTabBar else { return }
+    }
 
-        tabBar.didTapButton = { [weak self] in
-            self?.presentChatBot()
-        }
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        positionChatBotButton()
     }
 
     // MARK: - Functions
+    private func positionChatBotButton() {
+        let frameHeight = tabBar.frame.size.height
+        let safeAreaBottomHeight = view.safeAreaInsets.bottom
+        let dividBy: Double = safeAreaBottomHeight == 0 ? 1.2 : 1.6
+        let buttonHeight = Double(frameHeight / dividBy)
+        chatBotButton.frame.size = CGSize(width: buttonHeight, height: buttonHeight)
+        let xPoint = Double(tabBar.frame.width / 2)
+        let yPoint = frameHeight / 2
+        let padding = safeAreaBottomHeight / 2.5
+        chatBotButton.center = CGPoint(x: xPoint, y: yPoint - padding)
+    }
+
+    @objc private func chatBotAction() {
+        presentChatBot()
+    }
 
     private func presentChatBot() {
         let vc = AssistAssembly.makeAssistChatView(courseID: learnTabCourseID)
