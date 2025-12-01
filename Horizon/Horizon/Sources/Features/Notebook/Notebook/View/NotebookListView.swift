@@ -98,7 +98,7 @@ struct NotebookListView: View {
     }
 
     private var filterView: some View {
-        VStack(spacing: .zero) {
+        VStack(alignment: .leading, spacing: .zero) {
             HStack {
                 listCourses
                 listStatus
@@ -149,7 +149,9 @@ struct NotebookListView: View {
             lastFocusedID = selectCourseFocusedID
             restoreFocusIfNeeded()
         }
-        .frame(maxWidth: 200)
+
+        .frame(minWidth: 100, maxWidth: 200)
+        .fixedSize(horizontal: true, vertical: false)
         .id(selectCourseFocusedID)
         .accessibilityFocused($focusedID, equals: selectCourseFocusedID)
     }

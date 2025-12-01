@@ -40,6 +40,7 @@ struct HighlightedText: View {
             .padding(.horizontal, .huiSpaces.space2)
             .padding(.top, .huiSpaces.space2)
             .baselineOffset(3)
+            .lineLimit(3)
             .multilineTextAlignment(.leading)
     }
 

@@ -31,7 +31,7 @@ struct SelectionPopover: View {
         }
         .accessibilityLabel(Text(selectedItem?.name ?? ""))
         .accessibilityHint(Text(accessibilityHint))
-        .popover(isPresented: $isListVisiable, attachmentAnchor: .point(.center), arrowEdge: .top) {
+        .popover(isPresented: $isListVisiable, attachmentAnchor: .point(.bottom), arrowEdge: .top) {
             listView
                 .presentationCompactAdaptation(.none)
                 .presentationBackground(Color.huiColors.surface.cardPrimary)

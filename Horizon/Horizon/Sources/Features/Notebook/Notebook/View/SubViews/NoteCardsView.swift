@@ -88,19 +88,20 @@ struct NoteCardsView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .lineLimit(3)
             .huiTypography(.p1)
+            .multilineTextAlignment(.leading)
             .foregroundStyle(Color.huiColors.text.body)
     }
 
     private var noteInfoView: some View {
         VStack(spacing: .huiSpaces.space4) {
              Text(note.dateFormatted)
-                 .huiTypography(.labelSmall)
+                 .huiTypography(.labelMediumBold)
                  .frame(maxWidth: .infinity, alignment: .leading)
                  .foregroundStyle(Color.huiColors.text.timestamp)
 
              if let courseName = note.courseName, showCourseName {
                  Text(courseName)
-                     .huiTypography(.labelSmall)
+                     .huiTypography(.labelMediumBold)
                      .frame(maxWidth: .infinity, alignment: .leading)
                      .foregroundStyle(Color.huiColors.text.timestamp)
              }
