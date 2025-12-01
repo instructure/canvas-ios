@@ -521,14 +521,22 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     state: .downloaded
                 )
             }
-            .tryCatch {
-                unownedSelf.handleNonFatalErrors(
-                    error: $0,
+            .tryCatch { error in
+
+                print("Module Download Tried Error:")
+                print(error)
+                print()
+                return unownedSelf.handleNonFatalErrors(
+                    error: error,
                     selection: .tab(entry.id, entry.tabs[tabIndex].id),
                     state: .downloaded
                 )
             }
-            .catch { _ in
+            .catch { error in
+
+                print("Module Download Error:")
+                print(error)
+                print()
                 unownedSelf.setState(
                     selection: .tab(entry.id, entry.tabs[tabIndex].id),
                     state: .error
@@ -555,6 +563,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         }
 
         var downloaders = interactors.map { $0.getContent(courseId: entry.syncID) }
+
+        print("Modules Downloaded:")
+        print(tabsForModuleItemDownload)
+        print()
 
         if tabsForModuleItemDownload.count > 0 {
             let modulesDownloaders = modulesInteractor.getAssociatedModuleItems(

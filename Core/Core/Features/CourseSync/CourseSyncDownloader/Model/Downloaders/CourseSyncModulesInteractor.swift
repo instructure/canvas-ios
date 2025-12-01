@@ -61,7 +61,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         courseID: CourseSyncID,
         moduleItems: [ModuleItem],
         envResolver: CourseSyncEnvironmentResolver
-    ) -> AnyPublisher<[ModuleItem], Error> {
+    ) -> AnyPublisher<[ModuleItem], Never> {
         moduleItems.publisher
             .flatMap {
                 ReactiveStore(
@@ -76,6 +76,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
             }
             .collect()
             .map { _ in moduleItems }
+            .replaceError(with: moduleItems)
             .eraseToAnyPublisher()
     }
 
@@ -118,6 +119,18 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                     environment: envResolver.targetEnvironment(for: courseId)
                 )
                 .getEntities(ignoreCache: true)
+                .map({ pages in
+                    if let page = pages.first {
+                        print()
+                        print("-------")
+                        print("Page to be synced:")
+                        print(page.title)
+                        print(page.url)
+                        print()
+                    }
+                    return pages
+                })
+                .breakpointOnError()
                 .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: pageHtmlParser)
             }
             .collect()
