@@ -29,9 +29,9 @@ class TodoFilterViewModel: ObservableObject {
 
     // MARK: - Inputs
 
-    @Published var selectedVisibilityOptions: Set<OptionItem> = []
-    @Published var selectedDateRangeStart: OptionItem?
-    @Published var selectedDateRangeEnd: OptionItem?
+    let selectedVisibilityOptions = CurrentValueSubject<Set<OptionItem>, Never>([])
+    let selectedDateRangeStart = CurrentValueSubject<OptionItem?, Never>(nil)
+    let selectedDateRangeEnd = CurrentValueSubject<OptionItem?, Never>(nil)
 
     // MARK: - Private Properties
 
@@ -51,16 +51,16 @@ class TodoFilterViewModel: ObservableObject {
         self.dateRangeStartItems = TodoDateRangeStart.allOptionItems()
         self.dateRangeEndItems = TodoDateRangeEnd.allOptionItems()
 
-        self.selectedVisibilityOptions = Set(savedFilters.visibilityOptions.map { $0.toOptionItem() })
-        self.selectedDateRangeStart = savedFilters.dateRangeStart.toOptionItem()
-        self.selectedDateRangeEnd = savedFilters.dateRangeEnd.toOptionItem()
+        self.selectedVisibilityOptions.send(Set(savedFilters.visibilityOptions.map { $0.toOptionItem() }))
+        self.selectedDateRangeStart.send(savedFilters.dateRangeStart.toOptionItem())
+        self.selectedDateRangeEnd.send(savedFilters.dateRangeEnd.toOptionItem())
     }
 
     func applyFilters() {
-        let visibilityEnums = Set(selectedVisibilityOptions.compactMap { TodoVisibilityOption.from(optionItem: $0) })
+        let visibilityEnums = Set(selectedVisibilityOptions.value.compactMap { TodoVisibilityOption.from(optionItem: $0) })
         guard
-            let selectedStart = selectedDateRangeStart,
-            let selectedEnd = selectedDateRangeEnd,
+            let selectedStart = selectedDateRangeStart.value,
+            let selectedEnd = selectedDateRangeEnd.value,
             let startEnum = TodoDateRangeStart.from(optionItem: selectedStart),
             let endEnum = TodoDateRangeEnd.from(optionItem: selectedEnd)
         else {

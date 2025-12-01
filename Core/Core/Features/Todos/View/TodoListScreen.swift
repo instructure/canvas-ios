@@ -35,7 +35,11 @@ struct TodoListScreen: View {
             state: viewModel.state,
             config: viewModel.screenConfig,
             refreshAction: { completion in
-                viewModel.refresh(ignoreCache: true, completion: completion)
+                viewModel.refresh(
+                    ignorePlannablesCache: true,
+                    ignoreCoursesCache: true,
+                    completion: completion
+                )
             }
         ) { _ in
             LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
@@ -44,6 +48,7 @@ struct TodoListScreen: View {
                     groupView(for: group)
                 }
                 InstUI.Divider()
+                upsideDownPanda
             }
         }
         .clipped()
@@ -128,10 +133,18 @@ struct TodoListScreen: View {
         .padding(.trailing, -6)
         .identifier("ToDos.filterButton")
         .accessibility(label: Text(
-            "Filter To Do list",
+            "Filter To-do list",
             bundle: .core,
             comment: "Button to open To Do list filter preferences"
         ))
+    }
+
+    private var upsideDownPanda: some View {
+        Image("panda-todo-2", bundle: .core)
+            .accessibilityHidden(true)
+            .paddingStyle(.trailing, .standard)
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .frame(height: 0, alignment: .topTrailing)
     }
 }
 

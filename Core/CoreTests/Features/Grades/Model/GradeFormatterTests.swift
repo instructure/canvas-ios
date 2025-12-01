@@ -325,6 +325,7 @@ class GradeFormatterTests: CoreTestCase {
         let a = Assignment.make()
         let s = Submission.make()
         a.pointsPossible = 100
+        s.score = -1
 
         a.gradingType = .not_graded
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
@@ -338,6 +339,8 @@ class GradeFormatterTests: CoreTestCase {
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Excused")
         s.excused = false
 
+        s.workflowState = .graded
+
         s.grade = "2.1189%"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "2.12%")
         s.grade = "99.999%"
@@ -346,6 +349,7 @@ class GradeFormatterTests: CoreTestCase {
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "--")
 
         a.gradingType = .points
+        s.score = nil
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "--")
         s.score = 2.1189
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "2.12")
@@ -376,6 +380,7 @@ class GradeFormatterTests: CoreTestCase {
         Course.make(from: .make(settings: .make(restrict_quantitative_data: true)))
 
         a.pointsPossible = 100
+        s.score = -1
 
         a.gradingType = .not_graded
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
@@ -388,6 +393,8 @@ class GradeFormatterTests: CoreTestCase {
         s.excused = true
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Excused")
         s.excused = false
+
+        s.workflowState = .graded
 
         s.grade = "2.1189%"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")

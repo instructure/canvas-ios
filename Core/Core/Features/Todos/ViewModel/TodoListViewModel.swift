@@ -70,16 +70,16 @@ class TodoListViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
 
-        setupRefreshOnAppForegroundEvent()
+        setupAutoRefreshTriggers()
 
         updateFilterIcon()
-        refresh(ignoreCache: false)
+        refresh(ignorePlannablesCache: false, ignoreCoursesCache: false)
     }
 
     // MARK: - User Actions
 
-    func refresh(ignoreCache: Bool, completion: (() -> Void)? = nil) {
-        interactor.refresh(ignoreCache: ignoreCache)
+    func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool, completion: (() -> Void)? = nil) {
+        interactor.refresh(ignorePlannablesCache: ignorePlannablesCache, ignoreCoursesCache: ignoreCoursesCache)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] _ in
                 self?.state = .error
@@ -91,7 +91,10 @@ class TodoListViewModel: ObservableObject {
     }
 
     func didTapItem(_ item: TodoItemViewModel, _ viewController: WeakViewController) {
-        guard item.isTappable else { return }
+        guard item.isTappable else {
+            snackBar.showSnack(String(localized: "No additional details available.", bundle: .core))
+            return
+        }
 
         switch item.type {
         case .planner_note:
@@ -167,13 +170,26 @@ class TodoListViewModel: ObservableObject {
     // MARK: - Private Methods -
     // MARK: Refresh
 
-    private func setupRefreshOnAppForegroundEvent() {
+    private func setupAutoRefreshTriggers() {
         NotificationCenter.default
             .publisher(for: UIApplication.willEnterForegroundNotification)
             .sink { [weak self] _ in
                 self?.checkCacheAndRefresh()
             }
             .store(in: &subscriptions)
+
+        Publishers.MergeMany(
+            NotificationCenter.default.publisher(for: .moduleItemRequirementCompleted),
+            NotificationCenter.default.publisher(for: .plannerItemDidChange)
+        )
+        .sink { [weak self] _ in
+            self?.handleContentChanged()
+        }
+        .store(in: &subscriptions)
+    }
+
+    private func handleContentChanged() {
+        refresh(ignorePlannablesCache: true, ignoreCoursesCache: false)
     }
 
     private func checkCacheAndRefresh() {
@@ -186,7 +202,7 @@ class TodoListViewModel: ObservableObject {
                     self.state = .loading
                 }
 
-                self.refresh(ignoreCache: false)
+                self.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false)
             }
             .store(in: &subscriptions)
     }

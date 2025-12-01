@@ -57,6 +57,7 @@ class SubmissionListItemTests: TeacherTestCase {
 
         submission.workflowState = .graded
         submission.score = 85
+        submission.gradeMatchesCurrentSubmission = true
 
         // When
         let item = SubmissionListItem(submission: submission, assignment: assignment, displayIndex: nil)

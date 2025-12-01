@@ -24,12 +24,14 @@ struct TodoListItemCell: View {
 
     @ObservedObject var item: TodoItemViewModel
     @Binding var isSwiping: Bool
-    let swipeCompletionBehavior: InstUI.SwipeCompletionBehavior
-    let swipeEnabled: Bool
-    let onTap: (_ item: TodoItemViewModel, _ viewController: WeakViewController) -> Void
-    let onMarkAsDone: (_ item: TodoItemViewModel) -> Void
-    let onSwipe: (_ item: TodoItemViewModel) -> Void
-    let onSwipeCommitted: ((_ item: TodoItemViewModel) -> Void)?
+    private let swipeCompletionBehavior: InstUI.SwipeCompletionBehavior
+    private let swipeEnabled: Bool
+    private let onTap: (_ item: TodoItemViewModel, _ viewController: WeakViewController) -> Void
+    private let onMarkAsDone: (_ item: TodoItemViewModel) -> Void
+    private let onSwipe: (_ item: TodoItemViewModel) -> Void
+    private let onSwipeCommitted: ((_ item: TodoItemViewModel) -> Void)?
+
+    private static let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
 
     init(
         item: TodoItemViewModel,
@@ -116,10 +118,10 @@ struct TodoListItemCell: View {
         .onTapGesture {
             if isSwiping { return }
             onMarkAsDone(item)
+            Self.hapticGenerator.impactOccurred()
         }
         .identifier("to-do.list.\(item.plannableId).checkbox")
     }
-
 }
 
 #if DEBUG

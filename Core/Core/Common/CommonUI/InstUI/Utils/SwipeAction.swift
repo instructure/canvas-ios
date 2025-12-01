@@ -38,10 +38,14 @@ extension View {
     /// - Parameters:
     ///   - backgroundColor: The background color revealed behind the content during the swipe.
     ///   - completionBehavior: Determines what happens after the swipe action completes. Defaults to `.stayOpen`.
-    ///   - isSwiping: Binding that tracks whether a swipe gesture is currently active. Use this to disable scrolling or other gestures while swiping.
+    ///   - isSwiping: Binding that tracks whether a swipe gesture is currently active.
+    ///                Use this to disable scrolling or other gestures while swiping.
     ///   - isEnabled: Whether the swipe gesture is enabled. Defaults to `true`.
-    ///   - onSwipeCommitted: Optional closure called immediately when the swipe action is committed (user releases after reaching threshold) but before animations finish.
-    ///   - onSwipe: Closure called when the swipe action is completed animations included. For `.reset` behavior, this is called after the close animation finishes. For `.stayOpen` behavior, this is called while the open animation is running.
+    ///   - onSwipeCommitted: Optional closure called immediately when the swipe action is committed
+    ///                       (user releases after reaching threshold) but before animations finish.
+    ///   - onSwipe: Closure called when the swipe action is completed animations included.
+    ///              For `.reset` behavior, this is called after the close animation finishes.
+    ///              For `.stayOpen` behavior, this is called while the open animation is running.
     ///   - label: The view displayed in the revealed area during the swipe.
     public func swipeAction<Label: View>(
         backgroundColor: Color,
@@ -92,19 +96,22 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
     }
 
     // MARK: - Gesture Properties
-    /// The ratio of cell width that must be swiped to trigger the action (0.8 = 80% of cell width).
-    private let actionThresholdRatio: CGFloat = 0.8
+    private let actionThresholdInPoints: CGFloat = {
+        let thresholdInCentimeters: CGFloat = 2.5
+        let centimetersPerInch: CGFloat = 2.54
+        let inches = thresholdInCentimeters / centimetersPerInch
+        let pointsPerInch = UIScreen.main.pointsPerInch
+        return inches * pointsPerInch
+    }()
 
     // MARK: - Layout & Sizing
     @State private var cellContentOffset: CGFloat = 0
     @State private var cellWidth: CGFloat = 0
     @State private var actionViewWidth: CGFloat = 0
-    /// The point based horizontal offset that must be reached by the drag gesture to trigger the action.
-    @State private var actionThreshold: CGFloat = 0
     @State private var actionViewOffset: CGFloat = 0
 
     // MARK: - Internal Logic States
-    /// Becomes true, if dragging goes beyond `actionThreshold`. If drag is ended while this is true the swipe action will be performed.
+    /// Becomes true, if dragging goes beyond `actionThresholdInPoints`. If drag is ended while this is true the swipe action will be performed.
     @State private var isActionThresholdReached = false
     /// Becomes true after the action has been invoked to disable further drag gestures
     @State private var isActionInvoked = false
@@ -120,7 +127,6 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
         }
         .onWidthChange { width in
             cellWidth = width
-            actionThreshold = cellWidth * actionThresholdRatio
         }
         .contentShape(Rectangle())
         // If this is a simple gesture and the cell is a button then swiping won't work
@@ -134,7 +140,8 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
     }
 
     private var swipeBackground: some View {
-        backgroundColor
+        // Only show background when swipe has started to prevent it from being visible during cell fade-in animations
+        (cellContentOffset != 0 ? backgroundColor : Color.clear)
             .overlay(alignment: .trailing) {
                 label()
                     .onWidthChange { width in
@@ -168,7 +175,7 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
     }
 
     private func handleActionThresholdCrossing() {
-        let newIsActionThresholdReached = abs(cellContentOffset) >= actionThreshold
+        let newIsActionThresholdReached = abs(cellContentOffset) >= actionThresholdInPoints
 
         if newIsActionThresholdReached && !isActionThresholdReached {
             hapticGenerator.impactOccurred()

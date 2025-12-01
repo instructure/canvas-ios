@@ -97,8 +97,8 @@ final class StudentSubAssignmentsCardViewModelTests: StudentTestCase {
             )
         )
 
-        XCTAssertEqual(testee.items.first?.submissionStatus, .init(status: .submitted))
-        XCTAssertEqual(testee.items.last?.submissionStatus, .init(status: .missing))
+        XCTAssertEqual(testee.items.first?.submissionStatus, .submitted)
+        XCTAssertEqual(testee.items.last?.submissionStatus, .missing)
     }
 
     // MARK: - Score

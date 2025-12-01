@@ -210,12 +210,14 @@ class SubmissionDetailsPresenter {
             if let quizID = assignment.quizID,
                 let url = URL(string: "/courses/\(assignment.courseID)/quizzes/\(quizID)/history?version=\(selectedAttempt ?? 1)&headless=1", relativeTo: env.api.baseURL) {
                 let controller = CoreWebViewController(features: [.invertColorsInDarkMode])
+                controller.webView.setupStudioFeatures(context: .course(assignment.courseID), env: env)
                 controller.webView.accessibilityIdentifier = "SubmissionDetails.onlineQuizWebView"
                 controller.webView.load(URLRequest(url: url))
                 return controller
             }
         case .some(.online_text_entry):
             let controller = CoreWebViewController()
+            controller.webView.setupStudioFeatures(context: .course(assignment.courseID), env: env)
             controller.webView.accessibilityIdentifier = "SubmissionDetails.onlineTextEntryWebView"
             controller.webView.loadHTMLString(submission.body ?? "")
             return controller
@@ -245,6 +247,7 @@ class SubmissionDetailsPresenter {
                     )
                 }
                 let controller = CoreWebViewController(features: [.invertColorsInDarkMode])
+                controller.webView.setupStudioFeatures(context: .course(assignment.courseID), env: env)
                 controller.webView.accessibilityIdentifier = "SubmissionDetails.webView"
                 controller.webView.load(URLRequest(url: url))
                 return controller
@@ -253,6 +256,7 @@ class SubmissionDetailsPresenter {
             guard let previewUrl = submission.previewUrl else { break }
 
             let controller = CoreWebViewController(features: [.invertColorsInDarkMode])
+            controller.webView.setupStudioFeatures(context: .course(assignment.courseID), env: env)
             controller.webView.accessibilityIdentifier = "SubmissionDetails.discussionWebView"
             controller.webView.load(URLRequest(url: previewUrl))
             return controller
@@ -328,12 +332,17 @@ class SubmissionDetailsPresenter {
     }
 
     func lockedEmptyViewIsHidden() -> Bool {
-        if let assignment = assignment.first {
-            let isHidden = ( assignment.lockExplanation == nil && !(assignment.lockedForUser) )
-                || (assignment.submission != nil && assignment.submission?.workflowState != .unsubmitted)
-            return isHidden
+        guard let assignment = assignment.first else { return true }
+
+        // if not locked
+        if assignment.lockExplanation == nil && !(assignment.lockedForUser) {
+            return true
         }
-        return true
+
+        guard let submission = assignment.submission else { return false }
+
+        let status = submission.status
+        return status.isSubmitted || status.isGraded
     }
 
     func lockedEmptyViewHeader() -> String {

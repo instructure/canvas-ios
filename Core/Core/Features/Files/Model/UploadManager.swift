@@ -42,6 +42,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
 
     private var validSession: URLSession?
     private let submissionsStatus = FileSubmissionsStatus()
+    private let submissionRetrialState = SubmissionRetrialState()
+
     public let didUploadFile = PassthroughSubject<Result<Void, Error>, Never>()
     var backgroundSession: URLSession {
         if let validSession = validSession {
@@ -358,6 +360,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                     task?.cancel()
                 }
                 self.submissionsStatus.addTasks(fileIDs: fileIDs)
+                self.submissionRetrialState.validate(for: requestable)
                 task = self.environment.api.makeRequest(requestable) { [weak self] response, _, error in
                     guard let self else { return }
 
@@ -378,10 +381,12 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                                 guard let submission = response, error == nil else {
                                     Analytics.shared.logSubmission(
                                         .phase(.failed, .fileUpload, attempt),
-                                        additionalParams: [.error: error?.localizedDescription ?? "unknown"]
+                                        additionalParams: self.submissionRetrialState.params()
+                                            .merging([.error: error?.localizedDescription ?? "unknown"], uniquingKeysWith: { $1 })
                                     )
                                     RemoteLogger.shared.logError(name: "File upload failed during submission", reason: error?.localizedDescription)
                                     self.complete(file: file, error: error)
+                                    self.submissionRetrialState.report(.failed)
                                     return
                                 }
                                 self.didUploadFile.send(.success)
@@ -401,9 +406,11 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                                 }
 
                                 Analytics.shared.logSubmission(
-                                    .phase(.succeeded, .fileUpload, attempt)
+                                    .phase(.succeeded, .fileUpload, attempt),
+                                    additionalParams: self.submissionRetrialState.params()
                                 )
 
+                                self.submissionRetrialState.report(.succeeded)
                                 self.localNotifications.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
                             }
                         }

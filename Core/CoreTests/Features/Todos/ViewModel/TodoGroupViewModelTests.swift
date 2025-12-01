@@ -29,6 +29,7 @@ class TodoGroupViewModelTests: CoreTestCase {
         let group = TodoGroupViewModel(date: date, items: items)
 
         XCTAssertContains(group.accessibilityLabel, "Saturday")
+        XCTAssertContains(group.accessibilityLabel, "August")
         XCTAssertContains(group.accessibilityLabel, "7")
         XCTAssertContains(group.accessibilityLabel, "2 items")
     }
@@ -42,6 +43,7 @@ class TodoGroupViewModelTests: CoreTestCase {
         XCTAssertEqual(group.id, date.isoString())
         XCTAssertEqual(group.date, date)
         XCTAssertEqual(group.weekdayAbbreviation, date.weekdayNameAbbreviated)
+        XCTAssertEqual(group.monthAbbreviation, date.monthNameAbbreviated)
         XCTAssertEqual(group.dayNumber, date.dayString)
         XCTAssertEqual(group.displayDate, date.dayInMonth)
     }
@@ -67,5 +69,25 @@ class TodoGroupViewModelTests: CoreTestCase {
 
         XCTAssertTrue(group1 < group2)
         XCTAssertFalse(group2 < group1)
+    }
+
+    func testShouldShowMonthWhenInSameMonth() {
+        let referenceDate = Date.make(year: 2021, month: 8, day: 1)
+        let dateInSameMonth = Date.make(year: 2021, month: 8, day: 15)
+        let items = [TodoItemViewModel.make(plannableId: "1")]
+
+        let group = TodoGroupViewModel(date: dateInSameMonth, items: items, referenceDate: referenceDate)
+
+        XCTAssertFalse(group.shouldShowMonth)
+    }
+
+    func testShouldShowMonthWhenInDifferentMonth() {
+        let referenceDate = Date.make(year: 2021, month: 8, day: 1)
+        let dateInDifferentMonth = Date.make(year: 2021, month: 9, day: 15)
+        let items = [TodoItemViewModel.make(plannableId: "1")]
+
+        let group = TodoGroupViewModel(date: dateInDifferentMonth, items: items, referenceDate: referenceDate)
+
+        XCTAssertTrue(group.shouldShowMonth)
     }
 }

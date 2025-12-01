@@ -106,7 +106,7 @@ final class StudentAssignmentListItemTests: CoreTestCase {
             has_sub_assignments: false
         ))
 
-        XCTAssertEqual(testee.submissionStatus, .init(status: .excused))
+        XCTAssertEqual(testee.submissionStatus, .excused)
     }
 
     func test_status_withSubAssignments_shouldMatchSubmissionStatus() {
@@ -119,7 +119,7 @@ final class StudentAssignmentListItemTests: CoreTestCase {
             ]
         ))
 
-        XCTAssertEqual(testee.submissionStatus, .init(status: .excused))
+        XCTAssertEqual(testee.submissionStatus, .excused)
     }
 
     // MARK: - Score
@@ -303,9 +303,9 @@ final class StudentAssignmentListItemTests: CoreTestCase {
             ]
         ))
 
-        XCTAssertEqual(testee.submissionStatus, .init(status: .excused))
-        XCTAssertEqual(testee.subItems?.first?.submissionStatus, .init(status: .submitted))
-        XCTAssertEqual(testee.subItems?.last?.submissionStatus, .init(status: .missing))
+        XCTAssertEqual(testee.submissionStatus, .excused)
+        XCTAssertEqual(testee.subItems?.first?.submissionStatus, .submitted)
+        XCTAssertEqual(testee.subItems?.last?.submissionStatus, .missing)
     }
 
     // MARK: - Sub Item - Score
@@ -360,7 +360,7 @@ final class StudentAssignmentListItemTests: CoreTestCase {
             userId: nil
         )
 
-        XCTAssertEqual(testee.submissionStatus, .init(status: .excused))
+        XCTAssertEqual(testee.submissionStatus, .excused)
     }
 
     func test_submission_whenUserIdIsSet_shouldBeSubmissionMatchingUserId() {
@@ -375,7 +375,7 @@ final class StudentAssignmentListItemTests: CoreTestCase {
             userId: "42"
         )
 
-        XCTAssertEqual(testee.submissionStatus, .init(status: .excused))
+        XCTAssertEqual(testee.submissionStatus, .excused)
     }
 
     // MARK: - Private helpers

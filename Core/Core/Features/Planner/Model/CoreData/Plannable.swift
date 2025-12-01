@@ -56,19 +56,19 @@ public final class Plannable: NSManagedObject {
     /// Contains the user override for the marked complete state of the plannable item.
     /// If the field is `nil`, then the user has not set any override.
     public var isMarkedComplete: Bool? {
-        get { return isMarkedCompleteRaw?.boolValue }
-        set { isMarkedCompleteRaw = newValue.map { NSNumber(value: $0) } }
+        get { isMarkedCompleteRaw?.boolValue }
+        set { isMarkedCompleteRaw = NSNumber(newValue) }
     }
 
     // MARK: -
 
     public var isCompleted: Bool {
         // If there's a user override then ignore the submission status
-        if let isMarkedComplete = isMarkedComplete {
+        if let isMarkedComplete {
             return isMarkedComplete
-        } else {
-            return isSubmitted
         }
+
+        return isSubmitted
     }
 
     @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?

@@ -19,19 +19,22 @@
 @testable import Core
 import XCTest
 
-class TodoFilterOptionsAnalyticsTests: XCTestCase {
+class AnalyticsTodoEventTests: CoreTestCase {
 
     // MARK: - Analytics Event Name
 
-    func test_analyticsEventName_returnsDefaultEvent_whenFilterIsDefault() {
+    func test_logsDefaultEvent_whenFilterIsDefault() {
         // GIVEN
         let filterOptions = TodoFilterOptions.default
 
+        // WHEN
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
+
         // THEN
-        XCTAssertEqual(filterOptions.analyticsEventName, "todo_list_loaded_default_filter")
+        XCTAssertEqual(analytics.lastEvent, "todo_list_loaded_default_filter")
     }
 
-    func test_analyticsEventName_returnsCustomEvent_whenFilterIsNotDefault() {
+    func test_logsCustomEvent_whenFilterIsNotDefault() {
         // GIVEN
         let filterOptions = TodoFilterOptions(
             visibilityOptions: [.showPersonalTodos],
@@ -39,29 +42,32 @@ class TodoFilterOptionsAnalyticsTests: XCTestCase {
             dateRangeEnd: .thisWeek
         )
 
+        // WHEN
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
+
         // THEN
-        XCTAssertEqual(filterOptions.analyticsEventName, "todo_list_loaded_custom_filter")
+        XCTAssertEqual(analytics.lastEvent, "todo_list_loaded_custom_filter")
     }
 
     // MARK: - Analytics Parameters
 
-    func test_analyticsParameters_includesAllRequiredKeys() {
+    func test_logsAllRequiredParameters() {
         // GIVEN
         let filterOptions = TodoFilterOptions.default
 
         // WHEN
-        let parameters = filterOptions.analyticsParameters
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertNotNil(parameters["filter_personal_todos"])
-        XCTAssertNotNil(parameters["filter_calendar_events"])
-        XCTAssertNotNil(parameters["filter_show_completed"])
-        XCTAssertNotNil(parameters["filter_favourite_courses"])
-        XCTAssertNotNil(parameters["filter_selected_date_range_past"])
-        XCTAssertNotNil(parameters["filter_selected_date_range_future"])
+        XCTAssertNotNil(analytics.lastEventParameter("filter_personal_todos", ofType: Bool.self))
+        XCTAssertNotNil(analytics.lastEventParameter("filter_calendar_events", ofType: Bool.self))
+        XCTAssertNotNil(analytics.lastEventParameter("filter_show_completed", ofType: Bool.self))
+        XCTAssertNotNil(analytics.lastEventParameter("filter_favourite_courses", ofType: Bool.self))
+        XCTAssertNotNil(analytics.lastEventParameter("filter_selected_date_range_past", ofType: String.self))
+        XCTAssertNotNil(analytics.lastEventParameter("filter_selected_date_range_future", ofType: String.self))
     }
 
-    func test_analyticsParameters_showPersonalTodos_isFalse_whenNotIncluded() {
+    func test_logsShowPersonalTodos_asFalse_whenNotIncluded() {
         // GIVEN
         let filterOptions = TodoFilterOptions(
             visibilityOptions: [],
@@ -70,13 +76,13 @@ class TodoFilterOptionsAnalyticsTests: XCTestCase {
         )
 
         // WHEN
-        let parameters = filterOptions.analyticsParameters
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(parameters["filter_personal_todos"] as? Bool, false)
+        XCTAssertEqual(analytics.lastEventParameter("filter_personal_todos", ofType: Bool.self), false)
     }
 
-    func test_analyticsParameters_showPersonalTodos_isTrue_whenIncluded() {
+    func test_logsShowPersonalTodos_asTrue_whenIncluded() {
         // GIVEN
         let filterOptions = TodoFilterOptions(
             visibilityOptions: [.showPersonalTodos],
@@ -85,13 +91,13 @@ class TodoFilterOptionsAnalyticsTests: XCTestCase {
         )
 
         // WHEN
-        let parameters = filterOptions.analyticsParameters
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(parameters["filter_personal_todos"] as? Bool, true)
+        XCTAssertEqual(analytics.lastEventParameter("filter_personal_todos", ofType: Bool.self), true)
     }
 
-    func test_analyticsParameters_showCalendarEvents_isFalse_whenNotIncluded() {
+    func test_logsShowCalendarEvents_asFalse_whenNotIncluded() {
         // GIVEN
         let filterOptions = TodoFilterOptions(
             visibilityOptions: [],
@@ -100,13 +106,13 @@ class TodoFilterOptionsAnalyticsTests: XCTestCase {
         )
 
         // WHEN
-        let parameters = filterOptions.analyticsParameters
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(parameters["filter_calendar_events"] as? Bool, false)
+        XCTAssertEqual(analytics.lastEventParameter("filter_calendar_events", ofType: Bool.self), false)
     }
 
-    func test_analyticsParameters_showCalendarEvents_isTrue_whenIncluded() {
+    func test_logsShowCalendarEvents_asTrue_whenIncluded() {
         // GIVEN
         let filterOptions = TodoFilterOptions(
             visibilityOptions: [.showCalendarEvents],
@@ -115,13 +121,13 @@ class TodoFilterOptionsAnalyticsTests: XCTestCase {
         )
 
         // WHEN
-        let parameters = filterOptions.analyticsParameters
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(parameters["filter_calendar_events"] as? Bool, true)
+        XCTAssertEqual(analytics.lastEventParameter("filter_calendar_events", ofType: Bool.self), true)
     }
 
-    func test_analyticsParameters_showCompleted_isFalse_whenNotIncluded() {
+    func test_logsShowCompleted_asFalse_whenNotIncluded() {
         // GIVEN
         let filterOptions = TodoFilterOptions(
             visibilityOptions: [],
@@ -130,13 +136,13 @@ class TodoFilterOptionsAnalyticsTests: XCTestCase {
         )
 
         // WHEN
-        let parameters = filterOptions.analyticsParameters
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(parameters["filter_show_completed"] as? Bool, false)
+        XCTAssertEqual(analytics.lastEventParameter("filter_show_completed", ofType: Bool.self), false)
     }
 
-    func test_analyticsParameters_showCompleted_isTrue_whenIncluded() {
+    func test_logsShowCompleted_asTrue_whenIncluded() {
         // GIVEN
         let filterOptions = TodoFilterOptions(
             visibilityOptions: [.showCompleted],
@@ -145,13 +151,13 @@ class TodoFilterOptionsAnalyticsTests: XCTestCase {
         )
 
         // WHEN
-        let parameters = filterOptions.analyticsParameters
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(parameters["filter_show_completed"] as? Bool, true)
+        XCTAssertEqual(analytics.lastEventParameter("filter_show_completed", ofType: Bool.self), true)
     }
 
-    func test_analyticsParameters_favouriteCourses_isFalse_whenNotIncluded() {
+    func test_logsFavouriteCourses_asFalse_whenNotIncluded() {
         // GIVEN
         let filterOptions = TodoFilterOptions(
             visibilityOptions: [],
@@ -160,13 +166,13 @@ class TodoFilterOptionsAnalyticsTests: XCTestCase {
         )
 
         // WHEN
-        let parameters = filterOptions.analyticsParameters
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(parameters["filter_favourite_courses"] as? Bool, false)
+        XCTAssertEqual(analytics.lastEventParameter("filter_favourite_courses", ofType: Bool.self), false)
     }
 
-    func test_analyticsParameters_favouriteCourses_isTrue_whenIncluded() {
+    func test_logsFavouriteCourses_asTrue_whenIncluded() {
         // GIVEN
         let filterOptions = TodoFilterOptions(
             visibilityOptions: [.favouriteCoursesOnly],
@@ -175,13 +181,13 @@ class TodoFilterOptionsAnalyticsTests: XCTestCase {
         )
 
         // WHEN
-        let parameters = filterOptions.analyticsParameters
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(parameters["filter_favourite_courses"] as? Bool, true)
+        XCTAssertEqual(analytics.lastEventParameter("filter_favourite_courses", ofType: Bool.self), true)
     }
 
-    func test_analyticsParameters_includesDateRangeStart() {
+    func test_logsDateRangeStart() {
         // GIVEN
         let filterOptions = TodoFilterOptions(
             visibilityOptions: [],
@@ -190,13 +196,13 @@ class TodoFilterOptionsAnalyticsTests: XCTestCase {
         )
 
         // WHEN
-        let parameters = filterOptions.analyticsParameters
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(parameters["filter_selected_date_range_past"] as? String, "two_weeks")
+        XCTAssertEqual(analytics.lastEventParameter("filter_selected_date_range_past", ofType: String.self), "two_weeks")
     }
 
-    func test_analyticsParameters_includesDateRangeEnd() {
+    func test_logsDateRangeEnd() {
         // GIVEN
         let filterOptions = TodoFilterOptions(
             visibilityOptions: [],
@@ -205,73 +211,52 @@ class TodoFilterOptionsAnalyticsTests: XCTestCase {
         )
 
         // WHEN
-        let parameters = filterOptions.analyticsParameters
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(parameters["filter_selected_date_range_future"] as? String, "three_weeks")
+        XCTAssertEqual(analytics.lastEventParameter("filter_selected_date_range_future", ofType: String.self), "three_weeks")
     }
 
     // MARK: - TodoDateRangeStart Analytics Value
 
-    func test_dateRangeStart_analyticsValue_today() {
+    func test_dateRangeStart_analyticsValue() {
         // THEN
         XCTAssertEqual(TodoDateRangeStart.today.analyticsValue, "today")
-    }
-
-    func test_dateRangeStart_analyticsValue_thisWeek() {
-        // THEN
         XCTAssertEqual(TodoDateRangeStart.thisWeek.analyticsValue, "this_week")
-    }
-
-    func test_dateRangeStart_analyticsValue_lastWeek() {
-        // THEN
         XCTAssertEqual(TodoDateRangeStart.lastWeek.analyticsValue, "one_week")
-    }
-
-    func test_dateRangeStart_analyticsValue_twoWeeksAgo() {
-        // THEN
         XCTAssertEqual(TodoDateRangeStart.twoWeeksAgo.analyticsValue, "two_weeks")
-    }
-
-    func test_dateRangeStart_analyticsValue_threeWeeksAgo() {
-        // THEN
         XCTAssertEqual(TodoDateRangeStart.threeWeeksAgo.analyticsValue, "three_weeks")
-    }
-
-    func test_dateRangeStart_analyticsValue_fourWeeksAgo() {
-        // THEN
         XCTAssertEqual(TodoDateRangeStart.fourWeeksAgo.analyticsValue, "four_weeks")
     }
 
     // MARK: - TodoDateRangeEnd Analytics Value
 
-    func test_dateRangeEnd_analyticsValue_today() {
-        // THEN
+    func test_dateRangeEnd_analyticsValue() {
         XCTAssertEqual(TodoDateRangeEnd.today.analyticsValue, "today")
-    }
-
-    func test_dateRangeEnd_analyticsValue_thisWeek() {
-        // THEN
         XCTAssertEqual(TodoDateRangeEnd.thisWeek.analyticsValue, "this_week")
-    }
-
-    func test_dateRangeEnd_analyticsValue_nextWeek() {
-        // THEN
         XCTAssertEqual(TodoDateRangeEnd.nextWeek.analyticsValue, "one_week")
-    }
-
-    func test_dateRangeEnd_analyticsValue_inTwoWeeks() {
-        // THEN
         XCTAssertEqual(TodoDateRangeEnd.inTwoWeeks.analyticsValue, "two_weeks")
-    }
-
-    func test_dateRangeEnd_analyticsValue_inThreeWeeks() {
-        // THEN
         XCTAssertEqual(TodoDateRangeEnd.inThreeWeeks.analyticsValue, "three_weeks")
+        XCTAssertEqual(TodoDateRangeEnd.inFourWeeks.analyticsValue, "four_weeks")
     }
 
-    func test_dateRangeEnd_analyticsValue_inFourWeeks() {
+    // MARK: - Item Marked Done/Undone Events
+
+    func test_logsItemMarkedDone() {
+        // WHEN
+        Analytics.shared.logTodoEvent(.itemMarkedDone)
+
         // THEN
-        XCTAssertEqual(TodoDateRangeEnd.inFourWeeks.analyticsValue, "four_weeks")
+        XCTAssertEqual(analytics.lastEvent, "todo_item_marked_done")
+        XCTAssertNil(analytics.lastEventParameters)
+    }
+
+    func test_logsItemMarkedUndone() {
+        // WHEN
+        Analytics.shared.logTodoEvent(.itemMarkedUndone)
+
+        // THEN
+        XCTAssertEqual(analytics.lastEvent, "todo_item_marked_undone")
+        XCTAssertNil(analytics.lastEventParameters)
     }
 }

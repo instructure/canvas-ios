@@ -238,6 +238,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         lockedIconImageView.image = UIImage(named: Panda.Locked.name, in: .core, compatibleWith: nil)
 
         // Routing from description
+        webView.setupStudioFeatures(context: .course(courseID), env: env)
         webView.linkDelegate = self
         webView.autoresizesHeight = true
         webView.heightAnchor.constraint(equalToConstant: 0).isActive = true
@@ -338,6 +339,8 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
             return
         }
 
+        let status = submission.status
+
         submissionRubricButtonSection?.isHidden = true
         submittedLabel?.textColor = .textDarkest
         submittedLabel?.text = String(localized: "Successfully submitted!", bundle: .student)
@@ -346,7 +349,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
 
         fileSubmissionButton?.isHidden = true
 
-        if submission.excused {
+        if status.isExcused {
             // Excused assignments cannot be submitted so we make sure not to
             // reserve any space for the not visible submit button below the scroll
             showSubmitAssignmentButton(title: nil)
@@ -363,13 +366,13 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
             updateSubmissionLabels(state: onlineUploadState)
         }
 
-        if submission.workflowState == .unsubmitted, submission.customGradeStatusId == nil {
+        guard status.isSubmitted || status.isGraded else {
             hideGradeCell()
             submissionRubricButtonSection?.isHidden = false
             return
         }
 
-        if submission.needsGrading, submission.score == nil {
+        if status.needsGrading && submission.score == nil {
             submittedView?.isHidden = false
             return
         }
@@ -424,13 +427,13 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         nameLabel?.text = assignment.name
         pointsLabel?.text = hideScores ? nil : assignment.pointsPossibleText
         pointsLabel?.isHidden = pointsLabel?.text == nil
-        let displayProperties = assignment.submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
+        let status = assignment.submission?.status ?? .notSubmitted
         statusIconView?.isHidden = assignment.submissionStatusIsHidden
-        statusIconView?.image = displayProperties.icon
-        statusIconView?.tintColor = displayProperties.color
+        statusIconView?.image = status.uiImageIcon
+        statusIconView?.tintColor = status.labelModel.color.asUIColor
         statusLabel?.isHidden = assignment.submissionStatusIsHidden
-        statusLabel?.textColor = displayProperties.color
-        statusLabel?.text = displayProperties.text
+        statusLabel?.textColor = status.labelModel.color.asUIColor
+        statusLabel?.text = status.labelModel.text
 
         updateDueDateSections(assignment: assignment)
 
@@ -466,9 +469,11 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         lockedSection?.isHidden = presenter.lockedSectionIsHidden()
         fileTypesSection?.isHidden = presenter.fileTypesSectionIsHidden()
         submissionTypesSection?.isHidden = presenter.submissionTypesSectionIsHidden()
-        var showGradeSection = assignment.submission?.needsGrading == true ||
-            (assignment.submission?.isGraded == true && assignment.gradingType != .not_graded ) ||
-            presenter.onlineUploadState != nil
+
+        // The pointsPossible check safeguards against backend issues like in MBL-15698
+        var showGradeSection = status.needsGrading
+            || (status.isGraded && assignment.pointsPossible != nil)
+            || presenter.onlineUploadState != nil
         let gradeText = GradeFormatter.string(from: assignment, submission: submission, style: .short)
         if assignment.hideQuantitativeData, (gradeText ?? "").isEmpty == true {
             showGradeSection = false

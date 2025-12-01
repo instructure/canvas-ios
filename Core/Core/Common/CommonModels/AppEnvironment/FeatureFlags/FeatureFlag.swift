@@ -20,9 +20,6 @@ import Foundation
 import CoreData
 
 public struct APIFeatureFlag {
-    public enum Key: String {
-        case assignmentEnhancements = "assignments_2_student"
-    }
     public let key: String
     public let isEnabled: Bool
     public let canvasContextID: String
@@ -55,10 +52,24 @@ public final class FeatureFlag: NSManagedObject, WriteableModel {
         flag.isEnvironmentFlag = item.isEnvironmentFlag
         return flag
     }
+
+    @discardableResult
+    public static func save(_ item: APIFeatureFlagState, in context: NSManagedObjectContext) -> FeatureFlag {
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), item.canvasContextID),
+            NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.name), item.feature)
+        ])
+        let flag: FeatureFlag = context.fetch(predicate).first ?? context.insert()
+        flag.name = item.feature
+        flag.enabled = item.state == .on
+        flag.canvasContextID = item.canvasContextID
+        flag.isEnvironmentFlag = false
+        return flag
+    }
 }
 
 extension Collection where Element == FeatureFlag {
-    public func isFeatureFlagEnabled(_ key: APIFeatureFlag.Key) -> Bool {
+    public func isFeatureFlagEnabled(_ key: FeatureFlagName) -> Bool {
         isFeatureFlagEnabled(name: key.rawValue)
     }
 
