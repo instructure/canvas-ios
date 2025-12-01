@@ -157,7 +157,7 @@ public final class TodoInteractorLive: TodoInteractor {
                         ignorePlannablesCache: ignorePlannablesCache,
                         ignoreCoursesCache: true,
                         retryCount: retryCount + 1
-                    ) ?? Empty().eraseToAnyPublisher()
+                    ) ?? Publishers.noInstanceFailure()
                 }
                 .eraseToAnyPublisher()
         }
