@@ -66,7 +66,7 @@ class SubmissionTypeTests: XCTestCase {
         let submissionTypes: [SubmissionType] = [.online_upload]
         let allowedExtensions = ["png", "mov", "mp3", "pdf"]
         let result = submissionTypes.allowedUTIs(allowedExtensions: allowedExtensions)
-        XCTAssertEqual(result.count, 3)
+        XCTAssertEqual(result.count, 4)
         XCTAssertTrue(result.contains { $0.isImage })
         XCTAssertTrue(result.contains { $0.isVideo })
         XCTAssertTrue(result.contains { $0.isAudio })
