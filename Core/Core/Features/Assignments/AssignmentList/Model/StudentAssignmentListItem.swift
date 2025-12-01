@@ -26,8 +26,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
         let title: String
 
         let dueDate: String
-        // TODO: remove optionality after EVAL-5938
-        let submissionStatus: SubmissionStatusLabel.Model?
+        let submissionStatus: SubmissionStatusLabel.Model
         let score: String?
         let scoreA11yLabel: String?
 
@@ -68,10 +67,11 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
         self.dueDates = dateTextsProvider.summarizedDueDates(for: assignment)
 
         let status = submission?.status ?? .notSubmitted
-        self.submissionStatus = .init(status: status)
+        self.submissionStatus = status.labelModel
 
+        // The pointsPossible check safeguards against backend issues like in MBL-15698
         let hasPointsPossible = assignment.pointsPossible != nil
-        let score = hasPointsPossible && status != .excused
+        let score = hasPointsPossible && !status.isExcused
             ? GradeFormatter.string(from: assignment, submission: submission, style: .medium)
             : nil
         self.score = score
@@ -88,15 +88,10 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
                     let subSubmission = submission?.subAssignmentSubmissions
                         .first { $0.subAssignmentTag == checkpoint.tag }
 
-                    // This is only needed because `APISubAssignmentSubmission.submitted_at` is currently not populated by backend.
-                    // TODO: fallback to `.notSubmitted` and remove optionality once status can be calculated after EVAL-5938
-                    var status = subSubmission?.status
-                    if status == .notSubmitted {
-                        status = nil
-                    }
+                    let status = subSubmission?.status ?? .notSubmitted
 
                     var score: String?
-                    if let pointsPossible = checkpoint.pointsPossible, status != .excused {
+                    if let pointsPossible = checkpoint.pointsPossible, !status.isExcused {
                         score = GradeFormatter.string(
                             pointsPossible: pointsPossible,
                             gradingType: assignment.gradingType,
@@ -118,7 +113,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
                         tag: checkpoint.tag,
                         title: checkpoint.title,
                         dueDate: DueDateFormatter.format(checkpoint.dueDate, lockDate: checkpoint.lockDate),
-                        submissionStatus: status.map { .init(status: $0) },
+                        submissionStatus: status.labelModel,
                         score: score,
                         scoreA11yLabel: scoreA11yLabel
                     )

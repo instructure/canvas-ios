@@ -34,12 +34,11 @@ struct SubmissionListRowView: View {
                     .layoutPriority(1)
                 if item.needsGrading {
                     if dynamicTypeSize < .accessibility3 {
-                        HStack(alignment: .top, spacing: 4) {
-                            statusLabel
-                                .layoutPriority(1)
-                            statusDivider
-                            needsGradingLabel
-                        }
+                        InstUI.JoinedSubtitleLabels(
+                            label1: { statusLabel },
+                            label2: { needsGradingLabel },
+                            alignment: .top
+                        )
                     } else {
                         VStack(alignment: .leading, spacing: 2) {
                             statusLabel
@@ -71,21 +70,8 @@ struct SubmissionListRowView: View {
     }
 
     private var statusLabel: some View {
-        HStack(alignment: .center, spacing: 2) {
-            item.status.redesignAppearance.icon.scaledIcon(size: 16)
-            Text(item.status.text).multilineTextAlignment(.leading)
-        }
-        .font(.regular14)
-        .foregroundStyle(item.status.redesignAppearance.color)
-        .accessibilityHidden(isGradeBlank == false && item.status == .graded)
-    }
-
-    private var statusDivider: some View {
-        Color
-            .borderMedium
-            .frame(width: 1)
-            .padding(.vertical, 2)
-            .accessibilityHidden(true)
+        SubmissionStatusLabel(model: item.status)
+            .accessibilityHidden(isGradeBlank == false && item.status == .graded)
     }
 
     private var needsGradingLabel: some View {
@@ -115,54 +101,5 @@ struct SubmissionListRowView: View {
             .foregroundStyle(Color.course2)
             .accessibilityLabel(Text(String(format: accLabelFormat, grade)))
             .accessibilityHidden(isGradeBlank)
-    }
-}
-
-// MARK: - Submission Status for Redesign List
-
-private extension SubmissionStatusOld {
-    struct RedesignAppearance {
-        let submissionStatus: SubmissionStatusOld
-    }
-
-    var redesignAppearance: RedesignAppearance {
-        RedesignAppearance(submissionStatus: self)
-    }
-}
-
-private extension SubmissionStatusOld.RedesignAppearance {
-
-    var color: Color {
-        switch submissionStatus {
-        case .late, .excused:
-            return .textWarning
-        case .missing:
-            return .textDanger
-        case .submitted:
-            return .textSuccess
-        case .graded:
-            return .textSuccess
-        case .custom:
-            return .textInfo
-        case .notSubmitted:
-            return .textDark
-        }
-    }
-
-    var icon: Image {
-        switch submissionStatus {
-        case .submitted:
-            return .completeLine
-        case .excused:
-            return .completeSolid
-        case .graded:
-            return .completeSolid
-        case .custom:
-            return .flagLine
-        case .late:
-            return .clockLine
-        case .missing, .notSubmitted:
-            return .noSolid
-        }
     }
 }

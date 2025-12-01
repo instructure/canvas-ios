@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 @testable import Core
+import Foundation
+import TestsFoundation
 import XCTest
 
 class SessionDefaultsTests: XCTestCase {
@@ -71,5 +72,32 @@ class SessionDefaultsTests: XCTestCase {
         XCTAssertEqual(defaults.calendarSelectedContexts(observedStudentId: nil), Set([.course("c1"), .user("u1")]))
         XCTAssertEqual(defaults.calendarSelectedContexts(observedStudentId: "s1"), Set([.group("g1")]))
         XCTAssertEqual(defaults.calendarSelectedContexts(observedStudentId: "s2"), Set([.group("g2")]))
+    }
+
+    func testTodoFilterOptions() {
+        // GIVEN
+        XCTAssertNil(defaults.todoFilterOptions)
+
+        // WHEN
+        let options = TodoFilterOptions(
+            visibilityOptions: [.showPersonalTodos, .showCompleted],
+            dateRangeStart: .thisWeek,
+            dateRangeEnd: .nextWeek
+        )
+        defaults.todoFilterOptions = options
+
+        // THEN
+        XCTAssertEqual(defaults.todoFilterOptions, options)
+        XCTAssertEqual(defaults.todoFilterOptions?.visibilityOptions.count, 2)
+        XCTAssertContains(defaults.todoFilterOptions?.visibilityOptions, .showPersonalTodos)
+        XCTAssertContains(defaults.todoFilterOptions?.visibilityOptions, .showCompleted)
+        XCTAssertEqual(defaults.todoFilterOptions?.dateRangeStart, .thisWeek)
+        XCTAssertEqual(defaults.todoFilterOptions?.dateRangeEnd, .nextWeek)
+
+        // WHEN
+        defaults.todoFilterOptions = nil
+
+        // THEN
+        XCTAssertNil(defaults.todoFilterOptions)
     }
 }

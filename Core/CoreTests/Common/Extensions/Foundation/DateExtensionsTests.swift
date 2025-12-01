@@ -142,6 +142,11 @@ class DateExtensionsTests: XCTestCase {
         XCTAssertEqual(date.weekdayNameAbbreviated, "Sat")
     }
 
+    func testMonthAbbreviatedFormatting() {
+        let date = Date(fromISOString: "2021-08-07T12:00:00Z")!
+        XCTAssertEqual(date.monthNameAbbreviated, "Aug")
+    }
+
     func testDayInMonthFormatting() {
         let date = Date(fromISOString: "2021-08-07T12:00:00Z")!
         XCTAssertEqual(date.dayInMonth, "August 7")
@@ -150,5 +155,18 @@ class DateExtensionsTests: XCTestCase {
     func testDayFormatting() {
         let date = Date(fromISOString: "2021-08-07T12:00:00Z")!
         XCTAssertEqual(date.dayString, "7")
+    }
+
+    func testShortDayMonthFormatting() {
+        let date = Date(fromISOString: "2021-08-07T12:00:00Z")!
+        XCTAssertEqual(date.shortDayMonth, "Aug 7")
+    }
+
+    func testAddWeeks() {
+        let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
+        let b = Date(fromISOString: "2020-01-01T14:24:37Z")!
+        let c = Date(fromISOString: "2019-12-18T14:24:37Z")!
+        XCTAssertEqual(a.addWeeks(1), b)
+        XCTAssertEqual(a.addWeeks(-1), c)
     }
 }

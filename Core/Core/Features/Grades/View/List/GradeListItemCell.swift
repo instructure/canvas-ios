@@ -148,7 +148,7 @@ struct GradeListItemCell: View {
                 title: "Assignment 1",
                 icon: .assignmentLine,
                 dueDates: [date],
-                submissionStatus: .init(text: "Graded", icon: .completeSolid, color: .textSuccess),
+                submissionStatus: .graded,
                 score: "42 / 100"
             ),
             .make(
@@ -156,7 +156,7 @@ struct GradeListItemCell: View {
                 title: "Assignment 2",
                 icon: .assignmentLine,
                 dueDates: [date],
-                submissionStatus: .init(text: "My favorite custom status", icon: .flagLine, color: .textInfo),
+                submissionStatus: .custom("My favorite custom status"),
                 score: "123 456 / 1 000 000 (Some cool grade)"
             ),
             .make(
@@ -164,7 +164,7 @@ struct GradeListItemCell: View {
                 title: "Discussion 3",
                 icon: .discussionLine,
                 dueDates: [date],
-                submissionStatus: .init(text: "Not Submitted", icon: .noSolid, color: .textDark)
+                submissionStatus: .notSubmitted
             ),
             .make(
                 id: "4",

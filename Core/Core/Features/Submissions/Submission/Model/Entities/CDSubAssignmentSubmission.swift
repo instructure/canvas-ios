@@ -60,23 +60,16 @@ public class CDSubAssignmentSubmission: NSManagedObject {
 
     public var status: SubmissionStatus {
         .init(
+            isSubmitted: submittedAt != nil,
+            isGraded: score != nil,
+            isGradeBelongsToCurrentSubmission: gradeMatchesCurrentSubmission,
             isLate: isLate,
             isMissing: isMissing,
             isExcused: isExcused,
-            isSubmitted: submittedAt != nil,
-            isGraded: score != nil,
             customStatusId: customGradeStatusId,
             customStatusName: customGradeStatusName,
-            submissionType: nil,
-            isGradeBelongToCurrentSubmission: gradeMatchesCurrentSubmission
+            submissionType: nil
         )
-    }
-
-    // TODO: remove during Status unification in MBL-19323
-    public var isGraded: Bool {
-        isExcused
-            || customGradeStatusId != nil
-            || score != nil
     }
 
     // MARK: - Save

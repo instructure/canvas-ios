@@ -71,8 +71,10 @@ final class StudentSubAssignmentsCardViewModelTests: StudentTestCase {
         )
 
         XCTAssertEqual(testee.items.count, 2)
-        XCTAssertEqual(testee.items.first, .make(id: testData.tag1, title: testData.name1))
-        XCTAssertEqual(testee.items.last, .make(id: testData.tag2, title: testData.name2))
+        XCTAssertEqual(testee.items.first?.id, testData.tag1)
+        XCTAssertEqual(testee.items.first?.title, testData.name1)
+        XCTAssertEqual(testee.items.last?.id, testData.tag2)
+        XCTAssertEqual(testee.items.last?.title, testData.name2)
     }
 
     // MARK: - Status
@@ -95,8 +97,8 @@ final class StudentSubAssignmentsCardViewModelTests: StudentTestCase {
             )
         )
 
-        XCTAssertEqual(testee.items.first?.submissionStatus, .init(status: .submitted))
-        XCTAssertEqual(testee.items.last?.submissionStatus, .init(status: .missing))
+        XCTAssertEqual(testee.items.first?.submissionStatus, .submitted)
+        XCTAssertEqual(testee.items.last?.submissionStatus, .missing)
     }
 
     // MARK: - Score

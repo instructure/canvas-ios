@@ -165,7 +165,7 @@ class GetSubmissionsTests: CoreTestCase {
             Filter.Status.notSubmitted.predicate,
             NSCompoundPredicate(type: .or, subpredicates: [
                 NSPredicate(
-                    format: "workflowStateRaw == 'unsubmitted' AND (excusedRaw == nil OR excusedRaw != true) AND customGradeStatusId == nil"
+                    format: "workflowStateRaw == 'unsubmitted' AND excused != true AND customGradeStatusId == nil"
                 ),
                 NSPredicate(
                     format: "workflowStateRaw == 'graded' AND submittedAt == nil AND scoreRaw == nil"
@@ -173,7 +173,7 @@ class GetSubmissionsTests: CoreTestCase {
             ])
         )
         XCTAssertEqual(Filter.status(.graded).predicate, NSPredicate(format: "%K == true OR %K != nil OR (%K != nil AND %K == 'graded')",
-            #keyPath(Submission.excusedRaw),
+            #keyPath(Submission.excused),
             #keyPath(Submission.customGradeStatusId),
             #keyPath(Submission.scoreRaw),
             #keyPath(Submission.workflowStateRaw)

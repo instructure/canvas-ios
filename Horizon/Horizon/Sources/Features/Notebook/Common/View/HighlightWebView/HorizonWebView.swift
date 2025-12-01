@@ -26,6 +26,7 @@ import WebKit
 final class HorizonWebView: CoreWebView {
 
     // MARK: - Private
+    private var shouldScrollToHighlightedNote = true
 
     private var courseNotebookNotes: [CourseNotebookNote] = [] {
         didSet {
@@ -34,11 +35,12 @@ final class HorizonWebView: CoreWebView {
                     webView: self,
                     notebookTextSelections: courseNotebookNotes.compactMap { $0.notebookTextSelection }
                 )
-                if let scrollToNoteID = scrollToNoteID {
+                if let scrollToNoteID = scrollToNoteID, shouldScrollToHighlightedNote {
                     if let note = courseNotebookNotes.first(where: { $0.id == scrollToNoteID }),
                        let textSelection = note.notebookTextSelection {
                         try? await Task.sleep(for: .milliseconds(500)) // Wait for highlights to be applied
                         await highlightWebFeature?.scrollToHighlight(webView: self, notebookTextSelection: textSelection)
+                        shouldScrollToHighlightedNote = false
                     }
                 }
             }

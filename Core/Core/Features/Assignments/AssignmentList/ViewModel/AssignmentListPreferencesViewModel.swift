@@ -44,28 +44,19 @@ public struct AssignmentFilterOptionStudent: CaseIterable, Equatable {
         self.rule = rule
     }
 
-    /// Submissions which are not yet submitted, but submittable, and not graded yet.
+    /// Submissions which are not yet submitted (but submittable), and not graded yet.
     static let notYetSubmitted = Self(
         id: "notYetSubmitted",
         title: String(localized: "Not Yet Submitted", bundle: .core),
         rule: { assignment in
             guard let submission = assignment.submission else { return false }
 
-            let status = submission.status
-
-            if [.onPaper, .noSubmission].contains(status) {
-                return false
-            }
-
-            // TODO: remove isGraded check in MBL-19323
-            if (status == .missing && !submission.isGraded) || status == .notSubmitted {
+            if submission.status.needsSubmission {
                 return true
             }
 
             return submission.subAssignmentSubmissions.contains {
-                // TODO: remove isGraded check in MBL-19323
-                // TODO: also return true for .notSubmitted after EVAL-5938
-                $0.status == .missing && !$0.isGraded
+                $0.status.needsSubmission
             }
         }
     )
@@ -78,21 +69,12 @@ public struct AssignmentFilterOptionStudent: CaseIterable, Equatable {
         rule: { assignment in
             guard let submission = assignment.submission else { return false }
 
-            if assignment.submissionTypes.contains(.not_graded) {
-                return false
-            }
-
-            let status = submission.status
-
-            // TODO: remove isGraded check in MBL-19323
-            if (status == .late && !submission.isGraded) || status == .submitted {
+            if submission.status.needsGrading {
                 return true
             }
 
             return submission.subAssignmentSubmissions.contains {
-                // TODO: remove isGraded check in MBL-19323
-                // TODO: also return true for .submitted after EVAL-5938
-                $0.status == .late && !$0.isGraded
+                $0.status.needsGrading
             }
         }
     )
@@ -105,12 +87,12 @@ public struct AssignmentFilterOptionStudent: CaseIterable, Equatable {
         rule: { assignment in
             guard let submission = assignment.submission else { return false }
 
-            if submission.isGraded {
+            if submission.status.isGraded {
                 return true
             }
 
             return submission.subAssignmentSubmissions.contains {
-                $0.isGraded
+                $0.status.isGraded
             }
         }
     )
@@ -123,12 +105,13 @@ public struct AssignmentFilterOptionStudent: CaseIterable, Equatable {
         rule: { assignment in
             guard let submission = assignment.submission else { return false }
 
-            if [.onPaper, .noSubmission, .excused].contains(submission.status) {
+            let status = submission.status
+            if status.isNotSubmittableWithNoGradeNoGradeStatus || status.isExcused {
                 return true
             }
 
             return submission.subAssignmentSubmissions.contains {
-                $0.status == .excused
+                $0.status.isExcused
             }
         }
     )
@@ -156,9 +139,9 @@ public enum AssignmentFilterOptionsTeacher: String, CaseIterable {
                 guard let submissions = $0.submissions, submissions.count > 0 else { return true }
 
                 return submissions.contains { submission in
-                    submission.status == .notSubmitted
+                    submission.status.needsSubmission
                     || submission.subAssignmentSubmissions.contains { subSubmission in
-                        subSubmission.status == .notSubmitted
+                        subSubmission.status.needsSubmission
                     }
                 }
             }

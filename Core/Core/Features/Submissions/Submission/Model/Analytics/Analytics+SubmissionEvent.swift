@@ -68,6 +68,7 @@ extension Analytics.SubmissionEvent {
         case error
         case media_type
         case media_source
+        case retry
     }
 }
 

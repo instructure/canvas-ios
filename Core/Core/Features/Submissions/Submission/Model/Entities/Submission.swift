@@ -33,7 +33,7 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var dueAt: Date?
     @NSManaged public var enteredGrade: String?
     @NSManaged var enteredScoreRaw: NSNumber?
-    @NSManaged var excusedRaw: NSNumber?
+    @NSManaged public var excused: Bool
     @NSManaged public var externalToolURL: URL?
     @NSManaged public var grade: String?
     @NSManaged public var gradedAt: Date?
@@ -91,11 +91,6 @@ final public class Submission: NSManagedObject, Identifiable {
     public var enteredScore: Double? {
         get { return enteredScoreRaw?.doubleValue }
         set { enteredScoreRaw = NSNumber(value: newValue) }
-    }
-
-    public var excused: Bool? {
-        get { return excusedRaw?.boolValue }
-        set { excusedRaw = NSNumber(value: newValue) }
     }
 
     public var latePolicyStatus: LatePolicyStatus? {
@@ -182,7 +177,7 @@ extension Submission: WriteableModel {
         model.dueAt = item.cached_due_date
         model.enteredGrade = item.entered_grade
         model.enteredScore = item.entered_score
-        model.excused = item.excused
+        model.excused = item.excused ?? false
         model.externalToolURL = item.external_tool_url?.rawValue
         model.grade = item.grade
         model.gradedAt = item.graded_at
@@ -411,98 +406,37 @@ private extension String {
 
 extension Submission {
 
-    /// See canvas-lms submission.rb `def needs_grading?`
-    public var needsGrading: Bool {
-        return excused != true &&
-            customGradeStatusId == nil &&
-            (type != nil && (workflowState == .pending_review ||
-                                ([.graded, .submitted].contains(workflowState) &&
-                                    (score == nil || !gradeMatchesCurrentSubmission))
-            ))
-    }
-
-    public var isGraded: Bool {
-        return excused == true
-            || customGradeStatusId != nil
-            || (score != nil && workflowState == .graded)
-    }
-
-    /// Returns the appropriate display properties for submission, with consideration for
-    /// `onPaper` & `noSubmission` submission type.
-    /// If the submission has been submitted and it's graded already, then it returns `Graded`.
-    /// Otherwise it returns the submissions's status.
-    /// `Graded` submissions that have been resubmitted will return `Submitted`.
-    /// For `onPaper` & `noSubmission`, it would return `Graded` only for when the submission
-    /// **has a** grade associated with it.
-    public var stateDisplayProperties: SubmissionStateDisplayProperties {
-        let desc: SubmissionStateDisplayProperties = {
-            if case .notSubmitted = statusOld {
-                if let submissionTypes = assignment?.submissionTypes {
-                    if submissionTypes.contains(.on_paper) { return .onPaper }
-                    if submissionTypes.contains(.none) { return .noSubmission }
-                }
-                return .usingStatus(.notSubmitted)
-            } else {
-                return .usingStatus(statusOld)
-            }
-        }()
-
-        // Graded check
-        switch desc {
-        case .usingStatus(.submitted):
-            return needsGrading == false ? gradedState : desc // Maintaining the old logic
-        case .onPaper, .noSubmission:
-            return isGraded ? gradedState : desc
-        case .usingStatus(.notSubmitted):
-            return isGraded ? gradedState : desc
-        default:
-            return desc
-        }
-    }
-
+    /// This status is the single source of truth for any related logic.
+    /// Use this property instead of the properties it builds on.
+    /// Submissions and subassignment-submissions have their own, independent statuses.
+    ///
+    /// About the `isSubmitted` logic, after analyzing the backend logic:
+    /// - `workflow_state: submitted` is not guaranteed for submissions which had been submitted.
+    /// That's why we rely on `submitted_at` instead.
+    /// - `submittedAt != nil` also means `type != nil`
+    /// - It is valid for LTIs to set `workflow_state: pending_review` but `submitted_at: null`.
+    /// Quizzes may also use `pending_review` (ie.: for essay questions), but the `submitted_at` is populated in that case.
+    /// Those still mean the assignment is submitted.
     public var status: SubmissionStatus {
         .init(
+            isSubmitted: submittedAt != nil || workflowState == .pending_review,
+            isGraded: score != nil && workflowState == .graded,
+            isGradeBelongsToCurrentSubmission: gradeMatchesCurrentSubmission,
             isLate: late,
             isMissing: missing,
-            isExcused: excused ?? false,
-            isSubmitted: submittedAt != nil,
-            isGraded: workflowState == .graded && score != nil,
+            isExcused: excused,
             customStatusId: customGradeStatusId,
             customStatusName: customGradeStatusName,
-            submissionType: type ?? assignment?.submissionTypes.first,
-            isGradeBelongToCurrentSubmission: gradeMatchesCurrentSubmission
+            submissionType: type ?? assignment?.submissionTypes.first
         )
     }
 
-    public var statusOld: SubmissionStatusOld {
-        if late { return .late }
-        if missing { return .missing }
-        if submittedAt != nil { return .submitted }
-        return .notSubmitted
-    }
-
-    public var statusIncludingGradedState: SubmissionStatusOld {
-        if isGraded {
-            if excused == true { return .excused }
-            if customGradeStatusId != nil { return customGradedStatus }
-            return .graded
-        }
-        return statusOld
-    }
-
-    private var gradedState: SubmissionStateDisplayProperties {
-        if customGradeStatusId != nil,
-           let name = customGradeStatusName {
-            return .usingStatus(.custom(name))
-        }
-        return .graded
-    }
-
-    private var customGradedStatus: SubmissionStatusOld {
-        if let name = customGradeStatusName {
-            return .custom(name)
-        }
-        return .graded
+    /// True if the submission is a resubmission, a previous attempt had been graded,
+    /// and that grade had not been removed by the teacher.
+    public var hasGradeFromEarlierSubmission: Bool {
+        score != nil
+        && [.submitted, .graded].contains(workflowState)
+        && !gradeMatchesCurrentSubmission
     }
 }
 

@@ -417,10 +417,6 @@ extension Assignment {
         }
     }
 
-    public var submissionStatus: SubmissionStatusOld {
-        return submission?.statusOld ?? .notSubmitted
-    }
-
     public var icon: UIImage {
         if lockedForUser {
             .lockLine
@@ -486,9 +482,8 @@ extension NSManagedObjectContext {
     ) -> Int {
 
         let notExcused = NSPredicate(
-            format: "%K == nil OR %K != true",
-            #keyPath(Submission.excusedRaw),
-            #keyPath(Submission.excusedRaw)
+            format: "%K != true",
+            #keyPath(Submission.excused)
         )
 
         let hasCustomStatus =  NSPredicate(
