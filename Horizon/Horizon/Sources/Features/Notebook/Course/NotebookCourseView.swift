@@ -48,7 +48,7 @@ struct NotebookCourseView: View {
                 isPresented: $viewModel.listState.isPresentedErrorToast
             )
             .onReceive(NotificationCenter.default.publisher(for: .courseDetailsForceRefreshed)) { _ in
-                viewModel.realod()
+                viewModel.reload()
             }
     }
 

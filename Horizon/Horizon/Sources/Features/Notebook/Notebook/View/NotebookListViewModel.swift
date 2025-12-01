@@ -142,7 +142,7 @@ final class NotebookListViewModel {
         router.show(noteVC, from: viewController)
     }
 
-    func realod() {
+    func reload() {
         fetchNotes(ignoreCache: true, filter: .init(courseId: courseID))
     }
 
