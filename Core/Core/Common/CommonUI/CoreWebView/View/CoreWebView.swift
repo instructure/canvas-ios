@@ -69,7 +69,7 @@ open class CoreWebView: WKWebView {
 
     private var env: AppEnvironment = .shared
     private var subscriptions = Set<AnyCancellable>()
-    private(set) lazy var studioFeaturesInteractor = CoreWebViewStudioFeaturesInteractor(webView: self)
+    private(set) var studioFeaturesInteractor: CoreWebViewStudioFeaturesInteractor?
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -78,16 +78,23 @@ open class CoreWebView: WKWebView {
 
     public init() {
         super.init(frame: .zero, configuration: .defaultConfiguration)
+        studioFeaturesInteractor = CoreWebViewStudioFeaturesInteractor(webView: self)
         setup()
     }
 
     override public init(frame: CGRect, configuration: WKWebViewConfiguration) {
         configuration.applyDefaultSettings()
         super.init(frame: frame, configuration: configuration)
+        studioFeaturesInteractor = CoreWebViewStudioFeaturesInteractor(webView: self)
         setup()
     }
 
-    public init(features: [CoreWebViewFeature], configuration: WKWebViewConfiguration = .defaultConfiguration) {
+    public init(
+        features: [CoreWebViewFeature],
+        configuration: WKWebViewConfiguration = .defaultConfiguration,
+        studioEnhancementsEnabled: Bool = true
+    ) {
+
         configuration.applyDefaultSettings()
         let features = features + [.dynamicFontSize]
         features.forEach { $0.apply(on: configuration) }
@@ -96,6 +103,11 @@ open class CoreWebView: WKWebView {
 
         features.forEach { $0.apply(on: self) }
         self.features = features
+
+        if studioEnhancementsEnabled {
+            studioFeaturesInteractor = CoreWebViewStudioFeaturesInteractor(webView: self)
+        }
+
         setup()
     }
 
@@ -103,7 +115,13 @@ open class CoreWebView: WKWebView {
     /// each Studio video `iframe` when `rce_studio_embed_improvements` feature
     /// flag is enabled for the passed context.
     public func setupStudioFeatures(context: Context?, env: AppEnvironment) {
-        studioFeaturesInteractor.resetFeatureFlagStore(context: context, env: env)
+        guard let context else {
+            studioFeaturesInteractor?.resetFeatureFlagStore(context: nil, env: env)
+            return
+        }
+
+        studioFeaturesInteractor = studioFeaturesInteractor ?? CoreWebViewStudioFeaturesInteractor(webView: self)
+        studioFeaturesInteractor?.resetFeatureFlagStore(context: context, env: env)
     }
 
     deinit {
@@ -112,7 +130,7 @@ open class CoreWebView: WKWebView {
     }
 
     open override func reload() -> WKNavigation? {
-        studioFeaturesInteractor.refresh()
+        studioFeaturesInteractor?.refresh()
         return super.reload()
     }
 
@@ -557,7 +575,7 @@ extension CoreWebView: WKNavigationDelegate {
         }
 
         // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
-        if let immersiveURL = studioFeaturesInteractor.urlForStudioImmersiveView(of: action),
+        if let immersiveURL = studioFeaturesInteractor?.urlForStudioImmersiveView(of: action),
            let controller = linkDelegate?.routeLinksFrom {
             controller.pauseWebViewPlayback()
             env.router.show(
@@ -589,7 +607,7 @@ extension CoreWebView: WKNavigationDelegate {
         }
 
         features.forEach { $0.webView(webView, didFinish: navigation) }
-        studioFeaturesInteractor.scanVideoFrames()
+        studioFeaturesInteractor?.scanVideoFrames()
     }
 
     public func webView(
