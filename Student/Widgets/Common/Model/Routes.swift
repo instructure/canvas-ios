@@ -33,6 +33,10 @@ extension Assignment {
 
 extension TodoItemViewModel {
     var route: URL {
+        guard isTappable else {
+            return .todoListRoute
+        }
+
         var url = switch type {
         case .calendar_event:
             URL.todoWidgetRoute("todo-widget/calendar_events/\(plannableId)")
