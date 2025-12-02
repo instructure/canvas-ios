@@ -33,8 +33,8 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
         }
     }
 
-    public init(features: [CoreWebViewFeature] = []) {
-        webView = CoreWebView(features: features)
+    public init(features: [CoreWebViewFeature] = [], studioEnhancementsEnabled: Bool = true) {
+        webView = CoreWebView(features: features, studioEnhancementsEnabled: studioEnhancementsEnabled)
         super.init(nibName: nil, bundle: nil)
         webView.linkDelegate = self
     }

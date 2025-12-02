@@ -44,6 +44,24 @@ class CoreWebViewTests: CoreTestCase {
         XCTAssertEqual(view.configuration.userContentController.userScripts.count, 1)
     }
 
+    func testStudioEnhancementsDisabled() {
+        // default case
+        var webView = CoreWebView()
+        XCTAssertNotNil(webView.studioFeaturesInteractor)
+
+        webView = CoreWebView(features: [], studioEnhancementsEnabled: true)
+        XCTAssertNotNil(webView.studioFeaturesInteractor)
+
+        webView = CoreWebView(features: [], studioEnhancementsEnabled: false)
+        XCTAssertNil(webView.studioFeaturesInteractor)
+
+        // When a context is based to this method.
+        webView.setupStudioFeatures(context: .course("1234"), env: environment)
+
+        // It should enable studio enhancement if not enabled already.
+        XCTAssertNotNil(webView.studioFeaturesInteractor)
+    }
+
     func testCustomUserAgentName() {
         let customeUserAgentName = "customUserAgent"
         let view = CoreWebView(features: [.userAgent(customeUserAgentName)])
