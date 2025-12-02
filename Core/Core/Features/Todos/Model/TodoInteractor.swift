@@ -185,14 +185,10 @@ public final class TodoInteractorLive: TodoInteractor {
             throw TodoInteractorError.deletedCoursesDetected
         }
 
-        let courseIds = courses.map { $0.canvasContextID }
-        let uniqueIds = Set(courseIds)
-        if courseIds.count != uniqueIds.count {
+        let coursesByCanvasContextIds = try Dictionary(courses.map { ($0.canvasContextID, $0) }) { _, _ in
             Logger.shared.error("TodoInteractor - Duplicate course IDs detected. Retrying with force refresh.")
             throw TodoInteractorError.duplicateCourseIdsDetected
         }
-
-        let coursesByCanvasContextIds = Dictionary(uniqueKeysWithValues: courses.map { ($0.canvasContextID, $0) })
 
         let shouldKeepCompletedItemsVisible = filterOptions.visibilityOptions.contains(.showCompleted)
 
