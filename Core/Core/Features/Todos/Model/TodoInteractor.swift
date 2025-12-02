@@ -20,12 +20,17 @@ import Foundation
 import Combine
 import CombineSchedulers
 
-enum TodoInteractorError: Error {
+enum TodoInteractorError: Error, Equatable {
     /// Thrown when deleted Course entities are detected in the courses array during filtering.
     /// This occurs due to a race condition where GetDashboardCourses deletes courses via
     /// deleteCoursesNotInResponse() while TodoInteractor is processing them.
     /// The retry mechanism with forced cache refresh resolves this by fetching fresh data.
     case deletedCoursesDetected
+
+    /// Thrown when duplicate canvasContextIDs are detected in the courses array.
+    /// This can occur when courses have nil/empty IDs due to deletion or data corruption.
+    /// The retry mechanism with forced cache refresh resolves this by fetching fresh data.
+    case duplicateCourseIdsDetected
 }
 
 public protocol TodoInteractor {
@@ -144,9 +149,12 @@ public final class TodoInteractorLive: TodoInteractor {
             self.logFilterAnalytics()
         }
         .catch { [weak self] error -> AnyPublisher<Void, Error> in
+            let shouldRetry = error as? TodoInteractorError == .deletedCoursesDetected ||
+                              error as? TodoInteractorError == .duplicateCourseIdsDetected
+
             guard let self,
                   retryCount < 2,
-                  case TodoInteractorError.deletedCoursesDetected = error else {
+                  shouldRetry else {
                 return Fail(error: error).eraseToAnyPublisher()
             }
 
@@ -175,6 +183,13 @@ public final class TodoInteractorLive: TodoInteractor {
         if hasDeletedCourses {
             Logger.shared.error("TodoInteractor - Deleted courses detected. Retrying with force refresh.")
             throw TodoInteractorError.deletedCoursesDetected
+        }
+
+        let courseIds = courses.map { $0.canvasContextID }
+        let uniqueIds = Set(courseIds)
+        if courseIds.count != uniqueIds.count {
+            Logger.shared.error("TodoInteractor - Duplicate course IDs detected. Retrying with force refresh.")
+            throw TodoInteractorError.duplicateCourseIdsDetected
         }
 
         let coursesByCanvasContextIds = Dictionary(uniqueKeysWithValues: courses.map { ($0.canvasContextID, $0) })
