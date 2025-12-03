@@ -62,7 +62,16 @@
     "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/LTI\/LTIViewModel.swift",
     "Horizon\/Horizon\/Sources\/Features\/HorizonTabBarType.swift",
     "Horizon\/Horizon\/Sources\/Features\/Account\/Notifications\/Data\/NotificationPreference.swift",
-    "Horizon\/Horizon\/Sources\/Features\/Learn\/Scores\/Data\/ScoreDetails.swift"
+    "Horizon\/Horizon\/Sources\/Features\/Learn\/Scores\/Data\/ScoreDetails.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Assist\/AssistQuiz\/View\/AssistQuizViewModel.swift",
+    "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/Assignment\/AssignmentDetails\/Domain\/HUploadFileManager.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Inbox\/Create\/HCreateMessageViewModel.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Dashboard\/Container\/View\/DashboardFocusEnvironmentKey.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Dashboard\/Container\/View\/DashboardViewModel.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Assist\/AssistChat\/Data\/cedar\/DomainServiceConversationMessage.swift",
+    "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/Assignment\/AssignmentDetails\/View\/LTIQuiz\/LTIQuizViewModel.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Inbox\/Inbox\/Domain\/GetSearchRecipientsInteractor.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Account\/Profile\/View\/ProfileViewModel.swift"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",
