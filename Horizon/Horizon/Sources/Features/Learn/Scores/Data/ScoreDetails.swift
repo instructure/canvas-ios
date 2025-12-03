@@ -40,7 +40,7 @@ struct ScoreDetails {
             case String(localized: "Assignment Name", bundle: .horizon):
                 self = .assignmentName
             default:
-                fatalError()
+                self = .dueDate
             }
         }
     }
