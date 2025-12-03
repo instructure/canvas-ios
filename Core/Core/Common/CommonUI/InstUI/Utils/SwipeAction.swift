@@ -116,11 +116,6 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
 
     // MARK: - Animations
     private let animationDuration: TimeInterval = 0.3
-    private var animationDurationNanoseconds: UInt64 {
-        UInt64(animationDuration * 1_000_000_000)
-    }
-    @State private var animationTask: Task<Void, Never>?
-
     private let hapticGenerator = UIImpactFeedbackGenerator(style: .medium)
 
     init(
@@ -180,9 +175,6 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
     private func handleDragChanged(_ value: DragGesture.Value) {
         switch swipeState {
         case .idle:
-            animationTask?.cancel()
-            animationTask = nil
-
             if value.translation.isHorizontalSwipe && value.translation.isSwipingLeft {
                 swipeState = .draggingBelowThreshold
                 isSwiping = true
@@ -245,10 +237,7 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
                 withAnimation(.easeOut(duration: animationDuration)) {
                     cellContentOffset = -cellWidth
                     actionViewOffset = -cellWidth + actionViewWidth
-                }
-                animationTask = Task { @MainActor in
-                    try? await Task.sleep(nanoseconds: animationDurationNanoseconds)
-                    if Task.isCancelled { return }
+                } completion: {
                     swipeState = .open
                     onSwipe()
                 }
@@ -258,10 +247,7 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
                 withAnimation(.easeOut(duration: animationDuration)) {
                     cellContentOffset = 0
                     actionViewOffset = actionViewWidth
-                }
-                animationTask = Task { @MainActor in
-                    try? await Task.sleep(nanoseconds: animationDurationNanoseconds)
-                    if Task.isCancelled { return }
+                } completion: {
                     swipeState = .idle
                     onSwipe()
                 }
@@ -273,10 +259,7 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
             withAnimation(.easeOut(duration: animationDuration)) {
                 cellContentOffset = 0
                 actionViewOffset = actionViewWidth
-            }
-            animationTask = Task { @MainActor in
-                try? await Task.sleep(nanoseconds: animationDurationNanoseconds)
-                if Task.isCancelled { return }
+            } completion: {
                 swipeState = .idle
             }
 
