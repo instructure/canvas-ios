@@ -36,7 +36,7 @@ function checkCoverage () {
     Coverage | New % | Master % | Delta
     -------- | ----- | -------- | -----
     **Canvas iOS** | ${coverageMarkdown(pr.total, master.total)}
-    ${files.slice(0, 10).map(path =>
+    ${files.map(path =>
       `${path} | ${coverageMarkdown(pr[path], master[path] || empty)}`
     ).join('\n')}\n
   `.trim().replace(/\n\s+/g, '\n'))
