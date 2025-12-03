@@ -115,7 +115,7 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
     @State private var swipeState: SwipeState = .idle
 
     // MARK: - Animations
-    private let animationDuration: TimeInterval = 0.3
+    private let animation: Animation = .easeOut(duration: 0.3)
     private let hapticGenerator = UIImpactFeedbackGenerator(style: .medium)
 
     init(
@@ -166,7 +166,7 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
                     }
                     .offset(x: actionViewOffset)
             }
-            .animation(.easeOut(duration: animationDuration), value: actionViewOffset)
+            .animation(animation, value: actionViewOffset)
             .accessibilityHidden(true)
     }
 
@@ -234,7 +234,7 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
             switch completionBehavior {
             case .stayOpen:
                 swipeState = .animatingOpen
-                withAnimation(.easeOut(duration: animationDuration)) {
+                withAnimation(animation) {
                     cellContentOffset = -cellWidth
                     actionViewOffset = -cellWidth + actionViewWidth
                 } completion: {
@@ -244,7 +244,7 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
 
             case .reset:
                 swipeState = .animatingClose
-                withAnimation(.easeOut(duration: animationDuration)) {
+                withAnimation(animation) {
                     cellContentOffset = 0
                     actionViewOffset = actionViewWidth
                 } completion: {
@@ -256,7 +256,7 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
         case .draggingBelowThreshold:
             isSwiping = false
             swipeState = .animatingClose
-            withAnimation(.easeOut(duration: animationDuration)) {
+            withAnimation(animation) {
                 cellContentOffset = 0
                 actionViewOffset = actionViewWidth
             } completion: {
