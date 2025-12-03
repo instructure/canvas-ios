@@ -31,21 +31,44 @@ public struct GradeFilterScreen: View {
 
     // MARK: - Body
     public var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: 0) {
-                if viewModel.isShowGradingPeriodsView {
-                    gradingPeriodSection
-                }
-                sortBySection
-            }
-            .navigationBarTitleView(
-                title: String(localized: "Grade List Preferences", bundle: .core),
-                subtitle: viewModel.courseName
-            )
-            .navigationBarItems(leading: cancelButton, trailing: sendButton)
-            .navigationBarStyle(.modal)
-        }
-        .background(Color.backgroundLightest)
+		if #available(iOS 26, *) {
+			ScrollView(showsIndicators: false) {
+				VStack(spacing: 0) {
+					if viewModel.isShowGradingPeriodsView {
+						gradingPeriodSection
+					}
+					sortBySection
+				}
+				.navigationTitle(.init("Grade List Preferences", bundle: .core))
+				.optionalNavigationSubtitle(viewModel.courseName)
+				.toolbar {
+					ToolbarItem(placement: .topBarLeading) {
+						cancelButton
+					}
+
+					ToolbarItem(placement: .topBarTrailing) {
+						sendButton
+					}
+				}
+			}
+			.background(Color.backgroundLightest)
+		} else {
+			ScrollView(showsIndicators: false) {
+				VStack(spacing: 0) {
+					if viewModel.isShowGradingPeriodsView {
+						gradingPeriodSection
+					}
+					sortBySection
+				}
+				.navigationBarTitleView(
+					title: String(localized: "Grade List Preferences", bundle: .core),
+					subtitle: viewModel.courseName
+				)
+				.navigationBarItems(leading: cancelButton, trailing: legacySendButton)
+				.navigationBarStyle(.modal)
+			}
+			.background(Color.backgroundLightest)
+		}
     }
 
     private var gradingPeriodSection: some View {
@@ -64,7 +87,23 @@ public struct GradeFilterScreen: View {
         )
     }
 
-    private var sendButton: some View {
+	@available(iOS, introduced: 26, message: "Legacy version exists")
+	@ViewBuilder
+	private var sendButton: some View {
+		if viewModel.saveButtonIsEnabled {
+			Button {
+				viewModel.saveButtonTapped(viewController: viewController)
+			} label: {
+				Text(String(localized: "Done", bundle: .core))
+					.font(.semibold16)
+			}
+			.buttonStyle(.glassProminent)
+			.accessibilityIdentifier("GradeFilter.saveButton")
+		}
+	}
+
+	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacySendButton: some View {
         Button {
             viewModel.saveButtonTapped(viewController: viewController)
         } label: {

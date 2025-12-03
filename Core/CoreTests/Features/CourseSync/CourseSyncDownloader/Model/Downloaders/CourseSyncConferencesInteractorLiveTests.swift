@@ -31,7 +31,70 @@ class CourseSyncConferencesInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(CourseSyncConferencesInteractorLive(envResolver: envResolver).associatedTabType, .conferences)
     }
 
-    func testSavedDataPopulatesViewController() {
+    @available(iOS 26, *)
+    func testSavedDataPopulatesViewController() throws {
+        if #unavailable(iOS 26) {
+            throw XCTSkip("Skip below iOS 26")
+        }
+
+            // MARK: - GIVEN
+        api.mock(GetCustomColors(), value: .init(custom_colors: [:]))
+        api.mock(GetCourse(courseID: "testCourse"), value: .make(id: "testCourse"))
+        api.mock(GetConferences(context: .course("testCourse")), value: .init(conferences: [
+            .make(context_id: "course_testCourse",
+                  description: "this test conference ended",
+                  ended_at: .distantPast,
+                  id: "1",
+                  title: "ended conference"),
+            .make(context_id: "course_testCourse",
+                  description: "this is an ongoing test conference",
+                  id: "2",
+                  started_at: Date().addingTimeInterval(-1),
+                  title: "ongoing conference")
+        ]))
+        XCTAssertFinish(CourseSyncConferencesInteractorLive(envResolver: envResolver).getContent(courseId: "testCourse"))
+        API.resetMocks()
+
+            // MARK: - WHEN
+        OfflineModeAssembly.mock(AlwaysOfflineModeInteractor())
+        let testee = ConferenceListViewController.create(context: .course("testCourse"))
+        testee.view.layoutIfNeeded()
+        testee.viewWillAppear(false)
+        drainMainQueue()
+
+            // MARK: - THEN
+        XCTAssertEqual(testee.tableView.numberOfSections, 2) // new and concluded conferences sections
+
+        guard let newConferencesHeader = testee.tableView.headerView(forSection: 0) as? SectionHeaderView else {
+            return XCTFail()
+        }
+        XCTAssertEqual(newConferencesHeader.titleLabel.text, "New Conferences")
+
+        guard let concludedSectionHeader = testee.tableView.headerView(forSection: 1) as? SectionHeaderView else {
+            return XCTFail()
+        }
+        XCTAssertEqual(concludedSectionHeader.titleLabel.text, "Concluded Conferences")
+
+        guard let ongoingConferenceCell = testee.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ConferenceListCell else {
+            return XCTFail()
+        }
+        XCTAssertEqual(ongoingConferenceCell.titleLabel.text, "ongoing conference")
+        XCTAssertEqual(ongoingConferenceCell.detailsLabel.text, "this is an ongoing test conference")
+        XCTAssertEqual(ongoingConferenceCell.statusLabel.text, "In Progress")
+
+        guard let concludedConferenceCell = testee.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ConferenceListCell else {
+            return XCTFail()
+        }
+        XCTAssertEqual(concludedConferenceCell.titleLabel.text, "ended conference")
+        XCTAssertEqual(concludedConferenceCell.detailsLabel.text, "this test conference ended")
+        XCTAssertEqual(concludedConferenceCell.statusLabel.text?.hasPrefix("Concluded"), true)
+    }
+
+    func testSavedDataPopulatesViewControllerWithLegacyHeaders() throws {
+        if #available(iOS 26, *) {
+            throw XCTSkip("Skip above iOS 26")
+        }
+
         // MARK: - GIVEN
         api.mock(GetCustomColors(), value: .init(custom_colors: [:]))
         api.mock(GetCourse(courseID: "testCourse"), value: .make(id: "testCourse"))
@@ -60,12 +123,12 @@ class CourseSyncConferencesInteractorLiveTests: CoreTestCase {
         // MARK: - THEN
         XCTAssertEqual(testee.tableView.numberOfSections, 2) // new and concluded conferences sections
 
-        guard let newConferencesHeader = testee.tableView.headerView(forSection: 0) as? SectionHeaderView else {
+        guard let newConferencesHeader = testee.tableView.headerView(forSection: 0) as? LegacySectionHeaderView else {
             return XCTFail()
         }
         XCTAssertEqual(newConferencesHeader.titleLabel.text, "New Conferences")
 
-        guard let concludedSectionHeader = testee.tableView.headerView(forSection: 1) as? SectionHeaderView else {
+        guard let concludedSectionHeader = testee.tableView.headerView(forSection: 1) as? LegacySectionHeaderView else {
             return XCTFail()
         }
         XCTAssertEqual(concludedSectionHeader.titleLabel.text, "Concluded Conferences")

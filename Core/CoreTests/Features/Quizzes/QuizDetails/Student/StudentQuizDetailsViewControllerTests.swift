@@ -38,9 +38,16 @@ class StudentQuizDetailsViewControllerTests: CoreTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#0000ff")
-        XCTAssertEqual(controller.titleSubtitleView.title, "Quiz Details")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Quiz Details")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
+        } else {
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#0000ff")
+            XCTAssertEqual(controller.titleSubtitleView.title, "Quiz Details")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+        }
+
         XCTAssertEqual(controller.titleLabel.text, "What kind of pokemon are you?")
         XCTAssertEqual(controller.pointsLabel.text, "11.1 pts")
         XCTAssertEqual(controller.statusLabel.text, "Not Submitted")

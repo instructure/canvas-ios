@@ -36,6 +36,9 @@ public class CourseDetailsViewModel: ObservableObject {
     @Published public private(set) var homeRoute: URL?
     @Published public private(set) var showHome: Bool
 
+	@available(iOS, deprecated: 26)
+	public let legacyHeaderViewModel = LegacyCourseDetailsHeaderViewModel()
+
     public var showSettings: Bool { isTeacher }
     public var showStudentView: Bool { isTeacher }
     public var courseName: String { course.first?.name ?? "" }
@@ -94,6 +97,7 @@ public class CourseDetailsViewModel: ObservableObject {
     public func viewDidAppear() {
         selectionViewModel.viewDidAppear()
         headerViewModel.viewDidAppear()
+		legacyHeaderViewModel.viewDidAppear()
         requestAttendanceTool()
         permissions.refresh()
         customGradeStatuses.refresh()
@@ -160,6 +164,7 @@ public class CourseDetailsViewModel: ObservableObject {
     private func courseDidUpdate() {
         guard let course = course.first else { return }
         headerViewModel.courseUpdated(course)
+		legacyHeaderViewModel.courseUpdated(course)
         courseColor = course.color
         setupHome(course: course)
         tabs.exhaust()

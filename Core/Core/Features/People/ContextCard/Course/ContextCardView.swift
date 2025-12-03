@@ -27,20 +27,48 @@ public struct ContextCardView: View {
     }
 
     public var body: some View {
-        contextCard
-            .background(Color.backgroundLightest)
-            .navigationBarTitleView(
-                title: model.user.first?.name ?? "",
-                subtitle: model.course.first?.name
-            )
-            .navigationBarItems(trailing: emailButton)
-            .navigationBarStyle(model.isModal ? .modal : .color(nil))
-            .onAppear {
-                model.viewAppeared()
-            }
+		if #available(iOS 26, *) {
+			contextCard
+				.background(Color.backgroundLightest)
+				.optionalNavigationTitle(model.user.first?.name)
+				.optionalNavigationSubtitle(model.course.first?.name)
+				.toolbar {
+					emailButton
+				}
+				.navigationBarStyle(model.isModal ? .modal : .color(nil))
+				.onAppear {
+					model.viewAppeared()
+				}
+		} else {
+			contextCard
+				.background(Color.backgroundLightest)
+				.navigationBarTitleView(
+					title: model.user.first?.name ?? "",
+					subtitle: model.course.first?.name
+				)
+				.navigationBarItems(trailing: legacyEmailButton)
+				.navigationBarStyle(model.isModal ? .modal : .color(nil))
+				.onAppear {
+					model.viewAppeared()
+				}
+		}
     }
 
-    @ViewBuilder var emailButton: some View {
+	@available(iOS, introduced: 26, message: "Legacy version exists")
+	@ViewBuilder
+	var emailButton: some View {
+		if model.permissions.first?.sendMessages == true, model.isViewingAnotherUser {
+			Button { model.openNewMessageComposer(controller: controller.value) } label: {
+				Image.emailLine
+			}
+			.accessibility(label: Text("Send message", bundle: .core))
+			.identifier("ContextCard.emailContact")
+		}
+	}
+
+	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    @ViewBuilder
+	var legacyEmailButton: some View {
         if model.permissions.first?.sendMessages == true, model.isViewingAnotherUser {
             Button(action: { model.openNewMessageComposer(controller: controller.value) }, label: {
                 let color = model.isModal ? Brand.shared.buttonPrimaryBackground : Brand.shared.buttonPrimaryText

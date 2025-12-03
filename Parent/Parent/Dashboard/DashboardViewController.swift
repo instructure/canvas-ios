@@ -46,6 +46,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
     let headerViewModel = StudentHeaderViewModel()
     var subscriptions = Set<AnyCancellable>()
+    var headerViewController: UIViewController?
 
     lazy var addStudentController = AddStudentController(presentingViewController: self, handler: { [weak self] error in
         if error == nil {
@@ -105,6 +106,9 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if #available(iOS 26, *) {
+            headerViewController?.view.alpha = 1
+        }
         navigationController?.navigationBar.useContextColor(currentColor)
         navigationController?.setNavigationBarHidden(true, animated: true)
         updateBadge()
@@ -113,6 +117,12 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        if #available(iOS 26, *) {
+            // The default navigation animation fades out the navigation bar, so we fade out our custom one
+            UIView.animate(withDuration: 0.2) {
+                self.headerViewController?.view.alpha = 0
+            }
+        }
         navigationController?.setNavigationBarHidden(false, animated: true)
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
@@ -245,7 +255,13 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     }
 
     private func embedHeaderView() {
-        let headerViewController = CoreHostingController(StudentHeaderView(viewModel: headerViewModel))
+        headerViewController = if #available(iOS 26, *) {
+            CoreHostingController(StudentHeaderView(viewModel: headerViewModel))
+        } else {
+            CoreHostingController(LegacyStudentHeaderView(viewModel: headerViewModel))
+        }
+        guard let headerViewController else { return }
+
         embed(headerViewController, in: view) { [studentListView] header, superview in
             let headerView = header.view!
             headerView.translatesAutoresizingMaskIntoConstraints = false

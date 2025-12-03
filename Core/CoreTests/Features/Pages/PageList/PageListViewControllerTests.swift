@@ -43,9 +43,16 @@ class PageListViewControllerTests: CoreTestCase {
         split.preferredDisplayMode = .oneBesideSecondary
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000088")
-        XCTAssertEqual(controller.titleSubtitleView.title, "Pages")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Pages")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
+        } else {
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000088")
+            XCTAssertEqual(controller.titleSubtitleView.title, "Pages")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+        }
+
         XCTAssert(router.lastRoutedTo(.parse("/courses/42/pages/answers-page")))
 
         let createButton = controller.navigationItem.rightBarButtonItem
@@ -109,9 +116,15 @@ class PageListViewControllerTests: CoreTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, UIColor(hexString: "#facade")!.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
-        XCTAssertEqual(controller.titleSubtitleView.title, "Pages")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Pages")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Group One")
+        } else {
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, UIColor(hexString: "#facade")!.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
+            XCTAssertEqual(controller.titleSubtitleView.title, "Pages")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
+        }
         XCTAssertNotNil(controller.navigationItem.rightBarButtonItem)
     }
 

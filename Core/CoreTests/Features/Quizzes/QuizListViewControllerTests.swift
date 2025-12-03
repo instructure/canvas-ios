@@ -65,13 +65,17 @@ class QuizListViewControllerTests: CoreTestCase {
         ])
     }
 
-    func testLayout() {
-        let nav = UINavigationController(rootViewController: controller)
+    @available(iOS 26, *)
+    func testLayout() throws {
+        if #unavailable(iOS 26) {
+            throw XCTSkip("Skip below iOS 26")
+        }
+
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#0000ff")
-        XCTAssertEqual(controller.titleSubtitleView.title, "Quizzes")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+
+        XCTAssertEqual(controller.navigationItem.title, "Quizzes")
+        XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
 
         XCTAssertNoThrow(controller.viewWillDisappear(false))
 
@@ -105,6 +109,71 @@ class QuizListViewControllerTests: CoreTestCase {
 
         index = IndexPath(row: 0, section: 3)
         header = controller.tableView.headerView(forSection: index.section) as? SectionHeaderView
+        XCTAssertEqual(header?.titleLabel.text, "Surveys")
+        cell = controller.tableView.cellForRow(at: index) as? QuizListCell
+        XCTAssertEqual(cell?.titleLabel.text, "D")
+
+        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index)
+        XCTAssert(router.lastRoutedTo(URL(string: "/courses/1/quizzes/4")!))
+
+        api.mock(controller.quizzes, error: NSError.internalError())
+        controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual(controller.errorView.isHidden, false)
+        XCTAssertEqual(controller.errorView.messageLabel.text, "There was an error loading quizzes. Pull to refresh to try again.")
+
+        api.mock(controller.quizzes, value: [])
+        controller.errorView.retryButton.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual(controller.errorView.isHidden, true)
+        XCTAssertEqual(controller.emptyView.isHidden, false)
+        XCTAssertEqual(controller.emptyTitleLabel.text, "No Quizzes")
+        XCTAssertEqual(controller.emptyMessageLabel.text, "It looks like quizzes haven’t been created in this space yet.")
+    }
+
+    func testLayoutWithLegacyHeaders() throws {
+        if #available(iOS 26, *) {
+            throw XCTSkip("Skip above iOS 26")
+        }
+
+        let nav = UINavigationController(rootViewController: controller)
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#0000ff")
+        XCTAssertEqual(controller.titleSubtitleView.title, "Quizzes")
+        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+
+        XCTAssertNoThrow(controller.viewWillDisappear(false))
+
+        var index = IndexPath(row: 0, section: 0)
+        var header = controller.tableView.headerView(forSection: index.section) as? LegacySectionHeaderView
+        XCTAssertEqual(header?.titleLabel.text, "Assignments")
+        var cell = controller.tableView.cellForRow(at: index) as? QuizListCell
+        XCTAssertEqual(cell?.titleLabel.text, "A")
+        XCTAssertEqual(cell?.dateLabel.text, "Due " + TestConstants.date0720.relativeDateTimeString)
+        XCTAssertEqual(cell?.pointsLabel.text, "111 pts")
+        XCTAssertEqual(cell?.questionsLabel.text, "111 Questions")
+        XCTAssertEqual(cell?.statusLabel.isHidden, true)
+        XCTAssertEqual(cell?.statusDot.isHidden, true)
+
+        index = IndexPath(row: 0, section: 1)
+        header = controller.tableView.headerView(forSection: index.section) as? LegacySectionHeaderView
+        XCTAssertEqual(header?.titleLabel.text, "Practice Quizzes")
+        cell = controller.tableView.cellForRow(at: index) as? QuizListCell
+        XCTAssertEqual(cell?.titleLabel.text, "B")
+        XCTAssertEqual(cell?.dateLabel.text, "Due " + TestConstants.date0315.relativeDateTimeString)
+        XCTAssertEqual(cell?.pointsLabel.text, "Not Graded")
+        XCTAssertEqual(cell?.statusLabel.text, "Closed")
+        XCTAssertEqual(cell?.statusDot.isHidden, false)
+
+        index = IndexPath(row: 0, section: 2)
+        header = controller.tableView.headerView(forSection: index.section) as? LegacySectionHeaderView
+        XCTAssertEqual(header?.titleLabel.text, "Graded Surveys")
+        cell = controller.tableView.cellForRow(at: index) as? QuizListCell
+        XCTAssertEqual(cell?.titleLabel.text, "C")
+        XCTAssertEqual(cell?.dateLabel.text, "No Due Date")
+
+        index = IndexPath(row: 0, section: 3)
+        header = controller.tableView.headerView(forSection: index.section) as? LegacySectionHeaderView
         XCTAssertEqual(header?.titleLabel.text, "Surveys")
         cell = controller.tableView.cellForRow(at: index) as? QuizListCell
         XCTAssertEqual(cell?.titleLabel.text, "D")

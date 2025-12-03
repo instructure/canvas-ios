@@ -68,7 +68,7 @@ public class PlannerViewController: VisibilityObservedViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .backgroundLightest
-        navigationItem.titleView = Brand.shared.headerImageView()
+		navigationItem.titleView = Brand.shared.headerImageView()
 
         profileButton.accessibilityIdentifier = "PlannerCalendar.profileButton"
         profileButton.accessibilityLabel = String(localized: "Profile Menu", bundle: .core)

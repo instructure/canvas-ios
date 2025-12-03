@@ -19,6 +19,7 @@
 import XCTest
 @testable import Core
 
+@available(iOS, deprecated: 26)
 class ColoredNavViewProtocolTests: XCTestCase, ColoredNavViewProtocol {
     var color: UIColor?
     var navigationController: UINavigationController? = UINavigationController(rootViewController: UIViewController())
@@ -32,13 +33,21 @@ class ColoredNavViewProtocolTests: XCTestCase, ColoredNavViewProtocol {
         titleSubtitleView = TitleSubtitleView.create()
     }
 
-    func testSetupTitleViewInNavbar() {
+    func testSetupTitleViewInNavbar() throws {
+        if #available(iOS 26, *) {
+            throw XCTSkip("ColoredNavViewProtocol is not used above iOS 26")
+        }
+
         setupTitleViewInNavbar(title: self.name)
         XCTAssertEqual(titleSubtitleView.title, self.name)
         XCTAssertEqual(navigationItem.titleView, titleSubtitleView)
     }
 
-    func testUpdateNavBar() {
+    func testUpdateNavBar() throws {
+        if #available(iOS 26, *) {
+            throw XCTSkip("ColoredNavViewProtocol is not used above iOS 26")
+        }
+
         let expectedColor: UIColor = .red.darkenToEnsureContrast(against: .textLightest.variantForLightMode)
         updateNavBar(subtitle: subtitle, color: expectedColor)
 

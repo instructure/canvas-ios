@@ -35,46 +35,98 @@ public struct InboxView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        VStack(spacing: 0) {
-            InboxFilterBarView(model: model)
-            Color.borderMedium
-                .frame(height: 0.5)
-            if case .loading = model.state {
-                loadingIndicator
-            } else {
-                GeometryReader { geometry in
-                    List {
-                        switch model.state {
-                        case .data:
-                            messagesList
-                                .listRowBackground(SwiftUI.EmptyView())
-                            nextPageLoadingIndicator(geometry: geometry)
-                                .onAppear {
-                                    model.contentDidScrollToBottom.send()
-                                }
-                        case .empty:
-                            panda(geometry: geometry, data: model.emptyState)
-                        case .error:
-                            panda(geometry: geometry, data: model.errorState)
-                        case .loading:
-                            SwiftUI.EmptyView()
-                        }
-                    }
-                    .refreshable {
-                        await withCheckedContinuation { continuation in
-                            model.refreshDidTrigger.send {
-                                continuation.resume()
-                            }
-                        }
-                    }
-                    .listStyle(PlainListStyle())
-                    .animation(.default, value: model.messages)
-                }
-            }
-        }
-        .background(Color.backgroundLightest)
-        .navigationBarItems(leading: model.isShowMenuButton ? menuButton : nil, trailing: newMessageButton)
-        .navigationBarStyle(.global)
+		if #available(iOS 26, *) {
+			VStack(spacing: 0) {
+				InboxFilterBarView(model: model)
+				Color.borderMedium
+					.frame(height: 0.5)
+				if case .loading = model.state {
+					loadingIndicator
+				} else {
+					GeometryReader { geometry in
+						List {
+							switch model.state {
+							case .data:
+								messagesList
+									.listRowBackground(SwiftUI.EmptyView())
+								nextPageLoadingIndicator(geometry: geometry)
+									.onAppear {
+										model.contentDidScrollToBottom.send()
+									}
+							case .empty:
+								panda(geometry: geometry, data: model.emptyState)
+							case .error:
+								panda(geometry: geometry, data: model.errorState)
+							case .loading:
+								SwiftUI.EmptyView()
+							}
+						}
+						.refreshable {
+							await withCheckedContinuation { continuation in
+								model.refreshDidTrigger.send {
+									continuation.resume()
+								}
+							}
+						}
+						.listStyle(PlainListStyle())
+						.animation(.default, value: model.messages)
+					}
+				}
+			}
+			.background(Color.backgroundLightest)
+			.toolbar {
+				if model.isShowMenuButton {
+					ToolbarItem(placement: .topBarLeading) {
+						menuButton
+					}
+				}
+
+				ToolbarItem(placement: .topBarTrailing) {
+					newMessageButton
+				}
+			}
+		} else {
+			VStack(spacing: 0) {
+				InboxFilterBarView(model: model)
+				Color.borderMedium
+					.frame(height: 0.5)
+				if case .loading = model.state {
+					loadingIndicator
+				} else {
+					GeometryReader { geometry in
+						List {
+							switch model.state {
+							case .data:
+								messagesList
+									.listRowBackground(SwiftUI.EmptyView())
+								nextPageLoadingIndicator(geometry: geometry)
+									.onAppear {
+										model.contentDidScrollToBottom.send()
+									}
+							case .empty:
+								panda(geometry: geometry, data: model.emptyState)
+							case .error:
+								panda(geometry: geometry, data: model.errorState)
+							case .loading:
+								SwiftUI.EmptyView()
+							}
+						}
+						.refreshable {
+							await withCheckedContinuation { continuation in
+								model.refreshDidTrigger.send {
+									continuation.resume()
+								}
+							}
+						}
+						.listStyle(PlainListStyle())
+						.animation(.default, value: model.messages)
+					}
+				}
+			}
+			.background(Color.backgroundLightest)
+			.navigationBarItems(leading: model.isShowMenuButton ? legacyMenuButton : nil, trailing: legacyNewMessageButton)
+			.navigationBarStyle(.global)
+		}
     }
 
     private var messagesList: some View {
@@ -209,7 +261,20 @@ public struct InboxView: View, ScreenViewTrackable {
             .listRowSeparator(.hidden)
     }
 
-    private var menuButton: some View {
+	@available(iOS, introduced: 26, message: "Legacy version exists")
+	private var menuButton: some View {
+		Button {
+			model.menuDidTap.send(controller)
+		} label: {
+			// TODO: Remove the condition once horizon-specific logic is no longer needed.
+			Image.hamburgerSolid
+		}
+		.identifier("Inbox.profileButton")
+		.accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
+	}
+
+	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyMenuButton: some View {
         Button {
             model.menuDidTap.send(controller)
         } label: {
@@ -222,7 +287,20 @@ public struct InboxView: View, ScreenViewTrackable {
         .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
     }
 
-    private var newMessageButton: some View {
+	@available(iOS, introduced: 26, message: "Legacy version exists")
+	private var newMessageButton: some View {
+		Button {
+			model.newMessageDidTap.send(controller)
+		} label: {
+			Image.addSolid
+			// TODO: Remove the condition once horizon-specific logic is no longer needed.
+		}
+		.identifier("Inbox.newMessageButton")
+		.accessibility(label: Text("New Message", bundle: .core))
+	}
+
+	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyNewMessageButton: some View {
         Button {
             model.newMessageDidTap.send(controller)
         } label: {

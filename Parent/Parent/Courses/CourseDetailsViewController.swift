@@ -76,8 +76,10 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         view.backgroundColor = .backgroundLightest
         colorScheme = ColorScheme.observee(studentID)
         navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.useContextColor(colorScheme?.color)
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: String(localized: "Back", bundle: .parent), style: .plain, target: nil, action: nil)
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(colorScheme?.color)
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: String(localized: "Back", bundle: .parent), style: .plain, target: nil, action: nil)
+        }
 
         delegate = self
         customStatuses.refresh()
@@ -93,6 +95,19 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         super.viewDidAppear(animated)
         readyToLayoutTabs = true
         courseReady()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        if #available(iOS 26, *) {
+            // Remove Grade Screen's custom navigation bar color when navigating away
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithDefaultBackground()
+            appearance.backgroundColor = .backgroundLightest
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
+
+        super.viewWillDisappear(animated)
     }
 
     override func setupPages() {
@@ -183,6 +198,15 @@ class CourseDetailsViewController: HorizontalMenuViewController {
                     configureSyllabus()
                     if showSummary { configureSummary() }
                 }
+            }
+
+            if #available(iOS 26, *), itemCount <= 1 {
+                // Set the toolbar background if the tab switcher is not present to match the Grade Screen's header
+                let appearance = UINavigationBarAppearance()
+                appearance.configureWithDefaultBackground()
+                appearance.backgroundColor = .backgroundLight
+                navigationController?.navigationBar.standardAppearance = appearance
+                navigationController?.navigationBar.scrollEdgeAppearance = appearance
             }
 
             layoutViewControllers()

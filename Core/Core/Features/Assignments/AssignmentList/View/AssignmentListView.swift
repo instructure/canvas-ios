@@ -42,9 +42,17 @@ struct AssignmentListView: View {
     }
 
     var body: some View {
-        LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
-            ForEach(sections) { section in
-                sectionView(with: section)
+        if #available(iOS 26, *) {
+            LazyVStack(spacing: 0) {
+                ForEach(sections) { section in
+                    sectionView(with: section)
+                }
+            }
+        } else {
+            LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
+                ForEach(sections) { section in
+                    sectionView(with: section)
+                }
             }
         }
     }

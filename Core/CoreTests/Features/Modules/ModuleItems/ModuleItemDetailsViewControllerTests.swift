@@ -51,8 +51,14 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         XCTAssertTrue(controller.lockedView.isHidden)
         XCTAssertFalse(controller.container.isHidden)
         XCTAssertNotNil(controller.children.first as? FileDetailsViewController)
-        XCTAssertEqual(controller.titleSubtitleView.title, "File Details")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "File Details")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "File Details")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+        }
     }
 
     func testError() {

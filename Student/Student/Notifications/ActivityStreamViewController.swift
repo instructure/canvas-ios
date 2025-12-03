@@ -92,7 +92,7 @@ class ActivityStreamViewController: ScreenViewTrackableViewController {
     }
 
     func setupTableView() {
-        tableView.registerHeaderFooterView(SectionHeaderView.self)
+        tableView.registerHeaderFooterView(LegacySectionHeaderView.self)
         let refreshControl = CircleRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView?.refreshControl = refreshControl
