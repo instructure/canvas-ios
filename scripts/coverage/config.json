@@ -52,9 +52,17 @@
     "Horizon\/Horizon\/Sources\/Common\/Domain\/GetCoursesInteractor.swift",
     "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/Assignment\/SubmissionComment\/Data\/CommentAttachment.swift",
     "Horizon\/Horizon\/Sources\/Common\/Data\/HModuleStatus.swift",
-    "Horizon\/Horizon\/Sources\/Common\/Utilities\/Double+.swift",
+    "Horizon\/Horizon\/Sources\/Common\/Utilities\/Double\\+.swift",
     "Horizon\/Horizon\/Sources\/Features\/Session\/SessionInteractor.swift",
-    "Horizon\/Horizon\/Sources\/Features\/Account\/Notifications\/Domain\/NotificationSettingsInteractor.swift"
+    "Horizon\/Horizon\/Sources\/Features\/Account\/Notifications\/Domain\/NotificationSettingsInteractor.swift",
+    "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/Assignment\/AssignmentDetails\/View\/AssignmentSubmissionType.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Assist\/AssistFlashCard\/View\/AssistFlashCardViewModel.swift",
+    "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/Assignment\/AssignmentDetails\/Data\/HAssignment.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Skillspace\/View\/SkillSpaceViewModel.swift",
+    "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/LTI\/LTIViewModel.swift",
+    "Horizon\/Horizon\/Sources\/Features\/HorizonTabBarType.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Account\/Notifications\/Data\/NotificationPreference.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Learn\/Scores\/Data\/ScoreDetails.swift"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",
