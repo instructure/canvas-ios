@@ -45,7 +45,16 @@
     "Horizon\/Horizon\/Sources\/Common\/Data\/LearningObjectType.swift",
     "Horizon\/Horizon\/Sources\/Features\/ModuleItemSequence\/Sequence\/Domain\/ModuleItemStateInteractor.swift",
     "Horizon\/Horizon\/Sources\/Features\/Account\/AccountViewModel.swift",
-    "Horizon\/Horizon\/Sources\/Features\/Assist\/AssistChat\/Data\/AssistChatFlashCard.swift"
+    "Horizon\/Horizon\/Sources\/Features\/Assist\/AssistChat\/Data\/AssistChatFlashCard.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Dashboard\/SkillsHighlightsWidget\/Data\/ProficiencyLevel.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Notebook\/Common\/View\/HighlightWebView\/HighlightWebFeature.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Notebook\/Common\/View\/HighlightWebView\/EnableZoom.swift",
+    "Horizon\/Horizon\/Sources\/Common\/Domain\/GetCoursesInteractor.swift",
+    "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/Assignment\/SubmissionComment\/Data\/CommentAttachment.swift",
+    "Horizon\/Horizon\/Sources\/Common\/Data\/HModuleStatus.swift",
+    "Horizon\/Horizon\/Sources\/Common\/Utilities\/Double+.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Session\/SessionInteractor.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Account\/Notifications\/Domain\/NotificationSettingsInteractor.swift"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",
