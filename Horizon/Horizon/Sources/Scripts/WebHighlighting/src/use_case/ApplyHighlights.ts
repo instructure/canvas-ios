@@ -8,7 +8,6 @@ export default function applyHighlights(highlights: [NotebookTextSelection]) {
 // *********************** Private *********************** //
 
 const highlightClassName = "notebook-highlight";
-const highlightIconClassName = "notebook-highlight-icon";
 
 export const addHighlight = (notebookTextSelection: NotebookTextSelection) => {
   let parent = document.getElementById("parent-container");
@@ -38,42 +37,9 @@ export const addHighlight = (notebookTextSelection: NotebookTextSelection) => {
     ? highlightElements[0]
     : undefined;
   if (!highlightElement) return;
-  highlightElement.appendChild(createIcon(notebookTextSelection));
 };
 
-function createIcon(notebookTextSelection: NotebookTextSelection): Node {
-  const flagSpan = document.createElement("span");
-  flagSpan.classList.add(highlightIconClassName);
-  flagSpan.style.cssText =
-    `display: flex; align-items: center; justify-content: center; position: absolute; left: 0px; top: 0px; border-radius: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; background-color: ` +
-    notebookTextSelection.borderColor +
-    `; z-index: 100;`;
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("viewBox", "0 -960 960 960");
-  svg.setAttribute("width", "12");
-  svg.setAttribute("height", "12");
-  svg.setAttribute("aria-hidden", "true");
-  svg.setAttribute("role", "presentation");
-  svg.setAttribute("focusable", "false");
-
-  const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-  g.setAttribute("role", "presentation");
-  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  path.setAttribute("fill", "#FFFFFF");
-  if (notebookTextSelection.iconSVG)
-    path.setAttribute("d", notebookTextSelection.iconSVG);
-  g.appendChild(path);
-  svg.appendChild(g);
-  flagSpan.appendChild(svg);
-  return flagSpan;
-}
-
 function clearHighlights() {
-  const icons = document.getElementsByClassName(highlightIconClassName);
-  while (icons.length) {
-    const icon = icons[0];
-    icon.parentElement?.removeChild(icon);
-  }
   const elements = document.getElementsByClassName(highlightClassName);
   while (elements.length) {
     const element = elements[0];
@@ -180,6 +146,8 @@ const createHighlightElement = ({
   span.onclick = () => notifyiOSOfHighlightTap(notebookTextSelection);
   span.style.cssText = buildHighlightStyle(notebookTextSelection);
   span.textContent = textContent;
+  span.setAttribute("data-text-start", notebookTextSelection.textPosition.start.toString());
+  span.setAttribute("data-text-end", notebookTextSelection.textPosition.end.toString());
 
   return span;
 };
@@ -187,10 +155,12 @@ const createHighlightElement = ({
 // Given the NotebookTextSelection, build the CSS to apply to the highlights
 export const buildHighlightStyle = (
   notebookTextSelection: NotebookTextSelection
-): string =>
-  `position: relative;
+): string => {
+  const borderStyle = notebookTextSelection.borderStyle || "solid";
+  return `position: relative;
    padding: 0px;
    border-top: none;
    border-right: none;
-   border-bottom: 1px solid ${notebookTextSelection.borderColor};
+   border-bottom: 1px ${borderStyle} ${notebookTextSelection.borderColor};
    background-color: ${notebookTextSelection.backgroundColor};`;
+};

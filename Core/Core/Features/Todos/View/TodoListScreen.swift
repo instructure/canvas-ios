@@ -64,8 +64,6 @@ struct TodoListScreen: View {
             ForEach(group.items) { item in
                 TodoListItemCell(
                     item: item,
-                    swipeCompletionBehavior: item.swipeCompletionBehavior,
-                    swipeEnabled: item.isSwipeEnabled,
                     onTap: viewModel.didTapItem,
                     onMarkAsDone: viewModel.markItemAsDone,
                     onSwipe: viewModel.handleSwipeAction,
@@ -75,7 +73,7 @@ struct TodoListScreen: View {
                 .padding(.leading, leadingPadding)
                 .transition(.asymmetric(
                     insertion: .identity,
-                    removal: .move(edge: .leading).combined(with: .opacity)
+                    removal: .move(edge: .top).combined(with: .opacity)
                 ))
 
                 let isLastItemInGroup = (group.items.last == item)

@@ -20,13 +20,13 @@ import Combine
 import CoreData
 import Core
 
-class AddNotebookNoteUseCase: UseCase {
+final class AddNotebookNoteUseCase: UseCase {
     var cacheKey: String?
 
     typealias Model = CDHNotebookNote
 
     // MARK: Dependencies
-    let redwood: DomainService
+    let redwood: DomainServiceProtocol
 
     // MARK: Overridden Properties
     let request: RedwoodCreateNoteMutation
@@ -35,7 +35,7 @@ class AddNotebookNoteUseCase: UseCase {
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: Init
-    init(request: RedwoodCreateNoteMutation, redwood: DomainService = DomainService(.redwood)) {
+    init(request: RedwoodCreateNoteMutation, redwood: DomainServiceProtocol = DomainService(.redwood)) {
         self.request = request
         self.redwood = redwood
     }

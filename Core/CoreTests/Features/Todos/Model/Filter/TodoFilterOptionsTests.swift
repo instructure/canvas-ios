@@ -25,16 +25,16 @@ class TodoFilterOptionsTests: XCTestCase {
     func testDefaultFilterOptions() {
         let defaults = TodoFilterOptions.default
         XCTAssertTrue(defaults.visibilityOptions.isEmpty)
-        XCTAssertEqual(defaults.dateRangeStart, .lastWeek)
-        XCTAssertEqual(defaults.dateRangeEnd, .nextWeek)
+        XCTAssertEqual(defaults.dateRangeStart, .fourWeeksAgo)
+        XCTAssertEqual(defaults.dateRangeEnd, .thisWeek)
         XCTAssertTrue(defaults.isDefault)
     }
 
     func testIsDefaultTrue() {
         let options = TodoFilterOptions(
             visibilityOptions: [],
-            dateRangeStart: .lastWeek,
-            dateRangeEnd: .nextWeek
+            dateRangeStart: .fourWeeksAgo,
+            dateRangeEnd: .thisWeek
         )
         XCTAssertTrue(options.isDefault)
     }
@@ -42,8 +42,8 @@ class TodoFilterOptionsTests: XCTestCase {
     func testIsDefaultFalseWithDifferentVisibility() {
         let options = TodoFilterOptions(
             visibilityOptions: [.showPersonalTodos],
-            dateRangeStart: .lastWeek,
-            dateRangeEnd: .nextWeek
+            dateRangeStart: .fourWeeksAgo,
+            dateRangeEnd: .thisWeek
         )
         XCTAssertFalse(options.isDefault)
     }

@@ -43,6 +43,6 @@ public final class CDHNotebookNote: NSManagedObject {
     }
 
     public static func serializeLabels(from strings: [String]?) -> String? {
-        strings?.sorted().joined(separator: ";")
+        return strings?.sorted().joined(separator: ";")
     }
 }

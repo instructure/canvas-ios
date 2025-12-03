@@ -258,8 +258,19 @@ struct SubmissionCommentView: View {
 
 // TODO: Implement a proper design system component
 struct TextArea: View {
-    @Binding var text: String
-    let proxy: GeometryProxy
+    @Binding private var text: String
+    private let placeholder: String?
+    private let proxy: GeometryProxy
+
+    init(
+        text: Binding<String>,
+        placeholder: String? = nil,
+        proxy: GeometryProxy
+    ) {
+        _text = text
+        self.placeholder = placeholder
+        self.proxy = proxy
+    }
 
     var body: some View {
         textField
@@ -284,7 +295,22 @@ struct TextArea: View {
         }
         .foregroundStyle(text.isEmpty ? Color.huiColors.text.placeholder : Color.huiColors.text.body)
         .frame(minHeight: 120, alignment: .top)
-        .padding(.huiSpaces.space8)
+        .padding(.vertical, .huiSpaces.space8)
+        .padding(.horizontal, .huiSpaces.space12)
+        .overlay(placeholderView, alignment: .topLeading)
+    }
+
+    @ViewBuilder
+    private var placeholderView: some View {
+        if let placeholder, text.isEmpty {
+            Text(placeholder)
+                .foregroundStyle(Color.huiColors.text.placeholder)
+                .huiTypography(.p1)
+                .allowsHitTesting(false)
+                .accessibility(hidden: true)
+                .padding(.vertical, .huiSpaces.space8)
+                .padding(.horizontal, .huiSpaces.space12)
+        }
     }
 }
 

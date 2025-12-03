@@ -61,7 +61,7 @@ extension HorizonUI.NavigationBar {
                 if let onNotebookDidTap = onNotebookDidTap {
                     ZStack {
                         HorizonUI.IconButton(
-                            Image.huiIcons.menuBookNotebook,
+                            Image.huiIcons.editNote,
                             type: .white
                         ) {
                             onNotebookDidTap()

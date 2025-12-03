@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,22 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import HorizonUI
-import SwiftUI
+struct NotebookQueryFilter {
+    /// The cursor used to start pagination in the backward direction.
+    let startCursor: String?
+    let reactions: [String]?
+    let courseId: String?
+    var pageId: String?
 
-struct NotebookCard<Content: View>: View {
-    private let content: Content
-
-    init(@ViewBuilder _ content: () -> Content) {
-        self.content = content()
-    }
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space8) { content }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.huiSpaces.space24)
-            .background(Color.white)
-            .cornerRadius(.huiSpaces.space16)
-            .huiElevation(level: .level4)
+    init(
+        startCursor: String? = nil,
+        reactions: [String]? = nil,
+        courseId: String? = nil,
+        pageId: String? = nil
+    ) {
+        self.startCursor = startCursor
+        self.reactions = reactions
+        self.courseId = courseId
+        self.pageId = pageId
     }
 }

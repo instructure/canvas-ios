@@ -42,15 +42,23 @@ struct TodoDayHeaderView: View {
                 ZStack {
                     Circle()
                         .stroke(tintColor)
-                        .scaledFrame(size: 40, useIconScale: true)
+                        .scaledFrame(size: 32, useIconScale: true)
                         .hidden(!group.isToday)
+                    let topPadding: CGFloat = {
+                        if group.isToday {
+                            return 0
+                        }
+                        return uiScale * (group.shouldShowMonth ? -9 : -14)
+                    }()
                     VStack(spacing: 0) {
                         Text(group.dayNumber)
-                            .font(group.isToday ? .bold12 : .regular12)
-                        Text(group.monthAbbreviation)
-                            .font(.regular10)
+                            .font(group.isToday ? .bold12 : .regular12, lineHeight: .fit)
+                        if group.shouldShowMonth {
+                            Text(group.monthAbbreviation)
+                                .font(.regular10)
+                        }
                     }
-                    .padding(.top, group.isToday ? 0 : uiScale * -14)
+                    .padding(.top, topPadding)
                 }
                 .padding(.top, 1)
             }
@@ -87,6 +95,7 @@ private extension CGFloat {
 #Preview {
     let today = Calendar.current.startOfDay(for: Date())
     let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+    let nextMonth = Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date()
     let todayGroup = TodoGroupViewModel(
         date: today,
         items: [.makeShortText(plannableId: "1")]
@@ -95,10 +104,15 @@ private extension CGFloat {
         date: tomorrow,
         items: [.makeShortText(plannableId: "1")]
     )
+    let nextMonthGroup = TodoGroupViewModel(
+        date: nextMonth,
+        items: [.makeShortText(plannableId: "1")]
+    )
 
     HStack(spacing: 0) {
         TodoDayHeaderView(group: todayGroup) { _ in }
         TodoDayHeaderView(group: tomorrowGroup) { _ in }
+        TodoDayHeaderView(group: nextMonthGroup) { _ in }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background(Color.backgroundDarkest)

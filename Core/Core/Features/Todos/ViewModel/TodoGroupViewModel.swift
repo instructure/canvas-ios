@@ -28,8 +28,9 @@ public struct TodoGroupViewModel: Identifiable, Equatable, Comparable {
     public let isToday: Bool
     public let displayDate: String
     public let accessibilityLabel: String
+    public let shouldShowMonth: Bool
 
-    public init(date: Date, items: [TodoItemViewModel]) {
+    public init(date: Date, items: [TodoItemViewModel], referenceDate: Date = Date()) {
         self.id = date.isoString()
         self.date = date
         self.items = items
@@ -38,6 +39,11 @@ public struct TodoGroupViewModel: Identifiable, Equatable, Comparable {
         self.dayNumber = date.dayString
         self.isToday = Cal.currentCalendar.isDateInToday(date)
         self.displayDate = date.dayInMonth
+
+        let currentMonth = Cal.currentCalendar.component(.month, from: referenceDate)
+        let groupMonth = Cal.currentCalendar.component(.month, from: date)
+        self.shouldShowMonth = currentMonth != groupMonth
+
         self.accessibilityLabel = [
             date.weekdayName,
             date.dayInMonth,

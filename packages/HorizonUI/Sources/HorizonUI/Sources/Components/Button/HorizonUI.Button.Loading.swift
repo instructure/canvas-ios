@@ -23,6 +23,7 @@ public extension HorizonUI {
     struct LoadingButton: View {
         private let title: String
         private let fillsWidth: Bool
+        private let isSmall: Bool
         private let type: HorizonUI.ButtonStyles.ButtonType
         @Binding private var isLoading: Bool
         @Binding private var isDisabled: Bool
@@ -31,6 +32,7 @@ public extension HorizonUI {
         public init(
             title: String,
             type: HorizonUI.ButtonStyles.ButtonType = .black,
+            isSmall: Bool = false,
             fillsWidth: Bool = true,
             isLoading: Binding<Bool>,
             isDisabled: Binding<Bool>? = nil,
@@ -39,6 +41,7 @@ public extension HorizonUI {
             self.title = title
             self.fillsWidth = fillsWidth
             self.type = type
+            self.isSmall = isSmall
             _isLoading = isLoading
             _isDisabled = isDisabled ?? .constant(false)
             self.onSave = onSave
@@ -49,6 +52,7 @@ public extension HorizonUI {
                 HorizonUI.PrimaryButton(
                     title,
                     type: type,
+                    isSmall: isSmall,
                     fillsWidth: fillsWidth
                 ) {
                     onSave()
