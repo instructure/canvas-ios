@@ -95,6 +95,37 @@ struct IntroBlock: View {
             Rectangle()
                 .fill(backgroundColor)
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(accessibilityLabelText)
+    }
+
+    private var accessibilityLabelText: String {
+        var labelComponents: [String] = []
+
+        labelComponents.append(moduleName)
+        labelComponents.append(moduleItemName)
+
+        if let duration = duration {
+            labelComponents.append(String(localized: "Duration: \(duration)", bundle: .horizon))
+        }
+
+        if let countOfPoints = countOfPoints {
+            labelComponents.append(String(localized: "\(countOfPoints) Points Possible", bundle: .horizon))
+        }
+
+        if let dueDate = dueDate {
+            labelComponents.append(String(localized: "Due Date: \(dueDate)", bundle: .horizon))
+        }
+
+        if isOverdue {
+            labelComponents.append(String(localized: "Overdue", bundle: .horizon))
+        }
+
+        if let attemptsAllowed = attemptsAllowed {
+            labelComponents.append(attemptsAllowed)
+        }
+
+        return labelComponents.joined(separator: ", ")
     }
 
     private var moduleTitleView: some View {
