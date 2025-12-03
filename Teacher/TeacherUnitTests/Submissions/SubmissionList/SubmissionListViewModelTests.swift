@@ -107,6 +107,7 @@ final class SubmissionListViewModelTests: TeacherTestCase {
                     submission.userID = "u2"
                     submission.user = User.save(.make(id: "u2", name: "Smith"), in: client)
                     submission.workflowState = .graded
+                    submission.gradeMatchesCurrentSubmission = true
                     submission.score = 0.5
                     submission.submittedAt = Date()
                 }
@@ -187,6 +188,7 @@ final class SubmissionListViewModelTests: TeacherTestCase {
                     submission.userID = "u2"
                     submission.user = User.save(.make(id: "u2", name: "Smith"), in: client)
                     submission.workflowState = .graded
+                    submission.gradeMatchesCurrentSubmission = true
                     submission.score = 0.5
                     submission.groupID = "g2"
                     submission.groupName = "Test Group 22"

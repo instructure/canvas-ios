@@ -343,12 +343,16 @@ public class GradeFormatter {
         guard assignment?.gradingType != .not_graded else { return "" }
 
         guard let assignment = assignment,
+              let status = submission?.status,
               let submission = submission,
-              (submission.workflowState != .unsubmitted || submission.customGradeStatusId != nil),
-              !submission.needsGrading
-        else { return blankPlaceholder.stringValue }
+              status.isGraded // displaying grade only from current submission
+        else {
+            return blankPlaceholder.stringValue
+        }
 
-        guard submission.excused != true else { return String(localized: "Excused", bundle: .core) }
+        if status.isExcused {
+            return String(localized: "Excused", bundle: .core)
+        }
 
         return gradeString(for: assignment, submission: submission) ?? blankPlaceholder.stringValue
     }

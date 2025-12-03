@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,12 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import Foundation
+import TestsFoundation
+@testable import Core
 import XCTest
 
-class FeatureFlagTests: XCTestCase {
+class GetFeatureFlagStateRequestTests: CoreTestCase {
 
-    func testFeatureFlagKeys() {
-        XCTAssertEqual(APIFeatureFlag.Key.assignmentEnhancements.rawValue, "assignments_2_student")
+    func testGetFeatureFlagStateRequest() {
+        // Given
+        let context = Context(.course, id: "22343")
+
+        // Then
+        XCTAssertEqual(
+            GetFeatureFlagStateRequest(featureName: .studioEmbedImprovements, context: context).path,
+            "courses/22343/features/flags/rce_studio_embed_improvements"
+        )
     }
 }

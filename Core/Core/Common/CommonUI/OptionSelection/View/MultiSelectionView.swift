@@ -61,7 +61,7 @@ public struct MultiSelectionView: View {
 
     @ViewBuilder
     public var body: some View {
-        LazyVStack(spacing: 0) {
+        VStack(spacing: 0) {
             Section {
                 ForEach(viewModel.allOptions) { item in
                     optionCell(with: item)

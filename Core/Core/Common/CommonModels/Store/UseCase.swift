@@ -135,30 +135,61 @@ public extension UseCase {
     }
 
     /// Reactive `fetch()`, used by the `ReactiveStore` and directly from other places.
+    /// Returns the URLResponse after writing to the database.
     func fetchWithFuture(environment: AppEnvironment = .shared) -> Future<URLResponse?, Error> {
         Future<URLResponse?, Error> { promise in
-            self.makeRequest(environment: environment) { response, urlResponse, error in
-                if let error = error {
+            self.executeFetch(environment: environment) { result in
+                switch result {
+                case .success((_, let urlResponse)):
+                    promise(.success(urlResponse))
+                case .failure(let error):
+                    promise(.failure(error))
+                }
+            }
+        }
+    }
+
+    /// Reactive `fetch()` that returns both the API response and URLResponse.
+    /// Use this when you need access to the API response data directly.
+    /// The response is optional - it will be nil if the API returned no response body.
+    func fetchWithAPIResponse(environment: AppEnvironment = .shared) -> Future<(Response?, URLResponse?), Error> {
+        Future<(Response?, URLResponse?), Error> { promise in
+            self.executeFetch(environment: environment) { result in
+                promise(result)
+            }
+        }
+    }
+
+    /// Private helper method that executes the fetch and write logic.
+    private func executeFetch(
+        environment: AppEnvironment,
+        completion: @escaping (Result<(Response?, URLResponse?), Error>) -> Void
+    ) {
+        self.makeRequest(environment: environment) { response, urlResponse, error in
+            if let error {
+                performUIUpdate {
+                    completion(.failure(error))
+                }
+                return
+            }
+
+            environment.database.performWriteTask { context in
+                do {
+                    self.reset(context: context)
+                    self.write(response: response, urlResponse: urlResponse, to: context)
+                    self.updateTTL(in: context)
+                    try context.save()
                     performUIUpdate {
-                        promise(.failure(error))
+                        completion(.success((response, urlResponse)))
                     }
-                } else {
-                    let database = environment.database
-                    database.performWriteTask { context in
-                        do {
-                            self.reset(context: context)
-                            self.write(response: response, urlResponse: urlResponse, to: context)
-                            self.updateTTL(in: context)
-                            try context.save()
-                            promise(.success(urlResponse))
-                        } catch let dbError {
-                            Logger.shared.error(dbError.localizedDescription)
-                            RemoteLogger.shared.logError(name: "CoreData save failed",
-                                                         reason: dbError.localizedDescription)
-                            performUIUpdate {
-                                promise(.failure(dbError))
-                            }
-                        }
+                } catch let dbError {
+                    Logger.shared.error(dbError.localizedDescription)
+                    RemoteLogger.shared.logError(
+                        name: "CoreData save failed",
+                        reason: dbError.localizedDescription
+                    )
+                    performUIUpdate {
+                        completion(.failure(dbError))
                     }
                 }
             }

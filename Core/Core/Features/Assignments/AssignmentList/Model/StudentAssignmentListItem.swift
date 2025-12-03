@@ -67,10 +67,11 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
         self.dueDates = dateTextsProvider.summarizedDueDates(for: assignment)
 
         let status = submission?.status ?? .notSubmitted
-        self.submissionStatus = .init(status: status)
+        self.submissionStatus = status.labelModel
 
+        // The pointsPossible check safeguards against backend issues like in MBL-15698
         let hasPointsPossible = assignment.pointsPossible != nil
-        let score = hasPointsPossible && status != .excused
+        let score = hasPointsPossible && !status.isExcused
             ? GradeFormatter.string(from: assignment, submission: submission, style: .medium)
             : nil
         self.score = score
@@ -90,7 +91,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
                     let status = subSubmission?.status ?? .notSubmitted
 
                     var score: String?
-                    if let pointsPossible = checkpoint.pointsPossible, status != .excused {
+                    if let pointsPossible = checkpoint.pointsPossible, !status.isExcused {
                         score = GradeFormatter.string(
                             pointsPossible: pointsPossible,
                             gradingType: assignment.gradingType,
@@ -112,7 +113,7 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
                         tag: checkpoint.tag,
                         title: checkpoint.title,
                         dueDate: DueDateFormatter.format(checkpoint.dueDate, lockDate: checkpoint.lockDate),
-                        submissionStatus: .init(status: status),
+                        submissionStatus: status.labelModel,
                         score: score,
                         scoreA11yLabel: scoreA11yLabel
                     )

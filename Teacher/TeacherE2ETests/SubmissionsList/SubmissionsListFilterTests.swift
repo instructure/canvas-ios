@@ -100,6 +100,8 @@ class SubmissionsListFilterTests: E2ETestCase {
             XCTAssertVisible(missingSwitch)
             XCTAssertEqual(missingSwitch.value as? String, "1")
 
+            app.scrollDown()
+
             let scoredMoreThanField = FilterHelper.PreciseFiltering.scoredMoreThanField.waitUntil(.visible)
             XCTAssertVisible(scoredMoreThanField)
 

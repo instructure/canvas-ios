@@ -35,23 +35,38 @@ public class GetPlannables: UseCase {
     var endDate: Date
     var contextCodes: [String]?
     var filter: String = ""
+    var allowEmptyContextCodesFetch: Bool = false
+    var useCaseID: PlannableUseCaseID?
 
     let observerEvents = PassthroughSubject<EventsRequest, Never>()
     var subscriptions = Set<AnyCancellable>()
 
-    public init(userID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String]? = nil, filter: String = "") {
+    /// - parameters:
+    ///   - useCaseID: When set, filters and tags plannables instance on saving with this use case ID for data isolation.
+    public init(
+        userID: String? = nil,
+        startDate: Date,
+        endDate: Date,
+        contextCodes: [String]? = nil,
+        filter: String = "",
+        allowEmptyContextCodesFetch: Bool = false,
+        useCaseID: PlannableUseCaseID? = nil
+    ) {
         self.userID = userID
         self.startDate = startDate
         self.endDate = endDate
         self.contextCodes = contextCodes
         self.filter = filter
+        self.allowEmptyContextCodesFetch = allowEmptyContextCodesFetch
+        self.useCaseID = useCaseID
 
         setupObserverEventsSubscription()
     }
 
     public var cacheKey: String? {
         let codes = contextCodes?.joined(separator: ",") ?? ""
-        return "get-plannables-\(userID ?? "")-\(startDate)-\(endDate)-\(filter)-\(codes)"
+        let useCaseIDString = useCaseID?.rawValue ?? "nil"
+        return "get-plannables-\(userID ?? "")-\(startDate)-\(endDate)-\(filter)-\(codes)-\(useCaseIDString)"
     }
 
     public var scope: Scope {
@@ -61,10 +76,10 @@ public class GetPlannables: UseCase {
                 startDate as NSDate, #keyPath(Plannable.date),
                 #keyPath(Plannable.date), endDate as NSDate
             ),
-            NSPredicate(format: "%K == nil", #keyPath(Plannable.originUseCaseIDRaw))
+            NSPredicate(key: #keyPath(Plannable.originUseCaseIDRaw), equals: useCaseID?.rawValue)
         ]
 
-        if let userID = userID {
+        if let userID {
             subPredicates.append(
                 NSPredicate(key: #keyPath(Plannable.userID), equals: userID)
             )
@@ -87,8 +102,11 @@ public class GetPlannables: UseCase {
     }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
-        // If we would send out the request without any context codes the API would return all events so we do an early exit
-        if (contextCodes ?? []).isEmpty {
+        // Only return empty if allowEmptyContextCodesFetch is false. Student To-do needs to fetch all plannables
+        // without context codes so that's why the allowEmptyContextCodesFetch param was introduced.
+        // Sending out the request without any context codes makes the API return all events,
+        // which is only usable if we do local filtering (like in Student To-do).
+        if !allowEmptyContextCodesFetch, (contextCodes ?? []).isEmpty {
             completionHandler(.empty, nil, nil)
             return
         }
@@ -126,15 +144,15 @@ public class GetPlannables: UseCase {
         let plannerNoteItems: [APIPlannerNote] = response?.plannerNotes ?? []
 
         for item in plannableItems where item.plannableType != .announcement {
-            Plannable.save(item, userId: userID, in: client)
+            Plannable.save(item, userId: userID, useCase: useCaseID, in: client)
         }
 
         for item in calendarEventItems where item.hidden != true {
-            Plannable.save(item, userId: userID, in: client)
+            Plannable.save(item, userId: userID, useCase: useCaseID, in: client)
         }
 
         for item in plannerNoteItems {
-            Plannable.save(item, contextName: nil, in: client)
+            Plannable.save(item, contextName: nil, useCase: useCaseID, in: client)
         }
     }
 }

@@ -22,11 +22,17 @@ import XCTest
 class CreateSubmissionTests: CoreTestCase {
 
     private var testAnalyticsHandler: MockAnalyticsHandler!
+    private var retrialState: SubmissionRetrialState!
 
     override func setUp() {
         super.setUp()
         testAnalyticsHandler = MockAnalyticsHandler()
         Analytics.shared.handler = testAnalyticsHandler
+    }
+
+    override func tearDown() {
+        retrialState = nil
+        super.tearDown()
     }
 
     func testItCreatesAssignmentSubmission() {
@@ -115,6 +121,12 @@ class CreateSubmissionTests: CoreTestCase {
         XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 2)
     }
 
+    private func exhaustDatabaseClient() {
+        let exp = expectation(description: "context exhaust")
+        databaseClient.perform { exp.fulfill() }
+        wait(for: [exp])
+    }
+
     func test_analytics_failure() {
         let context = Context(.course, id: "1")
         let request = CreateSubmissionRequest(
@@ -140,6 +152,75 @@ class CreateSubmissionTests: CoreTestCase {
 
         XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_url_failed")
         XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 17)
+    }
+
+    func test_analytics_retrial_state_multiple_failures() {
+        retrialState = SubmissionRetrialState()
+
+        let context = Context(.course, id: "1")
+        let request = CreateSubmissionRequest(
+            context: context,
+            assignmentID: "4",
+            body: .init(submission: .init(group_comment: nil, submission_type: .online_text_entry))
+        )
+
+        api.mock(request, error: NSError.instructureError("Random error"))
+
+        let useCase = CreateSubmission(context: context, assignmentID: "4", userID: "3", submissionType: .online_text_entry)
+        useCase.retrialState = retrialState
+
+        // When
+        useCase.makeRequest(environment: environment) { _, _, _ in }
+        exhaustDatabaseClient()
+
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textEntry_failed")
+        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("retry"), 0)
+
+        // When
+        useCase.makeRequest(environment: environment) { _, _, _ in }
+        exhaustDatabaseClient()
+
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textEntry_failed")
+        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("retry"), 1)
+
+        // When
+        api.mock(request, value: .make(
+            assignment_id: "4",
+            attempt: 1
+        ))
+
+        useCase.makeRequest(environment: environment) { _, _, _ in }
+        exhaustDatabaseClient()
+
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textEntry_succeeded")
+        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("retry"), 1)
+        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 1)
+    }
+
+    func test_analytics_retrial_state_success() {
+        retrialState = SubmissionRetrialState()
+
+        let context = Context(.course, id: "1")
+        let request = CreateSubmissionRequest(
+            context: context,
+            assignmentID: "4",
+            body: .init(submission: .init(group_comment: nil, submission_type: .online_text_entry))
+        )
+
+        api.mock(request, value: .make(
+            assignment_id: "4",
+            attempt: 1
+        ))
+
+        let useCase = CreateSubmission(context: context, assignmentID: "4", userID: "3", submissionType: .online_text_entry)
+        useCase.retrialState = retrialState
+
+        useCase.makeRequest(environment: environment) { _, _, _ in }
+        exhaustDatabaseClient()
+
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textEntry_succeeded")
+        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("retry"), 0)
+        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 1)
     }
 
     func test_analytics_media_recording_params() {

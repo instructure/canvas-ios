@@ -21,11 +21,12 @@ import Core
 
 struct SubmissionListSection: Identifiable {
 
-    enum Kind: String, CaseIterable {
+    enum Kind: Int, CaseIterable {
+        // Case order defines section display order
         case submitted
         case unsubmitted
         case graded
-        case others // Keep this case the last
+        case others
 
         var title: String {
             switch self {
@@ -40,37 +41,8 @@ struct SubmissionListSection: Identifiable {
             }
         }
 
-        var filter: (Submission) -> Bool {
-            switch self {
-            case .submitted:
-                { $0.submittedAt != nil && $0.isGraded == false }
-            case .unsubmitted:
-                { submission in
-                    if submission.excused { return false }
-                    if submission.customGradeStatusId != nil { return false }
-
-                    // This condition should be good for most cases.
-                    if submission.workflowState == .unsubmitted { return true }
-
-                    // For the case where rubrics assessment is submitted, but
-                    // with invalid values, which would render score to be `nil`
-                    if submission.workflowState == .graded {
-                        return submission.submittedAt == nil && submission.score == nil
-                    }
-
-                    return false
-                }
-            case .graded:
-                { $0.isGraded }
-            case .others:
-                { submission in
-                    let matchesTheOtherCases = Self
-                        .allCases
-                        .dropLast()
-                        .contains(where: { $0.filter(submission) })
-                    return matchesTheOtherCases == false
-                }
-            }
+        var position: Int {
+            rawValue
         }
     }
 
@@ -78,11 +50,28 @@ struct SubmissionListSection: Identifiable {
     var items: [SubmissionListItem]
     var isCollapsed: Bool
 
-    var id: String { kind.rawValue }
+    var id: Int { kind.rawValue }
 
     init(kind: Kind, items: [SubmissionListItem], isCollapsed: Bool = false) {
         self.kind = kind
         self.items = items
         self.isCollapsed = isCollapsed
+    }
+}
+
+extension SubmissionListSection.Kind {
+    init(submission: Submission) {
+        let status = submission.status
+        self = if status.needsGrading {
+            .submitted
+        } else if !status.isSubmitted && !status.isGraded {
+            // Not checking for status.isTypeSubmittable,
+            // because all items here have the same type, no need to put them in "Others".
+            .unsubmitted
+        } else if status.isGraded {
+            .graded
+        } else {
+            .others
+        }
     }
 }

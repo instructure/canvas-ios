@@ -109,7 +109,10 @@ public final class GradeListInteractorLive: GradeListInteractor {
             courseStore.getEntities(
                 ignoreCache: ignoreCache
             ).compactMap { $0.first },
-            fetchGradingPeriods(ignoreCache: ignoreCache)
+            gradingPeriodListStore.getEntities(
+                ignoreCache: ignoreCache,
+                loadAllPages: true
+            )
         )
         .map { (_, _, course, gradingPeriods) in
             let courseEnrollment = course.enrollmentForGrades(userId: userID, includingCompleted: true)
@@ -221,23 +224,12 @@ public final class GradeListInteractorLive: GradeListInteractor {
             courseStore.getEntities(
                 ignoreCache: false
             ).compactMap { $0.first },
-            fetchGradingPeriods(ignoreCache: false)
+            gradingPeriodListStore.getEntities(
+                ignoreCache: false,
+                loadAllPages: true
+            )
         )
         .eraseToAnyPublisher()
-    }
-
-    private func fetchGradingPeriods(ignoreCache: Bool) -> AnyPublisher<[GradingPeriod], Error> {
-        gradingPeriodListStore.getEntities(
-            ignoreCache: ignoreCache,
-            loadAllPages: true
-        )
-        .filterMany {
-            guard let startDate = $0.startDate else {
-                return true
-            }
-
-            return Clock.now > startDate
-        }
     }
 
     private func getGradingPeriod(id: String?, gradingPeriods: [GradingPeriod]) -> GradingPeriod? {

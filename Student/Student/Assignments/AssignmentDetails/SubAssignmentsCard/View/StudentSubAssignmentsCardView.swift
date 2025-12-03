@@ -90,19 +90,19 @@ private struct StudentSubAssignmentsCardItemCell: View {
             .make(
                 id: "1",
                 title: "Reply to topic",
-                submissionStatus: .init(status: .graded),
+                submissionStatus: .graded,
                 score: "5/5"
             ),
             .make(
                 id: "2",
                 title: "Additional replies (3)",
-                submissionStatus: .init(status: .notSubmitted),
+                submissionStatus: .notSubmitted,
                 score: "2.5/5"
             ),
             .make(
                 id: "3",
                 title: "Another step",
-                submissionStatus: .init(status: .excused),
+                submissionStatus: .excused,
                 score: nil
             )
         ])

@@ -26,6 +26,7 @@ extension NSNotification.Name {
     public static let showGradesOnDashboardDidChange = Notification.Name("com.instructure.core.notification.showGradesOnDashboardDidChange")
     public static let favoritesDidChange = Notification.Name("course-favorite-change")
     public static let windowUserInterfaceStyleDidChange = Notification.Name("com.instructure.core.notification.windowUserInterfaceStyleDidChange")
+    public static let plannerItemDidChange = Notification.Name("com.instructure.core.notification.plannerItemDidChange")
 }
 
 extension NotificationCenter {

@@ -26,5 +26,6 @@ open class CoreWebViewFeature {
     public init() {}
     open func apply(on configuration: WKWebViewConfiguration) {}
     open func apply(on webView: CoreWebView) {}
+    open func remove(from: CoreWebView) {}
     open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {}
 }

@@ -199,6 +199,93 @@ class UseCaseTests: CoreTestCase {
         }
         waitForExpectations(timeout: 1)
     }
+
+    func testFetchWithAPIResponseReturnsResponseAndURLResponse() {
+        class UseCase: TestUseCase {
+            let writeExpectation = XCTestExpectation(description: "write was called")
+            var capturedResponse: APICourse?
+
+            override func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+                let response = APICourse.make(id: "test-course", name: "Test Course")
+                let urlResponse = HTTPURLResponse(
+                    url: URL(string: "https://canvas.instructure.com/api/v1/courses")!,
+                    statusCode: 200,
+                    httpVersion: "HTTP/1.1",
+                    headerFields: nil
+                )
+                completionHandler(response, urlResponse, nil)
+            }
+
+            override func write(response: APICourse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+                capturedResponse = response
+                writeExpectation.fulfill()
+            }
+        }
+
+        let useCase = UseCase()
+        let expectation = XCTestExpectation(description: "fetch completes")
+        var capturedAPIResponse: APICourse?
+        var capturedURLResponse: URLResponse?
+        var subscription: AnyCancellable?
+
+        subscription = useCase.fetchWithAPIResponse(environment: environment)
+            .sink(
+                receiveCompletion: { completion in
+                    if case .failure = completion {
+                        XCTFail("Should not fail")
+                    }
+                },
+                receiveValue: { response, urlResponse in
+                    capturedAPIResponse = response
+                    capturedURLResponse = urlResponse
+                    XCTAssertEqual(Thread.isMainThread, true)
+                    expectation.fulfill()
+                }
+            )
+
+        wait(for: [expectation, useCase.writeExpectation], timeout: 1)
+
+        XCTAssertNotNil(capturedAPIResponse)
+        XCTAssertEqual(capturedAPIResponse?.id, "test-course")
+        XCTAssertEqual(capturedAPIResponse?.name, "Test Course")
+        XCTAssertNotNil(capturedURLResponse)
+        XCTAssertEqual(useCase.capturedResponse?.id, "test-course")
+
+        subscription?.cancel()
+    }
+
+    func testFetchWithAPIResponseHandlesError() {
+        class UseCase: TestUseCase {
+            override func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+                DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) {
+                    completionHandler(nil, nil, NSError.instructureError("API request failed"))
+                }
+            }
+        }
+
+        let useCase = UseCase()
+        let expectation = XCTestExpectation(description: "fetch fails")
+        var capturedError: Error?
+        var subscription: AnyCancellable?
+
+        subscription = useCase.fetchWithAPIResponse(environment: environment)
+            .sink(
+                receiveCompletion: { completion in
+                    if case .failure(let error) = completion {
+                        capturedError = error
+                        XCTAssertEqual(Thread.isMainThread, true)
+                        expectation.fulfill()
+                    }
+                },
+                receiveValue: { _, _ in
+                    XCTFail("Should not succeed")
+                }
+            )
+
+        wait(for: [expectation], timeout: 1)
+        XCTAssertNotNil(capturedError)
+        subscription?.cancel()
+    }
 }
 
 class CollectionUseCaseTests: CoreTestCase {

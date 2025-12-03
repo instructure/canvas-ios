@@ -54,6 +54,7 @@ class GradeCircleViewTests: CoreTestCase {
         let a = Assignment.make(from: .make(grading_type: .pass_fail))
         a.submission = Submission.make(from: .make(
             grade: "complete",
+            score: 0,
             workflow_state: .graded
         ))
         view.update(a, submission: a.submission)

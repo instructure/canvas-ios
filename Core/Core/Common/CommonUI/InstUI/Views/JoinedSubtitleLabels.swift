@@ -77,7 +77,7 @@ extension InstUI {
                     .textStyle(.cellLabelSubtitle)
             },
             label2: {
-                SubmissionStatusLabel(model: .init(status: .graded))
+                SubmissionStatusLabel(model: .graded)
             }
         )
         .padding()
@@ -85,7 +85,7 @@ extension InstUI {
 
         InstUI.JoinedSubtitleLabels(
             label1: {
-                SubmissionStatusLabel(model: .init(status: .notSubmitted))
+                SubmissionStatusLabel(model: .notSubmitted)
             },
             label2: {
                 Text(Date.now.dateTimeString)
@@ -97,7 +97,7 @@ extension InstUI {
 
         InstUI.JoinedSubtitleLabels(
             label1: {
-                SubmissionStatusLabel(model: .init(text: .loremIpsumMedium, icon: .flagLine, color: .textInfo))
+                SubmissionStatusLabel(model: .custom(.loremIpsumMedium))
             },
             label2: {
                 Text("Using center alignment " + .loremIpsumShort)
@@ -109,7 +109,7 @@ extension InstUI {
 
         InstUI.JoinedSubtitleLabels(
             label1: {
-                SubmissionStatusLabel(model: .init(text: .loremIpsumMedium, icon: .flagLine, color: .textInfo))
+                SubmissionStatusLabel(model: .custom(.loremIpsumMedium))
             },
             label2: {
                 Text("Using top alignment...... " + .loremIpsumShort)

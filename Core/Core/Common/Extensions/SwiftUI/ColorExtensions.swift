@@ -33,6 +33,10 @@ public extension Color {
         }
     }
 
+    var asUIColor: UIColor {
+        UIColor(self)
+    }
+
 #if DEBUG
 
     static var random: Color {

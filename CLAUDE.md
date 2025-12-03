@@ -38,7 +38,7 @@
 - Ensure the code compiles and runs without errors
 - If you create a new file, ensure you call `make sync` in the terminal so the file is added to the Xcode project
 - When writing tests, make sure the tests pass
-- When you are asked to write tests, ensure they are written in the same manner as existing tests in the project
+- When you are asked to write tests, follow the conventions outlined in CLAUDE-unit-tests.md
 
 ## Building and Testing Preferences
 - When you invoke xcodebuild to build for test, use the `CITests` scheme

@@ -63,39 +63,9 @@ class SubmissionViewableTests: XCTestCase {
         XCTAssertEqual(assignment.submissionTypeText, "External Tool or Text Entry")
     }
 
-    func testIsSubmitted() {
-        XCTAssertFalse(Model(submission: nil).isSubmitted)
-        XCTAssertFalse(Model(submission: Submission.make(from: .make(submitted_at: nil))).isSubmitted)
-        XCTAssertTrue(Model(submission: Submission.make(from: .make(submitted_at: Date()))).isSubmitted)
-    }
-
     func testStatusIsHidden() {
-        XCTAssertFalse(Model(submissionTypes: [.online_text_entry]).submissionStatusIsHidden)
-        XCTAssertTrue(Model(submissionTypes: [.not_graded]).submissionStatusIsHidden)
-    }
-
-    func testStatusColor() {
-        XCTAssertEqual(Model(submission: nil).submissionStatusColor, UIColor.textDark)
-        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: Date()))).submissionStatusColor, UIColor.textSuccess)
-    }
-
-    func testStatusIcon() {
-        XCTAssertEqual(Model(submission: nil).submissionStatusIcon, UIImage.noSolid)
-        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: Date()))).submissionStatusIcon, UIImage.completeLine)
-        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: Date(), workflow_state: .graded))).submissionStatusIcon, UIImage.completeSolid)
-    }
-
-    func testStatusText() {
-        XCTAssertEqual(Model(submission: nil).submissionStatusText, "Not Submitted")
-        let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 1).date!
-        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: submittedAt))).submissionStatusText, "Submitted")
-        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: submittedAt, workflow_state: .graded))).submissionStatusText, "Graded")
-    }
-
-    func testSubmissionDateText() {
-        XCTAssertNil(Model(submission: nil).submissionDateText)
-        let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 1).date!
-        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: submittedAt))).submissionDateText, submittedAt.dateTimeString)
+        XCTAssertFalse(Model(submission: Submission.make(from: .make(submission_type: .online_text_entry))).submissionStatusIsHidden)
+        XCTAssertTrue(Model(submission: Submission.make(from: .make(submission_type: .not_graded, submitted_at: nil))).submissionStatusIsHidden)
     }
 
     func testHasLatePenalty() {

@@ -52,7 +52,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
     lazy var controller = PlannerListViewController.create(start: start, end: end, delegate: self)
 
     func testLayout() {
-        let date = Clock.now
+        let date = start.addMinutes(60)
         ContextColor.make()
         let assignment = APIPlannable.make(
             plannable: .make(title: "assignment a", points_possible: 1),
@@ -99,11 +99,10 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
     }
 
     func test_discussionCheckpointCell() {
-        let date = Clock.now
         ContextColor.make()
         let discussionCheckpoint = APIPlannable.make(
             plannable: .make(title: "dcp", sub_assignment_tag: "reply_to_topic" ),
-            plannable_date: date.addMinutes(120)
+            plannable_date: start.addMinutes(120)
         )
         api.mock(getPlannablesRequest(from: start, to: end), value: [discussionCheckpoint])
         controller.view.layoutIfNeeded()

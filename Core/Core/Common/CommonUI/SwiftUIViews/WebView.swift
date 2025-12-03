@@ -31,6 +31,7 @@ public struct WebView: UIViewRepresentable {
     private var configuration: WKWebViewConfiguration
     private let features: [CoreWebViewFeature]
     private let baseURL: URL?
+    private var featuresContext: Context?
 
     private var isScrollEnabled: Bool = true
     @Environment(\.appEnvironment) private var env
@@ -98,6 +99,12 @@ public struct WebView: UIViewRepresentable {
         return modified
     }
 
+    public func featuresContext(_ context: Context) -> Self {
+        var modified = self
+        modified.featuresContext = context
+        return modified
+    }
+
     public func onProvisionalNavigationStarted(
         _ handleProvisionalNavigationStarted: ((CoreWebView, WKNavigation?) -> Void)?
     ) -> Self {
@@ -151,6 +158,8 @@ public struct WebView: UIViewRepresentable {
         guard let webView: CoreWebView = uiView.subviews.first(where: { $0 is CoreWebView }) as? CoreWebView else { return }
         webView.linkDelegate = context.coordinator
         webView.sizeDelegate = context.coordinator
+        webView.setupStudioFeatures(context: featuresContext, env: env)
+
         // During `makeUIView` `UIView`s have no view controllers so they can't check if dark mode is enabled.
         // We force an update here since a `CoreHostingController` is assiged to the view hierarchy.
         webView.updateInterfaceStyle()
@@ -205,7 +214,7 @@ extension WebView {
         ) {
             reloadObserver?.cancel()
             reloadObserver = trigger?.sink {
-                webView.reload()
+                _ = webView.reload()
             }
         }
 

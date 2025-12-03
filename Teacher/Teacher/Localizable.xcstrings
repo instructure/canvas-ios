@@ -7305,7 +7305,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開始日時："
+            "value" : "公開日時："
           }
         },
         "mi" : {
@@ -44042,7 +44042,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Present　現在"
+            "value" : "表示する"
           }
         },
         "mi" : {
@@ -46348,7 +46348,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ルービック"
+            "value" : "ルーブリック"
           }
         },
         "mi" : {

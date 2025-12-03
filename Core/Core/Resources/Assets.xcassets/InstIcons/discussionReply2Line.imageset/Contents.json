@@ -1,0 +1,17 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "discussionReply2.svg",
+      "language-direction" : "left-to-right"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "properties" : {
+    "template-rendering-intent" : "template",
+    "preserves-vector-representation" : true
+  }
+}

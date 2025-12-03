@@ -20,11 +20,51 @@ import SwiftUI
 
 public struct TodoAssembly {
     public static func makeTodoListViewController(env: AppEnvironment) -> UIViewController {
-        let interactor = TodoInteractorLive(env: env)
-        let model = TodoListViewModel(interactor: interactor, router: env.router)
+        let sessionDefaults = env.userDefaults ?? SessionDefaults(sessionID: env.currentSession?.uniqueID ?? "")
+        let interactor = TodoInteractorLive(alwaysExcludeCompleted: false, sessionDefaults: sessionDefaults, env: env)
+        let model = TodoListViewModel(
+            interactor: interactor,
+            router: env.router,
+            sessionDefaults: sessionDefaults
+        )
         let todoVC = CoreHostingController(TodoListScreen(viewModel: model))
         todoVC.navigationBarStyle = .global
         todoVC.navigationItem.titleView = Brand.shared.headerImageView()
         return todoVC
     }
+
+    public static func makeTodoFilterViewController(
+        sessionDefaults: SessionDefaults,
+        onFiltersChanged: @escaping () -> Void
+    ) -> UIViewController {
+        let viewModel = TodoFilterViewModel(
+            sessionDefaults: sessionDefaults,
+            onFiltersChanged: onFiltersChanged
+        )
+        let filterScreen = TodoFilterScreen(viewModel: viewModel)
+        let hostingController = CoreHostingController(filterScreen)
+        return hostingController
+    }
+
+    #if DEBUG
+
+    static func makePreviewViewController(
+        interactor: TodoInteractor,
+        env: AppEnvironment = PreviewEnvironment()
+    ) -> UIViewController {
+        let sessionDefaults = SessionDefaults(sessionID: "preview")
+        let viewModel = TodoListViewModel(
+            interactor: interactor,
+            router: env.router,
+            sessionDefaults: sessionDefaults
+        )
+        let screen = TodoListScreen(viewModel: viewModel)
+        let hostingController = CoreHostingController(screen)
+        hostingController.navigationBarStyle = .global
+        hostingController.navigationItem.titleView = Brand.shared.headerImageView()
+        let navigationController = CoreNavigationController(rootViewController: hostingController)
+        return navigationController
+    }
+
+    #endif
 }

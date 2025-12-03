@@ -52,9 +52,17 @@ class TodoWidgetProvider: TimelineProvider {
         if fetchSubscription != nil { return }
 
         setupEnvironment(with: session)
-        /// The interactor needs to be created here, after the session is setup
-        let interactor = PlannerAssembly.makeFilterInteractor(observedUserId: nil)
-        let getTimeline = fetch(interactor: interactor)
+
+        let useOldTodo = ExperimentalFeature.revertToOldStudentToDo.isEnabled
+        let getTimeline: AnyPublisher<Timeline<TodoWidgetEntry>, Never>
+
+        if useOldTodo {
+            getTimeline = fetchOldTodos()
+        } else {
+            let interactor = TodoInteractorLive(alwaysExcludeCompleted: true, sessionDefaults: env.userDefaults ?? .fallback, env: env)
+            getTimeline = fetchTodos(interactor: interactor)
+        }
+
         let getBrandColors = ReactiveStore(useCase: GetBrandVariables())
             .getEntities()
             .replaceError(with: [])
@@ -74,10 +82,35 @@ class TodoWidgetProvider: TimelineProvider {
         env.userDidLogin(session: session, isSilent: true)
     }
 
-    private func fetch(
-        interactor: CalendarFilterInteractor
+    private func fetchTodos(
+        interactor: TodoInteractor
     ) -> AnyPublisher<Timeline<TodoWidgetEntry>, Never> {
-        let env = env
+        return interactor
+            .refresh(ignorePlannablesCache: false, ignoreCoursesCache: false)
+            .map {
+                interactor.todoGroups.value
+            }
+            .map { groups in
+                // TodoInteractor already filters out completed items when alwaysExcludeCompleted is true
+                let model = TodoModel(groups: groups)
+                let entry = TodoWidgetEntry(data: model, date: Clock.now)
+                let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
+                return Timeline(entries: [entry], policy: .after(refreshDate))
+            }
+            .catch { _ in
+                let model = TodoModel(error: .fetchingDataFailure)
+                let entry = TodoWidgetEntry(data: model, date: Clock.now)
+                let recoveryDate = Clock.now.addingTimeInterval(.widgetRecover)
+                return Just(
+                    Timeline(entries: [entry], policy: .after(recoveryDate))
+                )
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func fetchOldTodos() -> AnyPublisher<Timeline<TodoWidgetEntry>, Never> {
+        let interactor = PlannerAssembly.makeFilterInteractor(observedUserId: nil)
+
         return interactor
             .load(ignoreCache: false)
             .flatMap {
@@ -85,7 +118,7 @@ class TodoWidgetProvider: TimelineProvider {
                     .first()
                     .setFailureType(to: Error.self)
             }
-            .flatMap { contexts in
+            .flatMap { [env] contexts in
                 let contextCodes = contexts.map(\.canvasContextID)
                 let start = Clock.now.startOfDay()
                 let end = start.addDays(28)
@@ -105,9 +138,10 @@ class TodoWidgetProvider: TimelineProvider {
                     .filter {
                         $0.plannableType != .announcement && $0.plannableType != .assessment_request
                     }
-                    .compactMap { (TodoItemViewModel($0)) }
+                    .compactMap { TodoItemViewModel($0) }
 
-                let model = TodoModel(items: todoItems)
+                let groups = todoItems.groupByDay()
+                let model = TodoModel(groups: groups)
                 let entry = TodoWidgetEntry(data: model, date: Clock.now)
                 let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
                 return Timeline(entries: [entry], policy: .after(refreshDate))

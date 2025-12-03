@@ -18,31 +18,7 @@
 
 import UIKit
 
-public class GradeCircleReusableView: UICollectionReusableView {
-    public let gradeCircleView: GradeCircleView?
-
-    static let topPadding: CGFloat = 12
-
-    public override init(frame: CGRect) {
-        gradeCircleView = GradeCircleView(frame: CGRect.zero)
-        super.init(frame: frame)
-        guard let gradeCircleView = gradeCircleView else { return }
-        addSubview(gradeCircleView)
-        gradeCircleView.pin(inside: self)
-
-        let border = UIView(frame: CGRect.zero)
-        border.backgroundColor = UIColor.borderMedium
-        addSubview(border)
-        let margin: CGFloat = 16
-        border.pin(inside: self, leading: margin, trailing: margin, top: nil, bottom: 0)
-        border.addConstraintsWithVFL("V:[view(1)]")
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("No implemented")
-    }
-}
-
+/// This is the Grade card itself used in Student app, not just the circle.
 public class GradeCircleView: UIView {
     @IBOutlet weak var circlePoints: UILabel!
     @IBOutlet weak var circleLabel: UILabel!
@@ -82,16 +58,9 @@ public class GradeCircleView: UIView {
         circleComplete.isAccessibilityElement = true
         // in this case the submission should always be there because canvas generates
         // submissions for every user for every assignment but just in case
-        guard let submission,
-              (submission.workflowState != .unsubmitted || submission.customGradeStatusId != nil)
-        else {
-            isHidden = true
-            return
-        }
-
-        guard submission.grade != nil
-                || submission.excused
-                || submission.customGradeStatusId != nil
+        guard let status = submission?.status,
+              let submission,
+              status.isGraded || submission.hasGradeFromEarlierSubmission
         else {
             isHidden = true
             return

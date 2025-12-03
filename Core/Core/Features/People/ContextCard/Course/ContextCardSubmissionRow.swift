@@ -25,6 +25,7 @@ struct ContextCardSubmissionRow: View {
     private let gradient = LinearGradient(gradient: Gradient(colors: [Color(hexString: "#008EE2")!, Color(hexString: "#00C1F3")!]), startPoint: .leading, endPoint: .trailing)
     private let assignment: Assignment
     private let submission: Submission
+    private let submissionStatus: SubmissionStatusLabel.Model
     private let progressRatio: CGFloat
     private let grade: String
     private let icon: Image
@@ -40,27 +41,19 @@ struct ContextCardSubmissionRow: View {
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
 
-                    HStack(spacing: 2) {
+                    SubmissionStatusLabel(model: submissionStatus)
 
-                        Image(uiImage: submission.stateDisplayProperties.icon)
-                            .scaledIcon(size: 16)
-                            .foregroundColor(Color(submission.stateDisplayProperties.color))
-
-                        Text(submission.stateDisplayProperties.text)
-                            .font(.regular14)
-                            .foregroundColor(Color(submission.stateDisplayProperties.color))
-                    }
-
-                    if submission.needsGrading {
+                    let status = submission.status
+                    if status.needsGrading {
                         needsGradingCapsule()
-                    } else if submission.workflowState == .graded, submission.score != nil {
+                    } else if status.hasGrade { // not showing for Excused or Custom without grade
                         progressView(progress: progressRatio, label: Text(grade))
                     }
                 }.frame(maxWidth: .infinity, alignment: .leading)
             }
         }
         .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-        .accessibility(label: Text("Submission \(assignment.name), \(submission.statusOld.text), \(a11ySubmissionStatus)", bundle: .core))
+        .accessibility(label: Text("Submission \(assignment.name), \(submission.status.labelModel.text), \(a11ySubmissionStatus)", bundle: .core))
         .identifier("ContextCard.submissionCell(\(assignment.id))")
     }
 
@@ -73,9 +66,9 @@ struct ContextCardSubmissionRow: View {
             }
             return CGFloat(min(1, score / maxPoints))
         }()
-        self.grade = {
-            GradeFormatter.string(from: assignment, submission: submission, style: .medium, customStyleForLetterGrade: .short) ?? ""
-        }()
+
+        let formattedGrade = GradeFormatter.string(from: assignment, submission: submission, style: .medium, customStyleForLetterGrade: .short)
+        self.grade = formattedGrade ?? ""
         self.icon = {
             if assignment.submissionTypesWithQuizLTIMapping.contains(.online_quiz) {
                 return .quizLine
@@ -85,12 +78,14 @@ struct ContextCardSubmissionRow: View {
                 return .assignmentLine
             }
         }()
+
+        let status = submission.status
+        self.submissionStatus = status.labelModel
         self.a11ySubmissionStatus = {
-            if submission.needsGrading {
+            if status.needsGrading {
                 return String(localized: "NEEDS GRADING", bundle: .core)
-            } else if submission.workflowState == .graded,
-                      submission.score != nil,
-                      let grade = GradeFormatter.string(from: assignment, submission: submission, style: .medium, customStyleForLetterGrade: .short) {
+            } else if status.isGraded,
+                      let grade = formattedGrade {
                 return String(localized: "grade", bundle: .core) + " " + grade
             } else {
                 return ""

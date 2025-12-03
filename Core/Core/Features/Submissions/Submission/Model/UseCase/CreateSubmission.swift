@@ -27,6 +27,8 @@ public class CreateSubmission: APIUseCase {
     let userID: String
     let moduleID: String?
     let moduleItemID: String?
+
+    public weak var retrialState: SubmissionRetrialState?
     public let request: CreateSubmissionRequest
     public typealias Model = Submission
 
@@ -81,6 +83,11 @@ public class CreateSubmission: APIUseCase {
         )
     }
 
+    public func settingRetrialState(_ state: SubmissionRetrialState?) -> Self {
+        self.retrialState = state
+        return self
+    }
+
     public var cacheKey: String?
 
     public var scope: Scope { Scope(
@@ -94,6 +101,7 @@ public class CreateSubmission: APIUseCase {
     ) }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APISubmission?, URLResponse?, Error?) -> Void) {
+        retrialState?.validate(for: request)
 
         environment.api.makeRequest(request) { [weak self, weak environment] response, urlResponse, error in
             guard let self = self else { return }
@@ -116,19 +124,19 @@ public class CreateSubmission: APIUseCase {
 
             let isSuccessful = response != nil && error == nil
 
-            UIAccessibility
-                .announceSubmission(isSuccessful: isSuccessful)
-                .sink {
-                    completionHandler(response, urlResponse, error)
-                }
-                .store(in: &subscriptions)
-
             // Analytics
             logAnalyticsEvent(
                 phase: isSuccessful ? .succeeded : .failed,
                 attempt: response?.attempt,
                 env: environment
             )
+
+            UIAccessibility
+                .announceSubmission(isSuccessful: isSuccessful)
+                .sink {
+                    completionHandler(response, urlResponse, error)
+                }
+                .store(in: &subscriptions)
         }
     }
 
@@ -149,7 +157,7 @@ public class CreateSubmission: APIUseCase {
     private func logAnalyticsEvent(phase: Analytics.SubmissionEvent.Phase, attempt: Int?, env: AppEnvironment?) {
         guard let phasedType = analyticsPhasedEventType else { return }
 
-        let mediaParams = mediaCommentType.flatMap({ mediaType in
+        var params = mediaCommentType.flatMap({ mediaType in
             var params: [Analytics.SubmissionEvent.Param: Any] = [.media_type: mediaType.rawValue]
             if let source = mediaCommentSource {
                 params[.media_source] = source.analyticsValue
@@ -157,9 +165,14 @@ public class CreateSubmission: APIUseCase {
             return params
         })
 
+        if let retrialState, phase == .succeeded || phase == .failed {
+            params = params ?? [:]
+            params?.merge(retrialState.params(), uniquingKeysWith: { $1 })
+        }
+
         if let attempt {
 
-            Analytics.shared.logSubmission(.phase(phase, phasedType, attempt), additionalParams: mediaParams)
+            Analytics.shared.logSubmission(.phase(phase, phasedType, attempt), additionalParams: params)
 
         } else if let client = env?.database.viewContext {
 
@@ -171,9 +184,11 @@ public class CreateSubmission: APIUseCase {
                 // Do your best to get the correct attempt number of last submission
                 // If doesn't exist, fallback to `nil`
                 let failureAttempt = latestSubmission.flatMap { $0.attempt + 1 }
-                Analytics.shared.logSubmission(.phase(phase, phasedType, failureAttempt), additionalParams: mediaParams)
+                Analytics.shared.logSubmission(.phase(phase, phasedType, failureAttempt), additionalParams: params)
             }
         }
+
+        retrialState?.report(phase)
     }
 
     private var analyticsPhasedEventType: Analytics.SubmissionEvent.PhasedType? {

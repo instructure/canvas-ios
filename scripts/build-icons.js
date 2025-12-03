@@ -68,6 +68,7 @@ const whitelist = [
   'courses',
   'dashboard',
   'discussion',
+  'discussion-reply-2',
   'document',
   'edit',
   'email',

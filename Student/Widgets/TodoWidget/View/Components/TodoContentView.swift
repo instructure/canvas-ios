@@ -115,7 +115,7 @@ extension TodoContentView where ActionView == NoActionView {
 #Preview("TodoWidgetEmpty", as: .systemLarge) {
     TodoWidget()
 } timeline: {
-    let model = TodoModel(items: [])
+    let model = TodoModel(groups: [])
     TodoWidgetEntry(data: model, date: Date())
 }
 

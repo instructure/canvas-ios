@@ -92,7 +92,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
 
         let submission = presenter.currentSubmission
 
-        let isSubmitted = submission?.workflowState != .unsubmitted && submission?.submittedAt != nil
+        let isSubmitted = submission?.status.isSubmitted ?? false
         let isLocked = !presenter.lockedEmptyViewIsHidden()
         contentView?.isHidden = !isSubmitted && !assignment.isExternalToolAssignment
         drawer?.fileCount = submission?.attachments?.count ?? 0

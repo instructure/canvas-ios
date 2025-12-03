@@ -274,109 +274,152 @@ class SubmissionTests: CoreTestCase {
     }
 
     func testNeedsGrading() {
-        let nilType = Submission.make(from: .make(submission_type: nil))
-        XCTAssertFalse(nilType.needsGrading)
+        let date = Clock.now
 
-        let pendingReview = Submission.make(from: .make(submission_type: .online_url, workflow_state: .pending_review))
-        XCTAssertTrue(pendingReview.needsGrading)
+        // submitted (regardless of workflow_state), not graded
+        var testee = Submission.make(from: .make(score: nil, submitted_at: date, workflow_state: .unsubmitted))
+        XCTAssertEqual(testee.status.needsGrading, true)
+        testee = Submission.make(from: .make(score: 1, submitted_at: date, workflow_state: .unsubmitted))
+        XCTAssertEqual(testee.status.needsGrading, true)
 
-        let gradedNoScore = Submission.make(from: .make(score: nil, submission_type: .online_url, workflow_state: .graded))
-        XCTAssertTrue(gradedNoScore.needsGrading)
+        // not submitted (regardless of workflow_state), not graded
+        testee = Submission.make(from: .make(score: nil, submitted_at: nil, workflow_state: .submitted))
+        XCTAssertEqual(testee.status.needsGrading, false)
+        testee = Submission.make(from: .make(score: 1, submitted_at: nil, workflow_state: .submitted))
+        XCTAssertEqual(testee.status.needsGrading, false)
 
-        let gradedScore = Submission.make(from: .make(score: 10, submission_type: .online_url, workflow_state: .graded))
-        XCTAssertFalse(gradedScore.needsGrading)
+        // submitted & pending_review, not graded
+        testee = Submission.make(from: .make(score: nil, submitted_at: date, workflow_state: .pending_review))
+        XCTAssertEqual(testee.status.needsGrading, true)
+        testee = Submission.make(from: .make(score: 1, submitted_at: date, workflow_state: .pending_review))
+        XCTAssertEqual(testee.status.needsGrading, true)
 
-        let submittedNoScore = Submission.make(from: .make(score: nil, submission_type: .online_url, workflow_state: .submitted))
-        XCTAssertTrue(submittedNoScore.needsGrading)
+        // not submitted & pending review, not graded
+        testee = Submission.make(from: .make(score: nil, submitted_at: nil, workflow_state: .pending_review))
+        XCTAssertEqual(testee.status.needsGrading, true)
+        testee = Submission.make(from: .make(score: 1, submitted_at: nil, workflow_state: .pending_review))
+        XCTAssertEqual(testee.status.needsGrading, true)
 
-        let submittedScore = Submission.make(from: .make(score: 10, submission_type: .online_url, workflow_state: .submitted))
-        XCTAssertFalse(submittedScore.needsGrading)
+        // submitted, not graded
+        testee = Submission.make(from: .make(score: nil, submitted_at: date, workflow_state: .graded))
+        XCTAssertEqual(testee.status.needsGrading, true)
 
-        let regraded = Submission.make(from: .make(grade_matches_current_submission: false, score: 10, submission_type: .online_url, workflow_state: .graded))
-        XCTAssertTrue(regraded.needsGrading)
+        // submitted, graded
+        testee = Submission.make(from: .make(score: 1, submitted_at: date, workflow_state: .graded))
+        XCTAssertEqual(testee.status.needsGrading, false)
 
-        let resubmitted = Submission.make(from: .make(grade_matches_current_submission: false, score: 10, submission_type: .online_url, workflow_state: .submitted))
-        XCTAssertTrue(resubmitted.needsGrading)
+        // not submitted, not graded
+        testee = Submission.make(from: .make(score: nil, submitted_at: nil, workflow_state: .graded))
+        XCTAssertEqual(testee.status.needsGrading, false)
+
+        // not submitted, graded
+        testee = Submission.make(from: .make(score: 1, submitted_at: nil, workflow_state: .graded))
+        XCTAssertEqual(testee.status.needsGrading, false)
     }
 
-    func testIsGraded() {
-        let excused = Submission.make(from: .make(excused: true))
-        XCTAssertTrue(excused.isGraded)
+    // MARK: - Status inputs
 
-        let gradedNoScore = Submission.make(from: .make(score: nil, workflow_state: .graded))
-        XCTAssertFalse(gradedNoScore.isGraded)
+    func test_statusInput_isSubmitted() {
+        var testee = Submission.make(from: .make(submitted_at: Date()))
+        XCTAssertEqual(testee.status.isSubmitted, true)
 
-        let scoreNotGraded = Submission.make(from: .make(score: 10, workflow_state: .pending_review))
-        XCTAssertFalse(scoreNotGraded.isGraded)
+        testee = Submission.make(from: .make(submitted_at: nil, workflow_state: .pending_review))
+        XCTAssertEqual(testee.status.isSubmitted, true)
 
-        let gradedWithScore = Submission.make(from: .make(score: 10, workflow_state: .graded))
-        XCTAssertTrue(gradedWithScore.isGraded)
+        testee = Submission.make(from: .make(submitted_at: nil, workflow_state: .graded))
+        XCTAssertEqual(testee.status.isSubmitted, false)
+
+        testee = Submission.make(from: .make(submitted_at: nil, workflow_state: .submitted))
+        XCTAssertEqual(testee.status.isSubmitted, false)
     }
 
-    func testSubmissionStatus() {
-        let late = Submission.make(from: .make(late: true))
-        XCTAssertEqual(late.statusOld, .late)
+    func test_statusInput_isGraded() {
+        var testee = Submission.make(from: .make(score: 42, workflow_state: .graded))
+        XCTAssertEqual(testee.status.hasGrade, true)
 
-        let missing = Submission.make(from: .make(missing: true))
-        XCTAssertEqual(missing.statusOld, .missing)
+        testee = Submission.make(from: .make(score: nil, workflow_state: .graded))
+        XCTAssertEqual(testee.status.hasGrade, false)
 
-        let submitted = Submission.make(from: .make(submitted_at: Date()))
-        XCTAssertEqual(submitted.statusOld, .submitted)
+        testee = Submission.make(from: .make(score: 42, workflow_state: .submitted))
+        XCTAssertEqual(testee.status.hasGrade, false)
 
-        let notSubmitted = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
-        XCTAssertEqual(notSubmitted.statusOld, .notSubmitted)
-
-        let graded = Submission.make(from: .make(excused: false, score: 95, submitted_at: Date(), workflow_state: .graded))
-        XCTAssertEqual(graded.statusIncludingGradedState, .graded)
-        XCTAssertEqual(graded.statusOld, .submitted)
-        XCTAssertEqual(graded.statusOld, graded.statusOld)
-
-        let excused = Submission.make(from: .make(excused: true, score: 95, submitted_at: Date(), workflow_state: .graded))
-        XCTAssertEqual(excused.statusIncludingGradedState, .excused)
-        XCTAssertEqual(excused.statusOld, .submitted)
-        XCTAssertEqual(excused.statusOld, excused.statusOld)
+        testee = Submission.make(from: .make(excused: true, score: nil, workflow_state: .graded))
+        XCTAssertEqual(testee.status.hasGrade, false)
     }
 
-    func testSubmissionStateDisplayProperties() {
-        let late = Submission.make(from: .make(late: true))
-        XCTAssertEqual(late.stateDisplayProperties, .usingStatus(.late))
+    func test_statusInput_isGradeBelongsToCurrentSubmission() {
+        var testee = Submission.make(from: .make(grade_matches_current_submission: true, score: 42, workflow_state: .graded))
+        XCTAssertEqual(testee.status.hasGrade, true)
 
-        let missing = Submission.make(from: .make(missing: true))
-        XCTAssertEqual(missing.stateDisplayProperties, .usingStatus(.missing))
+        testee = Submission.make(from: .make(grade_matches_current_submission: false, score: 42, workflow_state: .graded))
+        XCTAssertEqual(testee.status.hasGrade, false)
+    }
 
-        let submitted = Submission.make(from: .make(submitted_at: Date()))
-        submitted.typeRaw = SubmissionType.online_text_entry.rawValue
-        XCTAssertEqual(submitted.stateDisplayProperties, .usingStatus(.submitted))
+    func test_statusInput_isLate() {
+        var testee = Submission.make(from: .make(late: true))
+        XCTAssertEqual(testee.status.isLate, true)
 
-        let notSubmitted = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
-        XCTAssertEqual(notSubmitted.stateDisplayProperties, .usingStatus(.notSubmitted))
+        testee = Submission.make(from: .make(late: false))
+        XCTAssertEqual(testee.status.isLate, false)
+    }
 
-        // No Submission
-        let assignment = Assignment.make()
-        assignment.submissionTypes = [.none]
+    func test_statusInput_isMissing() {
+        var testee = Submission.make(from: .make(missing: true))
+        XCTAssertEqual(testee.status.isMissing, true)
 
-        let noSubmission = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
-        noSubmission.assignment = assignment
+        testee = Submission.make(from: .make(missing: false))
+        XCTAssertEqual(testee.status.isMissing, false)
+    }
 
-        XCTAssertEqual(noSubmission.stateDisplayProperties, .noSubmission)
+    func test_statusInput_isExcused() {
+        var testee = Submission.make(from: .make(excused: true))
+        XCTAssertEqual(testee.status.isExcused, true)
 
-        // On Paper Submission
-        assignment.submissionTypes = [.on_paper]
+        testee = Submission.make(from: .make(excused: false))
+        XCTAssertEqual(testee.status.isExcused, false)
+    }
 
-        let onPaperSubmission = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
-        onPaperSubmission.assignment = assignment
+    func test_statusInput_customGradeStatus() {
+        let customId = "some custom id"
+        let customName = "some custom name"
 
-        XCTAssertEqual(onPaperSubmission.stateDisplayProperties, .onPaper)
+        var testee = Submission.make(from: .make(custom_grade_status_id: customId))
+        testee.customGradeStatusName = customName
+        XCTAssertEqual(testee.status.gradeStatus, .custom(id: customId, name: customName))
 
-        // On Paper/Graded Submission
-        assignment.submissionTypes = [.on_paper]
+        testee = Submission.make(from: .make(custom_grade_status_id: nil))
+        testee.customGradeStatusName = customName
+        XCTAssertEqual(testee.status.isCustom, false)
 
-        let onPaperGradedSubmission = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
-        onPaperGradedSubmission.score = 7
-        onPaperGradedSubmission.workflowState = .graded
-        onPaperGradedSubmission.assignment = assignment
+        testee = Submission.make(from: .make(custom_grade_status_id: customId))
+        testee.customGradeStatusName = nil
+        XCTAssertEqual(testee.status.isCustom, false)
+    }
 
-        XCTAssertEqual(onPaperGradedSubmission.stateDisplayProperties, .graded)
+    func test_statusInput_submissionType() {
+        var testee = Submission.make(from: .make(submission_type: .online_upload))
+        XCTAssertEqual(testee.status.nonSubmittableType, nil)
+
+        testee = Submission.make(from: .make(submission_type: .on_paper))
+        XCTAssertEqual(testee.status.nonSubmittableType, .onPaper)
+
+        testee = Submission.make(from: .make(submission_type: SubmissionType.none))
+        XCTAssertEqual(testee.status.nonSubmittableType, .noSubmission)
+
+        testee = Submission.make(from: .make(submission_type: .not_graded))
+        XCTAssertEqual(testee.status.nonSubmittableType, .notGradable)
+    }
+
+    func test_status_submissionTypeFallback() {
+        let assignment = Assignment.make(from: .make(submission_types: [.online_upload, .online_text_entry]))
+        var testee = Submission.make(from: .make(submission_type: nil))
+        testee.assignment = assignment
+        XCTAssertEqual(testee.status.nonSubmittableType, nil)
+
+        let assignmentOnPaper = Assignment.make(from: .make(submission_types: [.on_paper]))
+        testee = Submission.make(from: .make(submission_type: nil))
+        testee.assignment = assignmentOnPaper
+        XCTAssertEqual(testee.status.nonSubmittableType, .onPaper)
     }
 
     // MARK: - Checkpoints

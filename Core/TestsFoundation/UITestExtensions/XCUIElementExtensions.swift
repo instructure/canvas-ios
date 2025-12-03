@@ -272,6 +272,15 @@ public extension XCUIElement {
         }
     }
 
+    func scrollDown(x: CGFloat = 0.5, y: CGFloat = 0.7) {
+        XCTContext.runActivity(named: "Scroll Down on \(label)") { _ in
+            let gestureStart = coordinate(withNormalizedOffset: CGVector(dx: x, dy: y))
+            let dy = gestureStart.screenPoint.y - app.frame.height
+            let gestureEnd = gestureStart.withOffset(CGVector(dx: 0, dy: dy))
+            gestureStart.press(forDuration: 0.05, thenDragTo: gestureEnd)
+        }
+    }
+
     func tapAt(_ point: CGPoint) {
         waitUntil(.hittable)
         coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: point.x, dy: point.y)).tap()

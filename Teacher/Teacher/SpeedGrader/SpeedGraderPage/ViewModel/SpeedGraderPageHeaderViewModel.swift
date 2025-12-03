@@ -21,7 +21,7 @@ import SwiftUI
 import Combine
 
 class SpeedGraderPageHeaderViewModel: ObservableObject {
-    @Published private(set) var submissionStatus: SubmissionStatusOld
+    @Published private(set) var submissionStatus: SubmissionStatusLabel.Model
     let userNameModel: UserNameModel
     let routeToSubmitter: String?
 
@@ -34,7 +34,7 @@ class SpeedGraderPageHeaderViewModel: ObservableObject {
         userNameModel = .init(submission: submission, assignment: assignment)
         let isGroupSubmission = !assignment.gradedIndividually && (submission.groupID != nil || submission.fetchedGroup != nil)
         routeToSubmitter = isGroupSubmission ? nil : "/courses/\(assignment.courseID)/users/\(submission.userID)"
-        submissionStatus = submission.statusIncludingGradedState
+        submissionStatus = submission.status.labelModel
         observeSubmissionStatusInDatabase(submission)
     }
 
@@ -48,7 +48,7 @@ class SpeedGraderPageHeaderViewModel: ObservableObject {
             .compactMap { $0.first }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] updatedSubmission in
-                self?.submissionStatus = updatedSubmission.statusIncludingGradedState
+                self?.submissionStatus = updatedSubmission.status.labelModel
             }
             .store(in: &subscriptions)
     }

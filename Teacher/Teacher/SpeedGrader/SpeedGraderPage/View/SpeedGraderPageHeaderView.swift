@@ -97,13 +97,7 @@ struct SpeedGraderPageHeaderView: View {
     }
 
     private var status: some View {
-        HStack(spacing: 2) {
-            Image(uiImage: viewModel.submissionStatus.icon)
-                .scaledIcon(size: 16)
-            Text(viewModel.submissionStatus.text)
-                .font(.regular14)
-        }
-        .foregroundStyle(Color(viewModel.submissionStatus.color))
+        SubmissionStatusLabel(model: viewModel.submissionStatus)
     }
 
     private var dueText: some View {

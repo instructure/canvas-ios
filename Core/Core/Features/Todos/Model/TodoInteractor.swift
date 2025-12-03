@@ -19,140 +19,170 @@
 import Foundation
 import Combine
 
-protocol TodoInteractor {
+public protocol TodoInteractor {
+    /// The current list of todo groups, grouped by day and filtered according to user preferences.
+    /// Updated when `refresh()` is called.
     var todoGroups: CurrentValueSubject<[TodoGroupViewModel], Never> { get }
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
-    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error>
+
+    /// Fetches todos from the API or cache with separate cache control for plannables and courses.
+    ///
+    /// This method fetches plannables and courses, applies user's filter preferences,
+    /// groups the results by day, and updates the badge count.
+    ///
+    /// - Parameters:
+    ///   - ignorePlannablesCache: If `true`, forces a fetch of plannables from the API.
+    ///   - ignoreCoursesCache: If `true`, forces a fetch of courses from the API.
+    /// - Returns: A publisher that completes when the refresh operation finishes.
+    func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error>
+
+    /// Checks if the cache has expired for todo data.
+    ///
+    /// Returns `true` if the cache has expired and the next `refresh()` call will fetch from the API.
+    /// Returns `false` if cached data is still valid.
+    ///
+    /// - Returns: A publisher that emits whether the cache has expired.
+    func isCacheExpired() -> AnyPublisher<Bool, Never>
+
+    /// Marks a todo item as done or not done.
+    ///
+    /// - Parameters:
+    ///   - item: The todo item to update.
+    ///   - done: `true` to mark as done, `false` to mark as not done.
+    /// - Returns: A publisher that emits the override ID and completes when the operation finishes.
+    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<String, Error>
 }
 
-final class TodoInteractorLive: TodoInteractor {
-    var todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([])
+public final class TodoInteractorLive: TodoInteractor {
+    public var todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([])
 
     private let env: AppEnvironment
+    private let sessionDefaults: SessionDefaults
+    private let coursesStore: ReactiveStore<GetCourses>
+    private let alwaysExcludeCompleted: Bool
     private var subscriptions = Set<AnyCancellable>()
 
-    init(env: AppEnvironment) {
+    public init(alwaysExcludeCompleted: Bool, sessionDefaults: SessionDefaults, env: AppEnvironment) {
+        self.sessionDefaults = sessionDefaults
+        self.alwaysExcludeCompleted = alwaysExcludeCompleted
         self.env = env
+        self.coursesStore = ReactiveStore(useCase: GetCourses(), environment: env)
     }
 
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        let startDate = Clock.now.addDays(-28)
-        let endDate = Clock.now.addDays(28)
-        let currentUserID = env.currentSession?.userID
+    // MARK: - Public Methods
 
-        return ReactiveStore(useCase: GetCourses(), environment: env)
-            .getEntities(ignoreCache: ignoreCache)
-            .map { courses in
-                var contextCodes: [String] = courses.filter(\.isPublished).map(\.canvasContextID)
-                if let userContextCode = Context(.user, id: currentUserID)?.canvasContextID {
-                    contextCodes.append(userContextCode)
-                }
-                return (contextCodes, courses)
-            }
-            .flatMap { [env] (courseContextCodes, courses: [Course]) in
-                ReactiveStore(
-                    useCase: GetPlannables(startDate: startDate, endDate: endDate, contextCodes: courseContextCodes),
-                    environment: env
-                )
-                .getEntities(ignoreCache: ignoreCache, loadAllPages: true)
-                .map { plannables in
-                    let coursesByCanvasContextIds = Dictionary(uniqueKeysWithValues: courses.map { ($0.canvasContextID, $0) })
-                    return plannables
-                        .filter { !$0.isMarkedComplete && !$0.isSubmitted }
-                        .compactMap { plannable in
-                            let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
-                            return TodoItemViewModel(plannable, course: course)
-                        }
-                }
-            }
-            .map { [weak todoGroups] (todos: [TodoItemViewModel]) in
-                TabBarBadgeCounts.todoListCount = UInt(todos.count)
+    public func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error> {
+        let plannableStore = makePlannablesStore()
 
-                // Group todos by day
-                let groupedTodos = Self.groupTodosByDay(todos)
-                todoGroups?.value = groupedTodos
-                return ()
-            }
-            .eraseToAnyPublisher()
+        return Publishers.Zip(
+            plannableStore.getEntities(ignoreCache: ignorePlannablesCache, loadAllPages: true),
+            coursesStore.getEntities(ignoreCache: ignoreCoursesCache)
+        )
+        .handleEvents(receiveOutput: { [weak self] plannables, courses in
+            self?.filterAndGroupTodos(plannables: plannables, courses: courses)
+            self?.logFilterAnalytics()
+        })
+        .mapToVoid()
+        .eraseToAnyPublisher()
     }
 
-    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
+    public func isCacheExpired() -> AnyPublisher<Bool, Never> {
+        let plannablesUseCase = GetPlannables.makeTodoFetchUseCase()
+
+        return Publishers.Zip(
+            plannablesUseCase.hasCacheExpired(environment: env),
+            coursesStore.useCase.hasCacheExpired(environment: env)
+        )
+        .map { plannablesExpired, coursesExpired in
+            plannablesExpired || coursesExpired
+        }
+        .eraseToAnyPublisher()
+    }
+
+    public func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<String, Error> {
         let useCase = MarkPlannableItemDone(
             plannableId: item.plannableId,
             plannableType: item.type.rawValue,
             overrideId: item.overrideId,
+            useCaseId: .todo,
             done: done
         )
 
-        return useCase.fetchWithFuture(environment: env)
-            .map { [weak self] _ in
-                self?.updateOverrideId(for: item)
-                let eventName = done ? "todo_item_marked_done" : "todo_item_marked_undone"
-                Analytics.shared.logEvent(eventName)
-                return ()
+        return useCase.fetchWithAPIResponse(environment: env)
+            .handleEvents(receiveOutput: { _, _ in
+                Analytics.shared.logTodoEvent(done ? .itemMarkedDone : .itemMarkedUndone)
+            })
+            .tryMap { response, _ in
+                guard let response else {
+                    throw NSError.instructureError("No response from API")
+                }
+                return response.id.value
             }
             .eraseToAnyPublisher()
     }
 
-    private func updateOverrideId(for item: TodoItemViewModel) {
-        let scope = Scope.plannable(id: item.plannableId)
-        if let plannable: Plannable = env.database.viewContext.fetch(scope: scope).first,
-           let overrideId = plannable.plannerOverrideId {
-            item.overrideId = overrideId
-        }
+    // MARK: - Private Methods
+
+    private func makePlannablesStore() -> ReactiveStore<GetPlannables> {
+        ReactiveStore(useCase: GetPlannables.makeTodoFetchUseCase(), environment: env)
     }
 
-    private static func groupTodosByDay(_ todos: [TodoItemViewModel]) -> [TodoGroupViewModel] {
-        // Group todos by day using existing Canvas extension
-        let groupedDict = Dictionary(grouping: todos) { todo in
+    private func filterAndGroupTodos(plannables: [Plannable], courses: [Course]) {
+        let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
+        let coursesByCanvasContextIds = Dictionary(uniqueKeysWithValues: courses.map { ($0.canvasContextID, $0) })
+
+        let shouldKeepCompletedItemsVisible = filterOptions.visibilityOptions.contains(.showCompleted)
+
+        let todos = plannables
+            .filter { plannable in
+                let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
+                return filterOptions.shouldInclude(plannable: plannable, course: course)
+            }
+            .compactMap { plannable -> TodoItemViewModel? in
+                let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
+                guard let item = TodoItemViewModel(plannable, course: course) else { return nil }
+                item.shouldKeepCompletedItemsVisible = shouldKeepCompletedItemsVisible
+                return item
+            }
+
+        let notDoneTodos = todos.filter { $0.markAsDoneState == .notDone }
+        TabBarBadgeCounts.todoListCount = UInt(notDoneTodos.count)
+
+        let groupedTodos = (alwaysExcludeCompleted ? notDoneTodos : todos).groupByDay()
+        todoGroups.value = groupedTodos
+    }
+
+    private func logFilterAnalytics() {
+        let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
+        Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
+    }
+}
+
+extension [TodoItemViewModel] {
+
+    public func groupByDay() -> [TodoGroupViewModel] {
+        let todosPerDay = Dictionary(grouping: self) { todo in
             todo.date.startOfDay()
         }
 
-        // Convert to TodoGroup array and sort by date
-        return groupedDict.map { (date, items) in
-            TodoGroupViewModel(date: date, items: items.sorted())
-        }
-        .sorted()
+        return todosPerDay
+            .map { (date, items) in
+                TodoGroupViewModel(date: date, items: items.sorted())
+            }
+            .sorted()
     }
 }
 
-#if DEBUG
+private extension GetPlannables {
 
-final class TodoInteractorPreview: TodoInteractor {
-    let todoGroups: CurrentValueSubject<[TodoGroupViewModel], Never>
-
-    init(todoGroups: [TodoGroupViewModel]? = nil) {
-        if let todoGroups {
-            self.todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>(todoGroups)
-            return
-        }
-
-        let today = Calendar.current.startOfDay(for: Date())
-        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today) ?? today
-
-        let todayGroup = TodoGroupViewModel(
-            date: today,
-            items: [
-                .makeShortText(plannableId: "3")
-            ]
+    static func makeTodoFetchUseCase() -> GetPlannables {
+        let startDate = TodoDateRangeStart.fourWeeksAgo.startDate()
+        let endDate = TodoDateRangeEnd.inFourWeeks.endDate()
+        return GetPlannables(
+            startDate: startDate,
+            endDate: endDate,
+            contextCodes: nil,
+            allowEmptyContextCodesFetch: true,
+            useCaseID: .todo
         )
-        let tomorrowGroup = TodoGroupViewModel(
-            date: tomorrow,
-            items: [
-                .makeShortText(plannableId: "1"),
-                .makeLongText(plannableId: "2")
-            ]
-        )
-        self.todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([todayGroup, tomorrowGroup])
-    }
-
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        Publishers.typedJust(())
-    }
-
-    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
-        Publishers.typedJust(())
     }
 }
-
-#endif

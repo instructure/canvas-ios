@@ -223,7 +223,23 @@ public struct SessionDefaults: Equatable {
         }
     }
 
-    // MARK: Offline Settings -
+    // MARK: - Todo List Settings
+
+    public var todoFilterOptions: TodoFilterOptions? {
+        get {
+            guard let data = self["todoFilterOptions"] as? Data else {
+                return nil
+            }
+            return try? JSONDecoder().decode(TodoFilterOptions.self, from: data)
+        }
+        set {
+            if let newValue, let data = try? JSONEncoder().encode(newValue) {
+                self["todoFilterOptions"] = data
+            } else {
+                self["todoFilterOptions"] = nil
+            }
+        }
+    }
 
     public mutating func reset() {
         sessionDefaults = nil

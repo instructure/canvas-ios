@@ -42,6 +42,7 @@ open class CoreWebView: WKWebView {
     }()
 
     @IBInspectable public var autoresizesHeight: Bool = false
+
     public weak var linkDelegate: CoreWebViewLinkDelegate?
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
     public weak var errorDelegate: CoreWebViewErrorDelegate?
@@ -68,6 +69,7 @@ open class CoreWebView: WKWebView {
 
     private var env: AppEnvironment = .shared
     private var subscriptions = Set<AnyCancellable>()
+    private(set) lazy var studioFeaturesInteractor = CoreWebViewStudioFeaturesInteractor(webView: self)
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -97,9 +99,21 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
+    /// Optional. Use this to enable insertion of `Open in Detail View` links below
+    /// each Studio video `iframe` when `rce_studio_embed_improvements` feature
+    /// flag is enabled for the passed context.
+    public func setupStudioFeatures(context: Context?, env: AppEnvironment) {
+        studioFeaturesInteractor.resetFeatureFlagStore(context: context, env: env)
+    }
+
     deinit {
         configuration.userContentController.removeAllScriptMessageHandlers()
         configuration.userContentController.removeAllUserScripts()
+    }
+
+    open override func reload() -> WKNavigation? {
+        studioFeaturesInteractor.refresh()
+        return super.reload()
     }
 
     /**
@@ -109,6 +123,19 @@ open class CoreWebView: WKWebView {
     public func addFeature(_ feature: CoreWebViewFeature) {
         features.append(feature)
         feature.apply(on: self)
+    }
+
+    @discardableResult
+    public func removeFeatures<T: CoreWebViewFeature>(ofType: T.Type) -> Bool {
+        let filteredList = features.enumerated().filter({ $0.element is T })
+        let indexSet = IndexSet(filteredList.map({ $0.offset }))
+        if indexSet.isNotEmpty {
+            filteredList.forEach({ $0.element.remove(from: self) })
+            features.remove(atOffsets: indexSet)
+            _ = super.reload()
+            return true
+        }
+        return false
     }
 
     public func scrollIntoView(fragment: String, then: ((Bool) -> Void)? = nil) {
@@ -463,6 +490,7 @@ extension CoreWebView: WKNavigationDelegate {
         decidePolicyFor action: WKNavigationAction,
         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
     ) {
+
         if action.navigationType == .linkActivated && !isLinkNavigationEnabled {
             decisionHandler(.cancel)
             return
@@ -528,6 +556,18 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
 
+        // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
+        if let immersiveURL = studioFeaturesInteractor.urlForStudioImmersiveView(of: action),
+           let controller = linkDelegate?.routeLinksFrom {
+            controller.pauseWebViewPlayback()
+            env.router.show(
+                StudioViewController(url: immersiveURL),
+                from: controller,
+                options: .modal(.overFullScreen)
+            )
+            return decisionHandler(.cancel)
+        }
+
         // Forward decision to delegate
         if action.navigationType == .linkActivated, let url = action.request.url,
            linkDelegate?.handleLink(url) == true {
@@ -549,6 +589,7 @@ extension CoreWebView: WKNavigationDelegate {
         }
 
         features.forEach { $0.webView(webView, didFinish: navigation) }
+        studioFeaturesInteractor.scanVideoFrames()
     }
 
     public func webView(

@@ -29,6 +29,7 @@ class TodoGroupViewModelTests: CoreTestCase {
         let group = TodoGroupViewModel(date: date, items: items)
 
         XCTAssertContains(group.accessibilityLabel, "Saturday")
+        XCTAssertContains(group.accessibilityLabel, "August")
         XCTAssertContains(group.accessibilityLabel, "7")
         XCTAssertContains(group.accessibilityLabel, "2 items")
     }
@@ -42,6 +43,7 @@ class TodoGroupViewModelTests: CoreTestCase {
         XCTAssertEqual(group.id, date.isoString())
         XCTAssertEqual(group.date, date)
         XCTAssertEqual(group.weekdayAbbreviation, date.weekdayNameAbbreviated)
+        XCTAssertEqual(group.monthAbbreviation, date.monthNameAbbreviated)
         XCTAssertEqual(group.dayNumber, date.dayString)
         XCTAssertEqual(group.displayDate, date.dayInMonth)
     }

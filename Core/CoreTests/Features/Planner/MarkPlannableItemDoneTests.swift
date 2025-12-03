@@ -28,7 +28,7 @@ class MarkPlannableItemDoneTests: CoreTestCase {
             in: databaseClient
         )
 
-        XCTAssertFalse(plannable.isMarkedComplete)
+        XCTAssertNil(plannable.isMarkedComplete)
         XCTAssertNil(plannable.plannerOverrideId)
 
         let useCase = MarkPlannableItemDone(
@@ -62,7 +62,7 @@ class MarkPlannableItemDoneTests: CoreTestCase {
         wait(for: [expectation], timeout: 1)
         databaseClient.refresh()
 
-        XCTAssertTrue(plannable.isMarkedComplete)
+        XCTAssertEqual(plannable.isMarkedComplete, true)
         XCTAssertEqual(plannable.plannerOverrideId, "override-789")
     }
 
@@ -76,7 +76,7 @@ class MarkPlannableItemDoneTests: CoreTestCase {
             in: databaseClient
         )
 
-        XCTAssertTrue(plannable.isMarkedComplete)
+        XCTAssertEqual(plannable.isMarkedComplete, true)
         XCTAssertEqual(plannable.plannerOverrideId, "override-123")
 
         let useCase = MarkPlannableItemDone(
@@ -109,7 +109,7 @@ class MarkPlannableItemDoneTests: CoreTestCase {
         wait(for: [expectation], timeout: 1)
         databaseClient.refresh()
 
-        XCTAssertFalse(plannable.isMarkedComplete)
+        XCTAssertEqual(plannable.isMarkedComplete, false)
         XCTAssertEqual(plannable.plannerOverrideId, "override-123")
     }
 
@@ -120,7 +120,7 @@ class MarkPlannableItemDoneTests: CoreTestCase {
             in: databaseClient
         )
 
-        XCTAssertFalse(plannable.isMarkedComplete)
+        XCTAssertNil(plannable.isMarkedComplete)
 
         let useCase = MarkPlannableItemDone(
             plannableId: "123",
@@ -148,7 +148,7 @@ class MarkPlannableItemDoneTests: CoreTestCase {
         wait(for: [expectation], timeout: 1)
         databaseClient.refresh()
 
-        XCTAssertFalse(plannable.isMarkedComplete)
+        XCTAssertNil(plannable.isMarkedComplete)
         XCTAssertNil(plannable.plannerOverrideId)
     }
 

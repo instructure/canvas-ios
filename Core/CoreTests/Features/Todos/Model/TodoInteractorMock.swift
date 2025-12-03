@@ -23,19 +23,25 @@ final class TodoInteractorMock: TodoInteractor {
     var todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([])
     var refreshCalled = false
     var refreshCallCount = 0
-    var lastIgnoreCache = false
+    var lastIgnorePlannablesCache = false
+    var lastIgnoreCoursesCache = false
     var refreshResult: Result<Void, Error> = .success(())
+
+    var isCacheExpiredCalled = false
+    var isCacheExpiredCallCount = 0
+    var isCacheExpiredResult = false
 
     var markItemAsDoneCalled = false
     var markItemAsDoneCallCount = 0
     var lastMarkAsDoneItem: TodoItemViewModel?
     var lastMarkAsDoneDone: Bool?
-    var markItemAsDoneResult: Result<Void, Error> = .success(())
+    var markItemAsDoneResult: Result<String, Error> = .success("mock-override-id")
 
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+    func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error> {
         refreshCalled = true
         refreshCallCount += 1
-        lastIgnoreCache = ignoreCache
+        lastIgnorePlannablesCache = ignorePlannablesCache
+        lastIgnoreCoursesCache = ignoreCoursesCache
 
         switch refreshResult {
         case .success:
@@ -48,15 +54,21 @@ final class TodoInteractorMock: TodoInteractor {
         }
     }
 
-    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<Void, Error> {
+    func isCacheExpired() -> AnyPublisher<Bool, Never> {
+        isCacheExpiredCalled = true
+        isCacheExpiredCallCount += 1
+        return Just(isCacheExpiredResult).eraseToAnyPublisher()
+    }
+
+    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<String, Error> {
         markItemAsDoneCalled = true
         markItemAsDoneCallCount += 1
         lastMarkAsDoneItem = item
         lastMarkAsDoneDone = done
 
         switch markItemAsDoneResult {
-        case .success:
-            return Just(())
+        case .success(let overrideId):
+            return Just(overrideId)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         case .failure(let error):

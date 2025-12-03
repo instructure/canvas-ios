@@ -18,34 +18,36 @@
 
 import Foundation
 
-struct TodoGroupViewModel: Identifiable, Equatable, Comparable {
-    let id: String
-    let date: Date
-    let items: [TodoItemViewModel]
-    let weekdayAbbreviation: String
-    let dayNumber: String
-    let isToday: Bool
-    let displayDate: String
-    let accessibilityLabel: String
+public struct TodoGroupViewModel: Identifiable, Equatable, Comparable {
+    public let id: String
+    public let date: Date
+    public let items: [TodoItemViewModel]
+    public let weekdayAbbreviation: String
+    public let monthAbbreviation: String
+    public let dayNumber: String
+    public let isToday: Bool
+    public let displayDate: String
+    public let accessibilityLabel: String
 
-    init(date: Date, items: [TodoItemViewModel]) {
+    public init(date: Date, items: [TodoItemViewModel]) {
         self.id = date.isoString()
         self.date = date
         self.items = items
         self.weekdayAbbreviation = date.weekdayNameAbbreviated
+        self.monthAbbreviation = date.monthNameAbbreviated
         self.dayNumber = date.dayString
         self.isToday = Cal.currentCalendar.isDateInToday(date)
         self.displayDate = date.dayInMonth
         self.accessibilityLabel = [
             date.weekdayName,
-            date.dayString,
+            date.dayInMonth,
             String.format(numberOfItems: items.count) as String
         ].accessibilityJoined()
     }
 
     // MARK: - Comparable
 
-    static func < (lhs: TodoGroupViewModel, rhs: TodoGroupViewModel) -> Bool {
+    public static func < (lhs: TodoGroupViewModel, rhs: TodoGroupViewModel) -> Bool {
         lhs.date < rhs.date
     }
 }

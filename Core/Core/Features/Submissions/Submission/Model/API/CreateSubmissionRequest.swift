@@ -19,7 +19,7 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/submissions.html#method.submissions.create
-public struct CreateSubmissionRequest: APIRequestable {
+public struct CreateSubmissionRequest: APIRequestable, Equatable {
     public typealias Response = APISubmission
     public struct Body: Codable, Equatable {
         public struct Submission: Codable, Equatable {
