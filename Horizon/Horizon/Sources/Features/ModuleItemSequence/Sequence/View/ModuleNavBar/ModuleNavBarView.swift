@@ -23,10 +23,16 @@ import HorizonUI
 struct ModuleNavBarView: View {
     struct ButtonAttribute {
         let isVisible: Bool
+        let accessibilityLabel: String?
         let action: () -> Void
 
-        init(isVisible: Bool, action: @escaping () -> Void) {
+        init(
+            isVisible: Bool,
+            accessibilityLabel: String? = nil,
+            action: @escaping () -> Void
+        ) {
             self.isVisible = isVisible
+            self.accessibilityLabel = accessibilityLabel
             self.action = action
         }
 
@@ -77,6 +83,9 @@ struct ModuleNavBarView: View {
         }
         .huiElevation(level: .level2)
         .hidden(!previousButton.isVisible)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(previousButton.accessibilityLabel)
+        .accessibilityAddTraits(.isButton)
     }
 
     private var nextButtonView: some View {
@@ -88,6 +97,9 @@ struct ModuleNavBarView: View {
         }
         .huiElevation(level: .level2)
         .hidden(!nextButton.isVisible)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(nextButton.accessibilityLabel)
+        .accessibilityAddTraits(.isButton)
     }
 
     private func buttonView(_ button: ModuleNavBarUtilityButtons) -> some View {

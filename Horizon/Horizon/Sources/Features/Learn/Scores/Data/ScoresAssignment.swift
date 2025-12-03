@@ -107,6 +107,46 @@ struct ScoresAssignment: Equatable, Identifiable {
         }
         return "\(scoreFormat)/\(pointsPossible.trimmedString)"
     }
+
+    var accessibilityLabel: String {
+        var components: [String] = []
+
+        // Name
+        components.append(name)
+
+        // Due date
+        if let dueAtString = dueAtString {
+            components.append(
+                String(format: String(localized: "Due date: %@"), arguments: [dueAtString])
+            )
+        }
+
+        // Status
+        components.append(String(format: String(localized: "Status: %@"), arguments: [status.text]))
+
+        components.append(String(format: String(localized: "Result: %@"), arguments: ["\(pointsResult)"]))
+
+        // Comments
+        if commentsCount > 0 {
+            let readStatus = isRead
+                ? String(localized: "read")
+                : String(localized: "unread")
+
+            components.append(
+                String(
+                    format: String(localized: "%d comments, %@"),
+                    arguments: [commentsCount, readStatus]
+                )
+            )
+        } else {
+            components.append(String(localized: "No comments"))
+        }
+
+        // Hint
+        components.append(String(localized: "Tap to open assignment details."))
+
+        return components.joined(separator: ". ")
+    }
 }
 
 extension ScoresAssignment {

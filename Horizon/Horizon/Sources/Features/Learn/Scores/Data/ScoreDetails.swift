@@ -60,4 +60,49 @@ struct ScoreDetails {
                 }
             }
     }
+
+    func getAccessibilityDescription(isExpanded: Bool) -> String {
+        var components: [String] = []
+
+        // Total Score
+        components.append(String.localizedStringWithFormat(
+            String(localized: "Total: %@"),
+            score
+        ))
+
+        if assignmentGroups.isAssignmentGroupWeightsVisible {
+            // Header
+            components.append(String(localized: "Assignment Group Weights"))
+
+            // State
+            let state = isExpanded ? String(localized: "Expanded") : String(localized: "Collapsed")
+            components.append(state)
+
+            // Hint for action
+            let hint = isExpanded ? String(localized: "Tap to collapse") : String(localized: "Tap to expand")
+            components.append(hint)
+            if isExpanded {
+                // Group details
+                assignmentGroups.forEach { group in
+                    if group.groupWeight != nil {
+                        var groupComponents: [String] = [group.name]
+                        if let weight = group.groupWeightString {
+                            groupComponents.append(String.localizedStringWithFormat(
+                                String(localized: "Weight: %@%%"),
+                                weight
+                            ))
+                        }
+                        components.append(groupComponents.joined(separator: ", "))
+                    }
+                }
+
+                // Total Weight
+                components.append(String.localizedStringWithFormat(
+                    String(localized: "Total Weight: %@%%"),
+                    assignmentGroups.groupWeightSumString
+                ))
+            }
+        }
+        return components.joined(separator: ". ")
+    }
 }
