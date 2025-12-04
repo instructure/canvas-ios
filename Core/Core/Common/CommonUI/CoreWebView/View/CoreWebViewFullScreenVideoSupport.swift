@@ -102,22 +102,10 @@ extension CoreWebView {
             guard let superview = webView.superview else { return }
 
             // Stop the video from keep playing when rotating the screen
-            pauseVideo(in: webView)
+            webView.pauseAllMediaPlayback()
 
             webView.pin(inside: superview)
             webView.superview?.layoutIfNeeded()
-        }
-
-        private func pauseVideo(in webView: WKWebView) {
-            let pauseScript = """
-            (function() {
-                var videos = document.querySelectorAll('video');
-                videos.forEach(function(video) {
-                    video.pause();
-                });
-            })();
-            """
-            webView.evaluateJavaScript(pauseScript)
         }
 
         private func restoreBackground(_ webView: WKWebView) {
