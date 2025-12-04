@@ -21,6 +21,7 @@ import SwiftUI
 
 struct ProgramSwitcherHeaderView: View {
     let programName: String
+    let focusedID: AccessibilityFocusState<String?>.Binding
     let shouldHighlightProgram: Bool
     let onBack: () -> Void
     let onSelectOverview: () -> Void
@@ -31,13 +32,16 @@ struct ProgramSwitcherHeaderView: View {
                 HStack(spacing: .huiSpaces.space8) {
                     Image.huiIcons.arrowBack
                         .foregroundStyle(Color.huiColors.icon.default)
+                        .accessibilityHidden(true)
                     Text("All", bundle: .horizon)
                         .foregroundStyle(Color.huiColors.text.body)
                         .huiTypography(.buttonTextLarge)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .accessibilityLabel(String(localized: "Double tap to back to all programs", bundle: .horizon))
                 }
             }
             .padding(.huiSpaces.space16)
+            .accessibilityFocused(focusedID, equals: "all")
 
             Text(programName)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -46,8 +50,10 @@ struct ProgramSwitcherHeaderView: View {
                 .multilineTextAlignment(.leading)
                 .padding(.horizontal, .huiSpaces.space16)
                 .frame(minHeight: 42)
+                .accessibilityLabel(String(format: String(localized: "Selected program is %@. "), programName))
 
             Divider()
+                .accessibilityHidden(true)
 
             Button(action: onSelectOverview) {
                 Text("Program overview", bundle: .horizon)

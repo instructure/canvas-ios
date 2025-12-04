@@ -39,7 +39,7 @@ public extension HorizonUI.LearningObjectItem {
             }
         }
 
-        var name: String {
+       public var name: String {
             switch self {
             case .page: return String(localized: "Page")
             case .assignment: return String(localized: "Assignment")

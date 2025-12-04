@@ -23,17 +23,20 @@ import HorizonUI
 struct ModuleItemListView: View {
     // MARK: - Dependencies
 
-    @State var selectedModuleItem: HModuleItem?
-    let items: [HModuleItem]
-    let onSelectItem: (HModuleItem) -> Void
+    @State private var selectedModuleItem: HModuleItem?
+    private let items: [HModuleItem]
+    private let focusedID: AccessibilityFocusState<String?>.Binding
+    private let onSelectItem: (HModuleItem) -> Void
 
     init(
         selectedModuleItem: HModuleItem? = nil,
         items: [HModuleItem],
+        focusedID: AccessibilityFocusState<String?>.Binding,
         onSelectItem: @escaping (HModuleItem) -> Void
     ) {
         self.selectedModuleItem = selectedModuleItem
         self.items = items
+        self.focusedID = focusedID
         self.onSelectItem = onSelectItem
     }
 
@@ -45,6 +48,8 @@ struct ModuleItemListView: View {
                         subHeaderText(for: item)
                     } else if type.assetType != .discussion {
                         moduleItemButton(item: item, type: type)
+                            .id(item.id)
+                            .accessibilityFocused(focusedID, equals: item.id)
                     }
                 }
             }
@@ -75,6 +80,14 @@ struct ModuleItemListView: View {
                     description: item.statusDescription,
                     isOverdue: item.isOverDue
                 )
+                .accessibilityElement(children: .ignore)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityLabel(
+                    CourseDetailsAccessibility.moduleItem(
+                        item: item,
+                        type: item.isQuizLTI ? .assessment : itemType
+                    )
+                )
             }
         }
         .buttonStyle(.plain)
@@ -87,10 +100,16 @@ struct ModuleItemListView: View {
 }
 
 #Preview {
+    @AccessibilityFocusState var focusedID: String?
+
     let moduleItems: [HModuleItem] =
     [
         .init(id: "10", title: "AI Section", htmlURL: nil, type: .file("")),
         .init(id: "12", title: "AI Section Demo", htmlURL: nil, type: .file(""))
     ]
-    ModuleItemListView(selectedModuleItem: moduleItems.first, items: moduleItems) { _ in }
+    ModuleItemListView(
+        selectedModuleItem: moduleItems.first,
+        items: moduleItems,
+        focusedID: $focusedID
+    ) { _ in }
 }

@@ -59,6 +59,9 @@ struct ScoresAssignmentGroupsView: View {
             isExpanded.toggle()
         }
         .disabled(!details.assignmentGroups.isAssignmentGroupWeightsVisible)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(details.getAccessibilityDescription(isExpanded: isExpanded))
+        .accessibilityAddTraits(details.assignmentGroups.isAssignmentGroupWeightsVisible ? .isButton : [])
     }
 
     private var arrowIcon: some View {

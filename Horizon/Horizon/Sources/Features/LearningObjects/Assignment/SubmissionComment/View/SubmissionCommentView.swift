@@ -60,12 +60,18 @@ struct SubmissionCommentView: View {
                     }
                     .disabled(!viewModel.isPreviousButtonEnabled)
                     .opacity(viewModel.isPreviousButtonEnabled ? 1 : 0.5)
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(String(localized: "Go to previous comments page", bundle: .horizon))
+                    .accessibilityHidden(!viewModel.isPreviousButtonEnabled)
                     Spacer()
                     HorizonUI.IconButton(Image.huiIcons.chevronRight, type: .white) {
                         viewModel.goNext()
                     }
                     .disabled(!viewModel.isNextButtonEnabled)
                     .opacity(viewModel.isNextButtonEnabled ? 1 : 0.5)
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(String(localized: "Go to next comments page", bundle: .horizon))
+                    .accessibilityHidden(!viewModel.isNextButtonEnabled)
                 }
             }
             addCommentView(proxy: geoProxy)
@@ -96,30 +102,14 @@ struct SubmissionCommentView: View {
     @ViewBuilder
     private func commentView(_ comment: SubmissionComment) -> some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space12) {
-            VStack(alignment: .leading, spacing: .huiSpaces.space2) {
-               HStack {
-                    Text(comment.authorName)
-                        .huiTypography(.labelLargeBold)
-                        .foregroundStyle(Color.huiColors.text.title)
-                       Spacer()
-                       HorizonUI.Badge(type: .solidColor, style: .primary)
-                           .hidden(comment.isRead)
-                }
-                if let createdAtString = comment.createdAtString {
-                    Text(createdAtString)
-                        .huiTypography(.p2)
-                        .foregroundStyle(Color.huiColors.text.timestamp)
-                }
-                if let attempt = comment.attemptString {
-                    Text(attempt)
-                        .huiTypography(.p2)
-                        .foregroundStyle(Color.huiColors.text.timestamp)
-                }
+            VStack(alignment: .leading, spacing: .huiSpaces.space12) {
+                commentInfo(comment)
+                Text(comment.comment)
+                    .huiTypography(.p1)
+                    .foregroundStyle(Color.huiColors.text.body)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            Text(comment.comment)
-                .huiTypography(.p1)
-                .foregroundStyle(Color.huiColors.text.body)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(comment.accessibilityLabelText)
             attachmentsViews(comment.attachments)
         }
         .padding(.huiSpaces.space16)
@@ -132,6 +122,30 @@ struct SubmissionCommentView: View {
         .huiCornerRadius(level: .level3)
         .padding(.leading, comment.isCurrentUsersComment ? .huiSpaces.space24 : .zero)
         .padding(.trailing, comment.isCurrentUsersComment ? .zero : .huiSpaces.space24)
+    }
+
+    private func commentInfo(_ comment: SubmissionComment) -> some View {
+        VStack(alignment: .leading, spacing: .huiSpaces.space2) {
+           HStack {
+                Text(comment.authorName)
+                    .huiTypography(.labelLargeBold)
+                    .foregroundStyle(Color.huiColors.text.title)
+                   Spacer()
+                   HorizonUI.Badge(type: .solidColor, style: .primary)
+                       .hidden(comment.isRead)
+            }
+            if let createdAtString = comment.createdAtString {
+                Text(createdAtString)
+                    .huiTypography(.p2)
+                    .foregroundStyle(Color.huiColors.text.timestamp)
+            }
+            if let attempt = comment.attemptString {
+                Text(attempt)
+                    .huiTypography(.p2)
+                    .foregroundStyle(Color.huiColors.text.timestamp)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private func attachmentsViews(_ attachments: [CommentAttachment]) -> some View {
@@ -154,6 +168,11 @@ struct SubmissionCommentView: View {
         ) {
             handleAttachmentTap(attachment)
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(String(format: String(localized: "Attachment file name is %@. Double tap to download."), attachment.displayName ?? ""))
+        .accessibilityAction {
+            handleAttachmentTap(attachment)
+        }
     }
 
     private func handleAttachmentTap(_ attachment: CommentAttachment) {
@@ -171,11 +190,14 @@ struct SubmissionCommentView: View {
             Text("Add comment", bundle: .horizon)
                 .huiTypography(.labelLargeBold)
                 .foregroundStyle(Color.huiColors.text.title)
+                .accessibilityHidden(true)
             TextArea(
                 text: $viewModel.text,
                 proxy: proxy
             )
             .focused($isTextAreaFocused)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(viewModel.text.isEmpty ? String(localized: "Tap to add a comment") : String(format: "Comment text is %@", viewModel.text))
         }
         .padding(.top, .huiSpaces.space24)
         .onTapGesture {
@@ -196,6 +218,9 @@ struct SubmissionCommentView: View {
                         .huiTypography(.h3)
                         .foregroundStyle(Color.huiColors.text.title)
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(String(localized: "Comments", bundle: .horizon))
+                .accessibilityAddTraits(.isHeader)
                 Spacer()
             }
 
@@ -232,6 +257,11 @@ struct SubmissionCommentView: View {
         }
         .padding(.top, .huiSpaces.space16)
         .padding(.bottom, .huiSpaces.space32)
+        .accessibilityLabel(
+            viewModel.text.isEmpty
+            ? String(localized: "Button is disabled because the comment is empty")
+            : String(localized: "Double tap to post comment")
+        )
         .id("PostButton")
     }
 
@@ -253,6 +283,8 @@ struct SubmissionCommentView: View {
         }
         .frame(maxWidth: .infinity)
         .containerRelativeFrame(.vertical)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(String(localized: "Loading comments"))
     }
 }
 

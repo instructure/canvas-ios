@@ -22,6 +22,7 @@ import SwiftUI
 struct ProgramSwitcherListView: View {
     let programs: [ProgramSwitcherModel]
     let selectedProgram: ProgramSwitcherModel?
+    let focusedProgramID: AccessibilityFocusState<String?>.Binding
     let selectedCourse: ProgramSwitcherModel.Course?
     let onSelectProgram: (ProgramSwitcherModel) -> Void
     let onSelectCourse: (ProgramSwitcherModel.Course) -> Void
@@ -69,8 +70,17 @@ struct ProgramSwitcherListView: View {
             Image.huiIcons.arrowForward
                 .foregroundStyle(isSelected ? Color.huiColors.surface.pageSecondary : Color.huiColors.icon.default)
         }
+        .id(program.id)
         .padding(.leading, .huiSpaces.space16)
         .padding(.trailing, .huiSpaces.space24)
         .background(isSelected ? Color.huiColors.surface.inverseSecondary : Color.clear)
+        .accessibilityElement(children: .ignore)
+        .accessibilityFocused(focusedProgramID, equals: program.id)
+        .accessibilityLabel(
+            String(
+                format: String(localized: "%@ double tap to see courses in this program. "),
+                program.name.defaultToEmpty
+            )
+        )
     }
 }

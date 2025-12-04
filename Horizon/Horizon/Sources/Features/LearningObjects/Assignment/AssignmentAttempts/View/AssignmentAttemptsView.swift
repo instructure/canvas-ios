@@ -59,9 +59,11 @@ struct AssignmentAttemptsView: View {
             Image.huiIcons.history
                 .foregroundStyle(Color.huiColors.icon.default)
                 .frame(width: 24, height: 24)
+                .accessibilityHidden(true)
             Text("Attempts", bundle: .horizon)
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
+                .accessibilityAddTraits(.isHeader)
             Spacer()
 
             HorizonUI.IconButton(Image.huiIcons.close, type: .white) {
