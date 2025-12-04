@@ -115,7 +115,7 @@ struct SubmissionComment: Identifiable {
         }
 
         if let attemptString {
-            labelComponents.append(String(format: String(localized: "Attempt %d"), attemptString))
+            labelComponents.append(String(format: String(localized: "Attempt %@"), attemptString))
         }
 
         if !isRead {
