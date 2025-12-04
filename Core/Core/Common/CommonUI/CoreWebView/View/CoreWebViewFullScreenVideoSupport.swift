@@ -89,25 +89,6 @@ extension CoreWebView {
         }
 
         private func restoreOriginalConstraints(_ webView: WKWebView) {
-            /// Sometimes the webview exits full screen before being placed back into its original superview.
-            /// In this case the theme switcher and the webview will have different super views and
-            /// if we want to activate a constraint affecting both views it will crash the app.
-            let isWebViewAndThemeSwitcherInDifferentViews = originalConstraints.contains { constraint in
-                guard let button = constraint.firstItem as? CoreWebViewThemeSwitcherButton else {
-                    return false
-                }
-
-                if button.superview != webView.superview {
-                    return true
-                }
-
-                return false
-            }
-
-            if isWebViewAndThemeSwitcherInDifferentViews {
-                return
-            }
-
             webView.translatesAutoresizingMaskIntoConstraints = false
 
             /// This is a walk-around for an issue that occurs on iOS 26, where
@@ -118,8 +99,25 @@ extension CoreWebView {
                 originalSuperview.addSubview(webView)
             }
 
-            originalConstraints.forEach { $0.isActive = true }
+            guard let superview = webView.superview else { return }
+
+            // Stop the video from keep playing when rotating the screen
+            pauseVideo(in: webView)
+
+            webView.pin(inside: superview)
             webView.superview?.layoutIfNeeded()
+        }
+
+        private func pauseVideo(in webView: WKWebView) {
+            let pauseScript = """
+            (function() {
+                var videos = document.querySelectorAll('video');
+                videos.forEach(function(video) {
+                    video.pause();
+                });
+            })();
+            """
+            webView.evaluateJavaScript(pauseScript)
         }
 
         private func restoreBackground(_ webView: WKWebView) {
