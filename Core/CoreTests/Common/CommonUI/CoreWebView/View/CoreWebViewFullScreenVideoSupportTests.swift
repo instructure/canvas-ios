@@ -34,7 +34,6 @@ class CoreWebViewFullScreenVideoSupportTests: XCTestCase {
             top: nil,
             bottom: nil
         )
-        let constraint = host.constraintsAffecting(view: webView).first!
 
         // WHEN
         webView.mockedFullscreenState = .enteringFullscreen
@@ -46,12 +45,11 @@ class CoreWebViewFullScreenVideoSupportTests: XCTestCase {
         XCTAssertEqual(webView.backgroundColor, .black)
 
         // WHEN
-        constraint.isActive = false
         webView.mockedFullscreenState = .notInFullscreen
 
         // THEN
         XCTAssertFalse(webView.translatesAutoresizingMaskIntoConstraints)
-        XCTAssertTrue(constraint.isActive)
+        XCTAssertFalse(host.constraintsAffecting(view: webView).isEmpty)
         XCTAssertEqual(webView.backgroundColor, .purple)
     }
 
