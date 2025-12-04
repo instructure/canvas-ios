@@ -125,7 +125,7 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="studentIDsRaw" optional="YES" attributeType="String"/>
-        <attribute name="title" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="overrides" inverseEntity="Assignment"/>
         <relationship name="assignmentCheckpoint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDAssignmentCheckpoint" inverseName="overrides" inverseEntity="CDAssignmentCheckpoint"/>
