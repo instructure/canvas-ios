@@ -71,15 +71,19 @@ struct IntroBlock: View {
                 backButton
                 Spacer()
                 moduleTitleView
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(accessibilityLabelText)
                 Spacer()
                 menuButton
             }
             .padding(.top, .huiSpaces.space16)
             moduleInfoView
+                .accessibilityHidden(true)
             if let attemptsAllowed = attemptsAllowed {
                 Text(attemptsAllowed)
                     .huiTypography(.p2)
                     .foregroundStyle(foregroundColor)
+                    .accessibilityHidden(true)
             }
             if isOverdue {
                 HorizonUI.StatusChip(
@@ -87,6 +91,7 @@ struct IntroBlock: View {
                     style: .white,
                     isFilled: false
                 )
+                .accessibilityHidden(true)
             }
         }
         .padding(.horizontal, .huiSpaces.space24)
@@ -95,35 +100,34 @@ struct IntroBlock: View {
             Rectangle()
                 .fill(backgroundColor)
         }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(accessibilityLabelText)
     }
 
     private var accessibilityLabelText: String {
         var labelComponents: [String] = []
-
-        labelComponents.append(moduleName)
-        labelComponents.append(moduleItemName)
+        labelComponents.append(String(format: String(localized: "Module item name is %@"), moduleItemName))
+        labelComponents.append(String(format: String(localized: "Module name is %@"), moduleName))
 
         if let duration = duration {
-            labelComponents.append(String(localized: "Duration: \(duration)", bundle: .horizon))
+            labelComponents.append(String(format: String(localized: "Duration %@"), duration))
         }
 
         if let countOfPoints = countOfPoints {
-            labelComponents.append(String(localized: "\(countOfPoints) Points Possible", bundle: .horizon))
+            labelComponents.append(String(format: String(localized: "%@ Points Possible"), countOfPoints))
+        }
+
+        if let attemptsAllowed {
+            labelComponents.append(attemptsAllowed)
         }
 
         if let dueDate = dueDate {
-            labelComponents.append(String(localized: "Due Date: \(dueDate)", bundle: .horizon))
+            labelComponents.append(String(format: String(localized: "Due Date %@"), dueDate))
         }
 
         if isOverdue {
-            labelComponents.append(String(localized: "Overdue", bundle: .horizon))
+            labelComponents.append(String(localized: "Overdue"))
         }
 
-        if let attemptsAllowed = attemptsAllowed {
-            labelComponents.append(attemptsAllowed)
-        }
+
 
         return labelComponents.joined(separator: ", ")
     }
@@ -148,6 +152,7 @@ struct IntroBlock: View {
                 .foregroundColor(foregroundColor)
         }
         .frame(width: .huiSpaces.space24, height: .huiSpaces.space24)
+        .accessibilityLabel(String(localized: "Back"))
     }
 
     @ViewBuilder
@@ -158,6 +163,7 @@ struct IntroBlock: View {
                     .foregroundColor(foregroundColor)
             }
             .frame(width: .huiSpaces.space24, height: .huiSpaces.space24)
+            .accessibilityLabel(String(localized: "Open Menu"))
         }
     }
 

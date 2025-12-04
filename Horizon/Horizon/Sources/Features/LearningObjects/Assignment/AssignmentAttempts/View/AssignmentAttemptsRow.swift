@@ -33,6 +33,8 @@ struct AssignmentAttemptsRow: View {
             scoreView
         }
         .padding(.huiSpaces.space16)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilityLabelText)
         .background {
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color.huiColors.surface.pageSecondary)
@@ -65,6 +67,21 @@ struct AssignmentAttemptsRow: View {
             .foregroundStyle(Color.huiColors.text.body)
             .huiTypography(.p2)
         }
+    }
+
+    private var accessibilityLabelText: String {
+        var components: [String] = []
+        components.append(String(format: String(localized: "Attempt number %@"), submission.attempt.description))
+
+        if let submittedAt = submission.submittedAt?.formatted(format: "d/MM, h:mm a") {
+            components.append(String(format: String(localized: "Submitted at %@"), submittedAt))
+        }
+
+        if let grade = submission.grade {
+            components.append(String(format: String(localized: "Score %@"), grade))
+        }
+
+        return components.joined(separator: ", ")
     }
 }
 

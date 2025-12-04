@@ -111,5 +111,8 @@ struct ModuleNavBarView: View {
             button.onTap?(controller)
         }
         .huiElevation(level: .level2)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(button.accessibilityLabel)
+        .accessibilityAddTraits(.isButton)
     }
 }

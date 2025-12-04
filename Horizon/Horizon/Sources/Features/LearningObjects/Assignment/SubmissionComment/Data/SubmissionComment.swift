@@ -105,4 +105,25 @@ struct SubmissionComment: Identifiable {
         self.startCursor = startCursor
         self.attachments = attachments
     }
+
+    var accessibilityLabelText: String {
+        var labelComponents: [String] = []
+        labelComponents.append(String(format: String(localized: "Author name is %@"), authorName))
+
+        if let createdAtString {
+            labelComponents.append(String(format: String(localized: "Created at %@"), createdAtString))
+        }
+
+        if let attemptString {
+            labelComponents.append(String(format: String(localized: "Attempt %d"), attemptString))
+        }
+
+        if !isRead {
+            labelComponents.append(String(localized: "Unread comment"))
+        }
+
+        labelComponents.append(String(format: String(localized: "Comment says: %@"), comment))
+
+        return labelComponents.joined(separator: ", ")
+    }
 }
