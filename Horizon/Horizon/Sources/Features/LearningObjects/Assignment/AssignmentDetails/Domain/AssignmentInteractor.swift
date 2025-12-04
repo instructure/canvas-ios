@@ -47,6 +47,7 @@ final class AssignmentInteractorLive: AssignmentInteractor {
     private let userID: String
     private let uploadManager: HUploadFileManager
     private let appEnvironment: AppEnvironment
+    private let submissionRetrialState = SubmissionRetrialState()
 
     // MARK: - Init
 
@@ -99,6 +100,7 @@ final class AssignmentInteractorLive: AssignmentInteractor {
             moduleID: moduleID,
             moduleItemID: moduleItemID
         )
+        .settingRetrialState(submissionRetrialState)
         return ReactiveStore(useCase: createSubmission)
             .getEntities()
     }

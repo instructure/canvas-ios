@@ -118,6 +118,73 @@ class CDSubAssignmentSubmissionTests: CoreTestCase {
         XCTAssertEqual(testee.gradeMatchesCurrentSubmission, false)
     }
 
+    // MARK: - Status inputs
+
+    func test_statusInput_isSubmitted() {
+        var testee = saveModel(.make(submitted_at: Date()))
+        XCTAssertEqual(testee.status.isSubmitted, true)
+
+        testee = saveModel(.make(submitted_at: nil))
+        XCTAssertEqual(testee.status.isSubmitted, false)
+    }
+
+    func test_statusInput_isGraded() {
+        var testee = saveModel(.make(score: 42, grade_matches_current_submission: true))
+        XCTAssertEqual(testee.status.hasGrade, true)
+
+        testee = saveModel(.make(score: nil, grade_matches_current_submission: true))
+        XCTAssertEqual(testee.status.hasGrade, false)
+
+        testee = saveModel(.make(score: 42, grade_matches_current_submission: false))
+        XCTAssertEqual(testee.status.hasGrade, false)
+    }
+
+    func test_statusInput_isLate() {
+        var testee = saveModel(.make(late: true))
+        XCTAssertEqual(testee.status.isLate, true)
+
+        testee = saveModel(.make(late: false))
+        XCTAssertEqual(testee.status.isLate, false)
+    }
+
+    func test_statusInput_isMissing() {
+        var testee = saveModel(.make(missing: true))
+        XCTAssertEqual(testee.status.isMissing, true)
+
+        testee = saveModel(.make(missing: false))
+        XCTAssertEqual(testee.status.isMissing, false)
+    }
+
+    func test_statusInput_isExcused() {
+        var testee = saveModel(.make(excused: true))
+        XCTAssertEqual(testee.status.isExcused, true)
+
+        testee = saveModel(.make(excused: false))
+        XCTAssertEqual(testee.status.isExcused, false)
+    }
+
+    func test_statusInput_customGradeStatus() {
+        let customId = "some custom id"
+        let customName = "some custom name"
+
+        var testee = saveModel(.make(custom_grade_status_id: customId))
+        testee.customGradeStatusName = customName
+        XCTAssertEqual(testee.status.gradeStatus, .custom(id: customId, name: customName))
+
+        testee = saveModel(.make(custom_grade_status_id: nil))
+        testee.customGradeStatusName = customName
+        XCTAssertEqual(testee.status.isCustom, false)
+
+        testee = saveModel(.make(custom_grade_status_id: customId))
+        testee.customGradeStatusName = nil
+        XCTAssertEqual(testee.status.isCustom, false)
+    }
+
+    func test_statusInput_submissionType() {
+        let testee = saveModel(.make())
+        XCTAssertEqual(testee.status.nonSubmittableType, nil)
+    }
+
     // MARK: - Private Helpers
 
     private func saveModel(

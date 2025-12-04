@@ -90,6 +90,7 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
         webViewContainer.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: webViewContainer)
         webView.linkDelegate = self
+        webView.setupStudioFeatures(context: context, env: env)
 
         if context.contextType == .course {
             webView.addScript("window.ENV={COURSE:{id:\(CoreWebView.jsString(context.id))}}")
@@ -123,6 +124,7 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
     }
 
     @objc private func refresh() {
+        webView.studioFeaturesInteractor?.refresh()
         pages.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }

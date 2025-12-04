@@ -74,6 +74,11 @@ public struct ModuleItemSequenceView: View {
                 }
         }
         .overlay { loaderView }
+        .onReceive(NotificationCenter.default.publisher(for: .showToastAlert)) { notification in
+            if let message = notification.object as? String, message.isNotEmpty {
+                draftToastViewModel = .init(title: message, isPresented: true)
+            }
+        }
         .safeAreaInset(edge: .top, spacing: .zero) { introBlock }
         .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
         .animation(isHeaderAnimationEnabled ? .linear : nil, value: isShowHeader)
@@ -227,7 +232,8 @@ private struct ContentView: View {
                         isCompletedItem: isCompleted,
                         isMarkedAsDoneButtonVisible: isMarkedAsDoneButtonVisible,
                         moduleID: moduleID,
-                        itemID: itemID
+                        itemID: itemID,
+                        scrollToNoteID: viewModel.scrollToNoteID
                     )
                     .id(pageURL)
                 case .moduleItem(controller: let controller, let id):

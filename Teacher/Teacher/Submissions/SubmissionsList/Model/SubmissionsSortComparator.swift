@@ -25,8 +25,8 @@ struct SubmissionsSortComparator: SortComparator {
     var order: SortOrder
 
     func compare(_ lhs: Core.Submission, _ rhs: Core.Submission) -> ComparisonResult {
-        let sub1KindOrder = lhs.listSectionKind.order
-        let sub2KindOrder = rhs.listSectionKind.order
+        let sub1KindOrder = SubmissionListSection.Kind(submission: lhs).position
+        let sub2KindOrder = SubmissionListSection.Kind(submission: rhs).position
 
         if sub1KindOrder != sub2KindOrder {
             return sub1KindOrder < sub2KindOrder ? .orderedAscending : .orderedDescending
@@ -61,42 +61,28 @@ extension SortComparator where Self == SubmissionsSortComparator {
 
 extension Array where Element == Submission {
 
-    func toSectionedItems(assignment: Assignment? = nil) -> [SubmissionListSection] {
-
-        var displayIndex = 0
-        let sections = SubmissionListSection
-            .Kind
-            .allCases
-            .compactMap { kind -> SubmissionListSection? in
-
-                let submissions = filter({ $0.listSectionKind == kind })
-                guard submissions.isNotEmpty else { return nil }
-
-                let items = submissions.map { sub in
-                    displayIndex += 1
-                    return SubmissionListItem(submission: sub, assignment: assignment, displayIndex: displayIndex)
-                }
-
-                return SubmissionListSection(
-                    kind: kind,
-                    items: items
-                )
+    func toSectionedItems(assignment: Assignment?) -> [SubmissionListSection] {
+        let submissionsPerKind = Dictionary(grouping: self) {
+            SubmissionListSection.Kind(submission: $0)
         }
 
+        var displayIndex = 0
+        let sections = SubmissionListSection.Kind.allCases
+            .compactMap { kind -> SubmissionListSection? in
+                guard let submissions = submissionsPerKind[kind]?.nilIfEmpty else { return nil }
+
+                let items = submissions.map { submission in
+                    displayIndex += 1
+                    return SubmissionListItem(
+                        submission: submission,
+                        assignment: assignment,
+                        displayIndex: displayIndex
+                    )
+                }
+
+                return SubmissionListSection(kind: kind, items: items)
+            }
+
         return sections
-    }
-}
-
-// MARK: Sorting Helper Extensions
-
-private extension SubmissionListSection.Kind {
-    var order: Int { return Self.allCases.firstIndex(of: self) ?? -1 }
-}
-
-extension Submission {
-    var listSectionKind: SubmissionListSection.Kind {
-        SubmissionListSection.Kind
-            .allCases
-            .first(where: { $0.filter(self) }) ?? .others
     }
 }

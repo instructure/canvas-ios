@@ -184,7 +184,7 @@ private func createSections() -> [AssignmentListSection] {
             title: "Math Assignment",
             icon: .assignmentLine,
             dueDates: ["Due Sep 10, 2025 at 11:59 PM"],
-            submissionStatus: .init(status: .notSubmitted),
+            submissionStatus: .notSubmitted,
             score: "10 / 15"
         ),
         .make(
@@ -192,7 +192,7 @@ private func createSections() -> [AssignmentListSection] {
             title: "Quiz 1",
             icon: .quizLine,
             dueDates: ["Due Sep 15, 2025 at 11:59 PM"],
-            submissionStatus: .init(status: .graded),
+            submissionStatus: .graded,
             score: "8 / 10"
         ),
         .make(
@@ -200,7 +200,7 @@ private func createSections() -> [AssignmentListSection] {
             title: "Discussion Topic",
             icon: .discussionLine,
             dueDates: ["Due Sep 20, 2025 at 11:59 PM"],
-            submissionStatus: .init(status: .late),
+            submissionStatus: .late,
             score: "5 / 10"
         )
     ]

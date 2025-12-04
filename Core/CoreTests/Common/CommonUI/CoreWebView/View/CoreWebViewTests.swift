@@ -44,6 +44,24 @@ class CoreWebViewTests: CoreTestCase {
         XCTAssertEqual(view.configuration.userContentController.userScripts.count, 1)
     }
 
+    func testStudioEnhancementsDisabled() {
+        // default case
+        var webView = CoreWebView()
+        XCTAssertNotNil(webView.studioFeaturesInteractor)
+
+        webView = CoreWebView(features: [], studioEnhancementsEnabled: true)
+        XCTAssertNotNil(webView.studioFeaturesInteractor)
+
+        webView = CoreWebView(features: [], studioEnhancementsEnabled: false)
+        XCTAssertNil(webView.studioFeaturesInteractor)
+
+        // When a context is based to this method.
+        webView.setupStudioFeatures(context: .course("1234"), env: environment)
+
+        // It should enable studio enhancement if not enabled already.
+        XCTAssertNotNil(webView.studioFeaturesInteractor)
+    }
+
     func testCustomUserAgentName() {
         let customeUserAgentName = "customUserAgent"
         let view = CoreWebView(features: [.userAgent(customeUserAgentName)])
@@ -121,36 +139,6 @@ class CoreWebViewTests: CoreTestCase {
         wait(for: [expectation], timeout: 30)
         observation.invalidate()
         XCTAssertNotEqual(scrollView.contentOffset.y, 0)
-    }
-
-    class MockNavigationAction: WKNavigationAction {
-        let mockRequest: URLRequest
-        override var request: URLRequest {
-            return mockRequest
-        }
-
-        let mockType: WKNavigationType
-        override var navigationType: WKNavigationType {
-            return mockType
-        }
-
-        let mockSourceFrame: WKFrameInfo
-        override var sourceFrame: WKFrameInfo {
-            mockSourceFrame
-        }
-
-        let mockTargetFrame: WKFrameInfo?
-        override var targetFrame: WKFrameInfo? {
-            mockTargetFrame
-        }
-
-        init(url: String, type: WKNavigationType) {
-            mockRequest = URLRequest(url: URL(string: url)!)
-            mockType = type
-            mockSourceFrame = WKFrameInfo()
-            mockTargetFrame = mockSourceFrame
-            super.init()
-        }
     }
 
     class MockNavigationResponse: WKNavigationResponse {
@@ -420,4 +408,51 @@ private class MockA11yHelper: CoreWebViewAccessibilityHelper {
         receivedView = view
         receivedViewController = viewController
     }
+}
+
+class MockNavigationAction: WKNavigationAction {
+    let mockRequest: URLRequest
+    override var request: URLRequest {
+        return mockRequest
+    }
+
+    let mockType: WKNavigationType
+    override var navigationType: WKNavigationType {
+        return mockType
+    }
+
+    let mockSourceFrame: MockFrameInfo
+    let mockTargetFrame: MockFrameInfo?
+
+    init(
+        url: String,
+        type: WKNavigationType,
+        sourceFrame: MockFrameInfo = MockFrameInfo(isMainFrame: true),
+        targetFrame: MockFrameInfo? = nil
+    ) {
+        mockRequest = URLRequest(url: URL(string: url)!)
+        mockType = type
+        mockSourceFrame = sourceFrame
+        mockTargetFrame = targetFrame
+        super.init()
+    }
+
+    override var sourceFrame: WKFrameInfo {
+        mockSourceFrame
+    }
+
+    override var targetFrame: WKFrameInfo? {
+        mockTargetFrame ?? sourceFrame
+    }
+}
+
+class MockFrameInfo: WKFrameInfo {
+
+    let mockIsMainFrame: Bool
+    init(isMainFrame: Bool) {
+        mockIsMainFrame = isMainFrame
+        super.init()
+    }
+
+    override var isMainFrame: Bool { mockIsMainFrame }
 }

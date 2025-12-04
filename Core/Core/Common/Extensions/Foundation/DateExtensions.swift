@@ -62,6 +62,11 @@ public extension Date {
             ?? Date()
     }
 
+    func addWeeks(_ weeks: Int) -> Date {
+        Cal.currentCalendar.date(byAdding: .weekOfYear, value: weeks, to: self)
+            ?? Date()
+    }
+
     func addDays(_ days: Int) -> Date {
         Cal.currentCalendar.date(byAdding: .day, value: days, to: self)
             ?? Date()
@@ -188,6 +193,15 @@ public extension Date {
     }()
 
     /**
+     This date formatter displays abbreviated month names. E.g.: Jan, Feb, Mar.
+     */
+    private static var monthFormatterAbbreviated: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("MMM")
+        return formatter
+    }()
+
+    /**
      This date formatter displays the full month name and the day of the month. E.g.: September 6.
      */
     private static var dayInMonthFormatter: DateFormatter = {
@@ -199,6 +213,13 @@ public extension Date {
     private static var dayFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("d")
+        return formatter
+    }()
+
+    private static var shortDayMonthFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("dMMM")
+        formatter.timeZone = Cal.currentCalendar.timeZone
         return formatter
     }()
 
@@ -293,6 +314,13 @@ public extension Date {
     }
 
     /**
+     E.g.: Jan, Feb, Mar
+     */
+    var monthNameAbbreviated: String {
+        Date.monthFormatterAbbreviated.string(from: self)
+    }
+
+    /**
      E.g.: September 6.
      */
     var dayInMonth: String {
@@ -304,6 +332,13 @@ public extension Date {
      */
     var dayString: String {
         Date.dayFormatter.string(from: self)
+    }
+
+    /**
+     E.g.: 6 Sep
+     */
+    var shortDayMonth: String {
+        Date.shortDayMonthFormatter.string(from: self)
     }
 
     var timeString: String {

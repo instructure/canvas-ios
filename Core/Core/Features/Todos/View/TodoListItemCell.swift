@@ -24,21 +24,26 @@ struct TodoListItemCell: View {
 
     @ObservedObject var item: TodoItemViewModel
     @Binding var isSwiping: Bool
-    let onTap: (_ item: TodoItemViewModel, _ viewController: WeakViewController) -> Void
-    let onMarkAsDone: (_ item: TodoItemViewModel) -> Void
-    let onSwipeMarkAsDone: (_ item: TodoItemViewModel) -> Void
+    private let onTap: (_ item: TodoItemViewModel, _ viewController: WeakViewController) -> Void
+    private let onMarkAsDone: (_ item: TodoItemViewModel) -> Void
+    private let onSwipe: (_ item: TodoItemViewModel) -> Void
+    private let onSwipeCommitted: ((_ item: TodoItemViewModel) -> Void)?
+
+    private static let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
 
     init(
         item: TodoItemViewModel,
         onTap: @escaping (TodoItemViewModel, WeakViewController) -> Void,
         onMarkAsDone: @escaping (TodoItemViewModel) -> Void,
-        onSwipeMarkAsDone: @escaping (TodoItemViewModel) -> Void,
+        onSwipe: @escaping (TodoItemViewModel) -> Void,
+        onSwipeCommitted: ((TodoItemViewModel) -> Void)? = nil,
         isSwiping: Binding<Bool> = .constant(false)
     ) {
         self.item = item
         self.onTap = onTap
         self.onMarkAsDone = onMarkAsDone
-        self.onSwipeMarkAsDone = onSwipeMarkAsDone
+        self.onSwipe = onSwipe
+        self.onSwipeCommitted = onSwipeCommitted
         self._isSwiping = isSwiping
     }
 
@@ -67,19 +72,22 @@ struct TodoListItemCell: View {
                 }
             }
         }
-        .swipeToRemove(
-            backgroundColor: .backgroundSuccess,
+        .swipeAction(
+            backgroundColor: item.swipeBackgroundColor,
+            completionBehavior: item.swipeCompletionBehavior,
             isSwiping: $isSwiping,
-            onSwipe: { onSwipeMarkAsDone(item) },
+            isEnabled: item.isSwipeEnabled,
+            onSwipeCommitted: { onSwipeCommitted?(item) },
+            onSwipe: { onSwipe(item) },
             label: { swipeActionView }
         )
     }
 
     private var swipeActionView: some View {
         HStack(spacing: 12) {
-            Text("Done", bundle: .core)
+            Text(item.swipeActionText)
                 .font(.semibold16, lineHeight: .fit)
-            Image.checkLine
+            item.swipeActionIcon
                 .scaledIcon(size: 24)
         }
         .paddingStyle(.horizontal, .standard)
@@ -104,10 +112,10 @@ struct TodoListItemCell: View {
         .onTapGesture {
             if isSwiping { return }
             onMarkAsDone(item)
+            Self.hapticGenerator.impactOccurred()
         }
         .identifier("to-do.list.\(item.plannableId).checkbox")
     }
-
 }
 
 #if DEBUG
@@ -118,13 +126,13 @@ struct TodoListItemCell: View {
             item: .makeShortText(),
             onTap: { _, _ in },
             onMarkAsDone: { _ in },
-            onSwipeMarkAsDone: { _ in }
+            onSwipe: { _ in }
         )
         TodoListItemCell(
             item: .makeLongText(),
             onTap: { _, _ in },
             onMarkAsDone: { _ in },
-            onSwipeMarkAsDone: { _ in }
+            onSwipe: { _ in }
         )
     }
     .background(Color.backgroundLightest)

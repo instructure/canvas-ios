@@ -52,7 +52,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
 
     func testButtonText() {
         let a = Assignment.make(from: .make(
-            submission: .make(workflow_state: .unsubmitted),
+            submission: .make(submitted_at: nil, workflow_state: .unsubmitted),
             submission_types: [ .online_upload ]
         ))
         let c = Course.make(from: .make(enrollments: [ .make(type: "observer") ]))
@@ -62,7 +62,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         c.enrollments?.first?.role = "SomethingCustom"
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Submit Assignment")
 
-        a.submission?.workflowState = .submitted
+        a.submission?.submittedAt = Date()
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Resubmit Assignment")
 
         a.submission?.workflowState = .graded

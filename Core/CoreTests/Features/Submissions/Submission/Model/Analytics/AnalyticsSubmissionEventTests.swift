@@ -44,11 +44,12 @@ class AnalyticsSubmissionEventTests: XCTestCase {
 
         Analytics.shared.logSubmission(
             .phase(.failed, .fileUpload, nil),
-            additionalParams: [.error: "Random error desc"]
+            additionalParams: [.retry: 1, .error: "Random error desc"]
         )
         XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_fileUpload_failed")
         XCTAssertNil(testAnalyticsHandler.lastEventParameter("attempt", ofType: Int.self))
         XCTAssertEqual(testAnalyticsHandler.lastEventParameter("error"), "Random error desc")
+        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("retry"), 1)
 
         Analytics.shared.logSubmission(
             .phase(.failed, .mediaRecording, 10),

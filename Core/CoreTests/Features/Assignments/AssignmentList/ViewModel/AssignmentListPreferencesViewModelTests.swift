@@ -155,33 +155,40 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
     func testAssignmentFilterOptionsStudent() {
         let assignment = Assignment.make()
         let submission = Submission.make()
+        assignment.submissions = [submission]
+
         assignment.submissionTypes = [.online_text_entry]
         submission.submittedAt = nil
-        assignment.submissions = [submission]
         XCTAssertTrue(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionStudent.toBeGraded.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionStudent.graded.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
 
+        assignment.submissionTypes = [.online_text_entry]
         submission.submittedAt = Clock.now.addDays(-1)
         XCTAssertFalse(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
         XCTAssertTrue(AssignmentFilterOptionStudent.toBeGraded.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionStudent.graded.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
 
+        assignment.submissionTypes = [.online_text_entry]
+        submission.submittedAt = Clock.now.addDays(-1)
         submission.excused = true
         XCTAssertFalse(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionStudent.toBeGraded.rule(assignment))
         XCTAssertTrue(AssignmentFilterOptionStudent.graded.rule(assignment))
         XCTAssertTrue(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
+        submission.excused = false // reset
 
-        submission.excused = false
         assignment.submissionTypes = [.on_paper]
+        submission.submittedAt = Clock.now.addDays(-1)
         XCTAssertFalse(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
         XCTAssertTrue(AssignmentFilterOptionStudent.toBeGraded.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionStudent.graded.rule(assignment))
-        XCTAssertFalse(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
+        XCTAssertTrue(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
 
+        assignment.submissionTypes = [.on_paper]
+        submission.submittedAt = Clock.now.addDays(-1)
         submission.workflowState = .graded
         submission.score = 1.0
         XCTAssertFalse(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
@@ -189,12 +196,13 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
         XCTAssertTrue(AssignmentFilterOptionStudent.graded.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
 
-        submission.workflowState = .submitted
-        submission.score = nil
         assignment.submissionTypes = [.not_graded]
+        submission.submittedAt = nil
+        submission.workflowState = .unsubmitted
+        submission.score = nil
         XCTAssertFalse(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionStudent.toBeGraded.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionStudent.graded.rule(assignment))
-        XCTAssertFalse(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
+        XCTAssertTrue(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
     }
 }

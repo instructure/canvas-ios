@@ -42,6 +42,8 @@ class SubmissionButtonPresenter: NSObject {
     var selectedSubmissionTypes: [SubmissionType] = []
     lazy var flags = env.subscribe(GetEnabledFeatureFlags(context: .currentUser)) {}
 
+    private let mediaSubmissionState = SubmissionRetrialState()
+
     init(env: AppEnvironment, view: SubmissionButtonViewProtocol, assignmentID: String) {
         self.env = env
         self.view = view
@@ -91,15 +93,17 @@ class SubmissionButtonPresenter: NSObject {
             return String(localized: "Resume Quiz", bundle: .student)
         }
         if quiz?.submission?.attemptsLeft == 0 { return nil }
+
+        let isSubmitted = assignment.submission?.status.isSubmitted ?? false
         if assignment.quizID != nil {
-            return assignment.submission?.submittedAt == nil
-                ? String(localized: "Take Quiz", bundle: .student)
-                : String(localized: "Retake Quiz", bundle: .student)
+            return isSubmitted
+                ? String(localized: "Retake Quiz", bundle: .student)
+                : String(localized: "Take Quiz", bundle: .student)
         }
 
-        return assignment.submission?.workflowState == .unsubmitted || assignment.submission?.submittedAt == nil
-            ? String(localized: "Submit Assignment", bundle: .student)
-            : String(localized: "Resubmit Assignment", bundle: .student)
+        return isSubmitted
+            ? String(localized: "Resubmit Assignment", bundle: .student)
+            : String(localized: "Submit Assignment", bundle: .student)
     }
 
     func submitAssignment(_ assignment: Assignment, button: UIView) {
@@ -330,7 +334,7 @@ extension SubmissionButtonPresenter {
                 reportSuccess()
             } }
         }
-        let createSubmission = { (media: MediaEntry?, error: Error?) in
+        let createSubmission = { [weak self] (media: MediaEntry?, error: Error?) in
             guard error == nil else { return doneUploading(error) }
             CreateSubmission(
                 context: .course(assignment.courseID),
@@ -340,7 +344,9 @@ extension SubmissionButtonPresenter {
                 mediaCommentID: media?.mediaID,
                 mediaCommentType: type,
                 mediaCommentSource: source
-            ).fetch(environment: env) { _, _, error in doneUploading(error) }
+            )
+            .settingRetrialState(self?.mediaSubmissionState)
+            .fetch(environment: env) { _, _, error in doneUploading(error) }
         }
         let upload = { mediaUploader.fetch(createSubmission) }
         show(uploading, completion: upload)

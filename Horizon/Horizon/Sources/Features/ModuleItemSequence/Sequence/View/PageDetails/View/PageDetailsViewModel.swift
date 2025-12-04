@@ -71,6 +71,7 @@ final class PageDetailsViewModel {
     let moduleItemSequenceInteractor: ModuleItemSequenceInteractor?
     var pageURL: String?
     let isMarkedAsDoneButtonVisible: Bool
+    let scrollToNoteID: String?
     private var router: Router?
 
     // MARK: - Init
@@ -80,7 +81,8 @@ final class PageDetailsViewModel {
         assetType: GetModuleItemSequenceRequest.AssetType,
         moduleItemSequenceInteractor: ModuleItemSequenceInteractor,
         isMarkedAsDoneButtonVisible: Bool = false,
-        router: Router = AppEnvironment.shared.router
+        router: Router = AppEnvironment.shared.router,
+        scrollToNoteID: String? = nil
     ) {
         self.context = .init(.course, id: courseID)
         self.courseID = courseID
@@ -88,6 +90,7 @@ final class PageDetailsViewModel {
         self.moduleItemSequenceInteractor = moduleItemSequenceInteractor
         self.router = router
         self.isMarkedAsDoneButtonVisible = isMarkedAsDoneButtonVisible
+        self.scrollToNoteID = scrollToNoteID
 
         moduleItemSequenceInteractor.fetchModuleItems(
             assetType: assetType,
@@ -125,13 +128,15 @@ final class PageDetailsViewModel {
         pageURL: String,
         itemID: String,
         isMarkedAsDoneButtonVisible: Bool,
-        markAsDoneViewModel: MarkAsDoneViewModel
+        markAsDoneViewModel: MarkAsDoneViewModel,
+        scrollToNoteID: String? = nil
     ) {
         self.context = context
         self.pageURL = pageURL
         self.itemID = itemID
         self.markAsDoneViewModel = markAsDoneViewModel
         self.moduleItemSequenceInteractor = nil
+        self.scrollToNoteID = scrollToNoteID
         self.router = nil
         self.courseID = nil
         self.fileID = nil

@@ -68,7 +68,7 @@ public class GetCourse: APIUseCase {
     }
 }
 
-public class GetCourses: CollectionUseCase {
+public class GetCourses: APIUseCase {
     public typealias Model = Course
     public typealias Response = GetCoursesRequest.Response
 
@@ -107,6 +107,27 @@ public class GetCourses: CollectionUseCase {
         self.showFavorites = showFavorites
         self.enrollmentState = enrollmentState
         self.perPage = perPage
+    }
+
+    public func write(response: GetCoursesRequest.Response?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response else { return }
+
+        Self.deleteCoursesNotInResponse(response, scope: scope, in: client)
+
+        response.forEach {
+            Course.save($0, in: client)
+        }
+    }
+
+    public static func deleteCoursesNotInResponse(
+        _ response: [APICourse],
+        scope: Scope,
+        in context: NSManagedObjectContext
+    ) {
+        let idsToKeep = Set(response.map { $0.id.value })
+        let existingCourses: [Course] = context.fetch(scope: scope)
+        let coursesToDelete = existingCourses.filter { !idsToKeep.contains($0.id) }
+        context.delete(coursesToDelete)
     }
 }
 

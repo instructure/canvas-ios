@@ -22,10 +22,11 @@ class StudioViewController: UINavigationController {
     public override var preferredStatusBarStyle: UIStatusBarStyle { .darkContent }
 
     public init(url: URL) {
-        let controller = CoreWebViewController()
+        let controller = CoreWebViewController(studioEnhancementsEnabled: false)
         controller.webView.load(URLRequest(url: url))
         controller.addDoneButton()
-        controller.title = String(localized: "Studio", bundle: .core)
+        controller.title = url.queryValue(for: "title")?.removingPercentEncoding
+                            ?? String(localized: "Studio", bundle: .core)
 
         super.init(rootViewController: controller)
 

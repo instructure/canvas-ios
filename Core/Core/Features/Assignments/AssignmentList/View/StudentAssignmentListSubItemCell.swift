@@ -90,10 +90,10 @@ struct StudentAssignmentListSubItemCell: View {
                 title: "Assignment 1",
                 icon: .assignmentLine,
                 dueDates: [date],
-                submissionStatus: .init(status: .graded),
+                submissionStatus: .graded,
                 score: "42 / 100",
                 subItems: [
-                    .make(tag: "a", title: "Sub-assignment A", dueDate: date, submissionStatus: .init(status: .graded), score: "42 / 100")
+                    .make(tag: "a", title: "Sub-assignment A", dueDate: date, submissionStatus: .graded, score: "42 / 100")
                 ]
             ),
             .make(
@@ -101,10 +101,10 @@ struct StudentAssignmentListSubItemCell: View {
                 title: "Assignment 2",
                 icon: .assignmentLine,
                 dueDates: [date],
-                submissionStatus: .init(status: .excused),
+                submissionStatus: .excused,
                 subItems: [
-                    .make(tag: "a", title: "Sub-assignment A", dueDate: date, submissionStatus: .init(status: .graded), score: "42 / 100"),
-                    .make(tag: "b", title: "Sub-assignment B", dueDate: date, submissionStatus: .init(status: .excused))
+                    .make(tag: "a", title: "Sub-assignment A", dueDate: date, submissionStatus: .graded, score: "42 / 100"),
+                    .make(tag: "b", title: "Sub-assignment B", dueDate: date, submissionStatus: .excused)
                 ]
             )
         ]

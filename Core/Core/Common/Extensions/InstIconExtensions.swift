@@ -79,6 +79,8 @@ public extension UIImage {
     static var dashboardSolid: UIImage { UIImage(named: "dashboardSolid", in: .core, compatibleWith: nil)! }
     static var discussionLine: UIImage { UIImage(named: "discussionLine", in: .core, compatibleWith: nil)! }
     static var discussionSolid: UIImage { UIImage(named: "discussionSolid", in: .core, compatibleWith: nil)! }
+    static var discussionReply2Line: UIImage { UIImage(named: "discussionReply2Line", in: .core, compatibleWith: nil)! }
+    static var discussionReply2Solid: UIImage { UIImage(named: "discussionReply2Solid", in: .core, compatibleWith: nil)! }
     static var documentLine: UIImage { UIImage(named: "documentLine", in: .core, compatibleWith: nil)! }
     static var documentSolid: UIImage { UIImage(named: "documentSolid", in: .core, compatibleWith: nil)! }
     static var editLine: UIImage { UIImage(named: "editLine", in: .core, compatibleWith: nil)! }
@@ -347,6 +349,8 @@ public extension Image {
     static var dashboardSolid: Image { Image("dashboardSolid", bundle: .core) }
     static var discussionLine: Image { Image("discussionLine", bundle: .core) }
     static var discussionSolid: Image { Image("discussionSolid", bundle: .core) }
+    static var discussionReply2Line: Image { Image("discussionReply2Line", bundle: .core) }
+    static var discussionReply2Solid: Image { Image("discussionReply2Solid", bundle: .core) }
     static var documentLine: Image { Image("documentLine", bundle: .core) }
     static var documentSolid: Image { Image("documentSolid", bundle: .core) }
     static var editLine: Image { Image("editLine", bundle: .core) }

@@ -39,4 +39,9 @@ final class DeleteCalendarEvent: DeleteUseCase {
             body: .init(which: seriesModificationType)
         )
     }
+
+    func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        client.delete(client.fetch(scope: scope) as [Model])
+        NotificationCenter.default.post(name: .plannerItemDidChange, object: nil)
+    }
 }

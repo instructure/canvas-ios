@@ -206,7 +206,7 @@ class StudentAssignmentDetailsPresenter {
         if onlineUpload.isEmpty {
             onlineUploadState = nil
         } else if onlineUpload.first(where: { $0.uploadError != nil }) != nil {
-            if let assignment = assignment, assignment.submissionStatus == .submitted {
+            if let submission = assignment?.submission, submission.status.isSubmitted {
                 onlineUploadState = .reSubmissionFailed
             } else {
                 onlineUploadState = .failed
@@ -365,14 +365,6 @@ class StudentAssignmentDetailsPresenter {
         return assignment?.lockStatus == .before
     }
 
-    func gradesSectionIsHidden() -> Bool {
-        if let submission = assignment?.submission {
-            return submission.workflowState == .unsubmitted && submission.customGradeStatusId == nil
-        } else {
-            return true
-        }
-    }
-
     func viewSubmissionButtonSectionIsHidden() -> Bool {
         return assignment?.lockStatus == .before || assignment?.isMasteryPathAssignment == true
     }
@@ -385,6 +377,9 @@ class StudentAssignmentDetailsPresenter {
         if let quiz = quizzes?.first, quiz.lockedForUser == false, assignment?.quizID == quiz.id, assignment?.hasAttemptsLeft == true {
             return false
         }
+
+        // Always show "View Discussion" button for graded discussions
+        if assignment?.isDiscussion == true { return false }
 
         return assignment?.lockStatus != .unlocked ||
             assignment?.lockedForUser == true ||

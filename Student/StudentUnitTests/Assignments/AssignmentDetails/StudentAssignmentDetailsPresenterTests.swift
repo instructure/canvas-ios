@@ -311,21 +311,6 @@ class StudentAssignmentDetailsPresenterTests: StudentTestCase {
         XCTAssertFalse( presenter.submissionTypesSectionIsHidden() )
     }
 
-    func testGradesSectionIsHiddenBeforeAvailability() {
-        setupIsHiddenTest(lockStatus: .before)
-        XCTAssertTrue( presenter.gradesSectionIsHidden() )
-    }
-
-    func testGradesSectionNotHiddenAfterAvailability() {
-        Assignment.make(from: .make(locked_for_user: true, lock_explanation: "this is locked", submission: APISubmission.make(workflow_state: .graded), unlock_at: Date().addYears(-1)))
-        XCTAssertFalse( presenter.gradesSectionIsHidden() )
-    }
-
-    func testGradesSectionNotHidden() {
-        Assignment.make(from: .make(submission: APISubmission.make(workflow_state: .graded)))
-        XCTAssertFalse( presenter.gradesSectionIsHidden() )
-    }
-
     func testStatisticsSectionIsHiddenBeforeAvailability() {
         setupIsHiddenTest(lockStatus: .before)
         XCTAssertTrue( presenter.statisticsIsHidden() )
@@ -410,6 +395,22 @@ class StudentAssignmentDetailsPresenterTests: StudentTestCase {
     func testSubmitAssignmentButtonIsHiddenWhenLockedForUser() {
         Assignment.make(from: .make(allowed_extensions: ["png"], locked_for_user: true, submission_types: [ .online_upload ]))
         XCTAssertTrue( presenter.submitAssignmentButtonIsHidden() )
+    }
+
+    func testSubmitAssignmentButtonIsNotHiddenForClosedForCommentsDiscussion() {
+        Assignment.make(from: .make(
+            can_submit: false,
+            locked_for_user: true,
+            lock_at: Date().addDays(-3),
+            lock_explanation: "closed for comments",
+            submission_types: [ .discussion_topic ]
+        ))
+        XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
+    }
+
+    func testSubmitAssignmentButtonIsNotHiddenForUnlockedDiscussion() {
+        Assignment.make(from: .make(submission_types: [ .discussion_topic ]))
+        XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
     }
 
     func testSubmitAssignmentButtonIsNotHiddenForUnlockedQuiz() {
@@ -567,7 +568,7 @@ class StudentAssignmentDetailsPresenterTests: StudentTestCase {
     func testAttemptPickerActiveOnMultipleSubmissionsWhenFlagIsActive() {
         Submission.make(from: .make(attempt: 1, id: "1"))
         Submission.make(from: .make(attempt: 2, id: "2"))
-        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: true)
+        FeatureFlag.make(name: FeatureFlagName.assignmentEnhancements.rawValue, enabled: true)
 
         waitUntil(shouldFail: true) {
             resultingAttemptPickerActiveState == true
@@ -577,14 +578,14 @@ class StudentAssignmentDetailsPresenterTests: StudentTestCase {
     func testAttemptPickerDisabledOnMultipleSubmissionsWhenFlagIsInactive() {
         Submission.make(from: .make(attempt: 1, id: "1"))
         Submission.make(from: .make(attempt: 2, id: "2"))
-        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: false)
+        FeatureFlag.make(name: FeatureFlagName.assignmentEnhancements.rawValue, enabled: false)
 
         XCTAssertEqual(resultingAttemptPickerActiveState, false)
     }
 
     func testAttemptPickerDisabledOnSingleSubmissionWhenFlagIsActive() {
         Submission.make(from: .make(attempt: 1, id: "1"))
-        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: true)
+        FeatureFlag.make(name: FeatureFlagName.assignmentEnhancements.rawValue, enabled: true)
 
         XCTAssertEqual(resultingAttemptPickerActiveState, false)
     }
@@ -593,7 +594,7 @@ class StudentAssignmentDetailsPresenterTests: StudentTestCase {
         Assignment.make()
         let submission1 = Submission.make(from: .make(attempt: 1, id: "1", score: 1))
         let submission2 = Submission.make(from: .make(attempt: 2, id: "2", score: 2))
-        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: true)
+        FeatureFlag.make(name: FeatureFlagName.assignmentEnhancements.rawValue, enabled: true)
 
         waitUntil(shouldFail: true) {
             resultingAttemptPickerItems?.count == 2
@@ -615,7 +616,7 @@ class StudentAssignmentDetailsPresenterTests: StudentTestCase {
         Assignment.make()
         Submission.make(from: .make(attempt: 1, id: "1", score: 1))
         Submission.make(from: .make(attempt: 2, id: "2", score: 2))
-        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: true)
+        FeatureFlag.make(name: FeatureFlagName.assignmentEnhancements.rawValue, enabled: true)
 
         waitUntil(shouldFail: true) {
             resultingAttemptPickerItems?.count == 2

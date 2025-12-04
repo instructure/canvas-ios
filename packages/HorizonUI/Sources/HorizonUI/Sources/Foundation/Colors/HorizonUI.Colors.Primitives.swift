@@ -155,6 +155,7 @@ public extension HorizonUI.Colors {
 
         // MARK: - Sea
 
+        public let sea12 = Color(hexString: "#DAEEEF")
         public let sea30 = Color(hexString: "#37A1AA")
         public let sea35 = Color(hexString: "#1E95A0")
         public let sea40 = Color(hexString: "#0A8C97")

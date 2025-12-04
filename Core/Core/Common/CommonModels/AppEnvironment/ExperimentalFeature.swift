@@ -29,17 +29,23 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case K5Dashboard = "enable_K5_dashboard"
     case whatIfScore = "what_if_score"
     case rebuiltCalendar = "rebuilt_calendar"
-    case newStudentToDoScreen = "new_student_todo_screen"
+    case revertToOldStudentToDo = "revert_to_old_student_todo"
+
+    private static var sharedUserDefaults: UserDefaults {
+        UserDefaults(suiteName: Bundle.main.appGroupID()) ?? .standard
+    }
 
     public var isEnabled: Bool {
         get {
             // If there are no saved values for K5 mode we return true by default. Debug builds without Firebase feature flag fetch will have this enabled.
-            if self == .K5Dashboard, UserDefaults.standard.object(forKey: userDefaultsKey) == nil {
+            if self == .K5Dashboard, Self.sharedUserDefaults.object(forKey: userDefaultsKey) == nil {
                 return true
             }
-            return UserDefaults.standard.bool(forKey: userDefaultsKey)
+            return Self.sharedUserDefaults.bool(forKey: userDefaultsKey)
         }
-        nonmutating set { UserDefaults.standard.set(newValue, forKey: userDefaultsKey) }
+        nonmutating set {
+            Self.sharedUserDefaults.set(newValue, forKey: userDefaultsKey)
+        }
     }
 
     public var userDefaultsKey: String {

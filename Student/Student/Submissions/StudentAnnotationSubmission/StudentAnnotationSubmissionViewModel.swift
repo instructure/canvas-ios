@@ -29,6 +29,7 @@ public class StudentAnnotationSubmissionViewModel: ObservableObject {
     public let navBar: (title: String, subtitle: String, color: UIColor, closeButtonTitle: String)
 
     private let submissionUseCase: CreateSubmission
+    private let submissionRetrialState = SubmissionRetrialState()
     private let env: AppEnvironment
 
     public init(
@@ -46,11 +47,14 @@ public class StudentAnnotationSubmissionViewModel: ObservableObject {
                        subtitle: assignmentName,
                        color: courseColor,
                        closeButtonTitle: String(localized: "Close", bundle: .student))
-        self.submissionUseCase = CreateSubmission(context: .course(courseID),
-                                                  assignmentID: assignmentID,
-                                                  userID: userID,
-                                                  submissionType: .student_annotation,
-                                                  annotatableAttachmentID: annotatableAttachmentID)
+        self.submissionUseCase = CreateSubmission(
+            context: .course(courseID),
+            assignmentID: assignmentID,
+            userID: userID,
+            submissionType: .student_annotation,
+            annotatableAttachmentID: annotatableAttachmentID
+        )
+        self.submissionUseCase.retrialState = submissionRetrialState
         self.env = environment
     }
 
