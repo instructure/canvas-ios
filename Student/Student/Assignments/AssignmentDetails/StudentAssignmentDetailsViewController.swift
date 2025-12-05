@@ -214,6 +214,8 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         fileTypesSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.allowedExtensions"
         submissionTypesSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.submissionTypes"
 
+        submitAssignmentButton.layer.cornerRadius = 25
+
         // Localization
         updateDueSection(dueSection1, with: nil)
         updateDueSection(dueSection2, with: nil)
@@ -293,7 +295,9 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.useContextColor(presenter?.courses.first?.color)
+		if #unavailable(iOS 26) {
+			navigationController?.navigationBar.useContextColor(presenter?.courses.first?.color)
+		}
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -315,9 +319,13 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         presenter?.viewFileSubmission()
     }
 
+	@available(iOS, deprecated: 26)
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?) {
         titleSubtitleView.subtitle = subtitle
-        navigationController?.navigationBar.useContextColor(backgroundColor)
+
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(backgroundColor)
+		}
     }
 
     func updateGradeCell(_ assignment: Assignment, submission: Submission?) {

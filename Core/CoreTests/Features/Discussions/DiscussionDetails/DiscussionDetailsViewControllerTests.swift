@@ -136,9 +136,16 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000088")
-        XCTAssertEqual(controller.titleSubtitleView.title, "Discussion Details")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Discussion Details")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
+        } else {
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000088")
+            XCTAssertEqual(controller.titleSubtitleView.title, "Discussion Details")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+        }
+
         XCTAssertEqual(controller.titleLabel.text, "What is a sandwich?")
         XCTAssertEqual(controller.pointsLabel.text, "95 pts")
         XCTAssertEqual(controller.pointsView.isHidden, false)
@@ -255,7 +262,11 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.pointsView.isHidden, true)
         XCTAssertEqual(controller.publishedView.isHidden, true)
-        XCTAssertEqual(controller.titleSubtitleView.title, "Discussion Replies")
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Discussion Replies")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "Discussion Replies")
+        }
         let html = getBodyHTML()
         XCTAssert(!html.contains("Is the cube rule of food valid?"))
         XCTAssert(html.contains("Why?"))

@@ -44,7 +44,9 @@ class ParentAssignmentDetailsViewControllerTests: ParentTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.hexString)
+        if #unavailable(iOS 26) {
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.hexString)
+        }
         XCTAssertEqual(controller.title, "Course One")
         XCTAssertEqual(controller.titleLabel.text, "some assignment")
         XCTAssertEqual(controller.dateLabel.text, dueAt.dateTimeString)

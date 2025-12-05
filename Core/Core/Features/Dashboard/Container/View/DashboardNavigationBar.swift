@@ -27,13 +27,23 @@ struct DashboardNavigationBar: ViewModifier {
     @State private var isElevatedTabBar = false
 
     func body(content: Content) -> some View {
-        if #available(iOS 18.0, *) {
+		if #available(iOS 26, *) {
+			content
+				.toolbar {
+					ToolbarItem(placement: .principal) {
+						navBarLogo
+					}
+				}
+                .onChange(of: horizontalSizeClass, initial: true) { _, newValue in
+                    updateNavBarLogoVisibility(horizontalSizeClass: newValue)
+                }
+		} else if #available(iOS 18.0, *) {
             content
                 .toolbarBackgroundVisibility(.visible, for: .navigationBar)
                 .toolbarBackground(Color(uiColor: Brand.shared.navBackground), for: .navigationBar)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
-                        navBarLogo
+                        legacyNavBarLogo
                     }
                 }
                 .onChange(of: horizontalSizeClass, initial: true) { _, newValue in
@@ -50,8 +60,27 @@ struct DashboardNavigationBar: ViewModifier {
         isElevatedTabBar = horizontalSizeClass == .regular
     }
 
+	@ViewBuilder
+	@available(iOS, introduced: 26, message: "Legacy version exists")
+	fileprivate var navBarLogo: some View {
+		if !isElevatedTabBar, let headerImage = Brand.shared.headerImage {
+			ZStack {
+				Brand.shared.headerImageBackground.asColor
+
+				Image(uiImage: headerImage)
+					.resizable()
+					.aspectRatio(contentMode: .fit)
+					.accessibilityHidden(true)
+			}
+			.clipShape(RoundedRectangle(cornerRadius: 8))
+			.frame(width: 44, height: 44)
+			.shadow(radius: 8)
+		}
+	}
+
     @ViewBuilder
-    private var navBarLogo: some View {
+	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    fileprivate var legacyNavBarLogo: some View {
         if !isElevatedTabBar, let headerImage = Brand.shared.headerImage {
             ZStack {
                 Color(Brand.shared.headerImageBackground)

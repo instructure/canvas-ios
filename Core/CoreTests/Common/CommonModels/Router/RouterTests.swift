@@ -203,7 +203,11 @@ class RouterTests: CoreTestCase {
         XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)
     }
 
-    func testDetailSplitViewButtons() {
+    func testDetailSplitViewButtons() throws {
+        if #available(iOS 26, *) {
+            throw XCTSkip("Default implementation provided above iOS 26")
+        }
+
         let mockView = MockViewController()
         mockView.navigationItem.leftItemsSupplementBackButton = false
         mockView.navigationItem.leftBarButtonItems = nil

@@ -77,7 +77,23 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarDashboard()
-        .navigationBarItems(leading: profileMenuButton, trailing: rightNavBarButtons)
+		.toolbar {
+			if #available(iOS 26, *) {
+				ToolbarItem(placement: .topBarLeading) {
+					profileMenuButton
+				}
+				ToolbarItem(placement: .topBarTrailing) {
+					rightNavBarButtons
+				}
+			} else {
+				ToolbarItem(placement: .topBarLeading) {
+					legacyProfileMenuButton
+				}
+				ToolbarItem(placement: .topBarTrailing) {
+					legacyRightNavBarButtons
+				}
+			}
+		}
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             fileUploadNotificationCardViewModel.sceneDidBecomeActive.send()
         }
@@ -119,7 +135,19 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 
     // MARK: - Nav Bar Buttons
 
-    private var profileMenuButton: some View {
+	@available(iOS, introduced: 26, message: "Legacy version exists")
+	private var profileMenuButton: some View {
+		Button {
+			env.router.route(to: "/profile", from: controller, options: .modal())
+		} label: {
+			Image.hamburgerSolid
+		}
+		.identifier("Dashboard.profileButton")
+		.accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
+	}
+
+	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyProfileMenuButton: some View {
         Button {
             env.router.route(to: "/profile", from: controller, options: .modal())
         } label: {
@@ -131,19 +159,58 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
     }
 
+	@ViewBuilder
+	@available(iOS, introduced: 26, message: "Legacy version exists")
+	private var rightNavBarButtons: some View {
+		if courseCardListViewModel.shouldShowSettingsButton {
+			if offlineModeViewModel.isOfflineFeatureEnabled, env.app == .student {
+				optionsKebabMenu
+			} else {
+				dashboardSettingsButton
+			}
+		}
+	}
+
     @ViewBuilder
-    private var rightNavBarButtons: some View {
+	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyRightNavBarButtons: some View {
         if courseCardListViewModel.shouldShowSettingsButton {
             if offlineModeViewModel.isOfflineFeatureEnabled, env.app == .student {
-                optionsKebabButton
+                legacyOptionsKebabButton
             } else {
-                dashboardSettingsButton
+                legacyDashboardSettingsButton
             }
         }
     }
 
+	@ViewBuilder
+	@available(iOS, introduced: 26, message: "Legacy version exists")
+	private var optionsKebabMenu: some View {
+        Menu {
+            Button(.init("Manage Offline Content", bundle: .core)) {
+                if offlineModeViewModel.isOffline {
+                    UIAlertController.showItemNotAvailableInOfflineAlert()
+                } else {
+                    env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
+                }
+            }
+
+            Button(.init("Dashboard Settings", bundle: .core)) {
+                guard controller.value.presentedViewController == nil else {
+                    controller.value.presentedViewController?.dismiss(animated: true)
+                    return
+                }
+                viewModel.settingsButtonTapped.send()
+            }
+        } label: {
+            Image.moreSolid
+        }
+        .accessibilityLabel(Text("Dashboard Options", bundle: .core))
+	}
+
     @ViewBuilder
-    private var optionsKebabButton: some View {
+	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyOptionsKebabButton: some View {
         Button {
             // Dismiss dashboard settings popover
             guard controller.value.presentedViewController == nil else {
@@ -180,8 +247,26 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         }
     }
 
+	@ViewBuilder
+	@available(iOS, introduced: 26, message: "Legacy version exists")
+	private var dashboardSettingsButton: some View {
+		Button {
+			guard controller.value.presentedViewController == nil else {
+				controller.value.presentedViewController?.dismiss(animated: true)
+				return
+			}
+
+			viewModel.settingsButtonTapped.send()
+		} label: {
+			Image.settingsSolid
+		}
+		.accessibilityLabel(Text("Dashboard settings", bundle: .core))
+		.accessibilityIdentifier("Dashboard.settingsButton")
+	}
+
     @ViewBuilder
-    private var dashboardSettingsButton: some View {
+	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyDashboardSettingsButton: some View {
         Button {
             guard controller.value.presentedViewController == nil else {
                 controller.value.presentedViewController?.dismiss(animated: true)
