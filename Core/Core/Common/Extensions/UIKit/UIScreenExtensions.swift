@@ -22,6 +22,17 @@ extension UIScreen {
     /// Reasonable approximation of points per inch for iOS devices.
     /// iPads: ~132, iPhones: ~163 (varies slightly by device model).
     public var pointsPerInch: CGFloat {
-        UIDevice.current.userInterfaceIdiom == .pad ? 132 : 163
+        UIDevice.current.userInterfaceIdiom.pointsPerInch
+    }
+}
+
+extension UIUserInterfaceIdiom {
+    /// Reasonable approximation of points per inch for iOS devices.
+    /// iPads: ~132, iPhones: ~163 (varies slightly by device model).
+    var pointsPerInch: CGFloat {
+        switch self {
+        case .pad: 132
+        default: 163
+        }
     }
 }

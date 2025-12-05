@@ -33,6 +33,7 @@
     "Core\/Features\/WebSitePreview\/",
     "Student\/BackgroundProcessing\/CoreTaskSchedulerLive.swift",
     "Student\/Submissions\/SubmissionButton\/SubmissionButtonPresenter.swift",
+    "Student\/Student\/Assignments\/AssignmentDetails\/SubAssignmentsCard\/ViewModel\/StudentSubAssignmentsCardItem.swift",
     "Student\/Widgets\/",
     "\/Teacher\/SpeedGrader\/",
     "Parent\/",
