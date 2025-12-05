@@ -69,6 +69,25 @@ extension View {
 }
 
 private struct SwipeActionModifier<Label: View>: ViewModifier {
+    private enum SwipeState {
+        case idle
+        case draggingBelowThreshold
+        case draggingAboveThreshold
+        case animatingOpen
+        case open
+        case animatingClose
+        case ignoredGesture
+
+        var allowsGesture: Bool {
+            switch self {
+            case .idle, .draggingBelowThreshold, .draggingAboveThreshold, .ignoredGesture:
+                return true
+            case .animatingOpen, .open, .animatingClose:
+                return false
+            }
+        }
+    }
+
     let backgroundColor: Color
     let completionBehavior: InstUI.SwipeCompletionBehavior
     @Binding var isSwiping: Bool
@@ -76,6 +95,28 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
     let onSwipeCommitted: (() -> Void)?
     let onSwipe: () -> Void
     let label: () -> Label
+
+    // MARK: - Gesture Properties
+    private let actionThresholdInPoints: CGFloat = {
+        let thresholdInCentimeters: CGFloat = 2.5
+        let centimetersPerInch: CGFloat = 2.54
+        let inches = thresholdInCentimeters / centimetersPerInch
+        let pointsPerInch = UIScreen.main.pointsPerInch
+        return inches * pointsPerInch
+    }()
+
+    // MARK: - Layout & Sizing
+    @State private var cellContentOffset: CGFloat = 0
+    @State private var cellWidth: CGFloat = 0
+    @State private var actionViewWidth: CGFloat = 0
+    @State private var actionViewOffset: CGFloat = 0
+
+    // MARK: - State Machine
+    @State private var swipeState: SwipeState = .idle
+
+    // MARK: - Animations
+    private let animation: Animation = .easeOut(duration: 0.3)
+    private let hapticGenerator = UIImpactFeedbackGenerator(style: .medium)
 
     init(
         backgroundColor: Color,
@@ -95,31 +136,6 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
         self.label = label
     }
 
-    // MARK: - Gesture Properties
-    private let actionThresholdInPoints: CGFloat = {
-        let thresholdInCentimeters: CGFloat = 2.5
-        let centimetersPerInch: CGFloat = 2.54
-        let inches = thresholdInCentimeters / centimetersPerInch
-        let pointsPerInch = UIScreen.main.pointsPerInch
-        return inches * pointsPerInch
-    }()
-
-    // MARK: - Layout & Sizing
-    @State private var cellContentOffset: CGFloat = 0
-    @State private var cellWidth: CGFloat = 0
-    @State private var actionViewWidth: CGFloat = 0
-    @State private var actionViewOffset: CGFloat = 0
-
-    // MARK: - Internal Logic States
-    /// Becomes true, if dragging goes beyond `actionThresholdInPoints`. If drag is ended while this is true the swipe action will be performed.
-    @State private var isActionThresholdReached = false
-    /// Becomes true after the action has been invoked to disable further drag gestures
-    @State private var isActionInvoked = false
-    /// Set on first gesture update to determine if we should process this gesture
-    @State private var isStartedAsHorizontalGesture: Bool?
-
-    private let hapticGenerator = UIImpactFeedbackGenerator(style: .medium)
-
     func body(content: Content) -> some View {
         ZStack(alignment: .trailing) {
             swipeBackground
@@ -135,7 +151,7 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
             DragGesture(minimumDistance: 20)
                 .onChanged(handleDragChanged)
                 .onEnded(handleDragEnded),
-            isEnabled: isEnabled && !isActionInvoked
+            isEnabled: isEnabled && swipeState.allowsGesture
         )
     }
 
@@ -150,58 +166,59 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
                     }
                     .offset(x: actionViewOffset)
             }
-            .animation(.smooth, value: actionViewOffset)
+            .animation(animation, value: actionViewOffset)
             .accessibilityHidden(true)
     }
 
     // MARK: - Drag In Progress
 
     private func handleDragChanged(_ value: DragGesture.Value) {
-        if isStartedAsHorizontalGesture == nil {
-            isStartedAsHorizontalGesture = value.translation.isHorizontalSwipe
-        }
+        switch swipeState {
+        case .idle:
+            if value.translation.isHorizontalSwipe && value.translation.isSwipingLeft {
+                swipeState = .draggingBelowThreshold
+                isSwiping = true
+                hapticGenerator.prepare()
+            } else {
+                swipeState = .ignoredGesture
+                return
+            }
 
-        guard isStartedAsHorizontalGesture == true,
-              value.translation.isSwipingLeft
-        else { return }
+        case .draggingBelowThreshold:
+            cellContentOffset = min(max(value.translation.width, -cellWidth), 0)
 
-        isSwiping = true
+            if abs(cellContentOffset) >= actionThresholdInPoints {
+                hapticGenerator.impactOccurred()
+                swipeState = .draggingAboveThreshold
+                actionViewOffset = cellContentOffset + actionViewWidth
+            } else {
+                updateActionViewPositionBelowThreshold()
+            }
 
-        hapticGenerator.prepare()
-        cellContentOffset = max(value.translation.width, -cellWidth)
-
-        handleActionThresholdCrossing()
-        updateActionViewPosition()
-    }
-
-    private func handleActionThresholdCrossing() {
-        let newIsActionThresholdReached = abs(cellContentOffset) >= actionThresholdInPoints
-
-        if newIsActionThresholdReached && !isActionThresholdReached {
-            hapticGenerator.impactOccurred()
-            isActionThresholdReached = true
+        case .draggingAboveThreshold:
+            cellContentOffset = min(max(value.translation.width, -cellWidth), 0)
             actionViewOffset = cellContentOffset + actionViewWidth
-        } else if !newIsActionThresholdReached && isActionThresholdReached {
-            hapticGenerator.impactOccurred()
-            isActionThresholdReached = false
-            actionViewOffset = 0
+
+            if abs(cellContentOffset) < actionThresholdInPoints {
+                hapticGenerator.impactOccurred()
+                swipeState = .draggingBelowThreshold
+                actionViewOffset = 0
+            }
+
+        case .animatingOpen, .open, .animatingClose, .ignoredGesture:
+            return
         }
     }
 
-    private func updateActionViewPosition() {
+    private func updateActionViewPositionBelowThreshold() {
         let revealedWidth = abs(cellContentOffset)
-
-        if isActionThresholdReached {
-            actionViewOffset = cellContentOffset + actionViewWidth
-        } else {
-            var transaction = Transaction()
-            transaction.disablesAnimations = true
-            withTransaction(transaction) {
-                if revealedWidth < actionViewWidth {
-                    actionViewOffset = actionViewWidth + cellContentOffset
-                } else {
-                    actionViewOffset = 0
-                }
+        var transaction = Transaction()
+        transaction.disablesAnimations = true
+        withTransaction(transaction) {
+            if revealedWidth < actionViewWidth {
+                actionViewOffset = actionViewWidth + cellContentOffset
+            } else {
+                actionViewOffset = 0
             }
         }
     }
@@ -209,46 +226,48 @@ private struct SwipeActionModifier<Label: View>: ViewModifier {
     // MARK: - Drag Finish
 
     private func handleDragEnded(_: DragGesture.Value) {
-        defer { isStartedAsHorizontalGesture = nil }
-        guard isStartedAsHorizontalGesture == true else { return }
-
-        isSwiping = false
-
-        if isActionThresholdReached {
+        switch swipeState {
+        case .draggingAboveThreshold:
+            isSwiping = false
             onSwipeCommitted?()
 
             switch completionBehavior {
             case .stayOpen:
-                animateToOpenedState()
-                isActionInvoked = true
-                onSwipe()
+                swipeState = .animatingOpen
+                withAnimation(animation) {
+                    cellContentOffset = -cellWidth
+                    actionViewOffset = -cellWidth + actionViewWidth
+                } completion: {
+                    swipeState = .open
+                    onSwipe()
+                }
+
             case .reset:
-                animateToClosedState()
-                Task { @MainActor in
-                    // Wait for close animation to complete before invoking callback.
-                    // This prevents visual state changes during the animation
-                    // Note: await suspends the Task but does NOT block the main thread
-                    try? await Task.sleep(nanoseconds: 430_000_000)
+                swipeState = .animatingClose
+                withAnimation(animation) {
+                    cellContentOffset = 0
+                    actionViewOffset = actionViewWidth
+                } completion: {
+                    swipeState = .idle
                     onSwipe()
                 }
             }
-        } else {
-            animateToClosedState()
-        }
-    }
 
-    private func animateToOpenedState() {
-        withAnimation(.smooth) {
-            cellContentOffset = -cellWidth
-            actionViewOffset = -cellWidth + actionViewWidth
-        }
-    }
+        case .draggingBelowThreshold:
+            isSwiping = false
+            swipeState = .animatingClose
+            withAnimation(animation) {
+                cellContentOffset = 0
+                actionViewOffset = actionViewWidth
+            } completion: {
+                swipeState = .idle
+            }
 
-    private func animateToClosedState() {
-        isActionThresholdReached = false
-        withAnimation(.smooth) {
-            cellContentOffset = 0
-            actionViewOffset = actionViewWidth
+        case .ignoredGesture:
+            swipeState = .idle
+
+        default:
+            break
         }
     }
 }
