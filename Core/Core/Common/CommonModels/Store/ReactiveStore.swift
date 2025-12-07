@@ -120,6 +120,26 @@ public class ReactiveStore<U: UseCase> {
         }
     }
 
+    public func getEntitiesUpdated() -> AnyPublisher<[U.Model], Error> {
+        let scope = useCase.scope
+        let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
+        request.predicate = scope.predicate
+        request.sortDescriptors = scope.order
+
+        let fetchRequest = Self.fetchEntitiesFromDatabase(
+            fetchRequest: request,
+            context: context
+        )
+
+        return getEntities(ignoreCache: true)
+            .tryCatch { _ in
+                return fetchRequest
+                    .first()
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+
     /// Refreshes the entities by requesting the latest data from the API. The returned publisher will emit once the refresh has finished, then it completes.
     public func forceRefresh(loadAllPages: Bool = true) -> AnyPublisher<Void, Never> {
         getEntities(

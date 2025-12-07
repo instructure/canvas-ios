@@ -554,7 +554,12 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             }
         }
 
-        var downloaders = interactors.map { $0.getContent(courseId: entry.syncID) }
+        var downloaders = interactors.map {
+            $0
+                .getContent(courseId: entry.syncID)
+                .catch({ _ in Just(()).setFailureType(to: Error.self) })
+                .eraseToAnyPublisher()
+        }
 
         if tabsForModuleItemDownload.count > 0 {
             let modulesDownloaders = modulesInteractor.getAssociatedModuleItems(
