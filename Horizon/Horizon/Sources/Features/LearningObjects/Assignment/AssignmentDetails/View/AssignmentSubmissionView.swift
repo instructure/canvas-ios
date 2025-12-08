@@ -113,7 +113,7 @@ struct AssignmentSubmissionView: View {
                 )
             }
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel(selectedTe)
+            .accessibilityLabel(selectedSubmissionType)
             .accessibilityActions {
                 Button {
                     viewModel.selectedSubmissionIndex = 0
@@ -130,10 +130,14 @@ struct AssignmentSubmissionView: View {
             .accessibilityHint("Swipe up or down to change the submission type")
         }
     }
-    var selectedTe: String {
+    var selectedSubmissionType: String {
         let selectedItem = viewModel.selectedSubmission.title
-       return "\(AssignmentLocalizedKeys.selectSubmissionType.title). Selected: \(selectedItem)"
-   }
+        return String(
+            format: String(localized: "%@. Selected: %@", bundle: .horizon),
+            AssignmentLocalizedKeys.selectSubmissionType.title,
+            selectedItem
+        )
+    }
 
     @ViewBuilder
     private var submissionContentView: some View {
