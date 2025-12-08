@@ -123,10 +123,11 @@ public class HTMLParserLive: HTMLParser {
                     resourceId: resourceId,
                     documentsDirectory: URL.Directories.documents
                 )
-                    .map {
-                        return (originalURL, $0)
-                    }
-
+                .map { url -> (URL, String)? in
+                    return (originalURL, url)
+                }
+                .replaceError(with: nil)
+                .compactMap({ $0 })
             }
             .collect() // Wait for all image download to finish and handle as an array
             .eraseToAnyPublisher()

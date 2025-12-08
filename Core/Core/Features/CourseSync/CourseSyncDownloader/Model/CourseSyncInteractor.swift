@@ -557,7 +557,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         var downloaders = interactors.map {
             $0
                 .getContent(courseId: entry.syncID)
-                .catch({ _ in Just(()).setFailureType(to: Error.self) })
+                .catchErrorReplacingWithVoid()
                 .eraseToAnyPublisher()
         }
 
@@ -580,8 +580,9 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             return Just(()).eraseToAnyPublisher()
         }
 
-        return interactor.getContent(courseId: entry.syncID)
-            .catch { _ in Just(()).eraseToAnyPublisher() }
+        return interactor
+            .getContent(courseId: entry.syncID)
+            .catchErrorReplacingWithVoid()
             .eraseToAnyPublisher()
     }
 

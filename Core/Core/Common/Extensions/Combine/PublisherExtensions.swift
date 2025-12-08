@@ -69,3 +69,50 @@ extension Publisher {
         }
     }
 }
+
+extension Publisher {
+
+    /// Replaces error with a specified value.
+    /// - Parameters:
+    ///   - value: The value to replace errors with.
+    ///   - failureType: The failure type to use for the publisher.
+    /// - Returns: A publisher that emits the specified value on error.
+    public func catchErrorReplacing<F>(with value: Output, failureType: F.Type = F.self) -> Publishers.Catch<Self, Result<Output, F>.Publisher> where F: Error {
+        return self
+            .catch({ _ in
+                Just(value)
+                    .setFailureType(to: failureType)
+            })
+    }
+
+    /// Replaces error with a specified value. Results in a publisher with the same Failure type as the original publisher.
+    /// - Parameters:
+    ///   - value: The value to replace errors with.
+    /// - Returns: A publisher that emits the specified value on error, with the same Failure type as the original publisher.
+    public func catchErrorReplacing(with value: Output) -> Publishers.Catch<Self, Result<Output, Failure>.Publisher> {
+        return self
+            .catch({ _ in
+                Just(value)
+                    .setFailureType(to: Failure.self)
+            })
+    }
+
+    /// Replaces error with a void value.
+    /// - Parameter failureType: The failure type to use for the publisher.
+    /// - Returns: A publisher that emits void value on error.
+    public func catchErrorReplacingWithVoid<F>(failureType: F.Type = F.self) -> Publishers.Catch<Self, Result<Output, F>.Publisher> where Output == Void, F: Error {
+        return self
+            .catch({ _ in
+                Just(()).setFailureType(to: failureType)
+            })
+    }
+
+    /// Replaces error with a void value. Results in a publisher with the same Failure type as the original publisher.
+    /// - Returns: A publisher that emits void value on error, with the same Failure type as the original publisher.
+    public func catchErrorReplacingWithVoid() -> Publishers.Catch<Self, Result<Output, Failure>.Publisher> where Output == Void {
+        return self
+            .catch({ _ in
+                Just(()).setFailureType(to: Failure.self)
+            })
+    }
+}

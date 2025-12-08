@@ -35,7 +35,7 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
             useCase: GetAssignmentsByGroup(courseID: courseId.localID),
             environment: targetEnvironment(for: courseId)
         )
-        .getEntitiesUpdated()
+        .getMostUpdatedEntities()
         .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
         .filter { $0.submission != nil }
         .flatMap {[htmlParser] in
@@ -59,7 +59,7 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
             ),
             environment: htmlParser.envResolver.targetEnvironment(for: courseID)
         )
-        .getEntitiesUpdated()
+        .getMostUpdatedEntities()
         .parseHtmlContent(attribute: \.comment, id: \.id, courseId: courseID, htmlParser: htmlParser)
         .map { _ in () }
         .eraseToAnyPublisher()

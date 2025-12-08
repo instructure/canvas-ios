@@ -47,7 +47,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
             useCase: GetModules(courseID: courseId.localID, shouldGetDiscussionCheckpoints: true),
             environment: envResolver.targetEnvironment(for: courseId)
         )
-        .getEntitiesUpdated()
+        .getMostUpdatedEntities()
         .flatMap { $0.publisher }
         .flatMap { [envResolver] in
             Self.getModuleItemSequence(courseID: courseId, moduleItems: $0.items, envResolver: envResolver)
@@ -80,7 +80,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                     ),
                     environment: envResolver.targetEnvironment(for: courseID)
                 )
-                .getEntitiesUpdated()
+                .getMostUpdatedEntities()
             }
             .collect()
             .map { _ in moduleItems }
@@ -125,18 +125,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                     useCase: GetPage(context: courseId.asContext, url: $0),
                     environment: envResolver.targetEnvironment(for: courseId)
                 )
-                .getEntitiesUpdated()
-                .map({ pages in
-                    if let page = pages.first {
-                        print()
-                        print("-------")
-                        print("Page to be synced:")
-                        print(page.title)
-                        print(page.url)
-                        print()
-                    }
-                    return pages
-                })
+                .getMostUpdatedEntities()
                 .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: pageHtmlParser)
             }
             .collect()
@@ -156,7 +145,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                     useCase: GetQuiz(courseID: courseId.localID, quizID: $0),
                     environment: envResolver.targetEnvironment(for: courseId)
                 )
-                .getEntitiesUpdated()
+                .getMostUpdatedEntities()
                 .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: quizHtmlParser)
             }
             .collect()
@@ -177,7 +166,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                     useCase: GetFile(context: courseId.asContext, fileID: $0),
                     environment: envResolver.targetEnvironment(for: courseId)
                 )
-                .getEntitiesUpdated()
+                .getMostUpdatedEntities()
                 .flatMap { [filesInteractor, envResolver] files -> AnyPublisher<Void, Error> in
                     guard let file = files.first, let url = file.url, let fileID = file.id, let mimeClass = file.mimeClass else {
                         return Empty(completeImmediately: true)
@@ -195,6 +184,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                     )
                     .collect()
                     .mapToVoid()
+                    .catchErrorReplacingWithVoid()
                     .eraseToAnyPublisher()
                 }
             }

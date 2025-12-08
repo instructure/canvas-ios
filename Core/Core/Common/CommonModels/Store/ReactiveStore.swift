@@ -119,8 +119,13 @@ public class ReactiveStore<U: UseCase> {
                 .eraseToAnyPublisher()
         }
     }
-
-    public func getEntitiesUpdated() -> AnyPublisher<[U.Model], Error> {
+    
+    /// Retrieves the most up-to-date list of entities for the current use case.
+    ///
+    /// This method attempts to fetch the latest data from the API (ignoring cache).
+    /// If the API request fails, it falls back to returning the most recent data from the local database.
+    /// - Returns: A publisher emitting an array of entities or an error.
+    public func getMostUpdatedEntities() -> AnyPublisher<[U.Model], Error> {
         let scope = useCase.scope
         let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
         request.predicate = scope.predicate
