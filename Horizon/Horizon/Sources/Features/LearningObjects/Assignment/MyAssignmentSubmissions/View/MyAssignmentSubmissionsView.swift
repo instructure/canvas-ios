@@ -136,7 +136,7 @@ struct MyAssignmentSubmissionsView: View {
                 Button {
                     viewModel.cancelDownload()
                 } label: {
-                    Text("Cancel donwlaoding the file.")
+                    Text("Cancel downloading the file.")
                 }
             } else {
                 Button {
