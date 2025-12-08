@@ -70,6 +70,24 @@ public extension XCUIElement {
     var isUnselected: Bool { !isSelected }
     var isVanished: Bool { !(exists && isHittable) }
 
+    /// Checks if a switch element is in the "on" state.
+    /// SwiftUI toggles use "1" (on) and "0" (off) as string values.
+    /// UIKit switches use "on" and "off" as string values.
+    var isSwitchSelected: Bool {
+        guard elementType == .switch else { return false }
+        let switchValue = value as? String
+        return switchValue == "1" || switchValue == "on"
+    }
+
+    /// Checks if a switch element is in the "off" state.
+    /// SwiftUI toggles use "1" (on) and "0" (off) as string values.
+    /// UIKit switches use "on" and "off" as string values.
+    var isSwitchNotSelected: Bool {
+        guard elementType == .switch else { return false }
+        let switchValue = value as? String
+        return switchValue == "0" || switchValue == "off"
+    }
+
     var stringValue: String? {
         value as? String
     }
@@ -97,19 +115,29 @@ public extension XCUIElement {
 
     private func checkCondition(_ condition: ElementCondition) -> Bool {
         switch condition {
-        case .vanish: isVanished
-        case .visible: isVisible
-        case .value(let expected, let strict): hasValue(value: expected, strict: strict)
-        case .label(let expected, let strict): hasLabel(label: expected, strict: strict)
-        case .enabled: exists && isEnabled
-        case .disabled: isDisabled
-        case .selected: exists && isSelected
-        case .unselected: !isSelected
-        case .hittable: isVisible && isHittable
-        case .labelContaining(let expected): label.contains(expected)
-        case .labelHasPrefix(let expected): label.hasPrefix(expected)
-        case .labelHasSuffix(let expected): label.hasSuffix(expected)
-        case .idContains(let expected): identifier.contains(expected)
+        case .vanish: return isVanished
+        case .visible: return isVisible
+        case .value(let expected, let strict): return hasValue(value: expected, strict: strict)
+        case .label(let expected, let strict): return hasLabel(label: expected, strict: strict)
+        case .enabled: return exists && isEnabled
+        case .disabled: return isDisabled
+        case .selected:
+            if elementType == .switch {
+                return exists && isSwitchSelected
+            } else {
+                return exists && isSelected
+            }
+        case .unselected:
+            if elementType == .switch {
+                return isSwitchNotSelected
+            } else {
+                return !isSelected
+            }
+        case .hittable: return isVisible && isHittable
+        case .labelContaining(let expected): return label.contains(expected)
+        case .labelHasPrefix(let expected): return label.hasPrefix(expected)
+        case .labelHasSuffix(let expected): return label.hasSuffix(expected)
+        case .idContains(let expected): return identifier.contains(expected)
         }
     }
 
