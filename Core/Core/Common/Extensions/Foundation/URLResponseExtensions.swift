@@ -63,7 +63,7 @@ extension URLResponse {
 
         // Generally, received as "429 Too Many Requests (Rate Limit Exceeded)"
         let is429 = httpResponse.statusCode == 429 && stringData.contains("(Rate Limit Exceeded)")
-        
+
         return is403 || is429
     }
 }

@@ -119,7 +119,7 @@ public class ReactiveStore<U: UseCase> {
                 .eraseToAnyPublisher()
         }
     }
-    
+
     /// Retrieves the most up-to-date list of entities for the current use case.
     ///
     /// This method attempts to fetch the latest data from the API (ignoring cache).
