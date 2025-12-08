@@ -182,6 +182,10 @@ struct AssignmentDetails: View {
                 }
                 .disableWithOpacity(!viewModel.shouldEnableSubmitButton, disabledOpacity: 0.7)
                 .hidden(!(viewModel.assignment?.showSubmitButton ?? false))
+                .accessibilityAction {
+                    dismissKeyboard.toggle()
+                    viewModel.submitWithoutConfirmation()
+                }
             }
         }
     }
@@ -208,10 +212,14 @@ struct AssignmentDetails: View {
                 HStack(spacing: .zero) {
                     Image.huiIcons.delete
                         .frame(width: 24, height: 24)
+                        .accessibilityHidden(true)
                     Text(AssignmentLocalizedKeys.deleteDraft.title)
                         .huiTypography(.buttonTextLarge)
                 }
                 .foregroundStyle(Color.huiColors.text.error)
+            }
+            .accessibilityAction {
+                viewModel.deleteDraft(isShowToast: false)
             }
         }
     }
