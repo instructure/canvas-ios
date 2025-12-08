@@ -120,14 +120,6 @@ class APIErrorTests: XCTestCase {
         XCTAssertEqual(nsError.code, HttpError.notFound)
     }
 
-    func testLimitReached() {
-        let response = HTTPURLResponse(url: .make(), statusCode: 429, httpVersion: nil, headerFields: nil)
-        let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))
-
-        let nsError = error as NSError
-        XCTAssertEqual(nsError.code, HttpError.limitReached)
-    }
-
     func testUnexpected() {
         let response = HTTPURLResponse(url: .make(), statusCode: 500, httpVersion: nil, headerFields: nil)
         let error = APIError.from(data: nil, response: response, error: NSError.instructureError("default"))

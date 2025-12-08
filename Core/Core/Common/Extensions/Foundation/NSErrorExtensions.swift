@@ -42,7 +42,6 @@ extension NSError {
         case 401: return HttpError.unauthorized
         case 403: return HttpError.forbidden
         case 404: return HttpError.notFound
-        case 429: return HttpError.limitReached
         default: return HttpError.unexpected
         }
     }

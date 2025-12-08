@@ -136,37 +136,34 @@ public class HTMLParserLive: HTMLParser {
             .collect() // Wait for all image download to finish and handle as an array
             .eraseToAnyPublisher()
 
-        return Publishers.Zip(
-            fileParser,
-            imageParser
-        )
-        .map { (fileURLs, imageURLs) in
-            return fileURLs + imageURLs
-        }
-        .map { [content] urls in
-            // Replace relative path links with baseURL based absolute links. This is
-            // to normalize all url's for the next step that works with absolute URLs.
-            var newContent = content
-            relativeURLs.forEach { relativeURL in
-                if let baseURL {
-                    let newURL = baseURL.appendingPathComponent(relativeURL.path)
-                    newContent = newContent.replacingOccurrences(of: relativeURL.absoluteString, with: newURL.absoluteString)
+        return Publishers.Zip(fileParser, imageParser)
+            .map { (fileURLs, imageURLs) in
+                return fileURLs + imageURLs
+            }
+            .map { [content] urls in
+                // Replace relative path links with baseURL based absolute links. This is
+                // to normalize all url's for the next step that works with absolute URLs.
+                var newContent = content
+                relativeURLs.forEach { relativeURL in
+                    if let baseURL {
+                        let newURL = baseURL.appendingPathComponent(relativeURL.path)
+                        newContent = newContent.replacingOccurrences(of: relativeURL.absoluteString, with: newURL.absoluteString)
+                    }
                 }
+                return (newContent, urls)
             }
-            return (newContent, urls)
-        }
-        .map { (content: String, urls: [(URL, String)]) in
-            // Replace all original links with the local ones, return the replaced string content
-            var newContent = content
-            urls.forEach { (originalURL, offlineURL) in
-                newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: offlineURL)
+            .map { (content: String, urls: [(URL, String)]) in
+                // Replace all original links with the local ones, return the replaced string content
+                var newContent = content
+                urls.forEach { (originalURL, offlineURL) in
+                    newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: offlineURL)
+                }
+                return newContent
             }
-            return newContent
-        }
-        .flatMap { [interactor, rootURL] content in // Save html parsed html string content to file. It will be loaded in offline mode)
-            return interactor.saveBaseContent(content: content, folderURL: rootURL)
-        }
-        .eraseToAnyPublisher()
+            .flatMap { [interactor, rootURL] content in // Save html parsed html string content to file. It will be loaded in offline mode)
+                return interactor.saveBaseContent(content: content, folderURL: rootURL)
+            }
+            .eraseToAnyPublisher()
     }
 
     private func findRegexMatches(_ content: String, pattern: NSRegularExpression, groupCount: Int = 1) -> [URL] {
