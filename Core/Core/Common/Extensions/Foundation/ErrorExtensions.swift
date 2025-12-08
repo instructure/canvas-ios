@@ -29,6 +29,10 @@ extension Error {
         nsError.domain == NSError.Constants.domain && nsError.code == HttpError.forbidden
     }
 
+    public var isLimitReached: Bool {
+        nsError.domain == NSError.Constants.domain && nsError.code == HttpError.limitReached
+    }
+
     public var isNotFound: Bool {
         nsError.domain == NSError.Constants.domain && nsError.code == HttpError.notFound
     }

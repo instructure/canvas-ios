@@ -19,6 +19,7 @@
 import Foundation
 
 public enum HttpError {
+    public static let limitReached = 429
     public static let unauthorized = 1000
     public static let forbidden = 1001
     public static let notFound = 1002

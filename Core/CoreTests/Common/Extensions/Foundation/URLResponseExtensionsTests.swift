@@ -76,8 +76,10 @@ class URLResponseExtensionsTests: XCTestCase {
 
     func testExceededLimit() {
         let httpResponse = HTTPURLResponse(url: URL(string: "https://instructure.com")!, statusCode: 403, httpVersion: "HTTP/2.0", headerFields: [:])!
-        let data = "403 Forbidden (Rate Limit Exceeded)".data(using: .utf8)
+        var data = "403 Forbidden (Rate Limit Exceeded)".data(using: .utf8)
+        XCTAssertTrue(httpResponse.exceededLimit(responseData: data))
 
+        data = "429 Too Many Requests (Rate Limit Exceeded)".data(using: .utf8)
         XCTAssertTrue(httpResponse.exceededLimit(responseData: data))
     }
 
@@ -89,15 +91,21 @@ class URLResponseExtensionsTests: XCTestCase {
 
     func testExceededLimitWithMismatchingData() {
         let httpResponse = HTTPURLResponse(url: URL(string: "https://instructure.com")!, statusCode: 403, httpVersion: "HTTP/2.0", headerFields: [:])!
-        let data = "403 Forbidden".data(using: .utf8)
+        var data = "403 Forbidden".data(using: .utf8)
 
+        XCTAssertFalse(httpResponse.exceededLimit(responseData: data))
+
+        data = "429 Too Many Requests".data(using: .utf8)
         XCTAssertFalse(httpResponse.exceededLimit(responseData: data))
     }
 
     func testExceededLimitWithNonHTTPResponse() {
         let response = URLResponse(url: URL(string: "https://instructure.com")!, mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
-        let data = "403 Forbidden (Rate Limit Exceeded)".data(using: .utf8)
 
+        var data = "403 Forbidden (Rate Limit Exceeded)".data(using: .utf8)
+        XCTAssertFalse(response.exceededLimit(responseData: data))
+
+        data = "429 Too Many Requests (Rate Limit Exceeded)".data(using: .utf8)
         XCTAssertFalse(response.exceededLimit(responseData: data))
     }
 }

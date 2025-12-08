@@ -54,14 +54,6 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         }
         .collect()
         .map { $0.flatMap { $0 } }
-        .map({ list in
-            print("Module Items fetched:")
-            for item in list {
-                print(" - (\(item.id)) \(item.title)")
-            }
-            print()
-            return list
-        })
         .eraseToAnyPublisher()
     }
 
