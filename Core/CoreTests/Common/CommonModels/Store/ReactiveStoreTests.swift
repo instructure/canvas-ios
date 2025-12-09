@@ -101,6 +101,71 @@ class ReactiveStoreTests: CoreTestCase {
         subscription.cancel()
     }
 
+    // MARK: - Most Updated Entities
+
+    func testGetMostUpdatedEntitiesReturnsFromNetwork() {
+        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let testee = createStore(useCase: useCase)
+
+        let expectation = expectation(description: "Publisher sends value")
+        let subscription = testee
+            .getMostUpdatedEntities()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { courses in
+                    XCTAssertEqual(courses.map { $0.id }, ["1"])
+                    expectation.fulfill()
+                    XCTAssertTrue(Thread.isMainThread)
+                }
+            )
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testGetMostUpdatedEntitiesFallsBackToDatabaseOnError() {
+        Course.save(.make(id: "0"), in: databaseClient)
+        try! databaseClient.save()
+        let useCase = TestUseCase(courses: nil, requestError: NSError.instructureError("TestError"))
+        let testee = createStore(useCase: useCase)
+
+        let expectation = expectation(description: "Publisher sends value")
+        let subscription = testee
+            .getMostUpdatedEntities()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { courses in
+                    XCTAssertEqual(courses.map { $0.id }, ["0"])
+                    expectation.fulfill()
+                    XCTAssertTrue(Thread.isMainThread)
+                }
+            )
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testGetMostUpdatedEntitiesFailsWhenNetworkFailsAndDatabaseIsEmpty() {
+        let useCase = TestUseCase(courses: nil, requestError: NSError.instructureError("TestError"))
+        let testee = createStore(useCase: useCase)
+
+        let expectation = expectation(description: "Publisher sends error")
+        let subscription = testee
+            .getMostUpdatedEntities()
+            .sink(
+                receiveCompletion: { completion in
+                    if case .failure = completion {
+                        expectation.fulfill()
+                        XCTAssertTrue(Thread.isMainThread)
+                    }
+                },
+                receiveValue: { _ in }
+            )
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
     // MARK: - Direct database calling
 
     func testObjectsAreReturnedFromDatabase() {
