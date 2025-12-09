@@ -211,15 +211,12 @@ public class GradeFormatter {
         case .letter_grade:
 
             /// This is to protect against the case where grade is retrieved from
-            /// backend as numeric value for a an assignment with `letter_grade`
-            /// grading style. See MBL-19517 ticket for more information.
-            let isLetterGrade = grade?.containsLetter == true
-            let letterGrade = isLetterGrade ? grade : {
-                if let normalizedScore, let gradingScheme {
-                    if normalizedScore == .infinity { return gradingScheme.entries.first?.name }
-                    if normalizedScore == (-1 * .infinity) { return gradingScheme.entries.last?.name }
-                    if normalizedScore.isNaN { return nil }
-                    return gradingScheme.convertNormalizedScoreToLetterGrade(normalizedScore)
+            /// backend as numeric value for an assignment with `letter_grade`
+            /// grading style.
+            let isLetterGradeValue = grade?.containsLetter == true
+            let letterGrade = isLetterGradeValue ? grade : {
+                if let normalizedScore {
+                    return gradingScheme?.convertNormalizedScoreToLetterGrade(normalizedScore)
                 }
                 return nil
             }()
