@@ -73,12 +73,23 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
         XCTAssertFailure(testee.getModuleItems(courseId: "course-1"))
     }
 
-    func testDiscussionCheckpointsFailure() {
+    func testDiscussionCheckpointsFailure() throws {
         mockModules()
         mockModuleItemSequence()
         mockModuleItems()
         mockDiscussionCheckpointsError()
-        XCTAssertFailure(testee.getModuleItems(courseId: "course-1"))
+
+        XCTAssertFinish(testee.getModuleItems(courseId: "course-1"))
+
+        let modules: [Module] = databaseClient.fetch()
+        XCTAssertEqual(modules.count, 1)
+
+        let module1 = try XCTUnwrap(modules.first)
+        XCTAssertEqual(module1.id, "module-1")
+        XCTAssertEqual(module1.items.count, 2)
+
+        let moduleItem1 = try XCTUnwrap(module1.items.first)
+        XCTAssertTrue(moduleItem1.discussionCheckpoints.isEmpty)
     }
 
     func testAssociatedModuleItems() {
@@ -154,7 +165,7 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
             ),
             value: [
                 .make(id: "module-item-1"),
-                .make(id: "module-item-1")
+                .make(id: "module-item-2")
             ]
         )
     }

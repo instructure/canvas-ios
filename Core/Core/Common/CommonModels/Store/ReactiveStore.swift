@@ -131,16 +131,20 @@ public class ReactiveStore<U: UseCase> {
         request.predicate = scope.predicate
         request.sortDescriptors = scope.order
 
-        let fetchRequest = Self.fetchEntitiesFromDatabase(
-            fetchRequest: request,
-            context: context
-        )
-
         return getEntities(ignoreCache: true)
-            .tryCatch { _ in
-                return fetchRequest
-                    .first()
-                    .eraseToAnyPublisher()
+            .tryCatch { [context] error in
+
+                return Self.fetchEntitiesFromDatabase(
+                    fetchRequest: request,
+                    context: context
+                )
+                .first()
+                .flatMap({ list in
+                    return list.isEmpty
+                        ? Fail(error: error).eraseToAnyPublisher()
+                        : Just(list).setFailureType(to: Error.self).eraseToAnyPublisher()
+                })
+                .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }

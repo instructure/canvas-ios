@@ -75,10 +75,11 @@ class URLResponseExtensionsTests: XCTestCase {
     }
 
     func testExceededLimit() {
-        let httpResponse = HTTPURLResponse(url: URL(string: "https://instructure.com")!, statusCode: 403, httpVersion: "HTTP/2.0", headerFields: [:])!
+        var httpResponse = HTTPURLResponse(url: URL(string: "https://instructure.com")!, statusCode: 403, httpVersion: "HTTP/2.0", headerFields: [:])!
         var data = "403 Forbidden (Rate Limit Exceeded)".data(using: .utf8)
         XCTAssertTrue(httpResponse.exceededLimit(responseData: data))
 
+        httpResponse = HTTPURLResponse(url: URL(string: "https://instructure.com")!, statusCode: 429, httpVersion: "HTTP/2.0", headerFields: [:])!
         data = "429 Too Many Requests (Rate Limit Exceeded)".data(using: .utf8)
         XCTAssertTrue(httpResponse.exceededLimit(responseData: data))
     }
