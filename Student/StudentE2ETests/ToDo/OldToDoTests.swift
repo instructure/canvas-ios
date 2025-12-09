@@ -19,7 +19,7 @@
 import TestsFoundation
 import XCTest
 
-class ToDoTests: E2ETestCase {
+class OldToDoTests: E2ETestCase {
     func testToDo() {
         // MARK: Seed the usual stuff with 3 contents (discussion, assignment, quiz)
         let student = seeder.createUser()

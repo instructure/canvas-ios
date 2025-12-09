@@ -37,7 +37,8 @@ class TodoListE2ETests: E2ETestCase {
         verifyDefaultTodoList()
         applyFilters()
         verifyFilteredTodoList()
-        verifyBadgeCount(expectedCount: 5)
+        verifyCreateTodoViaCalendar()
+        verifyAppAndTabBarBadgeCount(expectedCount: 6)
         markTodoAsDone()
         verifyShowCompletedFilter()
         verifyMarkTodoAsUndone()
@@ -137,119 +138,6 @@ class TodoListE2ETests: E2ETestCase {
         }
     }
 
-    private func openFilterScreen() {
-        XCTContext.runActivity(named: "Open filter screen") { _ in
-            let filterButton = ToDoHelper.filterButton.waitUntil(.visible)
-            XCTAssertVisible(filterButton)
-            filterButton.hit()
-
-            let filterNavBar = ToDoHelper.Filter.navBar.waitUntil(.visible)
-            XCTAssertVisible(filterNavBar)
-        }
-    }
-
-    private func verifyShowCompletedFilter() {
-        XCTContext.runActivity(named: "Verify Show Completed filter hides completed items by default") { _ in
-            let todayCell = ToDoHelper.cell(id: assignmentToday.id).waitUntil(.vanish, timeout: 5)
-            XCTAssertNotVisible(todayCell)
-
-            openFilterScreen()
-
-            let showCompletedSwitch = ToDoHelper.Filter.showCompletedSwitch.waitUntil(.visible)
-            XCTAssertVisible(showCompletedSwitch)
-            XCTAssertNotSelected(showCompletedSwitch)
-            showCompletedSwitch.hit()
-
-            showCompletedSwitch.waitUntil(.selected)
-            XCTAssertSelected(showCompletedSwitch)
-
-            closeFilterScreen()
-
-            let completedCell = ToDoHelper.cell(id: assignmentToday.id).waitUntil(.visible)
-            XCTAssertVisible(completedCell)
-        }
-    }
-
-    private func verifyShowPersonalTodosFilter() {
-        XCTContext.runActivity(named: "Verify Show Personal To-dos filter") { _ in
-            openFilterScreen()
-
-            let showPersonalTodosSwitch = ToDoHelper.Filter.showPersonalTodosSwitch.waitUntil(.visible)
-            XCTAssertVisible(showPersonalTodosSwitch)
-            XCTAssertNotSelected(showPersonalTodosSwitch)
-            showPersonalTodosSwitch.hit()
-
-            showPersonalTodosSwitch.waitUntil(.selected)
-            XCTAssertSelected(showPersonalTodosSwitch)
-
-            closeFilterScreen()
-        }
-    }
-
-    private func verifyShowCalendarEventsFilter() {
-        XCTContext.runActivity(named: "Verify Show Calendar Events filter") { _ in
-            openFilterScreen()
-
-            let showCalendarEventsSwitch = ToDoHelper.Filter.showCalendarEventsSwitch.waitUntil(.visible)
-            XCTAssertVisible(showCalendarEventsSwitch)
-            XCTAssertNotSelected(showCalendarEventsSwitch)
-            showCalendarEventsSwitch.hit()
-
-            showCalendarEventsSwitch.waitUntil(.selected)
-            XCTAssertSelected(showCalendarEventsSwitch)
-
-            closeFilterScreen()
-
-            let calendarEventCell = ToDoHelper.cell(id: calendarEvent.id).waitUntil(.visible)
-            XCTAssertVisible(calendarEventCell)
-        }
-    }
-
-    private func verifyFavouriteCoursesOnlyFilter() {
-        XCTContext.runActivity(named: "Verify Favourite Courses Only filter default state") { _ in
-            openFilterScreen()
-
-            let favouriteCoursesOnlySwitch = ToDoHelper.Filter.favouriteCoursesOnlySwitch.waitUntil(.visible)
-            XCTAssertVisible(favouriteCoursesOnlySwitch)
-            XCTAssertNotSelected(favouriteCoursesOnlySwitch)
-
-            closeFilterScreen()
-
-            let todayCell = ToDoHelper.cell(id: assignmentToday.id).waitUntil(.visible)
-            XCTAssertVisible(todayCell)
-
-            let quizCell = ToDoHelper.cell(id: quiz.id).waitUntil(.visible)
-            XCTAssertVisible(quizCell)
-        }
-    }
-
-    private func changeDateRangeFilters() {
-        XCTContext.runActivity(named: "Change date range filters") { _ in
-            openFilterScreen()
-
-            let todayStartOption = ToDoHelper.Filter.startTodayOption.waitUntil(.visible)
-            XCTAssertVisible(todayStartOption)
-            todayStartOption.hit()
-
-            let nextWeekEndOption = ToDoHelper.Filter.endNextWeekOption.waitUntil(.visible)
-            XCTAssertVisible(nextWeekEndOption)
-            nextWeekEndOption.hit()
-
-            closeFilterScreen()
-        }
-    }
-
-    private func closeFilterScreen() {
-        XCTContext.runActivity(named: "Close filter screen") { _ in
-            let doneButton = ToDoHelper.Filter.doneButton.waitUntil(.visible)
-            XCTAssertVisible(doneButton)
-            doneButton.hit()
-
-            let filterNavBar = ToDoHelper.Filter.navBar.waitUntil(.vanish)
-            XCTAssertTrue(filterNavBar.isVanished)
-        }
-    }
-
     private func verifyDefaultTodoList() {
         XCTContext.runActivity(named: "Verify todo list with default filters") { _ in
             let todayCell = ToDoHelper.cell(id: assignmentToday.id).waitUntil(.visible)
@@ -291,6 +179,8 @@ class TodoListE2ETests: E2ETestCase {
             todayStartOption.waitUntil(.selected)
             XCTAssertSelected(todayStartOption)
 
+            todayStartOption.swipeUp()
+
             let nextWeekEndOption = ToDoHelper.Filter.endNextWeekOption.waitUntil(.visible)
             nextWeekEndOption.hit()
             nextWeekEndOption.waitUntil(.selected)
@@ -322,7 +212,35 @@ class TodoListE2ETests: E2ETestCase {
         }
     }
 
-    private func verifyBadgeCount(expectedCount: Int) {
+    private func verifyCreateTodoViaCalendar() {
+        XCTContext.runActivity(named: "Verify creating todo via calendar updates todo tab") { _ in
+            let calendarTab = CalendarHelper.TabBar.calendarTab.waitUntil(.visible)
+            XCTAssertVisible(calendarTab)
+            calendarTab.hit()
+
+            CalendarHelper.navigateToAddToDoScreen()
+
+            let titleInput = CalendarHelper.EditToDo.titleInput.waitUntil(.visible)
+            XCTAssertVisible(titleInput)
+            titleInput.writeText(text: "Personal Calendar Todo")
+
+            let addButton = CalendarHelper.EditToDo.addButton.waitUntil(.visible)
+            XCTAssertVisible(addButton)
+            addButton.hit()
+
+            let todoTab = ToDoHelper.TabBar.todoTab.waitUntil(.visible)
+            XCTAssertVisible(todoTab)
+            todoTab.hit()
+
+            let filterButton = ToDoHelper.filterButton.waitUntil(.visible)
+            XCTAssertVisible(filterButton)
+
+            let tabBadgeValue = todoTab.value as? String
+            XCTAssertEqual(tabBadgeValue, "6 items", "Tab bar badge should show 6 items after adding calendar todo")
+        }
+    }
+
+    private func verifyAppAndTabBarBadgeCount(expectedCount: Int) {
         XCTContext.runActivity(named: "Verify badge count matches todo list item count") { _ in
             let todoTab = ToDoHelper.TabBar.todoTab.waitUntil(.visible)
             XCTAssertVisible(todoTab)
@@ -355,6 +273,34 @@ class TodoListE2ETests: E2ETestCase {
 
             let todayCell = ToDoHelper.cell(id: assignmentToday.id).waitUntil(.vanish, timeout: 5)
             XCTAssertNotVisible(todayCell)
+
+            let todoTab = ToDoHelper.TabBar.todoTab.waitUntil(.visible)
+            XCTAssertVisible(todoTab)
+
+            let tabBadgeValue = todoTab.value as? String
+            XCTAssertEqual(tabBadgeValue, "5 items", "Tab bar badge should show 5 items after marking one as done")
+        }
+    }
+
+    private func verifyShowCompletedFilter() {
+        XCTContext.runActivity(named: "Verify Show Completed filter hides completed items by default") { _ in
+            let todayCell = ToDoHelper.cell(id: assignmentToday.id).waitUntil(.vanish, timeout: 5)
+            XCTAssertNotVisible(todayCell)
+
+            openFilterScreen()
+
+            let showCompletedSwitch = ToDoHelper.Filter.showCompletedSwitch.waitUntil(.visible)
+            XCTAssertVisible(showCompletedSwitch)
+            XCTAssertNotSelected(showCompletedSwitch)
+            showCompletedSwitch.hit()
+
+            showCompletedSwitch.waitUntil(.selected)
+            XCTAssertSelected(showCompletedSwitch)
+
+            closeFilterScreen()
+
+            let completedCell = ToDoHelper.cell(id: assignmentToday.id).waitUntil(.visible)
+            XCTAssertVisible(completedCell)
         }
     }
 
@@ -368,6 +314,12 @@ class TodoListE2ETests: E2ETestCase {
             checkbox.hit()
 
             XCTAssertVisible(todayCell)
+
+            let todoTab = ToDoHelper.TabBar.todoTab.waitUntil(.visible)
+            XCTAssertVisible(todoTab)
+
+            let tabBadgeValue = todoTab.value as? String
+            XCTAssertEqual(tabBadgeValue, "6 items", "Tab bar badge should show 6 items after marking todo as undone")
         }
     }
 
@@ -406,11 +358,37 @@ class TodoListE2ETests: E2ETestCase {
             XCTAssertVisible(todayStartOption)
             XCTAssertSelected(todayStartOption)
 
+            todayStartOption.swipeUp()
+
             let nextWeekEndOption = ToDoHelper.Filter.endNextWeekOption.waitUntil(.visible)
             XCTAssertVisible(nextWeekEndOption)
             XCTAssertSelected(nextWeekEndOption)
 
             closeFilterScreen()
+        }
+    }
+
+    // MARK: - Helper Methods
+
+    private func openFilterScreen() {
+        XCTContext.runActivity(named: "Open filter screen") { _ in
+            let filterButton = ToDoHelper.filterButton.waitUntil(.visible)
+            XCTAssertVisible(filterButton)
+            filterButton.hit()
+
+            let filterNavBar = ToDoHelper.Filter.navBar.waitUntil(.visible)
+            XCTAssertVisible(filterNavBar)
+        }
+    }
+
+    private func closeFilterScreen() {
+        XCTContext.runActivity(named: "Close filter screen") { _ in
+            let doneButton = ToDoHelper.Filter.doneButton.waitUntil(.visible)
+            XCTAssertVisible(doneButton)
+            doneButton.hit()
+
+            let filterNavBar = ToDoHelper.Filter.navBar.waitUntil(.vanish)
+            XCTAssertTrue(filterNavBar.isVanished)
         }
     }
 }

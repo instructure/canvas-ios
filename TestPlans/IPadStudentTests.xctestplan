@@ -46,6 +46,8 @@
         "LoginTests\/testLoginWithoutUsernameAndPassword()",
         "LoginTests\/testWrongUsernameAndPassword()",
         "LogoutTests",
+        "OldToDoTests",
+        "OldToDoTests\/testToDo()",
         "PagesTests\/testDeepLinks()",
         "PeopleTests",
         "PeopleTests\/testPeopleListAndContextCard()",

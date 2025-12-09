@@ -45,7 +45,9 @@
         "OfflineTests\/testNetworkConnectionLose()",
         "OfflineTests\/testOfflineContentSync()",
         "OfflineTests\/testOfflineCourseAvailabilityAndAlertMessageAndStarButton()",
-        "OfflineTests\/testOfflineSynchronizationSetting()"
+        "OfflineTests\/testOfflineSynchronizationSetting()",
+        "OldToDoTests",
+        "OldToDoTests\/testToDo()"
       ],
       "target" : {
         "containerPath" : "container:Student.xcodeproj",
