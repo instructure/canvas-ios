@@ -126,9 +126,6 @@ struct IntroBlock: View {
         if isOverdue {
             labelComponents.append(String(localized: "Overdue"))
         }
-
-
-
         return labelComponents.joined(separator: ", ")
     }
 
