@@ -32,6 +32,12 @@ public class ToDoHelper: BaseHelper {
 
     public static var filterButton: XCUIElement { app.find(id: "ToDos.filterButton", type: .button) }
 
+    public enum TabBar {
+        public static var dashboardTab: XCUIElement { app.find(id: "TabBar.dashboardTab", type: .button) }
+        public static var todoTab: XCUIElement { app.find(id: "TabBar.todoTab", type: .button) }
+        public static var calendarTab: XCUIElement { app.find(id: "TabBar.calendarTab", type: .button) }
+    }
+
     public static func checkbox(id: String) -> XCUIElement {
         return app.find(id: "to-do.list.\(id).checkbox", type: .image)
     }

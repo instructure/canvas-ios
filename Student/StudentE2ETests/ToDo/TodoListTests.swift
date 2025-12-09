@@ -20,7 +20,7 @@ import Core
 import TestsFoundation
 import XCTest
 
-class TodoListE2ETests: E2ETestCase {
+class TodoListTests: E2ETestCase {
     var student: DSUser!
     var course: DSCourse!
     var assignmentToday: DSAssignment!
