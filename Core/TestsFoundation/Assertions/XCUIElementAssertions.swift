@@ -54,7 +54,7 @@ public func XCTAssertNotSelected(
 ) {
     let errorMessage = "Element is selected: \(element.debugDescription)"
     if element.elementType == .switch {
-        XCTAssertTrue(element.isSwitchNotSelected, errorMessage, file: file, line: line)
+        XCTAssertFalse(element.isSwitchSelected, errorMessage, file: file, line: line)
     } else {
         XCTAssertFalse(element.isSelected, errorMessage, file: file, line: line)
     }

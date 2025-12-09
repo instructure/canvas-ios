@@ -79,15 +79,6 @@ public extension XCUIElement {
         return switchValue == "1" || switchValue == "on"
     }
 
-    /// Checks if a switch element is in the "off" state.
-    /// SwiftUI toggles use "1" (on) and "0" (off) as string values.
-    /// UIKit switches use "on" and "off" as string values.
-    var isSwitchNotSelected: Bool {
-        guard elementType == .switch else { return false }
-        let switchValue = value as? String
-        return switchValue == "0" || switchValue == "off"
-    }
-
     var stringValue: String? {
         value as? String
     }
@@ -129,7 +120,7 @@ public extension XCUIElement {
             }
         case .unselected:
             if elementType == .switch {
-                return isSwitchNotSelected
+                return !isSwitchSelected
             } else {
                 return !isSelected
             }
