@@ -105,6 +105,15 @@ enum ModuleNavBarUtilityButtons: Equatable, Hashable {
         }
     }
 
+    var isAssignmentMoreOptions: Bool {
+        switch self {
+        case .assignmentMoreOptions:
+            return true
+        default:
+            return false
+        }
+    }
+
     static func == (lhs: ModuleNavBarUtilityButtons, rhs: ModuleNavBarUtilityButtons) -> Bool {
         switch (lhs, rhs) {
         case (.tts, .tts),

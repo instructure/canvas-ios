@@ -40,6 +40,7 @@ struct ModuleNavBarView: View {
     // MARK: - Private Properties
 
     @Environment(\.viewController) private var controller
+    @AccessibilityFocusState private var isAssignmentOptionsButtonFocused: Bool
 
     // MARK: - Dependencies
 
@@ -71,6 +72,9 @@ struct ModuleNavBarView: View {
             }
             Spacer()
             nextButtonView
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .restoreAssignmentOptionsFocus)) { _ in
+            isAssignmentOptionsButtonFocused = true
         }
     }
 
@@ -114,5 +118,10 @@ struct ModuleNavBarView: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(button.accessibilityLabel)
         .accessibilityAddTraits(.isButton)
+        .accessibilityFocused($isAssignmentOptionsButtonFocused, equals: button.isAssignmentMoreOptions)
     }
+}
+
+extension Notification.Name {
+    static let restoreAssignmentOptionsFocus = Notification.Name("restoreAssignmentOptionsFocus")
 }
