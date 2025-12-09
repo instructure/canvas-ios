@@ -81,6 +81,7 @@ struct TodoListItemCell: View {
             onSwipe: { onSwipe(item) },
             label: { swipeActionView }
         )
+        .identifier("to-do.list.\(item.plannableId).row")
     }
 
     private var swipeActionView: some View {
