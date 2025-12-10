@@ -249,9 +249,7 @@ class TodoListTests: E2ETestCase {
             let expectedTabSuffix = expectedCount == 1 ? "item" : "items"
             XCTAssertEqual(tabBadgeValue, "\(expectedCount) \(expectedTabSuffix)", "Tab bar badge should show \(expectedCount) \(expectedTabSuffix)")
 
-            XCUIDevice.shared.press(.home)
-
-            sleep(2)
+            SpringboardAppHelper.app.activate()
 
             let homeScreenIcons = SpringboardAppHelper.app.otherElements["Home screen icons"].waitUntil(.visible, timeout: 5)
             let canvasIcon = homeScreenIcons.icons["Canvas"].waitUntil(.visible, timeout: 10)
