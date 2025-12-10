@@ -40,7 +40,6 @@ final class HorizonWebView: CoreWebView {
                        let textSelection = note.notebookTextSelection {
                         try? await Task.sleep(for: .milliseconds(500)) // Wait for highlights to be applied
                         await highlightWebFeature?.scrollToHighlight(webView: self, notebookTextSelection: textSelection)
-                        shouldScrollToHighlightedNote = false
                     }
                 }
             }
@@ -107,11 +106,35 @@ final class HorizonWebView: CoreWebView {
 
     // MARK: - Override Functions
 
+    override var accessibilityCustomActions: [UIAccessibilityCustomAction]? {
+        get {
+            guard currentNotebookTextSelection != nil, !isOverlapped else {
+                return super.accessibilityCustomActions
+            }
+
+            let customActions = actionDefinitions.map { actionDefinition in
+                UIAccessibilityCustomAction(
+                    name: actionDefinition.title,
+                    target: self,
+                    selector: #selector(handleAccessibilityAction(_:))
+                )
+            }
+            return customActions
+        }
+        set {
+            super.accessibilityCustomActions = newValue
+        }
+    }
+
     override func buildMenu(with builder: any UIMenuBuilder) {
         guard !isOverlapped else { return }
-
         let notebookActions = actionDefinitions.map { actionDefinition in
-            UIAction(title: actionDefinition.title, handler: onMenuAction)
+            let action = UIAction(
+                title: actionDefinition.title,
+                image: actionDefinition.label.icon.uiImage,
+                handler: onMenuAction
+            )
+            return action
         }
         let notebookMenu = UIMenu(title: "", options: .displayInline, children: notebookActions)
 
@@ -198,6 +221,7 @@ final class HorizonWebView: CoreWebView {
                                 .post(name: .showToastAlert, object: String(localized: "Note saved", bundle: .horizon))
                         }
                     }
+                    shouldScrollToHighlightedNote = false
                     router.show(
                         editNotebookView,
                         from: viewController,
@@ -213,8 +237,40 @@ final class HorizonWebView: CoreWebView {
             .sink { _ in
             } receiveValue: { [weak self] notebookTextSelection in
                 self?.currentNotebookTextSelection = notebookTextSelection
+                if UIAccessibility.isVoiceOverRunning {
+                    UIAccessibility.post(notification: .layoutChanged, argument: self)
+                }
             }
             .store(in: &subscriptions)
+    }
+
+    @objc private func handleAccessibilityAction(_ action: UIAccessibilityCustomAction) -> Bool {
+        guard let actionTitle = action.name as String?,
+              let actionDefinition = actionDefinitions.first(where: { $0.title == actionTitle }),
+              let courseID = courseID,
+              let pageURL = pageURL,
+              let notebookTextSelection = currentNotebookTextSelection else {
+            return false
+        }
+
+        let label = actionDefinition.label
+        let notebookHighlight = notebookTextSelection.notebookHighlight(label: label)
+        shouldScrollToHighlightedNote = false
+        courseNoteInteractor.add(
+            courseID: courseID,
+            pageURL: pageURL,
+            content: "",
+            labels: [label],
+            notebookHighlight: notebookHighlight
+        ).sink(
+            receiveCompletion: { _ in },
+            receiveValue: { _ in }
+        ).store(in: &subscriptions)
+
+        let announcement = String(localized: "Marked as \(label.label.lowercased())", bundle: .horizon)
+        UIAccessibility.post(notification: .announcement, argument: announcement)
+
+        return true
     }
 
     private func onMenuAction(_ action: UIAction) {
@@ -234,7 +290,7 @@ final class HorizonWebView: CoreWebView {
                 from: viewController)
             return
         }
-
+        shouldScrollToHighlightedNote = false
         courseNoteInteractor.add(
             courseID: courseID,
             pageURL: pageURL,
