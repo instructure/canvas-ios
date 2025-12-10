@@ -144,6 +144,7 @@ public struct WebView: UIViewRepresentable {
             webView.pinWithThemeSwitchButton(inside: webViewContainer)
         } else {
             webView.pin(inside: webViewContainer)
+            webView.activateFullScreenSupport()
         }
 
         webView.autoresizesHeight = true
