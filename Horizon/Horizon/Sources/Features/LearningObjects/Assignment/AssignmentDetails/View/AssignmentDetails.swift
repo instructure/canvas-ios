@@ -77,6 +77,13 @@ struct AssignmentDetails: View {
         .refreshable {
             await viewModel.refresh()
         }
+        .onChange(of: viewModel.isOverlayToolsPresented) { _, isPresented in
+            if !isPresented && UIAccessibility.isVoiceOverRunning {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    NotificationCenter.default.post(name: .restoreAssignmentOptionsFocus, object: nil)
+                }
+            }
+        }
     }
 
     private var topView: some View {
