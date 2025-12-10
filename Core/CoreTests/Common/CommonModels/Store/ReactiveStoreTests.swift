@@ -104,18 +104,59 @@ class ReactiveStoreTests: CoreTestCase {
     // MARK: - Most Updated Entities
 
     func testGetMostUpdatedEntitiesReturnsFromNetwork() {
-        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let useCase = TestUseCase(courses: [.make(id: "1")], requestError: nil)
         let testee = createStore(useCase: useCase)
 
         let expectation = expectation(description: "Publisher sends value")
+        expectation.expectedFulfillmentCount = 2
+
         let subscription = testee
             .getMostUpdatedEntities()
             .sink(
-                receiveCompletion: { _ in },
+                receiveCompletion: { completion in
+                    if case .failure = completion {
+                        XCTFail("Failure is not expected here")
+                    }
+                    expectation.fulfill()
+                },
                 receiveValue: { courses in
                     XCTAssertEqual(courses.map { $0.id }, ["1"])
-                    expectation.fulfill()
                     XCTAssertTrue(Thread.isMainThread)
+                    expectation.fulfill()
+                }
+            )
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    func testGetMostUpdatedEntitiesReturnsEmptyFromNetwork() {
+        // Given
+        Course.save(.make(id: "1"), in: databaseClient)
+        Course.save(.make(id: "2"), in: databaseClient)
+        try! databaseClient.save()
+
+        // When
+        let useCase = TestUseCase(courses: [], resetsOnSuccess: true)
+        let testee = createStore(useCase: useCase)
+
+        let expectation = expectation(description: "Publisher sends value")
+        expectation.expectedFulfillmentCount = 2
+
+        let subscription = testee
+            .getMostUpdatedEntities()
+            .sink(
+                receiveCompletion: { completion in
+                    if case .failure = completion {
+                        XCTFail("Failure is not expected here")
+                    }
+                    expectation.fulfill()
+                },
+                receiveValue: { courses in
+                    // Then
+                    XCTAssertTrue(courses.isEmpty)
+                    XCTAssertTrue(Thread.isMainThread)
+                    expectation.fulfill()
                 }
             )
 
@@ -126,18 +167,27 @@ class ReactiveStoreTests: CoreTestCase {
     func testGetMostUpdatedEntitiesFallsBackToDatabaseOnError() {
         Course.save(.make(id: "0"), in: databaseClient)
         try! databaseClient.save()
-        let useCase = TestUseCase(courses: nil, requestError: NSError.instructureError("TestError"))
+
+        let error = NSError.instructureError("TestError")
+        let useCase = TestUseCase(courses: nil, requestError: error)
         let testee = createStore(useCase: useCase)
 
         let expectation = expectation(description: "Publisher sends value")
+        expectation.expectedFulfillmentCount = 2
+
         let subscription = testee
             .getMostUpdatedEntities()
             .sink(
-                receiveCompletion: { _ in },
+                receiveCompletion: { completion in
+                    if case .failure = completion {
+                        XCTFail("Failure is not expected here")
+                    }
+                    expectation.fulfill()
+                },
                 receiveValue: { courses in
                     XCTAssertEqual(courses.map { $0.id }, ["0"])
-                    expectation.fulfill()
                     XCTAssertTrue(Thread.isMainThread)
+                    expectation.fulfill()
                 }
             )
 
@@ -146,7 +196,8 @@ class ReactiveStoreTests: CoreTestCase {
     }
 
     func testGetMostUpdatedEntitiesFailsWhenNetworkFailsAndDatabaseIsEmpty() {
-        let useCase = TestUseCase(courses: nil, requestError: NSError.instructureError("TestError"))
+        let error = NSError.instructureError("TestError")
+        let useCase = TestUseCase(courses: nil, requestError: error)
         let testee = createStore(useCase: useCase)
 
         let expectation = expectation(description: "Publisher sends error")
@@ -154,9 +205,10 @@ class ReactiveStoreTests: CoreTestCase {
             .getMostUpdatedEntities()
             .sink(
                 receiveCompletion: { completion in
-                    if case .failure = completion {
-                        expectation.fulfill()
+                    if case .failure(let responseError) = completion {
+                        XCTAssertEqual(responseError as NSError, error)
                         XCTAssertTrue(Thread.isMainThread)
+                        expectation.fulfill()
                     }
                 },
                 receiveValue: { _ in }
@@ -530,13 +582,15 @@ extension ReactiveStoreTests {
         let courses: [APICourse]?
         let requestError: Error?
         let urlResponse: URLResponse?
+        let resetsOnSuccess: Bool
 
         private(set) var receivedEnvironmentInMakeRequest: AppEnvironment?
 
-        init(courses: [APICourse]? = nil, requestError: Error? = nil, urlResponse: URLResponse? = nil) {
+        init(courses: [APICourse]? = nil, requestError: Error? = nil, urlResponse: URLResponse? = nil, resetsOnSuccess: Bool = false) {
             self.courses = courses
             self.requestError = requestError
             self.urlResponse = urlResponse
+            self.resetsOnSuccess = resetsOnSuccess
         }
 
         var scope: Scope {
@@ -567,6 +621,11 @@ extension ReactiveStoreTests {
 
         func getNext(from urlResponse: URLResponse) -> GetNextRequest<[APICourse]>? {
             return GetCoursesRequest().getNext(from: urlResponse)
+        }
+
+        func reset(context: NSManagedObjectContext) {
+            guard resetsOnSuccess else { return }
+            context.delete(context.fetch(scope: scope) as [Model])
         }
     }
 }

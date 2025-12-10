@@ -131,22 +131,33 @@ public class ReactiveStore<U: UseCase> {
         request.predicate = scope.predicate
         request.sortDescriptors = scope.order
 
-        return getEntities(ignoreCache: true)
-            .tryCatch { [context] error in
+        return Self.fetchDataFromAPI(
+            useCase: useCase,
+            loadAllPages: true,
+            environment: environment
+        )
+        .catch { [context] error in
 
-                return Self.fetchEntitiesFromDatabase(
+            return Self.fetchEntitiesFromDatabase(
+                fetchRequest: request,
+                context: context
+            )
+            .first()
+            .flatMap({ list in
+                return list.isEmpty
+                    ? Fail(error: error).eraseToAnyPublisher()
+                    : Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+            })
+        }
+        .flatMap { [context] in
+            Self
+                .fetchEntitiesFromDatabase(
                     fetchRequest: request,
                     context: context
                 )
                 .first()
-                .flatMap({ list in
-                    return list.isEmpty
-                        ? Fail(error: error).eraseToAnyPublisher()
-                        : Just(list).setFailureType(to: Error.self).eraseToAnyPublisher()
-                })
-                .eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
     }
 
     /// Refreshes the entities by requesting the latest data from the API. The returned publisher will emit once the refresh has finished, then it completes.
@@ -196,8 +207,27 @@ public class ReactiveStore<U: UseCase> {
         context: NSManagedObjectContext,
         environment: AppEnvironment
     ) -> AnyPublisher<[T], Error> {
-        let useCaseToFetch: Future<URLResponse?, Error>
 
+        return fetchDataFromAPI(
+            useCase: useCase,
+            getNextUseCase: getNextUseCase,
+            loadAllPages: loadAllPages,
+            environment: environment
+        )
+        .flatMap {
+            fetchEntitiesFromDatabase(fetchRequest: fetchRequest, context: context)
+        }
+        .eraseToAnyPublisher()
+    }
+
+    private static func fetchDataFromAPI(
+        useCase: U,
+        getNextUseCase: GetNextUseCase<U>? = nil,
+        loadAllPages: Bool,
+        environment: AppEnvironment
+    ) -> AnyPublisher<Void, Error> {
+
+        let useCaseToFetch: Future<URLResponse?, Error>
         if let getNextUseCase {
             useCaseToFetch = getNextUseCase.fetchWithFuture(environment: environment)
         } else {
@@ -217,21 +247,16 @@ public class ReactiveStore<U: UseCase> {
                     useCase: useCase,
                     loadAllPages: loadAllPages,
                     nextResponse: $0,
-                    fetchRequest: fetchRequest,
-                    context: context,
                     environment: environment
                 )
             }
-            .flatMap { _ in Self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest, context: context) }
             .eraseToAnyPublisher()
     }
 
-    private static func fetchAllPagesIfNeeded<T: NSManagedObject>(
+    private static func fetchAllPagesIfNeeded(
         useCase: U,
         loadAllPages: Bool,
         nextResponse: GetNextRequest<U.Response>?,
-        fetchRequest: NSFetchRequest<T>,
-        context: NSManagedObjectContext,
         environment: AppEnvironment
     ) -> AnyPublisher<Void, Error> {
         let voidPublisher: () -> AnyPublisher<Void, Error> = {
@@ -248,15 +273,12 @@ public class ReactiveStore<U: UseCase> {
             .setFailureType(to: Error.self)
             .flatMap { nextPageUseCase -> AnyPublisher<Void, Error> in
                 if let nextPageUseCase {
-                    return Self.fetchEntitiesFromAPI(
+                    return Self.fetchDataFromAPI(
                         useCase: useCase,
                         getNextUseCase: nextPageUseCase,
                         loadAllPages: true,
-                        fetchRequest: fetchRequest,
-                        context: context,
                         environment: environment
                     )
-                    .map { _ in () }
                     .eraseToAnyPublisher()
                 } else {
                     return voidPublisher()
