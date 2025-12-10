@@ -251,6 +251,8 @@ class TodoListTests: E2ETestCase {
 
             XCUIDevice.shared.press(.home)
 
+            sleep(2)
+
             let homeScreenIcons = SpringboardAppHelper.app.otherElements["Home screen icons"].waitUntil(.visible, timeout: 5)
             let canvasIcon = homeScreenIcons.icons["Canvas"].waitUntil(.visible, timeout: 10)
             XCTAssertVisible(canvasIcon)
