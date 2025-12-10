@@ -26,7 +26,7 @@ public extension HorizonUI.ModuleContainer {
         case completed
         case locked
 
-        var title: String {
+       public var title: String {
             switch self {
             case .optional: ""
             case .notStarted: String(localized: "Not started")

@@ -120,6 +120,10 @@ struct ProgramSwitcherModel: Identifiable, Equatable {
         self.name = name
         self.courses = courses
     }
+
+    var accessibilityDescription: String {
+        String(format: "Part of %@ program", name ?? "")
+    }
     struct Course: Identifiable, Equatable {
         let id: String
         let name: String

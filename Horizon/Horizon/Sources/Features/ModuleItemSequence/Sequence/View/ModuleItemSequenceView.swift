@@ -180,10 +180,16 @@ public struct ModuleItemSequenceView: View {
     @ViewBuilder
     private var moduleNavBarView: some View {
         if isShowModuleNavBar {
-            let nextButton = ModuleNavBarView.ButtonAttribute(isVisible: viewModel.isNextButtonEnabled) {
+            let nextButton = ModuleNavBarView.ButtonAttribute(
+                isVisible: viewModel.isNextButtonEnabled,
+                accessibilityLabel: String(localized: "Go to next item", bundle: .horizon)
+            ) {
                 goNext()
             }
-            let previousButton = ModuleNavBarView.ButtonAttribute(isVisible: viewModel.isPreviousButtonEnabled) {
+            let previousButton = ModuleNavBarView.ButtonAttribute(
+                isVisible: viewModel.isPreviousButtonEnabled,
+                accessibilityLabel: String(localized: "Go to previous item", bundle: .horizon)
+            ) {
                 goPrevious()
             }
 

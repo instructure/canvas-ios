@@ -96,6 +96,24 @@ enum ModuleNavBarUtilityButtons: Equatable, Hashable {
         }
     }
 
+    var accessibilityLabel: String {
+        switch self {
+        case .tts: String(localized: "Open Text to Speech")
+        case .chatBot:  String(localized: "Open AI chat bot")
+        case .notebook:  String(localized: "Open notebook")
+        case .assignmentMoreOptions: String(localized: "Assignment more options")
+        }
+    }
+
+    var isAssignmentMoreOptions: Bool {
+        switch self {
+        case .assignmentMoreOptions:
+            return true
+        default:
+            return false
+        }
+    }
+
     static func == (lhs: ModuleNavBarUtilityButtons, rhs: ModuleNavBarUtilityButtons) -> Bool {
         switch (lhs, rhs) {
         case (.tts, .tts),

@@ -104,4 +104,18 @@ struct HCourse: Identifiable {
             self.currentLearningObject = nil
         }
     }
+
+    var accessibilityDescription: String {
+        var description = String.localizedStringWithFormat(
+            String(localized: "Selected course is %@. ", bundle: .horizon),
+            name
+        )
+        description += String.localizedStringWithFormat(
+            String(localized: "Progress: %d percent complete. ", bundle: .horizon),
+            Int(progress.rounded())
+        )
+
+        description += String(localized: "Double tap to select another course. ", bundle: .horizon)
+        return description
+    }
 }

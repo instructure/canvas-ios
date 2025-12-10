@@ -71,15 +71,19 @@ struct IntroBlock: View {
                 backButton
                 Spacer()
                 moduleTitleView
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(accessibilityLabelText)
                 Spacer()
                 menuButton
             }
             .padding(.top, .huiSpaces.space16)
             moduleInfoView
+                .accessibilityHidden(true)
             if let attemptsAllowed = attemptsAllowed {
                 Text(attemptsAllowed)
                     .huiTypography(.p2)
                     .foregroundStyle(foregroundColor)
+                    .accessibilityHidden(true)
             }
             if isOverdue {
                 HorizonUI.StatusChip(
@@ -87,6 +91,7 @@ struct IntroBlock: View {
                     style: .white,
                     isFilled: false
                 )
+                .accessibilityHidden(true)
             }
         }
         .padding(.horizontal, .huiSpaces.space24)
@@ -95,6 +100,33 @@ struct IntroBlock: View {
             Rectangle()
                 .fill(backgroundColor)
         }
+    }
+
+    private var accessibilityLabelText: String {
+        var labelComponents: [String] = []
+        labelComponents.append(String(format: String(localized: "Module item name is %@"), moduleItemName))
+        labelComponents.append(String(format: String(localized: "Module name is %@"), moduleName))
+
+        if let duration = duration {
+            labelComponents.append(String(format: String(localized: "Duration %@"), duration))
+        }
+
+        if let countOfPoints = countOfPoints {
+            labelComponents.append(String(format: String(localized: "%@ Points Possible"), countOfPoints))
+        }
+
+        if let attemptsAllowed {
+            labelComponents.append(attemptsAllowed)
+        }
+
+        if let dueDate = dueDate {
+            labelComponents.append(String(format: String(localized: "Due Date %@"), dueDate))
+        }
+
+        if isOverdue {
+            labelComponents.append(String(localized: "Overdue"))
+        }
+        return labelComponents.joined(separator: ", ")
     }
 
     private var moduleTitleView: some View {
@@ -117,6 +149,7 @@ struct IntroBlock: View {
                 .foregroundColor(foregroundColor)
         }
         .frame(width: .huiSpaces.space24, height: .huiSpaces.space24)
+        .accessibilityLabel(String(localized: "Back"))
     }
 
     @ViewBuilder
@@ -127,6 +160,7 @@ struct IntroBlock: View {
                     .foregroundColor(foregroundColor)
             }
             .frame(width: .huiSpaces.space24, height: .huiSpaces.space24)
+            .accessibilityLabel(String(localized: "Open Menu"))
         }
     }
 

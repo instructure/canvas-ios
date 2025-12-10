@@ -72,6 +72,7 @@ public extension HorizonUI {
                 if let icon = headerIcon, let color = headerIconColor {
                     icon.frame(width: 19, height: 19)
                         .foregroundStyle(color)
+                        .accessibilityHidden(true)
                 }
                 Text(headerTitle)
                     .huiTypography(.h3)
