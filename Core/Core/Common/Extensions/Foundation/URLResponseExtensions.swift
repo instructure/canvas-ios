@@ -59,7 +59,12 @@ extension URLResponse {
         }
 
         // hasPrefix is because we don't care about the line break character at the end
-        return httpResponse.statusCode == 403 && stringData.hasPrefix("403 Forbidden (Rate Limit Exceeded)")
+        let is403 = httpResponse.statusCode == 403 && stringData.hasPrefix("403 Forbidden (Rate Limit Exceeded)")
+
+        // Generally, received as "429 Too Many Requests (Rate Limit Exceeded)"
+        let is429 = httpResponse.statusCode == 429 && stringData.contains("(Rate Limit Exceeded)")
+
+        return is403 || is429
     }
 }
 
