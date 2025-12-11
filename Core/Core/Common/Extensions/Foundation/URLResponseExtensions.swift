@@ -66,6 +66,12 @@ extension URLResponse {
 
         return is403 || is429
     }
+
+    public func retrialTimeOnRateLimitExceeded(responseData: Data?) -> DispatchTime? {
+        guard exceededLimit(responseData: responseData) else { return nil }
+
+        return .now() + .seconds(1) + .milliseconds(Int.random(in: 0...500))
+    }
 }
 
 extension HTTPURLResponse {
