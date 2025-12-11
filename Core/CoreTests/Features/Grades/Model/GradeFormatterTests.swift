@@ -302,6 +302,70 @@ class GradeFormatterTests: CoreTestCase {
         XCTAssertEqual(formatter.a11yString(from: submission), "A")
     }
 
+    func testLetterGradeScoresHiddenZeroPointsAssignments() {
+        // Given
+        Course.make(from: .make(
+            id: 333,
+            settings: .make(restrict_quantitative_data: true),
+            grading_scheme: [
+                [
+                    .init(value1: "A", value2: 86),
+                    .init(value1: "A", value2: 100)
+                ],
+                [
+                    .init(value1: "B", value2: 76),
+                    .init(value1: "B", value2: 85)
+                ],
+                [
+                    .init(value1: "C", value2: 61),
+                    .init(value1: "C", value2: 75)
+                ],
+                [
+                    .init(value1: "D", value2: 51),
+                    .init(value1: "D", value2: 60)
+                ],
+                [
+                    .init(value1: "F", value2: nil),
+                    .init(value1: "F", value2: 50)
+                ]
+            ],
+            points_based_grading_scheme: true
+        ))
+
+        let assignment = Assignment.make(from: .make(
+            course_id: 333,
+            grading_type: .letter_grade,
+            points_possible: 0
+        ))
+
+        // When
+        assignment.submission = Submission.make(from: .make(grade: "A", score: 10))
+
+        // Then
+        XCTAssertEqual(GradeFormatter.string(from: assignment, submission: assignment.submission, style: .medium), "A")
+
+        // When
+        assignment.submission?.grade = "70"
+        assignment.submission?.score = 70
+
+        // Then
+        XCTAssertEqual(GradeFormatter.string(from: assignment, submission: assignment.submission, style: .medium), "A")
+
+        // When
+        assignment.submission?.grade = "-70"
+        assignment.submission?.score = -70
+
+        // Then
+        XCTAssertEqual(GradeFormatter.string(from: assignment, submission: assignment.submission, style: .medium), "F")
+
+        // When
+        assignment.submission?.grade = "##"
+        assignment.submission?.score = .nan
+
+        // Then
+        XCTAssertEqual(GradeFormatter.string(from: assignment, submission: assignment.submission, style: .medium), "-")
+    }
+
     func testNotGraded() {
         formatter.gradeStyle = .short
         formatter.gradingType = .not_graded

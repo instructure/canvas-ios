@@ -68,6 +68,12 @@ extension String {
         }
     }
 
+    public var containsLetter: Bool {
+        return unicodeScalars.contains { char in
+            CharacterSet.letters.contains(char)
+        }
+    }
+
     /// - returns: True if the receiver string only contains decimal digits or if the string is empty.
     public var containsOnlyNumbers: Bool {
         unicodeScalars.allSatisfy { CharacterSet.decimalDigits.contains($0) }

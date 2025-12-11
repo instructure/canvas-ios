@@ -33,6 +33,15 @@ class PercentageBasedGradingSchemeTests: GradingSchemeTestCase {
 
         result = testee.convertNormalizedScoreToLetterGrade(0)
         XCTAssertEqual(result, "F")
+
+        result = testee.convertNormalizedScoreToLetterGrade(.infinity)
+        XCTAssertEqual(result, "A")
+
+        result = testee.convertNormalizedScoreToLetterGrade(-1 * .infinity)
+        XCTAssertEqual(result, "F")
+
+        result = testee.convertNormalizedScoreToLetterGrade(.nan)
+        XCTAssertNil(result)
     }
 
     func testScoreConversionWithEmptyScheme() {
