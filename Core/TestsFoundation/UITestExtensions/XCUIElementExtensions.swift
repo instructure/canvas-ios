@@ -106,29 +106,29 @@ public extension XCUIElement {
 
     private func checkCondition(_ condition: ElementCondition) -> Bool {
         switch condition {
-        case .vanish: return isVanished
-        case .visible: return isVisible
-        case .value(let expected, let strict): return hasValue(value: expected, strict: strict)
-        case .label(let expected, let strict): return hasLabel(label: expected, strict: strict)
-        case .enabled: return exists && isEnabled
-        case .disabled: return isDisabled
+        case .vanish: isVanished
+        case .visible: isVisible
+        case .value(let expected, let strict): hasValue(value: expected, strict: strict)
+        case .label(let expected, let strict): hasLabel(label: expected, strict: strict)
+        case .enabled: exists && isEnabled
+        case .disabled: isDisabled
         case .selected:
             if elementType == .switch {
-                return exists && isSwitchSelected
+                exists && isSwitchSelected
             } else {
-                return exists && isSelected
+                exists && isSelected
             }
         case .unselected:
             if elementType == .switch {
-                return !isSwitchSelected
+                !isSwitchSelected
             } else {
-                return !isSelected
+                !isSelected
             }
-        case .hittable: return isVisible && isHittable
-        case .labelContaining(let expected): return label.contains(expected)
-        case .labelHasPrefix(let expected): return label.hasPrefix(expected)
-        case .labelHasSuffix(let expected): return label.hasSuffix(expected)
-        case .idContains(let expected): return identifier.contains(expected)
+        case .hittable: isVisible && isHittable
+        case .labelContaining(let expected): label.contains(expected)
+        case .labelHasPrefix(let expected): label.hasPrefix(expected)
+        case .labelHasSuffix(let expected): label.hasSuffix(expected)
+        case .idContains(let expected): identifier.contains(expected)
         }
     }
 
